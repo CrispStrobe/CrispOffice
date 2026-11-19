@@ -1,0 +1,59 @@
+{
+  "schema": "quds-evidence-archive-v1",
+  "status": "partial_run_checkpoint",
+  "source_commit": "59f13897fd5aafccc234c58f41370dd786703418",
+  "archive": "combined-engine-checkpoint.tar.xz",
+  "completed_cohorts": [
+    "engine-review-and-incoming-zotero"
+  ],
+  "remaining_cohorts": [
+    "editor-review-notes-headers-and-zotero",
+    "studio-review-and-incoming-navigation",
+    "incoming-mail-reader"
+  ],
+  "source_and_environment_after_checks": "pending",
+  "files": [
+    {
+      "path": "engine-review-and-incoming-zotero-cases.json",
+      "bytes": 220181,
+      "sha256": "cfc3acebc668e8e7758856460faa9326ad35b31441636d91c547455272ee86f7"
+    },
+    {
+      "path": "engine-review-and-incoming-zotero.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "engine-review-and-incoming-zotero.stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "engine-review-and-incoming-zotero.stdout",
+      "bytes": 345869,
+      "sha256": "bc0d45b2b697d09ea0cbfc53544d3ee9215b10766d2cf8492e8f1cc076e881fd"
+    },
+    {
+      "path": "engine-review-and-incoming-zotero.stdout.gz",
+      "bytes": 32647,
+      "sha256": "82a4e1ca543847794cc5b0b8b7e83d358c63bbf47454b8fb5d6a654ae60e32b5"
+    },
+    {
+      "path": "environment-before.json",
+      "bytes": 2264339,
+      "sha256": "6c13d9b8dbb6c8fe263f410354008c587edffd3647817e64cbc3a4658dc15071"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 22254,
+      "sha256": "36e86874a31eb7d07fff3bd3be327a76a6722fe5c73e4fd2feb677cd2ac073b1"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 954905,
+      "sha256": "cb2822cdd0290b4b3fa11c685077bc8fd7526053bc5edc69fa0b4fbc1f17bade"
+    }
+  ],
+  "archive_bytes": 756908,
+  "archive_sha256": "840f9ab9b1f81ae2012a09ef2e5d84f376d78c99d0aeea9a2296273f3cb729d4"
+}

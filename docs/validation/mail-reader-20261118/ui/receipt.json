@@ -1,0 +1,75 @@
+{
+  "recorded_at_utc": "2026-11-18T19:25:26Z",
+  "source_hashes": "source-hashes.json",
+  "sdk": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "commands": {
+    "native": {
+      "cwd": "packages/quds_mail_ui",
+      "command": "flutter --no-version-check --suppress-analytics test --no-pub --reporter json test tool/reader_visual_test.dart",
+      "exit_code": 0,
+      "functional_passed": 30,
+      "visual_passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "raw": "native-final.jsonl",
+      "summary": "native-final-summary.json"
+    },
+    "analysis": {
+      "cwd": ".",
+      "command": "dart analyze packages/quds_mail_ui",
+      "exit_code": 0,
+      "issues": 0,
+      "output": "analyze-final.txt"
+    },
+    "browser_guard_compile": {
+      "cwd": "packages/quds_mail_ui",
+      "command": "dart compile js tool/web_guard_compile.dart -o <scratch>/mail-runtime-guard-final.js",
+      "exit_code": 0,
+      "output": "browser-guard-compile-final.txt",
+      "scope": "Compile only; not executed in a browser."
+    },
+    "web_build": {
+      "cwd": "packages/quds_mail_ui/example",
+      "command": "flutter --no-version-check --suppress-analytics build web --release --no-pub --no-web-resources-cdn",
+      "exit_code": 0,
+      "output": "web-build-final.txt",
+      "artifact_manifest": "web-artifacts.json",
+      "scope": "Release JavaScript and bundled local renderer compilation only; not browser runtime qualification."
+    }
+  },
+  "invocation_notes": [
+    "Flutter commands invoked the installed flutter_tools.snapshot with its bundled Dart executable, avoiding a wrapper version probe.",
+    "SDK, PUB_CACHE, TMPDIR and FLUTTER_ROOT point to the shared scratch toolchain; CI and both analytics suppression variables are enabled.",
+    "Native final cohort ran after the final two product-copy fixes, with the current immutable MIME fixture and source projection.",
+    "No GitHub Actions result was awaited or used."
+  ],
+  "screenshots": {
+    "reader-desktop.png": {
+      "width": 1100,
+      "height": 850,
+      "direction": "ltr",
+      "text_scale": 1.0,
+      "mode": "full"
+    },
+    "reader-rtl-narrow.png": {
+      "width": 390,
+      "height": 844,
+      "direction": "rtl",
+      "text_scale": 1.5,
+      "mode": "preview"
+    }
+  },
+  "visual_observations": [
+    "Desktop body, selectable search hit, diagnostics, source controls and read-only attachments are readable.",
+    "Narrow enlarged RTL fixture wraps toolbar controls and mixed-direction message text without a Flutter overflow or exception; long content remains in the scroll view.",
+    "The harness app-bar title ellipsizes at the narrow width.",
+    "Human-facing diagnostic text omits the enum code and a single search result is labelled 1 match.",
+    "PNGs are direct Flutter RepaintBoundary captures with real local Latin/Arabic fonts and MaterialIcons; no pixel modification."
+  ],
+  "open_gates": [
+    "Browser runtime NOT QUALIFIED: Chromium launch restrictions and inaccessible cloud executor route remain documented in ../browser-limitations.md.",
+    "Independent browser fetch/XHR/resource denial helper compiles, but its runtime guard has not executed successfully in this environment.",
+    "Same-origin CanvasKit and font fallback bootstrap avoids third-party defaults; arbitrary multilingual offline font completeness still requires host asset bundling/caching and runtime qualification.",
+    "CrispCloud host routing/parity, supported native installed-device behavior, mobile performance, and App Store packaging remain separate integration/release gates."
+  ]
+}

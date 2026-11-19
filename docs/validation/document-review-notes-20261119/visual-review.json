@@ -1,0 +1,42 @@
+{
+  "reviewed_at_utc": "2026-11-19T05:44:54.663995+00:00",
+  "source_commit": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6",
+  "method": "Root assistant directly inspected all three freshly captured widget-test PNGs. Real text fonts and Material icon input are also bound by the frozen source/runtime gate.",
+  "status": "passed",
+  "captures": [
+    {
+      "path": "screenshots/notes-inline-desktop.png",
+      "bytes": 47315,
+      "sha256": "a0243f8dc7e25a9bbc35ee07299cd3b27c1482e6f7e49d804ccd4ca3ac5c85a9",
+      "pixels": [
+        1100,
+        820
+      ],
+      "status": "passed",
+      "observation": "Real text and Material icons render; spelling/grammar/style underlines are visible in the Notes field with correction, ignore, dictionary, finding navigation, checking status and Review changes controls."
+    },
+    {
+      "path": "screenshots/notes-inline-arabic-narrow.png",
+      "bytes": 59455,
+      "sha256": "8d15b22be5b51e1bed652d5ef86182a53b5a4e58e33a46875ffa9d35dec54ed8",
+      "pixels": [
+        650,
+        1000
+      ],
+      "status": "passed",
+      "observation": "Enlarged RTL fixture retains visible Notes text and actionable checking, correction, ignore, dictionary and Review changes controls; no clipped action text or layout overflow observed."
+    },
+    {
+      "path": "screenshots/header-even-review.png",
+      "bytes": 42342,
+      "sha256": "82bcce7e08a74ab7a28341649e775473a873e9feb63aece9881b39aed0a61b8e",
+      "pixels": [
+        900,
+        1100
+      ],
+      "status": "passed",
+      "observation": "Even-page header text remains readable over editing chrome; selected word is highlighted in that exact header, with adjacent default header and footers unselected."
+    }
+  ],
+  "scope": "Headless rendered widget fixtures; not installed-native or browser application interaction. The RTL mock-provider/coverage strings remain partly English; no complete Arabic localization claim."
+}

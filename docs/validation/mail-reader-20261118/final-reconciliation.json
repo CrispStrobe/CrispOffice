@@ -1,0 +1,560 @@
+{
+  "checked_at_utc": "2026-11-18T19:25:38.496532+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "method": "Local comparison of already fetched origin branch and PR-head refs against baseline receipts; no network requests, Actions polling, merge, index change, or ref mutation.",
+  "integration_status": "integrated_and_focused_local_regressions_passed",
+  "checked_local_head": "46d7422d5ac356c327759872ff28adcd154b75ad",
+  "excluded_current_work_branch": {
+    "ref": "refs/heads/codex/mail-reader-20261118",
+    "sha": "46d7422d5ac356c327759872ff28adcd154b75ad"
+  },
+  "baseline_receipts": [
+    {
+      "path": "baseline-branches.json",
+      "sha256": "684aab9706ddd371c19e85ecd9f5c3cbe55ac8204326910aca4d6580616c2bb1"
+    },
+    {
+      "path": "baseline-pr-heads.json",
+      "sha256": "5ba3c9be4914496abe29100ab0f333ae5d29119eee2a3defdeba39bfef3ed0a7"
+    },
+    {
+      "path": "baseline-incoming.json",
+      "sha256": "556afa2e7f8c3b9f1644211f931639d10178528f72ba2ca437559d9d11b983c9"
+    }
+  ],
+  "main": {
+    "before": "4fbc8741f314af67592517595c760ba3036dedba",
+    "after": "4fbc8741f314af67592517595c760ba3036dedba",
+    "changed": false
+  },
+  "branches": {
+    "baseline_count": 207,
+    "current_count": 209,
+    "unchanged_count": 205,
+    "added": [
+      {
+        "ref": "refs/heads/codex/zotero-note-workflow-20261118",
+        "sha": "ff1518517dd9f67e214ff56fe7eef06349f5223a"
+      },
+      {
+        "ref": "refs/heads/integrate/spacy-en-fr-20261118",
+        "sha": "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6"
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "ref": "refs/heads/codex/document-review-20261118",
+        "before": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+        "after": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa"
+      },
+      {
+        "ref": "refs/heads/codex/offline-thesaurus-20261118",
+        "before": "315beeb3b2967787e27a3d510d758abfb04c6de6",
+        "after": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055"
+      }
+    ]
+  },
+  "pull_request_heads": {
+    "baseline_count": 169,
+    "current_count": 170,
+    "unchanged_count": 167,
+    "added": [
+      {
+        "ref": "refs/remotes/pull/170",
+        "sha": "ff1518517dd9f67e214ff56fe7eef06349f5223a"
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "ref": "refs/remotes/pull/162",
+        "before": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+        "after": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa"
+      },
+      {
+        "ref": "refs/remotes/pull/169",
+        "before": "315beeb3b2967787e27a3d510d758abfb04c6de6",
+        "after": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055"
+      }
+    ]
+  },
+  "baseline_incoming_cross_check": {
+    "branch_snapshot_matches_branch_audit": true,
+    "recent_pr_head_metadata": {
+      "baseline_count": 50,
+      "current_count": 50,
+      "unchanged_count": 48,
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "ref": "refs/remotes/pull/162",
+          "before": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+          "after": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa"
+        },
+        {
+          "ref": "refs/remotes/pull/169",
+          "before": "315beeb3b2967787e27a3d510d758abfb04c6de6",
+          "after": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055"
+        }
+      ]
+    },
+    "pr_status_metadata_not_refreshed": true
+  },
+  "incoming_frontier": [
+    {
+      "ref": "refs/heads/codex/zotero-note-workflow-20261118",
+      "sha": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "included_in_checked_head": false,
+      "commits_not_in_checked_head": 17,
+      "included_in_dominant_incoming_head": true,
+      "subject": "Qualify merged formatting and declare thesaurus fixture hash dependency [skip ci]"
+    },
+    {
+      "ref": "refs/heads/integrate/spacy-en-fr-20261118",
+      "sha": "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6",
+      "included_in_checked_head": false,
+      "commits_not_in_checked_head": 10,
+      "included_in_dominant_incoming_head": true,
+      "subject": "Pin the published macOS arm64 v2 runtime; real Hub EN/FR install and worker evidence [skip ci]"
+    },
+    {
+      "ref": "refs/heads/codex/document-review-20261118",
+      "sha": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+      "included_in_checked_head": false,
+      "commits_not_in_checked_head": 26,
+      "included_in_dominant_incoming_head": true,
+      "subject": "Check reply drafts inline and prioritize active review text [skip ci]"
+    },
+    {
+      "ref": "refs/heads/codex/offline-thesaurus-20261118",
+      "sha": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+      "included_in_checked_head": false,
+      "commits_not_in_checked_head": 16,
+      "included_in_dominant_incoming_head": true,
+      "subject": "Preserve 208 passing integrated thesaurus regressions and rendered evidence [skip ci]"
+    }
+  ],
+  "recommended_dominant_head": {
+    "ref": "refs/remotes/origin/codex/document-review-20261118",
+    "sha": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+    "covers_all_changed_or_new_external_heads": true,
+    "commits_not_in_checked_head": 26,
+    "shared_base": "9232b0560525c089d7bf73a55a8e561fdf41b5b1",
+    "new_commits": [
+      {
+        "sha": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+        "parents": "39eada31155dd85d971bab71d26cda6e67cb6844",
+        "subject": "Check reply drafts inline and prioritize active review text [skip ci]"
+      },
+      {
+        "sha": "39eada31155dd85d971bab71d26cda6e67cb6844",
+        "parents": "34c585e2573ec2733283068a05a6c138f5197f41 9232b0560525c089d7bf73a55a8e561fdf41b5b1",
+        "subject": "Bring in current Mail core and recovery contracts [skip ci]"
+      },
+      {
+        "sha": "34c585e2573ec2733283068a05a6c138f5197f41",
+        "parents": "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d 17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6",
+        "subject": "Bring in English French analysis and pinned native runtime [skip ci]"
+      },
+      {
+        "sha": "2bdd66dd80ce1c53a13f7028e8251efbe2f5624d",
+        "parents": "d1dc3416319891cf26346bd0ff81012ac1a58cf8 b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+        "subject": "Bring in qualified offline thesaurus continuation [skip ci]"
+      },
+      {
+        "sha": "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+        "parents": "b5d4df516db210a6f8ea566b290988dab5652630 ff1518517dd9f67e214ff56fe7eef06349f5223a",
+        "subject": "Reconcile latest Zotero notes and integrated review work [skip ci]"
+      },
+      {
+        "sha": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+        "parents": "18c6667e13f9eb3538123a0e160270e7d25a3eb6",
+        "subject": "Qualify merged formatting and declare thesaurus fixture hash dependency [skip ci]"
+      },
+      {
+        "sha": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+        "parents": "af4971352fa14247e2de7be8c9b5733921e2ff30",
+        "subject": "Preserve 208 passing integrated thesaurus regressions and rendered evidence [skip ci]"
+      },
+      {
+        "sha": "18c6667e13f9eb3538123a0e160270e7d25a3eb6",
+        "parents": "09a1a701c21b6c8b79ce5a9ab65239a393bcc12a 9a90262da555705758fa233f7d4e339ff453a0dc 0e07d24714e6261123fcb835c36a592d6827982d eb1ff4dddbf65384bc61e2e7a0973360f76729ce",
+        "subject": "Reconcile captured review, thesaurus and spaCy work before final Zotero validation [skip ci]"
+      },
+      {
+        "sha": "09a1a701c21b6c8b79ce5a9ab65239a393bcc12a",
+        "parents": "595e94c15732966c1bb42f846b14bb0db4b964e0",
+        "subject": "Add guarded native Zotero keyboard commands and document note workflows [skip ci]"
+      },
+      {
+        "sha": "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6",
+        "parents": "9a90262da555705758fa233f7d4e339ff453a0dc",
+        "subject": "Pin the published macOS arm64 v2 runtime; real Hub EN/FR install and worker evidence [skip ci]"
+      },
+      {
+        "sha": "af4971352fa14247e2de7be8c9b5733921e2ff30",
+        "parents": "f39175b2b0eee3e3f9ab6c31bd97ddc1ca343be2 9a90262da555705758fa233f7d4e339ff453a0dc",
+        "subject": "Reconcile captured late review, Zotero note and spaCy language heads [skip ci]"
+      },
+      {
+        "sha": "595e94c15732966c1bb42f846b14bb0db4b964e0",
+        "parents": "a4915a555f70919fc7c6cfae3eb31764195593b7",
+        "subject": "Connect Zotero commands to Notes selections and preserve citation and typing undo [skip ci]"
+      },
+      {
+        "sha": "f39175b2b0eee3e3f9ab6c31bd97ddc1ca343be2",
+        "parents": "eb1ff4dddbf65384bc61e2e7a0973360f76729ce",
+        "subject": "Restore pinned Flutter runtime and preserve initial static checks [skip ci]"
+      },
+      {
+        "sha": "eb1ff4dddbf65384bc61e2e7a0973360f76729ce",
+        "parents": "1850c3374fca997e9cf375be4a5d95c940759782",
+        "subject": "Preserve composition and require cold offline thesaurus acceptance [skip ci]"
+      },
+      {
+        "sha": "9a90262da555705758fa233f7d4e339ff453a0dc",
+        "parents": "4533c714754d5665578dbd11e61318b54adf25ef b5d4df516db210a6f8ea566b290988dab5652630",
+        "subject": "Merge origin/codex/document-review-20261118 (b5d4df51) into spaCy EN/FR integration [skip ci]"
+      },
+      {
+        "sha": "4533c714754d5665578dbd11e61318b54adf25ef",
+        "parents": "4241ac07dba8eab21bd1643609446e80d00c1747 a4915a555f70919fc7c6cfae3eb31764195593b7",
+        "subject": "Merge origin/codex/zotero-note-workflow-20261118 (a4915a55) into spaCy EN/FR integration [skip ci]"
+      },
+      {
+        "sha": "4241ac07dba8eab21bd1643609446e80d00c1747",
+        "parents": "03f06f121db493010954e70234d1cd78477f0576 4fbc8741f314af67592517595c760ba3036dedba",
+        "subject": "Merge origin/main (4fbc8741) into spaCy EN/FR integration [skip ci]"
+      },
+      {
+        "sha": "a4915a555f70919fc7c6cfae3eb31764195593b7",
+        "parents": "fcb8a4b06b256b762074456eb3c9e412d0193722",
+        "subject": "Support native Zotero citation insertion inside existing notes [skip ci]"
+      },
+      {
+        "sha": "b5d4df516db210a6f8ea566b290988dab5652630",
+        "parents": "6c92d138dda9a26f9be4c7e665651aa238ab1b69",
+        "subject": "Verify final review publication preserves all accepted source inputs [skip ci]"
+      },
+      {
+        "sha": "6c92d138dda9a26f9be4c7e665651aa238ab1b69",
+        "parents": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+        "subject": "Record 633 passing local review regressions and verified visual evidence [skip ci]"
+      },
+      {
+        "sha": "1850c3374fca997e9cf375be4a5d95c940759782",
+        "parents": "c10e03e02967eb0ddf8b417f8919ccfdf6ef711c",
+        "subject": "Preserve integrated thesaurus review controls and fresh pack checks [skip ci]"
+      },
+      {
+        "sha": "03f06f121db493010954e70234d1cd78477f0576",
+        "parents": "eb6ef6ed0f064c288283d1180866740e60d7e6d1",
+        "subject": "Add English and French as selectable local analysis languages [skip ci]"
+      },
+      {
+        "sha": "c10e03e02967eb0ddf8b417f8919ccfdf6ef711c",
+        "parents": "2f4e0908b3a0e740386449ce13352c425dc15a47 eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+        "subject": "Reconcile latest review and Zotero work with offline thesaurus [skip ci]"
+      },
+      {
+        "sha": "fcb8a4b06b256b762074456eb3c9e412d0193722",
+        "parents": "eedf2aee03964329a2e4c7ee3c771d43b5df4991 315beeb3b2967787e27a3d510d758abfb04c6de6 4fbc8741f314af67592517595c760ba3036dedba",
+        "subject": "Reconcile latest review, Zotero, thesaurus and main before note citation work [skip ci]"
+      },
+      {
+        "sha": "2f4e0908b3a0e740386449ce13352c425dc15a47",
+        "parents": "315beeb3b2967787e27a3d510d758abfb04c6de6 4fbc8741f314af67592517595c760ba3036dedba",
+        "subject": "Reconcile current main before thesaurus continuation [skip ci]"
+      },
+      {
+        "sha": "eb6ef6ed0f064c288283d1180866740e60d7e6d1",
+        "parents": "556c55c0ef312eda2cca11600021d293a81ab44b d82d25cc1c89a9a8923601090796f797bcda763f",
+        "subject": "Merge PR #168 (codex/zotero-wordlike-20261118 d82d25cc): Zotero citation workflow; contains the #164 #165 #169 heads, zotero-citation-workflow and native-spelling-resume"
+      }
+    ]
+  },
+  "diff_and_overlap": {
+    "incoming_file_count": 120,
+    "incoming_source_config_paths": [
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart",
+      "packages/quds_office_editor/example/lib/studio_spacy_config.dart",
+      "packages/quds_office_editor/example/lib/studio_spacy_config_native.dart",
+      "packages/quds_office_editor/example/lib/studio_spacy_config_unsupported.dart",
+      "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+      "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+      "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+      "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+      "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+      "packages/quds_office_editor/lib/src/embed/word_review_status.dart",
+      "packages/quds_office_editor/lib/src/embed/word_thesaurus_dialog.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "packages/quds_office_editor/pubspec.yaml",
+      "packages/quds_office_editor/test/word_draft_proofing_test.dart",
+      "packages/quds_office_editor/test/word_proofing_priority_test.dart",
+      "packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+      "packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+      "packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart",
+      "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+      "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "packages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "packages/quds_proofing_spacy/lib/src/analysis.dart",
+      "packages/quds_proofing_spacy/lib/src/backend.dart",
+      "packages/quds_proofing_spacy/lib/src/bundle.dart",
+      "packages/quds_proofing_spacy/lib/src/distribution.dart",
+      "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+      "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+      "packages/quds_proofing_spacy/lib/src/worker_native.dart",
+      "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+      "packages/quds_proofing_spacy/tool/language_worker_smoke.dart"
+    ],
+    "committed_overlap": [],
+    "working_overlap": [
+      "docs/ROADMAP.md"
+    ],
+    "untracked_overlap": [],
+    "roadmap_overlap_detail": "Incoming removes final empty line. Current working change updates Mail status near start. Preserve both; no simulated or actual merge has been performed."
+  },
+  "dependency_changes": {
+    "editor_pubspec": "Adds crypto ^3.0.7 to dev_dependencies; current root lock already resolves crypto 3.0.8, satisfying the range.",
+    "spacy_catalog": "Adds pinned v2 native runtime catalog and separate English/French model downloads. Incoming catalog labels English MIT and French LGPL-LR; these are source-declared model terms, not a new license audit."
+  },
+  "suggested_next_steps": [
+    "Continue Mail with M05 durable store/recovery, followed by M06/M07 and M04W.",
+    "Close actual browser and low-memory target gates before host migration/release; retain the separate LIC/CC gates."
+  ],
+  "fork_frozen": {
+    "unchanged_since_agent_handoff": true,
+    "portable_closure_sha256": "7df9cc38e2089fd7787c06dd0adeb607ecfbdc6583d78d1b0d967ad6675c1232",
+    "verified_local_source_count": 21,
+    "local_source_hash_mismatches": [],
+    "git_status": "",
+    "working_tree_clean": true
+  },
+  "integration": {
+    "recorded_at_utc": "2026-11-18T19:31:06.754734+00:00",
+    "remote_merge_commit": "c473a25f27bbbce083ef8a5aa40eaa74e70d3146",
+    "tree": "019514acce3efd5524d96f721a0be6143cb34a70",
+    "parents": [
+      "6c728e1a3543f6feee80b1f9a8087f67b09a8006",
+      "b9728ea1ec835cb589b266cfe9fc98507eb7acfa"
+    ],
+    "strategy": "ort; clean merge, ROADMAP EOF auto-merge",
+    "captured_frontier_ancestry": [
+      {
+        "head": "b9728ea1ec835cb589b266cfe9fc98507eb7acfa",
+        "reachable_from_merge": true
+      },
+      {
+        "head": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+        "reachable_from_merge": true
+      },
+      {
+        "head": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+        "reachable_from_merge": true
+      },
+      {
+        "head": "17fe8db8755a5ab55a677fc7f95aa103c3e2ddc6",
+        "reachable_from_merge": true
+      }
+    ],
+    "mail_source_changed_by_merge": false,
+    "local_and_remote_trees_verified_equal": true,
+    "workspace_resolution": "checks/late-workspace-resolution.txt",
+    "regression_evidence": {
+      "engine": {
+        "passed": 74,
+        "receipt": "checks/late-engine-editor-receipt.json"
+      },
+      "editor": {
+        "passed": 148,
+        "receipt": "checks/late-engine-editor-final-receipt.json"
+      },
+      "studio": {
+        "passed": 71,
+        "receipt": "checks/late-studio-receipt.json"
+      },
+      "spacy": {
+        "passed": 51,
+        "receipt": "checks/late-spacy-summary.json"
+      },
+      "distinct_tests": 344,
+      "scope": "Focused local cohorts only; earlier190 and targeted repeats are excluded."
+    },
+    "github_actions_used": false,
+    "all_captured_ref_accounting": {
+      "branches": {
+        "captured_total": 209,
+        "included_by_ancestry": 195,
+        "verified_historical_equivalents": 14,
+        "unaccounted": 0,
+        "historical_heads": [
+          {
+            "ref": "refs/remotes/origin/codex/odt-field-continuation-20261117",
+            "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/docs/aot-removal",
+            "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/docs/ods-color-scale",
+            "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/docs/ods-data-bar",
+            "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/docs/ods-dynamic-validation",
+            "sha": "b8ddaaeb581e010467de304c828764d353149102",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/docs/ods-icon-sets",
+            "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/feat/ods-color-scale",
+            "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/feat/ods-data-bar",
+            "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/feat/ods-dynamic-validation-links",
+            "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/feat/ods-icon-sets",
+            "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/feat/ods-time-period-conditions",
+            "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/integrate/odt-column-boundary-144",
+            "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/integrate/office-union-148",
+            "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/origin/integrate/office-union-150",
+            "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          }
+        ]
+      },
+      "pull_request_heads": {
+        "captured_total": 170,
+        "included_by_ancestry": 156,
+        "verified_historical_equivalents": 14,
+        "unaccounted": 0,
+        "historical_heads": [
+          {
+            "ref": "refs/remotes/pull/134",
+            "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/135",
+            "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/136",
+            "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/137",
+            "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/138",
+            "sha": "b8ddaaeb581e010467de304c828764d353149102",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/140",
+            "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/141",
+            "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/142",
+            "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/145",
+            "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/146",
+            "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/147",
+            "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/149",
+            "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/151",
+            "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          },
+          {
+            "ref": "refs/remotes/pull/152",
+            "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+            "proof": "unchanged head, exact historical equivalence retained in baseline audit"
+          }
+        ]
+      }
+    },
+    "qualified_source_commit": "0d1f699b5c891f8ceee34daf812a27c17a2aaffd",
+    "qualified_source_tree": "e7ddbfe07e5e25f2c5cf9087831c5ea7a782b098"
+  }
+}

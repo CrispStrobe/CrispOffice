@@ -1,0 +1,25 @@
+{
+  "repository": "MohammedAsaadAsaad/quds_office_suite",
+  "capture_started_utc": "2026-11-19T06:20:45.677690+00:00",
+  "capture_finished_utc": "2026-11-19T06:20:52.823093+00:00",
+  "capture_method": "git ls-remote (one final bounded advertisement)",
+  "refs": [
+    {
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ref": "refs/heads/ci/flutter-workspace"
+    },
+    {
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ref": "refs/heads/cursor/class-certificates-2db8"
+    },
+    {
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h"
+    },
+    {
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ref": "refs/heads/main"
+    }
+  ],
+  "advertisement_sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6"
+}

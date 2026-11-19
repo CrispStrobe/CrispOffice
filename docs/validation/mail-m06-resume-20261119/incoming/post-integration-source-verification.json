@@ -1,0 +1,79 @@
+{
+  "verified_at_utc": "2026-11-19T06:04:36.162274+00:00",
+  "base": "eafcd80fdfbd7ff678a7a04fb9a9a98b5330ad00",
+  "head": "479e1e038af0467b7f07b35d80bac9e4cc60a198",
+  "tree": "03b895b74affd80c54fa1c35dfa87a6eb1d645c6",
+  "preserved_files": [
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "base_blob": "45189950fde8dd52a238a9eadb5a243e27589cb8",
+      "integrated_blob": "45189950fde8dd52a238a9eadb5a243e27589cb8"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "base_blob": "efed0b890fbc22e5bee6ae3dc5f3e7d24beb8d83",
+      "integrated_blob": "efed0b890fbc22e5bee6ae3dc5f3e7d24beb8d83"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "base_blob": "2ec75c437d7d2f7ccda0a868f5663cf2bb31e9bd",
+      "integrated_blob": "2ec75c437d7d2f7ccda0a868f5663cf2bb31e9bd"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "base_blob": "ce6f81738ffc6e638e0a63721a1c32341cf84fe8",
+      "integrated_blob": "ce6f81738ffc6e638e0a63721a1c32341cf84fe8"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "base_blob": "88c4fdc90ba9a5aed652644dcab1fbd08ef59c0b",
+      "integrated_blob": "88c4fdc90ba9a5aed652644dcab1fbd08ef59c0b"
+    }
+  ],
+  "all_five_identical": true,
+  "non_documentation_delta": [],
+  "changed_paths": [
+    "docs/validation/thesaurus-20261118/reconciled/plan.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/README.md",
+    "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-before-annotations-index.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-before-annotations.tar.xz",
+    "docs/validation/thesaurus-20261118/resumed-20261119/incoming/final-captured-refs.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/incoming/final-integrated-audit-local.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/incoming/final-refresh-impact-inputs.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/incoming/final-refresh-impact.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/incoming/final-refresh-tree-differences.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/incoming/final-refresh.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/prior-union-summary.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/audit-files.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/audit_union.py",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/editor-review-notes-headers-and-zotero-audit.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/engine-review-and-incoming-zotero-audit.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/incoming-mail-reader-audit.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/initial-binding-audit.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/peer-audit.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/peer-audit.md",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/peer-cases.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/studio-review-and-incoming-navigation-audit.json",
+    "docs/validation/thesaurus-20261118/resumed-20261119/review/before-annotations/union-audit-progress.json",
+    "docs/validation/zotero-annotations-20261119/README.md",
+    "docs/validation/zotero-annotations-20261119/diagnostics/archive.json",
+    "docs/validation/zotero-annotations-20261119/diagnostics/ui-development.tar.gz",
+    "docs/validation/zotero-annotations-20261119/final/archive-audit.json",
+    "docs/validation/zotero-annotations-20261119/final/archive.json",
+    "docs/validation/zotero-annotations-20261119/final/archive_audit.py",
+    "docs/validation/zotero-annotations-20261119/final/complete-results.tar.gz",
+    "docs/validation/zotero-annotations-20261119/final/independent-audit.json",
+    "docs/validation/zotero-annotations-20261119/final/independent_gate_audit.py",
+    "docs/validation/zotero-annotations-20261119/final/summary.json",
+    "docs/validation/zotero-annotations-20261119/publication-checkpoints.json",
+    "docs/validation/zotero-annotations-20261119/publication-scope.json",
+    "docs/validation/zotero-annotations-20261119/reconciliation/final-feature-safety-review.json",
+    "docs/validation/zotero-annotations-20261119/reconciliation/final-source-audit.json",
+    "docs/validation/zotero-annotations-20261119/review/documentation-resolution.json",
+    "docs/validation/zotero-annotations-20261119/review/final-docs-review.json",
+    "docs/validation/zotero-annotations-20261119/review/final-review.json",
+    "docs/validation/zotero-annotations-20261119/review/final-review.md",
+    "docs/zotero-support.md"
+  ],
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

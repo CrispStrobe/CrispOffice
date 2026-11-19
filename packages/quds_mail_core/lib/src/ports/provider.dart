@@ -29,10 +29,15 @@ final class MailHeaderRecord {
     required this.id,
     required this.remote,
     required this.envelope,
+    this.flags,
   });
   final MailMessageId id;
   final MailRemoteIdentity remote;
   final MailEnvelope envelope;
+
+  /// Null means not observed. Persisting an unobserved snapshot must not clear
+  /// previously observed flags for this exact remote identity.
+  final MailMessageFlags? flags;
 }
 
 final class MailHeaderPage {

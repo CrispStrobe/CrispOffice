@@ -1,0 +1,63 @@
+{
+  "file": "ui-development.tar.gz",
+  "bytes": 12892,
+  "sha256": "4555ca249bc179be2f3abdf0699efad2dd22fb57593afbc8d3018684f694ecf1",
+  "members": [
+    {
+      "path": "cancel-status-probe.jsonl",
+      "bytes": 4830,
+      "sha256": "5c9d2b0635df9c189954644222489418a22f9253e6d83691289b561fe7e68ccc"
+    },
+    {
+      "path": "cancel-status-probe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cancel_status_probe_test.dart",
+      "bytes": 22525,
+      "sha256": "e6a7f8842f412082ae4e0efcb1c3e18d67b72225d18c718710c3af2d6f23ffcd"
+    },
+    {
+      "path": "diagnostic-summary.json",
+      "bytes": 21909,
+      "sha256": "6fe814cb57ecf78766ccc42b34a40f64a822a596d35919a754a9b8d5e8472a0a"
+    },
+    {
+      "path": "editor-corrected-summary.json",
+      "bytes": 14595,
+      "sha256": "f116f5a594853bed614c3e256b22edb4d334faaced2d519c5affce7984379d56"
+    },
+    {
+      "path": "editor-corrected.jsonl",
+      "bytes": 27172,
+      "sha256": "4812b804ebd21da7c921ba8da69f515246f937fd2f77aad5c1baaadeea5c8b45"
+    },
+    {
+      "path": "editor-corrected.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "editor.jsonl",
+      "bytes": 29148,
+      "sha256": "8dbb938af61a3c234efa1b1b566be9dd22827e7f512cb0ac29aeeb83b024a961"
+    },
+    {
+      "path": "editor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "studio.jsonl",
+      "bytes": 8903,
+      "sha256": "5a0c6fb18a4b366fcdd670a2e0049e6b76166b8018c80c59ac5defa5511c7a17"
+    },
+    {
+      "path": "studio.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Development UI diagnostics; initial invalid cancellation fixture failed, corrected fixture passed. Not frozen qualification and not added to the final total."
+}

@@ -1,0 +1,32 @@
+{
+  "name": "editor-tests",
+  "argv": [
+    "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "/workspace/scratch/28080c14894b/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/word_keyboard_review_test.dart",
+    "test/word_keyboard_context_geometry_test.dart",
+    "test/word_keyboard_review_identity_test.dart"
+  ],
+  "cwd": "packages/quds_office_editor",
+  "started_at_utc": "2026-11-18T20:29:44.130007+00:00",
+  "status": "PASS",
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-18T20:30:19.469002+00:00",
+  "stdout": "editor-tests.stdout",
+  "stderr": "editor-tests.stderr",
+  "passed": 31,
+  "failed": 0,
+  "skipped": 0,
+  "error_event_count": 0,
+  "runner_done": {
+    "success": true,
+    "type": "done",
+    "time": 31057
+  }
+}

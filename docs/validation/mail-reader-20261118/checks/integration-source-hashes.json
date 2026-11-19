@@ -1,0 +1,24 @@
+{
+  "scope": "Focused overlap/regression qualification of the integrated recent Office branches, not the complete Office test suite.",
+  "integration_commit": "0e07d24714e6261123fcb835c36a592d6827982d",
+  "checkout_head": "58d88dbc8847734110eaf63d4109ca2f8ba94cff",
+  "sha256": {
+    "packages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart": "4244cb675ecb504b2bde29179cbac0b645d348369c709200b0f28533f67cb20c",
+    "packages/quds_office_engine/test/office_thesaurus_test.dart": "7dd6db9170f8a26fad60b232cc5fcaf2f36d6e6871cd6969126cab9804497cc0",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "a5d0041fe3dc6399a2febe53ffc6395e9d913ed0d3c11df9bdb18b932dff1e6f",
+    "packages/quds_office_editor/lib/src/embed/office_editors.dart": "d958856c5e7a9ea3faad1a77fbf5a49aa57ba1f73c21c7bf0d3f22488a6d5e14",
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart": "c462be8490662913e630e93a0622580145b26247e9f9f94178bf845cfbcabbd4",
+    "packages/quds_office_editor/lib/src/embed/word_review_status.dart": "3b589ee482809bd42fdc647c5a0d4aa21f8002c229cb954c881b0b7c3e17c272",
+    "packages/quds_office_editor/lib/src/embed/word_thesaurus_dialog.dart": "0468fdaee7251da7b8284c0f6401b6c68f534b9a2ec491a866169bf2b61aac57",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": "dabd444efb8485341a6e5c9df51e9ac038ca92d29ca2f1dacf48b59df56b3b4e",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "d6d77958efc64bcca442241bad26e86f8be18d17f58018131b4188dd6873b477",
+    "packages/quds_office_editor/test/word_thesaurus_controller_test.dart": "b2de46ccf2091caedc10a93d25b45a2950dbaa7b1cc8cdf53f49c0359c4763c8",
+    "packages/quds_office_editor/test/word_thesaurus_dialog_test.dart": "70009f5c5c8f2d1d3ea9569571497afed7175bb36592755db7186ca0d855c689",
+    "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": "29825d8018f77ee1697369966daac4ba948b6110082bccb82d4d52ef92e16194",
+    "packages/quds_office_editor/test/word_text_proofing_pane_test.dart": "0c75b2f66ffc4945680abbf9626cb9a458a0154d7a971d5ea5778153f2121ca0",
+    "packages/quds_office_editor/test/word_review_pane_test.dart": "1dce8ef5c9a370e806efb8970d55e02271777d7c7d960914a0f9c9514d8c431e",
+    "packages/quds_office_editor/test/word_keyboard_review_identity_test.dart": "965507ae1d98eca26c8dac5cdecc9b31393160a092aebd11749b0431f4436e3c",
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart": "7974c9cc6c62f273bfdf635d85ecd715800de8dbf0762458ed0919fcd1138588",
+    "pubspec.lock": "5214b05715c94294bfed7205b2820f78a8d802a18398802da32e485d7f0356b2"
+  }
+}

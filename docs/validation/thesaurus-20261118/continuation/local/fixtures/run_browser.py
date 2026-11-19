@@ -16,10 +16,18 @@ from pathlib import Path
 import platform
 import re
 import socket
+import sys
 import threading
 from urllib.parse import urlparse
 
+from build_binding import FIXTURE_FILES, repository_root
 from install_offline import CACHE_PREFIX, validate_installation
+
+# Reuse the packet exporter's exact source projection and bounded hash-checked
+# inflation. Their file hashes are part of the compile/acceptance binding.
+sys.path.insert(0, str(repository_root() / 'tools/thesaurus'))
+from build_packs import shard
+from export_review_packet import observed_sense, verified_bytes
 
 CSP = ("default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; "
        "worker-src 'self' blob:; connect-src 'self'; "
@@ -109,7 +117,7 @@ def expected_packs(build):
             notices[path] = {'text': value.decode('utf-8'), 'sha256': sha256(value)}
         require(notices, f'Compiled pack has no notices: {locale}')
         packs[locale] = {'identity': manifest['packId'] + ':' + sha256(manifest_bytes),
-                         'notices': notices}
+                         'notices': notices, 'manifest': manifest, 'directory': base / locale}
     return packs
 
 
@@ -117,15 +125,43 @@ def validate_panel(panel, packs):
     queries = panel['queries']
     require([(q['text'], q['language']) for q in queries] == QUERIES,
             'Query panel is incomplete or changed its declared cases')
+    verified_shards = {}
     for entry in queries:
         expected = ('unsupportedLanguage' if entry['language'] == 'fr-FR' else
                     'noEntry' if entry['text'].startswith('qudsxyz') else 'ready')
         require(entry['status'] == expected, f'Unexpected lookup outcome: {entry}')
+        senses = entry['senses']
+        require(isinstance(senses, list) and bool(senses) == (expected == 'ready'),
+                'Lookup status and returned senses disagree')
+        require(isinstance(entry['matches'], list), 'Lookup matches are malformed')
+        if expected != 'ready':
+            require(not entry['matches'], 'Unsuccessful lookup returned matched terms')
         if expected != 'unsupportedLanguage':
             locale = entry['language'].split('-')[0]
             require(entry['pack'] == packs[locale]['identity'], 'Lookup used a different pack')
+        else:
+            require(entry['pack'] is None, 'Unsupported language returned a pack')
+        seen = set()
+        for sense in senses:
+            require(isinstance(sense, dict) and isinstance(sense.get('id'), str),
+                    'Malformed observed meaning')
+            sid = sense['id']
+            require(sid not in seen, 'Duplicate observed meaning: ' + sid)
+            seen.add(sid)
+            name = 'senses/' + shard(sid) + '.json'
+            key = (locale, name)
+            pack = packs[locale]
+            if key not in verified_shards:
+                require(name in pack['manifest']['files'], 'Observed meaning has no source shard')
+                value = verified_bytes(pack['directory'], name, pack['manifest']['files'][name])
+                verified_shards[key] = json.loads(value)
+            source = verified_shards[key].get(sid)
+            require(source is not None and sense == observed_sense(source),
+                    'Observed meaning differs from verified source: ' + sid)
     by_text = {entry['text']: entry for entry in queries}
     require(len(by_text['bank']['senses']) > 1, 'English polysemy was lost')
+    require(any(sense['examples'] for sense in by_text['bank']['senses']),
+            'English source examples were omitted')
     require(len(by_text['Bank']['senses']) > 1, 'German polysemy was lost')
     require({s['id'] for s in by_text['Maße']['senses']} !=
             {s['id'] for s in by_text['Masse']['senses']}, 'German sharp-s distinction was lost')
@@ -168,6 +204,10 @@ def wait_ready(page, identity, count):
             'Page is controlled by a stale offline cache')
     require(installation['fileCount'] == installation['expectedFileCount'] == count,
             'Offline cache inventory is incomplete')
+    require(installation.get('inventoryVerified') is True and
+            installation.get('contentVerified') is True and
+            installation.get('verifiedFileCount') == count,
+            'Offline cache inventory and contents were not verified')
     page.wait_for_function(
         'window.qudsSmokeState && JSON.parse(window.qudsSmokeState).ready',
         timeout=120000)
@@ -272,6 +312,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('build', type=Path)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--compile-receipt', type=Path, required=True,
+                        help='Successful run_final_validation.py receipt and its unchanged evidence files.')
     parser.add_argument('--browser-executable', default='/usr/bin/chromium')
     parser.add_argument('--probe-only', action='store_true')
     args = parser.parse_args()
@@ -299,15 +341,15 @@ def main():
         print(json.dumps(step, ensure_ascii=False), flush=True)
 
     try:
-        records, identity = validate_installation(root)
+        records, identity, provenance = validate_installation(root, args.compile_receipt)
         packs = expected_packs(root)
         report['cache_identity'] = identity
         report['build_files'] = len(records)
         report['build_bytes'] = sum(item['bytes'] for item in records)
+        report['compile_provenance'] = provenance
         report['fixture_inputs'] = {
             name: sha256((Path(__file__).parent / name).read_bytes())
-            for name in ('run_browser.py', 'install_offline.py', 'lib/main.dart',
-                         'run_final_validation.py', 'test_browser_harness.py')}
+            for name in FIXTURE_FILES}
         (output / 'installed-build-files.json').write_text(json.dumps(records, indent=2) + '\n')
         from playwright.sync_api import sync_playwright
 
@@ -415,9 +457,9 @@ def main():
             require(len(server.requests) == request_boundary,
                     'Origin served a request during offline acceptance')
             report['server_requests_after_shutdown'] = len(server.requests) - request_boundary
-            after, after_identity = validate_installation(root)
-            require(after == records and after_identity == identity,
-                    'Compiled build changed during acceptance')
+            after, after_identity, after_provenance = validate_installation(root, args.compile_receipt)
+            require(after == records and after_identity == identity and after_provenance == provenance,
+                    'Compiled build or its compile evidence changed during acceptance')
             report['build_unchanged_during_acceptance'] = True
             browser.close()
     except BaseException as error:

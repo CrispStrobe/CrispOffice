@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "final_source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "previous_control_receipt_sha256": "fddb30651456946b98a22e5c688037d09ecfea240930a072bcdb31e1817737da",
+  "previous_controls_passed": 14,
+  "fresh_control_execution": false,
+  "source_continuity": [
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/run_targeted.py",
+      "previous_control_run_sha256": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d",
+      "frozen_commit_sha256": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d",
+      "current_sha256": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d",
+      "unchanged": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py",
+      "previous_control_run_sha256": "a8b082f111d8d6a0629680a04ab54e09d1173ac06a4da253e02d3c0d89d367a2",
+      "frozen_commit_sha256": "a8b082f111d8d6a0629680a04ab54e09d1173ac06a4da253e02d3c0d89d367a2",
+      "current_sha256": "a8b082f111d8d6a0629680a04ab54e09d1173ac06a4da253e02d3c0d89d367a2",
+      "unchanged": true
+    },
+    {
+      "path": "tools/mail/check_store.py",
+      "previous_control_run_sha256": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155",
+      "frozen_commit_sha256": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155",
+      "current_sha256": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155",
+      "unchanged": true
+    },
+    {
+      "path": "tools/mail/check_reader.py",
+      "previous_control_run_sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826",
+      "frozen_commit_sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826",
+      "current_sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826",
+      "unchanged": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py",
+      "previous_control_run_sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7",
+      "frozen_commit_sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7",
+      "current_sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7",
+      "unchanged": true
+    }
+  ],
+  "scope": "The existing 14 control methods and their five runner/parser/source-binding inputs remain byte-identical. The new committed suite/analysis plan is independently checked by the final union audit.",
+  "independent_original_log_review": {
+    "original_source_before_equals_after": true,
+    "original_log_hashes_match": true,
+    "completed_methods": 14,
+    "successful_summary": true,
+    "no_skips": true
+  }
+}

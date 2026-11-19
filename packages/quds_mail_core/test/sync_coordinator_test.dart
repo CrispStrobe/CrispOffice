@@ -83,6 +83,66 @@ void main() {
     },
   );
 
+  test(
+    'out-of-order concurrent pulls cannot regress the stored cursor',
+    () async {
+      final olderProvider = _FixtureProvider(account, inbox);
+      olderProvider.delay = Completer<MailResult<MailSyncPage>>();
+      final older = coordinator.pullPage(
+        provider: olderProvider,
+        repository: repository,
+        session: session,
+        mailbox: inbox,
+      );
+      await olderProvider.started.future;
+
+      provider.pages.add(_page(inbox, 'newer', uids: [2]));
+      final newer = await coordinator.pullPage(
+        provider: provider,
+        repository: repository,
+        session: session,
+        mailbox: inbox,
+      );
+      expect(newer, isA<MailSuccess<MailSyncPage>>());
+      olderProvider.delay!.complete(
+        MailSuccess(_page(inbox, 'older', uids: [1])),
+      );
+      final rejected = await older;
+      expect(
+        (rejected as MailFailure<MailSyncPage>).problem.code,
+        MailProblemCode.conflict,
+      );
+      expect(repository.cursor!.value, 'newer');
+      expect(repository.records.values.single.id.value, 'message-2');
+      expect(repository.commits, 1);
+      expect(olderProvider.seenCursors, [null]);
+      expect(provider.seenCursors, [null]);
+    },
+  );
+
+  test('sync commit compares the cursor it read before pulling', () async {
+    repository.cursor = MailCursor(mailbox: inbox, value: 'initial');
+    provider.delay = Completer<MailResult<MailSyncPage>>();
+    final older = coordinator.pullPage(
+      provider: provider,
+      repository: repository,
+      session: session,
+      mailbox: inbox,
+    );
+    await provider.started.future;
+    repository.cursor = MailCursor(mailbox: inbox, value: 'concurrent');
+    provider.delay!.complete(MailSuccess(_page(inbox, 'late', uids: [1])));
+    final result = await older;
+    expect(
+      (result as MailFailure<MailSyncPage>).problem.code,
+      MailProblemCode.conflict,
+    );
+    expect(provider.seenCursors, ['initial']);
+    expect(repository.cursor!.value, 'concurrent');
+    expect(repository.records, isEmpty);
+    expect(repository.commits, 0);
+  });
+
   test('account disposal while provider awaits prevents any commit', () async {
     provider.delay = Completer<MailResult<MailSyncPage>>();
     final future = coordinator.pullPage(
@@ -289,8 +349,13 @@ final class _MemorySyncRepository implements MailSyncRepository {
   @override
   Future<MailResult<MailUnit>> commitSyncPage(
     MailSyncPage page, {
+    required MailCursor? expectedCursor,
     required MailOperationLease lease,
   }) async {
+    if (expectedCursor?.mailbox != cursor?.mailbox ||
+        expectedCursor?.value != cursor?.value) {
+      return const MailFailure(MailProblem(MailProblemCode.conflict));
+    }
     final transaction = Map<MailRemoteIdentity, MailHeaderRecord>.of(records);
     for (final tombstone in page.tombstones) {
       transaction.remove(tombstone);

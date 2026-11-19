@@ -1,0 +1,220 @@
+{
+  "name": "incoming-mail-reader",
+  "status": "passed",
+  "source_stability": {
+    "source_before_equals_after": true,
+    "environment_before_equals_after": true,
+    "changed_current_environment_files": [],
+    "changed_current_harness_files": [],
+    "changed_current_source_files": [],
+    "current_package_config_matches": true,
+    "receipt_evidence_hash_mismatches": [],
+    "source_after_sha256": "ffa68f423baa135f022ebc686b97e833ce317c200bb75a98ff229541f9b46d67",
+    "environment_after_sha256": "6c13d9b8dbb6c8fe263f410354008c587edffd3647817e64cbc3a4658dc15071"
+  },
+  "passed": 30,
+  "suite_count": 4,
+  "per_suite_cases": {
+    "packages/quds_mail_ui/test/controller_test.dart": 5,
+    "packages/quds_mail_ui/test/example_test.dart": 1,
+    "packages/quds_mail_ui/test/message_view_test.dart": 11,
+    "packages/quds_mail_ui/test/presentation_test.dart": 13
+  },
+  "test_start_count": 34,
+  "test_completion_count": 34,
+  "excluded_lifecycle_count": 4,
+  "failures_including_lifecycle": [],
+  "skips_including_lifecycle": [],
+  "error_events": [],
+  "layout_or_tap_diagnostics": [],
+  "issues": [],
+  "stdout_bytes": 16836,
+  "stderr_bytes": 0,
+  "logs_sha256": {
+    "incoming-mail-reader.stdout": "9190077255fdd5eee868ac0ea4e6f017d3a4567c843eefc3f507b0448c9c116a",
+    "incoming-mail-reader.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "exit_code": 0,
+  "cases": [
+    {
+      "suite": "packages/quds_mail_ui/test/controller_test.dart",
+      "name": "full and preview modes pass their actual raw budgets into the codec",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/controller_test.dart",
+      "name": "search, selection and decoded copy include displayed headers and body",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/controller_test.dart",
+      "name": "selection never splits a surrogate or combined grapheme",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/controller_test.dart",
+      "name": "match limit is explicit and result replacement clears stale selection",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/controller_test.dart",
+      "name": "switching body alternative preserves raw bytes and invalidates action revision",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/example_test.dart",
+      "name": "actual example MIME bytes provide the displayed body, CID and exact attachment",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "direct DTO plain/HTML bodies share one cumulative body budget",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "hostile HTML becomes inert text and explicit absolute link metadata",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "script raw text cannot smuggle fake nested style or image content",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "all CSS, event, srcset, SVG and image schemes are inert",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "link admission refuses encoded active schemes, protocol-relative, user info and controls",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "node and nesting rejection discards the entire partial projection",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "oversized text, body, header and input are explicitly rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "decoded and attachment budgets are cumulative before presentation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "CID PNG is admitted by exact identity without touching source snapshots",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "duplicate and unsupported CID inputs do not decode arbitrary images",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "PNG pixel bombs and truncated chunks are refused before native decode",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "cumulative CID pixels count unique images and refuse excess",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "plain alternative can be selected without changing original data",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "disposing the view invalidates a pending explicit link decision",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "find chrome accepts arbitrary query and finds attachment names",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "runtime network denial is active, independently of the injected policy",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "hostile saved HTML causes zero policy and runtime outbound requests",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "link activation is denied until host policy explicitly approves it",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "late link approval cannot act on a replaced message or disposed view",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "attachment and source/hex callbacks receive exact immutable snapshots",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "custom RenderBox supports keyboard select/copy and meaningful semantics",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "render rejection remains visible with exact source fallback",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "compact enlarged RTL view preserves actions without overflow",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "bounded CID PNG decodes locally under runtime network denial",
+      "result": "success",
+      "skipped": false
+    }
+  ]
+}

@@ -49,7 +49,11 @@ final class MailSyncCoordinator {
           page.upserts.length + page.tombstones.length > limit) {
         return const MailFailure(MailProblem(MailProblemCode.providerFailure));
       }
-      final committed = await repository.commitSyncPage(page, lease: lease);
+      final committed = await repository.commitSyncPage(
+        page,
+        expectedCursor: cursor,
+        lease: lease,
+      );
       lease.checkCurrent();
       if (committed case MailFailure<MailUnit>(:final problem)) {
         return MailFailure(problem);

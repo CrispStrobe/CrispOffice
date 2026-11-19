@@ -1,0 +1,172 @@
+*** Begin Patch
+*** Update File: packages/quds_office_editor/lib/src/embed/office_controller.dart
+@@
+-enum WordReviewPaneTab { proofing, changes }
++enum WordReviewPaneTab { proofing, changes }
++
++/// The page variant of the header or footer currently being edited.
++enum WordHeaderFooterVariant { standard, firstPage, evenPage }
+@@
+-      paragraphs = _editingFooter ? section.footer : section.header;
++      paragraphs = _headerFooterStory(section);
+@@
+-  var _editingFooter = false;
++  var _editingFooter = false;
++  var _editingHeaderFooterVariant = WordHeaderFooterVariant.standard;
+@@
+-  int get editingSectionIndex => _editingSectionIndex;
++  int get editingSectionIndex => _editingSectionIndex;
++
++  /// The exact header/footer variant selected on the rendered page.
++  WordHeaderFooterVariant get editingHeaderFooterVariant =>
++      _editingHeaderFooterVariant;
+@@
+-  List<WmlParagraph> _ensureHeaderFooterParagraphs() {
+-    final WmlSection section = document.sections.isEmpty
+-        ? WmlSection()
+-        : document.sections[_editingSectionIndex.clamp(
+-            0,
+-            document.sections.length - 1,
+-          )];
+-    final List<WmlParagraph> story = _editingFooter
+-        ? section.footer
+-        : section.header;
+-    if (story.isEmpty) {
+-      story.add(WmlParagraph(inlines: <WmlInline>[WmlRun(text: '')]));
+-    }
+-    return story;
+-  }
++  List<WmlParagraph> _headerFooterStory(WmlSection section) =>
++      switch (_editingHeaderFooterVariant) {
++        WordHeaderFooterVariant.standard =>
++          _editingFooter ? section.footer : section.header,
++        WordHeaderFooterVariant.firstPage =>
++          _editingFooter ? section.firstFooter : section.firstHeader,
++        WordHeaderFooterVariant.evenPage =>
++          _editingFooter ? section.evenFooter : section.evenHeader,
++      };
++
++  List<WmlParagraph> _ensureHeaderFooterParagraphs() {
++    final WmlSection section = document.sections.isEmpty
++        ? WmlSection()
++        : document.sections[_editingSectionIndex.clamp(
++            0,
++            document.sections.length - 1,
++          )];
++    final List<WmlParagraph> story = _headerFooterStory(section);
++    if (story.isEmpty) {
++      final placeholder = WmlParagraph(inlines: <WmlInline>[WmlRun(text: '')]);
++      // Selecting or inspecting an empty protected story must not add content.
++      if (!config.allowsMutation ||
++          (document.restrictEditing &&
++              document.restrictMode != WmlRestrictMode.none)) {
++        return <WmlParagraph>[placeholder];
++      }
++      story.add(placeholder);
++    }
++    return story;
++  }
+@@
+-    _editingFooter = footer;
+-    _editingHeaderFooter = true;
++    _editingFooter = footer;
++    final section = document.sections.isEmpty
++        ? WmlSection()
++        : document.sections[_editingSectionIndex];
++    final firstPage = documentLaidOut.pages.indexWhere(
++      (page) => page.sectionIndex == _editingSectionIndex,
++    );
++    final story = footer
++        ? section.footerForPage(
++            pageIndex + 1,
++            firstInSection: pageIndex == firstPage,
++          )
++        : section.headerForPage(
++            pageIndex + 1,
++            firstInSection: pageIndex == firstPage,
++          );
++    _editingHeaderFooterVariant =
++        identical(story, footer ? section.firstFooter : section.firstHeader)
++        ? WordHeaderFooterVariant.firstPage
++        : identical(story, footer ? section.evenFooter : section.evenHeader)
++        ? WordHeaderFooterVariant.evenPage
++        : WordHeaderFooterVariant.standard;
++    _editingHeaderFooter = true;
+@@
+-    _syncProtectionMode();
+-    _editingComment = false;
++    _syncProtectionMode();
++    _editingComment = false;
++    _editingHeaderFooter = false;
++    _editingHeaderFooterVariant = WordHeaderFooterVariant.standard;
+@@
+-        footer: _editingFooter,
++        footer: _editingFooter,
++        headerFooterVariant: _editingHeaderFooterVariant,
+@@
+-      yield* plain(_editingFooter ? section.footer : section.header);
++      yield* plain(_headerFooterStory(section));
+@@
+-  /// Selects findings in supported canvas stories. Notes and alternate page
+-  /// headers remain fully reviewable and correctable in the review pane.
++  /// Selects a finding in its actual rendered story. Header/footer variants
++  /// that do not occur on a laid-out page remain available in the review pane.
+@@
+-      final section = document.sections[sectionIndex];
+-      for (final footer in [false, true]) {
+-        final paragraphs = footer ? section.footer : section.header;
+-        final index = paragraphs.indexOf(paragraph);
+-        if (index < 0) continue;
+-        // A default header/footer may be absent on the first or even page.
+-        // Navigate only to a page that actually renders this source paragraph.
+-        final page = documentLaidOut.pages.indexWhere((page) {
+-          final lines = footer ? page.footer : page.header;
+-          return page.sectionIndex == sectionIndex &&
+-              lines.any((line) => identical(line.sourceParagraph, paragraph));
+-        });
+-        if (page < 0) return false;
+-        beginHeaderFooterEdit(page, footer: footer);
+-        headerFooterCaret
+-          ..paragraphIndex = index
+-          ..logicalIndex = end
+-          ..selectionAnchorParagraph = index
+-          ..selectionAnchor = start;
+-        _syncImeSelection();
+-        notifyListeners();
+-        return true;
+-      }
+-    }
++      final section = document.sections[sectionIndex];
++      for (final footer in [false, true]) {
++        for (final paragraphs in footer
++            ? [section.footer, section.firstFooter, section.evenFooter]
++            : [section.header, section.firstHeader, section.evenHeader]) {
++          final index = paragraphs.indexOf(paragraph);
++          if (index < 0) continue;
++          // Navigate only to a page that renders this exact source story.
++          // Do not silently edit the default variant or change page settings.
++          final page = documentLaidOut.pages.indexWhere((page) {
++            final lines = footer ? page.footer : page.header;
++            return page.sectionIndex == sectionIndex &&
++                lines.any((line) => identical(line.sourceParagraph, paragraph));
++          });
++          if (page < 0) return false;
++          beginHeaderFooterEdit(page, footer: footer);
++          headerFooterCaret
++            ..paragraphIndex = index
++            ..logicalIndex = end
++            ..selectionAnchorParagraph = index
++            ..selectionAnchor = start;
++          _syncImeSelection();
++          notifyListeners();
++          return true;
++        }
++      }
++    }
+@@
+-    headerFooter: controller.isEditingHeaderFooter,
+-    footer: controller.isEditingFooter,
++    headerFooter: controller.isEditingHeaderFooter,
++    footer: controller.isEditingFooter,
++    headerFooterVariant: controller.editingHeaderFooterVariant,
+*** End Patch

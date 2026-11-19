@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-19T06:36:02.504813+00:00",
+  "reviewed_commit": "ca00a8ffb3c0c82c646eaf2e5a134ab7348ae90e",
+  "sdk_root": "/workspace/scratch/5c6c66fd3cc3/toolchains/flutter/bin/cache/dart-sdk",
+  "sdk_version": "3.13.7",
+  "sdk_source_manifest": [
+    {
+      "path": "version",
+      "sha256": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+      "bytes": 7
+    },
+    {
+      "path": "lib/io/secure_socket.dart",
+      "sha256": "efead7dc89e2c146f7801321d07169d06ed6bdf452b297eb70666e4d7536d835",
+      "bytes": 50394
+    },
+    {
+      "path": "lib/_internal/vm/bin/socket_patch.dart",
+      "sha256": "d7b9a4bdcca4b4c50d4a253713c42b4fb15dc1ac15d89f3db54377192599370e",
+      "bytes": 97254
+    },
+    {
+      "path": "lib/_internal/vm/bin/secure_socket_patch.dart",
+      "sha256": "eda57e143bac03f782970c9cc3c52ce9d111d2356f0322eacb74230233173b6a",
+      "bytes": 10937
+    }
+  ],
+  "successful_upgrade_cleanup": {
+    "status": "safe-by-exact-SDK-inspection",
+    "proof": [
+      "lib/io/secure_socket.dart SecureSocket.secure calls socket._detachRaw before RawSecureSocket.secure.",
+      "lib/_internal/vm/bin/socket_patch.dart _Socket._detachRaw sets the old _raw field to null.",
+      "_Socket.destroy returns immediately when _raw is null; the old controller subscription cancellation only shuts down receive when _raw is nonnull.",
+      "Therefore originalSocket.destroy after the secure future completes does not close the upgraded connection."
+    ]
+  },
+  "pending_handshake": {
+    "status": "open-T12",
+    "proof": [
+      "SecureSocket.secure detaches before waiting for the TLS handshake.",
+      "_RawSecureSocket.connect returns _handshakeComplete.future; the secure path has no handshake timeout timer.",
+      "ClientBase abort currently has only the detached old Socket during STARTTLS, or no constructed Socket during implicit TLS.",
+      "Generation guards run only when createConnectionSocket/createSecureConnectionSocket eventually resolves.",
+      "SecureSocket.startConnect alone does not fix this: it delegates cancellation to the TCP task, whose winning native socket is removed from the connecting set before TLS starts."
+    ]
+  },
+  "recommended_strategy": "Retain RawSocket ownership during RawSecureSocket.secure and use a protocol/socket adapter boundary that can close the raw owner until secure handoff completes. Preserve normal certificate/hostname verification.",
+  "required_regression": "Use a real local TCP peer that either accepts implicit TLS or answers STARTTLS OK, then never answers the ClientHello. Cancel/timeout the provider and assert peer-observed TCP closure before releasing any stalled-handshake gate. Verify no auth command is sent and a subsequent call uses a fresh connection.",
+  "runtime_executed_by_reviewer": false,
+  "resolution": {
+    "reviewed_at_utc": "2026-11-19T06:56:10.589433+00:00",
+    "reviewed_commit": "cdcfe878f01263f52c935d9ae0a90e6113a07e3f",
+    "reviewed_tree": "4142493000250add73a374aefea0b038eb6e2c7b",
+    "status": "resolved-by-static-inspection-and-reviewed-real-loopback-development-evidence",
+    "source_manifest_sha256": "5dc61c9d20bf2227236b489799b77c2765a24b04e8e7d6f8625e7186a0ebff48",
+    "strategy": "ClientConnection keeps the original TCP RawSocket accessible across RawSecureSocket.secure and established TLS. Abort closes that TCP owner and races an explicit abort future so the provider settles even if the SDK handshake future does not. Transfer disarms the old wrapper only after the replacement owns TCP; ClientBase generation checks reject late results. Both implicit TLS and STARTTLS are covered by real stalled-peer cancellation/deadline/retry controls.",
+    "helper_followups": [
+      {
+        "id": "T12-W01",
+        "reviewer": "recover_repository",
+        "title": "Final accepted write could precede platform write completion",
+        "status": "resolved-by-static-inspection-and-deterministic-fixture-log",
+        "resolution": "Every RawSocket.write waits for its next writable event, including the final accepted write. Abort wakes the waiter and the subsequent open-state check rejects the flush. This follows the pinned SDK final-write readiness requirement.",
+        "test": "queued partial writes and final readiness complete before write close"
+      },
+      {
+        "id": "T12-W02",
+        "reviewer": "recover_repository",
+        "title": "Write close initially accepted new queued writes",
+        "status": "resolved-by-static-inspection-and-deterministic-fixture-log",
+        "resolution": "A cached _closing future immediately rejects subsequent add/write calls while previously queued writes drain. Repeated close returns the same future; secure rejects a closing send direction.",
+        "test": "queued partial writes and final readiness complete before write close"
+      }
+    ],
+    "test_review_findings": [
+      {
+        "id": "TLS-E01",
+        "reviewer": "durable_flags",
+        "title": "Generic failure could falsely count as trust or hostname rejection",
+        "status": "resolved-by-static-inspection-and-reviewed-development-log",
+        "resolution": "ObservedImapClient delegates to the production connector and rethrows the original HandshakeException. Trust controls require CERTIFICATE_VERIFY_FAILED with self-signed/local-issuer reason; hostname controls require CERTIFICATE_VERIFY_FAILED with hostname mismatch. No certificate bypass is introduced."
+      },
+      {
+        "id": "TLS-E02",
+        "reviewer": "durable_flags",
+        "title": "everyElement on an empty LOGIN sequence could pass vacuously",
+        "status": "resolved-by-static-inspection-and-reviewed-development-log",
+        "resolution": "Successful local exchange now requires exactly one LOGIN and asserts that its secure marker is true, plus LIST success and no unexpected fixture errors."
+      },
+      {
+        "id": "TLS-E03",
+        "reviewer": "durable_flags",
+        "title": "A deadline case lacked an explicit elapsed-time acceptance bound",
+        "status": "resolved-by-static-inspection-and-reviewed-development-log",
+        "resolution": "The 600 ms operation deadline is checked with a two-second external Future timeout and elapsed time below two seconds, followed by peer-observed closure within one second. This qualifies the bounded local behavior, not an exact 600 ms timing guarantee."
+      }
+    ],
+    "retained_development_evidence": {
+      "receipt": "tls-development-evidence/real-tls-reviewed.json",
+      "log": "tls-development-evidence/real-tls-reviewed.log",
+      "log_sha256": "269c0e7e1f6c2cd27b268bc5fde6c63afecf4f607d05008af72ac70f279ab39e",
+      "observed_terminal_passes": 14,
+      "case_names": [
+        "implicitTls: real stalled handshake closes on cancellation and retries",
+        "implicitTls: operation deadline closes a real stalled handshake",
+        "implicitTls: trusted local TLS authenticates and exchanges IMAP bytes",
+        "implicitTls: default trust rejects the local certificate before login",
+        "implicitTls: trusted certificate still rejects a mismatched hostname",
+        "startTls: real stalled handshake closes on cancellation and retries",
+        "startTls: operation deadline closes a real stalled handshake",
+        "startTls: trusted local TLS authenticates and exchanges IMAP bytes",
+        "startTls: default trust rejects the local certificate before login",
+        "startTls: trusted certificate still rejects a mismatched hostname",
+        "manual socket TLS upgrade rejects before handshake or credentials",
+        "already secure manual sockets retain IMAP read and write behavior",
+        "queued partial writes and final readiness complete before write close",
+        "aborting a blocked partial write rejects its pending flush"
+      ],
+      "qualification_boundary": "Retained author development receipt/log independently inspected. These simple development receipts do not capture the complete source/runtime input set; final integrated source-bound qualification remains the root gate."
+    },
+    "limits": [
+      "Real loopback TLS controls now establish local implicit-TLS/STARTTLS success, certificate and hostname rejection, and stalled-handshake closure using the pinned Linux runtime and a labeled local fixture certificate. They do not establish live account/OAuth-provider interoperability or behavior on every operating system.",
+      "Partial-write/backpressure controls use a deterministic RawSocket fixture with three-byte acceptance and controlled readiness. They do not establish OS backpressure behavior or actual Windows execution.",
+      "Manual connect(Socket) preserves ordinary and already-secure I/O, but its default TLS upgrade explicitly rejects because an external SDK Socket cannot expose the detached TCP owner. Native upgrades use connectToServer."
+    ],
+    "final_source_bound_qualification_pending": true
+  }
+}

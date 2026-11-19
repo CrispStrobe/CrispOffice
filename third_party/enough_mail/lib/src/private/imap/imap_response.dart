@@ -57,7 +57,7 @@ class ImapResponse {
   }
 
   /// Iterates through the value of this response
-  ImapValueIterator iterate() {
+  ImapValueIterator iterate({bool strict = false}) {
     final root = ImapValue(null, hasChildren: true);
     var current = root;
     var nextLineIsValueOnly = false;
@@ -65,6 +65,9 @@ class ImapResponse {
 
     for (final line in lines) {
       if (nextLineIsValueOnly) {
+        if (strict && line.rawData == null) {
+          throw const FormatException('Missing IMAP literal bytes');
+        }
         final child = ImapValue(null)..data = line.rawData;
         current.addChild(child);
       } else {
@@ -148,7 +151,12 @@ class ImapResponse {
                 : null;
             ImapValue next;
             if (lastSibling != null &&
-                _knownParenthesesDataItems.contains(lastSibling.value)) {
+                _knownParenthesesDataItems.contains(
+                  lastSibling.value?.toUpperCase(),
+                )) {
+              if (strict && lastSibling.children != null) {
+                throw const FormatException('Repeated IMAP field list');
+              }
               lastSibling.children ??= <ImapValue>[];
               next = lastSibling;
               parentheses.put(ParenthesizedListType.sibling);
@@ -159,6 +167,11 @@ class ImapResponse {
             }
             current = next;
           } else if (char == AsciiRunes.runeClosingParentheses) {
+            if (strict && parentheses.isEmpty) {
+              throw const FormatException(
+                'Unexpected IMAP closing parenthesis',
+              );
+            }
             final lastType = parentheses.pop();
             final currentParent = current.parent;
             if (currentParent != null) {
@@ -176,6 +189,11 @@ class ImapResponse {
           }
         } // for each char
         if (isInValue) {
+          if (strict &&
+              (separatorChar == AsciiRunes.runeDoubleQuote ||
+                  separatorChar == AsciiRunes.runeClosingBracket)) {
+            throw const FormatException('Unterminated IMAP value');
+          }
           isInValue = false;
           final valueText = text.substring(startIndex);
           current.addChild(ImapValue(valueText));
@@ -184,8 +202,11 @@ class ImapResponse {
       nextLineIsValueOnly = line.isWithLiteral;
     }
     if (parentheses.isNotEmpty) {
-      print('Warning - some parentheses have not been closed: $parentheses');
-      print(lines.toString());
+      if (strict) {
+        throw const FormatException('Unclosed IMAP parentheses');
+      }
+      // Diagnostics never print literal bytes or protocol field contents.
+      print('Warning - IMAP parentheses have not been closed');
     }
 
     return ImapValueIterator(root.children ?? []);

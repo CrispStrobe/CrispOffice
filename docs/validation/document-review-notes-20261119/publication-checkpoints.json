@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "branch": "codex/document-review-notes-20261118",
+  "github_actions_queried_or_awaited": false,
+  "checkpoints": [
+    {
+      "commit": "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+      "tree": "927bdd118ccd5574e718a0e5a62fc3fb18ca7d0d",
+      "parents": [
+        "a7512e94da8208123aa2df5f5c2c0354d079ddc7"
+      ],
+      "purpose": "Recovered published previous qualification",
+      "remote_tree_verified": true
+    },
+    {
+      "commit": "7a006981fa0948ac0a39347dbb123d0ef98be128",
+      "tree": "121cac4b228b638d1d5d42130e2158591d53642a",
+      "parents": [
+        "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+        "7e4adc08fce78fb95524f304962f9c1804e18691"
+      ],
+      "purpose": "Integrated first thesaurus/research-list head",
+      "remote_tree_verified": true
+    },
+    {
+      "commit": "2c17906cc52efcaa518a87805de7fc88b05d2d43",
+      "tree": "851f50bdfce9d9bd8911b143483af49a3ca920fe",
+      "parents": [
+        "7a006981fa0948ac0a39347dbb123d0ef98be128",
+        "0abd0e592ad607a88a6a7db6a5bf235939efa5b9"
+      ],
+      "purpose": "Integrated first final Zotero head",
+      "remote_tree_verified": true
+    },
+    {
+      "commit": "bb241a34a1722a44b29f51fdce4be64e0ffc47b9",
+      "tree": "e8c14323b4ff3abe7915869e14757d410a362557",
+      "parents": [
+        "2c17906cc52efcaa518a87805de7fc88b05d2d43",
+        "0ce210973f1c86483ffcea9b91c83bbf067575e0",
+        "59f13897fd5aafccc234c58f41370dd786703418",
+        "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d"
+      ],
+      "purpose": "Integrated final bounded Mail/thesaurus/Zotero reconciliation",
+      "remote_tree_verified": true
+    },
+    {
+      "commit": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6",
+      "tree": "842449e617aabd725ff25fdc13b99a25b8a9274e",
+      "parents": [
+        "bb241a34a1722a44b29f51fdce4be64e0ffc47b9"
+      ],
+      "purpose": "Saved fixed runtime reproduction, strict controls and frozen79-suite plan",
+      "remote_tree_verified": true
+    }
+  ],
+  "qualification_source": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6"
+}

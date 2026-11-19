@@ -1,0 +1,68 @@
+{
+  "schema": "quds-evidence-archive-v1",
+  "archive": "recovery-audit-and-runner-controls.tar.xz",
+  "files": [
+    {
+      "path": "control-sources/docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py",
+      "bytes": 13401,
+      "sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7"
+    },
+    {
+      "path": "control-sources/docs/validation/thesaurus-20261118/reconciled/run_targeted.py",
+      "bytes": 17304,
+      "sha256": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d"
+    },
+    {
+      "path": "control-sources/docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py",
+      "bytes": 9268,
+      "sha256": "a8b082f111d8d6a0629680a04ab54e09d1173ac06a4da253e02d3c0d89d367a2"
+    },
+    {
+      "path": "control-sources/tools/mail/check_reader.py",
+      "bytes": 10166,
+      "sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826"
+    },
+    {
+      "path": "control-sources/tools/mail/check_store.py",
+      "bytes": 13740,
+      "sha256": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155"
+    },
+    {
+      "path": "recovery/archive-audit.json",
+      "bytes": 1315,
+      "sha256": "dffca758ab3c6a19802546497feec9c6cb42ffd353af429e05f3773715be79bc"
+    },
+    {
+      "path": "recovery/audit_checkpoint.py",
+      "bytes": 5908,
+      "sha256": "9cd59fc13b393610fc9ae5023695268ba48cb5e1f23145ebb6660b84a727f1e8"
+    },
+    {
+      "path": "recovery/checkpoint-audit.json",
+      "bytes": 97315,
+      "sha256": "ae9a2f55ed3bd8d8ccf94fc557f26f69bb6a2278b4f35740fa05b7a9694b228d"
+    },
+    {
+      "path": "recovery/checkpoint-audit.md",
+      "bytes": 4992,
+      "sha256": "52ac22683b88e39a7c16d49e1d448d8d6a7bcc0cdfe655f7449ea6d7f02a534c"
+    },
+    {
+      "path": "runner-controls/receipt.json",
+      "bytes": 2287,
+      "sha256": "fddb30651456946b98a22e5c688037d09ecfea240930a072bcdb31e1817737da"
+    },
+    {
+      "path": "runner-controls/stderr",
+      "bytes": 2407,
+      "sha256": "e9173bd82c0bd0218c0c0e6a949f802e8470b95bdb6e8aeadd042ee072a9bdc9"
+    },
+    {
+      "path": "runner-controls/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "archive_bytes": 29904,
+  "archive_sha256": "eff0ef9a0a63c270e65a210a89a049c84daa15d9412a8fa8e02ec70ff692379c"
+}

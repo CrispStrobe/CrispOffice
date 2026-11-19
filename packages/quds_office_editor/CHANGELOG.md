@@ -4,6 +4,51 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add **Add Zotero annotation** to the native Word ribbon and **Add annotation
+  from Zotero…** to the references workspace. Text annotations and their active
+  citations insert as one undoable operation and return focus to writing.
+- Apply the research-note caret, composition and stale-target guards to
+  annotation insertion. Cancelling the picker discards staged preferences and
+  temporary fields; image/ink annotations remain explicitly unsupported.
+
+- Preserve the active Notes editor, selection and composition when opening,
+  closing or resizing the Review pane so language and checking actions keep
+  targeting the selected footnote or endnote text.
+
+- Keep imported Zotero research-note lists and their numbering definitions in
+  the same undo step as the note and its citations. Restore existing numbering
+  on undo while preserving unrelated package parts and relationships.
+
+- Keep Notes keyboard Undo/Redo in document history, preserve tracked correction
+  records, and prevent Redo from overwriting newly typed Notes drafts.
+- Apply language and checking controls to the exact Notes selection or current
+  editable paragraph, including multiline and UTF-16 ranges. Retain the actual
+  Notes field and selection when opening or repositioning the Writing pane.
+- Retain completed manual proofing coverage, including clean results, across
+  recording unchanged Notes typing into history without rerunning providers.
+- Keep header/footer selections out of unrelated body table highlighting and
+  ruler bounds.
+
+- Add inline Notes spelling, grammar and style underlines with nearby
+  correction, ignore/dictionary and finding-navigation controls. Keep live-check
+  status and explicit checking in the pane; F7 checks and Alt+F7 /
+  Alt+Shift+F7 navigate the active note's findings.
+- Route Notes review to the persistent Changes pane. Reveal findings and
+  supported revisions at the actual footnote/endnote text selection, preserving
+  hidden reference offsets, composition guards and correction Undo ownership.
+- Edit and reveal the exact rendered default, first-page or even-page
+  header/footer story. Keep its caret, selection, IME, language controls and
+  proofing priority together; paint selection and chrome below readable text.
+
+- Add **Add Zotero note** to the native references tools and Studio ribbon,
+  with complete insertion/undo and DOCX persistence of active citation fields.
+- Return direct Zotero ribbon/keyboard commands to the body or Notes caret after
+  completion or cancellation. Keep failures reviewable and retain the ordinary
+  references workspace for browsing, including in Studio viewing mode.
+- Add **Go to reference** for citations and complete bibliographies in body,
+  table and Notes paragraphs. Read-only selection remains available without
+  changing document history; note navigation reveals and focuses the target.
+
 - Keep Shift+F7 available from both the document and the Review pane alongside
   Alt+F7 / Alt+Shift+F7 writing navigation. Keep language, changes and thesaurus
   actions within the narrow review status bar.

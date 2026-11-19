@@ -1,0 +1,8 @@
+{
+  "status": "BLOCKED_BEFORE_TESTS",
+  "observation": "Unmodified separate SDK direct Flutter snapshot remained silent during startup. Peer --verbose --no-version-check diagnosis identified version probing plus required flutter_tools dependency bootstrap. No tests had started.",
+  "tool_interruption_result": "network approval was cancelled before a decision was returned",
+  "action": "Coordinate one real flutter_tools pub get in original SDK, then retry local tests with --no-version-check.",
+  "cache_locks_bypassed": false,
+  "github_actions_used": false
+}

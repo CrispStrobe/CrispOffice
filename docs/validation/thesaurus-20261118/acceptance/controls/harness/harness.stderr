@@ -1,0 +1,20 @@
+test_changed_missing_and_unlisted_build_assets_are_rejected (__main__.OfflineFixtureTests.test_changed_missing_and_unlisted_build_assets_are_rejected) ... ok
+test_changed_worker_is_rejected_even_with_unchanged_assets (__main__.OfflineFixtureTests.test_changed_worker_is_rejected_even_with_unchanged_assets) ... ok
+test_competing_default_worker_bootstrap_is_rejected (__main__.OfflineFixtureTests.test_competing_default_worker_bootstrap_is_rejected) ... ok
+test_failed_stale_or_inconsistent_compile_evidence_is_rejected (__main__.OfflineFixtureTests.test_failed_stale_or_inconsistent_compile_evidence_is_rejected) ... ok
+test_generated_worker_checks_bytes_cache_scope_and_offline_fetch (__main__.OfflineFixtureTests.test_generated_worker_checks_bytes_cache_scope_and_offline_fetch) ... ok
+test_http_origin_serves_csp_then_really_closes (__main__.OfflineFixtureTests.test_http_origin_serves_csp_then_really_closes) ... ok
+test_incomplete_build_and_symbolic_links_are_rejected_before_writing (__main__.OfflineFixtureTests.test_incomplete_build_and_symbolic_links_are_rejected_before_writing) ... ok
+test_inventory_is_repeatable_and_preserves_compiled_assets (__main__.OfflineFixtureTests.test_inventory_is_repeatable_and_preserves_compiled_assets) ... ok
+test_mutated_compile_members_and_stale_fixture_are_rejected (__main__.OfflineFixtureTests.test_mutated_compile_members_and_stale_fixture_are_rejected) ... ok
+test_resealed_installation_cannot_substitute_a_different_compiled_application (__main__.OfflineFixtureTests.test_resealed_installation_cannot_substitute_a_different_compiled_application) ... ok
+test_unrelated_build_is_rejected_before_entry_points_are_changed (__main__.OfflineFixtureTests.test_unrelated_build_is_rejected_before_entry_points_are_changed) ... ok
+test_complete_declared_panel_is_accepted (__main__.PanelReceiptTests.test_complete_declared_panel_is_accepted) ... ok
+test_lost_distinctions_fallback_and_cache_bounds_cannot_pass (__main__.PanelReceiptTests.test_lost_distinctions_fallback_and_cache_bounds_cannot_pass) ... ok
+test_missing_cases_wrong_status_or_pack_cannot_pass (__main__.PanelReceiptTests.test_missing_cases_wrong_status_or_pack_cannot_pass) ... ok
+test_unread_or_tampered_notices_cannot_pass (__main__.PanelReceiptTests.test_unread_or_tampered_notices_cannot_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.416s
+
+OK

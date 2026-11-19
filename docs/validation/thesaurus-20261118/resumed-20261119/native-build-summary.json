@@ -1,0 +1,29 @@
+{
+  "status": "native_passed_web_compiled_installation_verified_browser_not_run",
+  "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "source_tree": "37ac64ec6ec9aa9b13b4504be0b93e82fd20fb0e",
+  "native_cases": 208,
+  "native_suites": 14,
+  "case_count_scope": "Native command; cases overlap the separate combined affected-suite replay.",
+  "source_unchanged_during_tests": true,
+  "source_unchanged_during_build": true,
+  "captured_runtime_inputs": 11953,
+  "captured_runtime_inputs_unchanged": true,
+  "compiled_files": 1155,
+  "compiled_bytes": 87446576,
+  "installed_inventory_files": 1156,
+  "installed_inventory_bytes": 87447167,
+  "cache_identity": "1694b24fcdc9422efa5781cef722b3d159142d9577c462e21eef527114dd9e78",
+  "linguistic_review_status": "not_reviewed",
+  "browser_execution": "not_run",
+  "installed_native_desktop": "not_run",
+  "human_review": "not_completed",
+  "compiled_build_local_path": "/workspace/scratch/786b438f79ef/native-final-qualification/browser-build",
+  "compiled_bytes_archived": false,
+  "archive_exclusion": "browser-build/ is retained locally and omitted from the compact evidence archive; original compiled and installed inventories, receipts and logs are included.",
+  "compiler_warnings": [
+    "Deprecated --pwa-strategy option",
+    "Wider editor references packages/cupertino_icons/CupertinoIcons without a bundled font"
+  ],
+  "recorded_at_utc": "2026-11-19T05:53:09.428483+00:00"
+}

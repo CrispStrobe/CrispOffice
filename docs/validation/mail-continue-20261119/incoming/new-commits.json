@@ -1,0 +1,74 @@
+[
+  {
+    "sha": "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+    "subject": "Record passing 1,244-case local document review qualification [skip ci]"
+  },
+  {
+    "sha": "7e4adc08fce78fb95524f304962f9c1804e18691",
+    "subject": "Preserve source-bound native build, Mail gates and refreshed review evidence [skip ci]"
+  },
+  {
+    "sha": "a7512e94da8208123aa2df5f5c2c0354d079ddc7",
+    "subject": "Qualify visible Notes selection and bind preserved local evidence [skip ci]"
+  },
+  {
+    "sha": "3847d5f4237fe0069ba0a8399ddbf4dc13d7194b",
+    "subject": "Preserve Notes editing state across Review layout transitions [skip ci]"
+  },
+  {
+    "sha": "0abd0e592ad607a88a6a7db6a5bf235939efa5b9",
+    "subject": "Document completed Zotero qualification and independent evidence [skip ci]"
+  },
+  {
+    "sha": "356a3c75c645a9e91d41af0b151d773eb938f3fc",
+    "subject": "Preserve provenance bytes and exercise visible RTL Notes selection [skip ci]"
+  },
+  {
+    "sha": "a6c165d397587bf0606e40ecdfcbcec565e8896c",
+    "subject": "Reconcile refreshed Notes and Zotero heads with source-bound offline qualification [skip ci]"
+  },
+  {
+    "sha": "1aa37e564d615807b74c5f9c2d662488c669ad17",
+    "subject": "Preserve Notes selection across Review layouts and bind local qualification [skip ci]"
+  },
+  {
+    "sha": "9547b087011695efa43014a64b128369b319e0f6",
+    "subject": "Finish research-list numbering isolation and local recovery regressions [skip ci]"
+  },
+  {
+    "sha": "e12d57893d783857959912a574e5b309f2ed024b",
+    "subject": "Repair recovery regressions and bind offline acceptance to effective sources [skip ci]"
+  },
+  {
+    "sha": "56e21b897ab6c6d273e09652a574389ec2f21999",
+    "subject": "Record final bounded incoming refresh and merge resolution [skip ci]"
+  },
+  {
+    "sha": "f40c667adb8f7e721d498f16de4531f6d08c8f7d",
+    "subject": "Add native Zotero research lists and restore local qualification tools [skip ci]"
+  },
+  {
+    "sha": "c098f7567caced8a84632690ddede57446893f7c",
+    "subject": "Keep Notes language, keyboard history and manual checks bound to edited text [skip ci]"
+  },
+  {
+    "sha": "0ea205e0ee35bb43635960a0edafd42dc4c16e8d",
+    "subject": "Integrate latest Mail durability and Notes review with Zotero reconnection fixes [skip ci]"
+  },
+  {
+    "sha": "8fa115e8358e305872fd14e757f9133fa9c1540d",
+    "subject": "Integrate recent Mail, thesaurus and Notes review work into Zotero continuation [skip ci]"
+  },
+  {
+    "sha": "adb403917ed6f28c0814164f76e9bd16664a0cbb",
+    "subject": "Reconcile captured Zotero and Mail continuation with thesaurus acceptance [skip ci]"
+  },
+  {
+    "sha": "e92f875e5a30147770680829dfe1e9bf7bc1262a",
+    "subject": "Keep header review selection out of body tables and preserve incoming audit [skip ci]"
+  },
+  {
+    "sha": "842e419ca03ac9da8423f49913a182d20751f671",
+    "subject": "Integrate current Mail, Zotero and thesaurus before document review continuation [skip ci]"
+  }
+]

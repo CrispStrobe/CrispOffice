@@ -1,0 +1,334 @@
+{
+  "source_commit": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6",
+  "source_tree": "842449e617aabd725ff25fdc13b99a25b8a9274e",
+  "gate_receipt_sha256": "591245b25f966a265dfa6382961a6820946455f2684ee6fe3b645c5070516050",
+  "plan": "docs/validation/document-review-notes-20261119/test-plan.json",
+  "plan_sha256": "f7b6f7f0edd9d6ab02cb0b55f225638afaa617cca9220b5ae7889b7f722a89b5",
+  "groups": [
+    {
+      "name": "engine-review-and-incoming-zotero",
+      "suites": 11,
+      "passed": 217,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 11,
+      "raw_log_sha256": "b73a7b8929328a90688665d01c975a8b482f42116c345b77594f595b6c1a2698",
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "editor-review-notes-headers-and-zotero",
+      "suites": 49,
+      "passed": 858,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 79,
+      "raw_log_sha256": "80cd642f6d58d4146dfc99d42bad1ee66b92e522e11e3cbaa501bd508d4373eb",
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "studio-review-and-incoming-navigation",
+      "suites": 9,
+      "passed": 98,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 9,
+      "raw_log_sha256": "28d4a2a7aec20700ba2f78a1a685534dccf803681b5553d0718d0743ec159233",
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "incoming-mail-core",
+      "suites": 1,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 1,
+      "raw_log_sha256": "4623a552d27ff91fbf50572f99238005f913dbb4b3baa986df16ebaa89adf511",
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "incoming-mail-store",
+      "suites": 7,
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 7,
+      "raw_log_sha256": "77538aa2cacfabf0963c2e0251284d272c6ceff3570a40624e6ae9a7a2643adb",
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "incoming-mail-browser-problems",
+      "suites": 1,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 1,
+      "raw_log_sha256": "a6bd7238252f1550b2332088818c3c455226103ca456fb6c559114be151c8169",
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "incoming-mail-reader",
+      "suites": 1,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 1,
+      "raw_log_sha256": "f1592a6d4451b6eea61199c2ee8008e7c7a36ef3f212f006fa9c5a2518322f44",
+      "exact_case_inventory_match": true
+    }
+  ],
+  "actual_dart_flutter_cases": 1283,
+  "failed": 0,
+  "skipped": 0,
+  "unique_suites": 79,
+  "source_inputs_reverified": 5038,
+  "runtime_inputs_reverified": 11165,
+  "analysis_format_targets": {
+    "analysis": 61,
+    "format": 61
+  },
+  "exact_whitespace_exceptions": 20,
+  "real_fonts_bound": [
+    "runtime/flutter/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf",
+    "packages/quds_office_editor/fonts/LiberationSans-Regular.ttf",
+    "packages/quds_office_editor/fonts/NotoNaskhArabic-Regular.ttf"
+  ],
+  "source_manifests_equal": true,
+  "environment_manifests_equal": true,
+  "layout_diagnostic_scan": {
+    "raw_logs_scanned": 7,
+    "total_findings": 0,
+    "logs": [
+      {
+        "name": "engine-review-and-incoming-zotero",
+        "log": "checks/engine-review-and-incoming-zotero.jsonl",
+        "raw_log_sha256": "b73a7b8929328a90688665d01c975a8b482f42116c345b77594f595b6c1a2698",
+        "patterns": {
+          "renderflex_overflow": "A RenderFlex overflowed",
+          "missed_widget_hit_test": "would not hit test on the specified widget",
+          "pointer_events_unavailable": "does not receive pointer events",
+          "layout_assertion": "The following assertion was thrown during layout",
+          "rendering_exception_banner": "EXCEPTION CAUGHT BY RENDERING LIBRARY"
+        },
+        "findings": []
+      },
+      {
+        "name": "editor-review-notes-headers-and-zotero",
+        "log": "checks/editor-review-notes-headers-and-zotero.jsonl",
+        "raw_log_sha256": "80cd642f6d58d4146dfc99d42bad1ee66b92e522e11e3cbaa501bd508d4373eb",
+        "patterns": {
+          "renderflex_overflow": "A RenderFlex overflowed",
+          "missed_widget_hit_test": "would not hit test on the specified widget",
+          "pointer_events_unavailable": "does not receive pointer events",
+          "layout_assertion": "The following assertion was thrown during layout",
+          "rendering_exception_banner": "EXCEPTION CAUGHT BY RENDERING LIBRARY"
+        },
+        "findings": []
+      },
+      {
+        "name": "studio-review-and-incoming-navigation",
+        "log": "checks/studio-review-and-incoming-navigation.jsonl",
+        "raw_log_sha256": "28d4a2a7aec20700ba2f78a1a685534dccf803681b5553d0718d0743ec159233",
+        "patterns": {
+          "renderflex_overflow": "A RenderFlex overflowed",
+          "missed_widget_hit_test": "would not hit test on the specified widget",
+          "pointer_events_unavailable": "does not receive pointer events",
+          "layout_assertion": "The following assertion was thrown during layout",
+          "rendering_exception_banner": "EXCEPTION CAUGHT BY RENDERING LIBRARY"
+        },
+        "findings": []
+      },
+      {
+        "name": "incoming-mail-core",
+        "log": "checks/incoming-mail-core.jsonl",
+        "raw_log_sha256": "4623a552d27ff91fbf50572f99238005f913dbb4b3baa986df16ebaa89adf511",
+        "patterns": {
+          "renderflex_overflow": "A RenderFlex overflowed",
+          "missed_widget_hit_test": "would not hit test on the specified widget",
+          "pointer_events_unavailable": "does not receive pointer events",
+          "layout_assertion": "The following assertion was thrown during layout",
+          "rendering_exception_banner": "EXCEPTION CAUGHT BY RENDERING LIBRARY"
+        },
+        "findings": []
+      },
+      {
+        "name": "incoming-mail-store",
+        "log": "checks/incoming-mail-store.jsonl",
+        "raw_log_sha256": "77538aa2cacfabf0963c2e0251284d272c6ceff3570a40624e6ae9a7a2643adb",
+        "patterns": {
+          "renderflex_overflow": "A RenderFlex overflowed",
+          "missed_widget_hit_test": "would not hit test on the specified widget",
+          "pointer_events_unavailable": "does not receive pointer events",
+          "layout_assertion": "The following assertion was thrown during layout",
+          "rendering_exception_banner": "EXCEPTION CAUGHT BY RENDERING LIBRARY"
+        },
+        "findings": []
+      },
+      {
+        "name": "incoming-mail-browser-problems",
+        "log": "checks/incoming-mail-browser-problems.jsonl",
+        "raw_log_sha256": "a6bd7238252f1550b2332088818c3c455226103ca456fb6c559114be151c8169",
+        "patterns": {
+          "renderflex_overflow": "A RenderFlex overflowed",
+          "missed_widget_hit_test": "would not hit test on the specified widget",
+          "pointer_events_unavailable": "does not receive pointer events",
+          "layout_assertion": "The following assertion was thrown during layout",
+          "rendering_exception_banner": "EXCEPTION CAUGHT BY RENDERING LIBRARY"
+        },
+        "findings": []
+      },
+      {
+        "name": "incoming-mail-reader",
+        "log": "checks/incoming-mail-reader.jsonl",
+        "raw_log_sha256": "f1592a6d4451b6eea61199c2ee8008e7c7a36ef3f212f006fa9c5a2518322f44",
+        "patterns": {
+          "renderflex_overflow": "A RenderFlex overflowed",
+          "missed_widget_hit_test": "would not hit test on the specified widget",
+          "pointer_events_unavailable": "does not receive pointer events",
+          "layout_assertion": "The following assertion was thrown during layout",
+          "rendering_exception_banner": "EXCEPTION CAUGHT BY RENDERING LIBRARY"
+        },
+        "findings": []
+      }
+    ]
+  },
+  "fresh_runtime_restore": {
+    "receipt_sha256": "71aab24d16ab9ef53e044fcb2cd76fb1ae261d8b2ab5807ceca15dc3995e0ede",
+    "status": "ready",
+    "runs": [
+      {
+        "name": "flutter-tools-pub-get",
+        "exit_code": 0,
+        "log_sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+      },
+      {
+        "name": "workspace-pub-get",
+        "exit_code": 0,
+        "log_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+      },
+      {
+        "name": "native-assets-smoke",
+        "exit_code": 0,
+        "log_sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2"
+      },
+      {
+        "name": "flutter-version",
+        "exit_code": 0,
+        "log_sha256": "db6071a6be1ae5d848aa77f20a7e17a5295edcc7f44119ab55271f183aa68083"
+      }
+    ],
+    "archive": {
+      "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+      "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+      "bytes": 1581444364,
+      "verified": true,
+      "extracted_bytes": 551242378
+    },
+    "source_implementation_sha256": "d4d5e937239957b8a5db0dcfa2630d1d30b96a714eeadc02e4ae3cb3f1e567a9",
+    "smoke_source_sha256": "f7f59b867a024a1293fb615d5fe401f38658fc06d7fb033d3d4146c7de5577be",
+    "staged_smoke_source_matches": true,
+    "generated_smoke_entrypoint_removed": true
+  },
+  "separate_python_groups": [
+    {
+      "name": "mail-runner",
+      "actual_cases": 34,
+      "source_inputs_reverified": 3,
+      "raw_log_sha256": "7894cfd2a749217625e792821be733577b219a6d84a6d597109d521f9c0733e3"
+    },
+    {
+      "name": "notes-runner",
+      "actual_cases": 20,
+      "source_inputs_reverified": 2,
+      "raw_log_sha256": "f79887c2102e9bfc3200994c4c35f1f2df47a335a5c950fc12b63933993fc3bb"
+    },
+    {
+      "name": "thesaurus-browser",
+      "actual_cases": 19,
+      "source_inputs_reverified": 12,
+      "raw_log_sha256": "ceb38bf43629fa07397fd2b2cde9f7cd290e985f3e8a300cb5819a2d26ef9edf"
+    },
+    {
+      "name": "thesaurus-exporter",
+      "actual_cases": 7,
+      "source_inputs_reverified": 3,
+      "raw_log_sha256": "efb835585ed92e0cd66a71ca687de10b1972587088938384f93eb056c6d8735a"
+    },
+    {
+      "name": "thesaurus-targeted",
+      "actual_cases": 14,
+      "source_inputs_reverified": 5,
+      "raw_log_sha256": "0b0b05d2f2869635b34500ca66b38ddd016d17f4c7a4cef6a24d01f004a6dd1f"
+    },
+    {
+      "name": "thesaurus-workspace",
+      "actual_cases": 17,
+      "source_inputs_reverified": 3,
+      "raw_log_sha256": "b4679858414d9d6fdef267b7829229b5307f73b3b6886e226c10eadd2721094e"
+    },
+    {
+      "name": "zotero-runner",
+      "actual_cases": 32,
+      "source_inputs_reverified": 2,
+      "raw_log_sha256": "41c7c6aa037c85851d3e24e870760891ee8043934f817f63c0ce8600f1d8f6d0"
+    }
+  ],
+  "separate_python_cases": 143,
+  "separate_python_source_inputs": 23,
+  "excluded_python_attempts": [
+    {
+      "receipt": "attempts/thesaurus-targeted-01-immediate-proc-observation/receipt.json",
+      "raw_log_sha256": "f6a4e9e93c8284036c59784dc9bf6d5eb6bc4f47ec1f4f211c4d821139e716b6",
+      "failed": true,
+      "counted_in_accepted_total": false
+    }
+  ],
+  "separate_runtime_helper_controls": {
+    "receipt_sha256": "2556cd54e23a7dd11b971c0fef1f5176daa8b46a9a014950bf6793b86f3d8f3e",
+    "qualified_successful_cases": 4,
+    "log_sha256": "c5f2bbbf4151b880a319e770b41aeca10de811861440d15beb1719939020a94f",
+    "frozen_sources_verified": 4,
+    "process_exit_code": 0,
+    "original_observation_sha256": "00e3d3534846227312ffe7150a8ecbe57d466caa6e6d492f1bca1ac07bc23ec7",
+    "original_observation_aggregate_contribution": 0,
+    "included_in_143_python_cases": false,
+    "included_in_dart_flutter_cases": false
+  },
+  "combined_python_cases_without_repeats": 147,
+  "original_runtime_repair_provenance": {
+    "receipt_sha256": "95f6da9f8927d53a41322f4fcdb0f0a0495dbf8c9d2dd85a2f45dcd6ea1539f8",
+    "receipt_status": "failed",
+    "failed_commands_preserved": [
+      {
+        "name": "native-assets-smoke",
+        "exit_code": 255,
+        "log_sha256": "b9110e93d58d7c4ab92d0c15e2ff9c53aef2a4e17f1df83a9e734d1ef1a3ba6c"
+      }
+    ],
+    "error_preserved": true,
+    "interpretation": "Original failed restore is preserved separately from the later diagnostic recovery. The separate fresh runtime receipt and successful four-command run bind the accepted corrected restoration."
+  },
+  "runtime_repair_evidence": {
+    "receipt_sha256": "abd5f0aeca32f174f0b4d7cf8510b8dd775bb935f6aa8b4e54621405295fabcd",
+    "fresh_restore_process_exit_code": 0,
+    "outer_log_sha256": "23b4f66b5cc32ff4b778b4b8db2dfd5a18f5947fee030fe89a674ad1efecd27a",
+    "original_failure_receipt_sha256": "95f6da9f8927d53a41322f4fcdb0f0a0495dbf8c9d2dd85a2f45dcd6ea1539f8",
+    "diagnostic_archive_sha256": "e0f9fd64ac01a5c506f6287958c4690d1dc226492a95ce9ae863171e8f3704b5",
+    "diagnostic_archive_members_reverified": 13,
+    "genuine_hook_raw_snapshots": [
+      {
+        "name": "input.json",
+        "sha256": "ba912653eb35d1a4ab8673066df8ec6dde091656497e515d9d92e93d2b306aef"
+      },
+      {
+        "name": "output.json",
+        "sha256": "ce42972670001bba7781d7e098e6c4e7180b85e16099827ccf044069abcfa251"
+      }
+    ],
+    "both_sqlite_libraries_match_pinned_hash": true
+  },
+  "audited_at_utc": "2026-11-19T05:54:36.719427+00:00",
+  "method": "Independent raw JSON event recount, immutable Git blob SHA-256 comparisons, actual runtime inventory readback, and original Python-log recount. No repository reporter/parser imported, application tests executed, or GitHub Actions queried.",
+  "audit_script_sha256": "c075ad2dff556f6e6b11d6830d01429cf25402b578bdbc8f95857d9c379dddb2",
+  "issues": [],
+  "passed": true
+}

@@ -1,0 +1,121 @@
+{
+  "status": "PASS_WITH_BROWSER_RUNTIME_UNQUALIFIED",
+  "captured_at_utc": "2026-11-18T20:35:55.878966+00:00",
+  "native_platform": {
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "log": "native-platform-final.log",
+    "command": "dart test test/native_platform_test.dart --reporter expanded",
+    "scope": [
+      "committed account close/reopen",
+      "exclusive live owner denial and lease release",
+      "host/profile container separation",
+      "failed migration quota mapping and rollback/reopen",
+      "relative app container rejection",
+      "unavailable container typed result",
+      "real child-process SIGKILL releases ownership and preserves committed account"
+    ]
+  },
+  "portable_platform_configuration": {
+    "distinct_tests": 4,
+    "vm": {
+      "passed": 4,
+      "failed": 0,
+      "log": "platform-policy-vm.log"
+    },
+    "node": {
+      "passed": 4,
+      "failed": 0,
+      "log": "platform-policy-node.log"
+    }
+  },
+  "javascript_error_mapping": {
+    "passed": 3,
+    "failed": 0,
+    "log": "browser-problem-node.log",
+    "scope": "Node DOMException/SQLite/domain classification only; no browser storage or browser Web Locks execution."
+  },
+  "analysis": {
+    "status": "PASS",
+    "log": "platform-analysis-final.log"
+  },
+  "compiler_checks": [
+    {
+      "status": "PASS",
+      "entry": "tool/mail_store_worker.dart",
+      "log": "worker-compile.log"
+    },
+    {
+      "status": "PASS",
+      "entry": "tool/browser_compile_probe.dart",
+      "log": "browser-compile-final.log"
+    }
+  ],
+  "actual_browser_execution": {
+    "status": "NOT RUN",
+    "launch_smoke": "BLOCKED",
+    "receipt": "chromium-smoke.json",
+    "reason": "Chromium aborted before rendering: process-singleton socket() Operation not permitted; no browser persistence or Web Locks acceptance was executed.",
+    "attempts": 1
+  },
+  "initial_failures": [
+    {
+      "log": "native-platform-initial.log",
+      "passed": 6,
+      "failed": 1,
+      "reason": "Nested DriftRemoteException wrappers hid quotaExceeded from native migration."
+    },
+    {
+      "log": "native-platform-eager-open-still-failed.log",
+      "passed": 6,
+      "failed": 1,
+      "reason": "Eager schema open alone did not preserve classification across nested remote wrappers."
+    }
+  ],
+  "repair": "Common error mapping boundedly unwraps typed DriftRemoteException/DriftWrappedException causes without parsing or retaining exception messages; explicit eager schema opening remains before profile transaction.",
+  "source_hashes_at_receipt": {
+    "packages/quds_mail_store/lib/quds_mail_store.dart": "ce75f16d965829fea08d71f11011e2553cf519de5e2eb072ec5ef1fbac001ff2",
+    "packages/quds_mail_store/lib/quds_mail_store_native.dart": "fdfb2da155740d1cd752b0d14dc0a548accdc11244482ad513191ecec4871ba3",
+    "packages/quds_mail_store/lib/quds_mail_store_web.dart": "636b47b22b7c056b1a71c802b763940d42b3687eb1b19a2fa03bd8c7aedb07d7",
+    "packages/quds_mail_store/lib/src/browser_problem.dart": "4ff488225fe8e70909a4083c005570ef6b0af6b91d57d3448d06e1f3daa8b6a9",
+    "packages/quds_mail_store/lib/src/browser_setup.dart": "1fa582a0270bb2199c12d47eb6c8e43b645b94367e3390f41c89f0656432c719",
+    "packages/quds_mail_store/lib/src/codec.dart": "77ee3a61efc15bd7c724ac6b714bff8ed9f5957cdd7fcb29c43e6e5ea9964f32",
+    "packages/quds_mail_store/lib/src/errors.dart": "97cfa6c6eb1f4d5200ec83d93659a425399f0acdf46d7231aa46878a612aabbd",
+    "packages/quds_mail_store/lib/src/models.dart": "f53a129e5e0cac6e07ccaa2f0204d57989663d58d91941ce4ead0208ef9502ab",
+    "packages/quds_mail_store/lib/src/owner_locked_executor.dart": "2aeb6eed9854637eab2459ebed2dcf27aa79bd5f150d60e77d610259c02c357a",
+    "packages/quds_mail_store/lib/src/platform_configuration.dart": "be6b5f9815dbb260e2303a54d262800f420b69703cbfedabd18f27e238eaa6cc",
+    "packages/quds_mail_store/lib/src/repository.dart": "216a9aeccda5dfe7e37ceb755a6bbdf13906e6486388968664087f2f2a0ac450",
+    "packages/quds_mail_store/lib/src/schema/database.dart": "f5e3772575cc380758575cdf5e6cea3ae897abc5e5afa5f4f128b740aa96706c",
+    "packages/quds_mail_store/lib/src/search_journal.dart": "bb6984e4c4623f425a89930418789714125b1791f4014dcfb2d9dfde85441d36",
+    "packages/quds_mail_store/test/adversarial_store_test.dart": "f837ebe27cb107c44867783cda85b53a538fc9c374fbf2c1d4d565ba3589750a",
+    "packages/quds_mail_store/test/browser_problem_test.dart": "4968b5407fe0c2f0322bdc96275a10ab29676ac489faacff3cc95c3b897b833c",
+    "packages/quds_mail_store/test/codec_test.dart": "b25b13fda6eb137a5f5721b364b3aa7f4cb4fa588e66e3dd8b45fcbec28c211a",
+    "packages/quds_mail_store/test/native_platform_test.dart": "920fb3bc706cafd1f2f7cd3ec49b8d7a3003be2039799d241fddea5ec7e23329",
+    "packages/quds_mail_store/test/platform_configuration_test.dart": "f07dac727f3c3aaaf86fdcf5c89539165fb3ab6a83ec729012ffaea9e4192684",
+    "packages/quds_mail_store/test/repository_test.dart": "b29146a1e9bba3163ee0963892dde75a56d128bd140d9ce6f1a2507bce8b1ff1",
+    "packages/quds_mail_store/tool/browser_compile_probe.dart": "842abf0fafd1e01ea1919216a0324d480dce8419cb4fd26f505ab952385ab6bd",
+    "packages/quds_mail_store/tool/mail_store_worker.dart": "d4d5331ea7e527885502ee43f0dc7e0425f5414fc17139146d1343aaf583b9ab",
+    "packages/quds_mail_store/tool/native_crash_fixture.dart": "bd50c2328fad9cd5a6ae082bc1b07f2e8f6f83481bad9b754b6ee6f08d806289"
+  },
+  "dependency_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "evidence_sha256": {
+    "browser-compile-final.log": "2d68103d443bff63b1d440aebd56cf0996c21586d1931d5b079617da064a0bc7",
+    "browser-compile.log": "6d1d1362dc55fd10b4549967b783b98feb9b3f07533802f9e5f309bb6b840f9c",
+    "browser-problem-node.log": "3b4c4b258fd02918629007b32a9829650ffa2998e366d8eb5082acbd8a33ac04",
+    "chromium-smoke.json": "5650df772bcbb1489b2f98ec3a6b19f4e9b3eed05038c7e2b792cda768b33d0d",
+    "dependency-diff.json": "2b32a6e24e8b4cd7e424e9f0a43d75c661b990997e9276b54e4ac0603b5a7b67",
+    "flutter-tools-pub.log": "1a12284733a359894b49919ec97c3c89b8d2a4d86881b093e6b36e5b945aad81",
+    "native-platform-eager-open-still-failed.log": "45666828f285e33cadf47dcefe0e0e8b5c29194cfb5eeb7d9c752103093d5401",
+    "native-platform-final.log": "8293a7a11c5dacefb81900e2c5f9214e4e8d759e0a276cb2623c12a36d90718a",
+    "native-platform-initial.log": "45666828f285e33cadf47dcefe0e0e8b5c29194cfb5eeb7d9c752103093d5401",
+    "platform-analysis-final.log": "af5b500a8d1343e7ff6b4b0ef91ddaffae2ded6ce41c8a56402760fa1a9bf193",
+    "platform-policy-node.log": "44145959a5dfd41ed19cdd5f83c228a8c0e410bcbbbf59c9ba181e477d1bfe63",
+    "platform-policy-vm.log": "040a367f27411731c4c44d5276de5f73315408fa509bbf6c08793e7f0a8d4387",
+    "receipt.json": "12499b4c94ab29dfe803462e282077adf2391495e42203f8ad94df27a5d2eb71",
+    "root-pub-enforce.log": "f33ee9adfb1a0372f26f8d64a06d992639c224c310beae4a77b01556f2b16871",
+    "sqlite-smoke-run.log": "9342fe25dc76252a39088868bd973b6660cbed5146b8f0c682c50af078a3fc25",
+    "worker-compile.log": "0a22127bdc233a077ae94512d6bd057796165686f7d87531f6d3b58e56340527"
+  },
+  "ci_queried_or_awaited": false
+}

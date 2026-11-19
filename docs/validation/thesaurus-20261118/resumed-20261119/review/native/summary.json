@@ -1,0 +1,26 @@
+{
+  "status": "passed_with_explicit_acceptance_limits",
+  "native_cases": 208,
+  "native_suites": 14,
+  "source_and_runtime_integrity": "passed",
+  "compile_and_installed_bytes_integrity": "passed",
+  "linguistic_packet_integrity": "passed",
+  "visual_review": "no_visible_modal_layout_defect_observed",
+  "browser_execution": "not_run",
+  "installed_native_desktop": "not_run",
+  "human_linguistic_review": "not_completed",
+  "no_extra_runtime_tests_executed": true,
+  "production_or_runtime_files_modified": false,
+  "reports": [
+    "native-events.json",
+    "source-binding.json",
+    "compile-installation.json",
+    "linguistic-packet.json",
+    "visual-review.json",
+    "bundle-readback.json"
+  ],
+  "recorded_at_utc": "2026-11-19T05:55:51.617579+00:00",
+  "auditor": "independent incoming_audit agent",
+  "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "bundle_readback": "passed"
+}

@@ -1,0 +1,8 @@
+{
+  "status": "BLOCKED",
+  "check": "Focused Flutter merge-overlap cohort",
+  "runtime": "Flutter 3.47.8 direct flutter_tools.snapshot",
+  "observation": "Artifact cache lock remained held; SDK lock probe returned errno11 Resource temporarily unavailable while unrelated scratch lock acquired normally. No tests started.",
+  "action": "Stopped waiting command (exit130), preserved lock, extracted a second unchanged SDK from the already checksum-verified official archive for an independent test artifact cache.",
+  "no_github_actions": true
+}

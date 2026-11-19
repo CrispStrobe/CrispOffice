@@ -1,0 +1,15 @@
+{
+  "purpose": "Provenance for local merge commits replaced by an equivalent published multi-parent commit. Published audit replay does not require these local objects.",
+  "commits": [
+    {
+      "sha": "36c35745cc487f07cd1af32f9e6295d509eba962",
+      "content_utf8": "tree 2d2969f1ccd26b7d7a818b4f164241490cb42126\nparent 0abd0e592ad607a88a6a7db6a5bf235939efa5b9\nparent 840362cd74a3d4b4365cf2bc9a2ae326225009c3\nauthor Codex <codex@openai.com> 1795065838 +0100\ncommitter Codex <codex@openai.com> 1795065838 +0100\n\nIntegrate current Notes and Mail work before Zotero upgrades [skip ci]\n",
+      "object_hash_verified": true
+    },
+    {
+      "sha": "b818ca30001a13604b79eaf8a15f4bfaeb3956b7",
+      "content_utf8": "tree f01a2f306a3e04de6db376be6d1952f33c40fc95\nparent 36c35745cc487f07cd1af32f9e6295d509eba962\nparent 7e4adc08fce78fb95524f304962f9c1804e18691\nauthor Codex <codex@openai.com> 1795065868 +0100\ncommitter Codex <codex@openai.com> 1795065868 +0100\n\nReconcile latest thesaurus and Notes layout protections [skip ci]\n",
+      "object_hash_verified": true
+    }
+  ]
+}

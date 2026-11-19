@@ -1,0 +1,87 @@
+Late Studio integration validation — final
+
+FINAL RESULT: 71 passed, 0 failed, 0 skipped across six test files.
+This is the original requested five-file cohort of 70 tests plus one new
+compact-navigation regression. The focused three-test run also passed, but
+those three are already included in the 71 and must not be added again.
+
+Per-file counts
+- studio_zotero_shortcuts_test.dart: 11
+- studio_comment_draft_proofing_test.dart: 15
+- studio_comment_keyboard_review_test.dart: 9
+- studio_linguistic_analysis_test.dart: 24
+- studio_spacy_setup_test.dart: 11
+- studio_compact_navigation_test.dart: 1, explicit Linux platform variant
+
+Static analysis of the two repaired Studio source files and the two affected
+test files completed with no issues. Final native test process exit code: 0.
+All 151 SHA-256 entries in late-studio-repaired-source-hashes.json still match
+the files after validation. This includes the editor's frozen proofing fixes.
+
+Published source checkpoint, confirmed by the parent agent:
+0d1f699b5c891f8ceee34daf812a27c17a2aaffd
+Tree: e7ddbfe07e5e25f2c5cf9087831c5ea7a782b098
+The preceding local commit 4f93213d has the same tree. Evidence-only commits
+may follow; the source hash manifest identifies the validated files directly.
+
+Repairs and verified behavior
+
+The newly integrated reply checks initially produced 68 passes and two
+failures. Studio now displays the actual 16384 live-check limit in localized
+over-limit feedback while preserving rejection before provider work. Chrome
+height follows enlarged text, and command/tab strips scroll within their
+available width. Below 700 logical pixels the existing navigation pane opens
+from an accessible modal action, leaving usable width for the editor.
+
+The strengthened Arabic draft test uses 390 x 1000 at text scale 1.4. It opens
+and closes navigation, waits for scroll layout before pointer interaction,
+asserts the replacement chip is hit-testable, applies the correction, and
+still requires no Flutter exception. It does not skip or weaken the original
+correction or overflow assertions.
+
+The compact navigation route listens to the actual active controller plus
+local tab/outline state. The PDF regression verifies Pages/Outline switching,
+outline navigation, externally initiated page changes, resizing to desktop
+while the modal stays open, and closing back to usable compact navigation.
+It explicitly runs with TargetPlatform.linux and asserts normal Material
+scrollbars are present. Inline and compact PDF thumbnails have separate
+workspace-owned/disposed scroll controllers and separate synchronization
+state, so both views can remain open during resize without scrollbar errors.
+
+Native visual evidence
+
+late-studio-arabic-draft.png is a direct 390 x 1000 capture from the existing
+draft regression using local Latin/Arabic fonts and MaterialIcons. It shows
+the corrected reply after the suggestion was applied; the next live check is
+waiting for typing to pause. The reply and controls are readable without
+overflow bands. The existing Word Notes/review pane remains visible above.
+Flutter's --update-goldens generated this capture; it was not compared with
+an independently approved baseline or edited after rendering.
+
+Bindings and reproduction
+
+late-studio-receipt.json records exact executable paths, arguments, working
+directory, environment, commit/tree references, screenshot hash and limits.
+The actual commands invoke the installed Flutter tool snapshot using its
+bundled Dart executable with --no-version-check --suppress-analytics and
+test --no-pub. No GitHub Actions result was used or awaited.
+
+Final evidence:
+- late-studio-tests-final.txt and late-studio-stderr-final.txt
+- late-studio-final-summary.json
+- late-studio-targeted-final.txt and late-studio-targeted-summary.json
+- late-studio-analysis-final.txt
+- late-studio-repaired-source-hashes.json
+- late-studio-arabic-draft.png
+
+Initial failing evidence remains in late-studio-tests.txt,
+late-studio-initial-summary.json and late-studio-initial-failures.txt. The
+resize and Linux scrollbar reproductions remain in
+late-studio-navigation-resize-before.txt and
+late-studio-navigation-linux-before.txt. Intermediate prior passes are not
+substituted for the final run or added to its test count.
+
+Scope: Flutter native widget tests and rendered evidence, not an installed
+desktop application or browser-runtime certification. No browser run or
+network model installation was performed. The original Mail UI source and
+receipts were left unchanged during this late Studio integration repair.

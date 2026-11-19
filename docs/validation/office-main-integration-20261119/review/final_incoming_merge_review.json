@@ -1,0 +1,50 @@
+{
+  "qualified_head": "7d279e084bae438d383630726ad7b0514da77d35",
+  "incoming_head": "c634f494b85f7b2118781300a322ad0d9c216a17",
+  "merge_base_commits": [
+    "30e9efce3747ea38bb8e5507c8c8d36931f9b049",
+    "1655db9ff8a5fb9eb140ef236fa0cca74c472107",
+    "7d1adf1636450b3f6040b79856ea62045d03f23d"
+  ],
+  "provisional_merge_tree": "2e828965f5d6c14cfcb35078aa9cd6549f1557c1",
+  "merge_exit_code": 1,
+  "conflict_paths": [
+    "third_party/enough_mail/QUDS_PATCHES.md"
+  ],
+  "changed_paths": [
+    "A\tdocs/validation/office-main-completion-20261119/baseline/baseline-manifest.json",
+    "A\tdocs/validation/office-main-completion-20261119/baseline/diagnostics-manifest.json",
+    "A\tdocs/validation/office-main-completion-20261119/baseline/diagnostics.index.json",
+    "A\tdocs/validation/office-main-completion-20261119/baseline/diagnostics.tar.xz",
+    "A\tdocs/validation/office-main-completion-20261119/baseline/native-node-support.index.json",
+    "A\tdocs/validation/office-main-completion-20261119/baseline/native-node-support.tar.xz",
+    "A\tdocs/validation/office-main-completion-20261119/baseline/publication-receipt.json",
+    "M\tthird_party/enough_mail/QUDS_PATCHES.md"
+  ],
+  "non_validation_changes": [
+    "M\tthird_party/enough_mail/QUDS_PATCHES.md"
+  ],
+  "parser_source_test_checks": [
+    {
+      "path": "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+      "qualified_blob": "0882c77221dc90f431c450f936db5b78fe836111",
+      "merged_blob": "0882c77221dc90f431c450f936db5b78fe836111",
+      "identical": true
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+      "qualified_blob": "a72d046c0f08c360b8b6684792c94087082ec211",
+      "merged_blob": "a72d046c0f08c360b8b6684792c94087082ec211",
+      "identical": true
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+      "qualified_blob": "531c23f1ebaccafb76fffbe90b950f66c211eadc",
+      "merged_blob": "531c23f1ebaccafb76fffbe90b950f66c211eadc",
+      "identical": true
+    }
+  ],
+  "all_parser_sources_tests_equal_qualified": true,
+  "recommended_resolution": "Keep qualified QUDS_PATCHES.md bytes from 7d279e08; they include repeated-list and nested/scalar/UID hardening documentation. Merge all incoming docs/validation evidence. This leaves no changed qualified product or fixture inputs.",
+  "scope": "Recursive merge simulation only. Object writes isolated to temporary scratch store; shared repository object store/worktree/refs/index unmodified. No tests executed."
+}

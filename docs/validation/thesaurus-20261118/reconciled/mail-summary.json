@@ -1,0 +1,3324 @@
+{
+  "status": "PASS",
+  "recorded_utc": "2026-11-18T21:45:24.204542+00:00",
+  "distinct_dart_cases": 152,
+  "runtime_case_executions": 250,
+  "distinct_python_controls": 34,
+  "python_control_runs": [
+    {
+      "path": "store-attempt-2-offline/runner-regressions.log",
+      "methods": 23
+    },
+    {
+      "path": "final-parser-reconciliation/controls.log",
+      "methods": 34
+    }
+  ],
+  "distinct_cases_and_controls": 186,
+  "packages": {
+    "quds_mail_core": 30,
+    "quds_mail_store": 90,
+    "quds_mail_mime": 32
+  },
+  "cohorts": [
+    {
+      "name": "core-vm",
+      "receipt": "store-attempt-2-offline/receipt.json",
+      "receipt_sha256": "b2d0b99f13e266fe41865c1af6b83b9f183153802fa2d5181386e1fef118dd67",
+      "raw_log": "store-attempt-2-offline/core-vm.jsonl",
+      "raw_log_sha256": "7f2dc7b2a34b645be1bece19b922233dec455e84f023fd5985a6c160c4f24aaf",
+      "exit_code": 0,
+      "passed": 30,
+      "excluded_loading_lifecycle_events": 4,
+      "cases": [
+        {
+          "key": "packages/quds_mail_core/test/cancellation_test.dart::invalidate rejects old callbacks but allows a new generation",
+          "file": "packages/quds_mail_core/test/cancellation_test.dart",
+          "name": "invalidate rejects old callbacks but allows a new generation",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::fixture pages apply real upserts/tombstones and advance cursor atomically",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "fixture pages apply real upserts/tombstones and advance cursor atomically",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/cancellation_test.dart::dispose invalidates all callbacks and cannot reopen a session",
+          "file": "packages/quds_mail_core/test/cancellation_test.dart",
+          "name": "dispose invalidates all callbacks and cannot reopen a session",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/cancellation_test.dart::explicit cancellation is typed and keeps the first reason",
+          "file": "packages/quds_mail_core/test/cancellation_test.dart",
+          "name": "explicit cancellation is typed and keeps the first reason",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::snapshots own bytes, including buffer views and export copies",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "snapshots own bytes, including buffer views and export copies",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::transaction failure leaves both old content and cursor unchanged",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "transaction failure leaves both old content and cursor unchanged",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::out-of-order concurrent pulls cannot regress the stored cursor",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "out-of-order concurrent pulls cannot regress the stored cursor",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::sync commit compares the cursor it read before pulling",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "sync commit compares the cursor it read before pulling",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::account disposal while provider awaits prevents any commit",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "account disposal while provider awaits prevents any commit",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::transaction rechecks the lease when disposal happens during persistence",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "transaction rechecks the lease when disposal happens during persistence",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::cooperative user cancellation differs from stale account work",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "cooperative user cancellation differs from stale account work",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::wrong account and oversized provider page fail before persistence",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "wrong account and oversized provider page fail before persistence",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::unsupported provider operations are failures rather than empty success",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "unsupported provider operations are failures rather than empty success",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::message headers and attachments do not alias mutable input lists",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "message headers and attachments do not alias mutable input lists",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::parse result cannot claim success without a message",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "parse result cannot claim success without a message",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::full and preview budgets preserve planned resource bounds",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "full and preview budgets preserve planned resource bounds",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::queued revision, wire and envelope remain frozen through submission",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "queued revision, wire and envelope remain frozen through submission",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::profile and account identities cannot alias between products",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "profile and account identities cannot alias between products",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::UIDVALIDITY, mailbox and account form the IMAP persistent identity",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "UIDVALIDITY, mailbox and account form the IMAP persistent identity",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::move and sync cursor enforce account and mailbox scopes",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "move and sync cursor enforce account and mailbox scopes",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::mail capability does not imply Calendar, People or sending",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "mail capability does not imply Calendar, People or sending",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::mixed 250/550 RCPT responses abort every recipient before DATA",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "mixed 250/550 RCPT responses abort every recipient before DATA",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::aggregate response does not fabricate recipient-level acceptance",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "aggregate response does not fabricate recipient-level acceptance",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::missing recipient responses stay unknown on aggregate failure",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "missing recipient responses stay unknown on aggregate failure",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::connection loss after possible acceptance is uncertain and cannot retry",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "connection loss after possible acceptance is uncertain and cannot retry",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::interrupted submitting state recovers as uncertain, never queued",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "interrupted submitting state recovers as uncertain, never queued",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::definite non-acceptance retries with a fresh attempt identity only",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "definite non-acceptance retries with a fresh attempt identity only",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::validated restoration preserves a pending attempt and recovers uncertain",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "validated restoration preserves a pending attempt and recovers uncertain",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::undo send only cancels work before submission",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "undo send only cancels work before submission",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::unrelated/duplicate recipient results and control injection are rejected",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "unrelated/duplicate recipient results and control injection are rejected",
+          "platform": "vm"
+        }
+      ]
+    },
+    {
+      "name": "core-node",
+      "receipt": "store-attempt-2-offline/receipt.json",
+      "receipt_sha256": "b2d0b99f13e266fe41865c1af6b83b9f183153802fa2d5181386e1fef118dd67",
+      "raw_log": "store-attempt-2-offline/core-node.jsonl",
+      "raw_log_sha256": "1acdb485633c0ebce03fd2d7b354541f1ef4dc930e3ed5f8356165bdda4b4b85",
+      "exit_code": 0,
+      "passed": 30,
+      "excluded_loading_lifecycle_events": 4,
+      "cases": [
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::queued revision, wire and envelope remain frozen through submission",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "queued revision, wire and envelope remain frozen through submission",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/cancellation_test.dart::invalidate rejects old callbacks but allows a new generation",
+          "file": "packages/quds_mail_core/test/cancellation_test.dart",
+          "name": "invalidate rejects old callbacks but allows a new generation",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::fixture pages apply real upserts/tombstones and advance cursor atomically",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "fixture pages apply real upserts/tombstones and advance cursor atomically",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::snapshots own bytes, including buffer views and export copies",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "snapshots own bytes, including buffer views and export copies",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::mixed 250/550 RCPT responses abort every recipient before DATA",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "mixed 250/550 RCPT responses abort every recipient before DATA",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/cancellation_test.dart::dispose invalidates all callbacks and cannot reopen a session",
+          "file": "packages/quds_mail_core/test/cancellation_test.dart",
+          "name": "dispose invalidates all callbacks and cannot reopen a session",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::transaction failure leaves both old content and cursor unchanged",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "transaction failure leaves both old content and cursor unchanged",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::message headers and attachments do not alias mutable input lists",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "message headers and attachments do not alias mutable input lists",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::aggregate response does not fabricate recipient-level acceptance",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "aggregate response does not fabricate recipient-level acceptance",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/cancellation_test.dart::explicit cancellation is typed and keeps the first reason",
+          "file": "packages/quds_mail_core/test/cancellation_test.dart",
+          "name": "explicit cancellation is typed and keeps the first reason",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::out-of-order concurrent pulls cannot regress the stored cursor",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "out-of-order concurrent pulls cannot regress the stored cursor",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::parse result cannot claim success without a message",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "parse result cannot claim success without a message",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::missing recipient responses stay unknown on aggregate failure",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "missing recipient responses stay unknown on aggregate failure",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::sync commit compares the cursor it read before pulling",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "sync commit compares the cursor it read before pulling",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::full and preview budgets preserve planned resource bounds",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "full and preview budgets preserve planned resource bounds",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::connection loss after possible acceptance is uncertain and cannot retry",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "connection loss after possible acceptance is uncertain and cannot retry",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::account disposal while provider awaits prevents any commit",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "account disposal while provider awaits prevents any commit",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::profile and account identities cannot alias between products",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "profile and account identities cannot alias between products",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::interrupted submitting state recovers as uncertain, never queued",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "interrupted submitting state recovers as uncertain, never queued",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::transaction rechecks the lease when disposal happens during persistence",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "transaction rechecks the lease when disposal happens during persistence",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::UIDVALIDITY, mailbox and account form the IMAP persistent identity",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "UIDVALIDITY, mailbox and account form the IMAP persistent identity",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::definite non-acceptance retries with a fresh attempt identity only",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "definite non-acceptance retries with a fresh attempt identity only",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::cooperative user cancellation differs from stale account work",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "cooperative user cancellation differs from stale account work",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::move and sync cursor enforce account and mailbox scopes",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "move and sync cursor enforce account and mailbox scopes",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::validated restoration preserves a pending attempt and recovers uncertain",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "validated restoration preserves a pending attempt and recovers uncertain",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::wrong account and oversized provider page fail before persistence",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "wrong account and oversized provider page fail before persistence",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/models_test.dart::mail capability does not imply Calendar, People or sending",
+          "file": "packages/quds_mail_core/test/models_test.dart",
+          "name": "mail capability does not imply Calendar, People or sending",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::undo send only cancels work before submission",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "undo send only cancels work before submission",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/sync_coordinator_test.dart::unsupported provider operations are failures rather than empty success",
+          "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "name": "unsupported provider operations are failures rather than empty success",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_core/test/outbox_test.dart::unrelated/duplicate recipient results and control injection are rejected",
+          "file": "packages/quds_mail_core/test/outbox_test.dart",
+          "name": "unrelated/duplicate recipient results and control injection are rejected",
+          "platform": "node"
+        }
+      ]
+    },
+    {
+      "name": "store-vm",
+      "receipt": "store-attempt-2-offline/receipt.json",
+      "receipt_sha256": "b2d0b99f13e266fe41865c1af6b83b9f183153802fa2d5181386e1fef118dd67",
+      "raw_log": "store-attempt-2-offline/store-vm.jsonl",
+      "raw_log_sha256": "4e187d65fb09a87377bd939b78ec45b3932865b91417b796590bf4977e7399c2",
+      "exit_code": 0,
+      "passed": 87,
+      "excluded_loading_lifecycle_events": 7,
+      "cases": [
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::competing pages cannot overwrite a concurrently advanced cursor",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "competing pages cannot overwrite a concurrently advanced cursor",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope round trip preserves every header field and timestamp",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope round trip preserves every header field and timestamp",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec nullable empty metadata and local absolute timestamps round trip",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec nullable empty metadata and local absolute timestamps round trip",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects unknown field",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects unknown field",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects missing nullable field",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects missing nullable field",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects future version",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects future version",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects wrong subject type",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects wrong subject type",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects wrong reference type",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects wrong reference type",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects wrong address shape",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects wrong address shape",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects unknown address field",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects unknown address field",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects wrong nullable address type",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects wrong nullable address type",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects normalized invalid date",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects normalized invalid date",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::lease invalidated after cursor write rolls back the complete page",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "lease invalidated after cursor write rolls back the complete page",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects offset date instead of canonical instant",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects offset date instead of canonical instant",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects wrong UTC type",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects wrong UTC type",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec duplicate literal and escaped keys are rejected before JSON collapse",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec duplicate literal and escaped keys are rejected before JSON collapse",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec bounded parser rejects deep nesting and redacts malformed content",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec bounded parser rejects deep nesting and redacts malformed content",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::rolled back notifications never reach repository observers",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "rolled back notifications never reach repository observers",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::provider identity codec canonical IMAP key preserves UIDVALIDITY and scope is supplied separately",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "provider identity codec canonical IMAP key preserves UIDVALIDITY and scope is supplied separately",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::provider identity codec graph identity preserves exact opaque value",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "provider identity codec graph identity preserves exact opaque value",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::provider identity codec gmail identity preserves exact opaque value",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "provider identity codec gmail identity preserves exact opaque value",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::provider identity codec jmap identity preserves exact opaque value",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "provider identity codec jmap identity preserves exact opaque value",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::provider identity codec remote codec rejects invalid provider, field set and IMAP range",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "provider identity codec remote codec rejects invalid provider, field set and IMAP range",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::draft payload body projection validates metadata without requiring payload bytes",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "draft payload body projection validates metadata without requiring payload bytes",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::draft payload metadata and deduplicated immutable blobs round trip separately",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "draft payload metadata and deduplicated immutable blobs round trip separately",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::draft payload draft rejects missing, corrupted or mismatched-length attachment bytes",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "draft payload draft rejects missing, corrupted or mismatched-length attachment bytes",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::draft payload draft rejects wrong metadata types, unknown fields and malformed hash",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "draft payload draft rejects wrong metadata types, unknown fields and malformed hash",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox payload every state round trips frozen bytes, recipients, result and attempt",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox payload every state round trips frozen bytes, recipients, result and attempt",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox payload restored in-flight entry becomes uncertain and never retryable",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox payload restored in-flight entry becomes uncertain and never retryable",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox payload wire integrity and internal result/state consistency are enforced",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox payload wire integrity and internal result/state consistency are enforced",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox persistence transitions new entries must be initial queued and all legitimate transitions pass",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox persistence transitions new entries must be initial queued and all legitimate transitions pass",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox persistence transitions prepared bytes, envelope, revision, creation and ownership cannot change",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox persistence transitions prepared bytes, envelope, revision, creation and ownership cannot change",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox persistence transitions attempt numbers, fresh identity and monotonic time are mandatory",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox persistence transitions attempt numbers, fresh identity and monotonic time are mandatory",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox persistence transitions same-state saves are exact idempotence and terminal rewrites fail",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox persistence transitions same-state saves are exact idempotence and terminal rewrites fail",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox persistence transitions cancellation must retain the previous definite failure result",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox persistence transitions cancellation must retain the previous definite failure result",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::UID validity reset preserves pending intent and its cached evidence",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "UID validity reset preserves pending intent and its cached evidence",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::a tombstone removes only its label membership",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "a tombstone removes only its label membership",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::cache eviction preserves draft, outbox and active-editor byte owners",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "cache eviction preserves draft, outbox and active-editor byte owners",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::frozen outbox payload and uncertain state cannot be replaced through restore",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "frozen outbox payload and uncertain state cannot be replaced through restore",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/crash_recovery_test.dart::SIGKILL afterSyncRecords preserves the correct durable transaction boundary",
+          "file": "packages/quds_mail_store/test/crash_recovery_test.dart",
+          "name": "SIGKILL afterSyncRecords preserves the correct durable transaction boundary",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::an older attempt identity cannot be reused after a newer retry",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "an older attempt identity cannot be reused after a newer retry",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::failed draft replacement retains its old revision and every old blob",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "failed draft replacement retains its old revision and every old blob",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::durable recovery rolls back on failure and remains uncertain after reopening",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "durable recovery rolls back on failure and remains uncertain after reopening",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::a corrupt persisted blob is rejected instead of silently served",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "a corrupt persisted blob is rejected instead of silently served",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::identical profile labels cannot open another host database",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "identical profile labels cannot open another host database",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::profile removal can resume outstanding vault cleanup after reopening",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "profile removal can resume outstanding vault cleanup after reopening",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::oversized provider identity is rejected before writing its cursor",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "oversized provider identity is rejected before writing its cursor",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::tombstone-only pages consume account quota and roll back their cursor",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "tombstone-only pages consume account quota and roll back their cursor",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/adversarial_store_test.dart::foreign-profile logout is a typed rejection without invalidating either session",
+          "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "name": "foreign-profile logout is a typed rejection without invalidating either session",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/migration_test.dart::v1 upgrade preserves scoped records, draft, cache and immutable queue bytes",
+          "file": "packages/quds_mail_store/test/migration_test.dart",
+          "name": "v1 upgrade preserves scoped records, draft, cache and immutable queue bytes",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/migration_test.dart::upgraded FTS requires bounded backfill without loading attachment or raw bytes",
+          "file": "packages/quds_mail_store/test/migration_test.dart",
+          "name": "upgraded FTS requires bounded backfill without loading attachment or raw bytes",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/migration_test.dart::interrupted v1 migration rolls back schema and version, then retries without losing data",
+          "file": "packages/quds_mail_store/test/migration_test.dart",
+          "name": "interrupted v1 migration rolls back schema and version, then retries without losing data",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/migration_test.dart::future schema 3 is rejected without changing existing data",
+          "file": "packages/quds_mail_store/test/migration_test.dart",
+          "name": "future schema 3 is rejected without changing existing data",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/migration_test.dart::future schema 9 is rejected without changing existing data",
+          "file": "packages/quds_mail_store/test/migration_test.dart",
+          "name": "future schema 9 is rejected without changing existing data",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/migration_test.dart::stricter individual blob limits reject persisted draft before transferring blobs",
+          "file": "packages/quds_mail_store/test/migration_test.dart",
+          "name": "stricter individual blob limits reject persisted draft before transferring blobs",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/migration_test.dart::stricter aggregate payload limits reject persisted draft before transferring blobs",
+          "file": "packages/quds_mail_store/test/migration_test.dart",
+          "name": "stricter aggregate payload limits reject persisted draft before transferring blobs",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/native_platform_test.dart::native committed accounts survive close and reopen",
+          "file": "packages/quds_mail_store/test/native_platform_test.dart",
+          "name": "native committed accounts survive close and reopen",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/native_platform_test.dart::a second live owner conflicts; a closed owner releases its lease",
+          "file": "packages/quds_mail_store/test/native_platform_test.dart",
+          "name": "a second live owner conflicts; a closed owner releases its lease",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/native_platform_test.dart::same profile names in different hosts use separate containers",
+          "file": "packages/quds_mail_store/test/native_platform_test.dart",
+          "name": "same profile names in different hosts use separate containers",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/native_platform_test.dart::migration failure releases ownership and rolls back before reopening",
+          "file": "packages/quds_mail_store/test/native_platform_test.dart",
+          "name": "migration failure releases ownership and rolls back before reopening",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/native_platform_test.dart::a relative container is rejected without choosing a global directory",
+          "file": "packages/quds_mail_store/test/native_platform_test.dart",
+          "name": "a relative container is rejected without choosing a global directory",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/native_platform_test.dart::an unavailable app container returns a typed failure",
+          "file": "packages/quds_mail_store/test/native_platform_test.dart",
+          "name": "an unavailable app container returns a typed failure",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/native_platform_test.dart::process termination releases ownership and preserves committed data",
+          "file": "packages/quds_mail_store/test/native_platform_test.dart",
+          "name": "process termination releases ownership and preserves committed data",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/crash_recovery_test.dart::SIGKILL beforeSyncCursor preserves the correct durable transaction boundary",
+          "file": "packages/quds_mail_store/test/crash_recovery_test.dart",
+          "name": "SIGKILL beforeSyncCursor preserves the correct durable transaction boundary",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/platform_configuration_test.dart::database identity separates hosts, profiles and browser namespaces",
+          "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+          "name": "database identity separates hosts, profiles and browser namespaces",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/platform_configuration_test.dart::browser namespaces are explicit and bounded",
+          "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+          "name": "browser namespaces are explicit and bounded",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/platform_configuration_test.dart::relative and absolute same-origin assets resolve explicitly",
+          "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+          "name": "relative and absolute same-origin assets resolve explicitly",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/platform_configuration_test.dart::assets reject remote origins, credentials, fragments and non-HTTP",
+          "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+          "name": "assets reject remote origins, credentials, fragments and non-HTTP",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::commits headers and cursor with a compare-and-set precondition",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "commits headers and cursor with a compare-and-set precondition",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::failure after records rolls back rows and cursor together",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "failure after records rolls back rows and cursor together",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::lease invalidation at the final commit boundary rolls back",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "lease invalidation at the final commit boundary rolls back",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::header stream never exposes rolled-back or half-applied pages",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "header stream never exposes rolled-back or half-applied pages",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::draft revisions reject lost updates and attachment rollback",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "draft revisions reject lost updates and attachment rollback",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::new and terminal outbox states cannot be forged",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "new and terminal outbox states cannot be forged",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::recovery does not relabel an attempt started by this live owner",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "recovery does not relabel an attempt started by this live owner",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::older attempt identifiers cannot be reused after multiple retries",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "older attempt identifiers cannot be reused after multiple retries",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::cache eviction preserves shared draft attachments and editor pins",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "cache eviction preserves shared draft attachments and editor pins",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::local FTS uses literal tokens and never indexes active HTML",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "local FTS uses literal tokens and never indexes active HTML",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::tombstone preserves a pending intent for explicit reconciliation",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "tombstone preserves a pending intent for explicit reconciliation",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::UIDVALIDITY reset keeps local work and rejects stale cursor pages",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "UIDVALIDITY reset keeps local work and rejects stale cursor pages",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::logout preserves local drafts and queues durable vault cleanup",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "logout preserves local drafts and queues durable vault cleanup",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::account removal retires identity and rejects late writes",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "account removal retires identity and rejects late writes",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::profile and account scope reject matching foreign identifiers",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "profile and account scope reject matching foreign identifiers",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/repository_test.dart::SQLite full has a typed redacted failure and leaves no partial write",
+          "file": "packages/quds_mail_store/test/repository_test.dart",
+          "name": "SQLite full has a typed redacted failure and leaves no partial write",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/crash_recovery_test.dart::SIGKILL afterDraftBlobs preserves the correct durable transaction boundary",
+          "file": "packages/quds_mail_store/test/crash_recovery_test.dart",
+          "name": "SIGKILL afterDraftBlobs preserves the correct durable transaction boundary",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/crash_recovery_test.dart::SIGKILL afterOutboxWrite preserves the correct durable transaction boundary",
+          "file": "packages/quds_mail_store/test/crash_recovery_test.dart",
+          "name": "SIGKILL afterOutboxWrite preserves the correct durable transaction boundary",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_store/test/crash_recovery_test.dart::SIGKILL committedSubmitting preserves the correct durable transaction boundary",
+          "file": "packages/quds_mail_store/test/crash_recovery_test.dart",
+          "name": "SIGKILL committedSubmitting preserves the correct durable transaction boundary",
+          "platform": "vm"
+        }
+      ]
+    },
+    {
+      "name": "portable-node",
+      "receipt": "store-attempt-2-offline/receipt.json",
+      "receipt_sha256": "b2d0b99f13e266fe41865c1af6b83b9f183153802fa2d5181386e1fef118dd67",
+      "raw_log": "store-attempt-2-offline/portable-node.jsonl",
+      "raw_log_sha256": "f9edd79d04d0526f7873fe3e30e49e9c554e4133564b0ae643114374ac8ade7d",
+      "exit_code": 0,
+      "passed": 39,
+      "excluded_loading_lifecycle_events": 3,
+      "cases": [
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope round trip preserves every header field and timestamp",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope round trip preserves every header field and timestamp",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec nullable empty metadata and local absolute timestamps round trip",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec nullable empty metadata and local absolute timestamps round trip",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects unknown field",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects unknown field",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects missing nullable field",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects missing nullable field",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects future version",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects future version",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects wrong subject type",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects wrong subject type",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects wrong reference type",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects wrong reference type",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects wrong address shape",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects wrong address shape",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects unknown address field",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects unknown address field",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects wrong nullable address type",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects wrong nullable address type",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/platform_configuration_test.dart::database identity separates hosts, profiles and browser namespaces",
+          "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+          "name": "database identity separates hosts, profiles and browser namespaces",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects normalized invalid date",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects normalized invalid date",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/platform_configuration_test.dart::browser namespaces are explicit and bounded",
+          "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+          "name": "browser namespaces are explicit and bounded",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects offset date instead of canonical instant",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects offset date instead of canonical instant",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/platform_configuration_test.dart::relative and absolute same-origin assets resolve explicitly",
+          "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+          "name": "relative and absolute same-origin assets resolve explicitly",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec envelope rejects wrong UTC type",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec envelope rejects wrong UTC type",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/platform_configuration_test.dart::assets reject remote origins, credentials, fragments and non-HTTP",
+          "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+          "name": "assets reject remote origins, credentials, fragments and non-HTTP",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec duplicate literal and escaped keys are rejected before JSON collapse",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec duplicate literal and escaped keys are rejected before JSON collapse",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/browser_problem_test.dart::DOM storage quota maps by name without copying private error text",
+          "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+          "name": "DOM storage quota maps by name without copying private error text",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::metadata codec bounded parser rejects deep nesting and redacts malformed content",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "metadata codec bounded parser rejects deep nesting and redacts malformed content",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/browser_problem_test.dart::blocked and aborted browser storage have typed results",
+          "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+          "name": "blocked and aborted browser storage have typed results",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::provider identity codec canonical IMAP key preserves UIDVALIDITY and scope is supplied separately",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "provider identity codec canonical IMAP key preserves UIDVALIDITY and scope is supplied separately",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/browser_problem_test.dart::typed SQLite and domain failures retain their classification",
+          "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+          "name": "typed SQLite and domain failures retain their classification",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::provider identity codec graph identity preserves exact opaque value",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "provider identity codec graph identity preserves exact opaque value",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::provider identity codec gmail identity preserves exact opaque value",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "provider identity codec gmail identity preserves exact opaque value",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::provider identity codec jmap identity preserves exact opaque value",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "provider identity codec jmap identity preserves exact opaque value",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::provider identity codec remote codec rejects invalid provider, field set and IMAP range",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "provider identity codec remote codec rejects invalid provider, field set and IMAP range",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::draft payload body projection validates metadata without requiring payload bytes",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "draft payload body projection validates metadata without requiring payload bytes",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::draft payload metadata and deduplicated immutable blobs round trip separately",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "draft payload metadata and deduplicated immutable blobs round trip separately",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::draft payload draft rejects missing, corrupted or mismatched-length attachment bytes",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "draft payload draft rejects missing, corrupted or mismatched-length attachment bytes",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::draft payload draft rejects wrong metadata types, unknown fields and malformed hash",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "draft payload draft rejects wrong metadata types, unknown fields and malformed hash",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox payload every state round trips frozen bytes, recipients, result and attempt",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox payload every state round trips frozen bytes, recipients, result and attempt",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox payload restored in-flight entry becomes uncertain and never retryable",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox payload restored in-flight entry becomes uncertain and never retryable",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox payload wire integrity and internal result/state consistency are enforced",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox payload wire integrity and internal result/state consistency are enforced",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox persistence transitions new entries must be initial queued and all legitimate transitions pass",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox persistence transitions new entries must be initial queued and all legitimate transitions pass",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox persistence transitions prepared bytes, envelope, revision, creation and ownership cannot change",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox persistence transitions prepared bytes, envelope, revision, creation and ownership cannot change",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox persistence transitions attempt numbers, fresh identity and monotonic time are mandatory",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox persistence transitions attempt numbers, fresh identity and monotonic time are mandatory",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox persistence transitions same-state saves are exact idempotence and terminal rewrites fail",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox persistence transitions same-state saves are exact idempotence and terminal rewrites fail",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_store/test/codec_test.dart::outbox persistence transitions cancellation must retain the previous definite failure result",
+          "file": "packages/quds_mail_store/test/codec_test.dart",
+          "name": "outbox persistence transitions cancellation must retain the previous definite failure result",
+          "platform": "node"
+        }
+      ]
+    },
+    {
+      "name": "mime-vm",
+      "receipt": "mime-attempt-1/receipt.json",
+      "receipt_sha256": "aee91d37f07eb14feba84e0cc99b27d4b949fe10353279fab332b20d698351ab",
+      "raw_log": "mime-attempt-1/mime-vm.jsonl",
+      "raw_log_sha256": "7fcfe85ab6443191dfc51b1ec471bd4672584f373829291b48d4738c4612a03d",
+      "exit_code": 0,
+      "passed": 32,
+      "excluded_loading_lifecycle_events": 6,
+      "cases": [
+        {
+          "key": "packages/quds_mail_mime/test/mime_review_regressions_test.dart::encoded Q word can start with an escaped UTF8 octet",
+          "file": "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+          "name": "encoded Q word can start with an escaped UTF8 octet",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_review_regressions_test.dart::rendered bytes accumulate across every MIME alternative",
+          "file": "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+          "name": "rendered bytes accumulate across every MIME alternative",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/eml_bytes_test.dart::original input remains exact and cannot be mutated through aliases",
+          "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+          "name": "original input remains exact and cannot be mutated through aliases",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/eml_bytes_test.dart::non UTF-8 source and LF line endings survive display decoding",
+          "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+          "name": "non UTF-8 source and LF line endings survive display decoding",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/eml_bytes_test.dart::identity attachment bytes retain internal CRLF and high bytes",
+          "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+          "name": "identity attachment bytes retain internal CRLF and high bytes",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/eml_bytes_test.dart::signed MIME source exports without canonicalizing any octet",
+          "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+          "name": "signed MIME source exports without canonicalizing any octet",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::multipart alternatives and RFC2231 attachment filename",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "multipart alternatives and RFC2231 attachment filename",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::alternative selection is deterministic and uses last supported type",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "alternative selection is deterministic and uses last supported type",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::text attachment does not become a message body",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "text attachment does not become a message body",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::related root start parameter and local CID attachment mapping",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "related root start parameter and local CID attachment mapping",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::boundary prefixes within content are not recognized as delimiters",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "boundary prefixes within content are not recognized as delimiters",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::missing closing boundary is partial rather than silent success",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "missing closing boundary is partial rather than silent success",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::duplicate structural headers and missing boundaries fail closed",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "duplicate structural headers and missing boundaries fail closed",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::safe display names remove paths and bidi control characters",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "safe display names remove paths and bidi control characters",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/portable_import_test.dart::both supported public MIME imports work without native libraries",
+          "file": "packages/quds_mail_mime/test/portable_import_test.dart",
+          "name": "both supported public MIME imports work without native libraries",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::encoded subject, display name, date and text project through public MIME",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "encoded subject, display name, date and text project through public MIME",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::strict UTF8, ASCII, Latin1 and Windows1252 bodies",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "strict UTF8, ASCII, Latin1 and Windows1252 bodies",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::unknown header/body charset has diagnostics and source fallback",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "unknown header/body charset has diagnostics and source fallback",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::malformed UTF8 is never silently replaced",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "malformed UTF8 is never silently replaced",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::malformed transfer alphabets, padding and QP escapes fail explicitly",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "malformed transfer alphabets, padding and QP escapes fail explicitly",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::malformed words and dates do not leak private source to print",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "malformed words and dates do not leak private source to print",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::unknown transfer encoding is not passed through as exact content",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "unknown transfer encoding is not passed through as exact content",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::raw limit is enforced before retaining another copy",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "raw limit is enforced before retaining another copy",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::decoded and body budgets count alternatives cumulatively",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "decoded and body budgets count alternatives cumulatively",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::attachment decoded size is checked before base64 allocation",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "attachment decoded size is checked before base64 allocation",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::part and attachment count bounds stop traversal",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "part and attachment count bounds stop traversal",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::depth bounds are checked before entering child headers",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "depth bounds are checked before entering child headers",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::unsupported attachments still count toward the attachment budget",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "unsupported attachments still count toward the attachment budget",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::folded fields and cumulative header bytes are bounded",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "folded fields and cumulative header bytes are bounded",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::decoded legacy charset expansion respects rendering bytes",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "decoded legacy charset expansion respects rendering bytes",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::a cancelled parse never starts copying or projecting source",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "a cancelled parse never starts copying or projecting source",
+          "platform": "vm"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::invalid caller budgets are programmer errors",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "invalid caller budgets are programmer errors",
+          "platform": "vm"
+        }
+      ]
+    },
+    {
+      "name": "mime-node",
+      "receipt": "mime-attempt-1/receipt.json",
+      "receipt_sha256": "aee91d37f07eb14feba84e0cc99b27d4b949fe10353279fab332b20d698351ab",
+      "raw_log": "mime-attempt-1/mime-node.jsonl",
+      "raw_log_sha256": "8f8a612e68c0c1b24bafc0ef718f9349989af0159642687eed34ba0056b3b567",
+      "exit_code": 0,
+      "passed": 32,
+      "excluded_loading_lifecycle_events": 6,
+      "cases": [
+        {
+          "key": "packages/quds_mail_mime/test/mime_review_regressions_test.dart::encoded Q word can start with an escaped UTF8 octet",
+          "file": "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+          "name": "encoded Q word can start with an escaped UTF8 octet",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_review_regressions_test.dart::rendered bytes accumulate across every MIME alternative",
+          "file": "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+          "name": "rendered bytes accumulate across every MIME alternative",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/eml_bytes_test.dart::original input remains exact and cannot be mutated through aliases",
+          "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+          "name": "original input remains exact and cannot be mutated through aliases",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/eml_bytes_test.dart::non UTF-8 source and LF line endings survive display decoding",
+          "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+          "name": "non UTF-8 source and LF line endings survive display decoding",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/eml_bytes_test.dart::identity attachment bytes retain internal CRLF and high bytes",
+          "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+          "name": "identity attachment bytes retain internal CRLF and high bytes",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/eml_bytes_test.dart::signed MIME source exports without canonicalizing any octet",
+          "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+          "name": "signed MIME source exports without canonicalizing any octet",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::multipart alternatives and RFC2231 attachment filename",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "multipart alternatives and RFC2231 attachment filename",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::alternative selection is deterministic and uses last supported type",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "alternative selection is deterministic and uses last supported type",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::text attachment does not become a message body",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "text attachment does not become a message body",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::related root start parameter and local CID attachment mapping",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "related root start parameter and local CID attachment mapping",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::boundary prefixes within content are not recognized as delimiters",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "boundary prefixes within content are not recognized as delimiters",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::missing closing boundary is partial rather than silent success",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "missing closing boundary is partial rather than silent success",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::duplicate structural headers and missing boundaries fail closed",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "duplicate structural headers and missing boundaries fail closed",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_parts_test.dart::safe display names remove paths and bidi control characters",
+          "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+          "name": "safe display names remove paths and bidi control characters",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/portable_import_test.dart::both supported public MIME imports work without native libraries",
+          "file": "packages/quds_mail_mime/test/portable_import_test.dart",
+          "name": "both supported public MIME imports work without native libraries",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::encoded subject, display name, date and text project through public MIME",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "encoded subject, display name, date and text project through public MIME",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::strict UTF8, ASCII, Latin1 and Windows1252 bodies",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "strict UTF8, ASCII, Latin1 and Windows1252 bodies",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::unknown header/body charset has diagnostics and source fallback",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "unknown header/body charset has diagnostics and source fallback",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::malformed UTF8 is never silently replaced",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "malformed UTF8 is never silently replaced",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::malformed transfer alphabets, padding and QP escapes fail explicitly",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "malformed transfer alphabets, padding and QP escapes fail explicitly",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::malformed words and dates do not leak private source to print",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "malformed words and dates do not leak private source to print",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_encodings_test.dart::unknown transfer encoding is not passed through as exact content",
+          "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+          "name": "unknown transfer encoding is not passed through as exact content",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::raw limit is enforced before retaining another copy",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "raw limit is enforced before retaining another copy",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::decoded and body budgets count alternatives cumulatively",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "decoded and body budgets count alternatives cumulatively",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::attachment decoded size is checked before base64 allocation",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "attachment decoded size is checked before base64 allocation",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::part and attachment count bounds stop traversal",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "part and attachment count bounds stop traversal",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::depth bounds are checked before entering child headers",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "depth bounds are checked before entering child headers",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::unsupported attachments still count toward the attachment budget",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "unsupported attachments still count toward the attachment budget",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::folded fields and cumulative header bytes are bounded",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "folded fields and cumulative header bytes are bounded",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::decoded legacy charset expansion respects rendering bytes",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "decoded legacy charset expansion respects rendering bytes",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::a cancelled parse never starts copying or projecting source",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "a cancelled parse never starts copying or projecting source",
+          "platform": "node"
+        },
+        {
+          "key": "packages/quds_mail_mime/test/mime_limits_test.dart::invalid caller budgets are programmer errors",
+          "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+          "name": "invalid caller budgets are programmer errors",
+          "platform": "node"
+        }
+      ]
+    }
+  ],
+  "distinct_cases": [
+    {
+      "file": "packages/quds_mail_core/test/cancellation_test.dart",
+      "name": "dispose invalidates all callbacks and cannot reopen a session",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/cancellation_test.dart",
+      "name": "explicit cancellation is typed and keeps the first reason",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/cancellation_test.dart",
+      "name": "invalidate rejects old callbacks but allows a new generation",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/models_test.dart",
+      "name": "UIDVALIDITY, mailbox and account form the IMAP persistent identity",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/models_test.dart",
+      "name": "full and preview budgets preserve planned resource bounds",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/models_test.dart",
+      "name": "mail capability does not imply Calendar, People or sending",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/models_test.dart",
+      "name": "message headers and attachments do not alias mutable input lists",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/models_test.dart",
+      "name": "move and sync cursor enforce account and mailbox scopes",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/models_test.dart",
+      "name": "parse result cannot claim success without a message",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/models_test.dart",
+      "name": "profile and account identities cannot alias between products",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/models_test.dart",
+      "name": "snapshots own bytes, including buffer views and export copies",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/outbox_test.dart",
+      "name": "aggregate response does not fabricate recipient-level acceptance",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/outbox_test.dart",
+      "name": "connection loss after possible acceptance is uncertain and cannot retry",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/outbox_test.dart",
+      "name": "definite non-acceptance retries with a fresh attempt identity only",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/outbox_test.dart",
+      "name": "interrupted submitting state recovers as uncertain, never queued",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/outbox_test.dart",
+      "name": "missing recipient responses stay unknown on aggregate failure",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/outbox_test.dart",
+      "name": "mixed 250/550 RCPT responses abort every recipient before DATA",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/outbox_test.dart",
+      "name": "queued revision, wire and envelope remain frozen through submission",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/outbox_test.dart",
+      "name": "undo send only cancels work before submission",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/outbox_test.dart",
+      "name": "unrelated/duplicate recipient results and control injection are rejected",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/outbox_test.dart",
+      "name": "validated restoration preserves a pending attempt and recovers uncertain",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "name": "account disposal while provider awaits prevents any commit",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "name": "cooperative user cancellation differs from stale account work",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "name": "fixture pages apply real upserts/tombstones and advance cursor atomically",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "name": "out-of-order concurrent pulls cannot regress the stored cursor",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "name": "sync commit compares the cursor it read before pulling",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "name": "transaction failure leaves both old content and cursor unchanged",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "name": "transaction rechecks the lease when disposal happens during persistence",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "name": "unsupported provider operations are failures rather than empty success",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "name": "wrong account and oversized provider page fail before persistence",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "core-vm",
+        "core-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+      "name": "identity attachment bytes retain internal CRLF and high bytes",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+      "name": "non UTF-8 source and LF line endings survive display decoding",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+      "name": "original input remains exact and cannot be mutated through aliases",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+      "name": "signed MIME source exports without canonicalizing any octet",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+      "name": "encoded subject, display name, date and text project through public MIME",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+      "name": "malformed UTF8 is never silently replaced",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+      "name": "malformed transfer alphabets, padding and QP escapes fail explicitly",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+      "name": "malformed words and dates do not leak private source to print",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+      "name": "strict UTF8, ASCII, Latin1 and Windows1252 bodies",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+      "name": "unknown header/body charset has diagnostics and source fallback",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+      "name": "unknown transfer encoding is not passed through as exact content",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "name": "a cancelled parse never starts copying or projecting source",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "name": "attachment decoded size is checked before base64 allocation",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "name": "decoded and body budgets count alternatives cumulatively",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "name": "decoded legacy charset expansion respects rendering bytes",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "name": "depth bounds are checked before entering child headers",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "name": "folded fields and cumulative header bytes are bounded",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "name": "invalid caller budgets are programmer errors",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "name": "part and attachment count bounds stop traversal",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "name": "raw limit is enforced before retaining another copy",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "name": "unsupported attachments still count toward the attachment budget",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+      "name": "alternative selection is deterministic and uses last supported type",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+      "name": "boundary prefixes within content are not recognized as delimiters",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+      "name": "duplicate structural headers and missing boundaries fail closed",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+      "name": "missing closing boundary is partial rather than silent success",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+      "name": "multipart alternatives and RFC2231 attachment filename",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+      "name": "related root start parameter and local CID attachment mapping",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+      "name": "safe display names remove paths and bidi control characters",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_parts_test.dart",
+      "name": "text attachment does not become a message body",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+      "name": "encoded Q word can start with an escaped UTF8 octet",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+      "name": "rendered bytes accumulate across every MIME alternative",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_mime/test/portable_import_test.dart",
+      "name": "both supported public MIME imports work without native libraries",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "mime-vm",
+        "mime-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "UID validity reset preserves pending intent and its cached evidence",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "a corrupt persisted blob is rejected instead of silently served",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "a tombstone removes only its label membership",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "an older attempt identity cannot be reused after a newer retry",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "cache eviction preserves draft, outbox and active-editor byte owners",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "competing pages cannot overwrite a concurrently advanced cursor",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "durable recovery rolls back on failure and remains uncertain after reopening",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "failed draft replacement retains its old revision and every old blob",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "foreign-profile logout is a typed rejection without invalidating either session",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "frozen outbox payload and uncertain state cannot be replaced through restore",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "identical profile labels cannot open another host database",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "lease invalidated after cursor write rolls back the complete page",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "oversized provider identity is rejected before writing its cursor",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "profile removal can resume outstanding vault cleanup after reopening",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "rolled back notifications never reach repository observers",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "name": "tombstone-only pages consume account quota and roll back their cursor",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "name": "DOM storage quota maps by name without copying private error text",
+      "platforms": [
+        "node"
+      ],
+      "cohorts": [
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "name": "blocked and aborted browser storage have typed results",
+      "platforms": [
+        "node"
+      ],
+      "cohorts": [
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "name": "typed SQLite and domain failures retain their classification",
+      "platforms": [
+        "node"
+      ],
+      "cohorts": [
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "draft payload body projection validates metadata without requiring payload bytes",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "draft payload draft rejects missing, corrupted or mismatched-length attachment bytes",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "draft payload draft rejects wrong metadata types, unknown fields and malformed hash",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "draft payload metadata and deduplicated immutable blobs round trip separately",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec bounded parser rejects deep nesting and redacts malformed content",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec duplicate literal and escaped keys are rejected before JSON collapse",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects future version",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects missing nullable field",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects normalized invalid date",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects offset date instead of canonical instant",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects unknown address field",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects unknown field",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects wrong UTC type",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects wrong address shape",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects wrong nullable address type",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects wrong reference type",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope rejects wrong subject type",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec envelope round trip preserves every header field and timestamp",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "metadata codec nullable empty metadata and local absolute timestamps round trip",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "outbox payload every state round trips frozen bytes, recipients, result and attempt",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "outbox payload restored in-flight entry becomes uncertain and never retryable",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "outbox payload wire integrity and internal result/state consistency are enforced",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "outbox persistence transitions attempt numbers, fresh identity and monotonic time are mandatory",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "outbox persistence transitions cancellation must retain the previous definite failure result",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "outbox persistence transitions new entries must be initial queued and all legitimate transitions pass",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "outbox persistence transitions prepared bytes, envelope, revision, creation and ownership cannot change",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "outbox persistence transitions same-state saves are exact idempotence and terminal rewrites fail",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "provider identity codec canonical IMAP key preserves UIDVALIDITY and scope is supplied separately",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "provider identity codec gmail identity preserves exact opaque value",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "provider identity codec graph identity preserves exact opaque value",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "provider identity codec jmap identity preserves exact opaque value",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/codec_test.dart",
+      "name": "provider identity codec remote codec rejects invalid provider, field set and IMAP range",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "name": "SIGKILL afterDraftBlobs preserves the correct durable transaction boundary",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "name": "SIGKILL afterOutboxWrite preserves the correct durable transaction boundary",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "name": "SIGKILL afterSyncRecords preserves the correct durable transaction boundary",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "name": "SIGKILL beforeSyncCursor preserves the correct durable transaction boundary",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "name": "SIGKILL committedSubmitting preserves the correct durable transaction boundary",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/migration_test.dart",
+      "name": "future schema 3 is rejected without changing existing data",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/migration_test.dart",
+      "name": "future schema 9 is rejected without changing existing data",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/migration_test.dart",
+      "name": "interrupted v1 migration rolls back schema and version, then retries without losing data",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/migration_test.dart",
+      "name": "stricter aggregate payload limits reject persisted draft before transferring blobs",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/migration_test.dart",
+      "name": "stricter individual blob limits reject persisted draft before transferring blobs",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/migration_test.dart",
+      "name": "upgraded FTS requires bounded backfill without loading attachment or raw bytes",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/migration_test.dart",
+      "name": "v1 upgrade preserves scoped records, draft, cache and immutable queue bytes",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/native_platform_test.dart",
+      "name": "a relative container is rejected without choosing a global directory",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/native_platform_test.dart",
+      "name": "a second live owner conflicts; a closed owner releases its lease",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/native_platform_test.dart",
+      "name": "an unavailable app container returns a typed failure",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/native_platform_test.dart",
+      "name": "migration failure releases ownership and rolls back before reopening",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/native_platform_test.dart",
+      "name": "native committed accounts survive close and reopen",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/native_platform_test.dart",
+      "name": "process termination releases ownership and preserves committed data",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/native_platform_test.dart",
+      "name": "same profile names in different hosts use separate containers",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+      "name": "assets reject remote origins, credentials, fragments and non-HTTP",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+      "name": "browser namespaces are explicit and bounded",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+      "name": "database identity separates hosts, profiles and browser namespaces",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/platform_configuration_test.dart",
+      "name": "relative and absolute same-origin assets resolve explicitly",
+      "platforms": [
+        "vm",
+        "node"
+      ],
+      "cohorts": [
+        "store-vm",
+        "portable-node"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "SQLite full has a typed redacted failure and leaves no partial write",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "UIDVALIDITY reset keeps local work and rejects stale cursor pages",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "account removal retires identity and rejects late writes",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "cache eviction preserves shared draft attachments and editor pins",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "commits headers and cursor with a compare-and-set precondition",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "draft revisions reject lost updates and attachment rollback",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "failure after records rolls back rows and cursor together",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "header stream never exposes rolled-back or half-applied pages",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "lease invalidation at the final commit boundary rolls back",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "local FTS uses literal tokens and never indexes active HTML",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "logout preserves local drafts and queues durable vault cleanup",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "new and terminal outbox states cannot be forged",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "older attempt identifiers cannot be reused after multiple retries",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "profile and account scope reject matching foreign identifiers",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "recovery does not relabel an attempt started by this live owner",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    },
+    {
+      "file": "packages/quds_mail_store/test/repository_test.dart",
+      "name": "tombstone preserves a pending intent for explicit reconciliation",
+      "platforms": [
+        "vm"
+      ],
+      "cohorts": [
+        "store-vm"
+      ]
+    }
+  ],
+  "discarded_attempts": [
+    {
+      "path": "store-attempt-1",
+      "status": "INTERRUPTED",
+      "accepted_cases": 0,
+      "reason": "External invocation interrupted with exit130; partial attempt is not included."
+    }
+  ],
+  "browser_runtime": "NOT RUN: Node and compilation do not qualify browser storage."
+}

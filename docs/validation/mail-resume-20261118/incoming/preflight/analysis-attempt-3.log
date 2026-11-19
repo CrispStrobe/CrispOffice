@@ -1,0 +1,16 @@
+Analyzing 16 items...                                           
+
+warning • The operand can't be 'null', so the condition is always 'true'. Remove the condition • packages/quds_office_editor/lib/src/embed/office_controller.dart:10145:44 • unnecessary_null_comparison
+warning • The operand can't be 'null', so the condition is always 'true'. Remove the condition • packages/quds_office_editor/lib/src/embed/office_controller.dart:10172:44 • unnecessary_null_comparison
+   info • The import of 'package:flutter/services.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart'. Try removing the import directive • packages/quds_office_editor/test/word_header_footer_navigation_test.dart:7:8 • unnecessary_import
+  error • A value of type 'int?' can't be assigned to a variable of type 'int'. Try changing the type of the variable, or casting the right-hand type to 'int' • packages/quds_office_editor/test/word_notes_proofing_controller_test.dart:105:25 • invalid_assignment
+  error • A value of type 'int?' can't be assigned to a variable of type 'int'. Try changing the type of the variable, or casting the right-hand type to 'int' • packages/quds_office_editor/test/word_notes_proofing_controller_test.dart:106:34 • invalid_assignment
+   info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • packages/quds_office_editor/test/word_notes_proofing_pane_test.dart:45:23 • prefer_interpolation_to_compose_strings
+   info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • packages/quds_office_editor/test/word_notes_proofing_pane_test.dart:46:24 • prefer_interpolation_to_compose_strings
+   info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • packages/quds_office_editor/test/word_notes_proofing_pane_test.dart:74:33 • prefer_interpolation_to_compose_strings
+   info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • packages/quds_office_editor/test/word_notes_proofing_pane_test.dart:76:33 • prefer_interpolation_to_compose_strings
+   info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • packages/quds_office_editor/test/word_notes_proofing_pane_test.dart:189:18 • prefer_interpolation_to_compose_strings
+   info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • packages/quds_office_editor/test/word_notes_proofing_pane_test.dart:189:36 • prefer_interpolation_to_compose_strings
+   info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • packages/quds_office_editor/test/word_notes_proofing_pane_test.dart:229:7 • prefer_interpolation_to_compose_strings
+
+12 issues found. (ran in 12.8s)

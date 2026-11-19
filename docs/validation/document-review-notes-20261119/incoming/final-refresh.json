@@ -1,0 +1,49 @@
+{
+  "observed_at_utc": "2026-11-19T05:30:54.164206+00:00",
+  "scope": "One bounded git advertisement refresh of fork branches and PR heads after integration; upstream capture unchanged. No Actions requests.",
+  "own_branch_changes": [
+    {
+      "ref": "refs/heads/codex/document-review-notes-20261118",
+      "before": "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+      "after": "2c17906cc52efcaa518a87805de7fc88b05d2d43"
+    },
+    {
+      "ref": "refs/pull/175/head",
+      "before": "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+      "after": "2c17906cc52efcaa518a87805de7fc88b05d2d43"
+    }
+  ],
+  "external_changes": [
+    {
+      "ref": "refs/heads/codex/mail-reader-20261118",
+      "before": "086e15b7c059edd09cc77dea721f489b5ef97fa9",
+      "after": "0ce210973f1c86483ffcea9b91c83bbf067575e0"
+    },
+    {
+      "ref": "refs/heads/codex/offline-thesaurus-20261118",
+      "before": "7e4adc08fce78fb95524f304962f9c1804e18691",
+      "after": "59f13897fd5aafccc234c58f41370dd786703418"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-word-parity-20261118",
+      "before": "0abd0e592ad607a88a6a7db6a5bf235939efa5b9",
+      "after": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d"
+    },
+    {
+      "ref": "refs/pull/172/head",
+      "before": "086e15b7c059edd09cc77dea721f489b5ef97fa9",
+      "after": "0ce210973f1c86483ffcea9b91c83bbf067575e0"
+    },
+    {
+      "ref": "refs/pull/173/head",
+      "before": "0abd0e592ad607a88a6a7db6a5bf235939efa5b9",
+      "after": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d"
+    },
+    {
+      "ref": "refs/pull/174/head",
+      "before": "7e4adc08fce78fb95524f304962f9c1804e18691",
+      "after": "59f13897fd5aafccc234c58f41370dd786703418"
+    }
+  ],
+  "fork_and_pr_refs": 387
+}

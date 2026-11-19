@@ -495,7 +495,7 @@ Full walkthrough: [`packages/quds_office_editor/README.md`](packages/quds_office
 
 ---
 
-## Planned Mail and standalone Office
+## Mail reader and standalone Office roadmap
 
 The [Mail scope](docs/roadmaps/mail/README.md) and
 [coding plan / TODO](docs/roadmaps/mail/implementation-plan.md) specify a
@@ -506,8 +506,38 @@ new independent Quds code remains MIT.
 
 The plan preserves CrispCloud's existing EML/MSG/MBOX workflows without
 importing its AGPL implementation into Quds. Standalone and CrispCloud
-distribution/App Store gates are tracked separately. This is planned work;
-the existing applications below remain the currently documented apps.
+distribution/App Store gates are tracked separately.
+
+The implementation now provides [typed Mail core](packages/quds_mail_core),
+[bounded EML parsing](packages/quds_mail_mime), an
+[account-free Flutter reader](packages/quds_mail_ui) with a real MIME preview
+harness, [Drift/SQLite storage and recovery](packages/quds_mail_store), and an
+initial [native IMAP transport](packages/quds_mail_transport).
+Original message and attachment bytes remain immutable. The reviewed
+MPL fork exposes a portable public MIME entry without socket/filesystem imports.
+The native store persists drafts, frozen outgoing payloads, mailbox changes,
+nullable standard flags and cursors transactionally, with schema-v3 migration,
+local full-text search and explicit interrupted-send recovery. File-backed
+migration and Linux process-crash tests exercise data preservation. Its separately
+configured browser entry compiles, but actual
+browser storage, quota and reload behavior remain unqualified. The database is
+unencrypted, and process-crash tests do not establish power-loss durability.
+
+The integrated flags/schema-v3 and native IMAP foundation passed local automated
+qualification. The [19 November Office integration report](docs/validation/office-main-integration-20261119/README.md)
+retains the source-bound test results, strict analysis/format checks and raw
+evidence. The earlier failed store attempt remains a separate historical record.
+
+The initial IMAP adapter provides bounded UID-window synchronization, exact
+message retrieval and guarded flag/move operations with required TLS. Linux
+loopback tests passed implicit TLS and STARTTLS exchange, certificate/hostname
+rejection, stalled-handshake cancellation/deadlines and transport write controls.
+External-provider and other-OS interoperability, disposable accounts, host
+OAuth/refresh, large or sparse mailbox pagination, composition/SMTP and the
+shared mailbox workspace remain open. See the
+[implementation status and local checks](docs/roadmaps/mail/status.md).
+The standalone Office host and CrispCloud migration remain later tasks; these
+packages do not qualify an application release.
 
 ---
 

@@ -14,9 +14,9 @@ report surfaces; it does not depend on CrispCloud.
 
 MPL-2.0 is explicitly allowed for this work alongside approved permissive
 licenses. The initial protocol foundation is a reviewed enough_mail 3.0.0
-fork, with a portable MIME entry point so the shared EML reader can compile
-on web. Existing public MIME exports currently pull in dart:io; browser
-portability remains an implementation/verification task. New independent
+fork, with a new public `mime_core.dart` entry point so the shared EML reader
+compiles to JavaScript without socket/filesystem imports. Actual browser
+runtime qualification remains open. New independent
 Quds source stays MIT; modified MPL source retains its notices and license.
 
 The [CrispCloud migration contract](roadmaps/mail/crispcloud-integration.md)
@@ -29,8 +29,31 @@ and the clean standalone app; see the
 M00–M14 specify source paths, typed host contracts, MIME limits, offline
 storage, recoverable sync/send, Office attachment editing, both consumers,
 cloud providers, Calendar/People and per-product App Store evidence.
-All tasks are planned: this entry does not claim Mail code, a standalone
-Office release or App Store qualification has been delivered.
+The core, bounded MIME codec and account-free reader are implemented, followed
+by M05's [Drift/SQLite store](../packages/quds_mail_store): durable drafts and
+frozen outgoing payloads, atomic mailbox-page/cursor commits, local FTS5 search,
+recovery journals, scoped account cleanup and versioned migrations. File-backed
+upgrade/rollback and Linux SIGKILL tests cover preservation at transaction
+boundaries. Browser setup is implemented separately; actual browser persistence,
+quota, reload and Web Locks acceptance remain open. The database is unencrypted;
+process termination tests do not establish power-loss durability.
+
+**Final M05 qualification is BLOCKED.** The combined attempt observed passing
+30-test core VM and 30-test core Node cohorts, 87 store VM tests and 39 portable
+Node tests. The overall run failed on two test lint infos and a native-platform
+test formatting mismatch. Disk exhaustion prevented rerunning the saved lint
+repairs and stricter event parser with its 18 new regressions; those recovery
+edits remain NOT RUN. The original aggregate raw logs/source manifest were not
+uploaded, and the [recovered summary](validation/mail-store-20261118/checks/receipt.json)
+is explicitly not the original qualification receipt.
+
+See [Mail implementation status](roadmaps/mail/status.md) and the
+[M05 report](validation/mail-store-20261118/README.md) for the evidence boundary
+and recovery steps. Close these local qualification gaps before continuing
+M06 native accounts and bounded IMAP synchronization, then M07 composition/
+submission and M04W's shared mailbox workspace. Live providers, standalone host,
+CrispCloud migration and product release gates remain subsequent work.
+No standalone Office release or App Store qualification is claimed.
 
 ## English/German offline thesaurus — 18 November 2026
 

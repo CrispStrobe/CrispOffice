@@ -1,0 +1,37 @@
+{
+  "source_commit": "479e1e038af0467b7f07b35d80bac9e4cc60a198",
+  "source_tree": "03b895b74affd80c54fa1c35dfa87a6eb1d645c6",
+  "success": true,
+  "source_unchanged": true,
+  "environment_unchanged": true,
+  "source_inputs": 5002,
+  "runtime_inputs": 11163,
+  "cohorts": [
+    {
+      "name": "engine-review-and-incoming-zotero",
+      "cases": 233,
+      "suites": 13
+    },
+    {
+      "name": "editor-review-notes-headers-and-zotero",
+      "cases": 887,
+      "suites": 49
+    },
+    {
+      "name": "studio-review-and-incoming-navigation",
+      "cases": 99,
+      "suites": 9
+    },
+    {
+      "name": "incoming-mail-reader",
+      "cases": 11,
+      "suites": 1
+    }
+  ],
+  "passed": 1230,
+  "failed": 0,
+  "skipped": 0,
+  "verified_archive_members": 27,
+  "archive_sha256": "5a113d3130eca2d7f948049e3d90374d119fa27d56b358d35fe51148702162b9",
+  "scope": "Archive digest and complete case-list cross-check, additional to runner raw-event and suite validation."
+}

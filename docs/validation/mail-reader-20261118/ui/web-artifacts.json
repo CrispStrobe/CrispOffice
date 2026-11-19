@@ -1,0 +1,156 @@
+{
+  "build_config": {
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "wasmHashes": {
+      "webparagraph/canvaskit.wasm": "0ce1b05082efdc8529550e8a01f6ff0593972d55525035010e26f5600aa9f254",
+      "canvaskit.wasm": "fbed517a43e82452404446683f00f2e876d835aed84410695759e67b6bb01cd3",
+      "skwasm.wasm": "e540fd5e8303b7b68ec2718cb49e9c421f8ade3075b15e02a7059a62654df9a1",
+      "chromium/canvaskit.wasm": "ae8ff1d858140f7b1300ced3fa89fb8c9dce0a400a0f4f1e11f6dcfb3315fdcf",
+      "skwasm_heavy.wasm": "565f5cc1cca6ab120f11934b105f01fec4b58b480c82e0889dca93af8e6f8635",
+      "wimp.wasm": "e924eaafd801d41e017d178f3fd5cf8a417f641fe35c9ed34a4e1d7582283e0c"
+    },
+    "builds": [
+      {
+        "compileTarget": "dart2js",
+        "renderer": "canvaskit",
+        "mainJsPath": "main.dart.js"
+      },
+      {}
+    ],
+    "useLocalCanvasKit": true
+  },
+  "bootstrap_host_config": {
+    "canvasKitBaseUrl": "canvaskit/",
+    "fontFallbackBaseUrl": "assets/fonts/fallback/"
+  },
+  "artifacts": {
+    "assets/AssetManifest.bin": {
+      "bytes": 2,
+      "sha256": "f566cc6fccc657365c0197accf3a7d6f80f85209ff666ff774f4dcbc524aa842"
+    },
+    "assets/AssetManifest.bin.json": {
+      "bytes": 6,
+      "sha256": "937f7ce783516c54a2bd2007cf32b7dd921c477ddac5ffe8112c6131e43d80a3"
+    },
+    "assets/FontManifest.json": {
+      "bytes": 158,
+      "sha256": "fc9ee87dd76174c0937f58e64b881d8a2c46968a386f9f9be60bc18b8a0bb0c6"
+    },
+    "assets/NOTICES": {
+      "bytes": 1397354,
+      "sha256": "1c0c3be305c62d6e6e181077ac1c4b2ba63a899b6f353b419f3a9afeefd1c784"
+    },
+    "assets/fonts/MaterialIcons-Regular.otf": {
+      "bytes": 8556,
+      "sha256": "2382946345f0d4bf9d54ecb7b751c0520a5f95f5e839aa96d30a2142acd384cf"
+    },
+    "assets/fonts/fallback/Roboto-Regular.ttf": {
+      "bytes": 171676,
+      "sha256": "79e851404657dac2106b3d22ad256d47824a9a5765458edb72c9102a45816d95"
+    },
+    "assets/shaders/ink_sparkle.frag": {
+      "bytes": 8890,
+      "sha256": "2dca5ab93d4ec29e963f996f3916320ba60825e9537dfb149a68008c7a16b026"
+    },
+    "assets/shaders/stretch_effect.frag": {
+      "bytes": 6737,
+      "sha256": "ab412f07a5b9b50b67a885b24dbe16929738ae28630407d6490c924caf0a3220"
+    },
+    "canvaskit/canvaskit.js": {
+      "bytes": 86987,
+      "sha256": "bb559f6080c7d312ac2a912b4abec9f68ff3d3022d4a603c7796b9b31460642b"
+    },
+    "canvaskit/canvaskit.js.symbols": {
+      "bytes": 1356926,
+      "sha256": "384f80b392972c83fd4f262527e3d06215a297d33ed59732c726721e9d9311bd"
+    },
+    "canvaskit/canvaskit.wasm": {
+      "bytes": 7284602,
+      "sha256": "fbed517a43e82452404446683f00f2e876d835aed84410695759e67b6bb01cd3"
+    },
+    "canvaskit/chromium/canvaskit.js": {
+      "bytes": 86226,
+      "sha256": "6018b12bd8ed37e6952eee72d59c1cf7ad707ccdb74a0a45190010f77edd9068"
+    },
+    "canvaskit/chromium/canvaskit.js.symbols": {
+      "bytes": 1235870,
+      "sha256": "31c86fac6042dd8b756150832c1d15495d0d07742e2718f75dbdde5a5a91455e"
+    },
+    "canvaskit/chromium/canvaskit.wasm": {
+      "bytes": 5428806,
+      "sha256": "ae8ff1d858140f7b1300ced3fa89fb8c9dce0a400a0f4f1e11f6dcfb3315fdcf"
+    },
+    "canvaskit/skwasm.js": {
+      "bytes": 63537,
+      "sha256": "71d7d3e34bf71b52bdba3b588b103bba8148ba28de5754083e01b3398e7a6e1c"
+    },
+    "canvaskit/skwasm.js.symbols": {
+      "bytes": 1540006,
+      "sha256": "9137f1a3ae744dea575043abfc6e063a047e910e6dab1ee53e496c975d1c033e"
+    },
+    "canvaskit/skwasm.wasm": {
+      "bytes": 3593715,
+      "sha256": "e540fd5e8303b7b68ec2718cb49e9c421f8ade3075b15e02a7059a62654df9a1"
+    },
+    "canvaskit/skwasm_heavy.js": {
+      "bytes": 63650,
+      "sha256": "cec554b46ddcf4c0e63d799e0556d546f42d2c3f69316fb4f67ed776f6104558"
+    },
+    "canvaskit/skwasm_heavy.js.symbols": {
+      "bytes": 1672152,
+      "sha256": "b6b79ed497e11d4cd13cc46724f9e289eacc744d2d185e31c72d595cdf62772b"
+    },
+    "canvaskit/skwasm_heavy.wasm": {
+      "bytes": 5216217,
+      "sha256": "565f5cc1cca6ab120f11934b105f01fec4b58b480c82e0889dca93af8e6f8635"
+    },
+    "canvaskit/webparagraph/canvaskit.js": {
+      "bytes": 76114,
+      "sha256": "3110e3e4d9b7b5657d336f253aaca8acca5777cde9319fb69ac302d6ff5a8b23"
+    },
+    "canvaskit/webparagraph/canvaskit.js.symbols": {
+      "bytes": 963641,
+      "sha256": "44d6c47919106235cf32252252490cdf798d907ee874ba343ab53dc94bc2a9dc"
+    },
+    "canvaskit/webparagraph/canvaskit.wasm": {
+      "bytes": 3729129,
+      "sha256": "0ce1b05082efdc8529550e8a01f6ff0593972d55525035010e26f5600aa9f254"
+    },
+    "canvaskit/wimp.js": {
+      "bytes": 59127,
+      "sha256": "8fd8a47480c6eb0a374d159912d0b3fb15661b41f5c113ecdd39c2f01f2bee46"
+    },
+    "canvaskit/wimp.js.symbols": {
+      "bytes": 1813030,
+      "sha256": "b4907ebd33131302a8cd99f7c55f52357bdfde04f421b605a616ba8764ae1de4"
+    },
+    "canvaskit/wimp.wasm": {
+      "bytes": 3581677,
+      "sha256": "e924eaafd801d41e017d178f3fd5cf8a417f641fe35c9ed34a4e1d7582283e0c"
+    },
+    "flutter.js": {
+      "bytes": 12136,
+      "sha256": "2beb1ce6b159c71540aa66030af1d7964b6a92377cc78473745e02f97b74effe"
+    },
+    "flutter_bootstrap.js": {
+      "bytes": 13294,
+      "sha256": "2ef904ee0394e999281303cf968b54424026ad5cdb5da5475f588c7cf65ea3af"
+    },
+    "flutter_service_worker.js": {
+      "bytes": 784,
+      "sha256": "a131df5ca46154cc4eb79044f7f5a14029c2f8bfccf8cef34e3ec3b5a9f5a88c"
+    },
+    "index.html": {
+      "bytes": 368,
+      "sha256": "34b19b198b2ce2e718a37e6e51e30d6080f0f3fcd04420a187801c627b485c73"
+    },
+    "main.dart.js": {
+      "bytes": 2574125,
+      "sha256": "27ae6ed44e662932c482e92358aaf4616bb62974d88128cf55b80cccefc63461"
+    },
+    "version.json": {
+      "bytes": 99,
+      "sha256": "ff2d3f2d2ba2a23c4485181f7510c6865e19996c7ae92fc0e19d221b48a4530f"
+    }
+  }
+}

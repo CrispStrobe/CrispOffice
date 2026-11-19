@@ -426,7 +426,7 @@ void main() {
   }
 
   test(
-    'notes and alternate headers never fall back to a matching body span',
+    'disabled alternate headers never fall back to a matching body span',
     () {
       final controller = _controller(text: 'same CHANGE body');
       final section = controller.document.sections.single;
@@ -435,19 +435,11 @@ void main() {
         _paragraph('same CHANGE even header'),
         _paragraph('same CHANGE first footer'),
         _paragraph('same CHANGE even footer'),
-        _paragraph('same CHANGE footnote'),
-        _paragraph('same CHANGE endnote'),
       ];
       section.firstHeader.add(unsupported[0]);
       section.evenHeader.add(unsupported[1]);
       section.firstFooter.add(unsupported[2]);
       section.evenFooter.add(unsupported[3]);
-      controller.document.footnotes.add(
-        WmlNote(id: 1, endnote: false, paragraphs: [unsupported[4]]),
-      );
-      controller.document.endnotes.add(
-        WmlNote(id: 2, endnote: true, paragraphs: [unsupported[5]]),
-      );
       controller.relayout();
       _at(controller, 2);
       for (final paragraph in unsupported) {

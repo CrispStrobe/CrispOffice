@@ -1,0 +1,35 @@
+$ python3 tools/mail/check_reader.py --help
+usage: check_reader.py [-h] --flutter-sdk FLUTTER_SDK [--output OUTPUT]
+                       [--chrome CHROME] [--web-build]
+
+Run local Mail qualification without using hosted GitHub Actions.
+
+options:
+  -h, --help            show this help message and exit
+  --flutter-sdk FLUTTER_SDK
+  --output OUTPUT
+  --chrome CHROME       Run actual Chrome tests using this executable.
+  --web-build
+FileNotFoundError: A complete Flutter SDK and Node on PATH are required.
+FAIL: /workspace/scratch/ab53c04e2d5e/runner-receipt-checks/missing-sdk/receipt.json
+missing-sdk: receipt assertions PASS (2 atomic checkpoints)
+resolution
+OSError: synthetic spawn failure for receipt control-flow validation
+FAIL: /workspace/scratch/ab53c04e2d5e/runner-receipt-checks/spawn-oserror/receipt.json
+spawn-oserror: receipt assertions PASS (5 atomic checkpoints)
+resolution
+INTERRUPTED: /workspace/scratch/ab53c04e2d5e/runner-receipt-checks/keyboard-interrupt/receipt.json
+keyboard-interrupt: receipt assertions PASS (5 atomic checkpoints)
+resolution
+quds_mail_core-analysis
+quds_mail_core-native-js
+quds_mail_mime-analysis
+quds_mail_mime-native-js
+ui-analysis
+ui-native
+reader-web-build
+mime-js-compile
+mime-vm-projection
+FAIL: /workspace/scratch/ab53c04e2d5e/runner-receipt-checks/failed-compile-stale-js/receipt.json
+failed-compile-stale-js: receipt assertions PASS (25 atomic checkpoints)
+All synthetic control-flow checks passed. No real Dart, Flutter, Node, package tests or network calls were performed by the synthetic cases.

@@ -1,0 +1,32 @@
+{
+  "qualified_source": "4624218f9468eeeac07f1f100ac0e4bb6b050a17",
+  "publication_parent": "4624218f9468eeeac07f1f100ac0e4bb6b050a17",
+  "source_input_count": 5031,
+  "all_qualified_source_blobs_match_staged_index": true,
+  "all_staged_source_files_match_worktree": true,
+  "documentation_and_evidence_changes": [
+    "README.md",
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/roadmaps/mail/status.md",
+    "docs/validation/office-main-integration-20261119/README.md",
+    "docs/validation/office-main-integration-20261119/pre-tls-report.md",
+    "docs/validation/office-main-integration-20261119/tls/audit_tls_qualification.py",
+    "docs/validation/office-main-integration-20261119/tls/captured-fork-refs.txt",
+    "docs/validation/office-main-integration-20261119/tls/captured-upstream-refs.txt",
+    "docs/validation/office-main-integration-20261119/tls/development-evidence.index.json",
+    "docs/validation/office-main-integration-20261119/tls/development-evidence.tar.xz",
+    "docs/validation/office-main-integration-20261119/tls/qualification-evidence.index.json",
+    "docs/validation/office-main-integration-20261119/tls/qualification-evidence.tar.xz",
+    "docs/validation/office-main-integration-20261119/tls/store-receipt.json",
+    "docs/validation/office-main-integration-20261119/tls/tls-suite-review.json",
+    "docs/validation/office-main-integration-20261119/tls/tls_ancestry_review.json",
+    "docs/validation/office-main-integration-20261119/tls/tls_final_review-cases.json",
+    "docs/validation/office-main-integration-20261119/tls/tls_final_review.json",
+    "docs/validation/office-main-integration-20261119/tls/tls_historical_continuity.json",
+    "docs/validation/office-main-integration-20261119/tls/verification.json"
+  ],
+  "allowed_scope": "Validation evidence, root README and two Mail roadmap/status documents only",
+  "markdown_relative_targets_exist": true,
+  "all_captured_incoming_heads_are_ancestors": true,
+  "github_actions": "NOT QUERIED, DISPATCHED OR AWAITED"
+}

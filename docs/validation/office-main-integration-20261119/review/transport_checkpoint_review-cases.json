@@ -1,0 +1,5162 @@
+[
+  {
+    "suite": "packages/quds_mail_core/test/cancellation_test.dart",
+    "name": "dispose invalidates all callbacks and cannot reopen a session",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/cancellation_test.dart",
+    "name": "explicit cancellation is typed and keeps the first reason",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/cancellation_test.dart",
+    "name": "invalidate rejects old callbacks but allows a new generation",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "UIDVALIDITY, mailbox and account form the IMAP persistent identity",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "full and preview budgets preserve planned resource bounds",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "mail capability does not imply Calendar, People or sending",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "message headers and attachments do not alias mutable input lists",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "move and sync cursor enforce account and mailbox scopes",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "observed standard flags have value equality and an empty snapshot",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "parse result cannot claim success without a message",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "profile and account identities cannot alias between products",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "snapshots own bytes, including buffer views and export copies",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "aggregate response does not fabricate recipient-level acceptance",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "connection loss after possible acceptance is uncertain and cannot retry",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "definite non-acceptance retries with a fresh attempt identity only",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "interrupted submitting state recovers as uncertain, never queued",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "missing recipient responses stay unknown on aggregate failure",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "mixed 250/550 RCPT responses abort every recipient before DATA",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "queued revision, wire and envelope remain frozen through submission",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "undo send only cancels work before submission",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "unrelated/duplicate recipient results and control injection are rejected",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "validated restoration preserves a pending attempt and recovers uncertain",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "account disposal while provider awaits prevents any commit",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "cooperative user cancellation differs from stale account work",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "fixture pages apply real upserts/tombstones and advance cursor atomically",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "out-of-order concurrent pulls cannot regress the stored cursor",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "sync commit compares the cursor it read before pulling",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "transaction failure leaves both old content and cursor unchanged",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "transaction rechecks the lease when disposal happens during persistence",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "unsupported provider operations are failures rather than empty success",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "wrong account and oversized provider page fail before persistence",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+    "name": "identity attachment bytes retain internal CRLF and high bytes",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+    "name": "non UTF-8 source and LF line endings survive display decoding",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+    "name": "original input remains exact and cannot be mutated through aliases",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+    "name": "signed MIME source exports without canonicalizing any octet",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+    "name": "encoded subject, display name, date and text project through public MIME",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+    "name": "malformed UTF8 is never silently replaced",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+    "name": "malformed transfer alphabets, padding and QP escapes fail explicitly",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+    "name": "malformed words and dates do not leak private source to print",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+    "name": "strict UTF8, ASCII, Latin1 and Windows1252 bodies",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+    "name": "unknown header/body charset has diagnostics and source fallback",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+    "name": "unknown transfer encoding is not passed through as exact content",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "name": "a cancelled parse never starts copying or projecting source",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "name": "attachment decoded size is checked before base64 allocation",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "name": "decoded and body budgets count alternatives cumulatively",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "name": "decoded legacy charset expansion respects rendering bytes",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "name": "depth bounds are checked before entering child headers",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "name": "folded fields and cumulative header bytes are bounded",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "name": "invalid caller budgets are programmer errors",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "name": "part and attachment count bounds stop traversal",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "name": "raw limit is enforced before retaining another copy",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "name": "unsupported attachments still count toward the attachment budget",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_parts_test.dart",
+    "name": "alternative selection is deterministic and uses last supported type",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_parts_test.dart",
+    "name": "boundary prefixes within content are not recognized as delimiters",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_parts_test.dart",
+    "name": "duplicate structural headers and missing boundaries fail closed",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_parts_test.dart",
+    "name": "missing closing boundary is partial rather than silent success",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_parts_test.dart",
+    "name": "multipart alternatives and RFC2231 attachment filename",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_parts_test.dart",
+    "name": "related root start parameter and local CID attachment mapping",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_parts_test.dart",
+    "name": "safe display names remove paths and bidi control characters",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_parts_test.dart",
+    "name": "text attachment does not become a message body",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+    "name": "encoded Q word can start with an escaped UTF8 octet",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+    "name": "rendered bytes accumulate across every MIME alternative",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_mime/test/portable_import_test.dart",
+    "name": "both supported public MIME imports work without native libraries",
+    "executions": [
+      {
+        "cohort": "mime-consumer-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "UID validity reset preserves pending intent and its cached evidence",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "a corrupt persisted blob is rejected instead of silently served",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "a tombstone removes only its label membership",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "an older attempt identity cannot be reused after a newer retry",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "cache eviction preserves draft, outbox and active-editor byte owners",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "competing pages cannot overwrite a concurrently advanced cursor",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "durable recovery rolls back on failure and remains uncertain after reopening",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "failed draft replacement retains its old revision and every old blob",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "foreign-profile logout is a typed rejection without invalidating either session",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "frozen outbox payload and uncertain state cannot be replaced through restore",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "identical profile labels cannot open another host database",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "lease invalidated after cursor write rolls back the complete page",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "oversized provider identity is rejected before writing its cursor",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "profile removal can resume outstanding vault cleanup after reopening",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "rolled back notifications never reach repository observers",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "tombstone-only pages consume account quota and roll back their cursor",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/browser_problem_test.dart",
+    "name": "DOM storage quota maps by name without copying private error text",
+    "executions": [
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/browser_problem_test.dart",
+    "name": "blocked and aborted browser storage have typed results",
+    "executions": [
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/browser_problem_test.dart",
+    "name": "typed SQLite and domain failures retain their classification",
+    "executions": [
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "draft payload body projection validates metadata without requiring payload bytes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "draft payload draft rejects missing, corrupted or mismatched-length attachment bytes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "draft payload draft rejects wrong metadata types, unknown fields and malformed hash",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "draft payload metadata and deduplicated immutable blobs round trip separately",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec bounded parser rejects deep nesting and redacts malformed content",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec duplicate literal and escaped keys are rejected before JSON collapse",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects future version",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects missing nullable field",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects normalized invalid date",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects offset date instead of canonical instant",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects unknown address field",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects unknown field",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects wrong UTC type",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects wrong address shape",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects wrong nullable address type",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects wrong reference type",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects wrong subject type",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope round trip preserves every header field and timestamp",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec nullable empty metadata and local absolute timestamps round trip",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox payload every state round trips frozen bytes, recipients, result and attempt",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox payload restored in-flight entry becomes uncertain and never retryable",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox payload wire integrity and internal result/state consistency are enforced",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox persistence transitions attempt numbers, fresh identity and monotonic time are mandatory",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox persistence transitions cancellation must retain the previous definite failure result",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox persistence transitions new entries must be initial queued and all legitimate transitions pass",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox persistence transitions prepared bytes, envelope, revision, creation and ownership cannot change",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox persistence transitions same-state saves are exact idempotence and terminal rewrites fail",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "provider identity codec canonical IMAP key preserves UIDVALIDITY and scope is supplied separately",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "provider identity codec gmail identity preserves exact opaque value",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "provider identity codec graph identity preserves exact opaque value",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "provider identity codec jmap identity preserves exact opaque value",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "provider identity codec remote codec rejects invalid provider, field set and IMAP range",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "standard flag codec every durable flag survives alone and in a combined snapshot",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "standard flag codec reserved flag bits and negative masks fail with redacted errors",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "standard flag codec unknown flags remain distinct from an observed empty set",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/crash_recovery_test.dart",
+    "name": "SIGKILL afterDraftBlobs preserves the correct durable transaction boundary",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/crash_recovery_test.dart",
+    "name": "SIGKILL afterOutboxWrite preserves the correct durable transaction boundary",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/crash_recovery_test.dart",
+    "name": "SIGKILL afterSyncRecords preserves the correct durable transaction boundary",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/crash_recovery_test.dart",
+    "name": "SIGKILL beforeSyncCursor preserves the correct durable transaction boundary",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/crash_recovery_test.dart",
+    "name": "SIGKILL committedSubmitting preserves the correct durable transaction boundary",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "future schema 4 is rejected without changing existing data",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "future schema 9 is rejected without changing existing data",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "interrupted v1 migration rolls back schema and version, then retries without losing data",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "interrupted v2 flag migration rolls back the column and retains FTS",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "stricter aggregate payload limits reject persisted draft before transferring blobs",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "stricter individual blob limits reject persisted draft before transferring blobs",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "upgraded FTS requires bounded backfill without loading attachment or raw bytes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "v1 upgrade preserves scoped records, draft, cache and immutable queue bytes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "v2 upgrade preserves existing search and flags survive file reopen",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "a relative container is rejected without choosing a global directory",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "a second live owner conflicts; a closed owner releases its lease",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "an unavailable app container returns a typed failure",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "migration failure releases ownership and rolls back before reopening",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "native committed accounts survive close and reopen",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "process termination releases ownership and preserves committed data",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "same profile names in different hosts use separate containers",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/platform_configuration_test.dart",
+    "name": "assets reject remote origins, credentials, fragments and non-HTTP",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/platform_configuration_test.dart",
+    "name": "browser namespaces are explicit and bounded",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/platform_configuration_test.dart",
+    "name": "database identity separates hosts, profiles and browser namespaces",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/platform_configuration_test.dart",
+    "name": "relative and absolute same-origin assets resolve explicitly",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "SQLite full has a typed redacted failure and leaves no partial write",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "UIDVALIDITY reset keeps local work and rejects stale cursor pages",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "account removal retires identity and rejects late writes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "cache eviction preserves shared draft attachments and editor pins",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "commits headers and cursor with a compare-and-set precondition",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "draft revisions reject lost updates and attachment rollback",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "failure after records rolls back rows and cursor together",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "flag mutation and cursor roll back together on transaction failure",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "flag snapshots stay scoped to account, mailbox and UIDVALIDITY",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "header stream never exposes rolled-back or half-applied pages",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "lease invalidation at the final commit boundary rolls back",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "local FTS uses literal tokens and never indexes active HTML",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "logout preserves local drafts and queues durable vault cleanup",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "new and terminal outbox states cannot be forged",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "observed flags persist while an omitted snapshot preserves them",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "older attempt identifiers cannot be reused after multiple retries",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "profile and account scope reject matching foreign identifiers",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "recovery does not relabel an attempt started by this live owner",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "tombstone preserves a pending intent for explicit reconciliation",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "finite transport resource bounds rejects empty or excessive message, mailbox and UID sweep work",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "finite transport resource bounds rejects unbounded waits, invalid polling and negative backoff",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "finite transport resource bounds rejects unusable or excessive literal, line, response and credential budgets",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "finite transport resource bounds validates defaults and supported lower and upper policy boundaries",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "host-owned account configuration keeps the login identity, authentication mode and scoped vault locator",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "host-owned account configuration rejects empty, overlong and control-bearing login identities",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "host-owned account configuration vault locators are bounded identifiers rather than protocol lines",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "host-owned account configuration vault references cannot cross accounts, profiles or host applications",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "manual server endpoint accepts explicit DNS, IPv4 and unbracketed IPv6 hosts",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "manual server endpoint port selection never silently downgrades the mandatory TLS policy",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "manual server endpoint rejects address injection, ambiguous IPs and malformed DNS labels",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "manual server endpoint requires an explicit usable port without a service-port assumption",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "name": "UIDVALIDITY reset replaces only its own account and mailbox membership",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "name": "account invalidation during a blocked IMAP response cannot commit later",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "name": "failed store transaction retains the cursor and retries the same UID window",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "name": "host-scoped credentials are checked before protocol work and on every pull",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "name": "native UID pages preserve flags and resume the durable cursor after reopen",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "MOVE requires capability and verifies source absence without global EXPUNGE",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "OAuthBearer GS2 identity uses a= and secrets stay inside auth command",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "OAuthBearer error challenge is drained once and returns authenticationRequired",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "STORE proves requested UID flags with a fresh observation; delete never expunges",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "UIDVALIDITY rollover restarts the cursor and explicitly requests reset",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "acknowledged STORE without changed flags requires reconciliation",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "actual command parser discovers selectable folders over required TLS",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "aggregate response bytes are bounded across authentication commands",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "announced oversized literal is quota failure before payload reception",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "bounded UID sweep returns durable flags, holes and a scoped next cursor",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "capabilities do not promise SMTP, calendar or missing MOVE extension",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "connection drop after remote mutation is conflict, never retryable success",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "dropped connection fails and the next operation uses a fresh authenticated client",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "duplicate FETCH cannot turn a tagged OK into a partial success",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "forged cross-mailbox cursor is rejected before vault or connection work",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "fragmented greeting is framed before any command executes",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "header literal limit fails the entire sync page without tombstones",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "late TLS upgrade cannot revive an aborted account generation",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "late socket completion after cancellation is destroyed before greeting/auth",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed FETCH prefix cannot create an empty successful sync/tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed raw response never logs private literal text",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "missing STARTTLS refuses credentials instead of downgrading",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "missing and rejected credentials are typed and never reused from cache",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "mixed-case IMAP FETCH atoms preserve messages instead of inventing tombstones",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "omitted FLAGS remains unknown instead of clearing durable observations",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "on-demand literal retains bare LF and non-UTF8 octets without reserialization",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "ordinary multipart source synchronizes only requested envelope headers",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "out-of-range UID cannot turn a tagged OK into a partial success",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "oversized greeting is a non-retryable quota failure before authentication",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "partial BODY literal cannot turn a tagged OK into a partial success",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "protocol line budget remains quota failure even before login",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "rejected duplicate sync record never advances a successful partial page",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "required STARTTLS completes before authentication and refreshes capabilities",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "sparse high UIDNEXT reports the whole-sweep limitation before any FETCH",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "stale full-message UIDVALIDITY fails before body fetch",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "timeout destroys the connection and rejects a delayed completion",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "token auth without SASL-IR is explicitly unsupported before sending a token",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unbalanced response cannot turn a tagged OK into a partial success",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "vault completion after cancellation cannot open a connection",
+    "executions": [
+      {
+        "cohort": "transport-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+    "name": "default public factory remains unsupported without requiring a codec",
+    "executions": [
+      {
+        "cohort": "transport-node-boundary",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+    "name": "public JavaScript entry returns typed unsupported for every provider method",
+    "executions": [
+      {
+        "cohort": "transport-node-boundary",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+    "name": "unsupported factory still validates bounds without accessing host services",
+    "executions": [
+      {
+        "cohort": "transport-node-boundary",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/controller_test.dart",
+    "name": "full and preview modes pass their actual raw budgets into the codec",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/controller_test.dart",
+    "name": "match limit is explicit and result replacement clears stale selection",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/controller_test.dart",
+    "name": "search, selection and decoded copy include displayed headers and body",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/controller_test.dart",
+    "name": "selection never splits a surrogate or combined grapheme",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/controller_test.dart",
+    "name": "switching body alternative preserves raw bytes and invalidates action revision",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/example_test.dart",
+    "name": "actual example MIME bytes provide the displayed body, CID and exact attachment",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "attachment and source/hex callbacks receive exact immutable snapshots",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "bounded CID PNG decodes locally under runtime network denial",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "compact enlarged RTL view preserves actions without overflow",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "custom RenderBox supports keyboard select/copy and meaningful semantics",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "disposing the view invalidates a pending explicit link decision",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "find chrome accepts arbitrary query and finds attachment names",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "hostile saved HTML causes zero policy and runtime outbound requests",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "late link approval cannot act on a replaced message or disposed view",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "link activation is denied until host policy explicitly approves it",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "render rejection remains visible with exact source fallback",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "runtime network denial is active, independently of the injected policy",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "CID PNG is admitted by exact identity without touching source snapshots",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "PNG pixel bombs and truncated chunks are refused before native decode",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "all CSS, event, srcset, SVG and image schemes are inert",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "cumulative CID pixels count unique images and refuse excess",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "decoded and attachment budgets are cumulative before presentation",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "direct DTO plain/HTML bodies share one cumulative body budget",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "duplicate and unsupported CID inputs do not decode arbitrary images",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "hostile HTML becomes inert text and explicit absolute link metadata",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "link admission refuses encoded active schemes, protocol-relative, user info and controls",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "node and nesting rejection discards the entire partial projection",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "oversized text, body, header and input are explicitly rejected",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "plain alternative can be selected without changing original data",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "script raw text cannot smuggle fake nested style or image content",
+    "executions": [
+      {
+        "cohort": "mail-ui-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "IMAP: a pending command fails plainly when the client disconnects",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "IMAP: disconnecting while IDLE waits behind a pending command leaves no unhandled error",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "IMAP: losing the connection while IDLE waits behind a pending command leaves no unhandled error",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "POP: a malformed multi-line reply fails the command",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "POP: a pending command fails when the connection is lost",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "SMTP: a pending command fails when the connection is lost",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "a manually connected socket may close before the greeting",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "a pending command fails when the client disconnects",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "connect fails when no greeting arrives within the timeout",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "connect fails when the server closes before greeting",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient LIST and SELECT",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient LSUB",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient append",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient append does not encode the path of a target mailbox again",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient append with a non-UTC internalDate is sent in UTC",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient append with internalDate sends RFC 3501 date-time",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient appendMessageBytes sends raw bytes unchanged, including a byte outside 7-bit ASCII",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient authenticateWithOAuth2",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient authenticateWithOAuthBearer",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient capability",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient check",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient close",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient copy",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient copy encodes a non-ASCII target path",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient copy quotes a target path containing parentheses",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient enable",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient expunge",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient extended search",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient extended sort",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient extended uid search",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient extended uid sort",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch BODY.PEEK[HEADER.FIELDS (References)]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch BODY.PEEK[HEADER.FIELDS.NOT (References)]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch BODY[1]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch BODY[HEADER]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch BODY[]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch FULL",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch with split response",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient getmetadata 1",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient getmetadata 2",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient getmetadata with several entries",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient getquota",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient getquotaroot",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient idle",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient idle waitForContinuation fails on disconnect",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient idle waitForContinuation resolves on + idling",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient listMailboxes via LIST-STATUS preserves parentheses in mailbox names",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient listMailboxes with escaped Mailbox-Flags",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient login",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient login without capability",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient logout",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient markFlagged",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient markSeen",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient move",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient namespace",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient namespace not supported",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient namespace with a literal prefix",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient namespace without a NAMESPACE response",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient noop",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient search",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient setmetadata",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient setquota",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient sort",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient store",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient store with modified sequence",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid copy",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid fetch BODY[HEADER]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid move",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid move does not encode the path of a target mailbox again",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid search",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid sort",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid store",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uidExpunge",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "LOGIN escapes quotes and backslashes",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "LOGIN line breaks in credentials cannot inject commands",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "LOGIN sends non-ASCII credentials as literals",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "SEARCH control characters force a literal",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "SEARCH literals with line feeds are sent as one continuation",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "SEARCH quoted search values escape backslashes and quotes",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "UTF8=ACCEPT is not used while it is only advertised",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "UTF8=ACCEPT is used once it is enabled",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "mailbox names are quoted and escaped",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "selectMailboxByPath encodes the whole path in modified UTF-7",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+    "name": "selectMailboxByPath escapes an ampersand",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapClient an oversized literal fails pending commands and disconnects",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapClient escaped quotes and backslashes in an ENVELOPE",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapClient huge VANISHED ranges are rejected without allocating them",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapClient literal mailbox names in LIST responses",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapClient malformed FETCH data fails the command instead of hanging",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapClient partial fetch responses are attributed to the right part",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapResponseReader a line that only ends with } is not a literal",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapResponseReader an empty literal does not swallow the rest of the line",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapResponseReader keeps token separation before a literal",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapResponseReader many literals in one response do not overflow the stack",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+    "name": "ImapResponseReader rejects literals above the size limit",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/mail/mail_client_oauth_test.dart",
+    "name": "OauthToken and authentications have consistent equality",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/mail/mail_client_oauth_test.dart",
+    "name": "a rotated refresh token is kept after refreshing",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/mail/mail_client_starttls_test.dart",
+    "name": "IMAP: SocketType.plain also requires STARTTLS",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/mail/mail_client_starttls_test.dart",
+    "name": "IMAP: plainNoStartTls explicitly allows clear-text login",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/mail/mail_client_starttls_test.dart",
+    "name": "IMAP: refuses clear-text login when STARTTLS is not offered",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/mail/mail_client_starttls_test.dart",
+    "name": "SMTP: refuses clear-text AUTH when STARTTLS is not offered",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.apop() valid",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.delete() failed",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.delete() success",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.list()",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.list(2)",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.list(3) fails",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.login() invalid",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.login() valid",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.noop()",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.quit()",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.reset()",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.retrieve() simple message",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.status()",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.uidList()",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.uidList(2)",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_client_test.dart",
+    "name": "PopClient.uidList(3) fails",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_framing_test.dart",
+    "name": "PopClient LIST and UIDL on an empty mailbox complete",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_framing_test.dart",
+    "name": "Uint8ListReader.readLinesToCrLfDotCrLfSequence consumes the terminator completely",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_framing_test.dart",
+    "name": "Uint8ListReader.readLinesToCrLfDotCrLfSequence handles data split across chunks and dot-stuffed lines",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_framing_test.dart",
+    "name": "Uint8ListReader.readLinesToCrLfDotCrLfSequence recognizes an empty multi-line response",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/pop/pop_framing_test.dart",
+    "name": "Uint8ListReader.readLinesToCrLfDotCrLfSequence scans a large message in linear time",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/reconnect_state_test.dart",
+    "name": "IMAP: a partial literal of a lost connection is discarded",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/reconnect_state_test.dart",
+    "name": "POP: a partial reply of a lost connection is discarded",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/reconnect_state_test.dart",
+    "name": "SMTP: a partial reply of a lost connection is discarded",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_client_test.dart",
+    "name": "SmtpClient AUTH XOAUTH2 with bare 334 challenge",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_client_test.dart",
+    "name": "SmtpClient EHLO",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_client_test.dart",
+    "name": "SmtpClient EHLO with bare reply code",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_client_test.dart",
+    "name": "SmtpClient login",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_client_test.dart",
+    "name": "SmtpClient quit",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_client_test.dart",
+    "name": "SmtpClient sendBdatMessage",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_client_test.dart",
+    "name": "SmtpClient sendMessage",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_client_test.dart",
+    "name": "SmtpClient with exception",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_framing_test.dart",
+    "name": "EHLO after STARTTLS replaces the capabilities",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_framing_test.dart",
+    "name": "multi-line EHLO reply split across chunks",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_framing_test.dart",
+    "name": "single-line EHLO reply completes",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+    "name": "SmtpSendBdatMailCommand state machine a rejected last chunk fails the command directly",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+    "name": "SmtpSendBdatMailCommand state machine resets the transaction when a chunk is rejected",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+    "name": "SmtpSendBdatMailCommand state machine sends SMTPUTF8 together with BODY=8BITMIME",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+    "name": "SmtpSendMailCommand state machine completes after the payload was accepted",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+    "name": "SmtpSendMailCommand state machine does not send the payload when DATA is refused",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+    "name": "SmtpSendMailCommand state machine fails when MAIL FROM is rejected",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+    "name": "SmtpSendMailCommand state machine resets the transaction when a recipient is rejected",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+    "name": "envelope validation a missing sender is reported as SmtpException",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+    "name": "envelope validation unsafe envelope addresses are reported as SmtpException",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+    "name": "sendMessage fails with the rejection and resets the session",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "8bit encoding tests Multipart text message - windows-1252",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "8bit encoding tests Simple text message - windows-1252",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODY 1",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODY 2",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODY 3",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODY 4 with encoded filename",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 1",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 10 - alternative and attachment",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 11 - all together",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 12 - real world example",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 13 - single-element lists",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 14 - with raw data parameters",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 15 - complex with nested messages",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 2",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 3",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 4 - single part",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 5 - simple alternative",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 6 - simple alternative with image",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 7 - text + html with images",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 8 - text + html with images 2",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODYSTRUCTURE 9 - mail with attachment",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "BODY[2.1]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "ENVELOPE 1",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "ENVELOPE 2 with escaped quote in subject",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "ENVELOPE 3 with base64 in subject",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "ENVELOPE 4 with linebreak in subject",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "ENVELOPE 5 with base-encoded personal name in email",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "HIGHESTMODSEQ",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "MODSEQ",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "VANISHED",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "bare LF line endings a bare-LF message keeps its declared charset intact",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "bare LF line endings a body separated by bare LFs is not lost",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "bare LF line endings a conforming CRLF message is passed through untouched",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "bare LF line endings a lone CR is not a line ending and gains no LF",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "empty BODY[2.1]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+    "name": "measure performance",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+    "name": "ImapResponseReader - 2 responses in 1 delivery",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+    "name": "ImapResponseReader - 2 responses in 1 delivery with 3 literals",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+    "name": "ImapResponseReader - 2 responses in 3 deliveries",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+    "name": "ImapResponseReader - 2 responses in one delivery",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+    "name": "ImapResponseReader - 3 response lines with break in rn sequence",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+    "name": "ImapResponseReader - response in one go",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+    "name": "ImapResponseReader - response in several parts",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+    "name": "ImapResponseReader - simple response",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+    "name": "ImapResponseReader - test simple response delivered in 2 packages",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+    "name": "ImapResponseReader.oneOnDataCall()",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with HEADER.FIELDS empty response",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with HEADER.FIELDS response",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with HEADER.FIELDS.NOT empty response",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with HEADER.FIELDS.NOT response",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with TO Envelope part",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with complex real world response",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with complex response",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with complex response and parentheses",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with nested BODY part",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with simple response",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with simple response and double parentheses [1]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with simple response and double parentheses [2]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with simple response and empty parentheses",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with simple response and emtpty Flags parentheses",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+    "name": "ImapResponse.iterate() with simple response and parentheses",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "ambiguous header FETCH cannot yield a partial sync or false tombstones",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "canonical raw FETCH preserves exact fragmented literal octets",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "raw FETCH rejects trailing anonymous list and cannot accept a tagged OK",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "raw FETCH rejects trailing atom and cannot accept a tagged OK",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "raw FETCH rejects trailing empty list and cannot accept a tagged OK",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "separate canonical header FETCH responses preserve both UIDs",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "strict repeated-list checks preserve legacy iteration behavior",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "two top-level FETCH bodies cannot silently select the last UID",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.findLineBreak() simple case",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.findLineBreak() with 2 lines and break in newline",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.findLineBreak() with break in newline",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readBytes()  [3]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readBytes()  [4]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readBytes() with 1 line [1]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readBytes() with 1 line [2]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readBytes() with text in parts read [5]",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() and readBytes()",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() with 2 breaks in newline",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() with 2 lines and break in newline",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() with 2 lines in 2 lines",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() with 2 lines in 2+ lines",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() with 2 lines in 3 lines",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() with 2 lines in 3+ lines",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() with 2 lines in one",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() with 2 lines with no break in newline",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() with break in newline",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() with simple input",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLine() without newline",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+    "name": "Uint8ListReader.readLines() with 2 lines and break in newline",
+    "executions": [
+      {
+        "cohort": "vendor-imap-and-byte-reader",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/write_failure_test.dart",
+    "name": "POP: a command whose write fails is rejected",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/write_failure_test.dart",
+    "name": "SMTP: a command whose write fails is rejected",
+    "executions": [
+      {
+        "cohort": "vendor-connection-and-protocols",
+        "platform": "vm"
+      }
+    ]
+  }
+]

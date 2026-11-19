@@ -1,0 +1,29 @@
+{
+  "reviewed_at_utc": "2026-11-19T05:27:16.453040+00:00",
+  "head": "2a8fe04459927047762629affd7d568829e130d5",
+  "scope": "Static independent inspection of Notes/thesaurus/Zotero merge overlaps; not runtime test acceptance.",
+  "files_sha256": {
+    "packages/quds_office_editor/lib/src/embed/office_editors.dart": "1f3215cc55bf5db851ca474b00fed9d8c6029802411c5562386a925bb73c0d51",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "cf619a4cc17439a14b334d1184fca97dfc769b657ec486d613df9873b886157a",
+    "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart": "94d73ec5c6f23b26ac15240c7eaf3ec3d28a4538db55055c2e15d034521f5b1d",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": "456fbc61a0a5ceeda2b7a482580d956d35bb9d0bc18398133af6d1eb22a08b4a",
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "0fba96001cffc0b6b0219543b4edd3892da765308b73be0c5e0b0340fb759307",
+    "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart": "c720a8711e1f1598b99e83d0cb1f53a7a1ddd2208e68cdf8f811b8afbf5c9cca",
+    "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart": "4027a4016fa99e5190a1c04a4dfaeeff8185ee3d541c344b6171f8722e47f078",
+    "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart": "683a15aabd06253a1a2d86e1fb4bbc62a4a8fc41896f1203b20f0b14e84665ee"
+  },
+  "blocking_findings": [],
+  "observations": [
+    "The merged stable Flex parent and retained document pane GlobalKey keep Notes editing surface identity across Review open/close and horizontal/vertical layouts. No conflicting duplicate product implementation was introduced.",
+    "The disjoint manual grammar fixture token are is remains separate from ordinary Feler spelling, preserving the regression distinction.",
+    "The Notes controller suite retains tracking false/true IME correction and undo checks including exact revision preservation.",
+    "The merged Notes pane suite checks TextEditingController and FocusNode identity across two responsive resize cycles and closure, alongside exact Notes selection and body isolation.",
+    "The Zotero Notes test selection helper exercises ensureVisible, hitTestable, actual tap and focused field before assigning the selected range.",
+    "Header/footer story guards prevent coincidental body paragraph indices from selecting body table cells or supplying ruler bounds."
+  ],
+  "open_validation": [
+    "Execute committed integrated Office plan against frozen source and ready bound runtime.",
+    "No interactive browser or application acceptance implied by this review."
+  ],
+  "github_actions_queried_or_awaited": false
+}

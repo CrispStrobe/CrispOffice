@@ -1,0 +1,57 @@
+{
+  "format": "replace_unique_exact_text_v1",
+  "base_ref": "840809bb",
+  "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+  "author_scope": "header_navigation",
+  "note": "Apply sequentially; each before must occur exactly once. Do not replace the shared controller wholesale without applying the Notes agent changes. Reconstructed from successfully applied local scoped patches; not revalidated after ENOSPC.",
+  "replacements": [
+    {
+      "before": "enum WordReviewPaneTab { proofing, changes }",
+      "after": "enum WordReviewPaneTab { proofing, changes }\n\n/// The page variant of the header or footer currently being edited.\nenum WordHeaderFooterVariant { standard, firstPage, evenPage }"
+    },
+    {
+      "before": "      paragraphs = _editingFooter ? section.footer : section.header;",
+      "after": "      paragraphs = _headerFooterStory(section);"
+    },
+    {
+      "before": "  var _editingFooter = false;",
+      "after": "  var _editingFooter = false;\n  var _editingHeaderFooterVariant = WordHeaderFooterVariant.standard;"
+    },
+    {
+      "before": "  int get editingSectionIndex => _editingSectionIndex;",
+      "after": "  int get editingSectionIndex => _editingSectionIndex;\n\n  /// The exact header/footer variant selected on the rendered page.\n  WordHeaderFooterVariant get editingHeaderFooterVariant =>\n      _editingHeaderFooterVariant;"
+    },
+    {
+      "before": "  List<WmlParagraph> _ensureHeaderFooterParagraphs() {\n    final WmlSection section = document.sections.isEmpty\n        ? WmlSection()\n        : document.sections[_editingSectionIndex.clamp(\n            0,\n            document.sections.length - 1,\n          )];\n    final List<WmlParagraph> story = _editingFooter\n        ? section.footer\n        : section.header;\n    if (story.isEmpty) {\n      story.add(WmlParagraph(inlines: <WmlInline>[WmlRun(text: '')]));\n    }\n    return story;\n  }",
+      "after": "  List<WmlParagraph> _headerFooterStory(WmlSection section) =>\n      switch (_editingHeaderFooterVariant) {\n        WordHeaderFooterVariant.standard =>\n          _editingFooter ? section.footer : section.header,\n        WordHeaderFooterVariant.firstPage =>\n          _editingFooter ? section.firstFooter : section.firstHeader,\n        WordHeaderFooterVariant.evenPage =>\n          _editingFooter ? section.evenFooter : section.evenHeader,\n      };\n\n  List<WmlParagraph> _ensureHeaderFooterParagraphs() {\n    final WmlSection section = document.sections.isEmpty\n        ? WmlSection()\n        : document.sections[_editingSectionIndex.clamp(\n            0,\n            document.sections.length - 1,\n          )];\n    final List<WmlParagraph> story = _headerFooterStory(section);\n    if (story.isEmpty) {\n      final placeholder = WmlParagraph(inlines: <WmlInline>[WmlRun(text: '')]);\n      // Selecting or inspecting an empty protected story must not add content.\n      if (!config.allowsMutation ||\n          (document.restrictEditing &&\n              document.restrictMode != WmlRestrictMode.none)) {\n        return <WmlParagraph>[placeholder];\n      }\n      story.add(placeholder);\n    }\n    return story;\n  }"
+    },
+    {
+      "before": "    _editingFooter = footer;\n    _editingHeaderFooter = true;",
+      "after": "    _editingFooter = footer;\n    final section = document.sections.isEmpty\n        ? WmlSection()\n        : document.sections[_editingSectionIndex];\n    final firstPage = documentLaidOut.pages.indexWhere(\n      (page) => page.sectionIndex == _editingSectionIndex,\n    );\n    final story = footer\n        ? section.footerForPage(\n            pageIndex + 1,\n            firstInSection: pageIndex == firstPage,\n          )\n        : section.headerForPage(\n            pageIndex + 1,\n            firstInSection: pageIndex == firstPage,\n          );\n    _editingHeaderFooterVariant =\n        identical(story, footer ? section.firstFooter : section.firstHeader)\n        ? WordHeaderFooterVariant.firstPage\n        : identical(story, footer ? section.evenFooter : section.evenHeader)\n        ? WordHeaderFooterVariant.evenPage\n        : WordHeaderFooterVariant.standard;\n    _editingHeaderFooter = true;"
+    },
+    {
+      "before": "    _syncProtectionMode();\n    _editingComment = false;",
+      "after": "    _syncProtectionMode();\n    _editingComment = false;\n    _editingHeaderFooter = false;\n    _editingHeaderFooterVariant = WordHeaderFooterVariant.standard;"
+    },
+    {
+      "before": "        footer: _editingFooter,",
+      "after": "        footer: _editingFooter,\n        headerFooterVariant: _editingHeaderFooterVariant,"
+    },
+    {
+      "before": "      yield* plain(_editingFooter ? section.footer : section.header);",
+      "after": "      yield* plain(_headerFooterStory(section));"
+    },
+    {
+      "before": "  /// Selects findings in supported canvas stories. Notes and alternate page\n  /// headers remain fully reviewable and correctable in the review pane.",
+      "after": "  /// Selects a finding in its actual rendered story. Header/footer variants\n  /// that do not occur on a laid-out page remain available in the review pane."
+    },
+    {
+      "before": "      final section = document.sections[sectionIndex];\n      for (final footer in [false, true]) {\n        final paragraphs = footer ? section.footer : section.header;\n        final index = paragraphs.indexOf(paragraph);\n        if (index < 0) continue;\n        // A default header/footer may be absent on the first or even page.\n        // Navigate only to a page that actually renders this source paragraph.\n        final page = documentLaidOut.pages.indexWhere((page) {\n          final lines = footer ? page.footer : page.header;\n          return page.sectionIndex == sectionIndex &&\n              lines.any((line) => identical(line.sourceParagraph, paragraph));\n        });\n        if (page < 0) return false;\n        beginHeaderFooterEdit(page, footer: footer);\n        headerFooterCaret\n          ..paragraphIndex = index\n          ..logicalIndex = end\n          ..selectionAnchorParagraph = index\n          ..selectionAnchor = start;\n        _syncImeSelection();\n        notifyListeners();\n        return true;\n      }\n    }",
+      "after": "      final section = document.sections[sectionIndex];\n      for (final footer in [false, true]) {\n        for (final paragraphs in footer\n            ? [section.footer, section.firstFooter, section.evenFooter]\n            : [section.header, section.firstHeader, section.evenHeader]) {\n          final index = paragraphs.indexOf(paragraph);\n          if (index < 0) continue;\n          // Navigate only to a page that renders this exact source story.\n          // Do not silently edit the default variant or change page settings.\n          final page = documentLaidOut.pages.indexWhere((page) {\n            final lines = footer ? page.footer : page.header;\n            return page.sectionIndex == sectionIndex &&\n                lines.any((line) => identical(line.sourceParagraph, paragraph));\n          });\n          if (page < 0) return false;\n          beginHeaderFooterEdit(page, footer: footer);\n          headerFooterCaret\n            ..paragraphIndex = index\n            ..logicalIndex = end\n            ..selectionAnchorParagraph = index\n            ..selectionAnchor = start;\n          _syncImeSelection();\n          notifyListeners();\n          return true;\n        }\n      }\n    }"
+    },
+    {
+      "before": "    headerFooter: controller.isEditingHeaderFooter,\n    footer: controller.isEditingFooter,",
+      "after": "    headerFooter: controller.isEditingHeaderFooter,\n    footer: controller.isEditingFooter,\n    headerFooterVariant: controller.editingHeaderFooterVariant,"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "checked_at_utc": "2026-11-18T19:33:20.451586+00:00",
+  "scope": "Focused current-run qualification after integrating b9728ea1; no native model inference or remote asset fetch.",
+  "head_at_test_start": "c473a25f27bbbce083ef8a5aa40eaa74e70d3146",
+  "head_at_analysis_start": "c473a25f27bbbce083ef8a5aa40eaa74e70d3146",
+  "runtime": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "flutter_pin": {
+    "flutter": "3.47.8"
+  },
+  "root_lock_sha256": "5214b05715c94294bfed7205b2820f78a8d802a18398802da32e485d7f0356b2",
+  "tests": {
+    "status": "PASS",
+    "passed": 51,
+    "failed": 0,
+    "files": 5,
+    "elapsed_seconds": 28.993,
+    "command_and_hashes": "late-spacy-tests-receipt.json"
+  },
+  "analysis": {
+    "status": "PASS",
+    "issues": 0,
+    "target": "packages/quds_proofing_spacy/lib",
+    "fatal_infos": true,
+    "elapsed_seconds": 6.448,
+    "command_and_hashes": "late-spacy-analysis-receipt.json"
+  },
+  "source_inputs_unchanged_during_runs": true,
+  "source_changes_made_by_reviewer": false,
+  "network_scope": "Existing synthetic loopback server tests only. No browser, CI, remote model, or native-library download.",
+  "french_resource_boundary": {
+    "optional_external_install": true,
+    "new_model_or_native_payloads_in_incoming_delta": [],
+    "mail_library_sources_checked": 23,
+    "mail_spacy_references": [],
+    "standalone_app_tracked_files": 0,
+    "declared_model_license": "LGPL-LR",
+    "remote_license_text_independently_read": false,
+    "five_file_declared_total_bytes": 48226946,
+    "report": "late-spacy-french-model-boundary.md"
+  },
+  "artifacts": [
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/late-spacy-tests.txt",
+      "sha256": "2fbd7b1405f82a1ea77ddb7d032629697b00d049e82493496bfb33dd129ae24e"
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/late-spacy-tests-receipt.json",
+      "sha256": "c15c9f28aafc058ff3138eee7494cb57420a9dec50715da6854b7586fa144b71"
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/late-spacy-analysis.txt",
+      "sha256": "6b7a8871da280b2b7725a31509a42d0e66de8a6281e319414cfeb7d46b48d2ed"
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/late-spacy-analysis-receipt.json",
+      "sha256": "a3967ab4fadab696a849639e2273aa92ba278a0ec346ca1922be5612bc68411e"
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/late-spacy-french-model-boundary.md",
+      "sha256": "3916145b920eff1403e8e66b20448091666c3c6aab42424241c9037f08e7c6a7"
+    }
+  ]
+}

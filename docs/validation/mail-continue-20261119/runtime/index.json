@@ -1,0 +1,129 @@
+{
+  "archive": "runtime-evidence.tar.xz",
+  "bytes": 1912408,
+  "sha256": "4c87a1d7407e7c919f07f6f57ee55c056d93d43c892ea09c534184afd01d5805",
+  "source_commit": "0ce210973f1c86483ffcea9b91c83bbf067575e0",
+  "kind": "runtime preparation, not product regression evidence",
+  "files": [
+    {
+      "path": "bootstrap_runtime.py",
+      "bytes": 9149,
+      "sha256": "822d2b7a3a817a02cbf4b70add39ecaa0d4775c6192b7a9f65355003df6d9f1b"
+    },
+    {
+      "path": "finish_runtime.py",
+      "bytes": 3907,
+      "sha256": "2b773f0d2dd942ed4b2ec4bcaf8cd4f4e70f8de7844c57de3a234ae8a49c4fa1"
+    },
+    {
+      "path": "bind_runtime.py",
+      "bytes": 4766,
+      "sha256": "f11d5c385caa3131e1d280daabd45dc6db8a14be37aa71d0a891e8536f2d132c"
+    },
+    {
+      "path": "runtime.json",
+      "bytes": 5344,
+      "sha256": "47dd6181d41b0f6e3e97a7b908bf467df0749860add5ad84c589783cf01d14fc"
+    },
+    {
+      "path": "runtime-complete.json",
+      "bytes": 2783,
+      "sha256": "1a604b74331f2fd15c1143997f7aff5a7568c4c517e06d3886a3bfc7fc247ca6"
+    },
+    {
+      "path": "binding-receipt.json",
+      "bytes": 1104,
+      "sha256": "d2476f56a0c7d7394858b6eede34605c81913fd8dd843a24cae7fbef9fd3ec2d"
+    },
+    {
+      "path": "retained-inputs.json.gz",
+      "bytes": 1851873,
+      "sha256": "2f09c567515958a4ec2c1548d96c2da791c03f787f6bb52ce613c3e4b6d450e2"
+    },
+    {
+      "path": "pub-cache-receipt.json",
+      "bytes": 44348,
+      "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591"
+    },
+    {
+      "path": "archive-members.json",
+      "bytes": 493700,
+      "sha256": "8799648215251c6cee363cd1573275efe5389a18fe7878dc9523b7129130438d"
+    },
+    {
+      "path": "cache-omissions.json",
+      "bytes": 441,
+      "sha256": "f593fcf4bd5e5ea905503ed354e256a7746c1594ec3e78a35f6b3fa03b482af4"
+    },
+    {
+      "path": "env.sh",
+      "bytes": 588,
+      "sha256": "9c72c4b715133b93d21ce995cfc1c31938f4dd2de1bcb7fd69f2c26cb348c4b8"
+    },
+    {
+      "path": "bootstrap.log",
+      "bytes": 474,
+      "sha256": "62fe1be4150b93929b30236ef16fbbf7186a387e0c86e5e068e747cc5c87f656"
+    },
+    {
+      "path": "finish_runtime.log",
+      "bytes": 2783,
+      "sha256": "1a604b74331f2fd15c1143997f7aff5a7568c4c517e06d3886a3bfc7fc247ca6"
+    },
+    {
+      "path": "bind_runtime.log",
+      "bytes": 1104,
+      "sha256": "cbf63da77f5116f42ca0337469b02a694b2132084d2fffb6d800875a413ac7df"
+    },
+    {
+      "path": "logs/flutter-tools-pub-get.log",
+      "bytes": 1192,
+      "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+    },
+    {
+      "path": "logs/flutter-version.log",
+      "bytes": 628,
+      "sha256": "95a145013a5183819f3a6686d1dddaf04e54287771577af9cfca43f92b03a012"
+    },
+    {
+      "path": "logs/sdk-source-diff.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/sdk-source-restore.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/sqlite-smoke-pub.log",
+      "bytes": 462,
+      "sha256": "0ba1f451943f3c7fb7184b5e4790f0e374d25aae3ff36dad94a9d53670a59734"
+    },
+    {
+      "path": "logs/sqlite-smoke.log",
+      "bytes": 221,
+      "sha256": "a3312aff86922de0b52eddfb3120d2dc5c5dbf559abc540525213f7f121472f8"
+    },
+    {
+      "path": "logs/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "logs/workspace-sqlite-smoke-attempt-1.log",
+      "bytes": 1458,
+      "sha256": "d18857c1e0c3157cebe1f674fac04536eafd0fa5ecff68cd4294f409ef63d2be"
+    },
+    {
+      "path": "logs/workspace-sqlite-smoke-attempt-2.log",
+      "bytes": 221,
+      "sha256": "a3312aff86922de0b52eddfb3120d2dc5c5dbf559abc540525213f7f121472f8"
+    },
+    {
+      "path": "logs/workspace-sqlite-smoke.log",
+      "bytes": 221,
+      "sha256": "a3312aff86922de0b52eddfb3120d2dc5c5dbf559abc540525213f7f121472f8"
+    }
+  ]
+}

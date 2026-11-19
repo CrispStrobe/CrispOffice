@@ -1,0 +1,17 @@
+{
+  "command": [
+    "dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/client_connection.dart",
+    "packages/quds_mail_transport/test/native_tls_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/support/tls_server.dart"
+  ],
+  "cwd": "/workspace/scratch/5c6c66fd3cc3/mail-transport",
+  "exit_code": 0,
+  "seconds": 0.1652646820002701,
+  "log": "/workspace/scratch/5c6c66fd3cc3/transport-dev/tls-final-format.log"
+}

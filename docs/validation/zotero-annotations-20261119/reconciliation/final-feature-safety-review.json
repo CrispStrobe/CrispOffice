@@ -1,0 +1,231 @@
+{
+  "reviewed_at_utc": "2026-11-19T05:35:02.057812+00:00",
+  "baseline": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d",
+  "feature_head": "ff06e5544673ce7f70be983299241bcdcef780d3",
+  "feature_tree": "ee23dc2179d4b3e26eabf3b35e7aa13f95a7963d",
+  "changed_paths": [
+    "docs/validation/zotero-annotations-20261119/README.md",
+    "docs/validation/zotero-annotations-20261119/plan.json",
+    "docs/validation/zotero-annotations-20261119/reconciliation/audit_published_refs.py",
+    "docs/validation/zotero-annotations-20261119/reconciliation/local-integration-commits.json",
+    "docs/validation/zotero-annotations-20261119/reconciliation/merge-resolution-review.md",
+    "docs/validation/zotero-annotations-20261119/reconciliation/published-replay-audit.json",
+    "docs/validation/zotero-annotations-20261119/reconciliation/published-source-audit.json",
+    "docs/validation/zotero-annotations-20261119/reconciliation/remote-snapshot-20261119.json",
+    "docs/validation/zotero-annotations-20261119/runtime/env.sh",
+    "docs/validation/zotero-annotations-20261119/runtime/prefetch.json",
+    "docs/validation/zotero-annotations-20261119/runtime/sdk-receipt.json",
+    "docs/validation/zotero-annotations-20261119/runtime/tools-ready.json",
+    "docs/validation/zotero-annotations-20261119/runtime/workspace-ready.json",
+    "docs/zotero-support.md",
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "packages/quds_office_engine/CHANGELOG.md",
+    "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+    "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart"
+  ],
+  "changed_dependency_manifest_or_lock_paths": [],
+  "workspace_manifest_and_lock_count": 20,
+  "workspace_manifest_and_lock_files": [
+    {
+      "path": "apps/quds_report_studio/pubspec.yaml",
+      "baseline_blob": "ac479981a30f9917e0817de6c79f2392b6f4bf87",
+      "feature_blob": "ac479981a30f9917e0817de6c79f2392b6f4bf87",
+      "equal": true
+    },
+    {
+      "path": "packages/legacy_doc_parser/pubspec.yaml",
+      "baseline_blob": "f0389f352656d281988db1d853d6e86df67b51e7",
+      "feature_blob": "f0389f352656d281988db1d853d6e86df67b51e7",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_mail_core/pubspec.yaml",
+      "baseline_blob": "055f9ff8de9a13fc10ccb12b034bac26e908984c",
+      "feature_blob": "055f9ff8de9a13fc10ccb12b034bac26e908984c",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_mail_mime/pubspec.yaml",
+      "baseline_blob": "77463f51b8c60a9c7c9a644877d0458ee611309f",
+      "feature_blob": "77463f51b8c60a9c7c9a644877d0458ee611309f",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_mail_store/pubspec.yaml",
+      "baseline_blob": "4529099ff0aa052d780d77fd1b9f35b9ae80ea94",
+      "feature_blob": "4529099ff0aa052d780d77fd1b9f35b9ae80ea94",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_mail_ui/example/pubspec.yaml",
+      "baseline_blob": "1afef10aeb337b84d2af357497002105d25f9756",
+      "feature_blob": "1afef10aeb337b84d2af357497002105d25f9756",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_mail_ui/pubspec.yaml",
+      "baseline_blob": "74ed9197395cde312e8e47c5705d0d076b9cd262",
+      "feature_blob": "74ed9197395cde312e8e47c5705d0d076b9cd262",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/pubspec.yaml",
+      "baseline_blob": "ca8dba5d7a187e2a5f2a2c66e8d45abddab3d9dd",
+      "feature_blob": "ca8dba5d7a187e2a5f2a2c66e8d45abddab3d9dd",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/pubspec.yaml",
+      "baseline_blob": "229f7b99cb606373788d9b85814dd241c3e7de92",
+      "feature_blob": "229f7b99cb606373788d9b85814dd241c3e7de92",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/pubspec.yaml",
+      "baseline_blob": "9e7cc2d8f24500c0403d39cd88ed1e9649d650df",
+      "feature_blob": "9e7cc2d8f24500c0403d39cd88ed1e9649d650df",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_engine/pubspec.yaml",
+      "baseline_blob": "b8df6a55e457b42e258a3cc7724df1be087464fb",
+      "feature_blob": "b8df6a55e457b42e258a3cc7724df1be087464fb",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_proofing_gector/pubspec.yaml",
+      "baseline_blob": "483c4c391100368154eac40db9c2a6e50b7707ad",
+      "feature_blob": "483c4c391100368154eac40db9c2a6e50b7707ad",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_proofing_harper/native/Cargo.lock",
+      "baseline_blob": "145751e865553d9496f32bf66ecd849fdbdfe797",
+      "feature_blob": "145751e865553d9496f32bf66ecd849fdbdfe797",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_proofing_harper/native/Cargo.toml",
+      "baseline_blob": "535f423556d7875890058037fb95aed350716c91",
+      "feature_blob": "535f423556d7875890058037fb95aed350716c91",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_proofing_harper/pubspec.yaml",
+      "baseline_blob": "21617bc027119539ebe87a94a97b622499d48c98",
+      "feature_blob": "21617bc027119539ebe87a94a97b622499d48c98",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_proofing_spacy/pubspec.yaml",
+      "baseline_blob": "836148c41fc9680d7f1e912ce108419aba7229b1",
+      "feature_blob": "836148c41fc9680d7f1e912ce108419aba7229b1",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_reports/pubspec.yaml",
+      "baseline_blob": "206c04007457d37895bac387ddb78ff4813b9511",
+      "feature_blob": "206c04007457d37895bac387ddb78ff4813b9511",
+      "equal": true
+    },
+    {
+      "path": "pubspec.lock",
+      "baseline_blob": "13f6b3ddf846de813c4d19893c05919b67c8cd12",
+      "feature_blob": "13f6b3ddf846de813c4d19893c05919b67c8cd12",
+      "equal": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "baseline_blob": "cb6f8b349ca6c00625f3e3c176eee352c12a6e5e",
+      "feature_blob": "cb6f8b349ca6c00625f3e3c176eee352c12a6e5e",
+      "equal": true
+    },
+    {
+      "path": "third_party/enough_mail/pubspec.yaml",
+      "baseline_blob": "9f3443eae80e78bf107d71feeef2b82713154295",
+      "feature_blob": "9f3443eae80e78bf107d71feeef2b82713154295",
+      "equal": true
+    }
+  ],
+  "unchanged_guard_sources_and_regressions": [
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+      "baseline_blob": "f72b689ce666590c3cee4d3ca1ece81f06ec96c7",
+      "feature_blob": "f72b689ce666590c3cee4d3ca1ece81f06ec96c7",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "baseline_blob": "45189950fde8dd52a238a9eadb5a243e27589cb8",
+      "feature_blob": "45189950fde8dd52a238a9eadb5a243e27589cb8",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "baseline_blob": "c9ad8da07174be5e6964bf9d446c501446df38c4",
+      "feature_blob": "c9ad8da07174be5e6964bf9d446c501446df38c4",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "baseline_blob": "ac3ddafe9983443f1e29d88290bffed06995bb90",
+      "feature_blob": "ac3ddafe9983443f1e29d88290bffed06995bb90",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_lists.dart",
+      "baseline_blob": "a6266ad1253b023ef17e1ef16ec9228355c786a5",
+      "feature_blob": "a6266ad1253b023ef17e1ef16ec9228355c786a5",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "baseline_blob": "b0c9cad46fdb22bb46ea21d03eb8bb9e9bdc71c1",
+      "feature_blob": "b0c9cad46fdb22bb46ea21d03eb8bb9e9bdc71c1",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "baseline_blob": "d59fe0247cc811fc9edffcda20987276c0ee3efa",
+      "feature_blob": "d59fe0247cc811fc9edffcda20987276c0ee3efa",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "baseline_blob": "5d4e35970c8c990d2d65d2d39c9fe4b9c7580f83",
+      "feature_blob": "5d4e35970c8c990d2d65d2d39c9fe4b9c7580f83",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "baseline_blob": "1f7e027941c2488ab4d16a9d5158a435d0e023f0",
+      "feature_blob": "1f7e027941c2488ab4d16a9d5158a435d0e023f0",
+      "equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "baseline_blob": "599310d4b14f0c2bfbebc01a19b3d83fc9386410",
+      "feature_blob": "599310d4b14f0c2bfbebc01a19b3d83fc9386410",
+      "equal": true
+    }
+  ],
+  "unchanged_controller_blocks": [
+    {
+      "block": "Zotero transaction identity and document-numbering snapshot",
+      "baseline_sha256": "87d3c3d07e35aecf8b11402a1b3838caf548e602b52219bfff82fe26aa067cd1",
+      "feature_sha256": "87d3c3d07e35aecf8b11402a1b3838caf548e602b52219bfff82fe26aa067cd1",
+      "equal": true
+    }
+  ],
+  "controller_change_review": "Only beginZoteroTransaction changes: the existing addNote-only body requirement and insertion preflight now use command.insertsNoteText so addAnnotation follows the identical safeguards. The active input composition check, Notes readiness check, commit order, tracking guard, header/footer/comment/frame exclusions, owner check, and final transaction identity capture remain in place.",
+  "bounded_reconciliation_audit_passed": true,
+  "passed": true,
+  "scope": "Read-only static diff review and frozen-source ancestry audit. Runtime qualification is handled separately by the parent agent."
+}

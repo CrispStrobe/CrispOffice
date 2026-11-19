@@ -1,0 +1,67 @@
+{
+  "initial_capture": "2026-11-18T20:17:13.675191+00:00",
+  "refreshed_capture": "2026-11-18T20:43:35.918009+00:00",
+  "initial_count": 386,
+  "refreshed_count": 389,
+  "unchanged_count": 381,
+  "external_changed_refs": 6,
+  "delivery_refs": 2,
+  "changes": [
+    {
+      "ref": "refs/remotes/origin/codex/document-review-notes-20261118",
+      "before": null,
+      "after": "840809bbe23f95815a5ddcd2a7ee76c250b9fb8c",
+      "kind": "added",
+      "own_delivery_ref": false
+    },
+    {
+      "ref": "refs/remotes/origin/codex/mail-reader-20261118",
+      "before": "2fef06f5fe9aefb07a48c75c0e762eee3edf26e1",
+      "after": "8a6105a7ec217b48105d171703c8d0294c7d2dc6",
+      "kind": "advanced",
+      "own_delivery_ref": false
+    },
+    {
+      "ref": "refs/remotes/origin/codex/offline-thesaurus-20261118",
+      "before": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "after": "7c4f8bfa67b69e6fa4d8809724ae036cdcde492f",
+      "kind": "advanced",
+      "own_delivery_ref": false
+    },
+    {
+      "ref": "refs/remotes/origin/main",
+      "before": "4fbc8741f314af67592517595c760ba3036dedba",
+      "after": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "kind": "advanced",
+      "own_delivery_ref": false
+    },
+    {
+      "ref": "refs/remotes/pull/169",
+      "before": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "after": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "kind": "advanced",
+      "own_delivery_ref": false
+    },
+    {
+      "ref": "refs/remotes/pull/172",
+      "before": "2fef06f5fe9aefb07a48c75c0e762eee3edf26e1",
+      "after": "8a6105a7ec217b48105d171703c8d0294c7d2dc6",
+      "kind": "advanced",
+      "own_delivery_ref": false
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-word-parity-20261118",
+      "before": null,
+      "after": "243f0175a0d2d3d724677aba15b57927ef43d3a9",
+      "kind": "added",
+      "own_delivery_ref": true
+    },
+    {
+      "ref": "refs/remotes/pull/173",
+      "before": null,
+      "after": "243f0175a0d2d3d724677aba15b57927ef43d3a9",
+      "kind": "added",
+      "own_delivery_ref": true
+    }
+  ]
+}

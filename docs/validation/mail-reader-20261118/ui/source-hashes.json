@@ -1,0 +1,29 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "packages/quds_mail_ui/CHANGELOG.md": "d0e33582446de88d33fb5c5ea34ec0d3258dd65794d788eca106826847d4971b",
+    "packages/quds_mail_ui/LICENSE": "ddce111598e179ca6118a86ec7d1a62aaaab6fb007df49d7236b78d9085f3641",
+    "packages/quds_mail_ui/README.md": "b0e2e3eddece12733987c4cc04344a18387d2260dd9a25dcffc42c26c7842aee",
+    "packages/quds_mail_ui/analysis_options.yaml": "bf7d17dfdbc3aa4dcba00ef52506c50fd798bbcf3d0f907e875fa38bdfa9846f",
+    "packages/quds_mail_ui/example/lib/main.dart": "78d68c50f869006f8e47aa7d1106b532912459f33b9fb5819cadf6cb3fa5536a",
+    "packages/quds_mail_ui/example/pubspec.yaml": "215440d5c99478c7bfe1d5aa37d57e36471f7613c76f75619867ad1e006fd1f3",
+    "packages/quds_mail_ui/example/web/flutter_bootstrap.js": "4b80491deac58aa1c9481def90b57b45faea7748cbede28ad6cb66fa31a307d9",
+    "packages/quds_mail_ui/example/web/index.html": "391e2369258438ad1701333aa73b3b11edccd14ae8b50a60282aaaf1e7f2c82e",
+    "packages/quds_mail_ui/lib/quds_mail_ui.dart": "28369aa1bdd737000ef6534fd614c9f95aed8d88daa92640cae842589abf3a6f",
+    "packages/quds_mail_ui/lib/src/reader/controller.dart": "8b5afcd3e6208ea240d0b1d2ddb5735c17705f61f528c230234c81264be21510",
+    "packages/quds_mail_ui/lib/src/reader/message_view.dart": "f0edc368afebb3b3171324020ac7fc92858d3217ab41bc62f131276336a9806b",
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart": "171722df54a0a350e59e3c5c66edc6440035113903d11fdd7a09e4efa4d93205",
+    "packages/quds_mail_ui/lib/src/reader/selection_surface.dart": "e54987fe69ae8a896805a3d310524170767591bc224aa2533eea75d0a083a480",
+    "packages/quds_mail_ui/pubspec.yaml": "1ae476502a8b02982d63954494c1eb4165f697fe27a7f1962c946b7f449c7653",
+    "packages/quds_mail_ui/test/controller_test.dart": "b4f5db7814c18f7188d6d75a7a786e69e46f46b80f106511593672d47c581fd0",
+    "packages/quds_mail_ui/test/example_test.dart": "f96c4e19f853591eaea5afbf4cd5fd9d5e17c19ae39dc077cffb3e30c8a82acb",
+    "packages/quds_mail_ui/test/fixtures/mail_fixture.dart": "a2b720b1ad69e7fac37bfc7d47647ed3cf9185fabc3bae2d3b964ba62bbdae35",
+    "packages/quds_mail_ui/test/message_view_test.dart": "eccaf662ab0368202ff97ce0f5080aade723c734faff81b7e609d93742eca6b0",
+    "packages/quds_mail_ui/test/presentation_test.dart": "d38d908d087db4904fc466e4eed39dae2ba7c93fbeb9d6755d7e27d832d7d0ab",
+    "packages/quds_mail_ui/test/support/runtime_network_guard.dart": "336866b68c3e05357e8a569c2aae34eb89676e6b31aeb899e869d87c756d707d",
+    "packages/quds_mail_ui/test/support/runtime_network_guard_native.dart": "19fd0c505b75a2cf785448a562ad0853e52dd768087d21a556013f51a929b850",
+    "packages/quds_mail_ui/test/support/runtime_network_guard_web.dart": "22ba45e60aa37a4c3f9006901c9756fa9efba5d57f36edfd3c1b0d599dfe292c",
+    "packages/quds_mail_ui/tool/reader_visual_test.dart": "c28dd77570497d278bf732ed6c22e9e076f653e8a567675c753fbb5f2928cc0f",
+    "packages/quds_mail_ui/tool/web_guard_compile.dart": "a753c1899d86075fd4874bdedc8a544b89ddaae1d97e0232ee746ffa005d8666"
+  }
+}

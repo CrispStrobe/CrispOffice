@@ -1,0 +1,40 @@
+00:00 +0: loading /workspace/scratch/ab53c04e2d5e/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart
+00:00 +0: Reply focuses the inline draft without posting or a dialog
+00:11 +1: thread drafts survive switching and explicit posts are undoable
+01:17 +2: hiding comments preserves drafts and Reply restores inline focus
+01:26 +3: a replaced thread cannot inherit a draft through its reused ID
+01:31 +4: a stale post callback cannot send into another document
+01:34 +5: posting waits until IME composition is complete
+01:37 +6: viewing mode keeps comments inspectable without reply controls
+01:43 +7: comment writing marks offer focused inline corrections
+01:47 +8: comment marks follow the existing Writing pane
+01:53 +9: comment context menus combine corrections and thread actions
+01:57 +10: comment context Cut owns the comment rather than a body selection
+02:00 +11: comment context Cut leaves a previously selected body table intact
+02:04 +12: comment context Paste leaves a previously selected body table intact
+02:07 +13: comment context Cut leaves a previously selected body frame intact
+02:11 +14: comment context Paste leaves a previously selected body frame intact
+02:15 +15: Select mode exposes real pointer comment selection and Copy
+03:00 +16: read-only comment Copy and Select all own the comment selection
+03:07 +17: read-only empty comments never materialize stored paragraphs
+03:11 +18: delayed comment Cut validates its context after none change
+03:13 +19: delayed comment Cut validates its context after source change
+03:16 +20: delayed comment Cut validates its context after caret change
+03:19 +21: delayed comment Cut validates its context after document change
+03:23 +22: delayed comment Paste validates its context after none change
+03:27 +23: delayed comment Paste validates its context after source change
+03:29 +24: delayed comment Paste validates its context after caret change
+03:32 +25: delayed comment Paste validates its context after document change
+03:35 +26: invalid clipboard guards stop before system clipboard access
+03:38 +27: comment menu Ignore once respects the current finding
+03:40 +28: comment menu Ignore this word respects the current finding
+03:45 +29: comment menu Add to personal words respects the current finding
+03:48 +30: comment suggestions survive unrelated in-flight check progress
+03:51 +31: stale comment menus cannot act on another document or reused ID
+03:57 +32: comment menus dismiss on changed source or selected thread
+04:03 +33: comment menus preserve IME and cannot act through a modal
+04:05 +34: resolved reply context offers Reopen for its whole thread
+04:08 +35: narrow English comments stay below the editor
+04:12 +36: narrow Arabic comments stay below the editor
+04:17 +37: comment menu mutations respect a later viewing-mode change
+04:22 +38: All tests passed!

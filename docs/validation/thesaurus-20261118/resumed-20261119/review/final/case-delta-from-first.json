@@ -1,0 +1,290 @@
+{
+  "first_source_commit": "59f13897fd5aafccc234c58f41370dd786703418",
+  "final_source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "first_case_count": 1985,
+  "final_case_count": 2018,
+  "net_count_change": 33,
+  "added_identity_count": 51,
+  "removed_identity_count": 18,
+  "added": [
+    {
+      "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "name": "Add Zotero annotation ribbon invokes its native picker"
+    },
+    {
+      "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "name": "Add Zotero note ribbon invokes its native picker"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation keeps quoted text, live citations and one undo for style 0"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation keeps quoted text, live citations and one undo for style 1"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation keeps quoted text, live citations and one undo for style 2"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses body composition before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses comment before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses document protection before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses editing text box before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses footer before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses header before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses inline content control before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses locked citation before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses note composition before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses selected text box before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses selecting before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses track changes before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses unresolved revision before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "Add Annotation refuses viewing before staging content"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "a body selection refuses addAnnotation without replacing text"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "a body selection refuses addNote without replacing text"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "a caret inside an existing citation refuses addAnnotation before staging"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "a caret inside an existing citation refuses addNote before staging"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "a changed caret refuses a fully staged addAnnotation atomically"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "a changed caret refuses a fully staged addNote atomically"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "addAnnotation unknown citation placeholder cannot mutate live text or preferences"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "addNote unknown citation placeholder cannot mutate live text or preferences"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "an active endnote refuses addAnnotation early"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "an active endnote refuses addNote early"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "an active footnote refuses addAnnotation early"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "an active footnote refuses addNote early"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "an unsupported addAnnotation image keeps the whole document unchanged"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "an unsupported addNote image keeps the whole document unchanged"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "cancelled addAnnotation selection discards temporary fields and style changes"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "cancelled addNote selection discards temporary fields and style changes"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "the shared addAnnotation command inserts live citation paragraphs"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "the shared addNote command inserts live citation paragraphs"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "name": "annotation workspace action is disabled during Track changes"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "name": "annotation workspace command discards cancelled staged edits"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "name": "unavailable annotation command keeps version guidance and data"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 1028082993"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 382465314"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 543325201"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 803574410"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 910586925"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 962257393"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 992806833"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "Add Annotation error alert drains and refuses staged preferences"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "addAnnotation uses Zotero text insertion and returns fields in request order"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "addNote uses Zotero text insertion and returns fields in request order"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "name": "starts the explicit addAnnotation command"
+    }
+  ],
+  "removed": [
+    {
+      "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "name": "Add Zotero note ribbon invokes the native note picker"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "a body selection refuses research-note insertion without replacing text"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "a caret inside an existing citation refuses Add Note before staging"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "a changed caret refuses a fully staged research note atomically"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "an active endnote refuses research-note insertion early"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "an active footnote refuses research-note insertion early"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "an unknown citation placeholder cannot mutate live text or preferences"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "an unsupported note image keeps the whole document unchanged"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "cancelled note selection discards temporary fields and style changes"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "name": "the shared Add Note command inserts live citation paragraphs"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 461399787"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 58416057"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 597139322"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 654379554"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 690044080"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 741984463"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "name": "damaged native chunk refuses read and replacement 897672991"
+    },
+    {
+      "suite": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "name": "actual pinned Zotero note command sequence returns fields in request order"
+    }
+  ],
+  "counting_rule": "Separate complete source-bound replays. Earlier run cases are not added to final totals."
+}

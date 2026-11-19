@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "status": "runtime_was_restored_and_smoke_tested_before_filesystem_exhaustion",
+  "runtime_root": "/workspace/scratch/b710ecdf2089/toolchains",
+  "source_repository": "CrispStrobe/quds_office_suite",
+  "sdk": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "engine_revision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "archive_url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "archive_bytes": 1581444364,
+    "archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "full_archive_verified_before_execution": true,
+    "retained_sdk_content_bytes": 530414490,
+    "dart_executable_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "flutter_tester_sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+    "omitted": [
+      "Flutter Git history",
+      "web SDK and web compilers",
+      "DevTools",
+      "sanitizer runtimes",
+      "duplicate JIT analyzer",
+      "DDS AOT snapshot",
+      "native GTK build library"
+    ]
+  },
+  "dependencies": {
+    "hosted_archives_verified": 176,
+    "resolved_workspace_packages": 130,
+    "workspace_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+    "flutter_tool_offline_enforced_resolution_exit_code": 0,
+    "workspace_offline_enforced_resolution_exit_code": 0,
+    "package_directories_omitted": 312,
+    "package_content_bytes_omitted": 197605450,
+    "omission_scope": "Package author tests, examples, documentation, benchmarks and Drift IDE extension. Runtime libraries, native hooks, executables and package-root licenses/notices retained from hash-verified archives."
+  },
+  "smoke": {
+    "command": [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter=json",
+      "test/office_units_test.dart"
+    ],
+    "cwd": "packages/quds_office_editor",
+    "passed_actual_cases": 2,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "reporter_done_success": true,
+    "duration_seconds": 22.701,
+    "scope": "Runtime readiness only, not acceptance of the new document-review source."
+  },
+  "local_evidence_before_block": {
+    "original_runtime_receipt_sha256": "b9bcda607be6822efb1af9d3be5c812dd3128f96d5ab85efd63b43d701722e62",
+    "retained_runtime_input_files": 11141,
+    "retained_inputs_compressed_bytes": 556270,
+    "completed_evidence_directory_bytes": 1215037,
+    "directory": "docs/validation/document-review-notes-20261118/runtime",
+    "exact_bytes_unavailable_to_remote_checkpoint": [
+      "runtime.json",
+      "pub-cache-receipt.json.gz",
+      "archive-members.json.gz",
+      "cache-omissions.json.gz",
+      "retained-inputs.json.gz",
+      "logs/*.gz",
+      "env.sh",
+      "restore_sdk.py.gz",
+      "restore_pub_cache.py.gz",
+      "configure_runtime.py.gz"
+    ],
+    "explanation": "Copies were successfully written locally, then all filesystem readers were blocked by host disk exhaustion before they could be read for publication. This JSON is a factual recovery summary reconstructed from completed tool output; it is not the original full receipt or a claim that the listed local files were uploaded."
+  },
+  "final_feature_validation": "not_run_before_filesystem_block",
+  "recovery_script_status": "new recovery implementation, not the byte-identical executed scripts; not executed after the disk block",
+  "github_actions_queried_or_awaited": false
+}

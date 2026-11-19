@@ -1,0 +1,11 @@
+Downloading and verifying official SDK
+{"downloaded_bytes": 553728000, "expanded_bytes": 60888375, "free_bytes": 60993568768}
+{"downloaded_bytes": 1092106240, "expanded_bytes": 258987796, "free_bytes": 60729163776}
+Restoring 176 pinned Pub packages
+START flutter-tools-pub-get
+END flutter-tools-pub-get exit=0
+START workspace-pub-get
+END workspace-pub-get exit=0
+START flutter-version
+END flutter-version exit=0
+{"status": "ready", "error": null, "free_bytes": 57577332736}

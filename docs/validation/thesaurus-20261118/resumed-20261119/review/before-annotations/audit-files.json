@@ -1,0 +1,42 @@
+{
+  "studio-review-and-incoming-navigation-audit.json": {
+    "bytes": 29397,
+    "sha256": "295b9b4ea301ef0eddf97bfb5cc10f8d8f5cc6f8804773fbf4e91216bb03bcb5"
+  },
+  "audit_union.py": {
+    "bytes": 17439,
+    "sha256": "1137f57388f5273672bd97f7b4df426b84b39186624115a45c0bda94d6dac154"
+  },
+  "engine-review-and-incoming-zotero-audit.json": {
+    "bytes": 167684,
+    "sha256": "59fb49d7e63377f6a2e52fd6e918e7726affe673de0c0231adc13b2f2f26080e"
+  },
+  "peer-audit.md": {
+    "bytes": 2765,
+    "sha256": "8f0f4b81dce21aa064d6c2b389bdc1df76d28ad1ac6b66486e2ac1f4adf7f890"
+  },
+  "union-audit-progress.json": {
+    "bytes": 3604,
+    "sha256": "d8caf4f8dd8b268c4428bbd55cd273c5c545221d0880dcdda1792b02b486f15a"
+  },
+  "peer-audit.json": {
+    "bytes": 4238,
+    "sha256": "85502df84040a45b729f3c219f660b7268f247b7d69e2ecf98f4a833e8c8ea5d"
+  },
+  "initial-binding-audit.json": {
+    "bytes": 2475,
+    "sha256": "d24bfb3018174c16a74056f4a97375ce7b0d2a3ac8760758ba464d3860786ee7"
+  },
+  "editor-review-notes-headers-and-zotero-audit.json": {
+    "bytes": 265427,
+    "sha256": "d87798fbd166e57ee74624b0cd1bed62b361718863ede4021145014ed88e1213"
+  },
+  "incoming-mail-reader-audit.json": {
+    "bytes": 7869,
+    "sha256": "e975e55348e7455392ae250ac67dbf6484dc2a4dd83a928ffc1316e66e6e1fee"
+  },
+  "peer-cases.json": {
+    "bytes": 538556,
+    "sha256": "79f24099dd8b9caca3e5bd47ca00030aca829ac479e4790e0f8e48310d82f894"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "target": "tools",
+  "cwd": "/workspace/scratch/0a420ffd2846/runtime/flutter/packages/flutter_tools",
+  "command": [
+    "/workspace/scratch/0a420ffd2846/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "pub",
+    "get",
+    "--offline",
+    "--enforce-lockfile",
+    "--example"
+  ],
+  "completed_at_utc": "2026-11-19T05:24:35.100399+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 0.26519465299998046,
+  "inputs_before": {
+    "pubspec.yaml": "16adc154e94044c70ea2da3bb6813090806088155e48240613d60bef45f1f31f",
+    "pubspec.lock": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8"
+  },
+  "inputs_after": {
+    "pubspec.yaml": "16adc154e94044c70ea2da3bb6813090806088155e48240613d60bef45f1f31f",
+    "pubspec.lock": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8"
+  },
+  "manifests_and_lock_unchanged": true,
+  "verified_hosted_package_count": 101,
+  "source_head": "b818ca30001a13604b79eaf8a15f4bfaeb3956b7",
+  "log": "/workspace/scratch/0a420ffd2846/runtime/logs/tools-pub-get.log",
+  "log_sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+}

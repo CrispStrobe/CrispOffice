@@ -106,8 +106,9 @@ tooltip identifies the current text scope and language.
   do not change personal dictionary entries or ignored-word preferences.
   Excluded text continues to be reported as excluded coverage.
 
-Body text, editable table/frame text, default headers/footers, and active
-existing comment text use their exact selected story. Generated fields, note
+Body text, editable table/frame text, rendered default/first/even headers and
+footers, active existing comments, and editable Notes text use their exact
+selected story. Generated fields, note
 marks, protected/native content, unsupported selections, and an active IME
 composition disable unsafe changes. If the text, selection, document, or
 inherited style context changes while a control is open, the old action is
@@ -250,6 +251,48 @@ Undo restores the earlier decision and selection; Redo repeats the decision.
 Embedded applications can still open the advanced workspace with
 `showWordReviewDialog`.
 
+### Review footnotes and endnotes while editing
+
+The **Notes** pane checks the same native footnote and endnote paragraphs as
+Writing. Red, blue and amber wavy underlines identify spelling, grammar and style
+findings without replacing the field's text or selection. The document-wide
+status reports checking progress and incomplete or unavailable coverage.
+
+- Keep **Check as you type** enabled for automatic checks after a pause.
+  **Check document (F7)** runs an explicit check, including configured manual
+  providers.
+- Use the nearby replacement buttons to correct the displayed finding, or choose
+  **Ignore once** or **Add to dictionary**. The correction returns focus to the
+  note and uses normal document Undo. Previously typed text remains a separate
+  history step.
+- **Ctrl+Z**, **Ctrl+Shift+Z**, and **Ctrl+Y** in the Notes field use document
+  history, including tracked revision records. The platform's Command-based
+  text Undo/Redo shortcuts also use that history. New typing after Undo retires
+  the old redo branch when committed, so Redo cannot overwrite a new draft.
+- The status bar's **Language and checking** controls apply to the actual
+  selected Notes text, or its current editable paragraph. Multiline and reversed
+  selections retain their exact source ranges. Finish composing and let pending
+  typing commit before changing these options. The hidden reference separator
+  and body text are left intact.
+- Opening or closing Writing, and moving it beside or below the document as the
+  window resizes, retains the Notes field and selection.
+- Use the previous/next arrows or **Alt+F7 / Alt+Shift+F7** to select a finding in
+  the active note. Navigation accounts for paragraph separators and the hidden
+  native note-reference separator.
+- Composition keeps ownership of the field until it finishes. Stale findings,
+  replaced documents and protected text cannot be corrected by retained actions.
+- **Review changes** opens the persistent **Changes** pane. Selecting a supported
+  note revision reveals its exact range in Notes.
+- Completed checks, including a manual check with no findings, survive recording
+  already-applied typing into history. That unchanged commit does not rerun the
+  provider or quietly lose completed coverage. Actual edits still invalidate
+  affected results and manual coverage still requires an explicit check.
+
+Nested table or frame paragraphs that the flat Notes field does not expose
+remain reviewable in Writing/Changes. Navigation does not redirect those ranges
+to a different paragraph. Paused checks and incomplete coverage are never
+presented as a clean result.
+
 ### Review tracked changes
 
 1. Set the reviewer name and turn on **Track text changes** to attribute future
@@ -265,10 +308,14 @@ Embedded applications can still open the advanced workspace with
 5. Use **Undo / Redo** to revisit a decision. **Show in document** selects the
    exact source span when the canvas supports that story.
 
-Body paragraphs, default headers/footers, and comments support exact canvas
-navigation. Notes and first/even headers remain reviewable in the pane when
-their source paragraphs cannot be selected in the canvas. Navigation never
-redirects an unsupported story to a similarly numbered body paragraph.
+Body paragraphs and comments support exact canvas navigation. Headers and
+footers select their actual rendered default, first-page or even-page story;
+footnotes and endnotes select their editable Notes field. An alternate story
+that is disabled by page settings or absent from all laid-out pages remains
+reviewable in the pane. Notes table/frame ranges without a matching editable
+field also remain pane-only. Navigation never redirects an unsupported story
+to another variant or a similarly numbered body paragraph, and never changes
+page settings to expose one.
 
 Conflicted, stale, overlapping, or detached ranges are shown with a diagnostic;
 they cannot be silently accepted or rejected. Resolve or undo the conflicting

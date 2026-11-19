@@ -15,9 +15,10 @@ They need the local transport and a running Zotero application, without an API
 key. Zotero's own windows may open behind the office application.
 
 In Quds Studio, **Insert → References** also offers **Add/Edit citation**,
-**Bibliography**, **Refresh citations**, and **Citation style** on native desktop
-platforms. These open the Document workspace and immediately start the selected
-Zotero command. **Add/Edit citation** edits the citation at the active body or
+**Bibliography**, **Add Zotero note**, **Add Zotero annotation**, **Refresh
+citations**, and **Citation style** on native desktop platforms. These show a
+compact progress dialog and immediately start the selected Zotero command.
+**Add/Edit citation** edits the citation at the active body or
 Notes-pane caret, or one enclosing the selection within a paragraph; otherwise
 it uses that insertion point. Opening **Zotero** normally also selects Document when a citation or
 bibliography is at the caret, with a direct **Edit current citation…** action
@@ -31,6 +32,111 @@ refreshes citations; on macOS use **Cmd+Alt+C** and **Cmd+Alt+R**. The ribbon
 tooltips show these Quds shortcuts. They work from the body and Notes text
 editor, require an editable Word document, and do not open another workspace
 over an existing dialog. These are Quds defaults, not Zotero's Word defaults.
+
+Direct ribbon and keyboard commands show a compact progress dialog and return
+keyboard focus to the resulting body or Notes caret when Zotero finishes.
+Successful changes remain one undo step. Cancelling a native picker, declining
+a formatting review, or completing without changes also returns to writing.
+Connection, document and formatting errors remain visible with **Return to
+document**; there is no automatic network retry. **Cancel operation** waits for
+Zotero to acknowledge and drain the outstanding transaction before returning.
+The normal **Zotero** references workspace stays open for browsing and repeated
+operations. It is available in Studio's viewing and selecting modes too;
+commands that change the document still require editing mode.
+
+Finish active input-method composition before opening Zotero. Body and Notes
+composition prevent direct commands from starting; composition beginning during
+native work invalidates its result. Returning to the document preserves an
+unchanged composing draft.
+
+### Insert text annotations directly from Zotero
+
+With **Zotero 9 or later** running, place a collapsed caret in the document body,
+outside existing fields, and choose **Insert → References → Add Zotero
+annotation**, or **Document → Add annotation from Zotero…** in the references
+workspace. Zotero opens its annotation picker, where you can browse or search
+and select one or more text annotations. An intermediate Zotero library note is
+not required. This follows Zotero's native
+[Add Annotation workflow](https://www.zotero.org/blog/zotero-9/#add-annotation),
+introduced in [Zotero 9](https://www.zotero.org/support/9.0_changelog).
+
+Quds retains the selected annotation text, comments, supported formatting and
+links supplied by Zotero. Citation placeholders become active fields, with the
+source identity and locators supplied by Zotero. Their inline, footnote or
+endnote placement follows the document's Zotero preferences; subsequent
+**Refresh citations** and **Bibliography** commands include them in the complete
+document sequence. The text, citation fields, any new notes and style preferences
+apply together as one undo step and survive Quds DOCX saving and reopening.
+
+Cancelling the picker before it supplies content also discards staged
+preferences and temporary fields. Direct ribbon commands return focus to the
+document after completion or cancellation. A changed insertion point, active
+text composition, unsupported content or incomplete citation conversion keeps
+the result from being applied.
+
+This command supports **text annotations** and uses the same content limits and
+body-caret requirements as Add Note below. Returned image content, including
+image and ink annotation images, is refused atomically. Zotero itself can replace
+an unavailable image with explanatory text or omit unavailable content before
+sending the result; Quds cannot restore content absent from that result. Choose
+text annotations for this workflow. Older Zotero versions do not provide the
+annotation command: use **Add Zotero note** to insert supported annotation notes,
+or update Zotero. The command dialog and workspace tooltip identify the version
+requirement.
+
+### Insert a Zotero research note
+
+Place a collapsed caret in the document body, outside existing fields, and
+choose **Insert → References → Add Zotero note**, or **Document → Add note from
+Zotero…** in the references workspace. Select a research note in Zotero's native
+note picker. This imports a Zotero library note; the existing Notes-pane citation
+commands continue to work inside authored footnotes and endnotes.
+
+Paragraphs, empty paragraphs, soft line breaks, heading levels 1–6, supported
+character formatting, and ordinary HTTP(S), mail and Zotero links are retained.
+Flat bullet and decimal numbered lists are retained as native Word lists,
+including positive starting numbers. Each item can contain rich inline text or
+one paragraph, with active citation placeholders. Separate imported lists start
+their own counters and do not continue or change surrounding document lists.
+Default PDF annotation note wrappers and their title headings are recognized.
+Citation placeholders become active Zotero fields with the source data, rather
+than remaining ordinary hyperlinks. Zotero controls their formatting and
+inline/footnote/endnote placement and receives the complete document order for
+later citation and bibliography updates. Documents containing imported research
+notes retain the active fields through DOCX saving and reopening.
+
+The whole insertion, including new footnotes/endnotes, bibliography callbacks
+and document style preferences, is staged until completion and applied as one
+undoable operation. The body caret finishes after the imported note. Surrounding
+prose and its formatting remain intact; headings and list items occupy their own
+paragraphs. Undo also restores the previous numbering definitions; unrelated
+document parts and relationships remain intact after saving and undo/redo.
+Cancelling the note picker before it supplies any text also discards temporary
+fields and staged preference changes.
+
+Add Note currently starts from a body caret, not a text selection or an existing
+footnote/endnote. Embedded images, tables, nested lists, multi-paragraph list
+items, custom or reversed list markers, and unsupported custom formatting are
+refused with an explanation before application. Ordered-list starting numbers
+must be integers from 1 to 999999. Malformed,
+missing, repeated or unconverted citation placeholders also refuse the whole
+result. Nothing is silently flattened to make these structures fit.
+
+### Go to a citation or bibliography
+
+In **Zotero → Document**, open a field's **Reference actions** menu and choose
+**Go to reference**. The workspace closes and selects the complete citation or
+bibliography in the document body, a body table cell, or an exposed Notes
+paragraph. Navigation brings the Notes pane into view when needed, scrolls to
+the note and restores its text selection. It does not edit document content or
+add an undo step.
+
+Navigation also works in read-only selecting mode, including for locked fields.
+Viewing mode still permits reference inspection and export. Missing, stale,
+nested, malformed or opaque field handles and unsupported stories cannot be
+navigated through this action; the control is disabled when the available
+structure cannot be selected. Selecting a complete multi-paragraph bibliography
+allows the workspace to reopen on that bibliography.
 
 ### Cite while writing a footnote or endnote
 
@@ -65,6 +171,8 @@ results instead of applying them at another location.
 | **Document style…** | Opens Zotero's native document preferences, including the installed CSL style, language and note placement offered by that style |
 | **Refresh all with Zotero** | Lets Zotero process the document's complete supported citation sequence and bibliography together |
 | **Bibliography in Zotero…** | Adds or edits a bibliography through the same document processor |
+| **Add note from Zotero…** | Inserts a supported research note with its active citation fields at the body caret |
+| **Add annotation from Zotero…** | Opens Zotero 9+'s annotation picker and inserts selected text annotations and comments with active citations |
 | Existing citation menu → **Edit in Zotero…** | Opens that citation in Zotero's native picker |
 | Library selection → **Insert with Zotero…** | Seeds the native picker with selected linked catalog sources, then applies Zotero's result |
 
@@ -806,6 +914,34 @@ completed transaction once. `WordZoteroDocumentData` handles native preference
 ownership, translation and serialization. Raw session `apply` belongs inside
 the controller's rollback boundary, not directly in a host widget.
 
+### Direct commands, reference navigation, research notes and annotations
+
+Pass `initialCommand` and `closeAfterCommand: true` to
+`showWordZoteroDialog` for the compact command flow. The default remains the
+persistent workspace for existing embedding hosts. After the dialog closes, the
+shared helper requests the controller's current body or Notes editing focus;
+it does not restore an obsolete selection captured before the command.
+
+`WordEditorController.canRevealZoteroField` provides a cheap availability hint.
+`revealZoteroField` reinspects a short-lived field handle before selecting its
+complete supported range. Hosts may call `requestEditingFocus()` after their
+own chrome closes. `noteFocusRequest` lets a custom Notes host observe requests
+to reveal and focus the retained note target. These operations require selection
+permission but not mutation permission.
+
+`ZoteroCitingCommand.addNote` and `ZoteroCitingCommand.addAnnotation` use
+`Document.insertText` and
+`Document.convertPlaceholdersToFields`. The session advertises
+`supportsTextInsertion` only at a supported insertion point. When constructing a
+controller transaction directly, pass the actual `command` for the same early
+eligibility checks used by the shared dialog. `command.insertsNoteText` identifies
+both research-content commands. The native session also checks insertion and
+conversion before staging and applying data. If either command completes with
+`hasInsertedNoteText == false`, discard the transaction, including staged
+preferences: this is the cancelled-picker path. Add Annotation requires Zotero
+9 or later and uses the native `addAnnotation` command, without an automatic
+fallback to a different picker.
+
 ### Native bibliography layout contract
 
 The adapter accepts Zotero's
@@ -857,6 +993,12 @@ Custom hosts that replace online clients can pass the same `ZoteroBackoffState`
 to each new client. Clients sharing that state must use the same clock.
 
 ## Previous continuation evidence and current qualification
+
+The research-note insertion, reference-navigation and direct-command continuation
+has a [separate status report](validation/zotero-word-parity-20261118/README.md).
+Its implementation and incoming branch integration are saved remotely. The report
+separates completed development checks from the final exact-source run that was
+blocked by shared executor disk exhaustion; it has no final passing total yet.
 
 The previous continuation started from Quds
 `dc5f93b673e6087cccc6d66b33dfbfd099668f77` and CrispCloud

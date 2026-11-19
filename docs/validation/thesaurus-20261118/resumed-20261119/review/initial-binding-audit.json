@@ -1,0 +1,44 @@
+{
+  "source_commit": "59f13897fd5aafccc234c58f41370dd786703418",
+  "source_comparison": {
+    "source_records": 4992,
+    "mismatches": []
+  },
+  "harness_bindings": {
+    "docs/validation/thesaurus-20261118/reconciled/run_targeted.py": {
+      "recorded": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d",
+      "git_sha256": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d",
+      "current_sha256": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d"
+    },
+    "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py": {
+      "recorded": "a8b082f111d8d6a0629680a04ab54e09d1173ac06a4da253e02d3c0d89d367a2",
+      "git_sha256": "a8b082f111d8d6a0629680a04ab54e09d1173ac06a4da253e02d3c0d89d367a2",
+      "current_sha256": "a8b082f111d8d6a0629680a04ab54e09d1173ac06a4da253e02d3c0d89d367a2"
+    },
+    "docs/validation/thesaurus-20261118/reconciled/plan.json": {
+      "recorded": "014d754194049684543e4c3b430c1f60769a4b5ad1644469c466a199e2ffd02e",
+      "git_sha256": "014d754194049684543e4c3b430c1f60769a4b5ad1644469c466a199e2ffd02e",
+      "current_sha256": "014d754194049684543e4c3b430c1f60769a4b5ad1644469c466a199e2ffd02e"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py": {
+      "recorded": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7",
+      "git_sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7",
+      "current_sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7"
+    },
+    "tools/mail/check_store.py": {
+      "recorded": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155",
+      "git_sha256": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155",
+      "current_sha256": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155"
+    },
+    "tools/mail/check_reader.py": {
+      "recorded": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826",
+      "git_sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826",
+      "current_sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826"
+    }
+  },
+  "source_inventory_sha256": "cb2822cdd0290b4b3fa11c685077bc8fd7526053bc5edc69fa0b4fbc1f17bade",
+  "environment_inventory_sha256": "6c13d9b8dbb6c8fe263f410354008c587edffd3647817e64cbc3a4658dc15071",
+  "environment_records": 11948,
+  "exact_plan_matches_commit": true,
+  "expected_suites": 129
+}

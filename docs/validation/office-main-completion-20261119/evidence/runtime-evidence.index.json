@@ -1,0 +1,145 @@
+{
+  "archive": "runtime-evidence.tar.xz",
+  "archive_bytes": 917740,
+  "archive_sha256": "8635c4551aff3ee35a5b07113bd59b157ec234660efdc16b6da80552c826953d",
+  "source_index_path": "/workspace/scratch/f0520e768bc8/runtime/evidence-index.json",
+  "source_index_sha256": "ae2cc37b1e122e1666fa3ec4ecca9b6496f0b474745541c8be79b2a3e896938e",
+  "indexed_source_file_count": 19,
+  "member_count": 21,
+  "members_verified_against_original_bytes": true,
+  "deterministic_tar_metadata": {
+    "mtime": 0,
+    "uid": 0,
+    "gid": 0,
+    "uname": "",
+    "gname": ""
+  },
+  "members": [
+    {
+      "path": "preparation/runtime-finalize.py",
+      "bytes": 8042,
+      "sha256": "e373dfc0f5217d44eb047065b193866f1b733b7dbf3d9e48cd6d1617559d054d",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime-finalize.py"
+    },
+    {
+      "path": "runtime/archive-members.json",
+      "bytes": 357030,
+      "sha256": "c30c0738a094f3b0bfc3ee4696204540798d4a4fbaf943a5abb0ce8833635f8f",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/archive-members.json"
+    },
+    {
+      "path": "runtime/bin/dart",
+      "bytes": 98,
+      "sha256": "ef98b53ab3a653ed316acb4b1fd10c6a8fa3c600d23b5743fe3cfd595d9272ae",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/bin/dart"
+    },
+    {
+      "path": "runtime/bin/flutter",
+      "bytes": 200,
+      "sha256": "4edafb33b86c5ccd2452831eb621389e9ee1ee962094a04a7899c871f2eb6910",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/bin/flutter"
+    },
+    {
+      "path": "runtime/bootstrap-attempt-1.json",
+      "bytes": 4610,
+      "sha256": "d1fabc7ce2fa5ff1568bf05a8d62cdcbfcaf2216a79c654788ab3d59035fcf20",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/bootstrap-attempt-1.json"
+    },
+    {
+      "path": "runtime/bootstrap-resumed.py",
+      "bytes": 21144,
+      "sha256": "d4d5e937239957b8a5db0dcfa2630d1d30b96a714eeadc02e4ae3cb3f1e567a9",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/bootstrap-resumed.py"
+    },
+    {
+      "path": "runtime/bootstrap-started.py",
+      "bytes": 19311,
+      "sha256": "922fcb9fd528c359c3a8e862002736c4a2ecf1d36ef6a562e5d9079ffac5a9a7",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/bootstrap-started.py"
+    },
+    {
+      "path": "runtime/cache-omissions.json",
+      "bytes": 2335744,
+      "sha256": "c16bf623008daa6c01cfeb16a2895d1048f42cda2274c084d9b8a58840e2d615",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/cache-omissions.json"
+    },
+    {
+      "path": "runtime/env.sh",
+      "bytes": 588,
+      "sha256": "748fd3ea3550412757b20ec8e73572728dde9752246281208f38d29321bead22",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/env.sh"
+    },
+    {
+      "path": "runtime/evidence-index.json",
+      "bytes": 3016,
+      "sha256": "ae2cc37b1e122e1666fa3ec4ecca9b6496f0b474745541c8be79b2a3e896938e",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/evidence-index.json"
+    },
+    {
+      "path": "runtime/logs/flutter-tools-pub-get.log",
+      "bytes": 1192,
+      "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/logs/flutter-tools-pub-get.log"
+    },
+    {
+      "path": "runtime/logs/flutter-version.log",
+      "bytes": 628,
+      "sha256": "f721212f34832f4e6cd9f8189a437c84d40d85ac3fbc1a6212a4937dee3c9861",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/logs/flutter-version.log"
+    },
+    {
+      "path": "runtime/logs/native-assets-smoke-owned.log",
+      "bytes": 81,
+      "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/logs/native-assets-smoke-owned.log"
+    },
+    {
+      "path": "runtime/logs/native-assets-smoke.log",
+      "bytes": 1500,
+      "sha256": "290d4a173d54521fca44e82a4c9ffd0634071ce0e0ae81bd948ac5e84e7b288e",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/logs/native-assets-smoke.log"
+    },
+    {
+      "path": "runtime/logs/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/logs/workspace-pub-get.log"
+    },
+    {
+      "path": "runtime/manifests-before.json",
+      "bytes": 3497,
+      "sha256": "1bd2f37ab0d126cb3b64137c82913e28d2ab9b4596453c6bf83bced490ebf6a9",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/manifests-before.json"
+    },
+    {
+      "path": "runtime/pub-cache-receipt.json",
+      "bytes": 44348,
+      "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/pub-cache-receipt.json"
+    },
+    {
+      "path": "runtime/retained-inputs.json",
+      "bytes": 2049933,
+      "sha256": "8a14b584c2e9416dc73f79e556f3680feba49bdbb279e8f42cd47054c5b01a91",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/retained-inputs.json"
+    },
+    {
+      "path": "runtime/runtime-supplement-progress.json",
+      "bytes": 3409,
+      "sha256": "a6912a05d3db8c4a3a85767ea4205511af4f922e24271b6451f453d58626c9e3",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/runtime-supplement-progress.json"
+    },
+    {
+      "path": "runtime/runtime.json",
+      "bytes": 19629,
+      "sha256": "b66a21b8923a8391fbc4aa85832dee7cd559ca2e8752fb2743533e54ff1ca35b",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/runtime.json"
+    },
+    {
+      "path": "runtime/workspace-runtime-ready.json",
+      "bytes": 19629,
+      "sha256": "b66a21b8923a8391fbc4aa85832dee7cd559ca2e8752fb2743533e54ff1ca35b",
+      "source_path": "/workspace/scratch/f0520e768bc8/runtime/workspace-runtime-ready.json"
+    }
+  ]
+}
