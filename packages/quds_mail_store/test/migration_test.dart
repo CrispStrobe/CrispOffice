@@ -9,7 +9,8 @@ import 'package:drift/native.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_store/src/codec.dart';
-import 'package:quds_mail_store/src/schema/database.dart' show schemaV1, schemaV2;
+import 'package:quds_mail_store/src/schema/database.dart'
+    show schemaV1, schemaV2;
 import 'package:sqlite3/sqlite3.dart' as sqlite;
 import 'package:test/test.dart';
 
@@ -97,101 +98,145 @@ void main() {
     },
   );
 
-  test('v2 upgrade preserves existing search and flags survive file reopen', () async {
-    _upgradeFixtureV2(file);
-    final before = _snapshot(file);
-    var repository = _value(await _open(file));
-    const observed = MailMessageFlags(
-      isRead: true,
-      isAnswered: true,
-      isDraft: true,
-    );
-    try {
-      expect(_value(await repository.search(_account, 'seeded')).single.header.id,
-          MailMessageId('message-1'));
-      final headers = _value(await repository.listHeaders(_mailbox));
-      expect(headers.map((header) => header.flags), everyElement(isNull));
-      expect(headers.map((header) => header.remote), [_remote(1), _remote(2)]);
-      _value(await repository.commitSyncPage(
-        MailSyncPage(
-          mailbox: _mailbox,
-          upserts: [MailHeaderRecord(
-            id: headers.first.id,
-            remote: headers.first.remote,
-            envelope: headers.first.envelope,
-            flags: observed,
-          )],
-          tombstones: [],
-          next: MailCursor(mailbox: _mailbox, value: 'original-cursor'),
-          hasMore: false,
-        ),
-        expectedCursor: _value(await repository.readCursor(_mailbox)),
-        lease: MailAccountSession(_account).begin(),
-      ));
-    } finally {
-      await repository.close();
-    }
-    expect(_snapshot(file), before);
-
-    repository = _value(await _open(file));
-    try {
-      final headers = _value(await repository.listHeaders(_mailbox));
-      expect(headers.first.flags, observed);
-      expect(headers.last.flags, isNull);
-      expect(headers.first.remote, _remote(1));
-      expect(_value(await repository.search(_account, 'alpha')).single.header.flags,
-          observed);
-      final queue = _value(await repository.recoverOutbox(_account)).single;
-      expect(queue.prepared.wire.bytes, _queued.prepared.wire.bytes);
-      expect(_value(await repository.loadDraft(_account, _draft.id))!.revision, 9);
-    } finally {
-      await repository.close();
-    }
-
-    final database = sqlite.sqlite3.open(file.path);
-    try {
-      expect(database.userVersion, 3);
-      expect(database.select('PRAGMA foreign_key_check'), isEmpty);
-      for (final invalid in <Object?>[-1, 32, 0.5, 'invalid']) {
-        expect(() => database.execute('UPDATE messages SET flags=?', [invalid]),
-            throwsA(isA<sqlite.SqliteException>()));
+  test(
+    'v2 upgrade preserves existing search and flags survive file reopen',
+    () async {
+      _upgradeFixtureV2(file);
+      final before = _snapshot(file);
+      var repository = _value(await _open(file));
+      const observed = MailMessageFlags(
+        isRead: true,
+        isAnswered: true,
+        isDraft: true,
+      );
+      try {
+        expect(
+          _value(await repository.search(_account, 'seeded')).single.header.id,
+          MailMessageId('message-1'),
+        );
+        final headers = _value(await repository.listHeaders(_mailbox));
+        expect(headers.map((header) => header.flags), everyElement(isNull));
+        expect(headers.map((header) => header.remote), [
+          _remote(1),
+          _remote(2),
+        ]);
+        _value(
+          await repository.commitSyncPage(
+            MailSyncPage(
+              mailbox: _mailbox,
+              upserts: [
+                MailHeaderRecord(
+                  id: headers.first.id,
+                  remote: headers.first.remote,
+                  envelope: headers.first.envelope,
+                  flags: observed,
+                ),
+              ],
+              tombstones: [],
+              next: MailCursor(mailbox: _mailbox, value: 'original-cursor'),
+              hasMore: false,
+            ),
+            expectedCursor: _value(await repository.readCursor(_mailbox)),
+            lease: MailAccountSession(_account).begin(),
+          ),
+        );
+      } finally {
+        await repository.close();
       }
-      expect(database.select('SELECT flags FROM messages ORDER BY id')
-          .map((row) => row['flags']), [13, null]);
-    } finally {
-      database.close();
-    }
-  });
+      expect(_snapshot(file), before);
 
-  test('interrupted v2 flag migration rolls back the column and retains FTS', () async {
-    _upgradeFixtureV2(file);
-    final before = _snapshot(file);
-    final failed = await _open(file, faultInjector: (checkpoint) {
-      if (checkpoint == MailStoreCheckpoint.migrationCreated) {
-        throw const MailStoreStorageException(MailProblemCode.storageFailure);
+      repository = _value(await _open(file));
+      try {
+        final headers = _value(await repository.listHeaders(_mailbox));
+        expect(headers.first.flags, observed);
+        expect(headers.last.flags, isNull);
+        expect(headers.first.remote, _remote(1));
+        expect(
+          _value(
+            await repository.search(_account, 'alpha'),
+          ).single.header.flags,
+          observed,
+        );
+        final queue = _value(await repository.recoverOutbox(_account)).single;
+        expect(queue.prepared.wire.bytes, _queued.prepared.wire.bytes);
+        expect(
+          _value(await repository.loadDraft(_account, _draft.id))!.revision,
+          9,
+        );
+      } finally {
+        await repository.close();
       }
-    });
-    expect(_problem(failed), MailProblemCode.storageFailure);
-    expect(_snapshot(file), before);
-    final database = sqlite.sqlite3.open(file.path);
-    try {
-      expect(database.userVersion, 2);
-      expect(database.select('PRAGMA table_info(messages)').map((row) => row['name']),
-          isNot(contains('flags')));
-      expect(database.select('SELECT content FROM mail_fts').single['content'],
-          'seeded retained index');
-    } finally {
-      database.close();
-    }
-    final repository = _value(await _open(file));
-    try {
-      expect(_value(await repository.listHeaders(_mailbox)).first.flags, isNull);
-      expect(_value(await repository.search(_account, 'seeded')).single.header.id,
-          MailMessageId('message-1'));
-    } finally {
-      await repository.close();
-    }
-  });
+
+      final database = sqlite.sqlite3.open(file.path);
+      try {
+        expect(database.userVersion, 3);
+        expect(database.select('PRAGMA foreign_key_check'), isEmpty);
+        for (final invalid in <Object?>[-1, 32, 0.5, 'invalid']) {
+          expect(
+            () => database.execute('UPDATE messages SET flags=?', [invalid]),
+            throwsA(isA<sqlite.SqliteException>()),
+          );
+        }
+        expect(
+          database
+              .select('SELECT flags FROM messages ORDER BY id')
+              .map((row) => row['flags']),
+          [13, null],
+        );
+      } finally {
+        database.close();
+      }
+    },
+  );
+
+  test(
+    'interrupted v2 flag migration rolls back the column and retains FTS',
+    () async {
+      _upgradeFixtureV2(file);
+      final before = _snapshot(file);
+      final failed = await _open(
+        file,
+        faultInjector: (checkpoint) {
+          if (checkpoint == MailStoreCheckpoint.migrationCreated) {
+            throw const MailStoreStorageException(
+              MailProblemCode.storageFailure,
+            );
+          }
+        },
+      );
+      expect(_problem(failed), MailProblemCode.storageFailure);
+      expect(_snapshot(file), before);
+      final database = sqlite.sqlite3.open(file.path);
+      try {
+        expect(database.userVersion, 2);
+        expect(
+          database
+              .select('PRAGMA table_info(messages)')
+              .map((row) => row['name']),
+          isNot(contains('flags')),
+        );
+        expect(
+          database.select('SELECT content FROM mail_fts').single['content'],
+          'seeded retained index',
+        );
+      } finally {
+        database.close();
+      }
+      final repository = _value(await _open(file));
+      try {
+        expect(
+          _value(await repository.listHeaders(_mailbox)).first.flags,
+          isNull,
+        );
+        expect(
+          _value(await repository.search(_account, 'seeded')).single.header.id,
+          MailMessageId('message-1'),
+        );
+      } finally {
+        await repository.close();
+      }
+    },
+  );
 
   test(
     'upgraded FTS requires bounded backfill without loading attachment or raw bytes',
@@ -553,10 +598,14 @@ void _upgradeFixtureV2(File file) {
     for (final statement in schemaV2) {
       database.execute(statement);
     }
-    database.execute('INSERT INTO mail_fts(account,message,content) VALUES(?,?,?)',
-        [_account.value, 'message-1', 'seeded retained index']);
-    database.execute('INSERT INTO index_state(account,message) VALUES(?,?)',
-        [_account.value, 'message-1']);
+    database.execute(
+      'INSERT INTO mail_fts(account,message,content) VALUES(?,?,?)',
+      [_account.value, 'message-1', 'seeded retained index'],
+    );
+    database.execute('INSERT INTO index_state(account,message) VALUES(?,?)', [
+      _account.value,
+      'message-1',
+    ]);
     database.userVersion = 2;
     database.execute('COMMIT');
   } finally {

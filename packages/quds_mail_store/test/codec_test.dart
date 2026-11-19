@@ -21,13 +21,16 @@ void main() {
         (4, MailMessageFlags(isAnswered: true)),
         (8, MailMessageFlags(isDraft: true)),
         (16, MailMessageFlags(isDeleted: true)),
-        (31, MailMessageFlags(
-          isRead: true,
-          isFlagged: true,
-          isAnswered: true,
-          isDraft: true,
-          isDeleted: true,
-        )),
+        (
+          31,
+          MailMessageFlags(
+            isRead: true,
+            isFlagged: true,
+            isAnswered: true,
+            isDraft: true,
+            isDeleted: true,
+          ),
+        ),
       ]) {
         expect(MailStoreCodec.encodeFlags(flags), encoded);
         expect(MailStoreCodec.decodeFlags(encoded), flags);
@@ -38,11 +41,13 @@ void main() {
       for (final invalid in [-1, 32, 0xffffffff]) {
         expect(
           () => MailStoreCodec.decodeFlags(invalid),
-          throwsA(isA<FormatException>().having(
-            (error) => error.message,
-            'message',
-            'Invalid persisted mail data.',
-          )),
+          throwsA(
+            isA<FormatException>().having(
+              (error) => error.message,
+              'message',
+              'Invalid persisted mail data.',
+            ),
+          ),
         );
       }
     });
