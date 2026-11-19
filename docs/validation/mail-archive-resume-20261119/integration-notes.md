@@ -104,3 +104,26 @@ does not alter formatting, analysis or behavioral test selection.
 ### Preserved licence-source whitespace
 
 The imported `packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSES_SOURCES` retains its source bytes, including final blank lines. Its SHA-256 is `0c3ab78745569d848b7c83a486183bce42b9643561084d6d6f67eb0229c79869`, identical to app-gaps commit `0e03878b028ec25ed3d84a790633433eafc3bede`. It is the fourth exact whitespace exception, alongside the three raw patch captures above. The source inventory and static licence verification still bind its complete bytes. No production Dart file is excluded. The pinned Dart formatter also normalized the incoming macOS-only native gate; that gate is analyzed but not executed on Linux.
+
+### Linux ruler reference correction
+
+The final combined editor run exposed two stale Linux selection reference PNGs:
+they encoded placeholder Ahem blocks in the rulers. The incoming registered
+ruler font renders readable digits. The old/master, current/test and isolated
+pixel differences are preserved under `ruler-golden-review/`; each comparison
+changes exactly 1,290 pixels (0.28%), all within the top/left 24-pixel rulers,
+with zero changed document-body or selection pixels. Root and the runtime
+reviewer inspected the images. The two references were copied byte-for-byte
+from those captures; the comparator and test assertions were not changed.
+The Linux provenance JSON retains its original record and identifies this
+reference update. The complete final acceptance is rerun on the preserved
+updated fixture source; older mail and incoming executions do not add to the
+final accepted total.
+
+The added spaCy qualification explicitly analyzes `lib` and `test` with fatal
+infos/warnings. A broader exploratory package scan found nine inherited info
+lints only in unchanged `tool/consume_distribution.dart` (Git blob
+`644c0e686fc47e328eebb5b7705b2ee84827cf80`, identical to `caf378f4`). Its raw
+diagnostic is retained as superseded; unrelated distribution-CLI edits are
+outside this integration. All changed installer/backend code and its tests
+remain under the strict final gate.

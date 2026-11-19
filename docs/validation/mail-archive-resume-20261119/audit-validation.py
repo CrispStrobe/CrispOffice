@@ -737,8 +737,11 @@ class Audit:
         self.incoming_test_summary(parsed, read_json(folder / "test-summary.json"), "incoming spaCy tests")
         self.incoming_test_summary(parsed, receipt["summary"], "incoming spaCy receipt")
         reports[0].update({k: v for k, v in parsed.items() if k != "cases"})
-        self.check(reports[1]["argv"][1:] == ["analyze", "--fatal-infos", "--fatal-warnings"],
-                   "incoming spaCy strict full-package analysis command differs")
+        analysis_targets = ["lib", "test"]
+        self.check(receipt["analysis_targets"] == analysis_targets
+                   and read_json(self.workspace / "runtime/incoming-test-plan.json")["spacy_analysis_targets"] == analysis_targets
+                   and reports[1]["argv"][1:] == ["analyze", "--fatal-infos", "--fatal-warnings", *analysis_targets],
+                   "incoming spaCy strict library/test analysis command differs")
         formatted = ["lib/src/installer_io.dart", "lib/src/native_backend.dart",
                      "lib/src/native_backend_unsupported.dart", "test/ner_removal_test.dart"]
         self.check(receipt["format_targets"] == formatted
