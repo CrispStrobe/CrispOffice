@@ -53,6 +53,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   bool _connecting = false;
   String? _error;
   String? _notice;
+  String? _warning;
 
   @override
   void dispose() {
@@ -96,6 +97,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _connecting = true;
       _error = null;
       _notice = null;
+      _warning = null;
     });
     final email = _email.text.trim();
     final domain = email.contains('@') ? email.split('@').last : '';
@@ -193,6 +195,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _busy = true;
       _error = null;
       _notice = null;
+      _warning = null;
       _mailbox = mailbox;
       _selected = null;
       _messages = const <mail.MimeMessage>[];
@@ -231,6 +234,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _busy = true;
       _error = null;
       _notice = null;
+      _warning = null;
     });
     try {
       final full = await client.fetchMessageContents(message);
@@ -272,6 +276,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _busy = true;
       _error = null;
       _notice = widget.strings.sending;
+      _warning = null;
     });
     try {
       final builder =
@@ -290,10 +295,22 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           _notice = widget.strings.messageSent;
         });
       }
+    } on mail.MailSendPostSubmissionException catch (error) {
+      if (_currentSession(client, generation)) {
+        setState(() {
+          _busy = false;
+          _notice = widget.strings.messageSent;
+          _warning = <String>[
+            if (error.sentCopyError != null) widget.strings.sentCopyWarning,
+            if (error.cleanupError != null) widget.strings.sentCleanupWarning,
+          ].join('\n');
+        });
+      }
     } on Object catch (error) {
       if (_currentSession(client, generation)) {
         setState(() {
           _busy = false;
+          _notice = null;
           _error = '$error';
         });
       }
@@ -318,6 +335,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _selected = null;
       _error = null;
       _notice = null;
+      _warning = null;
     });
     _retireReader(previous);
     unawaited(_disconnectQuietly(client));
@@ -487,17 +505,29 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     return Column(
       children: <Widget>[
         if (_busy) const LinearProgressIndicator(minHeight: 2),
-        if (_error != null || _notice != null)
+        if (_error != null || _notice != null || _warning != null)
           Material(
-            color: _error == null
-                ? Theme.of(context).colorScheme.secondaryContainer
-                : Theme.of(context).colorScheme.errorContainer,
+            color: _error != null
+                ? Theme.of(context).colorScheme.errorContainer
+                : _warning != null
+                ? Theme.of(context).colorScheme.tertiaryContainer
+                : Theme.of(context).colorScheme.secondaryContainer,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: SelectableText(_error ?? _notice ?? '', maxLines: 2),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        if (_notice != null)
+                          SelectableText(_notice!, maxLines: 2),
+                        if (_warning != null)
+                          SelectableText(_warning!, maxLines: 3),
+                        if (_error != null)
+                          SelectableText(_error!, maxLines: 2),
+                      ],
+                    ),
                   ),
                 ],
               ),

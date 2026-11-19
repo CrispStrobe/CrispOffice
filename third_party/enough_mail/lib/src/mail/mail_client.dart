@@ -6,6 +6,7 @@ import 'package:collection/collection.dart' show IterableExtension;
 import 'package:synchronized/synchronized.dart';
 
 import '../../enough_mail.dart';
+import '../private/mail/send_message_transaction.dart';
 import '../private/util/client_base.dart';
 import '../private/util/non_nullable.dart';
 
@@ -963,7 +964,11 @@ class MailClient {
   ///
   /// Optionally specify the [sentMailbox] when the mail system does not
   /// support mailbox flags.
-  /// first
+  ///
+  /// SMTP submission completes before any copy is appended to Sent. If the
+  /// server accepted the message but filing its copy or closing the outgoing
+  /// connection fails, throws [MailSendPostSubmissionException]. Do not retry
+  /// SMTP submission for that outcome; the message has already been submitted.
   Future<void> sendMessage(
     MimeMessage message, {
     MailAddress? from,
@@ -974,50 +979,35 @@ class MailClient {
     List<MailAddress>? recipients,
   }) async {
     await _prepareConnect();
-    final futures = <Future>[
-      _outgoingLock.synchronized(
-        () => _sendMessageViaOutgoing(
+    await _outgoingLock.synchronized(
+      () => submitMessageAndStoreCopy(
+        this,
+        submit: () => _outgoingMailClient.sendMessage(
           message,
-          from,
-          use8BitEncoding,
-          recipients,
+          from: from,
+          use8BitEncoding: use8BitEncoding,
           supportUnicode: supportUnicode,
+          recipients: recipients,
         ),
+        storeCopy: appendToSent && _incomingMailClient.supportsAppendingMessages
+            ? () async {
+                final target = sentMailbox ?? getMailbox(MailboxFlag.sent);
+                if (target == null) {
+                  throw MailException(
+                    this,
+                    'Message was submitted, but no Sent mailbox was found.',
+                  );
+                }
+                await appendMessage(
+                  message,
+                  target,
+                  flags: [MessageFlags.seen],
+                );
+              }
+            : null,
+        disconnect: _outgoingMailClient.disconnect,
       ),
-    ];
-    if (appendToSent && _incomingMailClient.supportsAppendingMessages) {
-      sentMailbox ??= getMailbox(MailboxFlag.sent);
-      if (sentMailbox == null) {
-        _incomingMailClient.log(
-          'Error:  unable to append sent message: no no mailbox with '
-          'flag sent found in $mailboxes',
-        );
-      } else {
-        futures.add(
-          appendMessage(message, sentMailbox, flags: [MessageFlags.seen]),
-        );
-      }
-    }
-
-    await Future.wait(futures);
-  }
-
-  Future _sendMessageViaOutgoing(
-    MimeMessage message,
-    MailAddress? from,
-    bool use8BitEncoding,
-    List<MailAddress>? recipients, {
-    bool supportUnicode = false,
-  }) async {
-    await _outgoingMailClient.sendMessage(
-      message,
-      from: from,
-      use8BitEncoding: use8BitEncoding,
-      supportUnicode: supportUnicode,
-      recipients: recipients,
     );
-
-    await _outgoingMailClient.disconnect();
   }
 
   /// Appends the [message] to the drafts mailbox

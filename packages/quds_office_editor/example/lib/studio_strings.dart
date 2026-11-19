@@ -154,5 +154,15 @@ final class StudioStrings {
   String get sending => _t('Sending…', 'Wird gesendet …', 'جارٍ الإرسال…');
   String get messageSent =>
       _t('Message sent', 'Nachricht gesendet', 'تم إرسال الرسالة');
+  String get sentCopyWarning => _t(
+    'A copy could not be saved to Sent.',
+    'Eine Kopie konnte nicht im Ordner „Gesendet“ gespeichert werden.',
+    'تعذّر حفظ نسخة في مجلد «المرسلة».',
+  );
+  String get sentCleanupWarning => _t(
+    'The outgoing connection could not close cleanly.',
+    'Die ausgehende Verbindung konnte nicht sauber geschlossen werden.',
+    'تعذّر إغلاق اتصال الإرسال بشكل سليم.',
+  );
   String get cancel => _t('Cancel', 'Abbrechen', 'إلغاء');
 }

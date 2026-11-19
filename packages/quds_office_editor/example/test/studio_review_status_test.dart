@@ -41,8 +41,10 @@ Future<WordEditorController> _studio(
   _StatusProvider provider, {
   int languageSteps = 0,
 }) async {
-  await tester.binding.setSurfaceSize(const Size(1440, 900));
-  addTearDown(() => tester.binding.setSurfaceSize(null));
+  tester.view.devicePixelRatio = 1;
+  tester.view.physicalSize = const Size(1440, 900);
+  addTearDown(tester.view.resetDevicePixelRatio);
+  addTearDown(tester.view.resetPhysicalSize);
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await tester.pump();
   final controller = tester
@@ -178,6 +180,77 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets(
+    'compact footer exposes partial and paused status and opens review',
+    (tester) async {
+      final provider = _StatusProvider(
+        status: OfficeProofingStatus.unavailable,
+      );
+      final controller = await _studio(tester, provider);
+      await _finish(tester, controller, controller.proofing.checkNow());
+      expect(controller.proofing.summary.hasResults, isTrue);
+      expect(controller.proofing.summary.complete, isFalse);
+      expect(controller.proofing.summary.issues, isEmpty);
+      final revision = controller.contentRevision;
+      tester.view.physicalSize = const Size(390, 1000);
+      tester.platformDispatcher.textScaleFactorTestValue = 1.4;
+      addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+
+      for (final state in [
+        (
+          paused: false,
+          label: '0 issues · partial check',
+          icon: Icons.info_outline,
+        ),
+        (
+          paused: true,
+          label: 'Live checking paused',
+          icon: Icons.pause_circle_outline,
+        ),
+      ]) {
+        if (state.paused) controller.proofing.enabled = false;
+        await tester.pump();
+        final media = MediaQuery.of(
+          tester.element(find.byType(QudsWordEditor)),
+        );
+        expect(media.size, const Size(390, 1000));
+        expect(media.textScaler.scale(10), 14);
+        final button = find.byWidgetPredicate(
+          (widget) =>
+              widget is IconButton &&
+              (widget.tooltip ?? '').startsWith(state.label),
+        );
+        expect(button.hitTestable(), findsOneWidget);
+        expect(
+          find.descendant(of: button, matching: find.byIcon(state.icon)),
+          findsOneWidget,
+        );
+        if (!state.paused) {
+          expect(
+            tester.widget<IconButton>(button).tooltip,
+            contains('Dictionary unavailable'),
+          );
+        }
+        expect(tester.takeException(), isNull);
+        expect(controller.reviewPaneVisible, isFalse);
+
+        await tester.tap(button);
+        await tester.pump();
+        expect(controller.reviewPaneVisible, isTrue);
+        expect(controller.reviewPaneTab, WordReviewPaneTab.proofing);
+        expect(find.byKey(const ValueKey('word-review-pane')), findsOneWidget);
+        expect(controller.contentRevision, revision);
+        expect(provider.calls, 1);
+        expect(tester.takeException(), isNull);
+        controller.closeReviewPane();
+        await tester.pump();
+      }
+
+      await tester.pumpWidget(const SizedBox.shrink());
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   testWidgets('footer labels a pending typing debounce as waiting', (
     tester,
