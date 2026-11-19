@@ -1,0 +1,64 @@
+{
+  "commands": [
+    {
+      "accepted": true,
+      "changed_source_paths": [],
+      "command": [
+        "/workspace/scratch/f815a4ae580f/runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/pdf_save_state_test.dart",
+        "test/pdf_surface_test.dart",
+        "test/word_review_controller_test.dart",
+        "test/word_review_dialog_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_editor",
+      "elapsed_seconds": 27.362,
+      "exit_code": 0,
+      "expected_test_files": [
+        "packages/quds_office_editor/test/pdf_save_state_test.dart",
+        "packages/quds_office_editor/test/pdf_surface_test.dart",
+        "packages/quds_office_editor/test/word_review_controller_test.dart",
+        "packages/quds_office_editor/test/word_review_dialog_test.dart"
+      ],
+      "finished_at_utc": "2026-11-19T17:56:47.127788+00:00",
+      "head_after": "358544a48466c942873a4718a87fa9d1c2be11f7",
+      "head_before": "358544a48466c942873a4718a87fa9d1c2be11f7",
+      "name": "pdf-and-review",
+      "source_after_sha256": "6dc16359cfdbfa028358b1e39d17f49fb488ee9890d3b97b0574f0433f6eb4aa",
+      "source_before_sha256": "6dc16359cfdbfa028358b1e39d17f49fb488ee9890d3b97b0574f0433f6eb4aa",
+      "started_at_utc": "2026-11-19T17:56:19.762489+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "7e8941d54f6354f89779ebc2a7b9a7e1dad35f41eb011a040c5bf06f7574e743",
+      "test_cases_sha256": "f9d4bfd2b140b7a63c23ce0cb57294a00cd5a20e0fce2dae0fe742d0c5538cfb",
+      "test_counts": {
+        "failed": 0,
+        "passed": 52,
+        "skipped": 0
+      },
+      "timeout_seconds": 600
+    }
+  ],
+  "dependencies_unchanged": true,
+  "executed_runner": "executed-runner.py",
+  "finished_at_utc": "2026-11-19T17:56:54.068812+00:00",
+  "head_at_finish": "358544a48466c942873a4718a87fa9d1c2be11f7",
+  "head_at_start": "358544a48466c942873a4718a87fa9d1c2be11f7",
+  "package_config_sha256": "5b34c4df660897721b774edf91fcfa9b57e1a29311705001e5e331babe0309a3",
+  "package_config_unchanged": true,
+  "parser_sha256": "299ce6d8fffae555e9a0381903815156fd7d416046e1dbd66c1a2e4bb344a6a5",
+  "phase": "editor",
+  "readiness_receipt_sha256": "886302d11ac73dfa56ead721bd07941f085e3379e018e9bee3c062116fa07d37",
+  "runner_sha256": "b7a7c3e5b5b0ccba7941ba936e0f4d12c7b440ac82816d5a9f82499248e07faf",
+  "runtime_receipt_sha256": "42740899a85b0df93963eb420bb8e0640b62d026739cd405537ed228de0a0161",
+  "runtime_receipts_unchanged": true,
+  "started_at_utc": "2026-11-19T17:56:19.364934+00:00",
+  "status": "passed",
+  "test_totals": {
+    "failed": 0,
+    "passed": 52,
+    "skipped": 0
+  }
+}

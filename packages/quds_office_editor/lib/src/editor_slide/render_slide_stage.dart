@@ -1039,10 +1039,13 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     );
   }
 
-  Color _textColor(PmlShape shape) {
+  Color _textColor(PmlShape shape, {Color? background}) {
     final int? own = int.tryParse(shape.textColor, radix: 16);
     if (own != null) {
-      return Color(0xFF000000 | own);
+      final Color authored = Color(0xFF000000 | own);
+      return background == null
+          ? authored
+          : _theme.resolveDocumentColor(authored, background: background);
     }
     final int? fill = int.tryParse(shape.fillColor, radix: 16);
     final int rgb = fill ?? (_theme.slideBackground.toARGB32() & 0xFFFFFF);
@@ -1053,6 +1056,74 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         ? const Color(0xFFFFFFFF)
         : const Color(0xFF1A1A1A);
   }
+
+  Color? _solidTextBackground(
+    PmlSlide target,
+    PmlShape shape,
+    Rect rect, {
+    Map<int, PmlAnimSample>? samples,
+    Set<int>? skipIds,
+  }) {
+    if (!_theme.adaptDocumentColors) return null;
+    final sample = samples?[shape.id] ?? PmlAnimSample.identity;
+    if (!_staticSample(sample)) return null;
+    final int? own = int.tryParse(shape.fillColor, radix: 16);
+    if (own != null && !_growsWithText(rect)) {
+      return Color(0xFF000000 | own);
+    }
+    if (own != null) return null;
+    if (shape.transform.rotationDegrees.abs() >= 0.01) return null;
+    // Very short imported text boxes grow to fit their contents. Include that
+    // possible extent before deciding that the dark slide lies beneath them.
+    final Rect textBounds = _growsWithText(rect)
+        ? Rect.fromLTWH(rect.left, rect.top, rect.width, 208)
+        : rect;
+    Color? background = _theme.slideBackground;
+    for (final previous in target.shapes) {
+      if (identical(previous, shape)) break;
+      if (skipIds?.contains(previous.id) ?? false) continue;
+      final previousSample = samples?[previous.id] ?? PmlAnimSample.identity;
+      if (!previousSample.visible || previousSample.opacity <= 0.01) continue;
+      // Animated transforms/clips can expose arbitrary mixed backing. The
+      // authored colour is safer than treating it as untouched dark paper.
+      if (!_staticSample(previousSample)) return null;
+      final Rect previousRect = _shapeRect(previous);
+      final double radians = previous.transform.rotationDegrees * math.pi / 180;
+      final double cosine = math.cos(radians).abs();
+      final double sine = math.sin(radians).abs();
+      final Rect bounds = Rect.fromCenter(
+        center: previousRect.center,
+        width: previousRect.width * cosine + previousRect.height * sine,
+        height: previousRect.width * sine + previousRect.height * cosine,
+      );
+      if (!bounds.overlaps(textBounds)) continue;
+      if (previous.visual != null ||
+          previous.table != null ||
+          previous.hasMedia ||
+          previous.text.isNotEmpty ||
+          previous.transform.rotationDegrees.abs() >= 0.01) {
+        background = null;
+        continue;
+      }
+      final int? fill = int.tryParse(previous.fillColor, radix: 16);
+      if (fill == null) continue;
+      final bool covers =
+          previousRect.left <= textBounds.left &&
+          previousRect.top <= textBounds.top &&
+          previousRect.right >= textBounds.right &&
+          previousRect.bottom >= textBounds.bottom;
+      background = covers ? Color(0xFF000000 | fill) : null;
+    }
+    return background;
+  }
+
+  static bool _staticSample(PmlAnimSample sample) =>
+      sample.opacity >= 0.999 &&
+      !sample.usesClip &&
+      sample.dx == 0 &&
+      sample.dy == 0 &&
+      (sample.scale - 1).abs() <= 0.001 &&
+      sample.rotationDeg.abs() <= 0.05;
 
   /// Boxes too short for a line (e.g. `cy="0"` text boxes) grow with their
   /// text, as PowerPoint does, instead of clipping it away.
@@ -1167,7 +1238,10 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         if (body.isEmpty && !editingCell) {
           continue;
         }
-        final Color ink = _hexColor(cell.textColor, const Color(0xFF1A1A1A));
+        final Color ink = _theme.resolveDocumentColor(
+          _hexColor(cell.textColor, const Color(0xFF1A1A1A)),
+          background: _hexColor(cell.fillColor, const Color(0xFFFFFFFF)),
+        );
         final TextPainter painter = PaintRunText.plain(
           text: body.isEmpty ? ' ' : body,
           fontSize: 13,
@@ -1219,7 +1293,13 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     }
   }
 
-  void _paintShapeText(Canvas canvas, PmlShape shape, Rect r, {String? text}) {
+  void _paintShapeText(
+    Canvas canvas,
+    PmlShape shape,
+    Rect r, {
+    String? text,
+    Color? background,
+  }) {
     final bool isEdit = editing && identical(shape, selected);
     final String body = text ?? shape.text;
     if (body.isEmpty && !isEdit) {
@@ -1229,7 +1309,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     if (!_growsWithText(r)) {
       canvas.clipRect(r);
     }
-    final Color color = _textColor(shape);
+    final Color color = _textColor(shape, background: background);
     final TextPainter painter = _shapePainter(shape, body, r, color)
       ..layout(maxWidth: r.width - 16);
     final Offset origin = Offset(r.left + 8, r.top + 8);
@@ -1347,8 +1427,20 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         onImageReady: markNeedsPaint,
       );
     } else {
-      _paintShapeFill(canvas, shape, r, fillColor ?? shape.fillColor);
-      _paintShapeText(canvas, shape, r, text: text);
+      final String paintedFill = fillColor ?? shape.fillColor;
+      final int? fill = int.tryParse(paintedFill, radix: 16);
+      _paintShapeFill(canvas, shape, r, paintedFill);
+      // Morph can change the fill independently of the model shape. Resolve
+      // against that painted fill; unfilled morph backing remains unknown.
+      _paintShapeText(
+        canvas,
+        shape,
+        r,
+        text: text,
+        background: fill == null || _growsWithText(r)
+            ? null
+            : Color(0xFF000000 | fill),
+      );
     }
     canvas.restore();
   }
@@ -1405,7 +1497,18 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         );
       } else {
         _paintShapeFill(canvas, shape, r, shape.fillColor);
-        _paintShapeText(canvas, shape, r);
+        _paintShapeText(
+          canvas,
+          shape,
+          r,
+          background: _solidTextBackground(
+            target,
+            shape,
+            r,
+            samples: samples,
+            skipIds: skipIds,
+          ),
+        );
       }
       if (shape.hasMedia) {
         _paintMediaBadge(canvas, r);

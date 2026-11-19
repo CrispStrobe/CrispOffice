@@ -1,0 +1,67 @@
+{
+  "commands": [
+    {
+      "accepted": true,
+      "changed_source_paths": [],
+      "command": [
+        "/workspace/scratch/f815a4ae580f/runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/studio_desktop_menu_test.dart",
+        "test/studio_file_menu_test.dart",
+        "test/studio_ribbon_preferences_test.dart",
+        "test/studio_ribbon_customization_test.dart",
+        "test/widget_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_editor/example",
+      "elapsed_seconds": 49.381,
+      "exit_code": 0,
+      "expected_test_files": [
+        "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "packages/quds_office_editor/example/test/studio_ribbon_preferences_test.dart",
+        "packages/quds_office_editor/example/test/widget_test.dart"
+      ],
+      "finished_at_utc": "2026-11-19T17:47:56.526183+00:00",
+      "head_after": "a9c1ce49993bda4fc29b1cf3397a7ee2731e799c",
+      "head_before": "a9c1ce49993bda4fc29b1cf3397a7ee2731e799c",
+      "name": "desktop-ribbon-lifecycle",
+      "source_after_sha256": "a12f7d4cd1e315eeaff9b34398805c92bd65bae15cd6d9c4d9129f80b2d0808c",
+      "source_before_sha256": "a12f7d4cd1e315eeaff9b34398805c92bd65bae15cd6d9c4d9129f80b2d0808c",
+      "started_at_utc": "2026-11-19T17:47:07.142519+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "415c1ccd4bcc7c9675a49e03cf350df4d2e2b154d8a4204aa3497039bf9d8d3a",
+      "test_cases_sha256": "ecd6beec6b1681986a04e59468cb19be5f1aab2859f60858b5549c0c2dc14a97",
+      "test_counts": {
+        "failed": 0,
+        "passed": 27,
+        "skipped": 0
+      },
+      "timeout_seconds": 600
+    }
+  ],
+  "dependencies_unchanged": true,
+  "executed_runner": "executed-runner.py",
+  "finished_at_utc": "2026-11-19T17:47:58.018567+00:00",
+  "head_at_finish": "a9c1ce49993bda4fc29b1cf3397a7ee2731e799c",
+  "head_at_start": "a9c1ce49993bda4fc29b1cf3397a7ee2731e799c",
+  "package_config_sha256": "5b34c4df660897721b774edf91fcfa9b57e1a29311705001e5e331babe0309a3",
+  "package_config_unchanged": true,
+  "parser_sha256": "299ce6d8fffae555e9a0381903815156fd7d416046e1dbd66c1a2e4bb344a6a5",
+  "phase": "studio",
+  "qualification_status": "Superseded by final Studio rerun after Arabic timestamp presentation changed; successful tests here are not counted again.",
+  "readiness_receipt_sha256": "886302d11ac73dfa56ead721bd07941f085e3379e018e9bee3c062116fa07d37",
+  "runner_sha256": "97370f0ea03a428577072b97217c2d3addb42184db54552e0a508d88bbd129a2",
+  "runtime_receipt_sha256": "42740899a85b0df93963eb420bb8e0640b62d026739cd405537ed228de0a0161",
+  "runtime_receipts_unchanged": true,
+  "started_at_utc": "2026-11-19T17:47:06.837264+00:00",
+  "status": "passed",
+  "test_totals": {
+    "failed": 0,
+    "passed": 27,
+    "skipped": 0
+  }
+}

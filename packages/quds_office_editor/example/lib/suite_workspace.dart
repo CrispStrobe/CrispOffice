@@ -14,6 +14,9 @@ import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart';
 import 'sample_library.dart';
 import 'studio_about.dart';
 import 'studio_chrome.dart';
+import 'studio_material_theme.dart';
+import 'studio_page_layout_dialog.dart';
+import 'studio_paragraph_dialog.dart';
 import 'studio_ribbon_customization.dart';
 import 'studio_ribbon_preferences.dart';
 import 'studio_desktop_menu.dart';
@@ -103,6 +106,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _showAnimPane = true;
   var _showPasteOptions = false;
   final GlobalKey _settingsButtonKey = GlobalKey();
+  final GlobalKey _themeScopeKey = GlobalKey();
   final GlobalKey _accountButtonKey = GlobalKey();
   final FocusNode _wordFocus = FocusNode(debugLabel: 'studio-word');
   final FocusNode _sheetFocus = FocusNode(debugLabel: 'studio-sheet');
@@ -282,12 +286,28 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     SuiteApp.pdf => _word,
   };
 
-  Color get _accent => switch (_app) {
+  Color get _appAccent => switch (_app) {
     SuiteApp.word => const Color(0xFF2B579A),
     SuiteApp.excel => const Color(0xFF217346),
     SuiteApp.powerpoint => const Color(0xFFB7472A),
     SuiteApp.pdf => const Color(0xFFC0392B),
   };
+
+  Color get _accent => _look == SuiteLook.highContrast
+      ? const Color(0xFFFFFF00)
+      : _look == SuiteLook.dark
+      ? Color.lerp(_appAccent, Colors.white, 0.48)!
+      : _appAccent;
+
+  ThemeData get _materialTheme => studioMaterialTheme(
+    Theme.of(context),
+    office: _officeTheme,
+    accent: _appAccent,
+    dark: _look != SuiteLook.light,
+    highContrast: _look == SuiteLook.highContrast,
+  );
+
+  BuildContext get _themedContext => _themeScopeKey.currentContext ?? context;
 
   OfficeTheme get _officeTheme {
     const String arabicBody = 'Tajawal';
@@ -393,197 +413,226 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   @override
   Widget build(BuildContext context) {
     final bool dark = _look != SuiteLook.light;
-    return StudioNativeMenus(
-      fileLabel: _t('File', 'Datei', 'ملف'),
-      editLabel: _t('Edit', 'Bearbeiten', 'تحرير'),
-      viewLabel: _t('View', 'Ansicht', 'عرض'),
-      windowLabel: _t('Window', 'Fenster', 'نافذة'),
-      aboutLabel: _t(
-        'About CrispOffice',
-        'Über CrispOffice',
-        'حول CrispOffice',
-      ),
-      settingsLabel: '${_strings.settings}…',
-      fileGroups: _desktopFileGroups,
-      editGroups: _desktopEditGroups,
-      onAbout: () => _showNativeDialog(_showAbout),
-      onSettings: () => _showNativeDialog(_openSettings),
-      child: CallbackShortcuts(
-        bindings: <ShortcutActivator, VoidCallback>{
-          if (StudioWindow.isDesktop) ...<ShortcutActivator, VoidCallback>{
-            _fileShortcut(LogicalKeyboardKey.keyN): _newActiveFile,
-            _fileShortcut(LogicalKeyboardKey.keyO): _openFile,
-            _fileShortcut(LogicalKeyboardKey.keyW): StudioWindow.close,
-          },
-          const SingleActivator(
-            LogicalKeyboardKey.keyS,
-            control: true,
-            shift: true,
-          ): _saveFileAs,
-          const SingleActivator(
-            LogicalKeyboardKey.keyS,
-            meta: true,
-            shift: true,
-          ): _saveFileAs,
-          const SingleActivator(LogicalKeyboardKey.keyZ, control: true): _undo,
-          const SingleActivator(LogicalKeyboardKey.keyZ, meta: true): _undo,
-          const SingleActivator(LogicalKeyboardKey.keyY, control: true): _redo,
-          const SingleActivator(LogicalKeyboardKey.keyY, meta: true): _redo,
-          const SingleActivator(
-            LogicalKeyboardKey.keyZ,
-            control: true,
-            shift: true,
-          ): _redo,
-          const SingleActivator(
-            LogicalKeyboardKey.keyZ,
-            meta: true,
-            shift: true,
-          ): _redo,
-          const SingleActivator(LogicalKeyboardKey.keyA, control: true):
-              _selectAll,
-          const SingleActivator(LogicalKeyboardKey.keyA, meta: true):
-              _selectAll,
-          const SingleActivator(LogicalKeyboardKey.keyC, control: true): _copy,
-          const SingleActivator(LogicalKeyboardKey.keyC, meta: true): _copy,
-          if (studioZoteroDesktopAvailable) ...{
-            const SingleActivator(
-              LogicalKeyboardKey.keyC,
-              control: true,
-              alt: true,
-            ): _addEditZoteroCitation,
-            const SingleActivator(
-              LogicalKeyboardKey.keyC,
-              meta: true,
-              alt: true,
-            ): _addEditZoteroCitation,
-            const SingleActivator(
-              LogicalKeyboardKey.keyR,
-              control: true,
-              alt: true,
-            ): _refreshZoteroCitations,
-            const SingleActivator(
-              LogicalKeyboardKey.keyR,
-              meta: true,
-              alt: true,
-            ): _refreshZoteroCitations,
-          },
-          const SingleActivator(LogicalKeyboardKey.keyX, control: true): _cut,
-          const SingleActivator(LogicalKeyboardKey.keyX, meta: true): _cut,
-          const SingleActivator(LogicalKeyboardKey.keyV, control: true): _paste,
-          const SingleActivator(LogicalKeyboardKey.keyV, meta: true): _paste,
-          const SingleActivator(
-            LogicalKeyboardKey.keyV,
-            control: true,
-            shift: true,
-          ): () =>
-              _pasteMode(OfficePasteMode.keepTextOnly),
-          const SingleActivator(
-            LogicalKeyboardKey.keyV,
-            meta: true,
-            shift: true,
-          ): () =>
-              _pasteMode(OfficePasteMode.keepTextOnly),
-          const SingleActivator(LogicalKeyboardKey.f5): _slideShowFromStart,
-          const SingleActivator(LogicalKeyboardKey.f5, shift: true):
-              _slideShowFromCurrent,
-          const SingleActivator(LogicalKeyboardKey.escape): _workspaceEscape,
-          const SingleActivator(LogicalKeyboardKey.keyF, control: true):
-              _openFind,
-          const SingleActivator(LogicalKeyboardKey.keyF, meta: true): _openFind,
-          const SingleActivator(LogicalKeyboardKey.keyH, control: true):
-              _openReplace,
-          const SingleActivator(LogicalKeyboardKey.keyH, meta: true):
-              _openReplace,
-          const SingleActivator(LogicalKeyboardKey.keyP, control: true):
-              _exportPdf,
-          const SingleActivator(LogicalKeyboardKey.keyP, meta: true):
-              _exportPdf,
-          const SingleActivator(LogicalKeyboardKey.f3): _findNext,
-          const SingleActivator(LogicalKeyboardKey.f3, shift: true):
-              _findPrevious,
-          const SingleActivator(LogicalKeyboardKey.f1): _openPdfSampleGallery,
-          const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
-          const SingleActivator(LogicalKeyboardKey.f7, shift: true):
-              _word.requestThesaurus,
-          const SingleActivator(LogicalKeyboardKey.keyB, control: true):
-              _toggleBold,
-          const SingleActivator(LogicalKeyboardKey.keyB, meta: true):
-              _toggleBold,
-          const SingleActivator(LogicalKeyboardKey.keyI, control: true):
-              _toggleItalic,
-          const SingleActivator(LogicalKeyboardKey.keyI, meta: true):
-              _toggleItalic,
-          const SingleActivator(LogicalKeyboardKey.keyU, control: true):
-              _toggleUnderline,
-          const SingleActivator(LogicalKeyboardKey.keyU, meta: true):
-              _toggleUnderline,
-          const SingleActivator(LogicalKeyboardKey.keyS, control: true):
-              _saveFile,
-          const SingleActivator(LogicalKeyboardKey.keyS, meta: true): _saveFile,
-          const SingleActivator(LogicalKeyboardKey.equal, control: true):
-              _shortcutZoomIn,
-          const SingleActivator(LogicalKeyboardKey.equal, meta: true):
-              _shortcutZoomIn,
-          const SingleActivator(LogicalKeyboardKey.numpadAdd, control: true):
-              _shortcutZoomIn,
-          const SingleActivator(LogicalKeyboardKey.add, control: true):
-              _shortcutZoomIn,
-          const SingleActivator(LogicalKeyboardKey.minus, control: true):
-              _shortcutZoomOut,
-          const SingleActivator(LogicalKeyboardKey.minus, meta: true):
-              _shortcutZoomOut,
-          const SingleActivator(
-            LogicalKeyboardKey.numpadSubtract,
-            control: true,
-          ): _shortcutZoomOut,
-          const SingleActivator(LogicalKeyboardKey.digit0, control: true):
-              _shortcutZoomReset,
-          const SingleActivator(LogicalKeyboardKey.digit0, meta: true):
-              _shortcutZoomReset,
-        },
-        child: StudioWindowScope(
-          onCloseRequested: _confirmCloseWorkspace,
-          onChanged: () {
-            if (mounted) {
-              setState(() {});
-            }
-          },
-          child: Focus(
-            autofocus: true,
-            onKeyEvent: _onWorkspaceDirectionKey,
-            child: Directionality(
-              textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
-              child: _app == SuiteApp.powerpoint && _slides.isPresenting
-                  ? ColoredBox(
-                      color: const Color(0xFF000000),
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: QudsSlideEditor(
-                              controller: _slides,
-                              focusNode: _slideFocus,
-                              config: _config,
+    return Theme(
+      data: _materialTheme,
+      child: Directionality(
+        textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
+        child: Builder(
+          key: _themeScopeKey,
+          builder: (themedContext) => StudioNativeMenus(
+            fileLabel: _t('File', 'Datei', 'ملف'),
+            editLabel: _t('Edit', 'Bearbeiten', 'تحرير'),
+            viewLabel: _t('View', 'Ansicht', 'عرض'),
+            windowLabel: _t('Window', 'Fenster', 'نافذة'),
+            aboutLabel: _t(
+              'About CrispOffice',
+              'Über CrispOffice',
+              'حول CrispOffice',
+            ),
+            settingsLabel: '${_strings.settings}…',
+            fileGroups: _desktopFileGroups,
+            editGroups: _desktopEditGroups,
+            onAbout: () => _showNativeDialog(_showAbout),
+            onSettings: () => _showNativeDialog(_openSettings),
+            child: CallbackShortcuts(
+              bindings: <ShortcutActivator, VoidCallback>{
+                if (StudioWindow
+                    .isDesktop) ...<ShortcutActivator, VoidCallback>{
+                  _fileShortcut(LogicalKeyboardKey.keyN): _newActiveFile,
+                  _fileShortcut(LogicalKeyboardKey.keyO): _openFile,
+                  _fileShortcut(LogicalKeyboardKey.keyW): StudioWindow.close,
+                },
+                const SingleActivator(
+                  LogicalKeyboardKey.keyS,
+                  control: true,
+                  shift: true,
+                ): _saveFileAs,
+                const SingleActivator(
+                  LogicalKeyboardKey.keyS,
+                  meta: true,
+                  shift: true,
+                ): _saveFileAs,
+                const SingleActivator(LogicalKeyboardKey.keyZ, control: true):
+                    _undo,
+                const SingleActivator(LogicalKeyboardKey.keyZ, meta: true):
+                    _undo,
+                const SingleActivator(LogicalKeyboardKey.keyY, control: true):
+                    _redo,
+                const SingleActivator(LogicalKeyboardKey.keyY, meta: true):
+                    _redo,
+                const SingleActivator(
+                  LogicalKeyboardKey.keyZ,
+                  control: true,
+                  shift: true,
+                ): _redo,
+                const SingleActivator(
+                  LogicalKeyboardKey.keyZ,
+                  meta: true,
+                  shift: true,
+                ): _redo,
+                const SingleActivator(LogicalKeyboardKey.keyA, control: true):
+                    _selectAll,
+                const SingleActivator(LogicalKeyboardKey.keyA, meta: true):
+                    _selectAll,
+                const SingleActivator(LogicalKeyboardKey.keyC, control: true):
+                    _copy,
+                const SingleActivator(LogicalKeyboardKey.keyC, meta: true):
+                    _copy,
+                if (studioZoteroDesktopAvailable) ...{
+                  const SingleActivator(
+                    LogicalKeyboardKey.keyC,
+                    control: true,
+                    alt: true,
+                  ): _addEditZoteroCitation,
+                  const SingleActivator(
+                    LogicalKeyboardKey.keyC,
+                    meta: true,
+                    alt: true,
+                  ): _addEditZoteroCitation,
+                  const SingleActivator(
+                    LogicalKeyboardKey.keyR,
+                    control: true,
+                    alt: true,
+                  ): _refreshZoteroCitations,
+                  const SingleActivator(
+                    LogicalKeyboardKey.keyR,
+                    meta: true,
+                    alt: true,
+                  ): _refreshZoteroCitations,
+                },
+                const SingleActivator(LogicalKeyboardKey.keyX, control: true):
+                    _cut,
+                const SingleActivator(LogicalKeyboardKey.keyX, meta: true):
+                    _cut,
+                const SingleActivator(LogicalKeyboardKey.keyV, control: true):
+                    _paste,
+                const SingleActivator(LogicalKeyboardKey.keyV, meta: true):
+                    _paste,
+                const SingleActivator(
+                  LogicalKeyboardKey.keyV,
+                  control: true,
+                  shift: true,
+                ): () =>
+                    _pasteMode(OfficePasteMode.keepTextOnly),
+                const SingleActivator(
+                  LogicalKeyboardKey.keyV,
+                  meta: true,
+                  shift: true,
+                ): () =>
+                    _pasteMode(OfficePasteMode.keepTextOnly),
+                const SingleActivator(LogicalKeyboardKey.f5):
+                    _slideShowFromStart,
+                const SingleActivator(LogicalKeyboardKey.f5, shift: true):
+                    _slideShowFromCurrent,
+                const SingleActivator(LogicalKeyboardKey.escape):
+                    _workspaceEscape,
+                const SingleActivator(LogicalKeyboardKey.keyF, control: true):
+                    _openFind,
+                const SingleActivator(LogicalKeyboardKey.keyF, meta: true):
+                    _openFind,
+                const SingleActivator(LogicalKeyboardKey.keyH, control: true):
+                    _openReplace,
+                const SingleActivator(LogicalKeyboardKey.keyH, meta: true):
+                    _openReplace,
+                const SingleActivator(LogicalKeyboardKey.keyP, control: true):
+                    _exportPdf,
+                const SingleActivator(LogicalKeyboardKey.keyP, meta: true):
+                    _exportPdf,
+                const SingleActivator(LogicalKeyboardKey.f3): _findNext,
+                const SingleActivator(LogicalKeyboardKey.f3, shift: true):
+                    _findPrevious,
+                const SingleActivator(LogicalKeyboardKey.f1):
+                    _openPdfSampleGallery,
+                const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
+                const SingleActivator(LogicalKeyboardKey.f7, shift: true):
+                    _word.requestThesaurus,
+                const SingleActivator(LogicalKeyboardKey.keyB, control: true):
+                    _toggleBold,
+                const SingleActivator(LogicalKeyboardKey.keyB, meta: true):
+                    _toggleBold,
+                const SingleActivator(LogicalKeyboardKey.keyI, control: true):
+                    _toggleItalic,
+                const SingleActivator(LogicalKeyboardKey.keyI, meta: true):
+                    _toggleItalic,
+                const SingleActivator(LogicalKeyboardKey.keyU, control: true):
+                    _toggleUnderline,
+                const SingleActivator(LogicalKeyboardKey.keyU, meta: true):
+                    _toggleUnderline,
+                const SingleActivator(LogicalKeyboardKey.keyS, control: true):
+                    _saveFile,
+                const SingleActivator(LogicalKeyboardKey.keyS, meta: true):
+                    _saveFile,
+                const SingleActivator(LogicalKeyboardKey.equal, control: true):
+                    _shortcutZoomIn,
+                const SingleActivator(LogicalKeyboardKey.equal, meta: true):
+                    _shortcutZoomIn,
+                const SingleActivator(
+                  LogicalKeyboardKey.numpadAdd,
+                  control: true,
+                ): _shortcutZoomIn,
+                const SingleActivator(LogicalKeyboardKey.add, control: true):
+                    _shortcutZoomIn,
+                const SingleActivator(LogicalKeyboardKey.minus, control: true):
+                    _shortcutZoomOut,
+                const SingleActivator(LogicalKeyboardKey.minus, meta: true):
+                    _shortcutZoomOut,
+                const SingleActivator(
+                  LogicalKeyboardKey.numpadSubtract,
+                  control: true,
+                ): _shortcutZoomOut,
+                const SingleActivator(LogicalKeyboardKey.digit0, control: true):
+                    _shortcutZoomReset,
+                const SingleActivator(LogicalKeyboardKey.digit0, meta: true):
+                    _shortcutZoomReset,
+              },
+              child: StudioWindowScope(
+                onCloseRequested: _confirmCloseWorkspace,
+                onChanged: () {
+                  if (mounted) {
+                    setState(() {});
+                  }
+                },
+                child: Focus(
+                  autofocus: true,
+                  onKeyEvent: _onWorkspaceDirectionKey,
+                  child: Directionality(
+                    textDirection: _arabic
+                        ? TextDirection.rtl
+                        : TextDirection.ltr,
+                    child: _app == SuiteApp.powerpoint && _slides.isPresenting
+                        ? ColoredBox(
+                            color: const Color(0xFF000000),
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: QudsSlideEditor(
+                                    controller: _slides,
+                                    focusNode: _slideFocus,
+                                    config: _config,
+                                  ),
+                                ),
+                                SizedBox(width: 260, child: _presenterPane()),
+                              ],
+                            ),
+                          )
+                        : Scaffold(
+                            backgroundColor: dark
+                                ? const Color(0xFF1B1B1B)
+                                : const Color(0xFFE8E8E8),
+                            body: Column(
+                              children: <Widget>[
+                                _titleBar(),
+                                _tabStrip(dark),
+                                _ribbon(dark),
+                                if (_showPasteOptions) _pasteOptionsBar(dark),
+                                Expanded(child: _body(dark)),
+                                _statusBar(),
+                              ],
                             ),
                           ),
-                          SizedBox(width: 260, child: _presenterPane()),
-                        ],
-                      ),
-                    )
-                  : Scaffold(
-                      backgroundColor: dark
-                          ? const Color(0xFF1B1B1B)
-                          : const Color(0xFFE8E8E8),
-                      body: Column(
-                        children: <Widget>[
-                          _titleBar(),
-                          _tabStrip(dark),
-                          _ribbon(dark),
-                          if (_showPasteOptions) _pasteOptionsBar(dark),
-                          Expanded(child: _body(dark)),
-                          _statusBar(),
-                        ],
-                      ),
-                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ),
@@ -908,7 +957,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final bool dirty = _app == SuiteApp.pdf ? _pdf.isDirty : _active.isDirty;
     if (!dirty) return true;
     final bool? save = await showDialog<bool>(
-      context: context,
+      context: _themedContext,
       builder: (BuildContext context) => AlertDialog(
         title: Text(
           _t('Save changes?', 'Änderungen speichern?', 'حفظ التغييرات؟'),
@@ -961,7 +1010,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   Widget _titleBar() {
     return Material(
-      color: _accent,
+      color: _appAccent,
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
@@ -1270,7 +1319,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   Future<void> _openSettings() async {
     await showDialog<void>(
-      context: context,
+      context: _themedContext,
       builder: (BuildContext dialogContext) => StatefulBuilder(
         builder: (BuildContext context, StateSetter setDialogState) {
           void changed(VoidCallback update) {
@@ -1278,200 +1327,190 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             setDialogState(() {});
           }
 
-          return AlertDialog(
-            title: Text(_strings.settings),
-            content: SizedBox(
-              width: 460,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    DropdownButtonFormField<OfficeInteractionMode>(
-                      isExpanded: true,
-                      initialValue: _mode,
-                      decoration: InputDecoration(labelText: _strings.mode),
-                      items: <DropdownMenuItem<OfficeInteractionMode>>[
-                        for (final value in OfficeInteractionMode.values)
-                          DropdownMenuItem(
-                            value: value,
-                            child: Text(switch (value) {
-                              OfficeInteractionMode.editing => _t(
-                                'Editing',
-                                'Bearbeiten',
-                                'تحرير',
+          return Theme(
+            data: _materialTheme,
+            child: Directionality(
+              textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
+              child: AlertDialog(
+                title: Text(_strings.settings),
+                content: SizedBox(
+                  width: 460,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        DropdownButtonFormField<SuiteLook>(
+                          isExpanded: true,
+                          initialValue: _look,
+                          decoration: InputDecoration(labelText: _strings.look),
+                          items: <DropdownMenuItem<SuiteLook>>[
+                            for (final value in SuiteLook.values)
+                              DropdownMenuItem(
+                                value: value,
+                                child: Text(switch (value) {
+                                  SuiteLook.light => _t(
+                                    'Light',
+                                    'Hell',
+                                    'فاتح',
+                                  ),
+                                  SuiteLook.dark => _t(
+                                    'Dark',
+                                    'Dunkel',
+                                    'داكن',
+                                  ),
+                                  SuiteLook.highContrast => _t(
+                                    'High contrast',
+                                    'Hoher Kontrast',
+                                    'تباين عالٍ',
+                                  ),
+                                }),
                               ),
-                              OfficeInteractionMode.selecting => _t(
-                                'Selecting',
-                                'Auswählen',
-                                'تحديد',
-                              ),
-                              OfficeInteractionMode.viewing => _t(
-                                'Viewing',
-                                'Ansehen',
-                                'عرض',
-                              ),
-                            }),
+                          ],
+                          onChanged: (value) {
+                            if (value != null) changed(() => _look = value);
+                          },
+                        ),
+                        const SizedBox(height: 12),
+                        DropdownButtonFormField<StudioLanguage>(
+                          isExpanded: true,
+                          initialValue: _language,
+                          decoration: InputDecoration(
+                            labelText: _strings.languageLabel,
                           ),
-                      ],
-                      onChanged: (value) {
-                        if (value != null) changed(() => _mode = value);
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    DropdownButtonFormField<SuiteLook>(
-                      isExpanded: true,
-                      initialValue: _look,
-                      decoration: InputDecoration(labelText: _strings.look),
-                      items: <DropdownMenuItem<SuiteLook>>[
-                        for (final value in SuiteLook.values)
-                          DropdownMenuItem(
-                            value: value,
-                            child: Text(switch (value) {
-                              SuiteLook.light => _t('Light', 'Hell', 'فاتح'),
-                              SuiteLook.dark => _t('Dark', 'Dunkel', 'داكن'),
-                              SuiteLook.highContrast => _t(
-                                'High contrast',
-                                'Hoher Kontrast',
-                                'تباين عالٍ',
+                          items: const <DropdownMenuItem<StudioLanguage>>[
+                            DropdownMenuItem(
+                              value: StudioLanguage.en,
+                              child: Text('English'),
+                            ),
+                            DropdownMenuItem(
+                              value: StudioLanguage.de,
+                              child: Text('Deutsch'),
+                            ),
+                            DropdownMenuItem(
+                              value: StudioLanguage.ar,
+                              child: Text('العربية'),
+                            ),
+                          ],
+                          onChanged: (value) {
+                            if (value != null) changed(() => _language = value);
+                          },
+                        ),
+                        const SizedBox(height: 12),
+                        DropdownButtonFormField<OfficeLengthUnit>(
+                          isExpanded: true,
+                          initialValue: _lengthUnit,
+                          decoration: InputDecoration(
+                            labelText: _strings.measurement,
+                          ),
+                          items: <DropdownMenuItem<OfficeLengthUnit>>[
+                            DropdownMenuItem(
+                              value: OfficeLengthUnit.inches,
+                              child: Text(_t('Inches', 'Zoll', 'بوصة')),
+                            ),
+                            DropdownMenuItem(
+                              value: OfficeLengthUnit.millimeters,
+                              child: Text(_strings.millimetres),
+                            ),
+                            DropdownMenuItem(
+                              value: OfficeLengthUnit.centimeters,
+                              child: Text(_strings.centimetres),
+                            ),
+                          ],
+                          onChanged: (value) {
+                            if (value != null)
+                              changed(() => _lengthUnit = value);
+                          },
+                        ),
+                        const SizedBox(height: 8),
+                        SwitchListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(_strings.showOutline),
+                          value: _showOutline,
+                          onChanged: (value) =>
+                              changed(() => _showOutline = value),
+                        ),
+                        SwitchListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(_strings.showComments),
+                          value: _showComments,
+                          onChanged: (value) =>
+                              changed(() => _showComments = value),
+                        ),
+                        SwitchListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(_strings.showNotes),
+                          value: _showNotes,
+                          onChanged: (value) =>
+                              changed(() => _showNotes = value),
+                        ),
+                        SwitchListTile(
+                          key: const ValueKey<String>(
+                            'studio-setting-detect-language',
+                          ),
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            _t(
+                              'Detect language automatically',
+                              StudioStrings.de('Detect language automatically'),
+                              'اكتشاف اللغة تلقائياً',
+                            ),
+                          ),
+                          subtitle: Text(
+                            _t(
+                              'Check each paragraph with the spelling and grammar '
+                                  'tools for its detected language. The document '
+                                  'is not changed.',
+                              StudioStrings.de(
+                                'Check each paragraph with the spelling and '
+                                'grammar tools for its detected language. The '
+                                'document is not changed.',
                               ),
-                            }),
+                              'تدقيق كل فقرة بأدوات اللغة المكتشفة لها دون تغيير '
+                                  'المستند.',
+                            ),
                           ),
-                      ],
-                      onChanged: (value) {
-                        if (value != null) changed(() => _look = value);
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    DropdownButtonFormField<StudioLanguage>(
-                      isExpanded: true,
-                      initialValue: _language,
-                      decoration: InputDecoration(
-                        labelText: _strings.languageLabel,
-                      ),
-                      items: const <DropdownMenuItem<StudioLanguage>>[
-                        DropdownMenuItem(
-                          value: StudioLanguage.en,
-                          child: Text('English'),
-                        ),
-                        DropdownMenuItem(
-                          value: StudioLanguage.de,
-                          child: Text('Deutsch'),
-                        ),
-                        DropdownMenuItem(
-                          value: StudioLanguage.ar,
-                          child: Text('العربية'),
-                        ),
-                      ],
-                      onChanged: (value) {
-                        if (value != null) changed(() => _language = value);
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    DropdownButtonFormField<OfficeLengthUnit>(
-                      isExpanded: true,
-                      initialValue: _lengthUnit,
-                      decoration: InputDecoration(
-                        labelText: _strings.measurement,
-                      ),
-                      items: <DropdownMenuItem<OfficeLengthUnit>>[
-                        DropdownMenuItem(
-                          value: OfficeLengthUnit.millimeters,
-                          child: Text(_strings.millimetres),
-                        ),
-                        DropdownMenuItem(
-                          value: OfficeLengthUnit.centimeters,
-                          child: Text(_strings.centimetres),
-                        ),
-                      ],
-                      onChanged: (value) {
-                        if (value != null) changed(() => _lengthUnit = value);
-                      },
-                    ),
-                    const SizedBox(height: 8),
-                    SwitchListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(_strings.showOutline),
-                      value: _showOutline,
-                      onChanged: (value) => changed(() => _showOutline = value),
-                    ),
-                    SwitchListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(_strings.showComments),
-                      value: _showComments,
-                      onChanged: (value) =>
-                          changed(() => _showComments = value),
-                    ),
-                    SwitchListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(_strings.showNotes),
-                      value: _showNotes,
-                      onChanged: (value) => changed(() => _showNotes = value),
-                    ),
-                    SwitchListTile(
-                      key: const ValueKey<String>(
-                        'studio-setting-detect-language',
-                      ),
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(
-                        _t(
-                          'Detect language automatically',
-                          StudioStrings.de('Detect language automatically'),
-                          'اكتشاف اللغة تلقائياً',
-                        ),
-                      ),
-                      subtitle: Text(
-                        _t(
-                          'Check each paragraph with the spelling and grammar '
-                              'tools for its detected language. The document '
-                              'is not changed.',
-                          StudioStrings.de(
-                            'Check each paragraph with the spelling and '
-                            'grammar tools for its detected language. The '
-                            'document is not changed.',
+                          value: _word.proofing.automaticLanguageDetection,
+                          onChanged: (value) => changed(
+                            () => _word.proofing.automaticLanguageDetection =
+                                value,
                           ),
-                          'تدقيق كل فقرة بأدوات اللغة المكتشفة لها دون تغيير '
-                              'المستند.',
                         ),
-                      ),
-                      value: _word.proofing.automaticLanguageDetection,
-                      onChanged: (value) => changed(
-                        () => _word.proofing.automaticLanguageDetection = value,
-                      ),
-                    ),
-                    SwitchListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(_strings.showRibbonLabels),
-                      value: _ribbonPreferences.showGroupLabels,
-                      onChanged: (value) => changed(
-                        () => _ribbonPreferences.setShowGroupLabels(value),
-                      ),
-                    ),
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: const Icon(Icons.tune),
-                      title: Text(
-                        _t(
-                          'Customize Ribbon',
-                          'Menüband anpassen',
-                          'تخصيص الشريط',
+                        SwitchListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(_strings.showRibbonLabels),
+                          value: _ribbonPreferences.showGroupLabels,
+                          onChanged: (value) => changed(
+                            () => _ribbonPreferences.setShowGroupLabels(value),
+                          ),
                         ),
-                      ),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () {
-                        Navigator.pop(dialogContext);
-                        _customizeRibbon();
-                      },
+                        ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          leading: const Icon(Icons.tune),
+                          title: Text(
+                            _t(
+                              'Customize Ribbon',
+                              'Menüband anpassen',
+                              'تخصيص الشريط',
+                            ),
+                          ),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: () {
+                            Navigator.pop(dialogContext);
+                            _customizeRibbon();
+                          },
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(dialogContext),
+                    child: Text(_strings.close),
+                  ),
+                ],
               ),
             ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(dialogContext),
-                child: Text(_strings.close),
-              ),
-            ],
           );
         },
       ),
@@ -1479,7 +1518,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _openMail() => showDialog<void>(
-    context: context,
+    context: _themedContext,
     builder: (BuildContext context) => StudioMailDialog(strings: _strings),
   );
 
@@ -1511,7 +1550,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   void _openAccount() {
     showMenu<String>(
-      context: context,
+      context: _themedContext,
       position: _menuRectFor(_accountButtonKey),
       items: <PopupMenuEntry<String>>[
         PopupMenuItem<String>(
@@ -1530,25 +1569,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     });
   }
 
-  Future<void> _showAbout() => showStudioAbout(context, _strings);
+  Future<void> _showAbout() => showStudioAbout(_themedContext, _strings);
 
-  String get _modeLabel => switch (_mode) {
-    OfficeInteractionMode.editing => _t(
-      'Editing',
-      StudioStrings.de('Editing'),
-      'تحرير',
-    ),
-    OfficeInteractionMode.selecting => _t(
-      'Selecting',
-      StudioStrings.de('Selecting'),
-      'تحديد',
-    ),
-    OfficeInteractionMode.viewing => _t(
-      'Viewing',
-      StudioStrings.de('Viewing'),
-      'عرض',
-    ),
-  };
+  String get _modeLabel => _modeName(_mode);
 
   List<_RibbonTab> get _tabsForApp => switch (_app) {
     SuiteApp.word => <_RibbonTab>[
@@ -1650,7 +1673,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _customizeRibbon() => showDialog<void>(
-    context: context,
+    context: _themedContext,
     builder: (context) => Directionality(
       textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
       child: StudioRibbonCustomization(
@@ -1802,7 +1825,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       1.6;
 
   Future<void> _openCompactNavigation(bool dark) => showModalBottomSheet<void>(
-    context: context,
+    context: _themedContext,
     isScrollControlled: true,
     useSafeArea: true,
     showDragHandle: true,
@@ -1895,7 +1918,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   List<StudioRibbonGroup> _defaultRibbonGroups(_RibbonTab tab) {
-    return switch ((_app, tab)) {
+    final groups = switch ((_app, tab)) {
       (SuiteApp.word, _RibbonTab.file) => _fileGroups(_resetWord, _newWord),
       (SuiteApp.word, _RibbonTab.home) => _wordHome(),
       (SuiteApp.word, _RibbonTab.insert) => _wordInsert(),
@@ -1925,7 +1948,232 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       (SuiteApp.pdf, _) => _pdfView(),
       _ => _fileGroups(_resetWord, _newWord),
     };
+    return _compactRibbonGroups(tab, groups);
   }
+
+  StudioCommandMenu _ribbonMenu(
+    String id,
+    IconData icon,
+    String label,
+    List<StudioCmd> commands, {
+    String? currentValue,
+  }) => StudioCommandMenu(
+    key: ValueKey('ribbon-menu-$id'),
+    icon: icon,
+    label: label,
+    currentValue: currentValue,
+    accent: _accent,
+    foreground: _officeTheme.chromeText,
+    commands: commands,
+  );
+
+  Future<void> _openPageLayout() async {
+    if (!_canMutate ||
+        _app != SuiteApp.word ||
+        !(ModalRoute.isCurrentOf(context) ?? true)) {
+      return;
+    }
+    await showStudioPageLayoutDialog(
+      context: _themedContext,
+      controller: _word,
+      language: _language,
+      unit: _lengthUnit,
+    );
+  }
+
+  Future<void> _openParagraphLayout() async {
+    if (!_canMutate ||
+        _app != SuiteApp.word ||
+        !(ModalRoute.isCurrentOf(context) ?? true)) {
+      return;
+    }
+    await showStudioParagraphDialog(
+      context: _themedContext,
+      controller: _word,
+      language: _language,
+      unit: _lengthUnit,
+    );
+  }
+
+  List<StudioRibbonGroup> _compactRibbonGroups(
+    _RibbonTab tab,
+    List<StudioRibbonGroup> groups,
+  ) {
+    final result = <StudioRibbonGroup>[];
+    if (_app == SuiteApp.word && tab == _RibbonTab.layout) {
+      result.add(
+        StudioRibbonGroup(
+          id: 'page-setup',
+          title: _t('Page setup', 'Seite einrichten', 'إعداد الصفحة'),
+          children: <Widget>[
+            _cmd(
+              Icons.settings_applications_outlined,
+              _t('Page Layout…', 'Seitenlayout…', 'تخطيط الصفحة…'),
+              _canMutate ? _openPageLayout : null,
+            ),
+          ],
+        ),
+      );
+    }
+    for (final group in groups) {
+      final compact = switch ((_app, tab, group.id)) {
+        (SuiteApp.word, _RibbonTab.layout, _) => true,
+        (SuiteApp.word, _RibbonTab.design, 'symbols' || 'structures') => true,
+        (SuiteApp.excel, _RibbonTab.formulas, 'function') => true,
+        (SuiteApp.excel, _RibbonTab.home, 'size') => true,
+        (SuiteApp.excel, _RibbonTab.insert, 'illustrations') => true,
+        (
+          SuiteApp.powerpoint,
+          _RibbonTab.insert,
+          'shapes' || 'table' || 'illustrations',
+        ) =>
+          true,
+        (SuiteApp.powerpoint, _RibbonTab.transitions, 'effect') => true,
+        (
+          SuiteApp.powerpoint,
+          _RibbonTab.animations,
+          'entrance' || 'emphasis' || 'exit' || 'motion',
+        ) =>
+          true,
+        (SuiteApp.pdf, _RibbonTab.view, 'viewer-options') => true,
+        _ => false,
+      };
+      final commands = group.children.whereType<StudioCmd>().toList();
+      if (!compact ||
+          commands.isEmpty ||
+          commands.length != group.children.length) {
+        result.add(group);
+        continue;
+      }
+      if (_app == SuiteApp.word && tab == _RibbonTab.layout) {
+        if (group.id == 'columns') {
+          commands.add(
+            _cmd(
+              Icons.view_column,
+              _t('Four', 'Vier', 'أربعة'),
+              _canMutate ? () => _word.setSectionColumns(4, sep: true) : null,
+              selected: _word.sectionAtCaret.columnCount == 4,
+            ),
+          );
+        }
+        if (const {'margins', 'size', 'columns', 'header'}.contains(group.id)) {
+          commands.add(
+            _cmd(
+              Icons.tune,
+              _t('Page Layout…', 'Seitenlayout…', 'تخطيط الصفحة…'),
+              _canMutate ? _openPageLayout : null,
+            ),
+          );
+        }
+        if (group.id == 'paragraph') {
+          commands.add(
+            _cmd(
+              Icons.tune,
+              _t('Paragraph…', 'Absatz…', 'فقرة…'),
+              _canMutate ? _openParagraphLayout : null,
+            ),
+          );
+        }
+      }
+      final selected = commands
+          .where((command) => command.selected)
+          .map((command) => command.label)
+          .toList();
+      final current = selected.isNotEmpty
+          ? selected.join(', ')
+          : (_app == SuiteApp.word &&
+                const {'margins', 'size', 'columns'}.contains(group.id))
+          ? _t('Custom', 'Benutzerdefiniert', 'مخصص')
+          : null;
+      result.add(
+        StudioRibbonGroup(
+          id: group.id,
+          title: group.title,
+          children: <Widget>[
+            _ribbonMenu(
+              '${_app.name}-${tab.name}-${group.id}',
+              commands.first.icon,
+              group.title,
+              commands,
+              currentValue: current,
+            ),
+          ],
+        ),
+      );
+    }
+    if (tab == _RibbonTab.view) result.add(_documentModeGroup());
+    return result;
+  }
+
+  String _modeName(OfficeInteractionMode mode) => switch (mode) {
+    OfficeInteractionMode.editing => _t(
+      'Edit document',
+      'Dokument bearbeiten',
+      'تحرير المستند',
+    ),
+    OfficeInteractionMode.selecting => _t(
+      'Read and copy',
+      'Lesen und kopieren',
+      'قراءة ونسخ',
+    ),
+    OfficeInteractionMode.viewing => _t(
+      'Preview only',
+      'Nur Vorschau',
+      'معاينة فقط',
+    ),
+  };
+
+  String _modeDescription(OfficeInteractionMode mode) => switch (mode) {
+    OfficeInteractionMode.editing => _t(
+      'Edit text, formatting and objects.',
+      'Text, Formatierung und Objekte bearbeiten.',
+      'تحرير النص والتنسيق والعناصر.',
+    ),
+    OfficeInteractionMode.selecting => _t(
+      'Read-only: select and copy without changing the document.',
+      'Schreibgeschützt: auswählen und kopieren, ohne das Dokument zu ändern.',
+      'للقراءة فقط: تحديد ونسخ دون تغيير المستند.',
+    ),
+    OfficeInteractionMode.viewing => _t(
+      'Scroll and zoom without text selection or editing.',
+      'Scrollen und zoomen ohne Textauswahl oder Bearbeitung.',
+      'تمرير وتكبير دون تحديد النص أو تحريره.',
+    ),
+  };
+
+  StudioRibbonGroup _documentModeGroup({String id = 'mode'}) =>
+      StudioRibbonGroup(
+        id: id,
+        title: _t('Document mode', 'Dokumentmodus', 'وضع المستند'),
+        children: <Widget>[
+          _ribbonMenu(
+            'document-mode',
+            Icons.edit_document,
+            _t('Document mode', 'Dokumentmodus', 'وضع المستند'),
+            <StudioCmd>[
+              for (final mode in <OfficeInteractionMode>[
+                OfficeInteractionMode.editing,
+                OfficeInteractionMode.selecting,
+                OfficeInteractionMode.viewing,
+              ])
+                StudioCmd(
+                  icon: switch (mode) {
+                    OfficeInteractionMode.editing => Icons.edit_outlined,
+                    OfficeInteractionMode.selecting => Icons.content_copy,
+                    OfficeInteractionMode.viewing => Icons.visibility_outlined,
+                  },
+                  label: _modeName(mode),
+                  tooltip: _modeDescription(mode),
+                  accent: _accent,
+                  foreground: _officeTheme.chromeText,
+                  selected: _mode == mode,
+                  onPressed: () => setState(() => _mode = mode),
+                ),
+            ],
+            currentValue: _modeName(_mode),
+          ),
+        ],
+      );
 
   void _resetPdf() {
     _pdf.loadBytesAsync(studioSamplePdf());
@@ -1995,7 +2243,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     final PdfOfficeExportResult? result = await studioPdfOfficeDialog(
-      context: context,
+      context: _themedContext,
       arabic: _arabic,
       extension: extension,
       readBytes: _pdf.saveBytes,
@@ -2046,7 +2294,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     await showDialog<void>(
-      context: context,
+      context: _themedContext,
       builder: (BuildContext context) => AlertDialog(
         title: Text(
           _t(
@@ -2124,7 +2372,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     final StudioPdfSample? sample = await showDialog<StudioPdfSample>(
-      context: context,
+      context: _themedContext,
       builder: (BuildContext context) {
         return PdfSampleGalleryDialog(
           arabic: _arabic,
@@ -2144,7 +2392,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   Future<void> _openPdfTools() async {
     final Uint8List current = _pdf.saveBytes();
     final PdfToolOutput? output = await showDialog<PdfToolOutput>(
-      context: context,
+      context: _themedContext,
       builder: (BuildContext context) {
         return PdfToolsLabDialog(
           arabic: _arabic,
@@ -2605,31 +2853,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
         ],
       ),
-      StudioRibbonGroup(
-        id: 'mode',
-        title: _t('Mode', StudioStrings.de('Mode'), 'وضع العمل'),
-        children: <Widget>[
-          _cmd(Icons.edit, _t('Edit', StudioStrings.de('Edit'), 'تحرير'), () {
-            setState(() => _mode = OfficeInteractionMode.editing);
-          }, selected: _mode == OfficeInteractionMode.editing),
-          _cmd(
-            Icons.select_all,
-            _t('Select', StudioStrings.de('Select'), 'تحديد'),
-            () {
-              setState(() => _mode = OfficeInteractionMode.selecting);
-            },
-            selected: _mode == OfficeInteractionMode.selecting,
-          ),
-          _cmd(
-            Icons.visibility,
-            _t('View', StudioStrings.de('View'), 'عرض'),
-            () {
-              setState(() => _mode = OfficeInteractionMode.viewing);
-            },
-            selected: _mode == OfficeInteractionMode.viewing,
-          ),
-        ],
-      ),
+      _documentModeGroup(),
     ];
   }
 
@@ -2856,6 +3080,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             Icons.format_indent_decrease,
             _t('Outdent', StudioStrings.de('Outdent'), 'إنقاص المسافة'),
             _wordFullFormat ? () => _nudgeIndent(-18) : null,
+          ),
+          _icon(
+            Icons.tune,
+            _t('Paragraph…', 'Absatz…', 'فقرة…'),
+            _wordFullFormat ? _openParagraphLayout : null,
           ),
         ],
       ),
@@ -3574,19 +3803,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         id: 'margins',
         title: _t('Margins', StudioStrings.de('Margins'), 'الهوامش'),
         children: <Widget>[
-          StudioCombo<String>(
-            value: _marginPresetId(margins),
-            items: const <String>['normal', 'narrow', 'moderate', 'wide'],
-            labelOf: _marginPresetLabel,
-            width: 118,
-            enabled: _canMutate,
-            tooltip: _t(
-              'Page margins',
-              StudioStrings.de('Page margins'),
-              'هوامش الصفحة',
-            ),
-            onSelected: _canMutate ? _applyMarginPreset : null,
-          ),
           _cmd(
             Icons.border_outer,
             _t('Normal', StudioStrings.de('Normal'), 'عادي'),
@@ -3744,25 +3960,33 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             Icons.format_line_spacing,
             '1.0',
             _canMutate ? () => _setLineSpacing(1.0) : null,
-            selected: para.lineSpacing == 1.0,
+            selected:
+                para.lineSpacingRule == WmlLineSpacingRule.auto &&
+                para.lineSpacing == 1.0,
           ),
           _cmd(
             Icons.format_line_spacing,
             '1.15',
             _canMutate ? () => _setLineSpacing(1.15) : null,
-            selected: para.lineSpacing == 1.15,
+            selected:
+                para.lineSpacingRule == WmlLineSpacingRule.auto &&
+                para.lineSpacing == 1.15,
           ),
           _cmd(
             Icons.format_line_spacing,
             '1.5',
             _canMutate ? () => _setLineSpacing(1.5) : null,
-            selected: para.lineSpacing == 1.5,
+            selected:
+                para.lineSpacingRule == WmlLineSpacingRule.auto &&
+                para.lineSpacing == 1.5,
           ),
           _cmd(
             Icons.format_line_spacing,
             '2.0',
             _canMutate ? () => _setLineSpacing(2.0) : null,
-            selected: para.lineSpacing == 2.0,
+            selected:
+                para.lineSpacingRule == WmlLineSpacingRule.auto &&
+                para.lineSpacing == 2.0,
           ),
           _cmd(
             Icons.vertical_align_top,
@@ -5305,8 +5529,61 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     ];
   }
 
+  StudioCommandMenu _ribbonChoice<T>({
+    required String id,
+    required IconData icon,
+    required String label,
+    required T current,
+    required Iterable<T> values,
+    required String Function(T) labelOf,
+    required ValueChanged<T>? onSelected,
+  }) => _ribbonMenu(id, icon, label, <StudioCmd>[
+    for (final value in values)
+      _cmd(
+        icon,
+        labelOf(value),
+        onSelected == null ? null : () => onSelected(value),
+        selected: current == value,
+      ),
+  ], currentValue: labelOf(current));
+
+  List<PmlTransitionDir> _directionChoices(PmlTransitionDir current) =>
+      <PmlTransitionDir>{
+        PmlTransitionDir.left,
+        PmlTransitionDir.right,
+        PmlTransitionDir.up,
+        PmlTransitionDir.down,
+        current,
+      }.toList();
+
+  List<int> _durationChoices(int current) =>
+      (<int>{350, 500, 700, 1000, 1200, current}.toList()..sort());
+
+  String _secondsLabel(int milliseconds) {
+    var value = (milliseconds / 1000)
+        .toStringAsFixed(3)
+        .replaceFirst(RegExp(r'\.?0+$'), '');
+    if (_language == StudioLanguage.de) value = value.replaceAll('.', ',');
+    return _arabic ? '$value ث' : '$value s';
+  }
+
+  String _advanceTimeLabel(int? milliseconds) => milliseconds == null
+      ? _t('Manually', 'Manuell', 'تقديم يدوي')
+      : _t(
+          'After ${_secondsLabel(milliseconds)}',
+          'Nach ${_secondsLabel(milliseconds)}',
+          'بعد ${_secondsLabel(milliseconds)}',
+        );
+
   List<StudioRibbonGroup> _slideTransitions() {
-    final PmlSlideTransition current = _slides.slide.transition;
+    final current = _slides.slide.transition;
+    final advanceTimes = <int?>{
+      null,
+      2000,
+      5000,
+      10000,
+      current.advanceAfterMs,
+    };
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
         id: 'preview',
@@ -5331,11 +5608,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         id: 'effect',
         title: _t('Effect', StudioStrings.de('Effect'), 'التأثير'),
         children: <Widget>[
-          for (final PmlTransitionKind kind in PmlMotionCatalog.transitions)
+          for (final kind in PmlMotionCatalog.transitions)
             _cmd(
               _transitionIcon(kind),
               PmlMotionCatalog.transitionLabel(kind, arabic: _arabic),
-              () => _slides.setSlideTransition(current.copyWith(kind: kind)),
+              _canMutate
+                  ? () =>
+                        _slides.setSlideTransition(current.copyWith(kind: kind))
+                  : null,
               selected: current.kind == kind,
             ),
         ],
@@ -5344,50 +5624,72 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         id: 'options',
         title: _t('Options', StudioStrings.de('Options'), 'خيارات'),
         children: <Widget>[
-          _cmd(
-            Icons.swap_horiz,
-            _dirLabel(current.direction),
-            PmlMotionCatalog.usesDirection(current.kind)
-                ? () => _slides.setSlideTransition(
-                    current.copyWith(direction: _nextDir(current.direction)),
+          _ribbonChoice<PmlTransitionDir>(
+            id: 'slides-transition-direction',
+            icon: Icons.swap_horiz,
+            label: _t('Direction', 'Richtung', 'الاتجاه'),
+            current: current.direction,
+            values: _directionChoices(current.direction),
+            labelOf: _dirLabel,
+            onSelected:
+                _canMutate && PmlMotionCatalog.usesDirection(current.kind)
+                ? (value) => _slides.setSlideTransition(
+                    current.copyWith(direction: value),
+                  )
+                : null,
+          ),
+          _ribbonChoice<int>(
+            id: 'slides-transition-duration',
+            icon: Icons.timer,
+            label: _t('Duration', 'Dauer', 'المدة'),
+            current: current.durationMs,
+            values: _durationChoices(current.durationMs),
+            labelOf: _secondsLabel,
+            onSelected: _canMutate
+                ? (value) => _slides.setSlideTransition(
+                    current.copyWith(durationMs: value),
+                    preview: false,
                   )
                 : null,
           ),
           _cmd(
-            Icons.timer,
-            _durationLabel(current.durationMs),
-            () => _slides.setSlideTransition(
-              current.copyWith(durationMs: _nextDuration(current.durationMs)),
-              preview: false,
-            ),
-          ),
-          _cmd(
             Icons.touch_app,
-            current.advanceOnClick
-                ? (_t('On click', StudioStrings.de('On click'), 'بالنقر'))
-                : (_t('No click', StudioStrings.de('No click'), 'بدون نقر')),
-            () => _slides.setSlideTransition(
-              current.copyWith(advanceOnClick: !current.advanceOnClick),
-              preview: false,
-            ),
+            _t('On click', StudioStrings.de('On click'), 'بالنقر'),
+            _canMutate
+                ? () => _slides.setSlideTransition(
+                    current.copyWith(advanceOnClick: !current.advanceOnClick),
+                    preview: false,
+                  )
+                : null,
             selected: current.advanceOnClick,
           ),
-          _cmd(
-            Icons.more_time,
-            _advanceLabel(current),
-            () => _slides.setSlideTransition(
-              _cycleAdvance(current),
-              preview: false,
-            ),
+          _ribbonChoice<int?>(
+            id: 'slides-transition-advance',
+            icon: Icons.more_time,
+            label: _t('Advance slide', 'Folienwechsel', 'تقديم الشريحة'),
+            current: current.advanceAfterMs,
+            values: advanceTimes,
+            labelOf: _advanceTimeLabel,
+            onSelected: _canMutate
+                ? (value) => _slides.setSlideTransition(
+                    current.copyWith(
+                      advanceAfterMs: value,
+                      clearAdvanceAfter: value == null,
+                    ),
+                    preview: false,
+                  )
+                : null,
           ),
           _cmd(
             Icons.copy_all,
             _t('Apply all', StudioStrings.de('Apply all'), 'الكل'),
-            () => _slides.setSlideTransition(
-              current,
-              applyToAll: true,
-              preview: false,
-            ),
+            _canMutate
+                ? () => _slides.setSlideTransition(
+                    current,
+                    applyToAll: true,
+                    preview: false,
+                  )
+                : null,
           ),
         ],
       ),
@@ -5395,56 +5697,53 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   List<StudioRibbonGroup> _slideAnimations() {
-    final bool hasShape = _slides.selected != null;
+    final hasShape = _canMutate && _slides.selected != null;
+    final active = _activeAnim;
+    final index = _activeAnimIndex;
+    final canChange = _canMutate && index != null && active != null;
+    final trigger = active?.trigger ?? PmlAnimTrigger.onClick;
+    final direction = active?.direction ?? PmlTransitionDir.left;
+    final duration = active?.durationMs ?? 500;
+    final delay = active?.delayMs ?? 0;
     return <StudioRibbonGroup>[
-      StudioRibbonGroup(
-        id: 'entrance',
-        title: _t('Entrance', StudioStrings.de('Entrance'), 'دخول'),
-        children: <Widget>[
-          for (final PmlAnimPreset preset in PmlMotionCatalog.entrance)
-            _cmd(
-              Icons.login,
-              PmlMotionCatalog.animLabel(preset, arabic: _arabic),
-              hasShape ? () => _slides.addShapeAnimation(preset) : null,
-            ),
-        ],
-      ),
-      StudioRibbonGroup(
-        id: 'emphasis',
-        title: _t('Emphasis', StudioStrings.de('Emphasis'), 'تأكيد'),
-        children: <Widget>[
-          for (final PmlAnimPreset preset in PmlMotionCatalog.emphasis)
-            _cmd(
-              Icons.highlight,
-              PmlMotionCatalog.animLabel(preset, arabic: _arabic),
-              hasShape ? () => _slides.addShapeAnimation(preset) : null,
-            ),
-        ],
-      ),
-      StudioRibbonGroup(
-        id: 'exit',
-        title: _t('Exit', StudioStrings.de('Exit'), 'خروج'),
-        children: <Widget>[
-          for (final PmlAnimPreset preset in PmlMotionCatalog.exit)
-            _cmd(
-              Icons.logout,
-              PmlMotionCatalog.animLabel(preset, arabic: _arabic),
-              hasShape ? () => _slides.addShapeAnimation(preset) : null,
-            ),
-        ],
-      ),
-      StudioRibbonGroup(
-        id: 'motion',
-        title: _t('Motion', StudioStrings.de('Motion'), 'مسار'),
-        children: <Widget>[
-          for (final PmlAnimPreset preset in PmlMotionCatalog.motion)
-            _cmd(
-              Icons.timeline,
-              PmlMotionCatalog.animLabel(preset, arabic: _arabic),
-              hasShape ? () => _slides.addShapeAnimation(preset) : null,
-            ),
-        ],
-      ),
+      for (final group in <(String, String, IconData, List<PmlAnimPreset>)>[
+        (
+          'entrance',
+          _t('Entrance', StudioStrings.de('Entrance'), 'دخول'),
+          Icons.login,
+          PmlMotionCatalog.entrance,
+        ),
+        (
+          'emphasis',
+          _t('Emphasis', StudioStrings.de('Emphasis'), 'تأكيد'),
+          Icons.highlight,
+          PmlMotionCatalog.emphasis,
+        ),
+        (
+          'exit',
+          _t('Exit', StudioStrings.de('Exit'), 'خروج'),
+          Icons.logout,
+          PmlMotionCatalog.exit,
+        ),
+        (
+          'motion',
+          _t('Motion', StudioStrings.de('Motion'), 'مسار'),
+          Icons.timeline,
+          PmlMotionCatalog.motion,
+        ),
+      ])
+        StudioRibbonGroup(
+          id: group.$1,
+          title: group.$2,
+          children: <Widget>[
+            for (final preset in group.$4)
+              _cmd(
+                group.$3,
+                PmlMotionCatalog.animLabel(preset, arabic: _arabic),
+                hasShape ? () => _slides.addShapeAnimation(preset) : null,
+              ),
+          ],
+        ),
       StudioRibbonGroup(
         id: 'timing',
         title: _t('Timing', StudioStrings.de('Timing'), 'توقيت'),
@@ -5460,46 +5759,52 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             () => setState(() => _showAnimPane = !_showAnimPane),
             selected: _showAnimPane,
           ),
-          _cmd(
-            Icons.touch_app,
-            _triggerLabel(_activeAnim?.trigger ?? PmlAnimTrigger.onClick),
-            _activeAnimIndex == null
-                ? null
-                : () => _slides.updateShapeAnimation(
-                    _activeAnimIndex!,
-                    trigger: _nextTrigger(_activeAnim!.trigger),
-                  ),
+          _ribbonChoice<PmlAnimTrigger>(
+            id: 'slides-animation-trigger',
+            icon: Icons.touch_app,
+            label: _t('Start', 'Start', 'بدء'),
+            current: trigger,
+            values: PmlAnimTrigger.values,
+            labelOf: _triggerLabel,
+            onSelected: canChange
+                ? (value) => _slides.updateShapeAnimation(index, trigger: value)
+                : null,
           ),
-          _cmd(
-            Icons.swap_horiz,
-            _dirLabel(_activeAnim?.direction ?? PmlTransitionDir.left),
-            _activeAnimIndex == null ||
-                    !PmlMotionCatalog.animUsesDirection(_activeAnim!.preset)
-                ? null
-                : () => _slides.updateShapeAnimation(
-                    _activeAnimIndex!,
-                    direction: _nextDir(_activeAnim!.direction),
-                  ),
+          _ribbonChoice<PmlTransitionDir>(
+            id: 'slides-animation-direction',
+            icon: Icons.swap_horiz,
+            label: _t('Direction', 'Richtung', 'الاتجاه'),
+            current: direction,
+            values: _directionChoices(direction),
+            labelOf: _dirLabel,
+            onSelected:
+                canChange && PmlMotionCatalog.animUsesDirection(active.preset)
+                ? (value) =>
+                      _slides.updateShapeAnimation(index, direction: value)
+                : null,
           ),
-          _cmd(
-            Icons.timer,
-            _durationLabel(_activeAnim?.durationMs ?? 500),
-            _activeAnimIndex == null
-                ? null
-                : () => _slides.updateShapeAnimation(
-                    _activeAnimIndex!,
-                    durationMs: _nextDuration(_activeAnim!.durationMs),
-                  ),
+          _ribbonChoice<int>(
+            id: 'slides-animation-duration',
+            icon: Icons.timer,
+            label: _t('Duration', 'Dauer', 'المدة'),
+            current: duration,
+            values: _durationChoices(duration),
+            labelOf: _secondsLabel,
+            onSelected: canChange
+                ? (value) =>
+                      _slides.updateShapeAnimation(index, durationMs: value)
+                : null,
           ),
-          _cmd(
-            Icons.more_time,
-            _delayLabel(_activeAnim?.delayMs ?? 0),
-            _activeAnimIndex == null
-                ? null
-                : () => _slides.updateShapeAnimation(
-                    _activeAnimIndex!,
-                    delayMs: _nextDelay(_activeAnim!.delayMs),
-                  ),
+          _ribbonChoice<int>(
+            id: 'slides-animation-delay',
+            icon: Icons.more_time,
+            label: _t('Delay', 'Verzögerung', 'التأخير'),
+            current: delay,
+            values: (<int>{0, 250, 750, 1500, delay}.toList()..sort()),
+            labelOf: _secondsLabel,
+            onSelected: canChange
+                ? (value) => _slides.updateShapeAnimation(index, delayMs: value)
+                : null,
           ),
         ],
       ),
@@ -5540,64 +5845,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     };
   }
 
-  PmlAnimTrigger _nextTrigger(PmlAnimTrigger trigger) {
-    return switch (trigger) {
-      PmlAnimTrigger.onClick => PmlAnimTrigger.withPrevious,
-      PmlAnimTrigger.withPrevious => PmlAnimTrigger.afterPrevious,
-      PmlAnimTrigger.afterPrevious => PmlAnimTrigger.onClick,
-    };
-  }
-
-  PmlTransitionDir _nextDir(PmlTransitionDir dir) {
-    const List<PmlTransitionDir> cycle = <PmlTransitionDir>[
-      PmlTransitionDir.left,
-      PmlTransitionDir.right,
-      PmlTransitionDir.up,
-      PmlTransitionDir.down,
-    ];
-    return cycle[(cycle.indexOf(dir) + 1) % cycle.length];
-  }
-
-  int _nextDuration(int ms) {
-    if (ms <= 400) {
-      return 700;
-    }
-    if (ms < 1000) {
-      return 1200;
-    }
-    return 350;
-  }
-
-  int _nextDelay(int ms) {
-    if (ms <= 0) {
-      return 250;
-    }
-    if (ms < 500) {
-      return 750;
-    }
-    if (ms < 1000) {
-      return 1500;
-    }
-    return 0;
-  }
-
-  String _durationLabel(int ms) {
-    if (ms <= 400) {
-      return _t('Fast', StudioStrings.de('Fast'), 'سريع');
-    }
-    if (ms >= 1000) {
-      return _t('Slow', StudioStrings.de('Slow'), 'بطيء');
-    }
-    return _t('Medium', StudioStrings.de('Medium'), 'متوسط');
-  }
-
-  String _delayLabel(int ms) {
-    if (ms <= 0) {
-      return _t('No delay', StudioStrings.de('No delay'), 'بدون تأخير');
-    }
-    return _arabic ? 'تأخير ${ms}ms' : 'Delay ${ms}ms';
-  }
-
   String _dirLabel(PmlTransitionDir dir) {
     return switch (dir) {
       PmlTransitionDir.left => _t('Left', StudioStrings.de('Left'), 'يسار'),
@@ -5625,28 +5872,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         'للخارج',
       ),
     };
-  }
-
-  String _advanceLabel(PmlSlideTransition t) {
-    final int? ms = t.advanceAfterMs;
-    if (ms == null || ms <= 0) {
-      return _t('Manually', StudioStrings.de('Manually'), 'تقديم يدوي');
-    }
-    final int sec = (ms / 1000).round();
-    return _arabic ? 'بعد $sec ث' : 'After ${sec}s';
-  }
-
-  PmlSlideTransition _cycleAdvance(PmlSlideTransition current) {
-    final int? next = switch (current.advanceAfterMs) {
-      null => 2000,
-      <= 2000 => 5000,
-      <= 5000 => 10000,
-      _ => null,
-    };
-    return current.copyWith(
-      advanceAfterMs: next,
-      clearAdvanceAfter: next == null,
-    );
   }
 
   IconData _transitionIcon(PmlTransitionKind kind) {
@@ -6518,12 +6743,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _showHunspellSetup() async {
-    await showStudioHunspellSetup(context, morphHost: studioArabicMorphHost);
+    await showStudioHunspellSetup(
+      _themedContext,
+      morphHost: studioArabicMorphHost,
+    );
     if (mounted) _wordFocus.requestFocus();
   }
 
   Future<void> _showSpacySetup() async {
-    await showStudioSpacySetup(context);
+    await showStudioSpacySetup(_themedContext);
     if (mounted) _wordFocus.requestFocus();
   }
 
@@ -6576,7 +6804,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   Future<void> _showLinguisticAnalysis() async {
     await showDialog<void>(
-      context: context,
+      context: _themedContext,
       builder: (_) => StudioLinguisticAnalysisDialog(controller: _word),
     );
     if (mounted) _wordFocus.requestFocus();
@@ -6592,7 +6820,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
     try {
       final bool? save = await showDialog<bool>(
-        context: context,
+        context: _themedContext,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(
@@ -7778,7 +8006,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _commentContextIsCurrent = current;
     _commentContextKeyboard = keyboardNavigation;
     _commentContextMenu = OfficeContextMenu.show(
-      context: context,
+      context: _themedContext,
       globalPosition: hit.globalPosition,
       actions: actions,
       enableFiltering: !reviewOnly,
@@ -8332,7 +8560,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       },
     );
     final bool? ok = await showDialog<bool>(
-      context: context,
+      context: _themedContext,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(switch (kind) {
@@ -8450,13 +8678,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _setLineSpacing(double value) {
-    _word.applyParagraphFormat((WmlParagraphProps p) => p.lineSpacing = value);
+    _word.applyParagraphFormat((WmlParagraphProps p) {
+      p.lineSpacing = value;
+      p.lineSpacingRule = WmlLineSpacingRule.auto;
+      p.explicitLineSpacing = true;
+    });
   }
 
   void _nudgeParagraphSpacing({double before = 0, double after = 0}) {
     _word.applyParagraphFormat((WmlParagraphProps p) {
-      p.spacingBefore = (p.spacingBefore + before).clamp(0, 72);
-      p.spacingAfter = (p.spacingAfter + after).clamp(0, 72);
+      p.spacingBefore = (p.spacingBefore + before).clamp(0, double.infinity);
+      p.spacingAfter = (p.spacingAfter + after).clamp(0, double.infinity);
     });
   }
 
@@ -8481,43 +8713,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         firstLine: 0,
         hanging: cur.hanging > 0 ? 0 : 36,
       );
-    });
-  }
-
-  String _marginPresetId(WmlPageMargins margins) {
-    if (margins.matches(WmlPageMargins.narrow)) {
-      return 'narrow';
-    }
-    if (margins.matches(WmlPageMargins.moderate)) {
-      return 'moderate';
-    }
-    if (margins.matches(WmlPageMargins.wide)) {
-      return 'wide';
-    }
-    return 'normal';
-  }
-
-  String _marginPresetLabel(String id) => switch (id) {
-    'narrow' => _t(
-      'Narrow (0.5")',
-      StudioStrings.de('Narrow (0.5")'),
-      'ضيق (0.5")',
-    ),
-    'moderate' => _t(
-      'Moderate (0.75")',
-      StudioStrings.de('Moderate (0.75")'),
-      'متوسط (0.75")',
-    ),
-    'wide' => _t('Wide (2")', StudioStrings.de('Wide (2")'), 'واسع (2")'),
-    _ => _t('Normal (1")', StudioStrings.de('Normal (1")'), 'عادي (1")'),
-  };
-
-  void _applyMarginPreset(String id) {
-    _word.setPageMargins(switch (id) {
-      'narrow' => WmlPageMargins.narrow,
-      'moderate' => WmlPageMargins.moderate,
-      'wide' => WmlPageMargins.wide,
-      _ => WmlPageMargins.normal,
     });
   }
 
@@ -8593,7 +8788,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     String query = '';
     FormulaFnDoc selected = FormulaFunctionGuide.all.first;
     await showDialog<void>(
-      context: context,
+      context: _themedContext,
       builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setDialog) {
@@ -11229,7 +11424,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   void _showSlideSorterMenu(Offset globalPosition, int index) {
     OfficeContextMenu.dismiss(_slideSorterMenu);
     _slideSorterMenu = OfficeContextMenu.show(
-      context: context,
+      context: _themedContext,
       globalPosition: globalPosition,
       actions: OfficeContextMenu.slideSorter(controller: _slides, index: index),
       onSelect: (String id) {
@@ -11433,7 +11628,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             '${_pdf.isDirty ? ' · •' : ''}',
     };
     return Material(
-      color: _accent,
+      color: _appAccent,
       child: SizedBox(
         height:
             (_savePhase == _SavePhase.saving || _opening ? 34 : 26) +

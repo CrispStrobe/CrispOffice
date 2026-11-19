@@ -1,0 +1,412 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "created_at_utc": "2026-11-19T18:09:36.024581+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "source_head": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+  "source_tree": "8e21cf2370f18ee6f02836cb6b465799a6512004",
+  "incoming_source_head": "358544a48466c942873a4718a87fa9d1c2be11f7",
+  "incoming_source_binding": "Every relevant product/test input, executed harness, example fixture, dependency and SDK identity is checked against the final source; 0c77 changes only validation harness selection and documentation from 358544.",
+  "github_actions_used": false,
+  "test_totals": {
+    "passed": 1640,
+    "failed": 0,
+    "skipped": 0
+  },
+  "test_cohorts": 10,
+  "unique_test_files": 90,
+  "required_commands_passed": 22,
+  "non_test_commands": 12,
+  "analysis_targets": 82,
+  "formatted_dart_files": 72,
+  "input_identity": {
+    "inputs_stable": true,
+    "source_inputs": 4441,
+    "source_digest": "2c2c8baf02dd851d786676b1566954cbd61d491ffae94d4a293788b5d6e7754c",
+    "dependency_inputs": 9298,
+    "dependency_digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+    "runtime_inputs": 1108,
+    "runtime_digest": "f096a387327697a8f9ea1fcbbdaa46146c744d3e0d092ce70946a1f54eef564e",
+    "dependency_resolution_performed": false
+  },
+  "sqlite": {
+    "fts5": true,
+    "path": "/workspace/scratch/f815a4ae580f/quds_office_suite/.dart_tool/lib/libsqlite3.so",
+    "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "version": "3.54.1"
+  },
+  "receipt_sha256": {
+    "final/receipt.json": "43ccfff8afae97aa4170459fc10c3ea05991698778f8e065fe1145bc3ff5d990",
+    "incoming/summary.json": "3ff257882e407694fd4a39d34c98b164af4740ab9caa6be70c530d351acb3d1d",
+    "incoming/engine/receipt.json": "842590ad175697b9399a9f68eb6562427097be15069fb371dbde33da84125200",
+    "incoming/editor/receipt.json": "af86a38956916a0030724bb18c956a4a5947473f299befe1ae15623fd131ae5f",
+    "incoming/studio/receipt.json": "105c2f7c63ac4e961217a15b5f5c13560af258ef1fbe0f4d6d293dade04795c2"
+  },
+  "counting_policy": "Only the accepted final mail and incoming runs contribute. A test case executed on VM and Node counts once per platform; file totals deduplicate paths. Earlier attempts, development checks and independent replays add zero cases.",
+  "test_cohort_results": [
+    {
+      "name": "quds_mail_core-vm",
+      "group": "mail",
+      "counts": {
+        "failed": 0,
+        "passed": 54,
+        "skipped": 0
+      },
+      "files": [
+        "packages/quds_mail_core/test/cancellation_test.dart",
+        "packages/quds_mail_core/test/ews_identity_test.dart",
+        "packages/quds_mail_core/test/imap_sync_range_test.dart",
+        "packages/quds_mail_core/test/models_test.dart",
+        "packages/quds_mail_core/test/outbox_test.dart",
+        "packages/quds_mail_core/test/sync_coordinator_test.dart"
+      ]
+    },
+    {
+      "name": "quds_mail_mime-vm",
+      "group": "mail",
+      "counts": {
+        "failed": 0,
+        "passed": 84,
+        "skipped": 0
+      },
+      "files": [
+        "packages/quds_mail_mime/test/eml_bytes_test.dart",
+        "packages/quds_mail_mime/test/mbox_test.dart",
+        "packages/quds_mail_mime/test/mime_encodings_test.dart",
+        "packages/quds_mail_mime/test/mime_limits_test.dart",
+        "packages/quds_mail_mime/test/mime_parts_test.dart",
+        "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+        "packages/quds_mail_mime/test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "quds_mail_store-vm",
+      "group": "mail",
+      "counts": {
+        "failed": 0,
+        "passed": 508,
+        "skipped": 0
+      },
+      "files": [
+        "packages/quds_mail_store/test/adversarial_store_test.dart",
+        "packages/quds_mail_store/test/archive_directory_native_test.dart",
+        "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+        "packages/quds_mail_store/test/archive_export_native_test.dart",
+        "packages/quds_mail_store/test/archive_export_plan_test.dart",
+        "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+        "packages/quds_mail_store/test/archive_native_test.dart",
+        "packages/quds_mail_store/test/archive_query_test.dart",
+        "packages/quds_mail_store/test/archive_repository_test.dart",
+        "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+        "packages/quds_mail_store/test/archive_restore_native_test.dart",
+        "packages/quds_mail_store/test/archive_runner_test.dart",
+        "packages/quds_mail_store/test/codec_test.dart",
+        "packages/quds_mail_store/test/crash_recovery_test.dart",
+        "packages/quds_mail_store/test/ews_store_test.dart",
+        "packages/quds_mail_store/test/imap_sync_range_test.dart",
+        "packages/quds_mail_store/test/migration_test.dart",
+        "packages/quds_mail_store/test/native_platform_test.dart",
+        "packages/quds_mail_store/test/platform_configuration_test.dart",
+        "packages/quds_mail_store/test/repository_test.dart"
+      ]
+    },
+    {
+      "name": "quds_mail_store-node",
+      "group": "mail",
+      "counts": {
+        "failed": 0,
+        "passed": 9,
+        "skipped": 0
+      },
+      "files": [
+        "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+        "packages/quds_mail_store/test/browser_problem_test.dart"
+      ]
+    },
+    {
+      "name": "mail-ui",
+      "group": "mail",
+      "counts": {
+        "failed": 0,
+        "passed": 33,
+        "skipped": 0
+      },
+      "files": [
+        "packages/quds_mail_ui/test/controller_test.dart",
+        "packages/quds_mail_ui/test/example_test.dart",
+        "packages/quds_mail_ui/test/message_view_test.dart",
+        "packages/quds_mail_ui/test/presentation_test.dart"
+      ]
+    },
+    {
+      "name": "studio-mail",
+      "group": "mail",
+      "counts": {
+        "failed": 0,
+        "passed": 388,
+        "skipped": 0
+      },
+      "files": [
+        "packages/quds_office_editor/example/test/studio_mail_archive_action_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_folder_action_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_archive_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+        "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+      ]
+    },
+    {
+      "name": "macros-vba",
+      "group": "incoming",
+      "counts": {
+        "failed": 0,
+        "passed": 269,
+        "skipped": 0
+      },
+      "files": [
+        "packages/quds_office_engine/test/office_macro_cli_test.dart",
+        "packages/quds_office_engine/test/office_macro_expansion_test.dart",
+        "packages/quds_office_engine/test/office_macro_language_test.dart",
+        "packages/quds_office_engine/test/office_macro_mcp_test.dart",
+        "packages/quds_office_engine/test/office_macro_runtime_test.dart",
+        "packages/quds_office_engine/test/office_vba_control_flow_boundaries_test.dart",
+        "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_control_flow_test.dart",
+        "packages/quds_office_engine/test/office_vba_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_language_test.dart",
+        "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart",
+        "packages/quds_office_engine/test/office_vba_procedures_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_procedures_test.dart"
+      ]
+    },
+    {
+      "name": "branding-and-structure",
+      "group": "incoming",
+      "counts": {
+        "failed": 0,
+        "passed": 216,
+        "skipped": 0
+      },
+      "files": [
+        "packages/quds_office_engine/test/comment_thread_fidelity_test.dart",
+        "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+        "packages/quds_office_engine/test/odt_comment_fidelity_test.dart",
+        "packages/quds_office_engine/test/word_comment_test.dart",
+        "packages/quds_office_engine/test/word_revision_story_test.dart",
+        "packages/quds_office_engine/test/word_revision_validation_test.dart",
+        "packages/quds_office_engine/test/word_step_atomicity_test.dart",
+        "packages/quds_office_engine/test/word_structure_steps_test.dart"
+      ]
+    },
+    {
+      "name": "pdf-and-review",
+      "group": "incoming",
+      "counts": {
+        "failed": 0,
+        "passed": 52,
+        "skipped": 0
+      },
+      "files": [
+        "packages/quds_office_editor/test/pdf_save_state_test.dart",
+        "packages/quds_office_editor/test/pdf_surface_test.dart",
+        "packages/quds_office_editor/test/word_review_controller_test.dart",
+        "packages/quds_office_editor/test/word_review_dialog_test.dart"
+      ]
+    },
+    {
+      "name": "desktop-ribbon-lifecycle",
+      "group": "incoming",
+      "counts": {
+        "failed": 0,
+        "passed": 27,
+        "skipped": 0
+      },
+      "files": [
+        "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "packages/quds_office_editor/example/test/studio_ribbon_preferences_test.dart",
+        "packages/quds_office_editor/example/test/widget_test.dart"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "name": "format",
+      "group": "mail",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "name": "analysis",
+      "group": "mail",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "name": "whitespace",
+      "group": "mail",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "name": "quds_mail_core-vm",
+      "group": "mail",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "name": "quds_mail_mime-vm",
+      "group": "mail",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "name": "quds_mail_store-vm",
+      "group": "mail",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "name": "quds_mail_store-node",
+      "group": "mail",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "name": "mail-ui",
+      "group": "mail",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "name": "studio-mail",
+      "group": "mail",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "name": "macros-vba",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/macros-vba/result.json"
+    },
+    {
+      "name": "branding-and-structure",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/branding-and-structure/result.json"
+    },
+    {
+      "name": "web_smoke-compile",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/web_smoke-compile/result.json"
+    },
+    {
+      "name": "web_smoke-node",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/web_smoke-node/result.json"
+    },
+    {
+      "name": "web_vba_smoke-compile",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/web_vba_smoke-compile/result.json"
+    },
+    {
+      "name": "web_vba_smoke-node",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/web_vba_smoke-node/result.json"
+    },
+    {
+      "name": "web_vba_procedures_smoke-compile",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/web_vba_procedures_smoke-compile/result.json"
+    },
+    {
+      "name": "web_vba_procedures_smoke-node",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/web_vba_procedures_smoke-node/result.json"
+    },
+    {
+      "name": "web_vba_control_flow_smoke-compile",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/web_vba_control_flow_smoke-compile/result.json"
+    },
+    {
+      "name": "web_vba_control_flow_smoke-node",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/web_vba_control_flow_smoke-node/result.json"
+    },
+    {
+      "name": "macos-build-script-syntax",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/engine/macos-build-script-syntax/result.json"
+    },
+    {
+      "name": "pdf-and-review",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/editor/pdf-and-review/result.json"
+    },
+    {
+      "name": "desktop-ribbon-lifecycle",
+      "group": "incoming",
+      "accepted": true,
+      "exit_code": 0,
+      "result": "incoming/studio/desktop-ribbon-lifecycle/result.json"
+    }
+  ],
+  "coverage": [
+    "Native SQLite restore including actual SIGKILL/restart, real MIME export/restore round trip and atomic multi-origin rollback",
+    "Bounded invalid manifests, SHA/length mismatch, missing originals, changed sources, symlinks, codec substitution, cancellation and overlap",
+    "Existing mail core, MIME, archive search/export/import, shared mail UI and Studio regressions",
+    "Portable store manifest/browser boundary on Node",
+    "Incoming macros/VBA, structural document behavior, PDF/review and desktop/ribbon lifecycle",
+    "Four actual JavaScript compile-and-run checks, strict analysis, canonical formatting, whitespace and macOS build-script syntax"
+  ],
+  "limitations": [
+    "Linux native SQLite, synthetic/loopback mail fixtures and Flutter widgets only; no real-account interoperability",
+    "No installed macOS, Windows, mobile, AppKit or signing qualification; bash -n checks shell syntax only",
+    "No full-repository qualification and no newly rerun provider-transport cohort",
+    "Unsigned manifests detect corruption, not authenticity; portable filesystem checks do not prevent all hostile concurrent path replacement",
+    "Restores exported originals and recorded provenance, not a full database/profile/provider mailbox; reruns deduplicate without a durable cursor",
+    "All passed assertions are from these focused runs; previous milestone counts are not reused"
+  ]
+}

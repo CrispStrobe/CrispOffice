@@ -1,0 +1,53 @@
+{
+  "baseline_failure_reproduced": true,
+  "command": {
+    "command": [
+      "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+      "--no-version-check",
+      "--suppress-analytics",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter=json",
+      "test/embed_test.dart",
+      "--name",
+      "word editor tab key inserts a tab|QudsOfficeHost embeds a word editor with custom chrome"
+    ],
+    "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor",
+    "elapsed_seconds": 6.8402323722839355,
+    "environment_overrides": {
+      "CI": "true",
+      "DART_SUPPRESS_ANALYTICS": "true",
+      "FLUTTER_SUPPRESS_ANALYTICS": "true",
+      "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+      "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+    },
+    "exit_code": 1,
+    "name": "baseline-embed-tests",
+    "removed_optional_environment": [
+      "QUDS_MAIL_PORTABILITY_SHOTS"
+    ],
+    "started_at_utc": "2026-11-19T18:18:32Z",
+    "stderr": "baseline-embed-tests.stderr.log",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "baseline-embed-tests.stdout.log",
+    "stdout_sha256": "2d9823e8baa1d2fa2b509f07e1645eaefc253bd48bd809368cd0080f649211c0"
+  },
+  "fixture_identical_to_baseline": true,
+  "input_changes": [],
+  "input_count": 2206,
+  "summary": {
+    "done_events": [
+      {
+        "success": false,
+        "time": 5915,
+        "type": "done"
+      }
+    ],
+    "failed": 2,
+    "non_json_stdout_lines": 0,
+    "passed": 0,
+    "skipped": 0,
+    "visible_test_count": 2
+  }
+}

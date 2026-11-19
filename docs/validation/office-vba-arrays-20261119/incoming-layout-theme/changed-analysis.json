@@ -1,0 +1,40 @@
+{
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "analyze",
+    "--no-pub",
+    "--fatal-infos",
+    "lib/quds_office_editor.dart",
+    "lib/src/editor_sheet/render_sheet_grid.dart",
+    "lib/src/editor_word/office_ruler.dart",
+    "lib/src/editor_word/render_word_canvas.dart",
+    "lib/src/embed/office_controller.dart",
+    "lib/src/embed/office_theme.dart",
+    "lib/src/embed/word_page_layout.dart",
+    "lib/src/ui_components/office_chrome.dart",
+    "test/office_chrome_theme_test.dart",
+    "test/office_dark_document_test.dart",
+    "test/word_page_layout_test.dart"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor",
+  "elapsed_seconds": 12.435914039611816,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+  },
+  "exit_code": 0,
+  "name": "changed-analysis",
+  "removed_optional_environment": [
+    "QUDS_MAIL_PORTABILITY_SHOTS"
+  ],
+  "started_at_utc": "2026-11-19T18:15:46Z",
+  "stderr": "changed-analysis.stderr.log",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout": "changed-analysis.stdout.log",
+  "stdout_sha256": "f1c2eb5ec9ca19467ae4a8bf6fcdcec839b79afc84ab7ac30a6a77e666951423"
+}

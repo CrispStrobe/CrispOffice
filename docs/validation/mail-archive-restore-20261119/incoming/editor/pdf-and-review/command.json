@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/workspace/scratch/f815a4ae580f/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/pdf_save_state_test.dart",
+    "test/pdf_surface_test.dart",
+    "test/word_review_controller_test.dart",
+    "test/word_review_dialog_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_editor",
+  "head_before": "358544a48466c942873a4718a87fa9d1c2be11f7",
+  "name": "pdf-and-review",
+  "source_before_sha256": "6dc16359cfdbfa028358b1e39d17f49fb488ee9890d3b97b0574f0433f6eb4aa",
+  "started_at_utc": "2026-11-19T17:56:19.762489+00:00",
+  "timeout_seconds": 600
+}
