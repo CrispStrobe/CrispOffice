@@ -1,0 +1,39 @@
+{
+  "description": "Fresh Node qualification of the public conditional Mail transport entry and all portable MIME suites on the same frozen source as the native plan. Transport operations must return typed unsupported without touching the host vault/codec. Node execution does not establish actual browser storage/lifecycle, live sockets or real account acceptance. Platform executions are reported separately; overlapping VM/Node MIME files are not claimed as additional distinct files.",
+  "groups": [
+    {
+      "name": "transport-node-unsupported",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/unsupported_test.dart"
+      ]
+    },
+    {
+      "name": "mime-consumer-node",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py"
+  ],
+  "whitespace_preserved_inputs": []
+}

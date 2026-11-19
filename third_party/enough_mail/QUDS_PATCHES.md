@@ -83,11 +83,19 @@ implemented Quds packages outside this directory keep their own MIT license.
     newlines or eagerly parse MIME. Header mode requests only envelope
     HEADER.FIELDS. Its parser rejects partial bodies, malformed prefixes,
     duplicate/out-of-range UIDs and unbalanced response grammar; a tagged OK
-    cannot accept an earlier valid prefix. Protocol atoms remain case-insensitive.
+    cannot accept an earlier valid prefix. Valid unsolicited FLAGS-only updates
+    are handled separately and do not consume the requested literal count.
+    Bounded notification tracking rejects missing in-range literals and ambiguous
+    sparse responses instead of turning them into false deletion tombstones.
+    Later identified flags supersede earlier snapshots; an uncorrelated UID-less
+    update after EXPUNGE cannot confirm a write through a stale sequence map.
+    Protocol atoms remain case-insensitive.
 13. Add configurable literal, protocol-line/greeting and aggregate response-byte
     bounds. Deterministic budget failures are latched separately from provider
     or authentication errors. Strict response iteration suppresses the historical
     raw-literal warning output; malformed raw responses fail and abort the client.
+    The distinct resource-limit error retains the legacy `FormatException`
+    relationship, so existing parser callers and Quds quota classification agree.
 14. Frame IMAP greetings across TCP fragmentation/coalescing. Add hard abort,
     connection-generation guards, and late socket/TLS result destruction.
     Production socket creation keeps the existing certificate and hostname trust

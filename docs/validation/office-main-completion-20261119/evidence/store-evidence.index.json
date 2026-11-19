@@ -1,0 +1,193 @@
+{
+  "archive": "store-evidence.tar.xz",
+  "archive_bytes": 423412,
+  "archive_sha256": "807ade7ca21863786a2aaee4adb6bef131df787dd2a5fa5adccb8b553275c8a2",
+  "source_index_path": "/workspace/scratch/f0520e768bc8/qualification-store/artifacts-index.json",
+  "source_index_sha256": "ea8dae752549f7d7f7614b974605571061cea8e91283566d4f3939abe4e4877c",
+  "indexed_source_file_count": 27,
+  "member_count": 29,
+  "members_verified_against_original_bytes": true,
+  "deterministic_tar_metadata": {
+    "mtime": 0,
+    "uid": 0,
+    "gid": 0,
+    "uname": "",
+    "gname": ""
+  },
+  "members": [
+    {
+      "path": "driver/run-store-qualification.py",
+      "bytes": 3973,
+      "sha256": "43171f65ccbbd33936a969079d48515eb4c6506ec0e63c45183e93ac01355550",
+      "source_path": "/workspace/scratch/f0520e768bc8/run-store-qualification.py"
+    },
+    {
+      "path": "qualification-store/artifacts-index.json",
+      "bytes": 4335,
+      "sha256": "ea8dae752549f7d7f7614b974605571061cea8e91283566d4f3939abe4e4877c",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/artifacts-index.json"
+    },
+    {
+      "path": "qualification-store/browser-entry.js",
+      "bytes": 1344706,
+      "sha256": "70a3037c075a48edb6f17e95bd43ed4ee25ffb414b6c26121349556198f2c678",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/browser-entry.js"
+    },
+    {
+      "path": "qualification-store/browser-entry.js.deps",
+      "bytes": 70474,
+      "sha256": "ab904ae233df6e473cd4b4a26a49fab01fbdebf99d70b789b07f4444392dbbb8",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/browser-entry.js.deps"
+    },
+    {
+      "path": "qualification-store/browser-entry.js.map",
+      "bytes": 577014,
+      "sha256": "b2e39e74f795e008aea68e70df7cac76591c7feaa8640861e9544700fa2d9a51",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/browser-entry.js.map"
+    },
+    {
+      "path": "qualification-store/browser-entry.log",
+      "bytes": 114,
+      "sha256": "a5c06745f6fc5747931d6fb63974e03fee7d054a8cf47048e863a1a860e4533a",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/browser-entry.log"
+    },
+    {
+      "path": "qualification-store/browser-worker.js",
+      "bytes": 1218778,
+      "sha256": "ac65b51e34c049ed3cece7b5326838b3e1d3699063a15e49048f5b21d5a55495",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/browser-worker.js"
+    },
+    {
+      "path": "qualification-store/browser-worker.js.deps",
+      "bytes": 66495,
+      "sha256": "d05a1511069c2d89dbb05b605c662bd9a0fc18f4ffa8bfcea9c378cafc084572",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/browser-worker.js.deps"
+    },
+    {
+      "path": "qualification-store/browser-worker.js.map",
+      "bytes": 519582,
+      "sha256": "065fc3df86b0461ca46eb3f3136d59930327fbc3b89d564f9f8362a5aad18dbe",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/browser-worker.js.map"
+    },
+    {
+      "path": "qualification-store/browser-worker.log",
+      "bytes": 113,
+      "sha256": "750fd9a902e2dd3cbf5b5ed1f52c504814389747b587468f6446cdb9525f1209",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/browser-worker.log"
+    },
+    {
+      "path": "qualification-store/core-analysis.log",
+      "bytes": 45,
+      "sha256": "ba8f111031783cd9617e408cf4a69a31be131b4256751d349ccf5fcd426087c9",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/core-analysis.log"
+    },
+    {
+      "path": "qualification-store/core-node-cases.json",
+      "bytes": 6140,
+      "sha256": "af6170fad47a40cf14883092736960f61f7ad88fde53de3ea1ef3dfa3168fc6d",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/core-node-cases.json"
+    },
+    {
+      "path": "qualification-store/core-node.jsonl",
+      "bytes": 16929,
+      "sha256": "eec1a63a9c210ea2297463129ebdc52acd1c4e161c1e2bfebe58eefe7e0bcd27",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/core-node.jsonl"
+    },
+    {
+      "path": "qualification-store/core-vm-cases.json",
+      "bytes": 6140,
+      "sha256": "493201f0c4024b5c7472c3a71a8e2cf6c4cbbe2d69cdec40546c06b86036a56b",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/core-vm-cases.json"
+    },
+    {
+      "path": "qualification-store/core-vm.jsonl",
+      "bytes": 15581,
+      "sha256": "8261054f56a9317bc044add33a5cb233e0f41a4c2be601938926d6bd5e8572bc",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/core-vm.jsonl"
+    },
+    {
+      "path": "qualification-store/driver-receipt.json",
+      "bytes": 7230,
+      "sha256": "994844e81b0393370c57b95ddd9f25aecaa5391f4a328714dfb267ee2185feac",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/driver-receipt.json"
+    },
+    {
+      "path": "qualification-store/driver.log",
+      "bytes": 233,
+      "sha256": "10d47102643937bdba963335cbf4c101b4a235d00e89847390b90e1509fc7e61",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/driver.log"
+    },
+    {
+      "path": "qualification-store/format.log",
+      "bytes": 48,
+      "sha256": "d32993477512dbc045687fc6776f8f1fa60f99f8856be64536ca70e8bd761467",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/format.log"
+    },
+    {
+      "path": "qualification-store/locked-resolution-ready.json",
+      "bytes": 292,
+      "sha256": "9ab6349185f49e4d67751d4e0990fab8d3160afa2d722e81455aadb524557aa2",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/locked-resolution-ready.json"
+    },
+    {
+      "path": "qualification-store/locked-resolution.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/locked-resolution.log"
+    },
+    {
+      "path": "qualification-store/portable-node-cases.json",
+      "bytes": 8566,
+      "sha256": "2f703da0af958f1d26971eca45a19c9a25788cdff9502f80f81df4f65744f473",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/portable-node-cases.json"
+    },
+    {
+      "path": "qualification-store/portable-node.jsonl",
+      "bytes": 22859,
+      "sha256": "205b99ac4051dde6ac3220a9d936250c07c8b848f1c47530c7bb998e4ff429c3",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/portable-node.jsonl"
+    },
+    {
+      "path": "qualification-store/receipt.json",
+      "bytes": 25942,
+      "sha256": "53f0473133ccd86449194dd50733ccd29898a9a68b50b7088a5285842cf0ab52",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/receipt.json"
+    },
+    {
+      "path": "qualification-store/runner-regressions.log",
+      "bytes": 6804,
+      "sha256": "7b18e1e0b6173b1198b3be351dc742cb9f43555417c8f8f8725ec3c4fc97fe7d",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/runner-regressions.log"
+    },
+    {
+      "path": "qualification-store/runtime.log",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/runtime.log"
+    },
+    {
+      "path": "qualification-store/store-analysis.log",
+      "bytes": 46,
+      "sha256": "6573947ce493b867fb233613853e29c908e91977b0e23360aa95417b9071bef1",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/store-analysis.log"
+    },
+    {
+      "path": "qualification-store/store-vm-cases.json",
+      "bytes": 18728,
+      "sha256": "b334ecdd3bcad2f25ff9d4f38f3b2e083a8d38d27bb699102ec8eec8c7de5ed3",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/store-vm-cases.json"
+    },
+    {
+      "path": "qualification-store/store-vm.jsonl",
+      "bytes": 51669,
+      "sha256": "e45b966c333057563cce989b1cb813c9b210f2654bf2cc6965dd4da0145743e2",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/store-vm.jsonl"
+    },
+    {
+      "path": "qualification-store/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-store/whitespace.log"
+    }
+  ]
+}

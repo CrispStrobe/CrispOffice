@@ -61,6 +61,84 @@ def write_json(path: Path, value: object) -> None:
     path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
 
 
+def verified_workspace_packages(repo: Path) -> dict[str, list[str]]:
+    """Match resolved names to the locked dependencies and workspace manifests.
+
+    A fixed package count cannot distinguish a missing dependency from an
+    unexpected replacement, and changes whenever a workspace member is added.
+    Keep the lockfile authoritative for dependencies and each workspace manifest
+    authoritative for its own package name, including the workspace root.
+    """
+    repo = repo.resolve()
+
+    def read_manifest(path: Path) -> dict:
+        value = yaml.safe_load(path.read_text())
+        if not isinstance(value, dict):
+            raise RuntimeError("Expected a package manifest mapping: " + str(path))
+        name = value.get("name")
+        if not isinstance(name, str) or not name.strip():
+            raise RuntimeError("Expected a package name in manifest: " + str(path))
+        return value
+
+    root_manifest = read_manifest(repo / "pubspec.yaml")
+    members = root_manifest.get("workspace", [])
+    if not isinstance(members, list):
+        raise RuntimeError("Workspace members must be a list of relative directories")
+    workspace_names = {root_manifest["name"]}
+    member_paths = {repo}
+    for relative in members:
+        if (not isinstance(relative, str) or not relative.strip()
+                or Path(relative).is_absolute()):
+            raise RuntimeError("Workspace member must be a relative directory")
+        member = (repo / relative).resolve()
+        if not member.is_relative_to(repo):
+            raise RuntimeError("Workspace member must remain inside the repository")
+        if member in member_paths:
+            raise RuntimeError("Duplicate workspace member directory: " + relative)
+        member_paths.add(member)
+        name = read_manifest(member / "pubspec.yaml")["name"]
+        if name in workspace_names:
+            raise RuntimeError("Duplicate workspace package name: " + name)
+        workspace_names.add(name)
+
+    lock = yaml.safe_load((repo / "pubspec.lock").read_text())
+    locked = lock.get("packages") if isinstance(lock, dict) else None
+    if not isinstance(locked, dict) or any(
+        not isinstance(name, str) or not name.strip() for name in locked
+    ):
+        raise RuntimeError("Lockfile packages must map dependency names")
+    locked_names = set(locked)
+    overlap = workspace_names & locked_names
+    if overlap:
+        raise RuntimeError("Package names appear in both lock and workspace: "
+                           + ", ".join(sorted(overlap)))
+
+    config = json.loads((repo / ".dart_tool/package_config.json").read_text())
+    packages = config.get("packages") if isinstance(config, dict) else None
+    if not isinstance(packages, list):
+        raise RuntimeError("Resolved packages must be a list")
+    resolved_names = set()
+    for package in packages:
+        name = package.get("name") if isinstance(package, dict) else None
+        if not isinstance(name, str) or not name.strip():
+            raise RuntimeError("Resolved package must have a name")
+        if name in resolved_names:
+            raise RuntimeError("Duplicate resolved package name: " + name)
+        resolved_names.add(name)
+    expected_names = locked_names | workspace_names
+    missing = expected_names - resolved_names
+    unexpected = resolved_names - expected_names
+    if missing or unexpected:
+        raise RuntimeError("Resolved package names differ: missing="
+                           + repr(sorted(missing)) + "; unexpected="
+                           + repr(sorted(unexpected)))
+    return {
+        "locked": sorted(locked_names),
+        "workspace": sorted(workspace_names),
+        "resolved": sorted(resolved_names),
+    }
+
+
 @contextmanager
 def native_smoke_entrypoint(repo: Path):
     """Run the unchanged probe as an entrypoint owned by the SQLite consumer.
@@ -390,9 +468,8 @@ def main() -> None:
             raise RuntimeError("Unexpected SDK runtime version")
         if sha256(repo / "pubspec.lock") != LOCK_SHA256:
             raise RuntimeError("Workspace lock changed during enforced resolution")
-        receipt["workspace_package_count"] = len(json.loads((repo / ".dart_tool/package_config.json").read_text())["packages"])
-        if receipt["workspace_package_count"] != 130:
-            raise RuntimeError("Unexpected resolved workspace package count")
+        receipt["workspace_packages"] = verified_workspace_packages(repo)
+        receipt["workspace_package_count"] = len(receipt["workspace_packages"]["resolved"])
         retained = {}
         for prefix in ["flutter", "pub-cache/hosted/pub.dev"]:
             for path in sorted((root / prefix).rglob("*")):

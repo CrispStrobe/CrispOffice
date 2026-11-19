@@ -107,6 +107,8 @@ final class ImapFixture {
   bool malformedFetchPrefix = false;
   bool acknowledgeWithoutChange = false;
   bool closeAfterMutation = false;
+  final List<String> beforeFetchResponses = [];
+  final List<String> afterFetchResponses = [];
   final List<String> commands = [];
   final List<FixtureImapClient> clients = [];
   Future<void> Function(String command)? beforeReply;
@@ -251,6 +253,9 @@ final class ImapFixture {
       final first = int.parse(range[1]!);
       final last = int.parse(range[2]!);
       final headers = command.contains('BODY.PEEK[HEADER.FIELDS ');
+      for (final response in beforeFetchResponses) {
+        socket.text('$response\r\n');
+      }
       var sequence = 0;
       for (final entry in messages.entries) {
         sequence++;
@@ -277,6 +282,9 @@ final class ImapFixture {
           socket.bytes(literal);
           socket.text(malformedLiteral ? '\r\n' : ')\r\n');
         }
+      }
+      for (final response in afterFetchResponses) {
+        socket.text('$response\r\n');
       }
       socket.text('$tag OK fetched\r\n');
     } else if (command.startsWith('UID STORE ')) {
