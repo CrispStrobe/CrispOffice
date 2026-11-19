@@ -1,7 +1,7 @@
 # Continued main integration qualification
 
 This third plan version integrates incoming main
-`be641457c8c7d1acc25091b31c87c73eaa3c9c2a` and retains every suite selected by
+`00014577265d1f95d4c016159029510d3a10804b` and retains every suite selected by
 the rejected second attempt. It adds the affected Word language, finding merge,
 Studio settings, native proofing, setup and download cancellation coverage.
 
@@ -12,12 +12,12 @@ their own source identities. All prior, rejected and development executions add
 **zero** to the totals produced by this plan.
 
 The planned selection is **37 native suite/platform executions**, **11 Node
-suite/platform executions**, **85 strict Dart analysis/format targets**, **17
+suite/platform executions**, **87 strict Dart analysis/format targets**, **17
 verbose AyaSpell bundle controls**, **4 separate offline packaging controls**,
 and browser transport compilation. These
 are suite and target inventories, not advance claims about passing cases. The
 source-freeze guard also requires every Dart path changed from either `0669ac11`
-or `be641457` in both strict target lists. Final author identities must be
+or `00014577` in both strict target lists. Final author identities must be
 recorded before source freeze; a pending override receipt rejects execution.
 
 ## What is exercised
@@ -68,10 +68,16 @@ bootstrap receipt remain unchanged. The current 132-package workspace receives
 its own explicit before/after receipts.
 
 The exact incoming upstream license bytes remain intact. Whitespace is checked
-against `be641457`, without exceptions or shared-runner edits. macOS entitlement
+against `00014577`, without exceptions or shared-runner edits. macOS entitlement
 inspection is static. Linux native tests, Flutter host/widget tests and Dart
 browser transport compilation do not establish a macOS launch or actual browser
 WebAssembly-worker execution.
+
+The incoming binary-build workflow has one explicitly reviewed correction to
+the macOS step's working directory. Its exact YAML path and resulting hash are
+bound in both plans and the outer source envelope. This permits no directory
+exception for other workflows, and the workflow itself is not run or queried by
+this qualification.
 
 ## Frozen execution
 

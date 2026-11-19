@@ -143,3 +143,16 @@ The third source-bound plan retains every suite from the rejected second attempt
 and adds the affected Word language, merge, host/setup, Settings and cancellation
 coverage. All prior failed/development/historical events remain outside its
 accepted totals. The original `0669ac11` qualification remains separate.
+
+## Latest Studio presentation and build definitions at `00014577`
+
+A pre-freeze read found main advancing through `baf3dbd0` to
+`00014577265d1f95d4c016159029510d3a10804b`. The next merge preserves its
+application icons, branding assets, About layout, German labels, native menu
+updates and the all-platform binary workflow. The Notes cache-key repair is
+reapplied to the latest workspace source, preserving those intervening edits.
+The macOS workflow build step receives the same Studio working directory used
+by the other platform build steps. Workflow review is static: no Actions run,
+job, status or queue is queried or awaited, and no manual dispatch is requested.
+These definitions do
+not constitute platform-build or optional-backend acceptance.

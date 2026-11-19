@@ -13,7 +13,7 @@ import subprocess
 import sys
 
 PRIOR = "0669ac119da05f5eb777c8cfdbce32e0261df647"
-MAIN = "be641457c8c7d1acc25091b31c87c73eaa3c9c2a"
+MAIN = "00014577265d1f95d4c016159029510d3a10804b"
 
 
 def sha(path: Path) -> str:

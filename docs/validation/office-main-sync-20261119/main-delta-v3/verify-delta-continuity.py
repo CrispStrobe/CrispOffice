@@ -11,7 +11,7 @@ import plistlib
 import subprocess
 
 PRIOR = "0669ac119da05f5eb777c8cfdbce32e0261df647"
-MAIN = "be641457c8c7d1acc25091b31c87c73eaa3c9c2a"
+MAIN = "00014577265d1f95d4c016159029510d3a10804b"
 HUNSPELL = "packages/quds_proofing_hunspell/"
 MACOS = "packages/quds_office_editor/example/macos/"
 REPORT = "docs/validation/office-main-sync-20261119/"
@@ -92,8 +92,11 @@ def main() -> int:
     overrides = {}
     for row in override_data["paths"]:
         path = row["path"]
-        check(path not in overrides and path.startswith(("packages/quds_office_engine/", "packages/quds_office_editor/", "packages/quds_proofing_hunspell/", "tools/proofing/ayaspell/", "docs/"))
-              and Path(path).suffix in {".dart", ".yaml", ".md", ".py", ".cpp"} and bool(row.get("reason")), "Scoped, distinct reviewed override: " + path)
+        check(path not in overrides and bool(row.get("reason"))
+              and (path == ".github/workflows/crispoffice-binaries.yml"
+                   or (path.startswith(("packages/quds_office_engine/", "packages/quds_office_editor/", "packages/quds_proofing_hunspell/", "tools/proofing/ayaspell/", "docs/"))
+                       and Path(path).suffix in {".dart", ".yaml", ".md", ".py", ".cpp"})),
+              "Scoped, distinct reviewed override: " + path)
         check(path in current and digest(blob(source, path)) == row["after_sha256"], "Exact reviewed override bytes: " + path)
         if path in incoming:
             check(row.get("incoming_sha256") == digest(blob(MAIN, path)), "Exact incoming override baseline: " + path)
@@ -237,7 +240,7 @@ def main() -> int:
               "intentionally_deleted_source_paths": deleted_paths, "removed_prior_bound_inputs": bound_deletions,
               "reviewed_source_overrides": list(overrides.values()), "reviewed_override_file_sha256": digest(override_raw),
               "changed_dependency_graph_nodes": {"quds_office_studio": {"before": old_nodes["quds_office_studio"], "after": studio}},
-              "previous_incoming_main_source": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+              "earlier_incoming_main_sources": ["b655b8a37fddc874bd42a453c371eed6253e82d8", "b559f6c764fbfac143f593e89ddc1096ad8b5c4e", "be641457c8c7d1acc25091b31c87c73eaa3c9c2a"],
               "changed_existing_source": changes, "new_paths": additions,
               "runtime_changed_paths": runtime_changes, "workspace_before": sorted(before_rows), "workspace_after": sorted(after_rows),
               "workspace_before_count": len(before_rows), "workspace_after_count": len(after_rows),
