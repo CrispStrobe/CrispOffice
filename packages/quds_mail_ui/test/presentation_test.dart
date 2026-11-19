@@ -7,12 +7,80 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'fixtures/mail_fixture.dart';
 
 void main() {
+  test(
+    'existing presentation constructors default to an empty body projection',
+    () {
+      final p = MailReaderPresentation(
+        text: 'An existing caller supplies display text.',
+        runs: const [],
+        images: const [],
+        diagnostics: const [],
+      );
+      expect(p.bodyText, isEmpty);
+    },
+  );
+
+  for (final html in [false, true]) {
+    test(
+      '${html ? 'HTML' : 'plain'} body projection excludes reader metadata',
+      () {
+        const body = 'Visible body 😀 مرحبًا.\nBcc: a literal body label.';
+        final p = buildMailPresentation(
+          MailParseResult(
+            status: MailParseStatus.complete,
+            message: MailMessage(
+              raw: MailBytes(Uint8List(0)),
+              envelope: MailEnvelope(
+                subject: 'Envelope metadata 😀',
+                from: const [MailAddress('sender@example.invalid')],
+                bcc: const [MailAddress('hidden@example.invalid')],
+              ),
+              body: MailBody(
+                plainText: html ? null : body,
+                html: html
+                    ? '<p>Visible body 😀 مرحبًا.</p>'
+                          '<p>Bcc: a literal body label.</p>'
+                          '<script>not quoted active text</script>'
+                          '<img src="https://blocked.invalid/image">'
+                    : null,
+              ),
+              attachments: [byteAttachment()],
+            ),
+          ),
+        );
+        expect(p.rejected, isFalse);
+        expect(p.usedHtml, html);
+        expect(p.text, contains('hidden@example.invalid'));
+        expect(p.text, contains('original.bin'));
+        expect(
+          p.bodyText.trim(),
+          html ? '$body\n[External image blocked]' : body,
+        );
+        for (final metadata in [
+          'Envelope metadata',
+          'sender@example.invalid',
+          'hidden@example.invalid',
+          'original.bin',
+          'application/octet-stream',
+        ]) {
+          expect(p.bodyText, isNot(contains(metadata)));
+        }
+        if (html) {
+          expect(p.bodyText, isNot(contains('not quoted active text')));
+          expect(p.bodyText, isNot(contains('blocked.invalid')));
+          expect(p.blockedResourceCount, greaterThan(0));
+        }
+      },
+    );
+  }
+
   test('direct DTO plain/HTML bodies share one cumulative body budget', () {
     final p = buildMailPresentation(
       mailFixture(plainText: '1234', html: '5678'),
       budget: const MailReadBudget(maxBodyBytes: 7),
     );
     expect(p.rejected, isTrue);
+    expect(p.bodyText, isEmpty);
     expect(p.diagnostics.last.code, MailDiagnosticCode.bodyLimit);
   });
 
@@ -104,6 +172,7 @@ void main() {
       );
       expect(p.rejected, isTrue);
       expect(p.text, isEmpty);
+      expect(p.bodyText, isEmpty);
       expect(p.diagnostics.last.code, MailDiagnosticCode.renderLimit);
     }
   });
@@ -135,6 +204,7 @@ void main() {
       final p = buildMailPresentation(result, budget: budget);
       expect(p.rejected, isTrue);
       expect(p.text, isEmpty);
+      expect(p.bodyText, isEmpty);
       expect(p.diagnostics.last.code, code);
     }
   });

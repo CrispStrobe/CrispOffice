@@ -1,0 +1,10 @@
+{
+  "verified_at_utc": "2026-11-19T11:35:09.640538+00:00",
+  "archive_sha256": "6529d9d7f3b86576f1dce9899a1416c716e3eb36bece4921961e99408e97d455",
+  "index_sha256": "8d27fb31a74dc04a96a322228102335a215155b6768276946a8562f3b2503908",
+  "all_members_match_originals": true,
+  "exact_raw_directory_membership": true,
+  "members_verified": 57,
+  "raw_files_verified": 53,
+  "input_results_modified": false
+}

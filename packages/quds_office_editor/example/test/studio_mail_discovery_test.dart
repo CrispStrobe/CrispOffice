@@ -226,6 +226,33 @@ void main() {
     expect(loader.disposals, 1);
   });
 
+  testWidgets(
+    'discovery uses the credentials captured when connection begins',
+    (tester) async {
+      final pending = Completer<mail.ClientConfig?>();
+      final client = _Client();
+      final loader = _Loader();
+      mail.MailAccount? captured;
+      await _open(
+        tester,
+        discovery: (_) => pending.future,
+        client: (account) {
+          captured = account;
+          return client;
+        },
+        loader: (_) => loader,
+      );
+      await tester.enterText(_field(_strings.password), 'changed-password');
+      pending.complete(_config());
+      await _pump(tester);
+      final authentication =
+          captured!.incoming.authentication as mail.PlainAuthentication;
+      expect(authentication.password, 'private-fixture-password');
+      await _close(tester);
+      expect(loader.disposals, 1);
+    },
+  );
+
   for (final failure in <bool>[false, true]) {
     testWidgets(
       'closing during discovery ignores its late ${failure ? 'failure' : 'success'}',

@@ -245,6 +245,61 @@ void main() {
       },
     );
 
+    test('SMTP abort releases pending send and disconnect', () async {
+      const limit = Duration(seconds: 2);
+      server.holdMailFromResponse = true;
+      final smtp = client.lowLevelOutgoingMailClient as SmtpClient;
+      final send = client
+          .sendMessage(_message())
+          .then<(Object?, StackTrace?)>(
+            (_) => (null, null),
+            onError: (Object error, StackTrace stack) => (error, stack),
+          );
+      Future<void>? disconnect;
+      try {
+        await server.mailFromReceived.future.timeout(limit);
+        // Disconnect queues behind the send, which is awaiting the held reply.
+        disconnect = client.disconnect();
+        await smtp.abort().timeout(limit);
+        await smtp.abort().timeout(limit);
+        final (error, stack) = await send.timeout(limit);
+        expect(
+          error,
+          isA<MailException>()
+              .having(
+                (error) => error is MailSendPostSubmissionException,
+                'post-submission warning',
+                isFalse,
+              )
+              .having(
+                (error) => error.details,
+                'SMTP abort response',
+                isA<SmtpResponse>()
+                    .having((response) => response.code, 'code', 500)
+                    .having(
+                      (response) => response.message,
+                      'message',
+                      'client aborted',
+                    ),
+              ),
+        );
+        expect(stack?.toString(), isNotEmpty);
+        await disconnect.timeout(limit);
+        expect(server.accepted, 0);
+        expect(client.appended, 0);
+        expect(smtp.isConnected, isFalse);
+        expect(smtp.isLoggedIn, isFalse);
+      } finally {
+        // Complete even a broken implementation's pending command so a failed
+        // regression cannot leave public disconnect hanging during teardown.
+        await smtp.disconnect().timeout(limit);
+        await send.timeout(limit);
+        if (disconnect != null) {
+          await disconnect.timeout(limit);
+        }
+      }
+    });
+
     test(
       'append failure preserves confirmed submission at the public API',
       () async {
@@ -327,6 +382,8 @@ class _SmtpFixture {
   final ServerSocket _listener;
   final _sockets = <Socket>[];
   bool rejectPayload = false;
+  bool holdMailFromResponse = false;
+  final mailFromReceived = Completer<void>();
   int accepted = 0;
 
   int get port => _listener.port;
@@ -364,6 +421,10 @@ class _SmtpFixture {
           socket.write('250-test\r\n250 AUTH PLAIN\r\n');
         } else if (line.startsWith('AUTH')) {
           socket.write('235 authenticated\r\n');
+        } else if (line.startsWith('MAIL FROM') && holdMailFromResponse) {
+          if (!mailFromReceived.isCompleted) {
+            mailFromReceived.complete();
+          }
         } else if (line == 'DATA') {
           dataMode = true;
           socket.write('354 send payload\r\n');

@@ -1,5 +1,6 @@
 ## 0.1.0
 
+- Expose the bounded, inert body text separately from envelope and attachment summaries for safe reply and forward quotes.
 - Add the reusable account-free saved-message reader and a real multipart EML example.
 - Add a bounded static HTML projection, explicit diagnostics, local CID PNG/JPEG admission, and immutable source/attachment callbacks.
 - Add custom RenderBox decoded selection, grapheme-safe copy, full/preview input budgets, accessible find controls, keyboard navigation, and mixed-direction headers.

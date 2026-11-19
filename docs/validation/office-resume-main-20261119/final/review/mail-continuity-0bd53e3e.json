@@ -1,0 +1,405 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-19T11:51:59.629103+00:00",
+  "method": "Git mode/type/blob and actual content checks. Static review only; no product tests or runtime qualification executed.",
+  "target": "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9",
+  "observed_head": "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9",
+  "captured_main": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+  "qualified_historical_source": "29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e",
+  "qualified_prior_delta_source": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+  "mail_scope_unchanged_from_captured_main": true,
+  "main_delta": [],
+  "untracked_mail_scope_files": [],
+  "historical_manifest_records_verified": 394,
+  "historical_manifest_errors": [],
+  "historical_manifest": {
+    "path": "docs/validation/office-main-integration-20261119/host-final/host_mail_continuity.json",
+    "sha256": "6eb02d3f2db1a059106e6909fba918d390b8c62ae0a8b4e720e9792d286bfe9b"
+  },
+  "inventory_counts": {
+    "historical_29dd": 394,
+    "captured_main": 395,
+    "current_target": 395
+  },
+  "inventory_sha256": {
+    "historical_29dd": "c6cb922991ad9324a184ef3d4d73c5581639b54de11927c2f372c4328de2ab61",
+    "captured_main": "1dcbec670cf73cf2a7d5b1c1f8ecb9f9c2d19562ac634deaff82722b2214f676",
+    "current_target": "1dcbec670cf73cf2a7d5b1c1f8ecb9f9c2d19562ac634deaff82722b2214f676"
+  },
+  "per_scope": [
+    {
+      "path": "packages/quds_mail_core",
+      "historical_records": 24,
+      "current_main_records": 24,
+      "target_records": 24,
+      "identical_to_captured_main": true,
+      "library_identical_to_29dd": true,
+      "changes_since_29dd": []
+    },
+    {
+      "path": "packages/quds_mail_store",
+      "historical_records": 32,
+      "current_main_records": 32,
+      "target_records": 32,
+      "identical_to_captured_main": true,
+      "library_identical_to_29dd": true,
+      "changes_since_29dd": [
+        {
+          "path": "packages/quds_mail_store/README.md",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "24777ace4a44bab6850070164cdb8ef5d77d265c"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "e0917b32660a2155bea6a2b4d9383cdb63da408a"
+          }
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_mail_transport",
+      "historical_records": 28,
+      "current_main_records": 29,
+      "target_records": 29,
+      "identical_to_captured_main": true,
+      "library_identical_to_29dd": false,
+      "changes_since_29dd": [
+        {
+          "path": "packages/quds_mail_transport/CHANGELOG.md",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "e431fa263e31b27d5788542648e08d3cfd5474f1"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "a7c02bfbc74bffb1daedcf468e375657f5636606"
+          }
+        },
+        {
+          "path": "packages/quds_mail_transport/README.md",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "75a9eb8449fdadd194bd43c5d5a4d1097708dfc7"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "89022921b91296b5f6c9d02b8d017bf1e523f77c"
+          }
+        },
+        {
+          "path": "packages/quds_mail_transport/lib/src/cursor.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "bd7382fe3e8f7243140248366ae4e8d98ca993e9"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "84be3ff23c6ccf8b03df3497b448635b9309a6a2"
+          }
+        },
+        {
+          "path": "packages/quds_mail_transport/lib/src/native/provider.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "a07189ead126635da98ed89a9b28dbbfbdf63ba0"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "81f73eff9fdd9e8a54493884ff288f7cb65337ef"
+          }
+        },
+        {
+          "path": "packages/quds_mail_transport/test/cursor_test.dart",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "4664c0b60e09df3a66d3a50e828af2dc5d3541ac"
+          }
+        },
+        {
+          "path": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "c47e111bf919a196f80e1b877ece8c2e7130721c"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "25539871c7c6e40c5dbb3514adfd93cbd56af923"
+          }
+        },
+        {
+          "path": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+          "before": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "56640de02671118d253ec8e86d80df32fd64783d"
+          },
+          "after": {
+            "mode": "100644",
+            "kind": "blob",
+            "git_blob": "d05e1136c08bbab556a32ba4fecb2fbbccecf428"
+          }
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_mail_mime",
+      "historical_records": 17,
+      "current_main_records": 17,
+      "target_records": 17,
+      "identical_to_captured_main": true,
+      "library_identical_to_29dd": true,
+      "changes_since_29dd": []
+    },
+    {
+      "path": "packages/quds_mail_ui",
+      "historical_records": 24,
+      "current_main_records": 24,
+      "target_records": 24,
+      "identical_to_captured_main": true,
+      "library_identical_to_29dd": true,
+      "changes_since_29dd": []
+    },
+    {
+      "path": "third_party/enough_mail",
+      "historical_records": 269,
+      "current_main_records": 269,
+      "target_records": 269,
+      "identical_to_captured_main": true,
+      "library_identical_to_29dd": true,
+      "changes_since_29dd": []
+    }
+  ],
+  "changes_since_29dd": [
+    {
+      "path": "packages/quds_mail_store/README.md",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "24777ace4a44bab6850070164cdb8ef5d77d265c"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "e0917b32660a2155bea6a2b4d9383cdb63da408a"
+      }
+    },
+    {
+      "path": "packages/quds_mail_transport/CHANGELOG.md",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "e431fa263e31b27d5788542648e08d3cfd5474f1"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "a7c02bfbc74bffb1daedcf468e375657f5636606"
+      }
+    },
+    {
+      "path": "packages/quds_mail_transport/README.md",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "75a9eb8449fdadd194bd43c5d5a4d1097708dfc7"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "89022921b91296b5f6c9d02b8d017bf1e523f77c"
+      }
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/cursor.dart",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "bd7382fe3e8f7243140248366ae4e8d98ca993e9"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "84be3ff23c6ccf8b03df3497b448635b9309a6a2"
+      }
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/native/provider.dart",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "a07189ead126635da98ed89a9b28dbbfbdf63ba0"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "81f73eff9fdd9e8a54493884ff288f7cb65337ef"
+      }
+    },
+    {
+      "path": "packages/quds_mail_transport/test/cursor_test.dart",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "4664c0b60e09df3a66d3a50e828af2dc5d3541ac"
+      }
+    },
+    {
+      "path": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "c47e111bf919a196f80e1b877ece8c2e7130721c"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "25539871c7c6e40c5dbb3514adfd93cbd56af923"
+      }
+    },
+    {
+      "path": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "56640de02671118d253ec8e86d80df32fd64783d"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "d05e1136c08bbab556a32ba4fecb2fbbccecf428"
+      }
+    }
+  ],
+  "changes_since_5c18": [
+    {
+      "path": "packages/quds_mail_store/README.md",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "24777ace4a44bab6850070164cdb8ef5d77d265c"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "e0917b32660a2155bea6a2b4d9383cdb63da408a"
+      }
+    },
+    {
+      "path": "packages/quds_mail_ui/analysis_options.yaml",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "f04c6cf0f30d4f8306eabe5dfd00f2a4c902b838"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "9aa1de6477f7db767dc57ba5152626516ba1625d"
+      }
+    }
+  ],
+  "office_imports_from_mail_scope": [],
+  "root_config": [
+    {
+      "path": "analysis_options.yaml",
+      "target_sha256": "2605ddd3559825e867cab2f5c4536f4172d6ba3514cb10da19f17d7dbe7179e4",
+      "identical_to_captured_main": true,
+      "identical_to_29dd": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "target_sha256": "1d13dab2606651970542629bc0532a06d6b70a27f4cc79fdc15ca2bd9398da43",
+      "identical_to_captured_main": true,
+      "identical_to_29dd": false
+    },
+    {
+      "path": "pubspec.lock",
+      "target_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+      "identical_to_captured_main": true,
+      "identical_to_29dd": true
+    }
+  ],
+  "current_consumer_files": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail.dart",
+      "sha256": "1acec5df48936e784ed8546e0db44f5c57103f5d51c9effc85f31c5174b64f7f",
+      "differs_from_captured_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "sha256": "1bf80b8d72def1cbb628f1d5e3e2de7b91f08f943fae4652f877df2b463eeee4",
+      "differs_from_captured_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+      "sha256": "5cada39052d7aa236e349ced105664f530c0e7d03ad39299d5dcd3b9c87889f0",
+      "differs_from_captured_main": true
+    }
+  ],
+  "implementation_review": [
+    "Captured main already contains functional IMAP/SMTP Mail. The merged Studio implementation adds mounted/session-generation/client guards, failed-candidate cleanup, quiet asynchronous disconnect, safe reader retirement and empty-sender handling.",
+    "The sole test merge conflict preserves current-client lifecycle cases and incoming full English/German/Arabic language cycle; obsolete saved-message picker assertions are adapted to account setup.",
+    "A separate unchanged main lifecycle test still targeted the removed picker UI. It is reconciled to closing while a second message fetch is pending, preserving initial-reader disposal and rejecting a late fetch result.",
+    "Core/store/MIME/UI and enough_mail library source remain identical to 29dd. Transport differs only in cursor.dart and native/provider.dart: v3 page revisions prevent stale completed sweeps from reusing a committed cursor token.",
+    "Current transport code and tests already match the audited 5c18db77 Mail cohort. Differences from that full Mail file scope are store README and Mail UI analysis_options.yaml; no application or test source differs."
+  ],
+  "fresh_delta_validation": {
+    "required_studio_suites": [
+      "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart"
+    ],
+    "reason": "These are the two Mail consumers changed by this merge relative to captured main; no Mail package implementation changes occur in the merge.",
+    "focused_transport_confirmation_if_selected": [
+      {
+        "path": "packages/quds_mail_transport/test/cursor_test.dart",
+        "platforms": [
+          "vm",
+          "node"
+        ]
+      },
+      {
+        "path": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+        "platforms": [
+          "vm"
+        ]
+      },
+      {
+        "path": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+        "platforms": [
+          "vm"
+        ]
+      }
+    ],
+    "no_broad_rerun_needed_for_source_delta": "There is no new source risk requiring all unchanged core/store/TLS/IMAP/POP/SMTP suites to repeat solely for this merge."
+  },
+  "retained_evidence": {
+    "host_final": "394 unchanged records is valid for 9833831a compared with 29dd23a6, not for captured current main. Keep the original statement source-bound.",
+    "main_delta_v4_path": "docs/validation/office-main-sync-20261119/main-delta-v4/final/independent-summary.json",
+    "main_delta_v4_mail_cohorts": "50 cases across four VM suites; 17 repeats across two Node suites. Existing source-bound evidence, not new executions in this audit.",
+    "previous_counts_added_to_fresh_tests": 0,
+    "current_runtime_checked": false
+  },
+  "acceptance_limits": [
+    "No live mail-provider session",
+    "No installed-app or cross-platform acceptance",
+    "No current runtime test execution by this audit"
+  ],
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "review_checks_passed": true
+}

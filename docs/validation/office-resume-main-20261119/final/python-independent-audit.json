@@ -1,0 +1,195 @@
+{
+  "checked_at_utc": "2026-11-19T11:45:18.569546+00:00",
+  "scope": "Independent audit of completed offline Python controls. No application tests rerun, network publication, real account sends, browser, installed-platform, or linguistic acceptance claimed.",
+  "script_sha256": "2658c96a87fd0c4e4a593f4b246e2205d766e594355720e88e7160eab71d9e69",
+  "source_commit": "22ffa8bdcc11e5e10eb37f2326f832066f609a08",
+  "source_tree": "f538a4fbe7f32fb778f34849d2added580202dfe",
+  "receipt_sha256": "567ab4181ad7c89c334bd05d59d23d7bbad1c8ea671496748348d2c28b875b44",
+  "started_at_utc": "2026-11-19T11:45:01.648915+00:00",
+  "finished_at_utc": "2026-11-19T11:45:02.118749+00:00",
+  "historical_source_mode": false,
+  "source_binding": {
+    "input_count": 15,
+    "inputs": [
+      {
+        "path": "docs/validation/office-resume-main-20261119/run_python_controls.py",
+        "mode": "100644",
+        "git_blob": "8720bb8e548a265245eba31bc407e96c0f258ba2",
+        "bytes": 6291,
+        "sha256": "e6c29dbf1619524c889a98347239fe74a6528ff830b66b29b943a231ef1ea9e0"
+      },
+      {
+        "path": "packages/quds_proofing_hunspell/LICENSE",
+        "mode": "100644",
+        "git_blob": "14fac913ccf80234b1848540089a3bbcb6e5283d",
+        "bytes": 1056,
+        "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685"
+      },
+      {
+        "path": "packages/quds_proofing_hunspell/licenses/hunspell-1.7.2-library-sources.tar.gz",
+        "mode": "100644",
+        "git_blob": "1d123ee7c0dc165e0ffa1264b01ef7b120ec7edb",
+        "bytes": 619231,
+        "sha256": "7efc4a85839455eaaeeb5dae8c6aa48a4d85acddb2ac0d1723822a70e2f46723"
+      },
+      {
+        "path": "packages/quds_proofing_hunspell/licenses/manifest.json",
+        "mode": "100644",
+        "git_blob": "047583cef801a41b7ef20e85ef85bbcd877b24ec",
+        "bytes": 4131,
+        "sha256": "fff74108f96b8d1358f2ed0ba8261d5a91d219f865bfab6e4550f2c58701f629"
+      },
+      {
+        "path": "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+        "mode": "100644",
+        "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7",
+        "bytes": 25755,
+        "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f"
+      },
+      {
+        "path": "packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+        "mode": "100644",
+        "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+        "bytes": 1973,
+        "sha256": "3f7ddd07c296edbfe0a47c7bcc82038ad347a2c4f672345b24f95c624db68513"
+      },
+      {
+        "path": "packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+        "mode": "100644",
+        "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
+        "bytes": 2912,
+        "sha256": "dcda061adeed22b26f276c01ec374f930789ae0d684e5aa8f8be309dd680ff20"
+      },
+      {
+        "path": "packages/quds_proofing_hunspell/tool/build.py",
+        "mode": "100644",
+        "git_blob": "73a7b29fae2382a03f9f25a71adec61d5ec00d6a",
+        "bytes": 14133,
+        "sha256": "37a6555ad48ba5e905cf5d84f97a96051a1c7ab32a4fa4f27d55fdc16fbdb9bd"
+      },
+      {
+        "path": "packages/quds_proofing_hunspell/tool/test_build.py",
+        "mode": "100644",
+        "git_blob": "3df3e9f8c540bcf9b27a33d7068bc76092ed9af2",
+        "bytes": 4794,
+        "sha256": "90730e4f17286574545ffae216958c395606c69939ccc6f90c3efbb4e3a956f9"
+      },
+      {
+        "path": "tools/mail/check_reader.py",
+        "mode": "100644",
+        "git_blob": "197bc15fd173e06730798abe4a382b97269ccd55",
+        "bytes": 10166,
+        "sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826"
+      },
+      {
+        "path": "tools/mail/check_store.py",
+        "mode": "100644",
+        "git_blob": "e2e14a5a88775f334547a913207767bccbda5a08",
+        "bytes": 19955,
+        "sha256": "0aff1311f094eeef819d27579f9df0991ae625a73067f1c15983a0ac2acba3c4"
+      },
+      {
+        "path": "tools/proofing/ayaspell/build_bundle.py",
+        "mode": "100644",
+        "git_blob": "7bfdc58ac0f49d36ff9ebca55d553c3dbdb59abe",
+        "bytes": 7323,
+        "sha256": "bb2127d4ee4a99665762f7db1c92d353253ae28aff258fab193796edf468041f"
+      },
+      {
+        "path": "tools/proofing/ayaspell/test_build_bundle.py",
+        "mode": "100644",
+        "git_blob": "ae342b10ff56916cd0cb6aa8b93d1da6edebc52e",
+        "bytes": 8360,
+        "sha256": "d479b4f527cf55cc9b2d3b98a0ffe0658ac59233bdc4c139c3c793f9b3946fbd"
+      },
+      {
+        "path": "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+        "mode": "100644",
+        "git_blob": "b43d0f8f6d8d22151e7bf47dee2916b199540e94",
+        "bytes": 7168,
+        "sha256": "0bf3e1f86f1bda226003c0c473b026a7c945bb6104f332609b80992529b6dd90"
+      },
+      {
+        "path": "tools/proofing/ayaspell/test_build_bundle_reproducibility.py",
+        "mode": "100644",
+        "git_blob": "6288d9cf4e72d8a78bffb355da525806fb426b82",
+        "bytes": 5984,
+        "sha256": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096"
+      }
+    ],
+    "before_after_identical": true,
+    "pinned_git_blobs_verified": true,
+    "complete_control_input_closure": true
+  },
+  "interpreter_binding": {
+    "before_after_identical": true,
+    "record": {
+      "python_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+      "sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+      "version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+    },
+    "executable_sha256_readback_verified": true,
+    "stdlib_files_individually_bound": false
+  },
+  "groups": [
+    {
+      "name": "bundle-controls",
+      "test_files": [
+        "tools/proofing/ayaspell/test_build_bundle.py",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+        "tools/proofing/ayaspell/test_build_bundle_reproducibility.py"
+      ],
+      "case_ids": [
+        "test_build_bundle.BundleBuilderTest.test_bad_source_or_licence_stops_before_remote_mutation",
+        "test_build_bundle.BundleBuilderTest.test_content_readback_mismatch_is_rejected",
+        "test_build_bundle.BundleBuilderTest.test_local_build_is_deterministic_without_publication",
+        "test_build_bundle.BundleBuilderTest.test_manifest_readback_mismatch_is_rejected",
+        "test_build_bundle.BundleBuilderTest.test_publish_excludes_unrelated_existing_output_files",
+        "test_build_bundle_incoming.BundleBuilderTest.test_bad_dictionary_digest_stops_before_remote_mutation",
+        "test_build_bundle_incoming.BundleBuilderTest.test_bad_dictionary_size_stops_before_remote_mutation",
+        "test_build_bundle_incoming.BundleBuilderTest.test_bad_licence_stops_before_remote_mutation",
+        "test_build_bundle_incoming.BundleBuilderTest.test_content_readback_mismatch_is_rejected",
+        "test_build_bundle_incoming.BundleBuilderTest.test_local_build_does_not_publish",
+        "test_build_bundle_incoming.BundleBuilderTest.test_manifest_readback_mismatch_is_rejected",
+        "test_build_bundle_incoming.BundleBuilderTest.test_publish_excludes_unrelated_existing_output_files",
+        "test_build_bundle_reproducibility.BundleTest.test_build_is_deterministic_and_does_not_publish",
+        "test_build_bundle_reproducibility.BundleTest.test_changed_file_readback_fails",
+        "test_build_bundle_reproducibility.BundleTest.test_changed_manifest_readback_fails",
+        "test_build_bundle_reproducibility.BundleTest.test_changed_source_or_licence_cannot_publish",
+        "test_build_bundle_reproducibility.BundleTest.test_publish_excludes_unrelated_files_and_includes_manifest"
+      ],
+      "passed": 17,
+      "raw_log": "bundle-controls.log",
+      "raw_log_sha256": "9ab6d2427dcb9f8f20c9a3047df20cfc2c873375ee8fab3a06d67811421255eb",
+      "raw_log_bytes": 2586,
+      "exit_code": 0,
+      "terminal_ok": true,
+      "exact_pinned_test_methods": true
+    },
+    {
+      "name": "packaging-controls",
+      "test_files": [
+        "packages/quds_proofing_hunspell/tool/test_build.py"
+      ],
+      "case_ids": [
+        "test_build.HostPackagingTests.test_copies_only_declared_files_for_selected_backend",
+        "test_build.HostPackagingTests.test_host_notices_sources_and_receipt_are_exact_copies",
+        "test_build.HostPackagingTests.test_install_flags_require_their_backend_before_fetch",
+        "test_build.HostPackagingTests.test_tampered_artifact_rejects_before_any_destination_write"
+      ],
+      "passed": 4,
+      "raw_log": "packaging-controls.log",
+      "raw_log_sha256": "2f035cbf96d71e3acba1dfbd89e638659632910cf560f9deeb602b5378e8efff",
+      "raw_log_bytes": 698,
+      "exit_code": 0,
+      "terminal_ok": true,
+      "exact_pinned_test_methods": true
+    }
+  ],
+  "group_count": 2,
+  "passed": 21,
+  "distinct_cases": 21,
+  "failures": 0,
+  "skips": 0,
+  "all_passed": true
+}

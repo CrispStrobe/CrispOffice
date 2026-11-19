@@ -1,0 +1,198 @@
+{
+  "checked_at_utc": "2026-11-19T11:54:03.128302+00:00",
+  "source_commit": "22ffa8bdcc11e5e10eb37f2326f832066f609a08",
+  "source_tree": "f538a4fbe7f32fb778f34849d2added580202dfe",
+  "scope": "Independent raw-reporter acceptance for the explicitly named completed source and included committed native/Node plans only. Synthetic native C ABI fixtures, controlled Mail and Flutter widgets do not establish actual browser, installed OS, live external accounts, real dictionaries or linguistic acceptance. Other sources and rejected attempts contribute zero.",
+  "historical_source_mode": false,
+  "live_source_bytes_verified": true,
+  "node_phase_included": true,
+  "phases": [
+    {
+      "phase": "native",
+      "source_commit": "22ffa8bdcc11e5e10eb37f2326f832066f609a08",
+      "source_tree": "f538a4fbe7f32fb778f34849d2added580202dfe",
+      "source_base": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "plan": "docs/validation/office-resume-main-20261119/native-plan.json",
+      "plan_sha256": "1b3a96f66475ad85c582b2c602888001a5c7421baa78841f6466c78b34b5ae8f",
+      "verification_sha256": "1339f5d036c5b56985233ec2d11f2554128656de64236c11b85b0b837875cb3c",
+      "started_at_utc": "2026-11-19T11:44:56.474200+00:00",
+      "finished_at_utc": "2026-11-19T11:50:37.846786+00:00",
+      "groups": [
+        {
+          "name": "engine-merge-regressions",
+          "platform": "vm",
+          "passed_executions": 645,
+          "suite_count": 13,
+          "excluded_successful_setup_loading_teardown_events": 13,
+          "known_native_hook_prefixes": 0,
+          "errors_failures_skips_unfinished_duplicate_cases": 0,
+          "exact_suite_coverage": true,
+          "terminal_success": true
+        },
+        {
+          "name": "editor-language-controls",
+          "platform": "vm",
+          "passed_executions": 55,
+          "suite_count": 3,
+          "excluded_successful_setup_loading_teardown_events": 3,
+          "known_native_hook_prefixes": 0,
+          "errors_failures_skips_unfinished_duplicate_cases": 0,
+          "exact_suite_coverage": true,
+          "terminal_success": true
+        },
+        {
+          "name": "hunspell-cancellation-lifecycle",
+          "platform": "vm",
+          "passed_executions": 38,
+          "suite_count": 6,
+          "excluded_successful_setup_loading_teardown_events": 10,
+          "known_native_hook_prefixes": 0,
+          "errors_failures_skips_unfinished_duplicate_cases": 0,
+          "exact_suite_coverage": true,
+          "terminal_success": true
+        },
+        {
+          "name": "mail-submission-outcomes",
+          "platform": "vm",
+          "passed_executions": 46,
+          "suite_count": 6,
+          "excluded_successful_setup_loading_teardown_events": 6,
+          "known_native_hook_prefixes": 0,
+          "errors_failures_skips_unfinished_duplicate_cases": 0,
+          "exact_suite_coverage": true,
+          "terminal_success": true
+        },
+        {
+          "name": "studio-current-host",
+          "platform": "vm",
+          "passed_executions": 176,
+          "suite_count": 19,
+          "excluded_successful_setup_loading_teardown_events": 19,
+          "known_native_hook_prefixes": 0,
+          "errors_failures_skips_unfinished_duplicate_cases": 0,
+          "exact_suite_coverage": true,
+          "terminal_success": true
+        }
+      ],
+      "passed_executions": 960,
+      "suite_count": 47,
+      "analysis_paths": 49,
+      "formatted_paths": 49,
+      "source_binding": {
+        "records": 5177,
+        "all_git_entries_and_content_hashes_match": true
+      },
+      "runtime_binding": {
+        "inventory_records": 11171,
+        "retained_runtime_files": 11142,
+        "observed_absent_native_mappings": [
+          "workspace/packages/.dart_tool/native_assets.yaml",
+          "workspace/packages/quds_office_editor/.dart_tool/native_assets.yaml",
+          "workspace/packages/quds_office_editor/example/.dart_tool/native_assets.yaml",
+          "workspace/packages/quds_office_engine/.dart_tool/native_assets.yaml",
+          "workspace/packages/quds_proofing_hunspell/.dart_tool/native_assets.yaml",
+          "workspace/third_party/.dart_tool/native_assets.yaml",
+          "workspace/third_party/enough_mail/.dart_tool/native_assets.yaml"
+        ],
+        "all_present_inputs_rehashed": true,
+        "runtime_receipt_sha256": "d117750872725abedb06fc3a06388212cc70ec13f06906de58157b8220e78eb1"
+      },
+      "recorded_source_and_environment_before_after_identical": true,
+      "passed": true
+    },
+    {
+      "phase": "node",
+      "source_commit": "22ffa8bdcc11e5e10eb37f2326f832066f609a08",
+      "source_tree": "f538a4fbe7f32fb778f34849d2added580202dfe",
+      "source_base": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "plan": "docs/validation/office-resume-main-20261119/node-plan.json",
+      "plan_sha256": "f7a153eefcd7527ca0a99c83d8cf8524c1a129820b2aa79802fadedb465d88e3",
+      "verification_sha256": "da308e38af148ed79e0cbef0e8ac7f279ddbb46fc8bede76496c07c72ad6a3e7",
+      "started_at_utc": "2026-11-19T11:50:40.309648+00:00",
+      "finished_at_utc": "2026-11-19T11:52:58.953860+00:00",
+      "groups": [
+        {
+          "name": "portable-engine-node",
+          "platform": "node",
+          "passed_executions": 604,
+          "suite_count": 9,
+          "excluded_successful_setup_loading_teardown_events": 9,
+          "known_native_hook_prefixes": 0,
+          "errors_failures_skips_unfinished_duplicate_cases": 0,
+          "exact_suite_coverage": true,
+          "terminal_success": true
+        }
+      ],
+      "passed_executions": 604,
+      "suite_count": 9,
+      "analysis_paths": 0,
+      "formatted_paths": 0,
+      "source_binding": {
+        "records": 5177,
+        "all_git_entries_and_content_hashes_match": true
+      },
+      "runtime_binding": {
+        "inventory_records": 11166,
+        "retained_runtime_files": 11142,
+        "observed_absent_native_mappings": [
+          "workspace/packages/.dart_tool/native_assets.yaml",
+          "workspace/packages/quds_office_engine/.dart_tool/native_assets.yaml"
+        ],
+        "all_present_inputs_rehashed": true,
+        "runtime_receipt_sha256": "d117750872725abedb06fc3a06388212cc70ec13f06906de58157b8220e78eb1"
+      },
+      "recorded_source_and_environment_before_after_identical": true,
+      "passed": true
+    }
+  ],
+  "passed_executions": 1564,
+  "distinct_cases": 960,
+  "suite_platform_runs": 56,
+  "distinct_suite_paths": 47,
+  "node_cases_repeating_native": 604,
+  "source_union_records": 5178,
+  "shared_runtime_records": 11166,
+  "shared_runtime_identical": true,
+  "fixture_binding": {
+    "scope": "Synthetic native C ABI ownership and lifecycle controls only",
+    "receipt_sha256": "01f61c8157f450a3c6dc1f7c101175b3c1aeaa287adca53f60a38409254fef33",
+    "compiler_sha256": "6b3696e4dcb85e1c949c732a02befa50e3983ecf94ce7e8e58d9d503b954b79d",
+    "libraries": [
+      {
+        "source": "packages/quds_proofing_hunspell/test/fixtures/lifecycle_hunspell.cpp",
+        "source_sha256": "aeb066f7ffdec75cd517c534228d77fe974fdf56c8cb8be756b027ffa9a3b9b9",
+        "library": "/workspace/scratch/261cd76b2166/quds-fixtures/lifecycle.so",
+        "sha256": "8a48f5c4aba8c132372fb6b9d8dce7ba46b8890535d73430a4bec528d0c4a77e",
+        "bytes": 18216
+      },
+      {
+        "source": "packages/quds_proofing_hunspell/test/support/hunspell_lifecycle_shim.cpp",
+        "source_sha256": "54a6aa58c54af098629bd42d594efe6b0da47aa590bb0465e7c55568065e3ff1",
+        "library": "/workspace/scratch/261cd76b2166/quds-fixtures/provider.so",
+        "sha256": "0a560fe5f1e13002e9271aa18ae98c977cc2e616c901e41ed1cea04c29f37576",
+        "bytes": 16328
+      },
+      {
+        "source": "packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp",
+        "source_sha256": "a37694aac5d5166a800418e291da48cab3857a96af120014f4ea34d19528a068",
+        "library": "/workspace/scratch/261cd76b2166/quds-fixtures/ownership.so",
+        "sha256": "da812930d543625e24ed36ac50b161a4ccb7861f43e0254b4d0c7d9e131c36db",
+        "bytes": 16680
+      }
+    ],
+    "all_bound_native_builds_verified": true
+  },
+  "case_inventory": {
+    "file": "final-independent-audit-cases.json",
+    "sha256": "b0a102001a455342bde3d0c6c08759656a9ff75dd5353ef6b460345cb8f2b76e",
+    "records": 1564
+  },
+  "live_file_hashes_checked": 16398,
+  "script_sha256": "1945a7f66f2f03df5315bb168985980abe8c5cc2987042c1fb29ae78b05a011c",
+  "other_source_or_rejected_case_contribution": 0,
+  "application_tests_executed_by_auditor": 0,
+  "github_actions_calls": 0,
+  "git_lazy_fetch_disabled": true,
+  "repository_mutations_performed": 0,
+  "passed": true
+}

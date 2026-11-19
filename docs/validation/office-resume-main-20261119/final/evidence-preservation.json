@@ -1,0 +1,60 @@
+{
+  "checked_at_utc": "2026-11-19T11:45:32.223012+00:00",
+  "target": "22ffa8bdcc11e5e10eb37f2326f832066f609a08",
+  "tree": "f538a4fbe7f32fb778f34849d2added580202dfe",
+  "scope": "Final-source exact preservation of incoming saved validation artifacts and committed pinning of both independently verified preparation archives; no new application execution or test acceptance claim.",
+  "incoming_validation_deltas": [
+    {
+      "branch": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+      "merge_base": "293f45449b496e3024ff100968d78f37983faadd",
+      "incoming_non_readme_validation_files": 19,
+      "exact_mode_type_blob_preserved": true,
+      "mismatches": []
+    },
+    {
+      "branch": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+      "merge_base": "9160eb0dba211225c85242114989631c0d14fb72",
+      "incoming_non_readme_validation_files": 99,
+      "exact_mode_type_blob_preserved": true,
+      "mismatches": []
+    }
+  ],
+  "incoming_non_readme_validation_files": 118,
+  "preparation_archive_integrity_audit": {
+    "file": "preparation-archives-independent-audit.json",
+    "sha256": "88dcb3246dadbe63a4ab8d8cdfd4a83d0add5e810dcd9d207098a6b01f359f84",
+    "archives": 2,
+    "members": 92
+  },
+  "preparation_committed_pins": [
+    {
+      "path": "docs/validation/office-continuation-20261119/runtime/preparation-evidence.index.json",
+      "git_blob": "a52ae9362ebaeb5e1c7ed0e9bea46db45c12ae26",
+      "bytes": 10656,
+      "sha256": "ee2feb38efd2642b9ba3ad8669c16bc6245aa6d0e7254d83d79e527646ae4a9d",
+      "matches_verified_archive_or_index": true
+    },
+    {
+      "path": "docs/validation/office-continuation-20261119/runtime/preparation-evidence.tar.xz",
+      "git_blob": "3dd1be334be0b89923fbec00d07e0c833c675f39",
+      "bytes": 1454836,
+      "sha256": "bb22cab18391ef851086a02d18edf67e0e5d0cd628ccef726174974973c87650",
+      "matches_verified_archive_or_index": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/runtime/preparation-evidence.index.json",
+      "git_blob": "f5198952a57f6ae397771bd9ab8cfe4cb40c0dfa",
+      "bytes": 4293,
+      "sha256": "9ad776b78e9925be0ffff23d5e57c11a652b38c76f9c11fb2738b93fe3d347f5",
+      "matches_verified_archive_or_index": true
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/runtime/preparation-evidence.tar.xz",
+      "git_blob": "e857947bfb252d229fcd2e26862e7d08f094c717",
+      "bytes": 919192,
+      "sha256": "0280d40df565008671665513dd490777e250f9a7418f6d48b54b9a11a585d71b",
+      "matches_verified_archive_or_index": true
+    }
+  ],
+  "all_passed": true
+}

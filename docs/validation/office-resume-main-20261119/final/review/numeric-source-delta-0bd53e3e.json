@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "static_review_passed": true,
+  "reviewed_at_utc": "2026-11-19T11:51:58.775095+00:00",
+  "base_source": "47ce5f726f1a0b1f213b926162528533dc0a3aab",
+  "source_commit": "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9",
+  "source_tree": "37d9017ca00c5abe491819af3373e83b80a4da98",
+  "method": "Exact product/configuration path set and mode/blob delta; reviewed source-token hashes preserve behavior while allowing formatter whitespace; committed suite/static/runner input checks.",
+  "issues": [],
+  "product_records": 5157,
+  "unchanged_product_records": 5155,
+  "changed_product_files": [
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "797c96deba6fa344ed2d390347c6008f85ea078b"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "d30e36fcfbe35dc545f7a3cf40ba09b3fda1420a"
+      },
+      "before_sha256": "cfd2acf71e5b13f61b9bd3164c80f92ec7df7b7eed4ba1a2074086ab6d6913b7",
+      "after_sha256": "390fbb0410a9ecbde913c950649d8182f5b265d5aed3b662ed3a2d28471fc2a0",
+      "reviewed_token_sha256": "d6fb7fd9c3dbd71efab692c6ba615cd716ce3cf5213ed6189cfdaade762d4d40",
+      "actual_token_sha256": "d6fb7fd9c3dbd71efab692c6ba615cd716ce3cf5213ed6189cfdaade762d4d40"
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "3fda7a7b0073ccdd1d731a46d91557c6acf1af57"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "git_blob": "889aa4ea4932ee9f64fae623aa6611a254732c21"
+      },
+      "before_sha256": "a523f70aa1ff88d2ec9b0fafa444c5775d8d01ce24acdc69d5f24d2f0941121c",
+      "after_sha256": "671e1777c25dbf33e1afc2d70374f5c5b080282c571e3880277defb205d19f56",
+      "reviewed_token_sha256": "7553848684d0c753479b30691712140ce482ec59b5573d026ccdb355500bf30d",
+      "actual_token_sha256": "7553848684d0c753479b30691712140ce482ec59b5573d026ccdb355500bf30d"
+    }
+  ],
+  "plans": [
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/plan.json",
+      "before_sha256": "508c2c147e6c6f69f24ae9b36a4150ed338597043e4534581ed2dc61eb10b6e8",
+      "after_sha256": "45f036260b41b290f92e1369788412832f1f1d3efb531a55fbd4f4e317697b73",
+      "exact_test_groups_preserved": true,
+      "analysis_paths": 37,
+      "format_paths": 37
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/final/node-plan.json",
+      "before_sha256": "c37c49dabead28ad7787bc783b9d758c16f287f92fee43b8d77d9c5dabf01524",
+      "after_sha256": "c37c49dabead28ad7787bc783b9d758c16f287f92fee43b8d77d9c5dabf01524",
+      "exact_test_groups_preserved": true,
+      "analysis_paths": 0,
+      "format_paths": 0
+    }
+  ],
+  "unchanged_harness_and_extra_inputs": 7,
+  "documentation_and_evidence_changes": [
+    "docs/PROOFING.md",
+    "docs/validation/office-resume-main-20261119/final/portability-attempt-47-evidence.index.json",
+    "docs/validation/office-resume-main-20261119/final/portability-attempt-47-evidence.tar.xz",
+    "docs/validation/office-resume-main-20261119/final/portability-attempt-47.md",
+    "docs/validation/office-resume-main-20261119/final/portability-development-evidence.index.json",
+    "docs/validation/office-resume-main-20261119/final/portability-development-evidence.tar.xz"
+  ],
+  "semantic_review": [
+    "Pinned JSNumber.toDouble returns the same JS number and toString prefers integer text; the unmodified source demonstrably failed its original -99.0 assertion on Node.",
+    "The repair preserves the double conversion and exact toString output, appending .0 only for finite text with neither dot nor exponent; no numeric rounding or precision truncation is introduced.",
+    "Fractional and exponential forms bypass suffixing, negative zero already retains its dot in both pinned runtimes, and existing string/null behavior is unchanged.",
+    "The original failing expectations remain exact; one added case covers integer signs/zeros/fractions/exponents/plain upper boundary and unchanged string features."
+  ],
+  "runtime_tests_executed_by_this_review": 0,
+  "qualification_status": "Source review only; require fresh source-bound VM and Node receipts before acceptance.",
+  "audit_script_sha256": "95f53d054f786f57a94b96a6c0249830b59445ff7551ddfb7a20ad6e7990f54f"
+}
