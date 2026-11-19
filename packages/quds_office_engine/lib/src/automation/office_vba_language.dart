@@ -559,6 +559,7 @@ class _Parser {
   int position = 0;
   int expressionDepth = 0;
   int statementCount = 0;
+  final Set<String> arrayNames = <String>{};
   _Token get current => tokens[position];
   bool _is(String text) =>
       (current.kind == _TokenKind.identifier ||
@@ -626,6 +627,7 @@ class _Parser {
         }
         _endStatement();
         final ending = isFunction ? 'function' : 'sub';
+        arrayNames.clear();
         final body = _body(0, () => _atEnd(ending));
         _expect('end');
         _expect(ending);
@@ -976,7 +978,13 @@ class _Parser {
   }
 
   bool _indexedAssignmentAhead() {
-    if (tokens[position + 1].text != '(') return false;
+    // Without a declared array, `Helper (1) = 2` remains a bare call whose
+    // argument is a parenthesized comparison. Only array names disambiguate
+    // this otherwise identical token shape as an indexed assignment.
+    if (!arrayNames.contains(current.lower) ||
+        tokens[position + 1].text != '(') {
+      return false;
+    }
     var depth = 0;
     for (var index = position + 1; index < tokens.length; index++) {
       final token = tokens[index];
@@ -1019,6 +1027,7 @@ class _Parser {
         _expect(')');
       }
       final type = _declaredType();
+      if (bounds != null) arrayNames.add(name.lower);
       _Expr? initializer;
       if (isConst) {
         _expect('=');

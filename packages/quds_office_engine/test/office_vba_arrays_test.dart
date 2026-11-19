@@ -179,6 +179,33 @@ End Function
       expect(_values(macro), <Object?>[17]);
     });
 
+    test(
+      'preserves bare helper calls with parenthesized comparison arguments',
+      () {
+        final macro = _compile('''
+Sub Main()
+  Helper (1) = 2
+  Helper (1 + 1) = 2
+End Sub
+Sub Helper(ByVal flag As Boolean)
+  Worksheets(1).Range("A1").Value2 = flag
+End Sub
+''');
+        expect(_values(macro), <Object?>[false, true]);
+      },
+    );
+
+    test('declared arrays accept parenthesized assignment subscripts', () {
+      final macro = _body('''
+Dim data(1 To 2) As Long
+data((1)) = 2
+Let data((2)) = data((1)) + 1
+Worksheets(1).Range("A1").Value2 = data(1)
+Worksheets(1).Range("A2").Value2 = data(2)
+''');
+      expect(_values(macro), <Object?>[2, 3]);
+    });
+
     test('helper calls allocate fresh local arrays for every invocation', () {
       final macro = _compile('''
 Sub Main()

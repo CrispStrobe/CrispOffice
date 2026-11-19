@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "initial_snapshot_completed_at_utc": "2026-11-19 18:05:20 UTC",
+  "review_completed_at_utc": "2026-11-19 18:06:30 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "review_base": "ac9de9e000274718145659da0abc7c8cadb9e8c3",
+  "method": "Read-only GitHub connector branch/PR/commit/contents/comparison endpoints and local Git object/ancestry reads. No Actions or status endpoints used; no source edits or Git mutations.",
+  "fork_branches": [
+    {
+      "name": "codex/crispoffice-gui-20261119",
+      "head": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2"
+    },
+    {
+      "name": "codex/crispoffice-layout-theme-20261119",
+      "head": "37ac6ea8a08225a42098c455deb5375837912eec"
+    },
+    {
+      "name": "codex/mail-archive-restore-20261119",
+      "head": "0c77b3488eb534868a7f98271ba2923d06759b8d"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/vba-arrays-foreach-20261119",
+      "head": "ac9de9e000274718145659da0abc7c8cadb9e8c3"
+    },
+    {
+      "name": "codex/vba-control-flow-20261119",
+      "head": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "head": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "main",
+      "head": "cf59efa99232a3fd26cf21ce7f2382402e576f9b"
+    }
+  ],
+  "open_prs": [
+    {
+      "number": 210,
+      "title": "Extend bounded VBA macros with typed arrays and For Each",
+      "head": "ac9de9e000274718145659da0abc7c8cadb9e8c3",
+      "branch": "codex/vba-arrays-foreach-20261119",
+      "draft": true,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/210"
+    },
+    {
+      "number": 209,
+      "title": "Restore exported mail archives with verified originals and provenance",
+      "head": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+      "branch": "codex/mail-archive-restore-20261119",
+      "draft": true,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/209"
+    }
+  ],
+  "remote_main": {
+    "head": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+    "is_ancestor_of_review_base": true
+  },
+  "new_layout_branch": {
+    "name": "codex/crispoffice-layout-theme-20261119",
+    "head": "37ac6ea8a08225a42098c455deb5375837912eec",
+    "is_ancestor_of_review_base": true,
+    "new_content": false
+  },
+  "incoming_mail": {
+    "pr": 209,
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/209",
+    "head": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+    "draft": true,
+    "common_ancestor": "358544a48466c942873a4718a87fa9d1c2be11f7",
+    "ahead_by": 1,
+    "behind_by": 3,
+    "changed_files": [
+      {
+        "path": "docs/validation/mail-archive-restore-20261119/attempts.md",
+        "status": "added",
+        "additions": 32,
+        "deletions": 0
+      },
+      {
+        "path": "docs/validation/mail-archive-restore-20261119/incoming/run_incoming.py",
+        "status": "added",
+        "additions": 260,
+        "deletions": 0
+      },
+      {
+        "path": "docs/validation/mail-archive-restore-20261119/run-mail-validation.py",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 2
+      },
+      {
+        "path": "packages/quds_mail_store/CHANGELOG.md",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_mail_store/README.md",
+        "status": "modified",
+        "additions": 47,
+        "deletions": 2
+      }
+    ],
+    "product_or_test_source_changed": false,
+    "disposition": "One new documentation/validation-harness commit can be integrated without changing product/test source. Root owns actual integration.",
+    "author_final_acceptance": {
+      "published_at_reviewed_head": false,
+      "observed_files": [
+        "docs/validation/mail-archive-restore-20261119/README.md",
+        "docs/validation/mail-archive-restore-20261119/attempts.md",
+        "docs/validation/mail-archive-restore-20261119/format-reconciliation.json",
+        "docs/validation/mail-archive-restore-20261119/incoming",
+        "docs/validation/mail-archive-restore-20261119/reconciliation.json",
+        "docs/validation/mail-archive-restore-20261119/run-mail-validation.py"
+      ],
+      "incoming_directory": [
+        "docs/validation/mail-archive-restore-20261119/incoming/run_incoming.py"
+      ],
+      "test_counts": null,
+      "reason": "README and draft PR still describe qualification in progress; no final receipts or raw qualification artifacts were published at this exact head. No author counts are accepted or attributed from these files."
+    },
+    "validation_change": "Remove native SQLite archive_query_test.dart from Node cohort; native VM cohort retains it. Preserve incoming harness and attempt disclosures."
+  },
+  "upstream": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "heads": [
+      {
+        "name": "ci/flutter-workspace",
+        "head": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "unchanged_from_initial_review": true
+      },
+      {
+        "name": "cursor/class-certificates-2db8",
+        "head": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "unchanged_from_initial_review": true
+      },
+      {
+        "name": "cursor/cloud-agent-1790580069020-0rk1h",
+        "head": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "unchanged_from_initial_review": true
+      },
+      {
+        "name": "main",
+        "head": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "unchanged_from_initial_review": true
+      }
+    ],
+    "new_source_changes": false
+  },
+  "historical_branches": "Current nine old divergent heads exactly match initial-review audit; previously accepted ancestry/blob-equivalence proofs remain applicable.",
+  "docs_review": {
+    "paths": [
+      {
+        "path": "docs/VBA_MACROS.md",
+        "sha256": "5376239c7840fb69abc4142002a554be6fe12cdd9c2b8903a44b435ba1009aa2",
+        "git_blob": "51057555e5765d551b7c24be931888a09cd70d84",
+        "matches_review_base": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "sha256": "04233b63db9b18b892b4b665334e950d15481282b4641c7b6946d685a5dadbee",
+        "git_blob": "20d071fd314ac7167e53c2ac1c37765c9681f053",
+        "matches_review_base": true
+      }
+    ],
+    "checks": [
+      "Fixed one-dimensional scalar array shapes, zero default lower bound and signed32 constants.",
+      "Array indexing, LBound/UBound dimensions, scalar storage and whole-array escape restrictions.",
+      "Variant/Range controller typing, live array slots, captured Range sources and row-major order.",
+      "Normal/early exit controller behavior, matched Exit For and scope cleanup.",
+      "Empty Variant visitation restriction, read-only Row/Column and prohibition of workbook-value reads.",
+      "4096 elements,16384 active slots,1048576 active-array UTF16 string units and shared work/output limits.",
+      "Example arithmetic125+250+475=850."
+    ],
+    "substantive_mismatches_found": [],
+    "source_edits_made": false
+  },
+  "limitation": "A bounded snapshot cannot cover future author publication. Root must perform a final refresh before merging; author evidence should remain separately attributed from locally executed checks."
+}

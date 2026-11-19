@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "required_true_fields": [
+    "procedureScopesAndExits",
+    "recursionRejected",
+    "sharedWorkBudget",
+    "numericBounds",
+    "validationPreservedBytes",
+    "lateFailurePreservedBytes",
+    "mcpCompileAndRun"
+  ],
+  "reported": [
+    {
+      "language": "vba-excel",
+      "revision": 2,
+      "steps": 6,
+      "byValCallerAmount": 21,
+      "exitForCounter": 4,
+      "formulaTotal": 126,
+      "procedureScopesAndExits": true,
+      "recursionRejected": true,
+      "sharedWorkBudget": true,
+      "numericBounds": true,
+      "validationPreservedBytes": true,
+      "lateFailurePreservedBytes": true,
+      "mcpCompileAndRun": true
+    }
+  ]
+}
