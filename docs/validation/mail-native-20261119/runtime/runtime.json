@@ -1,0 +1,108 @@
+{
+  "started_at_utc": "2026-11-19T05:37:57.665264+00:00",
+  "status": "ready",
+  "source": "/workspace/scratch/a86dd8838ff7/quds_office_suite",
+  "sdk": "/workspace/scratch/a86dd8838ff7/runtime/flutter",
+  "runs": [
+    {
+      "name": "flutter-tools-pub-get",
+      "command": [
+        "/workspace/scratch/a86dd8838ff7/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "pub",
+        "get",
+        "--offline",
+        "--enforce-lockfile"
+      ],
+      "cwd": "/workspace/scratch/a86dd8838ff7/runtime/flutter/packages/flutter_tools",
+      "exit_code": 0,
+      "log": "/workspace/scratch/a86dd8838ff7/runtime/logs/flutter-tools-pub-get.log",
+      "log_sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+    },
+    {
+      "name": "workspace-pub-get",
+      "command": [
+        "/workspace/scratch/a86dd8838ff7/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "pub",
+        "get",
+        "--offline",
+        "--enforce-lockfile"
+      ],
+      "cwd": "/workspace/scratch/a86dd8838ff7/quds_office_suite",
+      "exit_code": 0,
+      "log": "/workspace/scratch/a86dd8838ff7/runtime/logs/workspace-pub-get.log",
+      "log_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "name": "flutter-version",
+      "command": [
+        "/workspace/scratch/a86dd8838ff7/runtime/bin/flutter",
+        "--version",
+        "--machine"
+      ],
+      "cwd": "/workspace/scratch/a86dd8838ff7/quds_office_suite",
+      "exit_code": 0,
+      "log": "/workspace/scratch/a86dd8838ff7/runtime/logs/flutter-version.log",
+      "log_sha256": "e873d9650b7c1b0579881c1e447746137898c7932086921f8ccd1854f484c976"
+    }
+  ],
+  "archive": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "bytes": 1581444364,
+    "verified": true,
+    "extracted_bytes": 1363358854
+  },
+  "workspace_lock_initial_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "hosted_archives_verified": 176,
+  "executables_sha256": {
+    "/workspace/scratch/a86dd8838ff7/runtime/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "/workspace/scratch/a86dd8838ff7/runtime/flutter/bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/a86dd8838ff7/runtime/flutter"
+  },
+  "workspace_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "workspace_package_count": 130,
+  "environment_script": "/workspace/scratch/a86dd8838ff7/runtime/env.sh",
+  "finished_at_utc": "2026-11-19T05:39:38.149684+00:00",
+  "additional_inputs": {
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa",
+    "/workspace/scratch/a86dd8838ff7/quds_office_suite/.dart_tool/native_assets.yaml": "14f22ffc4762ef57c109381c0516c9ad805b3aa3d38adc2bd96f6cd0d24fc9f1",
+    "/workspace/scratch/a86dd8838ff7/quds_office_suite/.dart_tool/lib/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+  },
+  "workspace_sqlite_smoke": {
+    "recorded_at_utc": "2026-11-19T05:40:24.497694+00:00",
+    "command": [
+      "/workspace/scratch/a86dd8838ff7/runtime/bin/dart",
+      "run",
+      "/workspace/scratch/a86dd8838ff7/quds_office_suite/packages/quds_mail_store/.dart_tool/runtime_sqlite_probe.dart"
+    ],
+    "exit_code": 0,
+    "source": "/workspace/scratch/a86dd8838ff7/quds_office_suite/packages/quds_mail_store/.dart_tool/runtime_sqlite_probe.dart",
+    "source_sha256": "d8364b4b48260b7e0df7c8617c63bfa5c334a21dcf320f9be9451a571f852662",
+    "log": "/workspace/scratch/a86dd8838ff7/runtime/logs/workspace-sqlite-smoke.log",
+    "log_sha256": "a3312aff86922de0b52eddfb3120d2dc5c5dbf559abc540525213f7f121472f8",
+    "cwd": "/workspace/scratch/a86dd8838ff7/quds_office_suite/packages/quds_mail_store",
+    "default_native_hook": true,
+    "setup_attempts": [
+      {
+        "log": "/workspace/scratch/a86dd8838ff7/runtime/logs/workspace-sqlite-smoke.log",
+        "exit_code": 0,
+        "reason": "Invoked the genuine default native hook from the declaring Mail Store package."
+      }
+    ],
+    "excluded_from_product_test_totals": true
+  }
+}

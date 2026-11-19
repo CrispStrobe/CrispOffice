@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source": "GitHub connected API git/commits immutable readback",
+  "commit": "479e1e038af0467b7f07b35d80bac9e4cc60a198",
+  "tree": "03b895b74affd80c54fa1c35dfa87a6eb1d645c6",
+  "parents": [
+    "eafcd80fdfbd7ff678a7a04fb9a9a98b5330ad00",
+    "39843ed4874c7b56572c7aa8195716e5892aeca2",
+    "17ec8cc8d241c76a753efb69893682c76683db04"
+  ],
+  "message": "Reconcile captured qualification evidence while preserving current Notes behavior [skip ci]",
+  "expected_tree": "03b895b74affd80c54fa1c35dfa87a6eb1d645c6",
+  "remote_tree_matches_expected": true
+}

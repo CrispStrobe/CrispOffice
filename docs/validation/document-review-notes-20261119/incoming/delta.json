@@ -1,0 +1,49 @@
+{
+  "fork_branches": {
+    "added": [],
+    "changed": [
+      {
+        "ref": "refs/heads/codex/document-review-notes-20261118",
+        "sha": "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+        "previous": "e92f875e5a30147770680829dfe1e9bf7bc1262a"
+      },
+      {
+        "ref": "refs/heads/codex/offline-thesaurus-20261118",
+        "sha": "7e4adc08fce78fb95524f304962f9c1804e18691",
+        "previous": "0ea205e0ee35bb43635960a0edafd42dc4c16e8d"
+      },
+      {
+        "ref": "refs/heads/codex/zotero-word-parity-20261118",
+        "sha": "0abd0e592ad607a88a6a7db6a5bf235939efa5b9",
+        "previous": "8fa115e8358e305872fd14e757f9133fa9c1540d"
+      }
+    ],
+    "removed": []
+  },
+  "pull_requests": {
+    "added": [],
+    "changed": [
+      {
+        "ref": "refs/pull/175/head",
+        "sha": "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+        "previous": "e92f875e5a30147770680829dfe1e9bf7bc1262a"
+      },
+      {
+        "ref": "refs/pull/174/head",
+        "sha": "7e4adc08fce78fb95524f304962f9c1804e18691",
+        "previous": "0ea205e0ee35bb43635960a0edafd42dc4c16e8d"
+      },
+      {
+        "ref": "refs/pull/173/head",
+        "sha": "0abd0e592ad607a88a6a7db6a5bf235939efa5b9",
+        "previous": "8fa115e8358e305872fd14e757f9133fa9c1540d"
+      }
+    ],
+    "removed": []
+  },
+  "upstream_branches": {
+    "added": [],
+    "changed": [],
+    "removed": []
+  }
+}

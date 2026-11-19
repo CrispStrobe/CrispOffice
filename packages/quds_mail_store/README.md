@@ -41,6 +41,9 @@ startup-recovery assumptions.
 - Atomic sync page, membership, tombstone and cursor transactions. A page must
   present the cursor it read, and its account lease is checked before commit.
   A stale page returns `conflict`; domain streams publish successful commits.
+- Durable standard flags on header snapshots. An omitted snapshot preserves
+  previously observed flags for that exact remote identity; an observed empty
+  snapshot clears them. Header streams and local search return the stored flags.
 - Compare-and-set draft revisions with immutable attachment blobs; frozen
   outbox wire bytes/envelope, validated state transitions and attempt history.
 - Reopening captures interrupted attempts. Recovery makes them `uncertain`,
@@ -58,7 +61,7 @@ startup-recovery assumptions.
   cleanup journal. Account removal is destructive and local only. Removed
   account IDs cannot be reused. Retired profiles can reopen to finish vault
   cleanup but cannot create accounts or content.
-- Versioned transactional schema, v1-to-v2 migration, and explicit bounded
+- Versioned transactional schema, v1/v2-to-v3 migration, and explicit bounded
   reindexing of older content. Unknown schema versions are not reset.
 
 Content errors are typed and redacted. No SQL exception text is returned to the
@@ -121,11 +124,14 @@ Reopening under tighter limits can return `quotaExceeded` while retaining the
 stored content. Local indexing decodes metadata without loading original or
 attachment bytes, and it does not interpret HTML or fetch remote content.
 
-The current schema is version 2. The retained v1 definition supports reproducible
-upgrade fixtures. Version upgrades preserve existing rows and advance schema
-state transactionally. Version 1 content enters the new FTS index only through
-bounded explicit `reindex` calls. A failed migration rolls back, and an unknown
-future version returns `unsupported` instead of resetting the database.
+The current schema is version 3. The retained v1 and v2 definitions support
+reproducible upgrade fixtures. Version upgrades preserve existing rows and
+advance schema state transactionally. Existing messages acquire unknown flags,
+never an invented read/unread state. The nullable constrained bitset stores only
+the five durable standard flags. Version 1 content enters the FTS index only
+through bounded explicit `reindex` calls; the existing v2 index remains intact.
+A failed migration rolls back, and an unknown future version returns
+`unsupported` instead of resetting the database.
 
 ## Qualification boundary
 

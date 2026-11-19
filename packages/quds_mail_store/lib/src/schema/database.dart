@@ -13,7 +13,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -28,19 +28,27 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV2) {
         await customStatement(statement);
       }
+      for (final statement in schemaV3) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 2');
+      await customStatement('PRAGMA user_version = 3');
     }),
     onUpgrade: (_, from, to) async {
-      if (from != 1 || to != 2) {
+      if ((from != 1 && from != 2) || to != 3) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
-        for (final statement in schemaV2) {
+        if (from == 1) {
+          for (final statement in schemaV2) {
+            await customStatement(statement);
+          }
+        }
+        for (final statement in schemaV3) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 2');
+        await customStatement('PRAGMA user_version = 3');
       });
     },
     beforeOpen: (_) async {
@@ -155,4 +163,11 @@ const schemaV2 = <String>[
     PRIMARY KEY(account,message),
     FOREIGN KEY(account,message) REFERENCES messages(account,id) ON DELETE CASCADE
   )''',
+];
+
+/// Existing v1/v2 rows have unknown flags until a provider observes them. The
+/// constrained bitset adds no invented read/unread or deletion state.
+const schemaV3 = <String>[
+  '''ALTER TABLE messages ADD COLUMN flags INTEGER
+    CHECK(flags IS NULL OR (typeof(flags) = 'integer' AND flags BETWEEN 0 AND 31))''',
 ];

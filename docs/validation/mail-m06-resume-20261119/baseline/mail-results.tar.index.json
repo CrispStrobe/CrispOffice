@@ -1,0 +1,97 @@
+{
+  "archive": "mail-results.tar.xz",
+  "bytes": 15584,
+  "sha256": "56f5d7b6d9465c90f35fd85cc2158275966cc0ea337ce4b12bd6d423e42cf71a",
+  "members": [
+    {
+      "path": "mail-baseline/browser-entry.log",
+      "bytes": 114,
+      "sha256": "0022a597720b8d255cd8e3b9b1592376a0fb299c333e8d281b434980e5fbe380"
+    },
+    {
+      "path": "mail-baseline/browser-worker.log",
+      "bytes": 113,
+      "sha256": "c4b7a0cf701964251aa9e75227c77a505bf9f4d140d9abb84832a2958d845ca7"
+    },
+    {
+      "path": "mail-baseline/core-analysis.log",
+      "bytes": 45,
+      "sha256": "ba8f111031783cd9617e408cf4a69a31be131b4256751d349ccf5fcd426087c9"
+    },
+    {
+      "path": "mail-baseline/core-node-cases.json",
+      "bytes": 5950,
+      "sha256": "30cf72b19b3c293dac4d8b077536f087021e7ef5d6aa280b9e07ea16c59ffd4e"
+    },
+    {
+      "path": "mail-baseline/core-node.jsonl",
+      "bytes": 16505,
+      "sha256": "05a8b9bb558a13d89bbb2a4d5236e58fba9387825481305b068e84dad3bf7ae8"
+    },
+    {
+      "path": "mail-baseline/core-vm-cases.json",
+      "bytes": 5950,
+      "sha256": "650dd4371054ce4d885067ace29f0f38eaf3b57ce2b79660ffcf8626e63fb419"
+    },
+    {
+      "path": "mail-baseline/core-vm.jsonl",
+      "bytes": 15152,
+      "sha256": "f138c505f2184da549fae6e4257fd434eb8959ed27cd3bfe672c18ef9f80ec99"
+    },
+    {
+      "path": "mail-baseline/format.log",
+      "bytes": 48,
+      "sha256": "439355d8706a72013db1d3a72cf1c50887a1bbabed08e319125023f208c4518f"
+    },
+    {
+      "path": "mail-baseline/locked-resolution.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "mail-baseline/portable-node-cases.json",
+      "bytes": 7952,
+      "sha256": "4e1861037af1274eff35dcb447dd98439f61d87564b593c18e3291df57ec4ca2"
+    },
+    {
+      "path": "mail-baseline/portable-node.jsonl",
+      "bytes": 21226,
+      "sha256": "f73807176a4442c15f932c3b0f6dbe42e737174e5875933200266409e70eb6b1"
+    },
+    {
+      "path": "mail-baseline/receipt.json",
+      "bytes": 26007,
+      "sha256": "827d143a90a206d357bcdc9f201bf0830c3add3c1ebebcfe537df38449d842e3"
+    },
+    {
+      "path": "mail-baseline/runner-regressions.log",
+      "bytes": 6804,
+      "sha256": "6c02751defbc2634f5d61a3236a7c079fa90d9066388831cdd63688c3a5520a6"
+    },
+    {
+      "path": "mail-baseline/runtime.log",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "mail-baseline/store-analysis.log",
+      "bytes": 46,
+      "sha256": "6573947ce493b867fb233613853e29c908e91977b0e23360aa95417b9071bef1"
+    },
+    {
+      "path": "mail-baseline/store-vm-cases.json",
+      "bytes": 17160,
+      "sha256": "cb1c4fd916e74d5a905bbebf8f7a4571764d36621968ba7d64ab5d612d75c7be"
+    },
+    {
+      "path": "mail-baseline/store-vm.jsonl",
+      "bytes": 47872,
+      "sha256": "568fb18ea6f6d710f3a2e54bb2349c2fd22f093f01a4cfefc2af7af0da05ff07"
+    },
+    {
+      "path": "mail-baseline/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

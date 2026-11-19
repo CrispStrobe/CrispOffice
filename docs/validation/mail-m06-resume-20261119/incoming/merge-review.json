@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-19T06:02:59.451804+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "base_commit": "eafcd80fdfbd7ff678a7a04fb9a9a98b5330ad00",
+  "base_tree": "43a9c087d1ca55454b81e3b832557dd0995b29e1",
+  "new_commit_count": 3,
+  "new_commits": [
+    "17ec8cc8d241c76a753efb69893682c76683db04",
+    "39843ed4874c7b56572c7aa8195716e5892aeca2",
+    "fa0cd40d6a46767c800546aa2e894eec6567433a"
+  ],
+  "merge_order": [
+    "39843ed4874c7b56572c7aa8195716e5892aeca2",
+    "17ec8cc8d241c76a753efb69893682c76683db04"
+  ],
+  "external_ref_count": 389,
+  "upstream_unchanged": true,
+  "merge_simulations": [
+    {
+      "head": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+      "merge_tree": "c20b0bdd66b27ba9c0ac6220907f7756421b3dbf",
+      "exit_code": 1,
+      "conflicts": [
+        "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+        "packages/quds_office_editor/CHANGELOG.md"
+      ],
+      "preserve_from_base": [
+        "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+        "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+        "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+        "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+        "packages/quds_office_editor/CHANGELOG.md"
+      ],
+      "non_documentation_paths_outside_preserve": []
+    },
+    {
+      "head": "17ec8cc8d241c76a753efb69893682c76683db04",
+      "merge_tree": "85b58e2fa89e0b2b5bb6062d901fb3b2d33313f1",
+      "exit_code": 0,
+      "conflicts": [],
+      "non_documentation_paths": []
+    }
+  ],
+  "rationale": {
+    "office_editors.dart": "Incoming branch calls document pane GlobalKey redundant with stable Flex. Existing Mail integration retains it. Keep current key; removing it is unnecessary for incoming evidence and not required by a new feature. No claim that the incoming omission itself is a demonstrated regression.",
+    "word_notes_proofing_controller_test.dart": "Both sides use disjoint ordinary/manual ranges and retain the two stronger tracked revision assertions. Incoming only renames token to originalText and changes equivalent fixture strings. Keep current fixture and formatting.",
+    "word_notes_proofing_pane_test.dart": "Only responsive-selection explanatory comment changes. Keep current comment and the same assertions.",
+    "word_zotero_notes_pane_test.dart": "Both helpers reveal, hit-test, tap and check focus before assigning selection. Incoming renames finder/widget locals; keep current complete coherent helper, never mixed conflict fragments.",
+    "CHANGELOG.md": "Both semantic entries already appear once in the current changelog; incoming reorders them. Keep current order without duplicates."
+  },
+  "qualification_impact": "After the five preserved-file resolutions, expected integrated diff from baseline is documentation/evidence only. Existing 72-suite Office plan remains sufficient; fresh Mail and Office runs remain pending. Imported historical 1985-case and Zotero reports are not new passing evidence for this continuation.",
+  "verification_after_actual_merge": [
+    "Re-run audit_refs.py against actual integrated HEAD and require all 389 external refs accounted for.",
+    "Verify git diff --name-only eafcd80fdfbd7ff678a7a04fb9a9a98b5330ad00 HEAD contains only docs/ paths after conflict resolution (before adding independent M06 work).",
+    "Require preserved five files to have identical Git blob IDs to baseline.",
+    "Record actual integration tree and remote readback identity."
+  ],
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "repo_worktree_modified_by_audit": false,
+  "commits_or_remote_writes_by_audit": false
+}

@@ -86,8 +86,15 @@ the Dart/Flutter tester hashes, verifies 176 package archives against the two
 locked dependency sets, and runs offline lock enforcement for Flutter tools and
 the workspace. It regenerates package configuration, wrappers, a runtime
 receipt, and retained-input/omission manifests for the new location. It runs the
-absolute `native_asset_smoke.dart` file through `dart run` to prepare the native
-mapping and verify an in-memory SQLite/FTS5 round trip. The receipt binds that
+exact `native_asset_smoke.dart` bytes through a temporary entrypoint under
+`packages/quds_mail_store/.dart_tool/`, invokes `dart run` from that member,
+and removes only the temporary probe directory afterward. Dart discovers hooks
+from the entrypoint's owning package: running the original root-level docs file
+skips SQLite's hook because the workspace root declares no dependencies, even
+when the working directory is the Mail member. No tracked manifest is changed.
+The genuine hook prepares the workspace's native mapping, and the probe
+verifies an in-memory SQLite/FTS5 round trip. The receipt records both probe
+hashes and binds that
 mapping, each absolute library, the original cached hook library used by child
 `dart run` fixtures, and (with `--node-tests`) Node's resolved path,
 version and hash. SQLite must match the pinned Linux x64 hook asset SHA-256.
@@ -127,6 +134,12 @@ smoke result above is not feature acceptance.
 Verify the recovered runner's syntax and reporter parsing before using it as
 acceptance evidence. Format the source and commit any formatting
 changes before recording the full source commit.
+
+The entrypoint placement and cleanup controls run without Dart or network:
+
+```bash
+python3 docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py
+```
 
 Commit the final source, runner, and committed plan; keep the tracked worktree and
 index clean. Run one Dart/Flutter verification process at a time:

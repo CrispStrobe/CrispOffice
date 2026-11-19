@@ -1,0 +1,23 @@
+{
+  "branch": "codex/zotero-word-parity-20261118",
+  "pull_request": 173,
+  "github_actions_queried_or_awaited": false,
+  "update_policy": "Non-forced expected-head GitHub connector updates; read back the remote branch after each checkpoint; local tree equality checked before alignment.",
+  "source_checkpoints": [
+    {
+      "purpose": "Incoming integration",
+      "sha": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d",
+      "expected_parent": "0abd0e592ad607a88a6a7db6a5bf235939efa5b9",
+      "tree": "f01a2f306a3e04de6db376be6d1952f33c40fc95",
+      "remote_verified": true
+    },
+    {
+      "purpose": "Annotation implementation and frozen qualification source",
+      "sha": "ff06e5544673ce7f70be983299241bcdcef780d3",
+      "expected_parent": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d",
+      "tree": "ee23dc2179d4b3e26eabf3b35e7aa13f95a7963d",
+      "remote_verified": true
+    }
+  ],
+  "evidence_checkpoint": "The Git commit containing the completed README and final result archive follows the qualified source; its exact SHA is recorded in PR #173 and the publication response."
+}

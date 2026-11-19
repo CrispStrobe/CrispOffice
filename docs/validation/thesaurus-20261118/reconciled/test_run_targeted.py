@@ -9,6 +9,7 @@ import signal
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 from unittest.mock import patch
 
@@ -175,8 +176,23 @@ class TargetedEvidenceControls(unittest.TestCase):
             self.assertTrue(marker.exists(), 'Child started before timeout')
             pid = int(marker.read_text())
             status = Path(f'/proc/{pid}/status')
-            if status.exists():
-                state = next(line for line in status.read_text().splitlines() if line.startswith('State:'))
+            # SIGKILL delivery is asynchronous. Observe termination within a
+            # bounded interval while retaining the strict descendant check.
+            deadline = time.monotonic() + 2
+            while True:
+                try:
+                    state = next(line for line in status.read_text().splitlines()
+                                 if line.startswith('State:'))
+                except FileNotFoundError:
+                    state = None
+                    break
+                if 'Z' in state:
+                    break
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                time.sleep(min(0.01, remaining))
+            if state is not None:
                 self.assertIn('Z', state, 'A timed-out descendant must no longer execute')
         finally:
             if pid is not None:

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
 from datetime import datetime, timezone
 import gzip
 import hashlib
@@ -21,6 +22,7 @@ import shlex
 import shutil
 import subprocess
 import tarfile
+import tempfile
 import time
 import urllib.parse
 import urllib.request
@@ -57,6 +59,32 @@ def sha256(path: Path) -> str:
 
 def write_json(path: Path, value: object) -> None:
     path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
+
+
+@contextmanager
+def native_smoke_entrypoint(repo: Path):
+    """Run the unchanged probe as an entrypoint owned by the SQLite consumer.
+
+    Dart discovers native hooks from the entrypoint package's dependencies.
+    The workspace root owns the documented probe but has no dependencies, so
+    invoking that file directly skips sqlite3's hook even from the Mail cwd.
+    Stage its exact bytes below the Mail member's ignored generated directory;
+    never change a tracked manifest or synthesize a native-assets mapping.
+    """
+    repo = repo.resolve()
+    member = repo / "packages/quds_mail_store"
+    manifest = yaml.safe_load((member / "pubspec.yaml").read_text())
+    if (manifest.get("name") != "quds_mail_store"
+            or manifest.get("dependencies", {}).get("sqlite3") != "3.9.1"):
+        raise RuntimeError("Native smoke requires the pinned Mail store SQLite dependency")
+    source = repo / "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart"
+    contents = source.read_bytes()
+    generated = member / ".dart_tool"
+    generated.mkdir(exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="review-native-smoke-", dir=generated) as temporary:
+        entrypoint = Path(temporary) / "native_asset_smoke.dart"
+        entrypoint.write_bytes(contents)
+        yield entrypoint
 
 
 def bind_test_inputs(repo: Path, root: Path, receipt: dict, *, node_tests=False) -> None:
@@ -347,7 +375,14 @@ def main() -> None:
         run("flutter-tools-pub-get", [dart, "pub", "get", "--offline", "--enforce-lockfile"], sdk / "packages/flutter_tools")
         run("workspace-pub-get", [dart, "pub", "get", "--offline", "--enforce-lockfile"], repo)
         smoke = repo / "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart"
-        run("native-assets-smoke", [dart, "run", smoke], repo)
+        with native_smoke_entrypoint(repo) as entrypoint:
+            receipt["native_smoke"] = {
+                "source": str(smoke), "source_sha256": sha256(smoke),
+                "entrypoint": str(entrypoint), "entrypoint_sha256": sha256(entrypoint),
+                "owning_package": "quds_mail_store",
+                "cleanup": "Only the generated temporary entrypoint directory is removed",
+            }
+            run("native-assets-smoke", [dart, "run", entrypoint], repo / "packages/quds_mail_store")
         bind_test_inputs(repo, root, receipt, node_tests=args.node_tests)
         version = run("flutter-version", [flutter, "--version", "--machine"], repo)
         receipt["runtime"] = json.loads(version.read_text())

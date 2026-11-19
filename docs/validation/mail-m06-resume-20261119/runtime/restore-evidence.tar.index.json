@@ -1,0 +1,62 @@
+{
+  "archive": "restore-evidence.tar.xz",
+  "bytes": 907080,
+  "sha256": "3a62fa405ce2801e6560b44ff6f03ccdff633892e55c1739a1cfecca85beaa42",
+  "members": [
+    {
+      "path": "runtime-restore.log",
+      "bytes": 318,
+      "sha256": "0d3e6e5f882d62f9c475cdacff6606920b3125f857b6c8cdc1bcda76022191d8"
+    },
+    {
+      "path": "runtime/archive-members.json",
+      "bytes": 357030,
+      "sha256": "c30c0738a094f3b0bfc3ee4696204540798d4a4fbaf943a5abb0ce8833635f8f"
+    },
+    {
+      "path": "runtime/cache-omissions.json",
+      "bytes": 2335744,
+      "sha256": "c16bf623008daa6c01cfeb16a2895d1048f42cda2274c084d9b8a58840e2d615"
+    },
+    {
+      "path": "runtime/env.sh",
+      "bytes": 609,
+      "sha256": "a3e19d3bd3ce60de55be497022ea38a30827b554fb06e9fccdd881aeed13c1ee"
+    },
+    {
+      "path": "runtime/logs/flutter-tools-pub-get.log",
+      "bytes": 1192,
+      "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+    },
+    {
+      "path": "runtime/logs/flutter-version.log",
+      "bytes": 631,
+      "sha256": "3efb5de6ee0bb33a89a7136a23075750e9f6e906fed508ccb20d9eb9ba8d57ce"
+    },
+    {
+      "path": "runtime/logs/native-assets-smoke.log",
+      "bytes": 81,
+      "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2"
+    },
+    {
+      "path": "runtime/logs/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "runtime/pub-cache-receipt.json",
+      "bytes": 44348,
+      "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591"
+    },
+    {
+      "path": "runtime/retained-inputs.json",
+      "bytes": 2049933,
+      "sha256": "8a14b584c2e9416dc73f79e556f3680feba49bdbb279e8f42cd47054c5b01a91"
+    },
+    {
+      "path": "runtime/runtime.json",
+      "bytes": 6676,
+      "sha256": "77b2ef5fbdeefde827225f72944d91e47251edfa7d0e4b75f3a001edebcce987"
+    }
+  ]
+}
