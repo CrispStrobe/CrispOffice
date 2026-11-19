@@ -1,0 +1,75 @@
+{
+  "scope": "Intentional pre-fix regression reproductions; these failures are not acceptance results. Each command records focused input hashes before and after execution. Subsequent fixes require a fresh passing qualification.",
+  "runs": [
+    {
+      "name": "raw-fetch-before",
+      "passed": 3,
+      "failed": 3,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "canonical raw FETCH preserves exact fragmented literal octets",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "separate canonical header FETCH responses preserve both UIDs",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "raw FETCH rejects trailing atom and cannot accept a tagged OK",
+          "result": "failure",
+          "skipped": false
+        },
+        {
+          "name": "raw FETCH rejects trailing anonymous list and cannot accept a tagged OK",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "two top-level FETCH bodies cannot silently select the last UID",
+          "result": "failure",
+          "skipped": false
+        },
+        {
+          "name": "ambiguous header FETCH cannot yield a partial sync or false tombstones",
+          "result": "failure",
+          "skipped": false
+        }
+      ],
+      "exit_code": 1,
+      "inputs_unchanged": true,
+      "terminal_events": [
+        {
+          "success": false,
+          "type": "done",
+          "time": 3970
+        }
+      ]
+    },
+    {
+      "name": "oversize-format-before",
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "ImapResponseReader rejects literals above the size limit",
+          "result": "failure",
+          "skipped": false
+        }
+      ],
+      "exit_code": 1,
+      "inputs_unchanged": true,
+      "terminal_events": [
+        {
+          "success": false,
+          "type": "done",
+          "time": 1064
+        }
+      ]
+    }
+  ],
+  "total_cases": 7
+}
