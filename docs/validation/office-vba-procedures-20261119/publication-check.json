@@ -1,0 +1,19 @@
+{
+  "accepted_commit": "24eee8145f4edb19a33a95156a7e0a94093a8f75",
+  "accepted_tree": "22e35b3de48354891716428b5336aeb49c8c6217",
+  "accepted_hash_count": 448,
+  "implementation_and_test_hashes_unchanged": true,
+  "post_acceptance_hashed_input_changes": [
+    {
+      "path": "docs/VBA_MACROS.md",
+      "accepted_sha256": "25791b578c46b7185767989606e03663f22eb34a05956571790dc8773089c731",
+      "publication_sha256": "5847bfe809405cddf27164d0a4a197c8d5e20155ee394f3b5ab62a050c4f6b40"
+    }
+  ],
+  "reason": "Documentation-only clarification that strings have a per-string bound; aggregate work, operation and encoded-byte budgets remain shared. No implementation or test edits.",
+  "independent_stress_compiler_matches_acceptance": true,
+  "main_head_observed": "81ae98688860599f118748afca19bdb2ec45da37",
+  "active_concurrent_pr": 205,
+  "active_concurrent_pr_head": "de8ab2e93cc5f2139e89ba72d117bf9b18ba4cae",
+  "active_concurrent_pr_contains_no_new_source": true
+}

@@ -1,0 +1,46 @@
+{
+  "commands": [
+    {
+      "name": "vm",
+      "command": [
+        "/workspace/scratch/8e94e1054d35/toolchain/run_dart.sh",
+        "--packages=/workspace/scratch/8e94e1054d35/validation-workspace/.dart_tool/package_config.json",
+        "/workspace/scratch/8e94e1054d35/toolchain/stress/procedure_depth.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 8.815
+    },
+    {
+      "name": "js_compile",
+      "command": [
+        "/workspace/scratch/8e94e1054d35/toolchain/run_dart.sh",
+        "compile",
+        "js",
+        "--packages=/workspace/scratch/8e94e1054d35/validation-workspace/.dart_tool/package_config.json",
+        "-O1",
+        "/workspace/scratch/8e94e1054d35/toolchain/stress/procedure_depth.dart",
+        "-o",
+        "/workspace/scratch/8e94e1054d35/toolchain/stress/procedure_depth.js"
+      ],
+      "exit_code": 0,
+      "seconds": 4.81
+    },
+    {
+      "name": "js_run",
+      "command": [
+        "node",
+        "-e",
+        "globalThis.self = globalThis; require(process.argv[1])",
+        "/workspace/scratch/8e94e1054d35/toolchain/stress/procedure_depth.js"
+      ],
+      "exit_code": 0,
+      "seconds": 0.135
+    }
+  ],
+  "recorded_utc": "2026-11-19T16:41:24.501376+00:00",
+  "source_sha256": {
+    "stress/procedure_depth.dart": "bdbb53e6fd344a6d3e977d74ed7ab8770fb81c01af06607662f68ba499ae6812",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "eac6e995842dd7df34aadf63d3e26eb5654d20a66981d0a56562e67016c1dc8d"
+  },
+  "result": "All 3 depth-interaction cases passed on Dart VM and JavaScript/Node; each emitted exactly one cell write with value 1."
+}
