@@ -254,7 +254,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           if (_app == SuiteApp.word &&
               _tab == _RibbonTab.design &&
               _word.selectedEquation == null) {
-            _tab = _RibbonTab.insert;
+            _tab = _visibleRibbonTabs.contains(_RibbonTab.insert)
+                ? _RibbonTab.insert
+                : _RibbonTab.home;
           }
         });
         StudioWindow.setTitle('$_chromeTitle — CrispOffice');
@@ -831,28 +833,57 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ];
 
-  Future<void> _newActiveFile() async {
-    if (!_fileActionsAvailable || !await _confirmSaveActiveFile() || !mounted)
+  Future<void> _newActiveFile({VoidCallback? create}) async {
+    final SuiteApp requestedApp = _app;
+    await StudioWindow.show();
+    if (!_fileActionsAvailable ||
+        !await _confirmSaveActiveFile() ||
+        !mounted ||
+        _app != requestedApp) {
       return;
-    switch (_app) {
-      case SuiteApp.word:
-        _newWord();
-      case SuiteApp.excel:
-        _newSheet();
-      case SuiteApp.powerpoint:
-        _newSlides();
-      case SuiteApp.pdf:
-        _newPdf();
+    }
+    if (create != null) {
+      create();
+    } else {
+      switch (_app) {
+        case SuiteApp.word:
+          _newWord();
+        case SuiteApp.excel:
+          _newSheet();
+        case SuiteApp.powerpoint:
+          _newSlides();
+        case SuiteApp.pdf:
+          _newPdf();
+      }
     }
     if (_app != SuiteApp.pdf) {
       _active.commands.clear();
       _active.markClean();
     }
-    setState(() => _tab = _RibbonTab.home);
+    setState(
+      () => _tab = _app == SuiteApp.pdf ? _RibbonTab.view : _RibbonTab.home,
+    );
   }
 
   Future<void> _saveFileAs() async {
+    if (!_fileActionsAvailable) return;
     await _saveFile(saveAs: true);
+  }
+
+  Future<void> _reloadSample(VoidCallback reset) async {
+    final SuiteApp requestedApp = _app;
+    if (!_fileActionsAvailable ||
+        !await _confirmSaveActiveFile() ||
+        !mounted ||
+        _app != requestedApp) {
+      return;
+    }
+    reset();
+    if (_app != SuiteApp.pdf) {
+      _active.commands.clear();
+      _active.markClean();
+    }
+    setState(() {});
   }
 
   Future<bool> _confirmSaveActiveFile() async {
@@ -1146,15 +1177,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  String get _chromeTitle {
-    final String app = switch (_app) {
-      SuiteApp.word => _strings.documents,
-      SuiteApp.excel => _strings.spreadsheets,
-      SuiteApp.powerpoint => _strings.presentations,
-      SuiteApp.pdf => _strings.pdf,
-    };
-    return '$_documentLabel — $app';
-  }
+  String get _chromeTitle => _documentLabel;
 
   String get _documentLabel {
     final String name = switch (_app) {
@@ -1181,19 +1204,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     SuiteApp.powerpoint => _slideName,
     SuiteApp.pdf => _pdfName,
   };
-
-  set _activeName(String value) {
-    switch (_app) {
-      case SuiteApp.word:
-        _wordName = value;
-      case SuiteApp.excel:
-        _sheetName = value;
-      case SuiteApp.powerpoint:
-        _slideName = value;
-      case SuiteApp.pdf:
-        _pdfName = value;
-    }
-  }
 
   String _nameFromPicked(PickedOfficeFile picked) {
     if (picked.name.trim().isNotEmpty) {
@@ -1258,6 +1268,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     DropdownButtonFormField<OfficeInteractionMode>(
+                      isExpanded: true,
                       initialValue: _mode,
                       decoration: InputDecoration(labelText: _strings.mode),
                       items: <DropdownMenuItem<OfficeInteractionMode>>[
@@ -1289,6 +1300,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     ),
                     const SizedBox(height: 12),
                     DropdownButtonFormField<SuiteLook>(
+                      isExpanded: true,
                       initialValue: _look,
                       decoration: InputDecoration(labelText: _strings.look),
                       items: <DropdownMenuItem<SuiteLook>>[
@@ -1312,6 +1324,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     ),
                     const SizedBox(height: 12),
                     DropdownButtonFormField<StudioLanguage>(
+                      isExpanded: true,
                       initialValue: _language,
                       decoration: InputDecoration(
                         labelText: _strings.languageLabel,
@@ -1336,6 +1349,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     ),
                     const SizedBox(height: 12),
                     DropdownButtonFormField<OfficeLengthUnit>(
+                      isExpanded: true,
                       initialValue: _lengthUnit,
                       decoration: InputDecoration(
                         labelText: _strings.measurement,
@@ -1686,8 +1700,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                           accent: _accent,
                           onTap: () {
                             setState(() => _tab = tab);
-                            if (_ribbonPreferences.collapsed)
+                            if (_ribbonPreferences.collapsed) {
                               _ribbonPreferences.setCollapsed(false);
+                            }
                           },
                         ),
                     ],
@@ -1844,6 +1859,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final byId = <String, StudioRibbonGroup>{
       for (final group in groups) group.id: group,
     };
+    assert(
+      byId.length == groups.length,
+      'Ribbon group IDs must be unique within $scope: ${groups.map((group) => group.id).join(', ')}',
+    );
+    // Keep every command available in release builds even if a future host
+    // accidentally supplies conflicting group identifiers.
+    if (byId.length != groups.length) return groups;
     final visible = <StudioRibbonGroup>[
       for (final id in _ribbonPreferences.orderedIds(scope, byId.keys))
         if (_ribbonPreferences.isVisible(scope, id)) byId[id]!,
@@ -2534,7 +2556,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.note_add_outlined,
             _t('New', StudioStrings.de('New'), 'جديد'),
-            createNew,
+            _fileActionsAvailable
+                ? () => _newActiveFile(create: createNew)
+                : null,
           ),
           _cmd(
             Icons.folder_open,
@@ -2558,7 +2582,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               StudioStrings.de('Reload sample'),
               'إعادة العينة',
             ),
-            reset,
+            _fileActionsAvailable ? () => _reloadSample(reset) : null,
           ),
         ],
       ),
@@ -4824,7 +4848,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
-        id: 'arrange',
+        id: 'align-and-group',
         title: _t('Arrange', StudioStrings.de('Arrange'), 'ترتيب'),
         children: <Widget>[
           _cmd(
@@ -4986,22 +5010,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         children: <Widget>[
           _cmd(
             Icons.arrow_back,
-            '',
+            _t('Move left', 'Nach links', 'نقل لليسار'),
             _canMutate ? () => _slides.nudgeSelected(-127000, 0) : null,
           ),
           _cmd(
             Icons.arrow_forward,
-            '',
+            _t('Move right', 'Nach rechts', 'نقل لليمين'),
             _canMutate ? () => _slides.nudgeSelected(127000, 0) : null,
           ),
           _cmd(
             Icons.arrow_upward,
-            '',
+            _t('Move up', 'Nach oben', 'نقل لأعلى'),
             _canMutate ? () => _slides.nudgeSelected(0, -127000) : null,
           ),
           _cmd(
             Icons.arrow_downward,
-            '',
+            _t('Move down', 'Nach unten', 'نقل لأسفل'),
             _canMutate ? () => _slides.nudgeSelected(0, 127000) : null,
           ),
           _cmd(
@@ -5773,13 +5797,30 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _openFile() async {
-    if (_opening || _isSaving) {
+    if (!_fileActionsAvailable) {
       return;
     }
     try {
+      await StudioWindow.show();
       final PickedOfficeFile? picked = await StudioFiles.open();
       if (picked == null || !mounted) {
         return;
+      }
+      final SuiteApp? target = picked.name.toLowerCase().endsWith('.pdf')
+          ? SuiteApp.pdf
+          : switch (picked.kind) {
+              OpcPackageKind.word => SuiteApp.word,
+              OpcPackageKind.sheet => SuiteApp.excel,
+              OpcPackageKind.slide => SuiteApp.powerpoint,
+              _ => null,
+            };
+      if (target != null) {
+        final SuiteApp previous = _app;
+        _switchApp(target);
+        if (!await _confirmSaveActiveFile() || !mounted) {
+          if (mounted) _switchApp(previous);
+          return;
+        }
       }
       if (picked.name.toLowerCase().endsWith('.pdf')) {
         _switchApp(SuiteApp.pdf);
@@ -5999,19 +6040,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     SuiteApp.pdf => _pdfPath,
   };
 
-  set _activePath(String? value) {
-    switch (_app) {
-      case SuiteApp.word:
-        _wordPath = value;
-      case SuiteApp.excel:
-        _sheetPath = value;
-      case SuiteApp.powerpoint:
-        _slidePath = value;
-      case SuiteApp.pdf:
-        _pdfPath = value;
-    }
-  }
-
   String get _defaultSaveName {
     final String name = _activeName.trim();
     if (name.isNotEmpty) {
@@ -6100,7 +6128,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<bool> _saveFile({bool saveAs = false}) async {
-    if (_isSaving || _opening) return false;
+    if (!_fileActionsAvailable) return false;
     final SuiteApp savedApp = _app;
     final OfficeController? controller = savedApp == SuiteApp.pdf
         ? null
@@ -6108,9 +6136,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final String name = _defaultSaveName;
     final String? existingPath = saveAs ? null : _activePath;
     final OpcPackageKind kind = _activeKind;
+    setState(() => _savePhase = _SavePhase.picking);
     try {
       controller?.commitPendingEdits();
-      final int? revision = controller?.contentRevision;
+      final int revision = controller?.contentRevision ?? _pdf.contentRevision;
       final WmlDocument? word = savedApp == SuiteApp.word
           ? _word.document
           : null;
@@ -6122,8 +6151,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           : null;
       final PdfFile? pdfFile = savedApp == SuiteApp.pdf ? _pdf.file : null;
       final Uint8List? pdfBytes = savedApp == SuiteApp.pdf
-          ? _pdf.saveBytes()
+          ? await _pdf.saveBytesAsync()
           : null;
+      if (!mounted) return false;
 
       if (kIsWeb) {
         setState(() {
@@ -6136,8 +6166,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         final Uint8List bytes = pdfBytes ?? await controller!.saveBytesAsync();
         if (!mounted) return false;
         final bool saved = await StudioFiles.save(bytes: bytes, fileName: name);
-        if (saved && controller?.contentRevision == revision)
+        if (saved && controller?.contentRevision == revision) {
           controller?.markClean();
+        }
+        if (saved &&
+            savedApp == SuiteApp.pdf &&
+            identical(pdfFile, _pdf.file) &&
+            _pdf.contentRevision == revision) {
+          _pdf.markClean();
+        }
         return saved;
       }
 
@@ -6178,8 +6215,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           sameDocument &&
           (controller != null
               ? controller.contentRevision == revision
-              : listEquals(pdfBytes, _pdf.saveBytes()));
-      if (unchanged) controller?.markClean();
+              : _pdf.contentRevision == revision);
+      if (unchanged) {
+        controller != null ? controller.markClean() : _pdf.markClean();
+      }
       setState(() => _saveProgress = 1);
       await Future<void>.delayed(const Duration(milliseconds: 120));
       return unchanged;
@@ -6207,6 +6246,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _exportPdf() async {
+    if (!_fileActionsAvailable) return;
     try {
       if (_app == SuiteApp.pdf) {
         await StudioFiles.save(bytes: _pdf.saveBytes(), fileName: _pdfName);
@@ -7021,33 +7061,31 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _insertWordTable(int rows, int cols) {
-    final double width = cols == 2 ? 180 : 120;
-    _insertBlockAfterActive(
-      WmlTable(
-        grid: <double>[for (int c = 0; c < cols; c++) width],
-        rows: <WmlTableRow>[
-          for (int r = 0; r < rows; r++)
-            WmlTableRow(
-              cells: <WmlTableCell>[
-                for (int c = 0; c < cols; c++)
-                  WmlTableCell(
-                    blocks: <WmlBlock>[
-                      WmlParagraph(
-                        inlines: <WmlInline>[
-                          WmlRun(
-                            text: _arabic
-                                ? 'خلية ${r + 1}×${c + 1}'
-                                : 'Cell ${r + 1}×${c + 1}',
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-              ],
-            ),
-        ],
-      ),
-    );
+    if (!_canMutate || !_word.config.allowsMutation) return;
+    _word.insertTable(rows: rows, columns: cols);
+    final table = _word.tableAtCaret?.table;
+    if (table != null) {
+      // Preserve the preset's dimensions and starter cells on the inserted
+      // object. The controller owns that object's insertion and undo history.
+      table.grid.fillRange(0, table.grid.length, cols == 2 ? 180 : 120);
+      for (var row = 0; row < table.rows.length; row++) {
+        for (var column = 0; column < table.rows[row].cells.length; column++) {
+          final paragraph =
+              table.rows[row].cells[column].blocks.first as WmlParagraph;
+          paragraph.inlines
+            ..clear()
+            ..add(
+              WmlRun(
+                text: _arabic
+                    ? 'خلية ${row + 1}×${column + 1}'
+                    : 'Cell ${row + 1}×${column + 1}',
+              ),
+            );
+        }
+      }
+      _word.relayout();
+      _word.refresh();
+    }
   }
 
   Future<Uint8List> _pictureBytes({required bool fromFile}) async {
@@ -7066,7 +7104,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     final Uint8List bytes = await _pictureBytes(fromFile: fromFile);
-    _insertBlockAfterActive(
+    _insertWordVisualBlock(
       WmlVisual(
         visual: OfficeVisual(
           kind: OfficeVisualKind.picture,
@@ -7082,7 +7120,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   void _insertWordEquation({String id = 'blank'}) {
     final OmmlEquation math = OmmlGallery.byId(id).build();
     _word.insertEquation(math);
-    setState(() => _tab = _RibbonTab.design);
+    setState(() {
+      _tab = _visibleRibbonTabs.contains(_RibbonTab.design)
+          ? _RibbonTab.design
+          : _RibbonTab.home;
+    });
   }
 
   List<StudioRibbonGroup> _wordEquationTools() {
@@ -7225,7 +7267,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         kind == OfficeVisualKind.diagramProcess ||
         kind == OfficeVisualKind.diagramCycle ||
         kind == OfficeVisualKind.diagramHierarchy;
-    _insertBlockAfterActive(
+    _insertWordVisualBlock(
       WmlVisual(
         visual: OfficeVisual(
           kind: kind,
@@ -8462,74 +8504,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   void _selectAllDocument() => _word.selectAll();
 
-  void _insertBlockAfterActive(WmlBlock block) {
-    for (final WmlSection section in _word.document.sections) {
-      final int index = _topLevelIndexOf(section.blocks, _activeParagraph);
-      if (index >= 0) {
-        section.blocks.insert(index + 1, block);
-        _word.relayout();
-        if (block is WmlVisual) {
-          _word.selectVisual(block);
-        }
-        if (block is WmlEquation) {
-          _word.selectEquation(block);
-        }
-        _word.refresh();
-        return;
-      }
-    }
-    _word.document.sections.first.blocks.add(block);
-    _word.relayout();
-    if (block is WmlVisual) {
-      _word.selectVisual(block);
-    }
-    if (block is WmlEquation) {
-      _word.selectEquation(block);
-    }
-    _word.refresh();
-  }
-
-  int _topLevelIndexOf(List<WmlBlock> blocks, WmlParagraph para) {
-    for (int i = 0; i < blocks.length; i++) {
-      final WmlBlock current = blocks[i];
-      if (identical(current, para)) {
-        return i;
-      }
-      if (current is WmlToc && WordToc.ownsParagraph(current, para)) {
-        return i;
-      }
-      if (current is WmlTable) {
-        for (final WmlTableRow row in current.rows) {
-          for (final WmlTableCell cell in row.cells) {
-            if (_containsParagraph(cell.blocks, para)) {
-              return i;
-            }
-          }
-        }
-      }
-    }
-    return -1;
-  }
-
-  bool _containsParagraph(List<WmlBlock> blocks, WmlParagraph para) {
-    for (final WmlBlock block in blocks) {
-      if (identical(block, para)) {
-        return true;
-      }
-      if (block is WmlToc && WordToc.ownsParagraph(block, para)) {
-        return true;
-      }
-      if (block is WmlTable) {
-        for (final WmlTableRow row in block.rows) {
-          for (final WmlTableCell cell in row.cells) {
-            if (_containsParagraph(cell.blocks, para)) {
-              return true;
-            }
-          }
-        }
-      }
-    }
-    return false;
+  void _insertWordVisualBlock(WmlVisual block) {
+    if (!_canMutate || !_word.config.allowsMutation) return;
+    _word.insertPicture(block.visual);
+    final inserted = _word.document.visuals
+        .where((visual) => identical(visual.visual, block.visual))
+        .firstOrNull;
+    if (inserted != null) _word.selectVisual(inserted);
   }
 
   void _clearActiveCell() {

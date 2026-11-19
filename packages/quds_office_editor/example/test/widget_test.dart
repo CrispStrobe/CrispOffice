@@ -20,7 +20,7 @@ void main() {
       await configureStudioForTest(tester, language: StudioLanguage.ar);
       await tester.tap(find.text('مراجعة'));
       await tester.pump();
-      expect(find.text('تدقيق'), findsOneWidget);
+      expect(find.byTooltip('تدقيق'), findsOneWidget);
       expect(find.text('تحليل AOT'), findsNothing);
       await tester.pumpWidget(const SizedBox.shrink());
       expect(tester.takeException(), isNull);
@@ -36,14 +36,14 @@ void main() {
       await tester.pump();
 
       expect(find.text('CrispOffice'), findsOneWidget);
-      expect(find.text('Documents'), findsWidgets);
+      expect(find.byTooltip('Documents'), findsWidgets);
 
-      await tester.tap(find.text('Spreadsheets').first);
+      await tester.tap(find.byTooltip('Spreadsheets').first);
       await tester.pump();
       expect(find.text('Budget'), findsWidgets);
       expect(find.text('Roster'), findsWidgets);
 
-      await tester.tap(find.text('Presentations').first);
+      await tester.tap(find.byTooltip('Presentations').first);
       await tester.pump();
       expect(find.textContaining('.pptx'), findsWidgets);
       expect(tester.takeException(), isNull);

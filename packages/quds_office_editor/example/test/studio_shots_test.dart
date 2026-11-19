@@ -104,10 +104,10 @@ void main() {
       ('Presentations', 'powerpoint.png'),
       ('PDF', 'pdf.png'),
     ]) {
-      await tester.tap(find.text(tab).first);
+      await tester.tap(find.byTooltip(tab).first);
       await settle();
       if (tab == 'PDF') {
-        await tester.tap(find.text('Fit page').first);
+        await tester.tap(find.byTooltip('Fit page').first);
       }
       await settle();
       await tester.runAsync(() => _save(boundaryKey, file));

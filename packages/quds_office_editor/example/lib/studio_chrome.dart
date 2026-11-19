@@ -201,25 +201,37 @@ class StudioIconCmd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool enabled = onPressed != null;
-    return Tooltip(
-      message: tooltip,
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(4),
-        child: Container(
-          width: 32,
-          height: 32,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: selected
-                ? accent.withValues(alpha: 0.14)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Icon(
-            icon,
-            size: 18,
-            color: enabled ? (selected ? accent : foreground) : Colors.grey,
+    final side = StudioRibbonStyle.maybeOf(context)?.compact == false
+        ? 40.0
+        : 32.0;
+    return Semantics(
+      label: tooltip,
+      button: true,
+      enabled: enabled,
+      selected: selected,
+      onTap: onPressed,
+      excludeSemantics: true,
+      child: Tooltip(
+        message: tooltip,
+        excludeFromSemantics: true,
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(4),
+          child: Container(
+            width: side,
+            height: side,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: selected
+                  ? accent.withValues(alpha: 0.14)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Icon(
+              icon,
+              size: 18,
+              color: enabled ? (selected ? accent : foreground) : Colors.grey,
+            ),
           ),
         ),
       ),
@@ -278,13 +290,15 @@ class StudioPasteCmd extends StatelessWidget {
                     size: 18,
                     color: enabled ? accent : Colors.grey,
                   ),
-                  Text(
-                    pasteLabel,
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: enabled ? foreground : Colors.grey,
+                  if (StudioRibbonStyle.maybeOf(context)?.showCommandLabels ??
+                      true)
+                    Text(
+                      pasteLabel,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: enabled ? foreground : Colors.grey,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
@@ -471,16 +485,23 @@ class StudioRibbonStrip extends StatefulWidget {
     bool compact = true,
     bool showCommandLabels = true,
     bool showGroupLabels = false,
-  }) =>
-      (36 +
-              (compact ? 0 : 10) +
-              (showCommandLabels
-                  ? studioChromeLineHeight(context, 10) * 2
-                  : studioChromeLineHeight(context, 10)) +
-              (showGroupLabels ? studioChromeLineHeight(context, 9) : 0))
-          .ceilToDouble()
-          .clamp(compact ? 64.0 : 78.0, double.infinity)
-          .toDouble();
+  }) {
+    final iconHeight = compact ? 18.0 : 21.0;
+    final commandHeight =
+        (iconHeight +
+                8 +
+                (showCommandLabels
+                    ? studioChromeLineHeight(context, 10) * 2
+                    : 0))
+            .clamp(compact ? 32.0 : 40.0, double.infinity);
+    // Includes both command padding and the scrollbar's reserved bottom space.
+    return (commandHeight +
+            14 +
+            (showGroupLabels ? studioChromeLineHeight(context, 9) : 0))
+        .ceilToDouble()
+        .clamp(compact ? 64.0 : 78.0, double.infinity)
+        .toDouble();
+  }
 
   @override
   State<StudioRibbonStrip> createState() => _StudioRibbonStripState();
