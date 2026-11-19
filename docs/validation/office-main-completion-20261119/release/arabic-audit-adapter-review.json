@@ -1,0 +1,15 @@
+{
+  "checked_at_utc": "2026-11-19T08:06:57.308875+00:00",
+  "qualification_source": "ba7c1e26cdc409915e04eba49dd1f1c002280cf8",
+  "runner_git_blob": "cb79c0c97d5415557d4b9caf84c0b6c97e12f89e",
+  "runner_always_bound_paths_missing_from_original_auditor": [
+    "tools/mail/check_reader.py",
+    "tools/mail/check_store.py"
+  ],
+  "unexpected_auditor_paths": [],
+  "original_auditor_sha256": "0f8c9d7a3e9f0f0e92f4cf82366eca689d640e768f7557e25fb18cef40ba5ca6",
+  "arabic_auditor_sha256": "052f75d20063614ece43acee28365723a7fe4d7f89cbb59cd205ca3edc8f4907",
+  "adaptation": "Add exactly the two checker paths unconditionally bound by the frozen runner. Previous plans redundantly listed them in extra_inputs; the new Arabic plan does not. No raw event parser, acceptance condition, source, runner, plan or test changes.",
+  "product_tests_executed": false,
+  "original_auditor_modified": false
+}
