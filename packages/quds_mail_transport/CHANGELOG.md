@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add native Gmail API and Microsoft Graph providers with desktop browser PKCE,
+  refreshable session tokens, verified mailbox ownership, bounded HTTP reads,
+  folder/label browsing and incremental synchronization.
+- Add confirmed actions, Graph moves, envelope-validated MIME sending, explicit
+  rejected/uncertain outcomes and structured redacted diagnostics. No sends or
+  mutations are automatically retried. Add a read-only cloud connection probe.
 - Add `createMailEwsProvider` for Exchange Server on premises with explicit HTTPS
   configuration, NTLMv2/MIC/TLS channel binding, optional Basic or host-supplied
   bearer tokens, and current host-vault credential access per operation.

@@ -3,12 +3,15 @@ import 'dart:async';
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
+import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'studio_mail_cloud.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_ews.dart';
 import 'studio_mail_message_loader.dart';
 import 'studio_mail_operation.dart';
+import 'studio_mail_presets.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_submission.dart';
@@ -54,6 +57,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   final _imapHost = TextEditingController();
   final _smtpHost = TextEditingController();
   final _search = TextEditingController();
+  final _primaryLogin = TextEditingController();
+  StudioMailImapPreset? _preset;
+  bool _icloudFullAddressLogin = false;
 
   mail.MailClient? _client;
   mail.MailClient? _pendingClient;
@@ -87,6 +93,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     _imapHost.dispose();
     _smtpHost.dispose();
     _search.dispose();
+    _primaryLogin.dispose();
     _reader?.dispose();
     _messageLoader?.dispose();
     _pendingLoader?.dispose();
@@ -140,6 +147,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     final domain = email.contains('@') ? email.split('@').last : '';
     final password = _password.text;
     final manual = _manual;
+    final preset = _preset;
+    final primaryLogin = _primaryLogin.text.trim();
+    final icloudFullAddressLogin = _icloudFullAddressLogin;
     final imapHost = _imapHost.text.trim();
     final smtpHost = _smtpHost.text.trim();
     mail.MailClient? candidate;
@@ -147,7 +157,15 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     bool adopted = false;
     try {
       mail.MailAccount account;
-      if (manual) {
+      if (preset != null) {
+        account = createStudioMailPresetAccount(
+          preset: preset,
+          email: email,
+          password: password,
+          primaryLogin: primaryLogin,
+          icloudFullAddressLogin: icloudFullAddressLogin,
+        );
+      } else if (manual) {
         account = mail.MailAccount.fromManualSettings(
           name: email,
           email: email,
@@ -225,7 +243,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       setState(() {
         _connecting = false;
         _error = widget.strings.mailConnectionFailed;
-        if (!manual && domain.isNotEmpty) {
+        if (preset == null && !manual && domain.isNotEmpty) {
           _imapHost.text = 'imap.$domain';
           _smtpHost.text = 'smtp.$domain';
           _manual = true;
@@ -694,6 +712,28 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 8),
+                for (final service in MailCloudService.values)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: OutlinedButton.icon(
+                      key: ValueKey('studio-mail-open-${service.name}'),
+                      onPressed: _connecting
+                          ? null
+                          : () => showDialog<void>(
+                              context: context,
+                              builder: (_) => StudioMailCloudDialog(
+                                strings: widget.strings,
+                                service: service,
+                              ),
+                            ),
+                      icon: const Icon(Icons.cloud_outlined),
+                      label: Text(
+                        service == MailCloudService.gmail
+                            ? 'Gmail'
+                            : 'Microsoft 365 / Outlook',
+                      ),
+                    ),
+                  ),
                 OutlinedButton.icon(
                   key: const ValueKey<String>('studio-mail-open-ews'),
                   onPressed: _connecting
@@ -707,7 +747,52 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   label: Text(widget.strings.ewsTitle),
                 ),
                 const SizedBox(height: 12),
-                Text(widget.strings.mailSetupHelp, textAlign: TextAlign.center),
+                DropdownButtonFormField<String>(
+                  key: const ValueKey('studio-mail-provider-preset'),
+                  initialValue: _preset?.name ?? 'other',
+                  isExpanded: true,
+                  decoration: InputDecoration(
+                    labelText: widget.strings.mailProvider,
+                  ),
+                  items: [
+                    DropdownMenuItem(
+                      value: 'other',
+                      child: Text(widget.strings.mailOtherProvider),
+                    ),
+                    for (final preset in StudioMailImapPreset.values)
+                      DropdownMenuItem(
+                        value: preset.name,
+                        child: Text(preset.label),
+                      ),
+                  ],
+                  onChanged: _connecting
+                      ? null
+                      : (value) => setState(() {
+                          _preset = StudioMailImapPreset.values
+                              .where((entry) => entry.name == value)
+                              .firstOrNull;
+                          _manual = false;
+                          _password.clear();
+                          _primaryLogin.clear();
+                          _icloudFullAddressLogin = false;
+                          _error = null;
+                        }),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  _preset == null
+                      ? widget.strings.mailSetupHelp
+                      : widget.strings.mailPresetPasswordHelp,
+                  textAlign: TextAlign.center,
+                ),
+                if (_preset case final preset?) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    '${preset.imapHost}:993 TLS\n${preset.smtpHost}:${preset.smtpPort} ${preset == StudioMailImapPreset.icloud ? 'STARTTLS' : 'TLS'}',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
                 const SizedBox(height: 20),
                 TextField(
                   controller: _email,
@@ -724,19 +809,46 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   obscureText: true,
                   autofillHints: const <String>[AutofillHints.password],
                   decoration: InputDecoration(
-                    labelText: widget.strings.password,
+                    labelText: _preset == null
+                        ? widget.strings.password
+                        : widget.strings.mailAppPassword,
                     prefixIcon: const Icon(Icons.lock_outline),
                   ),
                 ),
+                if (_preset != null) ...[
+                  const SizedBox(height: 12),
+                  TextField(
+                    key: const ValueKey('studio-mail-primary-login'),
+                    controller: _primaryLogin,
+                    enabled: !_connecting,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      labelText: widget.strings.mailPrimaryLogin,
+                    ),
+                  ),
+                ],
+                if (_preset == StudioMailImapPreset.icloud)
+                  CheckboxListTile(
+                    contentPadding: EdgeInsets.zero,
+                    key: const ValueKey('studio-mail-icloud-full-login'),
+                    value: _icloudFullAddressLogin,
+                    title: Text(widget.strings.mailIcloudFullLogin),
+                    onChanged: _connecting
+                        ? null
+                        : (value) => setState(
+                            () => _icloudFullAddressLogin = value ?? false,
+                          ),
+                  ),
                 const SizedBox(height: 8),
-                SwitchListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(widget.strings.manualServers),
-                  value: _manual,
-                  onChanged: _connecting
-                      ? null
-                      : (value) => setState(() => _manual = value),
-                ),
+                if (_preset == null)
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(widget.strings.manualServers),
+                    value: _manual,
+                    onChanged: _connecting
+                        ? null
+                        : (value) => setState(() => _manual = value),
+                  ),
                 if (_manual) ...<Widget>[
                   TextField(
                     controller: _imapHost,

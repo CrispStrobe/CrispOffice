@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_mail_compose.dart';
 import 'studio_mail_operation.dart';
@@ -19,19 +20,55 @@ typedef StudioEwsProviderFactory =
       MailCredentialStore credentials,
     );
 
-/// Explicit, foreground Exchange Server host. This example retains credentials,
-/// downloaded messages and unsent drafts only for the current dialog session.
+typedef StudioCloudAuthorizer =
+    Future<MailResult<MailCloudTokenSource>> Function({
+      required MailOAuthConfiguration configuration,
+      required MailAccountId account,
+      required Future<bool> Function(Uri) openBrowser,
+      required MailOperationLease lease,
+      MailCloudLogSink? log,
+    });
+
+typedef StudioCloudProviderFactory =
+    MailCloudProvider Function({
+      required MailCloudConfiguration configuration,
+      required MailCloudTokenSource tokenSource,
+      MailCloudLogSink? log,
+    });
+
+/// Foreground Exchange Server or cloud mailbox host. Credentials, downloaded
+/// messages and unsent drafts are retained only for the current dialog session.
 class StudioMailEwsDialog extends StatefulWidget {
   const StudioMailEwsDialog({
     super.key,
     required this.strings,
     this.providerFactory,
-  });
+  }) : cloudService = null,
+       cloudAuthorizer = null,
+       cloudProviderFactory = null,
+       openBrowser = null,
+       initialClientId = null;
+
+  const StudioMailEwsDialog.cloud({
+    super.key,
+    required this.strings,
+    required MailCloudService service,
+    this.cloudAuthorizer,
+    this.cloudProviderFactory,
+    this.openBrowser,
+    this.initialClientId,
+  }) : cloudService = service,
+       providerFactory = null;
 
   final StudioStrings strings;
 
   /// Tests inject the provider boundary, not sockets or authenticated clients.
   final StudioEwsProviderFactory? providerFactory;
+  final MailCloudService? cloudService;
+  final StudioCloudAuthorizer? cloudAuthorizer;
+  final StudioCloudProviderFactory? cloudProviderFactory;
+  final Future<bool> Function(Uri)? openBrowser;
+  final String? initialClientId;
 
   @override
   State<StudioMailEwsDialog> createState() => _StudioMailEwsDialogState();
@@ -47,7 +84,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   final _password = TextEditingController();
   final _search = TextEditingController();
   MailEwsAuthentication _authentication = MailEwsAuthentication.ntlm;
-  MailEwsProvider? _provider;
+  MailProvider? _provider;
+  MailSubmissionProvider? _submission;
+  MailCloudProvider? _cloudProvider;
+  MailCloudTokenSource? _tokens;
+  final _clientId = TextEditingController();
+  final _tenant = TextEditingController(text: 'common');
+  final _clientSecret = TextEditingController();
+  bool _diagnostics = false;
   MailAccountSession? _session;
   _SessionCredentials? _credentials;
   MailCapabilities _capabilities = const MailCapabilities.none();
@@ -69,9 +113,49 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   String _sender = '';
   int _serial = 0;
 
+  bool get _cloud => widget.cloudService != null;
+  String get _title => switch (widget.cloudService) {
+    MailCloudService.gmail => 'Gmail',
+    MailCloudService.microsoft365 => 'Microsoft 365 / Outlook',
+    null => widget.strings.ewsTitle,
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    _clientId.text =
+        widget.initialClientId ??
+        switch (widget.cloudService) {
+          MailCloudService.gmail => const String.fromEnvironment(
+            'CRISPOFFICE_GOOGLE_CLIENT_ID',
+          ),
+          MailCloudService.microsoft365 => const String.fromEnvironment(
+            'CRISPOFFICE_MICROSOFT_CLIENT_ID',
+          ),
+          null => '',
+        };
+  }
+
+  void _closeCloud() {
+    final provider = _cloudProvider;
+    final tokens = _tokens;
+    _cloudProvider = null;
+    _tokens = null;
+    try {
+      provider?.dispose();
+    } on Object {
+      /* Complete independent cleanup. */
+    }
+    try {
+      tokens?.dispose();
+    } on Object {
+      /* Never expose a credential error. */
+    }
+  }
+
   bool get _blocked => _busy || _dialogOpen;
   bool get _canSend => _capabilities.supports(MailCapability.send);
-  bool _current(MailEwsProvider provider, MailOperationLease lease) =>
+  bool _current(MailProvider provider, MailOperationLease lease) =>
       mounted && identical(_provider, provider) && lease.isCurrent;
 
   T _value<T>(MailResult<T> result) => switch (result) {
@@ -79,15 +163,30 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     MailFailure<T>(:final problem) => throw _EwsUiFailure(problem),
   };
 
-  String _problem(MailProblem problem, String fallback) =>
-      switch (problem.code) {
-        MailProblemCode.authenticationRequired =>
-          widget.strings.ewsAuthenticationFailed,
-        MailProblemCode.permissionDenied => widget.strings.ewsAccessFailed,
-        MailProblemCode.unsupported => widget.strings.ewsUnsupported,
-        MailProblemCode.quotaExceeded => widget.strings.ewsBudgetExceeded,
-        _ => fallback,
-      };
+  String _problem(MailProblem problem, String fallback) {
+    final delay = problem.retryAfter;
+    if (_cloud && delay != null && delay > Duration.zero) {
+      return widget.strings.mailCloudRetryAfter(
+        (delay.inMilliseconds + 999) ~/ 1000,
+      );
+    }
+    return switch (problem.code) {
+      MailProblemCode.authenticationRequired =>
+        _cloud
+            ? widget.strings.mailCloudAuthenticationFailed
+            : widget.strings.ewsAuthenticationFailed,
+      MailProblemCode.permissionDenied =>
+        _cloud
+            ? widget.strings.mailCloudAccessFailed
+            : widget.strings.ewsAccessFailed,
+      MailProblemCode.unsupported =>
+        _cloud
+            ? widget.strings.mailCloudUnsupported
+            : widget.strings.ewsUnsupported,
+      MailProblemCode.quotaExceeded => widget.strings.ewsBudgetExceeded,
+      _ => fallback,
+    };
+  }
 
   void _retire(MailReaderController? reader) {
     if (reader != null) {
@@ -99,6 +198,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   void dispose() {
     _session?.dispose();
     _credentials?.clear();
+    _closeCloud();
     _reader?.dispose();
     _reader = null;
     _draft = null;
@@ -111,6 +211,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _domain,
       _password,
       _search,
+      _clientId,
+      _tenant,
+      _clientSecret,
     ]) {
       controller.dispose();
     }
@@ -119,6 +222,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
   Future<void> _connect() => runStudioMailOperation(() async {
     if (_blocked || _connected) return;
+    if (_cloud) {
+      await _connectCloud();
+      return;
+    }
     final sender = _email.text.trim();
     MailEwsConfiguration configuration;
     try {
@@ -174,12 +281,22 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final lease = session.begin();
     setState(() {
       _provider = provider;
+      _submission = provider;
       _session = session;
       _credentials = credentials;
       _busy = true;
       _error = null;
       _notice = null;
     });
+    await _establish(provider, session, lease, sender);
+  });
+
+  Future<void> _establish(
+    MailProvider provider,
+    MailAccountSession session,
+    MailOperationLease lease,
+    String sender,
+  ) async {
     try {
       final capabilities = await provider.capabilities(lease);
       if (!_current(provider, lease)) return;
@@ -221,30 +338,130 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         _headers = page.messages;
         _next = page.next;
         _password.clear();
+        _clientSecret.clear();
       });
     } on Object catch (error) {
       if (!_current(provider, lease)) return;
       session.dispose();
-      credentials.clear();
+      _credentials?.clear();
+      _closeCloud();
       setState(() {
         _provider = null;
+        _submission = null;
         _session = null;
         _credentials = null;
         _busy = false;
+        _clientSecret.clear();
         _error = error is _EwsUiFailure
             ? _problem(error.problem, widget.strings.mailConnectionFailed)
             : widget.strings.mailConnectionFailed;
       });
     }
-  });
+  }
+
+  Future<void> _connectCloud() async {
+    final sender = _email.text.trim();
+    late final MailOAuthConfiguration authorization;
+    late final MailCloudConfiguration configuration;
+    try {
+      final profile = MailProfileId(
+        'studio-cloud',
+        hostId: 'quds-office-studio',
+      );
+      final account = MailAccountId(
+        '${DateTime.now().microsecondsSinceEpoch}-${++_serial}',
+        profile: profile,
+      );
+      configuration = MailCloudConfiguration(
+        account: account,
+        service: widget.cloudService!,
+        mailboxAddress: sender,
+      );
+      authorization = MailOAuthConfiguration(
+        service: widget.cloudService!,
+        clientId: _clientId.text.trim(),
+        tenant: _tenant.text.trim(),
+        clientSecret: _clientSecret.text.isEmpty ? null : _clientSecret.text,
+      );
+    } on Object {
+      setState(() => _error = widget.strings.mailCloudInvalidSettings);
+      return;
+    }
+    final session = MailAccountSession(configuration.account);
+    final lease = session.begin();
+    final MailCloudLogSink? log = _diagnostics
+        ? (event) => debugPrint(jsonEncode(event.toJson()))
+        : null;
+    bool current() =>
+        mounted && identical(_session, session) && lease.isCurrent;
+    setState(() {
+      _session = session;
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    try {
+      final result = await (widget.cloudAuthorizer ?? authorizeMailCloud)(
+        configuration: authorization,
+        account: configuration.account,
+        openBrowser:
+            widget.openBrowser ??
+            (uri) => launchUrl(uri, mode: LaunchMode.externalApplication),
+        lease: lease,
+        log: log,
+      );
+      if (!current()) {
+        if (result case MailSuccess<MailCloudTokenSource>(:final value)) {
+          try {
+            value.dispose();
+          } on Object {
+            /* Stale tokens must be retired. */
+          }
+        }
+        return;
+      }
+      final tokens = _value(result);
+      _tokens = tokens;
+      final provider = (widget.cloudProviderFactory ?? createMailCloudProvider)(
+        configuration: configuration,
+        tokenSource: tokens,
+        log: log,
+      );
+      _cloudProvider = provider;
+      if (provider.account != configuration.account) {
+        throw const FormatException();
+      }
+      setState(() {
+        _provider = provider;
+        _submission = provider;
+      });
+      await _establish(provider, session, lease, sender);
+    } on Object catch (error) {
+      if (!current()) return;
+      session.dispose();
+      _closeCloud();
+      setState(() {
+        _session = null;
+        _provider = null;
+        _submission = null;
+        _busy = false;
+        _clientSecret.clear();
+        _error = error is _EwsUiFailure
+            ? _problem(error.problem, widget.strings.mailCloudSignInFailed)
+            : widget.strings.mailCloudSignInFailed;
+      });
+    }
+  }
 
   void _disconnect() {
     _session?.dispose();
     _credentials?.clear();
+    _closeCloud();
     final old = _reader;
     setState(() {
       _session = null;
       _provider = null;
+      _submission = null;
       _credentials = null;
       _capabilities = const MailCapabilities.none();
       _connected = false;
@@ -261,6 +478,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _showMessage = false;
       _needsRefresh = false;
       _password.clear();
+      _clientSecret.clear();
       _search.clear();
       _error = null;
       _notice = null;
@@ -439,8 +657,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         }
         _busy = false;
         _notice = command is MailMove || command is MailDelete
-            ? widget.strings.ewsFolderChanged
-            : widget.strings.ewsActionConfirmed;
+            ? (_cloud
+                  ? widget.strings.mailCloudFolderChanged
+                  : widget.strings.ewsFolderChanged)
+            : (_cloud
+                  ? widget.strings.mailCloudActionConfirmed
+                  : widget.strings.ewsActionConfirmed);
       });
       _retire(old);
     } on Object catch (error) {
@@ -473,8 +695,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(widget.strings.ewsDelete),
-        content: Text(widget.strings.ewsDeleteExplanation),
+        title: Text(
+          _cloud ? widget.strings.mailCloudDelete : widget.strings.ewsDelete,
+        ),
+        content: Text(
+          _cloud
+              ? widget.strings.mailCloudDeleteExplanation
+              : widget.strings.ewsDeleteExplanation,
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
@@ -482,7 +710,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: Text(widget.strings.ewsDelete),
+            child: Text(
+              _cloud
+                  ? widget.strings.mailCloudDelete
+                  : widget.strings.ewsDelete,
+            ),
           ),
         ],
       ),
@@ -534,7 +766,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         var attempted = false;
         try {
           final wire = buildStudioMailMessage(draft, _sender).renderMessage();
-          final attempt = 'ews-send-${++_serial}';
+          final attempt = '${_cloud ? 'cloud' : 'ews'}-send-${++_serial}';
           final message = MailPreparedMessage(
             account: provider.account,
             draftId: 'session-draft',
@@ -547,7 +779,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           );
           lease.checkCurrent();
           attempted = true;
-          final result = await provider.submit(
+          final result = await _submission!.submit(
             message,
             attemptId: attempt,
             lease: lease,
@@ -562,11 +794,19 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             _submissionUncertain = outcome == MailSubmissionOutcome.uncertain;
             if (outcome == MailSubmissionOutcome.accepted) {
               _draft = null;
-              _notice = widget.strings.ewsSubmissionAccepted;
+              _notice = _cloud
+                  ? widget.strings.mailCloudSubmissionAccepted
+                  : widget.strings.ewsSubmissionAccepted;
             } else {
+              final feedback = _cloud && result.problem != null
+                  ? _problem(result.problem!, '')
+                  : '';
               _error = _submissionUncertain
                   ? widget.strings.mailSubmissionUncertain
-                  : widget.strings.ewsSubmissionRejected;
+                  : [
+                      if (feedback.isNotEmpty) feedback,
+                      widget.strings.ewsSubmissionRejected,
+                    ].join(' ');
             }
           });
         } on Object {
@@ -642,7 +882,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   Widget build(BuildContext context) => Dialog.fullscreen(
     child: Scaffold(
       appBar: AppBar(
-        title: Text(widget.strings.ewsTitle, overflow: TextOverflow.ellipsis),
+        title: Text(_title, overflow: TextOverflow.ellipsis),
         actions: [
           if (_connected) ...[
             IconButton(
@@ -677,7 +917,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           ),
         ],
       ),
-      body: _connected ? _inbox() : _setup(),
+      body: _connected
+          ? _inbox()
+          : _cloud
+          ? _cloudSetup()
+          : _setup(),
     ),
   );
 
@@ -701,6 +945,96 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         labelText: label,
         hintText: hint,
         border: const OutlineInputBorder(),
+      ),
+    ),
+  );
+
+  Widget _cloudSetup() => Center(
+    child: SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 540),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Icon(Icons.cloud_outlined, size: 44),
+            const SizedBox(height: 12),
+            Text(
+              widget.strings.mailCloudSetupHelp,
+              textAlign: TextAlign.center,
+            ),
+            _field(_email, 'cloud-mailbox', widget.strings.emailAddress),
+            _field(
+              _clientId,
+              'cloud-client-id',
+              widget.strings.mailCloudClientId,
+            ),
+            if (widget.cloudService == MailCloudService.microsoft365)
+              _field(_tenant, 'cloud-tenant', widget.strings.mailCloudTenant),
+            if (widget.cloudService == MailCloudService.gmail)
+              _field(
+                _clientSecret,
+                'cloud-client-secret',
+                widget.strings.mailCloudClientSecret,
+                secret: true,
+              ),
+            const SizedBox(height: 8),
+            Text(
+              widget.cloudService == MailCloudService.gmail
+                  ? widget.strings.mailCloudGoogleRegistration
+                  : widget.strings.mailCloudMicrosoftRegistration,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            CheckboxListTile(
+              key: const ValueKey('cloud-diagnostics'),
+              contentPadding: EdgeInsets.zero,
+              value: _diagnostics,
+              title: Text(widget.strings.mailCloudDiagnostics),
+              subtitle: Text(widget.strings.mailCloudDiagnosticsHelp),
+              onChanged: _busy
+                  ? null
+                  : (value) => setState(() => _diagnostics = value ?? false),
+            ),
+            if (_busy) ...[
+              Text(
+                widget.strings.mailCloudBrowserPending,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+            ],
+            if (_error != null)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Text(
+                  _error!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
+            FilledButton.icon(
+              key: const ValueKey('cloud-connect'),
+              onPressed: _busy ? null : _connect,
+              icon: _busy
+                  ? const SizedBox(
+                      width: 18,
+                      height: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Icon(Icons.login),
+              label: Text(widget.strings.mailCloudSignIn),
+            ),
+            if (_busy)
+              TextButton(
+                onPressed: _disconnect,
+                child: Text(widget.strings.cancel),
+              ),
+            const SizedBox(height: 12),
+            Text(
+              widget.strings.ewsSessionNotice,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
       ),
     ),
   );
@@ -1085,7 +1419,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             },
           ),
           IconButton(
-            tooltip: widget.strings.ewsDelete,
+            tooltip: _cloud
+                ? widget.strings.mailCloudDelete
+                : widget.strings.ewsDelete,
             icon: const Icon(Icons.delete_outline),
             onPressed: canChange ? _delete : null,
           ),

@@ -1,5 +1,5 @@
 name: quds_mail_transport
-description: Bounded native IMAP and on-premises Exchange EWS transports.
+description: Bounded native IMAP, Exchange EWS, Gmail and Graph mail transports.
 version: 0.1.0
 publish_to: none
 resolution: workspace

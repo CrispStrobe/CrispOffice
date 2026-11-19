@@ -1,5 +1,18 @@
 # Quds Mail native transports
 
+## Gmail and Microsoft 365 / Outlook
+
+`createMailCloudProvider` provides native Gmail API and Microsoft Graph mail.
+`authorizeMailCloud` supplies desktop browser PKCE and an in-memory refreshable
+token source; embedding hosts can supply their own platform-vault token source.
+Both adapters implement bounded mail reads/sync, confirmed actions, MIME
+submission and structured redacted diagnostics. Studio also has Yahoo, iCloud
+and Fastmail IMAP/SMTP presets.
+
+See the [cloud setup/API guide](../../docs/roadmaps/mail/cloud-providers.md) and
+[read-only probe](example/cloud_probe.dart). Browser cloud operation is explicitly
+unsupported; live acceptance needs the deployment's registration and test mailbox.
+
 ## Exchange Server on premises (EWS)
 
 `createMailEwsProvider` provides direct native Exchange mail access with an

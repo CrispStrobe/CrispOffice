@@ -1,5 +1,17 @@
 # Mail implementation status — 19 November 2026
 
+## Gmail, Microsoft 365 and additional presets
+
+The [cloud providers](cloud-providers.md) add Gmail API and Microsoft Graph,
+desktop browser OAuth/PKCE, bounded reads/sync, confirmed actions, safe MIME
+sending and redacted diagnostics. Studio reuses the guarded foreground mailbox
+and composer. Yahoo, iCloud and Fastmail have explicit TLS presets.
+
+See [source-bound validation](../../validation/mail-providers-20261119/README.md).
+Live accounts, installed desktop packaging, durable cloud accounts/outbox,
+shared mailboxes, Calendar/People and web cloud authorization remain separate.
+Registration client IDs are deployment-owned; none are provisioned by this code.
+
 ## On-premises Exchange EWS
 
 The [EWS implementation](exchange-ews.md) adds a native provider and a Studio

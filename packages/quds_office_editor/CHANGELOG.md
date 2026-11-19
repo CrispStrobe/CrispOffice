@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add Gmail and Microsoft 365 / Outlook browser sign-in to native Studio Mail,
+  reusing the guarded mailbox reader/actions/composer. Include session cleanup,
+  optional redacted diagnostics and localized permission/throttle feedback.
+- Add Yahoo, iCloud and Fastmail presets with official TLS endpoints, app-password
+  guidance and primary-login/iCloud fallback settings.
 - Add a native Studio Exchange Server (EWS) account window with explicit HTTPS
   configuration, NTLMv2 by default and optional Basic authentication. Browse
   folders and bounded message pages, read MIME bodies and attachment details,
