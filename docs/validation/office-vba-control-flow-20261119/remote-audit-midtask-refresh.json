@@ -1,0 +1,253 @@
+{
+  "observed_at_utc": "2026-11-19T17:07:01.163Z",
+  "purpose": "Mid-task refresh; source changed after initial audit and qualified snapshot",
+  "branches": [
+    {
+      "name": "codex/crispoffice-gui-20261119",
+      "head": "e2d2aec69a4a2b6c7da6159c929563f1166ff94d"
+    },
+    {
+      "name": "codex/mail-archive-portability-20261119",
+      "head": "cbeec827481e890340f4889014f1d507c00e08d1"
+    },
+    {
+      "name": "codex/mail-archive-search-20261119",
+      "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb"
+    },
+    {
+      "name": "codex/mail-providers-20261119",
+      "head": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897"
+    },
+    {
+      "name": "codex/mcp-aligned-macros",
+      "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/office-validation-recovery-20261119",
+      "head": "623057111a9179552eb02b21a753a1728de9905d"
+    },
+    {
+      "name": "codex/vba-control-flow-20261119",
+      "head": "4df40458f498b840114c3f5d04c3c164257b596f"
+    },
+    {
+      "name": "codex/vba-excel-macros",
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b"
+    },
+    {
+      "name": "codex/vba-procedures-20261119",
+      "head": "3db248be978b24d0693d1133505d9be200fd1256"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/arabic-morph-binary-20261119",
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7"
+    },
+    {
+      "name": "feat/ews-on-premises",
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "feat/paragraph-language-id-20261119",
+      "head": "ff71fa44c693ee2a30fb0372eac206af257c8477"
+    },
+    {
+      "name": "integrate/macbook-build-20261119",
+      "head": "d5abf0e09d9fef6a29821f412f791c1284d62be8"
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "head": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "main",
+      "head": "304d4bff45da24f22cee420ec464882d7c7ce516"
+    }
+  ],
+  "mail": {
+    "head": "5611724b7b40cf0c86aa180f0d3f1316d5a77c9f",
+    "draft": true,
+    "commits": [
+      {
+        "sha": "2866dda13996c4e837aa09493d5df339ab437881",
+        "message": "Merge feat/paragraph-language-id-20261119 follow-up: top-k smoke test\n\nConflict: main fixed the expectation to hasLength(5); the branch uses\nidentifier.topK. Kept the branch form, which follows the configured default (5).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+      },
+      {
+        "sha": "d5abf0e09d9fef6a29821f412f791c1284d62be8",
+        "message": "build(studio): scripted macOS release app with bundled native proofing libraries\n\ntool/build_macos_app.sh builds the pinned Hunspell, Arabic morphology,\nCLD3 language-ID and Harper libraries, runs flutter build macos --release,\ninstalls the receipt-verified libraries into Contents/Frameworks and their\nnotices into Contents/Resources, normalizes Harper's install name to @rpath,\nre-signs ad hoc with Release.entitlements and verifies the signature, the\nload commands and that each library opens from the bundle.\n\ntest/studio_macos_bundle_native_gate.dart (explicit gate, not auto-discovered)\nboots Studio with the in-bundle libraries and data installed by the real\ninstallers and checks a mixed Arabic/German/English document: Arabic rules,\nAyaSpell, morphology rules (jussive, numeral gender), German spelling routed\nby detection, Harper, the Detected display and Apply detected language.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+      },
+      {
+        "sha": "4c460621dda0fbff20f819adbf54c20e617f458d",
+        "message": "Integrate current mail archive and macOS build work before GUI improvements [skip ci]"
+      },
+      {
+        "sha": "22601092c0c50a784a132c410984b0eeb18292f9",
+        "message": "Connect Studio bulk exports and recursive imports with bounded recovery [skip ci]"
+      },
+      {
+        "sha": "4df40458f498b840114c3f5d04c3c164257b596f",
+        "message": "Reconcile current mail portability and macOS bundle work before VBA control flow [skip ci]\n\nPreserve current main, macOS build branch, and mail portability draft ancestry in the macro extension branch. Incoming mail snapshot remains under local qualification; its active draft PR is not closed. All 23 fork branches and PR heads were fetched; older divergence and upstream heads were checked against integrated equivalents."
+      },
+      {
+        "sha": "50fca8d3b6eda2fc1827960b0a74101f387e74f7",
+        "message": "Reconcile published macOS build integration before mail acceptance [skip ci]"
+      },
+      {
+        "sha": "cbeec827481e890340f4889014f1d507c00e08d1",
+        "message": "Preserve concurrent integration ancestry before source freeze [skip ci]"
+      },
+      {
+        "sha": "5611724b7b40cf0c86aa180f0d3f1316d5a77c9f",
+        "message": "Freeze mail portability source, reconciliation and local acceptance gates [skip ci]"
+      }
+    ],
+    "files": [
+      {
+        "path": "docs/roadmaps/mail/archive-search.md",
+        "additions": 146,
+        "deletions": 9
+      },
+      {
+        "path": "docs/validation/mail-archive-portability-20261119/README.md",
+        "additions": 295,
+        "deletions": 0
+      },
+      {
+        "path": "docs/validation/mail-archive-portability-20261119/initial-reconciliation.json",
+        "additions": 1550,
+        "deletions": 0
+      },
+      {
+        "path": "docs/validation/mail-archive-portability-20261119/reconcile-remotes.py",
+        "additions": 107,
+        "deletions": 0
+      },
+      {
+        "path": "docs/validation/mail-archive-portability-20261119/reconciliation-refresh.json",
+        "additions": 1585,
+        "deletions": 0
+      },
+      {
+        "path": "docs/validation/mail-archive-portability-20261119/remote-frontier.json",
+        "additions": 1176,
+        "deletions": 0
+      },
+      {
+        "path": "docs/validation/mail-archive-portability-20261119/run-local-validation.py",
+        "additions": 816,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_directory_native.dart",
+        "additions": 37,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/archive_export_models.dart",
+        "additions": 69,
+        "deletions": 15
+      },
+      {
+        "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+        "additions": 103,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+        "additions": 110,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/README.md",
+        "additions": 22,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_directory_import.dart",
+        "additions": 355,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+        "additions": 155,
+        "deletions": 3
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+        "additions": 326,
+        "deletions": 84
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_archive_strings.dart",
+        "additions": 98,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/pubspec.yaml",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_macos_bundle_native_gate.dart",
+        "additions": 230,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart",
+        "additions": 771,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "additions": 311,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_archive_test.dart",
+        "additions": 344,
+        "deletions": 1
+      },
+      {
+        "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+        "additions": 96,
+        "deletions": 0
+      }
+    ],
+    "resolution": "Incoming decoding preflight guard is disjoint from local exact manifest encoding byte-count correction. Retain both. New directory staging guards and Studio importer require fresh validation."
+  }
+}

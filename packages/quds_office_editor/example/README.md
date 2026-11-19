@@ -10,6 +10,41 @@ cd packages/quds_office_editor/example
 flutter run
 ```
 
+## Ribbon and desktop menus
+
+The ribbon starts with compact icon buttons. Hover a button for its full name;
+accessible labels also identify every command. Insert groups related commands under Pages, Table, Chart, Diagram,
+Text, Links, Notes, Fields, Contents, References and Zotero tools; common Picture
+and Equation commands remain directly accessible. Tables, pictures and diagrams
+use the same undo history as other document edits.
+
+Choose **Customize Ribbon** (the sliders button beside the ribbon tabs) to:
+
+- Show, hide and reorder tabs and groups separately for Documents,
+  Spreadsheets, Presentations and PDF.
+- Switch between compact and comfortable spacing, and show or hide command
+  and group labels.
+- Restore all default layouts. File and the main editing/viewing tab stay
+  available so editing and customization remain reachable.
+
+Changes apply immediately and are saved for the next desktop launch. The
+chevron beside Customize Ribbon collapses or expands the ribbon; selecting a
+tab expands it again. Narrow windows show scroll arrows and a scrollbar for
+commands that do not fit.
+
+The title bar uses icon switches for Documents, Spreadsheets, Presentations,
+PDF and Mail, with tooltips and accessible names. Desktop Undo and Redo appear
+once in the title bar's quick access controls.
+
+Desktop **File** provides New, Open, Save, Save As, Export PDF and Close Window.
+Use Ctrl+N/O/S/W on Windows/Linux, or Command+N/O/S/W on macOS; add Shift to
+the Save shortcut for Save As. New, Open, Close and Quit ask about unsaved work.
+Cancelling Save As keeps the current file path.
+
+macOS uses its native red/yellow/green window controls and application menu
+bar, including File, Edit, View and Window. Closing the window keeps the app
+available from the Dock; Quit checks all open workspaces before exiting.
+
 ## macOS release app with the native proofing libraries
 
 ```bash

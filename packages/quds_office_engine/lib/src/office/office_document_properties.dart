@@ -210,7 +210,7 @@ class OfficeDocumentProperties {
     return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         '<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" '
         'xmlns:vt="${OfficeNamespaces.docPropsVt}">'
-        '<Application>Quds Office</Application>'
+        '<Application>CrispOffice</Application>'
         '<Company>${_esc(company)}</Company>'
         '</Properties>';
   }

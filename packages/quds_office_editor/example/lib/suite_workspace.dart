@@ -14,6 +14,9 @@ import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart';
 import 'sample_library.dart';
 import 'studio_about.dart';
 import 'studio_chrome.dart';
+import 'studio_ribbon_customization.dart';
+import 'studio_ribbon_preferences.dart';
+import 'studio_desktop_menu.dart';
 import 'studio_files.dart';
 import 'studio_find_pane.dart';
 import 'studio_linguistic_analysis.dart';
@@ -56,11 +59,18 @@ enum _RibbonTab {
 }
 
 class SuiteWorkspace extends StatefulWidget {
-  const SuiteWorkspace({super.key, this.zoteroTransportFactory});
+  const SuiteWorkspace({
+    super.key,
+    this.zoteroTransportFactory,
+    this.ribbonPreferences,
+  });
 
   /// Creates a connection owned by one Zotero workspace. Hosts may supply
   /// their own client configuration; the workspace disposes it when closed.
   final StudioZoteroTransport Function()? zoteroTransportFactory;
+
+  /// Optional shared preferences; the host owns an injected instance.
+  final StudioRibbonPreferences? ribbonPreferences;
 
   @override
   State<SuiteWorkspace> createState() => _SuiteWorkspaceState();
@@ -88,7 +98,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _showNotes = false;
   var _showComments = false;
   var _showOutline = false;
-  var _showRibbonGroupLabels = false;
+  late final StudioRibbonPreferences _ribbonPreferences;
   OfficeLengthUnit _lengthUnit = OfficeLengthUnit.millimeters;
   var _showAnimPane = true;
   var _showPasteOptions = false;
@@ -166,13 +176,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _findReplace = false;
   var _printPreview = false;
   static const MethodChannel _aboutChannel = MethodChannel('crispoffice/about');
+  bool _nativeDialogOpen = false;
 
   @override
   void initState() {
     super.initState();
+    _ribbonPreferences = widget.ribbonPreferences ?? StudioRibbonPreferences();
+    _ribbonPreferences.addListener(_ribbonPreferencesChanged);
+    unawaited(_ribbonPreferences.load());
     _aboutChannel.setMethodCallHandler((MethodCall call) async {
       if (call.method == 'show' && mounted) {
-        await _showAbout();
+        await _showNativeDialog(_showAbout);
       }
     });
     _pdfEvents = StudioPdfViewerEvents(
@@ -241,7 +255,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           if (_app == SuiteApp.word &&
               _tab == _RibbonTab.design &&
               _word.selectedEquation == null) {
-            _tab = _RibbonTab.insert;
+            _tab = _visibleRibbonTabs.contains(_RibbonTab.insert)
+                ? _RibbonTab.insert
+                : _RibbonTab.home;
           }
         });
         StudioWindow.setTitle('$_chromeTitle — CrispOffice');
@@ -331,6 +347,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   @override
   void dispose() {
+    _ribbonPreferences.removeListener(_ribbonPreferencesChanged);
+    if (widget.ribbonPreferences == null) _ribbonPreferences.dispose();
     _aboutChannel.setMethodCallHandler(null);
     studioSpacyHost.removeListener(_syncSpacyGrammar);
     studioHunspellHost.removeListener(_syncHunspell);
@@ -375,152 +393,198 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   @override
   Widget build(BuildContext context) {
     final bool dark = _look != SuiteLook.light;
-    return CallbackShortcuts(
-      bindings: <ShortcutActivator, VoidCallback>{
-        const SingleActivator(LogicalKeyboardKey.keyZ, control: true): _undo,
-        const SingleActivator(LogicalKeyboardKey.keyZ, meta: true): _undo,
-        const SingleActivator(LogicalKeyboardKey.keyY, control: true): _redo,
-        const SingleActivator(LogicalKeyboardKey.keyY, meta: true): _redo,
-        const SingleActivator(
-          LogicalKeyboardKey.keyZ,
-          control: true,
-          shift: true,
-        ): _redo,
-        const SingleActivator(LogicalKeyboardKey.keyZ, meta: true, shift: true):
-            _redo,
-        const SingleActivator(LogicalKeyboardKey.keyA, control: true):
-            _selectAll,
-        const SingleActivator(LogicalKeyboardKey.keyA, meta: true): _selectAll,
-        const SingleActivator(LogicalKeyboardKey.keyC, control: true): _copy,
-        const SingleActivator(LogicalKeyboardKey.keyC, meta: true): _copy,
-        if (studioZoteroDesktopAvailable) ...{
+    return StudioNativeMenus(
+      fileLabel: _t('File', 'Datei', 'ملف'),
+      editLabel: _t('Edit', 'Bearbeiten', 'تحرير'),
+      viewLabel: _t('View', 'Ansicht', 'عرض'),
+      windowLabel: _t('Window', 'Fenster', 'نافذة'),
+      aboutLabel: _t(
+        'About CrispOffice',
+        'Über CrispOffice',
+        'حول CrispOffice',
+      ),
+      settingsLabel: '${_strings.settings}…',
+      fileGroups: _desktopFileGroups,
+      editGroups: _desktopEditGroups,
+      onAbout: () => _showNativeDialog(_showAbout),
+      onSettings: () => _showNativeDialog(_openSettings),
+      child: CallbackShortcuts(
+        bindings: <ShortcutActivator, VoidCallback>{
+          if (StudioWindow.isDesktop) ...<ShortcutActivator, VoidCallback>{
+            _fileShortcut(LogicalKeyboardKey.keyN): _newActiveFile,
+            _fileShortcut(LogicalKeyboardKey.keyO): _openFile,
+            _fileShortcut(LogicalKeyboardKey.keyW): StudioWindow.close,
+          },
           const SingleActivator(
-            LogicalKeyboardKey.keyC,
+            LogicalKeyboardKey.keyS,
             control: true,
-            alt: true,
-          ): _addEditZoteroCitation,
-          const SingleActivator(LogicalKeyboardKey.keyC, meta: true, alt: true):
-              _addEditZoteroCitation,
+            shift: true,
+          ): _saveFileAs,
           const SingleActivator(
-            LogicalKeyboardKey.keyR,
+            LogicalKeyboardKey.keyS,
+            meta: true,
+            shift: true,
+          ): _saveFileAs,
+          const SingleActivator(LogicalKeyboardKey.keyZ, control: true): _undo,
+          const SingleActivator(LogicalKeyboardKey.keyZ, meta: true): _undo,
+          const SingleActivator(LogicalKeyboardKey.keyY, control: true): _redo,
+          const SingleActivator(LogicalKeyboardKey.keyY, meta: true): _redo,
+          const SingleActivator(
+            LogicalKeyboardKey.keyZ,
             control: true,
-            alt: true,
-          ): _refreshZoteroCitations,
-          const SingleActivator(LogicalKeyboardKey.keyR, meta: true, alt: true):
-              _refreshZoteroCitations,
+            shift: true,
+          ): _redo,
+          const SingleActivator(
+            LogicalKeyboardKey.keyZ,
+            meta: true,
+            shift: true,
+          ): _redo,
+          const SingleActivator(LogicalKeyboardKey.keyA, control: true):
+              _selectAll,
+          const SingleActivator(LogicalKeyboardKey.keyA, meta: true):
+              _selectAll,
+          const SingleActivator(LogicalKeyboardKey.keyC, control: true): _copy,
+          const SingleActivator(LogicalKeyboardKey.keyC, meta: true): _copy,
+          if (studioZoteroDesktopAvailable) ...{
+            const SingleActivator(
+              LogicalKeyboardKey.keyC,
+              control: true,
+              alt: true,
+            ): _addEditZoteroCitation,
+            const SingleActivator(
+              LogicalKeyboardKey.keyC,
+              meta: true,
+              alt: true,
+            ): _addEditZoteroCitation,
+            const SingleActivator(
+              LogicalKeyboardKey.keyR,
+              control: true,
+              alt: true,
+            ): _refreshZoteroCitations,
+            const SingleActivator(
+              LogicalKeyboardKey.keyR,
+              meta: true,
+              alt: true,
+            ): _refreshZoteroCitations,
+          },
+          const SingleActivator(LogicalKeyboardKey.keyX, control: true): _cut,
+          const SingleActivator(LogicalKeyboardKey.keyX, meta: true): _cut,
+          const SingleActivator(LogicalKeyboardKey.keyV, control: true): _paste,
+          const SingleActivator(LogicalKeyboardKey.keyV, meta: true): _paste,
+          const SingleActivator(
+            LogicalKeyboardKey.keyV,
+            control: true,
+            shift: true,
+          ): () =>
+              _pasteMode(OfficePasteMode.keepTextOnly),
+          const SingleActivator(
+            LogicalKeyboardKey.keyV,
+            meta: true,
+            shift: true,
+          ): () =>
+              _pasteMode(OfficePasteMode.keepTextOnly),
+          const SingleActivator(LogicalKeyboardKey.f5): _slideShowFromStart,
+          const SingleActivator(LogicalKeyboardKey.f5, shift: true):
+              _slideShowFromCurrent,
+          const SingleActivator(LogicalKeyboardKey.escape): _workspaceEscape,
+          const SingleActivator(LogicalKeyboardKey.keyF, control: true):
+              _openFind,
+          const SingleActivator(LogicalKeyboardKey.keyF, meta: true): _openFind,
+          const SingleActivator(LogicalKeyboardKey.keyH, control: true):
+              _openReplace,
+          const SingleActivator(LogicalKeyboardKey.keyH, meta: true):
+              _openReplace,
+          const SingleActivator(LogicalKeyboardKey.keyP, control: true):
+              _exportPdf,
+          const SingleActivator(LogicalKeyboardKey.keyP, meta: true):
+              _exportPdf,
+          const SingleActivator(LogicalKeyboardKey.f3): _findNext,
+          const SingleActivator(LogicalKeyboardKey.f3, shift: true):
+              _findPrevious,
+          const SingleActivator(LogicalKeyboardKey.f1): _openPdfSampleGallery,
+          const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
+          const SingleActivator(LogicalKeyboardKey.f7, shift: true):
+              _word.requestThesaurus,
+          const SingleActivator(LogicalKeyboardKey.keyB, control: true):
+              _toggleBold,
+          const SingleActivator(LogicalKeyboardKey.keyB, meta: true):
+              _toggleBold,
+          const SingleActivator(LogicalKeyboardKey.keyI, control: true):
+              _toggleItalic,
+          const SingleActivator(LogicalKeyboardKey.keyI, meta: true):
+              _toggleItalic,
+          const SingleActivator(LogicalKeyboardKey.keyU, control: true):
+              _toggleUnderline,
+          const SingleActivator(LogicalKeyboardKey.keyU, meta: true):
+              _toggleUnderline,
+          const SingleActivator(LogicalKeyboardKey.keyS, control: true):
+              _saveFile,
+          const SingleActivator(LogicalKeyboardKey.keyS, meta: true): _saveFile,
+          const SingleActivator(LogicalKeyboardKey.equal, control: true):
+              _shortcutZoomIn,
+          const SingleActivator(LogicalKeyboardKey.equal, meta: true):
+              _shortcutZoomIn,
+          const SingleActivator(LogicalKeyboardKey.numpadAdd, control: true):
+              _shortcutZoomIn,
+          const SingleActivator(LogicalKeyboardKey.add, control: true):
+              _shortcutZoomIn,
+          const SingleActivator(LogicalKeyboardKey.minus, control: true):
+              _shortcutZoomOut,
+          const SingleActivator(LogicalKeyboardKey.minus, meta: true):
+              _shortcutZoomOut,
+          const SingleActivator(
+            LogicalKeyboardKey.numpadSubtract,
+            control: true,
+          ): _shortcutZoomOut,
+          const SingleActivator(LogicalKeyboardKey.digit0, control: true):
+              _shortcutZoomReset,
+          const SingleActivator(LogicalKeyboardKey.digit0, meta: true):
+              _shortcutZoomReset,
         },
-        const SingleActivator(LogicalKeyboardKey.keyX, control: true): _cut,
-        const SingleActivator(LogicalKeyboardKey.keyX, meta: true): _cut,
-        const SingleActivator(LogicalKeyboardKey.keyV, control: true): _paste,
-        const SingleActivator(LogicalKeyboardKey.keyV, meta: true): _paste,
-        const SingleActivator(
-          LogicalKeyboardKey.keyV,
-          control: true,
-          shift: true,
-        ): () =>
-            _pasteMode(OfficePasteMode.keepTextOnly),
-        const SingleActivator(
-          LogicalKeyboardKey.keyV,
-          meta: true,
-          shift: true,
-        ): () =>
-            _pasteMode(OfficePasteMode.keepTextOnly),
-        const SingleActivator(LogicalKeyboardKey.f5): _slideShowFromStart,
-        const SingleActivator(LogicalKeyboardKey.f5, shift: true):
-            _slideShowFromCurrent,
-        const SingleActivator(LogicalKeyboardKey.escape): _workspaceEscape,
-        const SingleActivator(LogicalKeyboardKey.keyF, control: true):
-            _openFind,
-        const SingleActivator(LogicalKeyboardKey.keyF, meta: true): _openFind,
-        const SingleActivator(LogicalKeyboardKey.keyH, control: true):
-            _openReplace,
-        const SingleActivator(LogicalKeyboardKey.keyH, meta: true):
-            _openReplace,
-        const SingleActivator(LogicalKeyboardKey.keyP, control: true):
-            _exportPdf,
-        const SingleActivator(LogicalKeyboardKey.keyP, meta: true): _exportPdf,
-        const SingleActivator(LogicalKeyboardKey.f3): _findNext,
-        const SingleActivator(LogicalKeyboardKey.f3, shift: true):
-            _findPrevious,
-        const SingleActivator(LogicalKeyboardKey.f1): _openPdfSampleGallery,
-        const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
-        const SingleActivator(LogicalKeyboardKey.f7, shift: true):
-            _word.requestThesaurus,
-        const SingleActivator(LogicalKeyboardKey.keyB, control: true):
-            _toggleBold,
-        const SingleActivator(LogicalKeyboardKey.keyB, meta: true): _toggleBold,
-        const SingleActivator(LogicalKeyboardKey.keyI, control: true):
-            _toggleItalic,
-        const SingleActivator(LogicalKeyboardKey.keyI, meta: true):
-            _toggleItalic,
-        const SingleActivator(LogicalKeyboardKey.keyU, control: true):
-            _toggleUnderline,
-        const SingleActivator(LogicalKeyboardKey.keyU, meta: true):
-            _toggleUnderline,
-        const SingleActivator(LogicalKeyboardKey.keyS, control: true):
-            _saveFile,
-        const SingleActivator(LogicalKeyboardKey.keyS, meta: true): _saveFile,
-        const SingleActivator(LogicalKeyboardKey.equal, control: true):
-            _shortcutZoomIn,
-        const SingleActivator(LogicalKeyboardKey.equal, meta: true):
-            _shortcutZoomIn,
-        const SingleActivator(LogicalKeyboardKey.numpadAdd, control: true):
-            _shortcutZoomIn,
-        const SingleActivator(LogicalKeyboardKey.add, control: true):
-            _shortcutZoomIn,
-        const SingleActivator(LogicalKeyboardKey.minus, control: true):
-            _shortcutZoomOut,
-        const SingleActivator(LogicalKeyboardKey.minus, meta: true):
-            _shortcutZoomOut,
-        const SingleActivator(LogicalKeyboardKey.numpadSubtract, control: true):
-            _shortcutZoomOut,
-        const SingleActivator(LogicalKeyboardKey.digit0, control: true):
-            _shortcutZoomReset,
-        const SingleActivator(LogicalKeyboardKey.digit0, meta: true):
-            _shortcutZoomReset,
-      },
-      child: StudioWindowScope(
-        onChanged: () {
-          if (mounted) {
-            setState(() {});
-          }
-        },
-        child: Focus(
-          autofocus: true,
-          onKeyEvent: _onWorkspaceDirectionKey,
-          child: Directionality(
-            textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
-            child: _app == SuiteApp.powerpoint && _slides.isPresenting
-                ? ColoredBox(
-                    color: const Color(0xFF000000),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: QudsSlideEditor(
-                            controller: _slides,
-                            focusNode: _slideFocus,
-                            config: _config,
+        child: StudioWindowScope(
+          onCloseRequested: _confirmCloseWorkspace,
+          onChanged: () {
+            if (mounted) {
+              setState(() {});
+            }
+          },
+          child: Focus(
+            autofocus: true,
+            onKeyEvent: _onWorkspaceDirectionKey,
+            child: Directionality(
+              textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
+              child: _app == SuiteApp.powerpoint && _slides.isPresenting
+                  ? ColoredBox(
+                      color: const Color(0xFF000000),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: QudsSlideEditor(
+                              controller: _slides,
+                              focusNode: _slideFocus,
+                              config: _config,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 260, child: _presenterPane()),
-                      ],
+                          SizedBox(width: 260, child: _presenterPane()),
+                        ],
+                      ),
+                    )
+                  : Scaffold(
+                      backgroundColor: dark
+                          ? const Color(0xFF1B1B1B)
+                          : const Color(0xFFE8E8E8),
+                      body: Column(
+                        children: <Widget>[
+                          _titleBar(),
+                          _tabStrip(dark),
+                          _ribbon(dark),
+                          if (_showPasteOptions) _pasteOptionsBar(dark),
+                          Expanded(child: _body(dark)),
+                          _statusBar(),
+                        ],
+                      ),
                     ),
-                  )
-                : Scaffold(
-                    backgroundColor: dark
-                        ? const Color(0xFF1B1B1B)
-                        : const Color(0xFFE8E8E8),
-                    body: Column(
-                      children: <Widget>[
-                        _titleBar(),
-                        _tabStrip(dark),
-                        _ribbon(dark),
-                        if (_showPasteOptions) _pasteOptionsBar(dark),
-                        Expanded(child: _body(dark)),
-                        _statusBar(),
-                      ],
-                    ),
-                  ),
+            ),
           ),
         ),
       ),
@@ -624,6 +688,277 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
   }
 
+  Future<void> _showNativeDialog(Future<void> Function() open) async {
+    if (!mounted ||
+        _nativeDialogOpen ||
+        !(ModalRoute.isCurrentOf(context) ?? true)) {
+      return;
+    }
+    _nativeDialogOpen = true;
+    try {
+      await StudioWindow.show();
+      if (mounted && (ModalRoute.isCurrentOf(context) ?? true)) {
+        await open();
+      }
+    } finally {
+      _nativeDialogOpen = false;
+    }
+  }
+
+  SingleActivator _fileShortcut(LogicalKeyboardKey key, {bool shift = false}) =>
+      SingleActivator(
+        key,
+        meta: StudioWindow.isMacOS,
+        control: !StudioWindow.isMacOS,
+        shift: shift,
+      );
+
+  bool get _fileActionsAvailable =>
+      !_opening && !_isSaving && (ModalRoute.isCurrentOf(context) ?? true);
+
+  List<List<StudioMenuAction>> get _desktopFileGroups {
+    final bool enabled = _fileActionsAvailable;
+    return <List<StudioMenuAction>>[
+      <StudioMenuAction>[
+        StudioMenuAction(
+          id: 'new',
+          label: _t('New', 'Neu', 'جديد'),
+          icon: Icons.note_add_outlined,
+          shortcut: _fileShortcut(LogicalKeyboardKey.keyN),
+          onSelected: enabled ? _newActiveFile : null,
+        ),
+        StudioMenuAction(
+          id: 'open',
+          label: _t('Open…', 'Öffnen…', 'فتح…'),
+          icon: Icons.folder_open,
+          shortcut: _fileShortcut(LogicalKeyboardKey.keyO),
+          onSelected: enabled ? _openFile : null,
+        ),
+      ],
+      <StudioMenuAction>[
+        StudioMenuAction(
+          id: 'save',
+          label: _strings.save,
+          icon: Icons.save_outlined,
+          shortcut: _fileShortcut(LogicalKeyboardKey.keyS),
+          onSelected: enabled ? _saveFile : null,
+        ),
+        StudioMenuAction(
+          id: 'save-as',
+          label: _t('Save As…', 'Speichern unter…', 'حفظ باسم…'),
+          icon: Icons.save_as_outlined,
+          shortcut: _fileShortcut(LogicalKeyboardKey.keyS, shift: true),
+          onSelected: enabled ? _saveFileAs : null,
+        ),
+        StudioMenuAction(
+          id: 'export-pdf',
+          label: _t('Export PDF…', 'PDF exportieren…', 'تصدير PDF…'),
+          icon: Icons.picture_as_pdf_outlined,
+          shortcut: _fileShortcut(LogicalKeyboardKey.keyP),
+          onSelected: enabled ? _exportPdf : null,
+        ),
+      ],
+      <StudioMenuAction>[
+        StudioMenuAction(
+          id: 'close',
+          label: _t('Close Window', 'Fenster schließen', 'إغلاق النافذة'),
+          icon: Icons.close,
+          shortcut: _fileShortcut(LogicalKeyboardKey.keyW),
+          onSelected: enabled && StudioWindow.supported
+              ? StudioWindow.close
+              : null,
+        ),
+      ],
+    ];
+  }
+
+  void _dispatchTextAction<T extends Intent>(T intent, VoidCallback fallback) {
+    final BuildContext? focusContext =
+        FocusManager.instance.primaryFocus?.context;
+    if (focusContext != null) {
+      final Action<T>? action = Actions.maybeFind<T>(focusContext);
+      if (action != null) {
+        if (action.isEnabled(intent)) Actions.invoke(focusContext, intent);
+        return;
+      }
+    }
+    if (ModalRoute.isCurrentOf(context) ?? true) fallback();
+  }
+
+  List<List<StudioMenuAction>> get _desktopEditGroups =>
+      <List<StudioMenuAction>>[
+        <StudioMenuAction>[
+          StudioMenuAction(
+            id: 'undo',
+            label: _strings.undo,
+            icon: Icons.undo,
+            shortcut: _fileShortcut(LogicalKeyboardKey.keyZ),
+            onSelected: () => _dispatchTextAction(
+              const UndoTextIntent(SelectionChangedCause.keyboard),
+              _undo,
+            ),
+          ),
+          StudioMenuAction(
+            id: 'redo',
+            label: _strings.redo,
+            icon: Icons.redo,
+            shortcut: _fileShortcut(LogicalKeyboardKey.keyZ, shift: true),
+            onSelected: () => _dispatchTextAction(
+              const RedoTextIntent(SelectionChangedCause.keyboard),
+              _redo,
+            ),
+          ),
+        ],
+        <StudioMenuAction>[
+          StudioMenuAction(
+            id: 'cut',
+            label: _t('Cut', 'Ausschneiden', 'قص'),
+            icon: Icons.content_cut,
+            shortcut: _fileShortcut(LogicalKeyboardKey.keyX),
+            onSelected: () => _dispatchTextAction(
+              const CopySelectionTextIntent.cut(SelectionChangedCause.keyboard),
+              _cut,
+            ),
+          ),
+          StudioMenuAction(
+            id: 'copy',
+            label: _t('Copy', 'Kopieren', 'نسخ'),
+            icon: Icons.content_copy,
+            shortcut: _fileShortcut(LogicalKeyboardKey.keyC),
+            onSelected: () =>
+                _dispatchTextAction(CopySelectionTextIntent.copy, _copy),
+          ),
+          StudioMenuAction(
+            id: 'paste',
+            label: _t('Paste', 'Einfügen', 'لصق'),
+            icon: Icons.content_paste,
+            shortcut: _fileShortcut(LogicalKeyboardKey.keyV),
+            onSelected: () => _dispatchTextAction(
+              const PasteTextIntent(SelectionChangedCause.keyboard),
+              _paste,
+            ),
+          ),
+          StudioMenuAction(
+            id: 'select-all',
+            label: _t('Select All', 'Alles auswählen', 'تحديد الكل'),
+            icon: Icons.select_all,
+            shortcut: _fileShortcut(LogicalKeyboardKey.keyA),
+            onSelected: () => _dispatchTextAction(
+              const SelectAllTextIntent(SelectionChangedCause.keyboard),
+              _selectAll,
+            ),
+          ),
+        ],
+      ];
+
+  Future<void> _newActiveFile({VoidCallback? create}) async {
+    final SuiteApp requestedApp = _app;
+    await StudioWindow.show();
+    if (!_fileActionsAvailable ||
+        !await _confirmSaveActiveFile() ||
+        !mounted ||
+        _app != requestedApp) {
+      return;
+    }
+    if (create != null) {
+      create();
+    } else {
+      switch (_app) {
+        case SuiteApp.word:
+          _newWord();
+        case SuiteApp.excel:
+          _newSheet();
+        case SuiteApp.powerpoint:
+          _newSlides();
+        case SuiteApp.pdf:
+          _newPdf();
+      }
+    }
+    if (_app != SuiteApp.pdf) {
+      _active.commands.clear();
+      _active.markClean();
+    }
+    setState(
+      () => _tab = _app == SuiteApp.pdf ? _RibbonTab.view : _RibbonTab.home,
+    );
+  }
+
+  Future<void> _saveFileAs() async {
+    if (!_fileActionsAvailable) return;
+    await _saveFile(saveAs: true);
+  }
+
+  Future<void> _reloadSample(VoidCallback reset) async {
+    final SuiteApp requestedApp = _app;
+    if (!_fileActionsAvailable ||
+        !await _confirmSaveActiveFile() ||
+        !mounted ||
+        _app != requestedApp) {
+      return;
+    }
+    reset();
+    if (_app != SuiteApp.pdf) {
+      _active.commands.clear();
+      _active.markClean();
+    }
+    setState(() {});
+  }
+
+  Future<bool> _confirmSaveActiveFile() async {
+    final bool dirty = _app == SuiteApp.pdf ? _pdf.isDirty : _active.isDirty;
+    if (!dirty) return true;
+    final bool? save = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+          _t('Save changes?', 'Änderungen speichern?', 'حفظ التغييرات؟'),
+        ),
+        content: Text(
+          _t(
+            'Save changes to "$_activeName" before closing it?',
+            'Änderungen an „$_activeName“ vor dem Schließen speichern?',
+            'هل تريد حفظ التغييرات في "$_activeName" قبل إغلاقه؟',
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(_t('Cancel', 'Abbrechen', 'إلغاء')),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(_t('Don’t Save', 'Nicht speichern', 'عدم الحفظ')),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(_strings.save),
+          ),
+        ],
+      ),
+    );
+    if (!mounted || save == null) return false;
+    return !save || await _saveFile();
+  }
+
+  Future<bool> _confirmCloseWorkspace() async {
+    if (!_fileActionsAvailable) return false;
+    final SuiteApp previous = _app;
+    for (final SuiteApp app in SuiteApp.values) {
+      final bool dirty = switch (app) {
+        SuiteApp.word => _word.isDirty,
+        SuiteApp.excel => _sheet.isDirty,
+        SuiteApp.powerpoint => _slides.isDirty,
+        SuiteApp.pdf => _pdf.isDirty,
+      };
+      if (!dirty) continue;
+      _switchApp(app);
+      if (!await _confirmSaveActiveFile() || !mounted) return false;
+    }
+    if (mounted) _switchApp(previous);
+    await _ribbonPreferences.flush();
+    return true;
+  }
+
   Widget _titleBar() {
     return Material(
       color: _accent,
@@ -644,6 +979,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
+                  if (StudioWindow.usesNativeTrafficLights &&
+                      !StudioWindow.fullscreen)
+                    const SizedBox(
+                      key: ValueKey<String>('native-traffic-light-space'),
+                      width: 80,
+                    ),
                   Expanded(
                     child: SingleChildScrollView(
                       key: const ValueKey('studio-title-actions-scroll'),
@@ -673,6 +1014,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                               ],
                             ),
                           ),
+                          if (StudioWindow.isDesktop && !StudioWindow.isMacOS)
+                            StudioFileMenu(
+                              label: _t('File', 'Datei', 'ملف'),
+                              groups: _desktopFileGroups,
+                            ),
                           _titleQuickAccess(),
                           Row(
                             children: <Widget>[
@@ -770,10 +1116,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     ),
                     onPressed: _openAccount,
                   ),
-                  if (StudioWindow.supported) const SizedBox(width: 138),
+                  if (StudioWindow.usesCaptionButtons)
+                    const SizedBox(width: 138),
                 ],
               ),
-              if (StudioWindow.supported)
+              if (StudioWindow.usesCaptionButtons)
                 Positioned(
                   right: 0,
                   top: 0,
@@ -849,15 +1196,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  String get _chromeTitle {
-    final String app = switch (_app) {
-      SuiteApp.word => _strings.documents,
-      SuiteApp.excel => _strings.spreadsheets,
-      SuiteApp.powerpoint => _strings.presentations,
-      SuiteApp.pdf => _strings.pdf,
-    };
-    return '$_documentLabel — $app';
-  }
+  String get _chromeTitle => _documentLabel;
 
   String get _documentLabel {
     final String name = switch (_app) {
@@ -884,19 +1223,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     SuiteApp.powerpoint => _slideName,
     SuiteApp.pdf => _pdfName,
   };
-
-  set _activeName(String value) {
-    switch (_app) {
-      case SuiteApp.word:
-        _wordName = value;
-      case SuiteApp.excel:
-        _sheetName = value;
-      case SuiteApp.powerpoint:
-        _slideName = value;
-      case SuiteApp.pdf:
-        _pdfName = value;
-    }
-  }
 
   String _nameFromPicked(PickedOfficeFile picked) {
     if (picked.name.trim().isNotEmpty) {
@@ -961,6 +1287,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     DropdownButtonFormField<OfficeInteractionMode>(
+                      isExpanded: true,
                       initialValue: _mode,
                       decoration: InputDecoration(labelText: _strings.mode),
                       items: <DropdownMenuItem<OfficeInteractionMode>>[
@@ -992,6 +1319,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     ),
                     const SizedBox(height: 12),
                     DropdownButtonFormField<SuiteLook>(
+                      isExpanded: true,
                       initialValue: _look,
                       decoration: InputDecoration(labelText: _strings.look),
                       items: <DropdownMenuItem<SuiteLook>>[
@@ -1015,6 +1343,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     ),
                     const SizedBox(height: 12),
                     DropdownButtonFormField<StudioLanguage>(
+                      isExpanded: true,
                       initialValue: _language,
                       decoration: InputDecoration(
                         labelText: _strings.languageLabel,
@@ -1039,6 +1368,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     ),
                     const SizedBox(height: 12),
                     DropdownButtonFormField<OfficeLengthUnit>(
+                      isExpanded: true,
                       initialValue: _lengthUnit,
                       decoration: InputDecoration(
                         labelText: _strings.measurement,
@@ -1111,9 +1441,26 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     SwitchListTile(
                       contentPadding: EdgeInsets.zero,
                       title: Text(_strings.showRibbonLabels),
-                      value: _showRibbonGroupLabels,
-                      onChanged: (value) =>
-                          changed(() => _showRibbonGroupLabels = value),
+                      value: _ribbonPreferences.showGroupLabels,
+                      onChanged: (value) => changed(
+                        () => _ribbonPreferences.setShowGroupLabels(value),
+                      ),
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.tune),
+                      title: Text(
+                        _t(
+                          'Customize Ribbon',
+                          'Menüband anpassen',
+                          'تخصيص الشريط',
+                        ),
+                      ),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () {
+                        Navigator.pop(dialogContext);
+                        _customizeRibbon();
+                      },
                     ),
                   ],
                 ),
@@ -1269,6 +1616,73 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _RibbonTab.view => _t('View', StudioStrings.de('View'), 'عرض'),
   };
 
+  List<_RibbonTab> get _visibleRibbonTabs {
+    final available = _tabsForApp;
+    final scope = StudioRibbonPreferences.tabsScope(_app.name);
+    final byId = <String, _RibbonTab>{
+      for (final tab in available) tab.name: tab,
+    };
+    final order = _ribbonPreferences.orderedIds(scope, byId.keys);
+    if (order.remove('file')) order.insert(0, 'file');
+    return <_RibbonTab>[
+      for (final id in order)
+        if (_requiredRibbonTab(byId[id]!) ||
+            _ribbonPreferences.isVisible(scope, id))
+          byId[id]!,
+    ];
+  }
+
+  bool _requiredRibbonTab(_RibbonTab tab) =>
+      tab == _RibbonTab.file ||
+      (_app == SuiteApp.pdf ? tab == _RibbonTab.view : tab == _RibbonTab.home);
+
+  void _ribbonPreferencesChanged() {
+    if (!mounted) return;
+    setState(() {
+      final tabs = _visibleRibbonTabs;
+      if (!tabs.contains(_tab)) {
+        _tab = tabs.firstWhere(
+          (tab) => tab != _RibbonTab.file,
+          orElse: () => tabs.first,
+        );
+      }
+    });
+  }
+
+  Future<void> _customizeRibbon() => showDialog<void>(
+    context: context,
+    builder: (context) => Directionality(
+      textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
+      child: StudioRibbonCustomization(
+        key: const ValueKey('studio-ribbon-customization'),
+        preferences: _ribbonPreferences,
+        appId: _app.name,
+        appLabel: switch (_app) {
+          SuiteApp.word => _strings.documents,
+          SuiteApp.excel => _strings.spreadsheets,
+          SuiteApp.powerpoint => _strings.presentations,
+          SuiteApp.pdf => _strings.pdf,
+        },
+        tabs: <StudioRibbonChoice>[
+          for (final tab in _tabsForApp)
+            StudioRibbonChoice(
+              tab.name,
+              _tabLabel(tab),
+              required: _requiredRibbonTab(tab),
+            ),
+        ],
+        groupsForTab: (id) => <StudioRibbonChoice>[
+          for (final group in _defaultRibbonGroups(
+            _RibbonTab.values.byName(id),
+          ))
+            StudioRibbonChoice(group.id, group.title),
+        ],
+        initialTab: _tab.name,
+        text: _t,
+      ),
+    ),
+  );
+
   Widget _tabStrip(bool dark) {
     return Material(
       color: dark ? const Color(0xFF2A2A2A) : Colors.white,
@@ -1297,38 +1711,76 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       const SizedBox(width: 4),
-                      for (final _RibbonTab tab in _tabsForApp)
+                      for (final _RibbonTab tab in _visibleRibbonTabs)
                         StudioTabChip(
+                          key: ValueKey('ribbon-tab-${tab.name}'),
                           label: _tabLabel(tab),
                           selected: _tab == tab,
                           accent: _accent,
-                          onTap: () => setState(() => _tab = tab),
+                          onTap: () {
+                            setState(() => _tab = tab);
+                            if (_ribbonPreferences.collapsed) {
+                              _ribbonPreferences.setCollapsed(false);
+                            }
+                          },
                         ),
                     ],
                   ),
                 ),
               ),
+              if (!StudioWindow.isDesktop) ...<Widget>[
+                StudioIconCmd(
+                  icon: Icons.undo,
+                  tooltip: _strings.undo,
+                  accent: _accent,
+                  foreground: _officeTheme.chromeText,
+                  onPressed:
+                      _canMutate &&
+                          (_app == SuiteApp.pdf
+                              ? _pdf.canUndo
+                              : _active.canUndo)
+                      ? (_app == SuiteApp.pdf ? _pdf.undo : _active.undo)
+                      : null,
+                ),
+                StudioIconCmd(
+                  icon: Icons.redo,
+                  tooltip: _strings.redo,
+                  accent: _accent,
+                  foreground: _officeTheme.chromeText,
+                  onPressed:
+                      _canMutate &&
+                          (_app == SuiteApp.pdf
+                              ? _pdf.canRedo
+                              : _active.canRedo)
+                      ? (_app == SuiteApp.pdf ? _pdf.redo : _active.redo)
+                      : null,
+                ),
+              ],
               StudioIconCmd(
-                icon: Icons.undo,
-                tooltip: _strings.undo,
+                key: const ValueKey('studio-customize-ribbon'),
+                icon: Icons.tune,
+                tooltip: _t(
+                  'Customize Ribbon',
+                  'Menüband anpassen',
+                  'تخصيص الشريط',
+                ),
                 accent: _accent,
                 foreground: _officeTheme.chromeText,
-                onPressed:
-                    _canMutate &&
-                        (_app == SuiteApp.pdf ? _pdf.canUndo : _active.canUndo)
-                    ? (_app == SuiteApp.pdf ? _pdf.undo : _active.undo)
-                    : null,
+                onPressed: _customizeRibbon,
               ),
               StudioIconCmd(
-                icon: Icons.redo,
-                tooltip: _strings.redo,
+                key: const ValueKey('studio-collapse-ribbon'),
+                icon: _ribbonPreferences.collapsed
+                    ? Icons.expand_more
+                    : Icons.expand_less,
+                tooltip: _ribbonPreferences.collapsed
+                    ? _t('Expand ribbon', 'Menüband erweitern', 'توسيع الشريط')
+                    : _t('Collapse ribbon', 'Menüband reduzieren', 'طي الشريط'),
                 accent: _accent,
                 foreground: _officeTheme.chromeText,
-                onPressed:
-                    _canMutate &&
-                        (_app == SuiteApp.pdf ? _pdf.canRedo : _active.canRedo)
-                    ? (_app == SuiteApp.pdf ? _pdf.redo : _active.redo)
-                    : null,
+                onPressed: () => _ribbonPreferences.setCollapsed(
+                  !_ribbonPreferences.collapsed,
+                ),
               ),
               StudioIconCmd(
                 icon: Icons.translate,
@@ -1377,28 +1829,73 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Widget _ribbon(bool dark) {
-    return Material(
-      color: dark ? const Color(0xFF2A2A2A) : Colors.white,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: _accent.withValues(alpha: 0.35),
-              width: 2,
+    if (_ribbonPreferences.collapsed) return const SizedBox.shrink();
+    return StudioRibbonStyle(
+      compact: _ribbonPreferences.compact,
+      showCommandLabels: _ribbonPreferences.showCommandLabels,
+      showGroupLabels: _ribbonPreferences.showGroupLabels,
+      child: Material(
+        color: dark ? const Color(0xFF2A2A2A) : Colors.white,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: _accent.withValues(alpha: 0.35),
+                width: 2,
+              ),
             ),
           ),
-        ),
-        child: SizedBox(
-          height: StudioRibbonStrip.preferredHeight(context),
-          child: StudioRibbonStrip(groups: _ribbonGroups()),
+          child: SizedBox(
+            height: StudioRibbonStrip.preferredHeight(
+              context,
+              compact: _ribbonPreferences.compact,
+              showCommandLabels: _ribbonPreferences.showCommandLabels,
+              showGroupLabels: _ribbonPreferences.showGroupLabels,
+            ),
+            child: StudioRibbonStrip(
+              key: ValueKey('ribbon-strip-${_app.name}-${_tab.name}'),
+              groups: _ribbonGroups(),
+              previousTooltip: _t(
+                'Previous commands',
+                'Vorherige Befehle',
+                'الأوامر السابقة',
+              ),
+              nextTooltip: _t(
+                'More commands',
+                'Weitere Befehle',
+                'المزيد من الأوامر',
+              ),
+            ),
+          ),
         ),
       ),
     );
   }
 
   List<StudioRibbonGroup> _ribbonGroups() {
-    StudioRibbonGroup.showTitles = _showRibbonGroupLabels;
-    return switch ((_app, _tab)) {
+    final groups = _defaultRibbonGroups(_tab);
+    final scope = StudioRibbonPreferences.groupsScope(_app.name, _tab.name);
+    final byId = <String, StudioRibbonGroup>{
+      for (final group in groups) group.id: group,
+    };
+    assert(
+      byId.length == groups.length,
+      'Ribbon group IDs must be unique within $scope: ${groups.map((group) => group.id).join(', ')}',
+    );
+    // Keep every command available in release builds even if a future host
+    // accidentally supplies conflicting group identifiers.
+    if (byId.length != groups.length) return groups;
+    final visible = <StudioRibbonGroup>[
+      for (final id in _ribbonPreferences.orderedIds(scope, byId.keys))
+        if (_ribbonPreferences.isVisible(scope, id)) byId[id]!,
+    ];
+    // Corrupt settings or an unavailable contextual group must never leave a
+    // blank ribbon. Customize Ribbon stays reachable in the tab strip.
+    return visible.isEmpty ? groups : visible;
+  }
+
+  List<StudioRibbonGroup> _defaultRibbonGroups(_RibbonTab tab) {
+    return switch ((_app, tab)) {
       (SuiteApp.word, _RibbonTab.file) => _fileGroups(_resetWord, _newWord),
       (SuiteApp.word, _RibbonTab.home) => _wordHome(),
       (SuiteApp.word, _RibbonTab.insert) => _wordInsert(),
@@ -1446,6 +1943,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return <StudioRibbonGroup>[
       ..._fileGroups(_resetPdf, _newPdf),
       StudioRibbonGroup(
+        id: 'sample-lab',
         title: _t(
           'Sample lab',
           StudioStrings.de('Sample lab'),
@@ -1469,6 +1967,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'convert',
         title: _t('Convert', StudioStrings.de('Convert'), 'تحويل'),
         children: <Widget>[
           _cmd(
@@ -1773,6 +2272,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _pdfView() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'view',
         title: _t('View', StudioStrings.de('View'), 'عرض'),
         children: <Widget>[
           _cmd(
@@ -1835,6 +2335,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'viewer-options',
         title: _t(
           'Viewer options',
           StudioStrings.de('Viewer options'),
@@ -2012,6 +2513,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _pdfAnnotate() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'annotate',
         title: _t('Annotate', StudioStrings.de('Annotate'), 'تعليق'),
         children: <Widget>[
           _cmd(
@@ -2039,6 +2541,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _pdfForm() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'pages',
         title: _t('Pages', StudioStrings.de('Pages'), 'صفحات'),
         children: <Widget>[
           _cmd(
@@ -2066,12 +2569,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   ) {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'file',
         title: _t('File', StudioStrings.de('File'), 'ملف'),
         children: <Widget>[
           _cmd(
             Icons.note_add_outlined,
             _t('New', StudioStrings.de('New'), 'جديد'),
-            createNew,
+            _fileActionsAvailable
+                ? () => _newActiveFile(create: createNew)
+                : null,
           ),
           _cmd(
             Icons.folder_open,
@@ -2095,11 +2601,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               StudioStrings.de('Reload sample'),
               'إعادة العينة',
             ),
-            reset,
+            _fileActionsAvailable ? () => _reloadSample(reset) : null,
           ),
         ],
       ),
       StudioRibbonGroup(
+        id: 'mode',
         title: _t('Mode', StudioStrings.de('Mode'), 'وضع العمل'),
         children: <Widget>[
           _cmd(Icons.edit, _t('Edit', StudioStrings.de('Edit'), 'تحرير'), () {
@@ -2130,6 +2637,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return <StudioRibbonGroup>[
       _clipboardGroup(),
       StudioRibbonGroup(
+        id: 'font',
         title: _t('Font', StudioStrings.de('Font'), 'خط'),
         children: <Widget>[
           StudioCombo<String>(
@@ -2244,6 +2752,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'styles',
         title: _t('Styles', StudioStrings.de('Styles'), 'أنماط'),
         children: <Widget>[
           StudioCombo<int>(
@@ -2279,6 +2788,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'paragraph',
         title: _t('Paragraph', StudioStrings.de('Paragraph'), 'فقرة'),
         children: <Widget>[
           _icon(
@@ -2350,6 +2860,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'quick-insert',
         title: _t(
           'Quick insert',
           StudioStrings.de('Quick insert'),
@@ -2396,6 +2907,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _wordTableTools() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'table',
         title: _t('Table', StudioStrings.de('Table'), 'جدول'),
         children: <Widget>[
           _cmd(
@@ -2521,38 +3033,432 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
   }
 
-  Widget _zoteroCommand(
+  StudioCmd _zoteroCommand(
     IconData icon,
     String label,
     ZoteroCitingCommand command, {
     String? shortcut,
   }) {
-    final button = _cmd(
-      icon,
-      label,
-      _canRunZoteroCommand ? () => _openZotero(command: command) : null,
-    );
-    if (shortcut == null) return button;
     final modifier = defaultTargetPlatform == TargetPlatform.macOS
         ? 'Cmd+Alt'
         : 'Ctrl+Alt';
-    return Tooltip(
-      message: '$label ($modifier+$shortcut)',
-      child: TooltipVisibility(visible: false, child: button),
+    return StudioCmd(
+      icon: icon,
+      label: label,
+      tooltip: shortcut == null ? label : '$label ($modifier+$shortcut)',
+      accent: _accent,
+      foreground: _officeTheme.chromeText,
+      onPressed: _canRunZoteroCommand
+          ? () => _openZotero(command: command)
+          : null,
     );
   }
+
+  StudioCommandMenu _insertMenu(
+    String id,
+    IconData icon,
+    String label,
+    List<StudioCmd> commands,
+  ) => StudioCommandMenu(
+    key: ValueKey('ribbon-menu-word-insert-$id'),
+    icon: icon,
+    label: label,
+    accent: _accent,
+    foreground: _officeTheme.chromeText,
+    commands: commands,
+  );
 
   List<StudioRibbonGroup> _wordInsert() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
-        title: _t('References', StudioStrings.de('References'), 'المراجع'),
+        id: 'insert',
+        title: _t('Insert', 'Einfügen', 'إدراج'),
+        children: <Widget>[
+          _insertMenu(
+            'pages',
+            Icons.insert_page_break,
+            _t('Pages', 'Seiten', 'صفحات'),
+            <StudioCmd>[
+              _cmd(
+                Icons.insert_page_break,
+                _t('Page break', StudioStrings.de('Page break'), 'فاصل صفحة'),
+                _canMutate ? _insertPageBreak : null,
+              ),
+              _cmd(
+                Icons.note_add_outlined,
+                _t('Blank page', StudioStrings.de('Blank page'), 'صفحة فارغة'),
+                _canMutate ? _insertPageBreak : null,
+              ),
+              _cmd(
+                Icons.view_week,
+                _t(
+                  'Column break',
+                  StudioStrings.de('Column break'),
+                  'فاصل عمود',
+                ),
+                _canMutate
+                    ? () {
+                        _word.insertColumnBreak();
+                        _word.refresh();
+                      }
+                    : null,
+              ),
+              _cmd(
+                Icons.vertical_split_outlined,
+                _t(
+                  'Section break',
+                  StudioStrings.de('Section break'),
+                  'فاصل قسم',
+                ),
+                _canMutate
+                    ? () {
+                        _word.insertSectionBreak();
+                        _word.refresh();
+                      }
+                    : null,
+              ),
+            ],
+          ),
+          _insertMenu(
+            'table',
+            Icons.table_chart,
+            _t('Table', 'Tabelle', 'جدول'),
+            <StudioCmd>[
+              _cmd(
+                Icons.table_chart,
+                _t('2×2', StudioStrings.de('2×2'), '٢×٢'),
+                _canMutate ? () => _insertWordTable(2, 2) : null,
+              ),
+              _cmd(
+                Icons.grid_on,
+                _t('3×3', StudioStrings.de('3×3'), '٣×٣'),
+                _canMutate ? () => _insertWordTable(3, 3) : null,
+              ),
+              _cmd(
+                Icons.table_view,
+                _t('4×4', StudioStrings.de('4×4'), '٤×٤'),
+                _canMutate ? () => _insertWordTable(4, 4) : null,
+              ),
+            ],
+          ),
+          _cmd(
+            Icons.image_outlined,
+            _t('Picture', StudioStrings.de('Picture'), 'صورة'),
+            _canMutate ? () => _insertWordPicture(fromFile: true) : null,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        id: 'illustrations',
+        title: _t('Illustrations', 'Illustrationen', 'رسوم'),
+        children: <Widget>[
+          _insertMenu(
+            'charts',
+            Icons.bar_chart,
+            _t('Chart', 'Diagramm', 'رسم بياني'),
+            <StudioCmd>[
+              _cmd(
+                Icons.bar_chart,
+                _t('Column', StudioStrings.de('Column'), 'أعمدة'),
+                _canMutate
+                    ? () => _insertWordVisual(OfficeVisualKind.chartColumn)
+                    : null,
+              ),
+              _cmd(
+                Icons.stacked_bar_chart,
+                _t('Bar', StudioStrings.de('Bar'), 'شريطي'),
+                _canMutate
+                    ? () => _insertWordVisual(OfficeVisualKind.chartBar)
+                    : null,
+              ),
+              _cmd(
+                Icons.pie_chart,
+                _t('Pie', StudioStrings.de('Pie'), 'دائري'),
+                _canMutate
+                    ? () => _insertWordVisual(OfficeVisualKind.chartPie)
+                    : null,
+              ),
+              _cmd(
+                Icons.show_chart,
+                _t('Line', StudioStrings.de('Line'), 'خطي'),
+                _canMutate
+                    ? () => _insertWordVisual(OfficeVisualKind.chartLine)
+                    : null,
+              ),
+            ],
+          ),
+          _insertMenu(
+            'diagram',
+            Icons.account_tree,
+            _t('Diagram', 'Schaubild', 'مخطط'),
+            <StudioCmd>[
+              _cmd(
+                Icons.linear_scale,
+                _t('Process', StudioStrings.de('Process'), 'عملية'),
+                _canMutate
+                    ? () => _insertWordVisual(OfficeVisualKind.diagramProcess)
+                    : null,
+              ),
+              _cmd(
+                Icons.sync,
+                _t('Cycle', StudioStrings.de('Cycle'), 'دورة'),
+                _canMutate
+                    ? () => _insertWordVisual(OfficeVisualKind.diagramCycle)
+                    : null,
+              ),
+              _cmd(
+                Icons.account_tree,
+                _t('Tree', StudioStrings.de('Tree'), 'هرمي'),
+                _canMutate
+                    ? () => _insertWordVisual(OfficeVisualKind.diagramHierarchy)
+                    : null,
+              ),
+            ],
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        id: 'text',
+        title: _t('Text', 'Text', 'نص'),
+        children: <Widget>[
+          _insertMenu(
+            'text',
+            Icons.text_fields,
+            _t('Text', 'Text', 'نص'),
+            <StudioCmd>[
+              _cmd(
+                Icons.title,
+                _t('Heading 1', StudioStrings.de('Heading 1'), 'عنوان ١'),
+                _canMutate
+                    ? () => _word.insertHeading(
+                        level: 1,
+                        text: _t(
+                          'New heading',
+                          StudioStrings.de('New heading'),
+                          'عنوان جديد',
+                        ),
+                      )
+                    : null,
+              ),
+              _cmd(
+                Icons.text_fields,
+                _t('Heading 2', StudioStrings.de('Heading 2'), 'عنوان ٢'),
+                _canMutate
+                    ? () => _word.insertHeading(
+                        level: 2,
+                        text: _t(
+                          'New subheading',
+                          StudioStrings.de('New subheading'),
+                          'عنوان فرعي',
+                        ),
+                      )
+                    : null,
+              ),
+              _cmd(
+                Icons.short_text,
+                _t('Paragraph', StudioStrings.de('Paragraph'), 'فقرة'),
+                _canMutate
+                    ? () {
+                        _word.insertParagraphBreak();
+                        _word.insertText(
+                          _arabic
+                              ? 'فقرة يمكن تحريرها مباشرة من لوحة المفاتيح.'
+                              : 'A paragraph you can type into immediately.',
+                        );
+                      }
+                    : null,
+              ),
+              _cmd(
+                Icons.format_quote,
+                _t('Quote', StudioStrings.de('Quote'), 'اقتباس'),
+                _canMutate ? _insertQuote : null,
+              ),
+              _cmd(
+                Icons.crop_square,
+                _t('Text box', StudioStrings.de('Text box'), 'إطار نص'),
+                _canMutate
+                    ? () {
+                        _word.insertTextFrame(
+                          text: _t(
+                            'Text box',
+                            StudioStrings.de('Text box'),
+                            'إطار نص',
+                          ),
+                        );
+                        _word.refresh();
+                      }
+                    : null,
+              ),
+            ],
+          ),
+          _insertMenu(
+            'links',
+            Icons.insert_link,
+            _t('Links', 'Links', 'روابط'),
+            <StudioCmd>[
+              _cmd(
+                Icons.link,
+                _t('Web link', StudioStrings.de('Web link'), 'رابط ويب'),
+                _canMutate
+                    ? () => _insertWordLink(kind: _WordLinkKind.web)
+                    : null,
+              ),
+              _cmd(
+                Icons.insert_link,
+                _t('Cross-ref', StudioStrings.de('Cross-ref'), 'مرجع داخلي'),
+                _canMutate
+                    ? () => _insertWordLink(kind: _WordLinkKind.bookmark)
+                    : null,
+              ),
+              _cmd(
+                Icons.folder_open,
+                _t('File link', StudioStrings.de('File link'), 'ملف محلي'),
+                _canMutate
+                    ? () => _insertWordLink(kind: _WordLinkKind.file)
+                    : null,
+              ),
+            ],
+          ),
+          _insertMenu(
+            'notes',
+            Icons.superscript,
+            _t('Notes', 'Anmerkungen', 'حواشٍ'),
+            <StudioCmd>[
+              _cmd(
+                Icons.superscript,
+                _t('Footnote', StudioStrings.de('Footnote'), 'حاشية'),
+                _canMutate ? () => _word.insertFootnote() : null,
+              ),
+              _cmd(
+                Icons.subscript,
+                _t('Endnote', StudioStrings.de('Endnote'), 'نهاية حاشية'),
+                _canMutate ? () => _word.insertFootnote(endnote: true) : null,
+              ),
+            ],
+          ),
+          _insertMenu(
+            'fields',
+            Icons.pin,
+            _t('Fields', 'Felder', 'حقول'),
+            <StudioCmd>[
+              _cmd(
+                Icons.pin,
+                _t('Page #', StudioStrings.de('Page #'), 'رقم صفحة'),
+                _canMutate ? () => _word.insertField(WmlFieldKind.page) : null,
+              ),
+              _cmd(
+                Icons.calendar_today,
+                _t('Date', StudioStrings.de('Date'), 'تاريخ'),
+                _canMutate ? () => _word.insertField(WmlFieldKind.date) : null,
+              ),
+              _cmd(
+                Icons.branding_watermark,
+                _t('Watermark', StudioStrings.de('Watermark'), 'علامة مائية'),
+                _canMutate
+                    ? () => _word.setWatermark(
+                        _t('DRAFT', StudioStrings.de('DRAFT'), 'مسودة'),
+                      )
+                    : null,
+              ),
+            ],
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        id: 'references',
+        title: _t('References', 'Verweise', 'مراجع'),
+        children: <Widget>[
+          _insertMenu(
+            'contents',
+            Icons.list_alt,
+            _t('Contents', 'Verzeichnisse', 'محتويات'),
+            <StudioCmd>[
+              _cmd(
+                Icons.list_alt,
+                _t('Contents', StudioStrings.de('Contents'), 'المحتويات'),
+                _canMutate
+                    ? () => _word.insertTableOfContents(
+                        title: _t(
+                          'Table of Contents',
+                          StudioStrings.de('Table of Contents'),
+                          'جدول المحتويات',
+                        ),
+                      )
+                    : null,
+              ),
+              _cmd(
+                Icons.sync,
+                _t('Update all', StudioStrings.de('Update all'), 'تحديث الكل'),
+                _canMutate && WordToc.tocs(_word.document).isNotEmpty
+                    ? () => _word.updateTableOfContents()
+                    : null,
+              ),
+              _cmd(
+                Icons.filter_9,
+                _t(
+                  'Page numbers',
+                  StudioStrings.de('Page numbers'),
+                  'أرقام الصفحات',
+                ),
+                _canMutate && WordToc.tocs(_word.document).isNotEmpty
+                    ? () => _word.updateTableOfContents(pageNumbersOnly: true)
+                    : null,
+              ),
+              _cmd(
+                Icons.subtitles_outlined,
+                _t('Caption', StudioStrings.de('Caption'), 'تسمية'),
+                _canMutate ? () => _word.insertCaption() : null,
+              ),
+              _cmd(
+                Icons.collections_bookmark_outlined,
+                _t('Figures', StudioStrings.de('Figures'), 'جدول أشكال'),
+                _canMutate ? () => _word.insertTableOfFigures() : null,
+              ),
+            ],
+          ),
+          _insertMenu(
+            'references',
+            Icons.format_quote,
+            _t('References', 'Verweise', 'مراجع'),
+            <StudioCmd>[
+              _cmd(
+                Icons.format_quote,
+                _t('Citation', StudioStrings.de('Citation'), 'استشهاد'),
+                _canMutate ? _insertStudioCitation : null,
+              ),
+              _cmd(
+                Icons.menu_book_outlined,
+                _t('Bibliography', StudioStrings.de('Bibliography'), 'مراجع'),
+                _canMutate ? _word.insertBibliography : null,
+              ),
+              _cmd(
+                Icons.bookmark_add_outlined,
+                _t('Mark index', StudioStrings.de('Mark index'), 'فهرس'),
+                _canMutate
+                    ? () => _word.markIndexTerm(
+                        _t('Term', StudioStrings.de('Term'), 'مصطلح'),
+                      )
+                    : null,
+              ),
+              _cmd(
+                Icons.list_alt_outlined,
+                _t('Index', StudioStrings.de('Index'), 'إدراج الفهرس'),
+                _canMutate ? _word.insertIndex : null,
+              ),
+            ],
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        id: 'zotero',
+        title: _t('Zotero', 'Zotero', 'Zotero'),
         children: <Widget>[
           _cmd(
             Icons.menu_book_outlined,
             'Zotero',
             _canOpenZotero ? _openZotero : null,
           ),
-          if (studioZoteroDesktopAvailable) ...[
+          if (studioZoteroDesktopAvailable) ...<Widget>[
             _zoteroCommand(
               Icons.format_quote,
               _t(
@@ -2564,33 +3470,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               shortcut: 'C',
             ),
             _zoteroCommand(
-              Icons.list_alt,
-              _t(
-                'Bibliography',
-                StudioStrings.de('Bibliography'),
-                'قائمة المراجع',
-              ),
-              ZoteroCitingCommand.addEditBibliography,
-            ),
-            _zoteroCommand(
-              Icons.note_add_outlined,
-              _t(
-                'Add Zotero note',
-                StudioStrings.de('Add Zotero note'),
-                'ملاحظة من Zotero',
-              ),
-              ZoteroCitingCommand.addNote,
-            ),
-            _zoteroCommand(
-              Icons.format_quote_outlined,
-              _t(
-                'Add Zotero annotation',
-                StudioStrings.de('Add Zotero annotation'),
-                'تعليق توضيحي من Zotero',
-              ),
-              ZoteroCitingCommand.addAnnotation,
-            ),
-            _zoteroCommand(
               Icons.refresh,
               _t(
                 'Refresh citations',
@@ -2600,376 +3479,85 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               ZoteroCitingCommand.refresh,
               shortcut: 'R',
             ),
-            _zoteroCommand(
-              Icons.format_paint_outlined,
-              _t(
-                'Citation style',
-                StudioStrings.de('Citation style'),
-                'نمط الاستشهاد',
-              ),
-              ZoteroCitingCommand.setDocPrefs,
+            _insertMenu(
+              'zotero',
+              Icons.menu_book_outlined,
+              _t('Zotero tools', 'Zotero-Werkzeuge', 'أدوات Zotero'),
+              <StudioCmd>[
+                _zoteroCommand(
+                  Icons.list_alt,
+                  _t(
+                    'Bibliography',
+                    StudioStrings.de('Bibliography'),
+                    'قائمة المراجع',
+                  ),
+                  ZoteroCitingCommand.addEditBibliography,
+                ),
+                _zoteroCommand(
+                  Icons.note_add_outlined,
+                  _t(
+                    'Add Zotero note',
+                    StudioStrings.de('Add Zotero note'),
+                    'ملاحظة من Zotero',
+                  ),
+                  ZoteroCitingCommand.addNote,
+                ),
+                _zoteroCommand(
+                  Icons.format_quote_outlined,
+                  _t(
+                    'Add Zotero annotation',
+                    StudioStrings.de('Add Zotero annotation'),
+                    'تعليق توضيحي من Zotero',
+                  ),
+                  ZoteroCitingCommand.addAnnotation,
+                ),
+                _zoteroCommand(
+                  Icons.format_paint_outlined,
+                  _t(
+                    'Citation style',
+                    StudioStrings.de('Citation style'),
+                    'نمط الاستشهاد',
+                  ),
+                  ZoteroCitingCommand.setDocPrefs,
+                ),
+              ],
             ),
           ],
         ],
       ),
       StudioRibbonGroup(
-        title: _t('Pages', StudioStrings.de('Pages'), 'صفحات'),
-        children: <Widget>[
-          _cmd(
-            Icons.insert_page_break,
-            _t('Page break', StudioStrings.de('Page break'), 'فاصل صفحة'),
-            _canMutate ? _insertPageBreak : null,
-          ),
-          _cmd(
-            Icons.note_add_outlined,
-            _t('Blank page', StudioStrings.de('Blank page'), 'صفحة فارغة'),
-            _canMutate ? _insertPageBreak : null,
-          ),
-          _cmd(
-            Icons.view_week,
-            _t('Column break', StudioStrings.de('Column break'), 'فاصل عمود'),
-            _canMutate
-                ? () {
-                    _word.insertColumnBreak();
-                    _word.refresh();
-                  }
-                : null,
-          ),
-          _cmd(
-            Icons.vertical_split_outlined,
-            _t('Section break', StudioStrings.de('Section break'), 'فاصل قسم'),
-            _canMutate
-                ? () {
-                    _word.insertSectionBreak();
-                    _word.refresh();
-                  }
-                : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _t('Text', StudioStrings.de('Text'), 'نص'),
-        children: <Widget>[
-          _cmd(
-            Icons.title,
-            _t('Heading 1', StudioStrings.de('Heading 1'), 'عنوان ١'),
-            _canMutate
-                ? () => _word.insertHeading(
-                    level: 1,
-                    text: _t(
-                      'New heading',
-                      StudioStrings.de('New heading'),
-                      'عنوان جديد',
-                    ),
-                  )
-                : null,
-          ),
-          _cmd(
-            Icons.text_fields,
-            _t('Heading 2', StudioStrings.de('Heading 2'), 'عنوان ٢'),
-            _canMutate
-                ? () => _word.insertHeading(
-                    level: 2,
-                    text: _t(
-                      'New subheading',
-                      StudioStrings.de('New subheading'),
-                      'عنوان فرعي',
-                    ),
-                  )
-                : null,
-          ),
-          _cmd(
-            Icons.list_alt,
-            _t('Contents', StudioStrings.de('Contents'), 'المحتويات'),
-            _canMutate
-                ? () => _word.insertTableOfContents(
-                    title: _t(
-                      'Table of Contents',
-                      StudioStrings.de('Table of Contents'),
-                      'جدول المحتويات',
-                    ),
-                  )
-                : null,
-          ),
-          _cmd(
-            Icons.sync,
-            _t('Update all', StudioStrings.de('Update all'), 'تحديث الكل'),
-            _canMutate && WordToc.tocs(_word.document).isNotEmpty
-                ? () => _word.updateTableOfContents()
-                : null,
-          ),
-          _cmd(
-            Icons.filter_9,
-            _t(
-              'Page numbers',
-              StudioStrings.de('Page numbers'),
-              'أرقام الصفحات',
-            ),
-            _canMutate && WordToc.tocs(_word.document).isNotEmpty
-                ? () => _word.updateTableOfContents(pageNumbersOnly: true)
-                : null,
-          ),
-          _cmd(
-            Icons.link,
-            _t('Web link', StudioStrings.de('Web link'), 'رابط ويب'),
-            _canMutate ? () => _insertWordLink(kind: _WordLinkKind.web) : null,
-          ),
-          _cmd(
-            Icons.insert_link,
-            _t('Cross-ref', StudioStrings.de('Cross-ref'), 'مرجع داخلي'),
-            _canMutate
-                ? () => _insertWordLink(kind: _WordLinkKind.bookmark)
-                : null,
-          ),
-          _cmd(
-            Icons.folder_open,
-            _t('File link', StudioStrings.de('File link'), 'ملف محلي'),
-            _canMutate ? () => _insertWordLink(kind: _WordLinkKind.file) : null,
-          ),
-          _cmd(
-            Icons.superscript,
-            _t('Footnote', StudioStrings.de('Footnote'), 'حاشية'),
-            _canMutate ? () => _word.insertFootnote() : null,
-          ),
-          _cmd(
-            Icons.subscript,
-            _t('Endnote', StudioStrings.de('Endnote'), 'نهاية حاشية'),
-            _canMutate ? () => _word.insertFootnote(endnote: true) : null,
-          ),
-          _cmd(
-            Icons.subtitles_outlined,
-            _t('Caption', StudioStrings.de('Caption'), 'تسمية'),
-            _canMutate ? () => _word.insertCaption() : null,
-          ),
-          _cmd(
-            Icons.collections_bookmark_outlined,
-            _t('Figures', StudioStrings.de('Figures'), 'جدول أشكال'),
-            _canMutate ? () => _word.insertTableOfFigures() : null,
-          ),
-          _cmd(
-            Icons.pin,
-            _t('Page #', StudioStrings.de('Page #'), 'رقم صفحة'),
-            _canMutate ? () => _word.insertField(WmlFieldKind.page) : null,
-          ),
-          _cmd(
-            Icons.calendar_today,
-            _t('Date', StudioStrings.de('Date'), 'تاريخ'),
-            _canMutate ? () => _word.insertField(WmlFieldKind.date) : null,
-          ),
-          _cmd(
-            Icons.branding_watermark,
-            _t('Watermark', StudioStrings.de('Watermark'), 'علامة مائية'),
-            _canMutate
-                ? () => _word.setWatermark(
-                    _t('DRAFT', StudioStrings.de('DRAFT'), 'مسودة'),
-                  )
-                : null,
-          ),
-          _cmd(
-            Icons.short_text,
-            _t('Paragraph', StudioStrings.de('Paragraph'), 'فقرة'),
-            _canMutate
-                ? () {
-                    _word.insertParagraphBreak();
-                    _word.insertText(
-                      _arabic
-                          ? 'فقرة يمكن تحريرها مباشرة من لوحة المفاتيح.'
-                          : 'A paragraph you can type into immediately.',
-                    );
-                  }
-                : null,
-          ),
-          _cmd(
-            Icons.format_quote,
-            _t('Quote', StudioStrings.de('Quote'), 'اقتباس'),
-            _canMutate ? _insertQuote : null,
-          ),
-          _cmd(
-            Icons.crop_square,
-            _t('Text box', StudioStrings.de('Text box'), 'إطار نص'),
-            _canMutate
-                ? () {
-                    _word.insertTextFrame(
-                      text: _t(
-                        'Text box',
-                        StudioStrings.de('Text box'),
-                        'إطار نص',
-                      ),
-                    );
-                    _word.refresh();
-                  }
-                : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _t('Table', StudioStrings.de('Table'), 'جدول'),
-        children: <Widget>[
-          _cmd(
-            Icons.table_chart,
-            _t('2×2', StudioStrings.de('2×2'), '٢×٢'),
-            _canMutate ? () => _insertWordTable(2, 2) : null,
-          ),
-          _cmd(
-            Icons.grid_on,
-            _t('3×3', StudioStrings.de('3×3'), '٣×٣'),
-            _canMutate ? () => _insertWordTable(3, 3) : null,
-          ),
-          _cmd(
-            Icons.table_view,
-            _t('4×4', StudioStrings.de('4×4'), '٤×٤'),
-            _canMutate ? () => _insertWordTable(4, 4) : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _t('Illustrations', StudioStrings.de('Illustrations'), 'رسوم'),
-        children: <Widget>[
-          _cmd(
-            Icons.image_outlined,
-            _t('Picture', StudioStrings.de('Picture'), 'صورة'),
-            _canMutate ? () => _insertWordPicture(fromFile: true) : null,
-          ),
-          _cmd(
-            Icons.bar_chart,
-            _t('Column', StudioStrings.de('Column'), 'أعمدة'),
-            _canMutate
-                ? () => _insertWordVisual(OfficeVisualKind.chartColumn)
-                : null,
-          ),
-          _cmd(
-            Icons.stacked_bar_chart,
-            _t('Bar', StudioStrings.de('Bar'), 'شريطي'),
-            _canMutate
-                ? () => _insertWordVisual(OfficeVisualKind.chartBar)
-                : null,
-          ),
-          _cmd(
-            Icons.pie_chart,
-            _t('Pie', StudioStrings.de('Pie'), 'دائري'),
-            _canMutate
-                ? () => _insertWordVisual(OfficeVisualKind.chartPie)
-                : null,
-          ),
-          _cmd(
-            Icons.show_chart,
-            _t('Line', StudioStrings.de('Line'), 'خطي'),
-            _canMutate
-                ? () => _insertWordVisual(OfficeVisualKind.chartLine)
-                : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _t('Diagram', StudioStrings.de('Diagram'), 'مخطط'),
-        children: <Widget>[
-          _cmd(
-            Icons.linear_scale,
-            _t('Process', StudioStrings.de('Process'), 'عملية'),
-            _canMutate
-                ? () => _insertWordVisual(OfficeVisualKind.diagramProcess)
-                : null,
-          ),
-          _cmd(
-            Icons.sync,
-            _t('Cycle', StudioStrings.de('Cycle'), 'دورة'),
-            _canMutate
-                ? () => _insertWordVisual(OfficeVisualKind.diagramCycle)
-                : null,
-          ),
-          _cmd(
-            Icons.account_tree,
-            _t('Tree', StudioStrings.de('Tree'), 'هرمي'),
-            _canMutate
-                ? () => _insertWordVisual(OfficeVisualKind.diagramHierarchy)
-                : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _t('References', StudioStrings.de('References'), 'مراجع'),
-        children: <Widget>[
-          _cmd(
-            Icons.format_quote,
-            _t('Citation', StudioStrings.de('Citation'), 'استشهاد'),
-            _canMutate ? _insertStudioCitation : null,
-          ),
-          _cmd(
-            Icons.menu_book_outlined,
-            _t('Bibliography', StudioStrings.de('Bibliography'), 'مراجع'),
-            _canMutate ? _word.insertBibliography : null,
-          ),
-          _cmd(
-            Icons.bookmark_add_outlined,
-            _t('Mark index', StudioStrings.de('Mark index'), 'فهرس'),
-            _canMutate
-                ? () => _word.markIndexTerm(
-                    _t('Term', StudioStrings.de('Term'), 'مصطلح'),
-                  )
-                : null,
-          ),
-          _cmd(
-            Icons.list_alt_outlined,
-            _t('Index', StudioStrings.de('Index'), 'إدراج الفهرس'),
-            _canMutate ? _word.insertIndex : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _t('Mailings', StudioStrings.de('Mailings'), 'مراسلات'),
-        children: <Widget>[
-          _cmd(
-            Icons.mark_email_read_outlined,
-            _t('Merge', StudioStrings.de('Merge'), 'دمج'),
-            _canMutate ? _studioMergeMail : null,
-          ),
-        ],
-      ),
-      StudioRibbonGroup(
-        title: _t('Equations', StudioStrings.de('Equations'), 'معادلات'),
+        id: 'equations',
+        title: _t('Equations', 'Formeln', 'معادلات'),
         children: <Widget>[
           _cmd(
             Icons.functions,
             _t('Equation', StudioStrings.de('Equation'), 'معادلة'),
             _canMutate ? () => _insertWordEquation() : null,
           ),
-          _cmd(
+          _insertMenu(
+            'equation-gallery',
             Icons.calculate_outlined,
-            _t('Quadratic', StudioStrings.de('Quadratic'), 'تربيعي'),
-            _canMutate ? () => _insertWordEquation(id: 'quadratic') : null,
-          ),
-          _cmd(
-            Icons.integration_instructions_outlined,
-            _t('Integral', StudioStrings.de('Integral'), 'تكامل'),
-            _canMutate ? () => _insertWordEquation(id: 'integral') : null,
-          ),
-          StudioCombo<String>(
-            value: 'gallery',
-            width: 132,
-            enabled: _canMutate,
-            tooltip: _t(
-              'Equation gallery',
-              StudioStrings.de('Equation gallery'),
-              'معرض المعادلات',
-            ),
-            items: <String>[
-              'gallery',
-              for (final OmmlGalleryItem item in OmmlGallery.items)
-                if (item.id != 'blank') item.id,
+            _t('Equation gallery', 'Formelgalerie', 'معرض المعادلات'),
+            <StudioCmd>[
+              for (final item in OmmlGallery.items)
+                if (item.id != 'blank')
+                  _cmd(
+                    Icons.functions,
+                    item.title(arabic: _arabic),
+                    _canMutate ? () => _insertWordEquation(id: item.id) : null,
+                  ),
             ],
-            labelOf: (String id) {
-              if (id == 'gallery') {
-                return _t('Gallery', StudioStrings.de('Gallery'), 'المعرض');
-              }
-              return OmmlGallery.byId(id).title(arabic: _arabic);
-            },
-            onSelected: _canMutate
-                ? (String id) {
-                    if (id != 'gallery') {
-                      _insertWordEquation(id: id);
-                    }
-                  }
-                : null,
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        id: 'mailings',
+        title: _t('Mailings', 'Sendungen', 'مراسلات'),
+        children: <Widget>[
+          _cmd(
+            Icons.mark_email_read_outlined,
+            _t('Merge', StudioStrings.de('Merge'), 'دمج'),
+            _canMutate ? _studioMergeMail : null,
           ),
         ],
       ),
@@ -2983,6 +3571,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final int columns = _word.sectionAtCaret.columnCount;
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'margins',
         title: _t('Margins', StudioStrings.de('Margins'), 'الهوامش'),
         children: <Widget>[
           StudioCombo<String>(
@@ -3031,6 +3620,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'orientation',
         title: _t('Orientation', StudioStrings.de('Orientation'), 'الاتجاه'),
         children: <Widget>[
           _cmd(
@@ -3048,6 +3638,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'size',
         title: _t('Size', StudioStrings.de('Size'), 'الحجم'),
         children: <Widget>[
           _cmd(
@@ -3101,6 +3692,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'columns',
         title: _t('Columns', StudioStrings.de('Columns'), 'أعمدة'),
         children: <Widget>[
           _cmd(
@@ -3124,6 +3716,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'breaks',
         title: _t('Breaks', StudioStrings.de('Breaks'), 'فواصل'),
         children: <Widget>[
           _cmd(
@@ -3144,6 +3737,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'paragraph',
         title: _t('Paragraph', StudioStrings.de('Paragraph'), 'فقرة'),
         children: <Widget>[
           _cmd(
@@ -3205,6 +3799,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'header',
         title: _t('Header', StudioStrings.de('Header'), 'ترويسة'),
         children: <Widget>[
           _cmd(
@@ -3281,6 +3876,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'paragraph-look',
         title: _t(
           'Paragraph look',
           StudioStrings.de('Paragraph look'),
@@ -3326,6 +3922,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'interface',
         title: _t('Interface', StudioStrings.de('Interface'), 'واجهة'),
         children: <Widget>[
           _cmd(Icons.format_textdirection_r_to_l, 'RTL', () {
@@ -3342,6 +3939,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _wordReview() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'proofing',
         title: _t('Proofing', StudioStrings.de('Proofing'), 'التدقيق'),
         children: <Widget>[
           _cmd(
@@ -3379,6 +3977,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'changes',
         title: _t('Changes', StudioStrings.de('Changes'), 'تغييرات'),
         children: <Widget>[
           _cmd(
@@ -3484,6 +4083,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'language-analysis',
         title: _t(
           'Language analysis',
           StudioStrings.de('Language analysis'),
@@ -3511,6 +4111,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'select',
         title: _t('Select', StudioStrings.de('Select'), 'تحديد'),
         children: <Widget>[
           _cmd(
@@ -3531,6 +4132,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'edit',
         title: _t('Edit', StudioStrings.de('Edit'), 'تحرير'),
         children: <Widget>[
           _cmd(
@@ -3546,6 +4148,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'comments',
         title: _t('Comments', StudioStrings.de('Comments'), 'تعليقات'),
         children: <Widget>[
           _cmd(
@@ -3602,6 +4205,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'document',
         title: _t('Document', StudioStrings.de('Document'), 'تحرير المستند'),
         children: <Widget>[
           _cmd(
@@ -3627,6 +4231,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _wordView() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'page',
         title: _t('Page', StudioStrings.de('Page'), 'عرض الصفحة'),
         children: <Widget>[
           _cmd(
@@ -3663,6 +4268,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return <StudioRibbonGroup>[
       _clipboardGroup(),
       StudioRibbonGroup(
+        id: 'history',
         title: _t('History', StudioStrings.de('History'), 'سجل'),
         children: <Widget>[
           _cmd(
@@ -3678,6 +4284,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'cells',
         title: _t('Cells', StudioStrings.de('Cells'), 'خلايا'),
         children: <Widget>[
           _cmd(
@@ -3722,6 +4329,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'select',
         title: _t('Select', StudioStrings.de('Select'), 'تحديد'),
         children: <Widget>[
           _cmd(Icons.table_rows, _t('Row', StudioStrings.de('Row'), 'صف'), () {
@@ -3739,6 +4347,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'alignment',
         title: _t('Alignment', StudioStrings.de('Alignment'), 'محاذاة'),
         children: <Widget>[
           _cmd(
@@ -3771,6 +4380,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'size',
         title: _t('Size', StudioStrings.de('Size'), 'تحجيم'),
         children: <Widget>[
           _cmd(
@@ -3796,6 +4406,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'quick-insert',
         title: _t(
           'Quick insert',
           StudioStrings.de('Quick insert'),
@@ -3830,6 +4441,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _sheetInsert() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'illustrations',
         title: _t('Illustrations', StudioStrings.de('Illustrations'), 'رسوم'),
         children: <Widget>[
           _cmd(
@@ -3875,6 +4487,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'cells',
         title: _t('Cells', StudioStrings.de('Cells'), 'خلايا'),
         children: <Widget>[
           _cmd(
@@ -3895,6 +4508,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _sheetFormulas() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'function',
         title: _t('Function', StudioStrings.de('Function'), 'دالة'),
         children: <Widget>[
           _cmd(
@@ -3961,6 +4575,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'reference',
         title: _t('Reference', StudioStrings.de('Reference'), 'مرجع'),
         children: <Widget>[
           _cmd(
@@ -3980,6 +4595,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _sheetData() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'sheets',
         title: _t('Sheets', StudioStrings.de('Sheets'), 'أوراق'),
         children: <Widget>[
           _cmd(
@@ -3997,6 +4613,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'charts',
         title: _t('Charts', StudioStrings.de('Charts'), 'رسوم'),
         children: <Widget>[
           _cmd(
@@ -4023,6 +4640,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'data',
         title: _t('Data', StudioStrings.de('Data'), 'بيانات'),
         children: <Widget>[
           _cmd(
@@ -4060,6 +4678,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'tools',
         title: _t('Tools', StudioStrings.de('Tools'), 'أدوات'),
         children: <Widget>[
           _cmd(
@@ -4132,6 +4751,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _sheetView() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'grid',
         title: _t('Grid', StudioStrings.de('Grid'), 'عرض الشبكة'),
         children: <Widget>[
           _cmd(
@@ -4176,6 +4796,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'sheet-direction',
         title: _t(
           'Sheet direction',
           StudioStrings.de('Sheet direction'),
@@ -4203,6 +4824,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return <StudioRibbonGroup>[
       _clipboardGroup(),
       StudioRibbonGroup(
+        id: 'slides',
         title: _t('Slides', StudioStrings.de('Slides'), 'الشرائح'),
         children: <Widget>[
           _cmd(
@@ -4225,6 +4847,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'navigate',
         title: _t('Navigate', StudioStrings.de('Navigate'), 'تنقل'),
         children: <Widget>[
           _cmd(
@@ -4244,6 +4867,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'align-and-group',
         title: _t('Arrange', StudioStrings.de('Arrange'), 'ترتيب'),
         children: <Widget>[
           _cmd(
@@ -4323,6 +4947,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'text-font',
         title: _t('Text font', StudioStrings.de('Text font'), 'خط النص'),
         children: <Widget>[
           StudioCombo<int>(
@@ -4345,6 +4970,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'paragraph',
         title: _t('Paragraph', StudioStrings.de('Paragraph'), 'فقرة'),
         children: <Widget>[
           _icon(
@@ -4398,26 +5024,27 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'arrange',
         title: _t('Arrange', StudioStrings.de('Arrange'), 'ترتيب'),
         children: <Widget>[
           _cmd(
             Icons.arrow_back,
-            '',
+            _t('Move left', 'Nach links', 'نقل لليسار'),
             _canMutate ? () => _slides.nudgeSelected(-127000, 0) : null,
           ),
           _cmd(
             Icons.arrow_forward,
-            '',
+            _t('Move right', 'Nach rechts', 'نقل لليمين'),
             _canMutate ? () => _slides.nudgeSelected(127000, 0) : null,
           ),
           _cmd(
             Icons.arrow_upward,
-            '',
+            _t('Move up', 'Nach oben', 'نقل لأعلى'),
             _canMutate ? () => _slides.nudgeSelected(0, -127000) : null,
           ),
           _cmd(
             Icons.arrow_downward,
-            '',
+            _t('Move down', 'Nach unten', 'نقل لأسفل'),
             _canMutate ? () => _slides.nudgeSelected(0, 127000) : null,
           ),
           _cmd(
@@ -4485,6 +5112,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       ),
       if (_slides.selectedTable != null)
         StudioRibbonGroup(
+          id: 'table',
           title: _t('Table', StudioStrings.de('Table'), 'جدول'),
           children: <Widget>[
             _cmd(
@@ -4541,6 +5169,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _slideInsert() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'shapes',
         title: _t('Shapes', StudioStrings.de('Shapes'), 'أشكال'),
         children: <Widget>[
           _cmd(
@@ -4561,6 +5190,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'illustrations',
         title: _t('Illustrations', StudioStrings.de('Illustrations'), 'رسوم'),
         children: <Widget>[
           _cmd(
@@ -4613,6 +5243,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'table',
         title: _t('Table', StudioStrings.de('Table'), 'جدول'),
         children: <Widget>[
           _cmd(
@@ -4644,6 +5275,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _slideDesign() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'shape',
         title: _t('Shape', StudioStrings.de('Shape'), 'شكل'),
         children: <Widget>[
           _cmd(
@@ -4677,6 +5309,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final PmlSlideTransition current = _slides.slide.transition;
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'preview',
         title: _t('Preview', StudioStrings.de('Preview'), 'معاينة'),
         children: <Widget>[
           _cmd(
@@ -4695,6 +5328,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'effect',
         title: _t('Effect', StudioStrings.de('Effect'), 'التأثير'),
         children: <Widget>[
           for (final PmlTransitionKind kind in PmlMotionCatalog.transitions)
@@ -4707,6 +5341,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'options',
         title: _t('Options', StudioStrings.de('Options'), 'خيارات'),
         children: <Widget>[
           _cmd(
@@ -4763,6 +5398,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final bool hasShape = _slides.selected != null;
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'entrance',
         title: _t('Entrance', StudioStrings.de('Entrance'), 'دخول'),
         children: <Widget>[
           for (final PmlAnimPreset preset in PmlMotionCatalog.entrance)
@@ -4774,6 +5410,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'emphasis',
         title: _t('Emphasis', StudioStrings.de('Emphasis'), 'تأكيد'),
         children: <Widget>[
           for (final PmlAnimPreset preset in PmlMotionCatalog.emphasis)
@@ -4785,6 +5422,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'exit',
         title: _t('Exit', StudioStrings.de('Exit'), 'خروج'),
         children: <Widget>[
           for (final PmlAnimPreset preset in PmlMotionCatalog.exit)
@@ -4796,6 +5434,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'motion',
         title: _t('Motion', StudioStrings.de('Motion'), 'مسار'),
         children: <Widget>[
           for (final PmlAnimPreset preset in PmlMotionCatalog.motion)
@@ -4807,6 +5446,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'timing',
         title: _t('Timing', StudioStrings.de('Timing'), 'توقيت'),
         children: <Widget>[
           _cmd(
@@ -5041,6 +5681,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   List<StudioRibbonGroup> _slideView() {
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'slide-show',
         title: _t('Slide show', StudioStrings.de('Slide show'), 'عرض الشرائح'),
         children: <Widget>[
           _cmd(
@@ -5069,6 +5710,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'stage',
         title: _t('Stage', StudioStrings.de('Stage'), 'مسرح'),
         children: <Widget>[
           _cmd(
@@ -5174,13 +5816,30 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _openFile() async {
-    if (_opening || _isSaving) {
+    if (!_fileActionsAvailable) {
       return;
     }
     try {
+      await StudioWindow.show();
       final PickedOfficeFile? picked = await StudioFiles.open();
       if (picked == null || !mounted) {
         return;
+      }
+      final SuiteApp? target = picked.name.toLowerCase().endsWith('.pdf')
+          ? SuiteApp.pdf
+          : switch (picked.kind) {
+              OpcPackageKind.word => SuiteApp.word,
+              OpcPackageKind.sheet => SuiteApp.excel,
+              OpcPackageKind.slide => SuiteApp.powerpoint,
+              _ => null,
+            };
+      if (target != null) {
+        final SuiteApp previous = _app;
+        _switchApp(target);
+        if (!await _confirmSaveActiveFile() || !mounted) {
+          if (mounted) _switchApp(previous);
+          return;
+        }
       }
       if (picked.name.toLowerCase().endsWith('.pdf')) {
         _switchApp(SuiteApp.pdf);
@@ -5400,19 +6059,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     SuiteApp.pdf => _pdfPath,
   };
 
-  set _activePath(String? value) {
-    switch (_app) {
-      case SuiteApp.word:
-        _wordPath = value;
-      case SuiteApp.excel:
-        _sheetPath = value;
-      case SuiteApp.powerpoint:
-        _slidePath = value;
-      case SuiteApp.pdf:
-        _pdfPath = value;
-    }
-  }
-
   String get _defaultSaveName {
     final String name = _activeName.trim();
     if (name.isNotEmpty) {
@@ -5482,19 +6128,52 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _saveTicker = null;
   }
 
-  Future<void> _saveFile() async {
-    if (_isSaving) {
-      return;
+  void _recordSavedPath(SuiteApp app, String path) {
+    final String name = StudioFiles.nameOf(path);
+    switch (app) {
+      case SuiteApp.word:
+        _wordPath = path;
+        _wordName = name;
+      case SuiteApp.excel:
+        _sheetPath = path;
+        _sheetName = name;
+      case SuiteApp.powerpoint:
+        _slidePath = path;
+        _slideName = name;
+      case SuiteApp.pdf:
+        _pdfPath = path;
+        _pdfName = name;
     }
-    if (_app == SuiteApp.pdf) {
-      await StudioFiles.save(
-        bytes: _pdf.saveBytes(),
-        fileName: _defaultSaveName,
-      );
-      return;
-    }
+  }
+
+  Future<bool> _saveFile({bool saveAs = false}) async {
+    if (!_fileActionsAvailable) return false;
+    final SuiteApp savedApp = _app;
+    final OfficeController? controller = savedApp == SuiteApp.pdf
+        ? null
+        : _active;
+    final String name = _defaultSaveName;
+    final String? existingPath = saveAs ? null : _activePath;
+    final OpcPackageKind kind = _activeKind;
+    setState(() => _savePhase = _SavePhase.picking);
     try {
-      final String name = _defaultSaveName;
+      controller?.commitPendingEdits();
+      final int revision = controller?.contentRevision ?? _pdf.contentRevision;
+      final WmlDocument? word = savedApp == SuiteApp.word
+          ? _word.document
+          : null;
+      final SmlWorkbook? workbook = savedApp == SuiteApp.excel
+          ? _sheet.workbook
+          : null;
+      final PmlPresentation? presentation = savedApp == SuiteApp.powerpoint
+          ? _slides.presentation
+          : null;
+      final PdfFile? pdfFile = savedApp == SuiteApp.pdf ? _pdf.file : null;
+      final Uint8List? pdfBytes = savedApp == SuiteApp.pdf
+          ? await _pdf.saveBytesAsync()
+          : null;
+      if (!mounted) return false;
+
       if (kIsWeb) {
         setState(() {
           _saveHeavy = _activeSaveIsHeavy;
@@ -5503,27 +6182,28 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         });
         _startSaveTicker();
         await WidgetsBinding.instance.endOfFrame;
-        final Uint8List bytes = await _active.saveBytesAsync();
-        if (!mounted) {
-          return;
+        final Uint8List bytes = pdfBytes ?? await controller!.saveBytesAsync();
+        if (!mounted) return false;
+        final bool saved = await StudioFiles.save(bytes: bytes, fileName: name);
+        if (saved && controller?.contentRevision == revision) {
+          controller?.markClean();
         }
-        await StudioFiles.save(bytes: bytes, fileName: name);
-        _active.markClean();
-        return;
+        if (saved &&
+            savedApp == SuiteApp.pdf &&
+            identical(pdfFile, _pdf.file) &&
+            _pdf.contentRevision == revision) {
+          _pdf.markClean();
+        }
+        return saved;
       }
 
-      String? path = _activePath;
+      String? path = existingPath;
       if (path == null) {
         setState(() => _savePhase = _SavePhase.picking);
         path = await StudioFiles.pickSavePath(fileName: name);
-        if (path == null || !mounted) {
-          return;
-        }
+        if (path == null || !mounted) return false;
         path = StudioFiles.withExtension(path, name);
-        _activePath = path;
-        _activeName = StudioFiles.nameOf(path);
       }
-
       setState(() {
         _saveHeavy = _activeSaveIsHeavy;
         _savePhase = _SavePhase.saving;
@@ -5531,27 +6211,47 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       });
       _startSaveTicker();
       await WidgetsBinding.instance.endOfFrame;
-      await StudioFiles.saveOfficeToPath(
-        path: path,
-        kind: _activeKind,
-        word: _app == SuiteApp.word ? _word.document : null,
-        workbook: _app == SuiteApp.excel ? _sheet.workbook : null,
-        presentation: _app == SuiteApp.powerpoint ? _slides.presentation : null,
-      );
-      if (!mounted) {
-        return;
+      if (pdfBytes != null) {
+        await File(path).writeAsBytes(pdfBytes, flush: true);
+      } else {
+        await StudioFiles.saveOfficeToPath(
+          path: path,
+          kind: kind,
+          word: word,
+          workbook: workbook,
+          presentation: presentation,
+        );
       }
-      _active.markClean();
+      if (!mounted) return false;
+      final bool sameDocument = switch (savedApp) {
+        SuiteApp.word => identical(word, _word.document),
+        SuiteApp.excel => identical(workbook, _sheet.workbook),
+        SuiteApp.powerpoint => identical(presentation, _slides.presentation),
+        SuiteApp.pdf => identical(pdfFile, _pdf.file),
+      };
+      if (sameDocument) _recordSavedPath(savedApp, path);
+      final bool unchanged =
+          sameDocument &&
+          (controller != null
+              ? controller.contentRevision == revision
+              : _pdf.contentRevision == revision);
+      if (unchanged) {
+        controller != null ? controller.markClean() : _pdf.markClean();
+      }
       setState(() => _saveProgress = 1);
       await Future<void>.delayed(const Duration(milliseconds: 120));
+      return unchanged;
     } catch (error) {
-      _toast(
-        _t(
-          'Could not save the file.',
-          StudioStrings.de('Could not save the file.'),
-          'تعذر حفظ الملف.',
-        ),
-      );
+      if (mounted) {
+        _toast(
+          _t(
+            'Could not save the file.',
+            StudioStrings.de('Could not save the file.'),
+            'تعذر حفظ الملف.',
+          ),
+        );
+      }
+      return false;
     } finally {
       _stopSaveTicker();
       if (mounted) {
@@ -5565,6 +6265,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _exportPdf() async {
+    if (!_fileActionsAvailable) return;
     try {
       if (_app == SuiteApp.pdf) {
         await StudioFiles.save(bytes: _pdf.saveBytes(), fileName: _pdfName);
@@ -5965,6 +6666,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ? OfficeStrings.arabic
         : OfficeStrings.english;
     return StudioRibbonGroup(
+      id: 'clipboard',
       title: _t('Clipboard', StudioStrings.de('Clipboard'), 'الحافظة'),
       children: <Widget>[
         StudioPasteCmd(
@@ -6290,11 +6992,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   void _insertStudioCitation() {
     _word.insertCitation(
       WmlCitation(
-        tag: 'Quds',
+        tag: 'CrispOffice',
         author: _t(
           'CrispOffice',
           StudioStrings.de('CrispOffice'),
-          'مكتب القدس',
+          'CrispOffice',
         ),
         title: _t(
           'Office Guide',
@@ -6378,33 +7080,31 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _insertWordTable(int rows, int cols) {
-    final double width = cols == 2 ? 180 : 120;
-    _insertBlockAfterActive(
-      WmlTable(
-        grid: <double>[for (int c = 0; c < cols; c++) width],
-        rows: <WmlTableRow>[
-          for (int r = 0; r < rows; r++)
-            WmlTableRow(
-              cells: <WmlTableCell>[
-                for (int c = 0; c < cols; c++)
-                  WmlTableCell(
-                    blocks: <WmlBlock>[
-                      WmlParagraph(
-                        inlines: <WmlInline>[
-                          WmlRun(
-                            text: _arabic
-                                ? 'خلية ${r + 1}×${c + 1}'
-                                : 'Cell ${r + 1}×${c + 1}',
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-              ],
-            ),
-        ],
-      ),
-    );
+    if (!_canMutate || !_word.config.allowsMutation) return;
+    _word.insertTable(rows: rows, columns: cols);
+    final table = _word.tableAtCaret?.table;
+    if (table != null) {
+      // Preserve the preset's dimensions and starter cells on the inserted
+      // object. The controller owns that object's insertion and undo history.
+      table.grid.fillRange(0, table.grid.length, cols == 2 ? 180 : 120);
+      for (var row = 0; row < table.rows.length; row++) {
+        for (var column = 0; column < table.rows[row].cells.length; column++) {
+          final paragraph =
+              table.rows[row].cells[column].blocks.first as WmlParagraph;
+          paragraph.inlines
+            ..clear()
+            ..add(
+              WmlRun(
+                text: _arabic
+                    ? 'خلية ${row + 1}×${column + 1}'
+                    : 'Cell ${row + 1}×${column + 1}',
+              ),
+            );
+        }
+      }
+      _word.relayout();
+      _word.refresh();
+    }
   }
 
   Future<Uint8List> _pictureBytes({required bool fromFile}) async {
@@ -6423,7 +7123,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     final Uint8List bytes = await _pictureBytes(fromFile: fromFile);
-    _insertBlockAfterActive(
+    _insertWordVisualBlock(
       WmlVisual(
         visual: OfficeVisual(
           kind: OfficeVisualKind.picture,
@@ -6439,7 +7139,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   void _insertWordEquation({String id = 'blank'}) {
     final OmmlEquation math = OmmlGallery.byId(id).build();
     _word.insertEquation(math);
-    setState(() => _tab = _RibbonTab.design);
+    setState(() {
+      _tab = _visibleRibbonTabs.contains(_RibbonTab.design)
+          ? _RibbonTab.design
+          : _RibbonTab.home;
+    });
   }
 
   List<StudioRibbonGroup> _wordEquationTools() {
@@ -6448,6 +7152,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         _word.selectedEquation?.math.view ?? OmmlView.professional;
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'tools',
         title: _t('Tools', StudioStrings.de('Tools'), 'أدوات'),
         children: <Widget>[
           _cmd(
@@ -6470,6 +7175,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'symbols',
         title: _t('Symbols', StudioStrings.de('Symbols'), 'رموز'),
         children: <Widget>[
           for (final String symbol in const <String>[
@@ -6495,6 +7201,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ],
       ),
       StudioRibbonGroup(
+        id: 'structures',
         title: _t('Structures', StudioStrings.de('Structures'), 'تراكيب'),
         children: <Widget>[
           _cmd(
@@ -6579,7 +7286,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         kind == OfficeVisualKind.diagramProcess ||
         kind == OfficeVisualKind.diagramCycle ||
         kind == OfficeVisualKind.diagramHierarchy;
-    _insertBlockAfterActive(
+    _insertWordVisualBlock(
       WmlVisual(
         visual: OfficeVisual(
           kind: kind,
@@ -6775,7 +7482,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     setState(() => _showComments = true);
-    _word.insertComment(author: 'CrispOffice', initials: 'QO');
+    _word.insertComment(author: 'CrispOffice', initials: 'CO');
   }
 
   void _setShowComments(bool show) {
@@ -7816,74 +8523,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   void _selectAllDocument() => _word.selectAll();
 
-  void _insertBlockAfterActive(WmlBlock block) {
-    for (final WmlSection section in _word.document.sections) {
-      final int index = _topLevelIndexOf(section.blocks, _activeParagraph);
-      if (index >= 0) {
-        section.blocks.insert(index + 1, block);
-        _word.relayout();
-        if (block is WmlVisual) {
-          _word.selectVisual(block);
-        }
-        if (block is WmlEquation) {
-          _word.selectEquation(block);
-        }
-        _word.refresh();
-        return;
-      }
-    }
-    _word.document.sections.first.blocks.add(block);
-    _word.relayout();
-    if (block is WmlVisual) {
-      _word.selectVisual(block);
-    }
-    if (block is WmlEquation) {
-      _word.selectEquation(block);
-    }
-    _word.refresh();
-  }
-
-  int _topLevelIndexOf(List<WmlBlock> blocks, WmlParagraph para) {
-    for (int i = 0; i < blocks.length; i++) {
-      final WmlBlock current = blocks[i];
-      if (identical(current, para)) {
-        return i;
-      }
-      if (current is WmlToc && WordToc.ownsParagraph(current, para)) {
-        return i;
-      }
-      if (current is WmlTable) {
-        for (final WmlTableRow row in current.rows) {
-          for (final WmlTableCell cell in row.cells) {
-            if (_containsParagraph(cell.blocks, para)) {
-              return i;
-            }
-          }
-        }
-      }
-    }
-    return -1;
-  }
-
-  bool _containsParagraph(List<WmlBlock> blocks, WmlParagraph para) {
-    for (final WmlBlock block in blocks) {
-      if (identical(block, para)) {
-        return true;
-      }
-      if (block is WmlToc && WordToc.ownsParagraph(block, para)) {
-        return true;
-      }
-      if (block is WmlTable) {
-        for (final WmlTableRow row in block.rows) {
-          for (final WmlTableCell cell in row.cells) {
-            if (_containsParagraph(cell.blocks, para)) {
-              return true;
-            }
-          }
-        }
-      }
-    }
-    return false;
+  void _insertWordVisualBlock(WmlVisual block) {
+    if (!_canMutate || !_word.config.allowsMutation) return;
+    _word.insertPicture(block.visual);
+    final inserted = _word.document.visuals
+        .where((visual) => identical(visual.visual, block.visual))
+        .firstOrNull;
+    if (inserted != null) _word.selectVisual(inserted);
   }
 
   void _clearActiveCell() {
@@ -8857,6 +9503,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (visual.isPicture) {
       return <StudioRibbonGroup>[
         StudioRibbonGroup(
+          id: 'picture-format',
           title: _t(
             'Picture format',
             StudioStrings.de('Picture format'),
@@ -8988,6 +9635,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
     return <StudioRibbonGroup>[
       StudioRibbonGroup(
+        id: 'chart-design',
         title: _t(
           'Chart design',
           StudioStrings.de('Chart design'),

@@ -16,7 +16,7 @@ import '../widgets/pw_types.dart';
 Uint8List buildAyatWaAsharPdf({SfntFont? font, SfntFont? fontBold}) {
   final Document doc = Document(
     title: 'آيَاتٌ وَأَشْعَارٌ',
-    author: 'Quds Studio',
+    author: 'CrispOffice',
     font: font,
     fontBold: fontBold,
     theme: const ThemeData(

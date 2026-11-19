@@ -8,7 +8,7 @@ import 'studio_pdf_faces.dart';
 Uint8List studioContentsGuidePdf() {
   final pw.Document doc = pw.Document(
     title: 'Contents guide',
-    author: 'Quds Studio',
+    author: 'CrispOffice',
     font: StudioPdfFaces.tajawal(),
     fontBold: StudioPdfFaces.tajawalBold(),
   );
@@ -86,7 +86,7 @@ Uint8List studioContentsGuidePdf() {
 Uint8List studioArabicContentsPdf() {
   final pw.Document doc = pw.Document(
     title: 'فهرس المحتويات',
-    author: 'Quds Studio',
+    author: 'CrispOffice',
     font: StudioPdfFaces.cairo(),
   );
   doc.addPage(
@@ -96,7 +96,7 @@ Uint8List studioArabicContentsPdf() {
       textDirection: pw.TextDirection.rtl,
       footer: (pw.Context context) => pw.Footer(
         leading: const pw.Text(
-          'مكتب القدس  ·  فهرس',
+          'CrispOffice  ·  فهرس',
           style: pw.TextStyle(fontSize: 8, color: '78716C'),
         ),
         trailing: pw.Text(

@@ -1,0 +1,20 @@
+{
+  "source": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/build/native_assets/linux/native_assets.json",
+  "mapping": {
+    "format-version": [
+      1,
+      0,
+      0
+    ],
+    "native-assets": {
+      "linux_x64": {
+        "package:sqlite3/src/ffi/libsqlite3.g.dart": [
+          "absolute",
+          "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/build/native_assets/linux/libsqlite3.so"
+        ]
+      }
+    }
+  },
+  "library_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+  "production_pubspec_unchanged": true
+}

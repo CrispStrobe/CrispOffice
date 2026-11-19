@@ -4,6 +4,16 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Make Insert commands compact and configurable, save ribbon layout preferences,
+  simplify the title bar, and provide desktop File menus and native macOS window
+  controls. Use CrispOffice for the default reviewer and newly created comments.
+- Route inserted tables, pictures and diagrams through document undo history.
+  Protect New, Open, Close and Quit with save confirmation, keep Save As paths
+  unchanged on cancellation/failure, and preserve edits made during saving.
+- Add PDF save-state revisions and repeatable snapshot encoding so a successful
+  save can mark the document clean without clearing undo or mutating live PDF
+  object identifiers while writing.
+
 - Add native Studio bulk export for all matching archive results and explicit
   resume of an existing export directory. Freeze the selection and provenance,
   verify exact originals, preserve conflicts and report each run's written,
@@ -13,6 +23,7 @@ All notable changes to `quds_office_editor` are documented here.
   files, preserve them unchanged, skip recognized export staging and distinguish
   completed, partial, limited and cancelled outcomes. Generic EML reimport does
   not restore exported manifest provenance, profiles or saved searches.
+
 - Add a native Mail archive with EML/streamed MBOX import, connected-message and
   selected-folder collection, local FTS search and filters, saved searches,
   exact-original EML export, integrity checks and index rebuilding. Include

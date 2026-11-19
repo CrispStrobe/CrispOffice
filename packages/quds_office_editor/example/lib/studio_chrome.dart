@@ -22,6 +22,31 @@ double studioChromeLineHeight(BuildContext context, double fontSize) {
   return height;
 }
 
+/// Ribbon presentation is local to its subtree; dialogs and other workspaces
+/// cannot accidentally change one another's command labels.
+class StudioRibbonStyle extends InheritedWidget {
+  const StudioRibbonStyle({
+    super.key,
+    required super.child,
+    this.compact = true,
+    this.showCommandLabels = true,
+    this.showGroupLabels = false,
+  });
+
+  final bool compact;
+  final bool showCommandLabels;
+  final bool showGroupLabels;
+
+  static StudioRibbonStyle? maybeOf(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<StudioRibbonStyle>();
+
+  @override
+  bool updateShouldNotify(StudioRibbonStyle oldWidget) =>
+      compact != oldWidget.compact ||
+      showCommandLabels != oldWidget.showCommandLabels ||
+      showGroupLabels != oldWidget.showGroupLabels;
+}
+
 /// Compact Office-style command used only in the example host chrome.
 class StudioCmd extends StatelessWidget {
   const StudioCmd({
@@ -32,6 +57,8 @@ class StudioCmd extends StatelessWidget {
     required this.foreground,
     this.onPressed,
     this.selected = false,
+    this.tooltip,
+    this.isMenu = false,
   });
 
   final IconData icon;
@@ -40,38 +67,123 @@ class StudioCmd extends StatelessWidget {
   final Color foreground;
   final VoidCallback? onPressed;
   final bool selected;
+  final String? tooltip;
+  final bool isMenu;
 
   @override
   Widget build(BuildContext context) {
-    final bool enabled = onPressed != null;
-    final Color color = enabled
-        ? (selected ? accent : foreground)
-        : Colors.grey;
-    return Tooltip(
-      message: label,
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(4),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: selected
-                ? accent.withValues(alpha: 0.12)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+    final enabled = onPressed != null;
+    final style = StudioRibbonStyle.maybeOf(context);
+    final compact = style?.compact ?? true;
+    final showLabel = (style?.showCommandLabels ?? true) && label.isNotEmpty;
+    final color = enabled ? (selected ? accent : foreground) : Colors.grey;
+    return Semantics(
+      label: label,
+      button: true,
+      enabled: enabled,
+      selected: selected,
+      onTap: onPressed,
+      excludeSemantics: true,
+      child: Tooltip(
+        message: tooltip ?? label,
+        excludeFromSemantics: true,
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(5),
+          child: Container(
+            width: showLabel
+                ? (compact ? 68 : 86)
+                : (compact ? 36 : 44) + (isMenu ? 12 : 0),
+            constraints: BoxConstraints(minHeight: compact ? 32 : 40),
+            padding: EdgeInsets.symmetric(
+              horizontal: compact ? 4 : 6,
+              vertical: 4,
+            ),
+            decoration: BoxDecoration(
+              color: selected
+                  ? accent.withValues(alpha: 0.12)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(5),
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(icon, size: 18, color: enabled ? accent : Colors.grey),
-                if (label.isNotEmpty)
-                  Text(label, style: TextStyle(fontSize: 10, color: color)),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      icon,
+                      size: compact ? 18 : 21,
+                      color: enabled ? accent : Colors.grey,
+                    ),
+                    if (isMenu)
+                      Icon(Icons.arrow_drop_down, size: 14, color: color),
+                  ],
+                ),
+                if (showLabel)
+                  Text(
+                    label,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 10, color: color),
+                  ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// A compact ribbon entry that reveals full, readable commands on demand.
+class StudioCommandMenu extends StatelessWidget {
+  const StudioCommandMenu({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.accent,
+    required this.foreground,
+    required this.commands,
+  });
+
+  final IconData icon;
+  final String label;
+  final Color accent;
+  final Color foreground;
+  final List<StudioCmd> commands;
+
+  @override
+  Widget build(BuildContext context) {
+    final firstEnabled = commands.indexWhere(
+      (command) => command.onPressed != null,
+    );
+    return MenuAnchor(
+      // Switching ribbon controls should dismiss this menu and perform the
+      // clicked action in the same gesture.
+      consumeOutsideTap: false,
+      menuChildren: <Widget>[
+        for (var index = 0; index < commands.length; index++)
+          MenuItemButton(
+            // Move keyboard focus into the submenu so its Escape and arrow-key
+            // shortcuts take precedence over document/workspace shortcuts.
+            autofocus: index == firstEnabled,
+            leadingIcon: Icon(commands[index].icon, size: 19),
+            onPressed: commands[index].onPressed,
+            child: Text(commands[index].label),
+          ),
+      ],
+      builder: (context, controller, child) => StudioCmd(
+        icon: icon,
+        label: label,
+        accent: accent,
+        foreground: foreground,
+        isMenu: true,
+        onPressed: commands.any((command) => command.onPressed != null)
+            ? () => controller.isOpen ? controller.close() : controller.open()
+            : null,
       ),
     );
   }
@@ -99,25 +211,37 @@ class StudioIconCmd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool enabled = onPressed != null;
-    return Tooltip(
-      message: tooltip,
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(4),
-        child: Container(
-          width: 32,
-          height: 32,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: selected
-                ? accent.withValues(alpha: 0.14)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Icon(
-            icon,
-            size: 18,
-            color: enabled ? (selected ? accent : foreground) : Colors.grey,
+    final side = StudioRibbonStyle.maybeOf(context)?.compact == false
+        ? 40.0
+        : 32.0;
+    return Semantics(
+      label: tooltip,
+      button: true,
+      enabled: enabled,
+      selected: selected,
+      onTap: onPressed,
+      excludeSemantics: true,
+      child: Tooltip(
+        message: tooltip,
+        excludeFromSemantics: true,
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(4),
+          child: Container(
+            width: side,
+            height: side,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: selected
+                  ? accent.withValues(alpha: 0.14)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Icon(
+              icon,
+              size: 18,
+              color: enabled ? (selected ? accent : foreground) : Colors.grey,
+            ),
           ),
         ),
       ),
@@ -176,13 +300,15 @@ class StudioPasteCmd extends StatelessWidget {
                     size: 18,
                     color: enabled ? accent : Colors.grey,
                   ),
-                  Text(
-                    pasteLabel,
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: enabled ? foreground : Colors.grey,
+                  if (StudioRibbonStyle.maybeOf(context)?.showCommandLabels ??
+                      true)
+                    Text(
+                      pasteLabel,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: enabled ? foreground : Colors.grey,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
@@ -317,28 +443,34 @@ class StudioCombo<T> extends StatelessWidget {
 class StudioRibbonGroup extends StatelessWidget {
   const StudioRibbonGroup({
     super.key,
+    required this.id,
     required this.title,
     required this.children,
   });
 
+  final String id;
   final String title;
   final List<Widget> children;
 
-  /// Section captions such as Clipboard and Quick Insert are opt-in chrome.
-  static bool showTitles = false;
-
   @override
   Widget build(BuildContext context) {
+    final style = StudioRibbonStyle.maybeOf(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
+      key: ValueKey('ribbon-group-$id'),
+      padding: EdgeInsets.symmetric(
+        horizontal: style?.compact == false ? 6 : 3,
+      ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Expanded(child: Row(children: children)),
-          if (showTitles)
+          if (style?.showGroupLabels ?? false)
             Text(
               title,
-              style: const TextStyle(fontSize: 9, color: Color(0xFF888888)),
+              style: TextStyle(
+                fontSize: 9,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
             ),
         ],
       ),
@@ -346,31 +478,159 @@ class StudioRibbonGroup extends StatelessWidget {
   }
 }
 
-class StudioRibbonStrip extends StatelessWidget {
-  const StudioRibbonStrip({super.key, required this.groups});
+class StudioRibbonStrip extends StatefulWidget {
+  const StudioRibbonStrip({
+    super.key,
+    required this.groups,
+    this.previousTooltip = 'Previous commands',
+    this.nextTooltip = 'More commands',
+  });
 
   final List<StudioRibbonGroup> groups;
+  final String previousTooltip;
+  final String nextTooltip;
 
-  /// Leaves space for the icon, command label and group title at full scale.
-  static double preferredHeight(BuildContext context) =>
-      (30 +
-              studioChromeLineHeight(context, 10) +
-              studioChromeLineHeight(context, 9))
-          .ceilToDouble()
-          .clamp(56.0, double.infinity)
-          .toDouble();
+  static double preferredHeight(
+    BuildContext context, {
+    bool compact = true,
+    bool showCommandLabels = true,
+    bool showGroupLabels = false,
+  }) {
+    final iconHeight = compact ? 18.0 : 21.0;
+    final commandHeight =
+        (iconHeight +
+                8 +
+                (showCommandLabels
+                    ? studioChromeLineHeight(context, 10) * 2
+                    : 0))
+            .clamp(compact ? 32.0 : 40.0, double.infinity);
+    // Includes both command padding and the scrollbar's reserved bottom space.
+    return (commandHeight +
+            14 +
+            (showGroupLabels ? studioChromeLineHeight(context, 9) : 0))
+        .ceilToDouble()
+        .clamp(compact ? 64.0 : 78.0, double.infinity)
+        .toDouble();
+  }
+
+  @override
+  State<StudioRibbonStrip> createState() => _StudioRibbonStripState();
+}
+
+class _StudioRibbonStripState extends State<StudioRibbonStrip> {
+  final ScrollController _scroll = ScrollController();
+  bool _back = false;
+  bool _forward = false;
+  bool _scheduled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scroll.addListener(_update);
+    _scheduleUpdate();
+  }
+
+  @override
+  void didUpdateWidget(StudioRibbonStrip oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _scheduleUpdate();
+  }
+
+  void _scheduleUpdate() {
+    if (_scheduled) return;
+    _scheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scheduled = false;
+      if (mounted) _update();
+    });
+  }
+
+  void _update() {
+    if (!_scroll.hasClients || !_scroll.position.hasContentDimensions) return;
+    final back = _scroll.position.extentBefore > 1;
+    final forward = _scroll.position.extentAfter > 1;
+    if (back != _back || forward != _forward) {
+      setState(() {
+        _back = back;
+        _forward = forward;
+      });
+    }
+  }
+
+  void _move(int direction) {
+    final position = _scroll.position;
+    _scroll.animateTo(
+      (position.pixels + direction * position.viewportDimension * 0.75).clamp(
+        position.minScrollExtent,
+        position.maxScrollExtent,
+      ),
+      duration: const Duration(milliseconds: 180),
+      curve: Curves.easeOut,
+    );
+  }
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+    final rtl = Directionality.of(context) == TextDirection.rtl;
+    return Row(
       children: <Widget>[
-        for (int i = 0; i < groups.length; i++) ...<Widget>[
-          groups[i],
-          if (i < groups.length - 1)
-            const VerticalDivider(width: 16, indent: 4, endIndent: 4),
-        ],
+        if (_back || _forward)
+          SizedBox(
+            width: 28,
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              tooltip: widget.previousTooltip,
+              onPressed: _back ? () => _move(-1) : null,
+              icon: Icon(
+                rtl ? Icons.chevron_right : Icons.chevron_left,
+                size: 18,
+              ),
+            ),
+          ),
+        Expanded(
+          child: NotificationListener<ScrollMetricsNotification>(
+            onNotification: (_) {
+              _scheduleUpdate();
+              return false;
+            },
+            child: Scrollbar(
+              controller: _scroll,
+              thumbVisibility: true,
+              child: ListView(
+                controller: _scroll,
+                primary: false,
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.fromLTRB(6, 4, 6, 10),
+                children: <Widget>[
+                  for (int i = 0; i < widget.groups.length; i++) ...<Widget>[
+                    widget.groups[i],
+                    if (i < widget.groups.length - 1)
+                      const VerticalDivider(width: 10, indent: 4, endIndent: 4),
+                  ],
+                ],
+              ),
+            ),
+          ),
+        ),
+        if (_back || _forward)
+          SizedBox(
+            width: 28,
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              tooltip: widget.nextTooltip,
+              onPressed: _forward ? () => _move(1) : null,
+              icon: Icon(
+                rtl ? Icons.chevron_left : Icons.chevron_right,
+                size: 18,
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -433,31 +693,29 @@ class StudioAppSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
-      child: Material(
-        color: selected
-            ? Colors.white.withValues(alpha: 0.22)
-            : Colors.transparent,
-        borderRadius: BorderRadius.circular(6),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(6),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
-            child: Row(
-              children: <Widget>[
-                Icon(icon, size: 15, color: Colors.white),
-                const SizedBox(width: 6),
-                Text(
-                  label,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: selected ? FontWeight.w700 : FontWeight.w400,
-                  ),
-                ),
-              ],
+    return Semantics(
+      label: label,
+      selected: selected,
+      button: true,
+      onTap: onTap,
+      excludeSemantics: true,
+      child: Tooltip(
+        message: label,
+        excludeFromSemantics: true,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
+          child: Material(
+            color: selected
+                ? Colors.white.withValues(alpha: 0.22)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(6),
+            child: InkWell(
+              onTap: onTap,
+              borderRadius: BorderRadius.circular(6),
+              child: SizedBox(
+                width: 34,
+                child: Icon(icon, size: 17, color: Colors.white),
+              ),
             ),
           ),
         ),

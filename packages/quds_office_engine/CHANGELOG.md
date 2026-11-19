@@ -4,6 +4,17 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend `vba-excel` with conditional `Do`/`Loop` and `While`/`Wend` loops,
+  `Exit Do`, and ordered `Select Case` alternatives, ranges, and comparisons.
+  Keep source evaluation within the existing shared budgets and execute nested
+  blocks with explicit continuations for portable maximum-depth behavior.
+- Add a classification report and compiler, boundary, CLI, MCP, atomicity,
+  and cold JavaScript depth regressions for the new control flow.
+
+- Use CrispOffice for new revision/comment authors, document producer metadata,
+  PDF titles, Zotero processor identification and built-in samples. Preserve
+  explicit authors and attribution already stored in imported documents.
+
 - Add the `vba-excel` language compiler for an explicitly invoked Excel VBA
   subset. Lower supported scalar expressions, variables, worksheet/range
   bindings, conditions, and bounded loops into the existing native macro plan,

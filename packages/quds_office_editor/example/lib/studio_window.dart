@@ -1,7 +1,8 @@
-import 'dart:io';
+import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:window_manager/window_manager.dart';
 
 /// Desktop window chrome for the example host (Office-style custom frame).
@@ -12,11 +13,26 @@ class StudioWindow {
   static var maximized = false;
   static var fullscreen = false;
 
+  static const MethodChannel _channel = MethodChannel('crispoffice/window');
+
+  static bool get isMacOS =>
+      !kIsWeb && defaultTargetPlatform == TargetPlatform.macOS;
+
+  // AppKit draws these even when the window-manager plugin cannot initialize.
+  static bool get usesNativeTrafficLights => isMacOS;
+
+  static bool get usesCaptionButtons => supported && !isMacOS;
+
   static bool get isDesktop {
     if (kIsWeb) {
       return false;
     }
-    return Platform.isLinux || Platform.isWindows || Platform.isMacOS;
+    return switch (defaultTargetPlatform) {
+      TargetPlatform.linux ||
+      TargetPlatform.windows ||
+      TargetPlatform.macOS => true,
+      _ => false,
+    };
   }
 
   static Future<void> bootstrap({
@@ -36,19 +52,21 @@ class StudioWindow {
         backgroundColor: Color(0x00000000),
         skipTaskbar: false,
         titleBarStyle: TitleBarStyle.hidden,
-        windowButtonVisibility: false,
+        windowButtonVisibility: isMacOS,
         title: title,
       );
       await windowManager.waitUntilReadyToShow(options, () async {
         await windowManager.setTitleBarStyle(
           TitleBarStyle.hidden,
-          windowButtonVisibility: false,
+          windowButtonVisibility: isMacOS,
         );
-        await windowManager.setPreventClose(false);
+        // The host checks every open workspace for unsaved edits first.
+        await windowManager.setPreventClose(true);
         await windowManager.show();
         await windowManager.focus();
       });
       maximized = await windowManager.isMaximized();
+      fullscreen = await windowManager.isFullScreen();
       supported = true;
     } catch (_) {
       supported = false;
@@ -82,6 +100,14 @@ class StudioWindow {
     } catch (_) {}
   }
 
+  static Future<void> show() async {
+    if (!supported) return;
+    try {
+      await windowManager.show();
+      await windowManager.focus();
+    } catch (_) {}
+  }
+
   static Future<void> toggleMaximize() async {
     if (!supported) {
       return;
@@ -104,6 +130,17 @@ class StudioWindow {
     try {
       await windowManager.close();
     } catch (_) {}
+  }
+
+  static Future<void> _closeApproved() async {
+    if (!supported) return;
+    await windowManager.setPreventClose(false);
+    try {
+      await windowManager.close();
+    } finally {
+      // macOS keeps the app and window controller alive for Dock reopen.
+      if (isMacOS) await windowManager.setPreventClose(true);
+    }
   }
 
   /// OS-level fullscreen (covers the monitor, not just the app window).
@@ -136,10 +173,12 @@ class StudioWindowScope extends StatefulWidget {
     super.key,
     required this.child,
     required this.onChanged,
+    required this.onCloseRequested,
   });
 
   final Widget child;
   final VoidCallback onChanged;
+  final Future<bool> Function() onCloseRequested;
 
   @override
   State<StudioWindowScope> createState() => _StudioWindowScopeState();
@@ -147,20 +186,58 @@ class StudioWindowScope extends StatefulWidget {
 
 class _StudioWindowScopeState extends State<StudioWindowScope>
     with WindowListener {
+  bool _handlingClose = false;
+  bool _closingApproved = false;
+  bool _listening = false;
+
   @override
   void initState() {
     super.initState();
     if (StudioWindow.supported) {
       windowManager.addListener(this);
+      _listening = true;
+    }
+    if (StudioWindow.isMacOS) {
+      StudioWindow._channel.setMethodCallHandler((MethodCall call) async {
+        if (call.method == 'confirmQuit') return _confirmClose();
+        throw MissingPluginException('Unknown window request: ${call.method}');
+      });
     }
   }
 
   @override
   void dispose() {
-    if (StudioWindow.supported) {
+    if (_listening) {
       windowManager.removeListener(this);
     }
+    if (StudioWindow.isMacOS) StudioWindow._channel.setMethodCallHandler(null);
     super.dispose();
+  }
+
+  Future<bool> _confirmClose() async {
+    if (_handlingClose || !mounted) return false;
+    _handlingClose = true;
+    try {
+      return await widget.onCloseRequested();
+    } finally {
+      _handlingClose = false;
+    }
+  }
+
+  @override
+  void onWindowClose() {
+    if (!_closingApproved) unawaited(_closeWindow());
+  }
+
+  Future<void> _closeWindow() async {
+    if (await _confirmClose() && mounted) {
+      _closingApproved = true;
+      try {
+        await StudioWindow._closeApproved();
+      } finally {
+        _closingApproved = false;
+      }
+    }
   }
 
   @override

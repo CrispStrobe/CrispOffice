@@ -141,6 +141,12 @@ Finder _command(String label, {bool skipOffstage = true}) =>
     );
 
 Future<void> _tapCommand(WidgetTester tester, String label) async {
+  if (label == 'Add Zotero note' || label == 'Add Zotero annotation') {
+    await _tapCommand(tester, 'Zotero tools');
+    await tester.tap(find.widgetWithText(MenuItemButton, label));
+    await _frames(tester);
+    return;
+  }
   final finder = _command(label);
   final ribbon = find.descendant(
     of: find.byType(StudioRibbonStrip),
@@ -409,7 +415,7 @@ void main() {
           .widget<StudioCmd>(_command('Add/Edit citation'))
           .onPressed!;
       final refresh = _binding(tester, LogicalKeyboardKey.keyR);
-      await tester.tap(find.text('File').first);
+      await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
       await _frames(tester);
       await _tapCommand(tester, 'View');
       expect(controller.config.allowsMutation, isFalse);
@@ -454,7 +460,7 @@ void main() {
     final citation = _binding(tester, LogicalKeyboardKey.keyC);
     final refresh = _binding(tester, LogicalKeyboardKey.keyR);
     for (final app in ['Spreadsheets', 'Presentations', 'PDF']) {
-      await tester.tap(find.text(app).first);
+      await tester.tap(find.byTooltip(app).first);
       await _frames(tester);
       await _shortcut(tester, LogicalKeyboardKey.keyR);
       citation();

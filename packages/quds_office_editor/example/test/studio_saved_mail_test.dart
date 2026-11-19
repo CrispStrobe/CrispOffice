@@ -448,10 +448,10 @@ void main() {
       'PDF',
       'E-Mail',
     ]);
-    await tester.tap(find.text('Tabellen'));
+    await tester.tap(find.byTooltip('Tabellen'));
     await _pump(tester);
     final sheet = tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor));
-    await tester.tap(find.text('E-Mail'));
+    await tester.tap(find.byTooltip('E-Mail'));
     await _pump(tester);
     expect(find.byType(StudioMailDialog), findsOneWidget);
     await tester.tap(find.byTooltip('Gespeicherte Nachrichten'));

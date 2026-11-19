@@ -22,10 +22,12 @@ The engine now supports [native macros and MCP](docs/MACROS.md): record and repl
 parameterized calls across 67 shared Word, spreadsheet, and presentation
 operations, with complete-output publication and a local MCP stdio bridge.
 The bundled [Excel VBA subset](docs/VBA_MACROS.md) compiles explicitly selected
-`.bas` source into the same bounded command plan, including variables, loops,
-worksheet/range bindings, cell writes, formulas, and formatting. VBA projects
-remain inert and preserved; full VBA execution and macro ribbon UI are not
-included.
+`.bas` source into the same bounded command plan, including reusable procedures
+and scalar functions, `For`/`Do`/`While` loops, `Select Case`, worksheet/range
+bindings, cell writes, formulas, and formatting. Source logic uses values known
+during compilation; worksheet formulas run against the detached workbook.
+VBA projects remain inert and preserved; full VBA execution and macro ribbon
+UI are not included.
 
 Word now includes an [offline English/German thesaurus](docs/roadmaps/thesaurus/README.md)
 with full OEWN 2025 and OpenThesaurus packs, alternatives grouped by meaning,

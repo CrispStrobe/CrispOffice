@@ -1285,7 +1285,7 @@ const List<(String, String, String, int, int)> _commercialLines =
     <(String, String, String, int, int)>[
       (
         'QOS-ENT',
-        'Quds Office Suite — Enterprise license (per seat)',
+        'CrispOffice — Enterprise license (per seat)',
         'حزمة القدس المكتبية — ترخيص مؤسسات (لكل مستخدم)',
         25,
         180,
@@ -2653,7 +2653,7 @@ Map<String, Object?> _certificateData(bool ar) {
       'department': t('Product Development', 'إدارة تطوير المنتجات'),
     },
     'reason': t(
-      'leading the successful launch of the Quds Report Studio',
+      'leading the successful launch of the CrispOffice Reports',
       'قيادة الإطلاق الناجح لاستوديو القدس للتقارير',
     ),
     'date': DateTime(2026, 10, 10),

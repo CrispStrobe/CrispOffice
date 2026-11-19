@@ -1,0 +1,17 @@
+/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8293
+            _this.values.$indexSet(0, t11.toLowerCase(), _this._convert$3(_this.symbols.$index(0, t11.toLowerCase()).type, value, t10));
+                                                               ^
+
+RangeError: Maximum call stack size exceeded
+    at _Evaluator._execute$1 (/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8293:64)
+    at _Evaluator._execute$1 (/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8347:26)
+    at _Evaluator._execute$1 (/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8414:31)
+    at _Evaluator._execute$1 (/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8398:27)
+    at _Evaluator._execute$1 (/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8398:27)
+    at _Evaluator._execute$1 (/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8347:26)
+    at _Evaluator._execute$1 (/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8414:31)
+    at _Evaluator._execute$1 (/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8398:27)
+    at _Evaluator._execute$1 (/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8398:27)
+    at _Evaluator._execute$1 (/workspace/scratch/e9fb10bfe870/toolchains/review/control_flow_probe.js:8347:26)
+
+Node.js v24.22.3
