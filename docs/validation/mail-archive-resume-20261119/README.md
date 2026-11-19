@@ -29,6 +29,7 @@ The exact published/merged commit and final remote verification are recorded in
 requires the accepted source inputs to match the candidate's Git blobs and
 permits only validation-document changes after the accepted source.
 
+- [Published source verification](publication-verification.json)
 - [Combined acceptance receipt](acceptance.json)
 - [Independent raw-event and identity audit](independent-audit.json)
 - [Mail acceptance receipt](final/receipt.json)

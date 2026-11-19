@@ -2,7 +2,7 @@
   "branch": "codex/mail-archive-resume-20261119",
   "pull_request": 212,
   "through_source_freeze": "71053bf61521e093903d55cba890ef4beee039e1",
-  "checkpoint_count": 14,
+  "checkpoint_count": 15,
   "checkpoints": [
     {
       "checkpoint": 1,
@@ -164,6 +164,17 @@
         "71053bf61521e093903d55cba890ef4beee039e1"
       ],
       "message": "Preserve fresh mail acceptance on the final reconciled source [skip ci]",
+      "publication": "non-forced GitHub ref update with exact expected previous head",
+      "in_final_source_history": true
+    },
+    {
+      "checkpoint": 15,
+      "commit": "3d41aa221a2ea58ea9afa571f721b3b1ecacbe76",
+      "tree": "5e41ad6ed4ee4c239c1d81b082bb321bdf74a0f1",
+      "parents": [
+        "906b8bc90ea352f03dfdab5f9bc50f3aafc359de"
+      ],
+      "message": "Publish independently audited 2,243-case final acceptance and reconciliation [skip ci]",
       "publication": "non-forced GitHub ref update with exact expected previous head",
       "in_final_source_history": true
     }
