@@ -36,6 +36,8 @@ void main() {
     );
     await tester.tap(find.text('Show mail'));
     await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Saved messages'));
+    await tester.pumpAndSettle();
     final MailReaderController controller = tester
         .widget<MailMessageView>(find.byType(MailMessageView))
         .controller;

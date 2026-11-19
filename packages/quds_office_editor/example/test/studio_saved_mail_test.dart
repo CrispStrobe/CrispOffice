@@ -114,6 +114,9 @@ Future<void> _openDialog(WidgetTester tester) async {
   await tester.tap(find.text('Launch Mail'));
   await _pump(tester);
   expect(find.byType(StudioMailDialog), findsOneWidget);
+  expect(find.byType(MailMessageView), findsNothing);
+  await tester.tap(find.byTooltip('Saved messages'));
+  await _pump(tester);
 }
 
 void main() {
@@ -130,6 +133,7 @@ void main() {
     await _openDialog(tester);
     final initial = _reader(tester);
     expect(initial.mode, MailReaderMode.full);
+    expect(initial.decodedText, contains('local, read-only message.'));
     await tester.tap(find.text('Compact'));
     await _pump(tester);
     final compact = _reader(tester);
@@ -152,6 +156,88 @@ void main() {
     expect(opened.isDisposed, isTrue);
     expect(find.byType(StudioMailDialog), findsNothing);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'saved EML keeps exact octets across modes and account navigation',
+    (tester) async {
+      await _openDialog(tester);
+      final bytes = Uint8List.fromList(<int>[
+        ...ascii.encode(
+          'Subject: Exact source\r\n'
+          'Content-Type: text/plain; charset=iso-8859-1\r\n'
+          'Content-Transfer-Encoding: 8bit\r\n\r\n',
+        ),
+        0x43,
+        0x61,
+        0x66,
+        0xe9,
+        0x0d,
+        0x0a,
+      ]);
+      final expected = Uint8List.fromList(bytes);
+      await tester.tap(find.text('Open message'));
+      picker.result.complete(
+        FilePickerResult(<PlatformFile>[
+          PlatformFile(name: 'Exact.eml', size: bytes.length, bytes: bytes),
+        ]),
+      );
+      await _pump(tester);
+      final full = _reader(tester);
+      expect(full.result.original!.bytes, orderedEquals(expected));
+      expect(full.decodedText, contains('Café'));
+      bytes.fillRange(0, bytes.length, 0);
+      expect(full.result.original!.bytes, orderedEquals(expected));
+
+      await tester.tap(find.text('Compact'));
+      await _pump(tester);
+      final compact = _reader(tester);
+      expect(full.isDisposed, isTrue);
+      expect(compact.result.original!.bytes, orderedEquals(expected));
+      await tester.tap(find.byTooltip('Mail accounts'));
+      await _pump(tester);
+      expect(find.byType(MailMessageView), findsNothing);
+      expect(find.widgetWithText(FilledButton, 'Connect'), findsOneWidget);
+      await tester.tap(find.byTooltip('Saved messages'));
+      await _pump(tester);
+      expect(_reader(tester), same(compact));
+      expect(compact.result.original!.bytes, orderedEquals(expected));
+      await tester.tap(find.byTooltip('Close'));
+      await _pump(tester);
+      expect(compact.isDisposed, isTrue);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('saved message picker failures retain the current reader', (
+    tester,
+  ) async {
+    await _openDialog(tester);
+    final initial = _reader(tester);
+    await tester.tap(find.text('Open message'));
+    picker.result.completeError(StateError('private path must not be shown'));
+    await _pump(tester);
+    expect(_reader(tester), same(initial));
+    expect(find.text('The message could not be opened.'), findsOneWidget);
+    expect(find.textContaining('private path'), findsNothing);
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.byTooltip('Close'));
+    await _pump(tester);
+  });
+
+  testWidgets('saved reader toolbar fits a narrow enlarged-text window', (
+    tester,
+  ) async {
+    await _openDialog(tester);
+    await tester.binding.setSurfaceSize(const Size(390, 844));
+    tester.platformDispatcher.textScaleFactorTestValue = 1.5;
+    addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+    await _pump(tester);
+    expect(find.text('Open message'), findsOneWidget);
+    expect(find.text('Compact'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.byTooltip('Close'));
+    await _pump(tester);
   });
 
   for (final emptyResult in <bool>[false, true]) {
@@ -267,6 +353,8 @@ void main() {
     await tester.tap(find.text('E-Mail'));
     await _pump(tester);
     expect(find.byType(StudioMailDialog), findsOneWidget);
+    await tester.tap(find.byTooltip('Gespeicherte Nachrichten'));
+    await _pump(tester);
     expect(find.text('Nachricht öffnen'), findsOneWidget);
     expect(find.text('Vollständig'), findsOneWidget);
     expect(find.text('Kompakt'), findsOneWidget);
