@@ -3,7 +3,7 @@
     "git",
     "diff",
     "--check",
-    "2170791c9250d72c9df31a065408365f9b50abaa",
+    "2170791c",
     "HEAD",
     "--",
     "packages",
@@ -15,7 +15,5 @@
     "pubspec.lock"
   ],
   "exitCode": 0,
-  "output": "",
-  "scope": "Product source, tests, behavior docs and incoming workflow/docs/lock; raw validation artifacts excluded",
-  "rawEvidenceNote": "Full evidence diff check reports retained context-space lines in .diff files and blank-line gaps in exact AST-adapted test copies. These bytes are retained to match execution and evidence hashes, not normalized."
+  "scope": "Product changes; original validation artifact whitespace retained"
 }

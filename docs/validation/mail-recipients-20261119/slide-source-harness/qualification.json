@@ -1,7 +1,7 @@
 {
   "scope": "Fifteen existing repository test declarations; only the engine barrel import is replaced with direct file imports. Test assertions and all production sources are unchanged. No mocks or copied production implementation.",
-  "baselineCommit": "a0f27b2f61d332ff834d4bda59dadccdad020021",
-  "uncommittedIncomingRichTextCommit": "780422316b4e37989e01ac871dd2956fbd2c8908",
+  "baselineCommit": "2a920225633c782d2a941518ca2812e97ba40184",
+  "incomingIntegrationCommit": "435bc212401db13efa56483ac852e4bc25bcc5d2",
   "tests": [
     {
       "original": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
@@ -56,7 +56,7 @@
     "packages/quds_office_engine/lib/src/slide/anim/pml_motion.dart": "45f8fca83b6eb1a403d3d8f4387fc96af60b960034bf1232bc9bc41acb8063a1",
     "packages/quds_office_engine/lib/src/slide/anim/pml_motion_io.dart": "c651ee0235ed5c96b47398ac86fa5ba8f414aad1bc2ae8066752de01af42e88c",
     "packages/quds_office_engine/lib/src/slide/model/pml_arrange.dart": "55b511cf38d76de917fcbde0d80990a2e5eb99f7caf80d5c9c51da48a05948b7",
-    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "465a0ceab3d2821232b11c5a4ff2131358c968b4b0617fc6619ead29ee11dfe4",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "32540cbab475fee5f80145439b8b868ebd7f567a9727f92bb652fc1b9203880d",
     "packages/quds_office_engine/lib/src/slide/serial/slide_section_io.dart": "c00aeed36b9a30c1d7a50b9b831d368c7cf07475c757e371b9bed10f424df7bd",
     "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "29c08a253201a2af73717a20db5810fcdb2087608f46aa8cbe3203a1e0abf81b",
     "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "db77f574e5534662c88d97b7bfcccb597b7bd72074f51826665213dd5947665e",
@@ -69,7 +69,7 @@
     "packages/quds_office_engine/lib/src/xml/xml_reader.dart": "1a41c5f8e7b9c90fc9bd1759ca86f729cb28a8398b7833eff92b8a68c96e98c3",
     "packages/quds_office_engine/lib/src/xml/xml_writer.dart": "8bb95958c14001e6c7f51627a5c1f28f34c9a2ff3a337a64dcb9e79828bd478b"
   },
-  "sourceGraphSha256": "9a7ed4865e9037cfba3a3fa7e8d8ef965ccecd2d8ab841821c17d9f438ed26bf",
+  "sourceGraphSha256": "06eb55af0188f6d494589ec89258bdf13a2d198a96e7953f00279961e2a49edf",
   "sourceFileCount": 45,
   "externalProductionImports": [
     "package:crypto/crypto.dart"
@@ -78,7 +78,7 @@
   "cryptoVersion": "3.0.7 (cached harness; full workspace lock has 3.0.8)",
   "runtime": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
   "packageConfigSha256": "92694bc8b7ee55d43eea40b21875e767cd559381a8a01bce080f423996ba4434",
-  "reproductionScriptSha256": "416f3d4211be05d60383072ef0d7f7f43c8b6b4e4bfcaf38420dc62b4dd57ace",
+  "reproductionScriptSha256": "0ed5e46ec5f8b9a5133181c469fd3c601a46b820854d86772f35630320900526",
   "command": [
     "/workspace/scratch/32e3793609d8/runtime/flutter/bin/cache/dart-sdk/bin/dart",
     "--packages=/workspace/scratch/32e3793609d8/runtime/core-validation/.dart_tool/package_config.json",
@@ -89,7 +89,7 @@
     "expanded"
   ],
   "commandWorkingDirectory": "/workspace/scratch/32e3793609d8/runtime/core-validation",
-  "formatQualification": "Incoming rich-text source already formatted; incoming explicit-style test normalized by Dart formatter. Lint configuration unavailable because package:lints/recommended.yaml cannot resolve.",
+  "formatQualification": "Final model, controller and dark-slide test files pass Dart format with zero changes. Lint configuration remains unavailable because lints/flutter_lints cannot resolve.",
   "limitations": [
     "This executes the slide import/model and explicit-style serialization tests only. It does not execute MIME/mail, PDF, Flutter widgets, or the full engine barrel.",
     "The cached crypto version differs from the workspace lock; this is not a full workspace dependency qualification.",
@@ -100,7 +100,7 @@
   "result": "passed",
   "exitCode": 0,
   "passedTests": 15,
-  "completedAtUtc": "2026-11-19T21:25:25.464657+00:00",
+  "completedAtUtc": "2026-11-19T21:38:52.293580+00:00",
   "sourceHashVerificationAfterExecution": {
     "verified": 45,
     "changed": []

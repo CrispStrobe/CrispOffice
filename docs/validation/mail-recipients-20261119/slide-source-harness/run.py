@@ -100,7 +100,7 @@ command = [
 receipt = {
     "scope": "Fifteen existing repository test declarations; only the engine barrel import is replaced with direct file imports. Test assertions and all production sources are unchanged. No mocks or copied production implementation.",
     "baselineCommit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip(),
-    "uncommittedIncomingRichTextCommit": "780422316b4e37989e01ac871dd2956fbd2c8908",
+    "incomingIntegrationCommit": "435bc212401db13efa56483ac852e4bc25bcc5d2",
     "tests": tests,
     "sourceHashes": source_hashes,
     "sourceGraphSha256": source_graph_sha,
@@ -113,7 +113,7 @@ receipt = {
     "reproductionScriptSha256": sha(Path(__file__)),
     "command": command,
     "commandWorkingDirectory": str(args.package_config.resolve().parent.parent),
-    "formatQualification": "Incoming rich-text source already formatted; incoming explicit-style test normalized by Dart formatter. Lint configuration unavailable because package:lints/recommended.yaml cannot resolve.",
+    "formatQualification": "Final model, controller and dark-slide test files pass Dart format with zero changes. Lint configuration remains unavailable because lints/flutter_lints cannot resolve.",
     "limitations": [
         "This executes the slide import/model and explicit-style serialization tests only. It does not execute MIME/mail, PDF, Flutter widgets, or the full engine barrel.",
         "The cached crypto version differs from the workspace lock; this is not a full workspace dependency qualification.",

@@ -1,9 +1,15 @@
 {
-  "recordedAtUtc": "2026-11-19T21:33:04.211676+00:00",
-  "productCheckpoint": "3a7d8e2dc097f4c235d956dfa4f392f02699b9d7",
-  "productTree": "323714e884cb66ed4409291131cc5c9ec893262c",
+  "recordedAtUtc": "2026-11-19T21:40:28.845408+00:00",
+  "productCheckpoint": "7ac278d13f14ffed93f1685e42b4d2a8992d04f2",
+  "productTree": "7f89fef47a470399287f3f5bb62c785350847f2b",
   "baselineMain": "2170791c9250d72c9df31a065408365f9b50abaa",
-  "inventory": "final-remote-inventory.json",
+  "finalCapturedMain": "88513f04cfbdec210340f2d70a674cf3f23e31c0",
+  "inventory": "final-vba-reconciliation.json",
+  "earlierInventories": [
+    "remote-inventory.json",
+    "final-remote-inventory.json",
+    "premerge-main-reconciliation.json"
+  ],
   "branches": [
     {
       "name": "codex/crispoffice-layout-theme-20261119",
@@ -29,12 +35,12 @@
     },
     {
       "name": "codex/vba-dynamic-arrays-20261119",
-      "sha": "8356fb0ad4630824a39453ea9a5923d9fb2a2101",
+      "sha": "435bc212401db13efa56483ac852e4bc25bcc5d2",
       "result": "ancestor_of_product_checkpoint"
     },
     {
       "name": "codex/zotero-workflow-20261119",
-      "sha": "400fffd04fcceee78959e4c38b4d1dbe89767c2b",
+      "sha": "6626ad430a54122e4514cc2870fdcee18760682f",
       "result": "ancestor_of_product_checkpoint"
     },
     {
@@ -105,12 +111,12 @@
     },
     {
       "name": "main",
-      "sha": "2170791c9250d72c9df31a065408365f9b50abaa",
+      "sha": "88513f04cfbdec210340f2d70a674cf3f23e31c0",
       "result": "ancestor_of_product_checkpoint"
     },
     {
       "name": "work/mail-continuation-20261119",
-      "sha": "3279d1ffb0d80c0133fc6edaa2c3854512ac8481",
+      "sha": "2a920225633c782d2a941518ca2812e97ba40184",
       "result": "ancestor_of_product_checkpoint"
     },
     {
@@ -120,31 +126,7 @@
     }
   ],
   "capturedBranchCount": 19,
-  "capturedRecentPrCount": 100,
-  "capturedOpenPullRequests": [
-    {
-      "number": 217,
-      "title": "Add To/Cc/Bcc and Reply all; reconcile concurrent fork work [skip ci]",
-      "state": "open",
-      "draft": true,
-      "updatedAt": "2026-11-19T21:27:14Z",
-      "mergedAt": null,
-      "headSha": "3279d1ffb0d80c0133fc6edaa2c3854512ac8481",
-      "headBranch": "work/mail-continuation-20261119",
-      "baseSha": "2170791c9250d72c9df31a065408365f9b50abaa"
-    },
-    {
-      "number": 218,
-      "title": "Extend Zotero tag discovery and source citation navigation",
-      "state": "open",
-      "draft": false,
-      "updatedAt": "2026-11-19T21:25:20Z",
-      "mergedAt": null,
-      "headSha": "400fffd04fcceee78959e4c38b4d1dbe89767c2b",
-      "headBranch": "codex/zotero-workflow-20261119",
-      "baseSha": "2170791c9250d72c9df31a065408365f9b50abaa"
-    }
-  ],
+  "recentPullRequestsReviewed": 100,
   "allCapturedHeadsAccountedFor": true,
   "initialHistoricalProofsRecomputed": 9,
   "initialUpstreamMain": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",

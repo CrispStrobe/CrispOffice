@@ -1,4 +1,4 @@
-Formatted 52 files (0 changed) in 1.29 seconds.
+Formatted 52 files (0 changed) in 1.27 seconds.
 Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_office_editor/example/lib/studio_mail_compose.dart":
 Failed to resolve package URI "package:flutter_lints/flutter.yaml" in include at "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/analysis_options.yaml".
 Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart":

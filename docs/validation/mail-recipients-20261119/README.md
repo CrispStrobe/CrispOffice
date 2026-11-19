@@ -18,7 +18,7 @@ This continuation adds multiple To recipients, Cc, Bcc and Reply all to the fore
 
 The product whitespace check passed. Raw validation diffs retain their context spaces, and AST-adapted test copies retain the exact whitespace used during execution; an evidence-wide whitespace check therefore emits warnings. Those artifacts are preserved byte for byte.
 
-Counts are separate cohorts, not an aggregate acceptance claim. `source-binding.json` links the executed source hashes to product checkpoint `3a7d8e2dc097f4c235d956dfa4f392f02699b9d7` (tree `323714e884cb66ed4409291131cc5c9ec893262c`). Evidence-only commits may follow without changing product code.
+Counts are separate cohorts, not an aggregate acceptance claim. `source-binding.json` links the executed source hashes to product checkpoint `7ac278d13f14ffed93f1685e42b4d2a8992d04f2` (tree `7f89fef47a470399287f3f5bb62c785350847f2b`). Evidence-only commits may follow without changing product code.
 
 ## Mail behavior
 
@@ -43,18 +43,20 @@ Nine older divergent branches were independently checked using their complete ch
 Subsequent inventories captured concurrently published branches and PR #218:
 
 - Zotero history through `6626ad430a54122e4514cc2870fdcee18760682f`: paginated tag discovery, source citation occurrence navigation, the explicit rich-text style correction, tests, and incoming qualification records.
-- VBA history through `8356fb0ad4630824a39453ea9a5923d9fb2a2101`: one-dimensional local dynamic arrays, ReDim/Preserve, Erase, Option Base, integration tests and smoke tooling, plus additional mail host regressions.
+- VBA history through `435bc212401db13efa56483ac852e4bc25bcc5d2`: one-dimensional local dynamic arrays, ReDim/Preserve, Erase, Option Base, integration tests and smoke tooling, plus additional mail host regressions.
 - PPTX history through `a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d`: slide backgrounds, crops, rich text, PDF/interlaced PNG work and tab positioning.
 
 During the final pre-merge check, PR #218 had merged into remote main `88513f04cfbdec210340f2d70a674cf3f23e31c0`. That exact main commit and the latest Zotero tip were reconciled before merging #217. `premerge-main-reconciliation.json` records this later observation and verifies that product Dart source still matches the qualified checkpoint.
 
 These histories are retained as merge parents/ancestors, not reconstructed patch-only replacements. `final-reconciliation.json` records the exact captured heads and their ancestry or previously recomputed equivalence proof.
 
+The last observed VBA merge `435bc212401db13efa56483ac852e4bc25bcc5d2` also carried the compatible `updateMasterBackground` helper and additional dark-theme assertions. The helper/controller delegation and all assertions are retained. The same 15-case slide source cohort passed again against the updated model; prior source evidence remains in `slide-source-harness-before-vba435/`. `final-vba-reconciliation.json` records this final captured branch set. This adds no controller/widget execution claim.
+
 ### Compatibility decisions
 
 Imported rich runs retain their source snapshot. Derived runs apply exposed font, color, alignment and direction edits, and a text replacement invalidates stale imported runs. The incoming native 16-point fallback, paragraph defaults, text-origin hit testing and explicit `b="0"` / `i="0"` behavior are retained.
 
-Slide paper distinguishes inherited and explicitly authored colors. Assigning a nonempty color creates an explicit override; clearing it restores inheritance. An inherited resolved color retains its primary-master snapshot so a secondary imported master is preserved until the primary master changes. Copies retain that metadata. Repeated controller edits and direct engine master edits follow the same contract; PDF uses the resolver.
+Slide paper distinguishes inherited and explicitly authored colors. Assigning a nonempty color creates an explicit override; clearing it restores inheritance. An inherited resolved color retains its primary-master snapshot so a secondary imported master is preserved until the primary master changes. Copies retain that metadata. Repeated controller edits use the compatible `updateMasterBackground` helper; direct engine master edits follow the same contract, and PDF uses the resolver.
 
 Inherited neutral white follows the display theme only when color adaptation is enabled. Explicit white remains white. Disabling adaptation retains resolved white paper as well as authored ink. Incoming and local regression groups are retained, including reset-to-inheritance and opt-out assertions. Those renderer/controller/PDF widget tests remain unexecuted here.
 

@@ -1,6 +1,6 @@
 {
   "branch": "work/mail-continuation-20261119",
-  "sourceCheckpoint": "3a7d8e2dc097f4c235d956dfa4f392f02699b9d7",
+  "sourceCheckpoint": "7ac278d13f14ffed93f1685e42b4d2a8992d04f2",
   "records": [
     {
       "sha": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6",
@@ -117,8 +117,40 @@
       "message": "Preserve additional concurrent mail host regression tests [skip ci]",
       "kind": "remote_continuation_checkpoint",
       "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "70c509cc475e325fc7379b68968be36084ef4604",
+      "tree": "5dc8b1bfd39c74534ae5ae0328f736a8ae12114d",
+      "parents": [
+        "3a7d8e2dc097f4c235d956dfa4f392f02699b9d7"
+      ],
+      "message": "Record source-bound mail qualification and complete reconciliation receipts [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "2a920225633c782d2a941518ca2812e97ba40184",
+      "tree": "89b9a1fa6c05069ac9ea2b5968cf7faac628d987",
+      "parents": [
+        "70c509cc475e325fc7379b68968be36084ef4604",
+        "88513f04cfbdec210340f2d70a674cf3f23e31c0"
+      ],
+      "message": "Reconcile newly merged remote main and preserve incoming qualification [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
+    },
+    {
+      "sha": "7ac278d13f14ffed93f1685e42b4d2a8992d04f2",
+      "tree": "7f89fef47a470399287f3f5bb62c785350847f2b",
+      "parents": [
+        "2a920225633c782d2a941518ca2812e97ba40184",
+        "435bc212401db13efa56483ac852e4bc25bcc5d2"
+      ],
+      "message": "Preserve final VBA continuation and background compatibility API [skip ci]",
+      "kind": "remote_continuation_checkpoint",
+      "publication": "expected previous branch SHA; force false; local and remote Git trees equal"
     }
   ],
-  "continuationCheckpointCount": 10,
+  "continuationCheckpointCount": 13,
   "finalEvidenceCommit": "follows this record; see PR217 publication receipt"
 }
