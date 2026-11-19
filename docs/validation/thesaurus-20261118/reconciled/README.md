@@ -1,5 +1,7 @@
 # Reconciled local qualification — 18 November 2026
 
+**Subsequent completion:** the [19 November integrated report](../resumed-20261119/README.md) records the completed final 2,018-case union and fresh native/build evidence. This page preserves the earlier evidence-checkpoint status.
+
 This continuation integrates the captured Mail, Zotero and Notes/header review
 heads into PR #174, including the later Notes language/history and Zotero
 research-list changes. The refreshed incoming checkpoint is `a6c165d3`; the final application fix

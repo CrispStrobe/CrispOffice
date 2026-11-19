@@ -1,0 +1,87 @@
+{
+  "recorded_utc": "2026-11-19T05:54:28.801798+00:00",
+  "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "independent_status": "passed",
+  "guards": {
+    "run_finished": true,
+    "all_planned_cohorts_completed": true,
+    "all_cohort_audits_passed": true,
+    "no_duplicate_union_case_identities": true,
+    "strict_checks_passed": true,
+    "source_and_environment_stable": true,
+    "current_inputs_match": true,
+    "exact_completed_run_sequence": true,
+    "no_reported_runner_error": true
+  },
+  "run_finished": true,
+  "runner_status": "passed",
+  "completed_cohorts": [
+    {
+      "name": "engine-review-and-incoming-zotero",
+      "status": "passed",
+      "passed": 717,
+      "suites": 42
+    },
+    {
+      "name": "editor-review-notes-headers-and-zotero",
+      "status": "passed",
+      "passed": 1154,
+      "suites": 73
+    },
+    {
+      "name": "studio-review-and-incoming-navigation",
+      "status": "passed",
+      "passed": 117,
+      "suites": 10
+    },
+    {
+      "name": "incoming-mail-reader",
+      "status": "passed",
+      "passed": 30,
+      "suites": 4
+    }
+  ],
+  "independently_counted_passes": 2018,
+  "distinct_case_identities": 2018,
+  "duplicate_union_identities": 0,
+  "final_bindings": {
+    "source_before_equals_after": true,
+    "environment_before_equals_after": true,
+    "changed_current_environment_files": [],
+    "changed_current_harness_files": [],
+    "changed_current_source_files": [],
+    "current_package_config_matches": true,
+    "receipt_evidence_hash_mismatches": [],
+    "source_after_sha256": "ffa68f423baa135f022ebc686b97e833ce317c200bb75a98ff229541f9b46d67",
+    "environment_after_sha256": "6c13d9b8dbb6c8fe263f410354008c587edffd3647817e64cbc3a4658dc15071"
+  },
+  "non_test_audits": [
+    {
+      "name": "analysis",
+      "status": "passed",
+      "exit_code": 0,
+      "target_count": 30,
+      "issues": [],
+      "logs_sha256": {
+        "analysis.stdout": "5fb9d4c92cf8e360f050ba09cf6fe3a79fc4dbd5f0be16fbb59b1785db860331",
+        "analysis.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": "Analyzing suite_workspace.dart, studio_zotero_shortcuts_test.dart, render_word_canvas.dart, office_controller.dart, office_editors.dart, word_notes_pane.dart, word_zotero_dialog.dart, word_proofing.dart, word_header_footer_navigation_test.dart, word_live_review_selection_test.dart, word_notes_proofing_controller_test.dart, word_notes_proofing_pane_test.dart, word_review_controller_test.dart, word_zotero_add_note_controller_test.dart, word_zotero_direct_command_test.dart, word_zotero_navigation_dialog_test.dart, word_zotero_navigation_pane_test.dart, word_zotero_navigation_test.dart, word_zotero_notes_pane_test.dart, word_lists.dart, word_zotero_citing.dart, word_zotero_note.dart, zotero_citing.dart, word_list_numbering_snapshot_test.dart, word_zotero_add_note_test.dart, word_zotero_note_list_test.dart, zotero_add_note_protocol_test.dart, zotero_citing_test.dart, review_fonts.dart, word_zotero_citing_dialog_test.dart...\nNo issues found!\n",
+      "stderr": ""
+    },
+    {
+      "name": "format",
+      "status": "passed",
+      "exit_code": 0,
+      "target_count": 30,
+      "issues": [],
+      "logs_sha256": {
+        "format.stdout": "ab38700a0a5fd02ed3f2f6288f59cb68e9a28643439570c679e7b1c88e51534a",
+        "format.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": "Formatted 30 files (0 changed) in 1.06 seconds.\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "Independent raw-event and hash audit; no repeated application execution."
+}

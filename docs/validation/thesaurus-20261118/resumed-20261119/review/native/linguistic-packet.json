@@ -1,0 +1,184 @@
+{
+  "status": "integrity_passed_human_review_not_completed",
+  "method": "Read raw native observations, independently decompressed/hash-verified source shards, compared complete records and observed projection, verified original notice bytes and all blank review fields.",
+  "native_report_sha256": "e19ee0de20719dadee5680ad3ad109c564d39bbd674f868bde728db668de7492",
+  "packet_json_sha256": "80b642807aac3bc25e87184d776b1dfd3a70c1a8b451a13e59ff5d50401c26b0",
+  "packet_markdown_sha256": "977525a089732e26937ebdebcfefffaee23c948562674f18bea0863f27ff09ed",
+  "ordered_queries": 15,
+  "distinct_source_records": 109,
+  "verified_shards": 92,
+  "notices": [
+    {
+      "locale": "en",
+      "path": "notices/EN_ATTRIBUTION.txt",
+      "export_path": "en/notices/EN_ATTRIBUTION.txt",
+      "sha256": "38a7701501e765140d399263fb088b94ea79815a0873063ecb6273862afd587a",
+      "bytes": 1347
+    },
+    {
+      "locale": "en",
+      "path": "notices/OEWN_LICENSE.md",
+      "export_path": "en/notices/OEWN_LICENSE.md",
+      "sha256": "672cc8b5663e8dc74c4b07a9dcf477193853575b119908fd3dc0aeeb60a9dbbb",
+      "bytes": 19863
+    },
+    {
+      "locale": "en",
+      "path": "notices/WNDB_License.txt",
+      "export_path": "en/notices/WNDB_License.txt",
+      "sha256": "df30ec18fbabcdaf031b79ea026d3e6b959010cffe6dd7be9ac137822175b904",
+      "bytes": 1740
+    },
+    {
+      "locale": "en",
+      "path": "notices/CC_BY_4.0.txt",
+      "export_path": "en/notices/CC_BY_4.0.txt",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "bytes": 18657
+    },
+    {
+      "locale": "de",
+      "path": "notices/DE_ATTRIBUTION.txt",
+      "export_path": "de/notices/DE_ATTRIBUTION.txt",
+      "sha256": "9ff2b7a1c04a116e90b55a113cc9319c709b0ee94c1d3059bfc168e776dbcdc2",
+      "bytes": 1619
+    },
+    {
+      "locale": "de",
+      "path": "notices/OPENTHESAURUS_COPYING.txt",
+      "export_path": "de/notices/OPENTHESAURUS_COPYING.txt",
+      "sha256": "c7181695c616a3ae009ce422be265f7ec15ba0390889012fcff5aa077b28a7ac",
+      "bytes": 46448
+    },
+    {
+      "locale": "de",
+      "path": "notices/OPENTHESAURUS_DATABASE_README.txt",
+      "export_path": "de/notices/OPENTHESAURUS_DATABASE_README.txt",
+      "sha256": "6f19da2ebe7dc92cf6583c8a04ef1f4d9ba5f72df2bc779672ad6d07d969df22",
+      "bytes": 1488
+    },
+    {
+      "locale": "de",
+      "path": "notices/CC_BY_SA_4.0.txt",
+      "export_path": "de/notices/CC_BY_SA_4.0.txt",
+      "sha256": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5",
+      "bytes": 20138
+    },
+    {
+      "locale": "de",
+      "path": "notices/UNICODE_INFLECTION_LICENSE",
+      "export_path": "de/notices/UNICODE_INFLECTION_LICENSE",
+      "sha256": "b2d3b5d59972767d52997d9f47e67cd30661bcfc3eeb6e3e1ada1ee06634be52",
+      "bytes": 2033
+    },
+    {
+      "locale": "de",
+      "path": "notices/UNICODE_INFLECTION_NOTICE",
+      "export_path": "de/notices/UNICODE_INFLECTION_NOTICE",
+      "sha256": "6c3b259b688a278e42f70c8b1b99ac0729111bec980c487e4f3245cd08899e22",
+      "bytes": 2198
+    }
+  ],
+  "queries": [
+    {
+      "text": "bank",
+      "language": "en-US",
+      "status": "ready",
+      "returned_meanings": 18
+    },
+    {
+      "text": "run",
+      "language": "en-US",
+      "status": "ready",
+      "returned_meanings": 57
+    },
+    {
+      "text": "happy",
+      "language": "en-GB",
+      "status": "ready",
+      "returned_meanings": 4
+    },
+    {
+      "text": "ice cream",
+      "language": "en-US",
+      "status": "ready",
+      "returned_meanings": 1
+    },
+    {
+      "text": "children",
+      "language": "en-US",
+      "status": "ready",
+      "returned_meanings": 4
+    },
+    {
+      "text": "dogs",
+      "language": "en-US",
+      "status": "ready",
+      "returned_meanings": 8
+    },
+    {
+      "text": "Bank",
+      "language": "de-DE",
+      "status": "ready",
+      "returned_meanings": 2
+    },
+    {
+      "text": "Häusern",
+      "language": "de-DE",
+      "status": "ready",
+      "returned_meanings": 3
+    },
+    {
+      "text": "Maße",
+      "language": "de-DE",
+      "status": "ready",
+      "returned_meanings": 2
+    },
+    {
+      "text": "Masse",
+      "language": "de-DE",
+      "status": "ready",
+      "returned_meanings": 5
+    },
+    {
+      "text": "sich freuen",
+      "language": "de-DE",
+      "status": "ready",
+      "returned_meanings": 3
+    },
+    {
+      "text": "Straße",
+      "language": "de-CH",
+      "status": "ready",
+      "returned_meanings": 2
+    },
+    {
+      "text": "qudsxyzzynotaword",
+      "language": "en-US",
+      "status": "noEntry",
+      "returned_meanings": 0
+    },
+    {
+      "text": "qudsxyzzynotaword",
+      "language": "de-DE",
+      "status": "noEntry",
+      "returned_meanings": 0
+    },
+    {
+      "text": "banque",
+      "language": "fr-FR",
+      "status": "unsupportedLanguage",
+      "returned_meanings": 0
+    }
+  ],
+  "review_status": "not_reviewed",
+  "blank_human_identity_fields": true,
+  "blank_decisions": 15,
+  "blank_recommendation_and_additions": true,
+  "full_source_records_preserved": true,
+  "source_labels_examples_notes_relations_preserved": true,
+  "scope": "Evidence integrity and preservation only; no independent linguistic approval, vocabulary-wide acceptance, or additional provider run.",
+  "recorded_at_utc": "2026-11-19T05:55:51.617579+00:00",
+  "auditor": "independent incoming_audit agent",
+  "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2"
+}

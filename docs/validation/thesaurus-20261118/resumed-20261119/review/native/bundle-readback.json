@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "recorded_at_utc": "2026-11-19T05:56:45.263606+00:00",
+  "source_commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "archive": "/workspace/scratch/786b438f79ef/native-final-bundle/native-final-evidence.tar.xz",
+  "archive_bytes": 1206668,
+  "archive_sha256": "0a5979281c90ce245d4ab979ed22dde8ecaca38190ee309891500fb9c236f891",
+  "member_count": 48,
+  "all_members_match_index_and_live_evidence_bytes": true,
+  "compiled_build_archived": false,
+  "compiled_build_retained_locally": "/workspace/scratch/786b438f79ef/native-final-qualification/browser-build",
+  "method": "Independently read every tar member without extraction and compared bytes to index and stable evidence files."
+}
