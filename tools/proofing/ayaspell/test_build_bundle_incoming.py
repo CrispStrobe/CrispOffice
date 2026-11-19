@@ -155,9 +155,9 @@ class BundleBuilderTest(unittest.TestCase):
         self.assertEqual(self.create_calls, [])
         self.assertEqual(self.upload_calls, [])
         card = (self.output / "README.md").read_text(encoding="utf-8")
-        self.assertIn("provides an optional Hunspell adapter package",
+        self.assertIn("optional dictionary download workflow in Studio",
                       " ".join(card.split()))
-        self.assertIn("Arabic download workflow and application library/worker packaging remain open",
+        self.assertIn("Nothing is downloaded by default",
                       " ".join(card.split()))
 
 

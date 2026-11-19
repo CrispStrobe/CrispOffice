@@ -125,8 +125,8 @@ class BundleBuilderTest(unittest.TestCase):
             "---\nlicense: other\nlicense_name: mpl-1.1\n"
             "license_link: https://www.mozilla.org/en-US/MPL/1.1/\n"
         ))
-        self.assertIn("provides an optional Hunspell adapter package", card)
-        self.assertIn("application library/worker packaging remain open", card)
+        self.assertIn("optional dictionary download workflow in Studio", card)
+        self.assertIn("downloaded by default", card)
 
     def test_publish_excludes_unrelated_existing_output_files(self) -> None:
         # These must stay local even when the caller reuses a populated directory.

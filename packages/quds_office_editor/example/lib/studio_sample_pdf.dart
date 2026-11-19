@@ -17,8 +17,8 @@ Uint8List studioSamplePdf() {
     extra: _arabicCps(),
   );
   final PdfDocument doc = PdfDocument(
-    title: 'Quds PDF Gallery',
-    author: 'Quds Office Studio',
+    title: 'CrispOffice PDF Gallery',
+    author: 'CrispOffice Studio',
   );
   _cover(doc, latin, arabic);
   _type(doc, latin, arabic);
@@ -58,7 +58,7 @@ Uint8List studioSamplePdf() {
 
 List<int> _latinCps() {
   const String s =
-      'Quds Office Suite PDF Gallery ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      'CrispOffice PDF Gallery ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       'abcdefghijklmnopqrstuvwxyz 0123456789'
       'Typography Graphics Dashboard Image Links Landscape Architecture'
       'Revenue Pipeline North South East West Q1 Q2 Q3 Q4 Capabilities'
@@ -254,7 +254,7 @@ void _type(PdfDocument doc, _Face? latin, _Face? arabic) {
     36,
     400,
     16,
-    'Mixed: Quds مكتب  ·  12.5%  ·  RTL + LTR on one line.',
+    'Mixed: CrispOffice مكتب  ·  12.5%  ·  RTL + LTR on one line.',
     '2B579A',
   );
   c
@@ -281,7 +281,7 @@ void _type(PdfDocument doc, _Face? latin, _Face? arabic) {
     'CIDFontType2 + Identity-H + ToUnicode for subset faces.',
     '5A6573',
   );
-  _run(c, latin, 36, 560, 72, 'Quds', '0B1F3A', bold: true);
+  _run(c, latin, 36, 560, 72, 'CrispOffice', '0B1F3A', bold: true);
   _footer(
     c,
     latin,
@@ -344,7 +344,7 @@ void _arabicPage(PdfDocument doc, _Face? latin, _Face? arabic) {
     36,
     560,
     14,
-    'Quds مكتب  ·  COS / xref  ·  مجموعة القدس',
+    'CrispOffice مكتب  ·  COS / xref  ·  مجموعة القدس',
     '2B579A',
   );
   _footer(

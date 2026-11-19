@@ -16,11 +16,15 @@ import 'studio_chrome.dart';
 import 'studio_files.dart';
 import 'studio_find_pane.dart';
 import 'studio_linguistic_analysis.dart';
+import 'studio_mail.dart';
+import 'studio_strings.dart';
 import 'studio_pdf_gallery.dart';
 import 'studio_pdf_gallery_dialog.dart';
 import 'studio_pdf_office.dart';
 import 'studio_pdf_tools.dart';
 import 'studio_pdf_surface.dart';
+import 'studio_hunspell_host.dart';
+import 'studio_hunspell_setup.dart';
 import 'studio_spacy_host.dart';
 import 'studio_spacy_setup.dart';
 import 'studio_window.dart';
@@ -64,13 +68,25 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   SuiteLook _look = SuiteLook.light;
   OfficeInteractionMode _mode = OfficeInteractionMode.editing;
   _RibbonTab _tab = _RibbonTab.home;
-  var _arabic = true;
+  StudioLanguage _language = StudioLanguage.en;
+  bool get _arabic => _language == StudioLanguage.ar;
+  set _arabic(bool value) =>
+      _language = value ? StudioLanguage.ar : StudioLanguage.en;
+  StudioStrings get _strings => StudioStrings(_language);
+  String _t(String en, String de, String ar) => switch (_language) {
+    StudioLanguage.en => en,
+    StudioLanguage.de => de,
+    StudioLanguage.ar => ar,
+  };
   var _wordRulers = true;
   var _sheetGridlines = true;
   var _sheetHeaders = true;
   var _slideHandles = true;
-  var _showNotes = true;
-  var _showComments = true;
+  var _showNotes = false;
+  var _showComments = false;
+  var _showOutline = false;
+  var _showRibbonGroupLabels = false;
+  OfficeLengthUnit _lengthUnit = OfficeLengthUnit.millimeters;
   var _showAnimPane = true;
   var _showPasteOptions = false;
   final GlobalKey _settingsButtonKey = GlobalKey();
@@ -114,7 +130,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   String? _wordPath;
   String? _sheetPath;
   String? _slidePath;
-  String _wordName = 'Al Tahreer Neighbourhood Profile.docx';
+  String _wordName = 'CrispOffice product brief.docx';
   String _sheetName = 'Budget.xlsx';
   String _slideName = 'Studio deck.pptx';
   String? _pdfPath;
@@ -172,6 +188,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _bindHostActions(_slides);
     studioSpacyHost.addListener(_syncSpacyGrammar);
     unawaited(studioSpacyHost.restoreGrammarOptIn().catchError((Object _) {}));
+    // Re-verifies dictionaries the user installed earlier (no network).
+    studioHunspellHost.addListener(_syncHunspell);
+    unawaited(studioHunspellHost.refresh().catchError((Object _) {}));
     _slides.onPlayMedia = (PmlShape shape) {
       _toast(
         _arabic ? 'تشغيل ${shape.mediaName}' : 'Playing ${shape.mediaName}',
@@ -182,7 +201,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _slides.addListener(_rebuild);
     _pdf.addListener(_rebuild);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      StudioWindow.setTitle('$_chromeTitle — Quds Office Studio');
+      StudioWindow.setTitle('$_chromeTitle — CrispOffice');
     });
   }
 
@@ -207,7 +226,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _tab = _RibbonTab.insert;
           }
         });
-        StudioWindow.setTitle('$_chromeTitle — Quds Office Studio');
+        StudioWindow.setTitle('$_chromeTitle — CrispOffice');
         _syncSlideshowFullscreen();
       }
     });
@@ -263,6 +282,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _sheetGridlines,
       _sheetHeaders,
       _slideHandles,
+      _lengthUnit,
     );
     if (_cachedConfig != null && _configKey == key) {
       return _cachedConfig!;
@@ -276,13 +296,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       showGridHeaders: _sheetHeaders,
       showGridlines: _sheetGridlines,
       showSlideHandles: _slideHandles,
+      lengthUnit: _lengthUnit,
       textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
       strings: _arabic ? OfficeStrings.arabic : OfficeStrings.english,
       formFactor: OfficeFormFactor.automatic,
       density: OfficeDensity.comfortable,
       adaptiveChrome: true,
       interactiveRulers: _wordRulers,
-      showNotesPane: _app == SuiteApp.word,
+      showNotesPane: _app == SuiteApp.word && _showNotes,
     );
     return _cachedConfig!;
   }
@@ -292,6 +313,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   @override
   void dispose() {
     studioSpacyHost.removeListener(_syncSpacyGrammar);
+    studioHunspellHost.removeListener(_syncHunspell);
     _spacyGrammarEpoch++;
     _word
       ..removeListener(_rebuild)
@@ -607,8 +629,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
-                          const Padding(
-                            padding: EdgeInsets.only(left: 10, right: 4),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 4),
                             child: Row(
                               children: <Widget>[
                                 Icon(
@@ -618,7 +640,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                 ),
                                 SizedBox(width: 8),
                                 Text(
-                                  'Quds Office Studio',
+                                  _strings.appTitle,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
@@ -633,28 +655,34 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                           Row(
                             children: <Widget>[
                               StudioAppSwitcher(
-                                label: 'Word',
+                                label: _strings.documents,
                                 icon: Icons.description_outlined,
                                 selected: _app == SuiteApp.word,
                                 onTap: () => _switchApp(SuiteApp.word),
                               ),
                               StudioAppSwitcher(
-                                label: 'Excel',
+                                label: _strings.spreadsheets,
                                 icon: Icons.grid_on_outlined,
                                 selected: _app == SuiteApp.excel,
                                 onTap: () => _switchApp(SuiteApp.excel),
                               ),
                               StudioAppSwitcher(
-                                label: 'PowerPoint',
+                                label: _strings.presentations,
                                 icon: Icons.slideshow_outlined,
                                 selected: _app == SuiteApp.powerpoint,
                                 onTap: () => _switchApp(SuiteApp.powerpoint),
                               ),
                               StudioAppSwitcher(
-                                label: 'PDF',
+                                label: _strings.pdf,
                                 icon: Icons.picture_as_pdf_outlined,
                                 selected: _app == SuiteApp.pdf,
                                 onTap: () => _switchApp(SuiteApp.pdf),
+                              ),
+                              StudioAppSwitcher(
+                                label: _strings.mail,
+                                icon: Icons.mail_outline,
+                                selected: false,
+                                onTap: _openMail,
                               ),
                             ],
                           ),
@@ -690,7 +718,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   ),
                   IconButton(
                     key: _settingsButtonKey,
-                    tooltip: _arabic ? 'الإعدادات' : 'Settings',
+                    tooltip: _strings.settings,
                     visualDensity: VisualDensity.compact,
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints.tightFor(
@@ -706,7 +734,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   ),
                   IconButton(
                     key: _accountButtonKey,
-                    tooltip: _arabic ? 'الحساب' : 'Account',
+                    tooltip: _strings.account,
                     visualDensity: VisualDensity.compact,
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints.tightFor(
@@ -733,7 +761,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     children: <Widget>[
                       StudioCaptionButton(
                         icon: Icons.minimize,
-                        tooltip: _arabic ? 'تصغير' : 'Minimize',
+                        tooltip: _strings.minimize,
                         onPressed: StudioWindow.minimize,
                       ),
                       StudioCaptionButton(
@@ -741,13 +769,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                             ? Icons.filter_none
                             : Icons.crop_square,
                         tooltip: StudioWindow.maximized
-                            ? (_arabic ? 'استعادة' : 'Restore')
-                            : (_arabic ? 'تكبير' : 'Maximize'),
+                            ? _strings.restore
+                            : _strings.maximize,
                         onPressed: StudioWindow.toggleMaximize,
                       ),
                       StudioCaptionButton(
                         icon: Icons.close,
-                        tooltip: _arabic ? 'إغلاق' : 'Close',
+                        tooltip: _strings.close,
                         onPressed: StudioWindow.close,
                         close: true,
                       ),
@@ -767,17 +795,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       children: <Widget>[
         _titleQat(
           Icons.save_outlined,
-          _arabic ? 'حفظ' : 'Save',
+          _strings.save,
           _isSaving || _opening ? null : _saveFile,
         ),
         _titleQat(
           Icons.undo,
-          _arabic ? 'تراجع' : 'Undo',
+          _strings.undo,
           _canMutate && _active.canUndo ? _undo : null,
         ),
         _titleQat(
           Icons.redo,
-          _arabic ? 'إعادة' : 'Redo',
+          _strings.redo,
           _canMutate && _active.canRedo ? _redo : null,
         ),
       ],
@@ -801,10 +829,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   String get _chromeTitle {
     final String app = switch (_app) {
-      SuiteApp.word => 'Word',
-      SuiteApp.excel => 'Excel',
-      SuiteApp.powerpoint => 'PowerPoint',
-      SuiteApp.pdf => 'PDF',
+      SuiteApp.word => _strings.documents,
+      SuiteApp.excel => _strings.spreadsheets,
+      SuiteApp.powerpoint => _strings.presentations,
+      SuiteApp.pdf => _strings.pdf,
     };
     return '$_documentLabel — $app';
   }
@@ -865,7 +893,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _app = app;
       _tab = app == SuiteApp.pdf ? _RibbonTab.view : _RibbonTab.home;
     });
-    StudioWindow.setTitle('$_chromeTitle — Quds Office Studio');
+    StudioWindow.setTitle('$_chromeTitle — CrispOffice');
   }
 
   RelativeRect _menuRectFor(GlobalKey key) {
@@ -892,39 +920,177 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  void _openSettings() {
-    showMenu<String>(
+  Future<void> _openSettings() async {
+    await showDialog<void>(
       context: context,
-      position: _menuRectFor(_settingsButtonKey),
-      items: <PopupMenuEntry<String>>[
-        PopupMenuItem<String>(
-          value: 'mode',
-          child: Text('${_arabic ? 'الوضع' : 'Mode'}: $_modeLabel'),
-        ),
-        PopupMenuItem<String>(
-          value: 'look',
-          child: Text('${_arabic ? 'المظهر' : 'Look'}: $_lookLabel'),
-        ),
-        PopupMenuItem<String>(
-          value: 'lang',
-          child: Text(_arabic ? 'English' : 'العربية'),
-        ),
-      ],
-    ).then((String? value) {
-      if (value == 'mode') {
-        _cycleMode();
-      } else if (value == 'look') {
-        setState(() {
-          _look = SuiteLook.values[(_look.index + 1) % SuiteLook.values.length];
-        });
-      } else if (value == 'lang') {
-        _toggleArabic();
-      }
-    });
+      builder: (BuildContext dialogContext) => StatefulBuilder(
+        builder: (BuildContext context, StateSetter setDialogState) {
+          void changed(VoidCallback update) {
+            setState(update);
+            setDialogState(() {});
+          }
+
+          return AlertDialog(
+            title: Text(_strings.settings),
+            content: SizedBox(
+              width: 460,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    DropdownButtonFormField<OfficeInteractionMode>(
+                      initialValue: _mode,
+                      decoration: InputDecoration(labelText: _strings.mode),
+                      items: <DropdownMenuItem<OfficeInteractionMode>>[
+                        for (final value in OfficeInteractionMode.values)
+                          DropdownMenuItem(
+                            value: value,
+                            child: Text(switch (value) {
+                              OfficeInteractionMode.editing => _t(
+                                'Editing',
+                                'Bearbeiten',
+                                'تحرير',
+                              ),
+                              OfficeInteractionMode.selecting => _t(
+                                'Selecting',
+                                'Auswählen',
+                                'تحديد',
+                              ),
+                              OfficeInteractionMode.viewing => _t(
+                                'Viewing',
+                                'Ansehen',
+                                'عرض',
+                              ),
+                            }),
+                          ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) changed(() => _mode = value);
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    DropdownButtonFormField<SuiteLook>(
+                      initialValue: _look,
+                      decoration: InputDecoration(labelText: _strings.look),
+                      items: <DropdownMenuItem<SuiteLook>>[
+                        for (final value in SuiteLook.values)
+                          DropdownMenuItem(
+                            value: value,
+                            child: Text(switch (value) {
+                              SuiteLook.light => _t('Light', 'Hell', 'فاتح'),
+                              SuiteLook.dark => _t('Dark', 'Dunkel', 'داكن'),
+                              SuiteLook.highContrast => _t(
+                                'High contrast',
+                                'Hoher Kontrast',
+                                'تباين عالٍ',
+                              ),
+                            }),
+                          ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) changed(() => _look = value);
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    DropdownButtonFormField<StudioLanguage>(
+                      initialValue: _language,
+                      decoration: InputDecoration(
+                        labelText: _strings.languageLabel,
+                      ),
+                      items: const <DropdownMenuItem<StudioLanguage>>[
+                        DropdownMenuItem(
+                          value: StudioLanguage.en,
+                          child: Text('English'),
+                        ),
+                        DropdownMenuItem(
+                          value: StudioLanguage.de,
+                          child: Text('Deutsch'),
+                        ),
+                        DropdownMenuItem(
+                          value: StudioLanguage.ar,
+                          child: Text('العربية'),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) changed(() => _language = value);
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    DropdownButtonFormField<OfficeLengthUnit>(
+                      initialValue: _lengthUnit,
+                      decoration: InputDecoration(
+                        labelText: _strings.measurement,
+                      ),
+                      items: <DropdownMenuItem<OfficeLengthUnit>>[
+                        DropdownMenuItem(
+                          value: OfficeLengthUnit.millimeters,
+                          child: Text(_strings.millimetres),
+                        ),
+                        DropdownMenuItem(
+                          value: OfficeLengthUnit.centimeters,
+                          child: Text(_strings.centimetres),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) changed(() => _lengthUnit = value);
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(_strings.showOutline),
+                      value: _showOutline,
+                      onChanged: (value) => changed(() => _showOutline = value),
+                    ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(_strings.showComments),
+                      value: _showComments,
+                      onChanged: (value) =>
+                          changed(() => _showComments = value),
+                    ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(_strings.showNotes),
+                      value: _showNotes,
+                      onChanged: (value) => changed(() => _showNotes = value),
+                    ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(_strings.showRibbonLabels),
+                      value: _showRibbonGroupLabels,
+                      onChanged: (value) =>
+                          changed(() => _showRibbonGroupLabels = value),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(dialogContext),
+                child: Text(_strings.close),
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 
-  void _toggleArabic() {
-    setState(() => _arabic = !_arabic);
+  Future<void> _openMail() => showDialog<void>(
+    context: context,
+    builder: (BuildContext context) => StudioMailDialog(strings: _strings),
+  );
+
+  void _cycleLanguage() {
+    setState(() {
+      _language = switch (_language) {
+        StudioLanguage.en => StudioLanguage.de,
+        StudioLanguage.de => StudioLanguage.ar,
+        StudioLanguage.ar => StudioLanguage.en,
+      };
+    });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) {
         return;
@@ -952,31 +1118,37 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           enabled: false,
           child: Text(_arabic ? 'حساب محلي' : 'Local account'),
         ),
+        const PopupMenuDivider(),
+        PopupMenuItem<String>(value: 'about', child: Text(_strings.about)),
       ],
-    );
+    ).then((String? value) {
+      if (value == 'about') {
+        _showAbout();
+      }
+    });
   }
+
+  void _showAbout() => showAboutDialog(
+    context: context,
+    applicationName: _strings.appTitle,
+    applicationVersion: '1.0.0',
+    applicationIcon: const Icon(Icons.auto_awesome_mosaic),
+    applicationLegalese: _strings.legalNotice,
+    children: <Widget>[
+      Text(_strings.aboutDescription),
+      const SizedBox(height: 12),
+      Text(
+        'MIT-licensed CrispOffice engine and editor. '
+        'Product names describe file formats only.',
+      ),
+    ],
+  );
 
   String get _modeLabel => switch (_mode) {
     OfficeInteractionMode.editing => _arabic ? 'تحرير' : 'Editing',
     OfficeInteractionMode.selecting => _arabic ? 'تحديد' : 'Selecting',
     OfficeInteractionMode.viewing => _arabic ? 'عرض' : 'Viewing',
   };
-
-  String get _lookLabel => switch (_look) {
-    SuiteLook.light => _arabic ? 'فاتح' : 'Light',
-    SuiteLook.dark => _arabic ? 'داكن' : 'Dark',
-    SuiteLook.highContrast => _arabic ? 'تباين' : 'Contrast',
-  };
-
-  void _cycleMode() {
-    setState(() {
-      _mode = switch (_mode) {
-        OfficeInteractionMode.editing => OfficeInteractionMode.selecting,
-        OfficeInteractionMode.selecting => OfficeInteractionMode.viewing,
-        OfficeInteractionMode.viewing => OfficeInteractionMode.editing,
-      };
-    });
-  }
 
   List<_RibbonTab> get _tabsForApp => switch (_app) {
     SuiteApp.word => <_RibbonTab>[
@@ -1073,7 +1245,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               ),
               StudioIconCmd(
                 icon: Icons.undo,
-                tooltip: _arabic ? 'تراجع' : 'Undo',
+                tooltip: _strings.undo,
                 accent: _accent,
                 foreground: _officeTheme.chromeText,
                 onPressed:
@@ -1084,7 +1256,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               ),
               StudioIconCmd(
                 icon: Icons.redo,
-                tooltip: _arabic ? 'إعادة' : 'Redo',
+                tooltip: _strings.redo,
                 accent: _accent,
                 foreground: _officeTheme.chromeText,
                 onPressed:
@@ -1095,10 +1267,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               ),
               StudioIconCmd(
                 icon: Icons.translate,
-                tooltip: _arabic ? 'English' : 'العربية',
+                tooltip: _strings.languageLabel,
                 accent: _accent,
                 foreground: _officeTheme.chromeText,
-                onPressed: _toggleArabic,
+                onPressed: _cycleLanguage,
               ),
               const SizedBox(width: 8),
             ],
@@ -1160,6 +1332,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   List<StudioRibbonGroup> _ribbonGroups() {
+    StudioRibbonGroup.showTitles = _showRibbonGroupLabels;
     return switch ((_app, _tab)) {
       (SuiteApp.word, _RibbonTab.file) => _fileGroups(_resetWord, _newWord),
       (SuiteApp.word, _RibbonTab.home) => _wordHome(),
@@ -1227,17 +1400,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         children: <Widget>[
           _cmd(
             Icons.description_outlined,
-            'Word',
+            _strings.documents,
             _opening || _isSaving ? null : () => _convertOpenPdf('docx'),
           ),
           _cmd(
             Icons.grid_on_outlined,
-            'Excel',
+            _strings.spreadsheets,
             _opening || _isSaving ? null : () => _convertOpenPdf('xlsx'),
           ),
           _cmd(
             Icons.slideshow_outlined,
-            'PowerPoint',
+            _strings.presentations,
             _opening || _isSaving ? null : () => _convertOpenPdf('pptx'),
           ),
         ],
@@ -1433,7 +1606,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     });
     try {
       await SampleLibrary.preload();
-      final OfficeFontSet fontSet = sample.id == 'office-tahreer-word'
+      final OfficeFontSet fontSet = sample.id == 'office-crispoffice-word'
           ? StudioFiles.exportFontSetForWord(SampleLibrary.wordBriefing())
           : StudioFiles.exportFontSetCovering(<String>[
               sample.titleEn,
@@ -1525,29 +1698,44 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(Icons.zoom_out, _arabic ? 'تصغير' : 'Zoom out', () {
             _pdf.zoomBy(1 / 1.1);
           }),
-          _cmd(Icons.fit_screen_outlined, _arabic ? 'عرض' : 'Fit width', () {
-            _togglePdfOption(() {
-              _pdfFitPolicy = PdfFitPolicy.width;
-              _pdf.fitVisibleWidth();
-            });
-          }, selected: _pdfFitPolicy == PdfFitPolicy.width),
-          _cmd(Icons.aspect_ratio, _arabic ? 'صفحة' : 'Fit page', () {
-            _togglePdfOption(() {
-              _pdfFitPolicy = PdfFitPolicy.page;
-              final Size e = _pdf.viewport.extent;
-              _pdf.fitPage(
-                e.width > 0 ? e.width : 720,
-                e.height > 0 ? e.height : 900,
-              );
-            });
-          }, selected: _pdfFitPolicy == PdfFitPolicy.page),
-          _cmd(Icons.height, _arabic ? 'ارتفاع' : 'Fit height', () {
-            _togglePdfOption(() {
-              _pdfFitPolicy = PdfFitPolicy.height;
-              final double h = _pdf.viewport.extent.height;
-              _pdf.fitHeight(h > 0 ? h : 900);
-            });
-          }, selected: _pdfFitPolicy == PdfFitPolicy.height),
+          _cmd(
+            Icons.fit_screen_outlined,
+            _arabic ? 'عرض' : 'Fit width',
+            () {
+              _togglePdfOption(() {
+                _pdfFitPolicy = PdfFitPolicy.width;
+                _pdf.fitVisibleWidth();
+              });
+            },
+            selected: _pdfFitPolicy == PdfFitPolicy.width,
+          ),
+          _cmd(
+            Icons.aspect_ratio,
+            _arabic ? 'صفحة' : 'Fit page',
+            () {
+              _togglePdfOption(() {
+                _pdfFitPolicy = PdfFitPolicy.page;
+                final Size e = _pdf.viewport.extent;
+                _pdf.fitPage(
+                  e.width > 0 ? e.width : 720,
+                  e.height > 0 ? e.height : 900,
+                );
+              });
+            },
+            selected: _pdfFitPolicy == PdfFitPolicy.page,
+          ),
+          _cmd(
+            Icons.height,
+            _arabic ? 'ارتفاع' : 'Fit height',
+            () {
+              _togglePdfOption(() {
+                _pdfFitPolicy = PdfFitPolicy.height;
+                final double h = _pdf.viewport.extent.height;
+                _pdf.fitHeight(h > 0 ? h : 900);
+              });
+            },
+            selected: _pdfFitPolicy == PdfFitPolicy.height,
+          ),
           _cmd(Icons.search, _arabic ? 'بحث' : 'Find', _openFind),
         ],
       ),
@@ -1749,7 +1937,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
           _cmd(
             Icons.save_outlined,
-            _arabic ? 'حفظ' : 'Save',
+            _strings.save,
             _isSaving || _opening ? null : _saveFile,
           ),
           _cmd(
@@ -1767,15 +1955,30 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       StudioRibbonGroup(
         title: _arabic ? 'وضع العمل' : 'Mode',
         children: <Widget>[
-          _cmd(Icons.edit, _arabic ? 'تحرير' : 'Edit', () {
-            setState(() => _mode = OfficeInteractionMode.editing);
-          }, selected: _mode == OfficeInteractionMode.editing),
-          _cmd(Icons.select_all, _arabic ? 'تحديد' : 'Select', () {
-            setState(() => _mode = OfficeInteractionMode.selecting);
-          }, selected: _mode == OfficeInteractionMode.selecting),
-          _cmd(Icons.visibility, _arabic ? 'عرض' : 'View', () {
-            setState(() => _mode = OfficeInteractionMode.viewing);
-          }, selected: _mode == OfficeInteractionMode.viewing),
+          _cmd(
+            Icons.edit,
+            _arabic ? 'تحرير' : 'Edit',
+            () {
+              setState(() => _mode = OfficeInteractionMode.editing);
+            },
+            selected: _mode == OfficeInteractionMode.editing,
+          ),
+          _cmd(
+            Icons.select_all,
+            _arabic ? 'تحديد' : 'Select',
+            () {
+              setState(() => _mode = OfficeInteractionMode.selecting);
+            },
+            selected: _mode == OfficeInteractionMode.selecting,
+          ),
+          _cmd(
+            Icons.visibility,
+            _arabic ? 'عرض' : 'View',
+            () {
+              setState(() => _mode = OfficeInteractionMode.viewing);
+            },
+            selected: _mode == OfficeInteractionMode.viewing,
+          ),
         ],
       ),
     ];
@@ -2941,6 +3144,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _word.requestThesaurus,
           ),
           _cmd(
+            Icons.download_for_offline_outlined,
+            _arabic ? 'قواميس التدقيق' : 'Dictionaries',
+            _showHunspellSetup,
+          ),
+          _cmd(
             Icons.edit_note,
             _arabic ? 'تدقيق أثناء الكتابة' : 'Check as you type',
             () => _word.proofing.enabled = !_word.proofing.enabled,
@@ -3077,12 +3285,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         children: <Widget>[
           _cmd(
             Icons.undo,
-            _arabic ? 'تراجع' : 'Undo',
+            _strings.undo,
             _canMutate && _word.canUndo ? _word.undo : null,
           ),
           _cmd(
             Icons.redo,
-            _arabic ? 'إعادة' : 'Redo',
+            _strings.redo,
             _canMutate && _word.canRedo ? _word.redo : null,
           ),
         ],
@@ -3201,12 +3409,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         children: <Widget>[
           _cmd(
             Icons.undo,
-            _arabic ? 'تراجع' : 'Undo',
+            _strings.undo,
             _canMutate && _sheet.canUndo ? _sheet.undo : null,
           ),
           _cmd(
             Icons.redo,
-            _arabic ? 'إعادة' : 'Redo',
+            _strings.redo,
             _canMutate && _sheet.canRedo ? _sheet.redo : null,
           ),
         ],
@@ -5039,16 +5247,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (controller is WordEditorController) {
       // Harper remains local and initializes only for an English request.
       // Missing optional native/web artifacts are reported in the review UI.
-      controller.proofing.configure(
-        OfficeProofingService(
-          providers: [
-            GermanSpellingProvider(vocabulary: controller.proofing.vocabulary),
-            GermanWritingRulesProvider(),
-            ArabicWritingRulesProvider(),
-            HarperProofingProvider(vocabulary: controller.proofing.vocabulary),
-          ],
-        ),
-      );
+      controller.proofing.configure(_wordProofingService(controller));
       // Set the Studio session's initial preference once. Rebuilding the editor
       // or returning from another app must preserve a later user opt-out.
       controller.proofing.enabled = true;
@@ -5174,6 +5373,39 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             : 'The document check could not finish. Try again.',
       );
     }
+  }
+
+  /// Fresh provider instances for the Word session's ordinary service. The
+  /// Arabic rules precede an installed Arabic dictionary so that, where both
+  /// agree on a correction, the rule's specific message is the one shown.
+  OfficeProofingService _wordProofingService(WordEditorController controller) {
+    final vocabulary = controller.proofing.vocabulary;
+    return OfficeProofingService(
+      providers: [
+        GermanSpellingProvider(vocabulary: vocabulary),
+        GermanWritingRulesProvider(),
+        ArabicWritingRulesProvider(),
+        ...studioHunspellHost.createProviders(vocabulary),
+        HarperProofingProvider(vocabulary: vocabulary),
+      ],
+    );
+  }
+
+  String? _hunspellKey;
+
+  /// Rebuilds the Word service when a dictionary is installed or removed.
+  void _syncHunspell() {
+    final key = studioHunspellHost.configurationKey;
+    if (key == _hunspellKey) return;
+    final first = _hunspellKey == null && key.isEmpty;
+    _hunspellKey = key;
+    if (first || !mounted) return;
+    _word.proofing.configure(_wordProofingService(_word));
+  }
+
+  Future<void> _showHunspellSetup() async {
+    await showStudioHunspellSetup(context);
+    if (mounted) _wordFocus.requestFocus();
   }
 
   Future<void> _showSpacySetup() async {
@@ -5368,7 +5600,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             ),
             const Spacer(),
             IconButton(
-              tooltip: _arabic ? 'إغلاق' : 'Close',
+              tooltip: _strings.close,
               onPressed: () => setState(() => _showPasteOptions = false),
               icon: const Icon(Icons.close, size: 16),
             ),
@@ -5620,7 +5852,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _word.insertCitation(
       WmlCitation(
         tag: 'Quds',
-        author: _arabic ? 'مكتب القدس' : 'Quds Office',
+        author: _arabic ? 'مكتب القدس' : 'CrispOffice',
         title: _arabic ? 'دليل المكتب' : 'Office Guide',
         year: '2026',
       ),
@@ -6062,7 +6294,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     setState(() => _showComments = true);
-    _word.insertComment(author: 'Quds Office', initials: 'QO');
+    _word.insertComment(author: 'CrispOffice', initials: 'QO');
   }
 
   void _setShowComments(bool show) {
@@ -7332,7 +7564,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   void _resetWord() {
     _wordPath = null;
-    _wordName = 'Al Tahreer Neighbourhood Profile.docx';
+    _wordName = 'CrispOffice product brief.docx';
     _word.document = SampleLibrary.wordBriefing();
     _word.documentCaret.paragraphIndex = 0;
     _word.documentCaret.logicalIndex = 0;
@@ -7572,7 +7804,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           final stage = Row(
             children: <Widget>[
               if (constraints.maxWidth >= 700 &&
-                  !(_app == SuiteApp.powerpoint && _slides.isPresenting))
+                  !(_app == SuiteApp.powerpoint && _slides.isPresenting) &&
+                  (_app != SuiteApp.word || _showOutline))
                 _sidePane(dark),
               Expanded(child: _stage(dark)),
               if (_app == SuiteApp.word && _showComments && !commentsBelow)

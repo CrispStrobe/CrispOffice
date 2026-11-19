@@ -87,28 +87,28 @@ class StudioPdfSample {
 abstract final class StudioPdfGallery {
   /// All samples, grouped by [StudioPdfSampleKind] order.
   static List<StudioPdfSample> get all => <StudioPdfSample>[
-        ...officeSamples,
-        ...engineSamples,
-        ...widgetSamples,
-        ...templateSamples,
-        ...showcaseSamples,
-      ];
+    ...officeSamples,
+    ...engineSamples,
+    ...widgetSamples,
+    ...templateSamples,
+    ...showcaseSamples,
+  ];
 
   /// Office → PDF samples.
   static final List<StudioPdfSample> officeSamples = <StudioPdfSample>[
     StudioPdfSample(
-      id: 'office-tahreer-word',
+      id: 'office-crispoffice-word',
       kind: StudioPdfSampleKind.officeToPdf,
-      titleEn: 'Al Tahreer Word briefing',
+      titleEn: 'CrispOffice document briefing',
       titleAr: 'إحاطة ورد — التحرير',
       blurbEn: 'Rich DOCX (tables, images, bilingual) exported to PDF.',
       blurbAr: 'مستند ورد غني (جداول وصور وثنائي اللغة) يُصدَّر إلى PDF.',
-      fileName: 'office_tahreer_briefing.pdf',
+      fileName: 'office_crispoffice_briefing.pdf',
       build: ({SfntFont? font, OfficeFontSet? fonts}) => OfficePdfExport.word(
         SampleLibrary.wordBriefing(),
         font: font,
         fonts: fonts,
-        title: 'Al Tahreer Neighbourhood Profile',
+        title: 'CrispOffice product brief',
       ),
     ),
     StudioPdfSample(
@@ -119,12 +119,13 @@ abstract final class StudioPdfGallery {
       blurbEn: 'Fluent DocxDocumentBuilder → PDF.',
       blurbAr: 'DocxDocumentBuilder سلس → PDF.',
       fileName: 'office_builder_report.pdf',
-      build: ({SfntFont? font, OfficeFontSet? fonts}) => OfficePdfExport.fromBytes(
-        _docxSituationReport(),
-        font: font,
-        fonts: fonts,
-        title: 'Situation report',
-      ),
+      build: ({SfntFont? font, OfficeFontSet? fonts}) =>
+          OfficePdfExport.fromBytes(
+            _docxSituationReport(),
+            font: font,
+            fonts: fonts,
+            title: 'Situation report',
+          ),
     ),
     StudioPdfSample(
       id: 'office-rtl-letter',
@@ -134,12 +135,13 @@ abstract final class StudioPdfGallery {
       blurbEn: 'Right-to-left letterhead DOCX compiled to PDF.',
       blurbAr: 'رسالة بترويسة من اليمين لليسار تُترجم إلى PDF.',
       fileName: 'office_rtl_letter.pdf',
-      build: ({SfntFont? font, OfficeFontSet? fonts}) => OfficePdfExport.fromBytes(
-        _rtlFormalLetter(),
-        font: font,
-        fonts: fonts,
-        title: 'RTL letter',
-      ),
+      build: ({SfntFont? font, OfficeFontSet? fonts}) =>
+          OfficePdfExport.fromBytes(
+            _rtlFormalLetter(),
+            font: font,
+            fonts: fonts,
+            title: 'RTL letter',
+          ),
     ),
     StudioPdfSample(
       id: 'office-excel-budget',
@@ -149,13 +151,14 @@ abstract final class StudioPdfGallery {
       blurbEn: 'Studio budget + roster sheets printed landscape.',
       blurbAr: 'ميزانية الاستوديو تُطبع أفقياً.',
       fileName: 'office_excel_budget.pdf',
-      build: ({SfntFont? font, OfficeFontSet? fonts}) => OfficePdfExport.workbook(
-        SampleLibrary.excelBudget(),
-        font: font,
-        fonts: fonts,
-        title: 'Studio Budget',
-        options: PdfSheetPrintOptions.a4Landscape(),
-      ),
+      build: ({SfntFont? font, OfficeFontSet? fonts}) =>
+          OfficePdfExport.workbook(
+            SampleLibrary.excelBudget(),
+            font: font,
+            fonts: fonts,
+            title: 'Studio Budget',
+            options: PdfSheetPrintOptions.a4Landscape(),
+          ),
     ),
     StudioPdfSample(
       id: 'office-xlsx-ops',
@@ -165,12 +168,13 @@ abstract final class StudioPdfGallery {
       blurbEn: 'XlsxWorkbookBuilder scorecard → PDF.',
       blurbAr: 'بطاقة أداء من XlsxWorkbookBuilder → PDF.',
       fileName: 'office_ops_scorecard.pdf',
-      build: ({SfntFont? font, OfficeFontSet? fonts}) => OfficePdfExport.fromBytes(
-        _xlsxOpsScorecard(),
-        font: font,
-        fonts: fonts,
-        title: 'Ops scorecard',
-      ),
+      build: ({SfntFont? font, OfficeFontSet? fonts}) =>
+          OfficePdfExport.fromBytes(
+            _xlsxOpsScorecard(),
+            font: font,
+            fonts: fonts,
+            title: 'Ops scorecard',
+          ),
     ),
     StudioPdfSample(
       id: 'office-slide-deck',
@@ -180,12 +184,13 @@ abstract final class StudioPdfGallery {
       blurbEn: 'PowerPoint sample → PDF pages.',
       blurbAr: 'شرائح عينة → صفحات PDF.',
       fileName: 'office_slide_deck.pdf',
-      build: ({SfntFont? font, OfficeFontSet? fonts}) => OfficePdfExport.presentation(
-        SampleLibrary.slideDeck(),
-        font: font,
-        fonts: fonts,
-        title: 'Studio Deck',
-      ),
+      build: ({SfntFont? font, OfficeFontSet? fonts}) =>
+          OfficePdfExport.presentation(
+            SampleLibrary.slideDeck(),
+            font: font,
+            fonts: fonts,
+            title: 'Studio Deck',
+          ),
     ),
     StudioPdfSample(
       id: 'office-pptx-builder',
@@ -195,12 +200,13 @@ abstract final class StudioPdfGallery {
       blurbEn: 'PptxDeckBuilder cover + content slides → PDF.',
       blurbAr: 'شرائح من PptxDeckBuilder → PDF.',
       fileName: 'office_pitch_deck.pdf',
-      build: ({SfntFont? font, OfficeFontSet? fonts}) => OfficePdfExport.fromBytes(
-        _pptxPitchDeck(),
-        font: font,
-        fonts: fonts,
-        title: 'Pitch deck',
-      ),
+      build: ({SfntFont? font, OfficeFontSet? fonts}) =>
+          OfficePdfExport.fromBytes(
+            _pptxPitchDeck(),
+            font: font,
+            fonts: fonts,
+            title: 'Pitch deck',
+          ),
     ),
     StudioPdfSample(
       id: 'office-notes-pages',
@@ -210,14 +216,15 @@ abstract final class StudioPdfGallery {
       blurbEn: 'Every two slides export onto one A4 page.',
       blurbAr: 'كل شريحتين تُصدَّران في صفحة واحدة.',
       fileName: 'office_notes_pages.pdf',
-      build: ({SfntFont? font, OfficeFontSet? fonts}) => OfficePdfExport.presentation(
-        SampleLibrary.slideDeck(),
-        font: font,
-        fonts: fonts,
-        title: 'Two slides per page',
-        mode: PdfSlideExportMode.notesPages,
-        slidesPerPage: 2,
-      ),
+      build: ({SfntFont? font, OfficeFontSet? fonts}) =>
+          OfficePdfExport.presentation(
+            SampleLibrary.slideDeck(),
+            font: font,
+            fonts: fonts,
+            title: 'Two slides per page',
+            mode: PdfSlideExportMode.notesPages,
+            slidesPerPage: 2,
+          ),
     ),
   ];
 
@@ -371,7 +378,8 @@ abstract final class StudioPdfGallery {
       kind: StudioPdfSampleKind.pdfWidgets,
       titleEn: 'Widget atlas',
       titleAr: 'أطلس الأدوات',
-      blurbEn: 'Charts, table, checklist, chips, watermark, and an Arabic page.',
+      blurbEn:
+          'Charts, table, checklist, chips, watermark, and an Arabic page.',
       blurbAr: 'رسوم وجدول وقائمة وشرائح وعلامة مائية وصفحة عربية.',
       fileName: 'widgets_atlas.pdf',
       build: ({SfntFont? font, OfficeFontSet? fonts}) => studioWidgetAtlasPdf(),
@@ -445,20 +453,20 @@ abstract final class StudioPdfGallery {
 
   /// One bilingual sample per catalog template. Page 1 English, page 2 Arabic.
   static List<StudioPdfSample> get templateSamples => <StudioPdfSample>[
-        for (final tpl.TemplateRef ref in tpl.TemplateCatalog.all)
-          StudioPdfSample(
-            id: 'templates-${ref.id}',
-            kind: StudioPdfSampleKind.templates,
-            group: ref.category.name,
-            titleEn: ref.nameEn,
-            titleAr: ref.nameAr,
-            blurbEn: 'English page, then Arabic. ${ref.blurbEn}',
-            blurbAr: 'صفحة إنجليزية ثم عربية. ${ref.blurbAr}',
-            fileName: 'templates_${ref.id.replaceAll('.', '_')}.pdf',
-            build: ({SfntFont? font, OfficeFontSet? fonts}) =>
-                studioTemplatePair(ref.id),
-          ),
-      ];
+    for (final tpl.TemplateRef ref in tpl.TemplateCatalog.all)
+      StudioPdfSample(
+        id: 'templates-${ref.id}',
+        kind: StudioPdfSampleKind.templates,
+        group: ref.category.name,
+        titleEn: ref.nameEn,
+        titleAr: ref.nameAr,
+        blurbEn: 'English page, then Arabic. ${ref.blurbEn}',
+        blurbAr: 'صفحة إنجليزية ثم عربية. ${ref.blurbAr}',
+        fileName: 'templates_${ref.id.replaceAll('.', '_')}.pdf',
+        build: ({SfntFont? font, OfficeFontSet? fonts}) =>
+            studioTemplatePair(ref.id),
+      ),
+  ];
 
   /// Sub-tabs under the templates section, in catalog order.
   static const List<String> templateGroups = <String>[
@@ -517,7 +525,8 @@ abstract final class StudioPdfGallery {
           'English night ledger: gradient, charts, and a table that spans pages.',
       blurbAr: 'دفتر إنجليزي: تدرج ورسوم وجدول يمتد عبر الصفحات.',
       fileName: 'showcase_harbour_close.pdf',
-      build: ({SfntFont? font, OfficeFontSet? fonts}) => studioHarbourClosePdf(),
+      build: ({SfntFont? font, OfficeFontSet? fonts}) =>
+          studioHarbourClosePdf(),
     ),
     StudioPdfSample(
       id: 'showcase-layl-al-qamar',
@@ -557,8 +566,7 @@ abstract final class StudioPdfGallery {
       StudioPdfSampleKind.officeToPdf =>
         arabic ? 'أوفيس ← PDF' : 'Office → PDF',
       StudioPdfSampleKind.pdfEngine => arabic ? 'محرك PDF' : 'PDF engine',
-      StudioPdfSampleKind.pdfWidgets =>
-        arabic ? 'pdf_widgets' : 'pdf_widgets',
+      StudioPdfSampleKind.pdfWidgets => arabic ? 'pdf_widgets' : 'pdf_widgets',
       StudioPdfSampleKind.templates =>
         arabic ? 'قوالب التقارير' : 'Report templates',
       StudioPdfSampleKind.showcase => arabic ? 'عرض ثنائي' : 'Showcase',
@@ -568,21 +576,26 @@ abstract final class StudioPdfGallery {
   /// Category subtitle.
   static String kindBlurb(StudioPdfSampleKind kind, bool arabic) {
     return switch (kind) {
-      StudioPdfSampleKind.officeToPdf => arabic
-          ? 'Word / Excel / PowerPoint تُنشأ ثم تُحوَّل إلى PDF.'
-          : 'Build Word / Excel / PowerPoint, then compile to PDF.',
-      StudioPdfSampleKind.pdfEngine => arabic
-          ? 'PdfDocument و PdfReportBuilder مباشرة.'
-          : 'PdfDocument and PdfReportBuilder directly.',
-      StudioPdfSampleKind.pdfWidgets => arabic
-          ? 'تخطيط قيود شبيه بـ Flutter.'
-          : 'Flutter-like constraint layout composer.',
-      StudioPdfSampleKind.templates => arabic
-          ? 'كل قالب صفحتان: إنجليزية ثم عربية. الشرائح تصنّف المجالات.'
-          : 'Each template is two pages: English, then Arabic. Chips classify the domains.',
-      StudioPdfSampleKind.showcase => arabic
-          ? 'عربي وإنجليزي: تدرج ورسوم وجداول تمتد.'
-          : 'Arabic and English: gradients, charts, spanning tables.',
+      StudioPdfSampleKind.officeToPdf =>
+        arabic
+            ? 'Word / Excel / PowerPoint تُنشأ ثم تُحوَّل إلى PDF.'
+            : 'Build Word / Excel / PowerPoint, then compile to PDF.',
+      StudioPdfSampleKind.pdfEngine =>
+        arabic
+            ? 'PdfDocument و PdfReportBuilder مباشرة.'
+            : 'PdfDocument and PdfReportBuilder directly.',
+      StudioPdfSampleKind.pdfWidgets =>
+        arabic
+            ? 'تخطيط قيود شبيه بـ Flutter.'
+            : 'Flutter-like constraint layout composer.',
+      StudioPdfSampleKind.templates =>
+        arabic
+            ? 'كل قالب صفحتان: إنجليزية ثم عربية. الشرائح تصنّف المجالات.'
+            : 'Each template is two pages: English, then Arabic. Chips classify the domains.',
+      StudioPdfSampleKind.showcase =>
+        arabic
+            ? 'عربي وإنجليزي: تدرج ورسوم وجداول تمتد.'
+            : 'Arabic and English: gradients, charts, spanning tables.',
     };
   }
 }
@@ -637,10 +650,10 @@ Uint8List _xlsxOpsScorecard() {
   final XlsxSheetBuilder sheet = book.addSheet('Scorecard');
   final List<List<String>> rows = <List<String>>[
     <String>['Cluster', 'Health', 'WASH', 'Shelter', 'Priority'],
-    <String>['Al Tahreer', '62', '71', '54', 'High'],
-    <String>['Al Amal', '58', '66', '49', 'High'],
+    <String>['Harbour District', '62', '71', '54', 'High'],
+    <String>['North District', '58', '66', '49', 'High'],
     <String>['Zone A', '74', '80', '68', 'Medium'],
-    <String>['Khan Younis', '51', '59', '47', 'Critical'],
+    <String>['Riverside', '51', '59', '47', 'Critical'],
   ];
   for (int r = 0; r < rows.length; r++) {
     sheet.addRow(rows[r], style: r == 0 ? head : cell);
@@ -655,7 +668,7 @@ Uint8List _xlsxOpsScorecard() {
 Uint8List _pptxPitchDeck() {
   final PptxDeckBuilder deck = PptxDeckBuilder()
     ..addCoverSlide(
-      title: 'Quds Office Suite',
+      title: 'CrispOffice',
       kicker: 'PDF SAMPLE LAB',
       subtitle: 'Office export · engine writer · pdf_widgets',
       footer: 'Studio experimental gallery',
@@ -673,50 +686,51 @@ Uint8List _pptxPitchDeck() {
 }
 
 Uint8List _kpiReport(SfntFont? font) {
-  final PdfReportBuilder report = PdfReportBuilder(
-    font: font,
-    title: 'Operations KPI',
-    author: 'Quds Studio',
-    header: 'Quds Office  ·  Confidential',
-    footer: 'Generated for PDF viewer samples',
-  )
-    ..titleText('Neighbourhood recovery — Q3 snapshot')
-    ..body(
-      'Key service indicators for Al Amal and Al Tahreer clusters. '
-      'Figures are illustrative studio data for export fidelity checks.',
-    )
-    ..spacer(height: 10)
-    ..kpiRow(<({String label, String value})>[
-      (label: 'Households surveyed', value: '4,280'),
-      (label: 'Shelters stabilized', value: '61%'),
-      (label: 'Water access', value: '73%'),
-      (label: 'Open workstreams', value: '18'),
-    ])
-    ..spacer()
-    ..heading('Cluster scorecard')
-    ..table(<List<String>>[
-      <String>['Cluster', 'Health', 'WASH', 'Shelter', 'Priority'],
-      <String>['Al Tahreer', '62', '71', '54', 'High'],
-      <String>['Al Amal N.', '58', '66', '49', 'High'],
-      <String>['Zone A', '74', '80', '68', 'Medium'],
-      <String>['Khan Younis', '51', '59', '47', 'Critical'],
-    ])
-    ..spacer()
-    ..heading('Monthly caseload')
-    ..barChart(<ChartPoint>[
-      const ChartPoint(label: 'Apr', value: 42),
-      const ChartPoint(label: 'May', value: 55),
-      const ChartPoint(label: 'Jun', value: 61),
-      const ChartPoint(label: 'Jul', value: 70),
-      const ChartPoint(label: 'Aug', value: 66),
-      const ChartPoint(label: 'Sep', value: 78),
-    ])
-    ..spacer()
-    ..heading('Notes')
-    ..body(
-      'Shelter scores remain constrained by debris clearance queues. '
-      'WASH gains track tanker rotations and repaired network segments.',
-    );
+  final PdfReportBuilder report =
+      PdfReportBuilder(
+          font: font,
+          title: 'Operations KPI',
+          author: 'CrispOffice Studio',
+          header: 'CrispOffice  ·  Confidential',
+          footer: 'Generated for PDF viewer samples',
+        )
+        ..titleText('Neighbourhood recovery — Q3 snapshot')
+        ..body(
+          'Key service indicators for North District and Harbour District clusters. '
+          'Figures are illustrative studio data for export fidelity checks.',
+        )
+        ..spacer(height: 10)
+        ..kpiRow(<({String label, String value})>[
+          (label: 'Households surveyed', value: '4,280'),
+          (label: 'Shelters stabilized', value: '61%'),
+          (label: 'Water access', value: '73%'),
+          (label: 'Open workstreams', value: '18'),
+        ])
+        ..spacer()
+        ..heading('Cluster scorecard')
+        ..table(<List<String>>[
+          <String>['Cluster', 'Health', 'WASH', 'Shelter', 'Priority'],
+          <String>['Harbour District', '62', '71', '54', 'High'],
+          <String>['North District N.', '58', '66', '49', 'High'],
+          <String>['Zone A', '74', '80', '68', 'Medium'],
+          <String>['Riverside', '51', '59', '47', 'Critical'],
+        ])
+        ..spacer()
+        ..heading('Monthly caseload')
+        ..barChart(<ChartPoint>[
+          const ChartPoint(label: 'Apr', value: 42),
+          const ChartPoint(label: 'May', value: 55),
+          const ChartPoint(label: 'Jun', value: 61),
+          const ChartPoint(label: 'Jul', value: 70),
+          const ChartPoint(label: 'Aug', value: 66),
+          const ChartPoint(label: 'Sep', value: 78),
+        ])
+        ..spacer()
+        ..heading('Notes')
+        ..body(
+          'Shelter scores remain constrained by debris clearance queues. '
+          'WASH gains track tanker rotations and repaired network segments.',
+        );
   return report.build();
 }
 
@@ -724,7 +738,7 @@ Uint8List _executiveMemo(SfntFont? font) {
   // PdfCanvas uses top-left document space (Y grows downward).
   final PdfDocument doc = PdfDocument(
     title: 'Executive memo',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
   );
   final PdfCanvas c = PdfCanvas(595.28, 841.89)
     ..setFillColor('1B3A4B')
@@ -809,12 +823,10 @@ Uint8List _executiveMemo(SfntFont? font) {
       x: 48,
       y: 800,
       fontSize: 9,
-      text: 'Quds Studio sample  ·  PdfCanvas letterhead',
+      text: 'CrispOffice sample  ·  PdfCanvas letterhead',
       color: '90A4AE',
     );
-  doc.addPage(
-    PdfPage(width: 595.28, height: 841.89, content: c.toStream()),
-  );
+  doc.addPage(PdfPage(width: 595.28, height: 841.89, content: c.toStream()));
   return doc.save(font: font);
 }
 
@@ -823,7 +835,7 @@ Uint8List _certificate(SfntFont? font) {
   const double h = 595;
   final PdfDocument doc = PdfDocument(
     title: 'Certificate of participation',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
   );
   final PdfCanvas c = PdfCanvas(w, h)
     ..setStrokeColor('1A237E')
@@ -866,15 +878,14 @@ Uint8List _certificate(SfntFont? font) {
       x: 80,
       y: 300,
       fontSize: 12,
-      text:
-          'completed the studio workshop on PDF composition, Office export,',
+      text: 'completed the studio workshop on PDF composition, Office export,',
       color: '455A64',
     )
     ..showLatin(
       x: 80,
       y: 318,
       fontSize: 12,
-      text: 'and interactive viewing with Quds Office Suite.',
+      text: 'and interactive viewing with CrispOffice.',
       color: '455A64',
     )
     ..showLatin(
@@ -898,7 +909,7 @@ Uint8List _certificate(SfntFont? font) {
 Uint8List _timelinePoster(SfntFont? font) {
   final PdfDocument doc = PdfDocument(
     title: 'Programme timeline',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
   );
   final PdfCanvas c = PdfCanvas(595.28, 841.89)
     ..setFillColor('0D47A1')
@@ -915,16 +926,16 @@ Uint8List _timelinePoster(SfntFont? font) {
       x: 40,
       y: 58,
       fontSize: 10,
-      text: 'Al Tahreer  ·  18-month horizon  ·  studio sample',
+      text: 'Harbour District  ·  18-month horizon  ·  studio sample',
       color: 'BBDEFB',
     );
   final List<({String t, String d, String hex})> phases =
       <({String t, String d, String hex})>[
-    (t: '0-3 mo', d: 'Debris surge · household registry', hex: 'E53935'),
-    (t: '3-6 mo', d: 'WASH repairs · rental support', hex: 'FB8C00'),
-    (t: '6-12 mo', d: 'Shelter kits · livelihood grants', hex: '43A047'),
-    (t: '12-18 mo', d: 'Public realm · exit to municipal', hex: '1E88E5'),
-  ];
+        (t: '0-3 mo', d: 'Debris surge · household registry', hex: 'E53935'),
+        (t: '3-6 mo', d: 'WASH repairs · rental support', hex: 'FB8C00'),
+        (t: '6-12 mo', d: 'Shelter kits · livelihood grants', hex: '43A047'),
+        (t: '12-18 mo', d: 'Public realm · exit to municipal', hex: '1E88E5'),
+      ];
   var y = 140.0;
   for (final ({String t, String d, String hex}) phase in phases) {
     c
@@ -932,7 +943,13 @@ Uint8List _timelinePoster(SfntFont? font) {
       ..rect(40, y - 2, 12, 12)
       ..fill()
       ..showLatin(x: 64, y: y + 8, fontSize: 13, text: phase.t, color: '212121')
-      ..showLatin(x: 150, y: y + 8, fontSize: 12, text: phase.d, color: '546E7A');
+      ..showLatin(
+        x: 150,
+        y: y + 8,
+        fontSize: 12,
+        text: phase.d,
+        color: '546E7A',
+      );
     if (phase != phases.last) {
       c
         ..setStrokeColor('B0BEC5')
@@ -972,16 +989,14 @@ Uint8List _timelinePoster(SfntFont? font) {
       text: '- Evidence updates to the neighbourhood profile',
       color: '455A64',
     );
-  doc.addPage(
-    PdfPage(width: 595.28, height: 841.89, content: c.toStream()),
-  );
+  doc.addPage(PdfPage(width: 595.28, height: 841.89, content: c.toStream()));
   return doc.save(font: font);
 }
 
 Uint8List _invoice(SfntFont? font) {
   final pw.Document doc = pw.Document(
     title: 'Invoice INV-2026-0911',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: font,
     fontBold: StudioFiles.latinExportBoldFont(),
   );
@@ -1032,7 +1047,7 @@ Uint8List _invoice(SfntFont? font) {
                     style: const pw.TextStyle(fontSize: 10, color: '37474F'),
                   ),
                   pw.Text(
-                    'Gaza coordination cell',
+                    'Regional coordination cell',
                     style: const pw.TextStyle(fontSize: 10, color: '37474F'),
                   ),
                 ],
@@ -1071,7 +1086,12 @@ Uint8List _invoice(SfntFont? font) {
             3: pw.Alignment.centerRight,
           },
           data: const <List<String>>[
-            <String>['Platform license — Engine (annual)', '1', '2,400', '2,400'],
+            <String>[
+              'Platform license — Engine (annual)',
+              '1',
+              '2,400',
+              '2,400',
+            ],
             <String>['Editor seats', '8', '180', '1,440'],
             <String>['PDF file stack', '1', '950', '950'],
             <String>['Priority support', '1', '420', '420'],
@@ -1090,7 +1110,9 @@ Uint8List _invoice(SfntFont? font) {
           ),
         ),
         pw.SizedBox(height: 16),
-        const pw.Bullet(text: 'Payable within 14 days. Reference the invoice number.'),
+        const pw.Bullet(
+          text: 'Payable within 14 days. Reference the invoice number.',
+        ),
         const pw.Bullet(text: 'Generated with pdf_widgets MultiPage + Table.'),
       ],
     ),
@@ -1101,7 +1123,7 @@ Uint8List _invoice(SfntFont? font) {
 Uint8List _proposal(SfntFont? font) {
   final pw.Document doc = pw.Document(
     title: 'Recovery proposal',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: font,
     fontBold: StudioFiles.latinExportBoldFont(),
   );
@@ -1121,7 +1143,7 @@ Uint8List _proposal(SfntFont? font) {
         ),
         pw.SizedBox(height: 6),
         pw.Text(
-          'Area-based recovery support for Al Tahreer',
+          'Area-based recovery support for Harbour District',
           style: const pw.TextStyle(
             fontSize: 20,
             fontWeight: pw.FontWeight.bold,
@@ -1136,8 +1158,12 @@ Uint8List _proposal(SfntFont? font) {
         ),
         pw.SizedBox(height: 18),
         pw.Header(level: 2, text: 'Objectives'),
-        const pw.Bullet(text: 'Stabilize 60% of grade 3–4 shelters within six months.'),
-        const pw.Bullet(text: 'Restore primary tanker corridors and clinic power.'),
+        const pw.Bullet(
+          text: 'Stabilize 60% of grade 3–4 shelters within six months.',
+        ),
+        const pw.Bullet(
+          text: 'Restore primary tanker corridors and clinic power.',
+        ),
         const pw.Bullet(text: 'Publish quarterly neighbourhood scorecards.'),
         pw.SizedBox(height: 12),
         pw.Header(level: 2, text: 'Workstreams'),
@@ -1175,7 +1201,7 @@ Uint8List _proposal(SfntFont? font) {
 Uint8List _quarterly(SfntFont? font) {
   final pw.Document doc = pw.Document(
     title: 'Quarterly briefing',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: font,
     fontBold: StudioFiles.latinExportBoldFont(),
   );
@@ -1245,10 +1271,7 @@ pw.Widget _kpiTile(String label, String value) {
   return pw.Expanded(
     child: pw.Container(
       padding: const pw.EdgeInsets.all(12),
-      decoration: const pw.BoxDecoration(
-        color: 'E3F2FD',
-        borderRadius: 4,
-      ),
+      decoration: const pw.BoxDecoration(color: 'E3F2FD', borderRadius: 4),
       child: pw.Column(
         mainAxisSize: pw.MainAxisSize.min,
         crossAxisAlignment: pw.CrossAxisAlignment.start,
@@ -1275,7 +1298,7 @@ pw.Widget _kpiTile(String label, String value) {
 Uint8List _meetingAgenda(SfntFont? font) {
   final pw.Document doc = pw.Document(
     title: 'Board agenda',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: font,
     fontBold: StudioFiles.latinExportBoldFont(),
   );
@@ -1309,7 +1332,7 @@ Uint8List _meetingAgenda(SfntFont? font) {
             ),
             child: pw.Text(
               'Attendees: Programme director, WASH lead, Shelter lead, '
-              'Finance, Municipal liaison, UN-Habitat (observer).',
+              'Finance, Municipal liaison, External observer (observer).',
               style: const pw.TextStyle(fontSize: 9, color: '283593'),
             ),
           ),
@@ -1321,7 +1344,12 @@ Uint8List _meetingAgenda(SfntFont? font) {
               <String>['10:15', 'Debris surge plan', 'Shelter', 'Endorse'],
               <String>['10:45', 'WASH tanker rotations', 'WASH', 'Note'],
               <String>['11:15', 'Budget contingency', 'Finance', 'Approve'],
-              <String>['11:45', 'Municipal hand-over path', 'Liaison', 'Discuss'],
+              <String>[
+                '11:45',
+                'Municipal hand-over path',
+                'Liaison',
+                'Discuss',
+              ],
               <String>['12:15', 'AOB & close', 'Chair', '-'],
             ],
             headerDecoration: '1A237E',
@@ -1351,7 +1379,7 @@ Uint8List _meetingAgenda(SfntFont? font) {
 Uint8List _dossierCard(SfntFont? font) {
   final pw.Document doc = pw.Document(
     title: 'Neighbourhood dossier',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: font,
     fontBold: StudioFiles.latinExportBoldFont(),
   );
@@ -1364,7 +1392,10 @@ Uint8List _dossierCard(SfntFont? font) {
         children: <pw.Widget>[
           pw.Container(
             color: 'B71C1C',
-            padding: const pw.EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            padding: const pw.EdgeInsets.symmetric(
+              horizontal: 14,
+              vertical: 12,
+            ),
             child: pw.Row(
               children: <pw.Widget>[
                 pw.Expanded(
@@ -1408,7 +1439,7 @@ Uint8List _dossierCard(SfntFont? font) {
                     ),
                     pw.SizedBox(height: 6),
                     pw.Text(
-                      'Al Tahreer sits within Khan Younis municipal boundaries. '
+                      'Harbour District sits within Riverside municipal boundaries. '
                       'Pre-war density, mixed residential fabric, and disrupted '
                       'networks define the recovery sequence.',
                       style: const pw.TextStyle(
@@ -1427,10 +1458,16 @@ Uint8List _dossierCard(SfntFont? font) {
                       ),
                     ),
                     pw.SizedBox(height: 6),
-                    const pw.Bullet(text: 'Clear primary corridors for tankers'),
-                    const pw.Bullet(text: 'Stabilize partially damaged shelters'),
+                    const pw.Bullet(
+                      text: 'Clear primary corridors for tankers',
+                    ),
+                    const pw.Bullet(
+                      text: 'Stabilize partially damaged shelters',
+                    ),
                     const pw.Bullet(text: 'Restore clinic cold-chain power'),
-                    const pw.Bullet(text: 'Update household vulnerability registry'),
+                    const pw.Bullet(
+                      text: 'Update household vulnerability registry',
+                    ),
                   ],
                 ),
               ),

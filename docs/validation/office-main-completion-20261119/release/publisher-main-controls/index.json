@@ -1,0 +1,69 @@
+{
+  "accepted_final": {
+    "cases_passed": 17,
+    "errors": 0,
+    "failed": 0,
+    "files": 3,
+    "network_attempts": 0,
+    "receipt": "final-run/receipt.json",
+    "skipped": 0
+  },
+  "added_to_earlier_836_78_or_179_counts": 0,
+  "changed_test": {
+    "change": "Only the stale generated-card wording assertion; behavior controls unchanged",
+    "main_git_blob": "674a138826c74df8c3a165871600943983d48857",
+    "path": "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+    "resolved_git_blob": "141d109584099c51bed4f03bcd47054422ada9ad",
+    "sha256": "3264f0ea59b6df6308bf8bf3e4dd08bdfcb7497570735c0afa9616b570e17524"
+  },
+  "excluded_first": {
+    "accepted_count": 0,
+    "cases_executed": 17,
+    "cases_passed": 16,
+    "failed": 1,
+    "reason": "Stale imported card-wording assertion",
+    "receipt": "first-run/receipt.json"
+  },
+  "files": {
+    "README.md": {
+      "bytes": 2102,
+      "sha256": "0eb9334c5cf2cbb2c5dc316225e0dbe7874cd2e5ac3e43fa999545bf8daabf0d"
+    },
+    "final-run/receipt.json": {
+      "bytes": 1822,
+      "sha256": "856f7ef5c65d0a2b621f73dc7869f88b2569432539da676dfa1b48ab1dd69293"
+    },
+    "final-run/unittest.log": {
+      "bytes": 2586,
+      "sha256": "3e3bba026017d4604343271c3ca9c40178ed9c329ef2c607f642171c8000cc11"
+    },
+    "first-run/receipt.json": {
+      "bytes": 1911,
+      "sha256": "5cc4338046ea1cf9c05bed1ba9aef70a0bb276238a30bb2bf62d094212dca67b"
+    },
+    "first-run/unittest.log": {
+      "bytes": 4755,
+      "sha256": "4ff8552b2f9e2bec4d737af22d1fc11a16ed5166fca04f628651c526f8fae09b"
+    },
+    "run_offline_publisher_tests.py": {
+      "bytes": 2723,
+      "sha256": "75311ca9a002263dd71a8cb0305118066b3b51a6aa1d2aa7de951f8ca674a351"
+    }
+  },
+  "final_source_sha256": {
+    "tools/proofing/ayaspell/build_bundle.py": "d34d326ff41709fd740f2324487487aaca2c6056381de0fb26c4b973bec12ec0",
+    "tools/proofing/ayaspell/test_build_bundle.py": "ace3e8d193360145c873291863be876533e4ea8ff2c9ad7fc63c44ce1e5646ef",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py": "3264f0ea59b6df6308bf8bf3e4dd08bdfcb7497570735c0afa9616b570e17524",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096"
+  },
+  "helper": {
+    "byte_identical_to_main": true,
+    "git_blob": "9257d987fc3a4307a33bc82465fcd03f777f7e28",
+    "path": "tools/proofing/ayaspell/build_bundle.py",
+    "sha256": "d34d326ff41709fd740f2324487487aaca2c6056381de0fb26c4b973bec12ec0"
+  },
+  "historical_seven_guard_checks": "Preserved as earlier implementation evidence; superseded, not reexecuted or counted here",
+  "incoming_main": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+  "network_or_real_publication_performed": false,
+  "schema": "quds.proofing.publisher_main_controls.v1"
+}

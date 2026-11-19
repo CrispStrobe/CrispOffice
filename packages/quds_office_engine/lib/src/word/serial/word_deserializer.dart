@@ -2223,6 +2223,15 @@ class WordDeserializer {
             'val',
             namespaceUri: OfficeNamespaces.w,
           );
+          props.complexScriptLanguage = reader.getAttribute(
+            'bidi',
+            namespaceUri: OfficeNamespaces.w,
+          );
+        case 'rtl' || 'cs':
+          final on = _onOff(
+            reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
+          );
+          props.complexScript = (props.complexScript ?? false) || on;
         case 'noProof':
           props.noProof = _onOff(
             reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
@@ -3409,12 +3418,19 @@ class WordDeserializer {
       return;
     }
     if (readProofingLanguage) {
-      document.proofingLanguage = XmlDocument.parse(part.readText()).root
+      final defaultLanguage = XmlDocument.parse(part.readText()).root
           ?.firstChild('docDefaults', namespaceUri: OfficeNamespaces.w)
           ?.firstChild('rPrDefault', namespaceUri: OfficeNamespaces.w)
           ?.firstChild('rPr', namespaceUri: OfficeNamespaces.w)
-          ?.firstChild('lang', namespaceUri: OfficeNamespaces.w)
-          ?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
+          ?.firstChild('lang', namespaceUri: OfficeNamespaces.w);
+      document.proofingLanguage = defaultLanguage?.getAttribute(
+        'val',
+        namespaceUri: OfficeNamespaces.w,
+      );
+      document.complexScriptLanguage = defaultLanguage?.getAttribute(
+        'bidi',
+        namespaceUri: OfficeNamespaces.w,
+      );
     }
     document.styles.clear();
     final XmlPullReader reader = WordMarkupCompatibilityReader(part.readText());

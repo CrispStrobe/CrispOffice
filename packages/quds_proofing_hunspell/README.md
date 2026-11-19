@@ -1,9 +1,10 @@
 # Optional local Hunspell spelling
 
 This package provides optional Hunspell spelling infrastructure for Quds hosts.
-Default Word/Studio registration, an in-app download workflow, and application
-library/worker packaging remain host integration work. A host must offer an
-explicit user choice before downloading dictionary data. The first dictionary is
+The Studio example offers an explicit dictionary download workflow and registers
+the provider after installation. Each host target must package compatible engine
+assets and complete its platform acceptance. A host must offer an explicit user
+choice before downloading dictionary data. The first dictionary is
 Arabic: the AyaSpell bundle published unmodified at
 [`cstr/ayaspell-ar-hunspell`](https://huggingface.co/cstr/ayaspell-ar-hunspell/tree/e9ace7cca3844bef906d8d9fc5431c4e15bd2740)
 (immutable revision `e9ace7cc…`). Nothing is downloaded or enabled by default.
@@ -73,6 +74,22 @@ clean result.
 ```sh
 python3 tool/build.py --native --wasm --output build      # host native + web
 python3 tool/build.py --license-bundle                     # regenerate licenses/
+```
+
+Host packaging copies only receipt-verified outputs:
+
+```sh
+# Web: worker, module and wasm plus notices under licenses/hunspell/.
+python3 tool/build.py --wasm --install-web ../quds_office_editor/example/web/proofing
+# macOS: library into the app bundle, notices into Resources, then re-sign.
+python3 tool/build.py --native \
+  --install-native <App>.app/Contents/Frameworks \
+  --install-licenses <App>.app/Contents/Resources/hunspell-licenses
+codesign --force --sign <identity> <App>.app/Contents/Frameworks/libquds_proofing_hunspell.dylib
+codesign --force --deep --sign <identity> --entitlements <Release.entitlements> <App>.app
+# Android: arm64-v8a with the NDK (static libc++) into jniLibs.
+python3 tool/build.py --android \
+  --install-android ../quds_office_editor/example/android/app/src/main/jniLibs/arm64-v8a
 ```
 
 `build.py` downloads the Hunspell 1.7.2 release tarball, checks its SHA-256

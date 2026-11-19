@@ -1,0 +1,84 @@
+{
+  "added_to_application_or_python_qualification_totals": 0,
+  "check_script_sha256": "5ee0006a9617cf640de883ba089eb2a8c147d9fde46561afe73c1dde05429f50",
+  "checks": [
+    {
+      "exit_code": 2,
+      "fetch_stub_calls": 0,
+      "issues": [],
+      "name": "existing_nonempty_directory",
+      "network_attempts": 0,
+      "outcome": "argument_error",
+      "passed": true,
+      "publication_stub_calls": 0
+    },
+    {
+      "exit_code": 2,
+      "fetch_stub_calls": 0,
+      "issues": [],
+      "name": "existing_empty_directory",
+      "network_attempts": 0,
+      "outcome": "argument_error",
+      "passed": true,
+      "publication_stub_calls": 0
+    },
+    {
+      "exit_code": 2,
+      "fetch_stub_calls": 0,
+      "issues": [],
+      "name": "existing_file",
+      "network_attempts": 0,
+      "outcome": "argument_error",
+      "passed": true,
+      "publication_stub_calls": 0
+    },
+    {
+      "exit_code": 2,
+      "fetch_stub_calls": 0,
+      "issues": [],
+      "name": "existing_dangling_symlink",
+      "network_attempts": 0,
+      "outcome": "argument_error",
+      "passed": true,
+      "publication_stub_calls": 0
+    },
+    {
+      "exit_code": 2,
+      "fetch_stub_calls": 0,
+      "issues": [],
+      "name": "existing_directory_symlink",
+      "network_attempts": 0,
+      "outcome": "argument_error",
+      "passed": true,
+      "publication_stub_calls": 0
+    },
+    {
+      "exit_code": 2,
+      "fetch_stub_calls": 0,
+      "issues": [],
+      "name": "racing_directory",
+      "network_attempts": 0,
+      "outcome": "argument_error",
+      "passed": true,
+      "publication_stub_calls": 0
+    },
+    {
+      "exit_code": null,
+      "fetch_stub_calls": 1,
+      "issues": [],
+      "name": "fresh_directory",
+      "network_attempts": 0,
+      "outcome": "stubbed_fetch",
+      "passed": true,
+      "publication_stub_calls": 0
+    }
+  ],
+  "helper_path": "tools/proofing/ayaspell/build_bundle.py",
+  "helper_sha256": "8bdcb6e7536184ee0f62f2628cd0294c98f3037e46f61caa8d642430a1acb912",
+  "issues": [],
+  "network_or_publish_performed": false,
+  "passed": true,
+  "replay": "python3 docs/validation/office-main-completion-20261119/release/check_proofing_output_guard.py --repo \"$QUDS_REPO\" --output \"$QUDS_RECEIPT\"",
+  "schema": "quds.proofing.output_guard_checks.v1",
+  "validation_scope": "Seven isolated helper checks; no bundle download, upload or product tests"
+}

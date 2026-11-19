@@ -40,12 +40,11 @@ resources are published separately and downloaded by the user inside the app
 as data, never as executable code) and the resource assessment. First step:
 the AyaSpell Hunspell dictionary under its MPL 1.1 option, built reproducibly by
 `tools/proofing/ayaspell/build_bundle.py` from a pinned LibreOffice packaging,
-an optional MPL Hunspell engine adapter package, and independently authored
-Arabic rules. The adapter package is implemented; host registration, the
-in-app Arabic download workflow and application library/worker packaging
-remain open.
-Built-in Arabic writing rules run for supported Arabic language tags; optional
-dictionary/data resources are not downloaded by default.
+with the Hunspell adapter package and Studio's explicit dictionary download
+workflow implemented. Packaging and installed-platform acceptance remain
+target-specific. The independently authored Arabic
+writing rules below are built in and registered by default; the downloadable
+Arabic dictionary is not enabled or downloaded by default.
 
 `ArabicWritingRulesProvider` (`arabic-writing`) implements the first
 independently authored Arabic rule set. It is part of the app (MIT) and needs
@@ -71,10 +70,25 @@ records why LanguageTool's Arabic rules can only be a separate download: the
 rules are LGPL-2.1, but the POS dictionary is GPL-derived and one list is
 AGPL. Interpreting them natively is a 3–5 week engine task.
 
+The clean-room T1 extension (roadmap step 3b) adds 32 rule ids to the same
+provider, written only from the abstract
+[rule specification](roadmaps/arabic-rule-spec.md) with self-authored lists,
+messages and tests. 19 run by default: doubled and unpaired punctuation,
+whitespace, run-together words, theophoric names, `ىء`, wasl-measure verbal
+nouns, frozen misspellings, per-paragraph spelling consistency, weekday/date
+and implausible-year checks, `هل` incompatibilities, redundancy, fixed
+expressions, colloquial words and content-word repetition. 13 are opt-in via
+`enabledOptionalRuleIds`: prescriptive usage and sentence-position particles,
+wordiness, loanwords, long sentences, tanwin placement, vowelling and ض/ظ
+hints. 195 new tests (81 positive, 84 controls); on the 1,000 UD Arabic-PUD
+sentences the default-on extension produces 1 finding (an unclosed quotation
+continued in the next sentence). Per-rule counts and the deferred T2/T3
+categories are in [step 3b](roadmaps/arabic-proofing.md).
+
 ## Optional Hunspell spelling (Arabic) — 19 November 2026
 
 [`quds_proofing_hunspell`](../packages/quds_proofing_hunspell/README.md) adds a
-Hunspell spelling provider and installer for host-managed dictionary downloads,
+Hunspell spelling provider for dictionaries the user downloads inside the app,
 first Arabic (AyaSpell, `cstr/ayaspell-ar-hunspell` at `e9ace7cc…`). The engine
 is the MIT adapter plus unmodified Hunspell 1.7.2 library files under their
 MPL 1.1 option, as a native library in a persistent isolate or a bundled
@@ -96,10 +110,20 @@ installer tamper/changed-download rejection and a live download from the
 pinned revision. iOS arm64 and Android arm64 libraries compile and link;
 Windows and on-device runs remain open. The Office integration review also
 built the Linux native adapter offline and repaired a dictionary-handle leak
-on isolate disposal, with six lifecycle regressions against an instrumented
+on isolate disposal. Six lifecycle regressions passed against an instrumented
 real Hunspell library and a synthetic dictionary. That review does not repeat
-the incoming AyaSpell corpus, installer or Wasm observations. No host app
-registers the provider or offers the download yet.
+the incoming AyaSpell corpus, installer or Wasm observations, or establish an
+installed Linux application build.
+
+**Studio wiring (19 November 2026):** Review › Proofing › Dictionaries offers
+the AyaSpell download (source revision, MPL 1.1, size, pinned digests,
+progress, cancel, remove, licence page). An installed dictionary adds the
+Hunspell provider after the Arabic rules; findings on which a rule and the
+dictionary agree (same category, range and a shared suggestion) are shown
+once with the rule's message. Arabic runs of Word documents are routed by
+their complex-script language (`w:lang/@w:bidi`, with `w:rtl`/`w:cs` or
+Arabic/Hebrew letters). Evidence and packaging steps are in the
+[roadmap](roadmaps/arabic-proofing.md) step 2.
 
 ## Native spelling continuation — 18 November 2026
 
