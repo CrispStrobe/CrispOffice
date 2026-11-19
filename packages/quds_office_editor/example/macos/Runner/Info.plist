@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>CrispOffice Studio</string>
+	<string>CrispOffice</string>
 	<key>CFBundleDisplayName</key>
-	<string>CrispOffice Studio</string>
+	<string>CrispOffice</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

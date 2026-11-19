@@ -20,7 +20,7 @@ class StudioWindow {
   }
 
   static Future<void> bootstrap({
-    String title = 'CrispOffice Studio',
+    String title = 'CrispOffice',
     Size size = const Size(1280, 720),
     Size minimumSize = const Size(880, 560),
   }) async {

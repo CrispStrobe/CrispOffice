@@ -66,17 +66,25 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   SuiteLook _look = SuiteLook.light;
   OfficeInteractionMode _mode = OfficeInteractionMode.editing;
   _RibbonTab _tab = _RibbonTab.home;
-  StudioLanguage _language = StudioLanguage.ar;
+  StudioLanguage _language = StudioLanguage.en;
   bool get _arabic => _language == StudioLanguage.ar;
   set _arabic(bool value) =>
       _language = value ? StudioLanguage.ar : StudioLanguage.en;
   StudioStrings get _strings => StudioStrings(_language);
+  String _t(String en, String de, String ar) => switch (_language) {
+    StudioLanguage.en => en,
+    StudioLanguage.de => de,
+    StudioLanguage.ar => ar,
+  };
   var _wordRulers = true;
   var _sheetGridlines = true;
   var _sheetHeaders = true;
   var _slideHandles = true;
-  var _showNotes = true;
-  var _showComments = true;
+  var _showNotes = false;
+  var _showComments = false;
+  var _showOutline = false;
+  var _showRibbonGroupLabels = false;
+  OfficeLengthUnit _lengthUnit = OfficeLengthUnit.millimeters;
   var _showAnimPane = true;
   var _showPasteOptions = false;
   final GlobalKey _settingsButtonKey = GlobalKey();
@@ -188,7 +196,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _slides.addListener(_rebuild);
     _pdf.addListener(_rebuild);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      StudioWindow.setTitle('$_chromeTitle — CrispOffice Studio');
+      StudioWindow.setTitle('$_chromeTitle — CrispOffice');
     });
   }
 
@@ -213,7 +221,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _tab = _RibbonTab.insert;
           }
         });
-        StudioWindow.setTitle('$_chromeTitle — CrispOffice Studio');
+        StudioWindow.setTitle('$_chromeTitle — CrispOffice');
         _syncSlideshowFullscreen();
       }
     });
@@ -269,6 +277,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _sheetGridlines,
       _sheetHeaders,
       _slideHandles,
+      _lengthUnit,
     );
     if (_cachedConfig != null && _configKey == key) {
       return _cachedConfig!;
@@ -282,13 +291,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       showGridHeaders: _sheetHeaders,
       showGridlines: _sheetGridlines,
       showSlideHandles: _slideHandles,
+      lengthUnit: _lengthUnit,
       textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
       strings: _arabic ? OfficeStrings.arabic : OfficeStrings.english,
       formFactor: OfficeFormFactor.automatic,
       density: OfficeDensity.comfortable,
       adaptiveChrome: true,
       interactiveRulers: _wordRulers,
-      showNotesPane: _app == SuiteApp.word,
+      showNotesPane: _app == SuiteApp.word && _showNotes,
     );
     return _cachedConfig!;
   }
@@ -877,7 +887,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _app = app;
       _tab = app == SuiteApp.pdf ? _RibbonTab.view : _RibbonTab.home;
     });
-    StudioWindow.setTitle('$_chromeTitle — CrispOffice Studio');
+    StudioWindow.setTitle('$_chromeTitle — CrispOffice');
   }
 
   RelativeRect _menuRectFor(GlobalKey key) {
@@ -904,42 +914,162 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  void _openSettings() {
-    showMenu<String>(
+  Future<void> _openSettings() async {
+    await showDialog<void>(
       context: context,
-      position: _menuRectFor(_settingsButtonKey),
-      items: <PopupMenuEntry<String>>[
-        PopupMenuItem<String>(
-          value: 'mode',
-          child: Text('${_arabic ? 'الوضع' : 'Mode'}: $_modeLabel'),
-        ),
-        PopupMenuItem<String>(
-          value: 'look',
-          child: Text('${_arabic ? 'المظهر' : 'Look'}: $_lookLabel'),
-        ),
-        PopupMenuItem<String>(
-          value: 'lang',
-          child: Text(
-            '${_strings.languageLabel}: '
-            '${switch (_language) {
-              StudioLanguage.en => 'English',
-              StudioLanguage.de => 'Deutsch',
-              StudioLanguage.ar => 'العربية',
-            }}',
-          ),
-        ),
-      ],
-    ).then((String? value) {
-      if (value == 'mode') {
-        _cycleMode();
-      } else if (value == 'look') {
-        setState(() {
-          _look = SuiteLook.values[(_look.index + 1) % SuiteLook.values.length];
-        });
-      } else if (value == 'lang') {
-        _cycleLanguage();
-      }
-    });
+      builder: (BuildContext dialogContext) => StatefulBuilder(
+        builder: (BuildContext context, StateSetter setDialogState) {
+          void changed(VoidCallback update) {
+            setState(update);
+            setDialogState(() {});
+          }
+
+          return AlertDialog(
+            title: Text(_strings.settings),
+            content: SizedBox(
+              width: 460,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    DropdownButtonFormField<OfficeInteractionMode>(
+                      initialValue: _mode,
+                      decoration: InputDecoration(labelText: _strings.mode),
+                      items: <DropdownMenuItem<OfficeInteractionMode>>[
+                        for (final value in OfficeInteractionMode.values)
+                          DropdownMenuItem(
+                            value: value,
+                            child: Text(switch (value) {
+                              OfficeInteractionMode.editing => _t(
+                                'Editing',
+                                'Bearbeiten',
+                                'تحرير',
+                              ),
+                              OfficeInteractionMode.selecting => _t(
+                                'Selecting',
+                                'Auswählen',
+                                'تحديد',
+                              ),
+                              OfficeInteractionMode.viewing => _t(
+                                'Viewing',
+                                'Ansehen',
+                                'عرض',
+                              ),
+                            }),
+                          ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) changed(() => _mode = value);
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    DropdownButtonFormField<SuiteLook>(
+                      initialValue: _look,
+                      decoration: InputDecoration(labelText: _strings.look),
+                      items: <DropdownMenuItem<SuiteLook>>[
+                        for (final value in SuiteLook.values)
+                          DropdownMenuItem(
+                            value: value,
+                            child: Text(switch (value) {
+                              SuiteLook.light => _t('Light', 'Hell', 'فاتح'),
+                              SuiteLook.dark => _t('Dark', 'Dunkel', 'داكن'),
+                              SuiteLook.highContrast => _t(
+                                'High contrast',
+                                'Hoher Kontrast',
+                                'تباين عالٍ',
+                              ),
+                            }),
+                          ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) changed(() => _look = value);
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    DropdownButtonFormField<StudioLanguage>(
+                      initialValue: _language,
+                      decoration: InputDecoration(
+                        labelText: _strings.languageLabel,
+                      ),
+                      items: const <DropdownMenuItem<StudioLanguage>>[
+                        DropdownMenuItem(
+                          value: StudioLanguage.en,
+                          child: Text('English'),
+                        ),
+                        DropdownMenuItem(
+                          value: StudioLanguage.de,
+                          child: Text('Deutsch'),
+                        ),
+                        DropdownMenuItem(
+                          value: StudioLanguage.ar,
+                          child: Text('العربية'),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) changed(() => _language = value);
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    DropdownButtonFormField<OfficeLengthUnit>(
+                      initialValue: _lengthUnit,
+                      decoration: InputDecoration(
+                        labelText: _strings.measurement,
+                      ),
+                      items: <DropdownMenuItem<OfficeLengthUnit>>[
+                        DropdownMenuItem(
+                          value: OfficeLengthUnit.millimeters,
+                          child: Text(_strings.millimetres),
+                        ),
+                        DropdownMenuItem(
+                          value: OfficeLengthUnit.centimeters,
+                          child: Text(_strings.centimetres),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) changed(() => _lengthUnit = value);
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(_strings.showOutline),
+                      value: _showOutline,
+                      onChanged: (value) => changed(() => _showOutline = value),
+                    ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(_strings.showComments),
+                      value: _showComments,
+                      onChanged: (value) =>
+                          changed(() => _showComments = value),
+                    ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(_strings.showNotes),
+                      value: _showNotes,
+                      onChanged: (value) => changed(() => _showNotes = value),
+                    ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(_strings.showRibbonLabels),
+                      value: _showRibbonGroupLabels,
+                      onChanged: (value) =>
+                          changed(() => _showRibbonGroupLabels = value),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(dialogContext),
+                child: Text(_strings.close),
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 
   Future<void> _openMail() => showDialog<void>(
@@ -982,31 +1112,37 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           enabled: false,
           child: Text(_arabic ? 'حساب محلي' : 'Local account'),
         ),
+        const PopupMenuDivider(),
+        PopupMenuItem<String>(value: 'about', child: Text(_strings.about)),
       ],
-    );
+    ).then((String? value) {
+      if (value == 'about') {
+        _showAbout();
+      }
+    });
   }
+
+  void _showAbout() => showAboutDialog(
+    context: context,
+    applicationName: _strings.appTitle,
+    applicationVersion: '1.0.0',
+    applicationIcon: const Icon(Icons.auto_awesome_mosaic),
+    applicationLegalese: _strings.legalNotice,
+    children: <Widget>[
+      Text(_strings.aboutDescription),
+      const SizedBox(height: 12),
+      Text(
+        'MIT-licensed CrispOffice engine and editor. '
+        'Product names describe file formats only.',
+      ),
+    ],
+  );
 
   String get _modeLabel => switch (_mode) {
     OfficeInteractionMode.editing => _arabic ? 'تحرير' : 'Editing',
     OfficeInteractionMode.selecting => _arabic ? 'تحديد' : 'Selecting',
     OfficeInteractionMode.viewing => _arabic ? 'عرض' : 'Viewing',
   };
-
-  String get _lookLabel => switch (_look) {
-    SuiteLook.light => _arabic ? 'فاتح' : 'Light',
-    SuiteLook.dark => _arabic ? 'داكن' : 'Dark',
-    SuiteLook.highContrast => _arabic ? 'تباين' : 'Contrast',
-  };
-
-  void _cycleMode() {
-    setState(() {
-      _mode = switch (_mode) {
-        OfficeInteractionMode.editing => OfficeInteractionMode.selecting,
-        OfficeInteractionMode.selecting => OfficeInteractionMode.viewing,
-        OfficeInteractionMode.viewing => OfficeInteractionMode.editing,
-      };
-    });
-  }
 
   List<_RibbonTab> get _tabsForApp => switch (_app) {
     SuiteApp.word => <_RibbonTab>[
@@ -1190,6 +1326,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   List<StudioRibbonGroup> _ribbonGroups() {
+    StudioRibbonGroup.showTitles = _showRibbonGroupLabels;
     return switch ((_app, _tab)) {
       (SuiteApp.word, _RibbonTab.file) => _fileGroups(_resetWord, _newWord),
       (SuiteApp.word, _RibbonTab.home) => _wordHome(),
@@ -7632,7 +7769,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           final stage = Row(
             children: <Widget>[
               if (constraints.maxWidth >= 700 &&
-                  !(_app == SuiteApp.powerpoint && _slides.isPresenting))
+                  !(_app == SuiteApp.powerpoint && _slides.isPresenting) &&
+                  (_app != SuiteApp.word || _showOutline))
                 _sidePane(dark),
               Expanded(child: _stage(dark)),
               if (_app == SuiteApp.word && _showComments && !commentsBelow)
