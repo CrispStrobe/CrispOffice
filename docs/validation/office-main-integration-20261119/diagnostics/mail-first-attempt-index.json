@@ -1,0 +1,100 @@
+{
+  "source_commit": "056414ba9bd7f2104e852d41c3e1c7d5a4b20a2a",
+  "status": "FAIL",
+  "reason": "Incoming test sources: duplicate equal constant set literal warning; ambiguous Drift/test isNull matcher prevents migration suite loading. No product behavior assertion failed.",
+  "archive_sha256": "92c50a44a3ff93224e5ab17e2a1b4079c8596276f35fa6d1d8f755a3eef38a15",
+  "archive_bytes": 16344,
+  "members": [
+    {
+      "path": "browser-entry.log",
+      "bytes": 114,
+      "sha256": "7c9d5caa40e3a81e617422fb1bea5881bd0342addbdd43964c0da7755bc8b829"
+    },
+    {
+      "path": "browser-worker.log",
+      "bytes": 113,
+      "sha256": "81f72c6e6b7596db15c744b40727738ec926b0fad56859b3d93f25e8d0f67898"
+    },
+    {
+      "path": "core-analysis.log",
+      "bytes": 198,
+      "sha256": "ac382ca37780eba875e03a0409726f91a8374f7bc732809e5d89a59024d81d97"
+    },
+    {
+      "path": "core-node-cases.json",
+      "bytes": 6140,
+      "sha256": "3b78829cb87ced15dddcaa80c8c75db9728780cddbd0e0d92b60fff86e4294ec"
+    },
+    {
+      "path": "core-node.jsonl",
+      "bytes": 16931,
+      "sha256": "61916c71a1c29cd83456bbebcba51a24f6494f1692bf38cafa4c68d21f6182e7"
+    },
+    {
+      "path": "core-vm-cases.json",
+      "bytes": 6140,
+      "sha256": "32aafc86e63b2a4f9f7bae1d3d827666fa4194c560f15b0bb804ff9a73088fee"
+    },
+    {
+      "path": "core-vm.jsonl",
+      "bytes": 15577,
+      "sha256": "49bb98b9453be26b1057a33859ec89d80cdfdf8e32ed5c65308acbb8af7704e7"
+    },
+    {
+      "path": "format.log",
+      "bytes": 48,
+      "sha256": "28983225ac0cc3b7763dd6f5ee498ba1900e0bd2965a5b01a4b4a235a02e8bd4"
+    },
+    {
+      "path": "locked-resolution.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "portable-node-cases.json",
+      "bytes": 8566,
+      "sha256": "eb260ba7ae8f16e34df293a975c3ae40abfc1a3c55383041c69dd54fee5bef1c"
+    },
+    {
+      "path": "portable-node.jsonl",
+      "bytes": 22858,
+      "sha256": "c07e260ac0557ebbd45acd692fb184172b017ab92a2bb72d9b83254afe49ea13"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 26294,
+      "sha256": "f747ed2eef0538f02704f794d9ad8ea52734e0efe92a2bc2e7185ca145b48d4c"
+    },
+    {
+      "path": "runner-regressions.log",
+      "bytes": 6804,
+      "sha256": "1d6d665c818954edd41ca64ea0556ef2512ea4e92a56e9a72a2f9f1bcf34aa21"
+    },
+    {
+      "path": "runtime.log",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "store-analysis.log",
+      "bytes": 1582,
+      "sha256": "952ac29d4b3aa7f8187e4199aa07f86cea5b986f71a66c874182382a727c6201"
+    },
+    {
+      "path": "store-vm-cases.json",
+      "bytes": 16944,
+      "sha256": "f60b456766fc341eb971d698cf592d59f5922a35eca435532524675b7a4402e8"
+    },
+    {
+      "path": "store-vm.jsonl",
+      "bytes": 49414,
+      "sha256": "48a072f0d1faa72afdf4ad631c3c4d4ab0209230f5f84e53e51de43c809d0329"
+    },
+    {
+      "path": "whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "excluded": "Generated JavaScript, maps/deps and temporary files; original compilation logs retained."
+}
