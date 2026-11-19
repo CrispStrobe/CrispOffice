@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
@@ -9,6 +10,7 @@ import 'package:quds_mail_store/quds_mail_archive_native.dart';
 
 /// Narrow host seam: widgets can test failures and races without a real archive.
 abstract interface class StudioMailArchiveStore {
+  MailProfileId get profile;
   set diagnostics(MailArchiveDiagnostics? value);
   Future<MailResult<MailArchiveImportResult>> archiveMessage(
     MailMessage message, {
@@ -20,6 +22,11 @@ abstract interface class StudioMailArchiveStore {
     MailArchiveSearchRequest request,
   );
   Future<MailResult<MailBytes?>> loadOriginal(String id);
+  Future<MailResult<MailArchiveExportPlan>> planExport(
+    MailArchiveSearchRequest request, {
+    MailArchiveExportLimits exportLimits = const MailArchiveExportLimits(),
+    MailCancellationToken? cancellation,
+  });
   Future<MailResult<List<MailArchiveOrigin>>> listOrigins(String id);
   Future<MailResult<MailArchiveStats>> statistics();
   Future<MailResult<MailUnit>> saveSearch(MailArchiveSavedSearch search);
@@ -117,6 +124,20 @@ final class _ArchiveStore implements StudioMailArchiveStore {
   final SqliteMailArchive archive;
 
   @override
+  MailProfileId get profile => archive.profile;
+
+  @override
+  Future<MailResult<MailArchiveExportPlan>> planExport(
+    MailArchiveSearchRequest request, {
+    MailArchiveExportLimits exportLimits = const MailArchiveExportLimits(),
+    MailCancellationToken? cancellation,
+  }) => archive.planExport(
+    request,
+    exportLimits: exportLimits,
+    cancellation: cancellation,
+  );
+
+  @override
   set diagnostics(MailArchiveDiagnostics? value) => archive.diagnostics = value;
   @override
   Future<MailResult<MailArchiveImportResult>> archiveMessage(
@@ -180,13 +201,45 @@ final class _ArchiveStore implements StudioMailArchiveStore {
 }
 
 final class StudioMailArchiveInput {
-  const StudioMailArchiveInput({required this.name, required this.path});
+  const StudioMailArchiveInput({
+    required this.name,
+    required this.path,
+    this.directoryRoot,
+    this.expectedSize,
+  });
   final String name;
   final String path;
+
+  /// Recursive import revalidates this root and every ancestor before reading.
+  final String? directoryRoot;
+
+  /// A walk is not a filesystem snapshot. A changed size is a visible conflict.
+  final int? expectedSize;
 }
 
 abstract interface class StudioMailArchiveFiles {
   Future<List<StudioMailArchiveInput>?> pickFiles();
+  Future<String?> pickDirectory();
+  Stream<MailArchiveDirectoryEntry> enumerateDirectory(
+    String path, {
+    required MailCancellationToken cancellation,
+    MailArchiveDirectoryLimits limits = const MailArchiveDirectoryLimits(),
+    bool recursive = true,
+  });
+  Future<MailArchiveExportReport> exportPlan(
+    MailArchiveExportPlan plan,
+    String parentPath, {
+    required MailArchiveOriginalLoader loadOriginal,
+    required MailCancellationToken cancellation,
+    MailArchiveExportProgressSink? onProgress,
+  });
+  Future<MailArchiveExportReport> resumeExport(
+    String directoryPath, {
+    required MailProfileId profile,
+    required MailArchiveOriginalLoader loadOriginal,
+    required MailCancellationToken cancellation,
+    MailArchiveExportProgressSink? onProgress,
+  });
   Stream<MailResult<Uint8List>> readMessages(
     StudioMailArchiveInput input, {
     required int maxMessageBytes,
@@ -203,9 +256,63 @@ abstract interface class StudioMailArchiveFiles {
 /// File sizes are checked on an opened handle before EML allocation. MBOX is
 /// streamed through a bounded framer. The picker never eagerly loads file data.
 final class NativeStudioMailArchiveFiles implements StudioMailArchiveFiles {
-  NativeStudioMailArchiveFiles({this.chooseFiles, this.chooseExportPath});
+  NativeStudioMailArchiveFiles({
+    this.chooseFiles,
+    this.chooseExportPath,
+    this.chooseDirectory,
+  });
   final Future<List<StudioMailArchiveInput>?> Function()? chooseFiles;
   final Future<String?> Function(String suggestedName)? chooseExportPath;
+  final Future<String?> Function()? chooseDirectory;
+
+  @override
+  Future<String?> pickDirectory() =>
+      chooseDirectory?.call() ?? FilePicker.platform.getDirectoryPath();
+
+  @override
+  Stream<MailArchiveDirectoryEntry> enumerateDirectory(
+    String path, {
+    required MailCancellationToken cancellation,
+    MailArchiveDirectoryLimits limits = const MailArchiveDirectoryLimits(),
+    bool recursive = true,
+  }) => enumerateMailArchiveDirectory(
+    Directory(path),
+    limits: limits,
+    cancellation: cancellation,
+    recursive: recursive,
+  );
+
+  @override
+  Future<MailArchiveExportReport> exportPlan(
+    MailArchiveExportPlan plan,
+    String parentPath, {
+    required MailArchiveOriginalLoader loadOriginal,
+    required MailCancellationToken cancellation,
+    MailArchiveExportProgressSink? onProgress,
+  }) =>
+      NativeMailArchiveExporter(
+        profile: plan.profile,
+        loadOriginal: loadOriginal,
+      ).exportPlan(
+        plan,
+        parent: Directory(parentPath),
+        cancellation: cancellation,
+        onProgress: onProgress,
+      );
+
+  @override
+  Future<MailArchiveExportReport> resumeExport(
+    String directoryPath, {
+    required MailProfileId profile,
+    required MailArchiveOriginalLoader loadOriginal,
+    required MailCancellationToken cancellation,
+    MailArchiveExportProgressSink? onProgress,
+  }) => NativeMailArchiveExporter(profile: profile, loadOriginal: loadOriginal)
+      .resume(
+        Directory(directoryPath),
+        cancellation: cancellation,
+        onProgress: onProgress,
+      );
 
   @override
   Future<List<StudioMailArchiveInput>?> pickFiles() async {
@@ -239,9 +346,11 @@ final class NativeStudioMailArchiveFiles implements StudioMailArchiveFiles {
         yield const MailFailure(MailProblem(MailProblemCode.invalidInput));
         return;
       }
+      final sourceStat = await _directoryInputStat(input);
+      cancellation.throwIfCancelled();
       if (input.name.toLowerCase().endsWith('.mbox')) {
         await for (final entry in readMailMbox(
-          File(input.path).openRead(),
+          File(input.path).openRead(0, input.expectedSize),
           maxMessageBytes: maxMessageBytes,
           cancellation: cancellation,
           dialect: dialect,
@@ -259,6 +368,15 @@ final class NativeStudioMailArchiveFiles implements StudioMailArchiveFiles {
       } else {
         yield const MailFailure(MailProblem(MailProblemCode.unsupported));
       }
+      if (sourceStat != null && !cancellation.isCancelled) {
+        final after = await _directoryInputStat(input);
+        if (after?.modified != sourceStat.modified ||
+            after?.changed != sourceStat.changed) {
+          yield const MailFailure(MailProblem(MailProblemCode.conflict));
+        }
+      }
+    } on MailStoreStorageException catch (error) {
+      yield MailFailure(MailProblem(error.code));
     } on MailCancelled {
       yield const MailFailure(MailProblem(MailProblemCode.cancelled));
     } on FileSystemException catch (error) {
@@ -266,6 +384,40 @@ final class NativeStudioMailArchiveFiles implements StudioMailArchiveFiles {
     } on Object {
       yield const MailFailure(MailProblem(MailProblemCode.unavailable));
     }
+  }
+
+  Future<FileStat?> _directoryInputStat(StudioMailArchiveInput input) async {
+    final root = input.directoryRoot;
+    if (root == null) return null;
+    if (!p.isAbsolute(root) ||
+        !p.isAbsolute(input.path) ||
+        !p.isWithin(root, input.path) ||
+        input.expectedSize == null ||
+        input.expectedSize! < 0) {
+      throw const MailStoreStorageException(MailProblemCode.invalidInput);
+    }
+    // Recheck every path component, including ancestors of the chosen root.
+    // As with enumeration, the trusted local source must not be adversarially
+    // replaced between these checks and the subsequent operating-system open.
+    var current = p.dirname(input.path);
+    while (true) {
+      if (await FileSystemEntity.type(current, followLinks: false) !=
+          FileSystemEntityType.directory) {
+        throw const MailStoreStorageException(MailProblemCode.conflict);
+      }
+      final parent = p.dirname(current);
+      if (parent == current) break;
+      current = parent;
+    }
+    if (await FileSystemEntity.type(input.path, followLinks: false) !=
+        FileSystemEntityType.file) {
+      throw const MailStoreStorageException(MailProblemCode.conflict);
+    }
+    final stat = await File(input.path).stat();
+    if (stat.size != input.expectedSize) {
+      throw const MailStoreStorageException(MailProblemCode.conflict);
+    }
+    return stat;
   }
 
   Future<MailResult<Uint8List>> _readEml(

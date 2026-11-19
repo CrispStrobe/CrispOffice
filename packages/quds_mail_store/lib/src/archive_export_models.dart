@@ -308,23 +308,45 @@ int _integer(Object? value) {
   return value;
 }
 
-/// Decode only bounded, strict version-one manifests. Paths and file names are
-/// not accepted from a manifest. The caller must enforce the byte bound before
-/// reading a file; this check also protects callers with an in-memory string.
-MailArchiveExportPlan decodeMailArchiveExportManifest(
-  String encoded,
-  MailArchiveExportLimits limits,
-) {
-  if (!limits.isValid) _invalid();
-  if (encoded.length > limits.maxManifestBytes ||
-      utf8.encode(encoded).length > limits.maxManifestBytes) {
+/// Bound the decoder's prospective object graph without constructing it.
+/// Version one has three fixed containers, two per message, one per origin;
+/// counting keys and scalar values gives fourteen fixed tokens, five per
+/// message, and six per origin. A malformed shape gets at most that same total
+/// allocation budget, even when its per-array schema checks would run later.
+void _preflightManifestJson(String encoded, MailArchiveExportLimits limits) {
+  if (encoded.length > limits.maxManifestBytes) {
     _invalid(MailProblemCode.quotaExceeded);
   }
-  // The schema is shallow. Reject deeply nested input before JSON allocation.
-  var depth = 0;
-  var quoted = false, escaped = false;
-  for (final unit in encoded.codeUnits) {
+  final maxContainers = 3 + 2 * limits.maxMessages + limits.maxOrigins;
+  final maxTokens = 14 + 5 * limits.maxMessages + 6 * limits.maxOrigins;
+  // The longest legal string is a 4096-code-unit provenance folder. Every
+  // code unit may be written as a six-character JSON Unicode escape.
+  const maxStringEncodingUnits = 6 * 4096;
+  var containers = 0, tokens = 0, depth = 0, utf8Bytes = 0;
+  var quoted = false, escaped = false, scalar = false;
+  var stringStart = 0, previousUnit = -1;
+  for (var index = 0; index < encoded.length; index++) {
+    final unit = encoded.codeUnitAt(index);
+    // Match UTF-8's replacement of unpaired surrogates without allocating a
+    // second, potentially three-times-larger encoding of malformed input.
+    utf8Bytes += unit < 0x80
+        ? 1
+        : unit < 0x800
+        ? 2
+        : unit >= 0xdc00 &&
+              unit <= 0xdfff &&
+              previousUnit >= 0xd800 &&
+              previousUnit <= 0xdbff
+        ? 1
+        : 3;
+    previousUnit = unit;
+    if (utf8Bytes > limits.maxManifestBytes) {
+      _invalid(MailProblemCode.quotaExceeded);
+    }
     if (quoted) {
+      if (index - stringStart > maxStringEncodingUnits) {
+        _invalid(MailProblemCode.quotaExceeded);
+      }
       if (escaped) {
         escaped = false;
       } else if (unit == 92) {
@@ -333,13 +355,45 @@ MailArchiveExportPlan decodeMailArchiveExportManifest(
         quoted = false;
       }
     } else if (unit == 34) {
+      if (++tokens > maxTokens) _invalid(MailProblemCode.quotaExceeded);
       quoted = true;
+      scalar = false;
+      stringStart = index + 1;
     } else if (unit == 91 || unit == 123) {
+      if (++containers > maxContainers) {
+        _invalid(MailProblemCode.quotaExceeded);
+      }
       if (++depth > 12) _invalid();
+      scalar = false;
     } else if (unit == 93 || unit == 125) {
-      depth--;
+      if (--depth < 0) _invalid();
+      scalar = false;
+    } else if (unit == 44 ||
+        unit == 58 ||
+        unit == 32 ||
+        unit == 9 ||
+        unit == 10 ||
+        unit == 13) {
+      scalar = false;
+    } else if (!scalar) {
+      if (++tokens > maxTokens) _invalid(MailProblemCode.quotaExceeded);
+      scalar = true;
     }
   }
+}
+
+/// Decode only bounded, strict version-one manifests. Paths and file names are
+/// not accepted from a manifest. The caller must enforce the byte bound before
+/// reading a file; this check also protects callers with an in-memory string.
+/// Encoded bytes, nesting, strings, containers and scalar/key tokens are bounded
+/// before JSON decoding; configured message/origin budgets bound allocation even
+/// for a shallow malformed array containing millions of tiny values.
+MailArchiveExportPlan decodeMailArchiveExportManifest(
+  String encoded,
+  MailArchiveExportLimits limits,
+) {
+  if (!limits.isValid) _invalid();
+  _preflightManifestJson(encoded, limits);
   try {
     final decoded = _map(jsonDecode(encoded), {
       'format',

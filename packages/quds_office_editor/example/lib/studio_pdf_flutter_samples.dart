@@ -9,7 +9,7 @@ import 'studio_pdf_faces.dart';
 Uint8List studioFlutterTwinsPdf() {
   final pw.Document doc = pw.Document(
     title: 'Flutter twins',
-    author: 'Quds Studio',
+    author: 'CrispOffice',
     font: StudioPdfFaces.tajawal(),
     fontBold: StudioPdfFaces.tajawalBold(),
   );

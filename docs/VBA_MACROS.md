@@ -15,7 +15,8 @@ and publication behavior as handwritten or recorded native macros.
 Modules can share source logic through local `Sub` helpers and scalar
 `Function` procedures. Calls are evaluated during compilation with isolated
 local variables and explicit `ByVal` arguments; they do not introduce a second
-document execution path.
+document execution path. Conditional `Do`/`While` loops and `Select Case`
+selection use the same source values and aggregate compilation budgets.
 
 This increment targets the spreadsheet family (`xlsx`, including macro-enabled
 and template workbook packages admitted by the existing runtime). Embedded VBA
@@ -153,10 +154,12 @@ still cannot read workbook values.
 
 `Exit Sub` and `Exit Function` return from the containing procedure.
 `Exit For` exits the innermost `For` in that procedure and leaves its counter
-at the current value. These exits work inside nested `If` and `With` blocks;
-the enclosing object context is restored when control returns. An exit cannot
-terminate a caller's loop. Exit kinds are checked even in unused procedures
-and statements following an earlier exit.
+at the current value. `Exit Do` exits the innermost `Do` in that procedure.
+Each loop exit passes through other loop kinds and nested `If`, `Select Case`,
+and `With` blocks until it reaches its own loop kind. The enclosing object
+context is restored when control returns. An exit cannot terminate a caller's
+loop. Exit kinds are checked even in unused procedures and statements following
+an earlier exit. `Exit While` and `Exit Select` are unsupported.
 
 The entire module's call graph must be acyclic and fit the 32-frame limit,
 including calls in inactive branches and unused procedures. Local variables,
@@ -175,6 +178,80 @@ dart run tool/macros/office_macro.dart compile-vba \
   example/macros/procedural_report.bas report.qudsmacro.json
 dart run tool/macros/office_macro.dart run-vba \
   input.xlsx example/macros/procedural_report.bas output.xlsx
+```
+
+## Conditional loops and Select Case
+
+Conditional loops recheck a Boolean expression built from source values.
+The body can update local variables used by the next check. Numeric or string
+truthiness, `Null`, and reading a condition from the workbook are unsupported.
+
+| Loop form | Condition timing |
+| --- | --- |
+| `Do While condition` … `Loop` | Check before each iteration; run while `True` |
+| `Do Until condition` … `Loop` | Check before each iteration; run while `False` |
+| `Do` … `Loop While condition` | Run once, then check after each iteration; continue while `True` |
+| `Do` … `Loop Until condition` | Run once, then check after each iteration; continue while `False` |
+| `Do` … `Loop` | Continue until an enclosing-procedure return, `Exit Do`, or the compilation work limit |
+| `While condition` … `Wend` | Check before each iteration; run while `True` |
+
+A `Do` may have a condition at its beginning or its end, never both. Helpers
+in a condition run once per check, including the final failed check. A loop
+exit or procedure return that leaves a `Do` skips its remaining body and
+trailing condition.
+Every loop attempt consumes the shared work budget, including an empty
+unconditional loop; exceeding the budget fails compilation without returning
+a partial plan. A `While` loop has no dedicated early-exit statement, but an
+`Exit Do` or `Exit For` inside it can leave a matching enclosing loop.
+
+`Select Case` compares one source expression against ordered clauses:
+
+```vb
+Select Case amount
+    Case 0, 75
+        label = "Small"
+    Case 76 To 225
+        label = "Standard"
+    Case Is < 400
+        label = "Large"
+    Case Else
+        label = "Review"
+End Select
+```
+
+The selector is evaluated once. Clauses and comma-separated alternatives are
+checked in source order until the first match; only that clause's body runs,
+with no fallthrough. Later alternatives and clauses are not evaluated after a
+match. An optional `Case Else` must be last. Empty bodies are allowed; without
+a match or fallback, execution continues after `End Select`.
+
+Each alternative can be a scalar expression, an inclusive `lower To upper`
+range, or a comparison with `=`, `<>`, `<`, `>`, `<=`, or `>=`. The `Is` keyword
+before a comparison is optional. Ranges accept matching numeric or string
+values, use binary string ordering, and evaluate both endpoints even if the
+lower comparison fails. Reversed ranges do not match. Boolean equality and
+relational cases retain the dialect's `True`-before-`False` ordering, but
+Boolean ranges are unsupported. Scalar types must match; no implicit
+string/number/Boolean conversion is introduced.
+
+Static checking visits every condition, Case expression, and body, including
+unselected clauses and code after an exit. Unsupported calls, object reads,
+invalid exits, declarations inside blocks, and known type mismatches still
+fail there. Values carried by `Variant` are also checked when evaluated.
+
+The committed [control-flow report](../packages/quds_office_engine/example/macros/control_flow_report.bas)
+combines `Do … Loop Until`, `While … Wend`, reusable helpers, and `Select Case`
+to generate six synthetic rows with amount bands. It emits **35 native
+operations** and calculates a worksheet formula total of **1,575**. Its input
+workbook needs a worksheet named `Summary`:
+
+```bash
+dart run tool/macros/office_macro.dart compile-vba \
+  example/macros/control_flow_report.bas control-flow.qudsmacro.json
+dart run tool/macros/office_macro.dart validate-vba \
+  input.xlsx example/macros/control_flow_report.bas
+dart run tool/macros/office_macro.dart run-vba \
+  input.xlsx example/macros/control_flow_report.bas output.xlsx
 ```
 
 ## Object model and operation mappings
@@ -218,7 +295,7 @@ ranges, and default members are not translated into approximate operations.
 | Entry selection | Case-insensitive selection of a parameterless `Sub` by `entryPoint`; every procedure is checked, and the selected entry plus its invoked helpers are evaluated |
 | Procedure arguments | Up to 16 required positional parameters, each explicitly `ByVal`, using supported scalar or `Worksheet`/`Range` types |
 | Calls and returns | In-module procedure calls, scalar functions in expressions, return assignment through the function name, and discarded function results in statement calls |
-| Early exits | `Exit Sub`, `Exit Function`, and innermost `Exit For`, checked against the containing procedure or loop |
+| Early exits | `Exit Sub`, `Exit Function`, innermost `Exit For`, and innermost `Exit Do`, checked against the containing procedure or matching loop kind |
 | Declarations | `Dim` and `Const`, including comma-separated declarations; declarations must precede executable statements and remain outside control-flow blocks |
 | Scalar types | `Long`, `Double`, `String`, `Boolean`, and scalar `Variant`; omitted `As` means `Variant` |
 | Object types | `Worksheet` and `Range` variables, assigned with `Set`; object default members are unsupported |
@@ -229,7 +306,9 @@ ranges, and default members are not translated into approximate operations.
 | Comparisons | `=`, `<>`, `<`, `>`, `<=`, `>=` between matching scalar types; string comparisons use binary ordering |
 | Boolean logic | `Not`, `And`, `Or`, `Xor` on Boolean values; operands are evaluated eagerly |
 | Conditions | Block `If … Then`, `ElseIf`, `Else`, `End If`; conditions must be Boolean and known from source |
-| Loops | Integer `For … To … [Step …]` and `Next [counter]`; bounds are inclusive, default step is `1`, negative steps are supported |
+| Selection | `Select Case` with scalar alternatives, inclusive numeric/string `To` ranges, `[Is]` comparisons, and an optional final `Case Else`; first match wins |
+| Counted loops | Integer `For … To … [Step …]` and `Next [counter]`; bounds are inclusive, default step is `1`, negative steps are supported |
+| Conditional loops | `Do`/`Loop` with an optional `While` or `Until` condition at either end, and `While … Wend`; conditions are Boolean and evaluation is budgeted |
 | Object context | Nested `With` blocks for worksheets or ranges; leading `.` refers to the innermost context |
 | Source formatting | Apostrophe/`Rem` comments, colon statement separators, whitespace-underscore line continuation, CRLF/LF, and an optional UTF-8 BOM |
 
@@ -253,7 +332,7 @@ type guessing. Strings beginning with `=` require an explicit `.Formula`
 assignment; formulas must begin with `=` and contain an expression. These
 restrictions also apply to the scalar `.Value` alias.
 
-`Long` assignment and increment must fit signed 32-bit bounds. Loop start,
+`Long` assignment and increment must fit signed 32-bit bounds. `For` start,
 end, and step must also fit signed 32-bit bounds; the counter must be `Long`
 or scalar `Variant`. Start/end/step expressions are evaluated once on entry.
 `Step 0`, reassignment of an active loop counter, and reuse of that counter
@@ -265,7 +344,7 @@ red/green/blue byte ordering and are converted to the engine's six-digit RGB
 hex representation. System colors and palettes are unsupported.
 
 The compiler rejects other function calls, `ByRef`, recursion, `For Each`,
-`Do`/`While`, other exit kinds, `GoTo`, error handlers, conditional compilation,
+other exit kinds, `GoTo`, error handlers, conditional compilation,
 file/network operations, `Shell`, `CreateObject`, `Application.Run`, and
 document-value reads. Unsupported syntax,
 unknown names, and unsupported object shapes are checked in inactive branches
@@ -281,7 +360,7 @@ The compiler has its own limits before the native runtime receives a plan:
 | --- | ---: |
 | Source UTF-8 bytes | 1 MiB |
 | Lexer tokens | 50,000 |
-| Procedure statements | 10,000 |
+| Statements across procedures, including `Case`/`Case Else` clauses | 10,000 |
 | Block nesting | 32 |
 | Expression nesting / AST depth | 64 |
 | Visible variables per procedure, including constants, parameters, and function return slot | 256 |
@@ -299,6 +378,12 @@ expanding a range that exceeds the remaining operation budget. Each emitted
 operation is charged against the aggregate encoded byte budget, and compilation
 work is charged even for loops with empty bodies. Strings are bounded before
 concatenation allocates a larger result.
+
+Conditional loops and `Select Case` do not increase these limits. Every loop
+attempt and Case alternative consumes work in addition to its expressions and
+body statements. All new blocks count toward the same nesting limit, and each
+Case clause counts toward the aggregate statement limit even when its body is
+empty or never selected.
 
 Procedure calls share the same aggregate work, operation, and encoded-output
 budgets. The per-string limit remains in effect inside every helper. Invoking
@@ -380,12 +465,16 @@ The supported mappings are based on Microsoft's documented VBA behavior:
 - [Formula assignment to ranges](https://learn.microsoft.com/en-us/office/vba/api/excel.range.formula)
 - [ClearContents](https://learn.microsoft.com/en-us/office/vba/api/excel.range.clearcontents)
 - [For…Next](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/fornext-statement)
+- [Do…Loop](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/doloop-statement)
+- [While…Wend](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/whilewend-statement)
+- [Select Case syntax and ranges](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/select-case-statement)
+- [MS-VBAL Select Case evaluation order](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/94a2f0fe-bdbe-4f5d-b3f4-bbf339b0ac65)
 - [RGB color values](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/rgb-function)
 - [Operator precedence](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/operator-precedence)
 - [Sub declarations and ByVal/ByRef defaults](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/sub-statement)
 - [Function declarations and return values](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/function-statement)
 - [Call syntax and discarded function results](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/call-statement)
-- [Exit Sub, Exit Function, and Exit For](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/exit-statement)
+- [Exit Sub, Exit Function, Exit For, and Exit Do](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/exit-statement)
 
 This is a bounded source-to-plan implementation. It does not claim native Excel
 interoperability for arbitrary VBA modules or parity with the full Excel object

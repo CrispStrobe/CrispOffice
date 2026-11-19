@@ -1,11 +1,11 @@
 {
-    "name": "quds_office_studio",
-    "short_name": "quds_office_studio",
+    "name": "CrispOffice",
+    "short_name": "CrispOffice",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "CrispOffice — documents, spreadsheets, presentations and PDFs.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

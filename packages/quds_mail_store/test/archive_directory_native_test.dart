@@ -111,6 +111,91 @@ void main() {
     },
   );
 
+  test(
+    'export staging is explicitly skipped without importing partial EML',
+    () async {
+      await write('manifest.json', 2);
+      await write('published.eml', 4);
+      await write('.pending-partial/original.eml', 3);
+      await write('.pending-empty/original.eml', 0);
+      final entries = await enumerateMailArchiveDirectory(directory).toList();
+      expect(_files(entries).single.relativePath, 'published.eml');
+      final staged = entries.where(
+        (entry) => entry.issue == MailArchiveDirectoryIssue.exportStaging,
+      );
+      expect(staged.map((entry) => entry.relativePath).toSet(), {
+        '.pending-partial',
+        '.pending-empty',
+      });
+      expect(staged.every((entry) => !entry.terminal), isTrue);
+      expect(entries.last.progress.directoriesVisited, 1);
+      expect(entries.last.progress.filesAccepted, 1);
+      expect(entries.last.progress.acceptedBytes, 4);
+      expect(entries.last.progress.skippedEntries, 3);
+      expect(
+        await File(
+          p.join(directory.path, '.pending-partial/original.eml'),
+        ).length(),
+        3,
+      );
+    },
+  );
+
+  test('directly selected export staging is rejected as a root', () async {
+    await write('manifest.json', 2);
+    await write('.pending-partial/original.eml', 3);
+    final entries = await enumerateMailArchiveDirectory(
+      Directory(p.join(directory.path, '.pending-partial')),
+    ).toList();
+    expect(entries.single.issue, MailArchiveDirectoryIssue.exportStaging);
+    expect(entries.single.terminal, isTrue);
+    expect(entries.single.progress.filesAccepted, 0);
+    expect(entries.single.progress.entriesInspected, 1);
+  });
+
+  test(
+    'ordinary pending directories without a manifest remain user input',
+    () async {
+      await write('.pending-user/mail.eml', 3);
+      final entries = await enumerateMailArchiveDirectory(directory).toList();
+      expect(_files(entries).single.relativePath, '.pending-user/mail.eml');
+      expect(entries.last.progress.skippedEntries, 0);
+      final selected = await enumerateMailArchiveDirectory(
+        Directory(p.join(directory.path, '.pending-user')),
+      ).toList();
+      expect(_files(selected).single.relativePath, 'mail.eml');
+      expect(selected.last.progress.acceptedBytes, 3);
+    },
+  );
+
+  test(
+    'export marker applies only to pending directories in its own parent',
+    () async {
+      await write('manifest.json', 2);
+      await write('ordinary/.pending-user/mail.eml', 3);
+      await write('.pending/mail.eml', 4);
+      final entries = await enumerateMailArchiveDirectory(directory).toList();
+      expect(_files(entries).map((entry) => entry.relativePath).toSet(), {
+        'ordinary/.pending-user/mail.eml',
+        '.pending/mail.eml',
+      });
+      expect(
+        entries.where(
+          (entry) => entry.issue == MailArchiveDirectoryIssue.exportStaging,
+        ),
+        isEmpty,
+      );
+    },
+  );
+
+  test('a directory named manifest.json is not an export marker', () async {
+    await Directory(p.join(directory.path, 'manifest.json')).create();
+    await write('.pending-user/mail.eml', 3);
+    final entries = await enumerateMailArchiveDirectory(directory).toList();
+    expect(_files(entries).single.relativePath, '.pending-user/mail.eml');
+    expect(entries.last.progress.skippedEntries, 0);
+  });
+
   test('nonrecursive mode explicitly skips child directories', () async {
     await write('root.eml');
     await write('child/nested.eml');
@@ -453,6 +538,24 @@ void main() {
   });
 
   if (!Platform.isWindows) {
+    test(
+      'a symlink named manifest.json is not followed as an export marker',
+      () async {
+        await write('real-manifest.json', 2);
+        await Link(
+          p.join(directory.path, 'manifest.json'),
+        ).create(p.join(directory.path, 'real-manifest.json'));
+        await write('.pending-user/mail.eml', 3);
+        final entries = await enumerateMailArchiveDirectory(directory).toList();
+        expect(_files(entries).single.relativePath, '.pending-user/mail.eml');
+        expect(
+          entries.where(
+            (entry) => entry.issue == MailArchiveDirectoryIssue.exportStaging,
+          ),
+          isEmpty,
+        );
+      },
+    );
     test(
       'links to files, directories and missing targets are never followed',
       () async {

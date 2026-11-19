@@ -1315,7 +1315,7 @@ class WordDeserializer {
     final bool deleted = reader.localName == 'del';
     final String author =
         reader.getAttribute('author', namespaceUri: OfficeNamespaces.w) ??
-        'Quds Office';
+        'CrispOffice';
     final String date =
         reader.getAttribute('date', namespaceUri: OfficeNamespaces.w) ?? '';
     final int start = paragraph.text.length;
@@ -3896,7 +3896,7 @@ class WordDeserializer {
           document.comments.length;
       final String author =
           reader.getAttribute('author', namespaceUri: OfficeNamespaces.w) ??
-          'Quds Office';
+          'CrispOffice';
       final String initials =
           reader.getAttribute('initials', namespaceUri: OfficeNamespaces.w) ??
           '';
