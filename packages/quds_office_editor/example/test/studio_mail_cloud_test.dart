@@ -660,6 +660,64 @@ void main() {
     },
   );
 
+  for (final service in MailCloudService.values) {
+    testWidgets(
+      '${service.name} host keeps hidden recipients out of canonical MIME',
+      (tester) async {
+        final harness = _Harness();
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        await tester.tap(find.byTooltip(_strings.compose));
+        await _pump(tester);
+        await tester.enterText(
+          _composeField(_strings.to),
+          'primary@Example.test; second@example.test',
+        );
+        await tester.tap(find.text(_strings.mailCopyRecipients));
+        await _pump(tester);
+        await tester.enterText(
+          _composeField(_strings.mailCc),
+          'primary@example.test, copy@example.test',
+        );
+        await tester.enterText(
+          _composeField(_strings.mailBcc),
+          'copy@example.test; hidden@example.test',
+        );
+        await tester.enterText(
+          _composeField(_strings.subject),
+          'Recipient privacy',
+        );
+        final send = find.widgetWithText(FilledButton, _strings.send);
+        await tester.ensureVisible(send);
+        await tester.tap(send);
+        await _pump(tester);
+        final submission = harness.provider!.submissions.single;
+        expect(submission.envelope.recipients, [
+          'primary@Example.test',
+          'second@example.test',
+          'copy@example.test',
+          'hidden@example.test',
+        ]);
+        final decoded = const QudsMimeCodec().parse(submission.wire.bytes);
+        expect(decoded.status, MailParseStatus.complete);
+        expect(decoded.message!.envelope.to.map((entry) => entry.address), [
+          'primary@Example.test',
+          'second@example.test',
+        ]);
+        expect(decoded.message!.envelope.cc.map((entry) => entry.address), [
+          'copy@example.test',
+        ]);
+        expect(decoded.message!.envelope.bcc, isEmpty);
+        expect(
+          utf8.decode(submission.wire.bytes),
+          isNot(contains('hidden@example.test')),
+        );
+        expect(find.text(_strings.mailCloudSubmissionAccepted), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   testWidgets(
     'uncertain cloud send retains draft and never automatically resubmits',
     (tester) async {
