@@ -1,0 +1,798 @@
+{
+  "schema": 2,
+  "accepted": true,
+  "audited_at_utc": "2026-11-19T12:29:52.998649+00:00",
+  "source_commit": "0f16754c278aa83cc79d5777e5b45d3f739e5469",
+  "source_tree": "83d24b0ef7a82f9dfb65dc4e0b2015ee743f237c",
+  "publication_commit": null,
+  "method": "Independent raw-event lifecycle ledger; exact committed plan/command selection; Git mode/blob/content readback; complete recorded before/after source and bounded runtime mappings. No product tests executed by auditor.",
+  "issues": [],
+  "application_case_executions": 404,
+  "executions": 404,
+  "passed": 404,
+  "failed": 0,
+  "skipped": 0,
+  "distinct_case_identities": 395,
+  "cross_platform_repeated_executions": 9,
+  "distinct_suite_paths": 28,
+  "suite_platform_executions": 29,
+  "node_only_identities": [
+    {
+      "suite": "packages/quds_mail_mime/test/portable_import_test.dart",
+      "name": "both supported public MIME imports work without native libraries"
+    },
+    {
+      "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+      "name": "default public factory remains unsupported without requiring a codec"
+    },
+    {
+      "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+      "name": "public JavaScript entry returns typed unsupported for every provider method"
+    },
+    {
+      "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+      "name": "unsupported factory still validates bounds without accessing host services"
+    },
+    {
+      "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "name": "RFC 2231 preserves characters split across encoded sections"
+    },
+    {
+      "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "name": "RFC 2231 reports unknown charsets and malformed parameter bytes"
+    },
+    {
+      "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "name": "dates reject calendar, clock, zone and weekday normalization"
+    },
+    {
+      "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "name": "diagnostics stay isolated across concurrent async operations"
+    },
+    {
+      "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "name": "excluded CJK codecs report unsupported without decoded fallback"
+    },
+    {
+      "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "name": "malformed input emits redacted codes with no console output"
+    },
+    {
+      "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "name": "public portable entry parses an original RFC fixture"
+    },
+    {
+      "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "name": "strict charset decoding does not silently replace malformed bytes"
+    },
+    {
+      "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "name": "undefined single-byte charset slots never become question marks"
+    }
+  ],
+  "phases": [
+    {
+      "plan": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json",
+      "output_dir": "/workspace/scratch/e63c6a1344bc/qualification-final-refresh-main",
+      "receipt_sha256": "c69122e01f11c3f786c67f81e91284072a32dd72d9bce2437931343e14f2c55f",
+      "started_at_utc": "2026-11-19T12:22:03.214102+00:00",
+      "finished_at_utc": "2026-11-19T12:27:05.753942+00:00",
+      "accepted": true,
+      "application_case_executions": 382,
+      "executions": 382,
+      "passed": 382,
+      "failed": 0,
+      "skipped": 0,
+      "distinct_suites": 25,
+      "groups": [
+        {
+          "name": "studio-mail-modular",
+          "platform": "vm",
+          "suites": 8,
+          "cases": 95,
+          "executions": 95,
+          "passed": 95,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_office_editor/example/test/studio_mail_compose_test.dart": {
+              "passed": 21,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart": {
+              "passed": 8,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": {
+              "passed": 19,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_mail_operation_test.dart": {
+              "passed": 7,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_mail_test.dart": {
+              "passed": 29,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_mail_web_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_saved_mail_test.dart": {
+              "passed": 9,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 103,
+          "completed_events": 103,
+          "hidden_events": 8,
+          "event_types": {
+            "start": 1,
+            "suite": 8,
+            "testStart": 103,
+            "allSuites": 1,
+            "testDone": 103,
+            "group": 8,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_office_editor/example/test/studio_mail_compose_test.dart": 21,
+            "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart": 8,
+            "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": 1,
+            "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": 19,
+            "packages/quds_office_editor/example/test/studio_mail_operation_test.dart": 7,
+            "packages/quds_office_editor/example/test/studio_mail_test.dart": 29,
+            "packages/quds_office_editor/example/test/studio_mail_web_test.dart": 1,
+            "packages/quds_office_editor/example/test/studio_saved_mail_test.dart": 9
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "48a8976eadf3f3c1ec97d4c65bc04ed9a4c968a371d41530d241944edc15f993"
+        },
+        {
+          "name": "mail-send-transaction-vm",
+          "platform": "vm",
+          "suites": 2,
+          "cases": 14,
+          "executions": 14,
+          "passed": 14,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "third_party/enough_mail/test/mail/mail_client_send_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            },
+            "third_party/enough_mail/test/mail/mail_send_transaction_test.dart": {
+              "passed": 13,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 16,
+          "completed_events": 16,
+          "hidden_events": 2,
+          "event_types": {
+            "start": 1,
+            "suite": 2,
+            "testStart": 16,
+            "allSuites": 1,
+            "testDone": 16,
+            "group": 4,
+            "done": 1
+          },
+          "per_suite": {
+            "third_party/enough_mail/test/mail/mail_client_send_test.dart": 1,
+            "third_party/enough_mail/test/mail/mail_send_transaction_test.dart": 13
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "27baabc2c5d5fe5e7dbd30d27a14259866bb35acc05b187917c4bb48355593a8"
+        },
+        {
+          "name": "mail-bounded-reader-vm",
+          "platform": "vm",
+          "suites": 1,
+          "cases": 69,
+          "executions": 69,
+          "passed": 69,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_mail_transport/test/native_provider_test.dart": {
+              "passed": 69,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 70,
+          "completed_events": 70,
+          "hidden_events": 1,
+          "event_types": {
+            "start": 1,
+            "suite": 1,
+            "testStart": 70,
+            "allSuites": 1,
+            "testDone": 70,
+            "group": 1,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_mail_transport/test/native_provider_test.dart": 69
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "347a38130bff0db2319f877b7d1d4eada37cb3905702bd63a3ea6577b945bc77"
+        },
+        {
+          "name": "word-routing-engine-delta",
+          "platform": "vm",
+          "suites": 3,
+          "cases": 47,
+          "executions": 47,
+          "passed": 47,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart": {
+              "passed": 30,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/wml_run_edit_test.dart": {
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_engine/test/word_proofing_inheritance_test.dart": {
+              "passed": 13,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 3,
+            "passed": 3,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 50,
+          "completed_events": 50,
+          "hidden_events": 3,
+          "event_types": {
+            "start": 1,
+            "suite": 3,
+            "testStart": 50,
+            "allSuites": 1,
+            "testDone": 50,
+            "group": 3,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart": 30,
+            "packages/quds_office_engine/test/wml_run_edit_test.dart": 4,
+            "packages/quds_office_engine/test/word_proofing_inheritance_test.dart": 13
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "f9b916f845ff358fbe772b7e482931eb081073ef3e625c2155c4dfce8c0a3130"
+        },
+        {
+          "name": "word-language-editor-delta",
+          "platform": "vm",
+          "suites": 2,
+          "cases": 44,
+          "executions": 44,
+          "passed": 44,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart": {
+              "passed": 10,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": {
+              "passed": 34,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 46,
+          "completed_events": 46,
+          "hidden_events": 2,
+          "event_types": {
+            "start": 1,
+            "suite": 2,
+            "testStart": 46,
+            "allSuites": 1,
+            "testDone": 46,
+            "group": 2,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart": 10,
+            "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": 34
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "a3dc59e37874e7e55ca2b8ea4d2930e0fb8282210b98f9e2244d6fce12d8fe8e"
+        },
+        {
+          "name": "studio-settings-footer-delta",
+          "platform": "vm",
+          "suites": 6,
+          "cases": 95,
+          "executions": 95,
+          "passed": 95,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart": {
+              "passed": 5,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": {
+              "passed": 15,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart": {
+              "passed": 9,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_comment_review_test.dart": {
+              "passed": 38,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_review_status_test.dart": {
+              "passed": 13,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": {
+              "passed": 15,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 101,
+          "completed_events": 101,
+          "hidden_events": 6,
+          "event_types": {
+            "start": 1,
+            "suite": 6,
+            "testStart": 101,
+            "allSuites": 1,
+            "testDone": 101,
+            "group": 6,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart": 5,
+            "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": 15,
+            "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart": 9,
+            "packages/quds_office_editor/example/test/studio_comment_review_test.dart": 38,
+            "packages/quds_office_editor/example/test/studio_review_status_test.dart": 13,
+            "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": 15
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "3db0716dfc41f921783f3d8f67b0a747a0c40058f3476f09bb4cc91560c07e88"
+        },
+        {
+          "name": "hunspell-cancellation-delta",
+          "platform": "vm",
+          "suites": 2,
+          "cases": 9,
+          "executions": 9,
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart": {
+              "passed": 4,
+              "failed": 0,
+              "skipped": 0
+            },
+            "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart": {
+              "passed": 5,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 11,
+          "completed_events": 11,
+          "hidden_events": 2,
+          "event_types": {
+            "start": 1,
+            "suite": 2,
+            "testStart": 11,
+            "allSuites": 1,
+            "testDone": 11,
+            "group": 2,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart": 4,
+            "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart": 5
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "8bb5680cc9641b85f4d0c96644e812ba5c6614c18cec353007eda3c425f67546"
+        },
+        {
+          "name": "morphology-portable-contract-vm",
+          "platform": "vm",
+          "suites": 1,
+          "cases": 9,
+          "executions": 9,
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": {
+              "passed": 9,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 10,
+          "completed_events": 10,
+          "hidden_events": 1,
+          "event_types": {
+            "start": 1,
+            "suite": 1,
+            "testStart": 10,
+            "allSuites": 1,
+            "testDone": 10,
+            "group": 4,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": 9
+          },
+          "stderr_bytes": 0,
+          "print_events": 0,
+          "raw_log_sha256": "a8ad5b2a9672d92e470d855d5f11f4f25350c1a2099475ad5ac4af33dcfe7369"
+        }
+      ],
+      "static_checks": [
+        {
+          "name": "analysis",
+          "passed": true,
+          "log_sha256": "29f2c3d855a5af72c869993169eef96be282ba72e465ae2a709df49bf3959d28"
+        },
+        {
+          "name": "format",
+          "passed": true,
+          "log_sha256": "2b1d83f5ba2f73c6e67397d2741e7ceca84306c4bda3b068514079abc1002b04"
+        },
+        {
+          "name": "whitespace",
+          "passed": true,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "source": {
+        "records": 5187,
+        "materialized": 5187,
+        "sparse": 0,
+        "live_readback": true,
+        "publication_checked": null
+      },
+      "runtime": {
+        "records": 11167,
+        "retained_files": 11142,
+        "additional_files": 4,
+        "native_assets": 1,
+        "runtime_root": "/workspace/scratch/e63c6a1344bc/runtime",
+        "receipt_sha256": "cc2589fedb04b9bb8aeb291390efff72136896396c228d8ea081bd68f777a5c7",
+        "dependency_report": {
+          "resolved_packages": 133,
+          "workspace_packages": 19,
+          "hosted_archive_receipts": 176,
+          "test_launcher": "/workspace/scratch/e63c6a1344bc/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "package_config_sha256": "571ba3dffb531299534dfcd8311bbda49d6b13d3fa0b8bba89dd9a1a2b60453a"
+        },
+        "scope": "Recorded bounded inputs and current byte readback; not an OS/container snapshot"
+      }
+    },
+    {
+      "plan": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json",
+      "output_dir": "/workspace/scratch/e63c6a1344bc/qualification-final-refresh-node",
+      "receipt_sha256": "acf7f502da31183b73c63b9bf25fb6bb6f05aba128d156f4b4c562f529f7ece8",
+      "started_at_utc": "2026-11-19T12:27:08.540277+00:00",
+      "finished_at_utc": "2026-11-19T12:28:30.478107+00:00",
+      "accepted": true,
+      "application_case_executions": 22,
+      "executions": 22,
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0,
+      "distinct_suites": 4,
+      "groups": [
+        {
+          "name": "mail-transport-boundary-node",
+          "platform": "node",
+          "suites": 1,
+          "cases": 3,
+          "executions": 3,
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_mail_transport/test/unsupported_test.dart": {
+              "passed": 3,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 4,
+          "completed_events": 4,
+          "hidden_events": 1,
+          "event_types": {
+            "start": 1,
+            "suite": 1,
+            "testStart": 4,
+            "allSuites": 1,
+            "print": 1,
+            "testDone": 4,
+            "group": 1,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_mail_transport/test/unsupported_test.dart": 3
+          },
+          "stderr_bytes": 0,
+          "print_events": 1,
+          "raw_log_sha256": "c72627849671c83377053ff47f679ac319c835c9556535336771b0b353d89a9d"
+        },
+        {
+          "name": "mail-mime-entry-node",
+          "platform": "node",
+          "suites": 1,
+          "cases": 1,
+          "executions": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_mail_mime/test/portable_import_test.dart": {
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 2,
+          "completed_events": 2,
+          "hidden_events": 1,
+          "event_types": {
+            "start": 1,
+            "suite": 1,
+            "testStart": 2,
+            "allSuites": 1,
+            "print": 1,
+            "testDone": 2,
+            "group": 1,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_mail_mime/test/portable_import_test.dart": 1
+          },
+          "stderr_bytes": 0,
+          "print_events": 1,
+          "raw_log_sha256": "02cbe33bdcbecde90d6f6c95368baf36707719bd00cbcc83e5b96a3e846f9c2f"
+        },
+        {
+          "name": "mail-fork-mime-entry-node",
+          "platform": "node",
+          "suites": 1,
+          "cases": 9,
+          "executions": 9,
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "third_party/enough_mail/test/quds_portable_mime_test.dart": {
+              "passed": 9,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 10,
+          "completed_events": 10,
+          "hidden_events": 1,
+          "event_types": {
+            "start": 1,
+            "suite": 1,
+            "testStart": 10,
+            "allSuites": 1,
+            "print": 1,
+            "testDone": 10,
+            "group": 1,
+            "done": 1
+          },
+          "per_suite": {
+            "third_party/enough_mail/test/quds_portable_mime_test.dart": 9
+          },
+          "stderr_bytes": 0,
+          "print_events": 1,
+          "raw_log_sha256": "3f2406bba5143f06a037c5ffd7dc0f6e93dc27dbc6230ff1c1ae6e848d79cbe7"
+        },
+        {
+          "name": "morphology-portable-contract-node",
+          "platform": "node",
+          "suites": 1,
+          "cases": 9,
+          "executions": 9,
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0,
+          "per_suite_outcomes": {
+            "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": {
+              "passed": 9,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "hidden_outcomes": {
+            "executions": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "error_events": 0,
+          "started_events": 10,
+          "completed_events": 10,
+          "hidden_events": 1,
+          "event_types": {
+            "start": 1,
+            "suite": 1,
+            "testStart": 10,
+            "allSuites": 1,
+            "print": 1,
+            "testDone": 10,
+            "group": 4,
+            "done": 1
+          },
+          "per_suite": {
+            "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": 9
+          },
+          "stderr_bytes": 0,
+          "print_events": 1,
+          "raw_log_sha256": "1e8fec0eb4ec858303483909e68b0a6eb2b2f936508c4fa63075568dfeee86f8"
+        }
+      ],
+      "static_checks": [
+        {
+          "name": "whitespace",
+          "passed": true,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "source": {
+        "records": 5187,
+        "materialized": 5187,
+        "sparse": 0,
+        "live_readback": true,
+        "publication_checked": null
+      },
+      "runtime": {
+        "records": 11164,
+        "retained_files": 11142,
+        "additional_files": 4,
+        "native_assets": 1,
+        "runtime_root": "/workspace/scratch/e63c6a1344bc/runtime",
+        "receipt_sha256": "cc2589fedb04b9bb8aeb291390efff72136896396c228d8ea081bd68f777a5c7",
+        "dependency_report": {
+          "resolved_packages": 133,
+          "workspace_packages": 19,
+          "hosted_archive_receipts": 176,
+          "test_launcher": "/workspace/scratch/e63c6a1344bc/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "package_config_sha256": "571ba3dffb531299534dfcd8311bbda49d6b13d3fa0b8bba89dd9a1a2b60453a"
+        },
+        "scope": "Recorded bounded inputs and current byte readback; not an OS/container snapshot"
+      }
+    }
+  ],
+  "source_inventory_records": 5187,
+  "runtime_union_records": 11168,
+  "historical_cases_added": 0,
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "audit_script_sha256": "52c76f3a0b9bd0c3d509dc9686a46fcf94dc471bf082ba9313879b416dedaa93",
+  "requested_phase_count": 2,
+  "case_inventory": {
+    "path": "/workspace/scratch/e63c6a1344bc/audit-final/qualification-audit-refresh-cases.json",
+    "sha256": "54af4b16f2ac8b7ab39c083594f063cb8f404e49f6f935ff0c26e509206c6832",
+    "records": 404
+  }
+}

@@ -1,39 +1,42 @@
-# Office continuation and final main reconciliation — 19 November 2026
+# Office continuation — qualified checkpoint, 19 November 2026
 
-The complementary Office continuations have been integrated with captured main
-`b070e228a749e22cc8ce2098029a76ab5fb8eccb` and qualified at **`0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9`**.
-The final selected gates passed **1,898 executions / 1,327
-distinct cases / 68 suites**, with zero failures or skips.
+The continuation is reconciled with main `76fe761f1c97c31ca8d8add405aa54c436a336aa` and qualified at
+**`0f16754c278aa83cc79d5777e5b45d3f739e5469`**, tree `83d24b0ef7a82f9dfb65dc4e0b2015ee743f237c`.
+The final bounded follow-up passed **404 executions / 395
+distinct cases / 28 suite paths**, with zero failures or skips,
+plus strict analysis/formatting of 45 Dart paths and whitespace checks.
 
-See the **[complete final qualification and integration report](final/README.md)**
-for exact source/runtime bindings, behavior changes, raw evidence, replay
-commands, retained failures and acceptance boundaries. The
-[independent audit](final/review/qualification-audit-accepted.json) reconstructs
-all accepted totals. Node repeats are not counted as new distinct scenarios.
+**[Final integration report and replay instructions](main-refresh/README.md)**
+explain the current modular Mail, confirmed-submission repair, portable numeric
+morphology, Word selection-boundary preservation and combined footer coverage.
+The [independent audit](main-refresh/review/qualification-audit-refresh.json)
+reconstructs every accepted case and verifies source/runtime stability.
 
-The [final recovery audit](final/review/recovery-audit-0bd53e3e.json) accounts for
-460 captured fork/upstream refs through ancestry and reverified historical
-equivalence. Both continuation histories and their 132 retained historical
-evidence files remain preserved. Historical counts retain their source revisions
-and are not added to the final run.
+## Source-bound checkpoints
 
-Incremental remote checkpoints on `codex/office-final-union-20261119` are
-`911d8f43` (union), `47ce5f72` (boundary/fixture repairs), and `0bd53e3e`
-(portable numeric decoding and final frozen plan). The current publication adds
-the final reports and evidence only. Git history and the merged PR record the
-actual publication and remote-main outcome.
+| Record | Qualified source | Scope |
+| --- | --- | --- |
+| [Full Office checkpoint](final/README.md) | `0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9` | 1,898 executions / 1,327 distinct cases / 68 suites |
+| [Latest-main follow-up](main-refresh/README.md) | `0f16754c278aa83cc79d5777e5b45d3f739e5469` | 404 executions / 395 distinct cases / 28 suites |
 
-The earlier [459-ref checkpoint audit](reconciliation/reference-audit-current-main.json)
-is retained as historical evidence. Its in-progress findings are superseded by
-the final 460-ref audit, not silently rewritten. The attached handoff records
-host source `9833831a`, published as `c63558c0`, which this continuation recovers.
-The separately captured reconciliation checkpoint
-`a4b73fe40387d62c27477bb640f14a2694d031d8` is already an ancestor of captured
-main. Current functional Mail, Arabic T2 rules, native morphology wiring and
-CrispOffice branding are preserved.
+These records qualify their respective sources. Their counts are not added
+together or relabeled as a single final-source run. Both rejected attempts,
+targeted RED/GREEN reproductions and earlier host/main-sync evidence remain
+intact with original attribution.
 
-Main subsequently advanced to `76fe761f1c97c31ca8d8add405aa54c436a336aa`.
-Its newer modular Mail and related changes are being reconciled separately;
-this checkpoint does not claim that newer main was executed by the frozen run.
+Incremental remote checkpoints are `911d8f43`, `47ce5f72`, `0bd53e3e`,
+`fb402a5d`, `08336f71` and `0f16754c`. The final publication adds reports/evidence only;
+the merged PR and Git history establish its remote-main outcome.
 
-No GitHub Actions runs, jobs or queues were queried, dispatched or awaited.
+The [main preservation audit](main-refresh/review/main-refresh-preservation-08336f71.json)
+and [two-file fixture repair audit](main-refresh/review/static-fixture-repair-0f16754c.json)
+retain incoming code/evidence and identify ten reviewed record exceptions,
+including the two test-only static-analysis corrections. The [reference audit](main-refresh/review/recovery-audit-0f16754c.json)
+accounts for all 460 fixed captured refs. Browser, installed-app/IME, live-service,
+language-data/backend and human linguistic acceptance remain explicitly bounded
+in the final report. No GitHub Actions run, job or queue was queried, dispatched
+or awaited.
+
+Main subsequently advanced to `666e9a2e`, adding Reply, Forward and Mark read.
+That two-file delta is being reconciled separately and is not claimed as
+executed by this checkpoint.
