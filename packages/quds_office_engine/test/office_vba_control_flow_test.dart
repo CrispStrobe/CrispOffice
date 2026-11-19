@@ -18,7 +18,43 @@ List<Object?> _values(OfficeMacro macro) => <Object?>[
 TypeMatcher<OfficeVbaCompileException> _error(String code) =>
     isA<OfficeVbaCompileException>().having((e) => e.code, 'code', code);
 
+String _deepBody(String body) {
+  final openings = <String>[];
+  final endings = <String>[];
+  for (var index = 0; index < 32; index++) {
+    final (opening, ending) = switch (index % 4) {
+      0 => ('Do While True', 'Loop'),
+      1 => ('While True', 'Wend'),
+      2 => ('Select Case 1\nCase 1', 'End Select'),
+      _ => ('With Worksheets(1)', 'End With'),
+    };
+    openings.add(opening);
+    endings.insert(0, ending);
+  }
+  return '${openings.join('\n')}\n$body\n${endings.join('\n')}';
+}
+
 void main() {
+  test(
+    'all published nesting bounds compose without recursive block frames',
+    () {
+      final unary = List<String>.filled(63, '+').join();
+      final mainBody =
+          'Worksheets(1).Range("A1").Value2 = ${unary}F1()\nExit Sub';
+      final source = StringBuffer(
+        'Sub Main()\n${_deepBody(mainBody)}\nEnd Sub',
+      );
+      for (var index = 1; index < 32; index++) {
+        final value = index == 31 ? '42' : 'F${index + 1}()';
+        final body = 'F$index = $unary$value\nExit Function';
+        source.write(
+          '\nFunction F$index() As Long\n${_deepBody(body)}\nEnd Function',
+        );
+      }
+      expect(_values(_compile(source.toString())), <Object?>[42]);
+    },
+  );
+
   group('conditional VBA loops', () {
     for (final (start, end) in <(String, String)>[
       ('Do While n < 3', 'Loop'),

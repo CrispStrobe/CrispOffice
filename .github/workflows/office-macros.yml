@@ -51,6 +51,9 @@ jobs:
           test/office_vba_procedures_test.dart
           test/office_vba_procedure_boundaries_test.dart
           test/office_vba_procedures_integration_test.dart
+          test/office_vba_control_flow_test.dart
+          test/office_vba_control_flow_boundaries_test.dart
+          test/office_vba_control_flow_integration_test.dart
           test/office_macro_expansion_test.dart
           test/office_macro_mcp_test.dart
           test/office_macro_cli_test.dart
@@ -71,3 +74,5 @@ jobs:
           node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_smoke.js")'
           dart compile js -O1 tool/macros/web_vba_procedures_smoke.dart -o build/macros/web_vba_procedures_smoke.js
           node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_procedures_smoke.js")'
+          dart compile js -O1 tool/macros/web_vba_control_flow_smoke.dart -o build/macros/web_vba_control_flow_smoke.js
+          node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_control_flow_smoke.js")'
