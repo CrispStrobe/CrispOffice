@@ -1,0 +1,211 @@
+{
+  "reviewed_at_utc": "2026-11-19T07:54:14.652099+00:00",
+  "publication": "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+  "qualified_application_source": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "known_cutoff": {
+    "main": "f059065fa622da8cee7824d66d29a2aff414d529",
+    "pr177": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+    "pr178": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c"
+  },
+  "status": "Bounded read-only review complete; no new application inputs beyond the already-qualified ac1 source",
+  "new_executable_and_test_paths": [
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py"
+  ],
+  "application_and_root_manifest_comparison": {
+    "pr177": "All apps/packages/third_party/root manifest entries match ac1 exactly",
+    "pr178": "Only packages/quds_mail_store/README.md differs; executable application, Dart tests and root manifests match ac1"
+  },
+  "new_validation_checkpoint_paths": [
+    "docs/validation/office-current-reconciliation-20261119/README.md",
+    "docs/validation/office-main-sync-20261119/README.md",
+    "docs/validation/office-main-sync-20261119/vm-plan.json",
+    "docs/validation/office-main-sync-20261119/node-plan.json"
+  ],
+  "checkpoint_status": "Both new continuation READMEs explicitly state final qualification is pending at their own checkpoints. Preserve with historical-checkpoint context and a link to the completed current integration; do not report those pending attempts as additional passes.",
+  "merge_simulations": {
+    "publication": "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+    "heads": [
+      {
+        "head": "f059065fa622da8cee7824d66d29a2aff414d529",
+        "metadata": [
+          "f059065fa622da8cee7824d66d29a2aff414d529",
+          "ffc952a7fd80699449fb25bb8c802e68f473e5b3",
+          "55e262ef269634a0d618c0b5102dc9be5430a5f3 16cbbebdcf7781564658cc7636473c7d04846b38",
+          "Merge pull request #176 from CrispStrobe/feat/arabic-proofing-20261119"
+        ],
+        "merge_exit_code": 0,
+        "provisional_tree": "fd96f5f8e31a2295062036d4a0e7d9902423257a",
+        "merge_messages": [
+          ""
+        ],
+        "changes_to_publication_if_merged": [
+          "M\tdocs/PROOFING.md",
+          "A\tdocs/roadmaps/arabic-proofing.md",
+          "A\ttools/proofing/ayaspell/build_bundle.py"
+        ]
+      },
+      {
+        "head": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+        "metadata": [
+          "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+          "aaa59b09bd369148e49495f1c480fc79d67c48d9",
+          "c94f833f720fd00dd829b8dbe26bdd254a535247",
+          "fix(proofing): restrict AyaSpell publication to verified files [skip ci]"
+        ],
+        "merge_exit_code": 1,
+        "provisional_tree": "1fcd85605715cb319fa44c5f256de1b546c82056",
+        "merge_messages": [
+          "100644 6b8326dfd7a708a35ed6177437bdff42a14a627f 1\tdocs/validation/mail-m06-resume-20261119/README.md",
+          "100644 ecc024f5a9fed3cd25e06a4327c0d2a61fa4e9f3 2\tdocs/validation/mail-m06-resume-20261119/README.md",
+          "100644 6f26d99ec65e2cd77bbefcb0b401ebc6151201f9 3\tdocs/validation/mail-m06-resume-20261119/README.md",
+          "",
+          "Auto-merging docs/validation/mail-m06-resume-20261119/README.md",
+          "CONFLICT (content): Merge conflict in docs/validation/mail-m06-resume-20261119/README.md"
+        ],
+        "changes_to_publication_if_merged": [
+          "M\tdocs/PROOFING.md",
+          "A\tdocs/roadmaps/arabic-proofing.md",
+          "M\tdocs/validation/mail-m06-resume-20261119/README.md",
+          "A\tdocs/validation/office-current-reconciliation-20261119/README.md",
+          "A\ttools/proofing/ayaspell/build_bundle.py",
+          "A\ttools/proofing/ayaspell/test_build_bundle.py"
+        ]
+      },
+      {
+        "head": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+        "metadata": [
+          "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+          "aa0be0c6690b36b83f7e996542363fa1b446049f",
+          "c1dc63f934f81e22a41bafd98df1abf22ee6a053 df98958045f8a63e26d827a819958ddaab13352b",
+          "Reconcile latest Arabic publication and constrain bundle uploads [skip ci]"
+        ],
+        "merge_exit_code": 1,
+        "provisional_tree": "be54630235cd0692a797f123dc0ac80c4cd6e4e2",
+        "merge_messages": [
+          "100644 40e2f9a05063e1530501ae43b2a208f0e58cf8a7 1\tdocs/roadmaps/mail/status.md",
+          "100644 592cd8d3434813dc73042944cce1aff91cd3d8c1 2\tdocs/roadmaps/mail/status.md",
+          "100644 ca75ee123f6fd6bfe10394c392a12723b8b3c02b 3\tdocs/roadmaps/mail/status.md",
+          "100644 6b8326dfd7a708a35ed6177437bdff42a14a627f 1\tdocs/validation/mail-m06-resume-20261119/README.md",
+          "100644 ecc024f5a9fed3cd25e06a4327c0d2a61fa4e9f3 2\tdocs/validation/mail-m06-resume-20261119/README.md",
+          "100644 ac6f3c4b893e7c79541792502020526b1c6a0d62 3\tdocs/validation/mail-m06-resume-20261119/README.md",
+          "",
+          "Auto-merging docs/roadmaps/mail/status.md",
+          "CONFLICT (content): Merge conflict in docs/roadmaps/mail/status.md",
+          "Auto-merging docs/validation/mail-m06-resume-20261119/README.md",
+          "CONFLICT (content): Merge conflict in docs/validation/mail-m06-resume-20261119/README.md"
+        ],
+        "changes_to_publication_if_merged": [
+          "M\tdocs/PROOFING.md",
+          "A\tdocs/roadmaps/arabic-proofing.md",
+          "M\tdocs/roadmaps/mail/status.md",
+          "M\tdocs/validation/mail-m06-resume-20261119/README.md",
+          "A\tdocs/validation/office-main-sync-20261119/README.md",
+          "A\tdocs/validation/office-main-sync-20261119/node-plan.json",
+          "A\tdocs/validation/office-main-sync-20261119/vm-plan.json",
+          "M\tpackages/quds_mail_store/README.md",
+          "A\ttools/proofing/ayaspell/build_bundle.py",
+          "A\ttools/proofing/ayaspell/test_build_bundle.py"
+        ]
+      }
+    ],
+    "scope": "Read-only recursive merge simulations; temporary object store only; no tracked edits or remote refresh"
+  },
+  "incoming_pair_simulation": {
+    "pr177": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+    "pr178": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+    "merge_exit_code": 1,
+    "provisional_tree": "96e02d2fc206b5ec2120025b610ff29745ae7f14",
+    "merge_messages": [
+      "100644 6b8326dfd7a708a35ed6177437bdff42a14a627f 1\tdocs/validation/mail-m06-resume-20261119/README.md",
+      "100644 6f26d99ec65e2cd77bbefcb0b401ebc6151201f9 2\tdocs/validation/mail-m06-resume-20261119/README.md",
+      "100644 ac6f3c4b893e7c79541792502020526b1c6a0d62 3\tdocs/validation/mail-m06-resume-20261119/README.md",
+      "100644 f7bff65990d8f345b5ad00eb87039d056d2d6d58 1\ttools/proofing/ayaspell/build_bundle.py",
+      "100644 ea7c8ebf6fbc18c0fefe5fc76339ab5db0601d01 2\ttools/proofing/ayaspell/build_bundle.py",
+      "100644 19901f37f82b7fff8840f84cfefbec641baa99d7 3\ttools/proofing/ayaspell/build_bundle.py",
+      "100644 1100f62078fb013e04397be0b1e944b42e7409ca 2\ttools/proofing/ayaspell/test_build_bundle.py",
+      "100644 6288d9cf4e72d8a78bffb355da525806fb426b82 3\ttools/proofing/ayaspell/test_build_bundle.py",
+      "",
+      "Auto-merging docs/validation/mail-m06-resume-20261119/README.md",
+      "CONFLICT (content): Merge conflict in docs/validation/mail-m06-resume-20261119/README.md",
+      "Auto-merging tools/proofing/ayaspell/build_bundle.py",
+      "CONFLICT (content): Merge conflict in tools/proofing/ayaspell/build_bundle.py",
+      "Auto-merging tools/proofing/ayaspell/test_build_bundle.py",
+      "CONFLICT (add/add): Merge conflict in tools/proofing/ayaspell/test_build_bundle.py"
+    ]
+  },
+  "artifact_comparison": {
+    "publication": "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+    "frozen_source": "ac1e4c8c788ea608402c2260488235c0189efcba",
+    "heads": {
+      "pr177": {
+        "head": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+        "product_and_root_manifest_differences_from_ac1": [],
+        "shared_raw_artifact_paths": 1432,
+        "shared_raw_artifact_content_collisions": [],
+        "new_raw_artifact_paths": [],
+        "current_raw_artifact_paths_absent_from_incoming": [
+          "docs/validation/office-main-integration-20261119/socket-final/capture-evidence.index.json",
+          "docs/validation/office-main-integration-20261119/socket-final/capture-evidence.tar.xz",
+          "docs/validation/office-main-integration-20261119/socket-final/qualification-evidence.index.json",
+          "docs/validation/office-main-integration-20261119/socket-final/qualification-evidence.tar.xz"
+        ]
+      },
+      "pr178": {
+        "head": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+        "product_and_root_manifest_differences_from_ac1": [
+          "M\tpackages/quds_mail_store/README.md"
+        ],
+        "shared_raw_artifact_paths": 1432,
+        "shared_raw_artifact_content_collisions": [],
+        "new_raw_artifact_paths": [],
+        "current_raw_artifact_paths_absent_from_incoming": [
+          "docs/validation/office-main-integration-20261119/socket-final/capture-evidence.index.json",
+          "docs/validation/office-main-integration-20261119/socket-final/capture-evidence.tar.xz",
+          "docs/validation/office-main-integration-20261119/socket-final/qualification-evidence.index.json",
+          "docs/validation/office-main-integration-20261119/socket-final/qualification-evidence.tar.xz"
+        ]
+      }
+    }
+  },
+  "raw_artifact_scope": "Shared docs/validation files ending .tar.xz, .tar.gz, .jsonl, .jsonl.gz, .log, .png, .index.json or .manifest.json. Merge simulations also show no existing archive/index/receipt changes.",
+  "raw_artifact_result": "Each incoming head shares 1,432 selected raw/artifact paths with cd430, all identical. No new raw archives and no collisions. Both incoming tips lack the four current socket-final capture/qualification archive+index paths; retain the current publication copies.",
+  "builder_variants": {
+    "main176_builder_blob": "d5aea4334b02a721a76a048ecb0ccf61fb09aaa3",
+    "pr177_builder_blob": "ea7c8ebf6fbc18c0fefe5fc76339ab5db0601d01",
+    "pr177_test_blob": "1100f62078fb013e04397be0b1e944b42e7409ca",
+    "pr178_builder_blob": "19901f37f82b7fff8840f84cfefbec641baa99d7",
+    "pr178_test_blob": "6288d9cf4e72d8a78bffb355da525806fb426b82",
+    "upload_scope": "Both incoming builders use equivalent sorted exact-relative-filename allowlists derived from manifest members plus manifest.json. Neither uploads the whole reused output directory.",
+    "metadata": "PR178 retains main176 three-field license metadata; PR177 replaces it with a single license field. Preserve the current published metadata.",
+    "runtime_scope": "Standalone bundle preparation/publication helper; no Arabic runtime adapter or in-app download implementation is added.",
+    "distinct_test_assertions_to_preserve": [
+      "Deterministic two-directory build and complete source-file coverage",
+      "No publication for local-only build",
+      "Exact publication allowlist and exclusion of unrelated/nested files",
+      "Source size/hash and license mismatch rejection before remote mutation",
+      "Immutable-revision content and manifest readback rejection",
+      "Explicit planned integration wording"
+    ]
+  },
+  "reported_final_resolution_from_root": {
+    "builder": "Exact PR178 builder",
+    "tests": "Combined seven-control test from local_capabilities review",
+    "verification": "Root reports all seven controls passed on final checkout; this read-only review did not rerun them",
+    "application_binding": "Root reports all 5,031 ac1 bound inputs preserved",
+    "documentation": "Both incoming checkpoint notes/plans retained with historical pending context; current Mail status/readmes and main176 Arabic published metadata retained",
+    "planned_merge_parents": [
+      "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+      "f059065fa622da8cee7824d66d29a2aff414d529",
+      "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+      "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c"
+    ]
+  },
+  "qualification_scope_wording": "The existing ac1 application qualification remains bound to its unchanged 5,031 inputs. The new Python builder/tests are separate executable tooling changes outside that inventory, with separate controls. Any claim that all later commits are documentation/evidence only must be scoped through publication cd430, not the subsequent helper integration.",
+  "limitations": [
+    "No new application tests or raw-event recount",
+    "No actual bundle publication or external-source fetch",
+    "No remote refresh or GitHub Actions query",
+    "No tracked checkout or runtime changes; merge objects isolated to temporary scratch stores"
+  ]
+}

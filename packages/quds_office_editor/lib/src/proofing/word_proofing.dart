@@ -172,6 +172,8 @@ final class WordProofingSession extends ChangeNotifier {
           providers: [
             GermanWritingRulesProvider(),
             GermanSpellingProvider(vocabulary: this.vocabulary),
+            // Active only for Arabic-language paragraphs.
+            ArabicWritingRulesProvider(),
           ],
         );
   }

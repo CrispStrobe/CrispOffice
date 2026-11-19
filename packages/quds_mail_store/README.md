@@ -2,11 +2,13 @@
 
 Profile-scoped Drift/SQLite persistence for the shared Mail contracts. Original
 source is MIT. Schema v3 flags and the bounded native IMAP integration passed
-combined local qualification at `5569c055`, including **199 fresh core/store test
-executions** and five transport/coordinator tests using actual SQLite. The
-[Office completion report](../../docs/validation/office-main-completion-20261119/README.md)
-records the full 836-application / 78-Python result; the earlier `71edec2d`
-Mail-branch receipt is retained below under its own identity.
+the [current reconciliation qualification](../../docs/validation/office-current-reconciliation-20261119/README.md)
+at `c268ce3b`, including **199 core/store test executions** within **801
+application executions**, plus **42 separate launcher controls**. The earlier
+`71edec2d` Mail-branch qualification is retained as historical evidence below.
+Subsequent reconciliation and TLS-rejection cleanup have a separate
+[captured synchronization record](../../docs/validation/office-main-sync-20261119/README.md),
+whose incoming history is preserved by the current reconciliation.
 The account-aware UI and SMTP remain subsequent work. Exact dependencies and
 retained notices are in
 [DEPENDENCIES.json](DEPENDENCIES.json) and
@@ -155,20 +157,26 @@ A failed migration rolls back, and an unknown future version returns
 
 ## Qualification boundary
 
-### Retained main qualification — PASS
+### UID discovery and cursor freshness — combined qualification in progress
 
-The retained main application execution is bound to
-`5569c055a021c893e941fc54d40499ad9d96a5db`: 836 application executions across
-85 suite/platform executions and 73 distinct files, with 78 separate Python
-controls. This includes a fresh full 199-case core/store run, 602 native
-transport/MIME/UI/protocol cases and 35 Node transport/MIME cases. The
-[independent audit](../../docs/validation/office-main-completion-20261119/release/independent-summary.json)
-verifies the exact source/runtime identity and raw counts. The later [UID range continuation](../../docs/validation/mail-uid-pagination-20261119/README.md)
-changes synchronization and has its own qualification. Concurrent
-[Office synchronization evidence](../../docs/validation/office-main-sync-20261119/README.md)
-also retains its separate source identity.
+The [UID discovery report](../../docs/validation/mail-uid-pagination-20261119/README.md)
+records bounded stored-range reconciliation and the v3 monotonic cursor repair.
+The first 1,000-execution checkpoint at `960fb72f` predates that repair; it is
+retained separately. The updated provider must reject stale completed-sweep
+pages through the store comparison without restoring expunged data. Historical
+counts below remain attached to their original sources.
 
-### Earlier Mail-branch schema v3 and transport qualification — PASS
+### Historical reconciled source — PASS at `c268ce3b`
+
+The [current reconciliation report](../../docs/validation/office-current-reconciliation-20261119/README.md)
+binds 801 application executions (731 distinct cases) and 42 launcher controls
+to `c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e`. The native gate passed 602 cases;
+the core/store gate passed 199 VM/Node executions. The direct TLS-rejection
+cleanup and strengthened assertions are included. Application, configuration,
+and test inputs are unchanged by later documentation/publication reconciliation;
+this README is the one explicitly reviewed documentation-input update.
+
+### Inherited main qualification — PASS
 
 The [Office completion report](../../docs/validation/office-main-completion-20261119/README.md)
 binds **836 application executions** and **78 separate Python controls** to
@@ -217,8 +225,8 @@ hostname rejection, and stalled-handshake cancellation/deadline cleanup passed.
 Deterministic partial-write fixtures verify ordering and abort behavior; they
 do not qualify Windows socket semantics or operating-system backpressure.
 Those historical gates predate discovered-UID pagination beyond the initial
-high-UID ceiling. The current authoritative-range increment is recorded in the
-[UID pagination report](../../docs/validation/mail-uid-pagination-20261119/README.md).
+high-UID ceiling. The current authoritative-range increment and cursor-freshness
+repair are recorded in the [UID pagination report](../../docs/validation/mail-uid-pagination-20261119/README.md).
 OAuth hosts, authorized live-account interoperability, SMTP and the mailbox UI
 remain separate work.
 

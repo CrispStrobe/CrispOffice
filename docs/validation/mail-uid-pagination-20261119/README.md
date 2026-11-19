@@ -1,9 +1,20 @@
 # Mail UID discovery continuation — 19 November 2026
 
-## Qualification preparation
+## Combined qualification in progress
 
-The local runtime and committed plans are prepared. **Final product gates have
-not run yet.** This preparation record is not passing product evidence.
+The first frozen implementation at `960fb72f` passed **1,000 application
+executions** and **90 Python controls**. Its [complete historical checkpoint](checkpoint-960fb72f/README.md)
+retains all raw results and the independent audit. That result predates the
+subsequently discovered cursor reuse defect and does not qualify this new source.
+
+The next bounded capture contains **421 actual refs**. All five incoming frontier
+heads are reconciled: main `dc267fb4`, cursor/Arabic fixes `0669ac11`, decomposed
+Arabic tests `05582479`, integration record `84aa6f96`, and complete evidence
+`a4b73fe4`. The combined source adds v3 cursor revisions, preserves all Arabic
+boundary and offset controls, and includes the optional native/Web Hunspell
+package. A newly identified native dictionary-handle disposal leak is under
+repair before fresh local acceptance. Historical qualifications retain their
+source identities; no pending result is represented as a pass.
 
 The continuation reconciles current incoming work before replacing the numeric
 UID ceiling with bounded discovery and atomic range reconciliation. The
@@ -21,9 +32,13 @@ UIDVALIDITY. Pending local edits enter reconciliation with their cached evidence
 retained. Upserts, removals, pending state and the cursor commit atomically under
 the existing cursor comparison and account lease.
 
-Version 2 cursors retain a frozen sweep ceiling and accept saved version 1
-cursors. UIDVALIDITY changes reset membership; newly arriving higher UIDs enter
-the next sweep. Discovery requires exactly one complete valid SEARCH response,
+Version 3 cursors retain a frozen sweep ceiling and accept saved version 1
+and version 2 positions. Every returned page advances a monotonic revision,
+including completed and empty sweeps and UIDVALIDITY resets. Repeated positions
+cannot reuse a committed cursor token and admit stale pages. Exhaustion of the
+JavaScript-safe revision range fails before vault or network access. Older clients
+reject persisted v3 cursors; downgrades must not reset stored state. UIDVALIDITY
+changes reset membership; newly arriving higher UIDs enter the next sweep. Discovery requires exactly one complete valid SEARCH response,
 followed by successful tagged completion. Missing, malformed, duplicate,
 extended or over-budget results cannot authorize a deletion or FETCH. A message
 expunged between SEARCH and FETCH becomes absent; an unexpected fetched UID
@@ -41,15 +56,18 @@ Range reconciliation is bounded by stored account-message limits, independently
 of the smaller fetched-page limit. No schema or dependency change is needed.
 
 The incoming AyaSpell publication fix restricts uploads to verified bundle
-filenames. Both independently authored offline suites are retained under
+filenames. The independently authored offline suites are retained under
 distinct filenames, including integrity/readback refusal, exclusion of unrelated
 output files and deterministic local builds. No live publication is performed
 by this continuation or its tests.
 
-## Planned local gates
+## Local gate expansion
 
-All gates execute sequentially on one committed source. GitHub Actions are not
-queried, awaited, dispatched or used as an acceptance condition.
+All gates execute sequentially on one committed source. The existing selections
+below describe the first pass; the committed plans are being expanded for v3
+VM/Node cursors, Arabic engine/editor behavior and actual native Hunspell/installer
+execution with the pinned dictionary. GitHub Actions are not queried, awaited,
+dispatched or used as an acceptance condition.
 
 | Gate | Selection | Purpose |
 | --- | --- | --- |

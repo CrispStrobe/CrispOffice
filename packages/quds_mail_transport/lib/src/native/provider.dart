@@ -381,6 +381,11 @@ final class NativeMailImapProvider implements MailProvider {
     } on FormatException {
       return _failure(MailProblemCode.invalidInput);
     }
+    final revision = previous?.revision ?? 0;
+    if (revision == ImapScanCursor.maxRevision) {
+      // Never wrap or round a durable comparison token back to an old value.
+      return _failure(MailProblemCode.invalidInput);
+    }
     return _run(lease, (client, operation) async {
       final selected = await _select(client, operation, mailbox);
       final validity = selected.uidValidity!;
@@ -441,6 +446,7 @@ final class NativeMailImapProvider implements MailProvider {
         uidValidity: validity,
         nextUid: more ? last + 1 : 1,
         ceiling: more ? ceiling : 0,
+        revision: revision + 1,
       );
       return MailSyncPage(
         mailbox: mailbox,

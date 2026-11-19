@@ -1,0 +1,82 @@
+{
+  "checked_at_utc": "2026-11-19T07:55:16.125143+00:00",
+  "qualified_execution_source": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "previous_audited_publication": "199690563b206948871ea0279f5e59f686265f8b",
+  "incoming_main": "f059065fa622da8cee7824d66d29a2aff414d529",
+  "incoming_main_parent": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+  "checked_target": {
+    "kind": "resolved_index",
+    "history_roots": [
+      "199690563b206948871ea0279f5e59f686265f8b",
+      "f059065fa622da8cee7824d66d29a2aff414d529"
+    ]
+  },
+  "required_history_included": {
+    "5569c055a021c893e941fc54d40499ad9d96a5db": true,
+    "199690563b206948871ea0279f5e59f686265f8b": true,
+    "f059065fa622da8cee7824d66d29a2aff414d529": true
+  },
+  "proofing_paths": {
+    "docs/PROOFING.md": {
+      "incoming": {
+        "mode": "100644",
+        "git_blob": "30e3e81493707d6acc59f58fb818932189d92884"
+      },
+      "final": {
+        "mode": "100644",
+        "git_blob": "30e3e81493707d6acc59f58fb818932189d92884"
+      },
+      "retained_exactly": true
+    },
+    "docs/roadmaps/arabic-proofing.md": {
+      "incoming": {
+        "mode": "100644",
+        "git_blob": "1028a0e2bc168b6dd8f02e567c310e43e011b0d0"
+      },
+      "final": {
+        "mode": "100644",
+        "git_blob": "1028a0e2bc168b6dd8f02e567c310e43e011b0d0"
+      },
+      "retained_exactly": true
+    },
+    "tools/proofing/ayaspell/build_bundle.py": {
+      "incoming": {
+        "mode": "100644",
+        "git_blob": "d5aea4334b02a721a76a048ecb0ccf61fb09aaa3"
+      },
+      "final": {
+        "mode": "100644",
+        "git_blob": "4756954faa2795b46a6768a6f9af81625e329fbe"
+      },
+      "retained_exactly": false
+    }
+  },
+  "qualification_input_overlap": [],
+  "distinct_bound_input_union": 5033,
+  "inputs_identical_to_reviewed_mail_publication": 5033,
+  "inputs_identical_to_qualified_execution_source": 5032,
+  "reviewed_documentation_exception": "packages/quds_mail_store/README.md",
+  "bound_entry_fingerprint_sha256": "9bda0374145c7d4a0b5876862f03f29e24f4cb9fdaf31f30c1a71a8a5061deb3",
+  "candidate_delta": [
+    "docs/PROOFING.md",
+    "docs/roadmaps/arabic-proofing.md",
+    "docs/validation/office-main-completion-20261119/README.md",
+    "docs/validation/office-main-completion-20261119/release/audit_proofing_tail.py",
+    "docs/validation/office-main-completion-20261119/release/check_proofing_output_guard.py",
+    "docs/validation/office-main-completion-20261119/release/mail-tail-immutable-readback.json",
+    "docs/validation/office-main-completion-20261119/release/proofing-output-guard.json",
+    "docs/validation/office-main-completion-20261119/release/proofing-tail-review.json",
+    "tools/proofing/ayaspell/build_bundle.py"
+  ],
+  "helper_validation": "Syntax compilation and isolated output-path checks with stubbed fetch; no download or publication",
+  "reviewed_helper_change": "Require a fresh output directory before any download/publication; reject existing paths",
+  "helper_guard_receipt": "docs/validation/office-main-completion-20261119/release/proofing-output-guard.json",
+  "helper_sha256": "8bdcb6e7536184ee0f62f2628cd0294c98f3037e46f61caa8d642430a1acb912",
+  "application_case_executions_preserved": 836,
+  "separate_python_controls_preserved": 78,
+  "new_product_tests_or_ci_executed": false,
+  "prior_runtime_verification": "Inherited unchanged from the immutable Mail readback; no new runtime claim",
+  "source_bound_audit_sha256": "bf34ee312d3758a428c74aa7fdc2cdc684a40cab2ca42ad6ac767562a3a2565a",
+  "issues": [],
+  "passed": true
+}

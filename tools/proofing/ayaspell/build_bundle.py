@@ -9,10 +9,13 @@ published unmodified.
 
     python3 tools/proofing/ayaspell/build_bundle.py --output /tmp/ayaspell-ar
     HF_TOKEN=... python3 tools/proofing/ayaspell/build_bundle.py \\
-        --output /tmp/ayaspell-ar --publish cstr/ayaspell-ar-hunspell
+        --output /tmp/ayaspell-ar-publish --publish cstr/ayaspell-ar-hunspell
 
-The planned app integration downloads the bundle only at the user's request;
-it is not part of the application binary (docs/roadmaps/arabic-proofing.md).
+Each invocation requires a new output directory that does not already exist.
+
+The bundle is intended for an optional in-app download once the Arabic
+adapter is implemented; it is not part of the application binary
+(docs/roadmaps/arabic-proofing.md).
 """
 from __future__ import annotations
 
@@ -81,20 +84,24 @@ are unmodified; their source form is this repository.
 
 ## Use
 
-Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office's
-Hunspell adapter and in-app download integration are planned; this bundle is
-not part of the application. `manifest.json` lists the SHA-256 of every
-bundled file.
+Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office
+plans to offer this bundle as an optional download; the Arabic adapter and
+in-app download are not implemented yet. The bundle is not part of the
+application. `manifest.json` lists the SHA-256 of each bundled content file.
 """
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True,
+                        help="New directory to create; must not already exist")
     parser.add_argument("--publish", metavar="REPO_ID", help="Hugging Face model repo to upload to (needs HF_TOKEN)")
     args = parser.parse_args()
     out = args.output
-    out.mkdir(parents=True, exist_ok=True)
+    try:
+        out.mkdir(parents=True, exist_ok=False)
+    except FileExistsError:
+        parser.error(f"output path already exists: {out}; choose a new directory for --output")
     manifest = {"schema": "quds.proofing.hunspell_bundle.v1", "language": "ar",
                 "source": {"repository": "https://github.com/LibreOffice/dictionaries", "commit": COMMIT,
                            "path": "ar/"},
@@ -123,11 +130,11 @@ def main() -> int:
         from huggingface_hub import HfApi
         api = HfApi()
         api.create_repo(args.publish, repo_type="model", exist_ok=True)
-        # Reusing an output directory must not publish unrelated local files.
-        # Exact relative names also exclude similarly named nested files.
-        upload_names = sorted([*manifest["files"], "manifest.json"])
+        # --output can already contain unrelated files. Publish only the
+        # verified bundle and its generated manifest, never the whole directory.
+        publish_files = sorted([*manifest["files"], "manifest.json"])
         commit = api.upload_folder(repo_id=args.publish, folder_path=str(out), repo_type="model",
-                                   allow_patterns=upload_names,
+                                   allow_patterns=publish_files,
                                    commit_message=f"AyaSpell Arabic from LibreOffice dictionaries {COMMIT[:10]}")
         print(f"published {args.publish} at {commit.oid}")
         # Read back every file at the new immutable revision.

@@ -1,0 +1,1486 @@
+{
+  "captured_api_completed_at": "2026-11-19T07:47:50.599Z",
+  "auxiliary_capture_completed_at": "2026-11-19T07:48:40.981Z",
+  "main": "f059065fa622da8cee7824d66d29a2aff414d529",
+  "pr176": {
+    "head": "16cbbebdcf7781564658cc7636473c7d04846b38",
+    "merge": "f059065fa622da8cee7824d66d29a2aff414d529",
+    "merged_at": "2026-11-19T07:45:15Z"
+  },
+  "delta_commits": [
+    {
+      "label": "office-sync",
+      "sha": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+      "parents": [
+        "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+        "df98958045f8a63e26d827a819958ddaab13352b"
+      ],
+      "message": "Reconcile latest Arabic publication and constrain bundle uploads [skip ci]\n\nPreserve current Office, Mail, Zotero, Notes and Arabic branch history. Restrict optional AyaSpell uploads to the verified bundle inventory, add offline regressions, reconcile historical qualification documentation and freeze focused local VM/Node plans. Final qualification is pending this source checkpoint.",
+      "files": [
+        "docs/PROOFING.md",
+        "docs/roadmaps/arabic-proofing.md",
+        "docs/roadmaps/mail/status.md",
+        "docs/validation/mail-m06-resume-20261119/README.md",
+        "docs/validation/office-main-sync-20261119/README.md",
+        "docs/validation/office-main-sync-20261119/node-plan.json",
+        "docs/validation/office-main-sync-20261119/vm-plan.json",
+        "packages/quds_mail_store/README.md",
+        "tools/proofing/ayaspell/build_bundle.py",
+        "tools/proofing/ayaspell/test_build_bundle.py"
+      ],
+      "comparison_to_c268": {
+        "repository_full_name": "CrispStrobe/quds_office_suite",
+        "base": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+        "head": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+        "status": "diverged",
+        "ahead_by": 3,
+        "behind_by": 3,
+        "total_commits": 3,
+        "too_large": null,
+        "base_commit": {
+          "sha": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+          "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e"
+        },
+        "merge_base_commit": {
+          "sha": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+          "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/55e262ef269634a0d618c0b5102dc9be5430a5f3",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/55e262ef269634a0d618c0b5102dc9be5430a5f3"
+        },
+        "files": [
+          {
+            "filename": "docs/PROOFING.md",
+            "status": "modified",
+            "additions": 12,
+            "deletions": 0,
+            "changes": 12,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/roadmaps/arabic-proofing.md",
+            "status": "added",
+            "additions": 87,
+            "deletions": 0,
+            "changes": 87,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/roadmaps/mail/status.md",
+            "status": "modified",
+            "additions": 5,
+            "deletions": 1,
+            "changes": 6,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/README.md",
+            "status": "modified",
+            "additions": 217,
+            "deletions": 119,
+            "changes": 336,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/archive-audit.json",
+            "status": "added",
+            "additions": 439,
+            "deletions": 0,
+            "changes": 439,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/audit_final_archives.py",
+            "status": "added",
+            "additions": 307,
+            "deletions": 0,
+            "changes": 307,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/development.tar.index.json",
+            "status": "added",
+            "additions": 250,
+            "deletions": 0,
+            "changes": 250,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/development.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/evidence-audit.json",
+            "status": "added",
+            "additions": 504,
+            "deletions": 0,
+            "changes": 504,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/execution.json",
+            "status": "added",
+            "additions": 102,
+            "deletions": 0,
+            "changes": 102,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/first-attempt-mail-receipt.json",
+            "status": "added",
+            "additions": 448,
+            "deletions": 0,
+            "changes": 448,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.index.json",
+            "status": "added",
+            "additions": 157,
+            "deletions": 0,
+            "changes": 157,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/mail-final-receipt.json",
+            "status": "added",
+            "additions": 448,
+            "deletions": 0,
+            "changes": 448,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.index.json",
+            "status": "added",
+            "additions": 141,
+            "deletions": 0,
+            "changes": 141,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/native-final-verification.json",
+            "status": "added",
+            "additions": 747,
+            "deletions": 0,
+            "changes": 747,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/native-final.tar.index.json",
+            "status": "added",
+            "additions": 149,
+            "deletions": 0,
+            "changes": 149,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/native-final.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/node-final-verification.json",
+            "status": "added",
+            "additions": 377,
+            "deletions": 0,
+            "changes": 377,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/node-final.tar.index.json",
+            "status": "added",
+            "additions": 109,
+            "deletions": 0,
+            "changes": 109,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/node-final.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/preparation.tar.index.json",
+            "status": "added",
+            "additions": 129,
+            "deletions": 0,
+            "changes": 129,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/preparation.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/publication-scope.json",
+            "status": "added",
+            "additions": 63,
+            "deletions": 0,
+            "changes": 63,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/published-readback.json",
+            "status": "added",
+            "additions": 14,
+            "deletions": 0,
+            "changes": 14,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/runner-test-review.json",
+            "status": "added",
+            "additions": 56,
+            "deletions": 0,
+            "changes": 56,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/second-attempt-mail-receipt.json",
+            "status": "added",
+            "additions": 172,
+            "deletions": 0,
+            "changes": 172,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.index.json",
+            "status": "added",
+            "additions": 50,
+            "deletions": 0,
+            "changes": 50,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/source-continuity.json",
+            "status": "added",
+            "additions": 184,
+            "deletions": 0,
+            "changes": 184,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/source-review.tar.index.json",
+            "status": "added",
+            "additions": 255,
+            "deletions": 0,
+            "changes": 255,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/source-review.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/transport-review-binding.json",
+            "status": "added",
+            "additions": 709,
+            "deletions": 0,
+            "changes": 709,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/workspace-and-plan-binding.json",
+            "status": "added",
+            "additions": 29,
+            "deletions": 0,
+            "changes": 29,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-native.log",
+            "status": "added",
+            "additions": 56,
+            "deletions": 0,
+            "changes": 56,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-reviewed.log",
+            "status": "added",
+            "additions": 16,
+            "deletions": 0,
+            "changes": 16,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-final-format.log",
+            "status": "added",
+            "additions": 1,
+            "deletions": 0,
+            "changes": 1,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-inherited-connections.log",
+            "status": "added",
+            "additions": 21,
+            "deletions": 0,
+            "changes": 21,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-reviewed-analyze.log",
+            "status": "added",
+            "additions": 2,
+            "deletions": 0,
+            "changes": 2,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-integration-20261119/socket-final/merge-review.md",
+            "status": "added",
+            "additions": 40,
+            "deletions": 0,
+            "changes": 40,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-integration-20261119/socket-final/plan.json",
+            "status": "added",
+            "additions": 161,
+            "deletions": 0,
+            "changes": 161,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-integration-20261119/socket-final/suite-review.json",
+            "status": "added",
+            "additions": 92,
+            "deletions": 0,
+            "changes": 92,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-integration-20261119/socket-final/upgrade-cleanup-evidence.index.json",
+            "status": "added",
+            "additions": 92,
+            "deletions": 0,
+            "changes": 92,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-integration-20261119/socket-final/upgrade-cleanup-evidence.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-sync-20261119/README.md",
+            "status": "added",
+            "additions": 90,
+            "deletions": 0,
+            "changes": 90,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-sync-20261119/node-plan.json",
+            "status": "added",
+            "additions": 23,
+            "deletions": 0,
+            "changes": 23,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-sync-20261119/vm-plan.json",
+            "status": "added",
+            "additions": 58,
+            "deletions": 0,
+            "changes": 58,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_mail_core/test/models_test.dart",
+            "status": "modified",
+            "additions": 1,
+            "deletions": 1,
+            "changes": 2,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_mail_store/README.md",
+            "status": "modified",
+            "additions": 75,
+            "deletions": 20,
+            "changes": 95,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+            "status": "modified",
+            "additions": 3,
+            "deletions": 0,
+            "changes": 3,
+            "previous_filename": null
+          },
+          {
+            "filename": "third_party/enough_mail/lib/src/private/util/client_base.dart",
+            "status": "modified",
+            "additions": 42,
+            "deletions": 35,
+            "changes": 77,
+            "previous_filename": null
+          },
+          {
+            "filename": "tools/proofing/ayaspell/build_bundle.py",
+            "status": "added",
+            "additions": 149,
+            "deletions": 0,
+            "changes": 149,
+            "previous_filename": null
+          },
+          {
+            "filename": "tools/proofing/ayaspell/test_build_bundle.py",
+            "status": "added",
+            "additions": 150,
+            "deletions": 0,
+            "changes": 150,
+            "previous_filename": null
+          }
+        ]
+      }
+    },
+    {
+      "label": "mail",
+      "sha": "199690563b206948871ea0279f5e59f686265f8b",
+      "parents": [
+        "700e5a35ce5f96e7abd1dc92d1a00d2110d40649",
+        "55e262ef269634a0d618c0b5102dc9be5430a5f3"
+      ],
+      "message": "Preserve final Mail evidence and reconcile documentation with qualified main [skip ci]",
+      "files": [
+        "README.md",
+        "docs/roadmaps/mail/implementation-plan.md",
+        "docs/roadmaps/mail/status.md",
+        "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+        "docs/validation/mail-m06-resume-20261119/README.md",
+        "docs/validation/office-main-completion-20261119/README.md",
+        "docs/validation/office-main-completion-20261119/baseline/baseline-manifest.json",
+        "docs/validation/office-main-completion-20261119/baseline/diagnostics-manifest.json",
+        "docs/validation/office-main-completion-20261119/baseline/diagnostics.index.json",
+        "docs/validation/office-main-completion-20261119/baseline/diagnostics.tar.xz",
+        "docs/validation/office-main-completion-20261119/baseline/native-node-support.index.json",
+        "docs/validation/office-main-completion-20261119/baseline/native-node-support.tar.xz",
+        "docs/validation/office-main-completion-20261119/baseline/publication-receipt.json",
+        "docs/validation/office-main-completion-20261119/checkpoint-54c36e40/completed-gate-manifest.json",
+        "docs/validation/office-main-completion-20261119/checkpoint-54c36e40/independent-archive-audit.json",
+        "docs/validation/office-main-completion-20261119/checkpoint-54c36e40/native-node-support.index.json",
+        "docs/validation/office-main-completion-20261119/checkpoint-54c36e40/native-node-support.tar.xz",
+        "docs/validation/office-main-completion-20261119/checkpoint-54c36e40/publication-receipt.json",
+        "docs/validation/office-main-completion-20261119/evidence/runtime-evidence.index.json",
+        "docs/validation/office-main-completion-20261119/evidence/runtime-evidence.tar.xz",
+        "docs/validation/office-main-completion-20261119/evidence/runtime-replay-fix.index.json",
+        "docs/validation/office-main-completion-20261119/evidence/runtime-replay-fix.tar.xz",
+        "docs/validation/office-main-completion-20261119/evidence/store-evidence.index.json",
+        "docs/validation/office-main-completion-20261119/evidence/store-evidence.tar.xz",
+        "docs/validation/office-main-completion-20261119/merge-review.md",
+        "docs/validation/office-main-completion-20261119/native-plan.json",
+        "docs/validation/office-main-completion-20261119/node-plan.json",
+        "docs/validation/office-main-completion-20261119/release/audit_mail_tail.py",
+        "docs/validation/office-main-completion-20261119/release/audit_publication_inputs.py",
+        "docs/validation/office-main-completion-20261119/release/coverage-summary.json",
+        "docs/validation/office-main-completion-20261119/release/independent-archive-audit.json",
+        "docs/validation/office-main-completion-20261119/release/independent-summary.json",
+        "docs/validation/office-main-completion-20261119/release/local-qualification.index.json",
+        "docs/validation/office-main-completion-20261119/release/local-qualification.tar.xz",
+        "docs/validation/office-main-completion-20261119/release/mail-tail-review.json",
+        "docs/validation/office-main-completion-20261119/release/manifest.json",
+        "docs/validation/office-main-completion-20261119/release/post-cutoff-main-review.json",
+        "docs/validation/office-main-completion-20261119/release/post-cutoff-reconciliation-audit.json",
+        "docs/validation/office-main-completion-20261119/release/publication-continuity.json",
+        "docs/validation/office-main-completion-20261119/release/publication-receipt.json",
+        "docs/validation/office-main-completion-20261119/release/reconciliation-summary.json",
+        "docs/validation/office-main-completion-20261119/review/prepare_evidence.py",
+        "docs/validation/office-main-completion-20261119/review/tls-review.index.json",
+        "docs/validation/office-main-completion-20261119/review/tls-review.tar.xz",
+        "docs/validation/office-main-integration-20261119/README.md",
+        "docs/validation/office-main-integration-20261119/consumer-plan.json",
+        "docs/validation/office-main-integration-20261119/diagnostics/README.md",
+        "docs/validation/office-main-integration-20261119/diagnostics/mail-first-attempt-index.json",
+        "docs/validation/office-main-integration-20261119/diagnostics/mail-first-attempt.tar.xz",
+        "docs/validation/office-main-integration-20261119/diagnostics/root-shape-only.jsonl",
+        "docs/validation/office-main-integration-20261119/diagnostics/transport-regression-red-evidence.manifest.json",
+        "docs/validation/office-main-integration-20261119/diagnostics/transport-regression-red-evidence.tar.xz",
+        "docs/validation/office-main-integration-20261119/diagnostics/transport-regression-red-summary.json",
+        "docs/validation/office-main-integration-20261119/diagnostics/uid-grammar-evidence.manifest.json",
+        "docs/validation/office-main-integration-20261119/diagnostics/uid-grammar-evidence.tar.xz",
+        "docs/validation/office-main-integration-20261119/flags/complete-results-index.json",
+        "docs/validation/office-main-integration-20261119/flags/complete-results.tar.xz",
+        "docs/validation/office-main-integration-20261119/flags/consumer-verification.json",
+        "docs/validation/office-main-integration-20261119/flags/mail-receipt.json",
+        "docs/validation/office-main-integration-20261119/incoming/final-fork-refs.txt",
+        "docs/validation/office-main-integration-20261119/incoming/final-open-prs.json",
+        "docs/validation/office-main-integration-20261119/incoming/final-upstream-refs.txt",
+        "docs/validation/office-main-integration-20261119/pre-tls-report.md",
+        "docs/validation/office-main-integration-20261119/review/audit_capture_ancestry.py",
+        "docs/validation/office-main-integration-20261119/review/audit_fresh_mail.py",
+        "docs/validation/office-main-integration-20261119/review/audit_historical_continuity.py",
+        "docs/validation/office-main-integration-20261119/review/audit_preserved_union.py",
+        "docs/validation/office-main-integration-20261119/review/audit_transport_qualification.py",
+        "docs/validation/office-main-integration-20261119/review/final_ancestry_review.json",
+        "docs/validation/office-main-integration-20261119/review/final_ancestry_review_1655db9f.json",
+        "docs/validation/office-main-integration-20261119/review/final_historical_continuity.json",
+        "docs/validation/office-main-integration-20261119/review/final_incoming_merge_review.json",
+        "docs/validation/office-main-integration-20261119/review/final_index_continuity.json",
+        "docs/validation/office-main-integration-20261119/review/final_publication_continuity.json",
+        "docs/validation/office-main-integration-20261119/review/final_transport_review-cases.json",
+        "docs/validation/office-main-integration-20261119/review/final_transport_review.json",
+        "docs/validation/office-main-integration-20261119/review/fresh_mail_review-cases.json",
+        "docs/validation/office-main-integration-20261119/review/fresh_mail_review.json",
+        "docs/validation/office-main-integration-20261119/review/historical_continuity_1655db9f.json",
+        "docs/validation/office-main-integration-20261119/review/preserved_union_review_final.json",
+        "docs/validation/office-main-integration-20261119/review/transport_checkpoint_review-cases.json",
+        "docs/validation/office-main-integration-20261119/review/transport_checkpoint_review.json",
+        "docs/validation/office-main-integration-20261119/runtime/recovery-evidence.manifest.json",
+        "docs/validation/office-main-integration-20261119/runtime/recovery-evidence.tar.xz",
+        "docs/validation/office-main-integration-20261119/tls/audit_tls_qualification.py",
+        "docs/validation/office-main-integration-20261119/tls/captured-fork-refs.txt",
+        "docs/validation/office-main-integration-20261119/tls/captured-upstream-refs.txt",
+        "docs/validation/office-main-integration-20261119/tls/core-controls-merge-review.json",
+        "docs/validation/office-main-integration-20261119/tls/development-evidence.index.json",
+        "docs/validation/office-main-integration-20261119/tls/development-evidence.tar.xz",
+        "docs/validation/office-main-integration-20261119/tls/merge-review.json",
+        "docs/validation/office-main-integration-20261119/tls/plan.json",
+        "docs/validation/office-main-integration-20261119/tls/publication-continuity.json",
+        "docs/validation/office-main-integration-20261119/tls/qualification-evidence.index.json",
+        "docs/validation/office-main-integration-20261119/tls/qualification-evidence.tar.xz",
+        "docs/validation/office-main-integration-20261119/tls/store-receipt.json",
+        "docs/validation/office-main-integration-20261119/tls/tls-suite-review.json",
+        "docs/validation/office-main-integration-20261119/tls/tls_ancestry_review.json",
+        "docs/validation/office-main-integration-20261119/tls/tls_final_review-cases.json",
+        "docs/validation/office-main-integration-20261119/tls/tls_final_review.json",
+        "docs/validation/office-main-integration-20261119/tls/tls_historical_continuity.json",
+        "docs/validation/office-main-integration-20261119/tls/verification.json",
+        "docs/validation/office-main-integration-20261119/transport-final/evidence.index.json",
+        "docs/validation/office-main-integration-20261119/transport-final/evidence.tar.xz",
+        "docs/validation/office-main-integration-20261119/transport-final/verification.json",
+        "docs/validation/office-main-integration-20261119/transport-first/evidence.index.json",
+        "docs/validation/office-main-integration-20261119/transport-first/evidence.tar.xz",
+        "docs/validation/office-main-integration-20261119/transport-first/store-receipt.json",
+        "docs/validation/office-main-integration-20261119/transport-first/verification.json",
+        "docs/validation/office-main-integration-20261119/transport-plan.json",
+        "packages/quds_mail_store/README.md",
+        "packages/quds_mail_transport/CHANGELOG.md",
+        "packages/quds_mail_transport/README.md",
+        "packages/quds_mail_transport/test/native_provider_test.dart",
+        "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+        "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+        "packages/quds_mail_transport/test/native_tls_test.dart",
+        "packages/quds_mail_transport/test/support/imap_fixture.dart",
+        "packages/quds_mail_transport/test/support/tls/README.md",
+        "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+        "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+        "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+        "packages/quds_mail_transport/test/support/tls_server.dart",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+        "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+        "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+        "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+        "third_party/enough_mail/QUDS_PATCHES.md",
+        "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+        "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+        "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart",
+        "third_party/enough_mail/lib/src/private/util/client_base.dart",
+        "third_party/enough_mail/lib/src/private/util/client_connection.dart",
+        "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart"
+      ],
+      "comparison_to_c268": {
+        "repository_full_name": "CrispStrobe/quds_office_suite",
+        "base": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+        "head": "199690563b206948871ea0279f5e59f686265f8b",
+        "status": "diverged",
+        "ahead_by": 1,
+        "behind_by": 6,
+        "total_commits": 1,
+        "too_large": null,
+        "base_commit": {
+          "sha": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+          "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e"
+        },
+        "merge_base_commit": {
+          "sha": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+          "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/55e262ef269634a0d618c0b5102dc9be5430a5f3",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/55e262ef269634a0d618c0b5102dc9be5430a5f3"
+        },
+        "files": [
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/README.md",
+            "status": "modified",
+            "additions": 217,
+            "deletions": 119,
+            "changes": 336,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/archive-audit.json",
+            "status": "added",
+            "additions": 439,
+            "deletions": 0,
+            "changes": 439,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/audit_final_archives.py",
+            "status": "added",
+            "additions": 307,
+            "deletions": 0,
+            "changes": 307,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/development.tar.index.json",
+            "status": "added",
+            "additions": 250,
+            "deletions": 0,
+            "changes": 250,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/development.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/evidence-audit.json",
+            "status": "added",
+            "additions": 504,
+            "deletions": 0,
+            "changes": 504,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/execution.json",
+            "status": "added",
+            "additions": 102,
+            "deletions": 0,
+            "changes": 102,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/first-attempt-mail-receipt.json",
+            "status": "added",
+            "additions": 448,
+            "deletions": 0,
+            "changes": 448,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.index.json",
+            "status": "added",
+            "additions": 157,
+            "deletions": 0,
+            "changes": 157,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/mail-final-receipt.json",
+            "status": "added",
+            "additions": 448,
+            "deletions": 0,
+            "changes": 448,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.index.json",
+            "status": "added",
+            "additions": 141,
+            "deletions": 0,
+            "changes": 141,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/native-final-verification.json",
+            "status": "added",
+            "additions": 747,
+            "deletions": 0,
+            "changes": 747,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/native-final.tar.index.json",
+            "status": "added",
+            "additions": 149,
+            "deletions": 0,
+            "changes": 149,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/native-final.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/node-final-verification.json",
+            "status": "added",
+            "additions": 377,
+            "deletions": 0,
+            "changes": 377,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/node-final.tar.index.json",
+            "status": "added",
+            "additions": 109,
+            "deletions": 0,
+            "changes": 109,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/node-final.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/preparation.tar.index.json",
+            "status": "added",
+            "additions": 129,
+            "deletions": 0,
+            "changes": 129,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/preparation.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/publication-scope.json",
+            "status": "added",
+            "additions": 63,
+            "deletions": 0,
+            "changes": 63,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/published-readback.json",
+            "status": "added",
+            "additions": 14,
+            "deletions": 0,
+            "changes": 14,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/runner-test-review.json",
+            "status": "added",
+            "additions": 56,
+            "deletions": 0,
+            "changes": 56,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/second-attempt-mail-receipt.json",
+            "status": "added",
+            "additions": 172,
+            "deletions": 0,
+            "changes": 172,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.index.json",
+            "status": "added",
+            "additions": 50,
+            "deletions": 0,
+            "changes": 50,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/source-continuity.json",
+            "status": "added",
+            "additions": 184,
+            "deletions": 0,
+            "changes": 184,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/source-review.tar.index.json",
+            "status": "added",
+            "additions": 255,
+            "deletions": 0,
+            "changes": 255,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/source-review.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/transport-review-binding.json",
+            "status": "added",
+            "additions": 709,
+            "deletions": 0,
+            "changes": 709,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/workspace-and-plan-binding.json",
+            "status": "added",
+            "additions": 29,
+            "deletions": 0,
+            "changes": 29,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-native.log",
+            "status": "added",
+            "additions": 56,
+            "deletions": 0,
+            "changes": 56,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-reviewed.log",
+            "status": "added",
+            "additions": 16,
+            "deletions": 0,
+            "changes": 16,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-final-format.log",
+            "status": "added",
+            "additions": 1,
+            "deletions": 0,
+            "changes": 1,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-inherited-connections.log",
+            "status": "added",
+            "additions": 21,
+            "deletions": 0,
+            "changes": 21,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-reviewed-analyze.log",
+            "status": "added",
+            "additions": 2,
+            "deletions": 0,
+            "changes": 2,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-completion-20261119/README.md",
+            "status": "modified",
+            "additions": 17,
+            "deletions": 3,
+            "changes": 20,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-completion-20261119/release/audit_mail_tail.py",
+            "status": "added",
+            "additions": 223,
+            "deletions": 0,
+            "changes": 223,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-completion-20261119/release/mail-tail-review.json",
+            "status": "added",
+            "additions": 132,
+            "deletions": 0,
+            "changes": 132,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_mail_store/README.md",
+            "status": "modified",
+            "additions": 68,
+            "deletions": 20,
+            "changes": 88,
+            "previous_filename": null
+          }
+        ]
+      }
+    },
+    {
+      "label": "uid",
+      "sha": "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+      "parents": [
+        "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+        "ac1e4c8c788ea608402c2260488235c0189efcba",
+        "dd953dcc6ff41022657e03d7158088d0e378783b"
+      ],
+      "message": "Reconcile current Office, Mail, Zotero and Arabic proofing heads [skip ci]\n\nPreserve the complete Mail checkpoint report and evidence, latest TLS upgrade-failure cleanup, published Zotero qualification, and incoming Arabic roadmap/bundle before discovered-UID pagination.",
+      "files": [
+        "docs/PROOFING.md",
+        "docs/roadmaps/arabic-proofing.md",
+        "docs/validation/mail-m06-resume-20261119/README.md",
+        "docs/validation/mail-m06-resume-20261119/final/archive-audit.json",
+        "docs/validation/mail-m06-resume-20261119/final/audit_final_archives.py",
+        "docs/validation/mail-m06-resume-20261119/final/development.tar.index.json",
+        "docs/validation/mail-m06-resume-20261119/final/development.tar.xz",
+        "docs/validation/mail-m06-resume-20261119/final/evidence-audit.json",
+        "docs/validation/mail-m06-resume-20261119/final/execution.json",
+        "docs/validation/mail-m06-resume-20261119/final/first-attempt-mail-receipt.json",
+        "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.index.json",
+        "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.xz",
+        "docs/validation/mail-m06-resume-20261119/final/mail-final-receipt.json",
+        "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.index.json",
+        "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.xz",
+        "docs/validation/mail-m06-resume-20261119/final/native-final-verification.json",
+        "docs/validation/mail-m06-resume-20261119/final/native-final.tar.index.json",
+        "docs/validation/mail-m06-resume-20261119/final/native-final.tar.xz",
+        "docs/validation/mail-m06-resume-20261119/final/node-final-verification.json",
+        "docs/validation/mail-m06-resume-20261119/final/node-final.tar.index.json",
+        "docs/validation/mail-m06-resume-20261119/final/node-final.tar.xz",
+        "docs/validation/mail-m06-resume-20261119/final/preparation.tar.index.json",
+        "docs/validation/mail-m06-resume-20261119/final/preparation.tar.xz",
+        "docs/validation/mail-m06-resume-20261119/final/publication-scope.json",
+        "docs/validation/mail-m06-resume-20261119/final/published-readback.json",
+        "docs/validation/mail-m06-resume-20261119/final/runner-test-review.json",
+        "docs/validation/mail-m06-resume-20261119/final/second-attempt-mail-receipt.json",
+        "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.index.json",
+        "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.xz",
+        "docs/validation/mail-m06-resume-20261119/final/source-continuity.json",
+        "docs/validation/mail-m06-resume-20261119/final/source-review.tar.index.json",
+        "docs/validation/mail-m06-resume-20261119/final/source-review.tar.xz",
+        "docs/validation/mail-m06-resume-20261119/final/transport-review-binding.json",
+        "docs/validation/mail-m06-resume-20261119/final/workspace-and-plan-binding.json",
+        "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-native.log",
+        "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-reviewed.log",
+        "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-final-format.log",
+        "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-inherited-connections.log",
+        "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-reviewed-analyze.log",
+        "docs/validation/office-main-integration-20261119/socket-final/merge-review.md",
+        "docs/validation/office-main-integration-20261119/socket-final/plan.json",
+        "docs/validation/office-main-integration-20261119/socket-final/suite-review.json",
+        "docs/validation/office-main-integration-20261119/socket-final/upgrade-cleanup-evidence.index.json",
+        "docs/validation/office-main-integration-20261119/socket-final/upgrade-cleanup-evidence.tar.xz",
+        "packages/quds_mail_core/test/models_test.dart",
+        "packages/quds_mail_store/README.md",
+        "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+        "third_party/enough_mail/lib/src/private/util/client_base.dart",
+        "tools/proofing/ayaspell/build_bundle.py"
+      ],
+      "comparison_to_c268": {
+        "repository_full_name": "CrispStrobe/quds_office_suite",
+        "base": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+        "head": "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+        "status": "diverged",
+        "ahead_by": 1,
+        "behind_by": 3,
+        "total_commits": 1,
+        "too_large": null,
+        "base_commit": {
+          "sha": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+          "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e"
+        },
+        "merge_base_commit": {
+          "sha": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+          "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/55e262ef269634a0d618c0b5102dc9be5430a5f3",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/55e262ef269634a0d618c0b5102dc9be5430a5f3"
+        },
+        "files": [
+          {
+            "filename": "docs/PROOFING.md",
+            "status": "modified",
+            "additions": 11,
+            "deletions": 0,
+            "changes": 11,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/roadmaps/arabic-proofing.md",
+            "status": "added",
+            "additions": 77,
+            "deletions": 0,
+            "changes": 77,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/README.md",
+            "status": "modified",
+            "additions": 213,
+            "deletions": 119,
+            "changes": 332,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/archive-audit.json",
+            "status": "added",
+            "additions": 439,
+            "deletions": 0,
+            "changes": 439,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/audit_final_archives.py",
+            "status": "added",
+            "additions": 307,
+            "deletions": 0,
+            "changes": 307,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/development.tar.index.json",
+            "status": "added",
+            "additions": 250,
+            "deletions": 0,
+            "changes": 250,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/development.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/evidence-audit.json",
+            "status": "added",
+            "additions": 504,
+            "deletions": 0,
+            "changes": 504,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/execution.json",
+            "status": "added",
+            "additions": 102,
+            "deletions": 0,
+            "changes": 102,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/first-attempt-mail-receipt.json",
+            "status": "added",
+            "additions": 448,
+            "deletions": 0,
+            "changes": 448,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.index.json",
+            "status": "added",
+            "additions": 157,
+            "deletions": 0,
+            "changes": 157,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/mail-final-receipt.json",
+            "status": "added",
+            "additions": 448,
+            "deletions": 0,
+            "changes": 448,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.index.json",
+            "status": "added",
+            "additions": 141,
+            "deletions": 0,
+            "changes": 141,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/native-final-verification.json",
+            "status": "added",
+            "additions": 747,
+            "deletions": 0,
+            "changes": 747,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/native-final.tar.index.json",
+            "status": "added",
+            "additions": 149,
+            "deletions": 0,
+            "changes": 149,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/native-final.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/node-final-verification.json",
+            "status": "added",
+            "additions": 377,
+            "deletions": 0,
+            "changes": 377,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/node-final.tar.index.json",
+            "status": "added",
+            "additions": 109,
+            "deletions": 0,
+            "changes": 109,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/node-final.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/preparation.tar.index.json",
+            "status": "added",
+            "additions": 129,
+            "deletions": 0,
+            "changes": 129,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/preparation.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/publication-scope.json",
+            "status": "added",
+            "additions": 63,
+            "deletions": 0,
+            "changes": 63,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/published-readback.json",
+            "status": "added",
+            "additions": 14,
+            "deletions": 0,
+            "changes": 14,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/runner-test-review.json",
+            "status": "added",
+            "additions": 56,
+            "deletions": 0,
+            "changes": 56,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/second-attempt-mail-receipt.json",
+            "status": "added",
+            "additions": 172,
+            "deletions": 0,
+            "changes": 172,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.index.json",
+            "status": "added",
+            "additions": 50,
+            "deletions": 0,
+            "changes": 50,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/source-continuity.json",
+            "status": "added",
+            "additions": 184,
+            "deletions": 0,
+            "changes": 184,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/source-review.tar.index.json",
+            "status": "added",
+            "additions": 255,
+            "deletions": 0,
+            "changes": 255,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/source-review.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/transport-review-binding.json",
+            "status": "added",
+            "additions": 709,
+            "deletions": 0,
+            "changes": 709,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/final/workspace-and-plan-binding.json",
+            "status": "added",
+            "additions": 29,
+            "deletions": 0,
+            "changes": 29,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-native.log",
+            "status": "added",
+            "additions": 56,
+            "deletions": 0,
+            "changes": 56,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-reviewed.log",
+            "status": "added",
+            "additions": 16,
+            "deletions": 0,
+            "changes": 16,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-final-format.log",
+            "status": "added",
+            "additions": 1,
+            "deletions": 0,
+            "changes": 1,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-inherited-connections.log",
+            "status": "added",
+            "additions": 21,
+            "deletions": 0,
+            "changes": 21,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-reviewed-analyze.log",
+            "status": "added",
+            "additions": 2,
+            "deletions": 0,
+            "changes": 2,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-integration-20261119/socket-final/merge-review.md",
+            "status": "added",
+            "additions": 40,
+            "deletions": 0,
+            "changes": 40,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-integration-20261119/socket-final/plan.json",
+            "status": "added",
+            "additions": 161,
+            "deletions": 0,
+            "changes": 161,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-integration-20261119/socket-final/suite-review.json",
+            "status": "added",
+            "additions": 92,
+            "deletions": 0,
+            "changes": 92,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-integration-20261119/socket-final/upgrade-cleanup-evidence.index.json",
+            "status": "added",
+            "additions": 92,
+            "deletions": 0,
+            "changes": 92,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/office-main-integration-20261119/socket-final/upgrade-cleanup-evidence.tar.xz",
+            "status": "added",
+            "additions": 0,
+            "deletions": 0,
+            "changes": 0,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_mail_core/test/models_test.dart",
+            "status": "modified",
+            "additions": 1,
+            "deletions": 1,
+            "changes": 2,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_mail_store/README.md",
+            "status": "modified",
+            "additions": 55,
+            "deletions": 20,
+            "changes": 75,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+            "status": "modified",
+            "additions": 3,
+            "deletions": 0,
+            "changes": 3,
+            "previous_filename": null
+          },
+          {
+            "filename": "third_party/enough_mail/lib/src/private/util/client_base.dart",
+            "status": "modified",
+            "additions": 42,
+            "deletions": 35,
+            "changes": 77,
+            "previous_filename": null
+          },
+          {
+            "filename": "tools/proofing/ayaspell/build_bundle.py",
+            "status": "added",
+            "additions": 142,
+            "deletions": 0,
+            "changes": 142,
+            "previous_filename": null
+          }
+        ]
+      }
+    }
+  ],
+  "main_beyond_previous": [
+    {
+      "filename": "docs/PROOFING.md",
+      "patch": "@@ -32,6 +32,17 @@ OpenThesaurus CC BY-SA 4.0 option. The\n records executed checks and the outstanding installed-desktop/actual-browser\n release gates. No contextual model or general reinflection is introduced.\n \n+## Arabic proofing roadmap — 19 November 2026\n+\n+The [Arabic proofing roadmap](roadmaps/arabic-proofing.md) records the\n+constraints (only MIT/MPL-compatible code in the app; language resources are\n+published separately and downloaded by the user inside the app as data, never\n+as executable code) and the resource assessment. First step: the AyaSpell\n+Hunspell dictionary under its MPL 1.1 option, built reproducibly by\n+`tools/proofing/ayaspell/build_bundle.py` from a pinned LibreOffice packaging,\n+then an MPL Hunspell engine adapter, then independently authored Arabic rules.\n+Nothing Arabic is enabled or downloaded by default.\n+\n ## Native spelling continuation — 18 November 2026\n \n PR #159 is merged, including the spelling shortlist changes from #157,"
+    },
+    {
+      "filename": "docs/roadmaps/arabic-proofing.md",
+      "patch": "@@ -0,0 +1,84 @@\n+# Arabic proofing roadmap\n+\n+Accepted: 19 November 2026. Scope: Arabic spelling first, then grammar rules,\n+then optional model-backed analysis. Nothing here is enabled by default yet.\n+\n+## Constraints\n+\n+- **The app binary carries only our own MIT/MPL code** and components under\n+  App-Store-compatible licences (MIT, BSD, Apache-2.0, MPL, CC-BY). GPL code is\n+  never compiled into the app, including as an embedded WebAssembly module.\n+- **Language resources are not shipped in the app.** They are published by us on\n+  Hugging Face or GitHub under their own licences, with their notices and\n+  sources. The user downloads them from inside the app (the same pattern as the\n+  existing model downloads).\n+- **Downloaded resources are data**: dictionaries, rule files and GGUF weights\n+  interpreted by our engines. App Store guideline 2.5.2 forbids downloading\n+  executable code that changes app functionality, so no downloaded native or\n+  WebAssembly code is planned. If a resource ever truly needs downloaded logic,\n+  the only fallback considered is WebAssembly executed inside a WebView\n+  (WebKit/JavaScriptCore, the sanctioned route under guideline 4.7), with an\n+  explanation in the review notes. No Python runtime, in any form.\n+- **No paid data.** Resources whose terms forbid redistribution or restrict use\n+  to research cannot be published by us, regardless of who downloads them.\n+\n+## Resource assessment\n+\n+| Resource | Licence | Status for Quds |\n+|---|---|---|\n+| AyaSpell Hunspell dictionary (`ar.aff`/`ar.dic`, LibreOffice packaging 3.5) | GPL 2.0 / LGPL 2.1 / MPL 1.1 tri-licence (\"or later\") | **Usable.** We elect MPL 1.1 and publish it as a downloadable dictionary. Step 1. |\n+| AyaSpell Arabic thesaurus (`th_ar.dat`, MyThes) | Same package and tri-licence | Usable; published alongside, integration belongs to the [thesaurus roadmap](thesaurus/README.md). |\n+| Hunspell engine 1.7.x | GPL / LGPL / MPL 1.1 tri-licence | **Usable in the app under MPL 1.1** (file-level copyleft, App-Store compatible); native library, plus a WebAssembly build for the web target that is part of the app, not downloaded. |\n+| LanguageTool Arabic module (~450 XML rules, 16 Java rules) | Code LGPL 2.1; rule resources need per-file verification | Rule XML could be downloaded as data and interpreted by a native rule engine. Needs licence check of the rule files and of the Arabic POS dictionary they depend on. Step 3. |\n+| Fareh Arabic rule database | GPL-3.0 | Downloadable as data only; format not yet assessed. Ask the author (Taha Zerrouki) about an MPL/MIT dual licence. |\n+| CAMeL Tools weights (disambiguator, UD/CATiB parsers, NER, GED/GEC) | Weights tagged MIT/Apache by CAMeL Lab; morphology database GPL v2 | Technically the best fit (BERT + token-classification/biaffine heads, same shape as the native spaCy transformer port). Training data is LDC Penn Arabic Treebank (parsers, disambiguator) or QALB (GEC, research-only terms). Publishing converted weights means accepting that residual risk; owner decision pending. |\n+| Stanza / UDPipe Arabic (PADT) | CC BY-NC-SA | Out for a commercial app. |\n+| Camel Treebank, QALB | Internal research and evaluation only; no redistribution or modification | Out. |\n+| LDC Penn Arabic Treebank (needed for UD Arabic-NYUAD) | Paid LDC licence | Out under the no-cost constraint. |\n+| UD Arabic-PUD | CC BY-SA 3.0, 1,000 sentences | Evaluation only (too small to train on). |\n+\n+## Steps\n+\n+1. **AyaSpell download (published).** `tools/proofing/ayaspell/build_bundle.py`\n+   pins LibreOffice `dictionaries` commit\n+   `951bb429a4d846699b02e7adb4fc6fca128c6bae` (`ar/`), verifies every byte,\n+   adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to\n+   Hugging Face. The upstream GitHub copy (`linuxscout/ayaspell`\n+   `36a90abb`) is not used: its `.dic` contains file-concatenation separators\n+   and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as\n+   `الولد` and `المدرسة` with it.\n+   Local check with Hunspell 1.7.2 on UD Arabic-PUD (1,000 news sentences,\n+   15,676 Arabic-script tokens): 5.1% of tokens flagged, dominated by foreign\n+   proper names (personal vocabulary covers these); typical errors are caught\n+   with the expected first suggestion (`الى`→`إلى`, `المدرسه`→`المدرسة`,\n+   `هاذا`→`هذا`). Load takes about 1.5 s and 39 MB RSS on macOS arm64.\n+   **Published** 19 November 2026 as\n+   [`cstr/ayaspell-ar-hunspell`](https://huggingface.co/cstr/ayaspell-ar-hunspell/tree/e9ace7cca3844bef906d8d9fc5431c4e15bd2740)\n+   at immutable revision `e9ace7cca3844bef906d8d9fc5431c4e15bd2740`; all eight\n+   files read back with matching SHA-256 (the builder's readback), and a fresh\n+   download of `ar.aff`/`ar.dic` from that revision gives the same Hunspell\n+   results. The Hub's metadata has no `mpl-1.1` identifier, so the card\n+   declares `license: other` / `license_name: mpl-1.1` and ships the text.\n+2. **Hunspell engine in Quds.** An MPL-1.1 Hunspell adapter behind the\n+   existing spelling-provider interface: native library for desktop/mobile,\n+   WebAssembly for the web build, dictionary bytes from the user's download.\n+   Arabic needs right-to-left offsets, tatweel and harakat handling and\n+   UTF-16 mapping of findings; the existing provider contract already reports\n+   original UTF-16 offsets. Personal vocabulary and ignore controls as for\n+   German.\n+3. **Arabic grammar rules.** First an independently authored, MIT-licensed set\n+   in the existing rule framework for checks that need no model: hamza on alif\n+   (أ/إ/ا), ta marbuta vs ha (ة/ه), alif maqsura vs ya (ى/ي), Arabic\n+   punctuation (، ؛ ؟) and spacing, tatweel, repeated words, إن/أن. Then\n+   assess the LanguageTool Arabic rules as downloadable data (licence of the\n+   XML and of the POS dictionary; which rule features they use) and, if clean,\n+   interpret them natively.\n+4. **Model-backed analysis (optional, owner decision).** Either accept the\n+   CAMeL weights' training-data risk and port them natively like the spaCy\n+   transformer pipelines, or train our own licence-clean models:\n+   - an error detector on synthetic errors injected into permissively licensed\n+     text (Arabic Wikipedia, CC BY-SA) with an MIT encoder (XLM-R base): about\n+     1–2 weeks of work, a few GPU hours per run (free Kaggle quota suffices);\n+   - a POS/morphology/lemma tagger trained on silver annotations: about 2–4\n+     weeks plus annotation cost; dependency parsing noticeably weaker.\n+   Compute is not the bottleneck; licence-clean training data is."
+    },
+    {
+      "filename": "tools/proofing/ayaspell/build_bundle.py",
+      "patch": "@@ -0,0 +1,144 @@\n+#!/usr/bin/env python3\n+\"\"\"Build (and optionally publish) the downloadable AyaSpell Arabic bundle.\n+\n+Downloads the AyaSpell Hunspell dictionary and thesaurus exactly as packaged\n+in LibreOffice `dictionaries` (pinned commit), verifies every byte, adds the\n+MPL 1.1 licence text (the licence Quds elects from the GPL/LGPL/MPL\n+tri-licence), a manifest and a Hugging Face card. The dictionary files are\n+published unmodified.\n+\n+    python3 tools/proofing/ayaspell/build_bundle.py --output /tmp/ayaspell-ar\n+    HF_TOKEN=... python3 tools/proofing/ayaspell/build_bundle.py \\\\\n+        --output /tmp/ayaspell-ar --publish cstr/ayaspell-ar-hunspell\n+\n+The bundle is downloaded by the user from inside the app; it is never part\n+of the application binary (docs/roadmaps/arabic-proofing.md).\n+\"\"\"\n+from __future__ import annotations\n+\n+import argparse\n+import hashlib\n+import json\n+from pathlib import Path\n+import sys\n+import urllib.request\n+\n+COMMIT = \"951bb429a4d846699b02e7adb4fc6fca128c6bae\"\n+BASE = f\"https://raw.githubusercontent.com/LibreOffice/dictionaries/{COMMIT}/ar/\"\n+FILES = {\n+    \"ar.aff\": (\"cec30b8621001e49618feb05aec1984c5fcfbf7d2ec309901d5cbf66585217a3\", 86949),\n+    \"ar.dic\": (\"2a3e5367f61c1583734db9d66734f5603e6be5c2d227cf5c5cd7e4ca586e34fe\", 7217161),\n+    \"th_ar.dat\": (\"ad5578cc74884bd9b3f296d734f96a43689406e6dec65492d1912be46e5d770b\", 635325),\n+    \"COPYING.txt\": (\"73480d918cd78d655508e80aa88c022cbd53634524a0f714b5f2519f2cf19124\", 532),\n+    \"AUTHORS.txt\": (\"bade1d2d0d47dff5956c08732cdb9c02432d9b0b8016a56e27f58b8d7e842462\", 200),\n+    \"README_ar.txt\": (\"5ead684ae5211ccf615686959e24bd21ef6eebbb6195997529fda08b993f615e\", 420),\n+}\n+MPL = (\"https://raw.githubusercontent.com/spdx/license-list-data/v3.25.0/text/MPL-1.1.txt\",\n+       \"6214f8b1300bb9f37b16ebc146f8f61af0187e0025042ff95c8b3030744a8795\")\n+\n+\n+def fetch(url: str) -> bytes:\n+    with urllib.request.urlopen(url, timeout=120) as response:  # noqa: S310 (pinned https URLs)\n+        return response.read()\n+\n+\n+def sha256(data: bytes) -> str:\n+    return hashlib.sha256(data).hexdigest()\n+\n+\n+CARD = \"\"\"---\n+license: other\n+license_name: mpl-1.1\n+license_link: https://www.mozilla.org/en-US/MPL/1.1/\n+language:\n+- ar\n+tags:\n+- hunspell\n+- spellchecking\n+- arabic\n+---\n+\n+# AyaSpell Arabic dictionary for Hunspell\n+\n+The AyaSpell Arabic spelling dictionary (`ar.aff`, `ar.dic`) and Arabic\n+thesaurus (`th_ar.dat`, MyThes format), byte-identical to the\n+[LibreOffice dictionaries packaging](https://github.com/LibreOffice/dictionaries/tree/{commit}/ar)\n+at commit `{commit}` (AyaSpell 3.5 package). Upstream project:\n+[AyaSpell](http://ayaspell.sourceforge.net/) /\n+[linuxscout/ayaspell](https://github.com/linuxscout/ayaspell).\n+\n+Authors: Mohamed Kebdani (dictionary, 2006–2008), Taha Zerrouki (thesaurus\n+and project, 2006–2009); OpenOffice packaging by Ahmad Farghal. See\n+`AUTHORS.txt` and `README_ar.txt`.\n+\n+## Licence\n+\n+The original files are offered under a GPL 2.0 / LGPL 2.1 / MPL 1.1\n+tri-licence, each \"or later\" (`COPYING.txt`). This distribution is provided\n+under the **Mozilla Public License 1.1** (`MPL-1.1.txt`); the other two\n+options remain available to recipients as stated in `COPYING.txt`. The files\n+are unmodified; their source form is this repository.\n+\n+## Use\n+\n+Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office\n+downloads this bundle on the user's request; it is not part of the\n+application. `manifest.json` lists the SHA-256 of every file.\n+\"\"\"\n+\n+\n+def main() -> int:\n+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])\n+    parser.add_argument(\"--output\", type=Path, required=True)\n+    parser.add_argument(\"--publish\", metavar=\"REPO_ID\", help=\"Hugging Face model repo to upload to (needs HF_TOKEN)\")\n+    args = parser.parse_args()\n+    out = args.output\n+    out.mkdir(parents=True, exist_ok=True)\n+    manifest = {\"schema\": \"quds.proofing.hunspell_bundle.v1\", \"language\": \"ar\",\n+                \"source\": {\"repository\": \"https://github.com/LibreOffice/dictionaries\", \"commit\": COMMIT,\n+                           \"path\": \"ar/\"},\n+                \"licence\": {\"elected\": \"MPL-1.1\", \"offered\": \"GPL-2.0-or-later OR LGPL-2.1-or-later OR MPL-1.1+\"},\n+                \"files\": {}}\n+    for name, (expected, size) in FILES.items():\n+        data = fetch(BASE + name)\n+        if len(data) != size or sha256(data) != expected:\n+            print(f\"{name}: unexpected bytes ({len(data)} B, sha256 {sha256(data)})\", file=sys.stderr)\n+            return 1\n+        (out / name).write_bytes(data)\n+        manifest[\"files\"][name] = {\"sha256\": sha256(data), \"bytes\": len(data), \"origin\": BASE + name}\n+    licence = fetch(MPL[0])\n+    if sha256(licence) != MPL[1]:\n+        print(\"MPL-1.1 text changed\", file=sys.stderr)\n+        return 1\n+    (out / \"MPL-1.1.txt\").write_bytes(licence)\n+    manifest[\"files\"][\"MPL-1.1.txt\"] = {\"sha256\": MPL[1], \"bytes\": len(licence), \"origin\": MPL[0]}\n+    card = CARD.format(commit=COMMIT).encode(\"utf-8\")\n+    (out / \"README.md\").write_bytes(card)\n+    manifest[\"files\"][\"README.md\"] = {\"sha256\": sha256(card), \"bytes\": len(card), \"origin\": \"generated\"}\n+    (out / \"manifest.json\").write_text(json.dumps(manifest, indent=2, sort_keys=True) + \"\\n\", encoding=\"utf-8\",\n+                                       newline=\"\\n\")\n+    print(f\"bundle written to {out}\")\n+    if args.publish:\n+        from huggingface_hub import HfApi\n+        api = HfApi()\n+        api.create_repo(args.publish, repo_type=\"model\", exist_ok=True)\n+        commit = api.upload_folder(repo_id=args.publish, folder_path=str(out), repo_type=\"model\",\n+                                   commit_message=f\"AyaSpell Arabic from LibreOffice dictionaries {COMMIT[:10]}\")\n+        print(f\"published {args.publish} at {commit.oid}\")\n+        # Read back every file at the new immutable revision.\n+        for name, entry in manifest[\"files\"].items():\n+            data = fetch(f\"https://huggingface.co/{args.publish}/resolve/{commit.oid}/{name}\")\n+            if sha256(data) != entry[\"sha256\"]:\n+                print(f\"readback mismatch: {name}\", file=sys.stderr)\n+                return 1\n+        manifest_bytes = (out / \"manifest.json\").read_bytes()\n+        if sha256(fetch(f\"https://huggingface.co/{args.publish}/resolve/{commit.oid}/manifest.json\")) != \\\n+                sha256(manifest_bytes):\n+            print(\"readback mismatch: manifest.json\", file=sys.stderr)\n+            return 1\n+        print(\"readback verified\")\n+    return 0\n+\n+\n+if __name__ == \"__main__\":\n+    sys.exit(main())"
+    }
+  ],
+  "arabic_followup_delta": [
+    {
+      "filename": "docs/roadmaps/arabic-proofing.md",
+      "patch": "@@ -39,7 +39,7 @@ then optional model-backed analysis. Nothing here is enabled by default yet.\n \n ## Steps\n \n-1. **AyaSpell download (in progress).** `tools/proofing/ayaspell/build_bundle.py`\n+1. **AyaSpell download (published).** `tools/proofing/ayaspell/build_bundle.py`\n    pins LibreOffice `dictionaries` commit\n    `951bb429a4d846699b02e7adb4fc6fca128c6bae` (`ar/`), verifies every byte,\n    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to\n@@ -52,6 +52,13 @@ then optional model-backed analysis. Nothing here is enabled by default yet.\n    proper names (personal vocabulary covers these); typical errors are caught\n    with the expected first suggestion (`الى`→`إلى`, `المدرسه`→`المدرسة`,\n    `هاذا`→`هذا`). Load takes about 1.5 s and 39 MB RSS on macOS arm64.\n+   **Published** 19 November 2026 as\n+   [`cstr/ayaspell-ar-hunspell`](https://huggingface.co/cstr/ayaspell-ar-hunspell/tree/e9ace7cca3844bef906d8d9fc5431c4e15bd2740)\n+   at immutable revision `e9ace7cca3844bef906d8d9fc5431c4e15bd2740`; all eight\n+   files read back with matching SHA-256 (the builder's readback), and a fresh\n+   download of `ar.aff`/`ar.dic` from that revision gives the same Hunspell\n+   results. The Hub's metadata has no `mpl-1.1` identifier, so the card\n+   declares `license: other` / `license_name: mpl-1.1` and ships the text.\n 2. **Hunspell engine in Quds.** An MPL-1.1 Hunspell adapter behind the\n    existing spelling-provider interface: native library for desktop/mobile,\n    WebAssembly for the web build, dictionary bytes from the user's download."
+    },
+    {
+      "filename": "tools/proofing/ayaspell/build_bundle.py",
+      "patch": "@@ -47,7 +47,9 @@ def sha256(data: bytes) -> str:\n \n \n CARD = \"\"\"---\n-license: mpl-1.1\n+license: other\n+license_name: mpl-1.1\n+license_link: https://www.mozilla.org/en-US/MPL/1.1/\n language:\n - ar\n tags:"
+    }
+  ],
+  "network_scope": "Single bounded refresh of branch and PR collections; tags and upstream independently read immediately afterward; collection pages are not an atomic server snapshot.",
+  "new_app_dart_scope": "New main adds Arabic tooling/docs only. UID c1d is a reconciliation merge of the three already reviewed inputs; office-sync adds only Python tooling/tests/docs after c1d; Mail199 adds docs/evidence after55e.",
+  "github_actions_calls": 0
+}

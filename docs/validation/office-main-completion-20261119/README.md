@@ -1,9 +1,9 @@
 # Quds Office reconciliation and local qualification — 19 November 2026
 
-This report preserves the qualification at `5569c055` and PR #173. The
-[subsequent combined integration](../office-main-integration-20261119/README.md)
-adds the rejected-upgrade cleanup and retains these original counts and evidence
-separately; they are not added to the later run.
+**Historical qualification at `5569c055`.** The later rejected-TLS-upgrade
+cleanup, Arabic tooling reconciliation and fresh 801-execution qualification
+are recorded in the [current reconciliation](../office-current-reconciliation-20261119/README.md).
+The 836-execution results below retain their original source and scope.
 
 ## Qualified source and publication scope
 
@@ -11,7 +11,9 @@ The completed local qualification is bound to application commit
 **`5569c055a021c893e941fc54d40499ad9d96a5db`**, tree
 `9d2c815eda61378fbc4b234124e8e7c9cfeacb5b`.
 All final Store, native, Node and supplemental Python executions use this exact
-source. Subsequent publication commits add reports and evidence only.
+source. The Mail/Office publication commits add reports and evidence; the later
+main merge of PR #176 separately adds Arabic proofing documentation and an
+AyaSpell bundle-building helper, outside this application qualification.
 The [initial publication audit](release/publication-continuity.json) verifies
 unchanged bound inputs at that checkpoint. The final Mail evidence reconciliation
 also updates `packages/quds_mail_store/README.md`; its
@@ -19,9 +21,12 @@ also updates `packages/quds_mail_store/README.md`; its
 input change explicitly. Application code, tests, plans and runtime inputs
 remain unchanged.
 
-PR [#173](https://github.com/CrispStrobe/quds_office_suite/pull/173) is the normal
-merge vehicle into remote `main`. The user authorized the merge and incremental
-remote checkpoints. **GitHub Actions were not queried, dispatched or awaited.**
+PR [#173](https://github.com/CrispStrobe/quds_office_suite/pull/173) merged the
+qualified application and evidence into remote `main` at `55e262ef`. PR
+[#172](https://github.com/CrispStrobe/quds_office_suite/pull/172) completes the
+remaining Mail evidence reconciliation while retaining newer main history.
+The user authorized the merge and incremental remote checkpoints.
+**GitHub Actions were not queried, dispatched or awaited.**
 Remote updates use non-forced expected-head writes followed by fetched-object
 verification; branch history and incoming evidence are retained.
 
@@ -107,6 +112,28 @@ byte-identical, and every executable, test, plan and dependency input is exact.
 This reviewed documentation update requires no product test rerun and does not
 change the 836-case / 78-Python execution identity.
 
+While PR #172 was being made ready, main advanced to
+`f059065fa622da8cee7824d66d29a2aff414d529` through PR
+[#176](https://github.com/CrispStrobe/quds_office_suite/pull/176). Its three paths
+are `docs/PROOFING.md`, `docs/roadmaps/arabic-proofing.md` and
+`tools/proofing/ayaspell/build_bundle.py`. Both documentation files are retained
+byte-for-byte. The helper receives one reviewed safeguard: its output directory
+must be new, preventing an explicit upload from including unrelated files that
+were already in a reused directory. This is separate dictionary packaging
+tooling and a roadmap; it does not enable an Arabic spelling provider in the
+application.
+The [additional main review](release/proofing-tail-review.json) verifies that
+none of these paths intersects the frozen application inputs and that the
+complete 5,033-input union is unchanged from the reviewed Mail publication
+`19969056` (5,032 exact to `5569c055`, plus the documented Store README change).
+The helper was inspected and syntax-checked, and its output-path guard was
+checked with downloads stubbed and publication prevented. The
+[guard receipt](release/proofing-output-guard.json) and
+[replay script](release/check_proofing_output_guard.py) preserve that separate
+scope. No resources were downloaded or published, no fresh external-bundle,
+licensing, or application acceptance claim is made for PR #176, and these helper
+checks are not added to the 836/78 totals.
+
 ## Final local results
 
 All **836 application case executions** passed, across **85 suite/platform
@@ -184,9 +211,12 @@ new execution.
 | `5569c055` | Final reconciled source, safeguards, regressions and plans |
 | `022a974a` | Source-bound TLS/FETCH review and replay archive |
 | `bbf1032d` | Final 836-case evidence archive, audits and completion report |
+| `55e262ef` | PR #173 merged into remote main |
+| `19969056` | Remaining Mail evidence and reviewed Store README update |
+| `f059065f` | Concurrent main PR #176, preserved without application changes |
 
-Later evidence-only commits are discoverable in the branch's first-parent Git
-history and in PR #173. Archives were reopened and each member compared with its
+Later publication commits are discoverable in Git history and PRs #172–#176.
+Archives were reopened and each member compared with its
 original bytes before publication. Final fetched-object checks bind the remote
 publication to the exact qualified inputs.
 

@@ -52,13 +52,21 @@ read, flagged, answered, draft, and deleted; an absent FLAGS item stays unknown.
 The session-only IMAP `Recent` flag is not persisted.
 
 Cursors contain a hash of host/profile/account/mailbox scope, UIDVALIDITY, the
-next UID and the current sweep ceiling. The v2 discovery cursor also accepts
-saved v1 numeric-window cursors, preserving their continuation position. The repository advances a cursor
-only by atomically committing its page. UIDVALIDITY changes request a reset.
+next UID, the current sweep ceiling and a durable page revision. The v3 cursor
+accepts saved v1 numeric-window and v2 discovery cursors at revision zero,
+preserving their continuation position. Each returned page increments that
+revision, including empty/completed sweeps and UIDVALIDITY resets. A completed
+sweep therefore cannot reuse an earlier cursor value and let a stale page pass
+the repository's compare-and-set check. The repository advances the cursor only
+by atomically committing its page. UIDVALIDITY changes request a reset.
 Completed sweeps start again from UID 1 so old flags and expunges are eventually
 observed without pretending CONDSTORE or QRESYNC is implemented. Arrivals beyond
 the frozen ceiling enter the next sweep. A server change during a sweep can
 require another sweep; this fallback is not a snapshot protocol.
+
+Revisions use exact VM/JavaScript integers up to 9,007,199,254,740,991. A cursor
+already at that limit returns `invalidInput` before credential access or protocol
+work; it never wraps or rounds back to a previously committed value.
 
 **Discovery remains explicitly bounded:** `maxDiscoveredUids` defaults to 10,000
 and can be configured up to 100,000. It limits the number of existing UIDs in one
