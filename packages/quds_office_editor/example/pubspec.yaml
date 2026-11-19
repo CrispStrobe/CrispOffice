@@ -19,6 +19,8 @@ dependencies:
     path: ../../quds_office_engine
   quds_proofing_harper:
     path: ../../quds_proofing_harper
+  quds_proofing_hunspell:
+    path: ../../quds_proofing_hunspell
   quds_proofing_spacy:
     path: ../../quds_proofing_spacy
   quds_mail_core:
@@ -37,4 +39,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/licenses/hunspell/
     - fonts/

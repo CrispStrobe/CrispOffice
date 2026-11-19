@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'sample_library.dart';
 import 'studio_fonts.dart';
+import 'studio_licenses.dart';
 import 'studio_window.dart';
 import 'suite_workspace.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  registerStudioLicenses();
   await StudioWindow.bootstrap();
   await StudioFonts.register();
   await SampleLibrary.preload();

@@ -23,6 +23,8 @@ import 'studio_pdf_gallery_dialog.dart';
 import 'studio_pdf_office.dart';
 import 'studio_pdf_tools.dart';
 import 'studio_pdf_surface.dart';
+import 'studio_hunspell_host.dart';
+import 'studio_hunspell_setup.dart';
 import 'studio_spacy_host.dart';
 import 'studio_spacy_setup.dart';
 import 'studio_window.dart';
@@ -186,6 +188,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _bindHostActions(_slides);
     studioSpacyHost.addListener(_syncSpacyGrammar);
     unawaited(studioSpacyHost.restoreGrammarOptIn().catchError((Object _) {}));
+    // Re-verifies dictionaries the user installed earlier (no network).
+    studioHunspellHost.addListener(_syncHunspell);
+    unawaited(studioHunspellHost.refresh().catchError((Object _) {}));
     _slides.onPlayMedia = (PmlShape shape) {
       _toast(
         _arabic ? 'تشغيل ${shape.mediaName}' : 'Playing ${shape.mediaName}',
@@ -308,6 +313,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   @override
   void dispose() {
     studioSpacyHost.removeListener(_syncSpacyGrammar);
+    studioHunspellHost.removeListener(_syncHunspell);
     _spacyGrammarEpoch++;
     _word
       ..removeListener(_rebuild)
@@ -3138,6 +3144,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _word.requestThesaurus,
           ),
           _cmd(
+            Icons.download_for_offline_outlined,
+            _arabic ? 'قواميس التدقيق' : 'Dictionaries',
+            _showHunspellSetup,
+          ),
+          _cmd(
             Icons.edit_note,
             _arabic ? 'تدقيق أثناء الكتابة' : 'Check as you type',
             () => _word.proofing.enabled = !_word.proofing.enabled,
@@ -5236,16 +5247,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (controller is WordEditorController) {
       // Harper remains local and initializes only for an English request.
       // Missing optional native/web artifacts are reported in the review UI.
-      controller.proofing.configure(
-        OfficeProofingService(
-          providers: [
-            GermanSpellingProvider(vocabulary: controller.proofing.vocabulary),
-            GermanWritingRulesProvider(),
-            ArabicWritingRulesProvider(),
-            HarperProofingProvider(vocabulary: controller.proofing.vocabulary),
-          ],
-        ),
-      );
+      controller.proofing.configure(_wordProofingService(controller));
       // Set the Studio session's initial preference once. Rebuilding the editor
       // or returning from another app must preserve a later user opt-out.
       controller.proofing.enabled = true;
@@ -5371,6 +5373,39 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             : 'The document check could not finish. Try again.',
       );
     }
+  }
+
+  /// Fresh provider instances for the Word session's ordinary service. The
+  /// Arabic rules precede an installed Arabic dictionary so that, where both
+  /// agree on a correction, the rule's specific message is the one shown.
+  OfficeProofingService _wordProofingService(WordEditorController controller) {
+    final vocabulary = controller.proofing.vocabulary;
+    return OfficeProofingService(
+      providers: [
+        GermanSpellingProvider(vocabulary: vocabulary),
+        GermanWritingRulesProvider(),
+        ArabicWritingRulesProvider(),
+        ...studioHunspellHost.createProviders(vocabulary),
+        HarperProofingProvider(vocabulary: vocabulary),
+      ],
+    );
+  }
+
+  String? _hunspellKey;
+
+  /// Rebuilds the Word service when a dictionary is installed or removed.
+  void _syncHunspell() {
+    final key = studioHunspellHost.configurationKey;
+    if (key == _hunspellKey) return;
+    final first = _hunspellKey == null && key.isEmpty;
+    _hunspellKey = key;
+    if (first || !mounted) return;
+    _word.proofing.configure(_wordProofingService(_word));
+  }
+
+  Future<void> _showHunspellSetup() async {
+    await showStudioHunspellSetup(context);
+    if (mounted) _wordFocus.requestFocus();
   }
 
   Future<void> _showSpacySetup() async {
