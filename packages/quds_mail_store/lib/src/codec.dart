@@ -19,6 +19,28 @@ final class MailStorePayload {
 /// Validated internal persistence boundary. Invalid data produces a fixed,
 /// content-redacted FormatException; callers translate it to storageFailure.
 abstract final class MailStoreCodec {
+  /// Schema-v3 bitset. Null preserves the distinction between an unknown state
+  /// and an observed empty set. Reserved bits are rejected on every read.
+  static int? encodeFlags(MailMessageFlags? flags) => flags == null
+      ? null
+      : (flags.isRead ? 1 : 0) |
+            (flags.isFlagged ? 2 : 0) |
+            (flags.isAnswered ? 4 : 0) |
+            (flags.isDraft ? 8 : 0) |
+            (flags.isDeleted ? 16 : 0);
+
+  static MailMessageFlags? decodeFlags(int? flags) => _guard(() {
+    if (flags == null) return null;
+    if (flags < 0 || flags > 31) _invalid();
+    return MailMessageFlags(
+      isRead: flags & 1 != 0,
+      isFlagged: flags & 2 != 0,
+      isAnswered: flags & 4 != 0,
+      isDraft: flags & 8 != 0,
+      isDeleted: flags & 16 != 0,
+    );
+  });
+
   static String encodeEnvelope(MailEnvelope envelope) =>
       jsonEncode(_envelopeToJson(envelope));
 

@@ -6,6 +6,48 @@ import 'package:quds_mail_store/src/codec.dart';
 import 'package:test/test.dart';
 
 void main() {
+  group('standard flag codec', () {
+    test('unknown flags remain distinct from an observed empty set', () {
+      expect(MailStoreCodec.encodeFlags(null), isNull);
+      expect(MailStoreCodec.decodeFlags(null), isNull);
+      expect(MailStoreCodec.encodeFlags(const MailMessageFlags()), 0);
+      expect(MailStoreCodec.decodeFlags(0), const MailMessageFlags());
+    });
+
+    test('every durable flag survives alone and in a combined snapshot', () {
+      for (final (encoded, flags) in const [
+        (1, MailMessageFlags(isRead: true)),
+        (2, MailMessageFlags(isFlagged: true)),
+        (4, MailMessageFlags(isAnswered: true)),
+        (8, MailMessageFlags(isDraft: true)),
+        (16, MailMessageFlags(isDeleted: true)),
+        (31, MailMessageFlags(
+          isRead: true,
+          isFlagged: true,
+          isAnswered: true,
+          isDraft: true,
+          isDeleted: true,
+        )),
+      ]) {
+        expect(MailStoreCodec.encodeFlags(flags), encoded);
+        expect(MailStoreCodec.decodeFlags(encoded), flags);
+      }
+    });
+
+    test('reserved flag bits and negative masks fail with redacted errors', () {
+      for (final invalid in [-1, 32, 0xffffffff]) {
+        expect(
+          () => MailStoreCodec.decodeFlags(invalid),
+          throwsA(isA<FormatException>().having(
+            (error) => error.message,
+            'message',
+            'Invalid persisted mail data.',
+          )),
+        );
+      }
+    });
+  });
+
   group('metadata codec', () {
     test('envelope round trip preserves every header field and timestamp', () {
       final encoded = MailStoreCodec.encodeEnvelope(_envelope());

@@ -10,6 +10,10 @@ file, socket, credential-string, or `enough_mail` API dependency.
   Byte snapshots copy input once; exported views and their buffers are read-only.
 - Typed header/body/attachment projections, parse statuses and redacted diagnostic
   records; full-open and preview limits including cumulative and rendering budgets.
+- Immutable `MailMessageFlags` snapshots for read, flagged, answered, draft and
+  deleted state. `MailHeaderRecord.flags == null` means the provider did not
+  observe flags; an explicit empty snapshot means all five observed flags are
+  false. Transient IMAP Recent state and provider keywords are outside this model.
 - Host/profile/account/IMAP identity isolation; UIDVALIDITY is part of persistent
   IMAP identity. Content hashes and Message-ID headers are not local primary keys.
 - Independent Mail/Calendar/People capability flags and explicit typed failures.

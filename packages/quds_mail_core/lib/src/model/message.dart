@@ -1,6 +1,40 @@
 import 'bytes.dart';
 import 'identity.dart';
 
+/// An observed snapshot of the durable standard message flags.
+///
+/// All false is an observed empty flag set, not an unknown state. A provider
+/// omits the nullable header snapshot when it did not fetch flags. Transient
+/// session flags (such as IMAP Recent) and provider keywords are not represented.
+final class MailMessageFlags {
+  const MailMessageFlags({
+    this.isRead = false,
+    this.isFlagged = false,
+    this.isAnswered = false,
+    this.isDraft = false,
+    this.isDeleted = false,
+  });
+
+  final bool isRead;
+  final bool isFlagged;
+  final bool isAnswered;
+  final bool isDraft;
+  final bool isDeleted;
+
+  @override
+  bool operator ==(Object other) =>
+      other is MailMessageFlags &&
+      isRead == other.isRead &&
+      isFlagged == other.isFlagged &&
+      isAnswered == other.isAnswered &&
+      isDraft == other.isDraft &&
+      isDeleted == other.isDeleted;
+
+  @override
+  int get hashCode =>
+      Object.hash(isRead, isFlagged, isAnswered, isDraft, isDeleted);
+}
+
 /// A decoded display address; transport validation happens when preparing send.
 final class MailAddress {
   const MailAddress(this.address, {this.displayName});

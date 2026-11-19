@@ -360,13 +360,15 @@ final class SqliteMailRepository implements MailRepository {
           _fail(MailProblemCode.conflict);
         }
         await _db.customStatement(
-          'INSERT INTO messages(account,id,remote,envelope) VALUES(?,?,?,?) '
-          'ON CONFLICT(account,id) DO UPDATE SET envelope=excluded.envelope',
+          'INSERT INTO messages(account,id,remote,envelope,flags) VALUES(?,?,?,?,?) '
+          'ON CONFLICT(account,id) DO UPDATE SET envelope=excluded.envelope,'
+          'flags=coalesce(excluded.flags,messages.flags)',
           [
             account.value,
             header.id.value,
             remote,
             MailStoreCodec.encodeEnvelope(header.envelope),
+            MailStoreCodec.encodeFlags(header.flags),
           ],
         );
         await _db.customStatement(
@@ -464,6 +466,7 @@ final class SqliteMailRepository implements MailRepository {
           account: account,
         ),
         envelope: MailStoreCodec.decodeEnvelope(row.read<String>('envelope')),
+        flags: MailStoreCodec.decodeFlags(row.readNullable<int>('flags')),
       );
 
   Future<MailResult<List<MailHeaderRecord>>> listHeaders(
@@ -687,7 +690,7 @@ final class SqliteMailRepository implements MailRepository {
         ['id', 'provider', 'display_name', 'credential_ref', 'state'],
       ),
       ('mailboxes', ['id', 'display_name']),
-      ('messages', ['id', 'remote', 'envelope']),
+      ('messages', ['id', 'remote', 'envelope', 'flags']),
       ('memberships', ['mailbox', 'message']),
       ('cursors', ['mailbox', 'cursor']),
       ('tombstones', ['mailbox', 'remote']),

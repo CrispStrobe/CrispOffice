@@ -1,3 +1,8 @@
+## Unreleased
+
+- Add immutable durable standard message flags and nullable header snapshots.
+  An unobserved snapshot is distinct from an observed empty flag set.
+
 ## 0.1.0
 
 - Require cursor comparison inside sync transactions so concurrent stale pages
