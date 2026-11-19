@@ -1,0 +1,43 @@
+{
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/word_arabic_writing_integration_test.dart",
+    "test/word_complex_script_proofing_controls_test.dart",
+    "test/word_draft_proofing_test.dart",
+    "test/word_incremental_proofing_menu_test.dart",
+    "test/word_incremental_proofing_test.dart",
+    "test/word_language_detection_test.dart",
+    "test/word_live_proofing_session_test.dart",
+    "test/word_manual_proofing_test.dart",
+    "test/word_notes_proofing_controller_test.dart",
+    "test/word_notes_proofing_pane_test.dart",
+    "test/word_proofing_capture_cache_test.dart",
+    "test/word_proofing_context_test.dart",
+    "test/word_proofing_correction_test.dart",
+    "test/word_proofing_dialog_test.dart",
+    "test/word_proofing_geometry_test.dart",
+    "test/word_proofing_navigation_test.dart",
+    "test/word_proofing_priority_test.dart",
+    "test/word_proofing_session_test.dart",
+    "test/word_text_proofing_controls_test.dart",
+    "test/word_text_proofing_pane_test.dart",
+    "test/word_thesaurus_controller_test.dart",
+    "test/word_thesaurus_dialog_test.dart",
+    "test/word_thesaurus_review_integration_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_office_editor",
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "kind": "tests",
+  "name": "editor-proofing-language-widgets",
+  "started_at_utc": "2026-11-19T16:17:18.396815+00:00",
+  "timeout_seconds": 1200
+}

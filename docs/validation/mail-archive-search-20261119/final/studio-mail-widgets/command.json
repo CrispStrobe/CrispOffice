@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_mail_archive_action_test.dart",
+    "test/studio_mail_archive_folder_action_test.dart",
+    "test/studio_mail_archive_host_test.dart",
+    "test/studio_mail_archive_test.dart",
+    "test/studio_mail_cloud_test.dart",
+    "test/studio_mail_compose_test.dart",
+    "test/studio_mail_credentials_test.dart",
+    "test/studio_mail_discovery_test.dart",
+    "test/studio_mail_ews_test.dart",
+    "test/studio_mail_lifecycle_test.dart",
+    "test/studio_mail_message_loader_test.dart",
+    "test/studio_mail_operation_test.dart",
+    "test/studio_mail_presets_test.dart",
+    "test/studio_mail_reply_test.dart",
+    "test/studio_mail_session_test.dart",
+    "test/studio_mail_test.dart",
+    "test/studio_mail_web_test.dart",
+    "test/studio_saved_mail_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_office_editor/example",
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "kind": "tests",
+  "name": "studio-mail-widgets",
+  "started_at_utc": "2026-11-19T16:18:17.973499+00:00",
+  "timeout_seconds": 1200
+}

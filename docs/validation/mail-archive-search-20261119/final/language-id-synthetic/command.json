@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/77e1c27b6c6f/crispoffice/.dart_tool/package_config.json",
+    "/workspace/scratch/77e1c27b6c6f/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/language_id_native_transport_test.dart",
+    "test/language_id_unit_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_language_id",
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "QUDS_LANGUAGE_ID_FIXTURE_LIBRARY": "/workspace/scratch/77e1c27b6c6f/archive-final-validation-02/fixtures/language-id.so"
+  },
+  "kind": "tests",
+  "name": "language-id-synthetic",
+  "started_at_utc": "2026-11-19T16:12:59.568418+00:00",
+  "timeout_seconds": 900
+}

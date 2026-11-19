@@ -1,5 +1,57 @@
 # Local mail archive/search qualification — 2026-11-19
 
+## Final result
+
+**Passed locally: 2,765 tests, zero failures, zero skips, across 139 test files
+and 15 cohorts.** Strict analysis of 209 Dart targets, formatting of 88 changed
+Dart files, four native fixture builds, and both macro/VBA JavaScript compilation
+and Node execution gates also passed. These command gates are not added to the
+test count.
+
+The tested source is `947120ee46a39d6f8d6f6fd4d556e9d2c12c8d98`, tree
+`e9eed80587f440593f2c853a14b3e427d235b9a2`. Every planned cohort completed with
+process exit zero and a successful terminal event. The source, hosted dependency,
+runtime and lock manifests remained unchanged. No GitHub Actions result was used.
+
+See [the compact acceptance receipt](receipt.json), [complete retained evidence](final/),
+and [the actual selected plan](final/selected-plan.json). The
+[independent audit](independent-audit.json) verifies the 139 actual test files,
+case/exit/hash bindings and four real SIGKILL results. It resolves relative Dart
+suite paths using each preserved command working directory. Logs are gzip-compressed
+without altering their contents; recorded log hashes apply after decompression.
+The final source publication adds evidence and documentation only. The temporary
+system-SQLite hook was removed, restoring the production root manifest byte for
+byte; the lockfile remains unchanged.
+
+| Current-tree test cohort | Passed |
+| --- | ---: |
+| quds_mail_core-vm | 54 |
+| quds_mail_mime-vm | 84 |
+| quds_mail_store-vm | 360 |
+| quds_mail_store-node | 3 |
+| quds_mail_transport-vm | 373 |
+| quds_mail_transport-node | 6 |
+| language-id-synthetic | 22 |
+| hunspell-synthetic | 38 |
+| arabic-morph-unit | 13 |
+| engine-language-arabic-proofing | 714 |
+| engine-incoming-macros-operations | 286 |
+| mail-ui-widgets | 33 |
+| editor-proofing-language-widgets | 400 |
+| studio-mail-widgets | 333 |
+| studio-language-proofing-widgets | 46 |
+| **Total** | **2,765** |
+
+The [first attempt](attempts/01-format/) is preserved separately. It stopped at a
+formatting check before executing any test. The two formatting-only wraps were
+corrected, the newly published VBA branch was reconciled, and this complete
+second attempt ran on its own frozen source. No historical or development
+successes were pooled into the accepted total.
+
+The qualification limits below remain: native storage was exercised on Linux,
+provider tests use fakes/loopback services, and real mail accounts, installed
+other-platform packaging and external language-model acceptance were not run.
+
 This directory defines the final local gate for the mail archive/search work and
 the recent changes reconciled into the same branch. The baseline is
 `e00ca1495551ffaf61dd9b3ee7770f8bfde7e897`. The product scope and remaining

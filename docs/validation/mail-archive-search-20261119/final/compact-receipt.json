@@ -1,0 +1,431 @@
+{
+  "acceptance_limits": [
+    "No live IMAP, SMTP, EWS, Gmail or Microsoft 365 credentials or service requests; transport tests use injected fakes or local loopback servers.",
+    "No external model or dictionary downloads, and no real language/Arabic/Hunspell model acceptance.",
+    "Node tests cover declared JavaScript transport boundaries; no browser interaction, browser archive, or full web build is claimed.",
+    "Linux native SQLite and actual POSIX crash tests only; no installed macOS/Windows/mobile application, signing, Keychain, or OAuth account acceptance.",
+    "The system SQLite used here is recorded independently from sqlite3's default downloaded binary; packaged native binaries on other platforms are not qualified by this run.",
+    "No full-repository test claim, performance benchmark, remote mailbox snapshot guarantee, compliance certification, or GitHub Actions result."
+  ],
+  "cohorts": [
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.265,
+      "exit_code": 0,
+      "name": "build-language-id",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.265,
+      "exit_code": 0,
+      "name": "build-hunspell-ownership",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.617,
+      "exit_code": 0,
+      "name": "build-hunspell-lifecycle",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.315,
+      "exit_code": 0,
+      "name": "build-hunspell-provider",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.766,
+      "exit_code": 0,
+      "name": "format-changed-dart",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "76d978735cbf860620ff3eb73f0d07427ee49ddcc50b6bec2a89de30de05f41f",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 21.428,
+      "exit_code": 0,
+      "name": "analyze-mail-and-changed-dart",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "8f7764ea54148600de2afc459bff6b866044e2e4edde6b686ad1ae0811a4a3a9",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 11.173,
+      "exit_code": 0,
+      "name": "quds_mail_core-vm",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "ef9e09b1138c42fe1851d1cb17547af5c46260c27cab3a45829066f02e072c75",
+      "test_cases_sha256": "2b6276b11d698da1ef53625f8af4e29dc520f88001ff9bbacc0a9862200c57ac",
+      "test_counts": {
+        "failed": 0,
+        "passed": 54,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 10.445,
+      "exit_code": 0,
+      "name": "quds_mail_mime-vm",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "95f0cc67390e34db52c6bf334fd8131782d5dd30d4f3e75a206fbd2004c464b2",
+      "test_cases_sha256": "c047b1ff1d56ea1f5b2fc28604147fe22b6c651688f62d6683139c4a2e08e6c9",
+      "test_counts": {
+        "failed": 0,
+        "passed": 84,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 45.971,
+      "exit_code": 0,
+      "name": "quds_mail_store-vm",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "5a45ec9cc1cf4ff398b5efd9d7512c1f9bfde0b6dcd6246efae859c8cfd0d7a5",
+      "test_cases_sha256": "d53da40ed2a6e0f2a3ed4e5aae7addab1d0b883fbab8bbcf60b64b4eda2d5fa9",
+      "test_counts": {
+        "failed": 0,
+        "passed": 360,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 14.115,
+      "exit_code": 0,
+      "name": "quds_mail_store-node",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "25297a4fbaedb08e15041dcb74a8963104f5ba1a9583bd03cbb8ec8c939c50e9",
+      "test_cases_sha256": "3ad4af05f43253cd9b25bff74b745348682c618b44980240bdde276c8281af47",
+      "test_counts": {
+        "failed": 0,
+        "passed": 3,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 28.251,
+      "exit_code": 0,
+      "name": "quds_mail_transport-vm",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "d3cf7be5dfbef5e133c63d626ade98be4ff0d797c1e62cd1e2cd0fe28ba7ef78",
+      "test_cases_sha256": "35108138be7128d8f916d4f65cf826a2d7205dcce0910e41015bb34520fc5ad6",
+      "test_counts": {
+        "failed": 0,
+        "passed": 373,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 20.799,
+      "exit_code": 0,
+      "name": "quds_mail_transport-node",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "ce9dfc6b164220cbd8c1974c49c03a5c2e3982739d5e609369eb7cb921056d16",
+      "test_cases_sha256": "9c5951c4546596e0f621655e12dfbf45bda1a744462bdfd9b3450c7d439fdbc9",
+      "test_counts": {
+        "failed": 0,
+        "passed": 6,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 14.207,
+      "exit_code": 0,
+      "name": "language-id-synthetic",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "0befdc0d48853c8091da1d02c0dcdff68975544f10e7d5740b018320fd1703c1",
+      "test_cases_sha256": "721f70e6cbcea05fafd3ec2e813bcd0fa4fe7ed04df9f695dacc8db4806483af",
+      "test_counts": {
+        "failed": 0,
+        "passed": 22,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 26.658,
+      "exit_code": 0,
+      "name": "hunspell-synthetic",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "5913c16768c2d32a277c6ac12e790094c2220b743523ba4e6ba97fdef8a60c90",
+      "test_cases_sha256": "388d4a868c577620407f28fb070dcccc247cd9e8564ef8d8900046a675378f93",
+      "test_counts": {
+        "failed": 0,
+        "passed": 38,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 13.831,
+      "exit_code": 0,
+      "name": "arabic-morph-unit",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e63eae0023ddb4a3efe31d2a0bcd2e0b172d2ecafd067858f4932a80975ed92e",
+      "test_cases_sha256": "1c50ec1b612a84172bab37807f1fa8103cd6a623e5b7dd04bd2c14cab9bde43a",
+      "test_counts": {
+        "failed": 0,
+        "passed": 13,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 23.817,
+      "exit_code": 0,
+      "name": "engine-language-arabic-proofing",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "bd8ba5d489eccdb483ca559ec18d32d007980ca5de501353974b914f417de59b",
+      "test_cases_sha256": "f6aea4f780c3b4cfd84468d61a9aa7631f03e6470d2ee27c51c755d4052a9564",
+      "test_counts": {
+        "failed": 0,
+        "passed": 714,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 168.417,
+      "exit_code": 0,
+      "name": "engine-incoming-macros-operations",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "93fbe97146645aba5473016fa3d5f48b452c5d320f330a959905f1b3d0980c47",
+      "test_cases_sha256": "114b5ef8980a8829085db5052f8b2a3b4c7aad186b066d66ecd15cd4132d8471",
+      "test_counts": {
+        "failed": 0,
+        "passed": 286,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 11.813,
+      "exit_code": 0,
+      "name": "mail-ui-widgets",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "643b9cd8d1b2abc379e196d74c34821ab56f94c3b487440629d6f805daa463fb",
+      "test_cases_sha256": "a6a5d5b18aff771f8f4050e300a860c8b49ef2305ab53b65fae231863eae3360",
+      "test_counts": {
+        "failed": 0,
+        "passed": 33,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 59.543,
+      "exit_code": 0,
+      "name": "editor-proofing-language-widgets",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e9ce5ee108a786a0d13614aed5ff53bbc2602f2c79f2e2a853371bf4a4ccf76f",
+      "test_cases_sha256": "a06239c4777e4b4200ba5ff28515e5741a682d849290d1e8c5c3ffb23439c60a",
+      "test_counts": {
+        "failed": 0,
+        "passed": 400,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 91.057,
+      "exit_code": 0,
+      "name": "studio-mail-widgets",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "4f643887d891eec3bdbb220bab483efef425ee58569ead927e1c104195fb7d4b",
+      "test_cases_sha256": "c29e92faf4f9270b20462574d9db27acacddd9f9677094bdd77c0fb3988a7812",
+      "test_counts": {
+        "failed": 0,
+        "passed": 333,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 33.362,
+      "exit_code": 0,
+      "name": "studio-language-proofing-widgets",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "9515587040a24e1d09ca28ff379e95b6c5233d0c43166c159102b830c41ee1c4",
+      "test_cases_sha256": "584ca29c83fbbc5b82061b62159c12850537a4e425046be8907296150e4db297",
+      "test_counts": {
+        "failed": 0,
+        "passed": 46,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 8.944,
+      "exit_code": 0,
+      "name": "macro-web-compile",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e731db070b90cec451742e127dcaa4e7c28400a1de0e9255bfeca0678ce51835",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.375,
+      "exit_code": 0,
+      "name": "macro-web-node",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "733f79b8c8c236f674a733d3c205f6f46c6a52d4a6da005729755db94d853971",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 9.656,
+      "exit_code": 0,
+      "name": "vba-web-compile",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "f5b9f97078ccc080bfa34b2c1973ed98e87ec81aa91242fa600b2a040142259c",
+      "test_cases_sha256": null,
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "elapsed_seconds": 0.315,
+      "exit_code": 0,
+      "name": "vba-web-node",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8",
+      "test_cases_sha256": null,
+      "test_counts": null
+    }
+  ],
+  "dependencies_after_sha256": "f25457fc5bb3e9473406fe883ba90c564f94ba6022349bc3c2e2c22c3a55327e",
+  "dependencies_before_sha256": "f25457fc5bb3e9473406fe883ba90c564f94ba6022349bc3c2e2c22c3a55327e",
+  "dependencies_changed_paths": [],
+  "dependency_file_count": 4556,
+  "dependency_resolution_performed": false,
+  "evidence_directory": "/workspace/scratch/77e1c27b6c6f/archive-final-validation-02",
+  "excluded_files": [
+    {
+      "path": "packages/quds_language_id/test/language_id_native_test.dart",
+      "reason": "Needs the real external language classifier; counter fixture is lifecycle evidence only."
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_native_test.dart",
+      "reason": "Needs the real native analyzer and verified morphology model bundle."
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_rules_e2e_test.dart",
+      "reason": "Needs the real native analyzer and verified morphology model bundle."
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_live_download_test.dart",
+      "reason": "Explicitly performs external model downloads."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+      "reason": "Needs a real native dictionary installation and includes live-download acceptance."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_arabic_morph_native_test.dart",
+      "reason": "Needs the real native analyzer and verified morphology model bundle."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_arabic_proofing_native_test.dart",
+      "reason": "Needs a real Hunspell native library and Arabic dictionary."
+    }
+  ],
+  "expected_head": "947120ee46a39d6f8d6f6fd4d556e9d2c12c8d98",
+  "finished_at_utc": "2026-11-19T16:20:43.884608+00:00",
+  "github_actions_used": false,
+  "head_after": "947120ee46a39d6f8d6f6fd4d556e9d2c12c8d98",
+  "inputs_stable": true,
+  "lock_sha256": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+  "lock_sha256_after": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+  "macro_javascript_sha256": "5a16bea78e4f181c4dc0a1a09ae878cad004cf64b8660f2de1d4033e5654f912",
+  "plan_sha256": "d9c7df8e5d29888468e245044273654b963ba2a7007c941380611413cf3f11a5",
+  "production_manifest_sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+  "receipt_sha256": "32b5e4904ca7dbd8b1fa351db54982b40b4975b19dd34539789fb447024168f3",
+  "runner_sha256": "abac1c91ae8211226dd7120045b8d3dbc558dcc42e486c561e3a02e30b2a7891",
+  "runtime_after_sha256": "54fde26f6a07e84de7f7f07f18cbc4d969d77afce9f4b4360c5506c4ddef07e5",
+  "runtime_before_sha256": "54fde26f6a07e84de7f7f07f18cbc4d969d77afce9f4b4360c5506c4ddef07e5",
+  "runtime_changed_paths": [],
+  "runtime_provenance": {
+    "archive": {
+      "bytes": 1581444364,
+      "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+      "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+      "verified": true
+    },
+    "hosted_archives_verified": 194,
+    "runtime": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterRoot": "/workspace/scratch/77e1c27b6c6f/toolchains/flutter",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "status": "ready-system-sqlite"
+  },
+  "runtime_receipt_sha256": "bcb2c187656fd3cc548d49a8e323c2049347c7ca14b28d126d40710ceaaf132f",
+  "schema": 1,
+  "selected_test_files": 139,
+  "source_after_sha256": "0acdf0a93d3779076693d069a5c31eafda833a5b1c87c17501f6e55c424093a4",
+  "source_baseline": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+  "source_before_sha256": "0acdf0a93d3779076693d069a5c31eafda833a5b1c87c17501f6e55c424093a4",
+  "source_changed_paths": [],
+  "source_file_count": 4399,
+  "source_head": "947120ee46a39d6f8d6f6fd4d556e9d2c12c8d98",
+  "source_tree": "e9eed80587f440593f2c853a14b3e427d235b9a2",
+  "sqlite": {
+    "fts5": true,
+    "path": "/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6",
+    "sha256": "14c4418a06c5c2e30f5fb57bc8add93762236ae17898c6708984cf15e680ca71",
+    "version": "3.46.1"
+  },
+  "started_at_utc": "2026-11-19T16:10:22.167418+00:00",
+  "status": "passed",
+  "temporary_hook": "Documented sqlite3 user_defines source=system; not a production manifest change",
+  "test_totals": {
+    "failed": 0,
+    "passed": 2765,
+    "skipped": 0
+  },
+  "tested_manifest_sha256": "cfe75153a0caa2da8b07c43e72a8777ffe82d33eeb2900dcd980d25536814a36",
+  "unexecuted_cohorts": [],
+  "vba_javascript_sha256": "ea3a0cf6ac0f54cd0065c39621bae87e97cf3edcd15e8fedd3c3d5780cdf7261",
+  "versions": {
+    "compiler": "x86_64-linux-gnu-g++-14 (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "dart": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "node": "v24.22.3",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+  }
+}

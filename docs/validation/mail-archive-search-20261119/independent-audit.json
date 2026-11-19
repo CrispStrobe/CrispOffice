@@ -1,0 +1,416 @@
+{
+  "all_checks_pass": true,
+  "audit_created_utc": "2026-11-19T16:23:17.581218+00:00",
+  "checks": {
+    "139_distinct_files": true,
+    "all_15_cohort_audits": true,
+    "all_25_steps_exit_zero": true,
+    "all_step_log_hashes": true,
+    "compact_points_to_full_receipt": true,
+    "copied_runner_hash": true,
+    "dependencies_manifest_digests": true,
+    "dependencies_manifest_equal": true,
+    "four_actual_sigkills": true,
+    "fresh_counts_agree": true,
+    "head_matches_freeze": true,
+    "lock_stable": true,
+    "macro-web-node_raw_json": true,
+    "macro_js_artifact": true,
+    "no_cross_cohort_duplicates": true,
+    "no_excluded_file_executed": true,
+    "no_unexecuted_cohorts": true,
+    "passed_receipts": true,
+    "plan_hash": true,
+    "recorded_inputs_stable": true,
+    "runtime_manifest_digests": true,
+    "runtime_manifest_equal": true,
+    "source_manifest_digests": true,
+    "source_manifest_equal": true,
+    "tree_matches_freeze": true,
+    "vba-web-node_raw_json": true,
+    "vba_js_artifact": true
+  },
+  "classification": "Independent read-only audit of completed attempt02; no tests rerun and no historical counts pooled. Uses preserved before/after manifests, so post-run production-manifest restoration does not invalidate this comparison.",
+  "cohorts": [
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 54,
+        "skipped": 0
+      },
+      "files": 6,
+      "name": "quds_mail_core-vm"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 84,
+        "skipped": 0
+      },
+      "files": 7,
+      "name": "quds_mail_mime-vm"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 360,
+        "skipped": 0
+      },
+      "files": 13,
+      "name": "quds_mail_store-vm"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 3,
+        "skipped": 0
+      },
+      "files": 1,
+      "name": "quds_mail_store-node"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 373,
+        "skipped": 0
+      },
+      "files": 18,
+      "name": "quds_mail_transport-vm"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 6,
+        "skipped": 0
+      },
+      "files": 3,
+      "name": "quds_mail_transport-node"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 22,
+        "skipped": 0
+      },
+      "files": 2,
+      "name": "language-id-synthetic"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 38,
+        "skipped": 0
+      },
+      "files": 6,
+      "name": "hunspell-synthetic"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 13,
+        "skipped": 0
+      },
+      "files": 1,
+      "name": "arabic-morph-unit"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 714,
+        "skipped": 0
+      },
+      "files": 15,
+      "name": "engine-language-arabic-proofing"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 286,
+        "skipped": 0
+      },
+      "files": 15,
+      "name": "engine-incoming-macros-operations"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 33,
+        "skipped": 0
+      },
+      "files": 4,
+      "name": "mail-ui-widgets"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 400,
+        "skipped": 0
+      },
+      "files": 23,
+      "name": "editor-proofing-language-widgets"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 333,
+        "skipped": 0
+      },
+      "files": 18,
+      "name": "studio-mail-widgets"
+    },
+    {
+      "all_checks_pass": true,
+      "checks": {
+        "all_selected_files_executed": true,
+        "case_archive_hash": true,
+        "case_archive_keys_agree": true,
+        "counts_agree": true,
+        "every_started_test_finished": true,
+        "no_error_events": true,
+        "no_hidden_failures_or_any_skips": true,
+        "one_success_terminal": true,
+        "unique_cases": true,
+        "unique_start_and_finish_ids": true
+      },
+      "counts": {
+        "failed": 0,
+        "passed": 46,
+        "skipped": 0
+      },
+      "files": 7,
+      "name": "studio-language-proofing-widgets"
+    }
+  ],
+  "compact_receipt_sha256": "f45eb9ea13e7982514b810968a1d8e6181b19d7f22262064c5f77de1a1881353",
+  "crash_events": [
+    "ARCHIVE_SIGKILL afterContent owner=243 launcher=243 exit=-9",
+    "ARCHIVE_SIGKILL afterIndex owner=268 launcher=268 exit=-9",
+    "ARCHIVE_SIGKILL beforeCommit owner=288 launcher=288 exit=-9",
+    "ARCHIVE_SIGKILL committed owner=306 launcher=306 exit=-9"
+  ],
+  "distinct_test_files": 139,
+  "elapsed_seconds": 621.71719,
+  "evidence_directory": "/workspace/scratch/77e1c27b6c6f/archive-final-validation-02",
+  "fresh_counts": {
+    "failed": 0,
+    "passed": 2765,
+    "skipped": 0
+  },
+  "input_identity": {
+    "dependencies_after_sha256": "f25457fc5bb3e9473406fe883ba90c564f94ba6022349bc3c2e2c22c3a55327e",
+    "dependencies_before_sha256": "f25457fc5bb3e9473406fe883ba90c564f94ba6022349bc3c2e2c22c3a55327e",
+    "lock_sha256": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+    "lock_sha256_after": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+    "macro_javascript_sha256": "5a16bea78e4f181c4dc0a1a09ae878cad004cf64b8660f2de1d4033e5654f912",
+    "plan_sha256": "d9c7df8e5d29888468e245044273654b963ba2a7007c941380611413cf3f11a5",
+    "production_manifest_sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+    "runner_sha256": "abac1c91ae8211226dd7120045b8d3dbc558dcc42e486c561e3a02e30b2a7891",
+    "runtime_after_sha256": "54fde26f6a07e84de7f7f07f18cbc4d969d77afce9f4b4360c5506c4ddef07e5",
+    "runtime_before_sha256": "54fde26f6a07e84de7f7f07f18cbc4d969d77afce9f4b4360c5506c4ddef07e5",
+    "runtime_receipt_sha256": "bcb2c187656fd3cc548d49a8e323c2049347c7ca14b28d126d40710ceaaf132f",
+    "source_after_sha256": "0acdf0a93d3779076693d069a5c31eafda833a5b1c87c17501f6e55c424093a4",
+    "source_baseline": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+    "source_before_sha256": "0acdf0a93d3779076693d069a5c31eafda833a5b1c87c17501f6e55c424093a4",
+    "source_head": "947120ee46a39d6f8d6f6fd4d556e9d2c12c8d98",
+    "source_tree": "e9eed80587f440593f2c853a14b3e427d235b9a2",
+    "tested_manifest_sha256": "cfe75153a0caa2da8b07c43e72a8777ffe82d33eeb2900dcd980d25536814a36",
+    "vba_javascript_sha256": "ea3a0cf6ac0f54cd0065c39621bae87e97cf3edcd15e8fedd3c3d5780cdf7261"
+  },
+  "manifest_file_counts": {
+    "dependencies": 4556,
+    "runtime": 29,
+    "source": 4399
+  },
+  "metadata_notes": [
+    "Dart/Node raw suite paths and case archives use package-relative test/... names; Flutter suite paths are scoped/absolute. Relative paths were resolved against each preserved command.json cwd, then matched exactly to selected-plan.json and raw suite events. Original logs, case archives and runner were not altered.",
+    "The first comparison reported unscoped Dart case-path differences; that preliminary audit is retained separately. This corrected audit explicitly applies the command-cwd normalization and validates every case identity.",
+    "This audit performs no additional tests, source edits, dependency resolution, Git mutations, or historical count aggregation."
+  ],
+  "receipt_sha256": "32b5e4904ca7dbd8b1fa351db54982b40b4975b19dd34539789fb447024168f3",
+  "selected_plan_sha256": "0c28cf57a8b2263a00065fd46b01170654090c62a9517ad2998c2730061d9060",
+  "source_head": "947120ee46a39d6f8d6f6fd4d556e9d2c12c8d98",
+  "source_tree": "e9eed80587f440593f2c853a14b3e427d235b9a2",
+  "steps_verified": 25
+}

@@ -1,0 +1,50 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/77e1c27b6c6f/crispoffice/.dart_tool/package_config.json",
+    "/workspace/scratch/77e1c27b6c6f/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/adversarial_store_test.dart",
+    "test/archive_native_test.dart",
+    "test/archive_query_test.dart",
+    "test/archive_repository_test.dart",
+    "test/archive_runner_test.dart",
+    "test/codec_test.dart",
+    "test/crash_recovery_test.dart",
+    "test/ews_store_test.dart",
+    "test/imap_sync_range_test.dart",
+    "test/migration_test.dart",
+    "test/native_platform_test.dart",
+    "test/platform_configuration_test.dart",
+    "test/repository_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_mail_store",
+  "elapsed_seconds": 45.971,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:11:56.355977+00:00",
+  "kind": "tests",
+  "name": "quds_mail_store-vm",
+  "started_at_utc": "2026-11-19T16:11:10.384612+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 178409,
+  "stdout_sha256": "5a45ec9cc1cf4ff398b5efd9d7512c1f9bfde0b6dcd6246efae859c8cfd0d7a5",
+  "test_cases_sha256": "d53da40ed2a6e0f2a3ed4e5aae7addab1d0b883fbab8bbcf60b64b4eda2d5fa9",
+  "test_counts": {
+    "failed": 0,
+    "passed": 360,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}

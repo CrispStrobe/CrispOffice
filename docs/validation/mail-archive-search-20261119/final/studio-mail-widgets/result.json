@@ -1,0 +1,52 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/77e1c27b6c6f/toolchains/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_mail_archive_action_test.dart",
+    "test/studio_mail_archive_folder_action_test.dart",
+    "test/studio_mail_archive_host_test.dart",
+    "test/studio_mail_archive_test.dart",
+    "test/studio_mail_cloud_test.dart",
+    "test/studio_mail_compose_test.dart",
+    "test/studio_mail_credentials_test.dart",
+    "test/studio_mail_discovery_test.dart",
+    "test/studio_mail_ews_test.dart",
+    "test/studio_mail_lifecycle_test.dart",
+    "test/studio_mail_message_loader_test.dart",
+    "test/studio_mail_operation_test.dart",
+    "test/studio_mail_presets_test.dart",
+    "test/studio_mail_reply_test.dart",
+    "test/studio_mail_session_test.dart",
+    "test/studio_mail_test.dart",
+    "test/studio_mail_web_test.dart",
+    "test/studio_saved_mail_test.dart"
+  ],
+  "cwd": "/workspace/scratch/77e1c27b6c6f/crispoffice/packages/quds_office_editor/example",
+  "elapsed_seconds": 91.057,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T16:19:49.030939+00:00",
+  "kind": "tests",
+  "name": "studio-mail-widgets",
+  "started_at_utc": "2026-11-19T16:18:17.973499+00:00",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 182733,
+  "stdout_sha256": "4f643887d891eec3bdbb220bab483efef425ee58569ead927e1c104195fb7d4b",
+  "test_cases_sha256": "c29e92faf4f9270b20462574d9db27acacddd9f9677094bdd77c0fb3988a7812",
+  "test_counts": {
+    "failed": 0,
+    "passed": 333,
+    "skipped": 0
+  },
+  "timeout_seconds": 1200
+}
