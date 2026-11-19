@@ -39,7 +39,11 @@ objects plus hash-verified new blobs, a non-forced expected-head update and
 fetched tree readback. The recovered histories and subsequent development
 state are additionally saved at `e80beb2ed2fe70397a5a8fff5c9e908b04862f78`
 (tree `09f094eaff1988fe436c0beeca016b94e714365b`); that checkpoint is explicitly
-unqualified. [PR #193](https://github.com/CrispStrobe/quds_office_suite/pull/193)
+unqualified. The reviewed Mail ownership and Word boundary fixes are saved at
+`4ed8154a41bef8688b3ce2e89e96e52f9a49120d`. The
+[incremental publication map](incoming/publication-map.json) records identical
+local/published trees; local author commit objects are retained in the accompanying
+bundle. [PR #193](https://github.com/CrispStrobe/quds_office_suite/pull/193)
 is the continuation merge vehicle.
 
 ## Merge decisions
@@ -70,12 +74,36 @@ is the continuation merge vehicle.
 - Preserve source-specific failed attempts, historical raw evidence and runtime
   preparation records without relabeling them as current passes.
 
+## Late bounded continuation heads
+
+Before freezing, PRs #191 and #192 appeared while main remained `b070e228`.
+Their fixed observed heads, `3119a4598e61f061e7b7633ea4a352d841332b9e` and
+`409258f91484039d771d1fe56f097bef6f2d27ea`, are retained as incoming parents.
+This later observation remains separate from the initial 436-ref capture.
+
+The union retains the incoming full-Unicode boundaries for Arabic phrase,
+double-future, date and year rules; their mixed-script/identifier controls
+reproduced nine failures before the fix. It also adds the immediate dictionary
+progress-callback cancellation guard and success/removal control, the accurate
+live-inbox empty-reader prompt, and distinct additional live Mail behaviors.
+The current stronger session ownership, selected-language boundary and compact
+footer fixes remain intact. Duplicate stale saved-reader tests are represented
+by the adapted reader/workspace suites; their original files remain in the
+incoming commit histories. Current AyaSpell implementation and wording remain
+unchanged. The [path and coverage audit](incoming/late-pr191-pr192-coverage.json)
+records every decision. Source-specific red and green logs are retained in the
+[late development archive](development/late-concurrent-evidence.index.json);
+the 311 Arabic and 31 live Mail passes remain development evidence.
+
 ## Fresh local qualification
 
 **In progress.** Focused development checks precede the frozen-source run and
 are recorded separately. The accepted result must bind the committed source,
 exact test selections and verified runtime before and after execution. No
-historical test executions are used as fresh results.
+historical test executions are used as fresh results. The frozen selections are
+142 native suite files and 23 Node suite files, plus the independent core/store
+launcher; all 30 ordinary Studio suites are included. Analysis and formatting
+cover every changed Dart input and the relevant current-main morphology inputs.
 
 The pinned runtime is Flutter 3.47.8 / Dart 3.13.7 with enforced offline
 dependency resolution. Native inputs include freshly built Linux Hunspell,

@@ -14,7 +14,9 @@ All notable changes to `quds_office_editor` are documented here.
 - Use the Word RenderBox surface for plain-text Mail composition. Validate one
   recipient and headers, encode non-ASCII MIME safely, separate SMTP submission
   from Sent-folder filing, and retain unconfirmed drafts with an explicit
-  acknowledgement before another attempt. This remains a foreground,
+  acknowledgement before another attempt. Keep confirmed acceptance final when
+  subsequent cleanup fails, and independently abort both owned transports when
+  releasing a session. This remains a foreground,
   session-only host; durable outbox and real-provider qualification are separate.
 
 - Add **Add Zotero annotation** to the native Word ribbon and **Add annotation

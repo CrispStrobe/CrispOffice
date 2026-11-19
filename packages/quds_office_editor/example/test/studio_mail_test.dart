@@ -213,17 +213,20 @@ Future<void> _close(
   expect(tester.takeException(), isNull);
 }
 
-Future<void> _compose(WidgetTester tester) async {
-  await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+Future<void> _compose(
+  WidgetTester tester, {
+  StudioStrings strings = _strings,
+}) async {
+  await tester.tap(find.widgetWithText(TextButton, strings.compose));
   await _pump(tester);
-  await tester.enterText(_field(_strings.to), 'recipient@example.invalid');
-  await tester.enterText(_field(_strings.subject), 'Controlled draft');
+  await tester.enterText(_field(strings.to), 'recipient@example.invalid');
+  await tester.enterText(_field(strings.subject), 'Controlled draft');
   tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
       .controller
       .insertText('A <safe> body.');
   await tester.pump();
-  await tester.tap(find.widgetWithText(FilledButton, _strings.send));
+  await tester.tap(find.widgetWithText(FilledButton, strings.send));
   await _pump(tester);
 }
 
@@ -512,35 +515,115 @@ void main() {
     await _close(tester);
   });
 
-  for (final fail in [false, true]) {
+  for (final language in StudioLanguage.values) {
     testWidgets(
-      'disconnect during send ignores its late ${fail ? 'error' : 'success'}',
+      'confirmed submission with failed cleanup clears draft in ${language.name}',
       (tester) async {
+        final strings = StudioStrings(language);
         final client = _Client();
-        final gate = Completer<void>();
-        client.onSend = (_) => gate.future;
-        await _open(tester, (_) => client);
-        await _connect(tester);
-        await _compose(tester);
-        expect(find.text(_strings.sending), findsOneWidget);
-        await tester.tap(find.byTooltip(_strings.disconnect));
-        await _pump(tester);
-        if (fail) {
-          gate.completeError(StateError('late send failure'));
-        } else {
-          gate.complete();
-        }
+        client.onSend = (_) async => throw mail.MailSendPostSubmissionException(
+          client,
+          cleanupError: StateError('private server response session-password'),
+        );
+        await _open(tester, (_) => client, strings: strings);
+        await _connect(tester, strings: strings);
+        await _compose(tester, strings: strings);
+        expect(find.text(strings.mailSubmissionFollowUpFailed), findsOneWidget);
+        expect(find.text(strings.mailSubmissionUncertain), findsNothing);
+        expect(find.textContaining('private server response'), findsNothing);
+        expect(find.textContaining('session-password'), findsNothing);
+        expect(client.sent, hasLength(1));
+        expect(client.appendRequests, <bool>[false]);
+        await tester.tap(find.widgetWithText(TextButton, strings.compose));
         await _pump(tester);
         expect(
-          find.widgetWithText(FilledButton, _strings.connect),
-          findsOneWidget,
+          tester.widget<TextField>(_field(strings.to)).controller!.text,
+          '',
         );
-        expect(find.text(_strings.mailSubmissionAccepted), findsNothing);
-        expect(find.textContaining('late send failure'), findsNothing);
-        expect(tester.takeException(), isNull);
-        await _close(tester);
+        expect(
+          tester.widget<TextField>(_field(strings.subject)).controller!.text,
+          '',
+        );
+        expect(
+          tester
+              .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+              .controller
+              .document
+              .paragraphs
+              .single
+              .text,
+          '',
+        );
+        expect(find.text(strings.mailRetryAcknowledgement), findsNothing);
+        await tester.tap(find.text(strings.cancel));
+        await _pump(tester);
+        expect(client.sent, hasLength(1));
+        await _close(tester, strings: strings);
       },
     );
+  }
+
+  testWidgets('foreign client outcome cannot confirm the active submission', (
+    tester,
+  ) async {
+    final client = _Client();
+    client.onSend = (_) async => throw mail.MailSendPostSubmissionException(
+      _Client(),
+      cleanupError: StateError('foreign client cleanup'),
+    );
+    await _open(tester, (_) => client);
+    await _connect(tester);
+    await _compose(tester);
+    expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+    expect(find.text(_strings.mailSubmissionFollowUpFailed), findsNothing);
+    await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+    await _pump(tester);
+    expect(
+      tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+      'Controlled draft',
+    );
+    expect(find.text(_strings.mailRetryAcknowledgement), findsOneWidget);
+    await tester.tap(find.text(_strings.cancel));
+    await _pump(tester);
+    await _close(tester);
+  });
+
+  for (final outcome in ['success', 'error', 'accepted follow-up error']) {
+    testWidgets('disconnect during send ignores its late $outcome', (
+      tester,
+    ) async {
+      final client = _Client();
+      final gate = Completer<void>();
+      client.onSend = (_) => gate.future;
+      await _open(tester, (_) => client);
+      await _connect(tester);
+      await _compose(tester);
+      expect(find.text(_strings.sending), findsOneWidget);
+      await tester.tap(find.byTooltip(_strings.disconnect));
+      await _pump(tester);
+      if (outcome == 'accepted follow-up error') {
+        gate.completeError(
+          mail.MailSendPostSubmissionException(
+            client,
+            cleanupError: StateError('late cleanup failure'),
+          ),
+        );
+      } else if (outcome == 'error') {
+        gate.completeError(StateError('late send failure'));
+      } else {
+        gate.complete();
+      }
+      await _pump(tester);
+      expect(
+        find.widgetWithText(FilledButton, _strings.connect),
+        findsOneWidget,
+      );
+      expect(find.text(_strings.mailSubmissionAccepted), findsNothing);
+      expect(find.text(_strings.mailSubmissionFollowUpFailed), findsNothing);
+      expect(find.textContaining('late send failure'), findsNothing);
+      expect(tester.takeException(), isNull);
+      await _close(tester);
+    });
   }
 
   testWidgets('search tolerates messages with an empty sender list', (

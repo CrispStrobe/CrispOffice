@@ -102,12 +102,22 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     mail.MailClient? client,
   ) => runStudioMailOperation(() async {
     if (client == null) return;
-    try {
-      await client.disconnect();
-    } on Object {
-      // Cleanup must not create an unhandled asynchronous error, especially
-      // after the dialog has gone away. Operation failures retain their own UI.
+    Future<void> settle(Future<void> Function() close) async {
+      try {
+        await close();
+      } on Object {
+        // Each owned transport must still close if another shutdown fails.
+        // Cleanup must not replace the operation's fixed, localized feedback.
+      }
     }
+
+    await Future.wait<void>(<Future<void>>[
+      // Disconnect can queue behind an in-flight command. Abort both owned
+      // transports independently, including while initial connection is pending.
+      settle(() => client.lowLevelIncomingMailClient.abort()),
+      settle(() => client.lowLevelOutgoingMailClient.abort()),
+      settle(client.disconnect),
+    ]);
   });
 
   void _retireReader(MailReaderController? reader) {
@@ -116,7 +126,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   }
 
   Future<void> _connect() => runStudioMailOperation(() async {
-    if (_connecting) return;
+    if (_connecting || _client != null) return;
     final generation = ++_sessionGeneration;
     setState(() {
       _connecting = true;
@@ -180,7 +190,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       final boxes = await client.listMailboxes();
       if (!_currentAttempt(generation)) return;
       final inbox =
-          boxes.where((b) => b.isInbox).firstOrNull ??
+          boxes.where((b) => b.isInbox && !b.isNotSelectable).firstOrNull ??
           boxes.where((b) => !b.isNotSelectable).firstOrNull;
       if (inbox == null) {
         throw const FormatException('The account has no selectable mailbox.');
@@ -351,6 +361,25 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           _draft = null;
           _submissionUncertain = false;
           _notice = widget.strings.mailSubmissionAccepted;
+        });
+      }
+    } on mail.MailSendPostSubmissionException catch (error) {
+      if (_currentSession(client, generation)) {
+        setState(() {
+          _busy = false;
+          if (identical(error.mailClient, client)) {
+            // SMTP acceptance is final for this draft even when subsequent
+            // connection cleanup fails. Retrying would duplicate submission.
+            _draft = null;
+            _submissionUncertain = false;
+            _error = null;
+            _notice = widget.strings.mailSubmissionFollowUpFailed;
+          } else {
+            // An outcome from another client cannot confirm this submission.
+            _notice = null;
+            _submissionUncertain = attempted;
+            _error = widget.strings.mailSubmissionUncertain;
+          }
         });
       }
     } on Object {

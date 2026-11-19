@@ -33,6 +33,11 @@ extension StudioMailFeedback on StudioStrings {
     'Der Versandserver hat die Nachricht angenommen. Diese Sitzung speichert keine Kopie unter „Gesendet“.',
     'قبل خادم الإرسال الرسالة. لا تحفظ هذه الجلسة نسخة في البريد المرسل.',
   );
+  String get mailSubmissionFollowUpFailed => _mailText(
+    'The sending server accepted the message, but follow-up cleanup failed. Do not resend this message. This session does not save a Sent copy.',
+    'Der Versandserver hat die Nachricht angenommen, aber die anschließende Bereinigung ist fehlgeschlagen. Diese Nachricht nicht erneut senden. Diese Sitzung speichert keine Kopie unter „Gesendet“.',
+    'قبل خادم الإرسال الرسالة، لكن التنظيف اللاحق فشل. لا ترسل هذه الرسالة مجددًا. لا تحفظ هذه الجلسة نسخة في البريد المرسل.',
+  );
   String get mailSubmissionUncertain => _mailText(
     'Submission could not be confirmed. Your draft is retained for this session. Check delivery before sending it again.',
     'Der Versand konnte nicht bestätigt werden. Der Entwurf bleibt in dieser Sitzung erhalten. Vor einem erneuten Versand die Zustellung prüfen.',

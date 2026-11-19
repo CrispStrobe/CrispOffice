@@ -3718,8 +3718,9 @@ class _OutgoingSmtpClient extends _OutgoingMailClient {
   }) async {
     await _connectOutgoingIfRequired();
     try {
+      final SmtpResponse response;
       if (_smtpClient.serverInfo.supportsChunking) {
-        await _smtpClient.sendChunkedMessage(
+        response = await _smtpClient.sendChunkedMessage(
           message,
           from: from,
           // RFC 6531: SMTPUTF8 may only be used when announced
@@ -3729,12 +3730,17 @@ class _OutgoingSmtpClient extends _OutgoingMailClient {
           recipients: recipients,
         );
       } else {
-        await _smtpClient.sendMessage(
+        response = await _smtpClient.sendMessage(
           message,
           from: from,
           use8BitEncoding: use8BitEncoding,
           recipients: recipients,
         );
+      }
+      // Only the final DATA/BDAT acceptance can confirm submission. A greeting
+      // or other positive reply is not proof that the server queued the mail.
+      if (response.code != 250) {
+        throw SmtpException(_smtpClient, response);
       }
     } on SmtpException catch (e) {
       throw MailException.fromSmtp(mailClient, e);

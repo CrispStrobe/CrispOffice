@@ -18,7 +18,8 @@ remains [implementation-plan.md](implementation-plan.md).
 ## Studio foreground-session follow-up
 
 The [current Studio continuation](../../validation/office-mail-continuation-20261119/README.md)
-reconciles the later `10bd0cc4` and `004b2ad6` branches with main `b070e228`.
+reconciles the later `10bd0cc4` and `004b2ad6` branches and concurrent
+PRs #192–#194 with main `b070e228`.
 It preserves their independent source-bound evidence and restores saved EML
 reading beside the newly introduced account view. The browser entry supports
 saved messages and explicitly declines direct IMAP/SMTP accounts.
@@ -34,15 +35,22 @@ Its plain-text composer uses the shared Word RenderBox editing surface. It
 validates a single ASCII mailbox and headers, snapshots the body, generates
 quoted-printable MIME, and submits with an explicit recipient and no concurrent
 Sent-folder append. Successful submission means the sending server accepted the
-message, not delivery to the recipient. An exception after a submission attempt
-is conservatively uncertain; the session retains the draft and requires an
-explicit delivery-check acknowledgement before another attempt.
+message, not delivery to the recipient. A typed outcome confirms acceptance even
+when subsequent cleanup fails: the draft clears and the user is told not to
+resend it. Other exceptions after a submission attempt remain conservatively
+uncertain; the session retains the draft and requires an explicit delivery-check
+acknowledgement before another attempt. DATA and BDAT must return final SMTP 250
+acceptance; an earlier positive reply or a recorded command failure cannot
+certify submission.
 
 This does **not** close M04W or M07: accounts/drafts remain session-only, there is
 no repository-driven mailbox or durable outbox, and no automatic resend is added.
 Only on-demand body reads use the bounded provider. The high-level folder,
 envelope and SMTP paths retain their own reconnect behavior and do not acquire
-the provider's protocol-byte limits or immediate cancellation guarantees.
+the provider's protocol-byte limits. Session release attempts both owned
+low-level transport aborts independently of high-level disconnect, including
+after stale connection completions; this does not establish a bounded physical
+shutdown time or disable those clients' reconnect policies.
 Real provider accounts, OAuth/PKCE, native credential vaults, actual browser
 persistence and installed-platform distribution remain separate acceptance gates.
 See the current report for fresh execution identity and results; previous totals

@@ -552,7 +552,10 @@ class SmtpClient extends ClientBase {
           _write(() => writeData(data), cmd);
         } else if (cmd.isCommandDone(response)) {
           final result = cmd.failureResponse ?? response;
-          if (result.isFailedStatus) {
+          // A command's recorded failure remains a failure even if the server
+          // used an unexpected 2xx reply (for example, 250 instead of DATA's
+          // required 354). A preliminary 1xx reply cannot complete a command.
+          if (cmd.failureResponse != null || !result.isOkStatus) {
             cmd.completer.completeError(SmtpException(this, result));
           } else {
             cmd.completer.complete(result);

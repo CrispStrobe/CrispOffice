@@ -16,9 +16,8 @@ class StudioAboutDialog extends StatelessWidget {
 
   Future<void> _launch(String url) async {
     final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
+    // A capability query may be denied even when the browser accepts the URL.
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
   Widget _sectionTitle(BuildContext context, String title) => Text(

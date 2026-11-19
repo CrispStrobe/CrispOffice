@@ -172,6 +172,7 @@
         "test/studio_hunspell_web_cancellation_test.dart",
         "test/studio_hunspell_web_host_test.dart",
         "test/studio_linguistic_analysis_test.dart",
+        "test/studio_live_mail_continuation_test.dart",
         "test/studio_mail_lifecycle_test.dart",
         "test/studio_mail_session_test.dart",
         "test/studio_mail_test.dart",
@@ -242,6 +243,7 @@
     "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
     "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
     "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+    "packages/quds_office_editor/example/test/studio_live_mail_continuation_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_test.dart",
@@ -272,7 +274,9 @@
     "packages/quds_office_engine/test/wml_run_edit_test.dart",
     "packages/quds_office_engine/test/word_complex_script_language_test.dart",
     "packages/quds_office_engine/test/word_proofing_language_test.dart",
-    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart"
+    "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart"
   ],
   "format": [
     "packages/quds_arabic_morph/lib/installer_io.dart",
@@ -303,6 +307,7 @@
     "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
     "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
     "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+    "packages/quds_office_editor/example/test/studio_live_mail_continuation_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_test.dart",
@@ -333,7 +338,9 @@
     "packages/quds_office_engine/test/wml_run_edit_test.dart",
     "packages/quds_office_engine/test/word_complex_script_language_test.dart",
     "packages/quds_office_engine/test/word_proofing_language_test.dart",
-    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart"
+    "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart"
   ],
   "extra_inputs": [
     "docs/validation/office-continuation-20261119/run_validation.py",

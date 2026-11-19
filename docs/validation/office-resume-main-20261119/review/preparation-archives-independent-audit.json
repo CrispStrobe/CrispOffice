@@ -1,0 +1,549 @@
+{
+  "checked_at_utc": "2026-11-19T11:32:48.290664+00:00",
+  "scope": "Archive and index integrity of preparation evidence only. No current gate acceptance, new application execution, external runtime reconstruction, real-account send, installed-platform or browser claim.",
+  "script_sha256": "01021ecbb74f83ce1590c4af6075cc5eafa50046cb6983b804c2fe69c19aa932",
+  "archives": [
+    {
+      "label": "incoming_e80_preparation",
+      "source_commit": "e80beb2ed2fe70397a5a8fff5c9e908b04862f78",
+      "archive": "docs/validation/office-continuation-20261119/runtime/preparation-evidence.tar.xz",
+      "archive_bytes": 1454836,
+      "archive_sha256": "bb22cab18391ef851086a02d18edf67e0e5d0cd628ccef726174974973c87650",
+      "index": "docs/validation/office-continuation-20261119/runtime/preparation-evidence.index.json",
+      "index_sha256": "ee2feb38efd2642b9ba3ad8669c16bc6245aa6d0e7254d83d79e527646ae4a9d",
+      "member_count": 68,
+      "exact_membership_verified": true,
+      "all_member_lengths_and_sha256_verified": true,
+      "regular_members_only": true,
+      "unsafe_or_duplicate_members": [],
+      "pins": [
+        {
+          "path": "docs/validation/office-continuation-20261119/runtime/preparation-evidence.index.json",
+          "scope": "incoming_commit",
+          "git_blob": "a52ae9362ebaeb5e1c7ed0e9bea46db45c12ae26",
+          "bytes": 10656,
+          "sha256": "ee2feb38efd2642b9ba3ad8669c16bc6245aa6d0e7254d83d79e527646ae4a9d"
+        },
+        {
+          "path": "docs/validation/office-continuation-20261119/runtime/preparation-evidence.tar.xz",
+          "scope": "incoming_commit",
+          "git_blob": "3dd1be334be0b89923fbec00d07e0c833c675f39",
+          "bytes": 1454836,
+          "sha256": "bb22cab18391ef851086a02d18edf67e0e5d0cd628ccef726174974973c87650"
+        }
+      ],
+      "source_before_after_pairs": [
+        {
+          "before": "native/morph-source-before.json",
+          "after": "native/morph-source-after.json",
+          "byte_identical": true
+        },
+        {
+          "before": "native/source-before.json",
+          "after": "native/source-after.json",
+          "byte_identical": true
+        }
+      ],
+      "members": [
+        {
+          "path": "bind_native.py",
+          "bytes": 5053,
+          "sha256": "cc60e5b4175e9916bca798b6d957734df414547b7e538d0b42accda09500d6dd"
+        },
+        {
+          "path": "cmake-download.log",
+          "bytes": 603,
+          "sha256": "13c7c10f03bf4b9e0ae7bc51eb58c8c535116da710cf0f37eb3d827d47bd4a4f"
+        },
+        {
+          "path": "cmake-receipt.json",
+          "bytes": 417,
+          "sha256": "34087e8373bac82d1ec1da8dce33c0a58d6691e18e81a7cdad3d065ed8e84745"
+        },
+        {
+          "path": "dictionary-download.log",
+          "bytes": 31,
+          "sha256": "556f53ab141486a2ca6165334b28b8f06f71933c41b9760dba1dc7f55b258781"
+        },
+        {
+          "path": "fetch_dictionary.py",
+          "bytes": 1360,
+          "sha256": "af7ae0e3b82901ca2f4f58945a0ae190eda2ecbf6079fc22da1bd19a12434def"
+        },
+        {
+          "path": "fetch_morph.py",
+          "bytes": 1746,
+          "sha256": "73d9ade4ec21fedd9c499e67dd58c4f11a2bf1a3e3739cc0d4ea8f5f3de60ad4"
+        },
+        {
+          "path": "morph-download.log",
+          "bytes": 126,
+          "sha256": "3db0c6edcbbf4dab2068375d729781ced4fe6b6515442c77bdf71aa15792a41e"
+        },
+        {
+          "path": "morph-preparation-final.log",
+          "bytes": 98,
+          "sha256": "2716446f2be3f9dee9041da8c7a62401997552c2d42bd21fcfb7628b354cfcd2"
+        },
+        {
+          "path": "morph-preparation.log",
+          "bytes": 98,
+          "sha256": "2716446f2be3f9dee9041da8c7a62401997552c2d42bd21fcfb7628b354cfcd2"
+        },
+        {
+          "path": "native-preparation.log",
+          "bytes": 301,
+          "sha256": "c1ec1e2aa5182f99d259fe4915be4f8df5524f495bf3033c0985faeb32126a3a"
+        },
+        {
+          "path": "native/ayaspell-receipt.json",
+          "bytes": 3141,
+          "sha256": "e122431b10fd7972425900d0e36619be1795985f943bbcf1fb523bd38ab5ddd5"
+        },
+        {
+          "path": "native/build-install.log",
+          "bytes": 3477,
+          "sha256": "f18761089864d683af9ad1fb295c70880e6fbd56b73a1fece93f4dc5dcdd78a9"
+        },
+        {
+          "path": "native/build-verification.json",
+          "bytes": 3530,
+          "sha256": "906b7a909df54dbcc68822498771aca6d0afe841b1a7d19040302541aa5d648f"
+        },
+        {
+          "path": "native/fixtures.json",
+          "bytes": 3833,
+          "sha256": "0d8efde182db9ce168cf620748bd9058f5de31e5a88c27d6b2b0f78240f23d14"
+        },
+        {
+          "path": "native/host/libquds_proofing_hunspell.so",
+          "bytes": 887136,
+          "sha256": "648084ab2ea47b23da91c8e865cc8e2523322eb87d9fb921e4568dd3092e9338"
+        },
+        {
+          "path": "native/host/licenses/hunspell/COPYING.MPL",
+          "bytes": 25755,
+          "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f"
+        },
+        {
+          "path": "native/host/licenses/hunspell/LICENSE.adapter",
+          "bytes": 1056,
+          "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685"
+        },
+        {
+          "path": "native/host/licenses/hunspell/hunspell-1.7.2-library-sources.tar.gz",
+          "bytes": 619231,
+          "sha256": "7efc4a85839455eaaeeb5dae8c6aa48a4d85acddb2ac0d1723822a70e2f46723"
+        },
+        {
+          "path": "native/host/licenses/hunspell/license.hunspell",
+          "bytes": 1973,
+          "sha256": "3f7ddd07c296edbfe0a47c7bcc82038ad347a2c4f672345b24f95c624db68513"
+        },
+        {
+          "path": "native/host/licenses/hunspell/license.myspell",
+          "bytes": 2912,
+          "sha256": "dcda061adeed22b26f276c01ec374f930789ae0d684e5aa8f8be309dd680ff20"
+        },
+        {
+          "path": "native/host/licenses/hunspell/manifest.json",
+          "bytes": 4131,
+          "sha256": "fff74108f96b8d1358f2ed0ba8261d5a91d219f865bfab6e4550f2c58701f629"
+        },
+        {
+          "path": "native/hunspell_lifecycle_shim-build.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "native/hunspell_lifecycle_shim-receipt.json",
+          "bytes": 1025,
+          "sha256": "5a8a1db3b478bd0d08c7accfded88c8fd69ef899c5b936dc4d8acdf3268e7e95"
+        },
+        {
+          "path": "native/hunspell_lifecycle_shim.so",
+          "bytes": 16328,
+          "sha256": "0a560fe5f1e13002e9271aa18ae98c977cc2e616c901e41ed1cea04c29f37576"
+        },
+        {
+          "path": "native/lifecycle_hunspell-build.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "native/lifecycle_hunspell-receipt.json",
+          "bytes": 1002,
+          "sha256": "4828ec443033ccb7f928f770f2c14fa66230e064bf3e1fa338389563452f2d93"
+        },
+        {
+          "path": "native/lifecycle_hunspell.so",
+          "bytes": 18216,
+          "sha256": "8a48f5c4aba8c132372fb6b9d8dce7ba46b8890535d73430a4bec528d0c4a77e"
+        },
+        {
+          "path": "native/lifecycle_library-build.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "native/lifecycle_library-receipt.json",
+          "bytes": 995,
+          "sha256": "bdeeedba2313039f5832e5a4e3b04da015c6260fc166c6d65e75f5f3f2d9eee6"
+        },
+        {
+          "path": "native/lifecycle_library.so",
+          "bytes": 16680,
+          "sha256": "da812930d543625e24ed36ac50b161a4ccb7861f43e0254b4d0c7d9e131c36db"
+        },
+        {
+          "path": "native/morph-build-clean.log",
+          "bytes": 532,
+          "sha256": "27e01ea4f25d02d3b1a895298dadb37ada9fab804fb2861154a4dfccf1ca63a6"
+        },
+        {
+          "path": "native/morph-build-initial-verification.json",
+          "bytes": 5069,
+          "sha256": "58b317a87ae83927ef52549c9206df3e5dbc668cafa6cd2d768ef48d9085ea9e"
+        },
+        {
+          "path": "native/morph-build-install-initial.log",
+          "bytes": 2433,
+          "sha256": "79c26f739290be536682814c70fcb19b834ab02430d38b850300eb370b0d03c4"
+        },
+        {
+          "path": "native/morph-build-install.log",
+          "bytes": 1434,
+          "sha256": "d83ce5c4da7e1805a06756aa7cb6282553ce10e258d4b59d93774209c08b7ea2"
+        },
+        {
+          "path": "native/morph-build-verification.json",
+          "bytes": 5069,
+          "sha256": "ed4031a8794fccd7007ee921e73bb3ae71d2954e4c8bfaf8086c323953d3059b"
+        },
+        {
+          "path": "native/morph-data-receipt.json",
+          "bytes": 1802,
+          "sha256": "584f0b632cf84ace1b458c41284584b31390971578b0e73555c0d5ae4cdc7273"
+        },
+        {
+          "path": "native/morph-host/libquds_arabic_morph.so",
+          "bytes": 220568,
+          "sha256": "b4a80d86274d6624a009539b8c038c40b1e26e426be6fd8d5f8237fe3a86887a"
+        },
+        {
+          "path": "native/morph-host/licenses/arabic_morph/CPython-LICENSE",
+          "bytes": 13936,
+          "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+        },
+        {
+          "path": "native/morph-host/licenses/arabic_morph/CrispEmbed-LICENSE",
+          "bytes": 4739,
+          "sha256": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e"
+        },
+        {
+          "path": "native/morph-host/licenses/arabic_morph/LICENSE.adapter",
+          "bytes": 1056,
+          "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685"
+        },
+        {
+          "path": "native/morph-host/licenses/arabic_morph/Ryu-LICENSE-Apache2",
+          "bytes": 11357,
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "native/morph-host/licenses/arabic_morph/THIRD_PARTY_NOTICES",
+          "bytes": 1710,
+          "sha256": "6e74d4648626177a13a8b41d45f62af1a6c97b7062e55c38c52c74c28e136e21"
+        },
+        {
+          "path": "native/morph-host/licenses/arabic_morph/Unicode-LICENSE.txt",
+          "bytes": 1995,
+          "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+        },
+        {
+          "path": "native/morph-host/licenses/arabic_morph/camel-morph-msa-LICENSE",
+          "bytes": 442,
+          "sha256": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94"
+        },
+        {
+          "path": "native/morph-host/licenses/arabic_morph/camel-morph-msa-NOTICE",
+          "bytes": 1381,
+          "sha256": "b10936a72acb6f6dbc246ed75003e45f5f130deb6c7a0003c0a54ec11785bc9f"
+        },
+        {
+          "path": "native/morph-host/licenses/arabic_morph/camel_tools-LICENSE",
+          "bytes": 1087,
+          "sha256": "7a3ef160e8957145490ff66591aa9cb8cb08601a2e9fb1673c5fb7af74c727f2"
+        },
+        {
+          "path": "native/morph-host/licenses/arabic_morph/manifest.json",
+          "bytes": 4685,
+          "sha256": "98cf0845ffab9e3153267e58e5550b4eae3bdad80b8fe0e703aab6faa7a3b54d"
+        },
+        {
+          "path": "native/morph-source-after.json",
+          "bytes": 1593,
+          "sha256": "b59d7ff9cbb13f0250811d424c2d29706bfae5c825ae939eb8061ebb5f5d003b"
+        },
+        {
+          "path": "native/morph-source-before.json",
+          "bytes": 1593,
+          "sha256": "b59d7ff9cbb13f0250811d424c2d29706bfae5c825ae939eb8061ebb5f5d003b"
+        },
+        {
+          "path": "native/poppler.json",
+          "bytes": 79940,
+          "sha256": "645bf4f0a18b18418f1781d93480756b17107ac376d44eb1462c4e36f7a73117"
+        },
+        {
+          "path": "native/source-after.json",
+          "bytes": 1077,
+          "sha256": "f6cc27a8ba7f36dfe3d629cf7d698020ef0138ec4e229d58a179ca820df853cd"
+        },
+        {
+          "path": "native/source-before.json",
+          "bytes": 1077,
+          "sha256": "f6cc27a8ba7f36dfe3d629cf7d698020ef0138ec4e229d58a179ca820df853cd"
+        },
+        {
+          "path": "prepare_morph.py",
+          "bytes": 1907,
+          "sha256": "dc05fedbd44b35905ca3a7a17a236832d4bd3a69bbfacbe8b84cd0a2a71b7dda"
+        },
+        {
+          "path": "prepare_native.py",
+          "bytes": 4879,
+          "sha256": "29ee1246e4abbd9c5e5a38129cd987ae93d344f39b70c71c7f18427a488291d4"
+        },
+        {
+          "path": "restore.log",
+          "bytes": 257,
+          "sha256": "a1477d3a9562aa0994fd20d9ff24f3f0e39be1ba341d54782605fff3c538abe4"
+        },
+        {
+          "path": "restore_local.py",
+          "bytes": 756,
+          "sha256": "55934a45282d013862a8a66cfd4c27d920c6b0eac5493b060ca1c1d6cb7b66cb"
+        },
+        {
+          "path": "test/archive-members.json",
+          "bytes": 357030,
+          "sha256": "c30c0738a094f3b0bfc3ee4696204540798d4a4fbaf943a5abb0ce8833635f8f"
+        },
+        {
+          "path": "test/cache-omissions.json",
+          "bytes": 2335744,
+          "sha256": "c16bf623008daa6c01cfeb16a2895d1048f42cda2274c084d9b8a58840e2d615"
+        },
+        {
+          "path": "test/env.sh",
+          "bytes": 623,
+          "sha256": "2e9fd8790781d6a1b60caf573d0541304af359d60a9d04f66c2d6bb036ac09e1"
+        },
+        {
+          "path": "test/logs/flutter-tools-pub-get.log",
+          "bytes": 1192,
+          "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+        },
+        {
+          "path": "test/logs/flutter-version.log",
+          "bytes": 633,
+          "sha256": "99b33bf0245cf8af6be11455b53ae3d45208860fe2c4043b4ed70cc2f7dcef5e"
+        },
+        {
+          "path": "test/logs/native-assets-smoke.log",
+          "bytes": 81,
+          "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2"
+        },
+        {
+          "path": "test/logs/workspace-pub-get.log",
+          "bytes": 68,
+          "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+        },
+        {
+          "path": "test/native-env.sh",
+          "bytes": 838,
+          "sha256": "c76fb26f3edb9b1caa34c232b32fba1a0409f4b561f856165473090c705d4dbd"
+        },
+        {
+          "path": "test/pub-cache-receipt.json",
+          "bytes": 44348,
+          "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591"
+        },
+        {
+          "path": "test/retained-inputs.json",
+          "bytes": 2049933,
+          "sha256": "8a14b584c2e9416dc73f79e556f3680feba49bdbb279e8f42cd47054c5b01a91"
+        },
+        {
+          "path": "test/runtime-sdk.json",
+          "bytes": 12771,
+          "sha256": "d86d21dc3dd7b25104d34c9c121a28d2a70e765a7b8a7a7ecd4dc26e8da39b55"
+        },
+        {
+          "path": "test/runtime.json",
+          "bytes": 97042,
+          "sha256": "d7c66838d6af65c5aaefb4e33430e04cc819a3c06925bd87c3e683f731a86b58"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "current_preparation",
+      "source_commit": null,
+      "archive": "docs/validation/office-resume-main-20261119/runtime/preparation-evidence.tar.xz",
+      "archive_bytes": 919192,
+      "archive_sha256": "0280d40df565008671665513dd490777e250f9a7418f6d48b54b9a11a585d71b",
+      "index": "docs/validation/office-resume-main-20261119/runtime/preparation-evidence.index.json",
+      "index_sha256": "9ad776b78e9925be0ffff23d5e57c11a652b38c76f9c11fb2738b93fe3d347f5",
+      "member_count": 24,
+      "exact_membership_verified": true,
+      "all_member_lengths_and_sha256_verified": true,
+      "regular_members_only": true,
+      "unsafe_or_duplicate_members": [],
+      "pins": [
+        {
+          "path": "docs/validation/office-resume-main-20261119/runtime/preparation-evidence.index.json",
+          "scope": "index_only_pending_commit",
+          "git_blob": "f5198952a57f6ae397771bd9ab8cfe4cb40c0dfa",
+          "bytes": 4293,
+          "sha256": "9ad776b78e9925be0ffff23d5e57c11a652b38c76f9c11fb2738b93fe3d347f5"
+        },
+        {
+          "path": "docs/validation/office-resume-main-20261119/runtime/preparation-evidence.tar.xz",
+          "scope": "index_only_pending_commit",
+          "git_blob": "e857947bfb252d229fcd2e26862e7d08f094c717",
+          "bytes": 919192,
+          "sha256": "0280d40df565008671665513dd490777e250f9a7418f6d48b54b9a11a585d71b"
+        }
+      ],
+      "source_before_after_pairs": [],
+      "members": [
+        {
+          "path": "preparation/archive-members.json",
+          "bytes": 357030,
+          "sha256": "c30c0738a094f3b0bfc3ee4696204540798d4a4fbaf943a5abb0ce8833635f8f"
+        },
+        {
+          "path": "preparation/bin/dart",
+          "bytes": 103,
+          "sha256": "e9ca639c6ac7e6407d75e64592e49208e18d8918ce536b54280bfda894e5c1f7"
+        },
+        {
+          "path": "preparation/bin/flutter",
+          "bytes": 210,
+          "sha256": "56568daf31f63b9fbd9fed6077e086e3f317e8cac9b6e8fe9fa50d14691acf90"
+        },
+        {
+          "path": "preparation/cache-omissions.json",
+          "bytes": 2335744,
+          "sha256": "c16bf623008daa6c01cfeb16a2895d1048f42cda2274c084d9b8a58840e2d615"
+        },
+        {
+          "path": "preparation/env.sh",
+          "bytes": 623,
+          "sha256": "cf3de67f6e7fef528ef309042825a6e28c3dcb1d50848408207b333c4c9816a5"
+        },
+        {
+          "path": "preparation/fixtures/env.sh",
+          "bytes": 302,
+          "sha256": "72ee7de62895cf6273c991816d247e08a20d76c8c166aec79a413d42db17acbe"
+        },
+        {
+          "path": "preparation/fixtures/fixture-build.json",
+          "bytes": 3911,
+          "sha256": "01f61c8157f450a3c6dc1f7c101175b3c1aeaa287adca53f60a38409254fef33"
+        },
+        {
+          "path": "preparation/fixtures/lifecycle.so",
+          "bytes": 18216,
+          "sha256": "8a48f5c4aba8c132372fb6b9d8dce7ba46b8890535d73430a4bec528d0c4a77e"
+        },
+        {
+          "path": "preparation/fixtures/lifecycle.so.build.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "preparation/fixtures/ownership.so",
+          "bytes": 16680,
+          "sha256": "da812930d543625e24ed36ac50b161a4ccb7861f43e0254b4d0c7d9e131c36db"
+        },
+        {
+          "path": "preparation/fixtures/ownership.so.build.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "preparation/fixtures/provider.so",
+          "bytes": 16328,
+          "sha256": "0a560fe5f1e13002e9271aa18ae98c977cc2e616c901e41ed1cea04c29f37576"
+        },
+        {
+          "path": "preparation/fixtures/provider.so.build.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "preparation/fixtures/runtime-before-fixtures.json",
+          "bytes": 12799,
+          "sha256": "bcba7d2c05c9f3228fb944b71b308c9d9ceff3c5974a99be15ee809de8811bb3"
+        },
+        {
+          "path": "preparation/logs/flutter-tools-pub-get.log",
+          "bytes": 1192,
+          "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+        },
+        {
+          "path": "preparation/logs/flutter-version.log",
+          "bytes": 633,
+          "sha256": "d586d048443a6a388d400c67329d42542926ac1a7137e82474230c8a1aa07c5b"
+        },
+        {
+          "path": "preparation/logs/native-assets-smoke.log",
+          "bytes": 81,
+          "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2"
+        },
+        {
+          "path": "preparation/logs/workspace-pub-get.log",
+          "bytes": 68,
+          "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+        },
+        {
+          "path": "preparation/pub-cache-receipt.json",
+          "bytes": 44348,
+          "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591"
+        },
+        {
+          "path": "preparation/retained-inputs.json",
+          "bytes": 2049933,
+          "sha256": "8a14b584c2e9416dc73f79e556f3680feba49bdbb279e8f42cd47054c5b01a91"
+        },
+        {
+          "path": "preparation/runtime-restore.log",
+          "bytes": 318,
+          "sha256": "7d35694b5a982a7633cd54c223b9919723be55b131eb0b780bf8f23d68c5bccd"
+        },
+        {
+          "path": "preparation/runtime.json",
+          "bytes": 14124,
+          "sha256": "d117750872725abedb06fc3a06388212cc70ec13f06906de58157b8220e78eb1"
+        },
+        {
+          "path": "preparation/workspace/package_config.json",
+          "bytes": 28014,
+          "sha256": "a00bc16f1be1074ac73b2fcb60452a7bd9cf2d9ef6220b294bc8d7558ec96a34"
+        },
+        {
+          "path": "preparation/workspace/package_graph.json",
+          "bytes": 24725,
+          "sha256": "1f44b5ceb1bef19df04434de4c34bd4042bbd11399e563ff3a9448e850004eca"
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "archive_count": 2,
+  "total_members": 92,
+  "all_passed": true
+}

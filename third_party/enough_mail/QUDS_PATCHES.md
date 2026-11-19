@@ -143,6 +143,25 @@ implemented Quds packages outside this directory keep their own MIT license.
     primitive does not itself provide ESEARCH/PARTIAL, an unbounded mailbox
     snapshot or server-side count-limited pagination.
 
+18. Make `MailClient.sendMessage` submit once before filing a Sent copy and
+    always attempt outgoing cleanup. Preserve the original submission error
+    and stack if submission fails. The new `MailSendPostSubmissionException`
+    distinguishes confirmed submission followed by a Sent-copy or cleanup
+    failure, retaining those two errors separately; callers must not retry
+    SMTP for that outcome. The transaction helper and its tests carry the
+    fork's MPL notice. `appendToSent: false` still performs cleanup and does
+    not require a Sent mailbox.
+19. Require a final DATA/BDAT `250` response before the high-level client
+    confirms submission. A completed SMTP command rejects preliminary `1xx`
+    responses and any recorded command-state failure, including an unexpected
+    positive `250` response to DATA instead of `354`; a successful RSET cannot
+    erase that failure. Original reply details remain available through the
+    existing exception API. Public-client loopback regressions cover DATA and
+    BDAT sender/recipient/final `1xx`, final `220`, premature DATA `250`, final
+    `550`, and actual final `250` acceptance. They check that rejected or
+    unconfirmed transactions never file Sent copies. This is SMTP acceptance,
+    not a durable outbox, delivery confirmation, or external-provider test.
+
 These native additions are covered by MPL-2.0. `UPSTREAM.json` remains the
 unchanged original-source inventory; local additions and modifications are
 identified by the consuming Quds commit and source-bound validation manifest.

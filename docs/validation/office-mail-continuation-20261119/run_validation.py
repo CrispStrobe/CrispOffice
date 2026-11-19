@@ -108,6 +108,19 @@ def main() -> int:
     }
     if studio_requested != studio_expected - set(excluded) or set(excluded) - studio_expected:
         raise RuntimeError("The plan must cover every ordinary Studio suite exactly")
+    planned_suites = {
+        group["cwd"] + "/" + suite
+        for group in plan_data["native"]["groups"] for suite in group["tests"]
+    }
+    optional_suites = {studio_root + "/" + suite for suite in excluded}
+    for row in plan_data["native"].get("excluded_native_backend_suites", []):
+        if not row.get("reason"):
+            raise RuntimeError("Every excluded native backend suite needs an explicit boundary")
+        optional_suites.add(row["path"])
+    changed_suites = {path for path in changed if path.endswith("_test.dart")}
+    if changed_suites - planned_suites - optional_suites:
+        raise RuntimeError("Changed test suites missing native qualification: "
+                           + str(sorted(changed_suites - planned_suites - optional_suites)))
     receipt = json.loads((runtime / "runtime.json").read_text())
     if receipt.get("status") != "ready" or not receipt.get("archive", {}).get("verified"):
         raise RuntimeError("A verified ready runtime is required")
@@ -188,6 +201,8 @@ def main() -> int:
         "source_input_count": len(source_paths), "runtime_input_count": len(runtime_paths),
         "runtime_receipt_sha256": digest(runtime / "runtime.json"),
         "python_version": sys.version, "strict_changed_dart_inputs": sorted(changed),
+        "changed_test_suites": sorted(changed_suites),
+        "changed_test_suites_explicitly_excluded": sorted(changed_suites & optional_suites),
         "excluded_studio_suites": excluded,
         "excluded_native_backend_suites": plan_data["native"].get("excluded_native_backend_suites", []),
         "removed_optional_native_environment_names": sorted(removed_environment),
@@ -273,7 +288,7 @@ def main() -> int:
         forbidden_native = [
             "packages/quds_office_editor/example/lib/studio_mail_native.dart",
             "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
-            "packages/quds_office_editor/example/lib/studio_mail_file_io.dart",
+            "packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
             "third_party/enough_mail/lib/highlevel.dart",
             "third_party/enough_mail/lib/src/mail/mail_client.dart",
             "third_party/enough_mail/lib/src/private/util/client_base.dart",

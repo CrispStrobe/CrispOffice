@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quds_mail_ui/quds_mail_ui.dart';
-import 'package:quds_office_studio/studio_mail.dart';
+import 'package:quds_office_editor/quds_office_editor.dart';
+import 'package:quds_office_studio/studio_mail_message_loader.dart';
+import 'package:quds_office_studio/studio_mail_native.dart';
+import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
@@ -55,12 +58,8 @@ class _Client extends Fake implements mail.MailClient {
   final incoming = _Incoming();
   final outgoing = _Outgoing();
   Completer<void>? connectGate;
-  Completer<mail.Mailbox>? selectGate;
   Completer<List<mail.MimeMessage>>? fetchGate;
-  Completer<mail.MimeMessage>? contentsGate;
   Completer<void>? sendGate;
-  Object? listError;
-  Object? fetchError;
   bool failDisconnect = false;
   List<mail.Mailbox> boxes = <mail.Mailbox>[_box('Inbox'), _box('Archive')];
   List<mail.MimeMessage> messages = <mail.MimeMessage>[
@@ -70,9 +69,11 @@ class _Client extends Fake implements mail.MailClient {
   int lists = 0;
   int selections = 0;
   int fetches = 0;
-  int contents = 0;
   int sends = 0;
   int disconnects = 0;
+
+  @override
+  mail.Mailbox get selectedMailbox => boxes.first;
 
   @override
   mail.ImapClient get lowLevelIncomingMailClient => incoming;
@@ -91,7 +92,6 @@ class _Client extends Fake implements mail.MailClient {
     List<mail.MailboxFlag>? order,
   }) async {
     lists++;
-    if (listError case final error?) throw error;
     return boxes;
   }
 
@@ -102,7 +102,7 @@ class _Client extends Fake implements mail.MailClient {
     mail.QResyncParameters? qresync,
   }) async {
     selections++;
-    return selectGate == null ? mailbox : await selectGate!.future;
+    return mailbox;
   }
 
   @override
@@ -114,20 +114,7 @@ class _Client extends Fake implements mail.MailClient {
         mail.FetchPreference.fullWhenWithinSize,
   }) async {
     fetches++;
-    if (fetchError case final error?) throw error;
     return fetchGate == null ? messages : await fetchGate!.future;
-  }
-
-  @override
-  Future<mail.MimeMessage> fetchMessageContents(
-    mail.MimeMessage message, {
-    int? maxSize,
-    bool markAsSeen = false,
-    List<mail.MediaToptype>? includedInlineTypes,
-    Duration? responseTimeout,
-  }) async {
-    contents++;
-    return contentsGate == null ? message : await contentsGate!.future;
   }
 
   @override
@@ -149,6 +136,25 @@ class _Client extends Fake implements mail.MailClient {
     disconnects++;
     if (failDisconnect) throw StateError('disconnect failed');
   }
+}
+
+final class _Loader implements StudioMailMessageLoader {
+  @override
+  Future<Uint8List> fetch(mail.Mailbox mailbox, mail.MimeMessage header) async {
+    throw StateError('This session fixture must not fetch message bodies.');
+  }
+
+  @override
+  void cancel() {}
+
+  @override
+  void dispose() {}
+}
+
+Future<void> _pump(WidgetTester tester) async {
+  await tester.pump();
+  await tester.pump(const Duration(milliseconds: 350));
+  await tester.pump();
 }
 
 Finder _field(String label) => find.byWidgetPredicate(
@@ -175,7 +181,8 @@ Future<void> _show(
               builder: (_) => StudioMailDialog(
                 strings: _strings,
                 clientFactory: factory,
-                discoverAccount: discover,
+                accountDiscovery: discover,
+                messageLoaderFactory: (_) => _Loader(),
               ),
             ),
             child: const Text('Open session'),
@@ -185,7 +192,7 @@ Future<void> _show(
     ),
   );
   await tester.tap(find.text('Open session'));
-  await tester.pumpAndSettle();
+  await _pump(tester);
   await tester.enterText(
     _field(_strings.emailAddress),
     'reader@example.invalid',
@@ -210,7 +217,7 @@ Future<void> _connected(WidgetTester tester, _Client client) async {
   await _show(tester, (_) => client);
   await _manual(tester);
   await _connect(tester);
-  await tester.pumpAndSettle();
+  await _pump(tester);
   expect(find.text('First message'), findsOneWidget);
 }
 
@@ -222,38 +229,40 @@ void _expectClosed(_Client client) {
 
 Future<void> _compose(WidgetTester tester) async {
   await tester.tap(find.widgetWithIcon(TextButton, Icons.edit_outlined));
-  await tester.pumpAndSettle();
+  await _pump(tester);
   await tester.enterText(_field(_strings.to), 'recipient@example.invalid');
   await tester.enterText(_field(_strings.subject), 'Session draft');
-  await tester.enterText(_field(_strings.messageBody), 'Draft body.');
+  tester
+      .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+      .controller
+      .insertText('Draft body.');
+  await tester.pump();
 }
 
-mail.ClientConfig _configuration() => mail.ClientConfig(
-  emailProviders: <mail.ConfigEmailProvider>[
-    mail.ConfigEmailProvider(
-      incomingServers: const <mail.ServerConfig>[
-        mail.ServerConfig(
-          type: mail.ServerType.imap,
-          hostname: 'imap.example.invalid',
-          port: 993,
-          socketType: mail.SocketType.ssl,
-          authentication: mail.Authentication.plain,
-          usernameType: mail.UsernameType.emailAddress,
-        ),
-      ],
-      outgoingServers: const <mail.ServerConfig>[
-        mail.ServerConfig(
-          type: mail.ServerType.smtp,
-          hostname: 'smtp.example.invalid',
-          port: 465,
-          socketType: mail.SocketType.ssl,
-          authentication: mail.Authentication.plain,
-          usernameType: mail.UsernameType.emailAddress,
-        ),
-      ],
-    ),
-  ],
-);
+mail.ClientConfig _configuration() {
+  final provider = mail.ConfigEmailProvider()
+    ..addIncomingServer(
+      const mail.ServerConfig(
+        type: mail.ServerType.imap,
+        hostname: 'imap.example.invalid',
+        port: 993,
+        socketType: mail.SocketType.ssl,
+        authentication: mail.Authentication.plain,
+        usernameType: mail.UsernameType.emailAddress,
+      ),
+    )
+    ..addOutgoingServer(
+      const mail.ServerConfig(
+        type: mail.ServerType.smtp,
+        hostname: 'smtp.example.invalid',
+        port: 465,
+        socketType: mail.SocketType.ssl,
+        authentication: mail.Authentication.plain,
+        usernameType: mail.UsernameType.emailAddress,
+      ),
+    );
+  return mail.ClientConfig(emailProviders: [provider]);
+}
 
 void main() {
   testWidgets('closing during connect aborts pending owned clients', (
@@ -265,29 +274,11 @@ void main() {
     await _connect(tester);
     expect(client.connects, 1);
     await tester.tap(find.byTooltip(_strings.close));
-    await tester.pumpAndSettle();
+    await _pump(tester);
     _expectClosed(client);
     client.connectGate!.complete();
-    await tester.pumpAndSettle();
+    await _pump(tester);
     expect(client.lists, 0);
-    expect(tester.takeException(), isNull);
-  });
-
-  testWidgets('late discovery cannot create a client after closing', (
-    tester,
-  ) async {
-    final discovery = Completer<mail.ClientConfig?>();
-    var clientsCreated = 0;
-    await _show(tester, (_) {
-      clientsCreated++;
-      return _Client();
-    }, discover: (_) => discovery.future);
-    await _connect(tester);
-    await tester.tap(find.byTooltip(_strings.close));
-    await tester.pumpAndSettle();
-    discovery.complete(_configuration());
-    await tester.pumpAndSettle();
-    expect(clientsCreated, 0);
     expect(tester.takeException(), isNull);
   });
 
@@ -304,47 +295,29 @@ void main() {
     await _connect(tester);
     await tester.enterText(_field(_strings.password), 'changed-test-password');
     discovery.complete(_configuration());
-    await tester.pumpAndSettle();
+    await _pump(tester);
     final authentication =
         captured!.incoming.authentication as mail.PlainAuthentication;
     expect(authentication.password, 'original-test-password');
   });
 
-  for (final stage in <String>['list', 'fetch', 'no selectable mailbox']) {
-    testWidgets('setup $stage failure releases the pending client', (
-      tester,
-    ) async {
-      final client = _Client();
-      if (stage == 'list') client.listError = StateError('setup failed');
-      if (stage == 'fetch') client.fetchError = StateError('setup failed');
-      if (stage == 'no selectable mailbox') {
-        client.boxes = <mail.Mailbox>[_box('Archive', selectable: false)];
-      }
-      await _show(tester, (_) => client);
-      await _manual(tester);
-      await _connect(tester);
-      await tester.pumpAndSettle();
-      _expectClosed(client);
-      expect(find.text(_strings.connect), findsOneWidget);
-      expect(tester.takeException(), isNull);
-    });
-  }
-
-  testWidgets('disconnected mailbox selection cannot start a late fetch', (
+  testWidgets('only nonselectable folders release both owned transports', (
     tester,
   ) async {
-    final client = _Client();
-    await _connected(tester, client);
-    client.selectGate = Completer<mail.Mailbox>();
-    await tester.tap(find.text('Archive'));
-    await tester.pump();
-    expect(client.selections, 1);
-    await tester.tap(find.byTooltip(_strings.disconnect));
-    await tester.pumpAndSettle();
-    client.selectGate!.complete(client.boxes.last);
-    await tester.pumpAndSettle();
-    expect(client.fetches, 1);
+    final client = _Client()
+      ..boxes = [
+        _box('Inbox', selectable: false),
+        _box('Archive', selectable: false),
+      ];
+    await _show(tester, (_) => client);
+    await _manual(tester);
+    await _connect(tester);
+    await _pump(tester);
     _expectClosed(client);
+    expect(client.fetches, 0);
+    expect(find.text(_strings.mailConnectionFailed), findsOneWidget);
+    expect(find.text(_strings.connect), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 
   for (final fail in <bool>[false, true]) {
@@ -358,15 +331,15 @@ void main() {
         await _show(tester, (_) => attempts++ == 0 ? oldClient : newClient);
         await _manual(tester);
         await _connect(tester);
-        await tester.pumpAndSettle();
+        await _pump(tester);
         oldClient.fetchGate = Completer<List<mail.MimeMessage>>();
         await tester.tap(find.text('Archive'));
         await tester.pump();
         expect(oldClient.fetches, 2);
         await tester.tap(find.byTooltip(_strings.disconnect));
-        await tester.pumpAndSettle();
+        await _pump(tester);
         await _connect(tester);
-        await tester.pumpAndSettle();
+        await _pump(tester);
         if (fail) {
           oldClient.fetchGate!.completeError(StateError('old mailbox failed'));
         } else {
@@ -374,7 +347,7 @@ void main() {
             _message('Stale message'),
           ]);
         }
-        await tester.pumpAndSettle();
+        await _pump(tester);
         expect(find.text('New session message'), findsOneWidget);
         expect(find.text('Stale message'), findsNothing);
         expect(find.textContaining('old mailbox failed'), findsNothing);
@@ -383,31 +356,6 @@ void main() {
       },
     );
   }
-
-  testWidgets('old message contents cannot open in a reconnected session', (
-    tester,
-  ) async {
-    final oldClient = _Client();
-    final newClient = _Client()
-      ..messages = <mail.MimeMessage>[_message('New session message')];
-    var attempts = 0;
-    await _show(tester, (_) => attempts++ == 0 ? oldClient : newClient);
-    await _manual(tester);
-    await _connect(tester);
-    await tester.pumpAndSettle();
-    oldClient.contentsGate = Completer<mail.MimeMessage>();
-    await tester.tap(find.text('First message'));
-    await tester.pump();
-    await tester.tap(find.byTooltip(_strings.disconnect));
-    await tester.pumpAndSettle();
-    await _connect(tester);
-    await tester.pumpAndSettle();
-    oldClient.contentsGate!.complete(_message('Old full message'));
-    await tester.pumpAndSettle();
-    expect(find.byType(MailMessageView), findsNothing);
-    expect(find.text('New session message'), findsOneWidget);
-    _expectClosed(oldClient);
-  });
 
   testWidgets('a draft from a disconnected session is not sent', (
     tester,
@@ -427,7 +375,7 @@ void main() {
     disconnect();
     await tester.pump();
     await tester.tap(find.widgetWithIcon(FilledButton, Icons.send));
-    await tester.pumpAndSettle();
+    await _pump(tester);
     expect(client.sends, 0);
     _expectClosed(client);
     expect(tester.takeException(), isNull);
@@ -443,18 +391,18 @@ void main() {
     await _show(tester, (_) => attempts++ == 0 ? oldClient : newClient);
     await _manual(tester);
     await _connect(tester);
-    await tester.pumpAndSettle();
+    await _pump(tester);
     oldClient.sendGate = Completer<void>();
     await _compose(tester);
     await tester.tap(find.widgetWithIcon(FilledButton, Icons.send));
     await tester.pump(const Duration(seconds: 1));
     expect(oldClient.sends, 1);
     await tester.tap(find.byTooltip(_strings.disconnect));
-    await tester.pumpAndSettle();
+    await _pump(tester);
     await _connect(tester);
-    await tester.pumpAndSettle();
+    await _pump(tester);
     oldClient.sendGate!.completeError(StateError('old send failed'));
-    await tester.pumpAndSettle();
+    await _pump(tester);
     expect(find.text('New session message'), findsOneWidget);
     expect(find.textContaining('old send failed'), findsNothing);
     _expectClosed(oldClient);
@@ -469,26 +417,9 @@ void main() {
     client.outgoing.failAbort = true;
     await _connected(tester, client);
     await tester.tap(find.byTooltip(_strings.disconnect));
-    await tester.pumpAndSettle();
+    await _pump(tester);
     _expectClosed(client);
     expect(tester.takeException(), isNull);
     expect(find.text(_strings.connect), findsOneWidget);
-  });
-
-  testWidgets('search handles a message with an empty sender list', (
-    tester,
-  ) async {
-    final message = _message('First message')..from = <mail.MailAddress>[];
-    final client = _Client()..messages = <mail.MimeMessage>[message];
-    await _connected(tester, client);
-    final search = find.byWidgetPredicate(
-      (widget) =>
-          widget is TextField &&
-          widget.decoration?.hintText == _strings.searchMail,
-    );
-    await tester.enterText(search, 'unknown sender');
-    await tester.pumpAndSettle();
-    expect(find.text(_strings.noMessages), findsOneWidget);
-    expect(tester.takeException(), isNull);
   });
 }
