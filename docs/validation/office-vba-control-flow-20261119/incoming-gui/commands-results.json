@@ -1,0 +1,137 @@
+[
+  {
+    "name": "studio_analysis",
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+      "analyze",
+      "--no-pub",
+      "--fatal-infos",
+      "lib/studio_chrome.dart",
+      "lib/studio_ribbon_preferences.dart",
+      "lib/studio_ribbon_customization.dart",
+      "lib/studio_desktop_menu.dart",
+      "lib/studio_window.dart",
+      "lib/suite_workspace.dart",
+      "test/studio_desktop_menu_test.dart",
+      "test/studio_file_menu_test.dart",
+      "test/studio_ribbon_customization_test.dart",
+      "test/studio_ribbon_preferences_test.dart"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 16.69,
+    "stdout": "studio_analysis.stdout.log",
+    "stderr": "studio_analysis.stderr.log"
+  },
+  {
+    "name": "pdf_analysis",
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+      "analyze",
+      "--no-pub",
+      "--fatal-infos",
+      "lib/src/embed/pdf_controller.dart",
+      "test/pdf_save_state_test.dart"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 11.5,
+    "stdout": "pdf_analysis.stdout.log",
+    "stderr": "pdf_analysis.stderr.log"
+  },
+  {
+    "name": "pdf_tests",
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/pdf_save_state_test.dart"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 14.28,
+    "stdout": "pdf_tests.stdout.log",
+    "stderr": "pdf_tests.stderr.log"
+  },
+  {
+    "name": "fixture_analysis",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+      "analyze",
+      "--no-pub",
+      "--fatal-infos",
+      "test/studio_file_menu_test.dart",
+      "test/studio_saved_mail_test.dart",
+      "test/studio_sheet_navigation_test.dart"
+    ],
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example",
+    "elapsed_seconds": 15.52,
+    "exit_code": 0,
+    "stdout": "fixture_analysis.stdout.log",
+    "stderr": "fixture_analysis.stderr.log"
+  },
+  {
+    "name": "fixture_tests",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/studio_file_menu_test.dart",
+      "test/studio_saved_mail_test.dart",
+      "test/studio_sheet_navigation_test.dart"
+    ],
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example",
+    "elapsed_seconds": 12.9,
+    "exit_code": 0,
+    "stdout": "fixture_tests.stdout.log",
+    "stderr": "fixture_tests.stderr.log"
+  },
+  {
+    "name": "fixture_format",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_dart.sh",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "test/studio_file_menu_test.dart",
+      "test/studio_saved_mail_test.dart",
+      "test/studio_sheet_navigation_test.dart"
+    ],
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example",
+    "elapsed_seconds": 0.09,
+    "exit_code": 0,
+    "stdout": "fixture_format.stdout.log",
+    "stderr": "fixture_format.stderr.log"
+  },
+  {
+    "name": "studio_final_tests",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/studio_desktop_menu_test.dart",
+      "test/studio_file_menu_test.dart",
+      "test/studio_ribbon_customization_test.dart",
+      "test/studio_ribbon_preferences_test.dart",
+      "test/studio_comment_keyboard_review_test.dart",
+      "test/studio_comment_review_test.dart",
+      "test/studio_review_pane_test.dart",
+      "test/studio_saved_mail_test.dart",
+      "test/studio_sheet_navigation_test.dart",
+      "test/studio_shots_test.dart",
+      "test/studio_zotero_shortcuts_test.dart",
+      "test/widget_test.dart"
+    ],
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example",
+    "elapsed_seconds": 62.99,
+    "exit_code": 0,
+    "stdout": "studio_final_tests.stdout.log",
+    "stderr": "studio_final_tests.stderr.log"
+  }
+]

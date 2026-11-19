@@ -1,0 +1,24 @@
+{
+  "changes": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+      "before": "f5c8f5856b3bfddd7141d65a760f83fef52ff4b00e2690d3a4256046e77a2fe9",
+      "after": "96286ddbc80b9c1d368277a18d9d46f7c331885a3cc5e1fbebe548c09201176c"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "before": "e43e6c81e3b97f4dc2af9a12c84dc05ee53fd496440f4f665a8e27d8e1fd7629",
+      "after": "cd2466719331ce3259ea69c3c2e199c1ea185211edd8ee9c71a8be14b325da1d"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+      "before": "301a28ad9d3b5510e67a049606ebc3b74fc109c19a4c5fd6d31b8b9826819776",
+      "after": "85e5fcd519fd02e35336ef8b41a138283fbefc14e7488749c29c906eb0b03da7"
+    }
+  ],
+  "diagnosis": [
+    "Mock bool isMinimized=false so window_manager.show reaches the delayed show channel call; existing lifecycle assertions unchanged.",
+    "Locate the localized icon-only Mail switcher through its tooltip.",
+    "Locate compact File ribbon commands through tooltips and explicitly confirm discard before existing worksheet reset assertions; additionally verify original workbook remains before discard."
+  ]
+}

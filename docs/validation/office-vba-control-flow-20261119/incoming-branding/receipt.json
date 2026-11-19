@@ -2010,5 +2010,9 @@
   "inputs_stable": true,
   "passed_tests": 249,
   "finished_utc": "2026-11-19T17:13:47.418611+00:00",
-  "success": true
+  "success": true,
+  "stdout": "regressions.stdout.log",
+  "stderr": "regressions.stderr.log",
+  "failure_markers": false,
+  "skip_markers": false
 }

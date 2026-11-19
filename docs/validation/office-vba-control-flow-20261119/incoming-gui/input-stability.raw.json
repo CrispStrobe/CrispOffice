@@ -1,0 +1,13 @@
+{
+  "input_count": 5188,
+  "source_unchanged": true,
+  "source_changes": [],
+  "isolated_copy_matches": false,
+  "copy_changes": [
+    {
+      "path": "pubspec.lock",
+      "before": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+      "after": "677c94b8edbfa877657f9ecb56d6726a72b95bdd6812bb61fe06db19cf0736a1"
+    }
+  ]
+}

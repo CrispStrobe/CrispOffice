@@ -1,0 +1,69 @@
+00:00 +0: loading test/word_structure_steps_test.dart
+00:00 +0: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +1: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +2: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +3: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +4: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +5: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +6: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +7: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +8: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +9: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +10: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +11: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +12: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +13: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +14: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +15: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +16: test/word_structure_steps_test.dart: authored structural scripts retain each phase across async exports
+00:00 +17: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +18: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +19: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +20: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +21: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +22: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +23: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +24: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +25: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +26: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +27: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +28: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +29: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +30: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +31: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +32: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +33: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +34: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +35: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +36: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +37: test/office_operations_test.dart: private operation document edits native PPTX without decoding binary parts as XML
+00:00 +38: test/office_macro_mcp_test.dart: MCP macro tools direct calls and macro replay produce the same document
+00:00 +39: test/office_macro_mcp_test.dart: MCP macro tools direct calls and macro replay produce the same document
+00:01 +40: test/office_macro_mcp_test.dart: MCP macro tools direct calls and macro replay produce the same document
+00:01 +41: test/office_macro_mcp_test.dart: MCP macro tools direct calls and macro replay produce the same document
+00:01 +42: test/office_macro_mcp_test.dart: MCP macro tools direct calls and macro replay produce the same document
+00:01 +43: test/office_macro_mcp_test.dart: MCP macro tools direct calls and macro replay produce the same document
+00:01 +44: test/office_operations_test.dart: catalog and legacy steps retain the same worksheet vocabulary
+00:01 +45: test/office_macro_mcp_test.dart: MCP macro tools validate runs without publishing or advancing the revision
+00:01 +46: test/office_macro_mcp_test.dart: MCP macro tools validate runs without publishing or advancing the revision
+00:01 +47: test/office_macro_mcp_test.dart: MCP macro tools validate runs without publishing or advancing the revision
+00:01 +48: test/office_macro_mcp_test.dart: MCP macro tools validate runs without publishing or advancing the revision
+00:01 +49: test/office_macro_mcp_test.dart: MCP macro tools validate runs without publishing or advancing the revision
+00:01 +50: test/office_macro_mcp_test.dart: MCP macro tools validate runs without publishing or advancing the revision
+00:01 +51: test/office_macro_mcp_test.dart: MCP macro tools validate runs without publishing or advancing the revision
+00:01 +52: test/office_macro_mcp_test.dart: MCP macro tools validate runs without publishing or advancing the revision
+00:01 +53: test/office_macro_mcp_test.dart: MCP macro tools validate runs without publishing or advancing the revision
+00:01 +54: test/office_operations_test.dart: catalog editing and save preserve opaque VBA bytes and package type
+00:01 +55: test/office_macro_mcp_test.dart: MCP macro tools unknown operation is protocol error; invalid arguments are tool error
+00:01 +56: test/office_macro_mcp_test.dart: MCP macro tools macro tool cannot bypass a restricted operation policy
+00:01 +57: test/office_macro_mcp_test.dart: MCP macro tools failed later operation leaves the complete document unchanged
+00:01 +58: test/office_macro_mcp_test.dart: MCP macro tools recording excludes failures and macro management calls
+00:01 +59: test/office_macro_mcp_test.dart: MCP macro tools compile is non-mutating and unregistered VBA fails explicitly
+00:01 +60: test/office_macro_mcp_test.dart: MCP macro tools extra management arguments cannot smuggle a document path
+00:01 +61: test/office_macro_mcp_test.dart: MCP JSON-RPC lifecycle handshake negotiates a supported version and activates tools
+00:01 +62: test/office_macro_mcp_test.dart: MCP JSON-RPC lifecycle malformed requests, unknown tools and domain errors stay distinct
+00:01 +63: test/office_macro_mcp_test.dart: stdio bridge real stdio handshake, JSON errors, and mutation persist valid output
+00:09 +64: test/office_macro_mcp_test.dart: stdio bridge validation alone does not create an output file
+00:17 +65: test/office_macro_mcp_test.dart: stdio bridge persistence failure returns an error and stops before later requests
+00:25 +66: test/office_macro_mcp_test.dart: stdio bridge input/output extension mismatch fails before protocol output
+00:31 +67: All tests passed!

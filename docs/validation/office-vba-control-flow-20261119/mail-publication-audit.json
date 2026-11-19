@@ -1,0 +1,340 @@
+{
+  "schema": 1,
+  "started_at_utc": "2026-11-19T17:33:49.802756+00:00",
+  "audited_source": "9bdef4895922ae74f6275e421af5665552d18b4e",
+  "publication": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+  "local_head": "bba77ddc1a40d5cdb5e8859744306fd3792db996",
+  "method": "Read-only independent retained-artifact hashing, raw Dart/Flutter reporter replay, exact Git blob source binding and publication diff inspection. No tests rerun in this audit.",
+  "github_actions_used": false,
+  "retained_artifacts": [
+    {
+      "directory": "final",
+      "artifacts_verified": 102
+    },
+    {
+      "directory": "attempts/01-analysis",
+      "artifacts_verified": 28
+    }
+  ],
+  "fingerprints": {
+    "source": {
+      "entries": 4418,
+      "before_after_identical": true,
+      "retained_uncompressed_sha256": "4ec4cf7c3d702f4d1534c84a399c02ee4fc493f80fd5e441c85b631752fcf613",
+      "all_entries_bound_to_accepted_git_blobs": true
+    },
+    "dependencies": {
+      "entries": 9298,
+      "before_after_identical": true,
+      "retained_uncompressed_sha256": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2"
+    },
+    "runtime": {
+      "entries": 608,
+      "before_after_identical": true,
+      "retained_uncompressed_sha256": "ebed93b8498809bca204d9a9c69915286166e970ccec4870467804168c68c1b3"
+    }
+  },
+  "author_reporter_replay": [
+    {
+      "name": "engine-incoming-macros-operations",
+      "test_counts": {
+        "passed": 341,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test_files": 18,
+      "raw_logs_and_case_manifest_verified": true
+    },
+    {
+      "name": "language-id-synthetic",
+      "test_counts": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test_files": 2,
+      "raw_logs_and_case_manifest_verified": true
+    },
+    {
+      "name": "mail-ui-widgets",
+      "test_counts": {
+        "passed": 33,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test_files": 4,
+      "raw_logs_and_case_manifest_verified": true
+    },
+    {
+      "name": "quds_mail_core-vm",
+      "test_counts": {
+        "passed": 54,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test_files": 6,
+      "raw_logs_and_case_manifest_verified": true
+    },
+    {
+      "name": "quds_mail_mime-vm",
+      "test_counts": {
+        "passed": 84,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test_files": 7,
+      "raw_logs_and_case_manifest_verified": true
+    },
+    {
+      "name": "quds_mail_store-node",
+      "test_counts": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test_files": 1,
+      "raw_logs_and_case_manifest_verified": true
+    },
+    {
+      "name": "quds_mail_store-vm",
+      "test_counts": {
+        "passed": 462,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test_files": 16,
+      "raw_logs_and_case_manifest_verified": true
+    },
+    {
+      "name": "quds_mail_transport-node",
+      "test_counts": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test_files": 3,
+      "raw_logs_and_case_manifest_verified": true
+    },
+    {
+      "name": "quds_mail_transport-vm",
+      "test_counts": {
+        "passed": 373,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test_files": 18,
+      "raw_logs_and_case_manifest_verified": true
+    },
+    {
+      "name": "studio-mail-widgets",
+      "test_counts": {
+        "passed": 372,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test_files": 20,
+      "raw_logs_and_case_manifest_verified": true
+    }
+  ],
+  "author_total": {
+    "passed": 1750,
+    "failed": 0,
+    "skipped": 0
+  },
+  "mail_ui_author_total": {
+    "passed": 405,
+    "failed": 0,
+    "skipped": 0
+  },
+  "publication_delta": {
+    "changed_paths": [
+      "docs/validation/mail-archive-portability-20261119/README.md",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/RETENTION.md",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/analyze-mail-and-changed-dart/command.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/analyze-mail-and-changed-dart/result.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/analyze-mail-and-changed-dart/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/analyze-mail-and-changed-dart/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/build-language-id/command.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/build-language-id/result.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/build-language-id/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/build-language-id/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/compact-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/dependencies-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/dependencies-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/format-changed-dart/command.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/format-changed-dart/result.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/format-changed-dart/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/format-changed-dart/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/macos-build-script-syntax/command.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/macos-build-script-syntax/result.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/macos-build-script-syntax/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/macos-build-script-syntax/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/receipt.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/retention.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/run-local-validation.py",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/runtime-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/runtime-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/runtime-readiness-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/runtime-setup-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/selected-plan.json",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/source-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/attempts/01-analysis/source-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/audit-evidence.py",
+      "docs/validation/mail-archive-portability-20261119/final/RETENTION.md",
+      "docs/validation/mail-archive-portability-20261119/final/analyze-mail-and-changed-dart/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/analyze-mail-and-changed-dart/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/analyze-mail-and-changed-dart/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/analyze-mail-and-changed-dart/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/build-language-id/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/build-language-id/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/build-language-id/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/build-language-id/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/compact-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/final/dependencies-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/dependencies-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/engine-incoming-macros-operations/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/engine-incoming-macros-operations/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/engine-incoming-macros-operations/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/engine-incoming-macros-operations/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/engine-incoming-macros-operations/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/format-changed-dart/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/format-changed-dart/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/format-changed-dart/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/format-changed-dart/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/language-id-synthetic/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/language-id-synthetic/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/language-id-synthetic/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/language-id-synthetic/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/language-id-synthetic/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macos-build-script-syntax/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/macos-build-script-syntax/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/macos-build-script-syntax/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macos-build-script-syntax/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-compile/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-compile/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-compile/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-compile/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-node/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-node/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-node/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/macro-web-node/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/mail-ui-widgets/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/mail-ui-widgets/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/mail-ui-widgets/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/mail-ui-widgets/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/mail-ui-widgets/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_core-vm/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_core-vm/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_core-vm/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_core-vm/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_core-vm/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_mime-vm/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_mime-vm/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_mime-vm/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_mime-vm/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_mime-vm/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-node/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-node/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-node/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-node/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-node/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-vm/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-vm/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-vm/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-vm/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_store-vm/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-node/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-node/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-node/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-node/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-node/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-vm/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-vm/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-vm/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-vm/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/quds_mail_transport-vm/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/receipt.json",
+      "docs/validation/mail-archive-portability-20261119/final/retention.json",
+      "docs/validation/mail-archive-portability-20261119/final/run-local-validation.py",
+      "docs/validation/mail-archive-portability-20261119/final/runtime-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/runtime-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/runtime-readiness-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/final/runtime-setup-receipt.json",
+      "docs/validation/mail-archive-portability-20261119/final/selected-plan.json",
+      "docs/validation/mail-archive-portability-20261119/final/source-after.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/source-before.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/studio-mail-widgets/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/studio-mail-widgets/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/studio-mail-widgets/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/studio-mail-widgets/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/studio-mail-widgets/test-cases.json.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-compile/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-compile/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-compile/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-compile/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-node/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-node/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-node/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-procedures-web-node/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-compile/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-compile/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-compile/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-compile/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-node/command.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-node/result.json",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-node/stderr.log.gz",
+      "docs/validation/mail-archive-portability-20261119/final/vba-web-node/stdout.log.gz",
+      "docs/validation/mail-archive-portability-20261119/independent-audit.json",
+      "docs/validation/mail-archive-portability-20261119/publication-check.json",
+      "docs/validation/mail-archive-portability-20261119/receipt.json",
+      "docs/validation/mail-archive-portability-20261119/retain-evidence.py",
+      "docs/validation/mail-archive-portability-20261119/screenshots/README.md",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-export-confirmation-ar.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-export-confirmation-en.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-export-report-ar.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-export-report-en.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-portability-desktop-en.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/archive-portability-mobile-ar.png",
+      "docs/validation/mail-archive-portability-20261119/screenshots/provenance.json",
+      "packages/quds_mail_store/CHANGELOG.md",
+      "packages/quds_mail_store/README.md",
+      "packages/quds_office_editor/CHANGELOG.md"
+    ],
+    "changed_path_count": 151,
+    "product_or_test_changes": []
+  },
+  "current_mail_ui_related_differences_from_author_source": [
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+  ],
+  "current_studio_all_differences_from_author_source": [
+    "packages/quds_office_editor/example/lib/studio_chrome.dart",
+    "packages/quds_office_editor/example/lib/studio_desktop_menu.dart",
+    "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+    "packages/quds_office_editor/example/lib/studio_pdf_flutter_samples.dart",
+    "packages/quds_office_editor/example/lib/studio_pdf_toc_samples.dart",
+    "packages/quds_office_editor/example/lib/studio_ribbon_customization.dart",
+    "packages/quds_office_editor/example/lib/studio_ribbon_preferences.dart",
+    "packages/quds_office_editor/example/lib/studio_window.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+    "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+    "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "packages/quds_office_editor/example/test/studio_ribbon_preferences_test.dart",
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "packages/quds_office_editor/example/test/studio_shots_test.dart",
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "packages/quds_office_editor/example/test/widget_test.dart"
+  ],
+  "limits": [
+    "Author test execution is independently audited, not rerun by this worker; do not add author counts to our local test counts.",
+    "The author acceptance source is 9bdef489, predating incoming GUI and our macro control flow / manifest exact-byte fixes. Current GUI acceptance is separate.",
+    "Original dependency/runtime files are in a separate author environment and are not accessed; only their retained before/after manifests and artifact integrity are verified here.",
+    "No installed macOS application, live provider network, real CLD3 classifier, or GitHub Actions claim."
+  ],
+  "status": "passed",
+  "finished_at_utc": "2026-11-19T17:33:51.077227+00:00"
+}

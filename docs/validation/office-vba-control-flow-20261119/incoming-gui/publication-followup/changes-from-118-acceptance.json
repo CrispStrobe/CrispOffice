@@ -1,0 +1,22 @@
+[
+  {
+    "path": "packages/quds_office_editor/example/README.md",
+    "accepted_sha256": "e9deecc7cd08094bb7f8f897b7b0b6f96b8c02803266e47daae9808aa9f35fd9",
+    "publication_sha256": "9a3b131f55d79e10f902dd3c9d8b9236b6c94c3f049bbf49058c4e47d1627697"
+  },
+  {
+    "path": "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+    "accepted_sha256": "96286ddbc80b9c1d368277a18d9d46f7c331885a3cc5e1fbebe548c09201176c",
+    "publication_sha256": "1711ec408a6010421bccd6bf8582ba6e3dab2e141bf1eed669d5f1a6cee36d8a"
+  },
+  {
+    "path": "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart",
+    "accepted_sha256": "480b121c891db73bd4d3a18a935cbfc3eed725dfdd870f45dc73ab695fe57978",
+    "publication_sha256": "502daf24c427f95a801a0e6495eadd778096d922c6cdee079f669fd0885341cd"
+  },
+  {
+    "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "accepted_sha256": "85e5fcd519fd02e35336ef8b41a138283fbefc14e7488749c29c906eb0b03da7",
+    "publication_sha256": "a9bfcef8e060ae945e283dbe2f48a2e97754bdfe2efeb89a4facf224ac510d8e"
+  }
+]

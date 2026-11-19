@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-19T17:40:54.312040+00:00",
+  "our_published_head": "bc32a14477c9254d0725eb563410c5c9ea059211",
+  "author_ready_gui_head": "df7f4b4c8df63cbcf80d9087d06707d166a2c678",
+  "git_fetch_needed": false,
+  "index_or_worktree_modified": false,
+  "github_actions_inspected": false,
+  "files": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+      "our_blob": "680e32be9fe919826dcc30763b7da3e905b4a395",
+      "author_blob": "d02aadcc83116e1b4b168e846a411039e6dda032",
+      "diff": "diff --git a/packages/quds_office_editor/example/test/studio_file_menu_test.dart b/packages/quds_office_editor/example/test/studio_file_menu_test.dart\nindex 680e32be9..d02aadcc8 100644\n--- a/packages/quds_office_editor/example/test/studio_file_menu_test.dart\n+++ b/packages/quds_office_editor/example/test/studio_file_menu_test.dart\n@@ -231,6 +231,7 @@ void main() {\n       );\n       before.onSettings();\n       await _frames(tester);\n+      expect(windowCalls.where((method) => method == 'show'), hasLength(1));\n       expect(find.byType(AlertDialog), findsNothing);\n       before.onAbout();\n       expect(windowCalls.where((method) => method == 'show'), hasLength(1));\n",
+      "semantic_difference": "Author adds only an earlier assertion that the show method has been called exactly once after onSettings. The same boolean isMinimized mock and all existing assertions remain."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart",
+      "our_blob": "47cb85eb77cbab37ae3ef52a644bdbaffdbe9bbe",
+      "author_blob": "ab21a13850e934a7dbfc1521857adaf522789066",
+      "diff": "diff --git a/packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart b/packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart\nindex 47cb85eb7..ab21a1385 100644\n--- a/packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart\n+++ b/packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart\n@@ -135,9 +135,12 @@ void main() {\n   late MailCancellationSource cancellation;\n \n   setUp(() async {\n-    temporary = await Directory.systemTemp.createTemp(\n-      'archive-directory-host-',\n-    );\n+    // Resolve the system temporary directory once, as the quds_mail_store\n+    // tests do: macOS exposes it through `/var -> /private/var`, and directory\n+    // import deliberately rejects links in the chosen root's ancestors.\n+    temporary = await Directory(\n+      await Directory.systemTemp.resolveSymbolicLinks(),\n+    ).createTemp('archive-directory-host-');\n     input = await Directory(p.join(temporary.path, 'source')).create();\n     final opened = await openNativeMailArchive(\n       appDirectory: Directory(p.join(temporary.path, 'archive')),\n",
+      "semantic_difference": "Author resolves Directory.systemTemp symbolic links before creating the fixture root. This avoids a platform temporary path alias being rejected by the importer ancestor policy; product policy is unchanged."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "our_blob": "59427aef67c9b33035df4b7dfefbec8dfcd668da",
+      "author_blob": "59427aef67c9b33035df4b7dfefbec8dfcd668da",
+      "diff": "",
+      "semantic_difference": "Byte-identical: both tips use the E-Mail tooltip finder."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+      "our_blob": "b7ec66f07640de10b3b6e23f9bf02a95678cda73",
+      "author_blob": "a59ec068bd44d0df6277b6dbc0f579d6baef9d7b",
+      "diff": "diff --git a/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart b/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart\nindex b7ec66f07..a59ec068b 100644\n--- a/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart\n+++ b/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart\n@@ -77,6 +77,11 @@ Future<SheetEditorController> _studio(WidgetTester tester) async {\n   addTearDown(() => tester.binding.setSurfaceSize(null));\n   await tester.pumpWidget(const QudsOfficeStudioApp());\n   await tester.pump();\n+  // Worksheet navigation does not exercise the background Word proofreader.\n+  // Keep its asynchronous provider timeouts out of these focused UI tests.\n+  final word = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));\n+  word.controller.proofing.enabled = false;\n+  word.controller.proofing.configure(OfficeProofingService(providers: []));\n   expect(find.byTooltip('Language'), findsOneWidget);\n   await tester.pump();\n   await tester.tap(find.byTooltip('Spreadsheets').first);\n@@ -219,11 +224,13 @@ void main() {\n       await tester.pump();\n       await tester.tap(find.byTooltip(command));\n       await tester.pump();\n-      await tester.pump(const Duration(milliseconds: 300));\n+      await tester.pump(const Duration(milliseconds: 250));\n       expect(find.text('Save changes?'), findsOneWidget);\n       expect(controller.workbook, same(previous));\n       await tester.tap(find.widgetWithText(TextButton, 'Don\u2019t Save'));\n       await tester.pump();\n+      await tester.pump(const Duration(milliseconds: 250));\n+      await tester.pump();\n       expect(tester.takeException(), isNull);\n       expect(controller.workbook, isNot(same(previous)));\n       expect(controller.activeSheetIndex, 0);\n",
+      "semantic_difference": "Author disables the unused Word proofreader in the focused worksheet fixture; uses 250ms instead of 300ms before the unchanged save-prompt assertions; waits 250ms plus a pump after Don\u2019t Save. All existing workbook-preservation and replacement assertions remain."
+    }
+  ],
+  "additional_test_target": "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart",
+  "conflict_guidance": "The author test versions preserve every behavioral assertion introduced in our fixture fixes and the same isMinimized false response. Retain the save-before-replace invariants on conflict; the author\u2019s extra earlier show assertion, proofreader isolation, post-dismissal wait and temp-directory canonicalization can be preserved. Re-run the three changed targets after integration; saved-mail bytes are identical.",
+  "product_source_delta": [],
+  "other_non_evidence_delta": [
+    "packages/quds_office_editor/example/README.md"
+  ]
+}

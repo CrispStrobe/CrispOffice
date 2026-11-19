@@ -1,0 +1,174 @@
+00:00 +0: loading /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart
+00:00 +0: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: comment Shift+F10 opens in place and Escape restores focus
+00:04 +1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Reply focuses the inline draft without posting or a dialog
+00:04 +2: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Reply focuses the inline draft without posting or a dialog
+00:04 +3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Reply focuses the inline draft without posting or a dialog
+00:05 +4: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Reply focuses the inline draft without posting or a dialog
+00:05 +5: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart: F7 opens live review and only explicit checks run manual grammar
+00:05 +6: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart: F7 opens live review and only explicit checks run manual grammar
+00:05 +7: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: comment Shift+F10 opens in place and Tab restores focus
+00:05 +8: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: comment Shift+F10 opens in place and Tab restores focus
+00:05 +9: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: comment Shift+F10 opens in place and Tab restores focus
+00:06 +10: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: comment Shift+F10 opens in place and Tab restores focus
+00:06 +11: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:06 +12: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:06 +13: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:06 +14: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:07 +15: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:07 +16: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:07 +17: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:07 +18: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: Menu key keeps the explicitly selected overlapping comment finding
+00:07 +19: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: Menu key keeps the explicitly selected overlapping comment finding
+00:07 +20: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart: review commands remain nonmodal and read-only in viewing mode
+00:08 +21: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart: review commands remain nonmodal and read-only in viewing mode
+00:08 +22: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: hiding comments preserves drafts and Reply restores inline focus
+00:09 +23: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_saved_mail_test.dart: Studio cycles languages and Mail preserves its active sheet
+00:10 +24: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_saved_mail_test.dart: Studio cycles languages and Mail preserves its active sheet
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+The finder "Found 0 widgets with text "E-Mail": []" (used in a call to "tap()") could not find any
+matching widgets.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_saved_mail_test.dart:454:18)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Studio cycles languages and Mail preserves its active sheet
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:10 +24 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: a replaced thread cannot inherit a draft through its reused ID
+00:10 +24 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_saved_mail_test.dart: Studio cycles languages and Mail preserves its active sheet [E]
+  Test failed. See exception logs above.
+  The test description was: Studio cycles languages and Mail preserves its active sheet
+  
+00:10 +25 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: IME composition blocks keyboard comment menus without changing composition
+00:11 +25 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: IME composition blocks keyboard comment menus without changing composition
+00:11 +26 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: find pane retains a rejected first search and shows correction
+00:11 +27 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: a stale post callback cannot send into another document
+00:11 +28 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: covered modal blocks a captured keyboard comment correction
+00:12 +29 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: covered modal blocks a captured keyboard comment correction
+00:12 +30 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: covered modal blocks a captured keyboard comment correction
+00:12 +31 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: posting waits until IME composition is complete
+00:12 +32 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: posting waits until IME composition is complete
+00:12 +33 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: posting waits until IME composition is complete
+00:13 +34 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:13 +35 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:14 +36 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:15 +37 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:15 +38 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:15 +39 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment writing marks offer focused inline corrections
+00:15 +40 ~1 -1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio New explicitly resets a same-index worksheet
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+The finder "Found 0 widgets with text "New": []" (used in a call to "tap()") could not find any
+matching widgets.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart:220:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  studio New explicitly resets a same-index worksheet
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:16 +40 ~1 -2: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt R dispatches refresh from the Word caret
+00:16 +40 ~1 -2: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio New explicitly resets a same-index worksheet [E]
+  Test failed. See exception logs above.
+  The test description was: studio New explicitly resets a same-index worksheet
+  
+00:17 +41 ~1 -2: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:17 +42 ~1 -2: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:18 +42 ~1 -2: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio Reload sample explicitly resets a same-index worksheet
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+The finder "Found 0 widgets with text "Reload sample": []" (used in a call to "tap()") could not
+find any matching widgets.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart:220:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  studio Reload sample explicitly resets a same-index worksheet
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:18 +42 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:18 +42 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio Reload sample explicitly resets a same-index worksheet [E]
+  Test failed. See exception logs above.
+  The test description was: studio Reload sample explicitly resets a same-index worksheet
+  
+00:18 +43 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:18 +44 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:19 +45 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Cmd Alt R dispatches refresh from the Word caret
+00:19 +46 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment context Cut owns the comment rather than a body selection
+00:19 +47 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: studio hosts document, spreadsheet, and presentation workspaces
+00:20 +48 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: studio hosts document, spreadsheet, and presentation workspaces
+00:20 +49 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment context Cut leaves a previously selected body table intact
+00:20 +50 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: successive shortcuts return directly to the writing caret
+00:21 +51 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Settings shows and hides Notes without another config change
+00:21 +52 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Settings shows and hides Notes without another config change
+00:22 +53 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Add Zotero note ribbon invokes its native picker
+00:22 +54 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Add Zotero note ribbon invokes its native picker
+00:22 +55 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment context Paste leaves a previously selected body frame intact
+00:23 +56 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Add Zotero annotation ribbon invokes its native picker
+00:24 +57 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Select mode exposes real pointer comment selection and Copy
+00:24 +58 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C finds the citation in the focused Notes editor
+00:25 +59 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: read-only comment Copy and Select all own the comment selection
+00:25 +60 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation shortcuts and saved ribbon callbacks respect viewing mode
+00:26 +61 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation shortcuts and saved ribbon callbacks respect viewing mode
+00:27 +62 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: delayed comment Cut validates its context after none change
+00:27 +63 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation commands stay inactive in other Studio applications
+00:28 +64 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation commands stay inactive in other Studio applications
+00:29 +65 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation commands stay inactive in other Studio applications
+00:29 +66 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: delayed comment Cut validates its context after document change
+00:30 +67 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:30 +68 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: delayed comment Paste validates its context after none change
+00:31 +69 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: rapid ribbon and shortcut activation opens one Zotero workspace
+00:31 +70 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: delayed comment Paste validates its context after source change
+00:31 +71 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation ribbon shows shortcuts for linux
+00:32 +72 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation ribbon shows shortcuts for linux
+00:32 +73 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: delayed comment Paste validates its context after document change
+00:33 +74 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation ribbon shows shortcuts for macOS
+00:33 +75 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: invalid clipboard guards stop before system clipboard access
+00:33 +76 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu Ignore once respects the current finding
+00:35 +77 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu Ignore this word respects the current finding
+00:35 +78 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu Add to personal words respects the current finding
+00:36 +79 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment suggestions survive unrelated in-flight check progress
+00:37 +80 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: stale comment menus cannot act on another document or reused ID
+00:38 +81 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menus dismiss on changed source or selected thread
+00:39 +82 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menus preserve IME and cannot act through a modal
+00:40 +83 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: resolved reply context offers Reopen for its whole thread
+00:41 +84 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: narrow English comments stay below the editor
+00:42 +85 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: narrow Arabic comments stay below the editor
+00:43 +86 ~1 -3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu mutations respect a later viewing-mode change
+00:44 +87 ~1 -3: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_saved_mail_test.dart: Studio cycles languages and Mail preserves its active sheet
+  /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio New explicitly resets a same-index worksheet
+  /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio Reload sample explicitly resets a same-index worksheet

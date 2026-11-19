@@ -1,0 +1,77 @@
+[
+  {
+    "name": "studio_analysis",
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+      "analyze",
+      "--no-pub",
+      "--fatal-infos",
+      "lib/studio_chrome.dart",
+      "lib/studio_ribbon_preferences.dart",
+      "lib/studio_ribbon_customization.dart",
+      "lib/studio_desktop_menu.dart",
+      "lib/studio_window.dart",
+      "lib/suite_workspace.dart",
+      "test/studio_desktop_menu_test.dart",
+      "test/studio_file_menu_test.dart",
+      "test/studio_ribbon_customization_test.dart",
+      "test/studio_ribbon_preferences_test.dart"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 16.69,
+    "stdout": "studio_analysis.stdout.log",
+    "stderr": "studio_analysis.stderr.log"
+  },
+  {
+    "name": "pdf_analysis",
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+      "analyze",
+      "--no-pub",
+      "--fatal-infos",
+      "lib/src/embed/pdf_controller.dart",
+      "test/pdf_save_state_test.dart"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 11.5,
+    "stdout": "pdf_analysis.stdout.log",
+    "stderr": "pdf_analysis.stderr.log"
+  },
+  {
+    "name": "pdf_tests",
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/pdf_save_state_test.dart"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 14.28,
+    "stdout": "pdf_tests.stdout.log",
+    "stderr": "pdf_tests.stderr.log"
+  },
+  {
+    "name": "studio_new_tests",
+    "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example",
+    "command": [
+      "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/studio_desktop_menu_test.dart",
+      "test/studio_file_menu_test.dart",
+      "test/studio_ribbon_customization_test.dart",
+      "test/studio_ribbon_preferences_test.dart"
+    ],
+    "exit_code": 1,
+    "elapsed_seconds": 53.0,
+    "stdout": "studio_new_tests.stdout.log",
+    "stderr": "studio_new_tests.stderr.log"
+  }
+]

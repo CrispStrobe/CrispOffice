@@ -1,0 +1,23 @@
+{
+  "name": "studio_changed_regressions",
+  "cwd": "/workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example",
+  "command": [
+    "/workspace/scratch/e9fb10bfe870/toolchains/run_flutter.sh",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/studio_comment_keyboard_review_test.dart",
+    "test/studio_comment_review_test.dart",
+    "test/studio_review_pane_test.dart",
+    "test/studio_saved_mail_test.dart",
+    "test/studio_sheet_navigation_test.dart",
+    "test/studio_shots_test.dart",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/widget_test.dart"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 52.65,
+  "stdout": "studio_changed_regressions.stdout.log",
+  "stderr": "studio_changed_regressions.stderr.log"
+}

@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-19 17:38:42 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "github_actions_inspected": false,
+  "main": {
+    "sha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+    "previous_sha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+    "unique_commits_since_previous": [],
+    "unique_changed_paths_since_previous": [],
+    "included_in_published_macro_head": "bba77ddc1a40d5cdb5e8859744306fd3792db996",
+    "ancestry_verified": true,
+    "verification": "git merge-base --is-ancestor 0c29b5d8a0a92148dcd95f3282b4d43c462be20d bba77ddc1a40d5cdb5e8859744306fd3792db996 returned exit 0."
+  },
+  "prs": [
+    {
+      "number": 207,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/207",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "codex/vba-control-flow-20261119",
+      "head_sha": "bba77ddc1a40d5cdb5e8859744306fd3792db996",
+      "base": "main",
+      "base_sha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+      "merge_commit_sha": "542d20c0f66eb8a6e724ec7fdfcaa782463d0588",
+      "updated_at": "2026-11-19T17:32:38Z",
+      "merged_at": null
+    },
+    {
+      "number": 206,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/206",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "codex/crispoffice-gui-20261119",
+      "head_sha": "df7f4b4c8df63cbcf80d9087d06707d166a2c678",
+      "base": "main",
+      "base_sha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+      "merge_commit_sha": "1cf7ddedbd9b4798a107d6e10622eda42b2e0704",
+      "updated_at": "2026-11-19T17:37:16Z",
+      "merged_at": null
+    }
+  ],
+  "gui_scope": {
+    "frozen_tested_source": "f489cefe48e6fd4b0dcbada8fc4025682733a118",
+    "new_branch_only_head": "df7f4b4c8df63cbcf80d9087d06707d166a2c678",
+    "current_state": "ready, unmerged; no longer a draft",
+    "scope_expanded": false,
+    "new_branch_tip_includes_published_macro": true,
+    "compare_against_published_macro": {
+      "base": "bba77ddc1a40d5cdb5e8859744306fd3792db996",
+      "head": "df7f4b4c8df63cbcf80d9087d06707d166a2c678",
+      "status": "ahead",
+      "ahead_by": 9,
+      "behind_by": 0,
+      "changed_path_count": 34,
+      "product_source_changes": [],
+      "non_evidence_paths": [
+        {
+          "path": "packages/quds_office_editor/example/README.md",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+          "additions": 4,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart",
+          "additions": 6,
+          "deletions": 3
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+          "additions": 13,
+          "deletions": 1
+        }
+      ],
+      "new_commits": [
+        {
+          "sha": "b15406b39940db4cc030ffdb78694e0119491897",
+          "subject": "Merge origin/main (PR #204 VBA procedures) into macOS build integration"
+        },
+        {
+          "sha": "b8cd44e2b5b9b2dbc8e1948430f252a3f0cf2e24",
+          "subject": "Merge codex/crispoffice-gui-20261119 (#206; includes #205 mail archive portability)"
+        },
+        {
+          "sha": "6ab7ab9dc8db73b648675939e7a0a9b502948da4",
+          "subject": "Merge codex/vba-control-flow-20261119 (#207)"
+        },
+        {
+          "sha": "515d960fc5ea83787659f4c773d793a8b7e9f05f",
+          "subject": "test(editor): import dart:typed_data in pdf_save_state_test"
+        },
+        {
+          "sha": "ecdc74d87e71f7a1d7c542f8877911a5ffbee014",
+          "subject": "Reconcile current main and final parallel branch evidence [skip ci]"
+        },
+        {
+          "sha": "1196e30c367c870d98a73b8346caacd50bc2eace",
+          "subject": "Merge origin/main (PR #205 mail portability) into macOS build integration"
+        },
+        {
+          "sha": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+          "subject": "test(studio): resolve the temporary folder in the directory-import tests"
+        },
+        {
+          "sha": "c87022098df1435c6f5a1d14ad79c3a2abc9dca8",
+          "subject": "Record local GUI acceptance and final desktop regression fixtures [skip ci]"
+        },
+        {
+          "sha": "df7f4b4c8df63cbcf80d9087d06707d166a2c678",
+          "subject": "Preserve final parallel branch tips and macOS archive test portability [skip ci]"
+        }
+      ]
+    },
+    "description": "New work is GUI acceptance evidence, a usage-document wording correction, three desktop fixture corrections matching our separately identified issues, and a macOS temporary-directory canonicalization in a mail test. No product source changes beyond the frozen head and already-integrated macro/mail ancestry.",
+    "recommendation": "Keep current qualified source scope. Incorporate newer GUI branch work only if it enters main during root's final immediate main reconciliation; no CI wait."
+  },
+  "notes": [
+    "PR merge_commit_sha values are GitHub's current synthetic/test-merge metadata for these open PRs, not published main merges.",
+    "Root is publishing the separately qualified three GUI fixture fixes and final receipts after this snapshot."
+  ]
+}
