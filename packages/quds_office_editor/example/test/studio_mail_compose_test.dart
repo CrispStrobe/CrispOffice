@@ -123,27 +123,30 @@ void main() {
     );
   });
 
-  test('Arabic subject and body produce ASCII-safe MIME with exact decoded content', () {
-    const draft = StudioMailDraft(
-      to: 'reader@example.invalid',
-      subject: 'رسالة اختبار',
-      body: 'مرحبًا <reader> & أهلًا',
-    );
-    final message = buildStudioMailMessage(draft, sender);
-    expect(
-      message.renderMessage().codeUnits.every((unit) => unit < 128),
-      isTrue,
-    );
-    expect(message.decodeSubject(), draft.subject);
-    expect(message.decodeTextPlainPart(), draft.body);
-    expect(message.decodeTextHtmlPart(), contains('&lt;reader&gt; &amp;'));
-    expect(message.to!.single.email, draft.to);
-    expect(message.bcc, isEmpty);
-    expect(
-      () => buildStudioMailMessage(draft, '$sender\r\nX-Extra: bad'),
-      throwsFormatException,
-    );
-  });
+  test(
+    'Arabic subject and body produce ASCII-safe MIME with exact decoded content',
+    () {
+      const draft = StudioMailDraft(
+        to: 'reader@example.invalid',
+        subject: 'رسالة اختبار',
+        body: 'مرحبًا <reader> & أهلًا',
+      );
+      final message = buildStudioMailMessage(draft, sender);
+      expect(
+        message.renderMessage().codeUnits.every((unit) => unit < 128),
+        isTrue,
+      );
+      expect(message.decodeSubject(), draft.subject);
+      expect(message.decodeTextPlainPart(), draft.body);
+      expect(message.decodeTextHtmlPart(), contains('&lt;reader&gt; &amp;'));
+      expect(message.to!.single.email, draft.to);
+      expect(message.bcc, isEmpty);
+      expect(
+        () => buildStudioMailMessage(draft, '$sender\r\nX-Extra: bad'),
+        throwsFormatException,
+      );
+    },
+  );
 
   testWidgets(
     'body uses the Word editor and snapshots undoable text before disposal',

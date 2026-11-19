@@ -4,6 +4,10 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve imported slide rich-text formatting only while its scalar snapshot
+  still matches. Respect explicit plain runs and inherited backgrounds, restore
+  the established 16 pt fallback, and retain PDF text tab-stop alignment.
+
 - Add read-only paginated Zotero tag catalogs for libraries and collections,
   with literal name preservation, containing/prefix searches, optional usage
   metadata, validated requests and separate online/desktop routes. Keep manual

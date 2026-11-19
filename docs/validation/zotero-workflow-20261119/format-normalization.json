@@ -1,0 +1,44 @@
+{
+  "source_before": "780422316b4e37989e01ac871dd2956fbd2c8908",
+  "source_before_checkpoint": "400fffd04fcceee78959e4c38b4d1dbe89767c2b",
+  "files": [
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_reply_test.dart"
+  ],
+  "command": [
+    "dart",
+    "format",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_reply_test.dart"
+  ],
+  "exit_code": 0,
+  "sha256_before": {
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "8ac2a6a4a92fdddec25952ac5a81e894f3af8745aa7b0d3fa730f3171101a5ed",
+    "packages/quds_office_editor/example/test/studio_mail_compose_test.dart": "d14874c759b5083b22a5717888c9bd4af64260ced8423d58c04f67f3ba7dc958",
+    "packages/quds_office_editor/example/test/studio_mail_reply_test.dart": "40b9e2f5ac7b4b82714003ac7ad1b0e9999b676f5b820bdf66add824fd98399f"
+  },
+  "sha256_after": {
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "666fa11eed57d6131a0a2ad0c6a56cfee4759ed6d1df5c60af1240afa9d05cd1",
+    "packages/quds_office_editor/example/test/studio_mail_compose_test.dart": "682aebe06f0546bc0df86af8a2fde2de3f3814346a884d32fe8303a8969c5e39",
+    "packages/quds_office_editor/example/test/studio_mail_reply_test.dart": "44cfd50aaa3f5c342161fa1606fc4af4f5b1450be009fa491196102f2c95f54c"
+  },
+  "ignore_all_space_diff_exit_code": 1,
+  "ast_comparison": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "ast_to_source_equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "ast_to_source_equal": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "ast_to_source_equal": true
+    }
+  ],
+  "normalization_verified": true,
+  "verification_script_sha256": "e9f8c66114f3a00915cabc844b64f4c4aeaa9eab679754ea7397ce02dc2b1ceb"
+}

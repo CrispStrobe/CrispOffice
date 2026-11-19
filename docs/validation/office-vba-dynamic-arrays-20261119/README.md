@@ -1,5 +1,9 @@
 # Dynamic VBA arrays — implementation and validation record
 
+## Subsequent integration qualification
+
+All 364 selected VBA cases, including actual CLI subprocesses, passed in the integrated Zotero workflow qualification. See the [19 November integrated report](../zotero-workflow-20261119/README.md) for exact source, raw evidence and local validation limits. The checkpoint record below is retained as originally written.
+
 19 November 2026. Work in progress; this checkpoint does not claim runtime
 qualification. GitHub Actions are not awaited or used as a gate.
 
