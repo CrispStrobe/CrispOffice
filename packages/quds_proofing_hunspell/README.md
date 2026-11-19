@@ -6,6 +6,9 @@ Arabic: the AyaSpell bundle published unmodified at
 [`cstr/ayaspell-ar-hunspell`](https://huggingface.co/cstr/ayaspell-ar-hunspell/tree/e9ace7cca3844bef906d8d9fc5431c4e15bd2740)
 (immutable revision `e9ace7cc…`). Nothing is downloaded or enabled by default.
 
+This package supplies the provider, installer and backend. App registration,
+the download interface and packaging into each host target remain host work.
+
 - **Engine (part of the app):** the MIT adapter `native/src/quds_hunspell.cpp`
   compiled with the unmodified Hunspell 1.7.2 library sources under their
   MPL 1.1 option. Native platforms load it as a shared library in a persistent
@@ -47,6 +50,15 @@ web, serve `hunspell_worker.mjs`, `quds_proofing_hunspell.mjs` and
 reports **unavailable**; malformed backend output reports **failed**, never a
 clean result.
 
+Dispose the provider when its session ends. Normal native disposal rejects
+pending Dart requests immediately, then waits for the worker to finish its
+active native call and close its dictionary handle. Concurrent disposal calls
+share this cleanup. Reopening first releases the previous handle, including
+when the replacement cannot be allocated. A native finalizer backs up abnormal
+worker termination. If the worker cannot acknowledge shutdown within two
+seconds, it is terminated; this fallback does not promise immediate completion
+of a synchronous native call or immediate finalizer execution.
+
 ## Behaviour
 
 - **Words** are maximal runs of letters and combining marks. Arabic harakat
@@ -65,6 +77,22 @@ clean result.
   later ones are still reported, without replacements. Arabic suggestions cost
   about 50 ms per word on an M-series Mac, so this bounds a paragraph to about
   1.2 s of background work. A request is limited to 32,768 characters.
+
+The deterministic native ownership suite uses the real FFI/isolate transport
+with an instrumented C ABI fixture. It checks handle closure, repeated and
+concurrent disposal, failed replacement, pending calls and startup races:
+
+```sh
+c++ -std=c++14 -shared -fPIC -pthread \
+  test/fixtures/lifecycle_hunspell.cpp -o /tmp/libquds_hunspell_lifecycle.so
+QUDS_HUNSPELL_LIFECYCLE_LIBRARY=/tmp/libquds_hunspell_lifecycle.so \
+  dart test test/native_lifecycle_test.dart
+```
+
+The fixture suite is separate from qualification against the real Hunspell
+library and verified AyaSpell dictionary. Ordinary package tests skip this
+optional suite when its compiled fixture is absent. Complete qualification
+requires the hash-bound fixture and rejects skipped cases.
 
 ## Build and package
 

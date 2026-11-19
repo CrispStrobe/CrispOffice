@@ -21,8 +21,11 @@ final class _NativeTransport implements HunspellTransport {
   Isolate? _isolate;
   ReceivePort? _messages;
   ReceivePort? _errors;
+  SendPort? _workerPort;
   Future<SendPort>? _opening;
   Completer<SendPort>? _ready;
+  Completer<void>? _closed;
+  Future<void>? _disposal;
   bool _disposed = false;
   int _sequence = 0;
 
@@ -32,7 +35,12 @@ final class _NativeTransport implements HunspellTransport {
     final errors = _errors = ReceivePort();
     messages.listen((Object? value) {
       if (value is SendPort) {
+        if (_disposed) return;
+        _workerPort = value;
         if (!ready.isCompleted) ready.complete(value);
+      } else if (value == 'closed') {
+        final closed = _closed;
+        if (closed != null && !closed.isCompleted) closed.complete();
       } else if (value case ['result', final int id, final String body]) {
         _pending.remove(id)?.complete(body);
       } else if (value case ['unavailable', final String reason]) {
@@ -72,27 +80,39 @@ final class _NativeTransport implements HunspellTransport {
         }),
       ], eagerError: true);
       return results.first! as SendPort;
-    } on HunspellUnavailableException {
-      await dispose();
+    } on HunspellUnavailableException catch (error) {
+      _fail(error);
       rethrow;
     } on Object {
-      await dispose();
-      throw const HunspellUnavailableException(
+      const error = HunspellUnavailableException(
         'The local Hunspell worker could not be started.',
       );
+      _fail(error);
+      throw error;
     }
   }
 
   void _fail(Object error) {
     _disposed = true;
+    _cancelRequests(error);
+    final closed = _closed;
+    if (closed != null && !closed.isCompleted) closed.completeError(error);
+    _terminate();
+  }
+
+  void _cancelRequests(Object error) {
     final ready = _ready;
     if (ready != null && !ready.isCompleted) ready.completeError(error);
     for (final request in _pending.values) {
       request.completeError(error);
     }
     _pending.clear();
+  }
+
+  void _terminate() {
     _isolate?.kill(priority: Isolate.immediate);
     _isolate = null;
+    _workerPort = null;
     _messages?.close();
     _errors?.close();
   }
@@ -135,9 +155,33 @@ final class _NativeTransport implements HunspellTransport {
       _send(['check', words, suggest]);
 
   @override
-  Future<void> dispose() async {
+  Future<void> dispose() => _disposal ??= _dispose();
+
+  Future<void> _dispose() async {
     if (_disposed) return;
-    _fail(const HunspellUnavailableException('Hunspell worker was disposed.'));
+    _disposed = true;
+    _cancelRequests(
+      const HunspellUnavailableException('Hunspell worker was disposed.'),
+    );
+    final port = _workerPort;
+    if (port == null) {
+      // No operation can be submitted before startup supplies this port.
+      // A spawn still in flight observes _disposed and kills its late isolate.
+      _terminate();
+      return;
+    }
+    final closed = _closed = Completer<void>();
+    port.send(['dispose']);
+    try {
+      // The worker serializes this close after any native call already running.
+      // Do not free its handle concurrently with that call.
+      await closed.future.timeout(const Duration(seconds: 2));
+    } on Object {
+      // A stuck or failed worker has a native-finalizer fallback. Forced
+      // termination cannot promise immediate destruction of an active C call.
+    } finally {
+      _terminate();
+    }
   }
 }
 
@@ -167,20 +211,27 @@ void _workerMain(List<Object?> arguments) {
     return;
   }
   host.send(input.sendPort);
-  Pointer<Void> handle = nullptr;
+  _OwnedHandle? handle;
   input.listen((Object? value) {
     String reply;
     try {
-      if (value case [
+      if (value case ['dispose']) {
+        handle?.close();
+        handle = null;
+        input.close();
+        host.send('closed');
+      } else if (value case [
         final int id,
         'open',
         final String aff,
         final String dic,
       ]) {
-        if (handle != nullptr) bindings.close(handle);
-        handle = bindings.open(aff, dic);
+        handle?.close();
+        handle = null;
+        final pointer = bindings.open(aff, dic);
+        if (pointer != nullptr) handle = _OwnedHandle(bindings, pointer);
         reply = jsonEncode(
-          handle == nullptr
+          handle == null
               ? {
                   'status': 'failed',
                   'message':
@@ -195,7 +246,8 @@ void _workerMain(List<Object?> arguments) {
         final List<Object?> words,
         final List<Object?> suggest,
       ]) {
-        if (handle == nullptr) {
+        final owned = handle;
+        if (owned == null) {
           host.send([
             'result',
             id,
@@ -209,7 +261,7 @@ void _workerMain(List<Object?> arguments) {
         final results = <Object?>[];
         for (var i = 0; i < words.length; i++) {
           final word = words[i]! as String;
-          final state = bindings.spell(handle, word);
+          final state = owned.spell(word);
           if (state < 0) throw StateError('Hunspell rejected a word.');
           if (state == 1) {
             results.add({'ok': true});
@@ -217,7 +269,7 @@ void _workerMain(List<Object?> arguments) {
             results.add({
               'ok': false,
               'suggestions': suggest[i] == true
-                  ? bindings.suggest(handle, word)
+                  ? owned.suggest(word)
                   : const <String>[],
             });
           }
@@ -243,6 +295,28 @@ void _workerMain(List<Object?> arguments) {
   });
 }
 
+/// Keeps native memory owned across FFI calls and exceptional worker shutdown.
+/// Normal shutdown closes explicitly; finalization is only a fallback.
+final class _OwnedHandle implements Finalizable {
+  _OwnedHandle(this._bindings, this._pointer) {
+    _bindings.finalizer.attach(this, _pointer, detach: this);
+  }
+
+  final _Bindings _bindings;
+  Pointer<Void> _pointer;
+
+  int spell(String word) => _bindings.spell(_pointer, word);
+  List<String> suggest(String word) => _bindings.suggest(_pointer, word);
+
+  void close() {
+    final pointer = _pointer;
+    if (pointer == nullptr) return;
+    _pointer = nullptr;
+    _bindings.finalizer.detach(this);
+    _bindings.close(pointer);
+  }
+}
+
 final class _Bindings {
   _Bindings(DynamicLibrary library)
     : _open = library
@@ -255,6 +329,9 @@ final class _Bindings {
             Void Function(Pointer<Void>),
             void Function(Pointer<Void>)
           >('quds_hunspell_close'),
+      _closeAddress = library.lookup<NativeFinalizerFunction>(
+        'quds_hunspell_close',
+      ),
       _spell = library
           .lookupFunction<
             Int32 Function(Pointer<Void>, Pointer<Uint8>),
@@ -291,6 +368,14 @@ final class _Bindings {
 
   final Pointer<Void> Function(Pointer<Uint8>, Pointer<Uint8>) _open;
   final void Function(Pointer<Void>) close;
+  final Pointer<NativeFinalizerFunction> _closeAddress;
+  // A finalizer must remain reachable independently of its finalizable owners.
+  // Distinct host libraries may export different implementations of this ABI.
+  static final _finalizers = <int, NativeFinalizer>{};
+  late final NativeFinalizer finalizer = _finalizers.putIfAbsent(
+    _closeAddress.address,
+    () => NativeFinalizer(_closeAddress),
+  );
   final int Function(Pointer<Void>, Pointer<Uint8>) _spell;
   final Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Pointer<Size>)
   _suggest;

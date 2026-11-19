@@ -280,8 +280,21 @@ def test_command(
     return command
 
 
+PINNED_UPSTREAM_NOTICE_BLOBS = {
+    # Hunspell 1.7.2 verbatim notices, verified against its pinned release archive
+    # and packages/quds_proofing_hunspell/licenses/manifest.json. Only these exact
+    # blobs may preserve upstream whitespace outside captured validation evidence.
+    "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL":
+        "7714141d154290f53e9e60c615a8edc9b51a8df7",
+    "packages/quds_proofing_hunspell/licenses/upstream/license.hunspell":
+        "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+    "packages/quds_proofing_hunspell/licenses/upstream/license.myspell":
+        "2da533075026777f93882fdeb11ff02a711d4b81",
+}
+
+
 def validate_whitespace_preserved_inputs(entries: object, tracked: dict) -> list[dict]:
-    """Allow exact, frozen evidence files; never product paths or glob exclusions."""
+    """Allow frozen evidence and three pinned upstream notices; no glob exclusions."""
     if not isinstance(entries, list):
         raise RuntimeError("whitespace_preserved_inputs must be an explicit list")
     validated, seen = [], set()
@@ -289,14 +302,20 @@ def validate_whitespace_preserved_inputs(entries: object, tracked: dict) -> list
         if not isinstance(entry, dict):
             raise RuntimeError("Each whitespace exception must identify a path, blob and reason")
         path, blob, reason = (entry.get(key) for key in ("path", "git_blob", "reason"))
-        if (not isinstance(path, str) or not path.startswith("docs/validation/")
+        if (not isinstance(path, str)
                 or not re.fullmatch(r"[a-zA-Z0-9_./-]+", path)
                 or Path(path).as_posix() != path or ".." in Path(path).parts
                 or path in seen or path not in tracked
                 or tracked[path].get("mode") not in {"100644", "100755"}):
-            raise RuntimeError("Whitespace exceptions must name unique tracked validation files")
+            raise RuntimeError("Whitespace exceptions must name unique tracked regular files")
+        pinned_notice = PINNED_UPSTREAM_NOTICE_BLOBS.get(path)
+        if pinned_notice is not None:
+            if blob != pinned_notice:
+                raise RuntimeError("Pinned upstream notice bytes changed")
+        elif not path.startswith("docs/validation/"):
+            raise RuntimeError("Only frozen validation evidence and pinned upstream notices may preserve whitespace")
         suffix = Path(path).suffix
-        if suffix not in {".log", ".txt", ".patch"} and not (
+        if pinned_notice is None and suffix not in {".log", ".txt", ".patch"} and not (
             suffix == ".md" and "notices" in Path(path).parts
         ):
             raise RuntimeError("Only captured logs, raw patches and upstream notices may preserve whitespace")
@@ -309,8 +328,8 @@ def validate_whitespace_preserved_inputs(entries: object, tracked: dict) -> list
 
 
 def whitespace_command(base: str, head: str, preserved: list[dict]) -> list[str]:
-    # Every exception is an exact validated evidence blob, including raw patches
-    # with required context spaces, and remains bound by the source manifests.
+    # Every exception is an exact validated evidence or upstream notice blob,
+    # including raw patches with context spaces, bound by the source manifests.
     return ["git", "diff", "--check", base, head, "--", ".",
             *[":(exclude)" + entry["path"] for entry in preserved]]
 

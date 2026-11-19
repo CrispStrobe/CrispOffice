@@ -1,0 +1,62 @@
+{
+  "qualified_source": "960fb72fe904da92c41126b44fa65257931c6d65",
+  "capture_finished_utc": "2026-11-19T08:03:00.749591+00:00",
+  "latest_main": "dc267fb4957d5a6499ce8174fd4a2acc39a4acf8",
+  "actual_ref_count": 421,
+  "classification_at_qualified_source": {
+    "ancestor": 380,
+    "unaccounted": 13,
+    "historical_equivalent": 28
+  },
+  "minimal_integration_frontier": [
+    "05582479e1249a8cf4d526740a0d43149c3cf5ae",
+    "0669ac119da05f5eb777c8cfdbce32e0261df647",
+    "84aa6f96e95c1eda39ad8c548c93b167be21dd1f",
+    "a4b73fe40387d62c27477bb640f14a2694d031d8",
+    "dc267fb4957d5a6499ce8174fd4a2acc39a4acf8"
+  ],
+  "heads": {
+    "latest_main": "dc267fb4957d5a6499ce8174fd4a2acc39a4acf8",
+    "mail_reader": "05582479e1249a8cf4d526740a0d43149c3cf5ae",
+    "office_sync": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+    "office_main": "84aa6f96e95c1eda39ad8c548c93b167be21dd1f",
+    "office_current": "a4b73fe40387d62c27477bb640f14a2694d031d8"
+  },
+  "main_mail_differences": [
+    "packages/quds_mail_store/README.md"
+  ],
+  "critical_mail_delta": {
+    "head": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+    "files": [
+      "packages/quds_mail_transport/CHANGELOG.md",
+      "packages/quds_mail_transport/README.md",
+      "packages/quds_mail_transport/lib/src/configuration.dart",
+      "packages/quds_mail_transport/lib/src/cursor.dart",
+      "packages/quds_mail_transport/lib/src/native/provider.dart",
+      "packages/quds_mail_transport/test/cursor_test.dart",
+      "packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "packages/quds_mail_transport/test/uid_discovery_test.dart"
+    ],
+    "reason": "Completed/empty v2 sweeps reuse the same cursor string, permitting a stale page to pass cursor CAS. Incoming v3 increments a safe-integer revision on every page and tests stale-sweep rejection."
+  },
+  "non_mail_delta": {
+    "main_implementation": [
+      "Arabic writing provider and engine/editor integration",
+      "New optional quds_proofing_hunspell package, native/web transports, installer and source notices"
+    ],
+    "arabic_followups": [
+      "0669ac11 preserves orthographic combining marks, respects mixed-script token boundaries and omits ambiguous bare lan rule.",
+      "05582479 preserves orthographic combining marks and adds four dedicated decomposed/offset regression scenarios; retain these alongside0669 implementation."
+    ],
+    "workspace_manifest_changes": [
+      "pubspec.yaml"
+    ]
+  },
+  "gate_requirements": [
+    "Rerun changed Mail native/coordinator tests and new portable cursor tests on VM/Node; retain complete frozen qualification as historical evidence.",
+    "Qualify the new Arabic engine/editor code and preserve both follow-up regression sets.",
+    "Hunspell default native suite skips real-library/installer cases unless explicit verified native library/dictionary paths are supplied; report actual execution boundaries.",
+    "Preserve current authoritative-range documentation when merging stale store README statements."
+  ],
+  "scope": "This is the final bounded capture, not a new live polling loop. Parent controls integration and final publication. Source files and HEAD were not modified by this audit; only remote-tracking refs were fetched. No GitHub Actions accessed."
+}

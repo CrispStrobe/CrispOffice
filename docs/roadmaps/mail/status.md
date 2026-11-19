@@ -1,7 +1,10 @@
 # Mail implementation status — 19 November 2026
 
-The inherited main source and qualification are recorded in the
-[19 November completion report](../../validation/office-main-completion-20261119/README.md).
+The current [UID discovery continuation](../../validation/mail-uid-pagination-20261119/README.md)
+adds bounded discovery, atomic stored-range reconciliation and monotonic v3
+cursor revisions. Combined qualification follows the fully retained first
+1,000-execution checkpoint. The inherited main source and qualification are
+recorded in the [19 November completion report](../../validation/office-main-completion-20261119/README.md).
 Subsequent incoming-ref reconciliation and direct TLS-rejection cleanup are
 qualified in the [current reconciliation report](../../validation/office-current-reconciliation-20261119/README.md),
 with their own fresh gate and source identity. The concurrent
@@ -413,9 +416,9 @@ harness, not the standalone Office application.
 1. Preserve the completed integrated qualification and its source/runtime
    identities. Rerun affected checks for subsequent source changes and retain
    their raw logs and remote checkpoints separately from earlier evidence.
-2. Continue the remaining M06 work: discovered-UID pagination for large/sparse
-   mailboxes, host OAuth/refresh and lifecycle scheduling, other-OS TLS coverage
-   and authorized disposable-account interoperability. Generic browser
+2. Continue the remaining M06 work: scalable discovery beyond the configured
+   simple-SEARCH count/byte budgets, host OAuth/refresh and lifecycle scheduling,
+   other-OS TLS coverage and authorized disposable-account interoperability. Generic browser
    socket transport remains explicitly unsupported; no automatic retry is added
    without its own bounded policy and reconciliation checks.
 3. Continue M07 composition/submission and M04W's repository-driven mailbox

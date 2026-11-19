@@ -127,6 +127,15 @@ by default.
 
    Interpreting LanguageTool's Arabic rules is assessed
    [below](#languagetool-arabic-assessment-v68).
+3b. **Clean-room extension (19 November 2026).** A separate "dirty-room"
+   agent studied LanguageTool ar v6.8, Fareh, Ghalatawi and the aghlat list and
+   wrote an abstract functional [specification](arabic-rule-spec.md) without
+   any copied lists, messages, examples, IDs or patterns (reviewed: it contains
+   no Arabic script, regexes, rule IDs or tag strings). An independent
+   implementer who has not seen those sources writes the MIT rules from it,
+   tier T1 first (no lexicon); T2 categories wait for the morphology lexicon
+   (Camel Morph MSA, CC BY 4.0, under consideration); T3 categories need a
+   disambiguator and are deferred.
 4. **Model-backed analysis (optional, owner decision).** Either accept the
    CAMeL weights' training-data risk and port them natively like the spaCy
    transformer pipelines, or train our own licence-clean models:

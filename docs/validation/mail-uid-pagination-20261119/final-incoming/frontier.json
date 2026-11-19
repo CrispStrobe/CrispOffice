@@ -1,0 +1,28 @@
+{
+  "minimal_frontier": [
+    "05582479e1249a8cf4d526740a0d43149c3cf5ae",
+    "0669ac119da05f5eb777c8cfdbce32e0261df647",
+    "84aa6f96e95c1eda39ad8c548c93b167be21dd1f",
+    "a4b73fe40387d62c27477bb640f14a2694d031d8",
+    "dc267fb4957d5a6499ce8174fd4a2acc39a4acf8"
+  ],
+  "distinct_unaccounted_heads": [
+    "05582479e1249a8cf4d526740a0d43149c3cf5ae",
+    "0669ac119da05f5eb777c8cfdbce32e0261df647",
+    "2122066f0eccf06a6f2c3c523c5715a7233bb95d",
+    "3f0277c8c4d317c3607e3bd6a2bf0e9aaf73bd3d",
+    "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+    "751d7eb647ea2fa25f763859b4c6e6783d64dddc",
+    "84aa6f96e95c1eda39ad8c548c93b167be21dd1f",
+    "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+    "906296bad785daaf7be85ec838361bee18ca88a9",
+    "a4b73fe40387d62c27477bb640f14a2694d031d8",
+    "dc267fb4957d5a6499ce8174fd4a2acc39a4acf8"
+  ],
+  "actual_ref_count": 421,
+  "classification": {
+    "ancestor": 380,
+    "unaccounted": 13,
+    "historical_equivalent": 28
+  }
+}

@@ -12,15 +12,23 @@ heads are reconciled: main `dc267fb4`, cursor/Arabic fixes `0669ac11`, decompose
 Arabic tests `05582479`, integration record `84aa6f96`, and complete evidence
 `a4b73fe4`. The combined source adds v3 cursor revisions, preserves all Arabic
 boundary and offset controls, and includes the optional native/Web Hunspell
-package. A newly identified native dictionary-handle disposal leak is under
-repair before fresh local acceptance. Historical qualifications retain their
-source identities; no pending result is represented as a pass.
+package. Review reproduced and repaired a native dictionary-handle disposal leak and
+freed-handle reuse after failed replacement. Eight deterministic lifecycle
+regressions passed in development, and independent review found no remaining
+blocking defect. Their [raw red/green evidence](development/hunspell-lifecycle.tar.xz)
+is retained separately; the frozen combined gate will rerun the final source. Later main `b655b8a3`, including the Arabic
+rule specification and macOS Studio runner, was also merged before this freeze.
+Historical qualifications retain their source identities; no pending result is
+represented as a pass. [PR #183](https://github.com/CrispStrobe/quds_office_suite/pull/183)
+is the merge vehicle into remote main.
 
 The continuation reconciles current incoming work before replacing the numeric
 UID ceiling with bounded discovery and atomic range reconciliation. The
 [incoming record](incoming/README.md) retains its exact captured references.
 The [preflight refresh](preflight-incoming/README.md) preserves the subsequent
 bounded capture, including concurrent Office reconciliation and AyaSpell work.
+The [final capture and later-main review](final-incoming/README.md) preserve the
+421-ref accounting and the subsequent 33-path main delta separately.
 
 ## Implemented behavior
 
@@ -61,35 +69,54 @@ distinct filenames, including integrity/readback refusal, exclusion of unrelated
 output files and deterministic local builds. No live publication is performed
 by this continuation or its tests.
 
-## Local gate expansion
+## Native Hunspell ownership repair
 
-All gates execute sequentially on one committed source. The existing selections
-below describe the first pass; the committed plans are being expanded for v3
-VM/Node cursors, Arabic engine/editor behavior and actual native Hunspell/installer
-execution with the pinned dictionary. GitHub Actions are not queried, awaited,
-dispatched or used as an acceptance condition.
+Normal disposal rejects pending Dart requests, asks the worker to close after any
+active native call, and waits for an explicit acknowledgement. Concurrent calls
+share the same cleanup. Replacement clears ownership before allocation, so a
+failed open cannot retain a freed pointer. Explicit close detaches a statically
+rooted native finalizer before releasing the handle.
+
+The deterministic C ABI fixture reproduced both original defects and exercises
+normal/repeated/concurrent disposal, pending calls, startup cancellation, reopen
+and allocation failure. Separate actual-library tests use the built Hunspell
+backend and hash-verified AyaSpell files. A two-second shutdown fallback can
+terminate a stuck worker, but prompt completion of an active C call or abnormal
+finalizer execution is not established by these tests.
+
+## Expanded local qualification plan
+
+All gates execute sequentially on one committed source. GitHub Actions are not
+queried, awaited, dispatched or used as an acceptance condition.
 
 | Gate | Selection | Purpose |
 | --- | --- | --- |
-| Core and durable store | `tools/mail/check_store.py` discovers the current core and store suites | VM and Node contracts, atomic SQLite range application, migrations, recovery, enforced offline dependencies and browser entry/worker compilation |
-| Native transport and TLS | 7 suites | Sparse/high UID discovery, page/cursor behavior, actual SQLite coordination, current implicit TLS/STARTTLS and connection lifecycle controls |
-| Fork protocol regressions | 46 suites | New bounded UID SEARCH parser and client framing, existing FETCH/SEARCH and mailbox parsers, shared IMAP/POP/SMTP behavior |
-| MIME and reader consumers | 6 MIME + 4 UI suites | MIME and saved-message reader regression coverage across changed shared dependencies |
-| Portable Node | 9 suites | Transport configuration and browser unsupported boundary, MIME, portable fork import |
-| Python controls | Existing Mail/shared-runner/restorer controls | Fail-closed event accounting, process cleanup and runtime verification |
-| Incoming AyaSpell controls | Two offline unittest suites | Verified-file publication selection and reproducible bundle/integrity behavior using local fixtures |
+| Core and durable store | `tools/mail/check_store.py` discovers every current core/store suite | VM/Node contracts, atomic SQLite ranges, migrations/recovery, offline lock checks and browser entry/worker compilation |
+| Native transport and TLS | 5 transport + 3 TLS suites | Sparse/high UID discovery, v3 cursor freshness, actual SQLite coordination, TLS/STARTTLS and connection lifecycle |
+| Fork protocol regressions | 46 suites | Strict bounded UID SEARCH, FETCH/SEARCH/mailbox parsing, shared IMAP/POP/SMTP behavior |
+| MIME and Mail reader consumers | 6 MIME + 4 UI suites | Regression coverage across changed shared dependencies |
+| Arabic and shared proofing | 6 engine + 8 editor suites | Arabic combining marks, original offsets, mixed-script boundaries, default registration and shared editing behavior |
+| Hunspell | 3 suites | Portable provider behavior, actual native library/dictionary/installer execution, deterministic native-handle lifecycle regression |
+| Portable Node | 13 suites | Mail/cursors, MIME/fork portability, Arabic Unicode/text ranges and Hunspell provider behavior |
+| Python controls | Shared runner, restorer, Mail launcher and three AyaSpell suites | Event accounting, process cleanup, runtime verification and bounded verified-file publication |
+| Web compilation | Mail entry/worker and Hunspell public entry | Compilation only; actual browser/Wasm execution remains separate |
 
-The [native plan](native-plan.json) contains 63 suites and explicitly lists strict
-analysis and formatting inputs. The [Node plan](node-plan.json) contains nine
-suites. The shared runner binds every tracked package, app and vendored entry,
-selected fixtures, manifests, launcher and native inputs before and after each
-gate. The wrapper also binds source and runtime across the separate core/store
-gate and refuses changed Mail Dart files missing from the strict check list.
+The [native plan](native-plan.json) selects 81 suites and lists 98 strict analysis
+and formatting paths. The [Node plan](node-plan.json) selects 13 suites. These
+are planned selections; final execution totals must come from successful raw
+reporter events. Failed/skipped/unfinished cases and missing suites are rejected.
+VM/Node repetitions remain separate executions, not additional distinct cases.
 
-Suite counts are planned selections. Final case counts must be derived from
-successful raw reporter events, with failures, skips, unfinished cases and
-missing suites rejected. VM/Node repetitions are not additional distinct
-scenarios. Earlier qualifications retain their original source identity.
+The wrapper binds all tracked packages/apps/vendor source, fixtures, workspace
+manifests, launcher inputs, runtime artifacts and the native dictionary before
+and after execution. Every changed Dart input must appear in both strict check
+lists. The real native library and all eight immutable catalog files are
+hash-bound; the public pinned-revision installer test is explicitly enabled.
+The fake native ABI used by lifecycle regressions is identified separately from
+the actual Hunspell backend. No fake backend result qualifies real spelling.
+
+The incoming macOS runner is preserved and its structured assets parse. This
+Linux-host qualification does not build or execute macOS, iOS, Android or Windows.
 
 ## Reproduce
 
@@ -100,7 +127,9 @@ Restore the pinned runtime using the checked-in
 Commit all product changes, tests, plans and the driver before qualification.
 Use the reconciled baseline as `BASE_COMMIT`, and the committed implementation
 and plan as `SOURCE_COMMIT`. Both arguments must be full known Git commit IDs.
-Keep runtime and output directories outside the source checkout.
+Keep runtime and output directories outside the source checkout. The expanded
+[runtime record](runtime/combined-README.md) also records the pinned CMake/native build,
+immutable AyaSpell catalog download and explicit test environment.
 
 ```bash
 source /absolute/path/to/runtime/env.sh
@@ -110,8 +139,9 @@ python3 docs/validation/mail-uid-pagination-20261119/run_validation.py \
   --output /absolute/path/to/empty-validation-output
 ```
 
-The wrapper runs shared-runner and restorer controls, the complete core/store
-gate, the native plan and then the Node plan. It preserves each child receipt,
+The wrapper runs shared-runner, restorer and AyaSpell controls, the Hunspell web
+entry compilation, the complete core/store gate, the native plan and then the
+Node plan. It preserves each child receipt,
 raw output and command log, records the final source/runtime snapshots, and
 stops after a failed gate. Use a different empty output directory after repairs;
 do not overwrite an earlier failed attempt.

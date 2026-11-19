@@ -157,11 +157,11 @@ A failed migration rolls back, and an unknown future version returns
 
 ## Qualification boundary
 
-### UID discovery and cursor freshness — combined qualification in progress
+### UID discovery and cursor freshness
 
 The [UID discovery report](../../docs/validation/mail-uid-pagination-20261119/README.md)
-records bounded stored-range reconciliation and the v3 monotonic cursor repair.
-The first 1,000-execution checkpoint at `960fb72f` predates that repair; it is
+records bounded stored-range reconciliation, the v3 monotonic cursor repair and
+source-bound combined qualification. The first 1,000-execution checkpoint at `960fb72f` predates that repair; it is
 retained separately. The updated provider must reject stale completed-sweep
 pages through the store comparison without restoring expunged data. Historical
 counts below remain attached to their original sources.
