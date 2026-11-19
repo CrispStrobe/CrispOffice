@@ -715,6 +715,12 @@ class _Parser {
           tokens[position + 1].text != '=' &&
           tokens[position + 1].text != '.') {
         final name = _identifier();
+        if (current.kind == _TokenKind.separator && current.text == ':') {
+          context.unsupported(
+            name,
+            'Line labels are unsupported; use Call or empty parentheses for a zero-argument call before a colon.',
+          );
+        }
         final arguments = <_Expr>[];
         if (_is('(') && tokens[position + 1].text == ')') {
           position += 2;

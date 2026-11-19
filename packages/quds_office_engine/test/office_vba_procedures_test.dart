@@ -447,5 +447,60 @@ End Sub
         throwsA(_error('vba_syntax_error')),
       );
     });
+
+    test('labels never invoke same-named helper procedures', () {
+      for (final body in <String>[
+        'Helper:',
+        'Helper: Worksheets(1).Range("A1").Value2 = 99',
+        '  helper :',
+        'UnknownLabel:',
+        'Exit Sub\nHelper:',
+        'If False Then\nHelper:\nEnd If',
+      ]) {
+        expect(
+          () => _compile('''
+Sub Main()
+$body
+End Sub
+Sub Helper()
+  Worksheets(1).Range("A1").Value2 = "must not run"
+End Sub
+'''),
+          throwsA(_error('vba_unsupported')),
+          reason: body,
+        );
+      }
+    });
+
+    test('labels are rejected in unused procedures as well', () {
+      expect(
+        () => _compile('''
+Sub Main()
+End Sub
+Sub Unused()
+Helper:
+End Sub
+Sub Helper()
+  Worksheets(1).Range("A1").Value2 = "must not run"
+End Sub
+'''),
+        throwsA(_error('vba_unsupported')),
+      );
+    });
+
+    test(
+      'explicit zero-argument calls remain valid before colon separators',
+      () {
+        final macro = _compile('''
+Sub Main()
+  Call Helper: Helper(): Call Helper()
+End Sub
+Sub Helper()
+  Worksheets(1).Range("A1").Value2 = "called"
+End Sub
+''');
+        expect(_values(macro), List<String>.filled(3, 'called'));
+      },
+    );
   });
 }

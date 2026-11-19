@@ -124,6 +124,9 @@ without arguments. Functions used in expressions require parentheses, such as
 `Twice(amount)` or `DefaultAmount()`. A function may also be called as a
 statement, in which case its result is discarded. Names are case-insensitive,
 and `Public`/`Private` do not change access within this single-module dialect.
+Line labels such as `Helper:` are rejected, including when the name matches
+a helper. To place a parameterless call before a colon statement separator,
+write `Call Helper: ...` or `Helper(): ...` explicitly.
 
 Every declared parameter must explicitly say **`ByVal`**. VBA normally defaults
 to `ByRef`; this compiler rejects an omitted passing mode rather than silently
