@@ -610,6 +610,30 @@ void main() {
     });
   });
 
+  group('integration token boundaries', () {
+    for (final String text in <String>[
+      'المعرف xسيما محفوظ.',
+      'المعرف سيماbar محفوظ.',
+      'المعرف _سيما محفوظ.',
+      'المعرف x\u200Dسيما محفوظ.',
+      'المعرف سيما\u0654 محفوظ.',
+      'المعرف xسوف سيذهب.',
+      'المعرف سوف سيذهبX.',
+      'المعرف xالأحد 5 مارس 2020.',
+      'المعرف الأحد 5 مارس 2020x.',
+      'المعرف xعام 20244.',
+      'المعرف عام 20244x.',
+    ]) {
+      test('does not rewrite part of a token: $text', () async {
+        final List<OfficeProofingFinding> findings = await check(text);
+        expect(
+          findings.map((f) => '${f.ruleId}:${f.originalText}').toList(),
+          isEmpty,
+        );
+      });
+    }
+  });
+
   group('word lists', () {
     final List<ArabicWordListForTesting> lists = arabicWordListsForTesting();
 

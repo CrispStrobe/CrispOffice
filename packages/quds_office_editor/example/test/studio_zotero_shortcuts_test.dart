@@ -353,7 +353,6 @@ void main() {
   ) async {
     final desktop = _Desktop(inspectCurrentField: true);
     final controller = await _studio(tester, desktop);
-    await enableStudioSetting(tester, 'Show notes');
     final note = WordNotes.insert(
       controller.document,
       controller.document.paragraphs.single,

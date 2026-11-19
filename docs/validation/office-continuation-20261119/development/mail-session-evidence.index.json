@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-19T11:16:35.935252+00:00",
+  "scope": "Authoring evidence only: deterministic live Mail lifecycle red/green tests, original/corrected test fixture and exact source copies. No final source qualification and no live account/network execution.",
+  "archive": "mail-session-evidence.tar.xz",
+  "bytes": 14880,
+  "sha256": "41c5f373b098269c855194d4f3c2f83abba85630036f055dfb3c1ff8af06bd72",
+  "members": [
+    {
+      "path": "mail-session-after-source/lib/studio_mail.dart",
+      "bytes": 26059,
+      "sha256": "a3bbe4dbf8b393930692b44769a951129abf653587191bccbbece23ecb52cd11"
+    },
+    {
+      "path": "mail-session-after-source/sha256.json",
+      "bytes": 285,
+      "sha256": "f0910373fdfaa17aa680153fd3dac019d42a0036aa3131d46ce6a8729c1bf090"
+    },
+    {
+      "path": "mail-session-after-source/test/studio_mail_session_test.dart",
+      "bytes": 15913,
+      "sha256": "f2e3a7b0d5482be9298d708c89aab062c2e41fbd9a3d53b02aa84946573bde5f"
+    },
+    {
+      "path": "mail-session-after.jsonl",
+      "bytes": 8252,
+      "sha256": "d62c2b76e9a1450f3eab1b3166832294eeab7cd6695e00f2355350ad5e071042"
+    },
+    {
+      "path": "mail-session-after.stderr",
+      "bytes": 67,
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39"
+    },
+    {
+      "path": "mail-session-analysis.txt",
+      "bytes": 78,
+      "sha256": "3a3cb8662693008abb40c9806f903a72cf80fd95d6449805b2f97f9f912c54c2"
+    },
+    {
+      "path": "mail-session-before-source/lib/studio_mail.dart",
+      "bytes": 22354,
+      "sha256": "ed37a943d9d8d32a9ad8ad418ba98ae168ed5912330b26e2fc0f386a76dd91c7"
+    },
+    {
+      "path": "mail-session-before-source/sha256.json",
+      "bytes": 205,
+      "sha256": "6465b40a181f80ad81a56f43904e6cb9c67d4f3a2393a1d1c4645d112bd9da94"
+    },
+    {
+      "path": "mail-session-before-source/test/studio_mail_session_test.dart",
+      "bytes": 15788,
+      "sha256": "d1042f964e058f04e8f864826a0279462061932a6ed0820cba422a381b72f46a"
+    },
+    {
+      "path": "mail-session-before.jsonl",
+      "bytes": 43115,
+      "sha256": "6503f3cf9b5135094a1081dc7ee4c3432543cd43f3751c999b274d260565ac82"
+    },
+    {
+      "path": "mail-session-before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "mail-session-corrected-draft-before.jsonl",
+      "bytes": 3071,
+      "sha256": "0d7d7823ac61925a2d3bd246e8dc4aa29a784d63bafa259876d46267bba3ee9f"
+    },
+    {
+      "path": "mail-session-corrected-draft-before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "mail-session-first-after.jsonl",
+      "bytes": 9917,
+      "sha256": "34252d587606d88744315d2d70763248f421bce9bc2badd0f32fae272c656413"
+    },
+    {
+      "path": "mail-session-first-after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "mail-session-first-analysis.txt",
+      "bytes": 263,
+      "sha256": "c7c5d1a0881d1f9863018cb9285c2348ee7c8205ebb099553afe9f62894270dd"
+    },
+    {
+      "path": "mail-session-red-replay/lib/studio_mail.dart",
+      "bytes": 22354,
+      "sha256": "ed37a943d9d8d32a9ad8ad418ba98ae168ed5912330b26e2fc0f386a76dd91c7"
+    },
+    {
+      "path": "mail-session-red-replay/lib/studio_saved_message.dart",
+      "bytes": 63,
+      "sha256": "3cd9df72487eea43fab5e88dc44a6bbabeac5ae36161799d116dbc6c80dba4c5"
+    },
+    {
+      "path": "mail-session-red-replay/lib/studio_strings.dart",
+      "bytes": 57,
+      "sha256": "7a1ea121e5112c7ec461c1f585399d4a04f9b3bd1f5504e9957573fb13f73dee"
+    },
+    {
+      "path": "mail-session-red-replay/test/studio_mail_session_test.dart",
+      "bytes": 15893,
+      "sha256": "e4b46eae760c4233de7427a7f89fd86d2b134ffd44780abc0bd25b5f2d8409e6"
+    },
+    {
+      "path": "mail-session-review.json",
+      "bytes": 10972,
+      "sha256": "f0b7900353f83e462bed0aaa1bf3bd586c4a725019a01ac1e3be82628c728748"
+    }
+  ],
+  "member_count": 21,
+  "verified_all_members": true
+}

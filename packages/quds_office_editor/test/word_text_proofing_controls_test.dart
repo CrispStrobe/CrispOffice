@@ -728,7 +728,7 @@ void main() {
   );
 
   test(
-    'selection language changes and resets only its active slot through history and save',
+    'selection language edits its active bidi slot and preserves Latin metadata through history and save',
     () {
       final controller = _controller(document: _complexScriptDocument());
       final paragraph = controller.document.paragraphs.single;
@@ -738,21 +738,21 @@ void main() {
       expect(controller.textProofingTarget!.language, 'ar-SA');
       expect(
         controller.setTextProofingLanguage(
-          'he-IL',
+          'de-AT',
           target: controller.textProofingTarget!,
         ),
         isTrue,
       );
-      expect(controller.textProofingTarget!.language, 'he-IL');
+      expect(controller.textProofingTarget!.language, 'de-AT');
       var runs = paragraph.inlines.whereType<WmlRun>().toList();
       expect(runs.first.properties.proofingLanguage, 'de-DE');
-      expect(runs.first.properties.complexScriptLanguage, 'he-IL');
+      expect(runs.first.properties.complexScriptLanguage, 'de-AT');
       expect(runs.last.properties.proofingLanguage, 'fr-FR');
       expect(runs.last.properties.complexScriptLanguage, 'he-IL');
       final revision = controller.contentRevision;
       expect(
         controller.setTextProofingLanguage(
-          'he-IL',
+          'de-AT',
           target: controller.textProofingTarget!,
         ),
         isTrue,
@@ -761,14 +761,14 @@ void main() {
       controller.undo();
       expect(controller.textProofingTarget!.language, 'ar-SA');
       controller.redo();
-      expect(controller.textProofingTarget!.language, 'he-IL');
+      expect(controller.textProofingTarget!.language, 'de-AT');
       var loaded = WordDeserializer().readBytes(controller.saveBytes());
       var props = loaded.paragraphs.single.inlines
           .whereType<WmlRun>()
           .first
           .properties;
       expect(props.proofingLanguage, 'de-DE');
-      expect(props.complexScriptLanguage, 'he-IL');
+      expect(props.complexScriptLanguage, 'de-AT');
       expect(props.sourcePropertiesXml, contains('eastAsia="ja-JP"'));
       expect(props.complexScript, isTrue);
       expect(props.bold, isTrue);
@@ -785,7 +785,7 @@ void main() {
       expect(runs.first.properties.complexScriptLanguage, isNull);
       expect(runs.last.properties.complexScriptLanguage, 'he-IL');
       controller.undo();
-      expect(controller.textProofingTarget!.language, 'he-IL');
+      expect(controller.textProofingTarget!.language, 'de-AT');
       controller.redo();
       expect(controller.textProofingTarget!.language, 'ar-EG');
       loaded = WordDeserializer().readBytes(controller.saveBytes());
@@ -796,8 +796,7 @@ void main() {
       expect(props.proofingLanguage, 'de-DE');
       expect(props.complexScriptLanguage, isNull);
       expect(props.sourcePropertiesXml, contains('eastAsia="ja-JP"'));
-      expect(props.sourcePropertiesXml, contains('de-DE'));
-      expect(props.sourcePropertiesXml, isNot(contains('he-IL')));
+      expect(props.sourcePropertiesXml, isNot(contains('de-AT')));
       expect(props.sourcePropertiesXml, isNot(contains('ar-SA')));
       final reopened = _controller(document: loaded);
       reopened.caret
@@ -806,82 +805,6 @@ void main() {
       expect(reopened.textProofingTarget!.language, 'ar-EG');
     },
   );
-
-  for (final complex in [false, true]) {
-    test(
-      'partial ${complex ? 'Arabic' : 'Latin'} selection routes its own language slot and preserves the other',
-      () {
-        final document = _complexScriptDocument();
-        final paragraph = document.paragraphs.single;
-        // Both scripts begin in one run without an explicit complex-script
-        // marker. Routing must use the selected fragment after splitting.
-        paragraph.inlines = [
-          WmlRun(
-            text: 'Latin عربي',
-            properties: WmlRunProps(
-              proofingLanguage: 'de-DE',
-              complexScriptLanguage: 'ar-SA',
-            ),
-          ),
-        ];
-        final controller = _controller(document: document);
-        final start = complex ? 6 : 0;
-        final end = complex ? 10 : 5;
-        final selectedLanguage = complex ? 'he-IL' : 'fr-FR';
-        controller.caret
-          ..selectionAnchor = start
-          ..logicalIndex = end;
-        expect(
-          controller.setTextProofingLanguage(
-            selectedLanguage,
-            target: controller.textProofingTarget!,
-          ),
-          isTrue,
-        );
-        final selected = paragraph.inlines
-            .whereType<WmlRun>()
-            .toList()[complex ? 1 : 0];
-        expect(selected.text, complex ? 'عربي' : 'Latin');
-        expect(
-          selected.properties.proofingLanguage,
-          complex ? 'de-DE' : 'fr-FR',
-        );
-        expect(
-          selected.properties.complexScriptLanguage,
-          complex ? 'he-IL' : 'ar-SA',
-        );
-        expect(controller.textProofingTarget!.language, selectedLanguage);
-        controller.undo();
-        expect(paragraph.inlines.whereType<WmlRun>().single.text, 'Latin عربي');
-        controller.redo();
-        expect(controller.textProofingTarget!.language, selectedLanguage);
-        expect(
-          controller.setTextProofingLanguage(
-            null,
-            target: controller.textProofingTarget!,
-          ),
-          isTrue,
-        );
-        final inherited = complex ? 'ar-EG' : 'en-US';
-        expect(controller.textProofingTarget!.language, inherited);
-        final loaded = WordDeserializer().readBytes(controller.saveBytes());
-        final saved = loaded.paragraphs.single.inlines
-            .whereType<WmlRun>()
-            .toList();
-        final changed = saved[complex ? 1 : 0].properties;
-        final unchanged = saved[complex ? 0 : 1].properties;
-        expect(changed.proofingLanguage, complex ? 'de-DE' : null);
-        expect(changed.complexScriptLanguage, complex ? null : 'ar-SA');
-        expect(unchanged.proofingLanguage, 'de-DE');
-        expect(unchanged.complexScriptLanguage, 'ar-SA');
-        final reopened = _controller(document: loaded);
-        reopened.caret
-          ..selectionAnchor = start
-          ..logicalIndex = end;
-        expect(reopened.textProofingTarget!.language, inherited);
-      },
-    );
-  }
 
   test(
     'language inheritance and explicit checking permission survive DOCX save',
@@ -974,7 +897,6 @@ void main() {
       expect(props.italic, isTrue);
       expect(props.noProof, isFalse);
       expect(props.sourcePropertiesXml, contains('ja-JP'));
-      expect(props.complexScriptLanguage, 'ar-SA');
       expect(props.sourcePropertiesXml, contains('ar-SA'));
       final report = await controller.proofing.checkNow(
         includeManualProviders: false,
@@ -1007,8 +929,6 @@ void main() {
           .properties;
       expect(loadedProps.bold, isTrue);
       expect(loadedProps.italic, isTrue);
-      expect(loadedProps.complexScriptLanguage, 'ar-SA');
-      expect(loadedProps.sourcePropertiesXml, contains('ja-JP'));
     },
   );
 

@@ -1,0 +1,494 @@
+{
+  "checked_at_utc": "2026-11-19T11:06:58.529235+00:00",
+  "scope": "Independent integrity and raw-event recount of historical saved evidence only. No application execution, current-source acceptance, installed OS/browser acceptance, or current external runtime readback is claimed.",
+  "archive_integrity": {
+    "archives": [
+      {
+        "head": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+        "archive": "docs/validation/office-main-integration-20261119/host-final/first-attempt-evidence.tar.xz",
+        "index": "docs/validation/office-main-integration-20261119/host-final/first-attempt-evidence.index.json",
+        "source_commit": "4681760c542eb2a3473b72605ebb7606e0e7b4a3",
+        "archive_bytes": 851508,
+        "archive_sha256": "2ab660cc80fcb9a709323f731f57bc45bf8a3e9aefb84f7a95851ea67cd7adbf",
+        "index_sha256": "a8e58e578a523d20d1ac67d3817a250f648ddb5ead8fabbe0b55c9fa2b94d1e4",
+        "member_count": 62,
+        "member_bytes": 14420069,
+        "accepted_qualification": false,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "head": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+        "archive": "docs/validation/office-main-integration-20261119/host-final/qualification-evidence.tar.xz",
+        "index": "docs/validation/office-main-integration-20261119/host-final/qualification-evidence.index.json",
+        "source_commit": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+        "archive_bytes": 848808,
+        "archive_sha256": "fcf4a44cf7f3a971d5e59f9dc287a0bc5578ab560ff904c877a10f97187887a4",
+        "index_sha256": "4101dcf1279e9040fd4f442a6dc72f82f446e6634f137c42925f8c65a41323b4",
+        "member_count": 72,
+        "member_bytes": 14305706,
+        "accepted_qualification": true,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "head": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+        "archive": "docs/validation/office-main-integration-20261119/host-final/review-evidence.tar.xz",
+        "index": "docs/validation/office-main-integration-20261119/host-final/review-evidence.index.json",
+        "source_commit": "293f45449b496e3024ff100968d78f37983faadd",
+        "archive_bytes": 824468,
+        "archive_sha256": "996c09f358adf0a667ba93b6eb1a3fe2a5c49545267bb556cd878c1114e996bd",
+        "index_sha256": "36d31df0c815ed51c88846c88c4b747310682a55297df4a6ebeb382d306a5009",
+        "member_count": 48,
+        "member_bytes": 7058507,
+        "accepted_qualification": false,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "head": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+        "archive": "docs/validation/office-main-integration-20261119/host-final/studio-mail-evidence.tar.xz",
+        "index": "docs/validation/office-main-integration-20261119/host-final/studio-mail-evidence.index.json",
+        "source_commit": null,
+        "archive_bytes": 20608,
+        "archive_sha256": "59f2809619317e0bdd6a30a717ecbb43ffe684afaf7a6fac206a6ad0553c501d",
+        "index_sha256": "0c124d5c1c329b9fab94a12359bffa6816357e7066317c36a7e8b5ce004a8679",
+        "member_count": 35,
+        "member_bytes": 270070,
+        "accepted_qualification": false,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "head": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+        "archive": "docs/validation/office-main-sync-20261119/main-delta-v2/attempt-c0c71a26/evidence.tar.xz",
+        "index": "docs/validation/office-main-sync-20261119/main-delta-v2/attempt-c0c71a26/evidence.index.json",
+        "source_commit": "c0c71a26e014cadda7a1f42244e710509dea5f6c",
+        "archive_bytes": 848768,
+        "archive_sha256": "ea7127a5b644c2a325b458076be01e8431814ab09cae8cacf84a347d757740cb",
+        "index_sha256": "9a32625be83a4489ee2be77de7392a48b70237808bb2d789f289231b87ea0eaa",
+        "member_count": 57,
+        "member_bytes": 16472939,
+        "accepted_qualification": false,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "head": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+        "archive": "docs/validation/office-main-sync-20261119/main-delta-v2/reviews/evidence.tar.xz",
+        "index": "docs/validation/office-main-sync-20261119/main-delta-v2/reviews/evidence.index.json",
+        "source_commit": null,
+        "archive_bytes": 1413432,
+        "archive_sha256": "2ef5f8f78d9999210c03a904f5752db8ec7446de6ef55885466387e3a3e5f01e",
+        "index_sha256": "b0a9bae20a2e09f0ca8cddc44dc30adc3ef1c234498e85d9c33a47ba8af0d885",
+        "member_count": 132,
+        "member_bytes": 9788766,
+        "accepted_qualification": false,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "head": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+        "archive": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.tar.xz",
+        "index": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.index.json",
+        "source_commit": "26df787326f58a002b62241b7feb52acff089f2f",
+        "archive_bytes": 875528,
+        "archive_sha256": "e865a927ac0c5fbcf72af4beef2f3e2512a2691ad90caa15c75c5b6d03c5ee51",
+        "index_sha256": "edf1aad387ea109754fa8d2ec6cd1d0ca8bddea81b06e2b71720f0cf80d87235",
+        "member_count": 62,
+        "member_bytes": 16733020,
+        "accepted_qualification": false,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "head": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+        "archive": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.tar.xz",
+        "index": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.index.json",
+        "source_commit": "fce543dedb1217804f67de088ef9c287e8a2edca",
+        "archive_bytes": 646816,
+        "archive_sha256": "ebdc93549823de17d878a19439925a500590021cccbace16274804535482f821",
+        "index_sha256": "081898115c301eb3d1cb428fb84c7f6540c1e54278dd0542319145364d616627",
+        "member_count": 24,
+        "member_bytes": 9418148,
+        "accepted_qualification": false,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "head": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+        "archive": "docs/validation/office-main-sync-20261119/main-delta-v4/final/evidence.tar.xz",
+        "index": "docs/validation/office-main-sync-20261119/main-delta-v4/final/evidence.index.json",
+        "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+        "archive_bytes": 1006716,
+        "archive_sha256": "72b36a50b2096e0ff516983bbb90c342f36281a85d56eb893a3fc471671a98fc",
+        "index_sha256": "92c73534f64396a2a3ee682f71c610de9603b7509d7eb7bd5c13c4c599305e6f",
+        "member_count": 103,
+        "member_bytes": 24139061,
+        "accepted_qualification": true,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "head": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+        "archive": "docs/validation/office-main-sync-20261119/main-delta-v4/reviews/evidence.tar.xz",
+        "index": "docs/validation/office-main-sync-20261119/main-delta-v4/reviews/evidence.index.json",
+        "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+        "archive_bytes": 391548,
+        "archive_sha256": "3f990831408e7867153b4546d59c466fd8418cfa7c44a003ab2374ec65c1ffdb",
+        "index_sha256": "1792f0317c7966cfdca789f678c2a31894f7a8c3b9a15a208f30f59f3d1a18b9",
+        "member_count": 233,
+        "member_bytes": 6854028,
+        "accepted_qualification": false,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "all_passed": true,
+    "archive_count": 10,
+    "member_count": 828
+  },
+  "qualifications": {
+    "host": {
+      "phases": [
+        {
+          "phase": "main",
+          "source_commit": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+          "source_tree": "946667e34d796f5e0bf4e2904759b5e1d9e02d34",
+          "started_at_utc": "2026-11-19T09:34:23.442832+00:00",
+          "finished_at_utc": "2026-11-19T09:40:47.382161+00:00",
+          "passed_executions": 979,
+          "suite_count": 56,
+          "groups": [
+            {
+              "name": "office-proofing-engine-vm",
+              "passed_executions": 442,
+              "suite_count": 14,
+              "excluded_successful_setup_loading_teardown_events": 14,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "english-proofing-contracts-vm",
+              "passed_executions": 29,
+              "suite_count": 3,
+              "excluded_successful_setup_loading_teardown_events": 3,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "office-proofing-editor",
+              "passed_executions": 321,
+              "suite_count": 19,
+              "excluded_successful_setup_loading_teardown_events": 27,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "studio-functional-host-integration",
+              "passed_executions": 171,
+              "suite_count": 18,
+              "excluded_successful_setup_loading_teardown_events": 18,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "hunspell-provider-vm",
+              "passed_executions": 10,
+              "suite_count": 1,
+              "excluded_successful_setup_loading_teardown_events": 1,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "hunspell-native-lifecycle-vm",
+              "passed_executions": 6,
+              "suite_count": 1,
+              "excluded_successful_setup_loading_teardown_events": 1,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            }
+          ],
+          "analysis_paths": 51,
+          "format_paths": 51,
+          "static_runs": [
+            "analysis",
+            "format",
+            "whitespace"
+          ],
+          "source_binding": {
+            "records": 5092,
+            "all_git_entries_and_content_hashes_match": true
+          },
+          "runtime_inventory_records": 11166,
+          "recorded_before_after_source_and_runtime_identical": true,
+          "passed": true
+        },
+        {
+          "phase": "node",
+          "source_commit": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+          "source_tree": "946667e34d796f5e0bf4e2904759b5e1d9e02d34",
+          "started_at_utc": "2026-11-19T09:34:49.252147+00:00",
+          "finished_at_utc": "2026-11-19T09:37:01.666498+00:00",
+          "passed_executions": 306,
+          "suite_count": 5,
+          "groups": [
+            {
+              "name": "arabic-writing-node",
+              "passed_executions": 78,
+              "suite_count": 1,
+              "excluded_successful_setup_loading_teardown_events": 1,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "arabic-extended-node",
+              "passed_executions": 200,
+              "suite_count": 1,
+              "excluded_successful_setup_loading_teardown_events": 1,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "proofing-merge-node",
+              "passed_executions": 5,
+              "suite_count": 1,
+              "excluded_successful_setup_loading_teardown_events": 1,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "complex-script-routing-node",
+              "passed_executions": 13,
+              "suite_count": 1,
+              "excluded_successful_setup_loading_teardown_events": 1,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "hunspell-provider-node",
+              "passed_executions": 10,
+              "suite_count": 1,
+              "excluded_successful_setup_loading_teardown_events": 1,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            }
+          ],
+          "analysis_paths": 0,
+          "format_paths": 0,
+          "static_runs": [
+            "whitespace"
+          ],
+          "source_binding": {
+            "records": 5092,
+            "all_git_entries_and_content_hashes_match": true
+          },
+          "runtime_inventory_records": 11163,
+          "recorded_before_after_source_and_runtime_identical": true,
+          "passed": true
+        }
+      ],
+      "passed_executions": 1285,
+      "distinct_cases": 979,
+      "suite_platform_runs": 61,
+      "distinct_suite_paths": 56,
+      "passed": true
+    },
+    "sync": {
+      "phases": [
+        {
+          "phase": "raw/native",
+          "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+          "source_tree": "c29e6bae74ed0c1d0375fa230bf54762658c69cb",
+          "started_at_utc": "2026-11-19T09:51:55.940023+00:00",
+          "finished_at_utc": "2026-11-19T09:58:05.063766+00:00",
+          "passed_executions": 634,
+          "suite_count": 38,
+          "groups": [
+            {
+              "name": "hunspell-native",
+              "passed_executions": 28,
+              "suite_count": 4,
+              "excluded_successful_setup_loading_teardown_events": 6,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "cursor-main-merge-vm",
+              "passed_executions": 50,
+              "suite_count": 4,
+              "excluded_successful_setup_loading_teardown_events": 4,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "arabic-main-merge-vm",
+              "passed_executions": 294,
+              "suite_count": 3,
+              "excluded_successful_setup_loading_teardown_events": 3,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "word-language-and-findings-vm",
+              "passed_executions": 70,
+              "suite_count": 5,
+              "excluded_successful_setup_loading_teardown_events": 5,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "word-arabic-main-merge-vm",
+              "passed_executions": 73,
+              "suite_count": 4,
+              "excluded_successful_setup_loading_teardown_events": 4,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "studio-main-merge-vm",
+              "passed_executions": 119,
+              "suite_count": 18,
+              "excluded_successful_setup_loading_teardown_events": 18,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            }
+          ],
+          "analysis_paths": 89,
+          "format_paths": 89,
+          "static_runs": [
+            "analysis",
+            "format",
+            "whitespace"
+          ],
+          "source_binding": {
+            "records": 5123,
+            "all_git_entries_and_content_hashes_match": true
+          },
+          "runtime_inventory_records": 11164,
+          "recorded_before_after_source_and_runtime_identical": true,
+          "passed": true
+        },
+        {
+          "phase": "raw/node",
+          "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+          "source_tree": "c29e6bae74ed0c1d0375fa230bf54762658c69cb",
+          "started_at_utc": "2026-11-19T09:58:07.206292+00:00",
+          "finished_at_utc": "2026-11-19T10:00:28.595838+00:00",
+          "passed_executions": 392,
+          "suite_count": 11,
+          "groups": [
+            {
+              "name": "hunspell-provider-node",
+              "passed_executions": 11,
+              "suite_count": 1,
+              "excluded_successful_setup_loading_teardown_events": 1,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "cursor-main-merge-node",
+              "passed_executions": 17,
+              "suite_count": 2,
+              "excluded_successful_setup_loading_teardown_events": 2,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "arabic-main-merge-node",
+              "passed_executions": 294,
+              "suite_count": 3,
+              "excluded_successful_setup_loading_teardown_events": 3,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            },
+            {
+              "name": "word-language-and-findings-node",
+              "passed_executions": 70,
+              "suite_count": 5,
+              "excluded_successful_setup_loading_teardown_events": 5,
+              "known_native_hook_prefixes": 0,
+              "errors_failures_skips_unfinished_duplicate_cases": 0,
+              "exact_suite_coverage": true,
+              "terminal_success": true
+            }
+          ],
+          "analysis_paths": 0,
+          "format_paths": 0,
+          "static_runs": [
+            "whitespace"
+          ],
+          "source_binding": {
+            "records": 5123,
+            "all_git_entries_and_content_hashes_match": true
+          },
+          "runtime_inventory_records": 11162,
+          "recorded_before_after_source_and_runtime_identical": true,
+          "passed": true
+        }
+      ],
+      "passed_executions": 1026,
+      "distinct_cases": 634,
+      "suite_platform_runs": 49,
+      "distinct_suite_paths": 38,
+      "passed": true,
+      "outer": {
+        "source_binding": {
+          "records": 5125,
+          "all_git_entries_and_content_hashes_match": true
+        },
+        "runtime_records": 11171,
+        "python_controls": {
+          "bundle-controls": 17,
+          "packaging-controls": 4
+        },
+        "python_controls_total": 21,
+        "prior_application_cases_added_to_delta": 0,
+        "rejected_attempts_added_to_delta": 0,
+        "all_outer_logs_hash_verified": true
+      }
+    }
+  },
+  "all_passed": true,
+  "script_sha256": "dec25f35a0630f7b7e7971e2e02ded5979203579e32df273161345c8bdfc65dc"
+}
