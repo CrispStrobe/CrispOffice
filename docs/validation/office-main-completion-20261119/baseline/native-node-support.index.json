@@ -1,0 +1,505 @@
+{
+  "archive": "native-node-support.tar.xz",
+  "archive_bytes": 863444,
+  "archive_sha256": "36cc8b6b03244da441b64b266bd94da7c60c40fb12d522992bce3d81dd918227",
+  "capture_started_at_utc": "2026-11-19T06:55:44.435055+00:00",
+  "verified_at_utc": "2026-11-19T06:55:49.452244+00:00",
+  "scope": "Completed historical baseline preserved before newer concurrent parser and TLS work. These results do not qualify later incoming code.",
+  "member_count": 81,
+  "members_verified_against_original_bytes": true,
+  "deterministic_tar_metadata": {
+    "mtime": 0,
+    "uid": 0,
+    "gid": 0,
+    "uname": "",
+    "gname": ""
+  },
+  "members": [
+    {
+      "path": "native-driver.log",
+      "bytes": 999,
+      "sha256": "7efc2be548c29e1117c2cb41913ed0778582a4dcc6381bf1a1c9d5b82fe31f2b",
+      "source_path": "/workspace/scratch/f0520e768bc8/native-driver.log"
+    },
+    {
+      "path": "node-driver.log",
+      "bytes": 490,
+      "sha256": "5a519bf3c53bd9b6209e830a4a3549223f592d4f2c8d563808b2f56bc176f9a5",
+      "source_path": "/workspace/scratch/f0520e768bc8/node-driver.log"
+    },
+    {
+      "path": "publication-baseline/baseline-manifest.json",
+      "bytes": 1116,
+      "sha256": "8b4787b016355ce9096757713ad8f89ec267991436d78cb2092d2a7a79157a9d",
+      "source_path": "/workspace/scratch/f0520e768bc8/publication-baseline/baseline-manifest.json"
+    },
+    {
+      "path": "qualification-native/checks/analysis.log",
+      "bytes": 598,
+      "sha256": "06205902f8b34bf422e9f1bdf2502f99eb4ca7786e3d2b22d6ee01d7414c5c4f",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/analysis.log"
+    },
+    {
+      "path": "qualification-native/checks/analysis.log.gz",
+      "bytes": 261,
+      "sha256": "cbf965d3754ba4b7c45260d90db0487f273216d5ce3b58f1816c481883ad3501",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/analysis.log.gz"
+    },
+    {
+      "path": "qualification-native/checks/enough-mail-protocol-regressions-cases.json",
+      "bytes": 102095,
+      "sha256": "880c926b28e61a900c02c407f02e58788afa8781e3c67fc1fca31fd673a70d3a",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/enough-mail-protocol-regressions-cases.json"
+    },
+    {
+      "path": "qualification-native/checks/enough-mail-protocol-regressions-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/enough-mail-protocol-regressions-errors.json"
+    },
+    {
+      "path": "qualification-native/checks/enough-mail-protocol-regressions.jsonl",
+      "bytes": 208975,
+      "sha256": "1f7ba1151c02645aa7242f110e7dad9212bd0024b5c600e6ccdd29c850a39435",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/enough-mail-protocol-regressions.jsonl"
+    },
+    {
+      "path": "qualification-native/checks/enough-mail-protocol-regressions.jsonl.gz",
+      "bytes": 17129,
+      "sha256": "465380529e2586f3b1f97ad4dac8cd4d36a7a2fd906c34f9eed7f1bd575e208a",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/enough-mail-protocol-regressions.jsonl.gz"
+    },
+    {
+      "path": "qualification-native/checks/format.log",
+      "bytes": 48,
+      "sha256": "26fb59120ec4f6331705a6f926d98a432018b04968d954c675cba044cef84d5c",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/format.log"
+    },
+    {
+      "path": "qualification-native/checks/format.log.gz",
+      "bytes": 68,
+      "sha256": "cd3965b7a6463e02c1b0519ed1b67fbc95db52ec27c558d0738482e2dcdc5db4",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/format.log.gz"
+    },
+    {
+      "path": "qualification-native/checks/mail-ui-consumers-cases.json",
+      "bytes": 8002,
+      "sha256": "29c53cb95bcb53ea34dc20a707433fcaca1c5a21435a8f2e80a285073c9d47a2",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/mail-ui-consumers-cases.json"
+    },
+    {
+      "path": "qualification-native/checks/mail-ui-consumers-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/mail-ui-consumers-errors.json"
+    },
+    {
+      "path": "qualification-native/checks/mail-ui-consumers.jsonl",
+      "bytes": 16862,
+      "sha256": "4f432fef255f09a35cfae9ca4b90170ab30ccee31e537c91ef1d9253ff4f9557",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/mail-ui-consumers.jsonl"
+    },
+    {
+      "path": "qualification-native/checks/mail-ui-consumers.jsonl.gz",
+      "bytes": 2388,
+      "sha256": "c2273f0a4e828a96c252879e5ccc8581e8ba04b2d35dbe8cd8dc25f72af58aef",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/mail-ui-consumers.jsonl.gz"
+    },
+    {
+      "path": "qualification-native/checks/mime-consumer-vm-cases.json",
+      "bytes": 8352,
+      "sha256": "12d0a787ee947877af4acb28a8f340e328c3011e1d2a15389478994fdd392c70",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/mime-consumer-vm-cases.json"
+    },
+    {
+      "path": "qualification-native/checks/mime-consumer-vm-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/mime-consumer-vm-errors.json"
+    },
+    {
+      "path": "qualification-native/checks/mime-consumer-vm.jsonl",
+      "bytes": 17108,
+      "sha256": "2050299356c68033e99608581ffb0c70293b9f89ca033783487a16906ff02be8",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/mime-consumer-vm.jsonl"
+    },
+    {
+      "path": "qualification-native/checks/mime-consumer-vm.jsonl.gz",
+      "bytes": 2377,
+      "sha256": "73997466cb7d83972bcd0bf94b3c194bec82458fe50f87ce67e3f2967b9e48f5",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/mime-consumer-vm.jsonl.gz"
+    },
+    {
+      "path": "qualification-native/checks/transport-native-cases.json",
+      "bytes": 22672,
+      "sha256": "9542e5e615be52c1016423bdb1860358ebd76ce49dd7575976396d4a8f54af45",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/transport-native-cases.json"
+    },
+    {
+      "path": "qualification-native/checks/transport-native-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/transport-native-errors.json"
+    },
+    {
+      "path": "qualification-native/checks/transport-native.jsonl",
+      "bytes": 38559,
+      "sha256": "e35a2f3d0d78ac38079c7b3cc8aa408b449ecd03afd53a6bd062ffa8d086ff10",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/transport-native.jsonl"
+    },
+    {
+      "path": "qualification-native/checks/transport-native.jsonl.gz",
+      "bytes": 4418,
+      "sha256": "44654dbc92e85b9cde7d157227d33ab534b0078433e3a887e10cdd9badc7de46",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/transport-native.jsonl.gz"
+    },
+    {
+      "path": "qualification-native/checks/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/whitespace.log"
+    },
+    {
+      "path": "qualification-native/checks/whitespace.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/checks/whitespace.log.gz"
+    },
+    {
+      "path": "qualification-native/environment-after.json",
+      "bytes": 1707063,
+      "sha256": "2e00bcbddaf032f3b233a873e444d92246379f2d13b7df6bb3fff6ec1cbfdf5b",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/environment-after.json"
+    },
+    {
+      "path": "qualification-native/environment-before.json",
+      "bytes": 1707063,
+      "sha256": "2e00bcbddaf032f3b233a873e444d92246379f2d13b7df6bb3fff6ec1cbfdf5b",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/environment-before.json"
+    },
+    {
+      "path": "qualification-native/source-after.json",
+      "bytes": 1528560,
+      "sha256": "23fde8fc7b6f351f872cbb560a48e498bfe3c81bd81f9495d761721840c5c005",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/source-after.json"
+    },
+    {
+      "path": "qualification-native/source-before.json",
+      "bytes": 1528560,
+      "sha256": "23fde8fc7b6f351f872cbb560a48e498bfe3c81bd81f9495d761721840c5c005",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/source-before.json"
+    },
+    {
+      "path": "qualification-native/verification.json",
+      "bytes": 37739,
+      "sha256": "d7504ed50c9b8869652bdf5e509c369ef6f3083f814f836db4ed314bc3b78c85",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-native/verification.json"
+    },
+    {
+      "path": "qualification-node/checks/mime-consumer-node-cases.json",
+      "bytes": 8352,
+      "sha256": "12d0a787ee947877af4acb28a8f340e328c3011e1d2a15389478994fdd392c70",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/checks/mime-consumer-node-cases.json"
+    },
+    {
+      "path": "qualification-node/checks/mime-consumer-node-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/checks/mime-consumer-node-errors.json"
+    },
+    {
+      "path": "qualification-node/checks/mime-consumer-node.jsonl",
+      "bytes": 19255,
+      "sha256": "c7c595e9342ebaab796a2d8da190ba60d956bb0db29b15a547637294e7302c18",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/checks/mime-consumer-node.jsonl"
+    },
+    {
+      "path": "qualification-node/checks/mime-consumer-node.jsonl.gz",
+      "bytes": 2793,
+      "sha256": "1825f32dee82a180f31ef87eee3dba9fb61e03ddd7f904dde5531f369d5fff1a",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/checks/mime-consumer-node.jsonl.gz"
+    },
+    {
+      "path": "qualification-node/checks/transport-node-unsupported-cases.json",
+      "bytes": 838,
+      "sha256": "9d597694a36374c27faecb465781afe92d439cd0ebc33a7115f880aa84b1ba9f",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/checks/transport-node-unsupported-cases.json"
+    },
+    {
+      "path": "qualification-node/checks/transport-node-unsupported-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/checks/transport-node-unsupported-errors.json"
+    },
+    {
+      "path": "qualification-node/checks/transport-node-unsupported.jsonl",
+      "bytes": 2383,
+      "sha256": "2641c38dd36c1959ab17f2ea165c5c545f1cdd207bd4eae2913d9c77152dad0a",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/checks/transport-node-unsupported.jsonl"
+    },
+    {
+      "path": "qualification-node/checks/transport-node-unsupported.jsonl.gz",
+      "bytes": 795,
+      "sha256": "d7c9f1f8880849013ffdfe195188623fb95978d3c84e7d66f349634588be55c2",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/checks/transport-node-unsupported.jsonl.gz"
+    },
+    {
+      "path": "qualification-node/checks/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/checks/whitespace.log"
+    },
+    {
+      "path": "qualification-node/checks/whitespace.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/checks/whitespace.log.gz"
+    },
+    {
+      "path": "qualification-node/environment-after.json",
+      "bytes": 1706852,
+      "sha256": "f58ab6f52faaf95c82fb08a8e0f9ac16442cc26866c917cf92b035972a48cd52",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/environment-after.json"
+    },
+    {
+      "path": "qualification-node/environment-before.json",
+      "bytes": 1706852,
+      "sha256": "f58ab6f52faaf95c82fb08a8e0f9ac16442cc26866c917cf92b035972a48cd52",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/environment-before.json"
+    },
+    {
+      "path": "qualification-node/source-after.json",
+      "bytes": 1528558,
+      "sha256": "2aa9fb40afd47f0fbac5d6b33bf78c022c3c185c184ac89ae1489743f8b1d525",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/source-after.json"
+    },
+    {
+      "path": "qualification-node/source-before.json",
+      "bytes": 1528558,
+      "sha256": "2aa9fb40afd47f0fbac5d6b33bf78c022c3c185c184ac89ae1489743f8b1d525",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/source-before.json"
+    },
+    {
+      "path": "qualification-node/verification.json",
+      "bytes": 10387,
+      "sha256": "2e2f1f0abc25c85ef8e04dc06ff6dddc407b857536b9ce7e4fa5198348f43876",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-node/verification.json"
+    },
+    {
+      "path": "qualification-support/qualification-runner.log",
+      "bytes": 2864,
+      "sha256": "1aa2f5b7545832f8f5d83885179f2674bf303b512134ae87c9d798a98f8f1039",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-support/qualification-runner.log"
+    },
+    {
+      "path": "qualification-support/receipt.json",
+      "bytes": 2631,
+      "sha256": "c8dc669ec271035ae9f6ade9c2172f5c51d4ecc8e0a8be11bf97fcb0ee6a1adc",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-support/receipt.json"
+    },
+    {
+      "path": "qualification-support/runtime-replay.log",
+      "bytes": 2769,
+      "sha256": "843763f8a1c03586029fef90fc706b860fda11cedfbef8531a00a24cc5e0d002",
+      "source_path": "/workspace/scratch/f0520e768bc8/qualification-support/runtime-replay.log"
+    },
+    {
+      "path": "reconciliation-audit/audit_archives.py",
+      "bytes": 4819,
+      "sha256": "59eb0aad5bfbb8312d24ab876411a294ce4eae8a53cfb6812ec1088fabb7ccc8",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/audit_archives.py"
+    },
+    {
+      "path": "reconciliation-audit/audit_final_evidence.py",
+      "bytes": 8818,
+      "sha256": "37b770cfb4828365fbbd791cfd5a76577c724653c37c80e1ef3b682808e790b5",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/audit_final_evidence.py"
+    },
+    {
+      "path": "reconciliation-audit/audit_local_gate.py",
+      "bytes": 37685,
+      "sha256": "0f8c9d7a3e9f0f0e92f4cf82366eca689d640e768f7557e25fb18cef40ba5ca6",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/audit_local_gate.py"
+    },
+    {
+      "path": "reconciliation-audit/audit_published_refs.py",
+      "bytes": 12187,
+      "sha256": "6ecd717495703c8dafd1817138186ace6b9f3881f23dd3c2b7fb8fad185d1d48",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/audit_published_refs.py"
+    },
+    {
+      "path": "reconciliation-audit/audit_python_gate.py",
+      "bytes": 5094,
+      "sha256": "5c3b8278ae2a871fe18d0212ad78973cd5c890ed9dfc00b35632c52563a36543",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/audit_python_gate.py"
+    },
+    {
+      "path": "reconciliation-audit/audit_store_gate.py",
+      "bytes": 32055,
+      "sha256": "84a8da270dc802545301a3f431246372d4737e784903f16a3cb36335ff5f683d",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/audit_store_gate.py"
+    },
+    {
+      "path": "reconciliation-audit/capture_remote_refs.py",
+      "bytes": 2630,
+      "sha256": "5d3036f4fabdfd96682698c1fd94b95c8b3969781155ce9be70249a8f733fd83",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/capture_remote_refs.py"
+    },
+    {
+      "path": "reconciliation-audit/fetched-refs.json",
+      "bytes": 47706,
+      "sha256": "a9dfbfad06bc6636194381d64155e6f3475064b21c5fdd77de198ce86d0af03a",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/fetched-refs.json"
+    },
+    {
+      "path": "reconciliation-audit/final/independent-summary.json",
+      "bytes": 52551,
+      "sha256": "a4c0e1650e57db7b124dcfdd9e1755d3aa9816a4fa8c2589d1dfa518deec8095",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/final/independent-summary.json"
+    },
+    {
+      "path": "reconciliation-audit/final/native-audit.json",
+      "bytes": 8201,
+      "sha256": "60faaf3f837b19dc39528740a32a38d30971d604bd0e635cf5d78c769a0864db",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/final/native-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/final/native-audit.log",
+      "bytes": 8201,
+      "sha256": "60faaf3f837b19dc39528740a32a38d30971d604bd0e635cf5d78c769a0864db",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/final/native-audit.log"
+    },
+    {
+      "path": "reconciliation-audit/final/node-audit.json",
+      "bytes": 6314,
+      "sha256": "7a27bc8a6e41ed686ab4b1bad9361393a201961549defc2a75c63f7d3c47e5e6",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/final/node-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/final/node-audit.log",
+      "bytes": 6314,
+      "sha256": "7a27bc8a6e41ed686ab4b1bad9361393a201961549defc2a75c63f7d3c47e5e6",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/final/node-audit.log"
+    },
+    {
+      "path": "reconciliation-audit/final/runtime-store-archive-audit.json",
+      "bytes": 20751,
+      "sha256": "388e4b82f481ef8696598956af0ee9a23b213c59a4cfa0df54441be562f7df6c",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/final/runtime-store-archive-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/final/store-audit.json",
+      "bytes": 113818,
+      "sha256": "cc4bad5efe8da92179c05c7f3beab368b7e8c33f32bce8f04c2a0cc45c61491a",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/final/store-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/final/store-audit.log",
+      "bytes": 202,
+      "sha256": "011be4644fe030189e76a1fe1fd891766b155eb316a4c24bef54ef9870618735",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/final/store-audit.log"
+    },
+    {
+      "path": "reconciliation-audit/final/support-audit.json",
+      "bytes": 9613,
+      "sha256": "ea5bd23cc175a2199f68df790ca57810ca3469ec7ec608c4ec9bf05350abd6ee",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/final/support-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/final/support-audit.log",
+      "bytes": 132,
+      "sha256": "4e56ee139b8cb60294df90d33a9449e947916829b3b349b3f0f1363e2025bd0a",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/final/support-audit.log"
+    },
+    {
+      "path": "reconciliation-audit/merged-source-audit.json",
+      "bytes": 90285,
+      "sha256": "bf565378ca04f6b8a30355a76a40113bd39e63d04f2465ea275357b010f6a710",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/merged-source-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/native-plan.json",
+      "bytes": 8000,
+      "sha256": "bfe5366dd30473e1fd9b18e313eb34ac8bfc9b25b5e3e1cdc7b522fceb56b2ea",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/native-plan.json"
+    },
+    {
+      "path": "reconciliation-audit/node-plan.json",
+      "bytes": 1570,
+      "sha256": "8995b723957a078ad9cadea2bad1bc88869bfd2e4cc0dc447bfd96be4c9ba602",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/node-plan.json"
+    },
+    {
+      "path": "reconciliation-audit/office-source-continuity-final.json",
+      "bytes": 502026,
+      "sha256": "699b04e0510f12481e4262605d2e2f61d7724100aac0764abe07d1e1f30e62f7",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/office-source-continuity-final.json"
+    },
+    {
+      "path": "reconciliation-audit/office-source-continuity.json",
+      "bytes": 502083,
+      "sha256": "4f50d693d4d5f74ba8a3a53c2016fb5e52fdb8b8e80de5e50b3260ce7cbb5a5b",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/office-source-continuity.json"
+    },
+    {
+      "path": "reconciliation-audit/origin-advertisement.tsv",
+      "bytes": 27349,
+      "sha256": "5fb7d1234d54e6a43ac3df1f1f4fe6878b7350b34953144b7ce4918ca1078787",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/origin-advertisement.tsv"
+    },
+    {
+      "path": "reconciliation-audit/package_baseline_evidence.py",
+      "bytes": 8771,
+      "sha256": "541d038cb10b73fe2a256e165fcd8683615973e9a13645b037055ae38f266532",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/package_baseline_evidence.py"
+    },
+    {
+      "path": "reconciliation-audit/pre-merge-audit.json",
+      "bytes": 90315,
+      "sha256": "c8167691c68f96f71ac724239233b522ad0c24a72774f63ba2b2572115253a96",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/pre-merge-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/previous-source-audit.json",
+      "bytes": 90099,
+      "sha256": "d411d3a1f0539493af9cb2a6dc4006f934bc1f7a94011866a9452120341f3a5b",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/previous-source-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/qualification-selection-review.json",
+      "bytes": 8581,
+      "sha256": "7a8fd46fa109afede09f0b4af402d45c9246111b3c38dcac97ffc76cfa3da4f7",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/qualification-selection-review.json"
+    },
+    {
+      "path": "reconciliation-audit/refreshed-source-audit.json",
+      "bytes": 122650,
+      "sha256": "cbaaf784f44ae475f7268e0aec30ae4dbfb570bbfebaacfe58b0862ddc329441",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/refreshed-source-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/remote-refs.json",
+      "bytes": 81401,
+      "sha256": "53cf7da47aa1cf21934c6236fff0b68e9bd91480e627e68b30b147bde0687c33",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/remote-refs.json"
+    },
+    {
+      "path": "reconciliation-audit/store-final-audit.json",
+      "bytes": 113818,
+      "sha256": "cdd5db81fdcbbe17f31fd295f06dcc518ff88851f68071670610f5c001a07758",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/store-final-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/support-final-audit.json",
+      "bytes": 9613,
+      "sha256": "e60aa4b1c1e2e35de4285e8763389e376a41a9559108cc4ba69d6f04a2cf6acb",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/support-final-audit.json"
+    },
+    {
+      "path": "reconciliation-audit/upstream-advertisement.tsv",
+      "bytes": 304,
+      "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6",
+      "source_path": "/workspace/scratch/f0520e768bc8/reconciliation-audit/upstream-advertisement.tsv"
+    }
+  ]
+}
