@@ -443,10 +443,13 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
        a real defect (Chrome's `TextDecoder` rejects resizable Wasm heaps),
        fixed with `GROWABLE_ARRAYBUFFERS=0`.
      - Android: an arm64-v8a library (NDK 28, static libc++, needs only
-       libc/libm/libdl) is installed into `jniLibs`.
+       libc/libm/libdl) is installed into `jniLibs`. `flutter build apk
+       --release --target-platform android-arm64` packages it as
+       `lib/arm64-v8a/libquds_arabic_morph.so` (0.5 MB stripped) in a
+       62.9 MB APK. It has not been run on a device.
 
-   **Open:** the rules that consume it (T2, rules agent); the APK and
-   on-device runs; iOS (the example has no iOS runner); Linux and Windows
+   **Open:** the rules that consume it (T2, rules agent); on-device
+   Android/iOS runs; iOS (the example has no iOS runner); Linux and Windows
    builds; persisting the web download across sessions; a byte-level
    analysis parser (Dart decoding halves the native 2,250 words/s); a compact
    binary database (CrispEmbed) to cut load time and peak memory.
