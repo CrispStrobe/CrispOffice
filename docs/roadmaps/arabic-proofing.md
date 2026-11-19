@@ -353,6 +353,151 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    S9 inflected forms, S1 general spelling, L2/L3 lemma variants, the
    tense-aware part of G13 and G14's future restriction. T3 (needs a
    disambiguator): G1, G3, G4, G12 and kana/inna predicate case.
+3c. **Clean-room extension: tier T2 (morphology-based) implemented (19
+   November 2026).** Same clean-room process as 3b: written only from the
+   [specification](arabic-rule-spec.md) (T2 categories) and the deferred
+   list above. Every closed class, lexicon entry, message and test sentence
+   was authored from knowledge of MSA grammar; no LanguageTool, Fareh,
+   Ghalatawi, aghlat, Arramooz, Qalsadi or other GPL/LGPL/AGPL Arabic
+   proofing source or data was opened. MIT.
+
+   Code: `arabic_grammar_rules.dart`, a `part` of `ArabicWritingRulesProvider`
+   (same provider id). The provider takes an optional
+   `ArabicMorphology morphology` (default `UnavailableArabicMorphology`);
+   when it is unavailable the T2 rules are silent and the T1 output is
+   unchanged. Opt-in ids are in `arabicGrammarOptionalRuleIds` and are
+   enabled through `enabledOptionalRuleIds` like the T1 ones.
+
+   **Principle.** The `noprob` database has no ranking, so a rule reports
+   only when *no* analysis of the word concerned is compatible with the
+   grammatical requirement, and an unknown word (no analysis) is never
+   reported. Particles and number words are matched by spelling (the
+   analyzer normalizes hamza: it cannot tell أنّ from إنْ, or كان from
+   كأنّ). Only the words needed by an enabled rule are analyzed (the next
+   word after a trigger, the verb before a preposition, …), in at most two
+   `analyzeWords` calls per paragraph: one for the text, one to confirm
+   suggestions. Replacements are produced by spelling edits (ـون→ـين,
+   dropped nun or weak letter, the other numeral form, lemma + tanwin) and
+   offered only if the analyzer gives the edited word the required case or
+   mood with the same lemma (and person, gender, number for verbs).
+
+   Two guards came from the corpus: a word whose only plain readings are
+   proper nouns, or readings with a conjunction/question prefix, counts as
+   an unknown name (the analyzer inflects any name as a dual or plural:
+   يوكاتان, الماكاسان, كوارون), and a definite plural beside a proper-noun
+   reading of the same stem is treated as a name (السراجون). Construct
+   forms without ـون/ـان (كيفو, باروسو, قاروه) are not judged, except the
+   numeral اثنا/اثنتا.
+
+   Default-on rules (9), with spec category, positive cases / zero-finding
+   controls in `arabic_grammar_rules_test.dart`:
+
+   | Rule id | Spec | What is reported | + | controls |
+   |---|---|---|---|---|
+   | `ar.grammar.preposition-case` | G7, G11 | a visibly nominative dual / sound masculine plural / tens numeral / dual demonstrative directly after في، إلى، على، عن، مع، لدى، عند (± و/ف), or after بالـ/كالـ/للـ (`إلى المهندسون` → `المهندسين`, `على عشرون`, `في اثنا عشر`) | 9 | 7 |
+   | `ar.grammar.inna-case` | G8 | the same after إنّ، أنّ، كأنّ، ليت، لعلّ (bare, ± و/ف/ب/ل); bare لكن (light لكنْ) and particles with a pronoun are excluded | 3 | 3 |
+   | `ar.grammar.kana-predicate` | G9 (visible part) | an indefinite nominative sound plural/dual right after a kana-sister with an attached plural/dual subject (`كانوا مجتهدون`), or after kana + one definite word | 1 | 4 |
+   | `ar.grammar.dual-demonstrative` | G2 | هذان/هاتان vs هذين/هاتين before a definite dual of the other case; both repairs offered | 2 | 2 |
+   | `ar.grammar.jussive` | G5 | after لم (± و/ف/أ): an imperfect with no jussive reading (five verbs keeping نون, kept weak final, kept long vowel of a hollow verb); vowelled لِمَ and questions excluded | 6 | 5 |
+   | `ar.grammar.subjunctive` | G5 (mood after particles) | after لن، كي، لكي، أن: a five-verb form keeping its نون; a future prefix (light أنْ) excluded | 3 | 3 |
+   | `ar.numeral.gender` | G10 | 3–10 with the gender of the counted plural's singular (`ثلاثة سيارات` → `ثلاث`); sound feminine plurals only when the lemma has ة; خمس/سبع/تسع/عشر/ثمان (fractions) and 51 lemmas of either gender, unmarked feminines and ة-masculines (أصابع, طرق, أسواق, خلفاء…) skipped | 5 | 10 |
+   | `ar.numeral.counted-number` | G11 | a plural after 11–19 or a tens word (`عشرون طلاب` → `طالبًا`) | 3 | 2 |
+   | `ar.grammar.verb-preposition` | G15 | 3 colloquial verb + على + pronoun entries (`يبحث عليها` → `عنها`) | 1 | 4 |
+
+   Opt-in rules (4):
+
+   | Rule id | Spec | What is reported | + | controls |
+   |---|---|---|---|---|
+   | `ar.grammar.la-past` | G6 | لا directly before a verb with only perfect readings, unless لا/ولا or الله follows in the sentence (repetition, prayer) or the verb is زال | 1 | 4 |
+   | `ar.numeral.counted-case` | G11 | a singular counted noun after 11–99 with no indefinite-accusative reading, at the end of the phrase (`ثلاثين دينار.` → `دينارًا`) | 1 | 2 |
+   | `ar.usage.verb-preposition` | G15, L2 lemma variant | 18 lemma-matched prescriptive entries (أكّد على، أثّر على، حاز على، تخرّج من، أجاب على، تعرّف على، تزوّج من، التقى مع، زاد عن، اعتذر على، تحدّث حول …); 94 adverbial phrase heads after the preposition (على هامش, من جديد …) excluded; no duplicate of a T1 finding on the same span | 3 | 2 |
+   | `ar.usage.word-inflected` | S9/L3 lemma variant | every inflection of ساهم، تواجد، استلم، احتار، توفّر (extends the frozen forms of `ar.usage.word`) | 2 | 1 |
+
+   Tests: 100 new engine tests (40 positive cases, 26 valid-sentence and 23
+   reasoned zero-finding controls, 5 analysis-set tests — one compatible
+   reading keeps a word silent, an unknown word and a proper-noun-only word
+   are never reported, a verb homograph silences a numeral, an unconfirmed
+   replacement is withheld — and 6 integration tests: no analyzer means no
+   requests and identical T1 findings, only needed words are analyzed,
+   ignored ids, offsets, protected spans, rule-id sets). The fixture
+   `arabic_grammar_fixture.dart` holds the reference analyses (camel_tools
+   1.6 over Camel Morph MSA v1.0 `noprob`, CC BY 4.0, attribution in the
+   file) of the words of our own test sentences only. The engine proofing
+   suite passes 1,610 tests (1,510 before); the editor Arabic integration
+   test passes.
+
+   **False-positive check** with the reference analyzer (camel_tools 1.6,
+   Camel Morph MSA v1.0 `noprob`, Hugging Face `cstr/camel-morph-msa-v1.0`
+   at `b31cf4a8`) over the 1,000 UD Arabic-PUD test sentences and the same
+   17,417-sentence Arabic Wikipedia sample as step 3b (evaluation only, not
+   committed). `tool/proofing/export_arabic_morph_analyses.py` precomputes
+   the analyses of every word the rules request into a scratch JSON;
+   `tool/proofing/arabic_grammar_corpus_check.dart` runs the provider with
+   every rule enabled through a fake `ArabicMorphology` over that JSON and
+   repeats until no word is missing (17,943 words analyzed). Default-on
+   findings, first run → after tightening (PUD / Wikipedia):
+
+   | Rule | PUD | Wikipedia | Inspection after tightening |
+   |---|---|---|---|
+   | `ar.grammar.preposition-case` | 2 → 0 | 15 → 2 | both real: `عند النوميديون`, `في اثنا عشر` |
+   | `ar.grammar.inna-case` | 1 → 0 | 3 → 1 | real: `أن الكثيرون` |
+   | `ar.grammar.kana-predicate` | 0 → 0 | 0 → 0 | |
+   | `ar.grammar.dual-demonstrative` | 0 → 0 | 0 → 0 | |
+   | `ar.grammar.jussive` | 0 → 0 | 6 → 6 | all real: `لم يكتفي`, `لم يرضيه`, `لم يُسميها`, `لم ينجو`, `لم يبقى`, `لم يُلاقي` |
+   | `ar.grammar.subjunctive` | 0 → 0 | 1 → 1 | real: `أن يرتدون` |
+   | `ar.numeral.gender` | 0 → 0 | 11 → 10 | all real (`ثلاث فنادق`, `ثلاثة بطولات`, `ثلاثة مباريات`, `بخمسة حنيات`, `وستة قاذفات`, `أربعة شخصيات` …) |
+   | `ar.numeral.counted-number` | 0 → 0 | 0 → 0 | |
+   | `ar.grammar.verb-preposition` | 0 → 0 | 0 → 0 | |
+
+   Removed false positives: 16 preposition/inna hits on foreign names the
+   analyzer inflects as duals or plurals (Makassan five times, Yucatán,
+   Barroso, Kivu, Cuarón, Dominican, Girondins, Caledonian, Aubrion, Puntas,
+   Stack Overflow via ستّ + ك, قاروه via قاري + ه), 2 on the place name
+   السراجون, and 3 numeral hits on
+   sound feminine plurals of masculine singulars (`ثلاثة مجلدات`,
+   `ثلاثة متطلبات`, `ثلاثة مستحلبات`: the analyzer tags them feminine). The
+   tightening also exposed 2 further real numeral errors and one either-gender
+   noun (`أربع أصابع`), now skipped. Opt-in rules on the same corpora:
+   `ar.usage.verb-preposition` 1 / 16 (`حاز على`, `تخرّج من`, `تزوّج من`,
+   `يُتعرّف على`), `ar.usage.word-inflected` 5 / 46 (`يتواجد`, `ساهم`,
+   `يتوفر`), all intended prescriptive targets; `ar.grammar.la-past` and
+   `ar.numeral.counted-case` 0 / 0.
+
+   **Default status.** A rule is default-on only when its corpus check was
+   clean *and* its error class is unambiguous. `ar.grammar.kana-predicate`
+   was opt-in in the first run and was promoted (0 findings; only attached
+   subjects or a definite subject qualify). `ar.grammar.la-past` (classical,
+   partly prescriptive) and `ar.numeral.counted-case` (number writing in
+   modern prose) stay opt-in despite 0 findings; the `ar.usage.*` rules are
+   prescriptive.
+
+   **Recall is deliberately low.** The analyzer offers many readings
+   (proper-noun inflections, clitic splits such as كـ + أنّ), and any one of
+   them keeps a word silent: `كان الطلاب مجتهدون` (كأنّ), `ثلاث كتب` (the
+   verb كتب), `يسألون عليه` (أسال) are not reported. A disambiguator (step 4)
+   would lift this without changing the rules.
+
+   **Deferred, and why.**
+   - S7 particle merging: the safe cases (عن ما، من ما) are already T1
+     fixed strings; the rest (كل ما/كلما, إن ما/إنما, حيث ما/حيثما, في ما,
+     بين ما) separate relative ما (written apart) from كافّة or temporal ما
+     (joined), and both are followed by a verb, so the verb test cannot
+     decide.
+   - Prohibitive لا (G5): لا + second-person indicative is also a valid
+     negation; لمّا + jussive (homograph of لمّا "when" and لِما); the
+     conditional jussive after إن/من/ما (إن is also إنّ and negating إنْ).
+   - Kana sisters that need a preceding negation (ما زال, ما دام …), and
+     general kana/inna predicate case (T3).
+   - G11 full number-phrase rebuilding and numbers in digits (needs a
+     generator; years and ranges), counted nouns after hundreds/thousands.
+   - L1 verb–object collocations and L5 light verbs (need synthesis and a
+     verbal-noun↔verb map), S1 general spelling (MIT dictionary needed;
+     Hunspell is step 2), G13 tense-aware parts, G14 future restriction.
+   - The step-3b T1 lists other than `ar.usage.word` verbs and the
+     verb–preposition expressions were not given lemma variants: they are
+     nouns, particles or fixed phrases whose inflection the frozen forms
+     already cover.
+
 4. **Model-backed analysis (optional, owner decision).** Either accept the
    CAMeL weights' training-data risk and port them natively like the spaCy
    transformer pipelines, or train our own licence-clean models:

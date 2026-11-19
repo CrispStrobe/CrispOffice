@@ -97,6 +97,22 @@ inspected and entries that matched valid text (mostly names, e.g. بلدية via
 لدية, Kano, Funen, Diallo) were removed. Details are in
 [step 3b](roadmaps/arabic-proofing.md).
 
+The clean-room T2 extension (roadmap step 3c, same process, MIT) adds 13
+morphology-based rule ids in `arabic_grammar_rules.dart`. They run only when
+the host passes an `ArabicMorphology` to `ArabicWritingRulesProvider`
+(`morphology:`; the default `UnavailableArabicMorphology` keeps them silent
+and leaves T1 output unchanged) and report only when no analysis of the word
+concerned is compatible. 9 run by default: case of duals, sound plurals and
+tens after prepositions and after inna-sisters, the kana predicate with an
+attached subject, dual demonstrative case, jussive after لم, subjunctive
+after لن/كي/أن, numeral gender for 3–10, a plural counted noun after 11–99,
+and colloquial verb + على + pronoun. 4 are opt-in: لا + past, counted-noun
+case, lemma-matched prescriptive verb–preposition pairs and inflected usage
+verbs. 100 new tests; on UD Arabic-PUD and the 17,417-sentence Wikipedia
+sample, with the reference analyzer, the default-on rules give 0 / 20
+findings, all genuine errors after tightening (36 before, mostly foreign
+names). Details in [step 3c](roadmaps/arabic-proofing.md).
+
 ## Optional Hunspell spelling (Arabic) — 19 November 2026
 
 [`quds_proofing_hunspell`](../packages/quds_proofing_hunspell/README.md) adds a

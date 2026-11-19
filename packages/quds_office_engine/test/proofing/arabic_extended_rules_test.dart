@@ -475,7 +475,9 @@ void main() {
         ArabicWritingRulesProvider.allRuleIds.length,
         ArabicWritingRulesProvider.ruleIds.length +
             arabicExtendedDefaultRuleIds.length +
-            arabicExtendedOptionalRuleIds.length,
+            arabicExtendedOptionalRuleIds.length +
+            arabicGrammarDefaultRuleIds.length +
+            arabicGrammarOptionalRuleIds.length,
       );
     });
 
