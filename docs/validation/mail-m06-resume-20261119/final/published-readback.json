@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "source": "GitHub connected API immutable git/commits readback",
+  "commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "tree": "8b7443bd15be09276764f62934b9d8ce32a6be68",
+  "parents": [
+    "e734e3bd14f6c802a1da1c05969bd51108890ded"
+  ],
+  "message": "Handle child reaping races in timeout regression [skip ci]",
+  "expected_tree": "8b7443bd15be09276764f62934b9d8ce32a6be68",
+  "remote_tree_matches_expected": true,
+  "fresh_ref_capture": false,
+  "actions_queried": false
+}

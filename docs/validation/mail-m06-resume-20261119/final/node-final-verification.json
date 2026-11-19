@@ -1,0 +1,377 @@
+{
+  "started_at_utc": "2026-11-19T07:09:48.125449+00:00",
+  "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "source_tree": "8b7443bd15be09276764f62934b9d8ce32a6be68",
+  "source_base": "faab20b96e4a51fd6e3cf1a80b1439c4a1b01b9c",
+  "plan": "docs/validation/mail-m06-resume-20261119/node-test-plan.json",
+  "plan_sha256": "742e24efef60b50cd51ee1f2c810f83941bf7e32f5cd2cb9e6fab11157981c94",
+  "source_input_count": 5027,
+  "materialized_source_inputs": 5027,
+  "sparse_source_omissions": [],
+  "runtime_input_count": 11163,
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/5c6c66fd3cc3/toolchains/flutter"
+  },
+  "workspace_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "runtime_receipt_sha256": "0c42466c584c88844cf70b79d26d2da789f9361044eccde4eea27d361f1643df",
+  "test_launcher": "/workspace/scratch/5c6c66fd3cc3/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+  "package_config": "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/.dart_tool/package_config.json",
+  "additional_runtime_inputs": {
+    "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/.dart_tool/native_assets.yaml": "83a38033af763bf500a89ed59b562b3548febd07b3c1dbea9cbafb96906273c5",
+    "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/.dart_tool/lib/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/.dart_tool/hooks_runner/shared/sqlite3/build/download-0a658527/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa"
+  },
+  "whitespace_preserved_inputs": [
+    {
+      "path": "docs/validation/thesaurus-20261118/resumed-20261119/linguistic/de/notices/CC_BY_SA_4.0.txt",
+      "git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "reason": "Preserve byte-identical upstream license/notice text captured in the final thesaurus evidence; no product source exception."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/resumed-20261119/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+      "git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "reason": "Preserve byte-identical upstream license/notice text captured in the final thesaurus evidence; no product source exception."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/resumed-20261119/linguistic/en/notices/CC_BY_4.0.txt",
+      "git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "reason": "Preserve byte-identical upstream license/notice text captured in the final thesaurus evidence; no product source exception."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/resumed-20261119/linguistic/en/notices/OEWN_LICENSE.md",
+      "git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "reason": "Preserve byte-identical upstream license/notice text captured in the final thesaurus evidence; no product source exception."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/resumed-20261119/linguistic/en/notices/WNDB_License.txt",
+      "git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "reason": "Preserve byte-identical upstream license/notice text captured in the final thesaurus evidence; no product source exception."
+    }
+  ],
+  "planned_groups": [
+    {
+      "name": "transport-node",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/configuration_test.dart",
+        "test/unsupported_test.dart"
+      ]
+    },
+    {
+      "name": "mime-node",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "fork-portable-node",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/quds_portable_mime_test.dart"
+      ]
+    }
+  ],
+  "analysis_files": [],
+  "formatted_files": [],
+  "tracked_worktree_clean_before": true,
+  "runs": [
+    {
+      "name": "transport-node",
+      "command": [
+        "/workspace/scratch/5c6c66fd3cc3/toolchains/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/5c6c66fd3cc3/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/5c6c66fd3cc3/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/configuration_test.dart",
+        "test/unsupported_test.dart"
+      ],
+      "cwd": "packages/quds_mail_transport",
+      "exit_code": 0,
+      "elapsed_seconds": 21.982,
+      "log": "checks/transport-node.jsonl",
+      "log_sha256": "b3c238a853270d1cf2b88bba1b42afbe9cd8f91d265fef264f3d0cd562de4acc",
+      "cases_file": "checks/transport-node-cases.json",
+      "cases_sha256": "56a04b3265fb14d2cebb3af8a27b249311c8f96eb8c21a0e786986d29e7f044d",
+      "errors_file": "checks/transport-node-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/packages/quds_mail_transport/test/configuration_test.dart": {
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/packages/quds_mail_transport/test/unsupported_test.dart": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 2
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 15,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/transport-node.jsonl.gz",
+      "compressed_log_sha256": "92b23d215bce6cff844449f4af8bf8d54416b750b04410ac8bf427ad076342b5"
+    },
+    {
+      "name": "mime-node",
+      "command": [
+        "/workspace/scratch/5c6c66fd3cc3/toolchains/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/5c6c66fd3cc3/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/5c6c66fd3cc3/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ],
+      "cwd": "packages/quds_mail_mime",
+      "exit_code": 0,
+      "elapsed_seconds": 41.918,
+      "log": "checks/mime-node.jsonl",
+      "log_sha256": "f070756403fdd3ab99c7b4a66094a0e434f07ef7ec87990963a99d680cbc7ece",
+      "cases_file": "checks/mime-node-cases.json",
+      "cases_sha256": "45e6c78b2f263de114cdbf7b27f50bcc7297e1121a74bc8447348b74093b897b",
+      "errors_file": "checks/mime-node-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/packages/quds_mail_mime/test/eml_bytes_test.dart": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/packages/quds_mail_mime/test/mime_encodings_test.dart": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/packages/quds_mail_mime/test/mime_limits_test.dart": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/packages/quds_mail_mime/test/mime_parts_test.dart": {
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/packages/quds_mail_mime/test/mime_review_regressions_test.dart": {
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/packages/quds_mail_mime/test/portable_import_test.dart": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 6
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/mime-node.jsonl.gz",
+      "compressed_log_sha256": "1970eb487f19d20ec67a96d7066d6e0de5fcfc3af4b1288fa850b3ff94a3bee2"
+    },
+    {
+      "name": "fork-portable-node",
+      "command": [
+        "/workspace/scratch/5c6c66fd3cc3/toolchains/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/5c6c66fd3cc3/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/5c6c66fd3cc3/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/quds_portable_mime_test.dart"
+      ],
+      "cwd": "third_party/enough_mail",
+      "exit_code": 0,
+      "elapsed_seconds": 15.853,
+      "log": "checks/fork-portable-node.jsonl",
+      "log_sha256": "a0f229637942bce9c6a56e3e99ca528c5e2e1af318f3f42e4b1a95c4539bd097",
+      "cases_file": "checks/fork-portable-node-cases.json",
+      "cases_sha256": "04844d58bfd55023a4175ee52e55c514542726bf731e2ae2091bb30972ff7ea1",
+      "errors_file": "checks/fork-portable-node-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/5c6c66fd3cc3/quds_office_suite/third_party/enough_mail/test/quds_portable_mime_test.dart": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 1
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 9,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/fork-portable-node.jsonl.gz",
+      "compressed_log_sha256": "5debbcc777d16f1c39d40fcb2195617bf3f57fbd9a1905df520ff3140108bf90"
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "faab20b96e4a51fd6e3cf1a80b1439c4a1b01b9c",
+        "71edec2de364805113d18e0f1d7edbb1f00467e5",
+        "--",
+        ".",
+        ":(exclude)docs/validation/thesaurus-20261118/resumed-20261119/linguistic/de/notices/CC_BY_SA_4.0.txt",
+        ":(exclude)docs/validation/thesaurus-20261118/resumed-20261119/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+        ":(exclude)docs/validation/thesaurus-20261118/resumed-20261119/linguistic/en/notices/CC_BY_4.0.txt",
+        ":(exclude)docs/validation/thesaurus-20261118/resumed-20261119/linguistic/en/notices/OEWN_LICENSE.md",
+        ":(exclude)docs/validation/thesaurus-20261118/resumed-20261119/linguistic/en/notices/WNDB_License.txt"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "elapsed_seconds": 0.033,
+      "log": "checks/whitespace.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true,
+      "compressed_log": "checks/whitespace.log.gz",
+      "compressed_log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    }
+  ],
+  "github_actions_queried_or_awaited": false,
+  "source_unchanged": true,
+  "environment_unchanged": true,
+  "source_mismatches": [],
+  "environment_mismatches": [],
+  "source_head_unchanged": true,
+  "source_index_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "unexpected_native_mappings_after": [],
+  "passed": 56,
+  "failed": 0,
+  "skipped": 0,
+  "finished_at_utc": "2026-11-19T07:11:09.579821+00:00",
+  "manifest_sha256": {
+    "source-before.json": "94d7b4f35334e1ba01e5be1d7186add17bdbd6c956a4c67e93b5ed11c9fc20bc",
+    "source-after.json": "94d7b4f35334e1ba01e5be1d7186add17bdbd6c956a4c67e93b5ed11c9fc20bc",
+    "environment-before.json": "af63ad14135e9f274c0b249883c50bc7c96b43a4338d5ab4083073efefdac144",
+    "environment-after.json": "af63ad14135e9f274c0b249883c50bc7c96b43a4338d5ab4083073efefdac144"
+  },
+  "success": true
+}

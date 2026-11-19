@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-19T07:07:20.986830+00:00",
+  "published_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "published_tree": "8b7443bd15be09276764f62934b9d8ce32a6be68",
+  "parent_commit": "e734e3bd14f6c802a1da1c05969bd51108890ded",
+  "immutable_api_readback": "published-readback.json",
+  "status": "test-only-race-repair-reviewed; final-source-bound-gates-pending",
+  "complete_commit_delta_paths": [
+    "tools/mail/test_check_store.py"
+  ],
+  "all_other_git_entries_identical": true,
+  "product_and_runner_execute_implementation_unchanged": true,
+  "old_blob": "79ab7798b377f812d7ef30c60b17a266b8e86e57",
+  "new_blob": "2efd2dd6f32e0a887c7097d5efbf1935d1fb42e6",
+  "final_input": {
+    "path": "tools/mail/test_check_store.py",
+    "git_blob_sha1": "2efd2dd6f32e0a887c7097d5efbf1935d1fb42e6",
+    "sha256": "1221bc4fd22d50346dea60ef2e4c6fec8640af39a232459671a8a21a66a64d94",
+    "bytes": 24023
+  },
+  "patch": "runner-test-repair.patch",
+  "patch_sha256": "eecb2c88c44c61ed5e8228004b0a6974c60fa71285499842c5478c4231ca06d9",
+  "finding": {
+    "id": "Q03",
+    "title": "Child reaping can remove /proc stat between existence check and read",
+    "resolution": "The test now attempts the read directly and treats FileNotFoundError or ProcessLookupError as proof that the process is gone. It still accepts a zombie and still fails when a live child remains at the original deadline. Sleep cadence and process termination implementation are unchanged.",
+    "review": "The precise exception handling removes the observed TOCTOU race without accepting permission errors, arbitrary failures, or a still-running child."
+  },
+  "retained_checks": [
+    {
+      "path": "runner-repair-evidence/checks.json",
+      "sha256": "351fbe775841bf670161a81115d588501bae895828a9a8386fdbcfabe1fd2f4c"
+    },
+    {
+      "path": "runner-repair-evidence/controls-1.log",
+      "sha256": "2fa4e3f7df92870828f74cec54dd99c2929f43bc8fb6c7ac0dbcbd0288960706"
+    },
+    {
+      "path": "runner-repair-evidence/controls-2.log",
+      "sha256": "1aabba89352e00f6bff696149ca4493208ced0043c20810ed34f4497c47c3d5f"
+    },
+    {
+      "path": "runner-repair-evidence/controls-3.log",
+      "sha256": "0636c4bd1373f6d12949677ce2f5e52bef1a225d516e426ade5f2efcac46fa32"
+    }
+  ],
+  "observed_runs": 3,
+  "tests_per_run": 42,
+  "distinct_test_count": 42,
+  "counts_note": "Three repeated control runs are confidence checks, not 126 distinct tests.",
+  "reviewer_executed_tests": false,
+  "final_gate_acceptance_claimed": false,
+  "no_actions_queries": true,
+  "no_fresh_ref_capture": true
+}
