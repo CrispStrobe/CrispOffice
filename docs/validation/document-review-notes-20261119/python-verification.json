@@ -1,0 +1,377 @@
+{
+  "schema": 2,
+  "scope": "Existing Python unittest targets on integrated source; actual distinct unittest cases, subtest loops not inflated. Includes one Node worker control invoked by the Python browser harness. No Dart/Flutter or browser application run. Failed diagnostic attempts stay separate.",
+  "targets": [
+    {
+      "name": "mail-runner",
+      "actual_cases": 34,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "matches_current_merged_inputs": true,
+      "receipt": "mail-runner/receipt.json",
+      "receipt_sha256": "6a9bb00a52ffe62440568aefc243cee1c46f6bd7acc01aed79a9292b6345390b",
+      "log": "mail-runner/raw.log",
+      "log_sha256": "7894cfd2a749217625e792821be733577b219a6d84a6d597109d521f9c0733e3"
+    },
+    {
+      "name": "notes-runner",
+      "actual_cases": 20,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "matches_current_merged_inputs": true,
+      "receipt": "notes-runner/receipt.json",
+      "receipt_sha256": "aa1230b4fa0efe2772e58b270ba20b046330710cb7b9296d4d3f95a77b8f89ed",
+      "log": "notes-runner/raw.log",
+      "log_sha256": "f79887c2102e9bfc3200994c4c35f1f2df47a335a5c950fc12b63933993fc3bb"
+    },
+    {
+      "name": "thesaurus-browser",
+      "actual_cases": 19,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "matches_current_merged_inputs": true,
+      "receipt": "thesaurus-browser/receipt.json",
+      "receipt_sha256": "df07f11dc05cbe64643037641291e54df572b3e93652839bb1326193515cb4d1",
+      "log": "thesaurus-browser/raw.log",
+      "log_sha256": "ceb38bf43629fa07397fd2b2cde9f7cd290e985f3e8a300cb5819a2d26ef9edf"
+    },
+    {
+      "name": "thesaurus-exporter",
+      "actual_cases": 7,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "matches_current_merged_inputs": true,
+      "receipt": "thesaurus-exporter/receipt.json",
+      "receipt_sha256": "dd32637bc7c610ceffb4cc98d437df48da048c91cde4bf3a51f3036888b46255",
+      "log": "thesaurus-exporter/raw.log",
+      "log_sha256": "efb835585ed92e0cd66a71ca687de10b1972587088938384f93eb056c6d8735a"
+    },
+    {
+      "name": "thesaurus-targeted",
+      "actual_cases": 14,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "matches_current_merged_inputs": true,
+      "receipt": "thesaurus-targeted/receipt.json",
+      "receipt_sha256": "e32b0e0ef8953165d5c9cdbf30abbc4c02f9e3cb4addb4a2ff0a581b4d6b9a26",
+      "log": "thesaurus-targeted/raw.log",
+      "log_sha256": "0b0b05d2f2869635b34500ca66b38ddd016d17f4c7a4cef6a24d01f004a6dd1f"
+    },
+    {
+      "name": "thesaurus-workspace",
+      "actual_cases": 17,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "matches_current_merged_inputs": true,
+      "receipt": "thesaurus-workspace/receipt.json",
+      "receipt_sha256": "e6c671e1d845cc2bf53a438cbbc953b9ac79b5ffecb8398ad5dd57b13f40ed9c",
+      "log": "thesaurus-workspace/raw.log",
+      "log_sha256": "b4679858414d9d6fdef267b7829229b5307f73b3b6886e226c10eadd2721094e"
+    },
+    {
+      "name": "zotero-runner",
+      "actual_cases": 32,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "matches_current_merged_inputs": true,
+      "receipt": "zotero-runner/receipt.json",
+      "receipt_sha256": "eee32db45fea614ba088cf3367eb5132b9b9b442ab2bc0ed6e7a3177eb07e5b2",
+      "log": "zotero-runner/raw.log",
+      "log_sha256": "41c7c6aa037c85851d3e24e870760891ee8043934f817f63c0ce8600f1d8f6d0"
+    }
+  ],
+  "case_ids": [
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_build_and_link_progress_can_share_a_line_with_an_event.test_build_and_link_progress_can_share_a_line_with_an_event",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_duplicate_runner_start_is_rejected.test_duplicate_runner_start_is_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_duplicate_terminal_is_rejected.test_duplicate_terminal_is_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_duplicate_test_completion_id_is_rejected.test_duplicate_test_completion_id_is_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_duplicate_test_start_id_is_rejected.test_duplicate_test_start_id_is_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_error_event_prevents_acceptance_even_with_successful_case_results.test_error_event_prevents_acceptance_even_with_successful_case_results",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_failed_loader_prevents_qualification_without_inflating_case_counts.test_failed_loader_prevents_qualification_without_inflating_case_counts",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_failure_terminal_is_rejected_even_if_cases_pass.test_failure_terminal_is_rejected_even_if_cases_pass",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_hidden_and_loading_failures_cannot_hide_behind_terminal_success.test_hidden_and_loading_failures_cannot_hide_behind_terminal_success",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_hidden_and_loading_skips_prevent_qualification.test_hidden_and_loading_skips_prevent_qualification",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_hidden_non_loader_failure_also_prevents_qualification.test_hidden_non_loader_failure_also_prevents_qualification",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_incomplete_lifecycle_events_prevent_qualification.test_incomplete_lifecycle_events_prevent_qualification",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_incomplete_loader_is_rejected.test_incomplete_loader_is_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_incomplete_visible_case_is_rejected.test_incomplete_visible_case_is_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_malformed_completion_result_is_rejected_without_raising.test_malformed_completion_result_is_rejected_without_raising",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_malformed_event_after_hook_progress_is_not_ignored.test_malformed_event_after_hook_progress_is_not_ignored",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_malformed_event_cannot_disappear_from_otherwise_passing_stream.test_malformed_event_cannot_disappear_from_otherwise_passing_stream",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_missing_opening_brace_is_rejected_with_or_without_hook_progress.test_missing_opening_brace_is_rejected_with_or_without_hook_progress",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_missing_runner_start_is_rejected.test_missing_runner_start_is_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_missing_terminal_is_rejected.test_missing_terminal_is_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_no_substantive_cases_cannot_qualify.test_no_substantive_cases_cannot_qualify",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_non_object_json_records_are_rejected.test_non_object_json_records_are_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_orphan_test_completion_is_rejected.test_orphan_test_completion_is_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_skipped_case_is_counted_and_prevents_qualification.test_skipped_case_is_counted_and_prevents_qualification",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_skipped_loader_prevents_qualification_without_inflating_case_counts.test_skipped_loader_prevents_qualification_without_inflating_case_counts",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_successful_hidden_and_loading_events_do_not_inflate_passes.test_successful_hidden_and_loading_events_do_not_inflate_passes",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_test_events_after_terminal_are_rejected.test_test_events_after_terminal_are_rejected",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_truncated_event_is_rejected_even_when_terminal_success_is_present.test_truncated_event_is_rejected_even_when_terminal_success_is_present",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_unrecognized_prefix_cannot_hide_event_data.test_unrecognized_prefix_cannot_hide_event_data",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_unstructured_output_after_terminal_prevents_qualification.test_unstructured_output_after_terminal_prevents_qualification",
+    "mail-runner::test_check_store.TestStoreEventAccounting.test_valid_stream_tolerates_native_hook_progress_and_excludes_loader.test_valid_stream_tolerates_native_hook_progress_and_excludes_loader",
+    "mail-runner::test_check_store.TestStoreRunnerExitAccounting.test_exit_zero_cannot_override_invalid_events.test_exit_zero_cannot_override_invalid_events",
+    "mail-runner::test_check_store.TestStoreRunnerExitAccounting.test_successful_events_and_exit_zero_allow_the_aggregate_gate.test_successful_events_and_exit_zero_allow_the_aggregate_gate",
+    "mail-runner::test_check_store.TestStoreRunnerExitAccounting.test_successful_events_cannot_override_nonzero_or_signal_exit.test_successful_events_cannot_override_nonzero_or_signal_exit",
+    "notes-runner::test_run_checks.CommandTests.test_flutter_keeps_offline_dependency_resolution.test_flutter_keeps_offline_dependency_resolution",
+    "notes-runner::test_run_checks.CommandTests.test_node_is_requested_explicitly.test_node_is_requested_explicitly",
+    "notes-runner::test_run_checks.CommandTests.test_unsupported_runners_and_platforms_are_rejected.test_unsupported_runners_and_platforms_are_rejected",
+    "notes-runner::test_run_checks.CommandTests.test_vm_is_the_default.test_vm_is_the_default",
+    "notes-runner::test_run_checks.ReporterTests.test_build_hook_prefix_preserves_reporter_start.test_build_hook_prefix_preserves_reporter_start",
+    "notes-runner::test_run_checks.ReporterTests.test_count_only_completed_user_cases.test_count_only_completed_user_cases",
+    "notes-runner::test_run_checks.ReporterTests.test_duplicate_completion_blocks_acceptance.test_duplicate_completion_blocks_acceptance",
+    "notes-runner::test_run_checks.ReporterTests.test_empty_or_unfinished_suites_block_acceptance.test_empty_or_unfinished_suites_block_acceptance",
+    "notes-runner::test_run_checks.ReporterTests.test_invalid_case_flags_and_payloads_are_rejected.test_invalid_case_flags_and_payloads_are_rejected",
+    "notes-runner::test_run_checks.ReporterTests.test_malformed_and_truncated_events_never_disappear.test_malformed_and_truncated_events_never_disappear",
+    "notes-runner::test_run_checks.ReporterTests.test_skips_and_error_events_block_acceptance.test_skips_and_error_events_block_acceptance",
+    "notes-runner::test_run_checks.ReporterTests.test_start_and_terminal_order_is_required.test_start_and_terminal_order_is_required",
+    "notes-runner::test_run_checks.RuntimeInputTests.test_absent_optional_maps_are_bound_and_nearer_maps_rejected.test_absent_optional_maps_are_bound_and_nearer_maps_rejected",
+    "notes-runner::test_run_checks.RuntimeInputTests.test_absolute_and_relative_encoded_file_uris_resolve.test_absolute_and_relative_encoded_file_uris_resolve",
+    "notes-runner::test_run_checks.RuntimeInputTests.test_ambiguous_remote_or_unverified_roots_are_rejected.test_ambiguous_remote_or_unverified_roots_are_rejected",
+    "notes-runner::test_run_checks.RuntimeInputTests.test_launcher_requires_retained_content_binding.test_launcher_requires_retained_content_binding",
+    "notes-runner::test_run_checks.RuntimeInputTests.test_node_and_native_assets_require_recorded_hashes.test_node_and_native_assets_require_recorded_hashes",
+    "notes-runner::test_run_checks.WhitespaceInputTests.test_changed_blob_path_duplicate_or_missing_reason_is_rejected.test_changed_blob_path_duplicate_or_missing_reason_is_rejected",
+    "notes-runner::test_run_checks.WhitespaceInputTests.test_exact_frozen_evidence_becomes_an_exact_path_exclusion.test_exact_frozen_evidence_becomes_an_exact_path_exclusion",
+    "notes-runner::test_run_checks.WhitespaceInputTests.test_product_paths_globs_and_traversal_cannot_be_excluded.test_product_paths_globs_and_traversal_cannot_be_excluded",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_changed_missing_and_unlisted_build_assets_are_rejected.test_changed_missing_and_unlisted_build_assets_are_rejected",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_changed_worker_is_rejected_even_with_unchanged_assets.test_changed_worker_is_rejected_even_with_unchanged_assets",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_competing_default_worker_bootstrap_is_rejected.test_competing_default_worker_bootstrap_is_rejected",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_failed_stale_or_inconsistent_compile_evidence_is_rejected.test_failed_stale_or_inconsistent_compile_evidence_is_rejected",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_generated_worker_checks_bytes_cache_scope_and_offline_fetch.test_generated_worker_checks_bytes_cache_scope_and_offline_fetch",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_http_origin_serves_csp_then_really_closes.test_http_origin_serves_csp_then_really_closes",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_incomplete_build_and_symbolic_links_are_rejected_before_writing.test_incomplete_build_and_symbolic_links_are_rejected_before_writing",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_inventory_is_repeatable_and_preserves_compiled_assets.test_inventory_is_repeatable_and_preserves_compiled_assets",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_mutated_compile_members_and_stale_fixture_are_rejected.test_mutated_compile_members_and_stale_fixture_are_rejected",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_resealed_installation_cannot_substitute_a_different_compiled_application.test_resealed_installation_cannot_substitute_a_different_compiled_application",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_unrelated_build_is_rejected_before_entry_points_are_changed.test_unrelated_build_is_rejected_before_entry_points_are_changed",
+    "thesaurus-browser::test_browser_harness.OfflineFixtureTests.test_unverified_workspace_and_changed_source_helpers_are_rejected.test_unverified_workspace_and_changed_source_helpers_are_rejected",
+    "thesaurus-browser::test_browser_harness.PanelReceiptTests.test_changed_source_projection_cannot_pass.test_changed_source_projection_cannot_pass",
+    "thesaurus-browser::test_browser_harness.PanelReceiptTests.test_complete_declared_panel_is_accepted.test_complete_declared_panel_is_accepted",
+    "thesaurus-browser::test_browser_harness.PanelReceiptTests.test_damaged_source_shard_cannot_validate_observed_senses.test_damaged_source_shard_cannot_validate_observed_senses",
+    "thesaurus-browser::test_browser_harness.PanelReceiptTests.test_empty_ready_duplicate_and_unsuccessful_senses_cannot_pass.test_empty_ready_duplicate_and_unsuccessful_senses_cannot_pass",
+    "thesaurus-browser::test_browser_harness.PanelReceiptTests.test_lost_distinctions_fallback_and_cache_bounds_cannot_pass.test_lost_distinctions_fallback_and_cache_bounds_cannot_pass",
+    "thesaurus-browser::test_browser_harness.PanelReceiptTests.test_missing_cases_wrong_status_or_pack_cannot_pass.test_missing_cases_wrong_status_or_pack_cannot_pass",
+    "thesaurus-browser::test_browser_harness.PanelReceiptTests.test_unread_or_tampered_notices_cannot_pass.test_unread_or_tampered_notices_cannot_pass",
+    "thesaurus-exporter::test_export_review_packet.ReviewPacketTest.test_current_source_records_remain_unreviewed.test_current_source_records_remain_unreviewed",
+    "thesaurus-exporter::test_export_review_packet.ReviewPacketTest.test_export_keeps_original_notices_and_refuses_overwrite.test_export_keeps_original_notices_and_refuses_overwrite",
+    "thesaurus-exporter::test_export_review_packet.ReviewPacketTest.test_failed_native_run_is_rejected.test_failed_native_run_is_rejected",
+    "thesaurus-exporter::test_export_review_packet.ReviewPacketTest.test_missing_or_repeated_query_is_rejected.test_missing_or_repeated_query_is_rejected",
+    "thesaurus-exporter::test_export_review_packet.ReviewPacketTest.test_modified_term_is_rejected.test_modified_term_is_rejected",
+    "thesaurus-exporter::test_export_review_packet.ReviewPacketTest.test_source_text_cannot_create_markdown_blocks.test_source_text_cannot_create_markdown_blocks",
+    "thesaurus-exporter::test_export_review_packet.ReviewPacketTest.test_stale_pack_is_rejected.test_stale_pack_is_rejected",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_complete_exact_suite_excludes_successful_lifecycle_counts.test_complete_exact_suite_excludes_successful_lifecycle_counts",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_duplicate_suite_registration_is_rejected.test_duplicate_suite_registration_is_rejected",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_existing_evidence_is_never_overwritten.test_existing_evidence_is_never_overwritten",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_hidden_failure_or_skip_cannot_be_excluded_from_acceptance.test_hidden_failure_or_skip_cannot_be_excluded_from_acceptance",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_invalid_test_suite_identifier_cannot_crash_the_audit.test_invalid_test_suite_identifier_cannot_crash_the_audit",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_layout_and_missed_tap_prints_reject_otherwise_successful_tests.test_layout_and_missed_tap_prints_reject_otherwise_successful_tests",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_lifecycle_only_suite_cannot_satisfy_the_plan.test_lifecycle_only_suite_cannot_satisfy_the_plan",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_malformed_suite_records_return_rejected_evidence.test_malformed_suite_records_return_rejected_evidence",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_nonobject_and_truncated_records_return_rejected_evidence.test_nonobject_and_truncated_records_return_rejected_evidence",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_nonpositive_execution_limits_are_rejected_before_output.test_nonpositive_execution_limits_are_rejected_before_output",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_preflight_failure_leaves_a_failed_receipt.test_preflight_failure_leaves_a_failed_receipt",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_stderr_diagnostic_scan_distinguishes_regular_tool_output.test_stderr_diagnostic_scan_distinguishes_regular_tool_output",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_timeout_stops_children_even_if_they_ignore_sigterm.test_timeout_stops_children_even_if_they_ignore_sigterm",
+    "thesaurus-targeted::test_run_targeted.TargetedEvidenceControls.test_wrong_suite_or_missing_requested_suite_is_rejected.test_wrong_suite_or_missing_requested_suite_is_rejected",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_changed_effective_source_changes_the_input_inventory.test_changed_effective_source_changes_the_input_inventory",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_changed_manifest_or_lock_is_rejected.test_changed_manifest_or_lock_is_rejected",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_configuration_cannot_redirect_a_package_library.test_configuration_cannot_redirect_a_package_library",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_configuration_cannot_redirect_a_package_to_another_checkout.test_configuration_cannot_redirect_a_package_to_another_checkout",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_current_copied_vendor_is_verified_and_stale_source_is_rejected.test_current_copied_vendor_is_verified_and_stale_source_is_rejected",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_current_live_links_and_nested_member_are_bound.test_current_live_links_and_nested_member_are_bound",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_direct_checkout_configuration_is_supported.test_direct_checkout_configuration_is_supported",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_locked_vendor_is_bound_in_separate_and_direct_workspaces.test_locked_vendor_is_bound_in_separate_and_direct_workspaces",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_locked_vendor_manifest_and_overrides_are_verified.test_locked_vendor_manifest_and_overrides_are_verified",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_locked_vendor_paths_must_be_canonical_and_within_checkout.test_locked_vendor_paths_must_be_canonical_and_within_checkout",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_locked_vendor_root_and_library_cannot_be_redirected.test_locked_vendor_root_and_library_cannot_be_redirected",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_missing_duplicate_and_nonlocal_configuration_are_rejected.test_missing_duplicate_and_nonlocal_configuration_are_rejected",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_plain_copied_source_directories_are_rejected_even_with_equal_bytes.test_plain_copied_source_directories_are_rejected_even_with_equal_bytes",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_preparer_preserves_valid_links_and_nested_containers.test_preparer_preserves_valid_links_and_nested_containers",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_preparer_rejects_an_existing_copied_source_directory.test_preparer_rejects_an_existing_copied_source_directory",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_unqualified_overrides_and_extra_library_are_rejected.test_unqualified_overrides_and_extra_library_are_rejected",
+    "thesaurus-workspace::test_workspace_binding.WorkspaceBindingTests.test_wrong_source_link_is_rejected_on_subsequent_snapshot.test_wrong_source_link_is_rejected_on_subsequent_snapshot",
+    "zotero-runner::test_run_local.FrozenPlanTests.test_duplicate_suite_within_or_between_gates_is_rejected.test_duplicate_suite_within_or_between_gates_is_rejected",
+    "zotero-runner::test_run_local.FrozenPlanTests.test_empty_gate_invalid_runner_or_duplicate_name_is_rejected.test_empty_gate_invalid_runner_or_duplicate_name_is_rejected",
+    "zotero-runner::test_run_local.FrozenPlanTests.test_plan_binds_each_requested_suite_and_support_input_once.test_plan_binds_each_requested_suite_and_support_input_once",
+    "zotero-runner::test_run_local.FrozenPlanTests.test_untracked_missing_or_outside_inputs_are_rejected.test_untracked_missing_or_outside_inputs_are_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_complete_stream_counts_two_cases_and_excludes_loader_and_fixtures.test_complete_stream_counts_two_cases_and_excludes_loader_and_fixtures",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_duplicate_suite_id_or_path_is_rejected.test_duplicate_suite_id_or_path_is_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_duplicate_test_start_and_completion_are_rejected.test_duplicate_test_start_and_completion_are_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_empty_suite_does_not_qualify_by_finishing_its_loader.test_empty_suite_does_not_qualify_by_finishing_its_loader",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_error_event_invalidates_otherwise_successful_cases.test_error_event_invalidates_otherwise_successful_cases",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_events_after_terminal_are_rejected.test_events_after_terminal_are_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_hidden_or_fixture_failure_cannot_disappear.test_hidden_or_fixture_failure_cannot_disappear",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_invalid_completion_metadata_is_rejected.test_invalid_completion_metadata_is_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_malformed_and_truncated_events_are_never_discarded.test_malformed_and_truncated_events_are_never_discarded",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_malformed_schema_or_unknown_event_is_rejected.test_malformed_schema_or_unknown_event_is_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_missing_duplicate_and_unsuccessful_terminal_are_rejected.test_missing_duplicate_and_unsuccessful_terminal_are_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_missing_or_duplicate_runner_start_is_rejected.test_missing_or_duplicate_runner_start_is_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_missing_requested_suite_is_rejected.test_missing_requested_suite_is_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_nonobject_events_cannot_be_accepted.test_nonobject_events_cannot_be_accepted",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_orphan_completion_cannot_add_a_passing_case.test_orphan_completion_cannot_add_a_passing_case",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_progress_prefix_and_file_uri_preserve_reporter_identity.test_progress_prefix_and_file_uri_preserve_reporter_identity",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_python_empty_skipped_failed_or_partial_support_run_is_rejected.test_python_empty_skipped_failed_or_partial_support_run_is_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_python_support_counts_remain_separate.test_python_support_counts_remain_separate",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_skipped_or_failed_user_case_prevents_qualification.test_skipped_or_failed_user_case_prevents_qualification",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_suite_relative_paths_use_the_test_process_directory.test_suite_relative_paths_use_the_test_process_directory",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_unexpected_suite_is_rejected.test_unexpected_suite_is_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_unfinished_visible_case_and_loader_are_rejected.test_unfinished_visible_case_and_loader_are_rejected",
+    "zotero-runner::test_run_local.ReporterAccountingTests.test_unknown_suite_cannot_provide_a_passing_case.test_unknown_suite_cannot_provide_a_passing_case",
+    "zotero-runner::test_run_local.VerbatimWhitespaceTests.test_absolute_traversal_backslash_and_noncanonical_paths_are_rejected.test_absolute_traversal_backslash_and_noncanonical_paths_are_rejected",
+    "zotero-runner::test_run_local.VerbatimWhitespaceTests.test_changed_blob_cannot_reuse_the_whitespace_exception.test_changed_blob_cannot_reuse_the_whitespace_exception",
+    "zotero-runner::test_run_local.VerbatimWhitespaceTests.test_duplicate_exception_is_rejected.test_duplicate_exception_is_rejected",
+    "zotero-runner::test_run_local.VerbatimWhitespaceTests.test_pinned_tracked_blob_needs_no_materialized_file.test_pinned_tracked_blob_needs_no_materialized_file",
+    "zotero-runner::test_run_local.VerbatimWhitespaceTests.test_untracked_unpinned_or_unexplained_exception_is_rejected.test_untracked_unpinned_or_unexplained_exception_is_rejected"
+  ],
+  "source_inputs": {
+    "tools/mail/check_reader.py": {
+      "bytes": 10166,
+      "sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826"
+    },
+    "tools/mail/check_store.py": {
+      "bytes": 13740,
+      "sha256": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155"
+    },
+    "tools/mail/test_check_store.py": {
+      "bytes": 16927,
+      "sha256": "e0ca9d20f8836ccc1623f0ea802cc976254b80d56786363086ac830b8b7e885a"
+    },
+    "docs/validation/document-review-notes-20261118/run_checks.py": {
+      "bytes": 31479,
+      "sha256": "604d3630100882b2b1f8cdddc72dcd4c20fcf59eb530123251fd54fddbefc6a0"
+    },
+    "docs/validation/document-review-notes-20261118/test_run_checks.py": {
+      "bytes": 15273,
+      "sha256": "7ba840a3f740a45c5b4248ce08d5864f7fc252d5cf50f7a5d6c131e8e07fa266"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/build_binding.py": {
+      "bytes": 8052,
+      "sha256": "4dd56dd08f3228afec52172e396bd49504ce183dceb5fd8837f0a03fb0740d26"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py": {
+      "bytes": 10955,
+      "sha256": "174329331c5e363afcb4dd58d8182aa14b4f86b405e0ec84be5179414fc968aa"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart": {
+      "bytes": 8440,
+      "sha256": "9caff2312188c3fd1b668055495bc1e6b37b897ddebfe85b2c32b9e8d75485a4"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart": {
+      "bytes": 5204,
+      "sha256": "2c12b51deabbc6fc407d390b51570538e12f1aa61d113afafd698aab17054891"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart": {
+      "bytes": 5577,
+      "sha256": "99e41ba060c8f35f2677b968dbaad0679868190a50f2e4debe57bc296ea34c7c"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py": {
+      "bytes": 24414,
+      "sha256": "62f1b712957c7fe360014799f7178db019ec1a5fd7ea347d3563c9cb909b72d3"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_final_validation.py": {
+      "bytes": 8811,
+      "sha256": "382a3e7e1688df926a7fd9a2bfe57b526735607fecc2ec2e024633d850581582"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py": {
+      "bytes": 29125,
+      "sha256": "7516f54f7e91332c92fc234ba7d973b7c299340269f846465a3f8d9bfebe306c"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_workspace_binding.py": {
+      "bytes": 14808,
+      "sha256": "ba84d9cce6f031c4d920b8f2465af120d82a427e855c697535b0f12aa5a632e5"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py": {
+      "bytes": 13401,
+      "sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7"
+    },
+    "tools/thesaurus/build_packs.py": {
+      "bytes": 19016,
+      "sha256": "52c87f52f7c85ed2ec9d58b91e5afeb5bb658e7b99fe167cc4a26e6fb5608e4c"
+    },
+    "tools/thesaurus/export_review_packet.py": {
+      "bytes": 13361,
+      "sha256": "1d14bd72961bad937d2eaf624ea179bafce8cc61fc6534c8b893deed1f33945f"
+    },
+    "tools/thesaurus/test_export_review_packet.py": {
+      "bytes": 3415,
+      "sha256": "f5bf1ab698351f39648f1cd5d1049a4ce4c899c313737f9ab791674413904e7c"
+    },
+    "docs/validation/thesaurus-20261118/reconciled/run_targeted.py": {
+      "bytes": 17304,
+      "sha256": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d"
+    },
+    "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py": {
+      "bytes": 9887,
+      "sha256": "0a05114c35d96d1102bedefcf31bd672a52c1addae2d8a609c2a9bf2f974cdb4"
+    },
+    "docs/validation/thesaurus-20261118/continuation/local/runtime/prepare_workspace.py": {
+      "bytes": 2743,
+      "sha256": "159511900b45ac4e11ffdc51bf3dbf714d2d2f5bc31c128ca73ecd311f4d3ce5"
+    },
+    "docs/validation/zotero-word-parity-20261118/run_local.py": {
+      "bytes": 22612,
+      "sha256": "4f0f8e1e3a6271b936d90d91098d64573b9256f026136fca6148bc49cda6556b"
+    },
+    "docs/validation/zotero-word-parity-20261118/test_run_local.py": {
+      "bytes": 15074,
+      "sha256": "1b3350887ee93ec1b7c19d35f1c89f5ad773cba64ffd4f8c5236b49deb98272f"
+    }
+  },
+  "git_blobs": {
+    "tools/mail/check_reader.py": "197bc15fd173e06730798abe4a382b97269ccd55",
+    "tools/mail/check_store.py": "cb8d7171171e1c6e96482a4699e30e42a8bc29b3",
+    "tools/mail/test_check_store.py": "a5a4a68c7230d93b1290647d1b8cc8d4d8c52c04",
+    "docs/validation/document-review-notes-20261118/run_checks.py": "9a4e3e72b801aaec6ea5b230a30a37bdd8712d23",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py": "74f14a4e62ed8da8a836d95e5b3657b41b83572b",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/build_binding.py": "d2940dbc98bbf4139b3ecf58974703a24d09fe67",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py": "b221fe59103d248fa21bd2ab7c87d542648fddf7",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart": "2e5e2105d4bbb37cdd95ca55bbcd6e6bea776dfa",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart": "f17af5afa2e23e1659239e9533bbfe31efce1d44",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart": "a4c23d1c459edbb3a843f81c0f6c813bfa478a4c",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py": "220157572d9fbd99048e1c946eab7504a2dbe300",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_final_validation.py": "1a66162b6bff5688512fd6c1625a837449567f49",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py": "8ab15bd5c5fee9537c6cdbfbd9878b0850799730",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_workspace_binding.py": "70af7cde57c5cb5d04b59355fa510edfbccd8267",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py": "ed0d5a585726681c003817a2a14c76bdba6b114e",
+    "tools/thesaurus/build_packs.py": "ae1f030c87ca4a8b78fc6ba55280cea7fcbf8bf2",
+    "tools/thesaurus/export_review_packet.py": "3453dc9626ef8d0b52d20bc802558a95deedf6f5",
+    "tools/thesaurus/test_export_review_packet.py": "38c088b8e7e96ae4631629e8ba7a26c61bb78687",
+    "docs/validation/thesaurus-20261118/reconciled/run_targeted.py": "1dd33dfb4559e712bbfe2cd5873ba6fddc516abb",
+    "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py": "29863bffe71943e43b01636683ea4bc7327c78a5",
+    "docs/validation/thesaurus-20261118/continuation/local/runtime/prepare_workspace.py": "9c84f21813dda4471159f404d39206d8819ad859",
+    "docs/validation/zotero-word-parity-20261118/run_local.py": "74f91552a27ddeec2fc55e26d7b2a2ec232a2855",
+    "docs/validation/zotero-word-parity-20261118/test_run_local.py": "313ac610490ee86db93c3e91499299dd518f8b73"
+  },
+  "current_head_at_aggregation": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6",
+  "excluded_attempts": [
+    {
+      "target": "thesaurus-targeted",
+      "receipt": "attempts/thesaurus-targeted-01-immediate-proc-observation/receipt.json",
+      "exit_code": 1,
+      "actual_cases": 14,
+      "passing_cases": 13,
+      "nonpassing_cases": [
+        {
+          "id": "test_run_targeted.TargetedEvidenceControls.test_timeout_stops_children_even_if_they_ignore_sigterm.test_timeout_stops_children_even_if_they_ignore_sigterm",
+          "result": "FAIL"
+        }
+      ],
+      "raw_log_sha256": "f6a4e9e93c8284036c59784dc9bf6d5eb6bc4f47ec1f4f211c4d821139e716b6",
+      "reason": "Diagnostic attempt before bounded termination observation repair; excluded entirely from accepted totals."
+    }
+  ],
+  "actual_cases": 143,
+  "failed": 0,
+  "skipped": 0,
+  "all_passed": true,
+  "bound_input_count": 23,
+  "source_commit_binding": {
+    "head": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6",
+    "matching_input_count": 23,
+    "working_tree_inputs_differing_from_head": [],
+    "all_inputs_match_head": true
+  },
+  "aggregation_script_sha256": "53b1999b4a4d4a6311e80c1df753a241e33b82330ddb3680b41a7d378a7d258a"
+}
