@@ -684,6 +684,45 @@ void main() {
     },
   );
 
+  for (final delimiters in [
+    ('missing list separator', ' ', ''),
+    ('tab list separator', ' ', '\t'),
+    ('tab sequence separator', '\t', ' '),
+    ('attached quoted prefix', ' ', '"bad" '),
+    ('attached closing list', ' ', ')'),
+  ]) {
+    test(
+      'FETCH with ${delimiters.$1} cannot fabricate a successful tombstone page',
+      () async {
+        final fixture = ImapFixture(uidNext: 2, messages: {1: _message()})
+          ..fetchSequenceSeparator = delimiters.$2
+          ..fetchListSeparator = delimiters.$3;
+        final result = await fixture.provider().pullChanges(
+          fixture.mailbox,
+          limit: 1,
+          lease: _lease(fixture),
+        );
+        expect(result, isA<MailFailure<MailSyncPage>>());
+        expect(fixture.clients.single.socket.closed, isTrue);
+      },
+    );
+  }
+
+  test(
+    'FETCH with attached literal cannot fabricate a tombstone page',
+    () async {
+      final fixture = ImapFixture(uidNext: 2, messages: {1: _message()})
+        ..bareFetchLiteral = true;
+      final result = await fixture.provider().pullChanges(
+        fixture.mailbox,
+        limit: 1,
+        lease: _lease(fixture),
+      );
+      expect(result, isA<MailFailure<MailSyncPage>>());
+      expect(fixture.clients.single.socket.closed, isTrue);
+    },
+  );
+
   test(
     'rejected duplicate sync record never advances a successful partial page',
     () async {

@@ -1,0 +1,36 @@
+{
+  "source_commit": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "source_tree": "9d2c815eda61378fbc4b234124e8e7c9cfeacb5b",
+  "cutoff_utc": "2026-11-19T07:15:06.506435+00:00",
+  "captured_refs": 392,
+  "unique_heads": 254,
+  "snapshot_counts": {
+    "origin": 213,
+    "pull": 175,
+    "upstream": 4
+  },
+  "ancestor_refs": 364,
+  "historical_equivalent_refs": 28,
+  "unaccounted_refs": 0,
+  "historical_equivalence_proofs_recomputed": 14,
+  "all_historical_equivalences_verified": true,
+  "historical_refs_remain_non_ancestors": true,
+  "local_exact_tree_equivalence": {
+    "local_head": "54c9b69eb9638b2d19b05eae8d2591dbc63a17a2",
+    "local_tree": "9d2c815eda61378fbc4b234124e8e7c9cfeacb5b",
+    "published_head": "5569c055a021c893e941fc54d40499ad9d96a5db",
+    "published_tree": "9d2c815eda61378fbc4b234124e8e7c9cfeacb5b",
+    "same_tree": true,
+    "local_only_commits": [
+      "54c9b69eb9638b2d19b05eae8d2591dbc63a17a2",
+      "6b027707935c9c6bc9721a516ebd44bb59614c78",
+      "c34239ccbdd16750ad4fa24cd779031c39f7074a"
+    ],
+    "local_only_non_merge_commits": [],
+    "verified": true
+  },
+  "complete_audit_member": "reconciliation-audit/pre-release-20261119-cutoff/release-source-audit-5569c055.json",
+  "complete_audit_sha256": "c1ed8fa7d85039a60690b3ab77dfa5d2797b0a55dd195fbd5aac1e0eae302002",
+  "snapshot_sha256": "0883be2b93bbf39f4c8c0549dc9537340e1e9ddf2d67dada7a27f896f8adc845",
+  "passed": true
+}

@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-11-19T07:09:02.704062+00:00",
+  "scope": "Completed 54c36e40 qualification preserved before newer concurrent UID parser and TLS work. Its 795 application executions and 78 separate Python controls qualify only the recorded sources; no counts transfer to later source qualification.",
+  "native_node_source_commit": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+  "store_execution_source_commit": "6be7677993715556cf1704d157dff61a428da5a7",
+  "store_transfer": "Actual execution source is preserved. The included independent store audit records exact scoped input equality and dependency closure.",
+  "application_case_executions": 795,
+  "suite_platform_executions": 84,
+  "distinct_test_files": 72,
+  "separate_python_controls": 78,
+  "counts_added_to_later_qualification": 0,
+  "historical_office_cases_counted": 0,
+  "independent_summary_sha256": "e92737574816d5dcb2a6f9fd92535d927c921a8ccf5f053d497f342c7904b07e",
+  "github_actions": "NOT QUERIED OR AWAITED"
+}
