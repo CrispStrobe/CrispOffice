@@ -1,21 +1,21 @@
 # Office integration for remote main — 19 November 2026
 
-The [UID, Hunspell and Arabic qualification](latest-final/README.md) is complete
-at **`29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e`**: **784 passing executions /
-600 distinct scenarios / 37 distinct suites**, 34 strict static targets,
-42 runner controls and 17 separate publisher controls. Independent raw-event,
-source and runtime verification passed. Its source and evidence are saved
-incrementally.
+The [host integration checkpoint](host-final/README.md) is independently
+verified at `9833831a013c98a8ce5c3f5e6f45de36593cb7df`: **1,285 passing
+executions / 979 distinct scenarios / 56 distinct suites**, with 51 strict
+static targets. The failed first attempt, corrective fixtures, raw events,
+source/runtime inventories and replay audits are saved separately.
 
-At the final merge guard, main had advanced to `be641457`, adding Arabic host
-wiring/download UI, additional Arabic rules and CrispOffice defaults/branding.
-PR #179 had been merged at the earlier `5ec15bdd` checkpoint by another session.
-Those later changes are being reviewed separately before the follow-up merge;
-they are not relabeled as execution on `29dd23a6`.
+Remote main later advanced to `9160eb0d`, adding German Studio labels,
+About/footer changes, icons and fixture updates. That bounded follow-up is
+being reconciled and has its own source and validation scope. No earlier
+result is relabelled as execution on the newer Studio source.
 
-The [expanded Arabic and Mail qualification](arabic-final/README.md) retains
-1,286 executions / 1,142 distinct cases / 80 suites at `e41679f8`.
-The [prior report](pre-arabic-report.md) retains the earlier 632-execution
-qualification at `ac1e4c8c`. All original logs, case identities, source bindings
-and acceptance boundaries remain separately attributed. No GitHub Actions are
-queried, dispatched or awaited.
+The [UID/Hunspell checkpoint](latest-final/README.md) retains 784 executions /
+600 distinct scenarios / 37 suites at `29dd23a6`. Its exact Mail subset remains
+source-compatible: 608 executions / 508 distinct scenarios / 33 suites.
+The [Arabic/Mail checkpoint](arabic-final/README.md) retains 1,286 executions /
+1,142 distinct cases / 80 suites at `e41679f8`; the
+[earlier report](pre-arabic-report.md) retains 632 executions at `ac1e4c8c`.
+All original evidence and scope boundaries remain independently attributed.
+No GitHub Actions run was queried, dispatched or awaited.

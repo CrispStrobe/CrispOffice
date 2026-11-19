@@ -1,14 +1,64 @@
 # Quds Office final branch synchronization — 19 November 2026
 
+## Accepted integration qualification at `5c18db77`
+
+**PASS:** the complete run and its independent audit qualify source
+`5c18db77505f876bf70bf7e89c49e8c3b617e0d4` (tree `c29e6bae74ed0c1d0375fa230bf54762658c69cb`).
+The frozen run completed **10:51:27 CET–11:00:37 CET
+on 19 November 2026**. It records **1,026 application executions across 49
+suite/platform runs and 38 distinct test files**, with **21 separate Python
+controls**: seventeen bundle controls and four offline packaging controls.
+All **89 strict analysis and 89 formatting targets**, whitespace checks,
+offline locked resolution and browser compilation passed.
+
+| Cohort | Platform | Suite runs | Passed cases |
+| --- | --- | ---: | ---: |
+| Native Hunspell, installation, disposal and cancellation | VM / Flutter VM | 4 | 28 |
+| Mail cursor and store integration | VM / Flutter VM | 4 | 50 |
+| Arabic writing and range rules | VM / Flutter VM | 3 | 294 |
+| Word language inheritance and finding merges | VM / Flutter VM | 5 | 70 |
+| Word editing and proofing integration | VM / Flutter VM | 4 | 73 |
+| Studio, PDF, Notes, Zotero and dictionary setup | VM / Flutter VM | 18 | 119 |
+| Portable Hunspell provider | Node | 1 | 11 |
+| Portable Mail cursor and configuration | Node | 2 | 17 |
+| Portable Arabic writing and ranges | Node | 3 | 294 |
+| Portable Word language and finding merges | Node | 5 | 70 |
+| **Total** | **Native + Node** | **49** | **1,026** |
+
+The independent audit confirms zero failed/skipped cases, reporter errors,
+duplicate completions, unfinished cases or suite discrepancies. It reverified
+**5,125 immutable source inputs, 11,171 runtime inputs and thirteen fixture
+files**, with unchanged source, runtime, source head and tracked checkout.
+All eight rejected v3 plan files remain exact historical inputs. Original
+`0669ac11` results, all four rejected attempts, and every development/preflight
+execution contribute zero to these totals.
+
+- [Final result and exact source](main-delta-v4/final/summary.json)
+- [Independent raw-event and source/runtime audit](main-delta-v4/final/independent-summary.json)
+- [Workspace/source continuity](main-delta-v4/final/continuity.json)
+- [Fresh audit of the fixed 401-ref capture](main-delta-v4/final/reconciliation.json)
+- [Two-archive publication manifest](main-delta-v4/publication-manifest.json)
+- [Complete raw results](main-delta-v4/final/evidence.tar.xz) and [preserved reviews](main-delta-v4/reviews/evidence.tar.xz)
+
+The two new archives preserve **336 exact members**: 103 qualification/audit
+members and 233 review/development members. Archive membership is separate from
+test counts. GitHub Actions were neither queried nor awaited.
+
+A subsequent main observation returned `0114567f2e922dd0f0e31e6f846663462beeaac3`.
+This packet preserves the accepted `5c18db77` source and results before that
+further reconciliation; any new affected-source checks retain a separate
+identity.
+
 ## Scope and checkpoint state
 
 This continuation starts from remote main at
 `55e262ef269634a0d618c0b5102dc9be5430a5f3`, after the Zotero, Notes and
 thesaurus work merged through PRs #173–175. It preserves subsequent main and
 branch history and publishes incremental checkpoints on
-`codex/office-main-sync-20261119` through PR #178.
+`codex/office-main-sync-20261119`. PR #178 tracked its initial checkpoint and
+was later closed after an older head was integrated directly into main.
 
-The final reconciliation scope is the direct remote advertisement at
+The fixed reconciliation scope is the direct remote advertisement at
 **08:51:46.468061 CET on 19 November 2026** (07:51:46.468061 UTC): **401 refs**,
 comprising 218 fork branches, 179 PR heads and four upstream branches. All are
 accounted for at integration checkpoint `2122066f`: **373 ancestors and 28
@@ -16,7 +66,16 @@ verified historical equivalents**, with zero unaccounted refs. All 14
 historical equivalence proofs were freshly recomputed. This is a fixed capture,
 not a claim about later writes by concurrent contributors.
 
-**Expanded local qualification: PASS at
+The latest integrated source is
+`5c18db77505f876bf70bf7e89c49e8c3b617e0d4`. It includes directly captured main through
+`9160eb0dba211225c85242114989631c0d14fb72`, together with the earlier
+reconciliation and review repairs. The [fourth delta plan](main-delta-v4/README.md)
+defines a fresh source-bound qualification after the rejected `26df7873`
+attempt. Its complete result and independent audit passed as recorded above;
+the historical qualification below remains bound to its original source.
+Remote-main inclusion is verified separately from this source qualification.
+
+**Historical expanded qualification: PASS at
 `0669ac119da05f5eb777c8cfdbce32e0261df647`.** The original execution ran
 09:02:09–09:11:29 CET on 19 November. Its accepted independent audit verifies
 **1,372 application executions across 111 suite/platform runs and 94 distinct
@@ -25,29 +84,61 @@ or skips. GitHub Actions were neither queried nor awaited.
 
 While this source was frozen, concurrent main advanced to `b655b8a3` with
 optional Hunspell, macOS-runner and documentation additions. PR #178 had been
-closed after an earlier checkpoint was integrated directly. This publication
-preserves the exact qualified source and evidence first. Subsequent main
+closed after an earlier checkpoint was integrated directly. Publication checkpoint `26046f9894283f3ac1cc863d355896699693926c`
+preserved that exact qualified source and evidence. Subsequent main
 reconciliation and its checks retain separate identities; these 1,372 passes
 are never relabeled as executions against a later source.
 
 ## Concurrent main continuation
 
-The [main reconciliation record](main-reconciliation.md) describes preservation
-of incoming `b655b8a3`, including optional Hunspell, the macOS runner, newer
-Arabic guidance and all incoming evidence. At that first main merge, the original cursor and Arabic repairs remained
-byte-identical. The later Arabic T1 merge preserves their behavior while
-extending the provider and its regression coverage. Native Hunspell disposal, two stale publisher
-assertions and macOS network/selected-file capabilities receive scoped repairs.
-The separate merged-source qualification is recorded after its source checkpoint
-is frozen; the 1,372 executions below retain their original `0669ac11` identity.
+The [main reconciliation record](main-reconciliation.md) traces the preserved
+incoming heads from `b655b8a3` through `b559f6c7`, `be641457`, `00014577`,
+`d8b7f1c4` and `9160eb0d`. They add optional Hunspell, the macOS runner,
+Arabic T1 rules, CrispOffice Studio updates, complex-script language routing,
+dictionary setup, the compact review footer and shared Settings test helpers. At the first main merge the original cursor and
+Arabic repairs remained byte-identical; later Arabic changes retain those
+safeguards while extending the provider and its regression coverage. Scoped
+repairs cover native disposal, missing dictionaries, publication inventory,
+macOS capabilities, language editing, finding merges, download cancellation
+and truthful, bounded footer status. The 1,372 executions below retain their
+original `0669ac11` identity.
 
 The [first merged-source attempt](main-delta/attempt-aea5d91a/README.md)
 remains FAIL: native diagnostic lines violated strict reporter admission. Its
 159 observed assertion successes are excluded from accepted totals. Investigation
 also reproduced a valid-affix/missing-dictionary false success. The following
 repair checks both dictionary files before FFI and adds a regression; the result
-parser is unchanged. Current main has since added the CrispOffice Studio update
-and Arabic T1 rules, which are reconciled before the next frozen delta gate.
+parser is unchanged. The CrispOffice Studio update and Arabic T1 rules added
+by `b559f6c7` are included in the current integrated source.
+
+The [second merged-source attempt](main-delta-v2/attempt-c0c71a26/README.md)
+at `c0c71a26` also remains FAIL: three stale Studio selectors and three strict
+formatting discrepancies were rejected. Its 469 observed successful application
+events and 17 Python controls contribute zero to accepted totals. All raw output,
+source/runtime envelopes and the independent failed-attempt audit are preserved.
+The [additional review packet](main-delta-v2/reviews/evidence.tar.xz) preserves
+reviewed native binaries, pinned dictionaries and scoped development evidence.
+
+The [pre-test v3 attempt](main-delta-v3/attempt-fce543de/README.md) at
+`fce543de` remains rejected: its dependency-graph expectation omitted Studio's
+explicit edge to the already-resolved `url_launcher` package. It executed
+**zero application cases and zero Python controls**. Its successful independent
+rejection audit preserves `accepted_qualification: false`.
+
+The [following v3 attempt](main-delta-v3/attempt-26df7873/README.md) at
+`26df7873` corrected that graph expectation but remains **rejected**. All
+**634 native application cases and 21 separate Python controls** succeeded;
+strict analysis reported one alphabetical export-order diagnostic in
+`quds_office_engine.dart`. The driver stopped before Node tests and browser
+compilation. The original logs, source/runtime envelopes and completed
+independent rejection audit are preserved. None of these successes contributes
+to an accepted total.
+
+The latest integration retains main's `9160eb0d` changes and corrects the exact
+export ordering. The fresh v4 qualification retains the prior regression
+selection, includes the shared Settings helper in strict analysis, and uses
+new output and source/runtime envelopes. Historical, rejected and development
+executions contribute zero to its accepted totals.
 
 ## Integrated behavior and review fixes
 
@@ -82,9 +173,14 @@ enabled; rejection tests inspect state before teardown.
 The captured Arabic writing provider (`a4b9fc95`) supplies independently authored
 orthographic, punctuation and style checks for Arabic-language text. It is
 registered in default Word proofing and Studio and keeps original UTF-16
-offsets. At this frozen source, the Hunspell adapter and in-app dictionary download
-were still planned. Later main adds the optional package; host registration
-and the download UI remain open.
+offsets. Later main adds the T1 extension and the optional Hunspell package.
+The current source implements native and web Studio hosts plus an explicit
+Dictionaries setup dialog with progress, cancellation, removal and licence
+information. Verified installed dictionaries are registered in Word proofing.
+Native hosts retain verified files in the private application data directory;
+the web host retains verified bytes for the current session. Dictionary data
+is downloaded only after the user requests it. Actual platform acceptance
+remains scoped as described below.
 
 Review reproduced and repaired decomposed-hamza corruption, matches inside
 mixed-script tokens, detached-waw matches across token boundaries and an
@@ -94,10 +190,13 @@ retain their supported behavior, and Unicode token boundaries protect adjacent
 letters, marks, numbers, connectors and joiners.
 
 The AyaSpell publisher selects only manifest members and `manifest.json`,
-excluding unrelated files from a reused output directory. All five local and
-seven incoming offline controls are retained. Their scenarios overlap; twelve
-executions do not mean twelve distinct product features. The later published
-bundle metadata is preserved. This continuation performs no Hugging Face upload.
+excluding unrelated files from a reused output directory. The five local and
+seven incoming controls formed the twelve publisher controls accepted at
+`0669ac11`; later main adds another five. The current v4 plan selects all
+seventeen controls across the three retained files. Their scenarios overlap,
+so these counts describe controls rather than distinct product features.
+The later published bundle metadata is preserved. This continuation performs
+no Hugging Face upload.
 
 ### Existing Office workflows and historical evidence
 
@@ -144,14 +243,16 @@ rerun and no extra 20 added to the total.
 | Portable store policy and codec | Node | 42 |
 | **Total application executions** | **VM + Node** | **1,372** |
 
-All **83 strict analysis and 83 formatting targets** pass, covering all 27
-changed Dart paths, alongside full core/store analysis, formatting, offline
-locked resolution and browser entry/worker compilation. The independent audit
-recounts raw events and checks case inventories, missing/duplicate completions,
-suite coverage, source Git blobs, and actual runtime files. The outer envelope
-binds 5,051 source inputs and 11,157 runtime inputs; both are unchanged.
+For `0669ac11`, all **83 strict analysis and 83 formatting targets** passed,
+covering all 27 changed Dart paths, alongside full core/store analysis,
+formatting, offline locked resolution and browser entry/worker compilation.
+Its independent audit recounts raw events and checks case inventories,
+missing/duplicate completions, suite coverage, source Git blobs, and actual
+runtime files. That run's outer envelope bound 5,051 source inputs and 11,157
+runtime inputs; both remained unchanged. These are the historical envelope
+counts, not inventories for the later integrated source.
 
-The pinned runtime is Flutter **3.47.8** / Dart **3.13.7**, restored from the
+That accepted run used pinned Flutter **3.47.8** / Dart **3.13.7**, restored from the
 verified official SDK stream and 176 hash-pinned hosted archives. All 131
 resolved package names matched the then-current workspace and lockfile.
 
@@ -160,8 +261,10 @@ and [accepted independent audit](final/independent-summary.json).
 
 ## Preserved evidence and remote checkpoints
 
-The [publication manifest](publication-manifest.json) lists six indexed archives.
-Each member is byte-matched against its original file. Archive/member counts
+The [original publication manifest](publication-manifest.json) lists the six
+indexed archives for the `0669ac11` publication. Each member is byte-matched
+against its original file. Later attempts and review packets retain their own
+manifests, linked in the continuation sections above. Archive/member counts
 are separate from application test counts.
 
 | Packet | Scope |
@@ -173,7 +276,7 @@ are separate from application test counts.
 | [Cursor regression](reviews/cursor-aba.tar.xz) | Original stale-write failure and repaired provider/SQLite development evidence |
 | [Preliminary qualification](preliminary/evidence.tar.xz) | Earlier 237-application/90-Python checkpoint, excluded from the new totals |
 
-Remote checkpoints were fetched and tree-verified after publication:
+The initial remote checkpoints were fetched and tree-verified after publication:
 
 | Commit | Saved scope |
 | --- | --- |
@@ -197,7 +300,7 @@ overlaps. Later captured heads add:
 The later integration retains all three parents. Current Mail status describes
 the new discovery behavior; earlier reports remain explicitly historical.
 
-## Replay
+## Replay the accepted `0669ac11` baseline
 
 Use Linux x86-64, Python 3.12 or later with PyYAML, and Node. Set the paths below
 to a clean checkout, an empty runtime directory and an empty results directory.
@@ -223,13 +326,21 @@ The original `vm-plan.json` and `node-plan.json` belong to the preliminary
 237-execution checkpoint; use the `final-*` plans for this expanded source.
 Development/failing-before probes must remain outside acceptance totals.
 
+For the latest integrated source, use the [v4 driver and replay instructions](main-delta-v4/README.md),
+including its baseline, pre-resolution and native-fixture receipts. Its exact
+source and results retain their own identity. The earlier v3 plans and rejected
+attempts remain historical evidence and are not relabeled as v4 executions.
+
 ## Acceptance boundaries
 
 Mail acceptance uses Linux loopback TLS and controlled protocol fixtures;
 external providers, other operating systems, native OAuth/vault hosts, SMTP
 composition and the account-aware mailbox workspace remain separate. Browser
 compilation and Node tests do not establish actual browser rendering, storage
-or cross-tab recovery. Arabic tests establish the specified rule behavior and
-integration, not independent linguistic acceptance. Live Zotero, installed
-shortcuts and actual Word/LibreOffice reopening retain their earlier unperformed
-scope.
+or cross-tab recovery. The current source includes dictionary host/UI code;
+Linux native and controlled host/widget checks do not establish an installed
+macOS/Windows/mobile launch, actual browser WebAssembly-worker execution,
+persistent web downloads, or manual installed-platform setup acceptance.
+Arabic tests establish the specified rule behavior and integration, not
+independent linguistic acceptance. Live Zotero, installed shortcuts and actual
+Word/LibreOffice reopening retain their earlier unperformed scope.

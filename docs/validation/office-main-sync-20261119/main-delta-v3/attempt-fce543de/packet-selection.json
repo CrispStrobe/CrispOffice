@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "source_commit": "fce543dedb1217804f67de088ef9c287e8a2edca",
+  "archives": [
+    {
+      "name": "rejected-fce543de-guard-attempt",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.index.json",
+      "source_commit": "fce543dedb1217804f67de088ef9c287e8a2edca",
+      "scope": "Rejected fce543de pre-test continuity guard attempt: missing expected Studio-to-url_launcher dependency edge; accepted_qualification=false, zero application cases and zero Python controls. Original source/runtime receipts, resolver and guard outputs, independent rejection audit and audit script are preserved without reruns.",
+      "members": [
+        {
+          "path": "main-delta/v3-final-checks/continuity.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/continuity.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/delta-continuity.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/delta-continuity.log"
+        },
+        {
+          "path": "main-delta/v3-final-checks/execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/execution.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/locked-workspace-resolution.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/locked-workspace-resolution.log"
+        },
+        {
+          "path": "main-delta/v3-final-checks/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/package_config.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/package_graph.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-execution.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-independent-summary.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-independent-summary.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/.dart_tool/native_assets.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/.dart_tool/native_assets.yaml"
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/.dart_tool/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/.dart_tool/package_config.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/.dart_tool/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/.dart_tool/package_graph.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/pubspec.lock",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/pubspec.lock"
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/pubspec.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/pubspec.yaml"
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-resolution/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-resolution/receipt.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-runtime-before.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/prior-source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/prior-source-before.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/runtime-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/runtime-after.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/runtime-before.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/runtime-pre-resolution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/runtime-pre-resolution.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/source-after.json"
+        },
+        {
+          "path": "main-delta/v3-final-checks/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/source-before.json"
+        },
+        {
+          "path": "main-delta/v3-final-validation.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-validation.log"
+        },
+        {
+          "path": "main-delta/v3-guard-failed-attempt-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-guard-failed-attempt-audit.json"
+        },
+        {
+          "path": "audit-review/audit_fce_guard_failure.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_fce_guard_failure.py"
+        }
+      ]
+    }
+  ]
+}

@@ -10,6 +10,13 @@ final _complexScriptLetter = RegExp(
 bool wordTextHasComplexScriptLetter(String text) =>
     _complexScriptLetter.hasMatch(text);
 
+/// Whether the run's text or explicit formatting uses the complex-script
+/// language slot. A missing complex-script language still falls back to the
+/// Latin-language chain when resolving the effective language.
+bool wordRunUsesComplexScriptLanguage(WmlRun run) =>
+    run.properties.complexScript == true ||
+    wordTextHasComplexScriptLetter(run.text);
+
 /// The proofing language Word would apply to [run].
 ///
 /// Word keeps two languages per run: `w:lang/@w:val` for Latin-script text
@@ -29,8 +36,7 @@ String? wordRunProofingLanguage(
       run.properties.complexScriptLanguage ?? documentComplexScriptLanguage;
   if (complex != null &&
       complex.isNotEmpty &&
-      (run.properties.complexScript == true ||
-          wordTextHasComplexScriptLetter(run.text))) {
+      wordRunUsesComplexScriptLanguage(run)) {
     return complex;
   }
   return run.properties.proofingLanguage ??

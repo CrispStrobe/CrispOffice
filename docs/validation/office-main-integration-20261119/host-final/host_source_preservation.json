@@ -1,0 +1,896 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-19T09:38:37.696943+00:00",
+  "final_frozen_source": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+  "final_frozen_tree": "946667e34d796f5e0bf4e2904759b5e1d9e02d34",
+  "replay_script_sha256": "6f9ed7e4ebe67922e2622c64c6c8ebe8a3ccdc523d44dd8d2d800d539e70bd56",
+  "reused_proof_container": {
+    "archive_path": "docs/validation/office-main-integration-20261119/host-final/review-evidence.tar.xz",
+    "index_path": "docs/validation/office-main-integration-20261119/host-final/review-evidence.index.json",
+    "index_source_commit": "293f45449b496e3024ff100968d78f37983faadd",
+    "archive_sha256": "996c09f358adf0a667ba93b6eb1a3fe2a5c49545267bb556cd878c1114e996bd",
+    "archive_bytes": 824468,
+    "selected_member_hashes_verified": [
+      {
+        "path": "reviews/latest_ancestry_review.json",
+        "bytes": 4671532,
+        "sha256": "b80dffcdd2d41aa16f4980e89ccaed04a1a853313ed8d892e75121adb352c1c3"
+      },
+      {
+        "path": "reviews/latest_proofing_continuity_review.json",
+        "bytes": 1252777,
+        "sha256": "ac84178316de30fee796956da1aeb7602a5c47a169979fe3542f558ef042ce07"
+      }
+    ],
+    "all_member_names_safe_unique_and_indexed": true
+  },
+  "saved_reference_proof": {
+    "proof_source": "29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e",
+    "proof_source_is_ancestor_of_final": true,
+    "reference_rows": 409,
+    "counts": {
+      "fork_branch": 213,
+      "pull_request_head": 175,
+      "tag": 17,
+      "upstream_branch": 4
+    },
+    "prior_classification": {
+      "ancestor": 381,
+      "historical_equivalent": 28
+    },
+    "historical_equivalence_proofs_reused": 14,
+    "prior_full_equivalence_and_ref_audit_passed": true,
+    "unaccounted_saved_refs": [],
+    "reference_identity_catalog_sha256": "313cccdac724341f0e8cb14fec439c4ababf39cb653382b792384c72b4b5092c",
+    "small_proof_inputs_reverified": [
+      {
+        "commit": "ec8bd8edf0452f7b8dd8b15b3f9b62f1bb224fa4",
+        "path": "docs/validation/office-main-integration-20261119/arabic-final/arabic_saved_ref_ancestry_audit.py",
+        "bytes": 10055,
+        "sha256": "4b7566a4fe6182dea7544bea442449c32e1eb169b1b4aed4b0c8d874363a79ab"
+      },
+      {
+        "commit": "ec8bd8edf0452f7b8dd8b15b3f9b62f1bb224fa4",
+        "path": "docs/validation/office-main-integration-20261119/arabic-final/arabic_saved_fork_refs.txt",
+        "bytes": 28403,
+        "sha256": "4333ba447043356a3851541f606d96dfa7ace0fb5a3d4dfc514ac167c1c93c0a"
+      },
+      {
+        "commit": "ec8bd8edf0452f7b8dd8b15b3f9b62f1bb224fa4",
+        "path": "docs/validation/office-main-integration-20261119/arabic-final/arabic_saved_upstream_refs.txt",
+        "bytes": 304,
+        "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6"
+      }
+    ],
+    "historical_source_record": {
+      "commit": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "path": "docs/validation/thesaurus-20261118/resume/incoming-audit.json",
+      "sha256": "a77527ce274e4e6fcd78edb7799f15f7426c57cc187b4ca9c56b05fb76a70564"
+    },
+    "scope": "The saved 381 ancestry proofs and 28 reference dispositions backed by 14 immutable historical-equivalence proofs remain valid through 29dd ancestry. This is proof reuse, not a new remote advertisement or a claim that historical equivalents are direct ancestors."
+  },
+  "retained_first_host_attempt": {
+    "source": "4681760c542eb2a3473b72605ebb7606e0e7b4a3",
+    "archive_path": "docs/validation/office-main-integration-20261119/host-final/first-attempt-evidence.tar.xz",
+    "archive_sha256": "2ab660cc80fcb9a709323f731f57bc45bf8a3e9aefb84f7a95851ea67cd7adbf",
+    "archive_bytes": 851508,
+    "index_sha256": "a8e58e578a523d20d1ac67d3817a250f648ddb5ead8fabbe0b55c9fa2b94d1e4",
+    "indexed_members": 62,
+    "all_member_hashes_verified": true,
+    "all_names_safe_unique_and_indexed": true,
+    "receipts": [
+      {
+        "source_commit": "4681760c542eb2a3473b72605ebb7606e0e7b4a3",
+        "source_tree": "3fc56d38196acba84a35498a224dd22e4061e36f",
+        "success": false,
+        "passed": 920,
+        "failed": 59,
+        "skipped": 0,
+        "source_unchanged": true,
+        "environment_unchanged": true,
+        "source_input_count": 5092,
+        "runtime_input_count": 11166,
+        "cohort": "main",
+        "count_provenance": "unchanged archived receipt; no raw-event recount in this preservation audit"
+      },
+      {
+        "source_commit": "4681760c542eb2a3473b72605ebb7606e0e7b4a3",
+        "source_tree": "3fc56d38196acba84a35498a224dd22e4061e36f",
+        "success": true,
+        "passed": 306,
+        "failed": 0,
+        "skipped": 0,
+        "source_unchanged": true,
+        "environment_unchanged": true,
+        "source_input_count": 5092,
+        "runtime_input_count": 11163,
+        "cohort": "node",
+        "count_provenance": "unchanged archived receipt; no raw-event recount in this preservation audit"
+      }
+    ],
+    "accepted_as_final_qualification": false,
+    "counts_added_to_later_gate": false
+  },
+  "saved_phase_checkpoints": [
+    {
+      "label": "original 129-suite qualified source",
+      "commit": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+      "tree": "37ac64ec6ec9aa9b13b4504be0b93e82fd20fb0e",
+      "parents": [
+        "fa0cd40d6a46767c800546aa2e894eec6567433a",
+        "bb241a34a1722a44b29f51fdce4be64e0ffc47b9",
+        "db7501ee42c97e8da42b776a4213802cac41a9b0",
+        "ff06e5544673ce7f70be983299241bcdcef780d3"
+      ],
+      "subject": "Reconcile bounded incoming annotation feature and freeze final qualification plan [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "original PR174 evidence head",
+      "commit": "df62b58975bab1f650879fc88f850550a3df5c13",
+      "tree": "75793cba86605bf2a4d6667afc557fafbab3e286",
+      "parents": [
+        "39843ed4874c7b56572c7aa8195716e5892aeca2"
+      ],
+      "subject": "Record final 2018-case union, fresh native build and independent acceptance evidence [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "initial Notes integration",
+      "commit": "f38959f04cf58298ac56b142228d825e9d0deb82",
+      "tree": "ab7610c1059eebb11be0d772dbac7da8e96b0e87",
+      "parents": [
+        "a9e417d3148bb8c6e5cca048b5ced5d8efba379f",
+        "c320f28347f1cd292b848be2cf72998d41f8a6ac"
+      ],
+      "subject": "Preserve latest Notes qualification evidence and all captured PR heads [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "early Mail integration gate",
+      "commit": "ebe0498a8ddd118dd579698cab3ddc281a630b11",
+      "tree": "4ad9b272a2ebd5bc83fc14438532f9037f87dfbb",
+      "parents": [
+        "056414ba9bd7f2104e852d41c3e1c7d5a4b20a2a"
+      ],
+      "subject": "Fix incoming Mail flag equality and migration test compilation [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "strict FETCH integration checkpoint",
+      "commit": "1655db9ff8a5fb9eb140ef236fa0cca74c472107",
+      "tree": "35117fdf144ce59ab31c2ebdd0bce00db8599cfd",
+      "parents": [
+        "3c66d76b9175ed47c5d5e06b87b649af199aa523"
+      ],
+      "subject": "Reject ambiguous raw FETCH input and preserve protocol exception compatibility [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "UID regression integration checkpoint",
+      "commit": "7d279e084bae438d383630726ad7b0514da77d35",
+      "tree": "4beb05ea22c003817e4ff313f470e68abdabdcf4",
+      "parents": [
+        "2890a0f28036ff78b49f2a1ca640e28e674f1924"
+      ],
+      "subject": "Require decimal IMAP UID grammar and freeze integrated qualification [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "post-evidence integration checkpoint",
+      "commit": "99dd7307e749854f00266bd5b8bae4dcdf66df20",
+      "tree": "a273b7fa8f16432d42f50c783b4a037b121a4510",
+      "parents": [
+        "7d279e084bae438d383630726ad7b0514da77d35",
+        "c634f494b85f7b2118781300a322ad0d9c216a17"
+      ],
+      "subject": "Save final integrated transport audit and reconcile all captured evidence [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "combined TLS qualified source",
+      "commit": "4624218f9468eeeac07f1f100ac0e4bb6b050a17",
+      "tree": "ee715331ffe9f8da86754a3bd8692d35c8d75d28",
+      "parents": [
+        "f9346ed1054521a227feca1a813a9182e690f7a2",
+        "54c36e40daa7b17d73801dac1fd12f110b24017f"
+      ],
+      "subject": "Unify native TLS ownership and preserve both incoming acceptance suites [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "published PR174 head",
+      "commit": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "tree": "7aa58b02ed06dcd4075432848898e479af375148",
+      "parents": [
+        "4624218f9468eeeac07f1f100ac0e4bb6b050a17"
+      ],
+      "subject": "Publish final 611-execution Office and native TLS qualification [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "main PR174 merge",
+      "commit": "d41000336c84b6ebfe6b35f7f8335140b5d46038",
+      "tree": "7aa58b02ed06dcd4075432848898e479af375148",
+      "parents": [
+        "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+        "59e0a7c232e7380021a8bda4477999205da0f8ae"
+      ],
+      "subject": "Merge PR #174: integrate qualified Office and native Mail [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "preserved supplemental Mail evidence",
+      "commit": "3cd60db25cb81ff836bbc06fed9af28819337339",
+      "tree": "be81cbb1f7a832a44b2e2e6fa20638215e8c820b",
+      "parents": [
+        "d41000336c84b6ebfe6b35f7f8335140b5d46038",
+        "700e5a35ce5f96e7abd1dc92d1a00d2110d40649"
+      ],
+      "subject": "Preserve completed Mail branch evidence after main integration [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "Socket-compatible TLS qualified source",
+      "commit": "ac1e4c8c788ea608402c2260488235c0189efcba",
+      "tree": "0ef943f525bfda5d04bddfce55d6c3b4bd3f581a",
+      "parents": [
+        "3cd60db25cb81ff836bbc06fed9af28819337339",
+        "022a974a96db23e22bc161f7d465e4b972e8c2a9"
+      ],
+      "subject": "Integrate Socket-compatible TLS and strict FETCH cleanup [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "632-execution evidence publication",
+      "commit": "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+      "tree": "502bc4c77a67f1b65883fab1da241f71634da1db",
+      "parents": [
+        "ac1e4c8c788ea608402c2260488235c0189efcba",
+        "55e262ef269634a0d618c0b5102dc9be5430a5f3"
+      ],
+      "subject": "Publish final 632-execution qualification and reconcile merged main [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "bundle continuation reconciliation",
+      "commit": "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+      "tree": "467e0b4a19c23a5ff6ee49ecf770fef0cd6b103c",
+      "parents": [
+        "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+        "f059065fa622da8cee7824d66d29a2aff414d529",
+        "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+        "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c"
+      ],
+      "subject": "Reconcile concurrent Office and Arabic bundle continuations [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "Arabic runtime capture",
+      "commit": "84aa6f96e95c1eda39ad8c548c93b167be21dd1f",
+      "tree": "a4e7cd9e94cbc933f8913aa23daa05c0ff58f239",
+      "parents": [
+        "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+        "f7117a493055008a72e6e16713dd67a4f7c2ad39"
+      ],
+      "subject": "Capture Arabic writing rules main update for local qualification [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "Arabic semantic repair checkpoint",
+      "commit": "47783366a66facf6e479ded4db009cd3047a91f6",
+      "tree": "ff464ec065397ce97283e32306b537cd90756606",
+      "parents": [
+        "84aa6f96e95c1eda39ad8c548c93b167be21dd1f"
+      ],
+      "subject": "Preserve Arabic semantic marks and freeze expanded proofing qualification [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "Arabic qualified source",
+      "commit": "e41679f85c511bc8cf42447d3d1af0931884dee2",
+      "tree": "9cdc66213dc329265057a8511357ce53f4583604",
+      "parents": [
+        "47783366a66facf6e479ded4db009cd3047a91f6"
+      ],
+      "subject": "Preserve exact Unicode patch as compressed evidence [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "semantic repair evidence publication",
+      "commit": "86dc8b62d9f99ffc58f2391ef719002c523dca86",
+      "tree": "9a60ab8cd6a08052508d40425efa6f1379d2edba",
+      "parents": [
+        "e41679f85c511bc8cf42447d3d1af0931884dee2"
+      ],
+      "subject": "Preserve Unicode defect reproduction and repair evidence [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "1286-execution evidence publication",
+      "commit": "ec8bd8edf0452f7b8dd8b15b3f9b62f1bb224fa4",
+      "tree": "72b15dab046bbb3ac4c4c71db89419730e12a661",
+      "parents": [
+        "86dc8b62d9f99ffc58f2391ef719002c523dca86"
+      ],
+      "subject": "Save independently audited 1286-execution Arabic and Mail qualification [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "UID and Hunspell qualified source",
+      "commit": "29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e",
+      "tree": "c0a6041f33c485c83c2cb926d0b97464a3761e1c",
+      "parents": [
+        "ec8bd8edf0452f7b8dd8b15b3f9b62f1bb224fa4",
+        "b655b8a37fddc874bd42a453c371eed6253e82d8"
+      ],
+      "subject": "Integrate latest UID pagination and Hunspell with native lifecycle repair [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "784-execution evidence publication",
+      "commit": "fb6e47d58d8f174797a78ca72428f82264597dbd",
+      "tree": "62729cd19c0a28ad3640083285a6da9413e03986",
+      "parents": [
+        "29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e"
+      ],
+      "subject": "Save independently audited UID and Hunspell qualification, 784 executions [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "CrispOffice host integration",
+      "commit": "293f45449b496e3024ff100968d78f37983faadd",
+      "tree": "3c31b73af2738720e3b55c39a7f461b00c86fd31",
+      "parents": [
+        "fb6e47d58d8f174797a78ca72428f82264597dbd",
+        "be641457c8c7d1acc25091b31c87c73eaa3c9c2a"
+      ],
+      "subject": "Reconcile captured CrispOffice host wiring and Arabic extensions [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "Mail/routing/Notes repair checkpoint",
+      "commit": "010e412a933097cf4e61bc683fb8477f4d96b7dc",
+      "tree": "e398f382758ea11cbdc18ae532453cf328516499",
+      "parents": [
+        "293f45449b496e3024ff100968d78f37983faadd"
+      ],
+      "subject": "Save reviewed Mail lifecycle, language routing and Notes visibility repairs [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "first host attempt source; not accepted final qualification",
+      "commit": "4681760c542eb2a3473b72605ebb7606e0e7b4a3",
+      "tree": "3fc56d38196acba84a35498a224dd22e4061e36f",
+      "parents": [
+        "010e412a933097cf4e61bc683fb8477f4d96b7dc"
+      ],
+      "subject": "Freeze final CrispOffice integration and Settings regression gates [skip ci]",
+      "ancestor_of_final_source": true
+    }
+  ],
+  "captured_later_main_and_pr_heads": [
+    {
+      "label": "main after PR176",
+      "commit": "f059065fa622da8cee7824d66d29a2aff414d529",
+      "tree": "ffc952a7fd80699449fb25bb8c802e68f473e5b3",
+      "parents": [
+        "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+        "16cbbebdcf7781564658cc7636473c7d04846b38"
+      ],
+      "subject": "Merge pull request #176 from CrispStrobe/feat/arabic-proofing-20261119",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "PR177 captured head",
+      "commit": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+      "tree": "aaa59b09bd369148e49495f1c480fc79d67c48d9",
+      "parents": [
+        "c94f833f720fd00dd829b8dbe26bdd254a535247"
+      ],
+      "subject": "fix(proofing): restrict AyaSpell publication to verified files [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "PR178 captured head",
+      "commit": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+      "tree": "aa0be0c6690b36b83f7e996542363fa1b446049f",
+      "parents": [
+        "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+        "df98958045f8a63e26d827a819958ddaab13352b"
+      ],
+      "subject": "Reconcile latest Arabic publication and constrain bundle uploads [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "main after PR180",
+      "commit": "f7117a493055008a72e6e16713dd67a4f7c2ad39",
+      "tree": "933e3af6ca216df4c6c49197b666ae83197d4914",
+      "parents": [
+        "f059065fa622da8cee7824d66d29a2aff414d529",
+        "8717d8515f0f07875e0d7ed7a0ad73fa319cb594"
+      ],
+      "subject": "Merge pull request #180 from CrispStrobe/feat/arabic-rules-20261119",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "latest supplied main cutoff",
+      "commit": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+      "tree": "ee357b641af71ae6172b9931d61e19f979edb856",
+      "parents": [
+        "f1330255f6199acb10c473c0fc02209b1152b558",
+        "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387"
+      ],
+      "subject": "Merge pull request #182 from CrispStrobe/docs/arabic-rule-spec-20261119",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "later captured main after PR185",
+      "commit": "be641457c8c7d1acc25091b31c87c73eaa3c9c2a",
+      "tree": "cc05e95fa75c7542e3e14c6ab3684cc80d10fb30",
+      "parents": [
+        "a1299695060f2ca5cd247f41e41a9ab9ba2b8d7c",
+        "e42ca64ba0dd4c687a56947ba0122cf53a15b843"
+      ],
+      "subject": "Merge pull request #185 from CrispStrobe/feat/arabic-host-wiring-20261119",
+      "ancestor_of_final_source": true
+    }
+  ],
+  "other_saved_integration_heads": [
+    {
+      "label": "earlier main before PR174",
+      "commit": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "tree": "a2b4838f217c31e6428a849d55516d740ac0a825",
+      "parents": [
+        "4fbc8741f314af67592517595c760ba3036dedba",
+        "4600c0ebc9ac5e6acabd92935821d1c15315f2c1"
+      ],
+      "subject": "Merge in-editor document and comment review (#162) [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "captured PR175 Notes head",
+      "commit": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "tree": "6f2f6dbc08b40a3b3a47dd779e6ff737f2c25946",
+      "parents": [
+        "8a5dd9baa1884beae3ae69cfe77946adab9d07a6"
+      ],
+      "subject": "Publish verified 1,283-case review qualification and fresh runtime evidence [skip ci]",
+      "ancestor_of_final_source": true
+    },
+    {
+      "label": "main PR173 merge",
+      "commit": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+      "tree": "fa3818ce5202cc8fbeb0a1a0555589edbcef9c96",
+      "parents": [
+        "d41000336c84b6ebfe6b35f7f8335140b5d46038",
+        "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e"
+      ],
+      "subject": "Merge PR #173: complete Office reconciliation and Mail safety fixes [skip ci]",
+      "ancestor_of_final_source": true
+    }
+  ],
+  "all_explicit_checkpoint_and_head_ancestors": true,
+  "original_notes_preservation": [
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "original_entry": [
+        "100644",
+        "blob",
+        "8c0f6e830387e5658a04a61df3b385f2f89f6ba7"
+      ],
+      "final_entry": [
+        "100644",
+        "blob",
+        "8c0f6e830387e5658a04a61df3b385f2f89f6ba7"
+      ],
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "original_entry": [
+        "100644",
+        "blob",
+        "f8ac8e363a19bc143880b4b0a4b2292d98162641"
+      ],
+      "final_entry": [
+        "100644",
+        "blob",
+        "f8ac8e363a19bc143880b4b0a4b2292d98162641"
+      ],
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "original_entry": [
+        "100644",
+        "blob",
+        "c18e02fcec76b639ad84c9f1da5fffff23a8bfc6"
+      ],
+      "final_entry": [
+        "100644",
+        "blob",
+        "c18e02fcec76b639ad84c9f1da5fffff23a8bfc6"
+      ],
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "original_entry": [
+        "100644",
+        "blob",
+        "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3"
+      ],
+      "final_entry": [
+        "100644",
+        "blob",
+        "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3"
+      ],
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "original_entry": [
+        "100644",
+        "blob",
+        "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4"
+      ],
+      "final_entry": [
+        "100644",
+        "blob",
+        "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4"
+      ],
+      "unchanged": true
+    }
+  ],
+  "validation_artifact_preservation": {
+    "baselines": [
+      {
+        "label": "29dd qualified-source snapshot",
+        "baseline": "29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e",
+        "prior_validation_paths": 6479,
+        "raw_non_markdown_paths": 6092,
+        "raw_paths_identical": 6092,
+        "changed_raw_paths": [],
+        "other_markdown_report_paths": 134,
+        "other_markdown_reports_identical": 134,
+        "changed_other_markdown_reports": [],
+        "intentional_readme_changes_excluded": [
+          {
+            "path": "docs/validation/office-main-completion-20261119/README.md",
+            "baseline_entry": [
+              "100644",
+              "blob",
+              "1801f05f2aa50d1a5222fb878ccb9668bc338520"
+            ],
+            "final_entry": [
+              "100644",
+              "blob",
+              "9a68176849f93ab3146953dcf5bff28bd04e2fd9"
+            ]
+          },
+          {
+            "path": "docs/validation/office-main-integration-20261119/README.md",
+            "baseline_entry": [
+              "100644",
+              "blob",
+              "f44c66a6931578b11475f2b72ecf4688c3155e17"
+            ],
+            "final_entry": [
+              "100644",
+              "blob",
+              "adf058a4addbdb74075b4e032f6f3c6998a28405"
+            ]
+          }
+        ],
+        "raw_path_mode_blob_catalog_sha256": "7877a7c44a635fdac4ae2c5269334d9b02e4c1ce541b6ef19bf7cf1fb720a875",
+        "current_subset_catalog_sha256": "7877a7c44a635fdac4ae2c5269334d9b02e4c1ce541b6ef19bf7cf1fb720a875"
+      },
+      {
+        "label": "completed 784-execution publication",
+        "baseline": "fb6e47d58d8f174797a78ca72428f82264597dbd",
+        "prior_validation_paths": 6492,
+        "raw_non_markdown_paths": 6104,
+        "raw_paths_identical": 6104,
+        "changed_raw_paths": [],
+        "other_markdown_report_paths": 134,
+        "other_markdown_reports_identical": 134,
+        "changed_other_markdown_reports": [],
+        "intentional_readme_changes_excluded": [
+          {
+            "path": "docs/validation/office-main-completion-20261119/README.md",
+            "baseline_entry": [
+              "100644",
+              "blob",
+              "1801f05f2aa50d1a5222fb878ccb9668bc338520"
+            ],
+            "final_entry": [
+              "100644",
+              "blob",
+              "9a68176849f93ab3146953dcf5bff28bd04e2fd9"
+            ]
+          }
+        ],
+        "raw_path_mode_blob_catalog_sha256": "0f2fa0ea7d31983a7a33c2e54811d0e20194edba63419eac1ede6dd374c4b26e",
+        "current_subset_catalog_sha256": "0f2fa0ea7d31983a7a33c2e54811d0e20194edba63419eac1ede6dd374c4b26e"
+      },
+      {
+        "label": "incoming be641 main evidence",
+        "baseline": "be641457c8c7d1acc25091b31c87c73eaa3c9c2a",
+        "prior_validation_paths": 6470,
+        "raw_non_markdown_paths": 6086,
+        "raw_paths_identical": 6086,
+        "changed_raw_paths": [],
+        "other_markdown_report_paths": 131,
+        "other_markdown_reports_identical": 131,
+        "changed_other_markdown_reports": [],
+        "intentional_readme_changes_excluded": [
+          {
+            "path": "docs/validation/office-main-integration-20261119/README.md",
+            "baseline_entry": [
+              "100644",
+              "blob",
+              "1ab1e292aca00da34862c062e732c4cc274b1b9b"
+            ],
+            "final_entry": [
+              "100644",
+              "blob",
+              "adf058a4addbdb74075b4e032f6f3c6998a28405"
+            ]
+          }
+        ],
+        "raw_path_mode_blob_catalog_sha256": "cb386ecc50bcd83a84a7ea0525f4a75f1d70673a8023bfcefb7875d4df662d88",
+        "current_subset_catalog_sha256": "cb386ecc50bcd83a84a7ea0525f4a75f1d70673a8023bfcefb7875d4df662d88"
+      },
+      {
+        "label": "retained first host attempt source",
+        "baseline": "4681760c542eb2a3473b72605ebb7606e0e7b4a3",
+        "prior_validation_paths": 6525,
+        "raw_non_markdown_paths": 6136,
+        "raw_paths_identical": 6136,
+        "changed_raw_paths": [],
+        "other_markdown_report_paths": 134,
+        "other_markdown_reports_identical": 134,
+        "changed_other_markdown_reports": [],
+        "intentional_readme_changes_excluded": [],
+        "raw_path_mode_blob_catalog_sha256": "d7a4bcc60dcc0e428454e0ae00d8cf2cfcca7027e78c6cbeed3b96ef915f6cba",
+        "current_subset_catalog_sha256": "d7a4bcc60dcc0e428454e0ae00d8cf2cfcca7027e78c6cbeed3b96ef915f6cba"
+      }
+    ],
+    "union_nonreadme_paths": 6270,
+    "all_union_nonreadme_paths_identical": true,
+    "union_path_mode_blob_catalog_sha256": "96d551e5680ebc7d4c71365e993978b0c8d0279774455cc49328c12ef97e7757",
+    "key_qualification_archives": [
+      {
+        "path": "docs/validation/office-main-integration-20261119/arabic-final/arabic-unicode-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "59ecdef2fc045592984136b6dd1b4fe88d2d69d5"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/arabic-final/qualification-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "91e767b349b9f560368bdaa3a9208c2623596c99"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/diagnostics/mail-first-attempt.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "f179edf5e50f0b0fbe6c0c4acef5b38fc9dc038e"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/diagnostics/transport-regression-red-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "ebcdc6a5bca9ef19f3bf4b64d5bab46079940573"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/diagnostics/uid-grammar-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "933fa04f0923d6f18d588c93f690fbfbaf79384e"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/flags/complete-results.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "4b28790565d17e8fbaa91db274e5931973912b9c"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/host-final/review-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "31b94c6b141138ae243d2670ee35fe3c320826f0"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/host-final/studio-mail-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "a8a905846009a965aac3a3298ba3391c68f98f8a"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/latest-final/hunspell-disposal-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "3e375a1e4db11a1f111b7b9aec455da5fff961d2"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/latest-final/qualification-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "65624a15e14cab54bc09416eb72e58d11dc3deec"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/runtime/recovery-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "e1a8a595abaa83bc17f4500875334776214b0eab"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/socket-final/arabic-controls-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "4dcf5e1170977e966caf71bcd1aed69296839036"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/socket-final/capture-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "a13d81a36c7df4f0ac8725e47c9d5f7c661ede96"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/socket-final/qualification-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "b0f00aaa19efb580ed9118888a11d622589b1dd4"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/socket-final/upgrade-cleanup-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "8bad75437e35071f017662fafa8d565b755df7c6"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/tls/development-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "b8932a8c4ee00cffec33ecbce76b3953683d49cf"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/tls/qualification-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "927799d93ec64bc4478e3e24aba8049b74085b5b"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/transport-final/evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "d847740376e016a0d300974cc345ef2e84ab75e6"
+        ]
+      },
+      {
+        "path": "docs/validation/office-main-integration-20261119/transport-first/evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "d73b68246590f700fc047bc8c4db67a292a120d8"
+        ]
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-before-annotations.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "ef9f3ab9aa1e411777921389449dfcf6f86a9a9f"
+        ]
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-engine-checkpoint.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "4159372dbe9cec6184ee0313b9b759ffcbc74046"
+        ]
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-final.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "ded90daf397ff09fd882697b3907ad48de9d63a7"
+        ]
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/native-final-evidence.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "634ac0bbbadca89fb7c762eaa98286261620d394"
+        ]
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/recovery-audit-and-runner-controls.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "0779bfbdd8fb1b2bedf5d885b394b00ea8c7949e"
+        ]
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/runtime-recovery-20261119.tar.xz",
+        "preserved_entry": [
+          "100644",
+          "blob",
+          "1f7f91eb0973f13f1dff8464bbc444e4f3faa261"
+        ]
+      }
+    ],
+    "prior_full_29dd_audit_verified_6064_raw_artifact_sha256_values": true,
+    "method": "Git mode/type/blob identity extends prior byte-hash checks without rereading thousands of artifact bodies. Original receipts, report content and source attributions remain unchanged. Only README status updates are excluded. No archive event recount or current application test result is inferred."
+  },
+  "historical_qualification_scope": {
+    "reused_29dd_proofing_continuity_original_source": "e41679f85c511bc8cf42447d3d1af0931884dee2",
+    "reused_29dd_proofing_continuity_suites": 33,
+    "reused_29dd_proofing_continuity_historical_executions": 580,
+    "that_static_closure_claim_stops_at": "29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e",
+    "new_host_rule_routing_and_fixture_inputs_require_final_gate": true,
+    "original129_native208_and_web_results_keep_original_source_attribution": true,
+    "historical_and_fresh_overlapping_counts_not_added": true,
+    "final_host_gate_result_claimed_by_this_audit": false,
+    "human_browser_installed_os_and_linguistic_release_gates_changed": false
+  },
+  "working_copy_observation": {
+    "before": {
+      "head": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+      "index_sha256": "9796407d52582696b8adae6686484c4d04f44cbc4ac1c9431a2ba1991dc599b7"
+    },
+    "after": {
+      "head": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+      "index_sha256": "9796407d52582696b8adae6686484c4d04f44cbc4ac1c9431a2ba1991dc599b7"
+    },
+    "unchanged": true
+  },
+  "remote_refreshes": 0,
+  "github_actions_queries": 0,
+  "repository_mutations": 0,
+  "runtime_mutations": 0,
+  "application_tests_executed": false,
+  "passed": true
+}
