@@ -1,0 +1,10 @@
+{
+  "observed_utc": "2026-11-19T18:50:17.950424+00:00",
+  "remote_main_verified_with_github_api": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+  "remote_branch_at_check": "4b26bfaa81e1f0bef7d63ddd6a28fccc05fa88fd",
+  "accepted_source": "61bb3ee42a385c5ffaffa44047693a6f378a8424",
+  "main_is_ancestor_of_publication_branch": true,
+  "pending_publication_changes_are_documentation_and_evidence_only": true,
+  "merge_strategy": "Normal GitHub PR merge with expected head SHA; no force update.",
+  "github_actions_queried_or_awaited": false
+}

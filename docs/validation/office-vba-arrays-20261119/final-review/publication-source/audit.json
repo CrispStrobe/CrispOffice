@@ -248,11 +248,12 @@
       "source_checkpoint_git_blob": "a189624b662c90872e435eb3e26974dc957bf033"
     }
   ],
-  "qualification_review": "Full final macro and GUI runs are in progress. Root qualification README will be checked against completed receipts separately.",
+  "qualification_review": "Completed independently: see final-receipt-review.json for raw event counts, source stability, strict analysis and final README consistency.",
   "remote_main_is_ancestor": true,
   "remote_main_snapshot": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
   "schema": 1,
   "source_commit": "61bb3ee42a385c5ffaffa44047693a6f378a8424",
   "source_tree": "c812fb1f2d1156099f50313390346b98f8f3d56a",
+  "status": "passed",
   "unexpected_changes_from_gui_head": []
 }

@@ -57,6 +57,28 @@ Neither path is present in the 856-entry engine source snapshot or the normalize
 2,495-entry GUI snapshot. They are documentation-only changes after the accepted
 source checkpoint, and do not alter its frozen test inputs.
 
-The full final local qualifications were still running when this source audit was
-written. Their completed receipts and the root qualification README receive a
-separate final review; no preliminary or incoming-author count is reused here.
+## Completed receipt and report review
+
+The final local qualifications passed. `final-receipt-review.json` independently
+recounts their raw Dart JSON events and records log hashes, unique identities,
+file counts, inventory equality, and the reviewed qualification README hash:
+
+| Final cohort | Passed | Test files |
+| --- | ---: | ---: |
+| Macro workflow selection | 614 | 24 |
+| Editor GUI | 213 | 10 |
+| Studio GUI | 116 | 11 |
+| Repeated mail UI | 18 | 3 |
+
+Every cohort completed successfully with no failures, skips, or duplicate case
+identities. The new macro subset is 32 core, 144 boundary, and 11 integration
+cases; the other 427 cases are existing coverage. All five JavaScript checks,
+whole-engine strict analysis, and both GUI strict analyses passed. The 856-entry
+engine and 2,495-entry GUI before/after inventories are equal.
+
+The closing report matches the evidence and now names the original 612-case and
+first corrected 614-case runs explicitly in the historical parser comparison.
+No README correction remains. Repeated mail cases are counted once; no
+incoming-author totals or historical failed attempts are added by this review.
+The publication binding is a separate final operation, not an execution claimed
+by this audit.

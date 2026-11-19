@@ -202,7 +202,10 @@ rerun binds all 856 inputs at the final source checkpoint.
 The [publication binding](publication-binding.md) independently reparses the raw
 reporters, checks artifact hashes against published Git blobs, verifies source
 and dependency stability, compares each accepted repository input with its Git
-blob, and deduplicates cases by repository test file and full test name.
+blob, and deduplicates cases by repository test file and full test name. It
+confirms **1,502 distinct selected cases passed**, with zero failures or skips,
+**287 published artifact files** across eight manifests, and **2,792 distinct
+accepted repository inputs** matching working bytes and published Git blobs.
 Historical failures remain retained and are excluded from the accepted total.
 
 The final source audit confirms the observed GUI and mail-planning paths are
