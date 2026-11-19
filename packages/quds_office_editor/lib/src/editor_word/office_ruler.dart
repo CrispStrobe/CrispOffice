@@ -6,6 +6,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 
 import '../embed/office_theme.dart';
 import '../ui_components/office_chrome.dart';
+import 'paint_run_text.dart';
 
 /// Which control the pointer is on.
 enum RulerHitKind {
@@ -816,6 +817,7 @@ abstract final class WordRuler {
       pageWidth: pageWidth,
       originPageX: originX,
       unit: unit,
+      fontFamily: theme.fontFamily,
       rtl: rtl,
       color: tickColor,
     );
@@ -846,6 +848,7 @@ abstract final class WordRuler {
       pageHeight: pageHeight,
       originPageY: originY,
       unit: unit,
+      fontFamily: theme.fontFamily,
       color: tickColor,
     );
     canvas.restore();
@@ -1110,6 +1113,7 @@ abstract final class WordRuler {
     required bool rtl,
     required Color color,
     required OfficeLengthUnit unit,
+    required String? fontFamily,
   }) {
     final Paint tick = Paint()
       ..color = color.withValues(alpha: 0.55)
@@ -1136,6 +1140,7 @@ abstract final class WordRuler {
           '${n ~/ unit.rulerDivisions * unit.rulerLabelMultiplier}',
           Offset(x, 3.5),
           color,
+          fontFamily: fontFamily,
         );
       }
     }
@@ -1149,6 +1154,7 @@ abstract final class WordRuler {
     required double originPageY,
     required Color color,
     required OfficeLengthUnit unit,
+    required String? fontFamily,
   }) {
     final Paint tick = Paint()
       ..color = color.withValues(alpha: 0.55)
@@ -1172,6 +1178,7 @@ abstract final class WordRuler {
           '${n ~/ unit.rulerDivisions * unit.rulerLabelMultiplier}',
           Offset(size / 2, y - 5.5),
           color,
+          fontFamily: fontFamily,
         );
       }
     }
@@ -1432,11 +1439,16 @@ abstract final class WordRuler {
     Canvas canvas,
     String text,
     Offset center,
-    Color color,
-  ) {
+    Color color, {
+    required String? fontFamily,
+  }) {
     final ParagraphBuilder b =
         ParagraphBuilder(
           ParagraphStyle(
+            fontFamily: PaintRunText.familyFor(
+              text: text,
+              themeFamily: fontFamily,
+            ),
             fontSize: 9,
             fontWeight: FontWeight.w500,
             textAlign: TextAlign.center,
@@ -1471,7 +1483,14 @@ abstract final class WordRuler {
     };
     x = x.clamp(size + 8, view.width - 72);
     final ParagraphBuilder b = ParagraphBuilder(
-      ParagraphStyle(fontSize: 10, textAlign: TextAlign.center),
+      ParagraphStyle(
+        fontFamily: PaintRunText.familyFor(
+          text: text,
+          themeFamily: theme.fontFamily,
+        ),
+        fontSize: 10,
+        textAlign: TextAlign.center,
+      ),
     )..pushStyle(TextStyle(color: theme.chromeText, fontSize: 10));
     b.addText(text);
     final Paragraph p = b.build()

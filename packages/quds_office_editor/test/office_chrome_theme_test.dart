@@ -31,6 +31,7 @@ Future<ui.Image> _rulerImage(OfficeTheme theme, {bool readout = false}) async {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(OfficeHostFonts.ensureRegistered);
 
   for (final entry in <String, OfficeTheme>{
     'dark': OfficeTheme.dark,

@@ -7,6 +7,15 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 
 const _boundary = ValueKey('dark-slide');
 
+Iterable<XmlElement> _descendants(XmlElement root, String name) sync* {
+  for (final child in root.childElements) {
+    if (child.localName == name) {
+      yield child;
+    }
+    yield* _descendants(child, name);
+  }
+}
+
 class _Raster {
   _Raster(this.width, this.height, this.bytes);
   final int width;
@@ -81,6 +90,42 @@ class _Raster {
       }
     }
     return true;
+  }
+
+  Iterable<int> _offsets(ui.Rect area) sync* {
+    for (
+      var y = area.top.floor().clamp(0, height);
+      y < area.bottom.ceil().clamp(0, height);
+      y++
+    ) {
+      for (
+        var x = area.left.floor().clamp(0, width);
+        x < area.right.ceil().clamp(0, width);
+        x++
+      ) {
+        yield (y * width + x) * 4;
+      }
+    }
+  }
+
+  int contrastPixels(ui.Rect area, int background) {
+    final base = ui.Color(0xFF000000 | background).computeLuminance();
+    var found = 0;
+    for (final offset in _offsets(area)) {
+      final ink = ui.Color.fromARGB(
+        bytes[offset + 3],
+        bytes[offset],
+        bytes[offset + 1],
+        bytes[offset + 2],
+      ).computeLuminance();
+      final contrast = ink >= base
+          ? (ink + 0.05) / (base + 0.05)
+          : (base + 0.05) / (ink + 0.05);
+      if (contrast >= 4.5) {
+        found++;
+      }
+    }
+    return found;
   }
 }
 
@@ -263,6 +308,9 @@ void main() {
       // At 13 px most glyph pixels have fractional coverage. Measure that
       // coverage instead of requiring many completely opaque black pixels.
       expect(dark.blackCoverageOnWhite(whiteCell), greaterThan(15));
+      const darkCell = ui.Rect.fromLTWH(384, 93, 290, 25);
+      expect(dark.contrastPixels(whiteCell, 0xFFFFFF), greaterThan(25));
+      expect(dark.contrastPixels(darkCell, 0x303030), greaterThan(25));
       expect(
         dark.count(const ui.Rect.fromLTWH(384, 93, 290, 25), 0xF2F2F2),
         greaterThan(15),
@@ -291,6 +339,7 @@ void main() {
         0,
         reason: 'The dark-cell assertion must distinguish adapted ink.',
       );
+      expect(unadapted.contrastPixels(darkCell, 0x303030), 0);
 
       final wrongLightInk = slide.copy();
       wrongLightInk.shapes
@@ -308,6 +357,10 @@ void main() {
         reason: 'Incorrect light ink on white must fail the coverage gate.',
       );
       expect(dark.samePixelsIn(whiteCell, wrongLightRaster), isFalse);
+      expect(
+        wrongLightRaster.contrastPixels(whiteCell, 0xFFFFFF),
+        lessThanOrEqualTo(25),
+      );
 
       final blank = slide.copy();
       blank.shapes
@@ -320,6 +373,7 @@ void main() {
           '';
       final blankRaster = await _paint(tester, blank);
       expect(blankRaster.blackCoverageOnWhite(whiteCell), 0);
+      expect(blankRaster.contrastPixels(whiteCell, 0xFFFFFF), 0);
       expect(dark.samePixelsIn(whiteCell, blankRaster), isFalse);
 
       final light = await _paint(tester, slide, theme: OfficeTheme.light);
@@ -330,14 +384,10 @@ void main() {
       expect(<int, String>{
         for (final shape in slide.shapes) shape.id: shape.textColor,
       }, originalColors);
-      final reopened = SlideDeserializer()
-          .readBytes(
-            SlideSerializer().writeBytes(
-              PmlPresentation(slides: <PmlSlide>[slide]),
-            ),
-          )
-          .slides
-          .single;
+      final savedBytes = SlideSerializer().writeBytes(
+        PmlPresentation(slides: <PmlSlide>[slide]),
+      );
+      final reopened = SlideDeserializer().readBytes(savedBytes).slides.single;
       final explicitShapes = reopened.shapes.where(
         (shape) => const <int>{2, 3, 4, 9, 11}.contains(shape.id),
       );
@@ -353,6 +403,38 @@ void main() {
             .expand((row) => row)
             .map((cell) => cell.textColor),
         <String>['000000', '000000'],
+      );
+      expect(
+        table.rows.expand((row) => row).map((cell) => cell.textColor),
+        <String>['000000', '000000'],
+      );
+      // Verify serialized colors independently of the now-corrected importer.
+      final exportedSlide = XmlDocument.parse(
+        OpcPackage.openBytes(
+          savedBytes,
+        ).getPart('/ppt/slides/slide1.xml')!.readText(),
+      ).root!;
+      final cells = _descendants(exportedSlide, 'tc').toList();
+      expect(cells, hasLength(2));
+      expect(
+        <String?>[
+          for (final cell in cells)
+            _descendants(
+              cell.firstChild('txBody')!,
+              'srgbClr',
+            ).single.getAttribute('val'),
+        ],
+        <String>['000000', '000000'],
+      );
+      expect(
+        <String?>[
+          for (final cell in cells)
+            _descendants(
+              cell.firstChild('tcPr')!,
+              'srgbClr',
+            ).single.getAttribute('val'),
+        ],
+        <String>['FFFFFF', '303030'],
       );
     },
   );
