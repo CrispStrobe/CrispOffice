@@ -194,6 +194,9 @@ void main() {
       final windowCalls = <String>[];
       messenger.setMockMethodCallHandler(windowChannel, (call) async {
         windowCalls.add(call.method);
+        if (call.method == 'isMinimized') {
+          return false;
+        }
         if (call.method == 'show') {
           await shown.future;
         }

@@ -217,7 +217,12 @@ void main() {
       controller.viewport.origin = const Offset(70, 80);
       await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
       await tester.pump();
-      await tester.tap(find.text(command));
+      await tester.tap(find.byTooltip(command));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(find.text('Save changes?'), findsOneWidget);
+      expect(controller.workbook, same(previous));
+      await tester.tap(find.widgetWithText(TextButton, 'Don’t Save'));
       await tester.pump();
       expect(tester.takeException(), isNull);
       expect(controller.workbook, isNot(same(previous)));
