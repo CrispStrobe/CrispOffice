@@ -225,6 +225,27 @@ void main() {
     );
   });
 
+  test('accepts a plan at its exact encoded manifest byte limit', () async {
+    await add('café "invoice"', source: 'محلي', folder: '/Inbox/رسائل');
+    const request = MailArchiveSearchRequest();
+    final initial = value(await archive.planExport(request));
+    final encoded = encodeMailArchiveExportManifest(
+      initial,
+      const MailArchiveExportLimits(),
+    );
+    final byteLength = utf8.encode(encoded).length;
+    final exact = MailArchiveExportLimits(maxManifestBytes: byteLength);
+    final plan = value(await archive.planExport(request, exportLimits: exact));
+    expect(encodeMailArchiveExportManifest(plan, exact), encoded);
+    fails(
+      await archive.planExport(
+        request,
+        exportLimits: MailArchiveExportLimits(maxManifestBytes: byteLength - 1),
+      ),
+      MailProblemCode.quotaExceeded,
+    );
+  });
+
   test('cancelled plans leave originals and provenance unchanged', () async {
     await add('one');
     final cancel = MailCancellationSource()..cancel();

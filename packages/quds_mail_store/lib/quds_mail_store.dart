@@ -3,8 +3,8 @@
 /// Native filesystem and browser worker setup have separate public entries.
 library;
 
-export 'src/archive_models.dart';
 export 'src/archive_export_models.dart';
+export 'src/archive_models.dart';
 export 'src/archive_query.dart';
 export 'src/archive_repository.dart';
 export 'src/archive_runner.dart';

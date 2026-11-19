@@ -177,6 +177,16 @@ bool _folder(String value) {
       value == '/${parts.where((part) => part.isNotEmpty).join('/')}';
 }
 
+Map<String, Object> _manifestEnvelope(
+  Map<String, Object> payload,
+  String digest,
+) => {
+  'format': 'crispoffice-mail-export',
+  'version': 1,
+  'payload': payload,
+  'sha256': digest,
+};
+
 Map<String, Object> _payload(
   MailArchiveExportPlan plan,
   MailArchiveExportLimits limits,
@@ -190,13 +200,23 @@ Map<String, Object> _payload(
     _invalid(MailProblemCode.quotaExceeded);
   }
   final items = <Map<String, Object>>[];
+  final payload = <String, Object>{
+    'hostId': plan.profile.hostId,
+    'profileId': plan.profile.value,
+    'createdAtMs': plan.createdAt.toUtc().millisecondsSinceEpoch,
+    'items': items,
+  };
   final ids = <String>{};
   var total = 0, origins = 0;
   // Count exact JSON for bounded pieces before building a large payload. This
   // prevents oversized origin lists from first allocating an unbounded string.
-  var manifestBytes = 256;
-  for (final label in [plan.profile.hostId, plan.profile.value]) {
-    manifestBytes += utf8.encode(jsonEncode(label)).length;
+  // The envelope already includes empty array brackets and a 64-byte digest;
+  // add only array elements and the commas between them below.
+  var manifestBytes = utf8
+      .encode(jsonEncode(_manifestEnvelope(payload, '0' * 64)))
+      .length;
+  if (manifestBytes > limits.maxManifestBytes) {
+    _invalid(MailProblemCode.quotaExceeded);
   }
   for (final item in plan.items) {
     if (!RegExp(r'^[0-9a-f]{64}$').hasMatch(item.id) ||
@@ -213,6 +233,16 @@ Map<String, Object> _payload(
       _invalid(MailProblemCode.quotaExceeded);
     }
     final encodedOrigins = <Map<String, Object>>[];
+    final encodedItem = <String, Object>{
+      'id': item.id,
+      'bytes': item.byteLength,
+      'origins': encodedOrigins,
+    };
+    manifestBytes +=
+        utf8.encode(jsonEncode(encodedItem)).length + (items.isEmpty ? 0 : 1);
+    if (manifestBytes > limits.maxManifestBytes) {
+      _invalid(MailProblemCode.quotaExceeded);
+    }
     final uniqueOrigins = <String>{};
     for (final origin in item.origins) {
       if (!_label(origin.source) ||
@@ -227,28 +257,16 @@ Map<String, Object> _payload(
       };
       final text = jsonEncode(encoded);
       if (!uniqueOrigins.add(text)) _invalid();
-      manifestBytes += utf8.encode(text).length + 1;
+      manifestBytes +=
+          utf8.encode(text).length + (encodedOrigins.isEmpty ? 0 : 1);
       if (manifestBytes > limits.maxManifestBytes) {
         _invalid(MailProblemCode.quotaExceeded);
       }
       encodedOrigins.add(encoded);
     }
-    manifestBytes += 128;
-    if (manifestBytes > limits.maxManifestBytes) {
-      _invalid(MailProblemCode.quotaExceeded);
-    }
-    items.add({
-      'id': item.id,
-      'bytes': item.byteLength,
-      'origins': encodedOrigins,
-    });
+    items.add(encodedItem);
   }
-  return {
-    'hostId': plan.profile.hostId,
-    'profileId': plan.profile.value,
-    'createdAtMs': plan.createdAt.toUtc().millisecondsSinceEpoch,
-    'items': items,
-  };
+  return payload;
 }
 
 /// Versioned manifest with an unsigned corruption-detection digest. Neither the
@@ -259,14 +277,12 @@ String encodeMailArchiveExportManifest(
   MailArchiveExportLimits limits,
 ) {
   final payload = _payload(plan, limits);
-  final result = jsonEncode({
-    'format': 'crispoffice-mail-export',
-    'version': 1,
-    'payload': payload,
-    'sha256': crypto.sha256
-        .convert(utf8.encode(jsonEncode(payload)))
-        .toString(),
-  });
+  final result = jsonEncode(
+    _manifestEnvelope(
+      payload,
+      crypto.sha256.convert(utf8.encode(jsonEncode(payload))).toString(),
+    ),
+  );
   if (utf8.encode(result).length > limits.maxManifestBytes) {
     _invalid(MailProblemCode.quotaExceeded);
   }
