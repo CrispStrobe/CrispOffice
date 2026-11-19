@@ -38,7 +38,7 @@ remains [implementation-plan.md](implementation-plan.md).
 | M01 fork | Pinned enough_mail 3.0.0 source, retained MPL/provenance, supported public `mime_core.dart`, content-redacted diagnostics, strict charset admission, RFC2231 and date corrections, selected dependency/source inventory | Actual browser execution and per-product shipped dependency/notice clearance remain open |
 | M02 core | Pure-Dart immutable DTOs, exact-byte ownership, profile/account/IMAP identity, nullable standard flag snapshots, budgets/capabilities, typed host/provider/store ports, cancellation leases, cursor compare-and-set and tested outbox state machine | M05 implements persistence; the initial M06 IMAP adapter passed combined local qualification; SMTP remains subsequent work |
 | M03 codec | Bounded byte-range scanning, public upstream header parsing, strict transfer/charset decoding, exact raw export and attachment snapshots, deterministic multipart alternatives/CID metadata | Synchronous bounded work; no streaming claim or low-memory-device qualification |
-| M04 reader | Account-free full/compact reader, custom RenderBox selection, decoded search/copy, static HTML projection, local bounded CID PNG/JPEG, immutable source/attachment callbacks, policy-approved links, actual MIME example | Browser runtime no-fetch gate remains unqualified; host parity is a separate task |
+| M04 reader | Account-free full/compact reader, custom RenderBox selection, decoded search/copy, static HTML projection, local bounded CID PNG/JPEG, immutable source/attachment callbacks, policy-approved links, actual MIME example and CrispOffice saved-message dialog | Browser runtime no-fetch gate remains unqualified; host parity is a separate task |
 | M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema v3 with nullable durable flags | Schema v3 and the integrated flags/transport source passed local qualification; browser storage and power-loss durability are unqualified; the database is unencrypted |
 | M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, bounded discovered-UID synchronization with atomic stored-range reconciliation, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated qualification and real Linux TLS loopback checks passed; external-provider/other-OS interoperability, OAuth authorization hosts, discovery beyond the configured SEARCH budget, SMTP and the account-aware UI remain open |
 
@@ -61,7 +61,10 @@ together. The transaction compares the cursor read before provider work and
 checks its account lease before commit. Conflicting concurrent pages fail
 without overwriting a newer mailbox state. Repository streams publish after a
 successful commit. Local pending operations survive resets and tombstones in an
-explicit reconciliation state.
+explicit reconciliation state. An authoritative IMAP range page removes only
+stored mailbox memberships absent from its closed UID interval and matching UIDVALIDITY;
+it does not create tombstones for numeric gaps. Those removals, pending-operation
+reconciliation and cursor advancement share the same transaction.
 
 Drafts use revision comparison. Outbox entries retain their frozen wire bytes,
 envelope and draft revision, with validated state transitions and durable attempt
@@ -209,7 +212,7 @@ platforms retain their separate acceptance requirements.
 
 ### Earlier integrated flags and native IMAP qualification — PASS
 
-The [Office integration report](../../validation/office-main-integration-20261119/README.md)
+The [preserved pre-TLS integration report](../../validation/office-main-integration-20261119/pre-tls-report.md)
 binds the final **32-suite / 389-case** focused pass to source
 `7d279e084bae438d383630726ad7b0514da77d35`. It covers 80 native transport cases,
 three Node unsupported-entry cases, 244 shared IMAP/POP/SMTP and byte-reader

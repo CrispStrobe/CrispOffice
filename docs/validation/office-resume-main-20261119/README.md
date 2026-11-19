@@ -96,7 +96,7 @@ It adds three concurrent continuation heads to the prior capture:
 | --- | --- | --- |
 | `codex/office-mail-continuation-20261119` | `3119a4598e61f061e7b7633ea4a352d841332b9e` | Reconciled in this checkpoint |
 | `codex/office-continuation-20261119` | `e80beb2ed2fe70397a5a8fff5c9e908b04862f78` | Reconciled in this checkpoint |
-| `codex/office-finish-20261119` | `2abf5d264e5065772fc4ca05c7cab6d34256ab9d` | Reviewed integration follows |
+| `codex/office-finish-20261119` | `2abf5d264e5065772fc4ca05c7cab6d34256ab9d` | Reconciled in this checkpoint |
 
 The first of these is a reconciliation/planning checkpoint; its advertised
 saved-reader work is not implemented at that source. The other two contain
@@ -119,3 +119,19 @@ reader controls remain live. The Word option preserves the default two-slot
 command; explicit active-only changes classify the selected fragment, including
 fragments that use both Latin and complex-script slots. Local focused runs are
 development checks until the complete frozen-source gate is accepted.
+
+All three captured continuation heads are now integrated through normal merges.
+The final merge retains the already reviewed Mail/Word union and current
+Settings fixtures, and brings in the incoming Mail roadmap's historical source
+links and closed UID-range reconciliation notes. Its unique saved-reader and
+Word tests were ported in the preceding checkpoint. No captured implementation
+head remains pending; actual graph accounting and frozen-source qualification
+follow this source checkpoint.
+
+The source checkpoint before this final captured-head merge was
+`0fce5474a97c19ec54b6bb077ff42abbb92b5088`. Preparation evidence preserves the
+verified SDK/package receipts, exact runtime inventories, actual workspace
+resolution, SQLite smoke log and three compiled synthetic lifecycle fixtures.
+The independent preparation audit verifies both the 68-member incoming archive
+and the 24-member current archive. Preparation integrity is distinct from test
+acceptance.
