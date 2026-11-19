@@ -1,0 +1,266 @@
+{
+  "description": "Sequential 79-suite acceptance plan for inline Notes/header review after integrating the 19 November 2026 captured Zotero and thesaurus updates. No passing result is implied by this plan. Run against a committed, frozen source with the pinned runtime; never query or wait for GitHub Actions.",
+  "groups": [
+    {
+      "name": "engine-review-and-incoming-zotero",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/word_zotero_note_insertion_test.dart",
+        "test/office_thesaurus_test.dart",
+        "test/word_zotero_caret_test.dart",
+        "test/word_proofing_inheritance_test.dart",
+        "test/word_comment_proofing_styles_test.dart",
+        "test/word_style_introduction_test.dart",
+        "test/word_zotero_add_note_test.dart",
+        "test/zotero_add_note_protocol_test.dart",
+        "test/zotero_citing_test.dart",
+        "test/word_list_numbering_snapshot_test.dart",
+        "test/word_zotero_note_list_test.dart"
+      ]
+    },
+    {
+      "name": "editor-review-notes-headers-and-zotero",
+      "cwd": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/word_draft_proofing_test.dart",
+        "test/word_proofing_priority_test.dart",
+        "test/word_thesaurus_review_integration_test.dart",
+        "test/word_thesaurus_controller_test.dart",
+        "test/word_thesaurus_dialog_test.dart",
+        "test/word_zotero_note_target_test.dart",
+        "test/word_zotero_notes_pane_test.dart",
+        "test/word_text_proofing_controls_test.dart",
+        "test/word_text_proofing_pane_test.dart",
+        "test/word_zotero_composer_test.dart",
+        "test/word_zotero_dialog_test.dart",
+        "test/word_zotero_citing_dialog_test.dart",
+        "test/word_zotero_document_actions_test.dart",
+        "test/word_zotero_field_at_caret_test.dart",
+        "test/word_zotero_unlink_all_test.dart",
+        "test/word_note_numbering_test.dart",
+        "test/word_notes_editing_test.dart",
+        "test/word_keyboard_review_test.dart",
+        "test/word_keyboard_context_geometry_test.dart",
+        "test/word_keyboard_review_identity_test.dart",
+        "test/word_live_proofing_session_test.dart",
+        "test/word_live_review_selection_test.dart",
+        "test/word_live_review_surface_test.dart",
+        "test/word_review_pane_test.dart",
+        "test/word_live_review_changes_test.dart",
+        "test/word_incremental_proofing_test.dart",
+        "test/word_incremental_proofing_menu_test.dart",
+        "test/word_proofing_session_test.dart",
+        "test/word_manual_proofing_test.dart",
+        "test/word_proofing_dialog_test.dart",
+        "test/word_proofing_context_test.dart",
+        "test/word_proofing_geometry_test.dart",
+        "test/word_proofing_navigation_test.dart",
+        "test/word_review_dialog_test.dart",
+        "test/word_revision_story_test.dart",
+        "test/word_review_controller_test.dart",
+        "test/word_input_focus_test.dart",
+        "test/office_input_ownership_test.dart",
+        "test/office_direction_chord_test.dart",
+        "test/editor_test.dart",
+        "test/report_designer_test.dart",
+        "test/word_header_footer_navigation_test.dart",
+        "test/word_notes_proofing_controller_test.dart",
+        "test/word_notes_proofing_pane_test.dart",
+        "test/word_zotero_add_note_controller_test.dart",
+        "test/word_zotero_direct_command_test.dart",
+        "test/word_zotero_navigation_dialog_test.dart",
+        "test/word_zotero_navigation_pane_test.dart",
+        "test/word_zotero_navigation_test.dart"
+      ]
+    },
+    {
+      "name": "studio-review-and-incoming-navigation",
+      "cwd": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_comment_keyboard_review_test.dart",
+        "test/studio_zotero_shortcuts_test.dart",
+        "test/studio_comment_review_test.dart",
+        "test/studio_review_pane_test.dart",
+        "test/studio_document_comparison_test.dart",
+        "test/widget_test.dart",
+        "test/studio_sheet_navigation_test.dart",
+        "test/studio_compact_navigation_test.dart"
+      ]
+    },
+    {
+      "name": "incoming-mail-core",
+      "cwd": "packages/quds_mail_core",
+      "runner": "dart",
+      "tests": [
+        "test/sync_coordinator_test.dart"
+      ]
+    },
+    {
+      "name": "incoming-mail-store",
+      "cwd": "packages/quds_mail_store",
+      "runner": "dart",
+      "tests": [
+        "test/adversarial_store_test.dart",
+        "test/codec_test.dart",
+        "test/crash_recovery_test.dart",
+        "test/migration_test.dart",
+        "test/native_platform_test.dart",
+        "test/platform_configuration_test.dart",
+        "test/repository_test.dart"
+      ]
+    },
+    {
+      "name": "incoming-mail-browser-problems",
+      "cwd": "packages/quds_mail_store",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/browser_problem_test.dart"
+      ]
+    },
+    {
+      "name": "incoming-mail-reader",
+      "cwd": "packages/quds_mail_ui",
+      "runner": "flutter",
+      "tests": [
+        "test/message_view_test.dart"
+      ]
+    }
+  ],
+  "extra_inputs": [
+    "docs/validation/document-review-notes-20261118/run_checks.py",
+    "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/build_binding.py",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_final_validation.py",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_workspace_binding.py",
+    "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py",
+    "docs/validation/thesaurus-20261118/continuation/local/runtime/prepare_workspace.py",
+    "docs/validation/thesaurus-20261118/reconciled/run_targeted.py",
+    "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py",
+    "docs/validation/zotero-word-parity-20261118/run_local.py",
+    "docs/validation/zotero-word-parity-20261118/test_run_local.py",
+    "tools/mail/check_reader.py",
+    "tools/mail/check_store.py",
+    "tools/mail/test_check_store.py",
+    "tools/thesaurus/build_packs.py",
+    "tools/thesaurus/export_review_packet.py",
+    "tools/thesaurus/test_export_review_packet.py"
+  ],
+  "analysis": "changed",
+  "format": "changed",
+  "whitespace_preserved_inputs": [
+    {
+      "path": "docs/validation/document-review-notes-20261118/recovery/header-controller.patch",
+      "git_blob": "dad6ac252a80a297b1eb1022128cc11fd1aaa4ee",
+      "reason": "Raw preserved recovery or validation patch; retain exact diff context bytes."
+    },
+    {
+      "path": "docs/validation/document-review-notes-20261118/recovery/notes-controller.patch",
+      "git_blob": "de6d842f42117e211337d09cc8833756b0ff97d0",
+      "reason": "Raw preserved recovery or validation patch; retain exact diff context bytes."
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/integration-flutter-tools-bootstrap.log",
+      "git_blob": "aa6ea1aa5026683015aa526bead02a2b024a316f",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/late-engine-editor-editor-tests.txt",
+      "git_blob": "6faffdbccd2711c3ffbb224399a914623257a9da",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/ui/web-build-final.txt",
+      "git_blob": "afbf0a0519124c71618dbc96582e3a70e6d49df7",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/ui/web-build.txt",
+      "git_blob": "610c5347d6e388d94940049465a84fd7ceadbe97",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-resume-20261118/incoming/preflight/analysis-attempt-3.log",
+      "git_blob": "cfc237f3300b7581afbb4dcfb9742aabd797b5c7",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-resume-20261118/incoming/preflight/analysis-final.log",
+      "git_blob": "8f0f59950218e1ab7dfc4f1fa057ee0dac2e96d0",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-resume-20261118/incoming/preflight/final-diff.patch",
+      "git_blob": "6ff8cdaaa2d1d1fccfbe2212c5c03347c7c1a1e5",
+      "reason": "Raw preserved recovery or validation patch; retain exact diff context bytes."
+    },
+    {
+      "path": "docs/validation/mail-resume-20261118/incoming/preflight/format-diff.patch",
+      "git_blob": "10fe16e480bde4f2a335954d74fb30f462607a00",
+      "reason": "Raw preserved recovery or validation patch; retain exact diff context bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/CC_BY_SA_4.0.txt",
+      "git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+      "git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/CC_BY_4.0.txt",
+      "git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/OEWN_LICENSE.md",
+      "git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/WNDB_License.txt",
+      "git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/CC_BY_SA_4.0.txt",
+      "git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+      "git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/CC_BY_4.0.txt",
+      "git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/OEWN_LICENSE.md",
+      "git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/linguistic/en/notices/WNDB_License.txt",
+      "git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    }
+  ]
+}

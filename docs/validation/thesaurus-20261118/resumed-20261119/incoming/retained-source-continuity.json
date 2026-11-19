@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-19T05:28:29.438874+00:00",
+  "head": "ff0775cbd3f0060ad5d7b2df7f3b5e1636d17cf3",
+  "tree": "e67e99745cb30075bd439347271eb3de94373a8d",
+  "scope": "SHA-256 of immutable current Git blobs compared with retained original source records; this is continuity verification, not rerunning or rebinding prior runtime receipts.",
+  "native": {
+    "original_source_commit": "3847d5f4237fe0069ba0a8399ddbf4dc13d7194b",
+    "receipt_sha256": "492a4e9018cc5ea4b7b5b87cd1b23e5810b935ff5c17b09ac3fdd28724a7c8c7",
+    "input_map_sha256": "7a1382aee2e44d1cbd90023cf2c1e449d99aaa726b9552b94bece6db5c3b458f",
+    "recorded_status": "native_passed_web_compiled_browser_not_run",
+    "recorded_input_entries": 5006,
+    "ordinary_source_records": {
+      "entries": 4991,
+      "matching_entries": 4987,
+      "different": [
+        {
+          "path": "packages/quds_office_editor/CHANGELOG.md",
+          "recorded_sha256": "06931fc54f366ecfde5b3128ceea75d80fcf1d4a00a0f6b79531a8d88459e910",
+          "current_sha256": "7507e5438880d0e34af8d06260677705a468fd94e04ecbd57730a3f7648fe48c"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+          "recorded_sha256": "aa2fe9429044d626476aa9797d13e61a924e8ea271071a66e9ed9d7f82a0d31a",
+          "current_sha256": "2362f477f8e44951cab1d08c416af14f9038247337b95df3022e92e0f6d3a006"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+          "recorded_sha256": "c224c9f49280ba1d61471bb68ccf8822c7f389dd33ed87fe438b13fdf4ff8762",
+          "current_sha256": "fb0d6f79121111d1224fda784fb97511934d238d228f87b4f3e810a27f9aebe5"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+          "recorded_sha256": "c131fc1b68748fd81a36d04f6abf190f5d6db4e2ca2ec75ad19aff267438d8c3",
+          "current_sha256": "d9575bfb55857ab242adf29ddf96ae31955c45fdc9144ea1c1594e9c4d604390"
+        }
+      ],
+      "missing": []
+    },
+    "application_assets_and_configuration": {
+      "entries": 1856,
+      "matching_entries": 1856,
+      "different": [],
+      "missing": []
+    },
+    "fixture_and_helper_records": {
+      "entries": 12,
+      "matching_entries": 12,
+      "different": [],
+      "missing": []
+    },
+    "selected_suite_records": {
+      "entries": 14,
+      "matching_entries": 14,
+      "different": [],
+      "missing": []
+    },
+    "new_files_in_recorded_source_roots": [
+      "packages/quds_office_editor/test/support/review_fonts.dart"
+    ],
+    "original_workspace_specific_records_not_rebound": [
+      "__workspace_binding__",
+      "__workspace_lock__",
+      "__workspace_package_config__"
+    ],
+    "entire_input_inventory_unchanged": false,
+    "interpretation": "Retain 208 native passes and the successful original source-bound web compilation/install evidence at source 3847d5f4. Current application/build-fixture bytes and the 14 selected native suites are unchanged, while the broader test/changelog inventory and workspace identity differ. Do not describe this as a fresh current-HEAD build or full inventory equality."
+  },
+  "mail": [
+    {
+      "receipt": "mail/store-attempt-2-offline/receipt.json",
+      "receipt_sha256": "b2d0b99f13e266fe41865c1af6b83b9f183153802fa2d5181386e1fef118dd67",
+      "recorded_starting_commit": "0ea205e0ee35bb43635960a0edafd42dc4c16e8d",
+      "recorded_status": "PASS",
+      "recorded_exit_code": null,
+      "recorded_source_unchanged": true,
+      "all_recorded_inputs": {
+        "entries": 53,
+        "matching_entries": 51,
+        "different": [
+          {
+            "path": "tools/mail/check_store.py",
+            "recorded_sha256": "80a5d182aaacc6c904f4791bbe620d58b44e3af16790f6be8e0b97e8f69c6ce3",
+            "current_sha256": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155"
+          },
+          {
+            "path": "tools/mail/test_check_store.py",
+            "recorded_sha256": "6b147a318f87907ecce878046089bd09c251f6d6afd97935c11f6dbdd5bb9418",
+            "current_sha256": "e0ca9d20f8836ccc1623f0ea802cc976254b80d56786363086ac830b8b7e885a"
+          }
+        ],
+        "missing": []
+      },
+      "non_runner_source_records": {
+        "entries": 50,
+        "matching_entries": 50,
+        "different": [],
+        "missing": []
+      }
+    },
+    {
+      "receipt": "mail/mime-attempt-1/receipt.json",
+      "receipt_sha256": "aee91d37f07eb14feba84e0cc99b27d4b949fe10353279fab332b20d698351ab",
+      "recorded_starting_commit": "0ea205e0ee35bb43635960a0edafd42dc4c16e8d",
+      "recorded_status": "PASS",
+      "recorded_exit_code": null,
+      "recorded_source_unchanged": true,
+      "all_recorded_inputs": {
+        "entries": 306,
+        "matching_entries": 305,
+        "different": [
+          {
+            "path": "tools/mail/check_store.py",
+            "recorded_sha256": "554745902e9161ffe46d3b1d166b13707b8199d671284cb0512d8081ac715937",
+            "current_sha256": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155"
+          }
+        ],
+        "missing": []
+      },
+      "non_runner_source_records": {
+        "entries": 305,
+        "matching_entries": 305,
+        "different": [],
+        "missing": []
+      }
+    },
+    {
+      "receipt": "mail/final-parser-reconciliation/controls-receipt.json",
+      "receipt_sha256": "7de554fff56d92b49ed96e66cc742f41ac9edd2d1039b2bfe0a47094f278d5e6",
+      "recorded_starting_commit": null,
+      "recorded_status": null,
+      "recorded_exit_code": 0,
+      "recorded_source_unchanged": true,
+      "all_recorded_inputs": {
+        "entries": 2,
+        "matching_entries": 2,
+        "different": [],
+        "missing": []
+      },
+      "non_runner_source_records": {
+        "entries": 0,
+        "matching_entries": 0,
+        "different": [],
+        "missing": []
+      }
+    }
+  ],
+  "mail_interpretation": "Retain the 152 distinct Dart cases under their original recorded runs. Application/test sources still match; earlier check_store runner/control files were superseded and are bound separately by final-parser-reconciliation. Node browser_problem coverage is retained, but actual browser storage acceptance remains open.",
+  "open_acceptance_gates": [
+    "actual offline browser",
+    "installed native Studio and real OS/IME",
+    "independent human linguistic review"
+  ],
+  "new_runtime_executions": 0,
+  "github_actions_calls": 0,
+  "passed": true
+}

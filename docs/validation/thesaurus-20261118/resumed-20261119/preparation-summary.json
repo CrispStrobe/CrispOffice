@@ -1,0 +1,18 @@
+{
+  "source_commit": "59f13897fd5aafccc234c58f41370dd786703418",
+  "runner_controls": 14,
+  "controls_status": "passed",
+  "recovered_archives": 9,
+  "recovered_indexed_files": 215,
+  "selected_suites": 129,
+  "analysis_and_format_paths": 29,
+  "complete_replay_status": "running",
+  "historical_native_cases": 208,
+  "historical_mail_distinct_cases": 152,
+  "historical_counts_added_to_fresh_run": false,
+  "release_gates": {
+    "actual_browser": "blocked_by_host_AF_UNIX_EPERM",
+    "installed_studio_and_OS_IME": "blocked_by_missing_native_build_and_display",
+    "independent_human_linguistic_review": "not_reviewed"
+  }
+}

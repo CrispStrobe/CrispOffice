@@ -316,30 +316,35 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('Add Zotero note ribbon invokes the native note picker', (
-    tester,
-  ) async {
-    final desktop = _Desktop();
-    final controller = await _studio(tester, desktop);
-    await tester.tap(find.text('Insert').first);
-    await _frames(tester);
-    await _tapCommand(tester, 'Add Zotero note');
-    await _finishCommand(tester, desktop);
-    expect(desktop.commands, ['addNote']);
-    expect(controller.canUndo, isFalse);
-    expect(
-      controller.document.paragraphs.single.text,
-      'A citation belongs here.',
-    );
-    expect(
-      tester
-          .widget<QudsWordEditor>(find.byType(QudsWordEditor))
-          .focusNode!
-          .hasPrimaryFocus,
-      isTrue,
-    );
-    expect(tester.takeException(), isNull);
-  });
+  for (final action in [
+    (label: 'Add Zotero note', command: 'addNote'),
+    (label: 'Add Zotero annotation', command: 'addAnnotation'),
+  ]) {
+    testWidgets('${action.label} ribbon invokes its native picker', (
+      tester,
+    ) async {
+      final desktop = _Desktop();
+      final controller = await _studio(tester, desktop);
+      await tester.tap(find.text('Insert').first);
+      await _frames(tester);
+      await _tapCommand(tester, action.label);
+      await _finishCommand(tester, desktop);
+      expect(desktop.commands, [action.command]);
+      expect(controller.canUndo, isFalse);
+      expect(
+        controller.document.paragraphs.single.text,
+        'A citation belongs here.',
+      );
+      expect(
+        tester
+            .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+            .focusNode!
+            .hasPrimaryFocus,
+        isTrue,
+      );
+      expect(tester.takeException(), isNull);
+    });
+  }
 
   testWidgets('Ctrl Alt C finds the citation in the focused Notes editor', (
     tester,

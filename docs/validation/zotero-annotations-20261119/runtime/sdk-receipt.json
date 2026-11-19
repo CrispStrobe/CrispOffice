@@ -1,0 +1,13 @@
+{
+  "status": "verified-official-sdk-extracted",
+  "archive_url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+  "archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+  "archive_bytes": 1581444364,
+  "sdk_root": "/workspace/scratch/0a420ffd2846/runtime/flutter",
+  "executables_sha256": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "elapsed_seconds": 38.05708973999998,
+  "completed_at_utc": "2026-11-19T05:24:18.436529+00:00"
+}

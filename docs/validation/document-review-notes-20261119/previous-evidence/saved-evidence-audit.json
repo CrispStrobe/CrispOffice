@@ -1,0 +1,145 @@
+{
+  "audited_at_utc": "2026-11-19T05:26:40.064484+00:00",
+  "reviewer": "audit_saved_evidence",
+  "published_commit": "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+  "qualified_source": "a7512e94da8208123aa2df5f5c2c0354d079ddc7",
+  "qualified_tree": "0817e6573070fe1e30f63615956e801b1605f992",
+  "method": "Independent standard-library archive hashing, frozen Git blob verification and raw JSON reporter recount; no repository validation parser imported and no Dart tests or GitHub Actions queried or executed.",
+  "archive": {
+    "path": "evidence.tar.xz",
+    "bytes": 1684236,
+    "sha256": "80950a3d930fdead3ee40a6a099da61f0adaf50537bd9288cb150e5763c6c1ac",
+    "members_verified": 129,
+    "uncompressed_bytes": 21031715
+  },
+  "all_archive_members_match_index": true,
+  "frozen_source_blobs_reverified": 5012,
+  "source_before_after_equal": true,
+  "runtime_before_after_equal": true,
+  "runtime_inventory_entries": 11165,
+  "archived_runtime_inputs_bound_to_inventory": [
+    "runtime/runtime.json",
+    "runtime/retained-inputs.json",
+    "runtime/pub-cache-receipt.json",
+    "runtime/archive-members.json",
+    "runtime/cache-omissions.json",
+    "runtime/env.sh",
+    "runtime/bin/dart",
+    "runtime/bin/flutter"
+  ],
+  "runtime_qualification_limit": "Verified the saved evidence and its internal bindings, not the historical binaries on their former host. No fresh combined runtime restoration or test execution was performed by this audit.",
+  "groups": [
+    {
+      "name": "engine-review-and-incoming-zotero",
+      "suites": 9,
+      "passed": 184,
+      "failed": 0,
+      "skipped": 0,
+      "hidden_success_events_excluded": 9,
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "editor-review-notes-headers-and-zotero",
+      "suites": 49,
+      "passed": 852,
+      "failed": 0,
+      "skipped": 0,
+      "hidden_success_events_excluded": 79,
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "studio-review-and-incoming-navigation",
+      "suites": 9,
+      "passed": 98,
+      "failed": 0,
+      "skipped": 0,
+      "hidden_success_events_excluded": 9,
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "incoming-mail-core",
+      "suites": 1,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "hidden_success_events_excluded": 1,
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "incoming-mail-store",
+      "suites": 7,
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0,
+      "hidden_success_events_excluded": 7,
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "incoming-mail-browser-problems",
+      "suites": 1,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "hidden_success_events_excluded": 1,
+      "exact_case_inventory_match": true
+    },
+    {
+      "name": "incoming-mail-reader",
+      "suites": 1,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "hidden_success_events_excluded": 1,
+      "exact_case_inventory_match": true
+    }
+  ],
+  "actual_dart_flutter_cases": 1244,
+  "unique_suites": 77,
+  "failed": 0,
+  "skipped": 0,
+  "separate_python_groups": [
+    {
+      "name": "review-gate",
+      "completed_tests": 20,
+      "test_source_present_in_main_manifest": true,
+      "test_source_matches_separate_receipt_and_published_tree": true
+    },
+    {
+      "name": "mail-gate",
+      "completed_tests": 29,
+      "test_source_present_in_main_manifest": true,
+      "test_source_matches_separate_receipt_and_published_tree": true
+    },
+    {
+      "name": "thesaurus-packet",
+      "completed_tests": 7,
+      "test_source_present_in_main_manifest": false,
+      "test_source_matches_separate_receipt_and_published_tree": true
+    }
+  ],
+  "separate_python_cases": 56,
+  "screenshots_bytes_reverified": 3,
+  "failed_first_run_preserved": true,
+  "publication_paths_verified": [
+    "docs/validation/document-review-notes-20261118/README.md",
+    "docs/validation/document-review-notes-20261118/recovery/previous-validation-readme.md",
+    "docs/validation/document-review-notes-20261118/resumed/README.md",
+    "docs/validation/document-review-notes-20261118/resumed/completed-groups-peer-review.json",
+    "docs/validation/document-review-notes-20261118/resumed/evidence-index.json",
+    "docs/validation/document-review-notes-20261118/resumed/evidence.tar.xz",
+    "docs/validation/document-review-notes-20261118/resumed/final-peer-review.json",
+    "docs/validation/document-review-notes-20261118/resumed/integration-verification.json",
+    "docs/validation/document-review-notes-20261118/resumed/publication-checkpoints.json",
+    "docs/validation/document-review-notes-20261118/resumed/publication-scope.json",
+    "docs/validation/document-review-notes-20261118/resumed/python-verification.json",
+    "docs/validation/document-review-notes-20261118/resumed/runtime-peer-review.json",
+    "docs/validation/document-review-notes-20261118/resumed/screenshots/header-even-review.png",
+    "docs/validation/document-review-notes-20261118/resumed/screenshots/notes-inline-arabic-narrow.png",
+    "docs/validation/document-review-notes-20261118/resumed/screenshots/notes-inline-desktop.png",
+    "docs/validation/document-review-notes-20261118/resumed/verification.json",
+    "docs/validation/document-review-notes-20261118/resumed/visual-review.json",
+    "docs/validation/document-review-notes-20261118/runtime/README.md"
+  ],
+  "issues": [],
+  "passed": true
+}

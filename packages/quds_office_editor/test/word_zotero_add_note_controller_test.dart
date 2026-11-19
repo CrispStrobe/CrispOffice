@@ -16,6 +16,14 @@ const _annotation =
     'data-annotation="%7B%22pageLabel%22%3A%224%22%7D">'
     'A <i>quoted</i> passage</span> $_firstPlaceholder Comment</p>'
     '<p><b>Conclusion</b> $_secondPlaceholder</p></div>';
+const _selectedAnnotations =
+    '<div data-schema-version="8" data-citation-items="%5B%5D">'
+    '<p><span class="highlight" '
+    'data-annotation="%7B%22pageLabel%22%3A%224%22%7D">'
+    'A <i>quoted</i> passage</span> $_firstPlaceholder Comment</p>'
+    '<p><span class="underline" '
+    'data-annotation="%7B%22pageLabel%22%3A%224%22%7D">'
+    '<u>Another passage</u></span> $_secondPlaceholder</p></div>';
 
 String _preferences([int noteType = 0]) => jsonEncode({
   'dataVersion': 4,
@@ -95,11 +103,10 @@ WordEditorController _controller({WmlDocument? document}) {
   return controller;
 }
 
-WordZoteroTransaction _begin(WordEditorController controller) =>
-    controller.beginZoteroTransaction(
-      documentId: _id,
-      command: ZoteroCitingCommand.addNote,
-    );
+WordZoteroTransaction _begin(
+  WordEditorController controller, {
+  ZoteroCitingCommand command = ZoteroCitingCommand.addNote,
+}) => controller.beginZoteroTransaction(documentId: _id, command: command);
 
 Object? _call(
   WordZoteroTransaction transaction,
@@ -306,11 +313,12 @@ List<_Step> _script({bool cancel = false}) => [
   (d) => d.message('Document.complete', [d.documentId]),
 ];
 
-Future<void> _openAddNote(
+Future<void> _openTextInsertion(
   WidgetTester tester,
   WordEditorController controller,
-  _Desktop desktop,
-) async {
+  _Desktop desktop, {
+  required ZoteroCitingCommand command,
+}) async {
   tester.view.devicePixelRatio = 1;
   tester.view.physicalSize = const Size(1200, 900);
   addTearDown(tester.view.resetDevicePixelRatio);
@@ -324,16 +332,16 @@ Future<void> _openAddNote(
               context,
               controller: controller,
               localTransport: desktop.send,
-              initialCommand: ZoteroCitingCommand.addNote,
+              initialCommand: command,
               closeAfterCommand: true,
             ),
-            child: const Text('Add note from Zotero'),
+            child: const Text('Insert Zotero research content'),
           ),
         ),
       ),
     ),
   );
-  await tester.tap(find.text('Add note from Zotero'));
+  await tester.tap(find.text('Insert Zotero research content'));
   await tester.pumpAndSettle();
 }
 
@@ -520,6 +528,103 @@ void main() {
       );
       expect(WordZotero.fields(reopened).every((f) => f.canEdit), isTrue);
     });
+  }
+
+  for (final noteType in [0, 1, 2]) {
+    test(
+      'Add Annotation keeps quoted text, live citations and one undo for style $noteType',
+      () {
+        final controller = _controller();
+        final document = controller.document;
+        final original = document.paragraphs.first;
+        final unrelated = document.paragraphs.last;
+        final before = _state(document);
+        final transaction = _begin(
+          controller,
+          command: ZoteroCitingCommand.addAnnotation,
+        );
+        _stageCitedNote(
+          transaction,
+          html: _selectedAnnotations,
+          noteType: noteType,
+        );
+        _complete(transaction);
+        expect(_state(document), before);
+        expect(controller.canUndo, isFalse);
+        transaction.apply();
+        final after = _state(document);
+        final afterCaret = (
+          controller.caret.paragraphIndex,
+          controller.caret.logicalIndex,
+        );
+        expect(_citationsInReadingOrder(document), [
+          '(First, 2024)',
+          '(Second, 2025)',
+        ]);
+        expect(document.footnotes, hasLength(noteType == 1 ? 2 : 0));
+        expect(document.endnotes, hasLength(noteType == 2 ? 2 : 0));
+        expect(controller.zoteroFields.every((field) => field.canEdit), isTrue);
+        expect(document.paragraphs.first, same(original));
+        expect(document.paragraphs.last, same(unrelated));
+        expect(
+          document.paragraphs.first.text,
+          startsWith('BeforeA quoted passage'),
+        );
+        expect(document.paragraphs.first.text, endsWith(' Comment'));
+        expect(document.paragraphs.elementAt(1).text, endsWith('After'));
+        final runs = document.paragraphs.expand(
+          (paragraph) => paragraph.inlines.whereType<WmlRun>(),
+        );
+        expect(
+          runs.any(
+            (run) => run.text.contains('quoted') && run.properties.italic,
+          ),
+          isTrue,
+        );
+        expect(
+          runs.any(
+            (run) =>
+                run.text.contains('Another passage') &&
+                run.properties.underline == WmlUnderline.single,
+          ),
+          isTrue,
+        );
+        expect(controller.noteEditingTarget, isNull);
+        controller.undo();
+        expect(_state(document), before);
+        expect(document.paragraphs.first, same(original));
+        expect(document.paragraphs.last, same(unrelated));
+        expect(controller.caret.paragraphIndex, 0);
+        expect(controller.caret.logicalIndex, 6);
+        expect(controller.canUndo, isFalse);
+        controller.redo();
+        expect(_state(document), after);
+        expect((
+          controller.caret.paragraphIndex,
+          controller.caret.logicalIndex,
+        ), afterCaret);
+        final reopened = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+        expect(
+          reopened.paragraphs.map((paragraph) => paragraph.text),
+          document.paragraphs.map((paragraph) => paragraph.text),
+        );
+        expect(_citationsInReadingOrder(reopened), [
+          '(First, 2024)',
+          '(Second, 2025)',
+        ]);
+        final fields = WordZotero.fields(reopened);
+        expect(fields.every((field) => field.canEdit), isTrue);
+        expect(fields.map((field) => field.citation!.items.single.locator), [
+          '4',
+          '4',
+        ]);
+        expect(reopened.footnotes, hasLength(noteType == 1 ? 2 : 0));
+        expect(reopened.endnotes, hasLength(noteType == 2 ? 2 : 0));
+        expect(WordZoteroDocumentData.read(reopened), contains('de-DE'));
+      },
+    );
   }
 
   test('a rich uncited note inserts once and leaves its tail editable', () {
@@ -723,160 +828,314 @@ void main() {
     },
   );
 
-  for (final endnote in [false, true]) {
-    test(
-      'an active ${endnote ? 'endnote' : 'footnote'} refuses research-note insertion early',
-      () {
-        final document = _document();
-        final note = WordNotes.insert(
-          document,
-          document.paragraphs.last,
-          text: 'Existing',
-          endnote: endnote,
-        );
-        final controller = _controller(document: document);
-        controller.setNoteEditingTarget(
-          note,
-          const TextSelection.collapsed(offset: 2),
-        );
-        final before = _state(document);
-        expect(() => _begin(controller), throwsUnsupportedError);
-        expect(_state(document), before);
-        expect(controller.noteEditingTarget?.note, same(note));
-        expect(controller.canUndo, isFalse);
-      },
-    );
+  for (final scenario in [
+    'viewing',
+    'selecting',
+    'track changes',
+    'document protection',
+    'unresolved revision',
+    'locked citation',
+    'inline content control',
+    'header',
+    'footer',
+    'comment',
+    'selected text box',
+    'editing text box',
+    'body composition',
+    'note composition',
+  ]) {
+    test('Add Annotation refuses $scenario before staging content', () {
+      final document = _document();
+      final paragraph = document.paragraphs.first;
+      final otherStory = WmlParagraph(inlines: [WmlRun(text: 'Other story')]);
+      final frame = WmlFrame(blocks: [otherStory]);
+      WmlNote? note;
+      switch (scenario) {
+        case 'track changes':
+          document.trackRevisions = true;
+        case 'document protection':
+          document.restrictEditing = true;
+        case 'unresolved revision':
+          document.revisions.add(
+            WmlRevision(
+              id: 1,
+              kind: WmlRevisionKind.insert,
+              paragraphIndex: 0,
+              targetParagraph: paragraph,
+              start: 0,
+              end: 6,
+              text: 'Before',
+            ),
+          );
+        case 'locked citation':
+          WordZotero.insertCitation(
+            document.paragraphs.last,
+            _citation('locked', '(Locked)'),
+          );
+          WordZotero.fields(document).single.run!.fieldLocked = true;
+        case 'inline content control':
+          final control = WmlContentControlData(
+            xml:
+                '<w:sdt xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+                '<w:sdtPr/><w:sdtContent/></w:sdt>',
+            sourcePartUri: '/word/document.xml',
+            relationships: const [],
+          );
+          paragraph.inlines
+            ..insert(
+              0,
+              WmlContentControlBoundary(control: control, start: true),
+            )
+            ..add(WmlContentControlBoundary(control: control, start: false));
+        case 'header':
+          document.sections.single.header.add(otherStory);
+        case 'footer':
+          document.sections.single.footer.add(otherStory);
+        case 'comment':
+          document.comments.add(WmlComment(id: 7, paragraphs: [otherStory]));
+        case 'selected text box' || 'editing text box':
+          document.sections.single.blocks.add(frame);
+        case 'note composition':
+          note = WordNotes.insert(
+            document,
+            document.paragraphs.last,
+            text: 'Authored note',
+            endnote: false,
+          );
+      }
+      final controller = _controller(document: document);
+      switch (scenario) {
+        case 'viewing':
+          controller.setMode(OfficeInteractionMode.viewing);
+        case 'selecting':
+          controller.setMode(OfficeInteractionMode.selecting);
+        case 'header' || 'footer':
+          controller.beginHeaderFooterEdit(0, footer: scenario == 'footer');
+          expect(controller.isEditingHeaderFooter, isTrue);
+        case 'comment':
+          controller.beginCommentEdit(7);
+          expect(controller.isEditingComment, isTrue);
+        case 'selected text box' || 'editing text box':
+          controller.selectFrame(
+            frame,
+            editing: scenario == 'editing text box',
+          );
+        case 'body composition':
+          controller.input.setValue(
+            TextEditingValue(
+              text: paragraph.text,
+              selection: const TextSelection.collapsed(offset: 6),
+              composing: const TextRange(start: 0, end: 6),
+            ),
+          );
+        case 'note composition':
+          controller.setNoteEditingTarget(
+            note!,
+            const TextSelection.collapsed(offset: 2),
+            composing: const TextRange(start: 0, end: 2),
+          );
+      }
+      final before = _state(document);
+      final revision = controller.contentRevision;
+      final input = controller.input.value;
+      final noteTarget = controller.noteEditingTarget;
+      expect(
+        () => _begin(controller, command: ZoteroCitingCommand.addAnnotation),
+        switch (scenario) {
+          'viewing' ||
+          'selecting' ||
+          'document protection' ||
+          'note composition' => throwsStateError,
+          _ => throwsUnsupportedError,
+        },
+      );
+      expect(_state(document), before);
+      expect(otherStory.text, 'Other story');
+      expect(controller.contentRevision, revision);
+      expect(controller.input.value, input);
+      expect(controller.noteEditingTarget, same(noteTarget));
+      expect(controller.canUndo, isFalse);
+      expect(controller.isDirty, isFalse);
+    });
   }
 
-  test(
-    'a body selection refuses research-note insertion without replacing text',
-    () {
+  for (final command in [
+    ZoteroCitingCommand.addNote,
+    ZoteroCitingCommand.addAnnotation,
+  ]) {
+    for (final endnote in [false, true]) {
+      test(
+        'an active ${endnote ? 'endnote' : 'footnote'} refuses ${command.name} early',
+        () {
+          final document = _document();
+          final note = WordNotes.insert(
+            document,
+            document.paragraphs.last,
+            text: 'Existing',
+            endnote: endnote,
+          );
+          final controller = _controller(document: document);
+          controller.setNoteEditingTarget(
+            note,
+            const TextSelection.collapsed(offset: 2),
+          );
+          final before = _state(document);
+          expect(
+            () => _begin(controller, command: command),
+            throwsUnsupportedError,
+          );
+          expect(_state(document), before);
+          expect(controller.noteEditingTarget?.note, same(note));
+          expect(controller.canUndo, isFalse);
+        },
+      );
+    }
+
+    test('a body selection refuses ${command.name} without replacing text', () {
       final controller = _controller();
       controller.caret
         ..selectionAnchor = 1
         ..selectionAnchorParagraph = 0;
       final before = _state(controller.document);
-      expect(() => _begin(controller), throwsUnsupportedError);
+      expect(
+        () => _begin(controller, command: command),
+        throwsUnsupportedError,
+      );
       expect(_state(controller.document), before);
       expect(controller.caret.selectionAnchor, 1);
       expect(controller.caret.logicalIndex, 6);
       expect(controller.canUndo, isFalse);
-    },
-  );
+    });
 
-  test(
-    'a caret inside an existing citation refuses Add Note before staging',
-    () {
-      final document = WmlDocument.empty(text: 'Before ');
-      WordZotero.insertCitation(
-        document.paragraphs.single,
-        _citation('existing', '(Existing)'),
-      );
-      final controller = _controller(document: document);
-      controller.caret
-        ..logicalIndex = 8
-        ..collapseSelection();
-      final before = _state(document);
-      expect(() => _begin(controller), throwsUnsupportedError);
-      expect(_state(document), before);
-      expect(controller.zoteroFields.single.citation!.citationId, 'existing');
-      expect(controller.canUndo, isFalse);
-    },
-  );
-
-  test('a changed caret refuses a fully staged research note atomically', () {
-    final controller = _controller();
-    final before = _state(controller.document);
-    final transaction = _begin(controller);
-    _stageCitedNote(transaction);
-    _complete(transaction);
-    controller.caret
-      ..logicalIndex = 1
-      ..collapseSelection();
-    expect(transaction.apply, throwsStateError);
-    expect(_state(controller.document), before);
-    expect(controller.canUndo, isFalse);
-    expect(controller.isDirty, isFalse);
-  });
-
-  test(
-    'an unknown citation placeholder cannot mutate live text or preferences',
-    () {
-      final controller = _controller();
-      final before = _state(controller.document);
-      final transaction = _begin(controller);
-      _insertText(transaction, '<p>Quote $_firstPlaceholder</p>');
-      expect(
-        () => _call(transaction, 'Document.convertPlaceholdersToFields', [
-          ['UNKNOWN'],
-          0,
-          'Http',
-        ]),
-        throwsFormatException,
-      );
-      expect(_state(controller.document), before);
-      expect(controller.isDirty, isFalse);
-      expect(controller.canUndo, isFalse);
-    },
-  );
-
-  test('an unsupported note image keeps the whole document unchanged', () {
-    final controller = _controller();
-    final before = _state(controller.document);
-    final transaction = _begin(controller);
-    expect(
-      () => _insertText(
-        transaction,
-        '<p>Before<img src="https://example.org/image.png"/>after</p>',
-      ),
-      throwsUnsupportedError,
+    test(
+      'a caret inside an existing citation refuses ${command.name} before staging',
+      () {
+        final document = WmlDocument.empty(text: 'Before ');
+        WordZotero.insertCitation(
+          document.paragraphs.single,
+          _citation('existing', '(Existing)'),
+        );
+        final controller = _controller(document: document);
+        controller.caret
+          ..logicalIndex = 8
+          ..collapseSelection();
+        final before = _state(document);
+        expect(
+          () => _begin(controller, command: command),
+          throwsUnsupportedError,
+        );
+        expect(_state(document), before);
+        expect(controller.zoteroFields.single.citation!.citationId, 'existing');
+        expect(controller.canUndo, isFalse);
+      },
     );
-    expect(_state(controller.document), before);
-    expect(controller.canUndo, isFalse);
-    expect(controller.isDirty, isFalse);
-  });
 
-  testWidgets('the shared Add Note command inserts live citation paragraphs', (
-    tester,
-  ) async {
-    final controller = _controller();
-    final desktop = _Desktop(_script());
-    final before = _state(controller.document);
-    await _openAddNote(tester, controller, desktop);
-    expect(desktop.command, 'addNote');
-    expect(desktop.requests, hasLength(12));
-    expect(
-      find.byKey(const ValueKey<String>('zotero-direct-command')),
-      findsNothing,
+    test(
+      'a changed caret refuses a fully staged ${command.name} atomically',
+      () {
+        final controller = _controller();
+        final before = _state(controller.document);
+        final transaction = _begin(controller, command: command);
+        _stageCitedNote(transaction);
+        _complete(transaction);
+        controller.caret
+          ..logicalIndex = 1
+          ..collapseSelection();
+        expect(transaction.apply, throwsStateError);
+        expect(_state(controller.document), before);
+        expect(controller.canUndo, isFalse);
+        expect(controller.isDirty, isFalse);
+      },
     );
-    expect(controller.zoteroFields.map((field) => field.citation!.citationId), [
-      'first',
-      'second',
-    ]);
-    expect(controller.document.paragraphs.elementAt(1).text, 'Research');
-    expect(controller.caret.paragraphIndex, 3);
-    controller.undo();
-    expect(_state(controller.document), before);
-    expect(controller.canUndo, isFalse);
-  });
 
-  testWidgets(
-    'cancelled note selection discards temporary fields and style changes',
-    (tester) async {
-      final controller = _controller();
-      final desktop = _Desktop(_script(cancel: true));
-      final before = _state(controller.document);
-      await _openAddNote(tester, controller, desktop);
-      expect(desktop.command, 'addNote');
-      expect(desktop.requests, hasLength(6));
-      expect(
-        find.byKey(const ValueKey<String>('zotero-direct-command')),
-        findsNothing,
-      );
-      expect(_state(controller.document), before);
-      expect(controller.zoteroFields, isEmpty);
-      expect(controller.canUndo, isFalse);
-      expect(controller.isDirty, isFalse);
-    },
-  );
+    test(
+      '${command.name} unknown citation placeholder cannot mutate live text or preferences',
+      () {
+        final controller = _controller();
+        final before = _state(controller.document);
+        final transaction = _begin(controller, command: command);
+        _insertText(transaction, '<p>Quote $_firstPlaceholder</p>');
+        expect(
+          () => _call(transaction, 'Document.convertPlaceholdersToFields', [
+            ['UNKNOWN'],
+            0,
+            'Http',
+          ]),
+          throwsFormatException,
+        );
+        expect(_state(controller.document), before);
+        expect(controller.isDirty, isFalse);
+        expect(controller.canUndo, isFalse);
+      },
+    );
+
+    test(
+      'an unsupported ${command.name} image keeps the whole document unchanged',
+      () {
+        final controller = _controller();
+        final before = _state(controller.document);
+        final transaction = _begin(controller, command: command);
+        expect(
+          () => _insertText(
+            transaction,
+            '<p>Before<img src="https://example.org/image.png"/>after</p>',
+          ),
+          throwsUnsupportedError,
+        );
+        expect(_state(controller.document), before);
+        expect(controller.canUndo, isFalse);
+        expect(controller.isDirty, isFalse);
+      },
+    );
+  }
+
+  for (final command in [
+    ZoteroCitingCommand.addNote,
+    ZoteroCitingCommand.addAnnotation,
+  ]) {
+    testWidgets(
+      'the shared ${command.name} command inserts live citation paragraphs',
+      (tester) async {
+        final controller = _controller();
+        final desktop = _Desktop(_script());
+        final before = _state(controller.document);
+        await _openTextInsertion(tester, controller, desktop, command: command);
+        expect(desktop.command, command.name);
+        expect(desktop.requests, hasLength(12));
+        expect(
+          find.byKey(const ValueKey<String>('zotero-direct-command')),
+          findsNothing,
+        );
+        expect(
+          controller.zoteroFields.map((field) => field.citation!.citationId),
+          ['first', 'second'],
+        );
+        expect(controller.document.paragraphs.elementAt(1).text, 'Research');
+        expect(controller.caret.paragraphIndex, 3);
+        controller.undo();
+        expect(_state(controller.document), before);
+        expect(controller.canUndo, isFalse);
+      },
+    );
+
+    testWidgets(
+      'cancelled ${command.name} selection discards temporary fields and style changes',
+      (tester) async {
+        final controller = _controller();
+        final desktop = _Desktop(_script(cancel: true));
+        final before = _state(controller.document);
+        await _openTextInsertion(tester, controller, desktop, command: command);
+        expect(desktop.command, command.name);
+        expect(desktop.requests, hasLength(6));
+        expect(
+          find.byKey(const ValueKey<String>('zotero-direct-command')),
+          findsNothing,
+        );
+        expect(_state(controller.document), before);
+        expect(controller.zoteroFields, isEmpty);
+        expect(controller.canUndo, isFalse);
+        expect(controller.isDirty, isFalse);
+      },
+    );
+  }
 }

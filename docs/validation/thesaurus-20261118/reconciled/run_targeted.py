@@ -8,6 +8,7 @@ Each output directory is new; original failed attempts must remain available.
 from __future__ import annotations
 
 import argparse
+from contextlib import suppress
 from datetime import datetime, timezone
 import gzip
 import hashlib
@@ -15,6 +16,7 @@ import json
 import os
 from pathlib import Path
 import re
+import signal
 import subprocess
 import sys
 import time
@@ -38,25 +40,41 @@ def digest(path):
 
 
 def write_json(path, value):
-    path.write_text(json.dumps(value, indent=2) + '\n')
+    pending = path.with_name(path.name + '.tmp')
+    pending.write_text(json.dumps(value, indent=2) + '\n')
+    pending.replace(path)
 
 
 def git(*args):
     return subprocess.check_output(['git', '-C', str(REPO), *args], text=True).strip()
 
 
+LAYOUT_DIAGNOSTICS = re.compile(
+    r'A Render\w+ overflowed|would not hit test on the specified widget|'
+    r'does not receive pointer events')
+
+
+def layout_diagnostics(path):
+    return [{'line': number, 'text': line} for number, line in
+            enumerate(path.read_text(errors='replace').splitlines(), 1)
+            if LAYOUT_DIAGNOSTICS.search(line)]
+
+
 def parse_cases(log, cwd, requested):
     result = test_summary(log)
     suites = {}
     started_suite_ids, suite_issues = [], []
-    for line in log.read_text().splitlines():
+    for line in log.read_text(errors='replace').splitlines():
         try:
             event = json.loads(line[line.index('{'):])
         except (ValueError, json.JSONDecodeError):
             continue
+        if not isinstance(event, dict):
+            continue  # The protocol parser already records this rejection.
         if event.get('type') == 'suite':
-            suite = event['suite']
-            if type(suite.get('id')) is not int or not isinstance(suite.get('path'), str):
+            suite = event.get('suite')
+            if (not isinstance(suite, dict) or type(suite.get('id')) is not int
+                    or not isinstance(suite.get('path'), str) or not suite['path']):
                 suite_issues.append('Malformed suite registration')
                 continue
             if suite['id'] in suites:
@@ -64,7 +82,10 @@ def parse_cases(log, cwd, requested):
             path = Path(suite['path'])
             suites[suite['id']] = str((cwd / path).resolve())
         elif event.get('type') == 'testStart':
-            started_suite_ids.append(event['test'].get('suiteID'))
+            test = event.get('test')
+            if isinstance(test, dict):
+                identifier = test.get('suiteID')
+                started_suite_ids.append(identifier if type(identifier) is int else None)
     cases = []
     for case in result.pop('cases'):
         if re.search(r'(?:^| )\((?:setUpAll|tearDownAll)\)$', case['name']):
@@ -82,22 +103,41 @@ def parse_cases(log, cwd, requested):
         unknown_case_suites=sum(identifier not in suites for identifier in started_suite_ids),
         suite_registration_issues=suite_issues,
         duplicate_suite_paths=len(suites) - len(set(suites.values())),
+        layout_or_tap_diagnostics=layout_diagnostics(log),
     )
     result['valid'] = result['valid'] and not any(result[k] for k in (
         'missing_suites', 'unexpected_suites', 'empty_suites', 'duplicate_case_count',
-        'unknown_case_suites', 'suite_registration_issues', 'duplicate_suite_paths'))
+        'unknown_case_suites', 'suite_registration_issues', 'duplicate_suite_paths',
+        'layout_or_tap_diagnostics'))
     return result, cases
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--runtime', required=True, type=Path)
-    parser.add_argument('--output', required=True, type=Path)
-    parser.add_argument('--plan', type=Path, default=HERE / 'plan.json')
-    parser.add_argument('--timeout', type=int, default=900)
-    args = parser.parse_args()
-    runtime, out, plan_path = args.runtime.resolve(), args.output.resolve(), args.plan.resolve()
-    out.mkdir(parents=True, exist_ok=False)
+def execute_process(command, *, cwd, env, stdout, stderr, timeout):
+    """Reap the command and stop its children on timeout or interruption."""
+    process = subprocess.Popen(command, cwd=cwd, env=env, stdout=stdout,
+                               stderr=stderr, start_new_session=os.name == 'posix')
+    try:
+        return process.wait(timeout=timeout)
+    except BaseException:
+        with suppress(ProcessLookupError):
+            if os.name == 'posix':
+                os.killpg(process.pid, signal.SIGTERM)
+            else:
+                process.terminate()
+        with suppress(subprocess.TimeoutExpired):
+            process.wait(timeout=5)
+        # The leader may have exited while a child ignored SIGTERM. Address
+        # the whole group even when wait() has already reaped the leader.
+        with suppress(ProcessLookupError):
+            if os.name == 'posix':
+                os.killpg(process.pid, signal.SIGKILL)
+            else:
+                process.kill()
+        process.wait()
+        raise
+
+
+def qualify(args, runtime, out, plan_path, record):
     plan = json.loads(plan_path.read_text())
     receipt = json.loads((runtime / 'runtime.json').read_text())
     sdk_receipt = json.loads((runtime / 'sdk-receipt.json').read_text())
@@ -115,7 +155,8 @@ def main():
             assert path.is_file() and path.is_relative_to(REPO)
             requested.append(str(path))
     assert len(requested) == len(set(requested)), 'Duplicate requested suite'
-    binding_files = [Path(__file__), plan_path, FIXTURES / 'workspace_binding.py',
+    binding_files = [Path(__file__), HERE / 'test_run_targeted.py', plan_path,
+                     FIXTURES / 'workspace_binding.py',
                      REPO / 'tools/mail/check_store.py', REPO / 'tools/mail/check_reader.py']
     for path in binding_files:
         relative = str(path.relative_to(REPO))
@@ -172,10 +213,10 @@ def main():
     harness_before = {str(p.relative_to(REPO)): digest(p) for p in binding_files}
     write_json(out / 'source-before.json', source_before)
     write_json(out / 'environment-before.json', environment_before)
-    record = dict(started_utc=datetime.now(timezone.utc).isoformat(),
+    record.update(status='running',
                   source_commit=git('rev-parse', 'HEAD'), source_tree=git('rev-parse', 'HEAD^{tree}'),
                   suite_count=len(requested), plan=plan, harness_sha256=harness_before,
-                  runtime=receipt['runtime'], github_actions='NOT USED', runs=[])
+                  runtime=receipt['runtime'])
     env = dict(os.environ)
     env.update(PUB_CACHE=str(runtime / 'pub-cache'), FLUTTER_ROOT=str(runtime / 'flutter'),
                CI='true', DART_SUPPRESS_ANALYTICS='true', FLUTTER_SUPPRESS_ANALYTICS='true',
@@ -196,9 +237,8 @@ def main():
         save()
         with log.open('wb') as stdout, err.open('wb') as stderr:
             try:
-                process = subprocess.run(command, cwd=cwd, env=env, stdout=stdout, stderr=stderr,
-                                         timeout=args.timeout)
-                item['exit_code'] = process.returncode
+                item['exit_code'] = execute_process(command, cwd=cwd, env=env,
+                    stdout=stdout, stderr=stderr, timeout=args.timeout)
             except (OSError, subprocess.TimeoutExpired) as exc:
                 item.update(exit_code=124 if isinstance(exc, subprocess.TimeoutExpired) else 127,
                             exception=repr(exc))
@@ -209,6 +249,8 @@ def main():
         item.update(status='completed', seconds=round(time.monotonic() - start, 3))
         if tests is not None:
             result, cases = parse_cases(log, cwd, tests)
+            result['stderr_layout_or_tap_diagnostics'] = layout_diagnostics(err)
+            result['valid'] = result['valid'] and not result['stderr_layout_or_tap_diagnostics']
             item.update(result)
             write_json(out / (name + '-cases.json'), cases)
         item['accepted'] = item['exit_code'] == 0 and (tests is None or item['valid'])
@@ -227,7 +269,7 @@ def main():
             command = [str(runtime / 'bin' / group['runner']), 'test']
             if group['runner'] == 'flutter':
                 command.append('--no-pub')
-            command += ['--concurrency=1', '--reporter=json', *group['tests']]
+            command += [f'--concurrency={args.concurrency}', '--reporter=json', *group['tests']]
             run(group['name'], command, REPO / group['cwd'], group['tests'])
         for kind in ('analysis', 'format'):
             paths = plan[kind]
@@ -257,10 +299,46 @@ def main():
                              and record['environment_unchanged'] and record['harness_unchanged']
                              and len(record['runs']) == len(plan['groups']) + bool(plan['analysis']) + bool(plan['format'])
                              and all(r.get('accepted', False) for r in record['runs']))
+        record['status'] = 'passed' if record['success'] else 'failed'
         record['evidence_sha256'] = {p.name: digest(p) for p in sorted(out.glob('*.json'))
                                      if p.name != 'receipt.json'}
         save()
     return 0 if record['success'] else 1
+
+
+def positive_integer(value):
+    number = int(value)
+    if number < 1:
+        raise argparse.ArgumentTypeError('must be a positive integer')
+    return number
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--runtime', required=True, type=Path)
+    parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--plan', type=Path, default=HERE / 'plan.json')
+    parser.add_argument('--timeout', type=positive_integer, default=900)
+    parser.add_argument('--concurrency', type=positive_integer, default=4,
+                        help='Maximum concurrent suites within each sequential group (default: 4).')
+    args = parser.parse_args()
+    runtime, out, plan_path = args.runtime.resolve(), args.output.resolve(), args.plan.resolve()
+    out.mkdir(parents=True, exist_ok=False)
+    record = dict(status='preflight', success=False,
+                  started_utc=datetime.now(timezone.utc).isoformat(),
+                  requested_runtime=str(runtime), requested_plan=str(plan_path),
+                  concurrency=args.concurrency, timeout_seconds=args.timeout,
+                  github_actions='NOT USED', runs=[])
+    write_json(out / 'receipt.json', record)
+    try:
+        return qualify(args, runtime, out, plan_path, record)
+    except BaseException as exc:
+        record.update(status='interrupted' if isinstance(exc, KeyboardInterrupt) else 'failed',
+                      success=False, runner_error=repr(exc),
+                      finished_utc=datetime.now(timezone.utc).isoformat())
+        write_json(out / 'receipt.json', record)
+        print(record['runner_error'], file=sys.stderr, flush=True)
+        return 130 if isinstance(exc, KeyboardInterrupt) else 1
 
 
 if __name__ == '__main__':

@@ -649,6 +649,8 @@ void main() {
             .toList();
         if (tracking) {
           // A tracked correction retains both deleted and inserted spans.
+          expect(controller.document.revisions, hasLength(3));
+          expect(controller.document.revisions.first, same(revision));
           expect(changes.map((change) => change.kind), [
             WmlRevisionKind.delete,
             WmlRevisionKind.insert,

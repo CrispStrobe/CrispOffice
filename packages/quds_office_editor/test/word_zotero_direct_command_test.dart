@@ -439,6 +439,35 @@ void main() {
     _expectReturned(fixture);
   });
 
+  testWidgets('unavailable annotation command keeps version guidance and data', (
+    tester,
+  ) async {
+    final desktop = _Desktop([], statusCode: 500);
+    final fixture = await _mount(
+      tester,
+      desktop: desktop,
+      command: ZoteroCitingCommand.addAnnotation,
+    );
+    await _run(tester);
+    expect(find.byKey(_directKey), findsOneWidget);
+    expect(find.text('Add annotation from Zotero'), findsOneWidget);
+    expect(
+      find.text(
+        'Requires Zotero 9 or later. Choose text annotations; image and ink annotations are not yet supported.',
+      ),
+      findsOneWidget,
+    );
+    expect(desktop.command, 'addAnnotation');
+    expect(desktop.requests, hasLength(1));
+    expect(fixture.controller.document.paragraphs.single.text, 'Before after');
+    expect(fixture.controller.isDirty, isFalse);
+    expect(fixture.controller.canUndo, isFalse);
+    await _pump(tester);
+    expect(desktop.requests, hasLength(1));
+    await _tap(tester, 'Return to document');
+    _expectReturned(fixture);
+  });
+
   testWidgets(
     'busy desktop errors stay visible and never restart the request',
     (tester) async {

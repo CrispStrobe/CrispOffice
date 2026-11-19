@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-19T05:28:27.653525+00:00",
+  "head": "ff0775cbd3f0060ad5d7b2df7f3b5e1636d17cf3",
+  "tree": "e67e99745cb30075bd439347271eb3de94373a8d",
+  "scope": "Selected runtime suite-path/platform coverage and changed callers; not a whole-repository or runtime pass claim.",
+  "plan": {
+    "path": "docs/validation/thesaurus-20261118/reconciled/plan.json",
+    "sha256": "014d754194049684543e4c3b430c1f60769a4b5ad1644469c466a199e2ffd02e",
+    "matches_committed_plan": false,
+    "groups": [
+      {
+        "name": "engine-review-and-incoming-zotero",
+        "suites": 42
+      },
+      {
+        "name": "editor-review-notes-headers-and-zotero",
+        "suites": 73
+      },
+      {
+        "name": "studio-review-and-incoming-navigation",
+        "suites": 10
+      },
+      {
+        "name": "incoming-mail-reader",
+        "suites": 4
+      }
+    ],
+    "declared_suites": 129,
+    "distinct_suite_platform_pairs": 129
+  },
+  "incoming_plan_checks": [
+    {
+      "name": "notes",
+      "path": "docs/validation/document-review-notes-20261118/test-plan.json",
+      "sha256": "c483c15624c92033286b23f19374df9a565061c5f198ae6e9f6d01d2c4fd0d67",
+      "suite_platform_pairs": 77,
+      "included_in_selected_plan": 68,
+      "preserved_mail_coverage": [
+        {
+          "path": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/browser_problem_test.dart",
+          "platform": "node"
+        },
+        {
+          "path": "packages/quds_mail_store/test/codec_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/migration_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/native_platform_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/platform_configuration_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/repository_test.dart",
+          "platform": "vm"
+        }
+      ],
+      "uncovered": []
+    },
+    {
+      "name": "zotero",
+      "path": "docs/validation/zotero-word-parity-20261118/plan.json",
+      "sha256": "e27b7871da9774a896ef6cf0446f31e102fe667159c8387feb4cd5589d2bebf6",
+      "suite_platform_pairs": 98,
+      "included_in_selected_plan": 92,
+      "preserved_mail_coverage": [
+        {
+          "path": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/adversarial_store_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/codec_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/native_platform_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/platform_configuration_test.dart",
+          "platform": "vm"
+        },
+        {
+          "path": "packages/quds_mail_store/test/repository_test.dart",
+          "platform": "vm"
+        }
+      ],
+      "uncovered": []
+    }
+  ],
+  "direct_numbering_test_callers": [
+    {
+      "path": "packages/quds_office_editor/test/word_split_identity_test.dart",
+      "selected": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "selected": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/list_restart_fidelity_test.dart",
+      "selected": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/numbering_collision_test.dart",
+      "selected": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_features_test.dart",
+      "selected": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+      "selected": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart",
+      "selected": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "selected": true
+    }
+  ],
+  "changed_application_dart_paths_since_saved_head": [
+    "packages/quds_office_editor/test/support/review_fonts.dart",
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+    "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart"
+  ],
+  "changed_test_suites": [
+    {
+      "path": "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+      "selected": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "selected": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "selected": true
+    }
+  ],
+  "font_helper": {
+    "path": "packages/quds_office_editor/test/support/review_fonts.dart",
+    "included_in_analysis": true,
+    "included_in_format": true,
+    "importing_suites": [
+      "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+      "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart"
+    ]
+  },
+  "separate_runtime_fixture": {
+    "path": "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart",
+    "scope": "Incoming runtime-restoration smoke, not an application test suite or part of the selected 129 suites."
+  },
+  "decision": "Keep the 129-suite plan; retain separately source-bound Mail gate for omitted Mail core/store/MIME platform cohorts.",
+  "github_actions_calls": 0,
+  "passed": true
+}

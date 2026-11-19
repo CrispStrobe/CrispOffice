@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add Zotero's native Add Annotation command for Zotero 9 and later. Selected
+  text annotations use the research-note insertion protocol, preserving active
+  citations, comments and supported formatting in one staged transaction.
+- Expose `ZoteroCitingCommand.insertsNoteText` so hosts apply the same insertion
+  preflight and cancelled-picker handling to Add Note and Add Annotation.
+
 - Import simple bulleted and numbered Zotero research-note lists as native Word
   lists, including ordered-list starting values, rich item text and active
   citations. Keep surrounding prose and existing list counters separate, with

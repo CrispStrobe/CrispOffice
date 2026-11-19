@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-19T05:24:27.893014+00:00",
+  "reviewer": "independent incoming-audit agent",
+  "review_kind": "static merge-resolution and immutable Git-source review; no runtime pass claimed",
+  "base": "7e4adc08fce78fb95524f304962f9c1804e18691",
+  "local_integrated_head": "a5e109795fd64702d382eac130212162079a1847",
+  "local_integrated_tree": "e67e99745cb30075bd439347271eb3de94373a8d",
+  "publication_note": "Root plans to publish an equivalent tree via GitHub API with the three captured remote heads as parents; compare the published tree and rerun ancestry against its final SHA.",
+  "incoming_heads": {
+    "notes": "840362cd74a3d4b4365cf2bc9a2ae326225009c3",
+    "zotero": "0abd0e592ad607a88a6a7db6a5bf235939efa5b9"
+  },
+  "application_source_inventory": {
+    "scope": "Every tracked apps/ path; packages/*/lib and packages/*/assets; all pubspec.yaml and pubspec.lock paths",
+    "before_entries": 1789,
+    "after_entries": 1789,
+    "different_paths": [],
+    "byte_identical_by_git_blob_and_mode": true,
+    "before_inventory_sha256": "4e480f7940f244b9ed55dd87b8233d204becce53aabc57a223c6d4fe1696543f",
+    "after_inventory_sha256": "4e480f7940f244b9ed55dd87b8233d204becce53aabc57a223c6d4fe1696543f"
+  },
+  "checks": [
+    {
+      "subject": "Stable Notes/Review topology",
+      "passed": true,
+      "detail": "The application file is byte-identical to 7e4adc08. One Flex parent retains Expanded(canvas) at index 0 before Review opens, while resizing horizontally/vertically, and after closing; redundant incoming reparenting key is intentionally absent."
+    },
+    {
+      "subject": "Notes IME and tracked correction coverage",
+      "passed": true,
+      "detail": "Retains both tracking=false and tracking=true branches, blocking correction/reveal while composing, correct replacement/revision targets afterwards, and two undo boundaries restoring the note and preserving the pre-existing body revision."
+    },
+    {
+      "subject": "Mixed-provider issue identity",
+      "passed": true,
+      "detail": "Retains separate Feler and Gramatik source ranges, verifies both original texts and provider identities, retains ordinary issue identity across manual-report restoration, and applies both provider corrections without extra requests."
+    },
+    {
+      "subject": "Notes language target and responsive selection",
+      "passed": true,
+      "detail": "Both footnote/endnote scenarios assert controller/focus-node identity plus note/selection ownership before opening, through 720/1100 widths before control changes, through 650/1100 widths after changes, and after closing. Body text/properties remain asserted untouched."
+    },
+    {
+      "subject": "Visible Zotero selection",
+      "passed": true,
+      "detail": "The unified helper reveals the field, pumps, requires hitTestable(), taps it, verifies actual focus, then sets selection. The incoming explanatory comment is retained."
+    },
+    {
+      "subject": "Real fonts and captured fixtures",
+      "passed": true,
+      "detail": "Incoming review-font loader and Liberation Sans/Noto Naskh Arabic fixture themes are retained. MaterialIcons loads when FLUTTER_ROOT or QUDS_REVIEW_ICON_FONT resolves to an existing file; actual runtime setup must supply it."
+    },
+    {
+      "subject": "Changelog reconciliation",
+      "passed": true,
+      "detail": "Retains the existing Notes state-preservation and Zotero research-list entries plus the incoming keyboard/language/manual-proofing/header-fidelity entries."
+    }
+  ],
+  "reviewed_files": [
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "sha256": "bcb62b01edddb4df4497e9559aa0c05cfba4f9eb5e465a04bb422446d660e57f"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "sha256": "7507e5438880d0e34af8d06260677705a468fd94e04ecbd57730a3f7648fe48c"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "sha256": "c5a5bd793b7952eaa524aacef60c34b098a667cabb27e50735f0d9d1d06b2dab"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "sha256": "fb0d6f79121111d1224fda784fb97511934d238d228f87b4f3e810a27f9aebe5"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "sha256": "d9575bfb55857ab242adf29ddf96ae31955c45fdc9144ea1c1594e9c4d604390"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+      "sha256": "2362f477f8e44951cab1d08c416af14f9038247337b95df3022e92e0f6d3a006"
+    },
+    {
+      "path": "packages/quds_office_editor/test/support/review_fonts.dart",
+      "sha256": "a6053547af89a8968443fc99480ece65bf799b0756c23ee8447f002eb31e5695"
+    }
+  ],
+  "conflict_markers": [],
+  "scoped_whitespace_check": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "ancestry_audit": "integrated-audit-local.json",
+  "ancestry_result": {
+    "captured_refs": 391,
+    "distinct_heads": 253,
+    "historical_equivalences_reverified": 14,
+    "all_captured_refs_accounted_for": true,
+    "all_captured_refs_in_local_integrated_head": true
+  },
+  "blocking_findings": [],
+  "recommended_runtime_scope": "Rerun the four changed/resolved widget/controller suites against the final combined source. Preserve historical evidence under its original source identities.",
+  "passed": true
+}
