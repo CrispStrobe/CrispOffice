@@ -128,7 +128,9 @@ peer-observed connection closure after stalled-handshake cancellation/deadlines,
 default-trust rejection, and hostname mismatch rejection. A clearly labeled local
 certificate is trusted only by injected test clients; production trust is unchanged.
 Partial-write controls check queue ordering, final readiness, graceful close, and
-abort of a blocked flush. These controls do not qualify live provider
+abort of a blocked flush. Incoming companion suites also cover exact 1 MiB
+encrypted payloads with delayed reads and cancellation of an idle write producer.
+These controls do not qualify live provider
 interoperability or every operating system's socket implementation.
 
 OAuth redirect/refresh integration and disposable-account interoperability remain

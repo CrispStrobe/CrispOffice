@@ -1,5 +1,5 @@
 {
-  "description": "Fresh bounded native Mail qualification after reconciling all captured Office, Notes, Zotero, thesaurus and Mail heads. Covers nullable message flags/schema v3, new native IMAP provider and SQLite integration, unchanged MIME/UI consumers, and shared IMAP/POP/SMTP lifecycle/parsing regressions affected by enough_mail patches. Office/Editor/Studio tracked bytes are identical to prior qualified 39843ed4; that historical 2018-case result retains its own identity and is not added to these totals. Complete core/store VM+Node gates run separately via check_store.py; portable transport/MIME Node qualification has its own plan. Controlled streams/loopback do not establish real TLS or live IMAP account acceptance.",
+  "description": "Fresh bounded native Mail qualification after reconciling all captured Office, Notes, Zotero, thesaurus and Mail heads. Covers nullable message flags/schema v3, new native IMAP provider and SQLite integration, unchanged MIME/UI consumers, and shared IMAP/POP/SMTP lifecycle/parsing regressions affected by enough_mail patches. Office/Editor/Studio tracked bytes are identical to prior qualified 39843ed4; that historical 2018-case result retains its own identity and is not added to these totals. Complete core/store VM+Node gates run separately via check_store.py; portable transport/MIME Node qualification has its own plan. Real TLS loopback cases exercise stalled-handshake cancellation/timeout, explicit test-CA trust, default-trust refusal and encrypted data continuity for the default owned transport. Controlled socket tests and local TLS peers do not establish live IMAP account interoperability or platform acceptance.",
   "groups": [
     {
       "name": "transport-native",
@@ -7,8 +7,10 @@
       "runner": "dart",
       "tests": [
         "test/configuration_test.dart",
+        "test/host_store_integration_test.dart",
         "test/native_provider_test.dart",
-        "test/host_store_integration_test.dart"
+        "test/native_tls_cancellation_test.dart",
+        "test/native_tls_round_trip_test.dart"
       ]
     },
     {
@@ -75,6 +77,7 @@
         "test/src/imap/list_parser_test.dart",
         "test/src/imap/namespace_parser_test.dart",
         "test/src/imap/parser_helper_test.dart",
+        "test/src/imap/raw_fetch_parser_test.dart",
         "test/src/imap/search_parser_test.dart",
         "test/src/imap/sort_parser_test.dart",
         "test/src/imap/status_parser_test.dart",
@@ -105,6 +108,8 @@
     "packages/quds_mail_transport/test/configuration_test.dart",
     "packages/quds_mail_transport/test/host_store_integration_test.dart",
     "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
     "packages/quds_mail_transport/test/support/imap_fixture.dart",
     "packages/quds_mail_transport/test/unsupported_test.dart",
     "third_party/enough_mail/lib/imap.dart",
@@ -113,9 +118,11 @@
     "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
     "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
     "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart",
     "third_party/enough_mail/lib/src/private/util/client_base.dart",
     "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
-    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart"
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart"
   ],
   "format": [
     "packages/quds_mail_core/lib/src/model/message.dart",
@@ -136,6 +143,8 @@
     "packages/quds_mail_transport/test/configuration_test.dart",
     "packages/quds_mail_transport/test/host_store_integration_test.dart",
     "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
     "packages/quds_mail_transport/test/support/imap_fixture.dart",
     "packages/quds_mail_transport/test/unsupported_test.dart",
     "third_party/enough_mail/lib/imap.dart",
@@ -144,9 +153,11 @@
     "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
     "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
     "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart",
     "third_party/enough_mail/lib/src/private/util/client_base.dart",
     "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
-    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart"
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart"
   ],
   "extra_inputs": [
     "tools/mail/check_store.py",

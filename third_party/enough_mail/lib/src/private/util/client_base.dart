@@ -316,15 +316,23 @@ abstract class ClientBase {
   Future<ClientConnection> createSecureConnectionSocket(
     ClientConnection socket, {
     required String host,
-  }) {
+  }) async {
     if (socket is! RawClientConnection) {
       throw createClientError('TLS upgrade requires an owned connection');
     }
-    return socket.secure(
-      host: host,
-      context: securityContext,
-      onBadCertificate: onBadCertificate,
-    );
+    final cancel = socket.destroy;
+    _cancelOpening = cancel;
+    try {
+      return await socket.secure(
+        host: host,
+        context: securityContext,
+        onBadCertificate: onBadCertificate,
+      );
+    } finally {
+      if (identical(_cancelOpening, cancel)) {
+        _cancelOpening = null;
+      }
+    }
   }
 
   /// Upgrades the current connection without reviving an aborted generation.
@@ -445,6 +453,10 @@ abstract class ClientBase {
 
   /// Disconnects from the service
   Future<void> disconnect() async {
+    if (_cancelOpening != null) {
+      await abort();
+      return;
+    }
     if (_isConnected) {
       isLoggedIn = false;
       _isConnected = false;

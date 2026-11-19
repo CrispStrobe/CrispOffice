@@ -44,8 +44,8 @@ text containing the word FETCH is kept separate from message data. The runtime
 replay helper now validates exact locked/workspace package names instead of a
 historical fixed package count, including the newly added transport member.
 
-The committed native plan selects 56 suites: three native transport suites, all
-six MIME consumer suites, all four reader UI suites, and 43 shared protocol and
+The committed native plan selects 59 suites: five native transport suites, all
+six MIME consumer suites, all four reader UI suites, and 44 shared protocol and
 lifecycle suites. The separate Node plan selects seven suites: the transport's
 unsupported-browser boundary and all six MIME suites. The existing complete
 Mail Store gate additionally checks core/store VM and Node tests, static
@@ -62,8 +62,12 @@ runtime bindings and independent audits will be recorded here after execution.
 ## Acceptance boundaries
 
 The local transport fixture drives actual command/framing/literal parsers and
-real SQLite transactions; it does not establish live-provider TLS/certificate,
-OAuth-host, or disposable-account interoperability. Browser compilation and Node
+real SQLite transactions. Real Linux TLS loopback tests additionally exercise
+implicit-TLS and STARTTLS cancellation/timeout, explicit test-CA trust,
+default-trust refusal, encrypted payload continuity and write-producer abort.
+They do not establish external-provider interoperability, additional certificate
+or hostname scenarios, other operating systems, OAuth hosts or disposable-account
+acceptance. Browser compilation and Node
 tests do not establish actual browser lifecycle/storage acceptance. Existing
 installed-desktop, live Zotero, Word/LibreOffice interoperability, and independent
 linguistic acceptance boundaries retain their earlier scope.

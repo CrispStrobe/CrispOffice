@@ -17,6 +17,9 @@ abstract class ClientConnection extends Stream<Uint8List> {
   /// Queues UTF-8 text for transmission.
   void write(String text);
 
+  /// Sends a stream in order and cancels its producer if transport is aborted.
+  Future<void> addStream(Stream<List<int>> stream);
+
   /// Completes when queued bytes have been accepted by the socket.
   Future<void> flush();
 
@@ -41,6 +44,8 @@ class SocketClientConnection extends ClientConnection {
   void add(List<int> data) => socket.add(data);
   @override
   void write(String text) => socket.write(text);
+  @override
+  Future<void> addStream(Stream<List<int>> stream) => socket.addStream(stream);
   @override
   Future<void> flush() async => socket.flush();
   @override
@@ -95,6 +100,7 @@ class RawClientConnection extends ClientConnection {
   late final StreamSubscription<RawSocketEvent> _subscription;
   final Completer<void> _aborted = Completer<void>();
   Future<void> _writes = Future<void>.value();
+  StreamIterator<List<int>>? _writeStream;
   Future<void>? _closing;
   Completer<void>? _writable;
   bool _closed = false;
@@ -169,8 +175,7 @@ class RawClientConnection extends ClientConnection {
     destroy();
   }
 
-  @override
-  void add(List<int> data) {
+  void _checkWritable() {
     _checkOpen();
     if (_closing != null) {
       throw StateError('Connection write direction is closed');
@@ -178,10 +183,44 @@ class RawClientConnection extends ClientConnection {
     if (_tlsPending) {
       throw StateError('TLS handoff is in progress');
     }
+    if (_writeStream != null) {
+      throw StateError('Connection stream write is in progress');
+    }
+  }
+
+  @override
+  void add(List<int> data) {
+    _checkWritable();
     _writes = _writes.then((_) => _writeBytes(data));
     // Preserve the failed flush result, while also observing failures if a
     // caller destroys the connection before awaiting that result.
     unawaited(_writes.then<void>((_) {}, onError: (Object _, StackTrace _) {}));
+  }
+
+  @override
+  Future<void> addStream(Stream<List<int>> stream) {
+    _checkWritable();
+    final iterator = StreamIterator<List<int>>(stream);
+    _writeStream = iterator;
+    _writes = _writes
+        .then((_) async {
+          _checkOpen();
+          while (await iterator.moveNext()) {
+            _checkOpen();
+            await _writeBytes(iterator.current);
+          }
+          // Cancelling an idle iterator completes moveNext with false. Preserve
+          // abort as a failed write rather than mistaking it for producer EOF.
+          _checkOpen();
+        })
+        .whenComplete(() async {
+          if (identical(_writeStream, iterator)) {
+            _writeStream = null;
+          }
+          await iterator.cancel();
+        });
+    unawaited(_writes.then<void>((_) {}, onError: (Object _, StackTrace _) {}));
+    return _writes;
   }
 
   Future<void> _writeBytes(List<int> data) async {
@@ -234,6 +273,17 @@ class RawClientConnection extends ClientConnection {
       _aborted.complete();
     }
     _wakeWriter();
+    final iterator = _writeStream;
+    if (iterator != null) {
+      // StreamIterator cancellation settles an idle moveNext immediately, even
+      // while the producer performs asynchronous cancellation cleanup.
+      unawaited(
+        iterator.cancel().then<void>(
+          (_) {},
+          onError: (Object _, StackTrace _) {},
+        ),
+      );
+    }
     if (!_transferred) {
       // Close TCP first: TLS close alone can wait for buffered encrypted data.
       _closeRaw(_transport);
