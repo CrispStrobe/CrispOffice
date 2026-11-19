@@ -1,0 +1,642 @@
+{
+  "archive": {
+    "bytes": 43668,
+    "format": "POSIX PAX tar compressed with XZ",
+    "maximum_part_bytes": 1048576,
+    "metadata": "original permission modes and nanosecond modification timestamps",
+    "ownership": "normalized uid=gid=0; names empty",
+    "parts": [
+      {
+        "bytes": 43668,
+        "name": "thesaurus-status-evidence.tar.xz",
+        "offset": 0,
+        "sha256": "8f0d59e5e3a57522bddf64873714ea2439d7a74c66baf49ff1490c22e03923fb"
+      }
+    ],
+    "reconstructed_name": "thesaurus-status-evidence.tar.xz",
+    "sha256": "8f0d59e5e3a57522bddf64873714ea2439d7a74c66baf49ff1490c22e03923fb",
+    "tar_bytes": 901120,
+    "tar_sha256": "b08448ab5d01251b606e6aacbcc0ec7d8b5548150cf1bcc0bd2eeeea8e8cc3ef",
+    "xz_check": "SHA256",
+    "xz_preset": 6
+  },
+  "members": [
+    {
+      "mode": 493,
+      "mtime_ns": 1795099238159296723,
+      "name": "thesaurus-status-development",
+      "source": "thesaurus-status-development",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 2845,
+      "mode": 420,
+      "mtime_ns": 1795099238159412241,
+      "name": "thesaurus-status-development/README.md",
+      "sha256": "3e165d9564d984c840892269fb85a89a9a9e8bf24312f6a5900bb0004d0d5845",
+      "source": "thesaurus-status-development",
+      "source_relative": "README.md",
+      "type": "file"
+    },
+    {
+      "bytes": 999,
+      "mode": 420,
+      "mtime_ns": 1795099147637621066,
+      "name": "thesaurus-status-development/check_static.py",
+      "sha256": "7e08d2a14239de9f11ee7fb1a5616cc3e56c1f83f3cc801fb20aacd78d2b2e2f",
+      "source": "thesaurus-status-development",
+      "source_relative": "check_static.py",
+      "type": "file"
+    },
+    {
+      "bytes": 20610,
+      "mode": 420,
+      "mtime_ns": 1795099238159296723,
+      "name": "thesaurus-status-development/development-summary.json",
+      "sha256": "326924148748f113f71f8bb8f5935a6ffb9c249fb087ab751417c786af9c991f",
+      "source": "thesaurus-status-development",
+      "source_relative": "development-summary.json",
+      "type": "file"
+    },
+    {
+      "bytes": 30462,
+      "mode": 420,
+      "mtime_ns": 1795098574668243540,
+      "name": "thesaurus-status-development/incoming-office_thesaurus.dart",
+      "sha256": "2a48f8281d88c35e330aa746cb6b5642f54d61a0f7865a8326d8a9aea16ccd8a",
+      "source": "thesaurus-status-development",
+      "source_relative": "incoming-office_thesaurus.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 16973,
+      "mode": 420,
+      "mtime_ns": 1795098574668560590,
+      "name": "thesaurus-status-development/incoming-office_thesaurus_test.dart",
+      "sha256": "7dd6db9170f8a26fad60b232cc5fcaf2f36d6e6871cd6969126cab9804497cc0",
+      "source": "thesaurus-status-development",
+      "source_relative": "incoming-office_thesaurus_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 1185,
+      "mode": 420,
+      "mtime_ns": 1795098574675666185,
+      "name": "thesaurus-status-development/incoming-source.json",
+      "sha256": "98d0ddf925ebb96351d45022d3ff5af3ca540901ae2cd4c0774b433db5d84e29",
+      "source": "thesaurus-status-development",
+      "source_relative": "incoming-source.json",
+      "type": "file"
+    },
+    {
+      "bytes": 402,
+      "mode": 420,
+      "mtime_ns": 1795098964839618727,
+      "name": "thesaurus-status-development/incoming-studio-source.json",
+      "sha256": "377b505226d8f1425b0c4b34b15a1830ef2cd67f2e66cc703d48775a4b7f9cfb",
+      "source": "thesaurus-status-development",
+      "source_relative": "incoming-studio-source.json",
+      "type": "file"
+    },
+    {
+      "bytes": 6753,
+      "mode": 420,
+      "mtime_ns": 1795098964837263321,
+      "name": "thesaurus-status-development/incoming-studio_language_id_test.dart",
+      "sha256": "ce4f7c6c0c7a208e374f8051c689a56dde7959aaecb5d661f84c4b573066f39d",
+      "source": "thesaurus-status-development",
+      "source_relative": "incoming-studio_language_id_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 66737,
+      "mode": 420,
+      "mtime_ns": 1795098574669157675,
+      "name": "thesaurus-status-development/incoming-word_proofing.dart",
+      "sha256": "69414683ecf36c649e763ce106a6a3b25b4efb17d7ff4012f3e608f42fec70c8",
+      "source": "thesaurus-status-development",
+      "source_relative": "incoming-word_proofing.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 29197,
+      "mode": 420,
+      "mtime_ns": 1795098574669464031,
+      "name": "thesaurus-status-development/incoming-word_proofing_session_test.dart",
+      "sha256": "a1e49474e18b220e55a917d081f2525eb8d7c9c2805f5627c343fc303e889a9c",
+      "source": "thesaurus-status-development",
+      "source_relative": "incoming-word_proofing_session_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 583,
+      "mode": 420,
+      "mtime_ns": 1795099238150486244,
+      "name": "thesaurus-status-development/office_thesaurus.dart.patch",
+      "sha256": "af6ab1ea3e01139e2f4ec589a0c4b4bd3e53fd98c1524c0549438f6f7b39cbbc",
+      "source": "thesaurus-status-development",
+      "source_relative": "office_thesaurus.dart.patch",
+      "type": "file"
+    },
+    {
+      "bytes": 4012,
+      "mode": 420,
+      "mtime_ns": 1795099238154735744,
+      "name": "thesaurus-status-development/office_thesaurus_test.dart.patch",
+      "sha256": "541208758a3250ef7983b61c08cc8e3c5a4fad1063974641207fb92aba3bb5ec",
+      "source": "thesaurus-status-development",
+      "source_relative": "office_thesaurus_test.dart.patch",
+      "type": "file"
+    },
+    {
+      "bytes": 1609,
+      "mode": 420,
+      "mtime_ns": 1795099128810497603,
+      "name": "thesaurus-status-development/proofing-green.receipt.json",
+      "sha256": "fb2181c1fde67f88bbbb21a00d4e3ce87ac7c616721b4e3c0341d542f4b632f5",
+      "source": "thesaurus-status-development",
+      "source_relative": "proofing-green.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 66756,
+      "mode": 420,
+      "mtime_ns": 1795099123387910929,
+      "name": "thesaurus-status-development/proofing-green.source.word_proofing.dart",
+      "sha256": "50b35396f93000e9d0c644e561048248aca290ef67edb406d3c1471a89968868",
+      "source": "thesaurus-status-development",
+      "source_relative": "proofing-green.source.word_proofing.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 32593,
+      "mode": 420,
+      "mtime_ns": 1795099123388299064,
+      "name": "thesaurus-status-development/proofing-green.source.word_proofing_session_test.dart",
+      "sha256": "40b5869042bb08cd092c449812da3bf384e04899323d932c1ee663f92067841e",
+      "source": "thesaurus-status-development",
+      "source_relative": "proofing-green.source.word_proofing_session_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 67,
+      "mode": 420,
+      "mtime_ns": 1795099123452696184,
+      "name": "thesaurus-status-development/proofing-green.stderr",
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39",
+      "source": "thesaurus-status-development",
+      "source_relative": "proofing-green.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 15822,
+      "mode": 420,
+      "mtime_ns": 1795099128748442511,
+      "name": "thesaurus-status-development/proofing-green.stdout",
+      "sha256": "3ffbc0ed7fca816e0034a705b1b0b7a8ad8e93ab71d43fba35dd0476d09830d1",
+      "source": "thesaurus-status-development",
+      "source_relative": "proofing-green.stdout",
+      "type": "file"
+    },
+    {
+      "bytes": 1668,
+      "mode": 420,
+      "mtime_ns": 1795099079945045374,
+      "name": "thesaurus-status-development/proofing-red.receipt.json",
+      "sha256": "b6b6484f604749705ff81bc4e05a2c890756f17343c033f3d10f5e40f9ab2053",
+      "source": "thesaurus-status-development",
+      "source_relative": "proofing-red.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 66737,
+      "mode": 420,
+      "mtime_ns": 1795099072247077577,
+      "name": "thesaurus-status-development/proofing-red.source.word_proofing.dart",
+      "sha256": "69414683ecf36c649e763ce106a6a3b25b4efb17d7ff4012f3e608f42fec70c8",
+      "source": "thesaurus-status-development",
+      "source_relative": "proofing-red.source.word_proofing.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 32593,
+      "mode": 420,
+      "mtime_ns": 1795099072248299340,
+      "name": "thesaurus-status-development/proofing-red.source.word_proofing_session_test.dart",
+      "sha256": "40b5869042bb08cd092c449812da3bf384e04899323d932c1ee663f92067841e",
+      "source": "thesaurus-status-development",
+      "source_relative": "proofing-red.source.word_proofing_session_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795099072251147673,
+      "name": "thesaurus-status-development/proofing-red.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "thesaurus-status-development",
+      "source_relative": "proofing-red.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 2105,
+      "mode": 420,
+      "mtime_ns": 1795099079866782954,
+      "name": "thesaurus-status-development/proofing-red.stdout",
+      "sha256": "d9706e5b835742e584789947fe515a821fbd5144b17ae8671f547ac79e227cda",
+      "source": "thesaurus-status-development",
+      "source_relative": "proofing-red.stdout",
+      "type": "file"
+    },
+    {
+      "bytes": 2279,
+      "mode": 420,
+      "mtime_ns": 1795098638585603381,
+      "name": "thesaurus-status-development/run_capture.py",
+      "sha256": "8981a9263fa504835275dbdd6a2f7c5239336adff4fb03f2fdaf3c840bd361fc",
+      "source": "thesaurus-status-development",
+      "source_relative": "run_capture.py",
+      "type": "file"
+    },
+    {
+      "bytes": 2683,
+      "mode": 420,
+      "mtime_ns": 1795099176313514157,
+      "name": "thesaurus-status-development/strict-final.receipt.json",
+      "sha256": "4fad41c905701c54c61ef08119365c1fd261043ee874f868ca77d4da6105b353",
+      "source": "thesaurus-status-development",
+      "source_relative": "strict-final.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 30593,
+      "mode": 420,
+      "mtime_ns": 1795099147682762432,
+      "name": "thesaurus-status-development/strict-final.source.office_thesaurus.dart",
+      "sha256": "cbc2b84e349337f373d6299c61a7c666cc93925add5e37e613b2bebc6d5d6f4f",
+      "source": "thesaurus-status-development",
+      "source_relative": "strict-final.source.office_thesaurus.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 20438,
+      "mode": 420,
+      "mtime_ns": 1795099147682912250,
+      "name": "thesaurus-status-development/strict-final.source.office_thesaurus_test.dart",
+      "sha256": "1ce1d95ce5535ea826bdbc9fae694eea75e96a6e753f6c6549d9024148b46c5b",
+      "source": "thesaurus-status-development",
+      "source_relative": "strict-final.source.office_thesaurus_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 6780,
+      "mode": 420,
+      "mtime_ns": 1795099147683492248,
+      "name": "thesaurus-status-development/strict-final.source.studio_language_id_test.dart",
+      "sha256": "822a833cc171ff0816590ee3976f6bea66644fc55bd204377791d4ea4da6311e",
+      "source": "thesaurus-status-development",
+      "source_relative": "strict-final.source.studio_language_id_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 66756,
+      "mode": 420,
+      "mtime_ns": 1795099147683166270,
+      "name": "thesaurus-status-development/strict-final.source.word_proofing.dart",
+      "sha256": "50b35396f93000e9d0c644e561048248aca290ef67edb406d3c1471a89968868",
+      "source": "thesaurus-status-development",
+      "source_relative": "strict-final.source.word_proofing.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 32593,
+      "mode": 420,
+      "mtime_ns": 1795099147683345971,
+      "name": "thesaurus-status-development/strict-final.source.word_proofing_session_test.dart",
+      "sha256": "40b5869042bb08cd092c449812da3bf384e04899323d932c1ee663f92067841e",
+      "source": "thesaurus-status-development",
+      "source_relative": "strict-final.source.word_proofing_session_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795099147687533556,
+      "name": "thesaurus-status-development/strict-final.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "thesaurus-status-development",
+      "source_relative": "strict-final.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 1841,
+      "mode": 420,
+      "mtime_ns": 1795099176258163052,
+      "name": "thesaurus-status-development/strict-final.stdout",
+      "sha256": "cf4f6670ae292f33a74f73b9b8565f1e61853bb07ddc73eab9861f7ade28cf6b",
+      "source": "thesaurus-status-development",
+      "source_relative": "strict-final.stdout",
+      "type": "file"
+    },
+    {
+      "bytes": 1619,
+      "mode": 420,
+      "mtime_ns": 1795099135882585189,
+      "name": "thesaurus-status-development/studio-green.receipt.json",
+      "sha256": "63ccbf5c394cebe6976bd63194f25c64d320b8ab7fa2093a57313f3417e5f0fc",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio-green.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 4333,
+      "mode": 420,
+      "mtime_ns": 1795099123382395053,
+      "name": "thesaurus-status-development/studio-green.source.studio_language_id_host.dart",
+      "sha256": "fc9e9eff63ea065faba478232d63d6c46493a4f6721981d05f0b6755b34e2e90",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio-green.source.studio_language_id_host.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 6780,
+      "mode": 420,
+      "mtime_ns": 1795099123382494560,
+      "name": "thesaurus-status-development/studio-green.source.studio_language_id_test.dart",
+      "sha256": "822a833cc171ff0816590ee3976f6bea66644fc55bd204377791d4ea4da6311e",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio-green.source.studio_language_id_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795099123382494560,
+      "name": "thesaurus-status-development/studio-green.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio-green.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 2823,
+      "mode": 420,
+      "mtime_ns": 1795099135816103550,
+      "name": "thesaurus-status-development/studio-green.stdout",
+      "sha256": "faa78f93aa94e6b6823987cc057911a8b8f31211f25f5ff722fa217573d45a85",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio-green.stdout",
+      "type": "file"
+    },
+    {
+      "bytes": 1635,
+      "mode": 420,
+      "mtime_ns": 1795099094075081819,
+      "name": "thesaurus-status-development/studio-incoming.receipt.json",
+      "sha256": "c68e5d30f267786785d8a2bba6ebafef5426d77e9253732b6d070d9e2a456417",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio-incoming.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 4333,
+      "mode": 420,
+      "mtime_ns": 1795099072269942568,
+      "name": "thesaurus-status-development/studio-incoming.source.studio_language_id_host.dart",
+      "sha256": "fc9e9eff63ea065faba478232d63d6c46493a4f6721981d05f0b6755b34e2e90",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio-incoming.source.studio_language_id_host.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 6753,
+      "mode": 420,
+      "mtime_ns": 1795099072270078410,
+      "name": "thesaurus-status-development/studio-incoming.source.studio_language_id_test.dart",
+      "sha256": "ce4f7c6c0c7a208e374f8051c689a56dde7959aaecb5d661f84c4b573066f39d",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio-incoming.source.studio_language_id_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 67,
+      "mode": 420,
+      "mtime_ns": 1795099072423139451,
+      "name": "thesaurus-status-development/studio-incoming.stderr",
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio-incoming.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 3225,
+      "mode": 420,
+      "mtime_ns": 1795099094010105640,
+      "name": "thesaurus-status-development/studio-incoming.stdout",
+      "sha256": "afdc7ce66c9d4c6d06b00ae1db8af0cc9e7375f4ec130a446011cb3b3550cd78",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio-incoming.stdout",
+      "type": "file"
+    },
+    {
+      "bytes": 411,
+      "mode": 420,
+      "mtime_ns": 1795099238158874921,
+      "name": "thesaurus-status-development/studio_language_id_test.dart.patch",
+      "sha256": "ebd132b4ec3fbf77ca084636651ac5c35feb28d82a073e27ce205c0e7d7b3b94",
+      "source": "thesaurus-status-development",
+      "source_relative": "studio_language_id_test.dart.patch",
+      "type": "file"
+    },
+    {
+      "bytes": 1864,
+      "mode": 420,
+      "mtime_ns": 1795098746824179202,
+      "name": "thesaurus-status-development/thesaurus-green-node.receipt.json",
+      "sha256": "c17a18a7d30b4aa43e9a7de889aaf87351ae522f72927c5f9ba2d984623dbfe3",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-green-node.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 30593,
+      "mode": 420,
+      "mtime_ns": 1795098730731357402,
+      "name": "thesaurus-status-development/thesaurus-green-node.source.office_thesaurus.dart",
+      "sha256": "cbc2b84e349337f373d6299c61a7c666cc93925add5e37e613b2bebc6d5d6f4f",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-green-node.source.office_thesaurus.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 20438,
+      "mode": 420,
+      "mtime_ns": 1795098730731651024,
+      "name": "thesaurus-status-development/thesaurus-green-node.source.office_thesaurus_test.dart",
+      "sha256": "1ce1d95ce5535ea826bdbc9fae694eea75e96a6e753f6c6549d9024148b46c5b",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-green-node.source.office_thesaurus_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795098730731651024,
+      "name": "thesaurus-status-development/thesaurus-green-node.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-green-node.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 12996,
+      "mode": 420,
+      "mtime_ns": 1795098746758762226,
+      "name": "thesaurus-status-development/thesaurus-green-node.stdout",
+      "sha256": "c6fcb20546ac322f093a87138e4baaabbe48e23593282f2a838563d20069181a",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-green-node.stdout",
+      "type": "file"
+    },
+    {
+      "bytes": 1831,
+      "mode": 420,
+      "mtime_ns": 1795098742038061186,
+      "name": "thesaurus-status-development/thesaurus-green-vm.receipt.json",
+      "sha256": "be27a112ccb3d8a0e312f4b412184d4badc4970163ee31368c6e11b37cf825ae",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-green-vm.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 30593,
+      "mode": 420,
+      "mtime_ns": 1795098730731357402,
+      "name": "thesaurus-status-development/thesaurus-green-vm.source.office_thesaurus.dart",
+      "sha256": "cbc2b84e349337f373d6299c61a7c666cc93925add5e37e613b2bebc6d5d6f4f",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-green-vm.source.office_thesaurus.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 20438,
+      "mode": 420,
+      "mtime_ns": 1795098730731503148,
+      "name": "thesaurus-status-development/thesaurus-green-vm.source.office_thesaurus_test.dart",
+      "sha256": "1ce1d95ce5535ea826bdbc9fae694eea75e96a6e753f6c6549d9024148b46c5b",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-green-vm.source.office_thesaurus_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795098730731651024,
+      "name": "thesaurus-status-development/thesaurus-green-vm.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-green-vm.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 12615,
+      "mode": 420,
+      "mtime_ns": 1795098741954994472,
+      "name": "thesaurus-status-development/thesaurus-green-vm.stdout",
+      "sha256": "93e79284623994310b457609afa6380e6decacf1db243435268b59bbf89cd519",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-green-vm.stdout",
+      "type": "file"
+    },
+    {
+      "bytes": 1902,
+      "mode": 420,
+      "mtime_ns": 1795098678457675934,
+      "name": "thesaurus-status-development/thesaurus-red-vm.receipt.json",
+      "sha256": "a8018afbb1a1806f33d0f9080a400450a363f69f4004341fcc14ae48857a319c",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-red-vm.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 30462,
+      "mode": 420,
+      "mtime_ns": 1795098665606563650,
+      "name": "thesaurus-status-development/thesaurus-red-vm.source.office_thesaurus.dart",
+      "sha256": "2a48f8281d88c35e330aa746cb6b5642f54d61a0f7865a8326d8a9aea16ccd8a",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-red-vm.source.office_thesaurus.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 20438,
+      "mode": 420,
+      "mtime_ns": 1795098665606844554,
+      "name": "thesaurus-status-development/thesaurus-red-vm.source.office_thesaurus_test.dart",
+      "sha256": "1ce1d95ce5535ea826bdbc9fae694eea75e96a6e753f6c6549d9024148b46c5b",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-red-vm.source.office_thesaurus_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795098665606844554,
+      "name": "thesaurus-status-development/thesaurus-red-vm.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-red-vm.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 3415,
+      "mode": 420,
+      "mtime_ns": 1795098678342039136,
+      "name": "thesaurus-status-development/thesaurus-red-vm.stdout",
+      "sha256": "0062d8e40475a9d823b153a3a9f77580ffbfa26ed7b0aaff3358f81785c759f1",
+      "source": "thesaurus-status-development",
+      "source_relative": "thesaurus-red-vm.stdout",
+      "type": "file"
+    },
+    {
+      "bytes": 1042,
+      "mode": 420,
+      "mtime_ns": 1795099238156968061,
+      "name": "thesaurus-status-development/word_proofing.dart.patch",
+      "sha256": "cb0d679431e6ccef4666fe72e7ea5d36eaf3a2cabf9c9107e0a33240bd0efaae",
+      "source": "thesaurus-status-development",
+      "source_relative": "word_proofing.dart.patch",
+      "type": "file"
+    },
+    {
+      "bytes": 4133,
+      "mode": 420,
+      "mtime_ns": 1795099238158383484,
+      "name": "thesaurus-status-development/word_proofing_session_test.dart.patch",
+      "sha256": "04fd0fd787a9b45a1c41618690140cfc433684519a38885dff4a39749f4c46cc",
+      "source": "thesaurus-status-development",
+      "source_relative": "word_proofing_session_test.dart.patch",
+      "type": "file"
+    }
+  ],
+  "packing_verification": {
+    "all_original_file_bytes_match": true,
+    "all_sizes_hashes_modes_mtimes_match": true,
+    "exact_member_set": true,
+    "members": 60,
+    "regular_bytes": 789410,
+    "regular_files": 59
+  },
+  "producer": {
+    "path": "archive_development.py",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "sha256": "dde817494cc3d94c0af61ba33961e0d936677987a7236afd37e66a23e68dcaeb"
+  },
+  "purpose": "Unfrozen development and runtime-preparation preservation; not aggregate acceptance",
+  "schema": 1,
+  "second_complete_build_byte_identical": true,
+  "sources": {
+    "thesaurus-status-development": "/workspace/scratch/1db61dbeed56/thesaurus-status-development"
+  }
+}

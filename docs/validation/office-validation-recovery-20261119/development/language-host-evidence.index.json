@@ -1,0 +1,302 @@
+{
+  "archive": {
+    "bytes": 26288,
+    "format": "POSIX PAX tar compressed with XZ",
+    "maximum_part_bytes": 1048576,
+    "metadata": "original permission modes and nanosecond modification timestamps",
+    "ownership": "normalized uid=gid=0; names empty",
+    "parts": [
+      {
+        "bytes": 26288,
+        "name": "language-host-evidence.tar.xz",
+        "offset": 0,
+        "sha256": "2ff4e3e88a92a390ba28376d3ccc350e2e67e86e0f0264046276fdbdce7f8cf4"
+      }
+    ],
+    "reconstructed_name": "language-host-evidence.tar.xz",
+    "sha256": "2ff4e3e88a92a390ba28376d3ccc350e2e67e86e0f0264046276fdbdce7f8cf4",
+    "tar_bytes": 337920,
+    "tar_sha256": "d3c358d426392d62176d86fa96e0cc54be802c942c6893ada206de4b9afe946f",
+    "xz_check": "SHA256",
+    "xz_preset": 6
+  },
+  "members": [
+    {
+      "mode": 493,
+      "mtime_ns": 1795097838783222929,
+      "name": "language-host-development",
+      "source": "language-host-development",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 1218,
+      "mode": 420,
+      "mtime_ns": 1795097838783281902,
+      "name": "language-host-development/README.md",
+      "sha256": "f8b2fcafda4315ef4bc842ac7eefc89d137d1f063124acbf1b45eab7b1d8eeb6",
+      "source": "language-host-development",
+      "source_relative": "README.md",
+      "type": "file"
+    },
+    {
+      "bytes": 149,
+      "mode": 420,
+      "mtime_ns": 1795097750043957309,
+      "name": "language-host-development/analysis-final.log",
+      "sha256": "8769395066fcd7ee8cd82e9bc226ecffaf068bd73f83b2640c8535575a5ef3a5",
+      "source": "language-host-development",
+      "source_relative": "analysis-final.log",
+      "type": "file"
+    },
+    {
+      "bytes": 659,
+      "mode": 420,
+      "mtime_ns": 1795097645941576442,
+      "name": "language-host-development/analysis.log",
+      "sha256": "e74760b326bbdcaa7b0e60ae7103607c3dfc4b0b390f150b3bd80b3c74779030",
+      "source": "language-host-development",
+      "source_relative": "analysis.log",
+      "type": "file"
+    },
+    {
+      "bytes": 11001,
+      "mode": 420,
+      "mtime_ns": 1795097838783222929,
+      "name": "language-host-development/development-summary.json",
+      "sha256": "7d51f0f75c4d6789739ddfb1f88c6eaca29f181171194965eaef3264e3454b74",
+      "source": "language-host-development",
+      "source_relative": "development-summary.json",
+      "type": "file"
+    },
+    {
+      "bytes": 47,
+      "mode": 420,
+      "mtime_ns": 1795097733391122547,
+      "name": "language-host-development/format-final.log",
+      "sha256": "1ad3663799d06a7f5252301eb73eb8a33f288261481f896d9696ebf2754574d9",
+      "source": "language-host-development",
+      "source_relative": "format-final.log",
+      "type": "file"
+    },
+    {
+      "bytes": 12877,
+      "mode": 420,
+      "mtime_ns": 1795097462720091700,
+      "name": "language-host-development/host-baseline.jsonl",
+      "sha256": "bc1542281deb720ebdc54079e26a92a84a8d3117e6009260df6756bbf45d8812",
+      "source": "language-host-development",
+      "source_relative": "host-baseline.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 758,
+      "mode": 420,
+      "mtime_ns": 1795097462789453137,
+      "name": "language-host-development/host-baseline.receipt.json",
+      "sha256": "6637db979d79d61b00c4663e41abb362aca22af2d17b7999d34b8e731082e224",
+      "source": "language-host-development",
+      "source_relative": "host-baseline.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795097453528022362,
+      "name": "language-host-development/host-baseline.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "language-host-development",
+      "source_relative": "host-baseline.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 6081,
+      "mode": 420,
+      "mtime_ns": 1795097655938843942,
+      "name": "language-host-development/host-fixed.jsonl",
+      "sha256": "3ece2432b056095c4f136e789792f8fd9f8f6552a24dc56d0087137d04e04fc2",
+      "source": "language-host-development",
+      "source_relative": "host-fixed.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 972,
+      "mode": 420,
+      "mtime_ns": 1795097656043137260,
+      "name": "language-host-development/host-fixed.receipt.json",
+      "sha256": "fbe85c742e93884a40b6261afc9520c1cd7e3224d2af3f76992323aa962f0eb4",
+      "source": "language-host-development",
+      "source_relative": "host-fixed.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 67,
+      "mode": 420,
+      "mtime_ns": 1795097646735284780,
+      "name": "language-host-development/host-fixed.stderr",
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39",
+      "source": "language-host-development",
+      "source_relative": "host-fixed.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 3646,
+      "mode": 420,
+      "mtime_ns": 1795097540564370086,
+      "name": "language-host-development/session-baseline.jsonl",
+      "sha256": "25f2c6714eec016d0d0b72b7471d26e0eb25ba9ab8c2305c13a83a3074e2548a",
+      "source": "language-host-development",
+      "source_relative": "session-baseline.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 786,
+      "mode": 420,
+      "mtime_ns": 1795097540669650212,
+      "name": "language-host-development/session-baseline.receipt.json",
+      "sha256": "c299edbc4ce5ab9abb45278e80295ff3f05a724b628e90dbda26df74a79e0c7d",
+      "source": "language-host-development",
+      "source_relative": "session-baseline.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795097525599579556,
+      "name": "language-host-development/session-baseline.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "language-host-development",
+      "source_relative": "session-baseline.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 6799,
+      "mode": 420,
+      "mtime_ns": 1795097661518576557,
+      "name": "language-host-development/session-fixed.jsonl",
+      "sha256": "aec63bff06a9f0581baa72a19ad37edebbd7c08a0da25f8e3ce31ed2420992a0",
+      "source": "language-host-development",
+      "source_relative": "session-fixed.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 959,
+      "mode": 420,
+      "mtime_ns": 1795097661611981151,
+      "name": "language-host-development/session-fixed.receipt.json",
+      "sha256": "d4d003358a4fd3a66686cffb3efefdd8f5682041b3ec44a139a5c6607ddb0c89",
+      "source": "language-host-development",
+      "source_relative": "session-fixed.receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795097646595769744,
+      "name": "language-host-development/session-fixed.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "language-host-development",
+      "source_relative": "session-fixed.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 4333,
+      "mode": 420,
+      "mtime_ns": 1795097578830538769,
+      "name": "language-host-development/studio_language_id_host.after.dart",
+      "sha256": "fc9e9eff63ea065faba478232d63d6c46493a4f6721981d05f0b6755b34e2e90",
+      "source": "language-host-development",
+      "source_relative": "studio_language_id_host.after.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 3152,
+      "mode": 420,
+      "mtime_ns": 1795096947803001294,
+      "name": "language-host-development/studio_language_id_host.before.dart",
+      "sha256": "feb4769c811d4db6c99feab49e8c080522e1c3484957a0a2a67e9a2cc5de85f9",
+      "source": "language-host-development",
+      "source_relative": "studio_language_id_host.before.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 7172,
+      "mode": 420,
+      "mtime_ns": 1795097453484534303,
+      "name": "language-host-development/studio_language_id_host_test.dart",
+      "sha256": "d802bf5357844ae2c1d18372bc23ef59c6303b56a23875950a47d3f69f387cea",
+      "source": "language-host-development",
+      "source_relative": "studio_language_id_host_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 7146,
+      "mode": 420,
+      "mtime_ns": 1795097731587209243,
+      "name": "language-host-development/studio_language_id_host_test.strict.dart",
+      "sha256": "82c4a3560a59f5cb25184e6331fce2f02381231aebf6a5b780e29ffd08329e1c",
+      "source": "language-host-development",
+      "source_relative": "studio_language_id_host_test.strict.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 16509,
+      "mode": 420,
+      "mtime_ns": 1795097525565087397,
+      "name": "language-host-development/word_language_detection_test.dart",
+      "sha256": "78aec008607c0fba96f24d06982a79dc17232d39fadebe5f10c5e2b9f065965c",
+      "source": "language-host-development",
+      "source_relative": "word_language_detection_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 66299,
+      "mode": 420,
+      "mtime_ns": 1795097614504829325,
+      "name": "language-host-development/word_proofing.after.dart",
+      "sha256": "89897b9021e092b52892a2204753a9c43584165454d1c9538321465da3e5165a",
+      "source": "language-host-development",
+      "source_relative": "word_proofing.after.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 65900,
+      "mode": 420,
+      "mtime_ns": 1795096947804726458,
+      "name": "language-host-development/word_proofing.before.dart",
+      "sha256": "fd0e7a92eb43787c0558b5aceb63f13cc14af67103ced79eb332237295af0b98",
+      "source": "language-host-development",
+      "source_relative": "word_proofing.before.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 66307,
+      "mode": 420,
+      "mtime_ns": 1795097732851148498,
+      "name": "language-host-development/word_proofing.strict.dart",
+      "sha256": "6681f494d8b05f971b485f51ab997b6a5e7d645493709fa7d5bb2a6778bb1ffc",
+      "source": "language-host-development",
+      "source_relative": "word_proofing.strict.dart",
+      "type": "file"
+    }
+  ],
+  "packing_verification": {
+    "all_original_file_bytes_match": true,
+    "all_sizes_hashes_modes_mtimes_match": true,
+    "exact_member_set": true,
+    "members": 26,
+    "regular_bytes": 282837,
+    "regular_files": 25
+  },
+  "producer": {
+    "path": "archive_development.py",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "sha256": "dde817494cc3d94c0af61ba33961e0d936677987a7236afd37e66a23e68dcaeb"
+  },
+  "purpose": "Unfrozen development and runtime-preparation preservation; not aggregate acceptance",
+  "schema": 1,
+  "second_complete_build_byte_identical": true,
+  "sources": {
+    "language-host-development": "/workspace/scratch/1db61dbeed56/language-host-development"
+  }
+}

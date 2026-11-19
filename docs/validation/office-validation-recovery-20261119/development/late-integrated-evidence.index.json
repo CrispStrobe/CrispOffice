@@ -1,0 +1,795 @@
+{
+  "archive": {
+    "bytes": 222180,
+    "format": "POSIX PAX tar compressed with XZ",
+    "maximum_part_bytes": 1048576,
+    "metadata": "original permission modes and nanosecond modification timestamps",
+    "ownership": "normalized uid=gid=0; names empty",
+    "parts": [
+      {
+        "bytes": 222180,
+        "name": "late-integrated-evidence.tar.xz",
+        "offset": 0,
+        "sha256": "9015716cc0392becc3b4d8f62a999cb9d55017ee6afa03d94e7b7b2ac948f5c8"
+      }
+    ],
+    "reconstructed_name": "late-integrated-evidence.tar.xz",
+    "sha256": "9015716cc0392becc3b4d8f62a999cb9d55017ee6afa03d94e7b7b2ac948f5c8",
+    "tar_bytes": 1064960,
+    "tar_sha256": "bc23ef94086cd14d1402a71c11597099aa72a9f0a2818f1ff7fbbf95f1510a64",
+    "xz_check": "SHA256",
+    "xz_preset": 6
+  },
+  "members": [
+    {
+      "bytes": 2785,
+      "mode": 420,
+      "mtime_ns": 1795097523152506784,
+      "name": "arabic-binding-development.json",
+      "sha256": "36fd56fbe11c0e7e5d5f65a76e31ed9ddfd6312cda4d050728a0464e5922d27c",
+      "source": "arabic-binding-development.json",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "bytes": 532,
+      "mode": 420,
+      "mtime_ns": 1795097394999988938,
+      "name": "arabic-build/build-receipt.json",
+      "sha256": "058e94e5e69456abd13f55f60f019e3da85ffa74031863b382a69dd44c7c8a4b",
+      "source": "arabic-build/build-receipt.json",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "bytes": 442,
+      "mode": 420,
+      "mtime_ns": 1795097427032270190,
+      "name": "arabic-build/bundle/LICENSE",
+      "sha256": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94",
+      "source": "arabic-build/bundle/LICENSE",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "bytes": 1799,
+      "mode": 420,
+      "mtime_ns": 1795097419845938905,
+      "name": "arabic-build/bundle/NOTICE",
+      "sha256": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd",
+      "source": "arabic-build/bundle/NOTICE",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "bytes": 2064,
+      "mode": 420,
+      "mtime_ns": 1795097403146157806,
+      "name": "arabic-build/bundle/manifest.json",
+      "sha256": "357540af897af5dd2a0f7fc84518cc875c4481e3e566c30ca0a5043a52290f71",
+      "source": "arabic-build/bundle/manifest.json",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "bytes": 316,
+      "mode": 420,
+      "mtime_ns": 1795097427037443901,
+      "name": "arabic-build/console.log",
+      "sha256": "e135291283c97bb07e092acf12e91c37591e8ff15d5ed929e137254f2ec34020",
+      "source": "arabic-build/console.log",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097394992554853,
+      "name": "arabic-build/native",
+      "source": "arabic-build/native",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 2149,
+      "mode": 420,
+      "mtime_ns": 1795097394999988938,
+      "name": "arabic-build/native-build.log",
+      "sha256": "6dfa994c24b9cf2beedc9f7baaf62e30893da2f7c6b3dcbbc68ccf0e775a37e8",
+      "source": "arabic-build/native-build.log",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "bytes": 339640,
+      "mode": 420,
+      "mtime_ns": 1795097394994469862,
+      "name": "arabic-build/native/libquds_arabic_morph.so",
+      "sha256": "62661d2831e8b00cf5b0f22506079bf7814508bfbda9b6d96c866af0cf036014",
+      "source": "arabic-build/native",
+      "source_relative": "libquds_arabic_morph.so",
+      "type": "file"
+    },
+    {
+      "bytes": 3277,
+      "mode": 420,
+      "mtime_ns": 1795097427035907133,
+      "name": "arabic-build/preparation.json",
+      "sha256": "da300c54f1f8749635de72c9e55ee48a1c6a3fc2cc4b79aad5eaac33bd96a209",
+      "source": "arabic-build/preparation.json",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "bytes": 13883,
+      "mode": 420,
+      "mtime_ns": 1795097273767408333,
+      "name": "arabic-build/runtime-before-arabic-morph.json",
+      "sha256": "6c0e00bb252af5f198e741b80627f6e4d17266cade97fdfe31cf5cf00b6e1eeb",
+      "source": "arabic-build/runtime-before-arabic-morph.json",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097278232856217,
+      "name": "arabic-build/source",
+      "source": "arabic-build/source",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097369188568712,
+      "name": "arabic-build/source/crispembed-0ed76631843c",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c",
+      "type": "directory"
+    },
+    {
+      "bytes": 4739,
+      "mode": 420,
+      "mtime_ns": 1795097278237455232,
+      "name": "arabic-build/source/crispembed-0ed76631843c/LICENSE",
+      "sha256": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/LICENSE",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097296643981830,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src",
+      "type": "directory"
+    },
+    {
+      "bytes": 111218,
+      "mode": 420,
+      "mtime_ns": 1795097282799163157,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/arabic_morph.cpp",
+      "sha256": "fff60440de9faaff4f5a5a0ec2c2b593a17eea8f94b6e55231d4059f361e910f",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/arabic_morph.cpp",
+      "type": "file"
+    },
+    {
+      "bytes": 7377,
+      "mode": 420,
+      "mtime_ns": 1795097287703917267,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/arabic_morph.h",
+      "sha256": "98a2d0e6ec9ffed02c7d63e8e19c0ce7a46ed995859c2085fecad5b10620bc4c",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/arabic_morph.h",
+      "type": "file"
+    },
+    {
+      "bytes": 8028,
+      "mode": 420,
+      "mtime_ns": 1795097292455826804,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/arabic_morph_tables.h",
+      "sha256": "72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/arabic_morph_tables.h",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097333946203986,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core",
+      "type": "directory"
+    },
+    {
+      "bytes": 3245,
+      "mode": 420,
+      "mtime_ns": 1795097296648185207,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/env_gate.h",
+      "sha256": "2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/env_gate.h",
+      "type": "file"
+    },
+    {
+      "bytes": 23378,
+      "mode": 420,
+      "mtime_ns": 1795097300746688290,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/json.h",
+      "sha256": "7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/json.h",
+      "type": "file"
+    },
+    {
+      "bytes": 9017,
+      "mode": 420,
+      "mtime_ns": 1795097305113162490,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/json_value.h",
+      "sha256": "f6af418a13cc5285f977fd29c5644d7fc2cf957f5c4b6d31a3bf0c33243dacf4",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/json_value.h",
+      "type": "file"
+    },
+    {
+      "bytes": 12423,
+      "mode": 420,
+      "mtime_ns": 1795097310800147804,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/py_str.h",
+      "sha256": "1936161cfea194de155ec58601a0ca7f36577f3c8973231e704a6dc0fcd315e7",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/py_str.h",
+      "type": "file"
+    },
+    {
+      "bytes": 33940,
+      "mode": 420,
+      "mtime_ns": 1795097315842316448,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/py_str_tables.h",
+      "sha256": "c66cdf3e8b2dc40ee2e09e8dc2411af0ad7a43dedc107ce867d939aa7d55c8e8",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/py_str_tables.h",
+      "type": "file"
+    },
+    {
+      "bytes": 5024,
+      "mode": 420,
+      "mtime_ns": 1795097320461427951,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/sha256.h",
+      "sha256": "409ab494061b042d4a84698b7bf2caf6dd68f6639cbeb532cb47a2f2337d9a6f",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/sha256.h",
+      "type": "file"
+    },
+    {
+      "bytes": 246,
+      "mode": 420,
+      "mtime_ns": 1795097324661688243,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/shortest_double.c",
+      "sha256": "9d4e8d9d2be344ba17d141378274f9a19192b49e6995a9edb1e80f589c1e71c2",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/shortest_double.c",
+      "type": "file"
+    },
+    {
+      "bytes": 282,
+      "mode": 420,
+      "mtime_ns": 1795097328931800271,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/shortest_double.h",
+      "sha256": "51f642d86c72d730426338ede6f603697dde1da556d96b53dffec9781416c60c",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/shortest_double.h",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097333946203986,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party",
+      "type": "directory"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097364416791671,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party/ryu",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party/ryu",
+      "type": "directory"
+    },
+    {
+      "bytes": 11357,
+      "mode": 420,
+      "mtime_ns": 1795097333952259403,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party/ryu/LICENSE-Apache2",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party/ryu/LICENSE-Apache2",
+      "type": "file"
+    },
+    {
+      "bytes": 792,
+      "mode": 420,
+      "mtime_ns": 1795097337846904173,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party/ryu/README.md",
+      "sha256": "8ecc8a0aec4481a424349da8267c2cf76733a9b4187a981e8154ea648cd40e5b",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party/ryu/README.md",
+      "type": "file"
+    },
+    {
+      "bytes": 3648,
+      "mode": 420,
+      "mtime_ns": 1795097342037252651,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party/ryu/common.h",
+      "sha256": "0bbd71d26da6193e678d0776cf418f43f287c73d6fd6725353df0aadf70f2a19",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party/ryu/common.h",
+      "type": "file"
+    },
+    {
+      "bytes": 17705,
+      "mode": 420,
+      "mtime_ns": 1795097345705898820,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party/ryu/d2s.c",
+      "sha256": "d24323c7eb77d63f1e52c415212b50060b776f0883525d907d04954fcd48cf64",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party/ryu/d2s.c",
+      "type": "file"
+    },
+    {
+      "bytes": 34501,
+      "mode": 420,
+      "mtime_ns": 1795097349793127296,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party/ryu/d2s_full_table.h",
+      "sha256": "2618f6e5fae6c4443899b184efe3d08295dd267dc9f1a994c983c7caca59ebe6",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party/ryu/d2s_full_table.h",
+      "type": "file"
+    },
+    {
+      "bytes": 13015,
+      "mode": 420,
+      "mtime_ns": 1795097353525451636,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party/ryu/d2s_intrinsics.h",
+      "sha256": "1d05702f2edacce428223d4b43dd3095c1bd1f3ad30128ce1761d84356dddc7d",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party/ryu/d2s_intrinsics.h",
+      "type": "file"
+    },
+    {
+      "bytes": 7641,
+      "mode": 420,
+      "mtime_ns": 1795097357433651259,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party/ryu/d2s_small_table.h",
+      "sha256": "54fec51f1c5eed786a8ce6de881b81582dd71f0812dcd4324b37396617bb0fa9",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party/ryu/d2s_small_table.h",
+      "type": "file"
+    },
+    {
+      "bytes": 1745,
+      "mode": 420,
+      "mtime_ns": 1795097361165668619,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party/ryu/digit_table.h",
+      "sha256": "8b782573abc0b8554d74163ae6c02f0beb5c30d1e63eaebdb0ddf2c98d817e01",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party/ryu/digit_table.h",
+      "type": "file"
+    },
+    {
+      "bytes": 1360,
+      "mode": 420,
+      "mtime_ns": 1795097364423403005,
+      "name": "arabic-build/source/crispembed-0ed76631843c/src/core/third_party/ryu/ryu.h",
+      "sha256": "b7feab0ba1df5e9ef3d602f386592ad152491405e49b408fb21c0e0e9e6bfb16",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/src/core/third_party/ryu/ryu.h",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097369188568712,
+      "name": "arabic-build/source/crispembed-0ed76631843c/tools",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/tools",
+      "type": "directory"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097373392369950,
+      "name": "arabic-build/source/crispembed-0ed76631843c/tools/arabic_morph",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/tools/arabic_morph",
+      "type": "directory"
+    },
+    {
+      "bytes": 1710,
+      "mode": 420,
+      "mtime_ns": 1795097369195075018,
+      "name": "arabic-build/source/crispembed-0ed76631843c/tools/arabic_morph/THIRD_PARTY_NOTICES",
+      "sha256": "6e74d4648626177a13a8b41d45f62af1a6c97b7062e55c38c52c74c28e136e21",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/tools/arabic_morph/THIRD_PARTY_NOTICES",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097385935774825,
+      "name": "arabic-build/source/crispembed-0ed76631843c/tools/arabic_morph/notices",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/tools/arabic_morph/notices",
+      "type": "directory"
+    },
+    {
+      "bytes": 13936,
+      "mode": 420,
+      "mtime_ns": 1795097373393475511,
+      "name": "arabic-build/source/crispembed-0ed76631843c/tools/arabic_morph/notices/CPython-LICENSE",
+      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/tools/arabic_morph/notices/CPython-LICENSE",
+      "type": "file"
+    },
+    {
+      "bytes": 11357,
+      "mode": 420,
+      "mtime_ns": 1795097377697862848,
+      "name": "arabic-build/source/crispembed-0ed76631843c/tools/arabic_morph/notices/Ryu-LICENSE-Apache2",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/tools/arabic_morph/notices/Ryu-LICENSE-Apache2",
+      "type": "file"
+    },
+    {
+      "bytes": 1995,
+      "mode": 420,
+      "mtime_ns": 1795097381838057872,
+      "name": "arabic-build/source/crispembed-0ed76631843c/tools/arabic_morph/notices/Unicode-LICENSE.txt",
+      "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/tools/arabic_morph/notices/Unicode-LICENSE.txt",
+      "type": "file"
+    },
+    {
+      "bytes": 1087,
+      "mode": 420,
+      "mtime_ns": 1795097385939560443,
+      "name": "arabic-build/source/crispembed-0ed76631843c/tools/arabic_morph/notices/camel_tools-LICENSE",
+      "sha256": "7a3ef160e8957145490ff66591aa9cb8cb08601a2e9fb1673c5fb7af74c727f2",
+      "source": "arabic-build/source",
+      "source_relative": "crispembed-0ed76631843c/tools/arabic_morph/notices/camel_tools-LICENSE",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097582026384374,
+      "name": "arabic-native-development",
+      "source": "arabic-native-development",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 127,
+      "mode": 420,
+      "mtime_ns": 1795097479855270939,
+      "name": "arabic-native-development/analysis.log",
+      "sha256": "14bcffacbbadb538732d1364bcb314b4ea722f7e324469bdff6ba720bfd51b6c",
+      "source": "arabic-native-development",
+      "source_relative": "analysis.log",
+      "type": "file"
+    },
+    {
+      "bytes": 12494,
+      "mode": 420,
+      "mtime_ns": 1795097582029382096,
+      "name": "arabic-native-development/arabic-native-lifecycle.patch",
+      "sha256": "ad751525406c89f9866f1012a48a59c85408fefafeea228f227b70dbdbc8c390",
+      "source": "arabic-native-development",
+      "source_relative": "arabic-native-lifecycle.patch",
+      "type": "file"
+    },
+    {
+      "bytes": 1511,
+      "mode": 420,
+      "mtime_ns": 1795097506253038967,
+      "name": "arabic-native-development/arabic_morph_live_download_test.dart",
+      "sha256": "c546ae1ee150b534152ff15bf4bbf5bfff02b324169b40d560569e72c72db84b",
+      "source": "arabic-native-development",
+      "source_relative": "arabic_morph_live_download_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 13808,
+      "mode": 420,
+      "mtime_ns": 1795097371183923884,
+      "name": "arabic-native-development/arabic_morph_native_test.baseline.dart",
+      "sha256": "f0ca9a3ab640fb74e8bbf7fc0cee553f4d8776c35065c95e96b7aaf976a91dd9",
+      "source": "arabic-native-development",
+      "source_relative": "arabic_morph_native_test.baseline.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 16393,
+      "mode": 420,
+      "mtime_ns": 1795097506252778178,
+      "name": "arabic-native-development/arabic_morph_native_test.dart",
+      "sha256": "ed150d06ce43ea89d7077af662ce18ea990a0480a70db7e220c640312a2ac62d",
+      "source": "arabic-native-development",
+      "source_relative": "arabic_morph_native_test.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 5449,
+      "mode": 420,
+      "mtime_ns": 1795097582022181048,
+      "name": "arabic-native-development/development-summary.json",
+      "sha256": "8eaa5386e1a9ff94c755dc38a013cb180fcaece8883a7ae4f70bf328475c7d1a",
+      "source": "arabic-native-development",
+      "source_relative": "development-summary.json",
+      "type": "file"
+    },
+    {
+      "bytes": 120,
+      "mode": 420,
+      "mtime_ns": 1795097447176835810,
+      "name": "arabic-native-development/format.log",
+      "sha256": "a3452b041474707583b78941afcdf3729ec01b7d1c0438b10f4f2989fb1321a6",
+      "source": "arabic-native-development",
+      "source_relative": "format.log",
+      "type": "file"
+    },
+    {
+      "bytes": 15188,
+      "mode": 420,
+      "mtime_ns": 1795097371181335594,
+      "name": "arabic-native-development/morph_transport_native.baseline.dart",
+      "sha256": "e772f430ae48481649eb2b5da7de99e577b4da8a30dbd2cf765f123f731dbf3c",
+      "source": "arabic-native-development",
+      "source_relative": "morph_transport_native.baseline.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 16923,
+      "mode": 420,
+      "mtime_ns": 1795097506250010337,
+      "name": "arabic-native-development/morph_transport_native.fixed.dart",
+      "sha256": "da014d8fefd99bba1aad8e1288b764f924812bfcab69d64ce3b665af235d770c",
+      "source": "arabic-native-development",
+      "source_relative": "morph_transport_native.fixed.dart",
+      "type": "file"
+    },
+    {
+      "bytes": 1607,
+      "mode": 420,
+      "mtime_ns": 1795097564589734817,
+      "name": "arabic-native-development/native-suite-green-receipt.json",
+      "sha256": "227de2b9ece08b862b8055b717d945726ec6647f2ba648fda335a733a5567d71",
+      "source": "arabic-native-development",
+      "source_relative": "native-suite-green-receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 9891,
+      "mode": 420,
+      "mtime_ns": 1795097564463226568,
+      "name": "arabic-native-development/native-suite-green.jsonl",
+      "sha256": "8e9d091ebf35e885b72a5ad7ddc80b160579261337e7b4d0f4895f04b9ac7f36",
+      "source": "arabic-native-development",
+      "source_relative": "native-suite-green.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795097548375996281,
+      "name": "arabic-native-development/native-suite-green.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "arabic-native-development",
+      "source_relative": "native-suite-green.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 888,
+      "mode": 420,
+      "mtime_ns": 1795097523061207055,
+      "name": "arabic-native-development/normal-dispose-red-receipt.json",
+      "sha256": "9303ecafb1610b0daa330bb437e12bd5a06686f931680deacf5ddc6f38dfcbe6",
+      "source": "arabic-native-development",
+      "source_relative": "normal-dispose-red-receipt.json",
+      "type": "file"
+    },
+    {
+      "bytes": 2597,
+      "mode": 420,
+      "mtime_ns": 1795097522829218141,
+      "name": "arabic-native-development/normal-dispose-red.jsonl",
+      "sha256": "f09cd47129b62c2d84d9af0b4a3e2da50d85c088dd38e155bad68a2bd698c57a",
+      "source": "arabic-native-development",
+      "source_relative": "normal-dispose-red.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795097506253674998,
+      "name": "arabic-native-development/normal-dispose-red.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "arabic-native-development",
+      "source_relative": "normal-dispose-red.stderr",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097867212704677,
+      "name": "merged-preflight",
+      "source": "merged-preflight",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 14432,
+      "mode": 420,
+      "mtime_ns": 1795097759225881890,
+      "name": "merged-preflight/language-adapter-corrected.jsonl",
+      "sha256": "2552e68a33cf3d3b75260434081a108bdc7d0ddea950fa98e2bc981da8e48515",
+      "source": "merged-preflight",
+      "source_relative": "language-adapter-corrected.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 80,
+      "mode": 420,
+      "mtime_ns": 1795097759025891488,
+      "name": "merged-preflight/language-adapter-corrected.stderr",
+      "sha256": "c4cd9b61ac9e9d4aa0b82ac08a6223eb263e40f87232530b10b117aa7584bcee",
+      "source": "merged-preflight",
+      "source_relative": "language-adapter-corrected.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 14804,
+      "mode": 420,
+      "mtime_ns": 1795097683341528585,
+      "name": "merged-preflight/language-adapter.jsonl",
+      "sha256": "f2d0b5ed7172dd0a65c618f97e52cbcbeb89784fa55b3348e44d590922f1c52b",
+      "source": "merged-preflight",
+      "source_relative": "language-adapter.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 80,
+      "mode": 420,
+      "mtime_ns": 1795097683089540678,
+      "name": "merged-preflight/language-adapter.stderr",
+      "sha256": "c4cd9b61ac9e9d4aa0b82ac08a6223eb263e40f87232530b10b117aa7584bcee",
+      "source": "merged-preflight",
+      "source_relative": "language-adapter.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 19676,
+      "mode": 420,
+      "mtime_ns": 1795097680985641646,
+      "name": "merged-preflight/language-engine.jsonl",
+      "sha256": "a84379d2813241875e638ce25a3810b4219cdeee0fd5a6c4ee1d0c3cf2b30ada",
+      "source": "merged-preflight",
+      "source_relative": "language-engine.jsonl",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "mode": 420,
+      "mtime_ns": 1795097664534431835,
+      "name": "merged-preflight/language-engine.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "merged-preflight",
+      "source_relative": "language-engine.stderr",
+      "type": "file"
+    },
+    {
+      "bytes": 1147,
+      "mode": 420,
+      "mtime_ns": 1795097867216729272,
+      "name": "merged-preflight/summary.json",
+      "sha256": "af609987c50f6da76560243deec864162218225b3e6b78900fbfdee6f438c671",
+      "source": "merged-preflight",
+      "source_relative": "summary.json",
+      "type": "file"
+    },
+    {
+      "mode": 493,
+      "mtime_ns": 1795097183969369390,
+      "name": "merged-preparation",
+      "source": "merged-preparation",
+      "source_relative": "",
+      "type": "directory"
+    },
+    {
+      "bytes": 68,
+      "mode": 420,
+      "mtime_ns": 1795097184581339934,
+      "name": "merged-preparation/workspace-pub-get.log",
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "source": "merged-preparation",
+      "source_relative": "workspace-pub-get.log",
+      "type": "file"
+    },
+    {
+      "bytes": 369,
+      "mode": 420,
+      "mtime_ns": 1795096155388042517,
+      "name": "runtime/native_assets.yaml",
+      "sha256": "c5793d7824f1637be8b8af4e81948f361dd87357215c339ed095b2a345a1a3db",
+      "source": "runtime/native_assets.yaml",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "bytes": 28400,
+      "mode": 420,
+      "mtime_ns": 1795096144967046084,
+      "name": "runtime/package_config.json",
+      "sha256": "ee0b74af71b561bc99f484f1792417510a2c076044a76d7e03d36f1222003fff",
+      "source": "runtime/package_config.json",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "bytes": 25082,
+      "mode": 420,
+      "mtime_ns": 1795097184585339742,
+      "name": "runtime/package_graph.json",
+      "sha256": "b1ea15ebdf456c7569a59c55086bff000f1fbb249069e4027361c6b7b2603ec6",
+      "source": "runtime/package_graph.json",
+      "source_relative": "",
+      "type": "file"
+    },
+    {
+      "bytes": 15152,
+      "mode": 420,
+      "mtime_ns": 1795097427037443901,
+      "name": "runtime/runtime.json",
+      "sha256": "0fca03e93af88e23984e9a386cd17c01c2f78f51a15d9e1ee97b55e25b1919c3",
+      "source": "runtime/runtime.json",
+      "source_relative": "",
+      "type": "file"
+    }
+  ],
+  "packing_verification": {
+    "all_original_file_bytes_match": true,
+    "all_sizes_hashes_modes_mtimes_match": true,
+    "exact_member_set": true,
+    "members": 76,
+    "regular_bytes": 923939,
+    "regular_files": 63
+  },
+  "producer": {
+    "path": "archive_development.py",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "sha256": "dde817494cc3d94c0af61ba33961e0d936677987a7236afd37e66a23e68dcaeb"
+  },
+  "purpose": "Unfrozen development and runtime-preparation preservation; not aggregate acceptance",
+  "schema": 1,
+  "second_complete_build_byte_identical": true,
+  "sources": {
+    "arabic-binding-development.json": "/workspace/scratch/1db61dbeed56/arabic-morph-binding-development.json",
+    "arabic-build/build-receipt.json": "/workspace/scratch/1db61dbeed56/arabic-morph-build/build-receipt.json",
+    "arabic-build/bundle/LICENSE": "/workspace/scratch/1db61dbeed56/arabic-morph-build/bundle/LICENSE",
+    "arabic-build/bundle/NOTICE": "/workspace/scratch/1db61dbeed56/arabic-morph-build/bundle/NOTICE",
+    "arabic-build/bundle/manifest.json": "/workspace/scratch/1db61dbeed56/arabic-morph-build/bundle/manifest.json",
+    "arabic-build/console.log": "/workspace/scratch/1db61dbeed56/arabic-morph-prepare.log",
+    "arabic-build/native": "/workspace/scratch/1db61dbeed56/arabic-morph-build/native",
+    "arabic-build/native-build.log": "/workspace/scratch/1db61dbeed56/arabic-morph-build/native-build.log",
+    "arabic-build/preparation.json": "/workspace/scratch/1db61dbeed56/arabic-morph-build/preparation.json",
+    "arabic-build/runtime-before-arabic-morph.json": "/workspace/scratch/1db61dbeed56/arabic-morph-build/runtime-before-arabic-morph.json",
+    "arabic-build/source": "/workspace/scratch/1db61dbeed56/arabic-morph-build/source",
+    "arabic-native-development": "/workspace/scratch/1db61dbeed56/arabic-native-development",
+    "merged-preflight": "/workspace/scratch/1db61dbeed56/merged-preflight",
+    "merged-preparation": "/workspace/scratch/1db61dbeed56/merged-preparation",
+    "runtime/native_assets.yaml": "/workspace/scratch/1db61dbeed56/quds_office_suite/.dart_tool/native_assets.yaml",
+    "runtime/package_config.json": "/workspace/scratch/1db61dbeed56/quds_office_suite/.dart_tool/package_config.json",
+    "runtime/package_graph.json": "/workspace/scratch/1db61dbeed56/quds_office_suite/.dart_tool/package_graph.json",
+    "runtime/runtime.json": "/workspace/scratch/1db61dbeed56/office-runtime/runtime.json"
+  }
+}

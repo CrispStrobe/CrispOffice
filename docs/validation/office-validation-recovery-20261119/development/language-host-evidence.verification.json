@@ -1,0 +1,14 @@
+{
+  "all_original_file_bytes_match": true,
+  "all_sizes_hashes_modes_mtimes_match": true,
+  "byte_identical_reconstruction": true,
+  "compressed_archive_sha256": "2ff4e3e88a92a390ba28376d3ccc350e2e67e86e0f0264046276fdbdce7f8cf4",
+  "decompressed_tar_sha256": "d3c358d426392d62176d86fa96e0cc54be802c942c6893ada206de4b9afe946f",
+  "every_part_verified": true,
+  "exact_member_set": true,
+  "index_sha256": "f479be65a518620a227485a652c3549888a675d914f1f7e5f3a9d535fa3008c3",
+  "members": 26,
+  "regular_bytes": 282837,
+  "regular_files": 25,
+  "second_complete_build_byte_identical": true
+}

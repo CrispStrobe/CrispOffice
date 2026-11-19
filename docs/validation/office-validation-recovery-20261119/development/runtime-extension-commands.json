@@ -1,0 +1,30 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "/workspace/scratch/1db61dbeed56/quds_office_suite/docs/validation/office-validation-recovery-20261119/development/archive_development.py",
+    "pack",
+    "--output",
+    "/workspace/scratch/1db61dbeed56/quds_office_suite/docs/validation/office-validation-recovery-20261119/development",
+    "--name",
+    "runtime-extension-evidence",
+    "--source",
+    "extension-originals=/workspace/scratch/1db61dbeed56/office-runtime-extension-07b815a7/originals",
+    "--source",
+    "extension-archives=/workspace/scratch/1db61dbeed56/office-runtime-extension-07b815a7/archives",
+    "--source",
+    "extension-logs=/workspace/scratch/1db61dbeed56/office-runtime-extension-07b815a7/logs",
+    "--source",
+    "extension-receipt=/workspace/scratch/1db61dbeed56/office-runtime-extension-07b815a7/extension.json",
+    "--source",
+    "extension-base-lock=/workspace/scratch/1db61dbeed56/office-runtime-extension-07b815a7/base-pubspec.lock",
+    "--source",
+    "current-runtime-snapshot=/workspace/scratch/1db61dbeed56/runtime-extension-capture",
+    "--source",
+    "extension-controls=/workspace/scratch/1db61dbeed56/runtime-extension-controls-development",
+    "--source",
+    "final-format-preflight=/workspace/scratch/1db61dbeed56/final-preflight"
+  ],
+  "exit_code": 0,
+  "scope": "Preserve original receipts, exact new archive bytes, raw logs, current runtime snapshots and preparation controls. Extracted package copies are redundant and omitted. These controls are not final aggregate acceptance."
+}

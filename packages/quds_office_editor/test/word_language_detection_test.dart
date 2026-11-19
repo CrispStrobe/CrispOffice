@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
@@ -17,6 +19,26 @@ final class _FakeIdentifier implements LanguageIdentifier {
     calls.add(texts);
     return [for (final t in texts) answers[t.trim()] ?? const []];
   }
+}
+
+final class _PendingIdentifier implements LanguageIdentifier {
+  final started = Completer<void>();
+  final _result = Completer<List<List<LanguageGuess>>>();
+  List<String> _texts = const [];
+
+  @override
+  bool get isAvailable => true;
+
+  @override
+  Future<List<List<LanguageGuess>>> identify(List<String> texts) {
+    _texts = List.of(texts);
+    if (!started.isCompleted) started.complete();
+    return _result.future;
+  }
+
+  void complete(String language) => _result.complete([
+    for (final _ in _texts) [LanguageGuess(language, 1)],
+  ]);
 }
 
 final class _Provider extends OfficeProofingProvider {
@@ -294,6 +316,91 @@ void main() {
     );
     expect(s.controller.canUndo, isFalse, reason: 'nothing to change');
   });
+
+  test(
+    'pending language detection cannot publish into a disposed session',
+    () async {
+      final s = _setUp(detection: false);
+      final pending = _PendingIdentifier();
+      final session = s.controller.proofing;
+      session.configureLanguageDetection(ParagraphLanguageDetector(pending));
+      final loading = session.detectLanguages([_german]);
+      await pending.started.future;
+      session.dispose();
+      pending.complete('de');
+      expect(await loading, isNull);
+      expect(session.detectedLanguages(_german), isNull);
+      expect(session.languageDetector, isNull);
+      expect(s.provider.requests, isEmpty);
+    },
+  );
+
+  test(
+    'pending language detection cannot replace a newer detector result',
+    () async {
+      final s = _setUp(detection: false);
+      final pending = _PendingIdentifier();
+      final session = s.controller.proofing;
+      session.configureLanguageDetection(ParagraphLanguageDetector(pending));
+      final old = session.detectLanguages([_german]);
+      await pending.started.future;
+      session.configureLanguageDetection(
+        ParagraphLanguageDetector(
+          _FakeIdentifier({
+            _german: const [LanguageGuess('fr', 1)],
+          }),
+        ),
+      );
+      final current = await session.detectLanguages([_german]);
+      expect(current!.single.segments.single.language, 'fr');
+      pending.complete('de');
+      expect(await old, isNull);
+      expect(
+        session.detectedLanguages(_german)!.segments.single.language,
+        'fr',
+      );
+      expect(s.controller.canUndo, isFalse);
+    },
+  );
+
+  test(
+    'pending language check finishes quietly after session disposal',
+    () async {
+      final s = _setUp(detection: false);
+      final pending = _PendingIdentifier();
+      final session = s.controller.proofing;
+      session.configureLanguageDetection(ParagraphLanguageDetector(pending));
+      final checking = session.checkNow();
+      await pending.started.future;
+      session.dispose();
+      pending.complete('de');
+      await expectLater(checking, completes);
+      expect(s.provider.requests, isEmpty);
+      expect(session.detectedLanguages(_german), isNull);
+    },
+  );
+
+  test(
+    'pending language check cannot publish after detector replacement',
+    () async {
+      final s = _setUp(detection: false);
+      final pending = _PendingIdentifier();
+      final session = s.controller.proofing;
+      session.configureLanguageDetection(ParagraphLanguageDetector(pending));
+      var notifications = 0;
+      session.addListener(() => notifications++);
+      final checking = session.checkNow();
+      await pending.started.future;
+      session.configureLanguageDetection(
+        ParagraphLanguageDetector(_FakeIdentifier(_answers)),
+      );
+      final beforeOldCompletion = notifications;
+      pending.complete('de');
+      await expectLater(checking, completes);
+      expect(notifications, beforeOldCompletion);
+      expect(s.provider.requests, isEmpty);
+    },
+  );
 
   group('review pane', () {
     setUpAll(OfficeHostFonts.ensureRegistered);

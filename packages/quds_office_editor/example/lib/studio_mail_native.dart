@@ -96,6 +96,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   bool _showCompactMessage = false;
   String? _error;
   String? _notice;
+  String? _credentialError;
 
   @override
   void initState() {
@@ -119,7 +120,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     final generation = _sessionGeneration;
     final settings = _settingsRevision;
     final credentialGeneration = _credentialGeneration;
-    StudioMailCredentials? saved;
+    final StudioMailCredentials? saved;
     try {
       saved = await _credentials.load();
     } on Object {
@@ -127,15 +128,18 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       return;
     }
     if (!_currentAttempt(generation) ||
-        saved == null ||
-        _connecting ||
-        _client != null ||
-        settings != _settingsRevision ||
         credentialGeneration != _credentialGeneration) {
       return;
     }
     setState(() {
-      _email.text = saved!.email;
+      _hasSavedCredentials = saved != null;
+      if (saved == null ||
+          _connecting ||
+          _client != null ||
+          settings != _settingsRevision) {
+        return;
+      }
+      _email.text = saved.email;
       _password.text = saved.password;
       _imapHost.text = saved.imapHost;
       _smtpHost.text = saved.smtpHost;
@@ -144,7 +148,6 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _preset = saved.preset;
       _primaryLogin.text = saved.primaryLogin;
       _icloudFullAddressLogin = saved.icloudFullAddressLogin;
-      _hasSavedCredentials = true;
     });
   }
 
@@ -168,10 +171,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     if (!mounted || generation != _credentialGeneration) return;
     setState(() {
       _credentialPending = false;
-      if (success) {
-        _hasSavedCredentials = remember;
-      } else if (_currentSession(client, sessionGeneration)) {
-        _notice = remember
+      if (success) _hasSavedCredentials = remember;
+      if (_currentSession(client, sessionGeneration)) {
+        // Credential feedback must not replace a confirmed SMTP receipt or
+        // another mailbox operation's status while the keychain is pending.
+        _credentialError = success
+            ? null
+            : remember
             ? widget.strings.mailKeychainSaveFailed
             : widget.strings.mailKeychainClearFailed;
       }
@@ -195,13 +201,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _credentialPending = false;
       if (success) {
         _hasSavedCredentials = false;
-        if (_error == widget.strings.mailKeychainClearFailed) _error = null;
+        _credentialError = null;
         if (session == _sessionGeneration && settings == _settingsRevision) {
           _password.clear();
         }
       } else if (session == _sessionGeneration &&
           settings == _settingsRevision) {
-        _error = widget.strings.mailKeychainClearFailed;
+        _credentialError = widget.strings.mailKeychainClearFailed;
       }
     });
   }
@@ -264,6 +270,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _connecting = true;
       _error = null;
       _notice = null;
+      _credentialError = null;
     });
     final email = _email.text.trim();
     final domain = email.contains('@') ? email.split('@').last : '';
@@ -945,6 +952,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                             _primaryLogin.clear();
                             _icloudFullAddressLogin = false;
                             _error = null;
+                            _credentialError = null;
                           }),
                   ),
                 ),
@@ -1078,6 +1086,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   ),
                   label: Text(widget.strings.forgetAccount),
                 ),
+                if (_credentialError != null) _credentialFeedback(context),
                 if (_error != null)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 12),
@@ -1113,6 +1122,14 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     ),
   );
 
+  Widget _credentialFeedback(BuildContext context) => Material(
+    color: Theme.of(context).colorScheme.errorContainer,
+    child: Padding(
+      padding: const EdgeInsets.all(12),
+      child: SelectableText(_credentialError!),
+    ),
+  );
+
   Widget _inbox(BuildContext context, {required bool compact}) {
     final query = _search.text.trim().toLowerCase();
     final visible = query.isEmpty
@@ -1131,6 +1148,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     return Column(
       children: <Widget>[
         if (_busy) const LinearProgressIndicator(minHeight: 2),
+        if (_credentialError != null) _credentialFeedback(context),
         if (_error != null || _notice != null)
           Material(
             color: _error == null

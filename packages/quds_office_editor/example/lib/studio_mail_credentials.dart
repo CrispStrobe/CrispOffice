@@ -101,7 +101,11 @@ abstract interface class StudioMailCredentialStore {
       _PlatformStudioMailCredentialStore;
 
   Future<StudioMailCredentials?> load();
+
+  /// True only when the platform confirms the write. Failure is nonthrowing.
   Future<bool> save(StudioMailCredentials credentials);
+
+  /// True only when the platform confirms deletion. Failure is nonthrowing.
   Future<bool> clear();
 }
 
