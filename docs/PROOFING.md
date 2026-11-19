@@ -87,6 +87,19 @@ extension produced 1 finding (an unclosed quotation continued in the next
 sentence). Per-rule counts and the deferred T2/T3
 categories are in [step 3b](roadmaps/arabic-proofing.md).
 
+The list expansion of 19 November 2026 (same clean-room process, authored
+from knowledge following the spec only) grew the word and phrase lists from
+about 270 to about 2,100 entries: hamza words 36 → 242, ta-marbuta stems
+44 → 277, alif-maqsura words 6 → 52, frozen misspellings 54 → 662, fixed
+expressions 3 → 31, colloquial words 40 → 147 (still default-on), and the
+opt-in prescriptive expressions 6 → 103, usage words 26 → 80, loanwords
+28 → 216, wordiness patterns 8 → 130 and vowelling hints 20 → 146. On the
+1,000 UD Arabic-PUD sentences the default-on list rules give 0 findings;
+on a 17,417-sentence Arabic Wikipedia sample every default-on finding was
+inspected and entries that matched valid text (mostly names, e.g. بلدية via
+لدية, Kano, Funen, Diallo) were removed. Details are in
+[step 3b](roadmaps/arabic-proofing.md).
+
 ## Optional Hunspell spelling (Arabic) — 19 November 2026
 
 [`quds_proofing_hunspell`](../packages/quds_proofing_hunspell/README.md) adds a

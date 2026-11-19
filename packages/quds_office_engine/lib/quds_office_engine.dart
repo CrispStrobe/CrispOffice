@@ -63,6 +63,7 @@ export 'src/pdf/pdf_image.dart';
 export 'src/pdf/pdf_report_builder.dart';
 export 'src/pdf/pdf_save_options.dart';
 export 'src/pdf/pdf_stream.dart';
+export 'src/proofing/arabic_morphology.dart';
 export 'src/proofing/arabic_writing_rules.dart';
 export 'src/proofing/german_literal_ranges.dart';
 export 'src/proofing/german_spelling.dart';

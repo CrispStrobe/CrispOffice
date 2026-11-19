@@ -205,7 +205,7 @@ below. No Arabic resource is downloaded by default.
    | `ar.spacing.theophoric` (`عبدالله` → `عبد الله`, 57 authored names) | T1-b | 3 | 2 |
    | `ar.hamza.maqsura-hamza` (`ىء` → `ئ`) | S5 | 3 | 2 |
    | `ar.hamza.wasl-measure` (verbal nouns of measures VII, VIII, X and hollow X written with إ; templates, not a list) | S2 generative | 7 | 9 |
-   | `ar.spelling.common` (54 frozen misspellings) | S2/S9 list | 5 | 2 |
+   | `ar.spelling.common` (662 frozen misspellings; 54 before the list expansion below) | S2/S9 list | 20 | 2 |
    | `ar.consistency.spelling` (10 groups of two accepted spellings, e.g. مسؤول/مسئول, مئة/مائة; scope: one paragraph) | S8 | 2 | 2 |
    | `ar.date.weekday` (weekday + day + month name + year; three month-name series) | M1 | 4 | 4 |
    | `ar.date.invalid-day` (31 April, 29 February in a common year) | M1 | 2 | 1 |
@@ -213,8 +213,8 @@ below. No Arabic resource is downloaded by default.
    | `ar.grammar.hal-particle` (هل + negator / إنّ / إذا / لو) | G14 | 4 | 3 |
    | `ar.redundancy.double-future` (سوف + سـ) | L6 | 2 | 3 |
    | `ar.redundancy.phrase` (9 authored pleonasm patterns) | L6 | 5 | 4 |
-   | `ar.expression.error` (لا سيما, إن شاء الله, على حدة) | L2 | 3 | 4 |
-   | `ar.register.colloquial` (40 dialect words without an MSA homograph) | L4 | 3 | 3 |
+   | `ar.expression.error` (31 fixed-expression patterns, e.g. لا سيما, إن شاء الله, على حدة, سوف لن, عن ما, بادئ ذي بدء) | L2 | 11 | 5 |
+   | `ar.register.colloquial` (147 dialect words without an MSA homograph or a frequent name) | L4 | 8 | 10 |
    | `ar.repetition.content-word` (distributive accusatives and tanwin, two-letter initials exempt) | L8 | 1 | 4 |
 
    Opt-in rules (13): prescriptive usage, register and hints, as the spec
@@ -227,13 +227,13 @@ below. No Arabic resource is downloaded by default.
    | `ar.usage.imma-aw` (إمّا … أو → وإمّا) | G13 | 1 | 1 |
    | `ar.usage.kullama-repeated` | G13 | 1 | 1 |
    | `ar.usage.abadan-past` (لم … أبدًا → قطّ) | G13 | 2 | 1 |
-   | `ar.usage.expression` (اختار بين, بين … وبين, لمدة, لا زال, بعضهم البعض, كما وأن) | L2 | 4 | 4 |
-   | `ar.usage.word` (26 forms of 6 lexemes: ساهم, هام, تواجد, مبروك, سويا, مدراء) | L3 | 2 | 1 |
-   | `ar.style.wordiness` (8 patterns) | L6 | 2 | 1 |
+   | `ar.usage.expression` (103 patterns, e.g. اختار بين, لا زال, أكد على, قال أنّ, على ضوء, العديد من, لعب دورًا, نفس + noun, 32 verbs and particles written with لـ for إلى) | L2 | 13 | 9 |
+   | `ar.usage.word` (80 forms, e.g. ساهم, هام, تواجد, لوحده, مشاكل, استلم, يعتبر, توفّر) | L3 | 6 | 1 |
+   | `ar.style.wordiness` (130 patterns: 24 fixed phrases, 26 `بشكل/بصورة` + adjective, 80 `قام بـ` + verbal noun) | L6 | 7 | 3 |
    | `ar.style.long-sentence` (> 80 words) | L9 | 1 | 2 |
    | `ar.style.tanwin-placement` (اً → ًا) | T1-a | 1 | 2 |
-   | `ar.register.loanword` (28 entries) | L4 | 1 | 1 |
-   | `ar.hint.vowelling` (20 words, unvowelled occurrences only) | L7 | 3 | 1 |
+   | `ar.register.loanword` (216 entries) | L4 | 4 | 2 |
+   | `ar.hint.vowelling` (146 words, unvowelled occurrences only) | L7 | 5 | 1 |
    | `ar.hint.dad-za` (5 rare→frequent ض/ظ pairs) | S10 | 1 | 1 |
 
    Tests: 195 new engine tests (81 positive cases, 68 default and 16 opt-in
@@ -272,6 +272,88 @@ below. No Arabic resource is downloaded by default.
      `ar.punctuation.arabic-mark` 651 (PUD uses Latin commas),
      `ar.style.tatweel` 13, `ar.repetition.word` 7,
      `ar.spacing.conjunction-waw` 1.
+
+   **List expansion (19 November 2026).** The word and phrase lists were
+   expanded by the same clean-room process: every entry was authored from
+   general knowledge of MSA following only the [specification](arabic-rule-spec.md);
+   no LanguageTool, Fareh, Ghalatawi, aghlat, Arramooz, Qalsadi or
+   Hunspell-derived list was opened, and no "common mistakes" list was
+   searched for. Sizes, before → after:
+
+   | List | Rule | Before | After |
+   |---|---|---|---|
+   | hamzat al-qat' words (exact match) | `ar.hamza.initial` | 36 | 242 |
+   | definite ta-marbuta stems | `ar.ta-marbuta.final` | 44 | 277 |
+   | alif-maqsura words | `ar.alif-maqsura.final` | 6 | 52 |
+   | frozen misspellings (hamza seats, wasl/qat', ة/ه, ض/ظ, joined words, plural alif) | `ar.spelling.common` | 54 | 662 |
+   | fixed-expression errors | `ar.expression.error` | 3 | 31 |
+   | prescriptive expressions (opt-in) | `ar.usage.expression` | 6 | 103 |
+   | prescriptive single words (opt-in) | `ar.usage.word` | 26 | 80 |
+   | colloquial words | `ar.register.colloquial` | 40 | 147 |
+   | loanwords (opt-in) | `ar.register.loanword` | 28 | 216 |
+   | wordiness patterns (opt-in) | `ar.style.wordiness` | 8 | 130 |
+   | vowelling hints (opt-in) | `ar.hint.vowelling` | 20 | 146 |
+
+   `ar.register.colloquial` stays default-on (no change to the rule-id
+   sets), so its new entries were held to the default-on bar: no MSA
+   homograph, no frequent name, and no hit on valid text in the corpora
+   below. Words that are valid in another reading (pronoun suffixes,
+   imperatives of measure I, names, the second member of a ض/ظ pair) were
+   left out or given several suggestions. Two code changes came with the
+   lists: a suggestion that carries its own harakat is no longer respelled
+   letter by letter (it produced `يُُعدّ` from `يُعتبر`), and compiled phrase
+   patterns are cached across checks.
+
+   **False-positive check of the expanded lists**, every rule enabled, on
+   the 1,000 UD Arabic-PUD test sentences and on 17,417 sentences sampled
+   from 1,600 random articles of the Arabic Wikipedia dump `20231101.ar`
+   (CC BY-SA; evaluation only, not committed). Default-on list-driven rules,
+   findings on main → expanded lists → after tightening:
+
+   | Rule | PUD | Wikipedia |
+   |---|---|---|
+   | `ar.hamza.initial` | 0 → 0 → 0 | 173 → 251 → 251 |
+   | `ar.spelling.common` | 0 → 2 → 0 | 15 → 162 → 129 |
+   | `ar.ta-marbuta.final` | 0 → 0 → 0 | 1 → 5 → 5 |
+   | `ar.alif-maqsura.final` | 0 → 0 → 0 | 6 → 11 → 11 |
+   | `ar.expression.error` | 0 → 0 → 0 | 4 → 8 → 8 |
+   | `ar.register.colloquial` | 0 → 0 → 0 | 15 → 18 → 9 |
+
+   Every default-on finding was inspected. After tightening, all hamza,
+   spelling, ta-marbuta, alif-maqsura and expression findings are real
+   errors in the Wikipedia text (unhamzated أن/إلى/أيضًا, `ذالك`, `إنتقل`,
+   `الدكتوراة`, `حتي`, `على حدى` …); the 9 colloquial findings are dialect
+   words inside quoted Egyptian film, play and song titles and dialogue (and
+   one typo for من). Removed or narrowed:
+   - spelling: `لدية` (it matched `بلدية`, municipality, through the ب
+     prefix: 29 Wikipedia and 2 PUD hits), `كانو` (the city of Kano);
+     `جزئ` now offers both جزء and جزيء (it was written for the molecule);
+   - colloquial, names and toponyms: `فين` (Funen), `هيدي` (Heidi), `دابا`,
+     `ليه` (French *les*, Leh) from the original list; `اتنين` (a place
+     name), `ازيك` (via `فازيك`, Vazgen), `وين` (Wynne), `ديالو` (Diallo),
+     `بكير` (Ibn Bukayr) from the new entries; `يلا`/`يللا` were left out
+     before the run because `فيلا`/`فيللا` (villa) would match through the
+     ف prefix;
+   - opt-in loanwords colliding with names: `مايك`, `بليز` (Belize),
+     `بلان`, `لايك`, `برافو`, `بوست`, `براند`, `بلوك`;
+   - opt-in expressions: `تخرج من` no longer matches `تخرج`/`تخرجه` (also
+     تَخرُج, "she leaves"); `الغير` + word was dropped (`بمساعدة الغير هو`);
+     the لـ-for-إلى patterns match only the definite `لل` form (before an
+     indefinite word the lam may mean purpose) and give advice without a
+     replacement (`لل` also absorbs a noun-initial lam, `للغة`).
+
+   Opt-in rules on Wikipedia after tightening (prescriptive targets, as
+   designed): `ar.hint.vowelling` 5,265, `ar.usage.expression` 1,700 (mostly
+   the advice on `تمّ` + verbal noun and `العديد من`), `ar.usage.word` 561,
+   `ar.style.wordiness` 317, `ar.register.loanword` 201.
+
+   Tests: 117 new engine tests: positive samples for every list (68 new
+   cases), regression controls for each removed false positive, list-size
+   floors, a check that no suggestion of any list or phrase is itself
+   flagged by a default rule (over 1,500 suggestions), and a check that no
+   surface form (with the rule's prefixes and article) is claimed by two
+   lists with different suggestions. The engine proofing suite passes 1,510
+   tests (1,393 before); the editor Arabic integration test passes.
 
    Limitations: consistency is per paragraph (the request carries one block;
    a document-wide pass belongs to the host); dates are day–month-name–year
