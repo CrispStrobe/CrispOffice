@@ -291,7 +291,7 @@ operation, while `archiveMessage` remains the compatible single-origin API.
 `MailArchiveImportResult.originsAdded` reports the actual newly committed count.
 
 `NativeMailArchiveRestorer.inspect` returns a `MailArchiveRestorePlan` bound to
-the exact observed manifest digest. `restore` re-reads the manifest under its
+the digest of the decoded manifest text (a UTF-8 BOM is ignored). `restore` re-reads the manifest under its
 current limits and rejects a changed preview. It rechecks manifest metadata
 between items and after parsing, then verifies the digest at completion. It
 rejects observed symlinks, including ancestors of the selected directory,
