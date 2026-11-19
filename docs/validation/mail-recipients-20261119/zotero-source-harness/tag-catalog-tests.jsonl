@@ -1,0 +1,61 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":8,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading /workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+{"count":1,"time":7,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1058}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":27,"line":null,"column":null,"url":null},"type":"group","time":1060}
+{"test":{"id":3,"name":"online user tags keep a read-only request","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":23,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1061}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1093}
+{"test":{"id":4,"name":"online group tags keep a read-only request","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":23,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1094}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1097}
+{"test":{"id":5,"name":"collection tag contains query uses qmode","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":73,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1098}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1104}
+{"test":{"id":6,"name":"collection tag startsWith query uses qmode","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":73,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1105}
+{"testID":6,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1106}
+{"test":{"id":7,"name":"desktop user tags query the library items scope","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":110,"column":7,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1106}
+{"testID":7,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1109}
+{"test":{"id":8,"name":"desktop user tags query the COLL0001 items scope","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":110,"column":7,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1109}
+{"testID":8,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1110}
+{"test":{"id":9,"name":"desktop group tags query the library items scope","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":110,"column":7,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1110}
+{"testID":9,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1112}
+{"test":{"id":10,"name":"desktop group tags query the COLL0001 items scope","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":110,"column":7,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1112}
+{"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1113}
+{"test":{"id":11,"name":"blank tag searches omit both q and qmode","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":160,"column":3,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1113}
+{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1115}
+{"test":{"id":12,"name":"names retain exact case, whitespace and unsupported filter syntax","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":171,"column":3,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1115}
+{"testID":12,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1118}
+{"test":{"id":13,"name":"missing metadata stays unknown while zero and future types survive","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":202,"column":3,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1119}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1120}
+{"test":{"id":14,"name":"invalid query, scope and page inputs fail before network access","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":225,"column":3,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1120}
+{"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1126}
+{"test":{"id":15,"name":"malformed tag arrays and metadata fail without partial results","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":281,"column":3,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1126}
+{"testID":15,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1141}
+{"test":{"id":16,"name":"a response exceeding the requested page limit is rejected","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":324,"column":3,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1141}
+{"testID":16,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1142}
+{"test":{"id":17,"name":"pagination preserves records and uses the validated next offset","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":337,"column":3,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1142}
+{"testID":17,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1144}
+{"test":{"id":18,"name":"tag pagination rejects an invalid next link: https://other.example/users/7/tags?start=50","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":372,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1145}
+{"testID":18,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1146}
+{"test":{"id":19,"name":"tag pagination rejects an invalid next link: http://api.zotero.org/users/7/tags?start=50","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":372,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1146}
+{"testID":19,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1147}
+{"test":{"id":20,"name":"tag pagination rejects an invalid next link: https://user@api.zotero.org/users/7/tags?start=50","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":372,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1147}
+{"testID":20,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1149}
+{"test":{"id":21,"name":"tag pagination rejects an invalid next link: https://api.zotero.org/users/8/tags?start=50","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":372,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1149}
+{"testID":21,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1150}
+{"test":{"id":22,"name":"tag pagination rejects an invalid next link: https://api.zotero.org/users/7/items?start=50","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":372,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1150}
+{"testID":22,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1153}
+{"test":{"id":23,"name":"tag pagination rejects an invalid next link: https://api.zotero.org/users/7/tags?start=0","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":372,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1153}
+{"testID":23,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1154}
+{"test":{"id":24,"name":"tag pagination rejects an invalid next link: https://api.zotero.org/users/7/tags?start=bad","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":372,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1154}
+{"testID":24,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1156}
+{"test":{"id":25,"name":"tag pagination rejects an invalid next link: https://api.zotero.org/users/7/tags?start=50&key=secret","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":372,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1156}
+{"testID":25,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1157}
+{"test":{"id":26,"name":"tag pagination rejects an invalid next link: https://api.zotero.org/users/7/tags?start=50#fragment","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":372,"column":5,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1157}
+{"testID":26,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1158}
+{"test":{"id":27,"name":"tag requests honor shared backoff without a retry loop","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":384,"column":3,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1158}
+{"testID":27,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1162}
+{"test":{"id":28,"name":"desktop tag pages reject a changed database identity","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":423,"column":3,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1162}
+{"testID":28,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1163}
+{"test":{"id":29,"name":"transport failures and malformed JSON retain safe errors","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":446,"column":3,"url":"file:///workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart"},"type":"testStart","time":1164}
+{"testID":29,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1167}
+{"success":true,"type":"done","time":1173}

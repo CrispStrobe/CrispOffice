@@ -1,0 +1,9 @@
+name: quds_mail_runtime_validation
+publish_to: none
+environment:
+  sdk: ^3.12.0
+dependencies:
+  quds_mail_core:
+    path: /workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_mail_core
+dev_dependencies:
+  test: 1.31.1

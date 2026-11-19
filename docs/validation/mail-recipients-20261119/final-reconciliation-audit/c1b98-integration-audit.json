@@ -1,0 +1,289 @@
+{
+  "recordedAtUtc": "2026-11-19T21:26:02.909315+00:00",
+  "scope": "Read-only integration source/tree audit. No production/index/commit/remote changes and no test execution.",
+  "incomingCommit": "c1b98f12f802863fb602e9919ead524891bfbcc6",
+  "auditedOursCommit": "a0f27b2f61d332ff834d4bda59dadccdad020021",
+  "pendingMergeTarget": "30bf612547fd7a00a5cb2ba525a04fbe27d3d90d",
+  "incomingParents": [
+    "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760",
+    "780422316b4e37989e01ac871dd2956fbd2c8908",
+    "658095574de89cf3d6f3dfc874fab7e5c479b47e"
+  ],
+  "incomingMergeUniqueBlobs": [
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "incoming": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "1e72c1e591bd48de13f4fd000160d3497cd1d398"
+      },
+      "ours": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "313e3f7d70cd89f63811bf2d4722a110d353d9f1"
+      },
+      "parents": {
+        "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "fae5d3974ce0a9f320b8f2fbcb867a4a9f20f9e2"
+        },
+        "780422316b4e37989e01ac871dd2956fbd2c8908": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "810e29e2bc93c1b35e45fc8a29d66bfa3257e5e4"
+        },
+        "658095574de89cf3d6f3dfc874fab7e5c479b47e": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "b34a22bc508c0c2f7eb2505aa61b51cce6c9511c"
+        }
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "incoming": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "9a20a7c05c4284bf97afcb3d6fd525f20897c19f"
+      },
+      "ours": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "684ff7c62b3a1a181fff9684fc3ada16f1486329"
+      },
+      "parents": {
+        "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "969277340980ca26f35b27090545a57f2e8af7f6"
+        },
+        "780422316b4e37989e01ac871dd2956fbd2c8908": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "fc91d7f345a163708e91abf369660652de07003d"
+        },
+        "658095574de89cf3d6f3dfc874fab7e5c479b47e": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "c5ce1f7350514f56265aa2c35bc3248972640b9a"
+        }
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "incoming": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "0199948f1d28078eb88d16ad075a321616046b2d"
+      },
+      "ours": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "541a65628cd1c51e8f477f14e3d72562b1c56150"
+      },
+      "parents": {
+        "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "46118c92ad9b6dadea0d946896ddec0fc111792d"
+        },
+        "780422316b4e37989e01ac871dd2956fbd2c8908": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "46118c92ad9b6dadea0d946896ddec0fc111792d"
+        },
+        "658095574de89cf3d6f3dfc874fab7e5c479b47e": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "2871ba4534c661fb3533472a4117af0ccac183e0"
+        }
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+      "incoming": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "c2fe78efa784f27302adcc3e509ec3647ffca09d"
+      },
+      "ours": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "0cc4a225646537df60939eddcc5e983de0ddeea6"
+      },
+      "parents": {
+        "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "5d92f83f418a1cb26ce68d82cb375b82f9112bbc"
+        },
+        "780422316b4e37989e01ac871dd2956fbd2c8908": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "52cd1b9a63cd4c9abd01ce88ddcfe9d84ab4e6de"
+        },
+        "658095574de89cf3d6f3dfc874fab7e5c479b47e": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "5dba7774616836fe63fae9f823db25b59a7bd9f6"
+        }
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "incoming": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "2c9d2764a802d90d3d60d56858e0649d8ca9621d"
+      },
+      "ours": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "89029851bdc707df56828b82db0e5f0a623bca6c"
+      },
+      "parents": {
+        "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "ef79096691751254c22e1205c24610da2b7d82f8"
+        },
+        "780422316b4e37989e01ac871dd2956fbd2c8908": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "e8e0aed0c9c464e6cdaff015358435f6271c8244"
+        },
+        "658095574de89cf3d6f3dfc874fab7e5c479b47e": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "14f634f5c0d4116889fad84b81784bbf0f82618e"
+        }
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "incoming": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "3d9195940c87f2f9990ccc966d82f79dabb5d6b3"
+      },
+      "ours": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "558203f0d022d421296130d6f90922f41ae7614a"
+      },
+      "parents": {
+        "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "e30f9cb15d43f75c342fffefe2c3134b9ccf652f"
+        },
+        "780422316b4e37989e01ac871dd2956fbd2c8908": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "f7cc449b8653dc0247aeb94a007af10cdf2bfc2d"
+        },
+        "658095574de89cf3d6f3dfc874fab7e5c479b47e": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "bd31c006d7f574368d2d66d25d90d7657957db88"
+        }
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "incoming": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "c29a2ad82834a28bdaa124f86fd6d68e63016339"
+      },
+      "ours": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "eb9855ac6b027e1cdd162df386e1577d386d495a"
+      },
+      "parents": {
+        "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "1f2a5f52e45cd6efe0930df02252f0444ecb422c"
+        },
+        "780422316b4e37989e01ac871dd2956fbd2c8908": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "ccca6efcfdff78f64ae65abe21f76b812cdfecbd"
+        },
+        "658095574de89cf3d6f3dfc874fab7e5c479b47e": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "3aea5a092356baa316d7800d321d49d2e31593a3"
+        }
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+      "incoming": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "35e6dd367aa54a2172d6f4cae5a9f93a13895488"
+      },
+      "ours": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "963efb76e6e81edf98ee009047197ff06046b7e4"
+      },
+      "parents": {
+        "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "4e7793435fbcfc392afa2947acf032dab0132c5c"
+        },
+        "780422316b4e37989e01ac871dd2956fbd2c8908": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "954fc77e55f389f40342c440abfecb3c976bc76c"
+        },
+        "658095574de89cf3d6f3dfc874fab7e5c479b47e": {
+          "mode": "100644",
+          "type": "blob",
+          "oid": "6b16cff43392f796743e02e7b405119953b0d60a"
+        }
+      }
+    }
+  ],
+  "deletedRelativeToAnyParent": [],
+  "parentCoverageAfterPendingMerge": {
+    "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760": {
+      "alreadyAncestorOfAuditedOurs": true,
+      "ancestorOfPendingTarget": false
+    },
+    "780422316b4e37989e01ac871dd2956fbd2c8908": {
+      "alreadyAncestorOfAuditedOurs": false,
+      "ancestorOfPendingTarget": true
+    },
+    "658095574de89cf3d6f3dfc874fab7e5c479b47e": {
+      "alreadyAncestorOfAuditedOurs": true,
+      "ancestorOfPendingTarget": false
+    }
+  },
+  "mailDiffFrom658Parent": "",
+  "explicitRichTextFixDiffFrom780Parent": "",
+  "expectedSemanticDeltaAfter30bfMerge": [
+    "Preserve c1b98 merge ancestry. Its three parents will all be ancestors after the pending30bf merge.",
+    "No new mail, Zotero, VBA, explicit-run-style source or documentation capability needs transplanting from c1b98.",
+    "Retain the four-line reset-to-inheritance test assertion from c1b98 in the current master-paper test.",
+    "Retain current normalized background model, PDF resolution, renderer ownership rule, mail draft extraction, and later helper/host regressions."
+  ],
+  "resolutionGuidance": {
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "Keep current _primaryMasterBackground + setInheritedBackground + resolveBackground + copy preservation. Incoming updateMasterBackground is an older reconciliation; its rich-text scalar edits and hasCurrentRichText behavior already exist in ours.",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "Keep current applyMasterBackground loop using inheritsMasterBackground and setInheritedBackground; do not restore incoming updateMasterBackground method call.",
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": "Keep current _slidePaper rule that themes inherited white only; incoming adaptDocumentColors-and-white rule would also recolor explicit white fills. Current hit-test origin, run-color contrast, default-size and scalar-rich-run behavior already preserve incoming work.",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": "Keep slide.resolveBackground(deck.master.background), preserving direct primary-master edits and imported secondary-master baseline. Incoming nonempty-background early return would discard that fix; tab offsets and rich formatting already retained.",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": "Retain current test union and explicit-white default-dark-theme assertion. Incoming changes that disable color adaptation for explicit-white coverage are weaker. Append the residual four-line reset-to-inheritance assertion.",
+    "packages/quds_office_engine/test/office_pdf_export_test.dart": "Current contains both incoming PDF cases and strengthens background coverage with secondary inherited cyan fill and changed-master expectations. Preserve current version.",
+    "packages/quds_office_editor/CHANGELOG.md": "Current includes incoming Zotero/slide entries and later mail/slide entries; no new text needs importing.",
+    "packages/quds_office_engine/CHANGELOG.md": "Current includes incoming Zotero/VBA/slide entries and later qualified reconciliation entry; no new text needs importing."
+  },
+  "residualTestAssertion": "inherited.background = '';\nexpect(inherited.inheritsMasterBackground, isTrue);\ncontroller.applyMasterBackground('99AABB');\nexpect(inherited.background, '99AABB');\n",
+  "qualification": "The expected content delta is semantic source review, not a claim of an automatically conflict-free Git merge. Actual recursive merge can conflict among its three merge bases and should be reviewed against these paths."
+}

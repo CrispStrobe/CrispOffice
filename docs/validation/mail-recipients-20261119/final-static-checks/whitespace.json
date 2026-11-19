@@ -1,0 +1,21 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "2170791c9250d72c9df31a065408365f9b50abaa",
+    "HEAD",
+    "--",
+    "packages",
+    "docs/roadmaps",
+    ".github",
+    "README.md",
+    "docs/MACROS.md",
+    "docs/VBA_MACROS.md",
+    "pubspec.lock"
+  ],
+  "exitCode": 0,
+  "output": "",
+  "scope": "Product source, tests, behavior docs and incoming workflow/docs/lock; raw validation artifacts excluded",
+  "rawEvidenceNote": "Full evidence diff check reports retained context-space lines in .diff files and blank-line gaps in exact AST-adapted test copies. These bytes are retained to match execution and evidence hashes, not normalized."
+}

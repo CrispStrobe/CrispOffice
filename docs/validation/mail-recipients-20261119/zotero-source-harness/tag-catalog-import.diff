@@ -1,0 +1,10 @@
+--- packages/quds_office_engine/test/zotero_tag_catalog_test.dart
++++ /workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart
+@@ -1,6 +1,6 @@
+ import 'dart:convert';
+ 
+-import 'package:quds_office_engine/src/zotero/zotero_client.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/zotero/zotero_client.dart';
+ import 'package:test/test.dart';
+ 
+ ZoteroHttpResponse _json(
