@@ -59,4 +59,12 @@ text-language controls and routing, the demo DOCX language, real workspace
 support-review flow, no eager downloads, package setup/licences/cancellation,
 independent removal, disabled NER removal and filesystem deletion guards.
 Analysis of the changed production files and new tests passed with no issues.
-Native build and local preview receipts are recorded separately after packaging.
+The real native Harper worker additionally passed 21 tests. An en-GB smoke
+check accepted a valid English sentence, found a deliberate article error, and
+checked all ten English demo paragraphs; see [native-en-GB.json](native-en-GB.json).
+The Harper artifact was reused only after matching every recorded source hash
+and every artifact hash to its build receipt. The other native libraries were
+built locally. The separate sandboxed arm64 preview passed deep signature verification and
+a 20-second startup, including loading the bundled 109-label language detector.
+See [acceptance.json](acceptance.json). It has a unique app identity and does
+not replace the installed application.

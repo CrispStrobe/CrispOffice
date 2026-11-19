@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "nativeEnglishLocale": "en-GB",
+  "demoParagraphs": 10,
+  "cases": [
+    {
+      "case": 0,
+      "language": "en-GB",
+      "complete": true,
+      "findings": 0,
+      "providers": {
+        "german-spelling": "unsupported",
+        "german-writing": "unsupported",
+        "arabic-writing": "unsupported",
+        "harper": "success"
+      }
+    },
+    {
+      "case": 1,
+      "language": "en-GB",
+      "complete": true,
+      "findings": 1,
+      "providers": {
+        "german-spelling": "unsupported",
+        "german-writing": "unsupported",
+        "arabic-writing": "unsupported",
+        "harper": "success"
+      }
+    }
+  ]
+}
