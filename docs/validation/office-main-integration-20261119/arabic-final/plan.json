@@ -1,0 +1,236 @@
+{
+  "description": "Fresh combined qualification of the complete previously qualified Mail scope and the Arabic writing-rule integration. The original 35-suite Mail/TLS/parser/consumer inventory is retained. Additional VM engine suites cover Arabic rules, shared provider/result/language/protected-range contracts and German compatibility; editor suites cover default registration, correction, lifecycle, language handling, review UI and Notes; English Harper contract suites and Studio review/draft suites cover the separate workspace registration. A separate same-source node-plan.json reruns the Arabic rule suite for JavaScript Unicode/regex behavior. Count its executions separately and deduplicate case identities across platforms. Historical Office/Thesaurus results remain attributed to their original source; external/browser/installed-app/human acceptance is outside these local gates.",
+  "groups": [
+    {
+      "name": "transport-native",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/configuration_test.dart",
+        "test/native_provider_test.dart",
+        "test/host_store_integration_test.dart"
+      ]
+    },
+    {
+      "name": "transport-tls-loopback-vm",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/native_tls_test.dart",
+        "test/native_tls_cancellation_test.dart",
+        "test/native_tls_round_trip_test.dart"
+      ]
+    },
+    {
+      "name": "transport-node-boundary",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/unsupported_test.dart"
+      ]
+    },
+    {
+      "name": "vendor-imap-and-byte-reader",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/imap/imap_client_test.dart",
+        "test/imap/imap_robustness_test.dart",
+        "test/imap/imap_quoting_test.dart",
+        "test/src/imap/imap_response_reader_test.dart",
+        "test/src/imap/imap_response_test.dart",
+        "test/src/imap/fetch_parser_test.dart",
+        "test/src/util/uint8_list_reader_test.dart",
+        "test/src/imap/raw_fetch_parser_test.dart"
+      ]
+    },
+    {
+      "name": "vendor-connection-and-protocols",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/connection_robustness_test.dart",
+        "test/reconnect_state_test.dart",
+        "test/write_failure_test.dart",
+        "test/pop/pop_client_test.dart",
+        "test/pop/pop_framing_test.dart",
+        "test/smtp/smtp_client_test.dart",
+        "test/smtp/smtp_framing_test.dart",
+        "test/smtp/smtp_send_state_test.dart",
+        "test/mail/mail_client_starttls_test.dart",
+        "test/mail/mail_client_oauth_test.dart"
+      ]
+    },
+    {
+      "name": "mime-consumer-vm",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "mail-ui-consumers",
+      "cwd": "packages/quds_mail_ui",
+      "runner": "flutter",
+      "tests": [
+        "test/controller_test.dart",
+        "test/example_test.dart",
+        "test/message_view_test.dart",
+        "test/presentation_test.dart"
+      ]
+    },
+    {
+      "name": "office-proofing-engine-vm",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/office_proofing_test.dart",
+        "test/proofing/proofing_locale_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart",
+        "test/proofing/proofing_report_merge_test.dart",
+        "test/proofing/german_writing_rules_test.dart",
+        "test/proofing/german_spelling_test.dart",
+        "test/word_proofing_inheritance_test.dart",
+        "test/word_comment_proofing_styles_test.dart"
+      ]
+    },
+    {
+      "name": "english-proofing-contracts-vm",
+      "cwd": "packages/quds_proofing_harper",
+      "runner": "dart",
+      "tests": [
+        "test/harper_provider_test.dart",
+        "test/harper_source_contract_test.dart",
+        "test/harper_source_text_test.dart"
+      ]
+    },
+    {
+      "name": "office-proofing-editor",
+      "cwd": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/word_arabic_writing_integration_test.dart",
+        "test/word_draft_proofing_test.dart",
+        "test/word_german_grammar_integration_test.dart",
+        "test/word_incremental_proofing_menu_test.dart",
+        "test/word_incremental_proofing_test.dart",
+        "test/word_live_proofing_session_test.dart",
+        "test/word_manual_proofing_test.dart",
+        "test/word_notes_proofing_controller_test.dart",
+        "test/word_notes_proofing_pane_test.dart",
+        "test/word_proofing_capture_cache_test.dart",
+        "test/word_proofing_context_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_dialog_test.dart",
+        "test/word_proofing_geometry_test.dart",
+        "test/word_proofing_navigation_test.dart",
+        "test/word_proofing_priority_test.dart",
+        "test/word_proofing_session_test.dart",
+        "test/word_text_proofing_controls_test.dart",
+        "test/word_text_proofing_pane_test.dart"
+      ]
+    },
+    {
+      "name": "studio-proofing-registration",
+      "cwd": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_review_pane_test.dart",
+        "test/studio_comment_draft_proofing_test.dart"
+      ]
+    }
+  ],
+  "analysis": [
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/unsupported_test.dart",
+    "third_party/enough_mail/lib/imap.dart",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "packages/quds_mail_transport/test/native_tls_test.dart",
+    "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "packages/quds_mail_transport/test/support/tls_server.dart",
+    "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart"
+  ],
+  "format": [
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/unsupported_test.dart",
+    "third_party/enough_mail/lib/imap.dart",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "packages/quds_mail_transport/test/native_tls_test.dart",
+    "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "packages/quds_mail_transport/test/support/tls_server.dart",
+    "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart"
+  ],
+  "extra_inputs": [
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "packages/quds_mail_transport/test/fixtures/tls/README.md",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+    "packages/quds_mail_transport/test/support/tls/README.md",
+    "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+    "docs/validation/office-main-integration-20261119/arabic-final/plan.json",
+    "docs/validation/office-main-integration-20261119/arabic-final/node-plan.json"
+  ]
+}

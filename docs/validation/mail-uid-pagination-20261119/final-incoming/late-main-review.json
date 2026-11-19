@@ -1,0 +1,229 @@
+{
+  "kind": "late-main-source-review",
+  "observed_at_utc": "2026-11-19T08:17:09.422412+00:00",
+  "captured_main": "dc267fb4957d5a6499ce8174fd4a2acc39a4acf8",
+  "later_main": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+  "local_merge": "5857f18b01e9fd33278606f97b7651c6b23cfb53",
+  "commits": [
+    "b655b8a37fddc874bd42a453c371eed6253e82d8 Merge pull request #182 from CrispStrobe/docs/arabic-rule-spec-20261119",
+    "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387 docs(proofing): clean-room Arabic rule specification [skip ci]",
+    "f1330255f6199acb10c473c0fc02209b1152b558 Add macOS runner to Quds Office Studio"
+  ],
+  "changed_paths": [
+    {
+      "path": "docs/roadmaps/arabic-proofing.md",
+      "bytes": 14282,
+      "sha256": "779c61286fa1253730c670df8a4a34b5d5fc65f27e1bc279e0002cd136ef8aa2",
+      "exact_to_incoming_main": false
+    },
+    {
+      "path": "docs/roadmaps/arabic-rule-spec.md",
+      "bytes": 42308,
+      "sha256": "e925ef287205eec56d3458feaff0539919d10455a2407dbbe5f8010c48168112",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/analysis_options.yaml",
+      "bytes": 1533,
+      "sha256": "3d51a36f8ac9d0013560735c6e0d33979da1305826549734866f76520d99ebe4",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/.gitignore",
+      "bytes": 89,
+      "sha256": "ffec1a0bbd70547186b82ad4e49089bafab2de309b89de97c776d70debb179fa",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Flutter/Flutter-Debug.xcconfig",
+      "bytes": 125,
+      "sha256": "802714a37a8fd3065fb3d8e21cbcfbb3147c7ad25f25934b64590085aa9f5b28",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Flutter/Flutter-Release.xcconfig",
+      "bytes": 127,
+      "sha256": "d575f436f8bab30d7096792396e73b65db242edc01913c4123d2c29e713b3a6d",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Flutter/GeneratedPluginRegistrant.swift",
+      "bytes": 612,
+      "sha256": "def3e43ee8ad89ac58c7f4f20c231102dcf1d21781f4f3a8ca9b8ae8d4bcf41c",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Podfile",
+      "bytes": 1365,
+      "sha256": "46afee587c4ce12f5ea80942d379c6d6dc07037149e307fc30ade39a44132bb3",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Podfile.lock",
+      "bytes": 1469,
+      "sha256": "8624664e184dd511782baf652472c82dcd804a4851a7a60bbf5418feb9f4734d",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner.xcodeproj/project.pbxproj",
+      "bytes": 32984,
+      "sha256": "9c0a518416b25b34279775bde6c0565e2dc159f2ef07d5cb847a6c3652942c0d",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+      "bytes": 238,
+      "sha256": "dfa0f9bb85b95ccba9c6811adadf8cb407fb5d52088e89db83ebc308ec448542",
+      "exact_to_incoming_main": true,
+      "plist_parse": "PASS"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme",
+      "bytes": 3731,
+      "sha256": "bed33d9c0e9af4d50fe258b0d0f07e243174662fafa96aef469ca4694839cdff",
+      "exact_to_incoming_main": true,
+      "xml_parse": "PASS"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner.xcworkspace/contents.xcworkspacedata",
+      "bytes": 224,
+      "sha256": "465e6de5660384eb6832e8078920ba6cd5305c445cb29a24a86a2fda4aa6b67e",
+      "exact_to_incoming_main": true,
+      "xml_parse": "PASS"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+      "bytes": 238,
+      "sha256": "dfa0f9bb85b95ccba9c6811adadf8cb407fb5d52088e89db83ebc308ec448542",
+      "exact_to_incoming_main": true,
+      "plist_parse": "PASS"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/AppDelegate.swift",
+      "bytes": 311,
+      "sha256": "ce9dbe45a57c59e85519da50a26c471615b9c8cdd85a8f4a39d2e480e62a4af4",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "bytes": 1291,
+      "sha256": "bc6ba8105ca69651aeeb77358851590de295dca04681a1d58c0f449641c242f3",
+      "exact_to_incoming_main": true,
+      "json_parse": "PASS"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "bytes": 102994,
+      "sha256": "6232e5815af17e25e0268b2fec7aea9e068cc92ec709e9605c2b31df4ff2a313",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_128.png",
+      "bytes": 5680,
+      "sha256": "15591f03f31313af6fd644ed0512106cc04365130b8b73244f1cfa6dddfb4400",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_16.png",
+      "bytes": 520,
+      "sha256": "cc6928b5adfc00dbf526192e2705dd9af641cdf20ab4c6c7ca7cd4936dca59f0",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png",
+      "bytes": 14142,
+      "sha256": "416efd77cde932d42ef34168da24dd428a495b1f4f34bbbd125a18d2add186a2",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_32.png",
+      "bytes": 1066,
+      "sha256": "ae8c4458e41f1e28b1e851ed87d3268d4a0351ceea427fa2a84cc94ddfb6d4c5",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_512.png",
+      "bytes": 36406,
+      "sha256": "0a91c6c1bf242e54ee179e34629e9ef3e8a6d286c0fce01e302280a8be9277e6",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_64.png",
+      "bytes": 2218,
+      "sha256": "6ad229623498e5f1277800db3ab7cb11faf85eb2569e1213f7d8e55003c07b42",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Base.lproj/MainMenu.xib",
+      "bytes": 23729,
+      "sha256": "be9e9ef8469d3262370e0f0b855ed163cbf9c8362c59e330b2ffe63b86fa42f4",
+      "exact_to_incoming_main": true,
+      "xml_parse": "PASS"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Configs/AppInfo.xcconfig",
+      "bytes": 615,
+      "sha256": "84abefb6555b7b24fb5531068c864381d84365c968bad31c321fbc39d6520c9b",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Configs/Debug.xcconfig",
+      "bytes": 77,
+      "sha256": "8067d533ef6593760baad9a9855a786a7a77470fcc3f0925ec04fe43bc1ac4b0",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Configs/Release.xcconfig",
+      "bytes": 79,
+      "sha256": "7a6a4b4d973a23052fa0a0388dd261e32d311d7b66ba1bfc3b914b361808ac61",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Configs/Warnings.xcconfig",
+      "bytes": 580,
+      "sha256": "0e341a392b16ad302d12890aa3dac9257a6c10ece685437604259a85341645a3",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/DebugProfile.entitlements",
+      "bytes": 348,
+      "sha256": "ebaab2b9992173de422c33e1fbab7f6e31acaa2213956097ac8cefd894a91ac8",
+      "exact_to_incoming_main": true,
+      "plist_parse": "PASS"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Info.plist",
+      "bytes": 1060,
+      "sha256": "f253e89c512b3a9a81bc5cdd7a14bf932470f835f261654a808ea4549cd94aad",
+      "exact_to_incoming_main": true,
+      "plist_parse": "PASS"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/MainFlutterWindow.swift",
+      "bytes": 388,
+      "sha256": "65c9613c11bcedfa51416b16c975d8ba6ff12b405fc19d60db8755d92e86d9fe",
+      "exact_to_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Release.entitlements",
+      "bytes": 240,
+      "sha256": "b746c74b201e6af4e0864fbd1f4f629f96156a7ec4b7208bc995d0a5089bb592",
+      "exact_to_incoming_main": true,
+      "plist_parse": "PASS"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/RunnerTests/RunnerTests.swift",
+      "bytes": 290,
+      "sha256": "6bc180bc77c7def7a21d197233e25dff42cc493ab9d294632edafc18fdf0ac44",
+      "exact_to_incoming_main": true
+    }
+  ],
+  "summary": {
+    "paths": 33,
+    "exact_to_later_main": 32,
+    "reviewed_combined_document": "docs/roadmaps/arabic-proofing.md",
+    "dart_implementation_changes": 0,
+    "macos_build_or_execution": "NOT RUN; Linux host",
+    "github_actions_queried_or_awaited": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "description": "Same-source Arabic writing-rule qualification under the Dart-to-JavaScript Node backend, covering Unicode/regex, source UTF-16 offsets, protected spans, rule opt-outs and lifecycle. The main plan runs the same suite on VM; these are repeated platform executions, not additional distinct cases. Both plans bind the same complete source selection through symmetric extra_inputs. Static analysis/formatting are performed by the main plan. This does not establish actual browser rendering or lifecycle.",
+  "groups": [
+    {
+      "name": "arabic-writing-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "packages/quds_mail_transport/test/fixtures/tls/README.md",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+    "packages/quds_mail_transport/test/support/tls/README.md",
+    "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+    "docs/validation/office-main-integration-20261119/arabic-final/plan.json",
+    "docs/validation/office-main-integration-20261119/arabic-final/node-plan.json"
+  ]
+}

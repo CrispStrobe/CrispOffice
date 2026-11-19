@@ -1,0 +1,10 @@
+{
+  "sha256": "a32fa74c2c1ce15468de38c533ea44f1f8b4ce001da3e36da58a3d072f38b740",
+  "bytes": 9971,
+  "tip": "9f517f36f12a15a43eb1f5c927719db60241d69b",
+  "prerequisites": [
+    "162f53c0aff2314d88df912f9a64c0838e2a9da4",
+    "b559f6c764fbfac143f593e89ddc1096ad8b5c4e"
+  ],
+  "purpose": "Preserve exact isolated local merge/review commits before API checkpoint publication. No runtime or untracked inputs are included."
+}

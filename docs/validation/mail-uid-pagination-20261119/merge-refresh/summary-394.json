@@ -1,0 +1,46 @@
+{
+  "head": "39444f0dad2590ca2e79cc1ea60dec8b9e2bde98",
+  "tree": "a89f682249547a17cefe6a80e5c4460d09d80207",
+  "origin_capture_utc": "2026-11-19T09:05:31.280066+00:00",
+  "origin": {
+    "actual_refs": 424,
+    "classification": {
+      "ancestor": 396,
+      "historical_equivalent": 28
+    }
+  },
+  "retained_upstream": {
+    "capture_finished_utc": "2026-11-19T08:03:04.584226+00:00",
+    "fresh_capture": false,
+    "actual_refs": 4,
+    "classification": {
+      "ancestor": 4
+    }
+  },
+  "combined_actual_refs": 428,
+  "combined_classification": {
+    "ancestor": 400,
+    "historical_equivalent": 28
+  },
+  "original421": {
+    "actual_refs": 421,
+    "classification": {
+      "ancestor": 393,
+      "historical_equivalent": 28
+    },
+    "passed": true
+  },
+  "all14_equivalence_proofs_recomputed": true,
+  "unaccounted_refs": [],
+  "latest_captured_main": "baf3dbd086d1688c5110335b6a6cc6d5a5feb4eb",
+  "audit_execution_observations": {
+    "new_capture": true,
+    "original_capture": true
+  },
+  "audit_sha256": {
+    "audit-394-origin424-plus-retained-upstream4.json": "eae85cea595b646a19e99f1e312a6b3e04a52e52c01bdc3d669144be015c8825",
+    "audit-394-original421.json": "481a21e62a76754098f52675bdef60fd8f41483d79e316e599245c7b5b6f08fa"
+  },
+  "network_calls": 0,
+  "github_actions_calls": 0
+}

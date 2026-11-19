@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "source_commit": "960fb72fe904da92c41126b44fa65257931c6d65",
+  "source_base": "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+  "source_tree": "2effd3b4cb816ef29d485d90099364219a22005d",
+  "runs": [
+    {
+      "name": "shared-runner-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/document-review-notes-20261118/test_run_checks.py"
+      ],
+      "log": "shared-runner-controls.log",
+      "exit_code": 0,
+      "log_sha256": "2dfc52c2ecd3d9207cf921c9c2597d0ceb4802d7ba9a98a319755dfd4342fcf7",
+      "accepted": true
+    },
+    {
+      "name": "runtime-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py"
+      ],
+      "log": "runtime-controls.log",
+      "exit_code": 0,
+      "log_sha256": "62ee1c18c9f0757951fb8b35f9cff61dd0e96b4184b12620c0c43d6da2f6e4fa",
+      "accepted": true
+    },
+    {
+      "name": "ayaspell-offline-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/proofing/ayaspell",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "log": "ayaspell-offline-controls.log",
+      "exit_code": 0,
+      "log_sha256": "4c06e348a13e55cb4b24859c56d993d2c44dd38451b09a84a9119dd63e5092e2",
+      "accepted": true
+    },
+    {
+      "name": "core-store",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/tools/mail/check_store.py",
+        "--flutter-sdk",
+        "/workspace/scratch/ab196f483cec/runtime/flutter",
+        "--offline",
+        "--direct-tests",
+        "--command-timeout",
+        "600",
+        "--output",
+        "/workspace/scratch/ab196f483cec/mail-uid-final-1/core-store"
+      ],
+      "log": "core-store.log",
+      "exit_code": 0,
+      "log_sha256": "f99cfd1830ed1b737474983cbe8b088f6bd98e58398a78df6524b9a3af1c19dd",
+      "receipt": "core-store/receipt.json",
+      "receipt_sha256": "42f500bde3a299bdaad563bcadaf1f3c22f7ea2448f6cddf133b2af8b9924d6a",
+      "accepted": true
+    },
+    {
+      "name": "native",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/document-review-notes-20261118/run_checks.py",
+        "--head",
+        "960fb72fe904da92c41126b44fa65257931c6d65",
+        "--base",
+        "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+        "--runtime",
+        "/workspace/scratch/ab196f483cec/runtime",
+        "--plan",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/mail-uid-pagination-20261119/native-plan.json",
+        "--output",
+        "/workspace/scratch/ab196f483cec/mail-uid-final-1/native",
+        "--command-timeout",
+        "600"
+      ],
+      "log": "native.log",
+      "exit_code": 0,
+      "log_sha256": "72991b41a1e25eaf0aa0832af8804cf990c75f00349cece3258697319e609a46",
+      "receipt": "native/verification.json",
+      "receipt_sha256": "9412c6d0b3fdde1170d562b6be47c478ab4ba5896e3e6e55c88ce8dced80cc2b",
+      "accepted": true
+    },
+    {
+      "name": "node",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/document-review-notes-20261118/run_checks.py",
+        "--head",
+        "960fb72fe904da92c41126b44fa65257931c6d65",
+        "--base",
+        "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+        "--runtime",
+        "/workspace/scratch/ab196f483cec/runtime",
+        "--plan",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/mail-uid-pagination-20261119/node-plan.json",
+        "--output",
+        "/workspace/scratch/ab196f483cec/mail-uid-final-1/node",
+        "--command-timeout",
+        "600"
+      ],
+      "log": "node.log",
+      "exit_code": 0,
+      "log_sha256": "1840afe3a1c1eb7bc31ddc075a48fd24809752c1f571e5cb717a62fd2b51ac75",
+      "receipt": "node/verification.json",
+      "receipt_sha256": "051578f0ba81ff0270f90f2b11c1388fa37622ad6a5a90ad07b07a0b964a4f5a",
+      "accepted": true
+    }
+  ],
+  "started_at_utc": "2026-11-19T07:55:45.518745+00:00",
+  "runtime_receipt_sha256": "dce4d5fec2c7bfabdc6d9298327a098bb3418486b37316881a9802a8a0d0fa20",
+  "github_actions_queried_or_awaited": false,
+  "source_unchanged": true,
+  "runtime_unchanged": true,
+  "source_head_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "untracked_qualification_inputs_after": [],
+  "finished_at_utc": "2026-11-19T08:02:26.316437+00:00"
+}

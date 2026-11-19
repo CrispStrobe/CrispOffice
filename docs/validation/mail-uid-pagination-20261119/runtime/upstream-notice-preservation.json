@@ -1,0 +1,38 @@
+{
+  "entries": [
+    {
+      "bytes": 25755,
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7",
+      "matches_manifest": true,
+      "matches_pinned_upstream_archive": true,
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f",
+      "upstream_archive_member": "hunspell-1.7.2/COPYING.MPL"
+    },
+    {
+      "bytes": 1973,
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+      "matches_manifest": true,
+      "matches_pinned_upstream_archive": true,
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "sha256": "3f7ddd07c296edbfe0a47c7bcc82038ad347a2c4f672345b24f95c624db68513",
+      "upstream_archive_member": "hunspell-1.7.2/license.hunspell"
+    },
+    {
+      "bytes": 2912,
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
+      "matches_manifest": true,
+      "matches_pinned_upstream_archive": true,
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "sha256": "dcda061adeed22b26f276c01ec374f930789ae0d684e5aa8f8be309dd680ff20",
+      "upstream_archive_member": "hunspell-1.7.2/license.myspell"
+    }
+  ],
+  "manifest_path": "packages/quds_proofing_hunspell/licenses/manifest.json",
+  "manifest_sha256": "fff74108f96b8d1358f2ed0ba8261d5a91d219f865bfab6e4550f2c58701f629",
+  "purpose": "Preserve verbatim third-party license notice whitespace; no product code or wildcard exclusions.",
+  "schema_version": 1,
+  "upstream_archive_sha256": "11ddfa39afe28c28539fe65fc4f1592d410c1e9b6dd7d8a91ca25d85e9ec65b8",
+  "upstream_archive_url": "https://github.com/hunspell/hunspell/releases/download/v1.7.2/hunspell-1.7.2.tar.gz",
+  "upstream_version": "1.7.2"
+}

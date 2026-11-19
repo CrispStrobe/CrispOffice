@@ -1,9 +1,11 @@
 # Arabic proofing roadmap
 
-Accepted: 19 November 2026. Scope: Arabic spelling first, then grammar rules,
-then optional model-backed analysis. Built-in Arabic writing rules now run for
-Arabic-script Arabic paragraphs. Downloadable dictionary integration and
-model-backed analysis remain planned; no Arabic resource is downloaded by default.
+Accepted: 19 November 2026. Scope: Arabic spelling, independently authored
+writing rules, then optional model-backed analysis. The initial writing rules
+are registered for Arabic-language text. The optional Hunspell adapter,
+Studio registration and explicit dictionary download/setup workflow are
+implemented. Platform packaging and qualification boundaries are recorded
+below. No Arabic resource is downloaded by default.
 
 ## Constraints
 
@@ -47,8 +49,8 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to
    Hugging Face. Publishing includes only the manifest-listed files and
    `manifest.json`; unrelated files in a reused output directory are excluded.
-   The Hunspell adapter package is implemented (step 2); host registration and
-   the in-app Arabic download workflow remain open.
+   The Hunspell adapter package and Studio dictionary workflow are implemented
+   (step 2); packaging and installed-platform acceptance remain target-specific.
    The upstream GitHub copy (`linuxscout/ayaspell`
    `36a90abb`) is not used: its `.dic` contains file-concatenation separators
    and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as
@@ -71,7 +73,7 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    file hashed in `licenses/manifest.json`, exact sources shipped as
    `licenses/hunspell-1.7.2-library-sources.tar.gz`); native isolate transport
    and bundled WebAssembly worker; pinned installer with atomic publish and
-   removal. Evidence: identical flagged multiset to the Hunspell CLI on UD
+   removal. Incoming implementation evidence reports an identical flagged multiset to the Hunspell CLI on UD
    Arabic-PUD (795 of 15,676 words) for both native and Wasm; 18 Dart tests
    with the real library and dictionary; iOS/Android arm64 compile and link.
    **Host wiring (19 November 2026, branch `feat/arabic-host-wiring-20261119`):**
@@ -111,44 +113,49 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
      `flutter build apk --release --target-platform android-arm64` packages it
      as `lib/arm64-v8a/libquds_proofing_hunspell.so` (1.6 MB, stripped) in a
      69.8 MB release APK. Not yet run on a device.
-   - Open: Linux/Windows builds, iOS packaging (the example has no iOS
+   - Open: installed Linux/Windows application builds, iOS packaging (the example has no iOS
      runner), running on real devices, persisting the web download across
      sessions, signing with a release identity.
-3. **Arabic grammar rules (first set implemented, 19 November 2026).**
+3. **Arabic writing rules (first set implemented, 19 November 2026).**
    `ArabicWritingRulesProvider` (`arabic-writing`) in `quds_office_engine`
    is independently authored, MIT-licensed and part of the app. It was
    written from general MSA orthography without reading any LanguageTool or
    Fareh rule content. It is active only for Arabic-script Arabic paragraphs
    (`ar`, `ar-SA`, `ar-Arab-…`) and is registered in the default Word
    proofing service and the Studio example. Eleven rule ids:
-   - spelling: hamzat al-qat' on 36 listed words, with several suggestions
+   - spelling: hamzat al-qat' on a closed list, with several suggestions
      where the form depends on syntax (`ان` → `أن`/`إن`);
-   - spelling: ta marbuta, only for definite forms of 43 listed stems (after
+   - spelling: ta marbuta, only for definite forms of 44 listed stems (after
      the article a final ه cannot be the possessive pronoun);
    - spelling: alif maqsura on 6 listed words;
    - spelling: detached conjunction waw (`و هو` → `وهو`);
    - style: final ya written as ى (`فى` → `في`), a regional convention;
-   - style: Latin `, ; ?` after Arabic script, a space before or a missing
-     space after `، ؛ ؟`;
+   - style: Latin `, ; ?` after Arabic script, a space before `، ؛ ؟`, or a
+     missing space after `، ؛`;
    - style: tatweel;
    - style: immediate repetition of 26 closed-class words;
    - style: numbers that mix Western and Arabic-Indic digits.
 
-   Matching ignores harakat and tatweel while preserving combining maddah and
-   hamza (U+0653–U+0655) as spelling content. Correct decomposed spellings are
-   left unchanged. Suggestions keep the writer's harakat. Findings use original
-   UTF-16 offsets, and links, email and code
-   spans are excluded. Ambiguous words are left out on purpose: `علي` (the
-   name Ali), `فان` ("perishing"), indefinite `مدرسه` ("his teacher").
+   Matching ignores harakat and tatweel while preserving combining hamza
+   and maddah. Suggestions keep the writer's harakat. Whole-word matching
+   respects mixed-script letters, digits, connector punctuation and joiners.
+   Findings use original UTF-16 offsets, and links, email and code spans are
+   excluded. Ambiguous words are left out on purpose: `علي` (the name Ali),
+   `فان` ("perishing"), `لان` ("became soft"), indefinite `مدرسه`
+   ("his teacher"). Suggestions are advisory; broader linguistic acceptance
+   remains separate work. These rules need no dictionary download or model.
 
-   Tests:
-   - 73 engine tests: 39 positive cases covering every rule, 23 zero-finding
-     controls (hamzat al-wasl words, names, emphatic repetition, consistent
-     digits, Latin text, protected spans), plus ambiguity, offset, ignore,
-     language and dispose checks, three decomposed hamza/maddah controls and a
-     correction-offset regression that preserves those spellings;
+   Test coverage includes:
+   - engine cases covering every rule and zero-finding controls (hamzat al-wasl
+     words, names, emphatic repetition, consistent digits, Latin text and
+     protected spans), plus ambiguity, offset, ignore, language and dispose
+     checks; three decomposed hamza/maddah controls and a correction-offset
+     regression preserve those spellings exactly;
    - 2 editor integration tests: default session on an `ar-SA` run with an
      applied suggestion, and silence on German text.
+
+   The subsequent Office sync adds controls for decomposed spelling, mixed
+   scripts, numeric and identifier boundaries, and the valid verb `لان`.
 
    **Complex-script language (closed 19 November 2026):** Word stores the
    language of right-to-left text in `w:lang/@w:bidi`. Runs marked
@@ -156,10 +163,13 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    or the document default's complex-script language
    (`wordRunProofingLanguage`), so Arabic in Word documents with
    `w:val="en-US" w:bidi="ar-SA"` reaches the Arabic providers; Latin runs
-   keep `w:val`. Both attributes stay read-only for routing and round-trip
-   unchanged (tested). Setting a language from the selection still writes
-   `w:val` only; for an Arabic run the complex-script language keeps
-   precedence.
+   keep `w:val`. Digits, punctuation and combining marks alone do not select
+   the complex-script language. Unmodified attributes round-trip unchanged.
+   Setting the selection language updates both `w:val` and `w:bidi`, so the
+   choice also takes effect for Arabic/RTL runs; resetting to inherit clears
+   those two direct overrides while retaining East Asian language and other
+   native formatting. Document defaults remain live, and a changed default
+   invalidates an already captured selection target.
 
    Interpreting LanguageTool's Arabic rules is assessed
    [below](#languagetool-arabic-assessment-v68).
@@ -229,11 +239,18 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    Tests: 195 new engine tests (81 positive cases, 68 default and 16 opt-in
    zero-finding controls, 21 "off by default" checks, plus RTL offset tests
    with an emoji and harakat, a phrase found on the harakat-free text, an
-   Arabic-Indic date, protected spans, ignore and opt-in filtering). The 69
-   step-3 tests are unchanged; the engine proofing suite passes 1,384 tests
-   (1,189 before) and the two editor integration tests pass.
+   Arabic-Indic date, protected spans, ignore and opt-in filtering). The incoming
+   T1 checkpoint reported 1,384 engine proofing tests
+   (1,189 before) and two editor integration tests passing. These are historical
+   incoming results, separate from this reconciliation. The merged step-3
+   file retains all 82 tests from both continuations; the final source-bound
+   gate reports their acceptance together with the extension.
 
-   **False-positive check on UD Arabic-PUD** (r2.14 test, 1,000 `# text =`
+   This reconciliation adds 11 controls for phrase/date checks inside mixed-script
+   identifiers and for combining hamza at phrase-token boundaries. The extension
+   file now contains 206 cases; all 195 incoming T1 cases remain.
+
+   **Incoming T1 false-positive check on UD Arabic-PUD** (r2.14 test, 1,000 `# text =`
    news sentences, CC BY-SA, evaluation only, not committed), every rule
    enabled:
    - **default-on extension: 1 finding in total** —
@@ -353,7 +370,153 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    S9 inflected forms, S1 general spelling, L2/L3 lemma variants, the
    tense-aware part of G13 and G14's future restriction. T3 (needs a
    disambiguator): G1, G3, G4, G12 and kana/inna predicate case.
-3c. **Morphology lexicon: Camel Morph MSA (integrated 19 November 2026,
+3c. **Clean-room extension: tier T2 (morphology-based) implemented (19
+   November 2026).** Same clean-room process as 3b: written only from the
+   [specification](arabic-rule-spec.md) (T2 categories) and the deferred
+   list above. Every closed class, lexicon entry, message and test sentence
+   was authored from knowledge of MSA grammar; no LanguageTool, Fareh,
+   Ghalatawi, aghlat, Arramooz, Qalsadi or other GPL/LGPL/AGPL Arabic
+   proofing source or data was opened. MIT.
+
+   Code: `arabic_grammar_rules.dart`, a `part` of `ArabicWritingRulesProvider`
+   (same provider id). The provider takes an optional
+   `ArabicMorphology morphology` (default `UnavailableArabicMorphology`);
+   when it is unavailable the T2 rules are silent and the T1 output is
+   unchanged. Opt-in ids are in `arabicGrammarOptionalRuleIds` and are
+   enabled through `enabledOptionalRuleIds` like the T1 ones.
+
+   **Principle.** The `noprob` database has no ranking, so a rule reports
+   only when *no* analysis of the word concerned is compatible with the
+   grammatical requirement, and an unknown word (no analysis) is never
+   reported. Particles and number words are matched by spelling (the
+   analyzer normalizes hamza: it cannot tell أنّ from إنْ, or كان from
+   كأنّ). Only the words needed by an enabled rule are analyzed (the next
+   word after a trigger, the verb before a preposition, …), in at most two
+   `analyzeWords` calls per paragraph: one for the text, one to confirm
+   suggestions. Replacements are produced by spelling edits (ـون→ـين,
+   dropped nun or weak letter, the other numeral form, lemma + tanwin) and
+   offered only if the analyzer gives the edited word the required case or
+   mood with the same lemma (and person, gender, number for verbs).
+
+   Two guards came from the corpus: a word whose only plain readings are
+   proper nouns, or readings with a conjunction/question prefix, counts as
+   an unknown name (the analyzer inflects any name as a dual or plural:
+   يوكاتان, الماكاسان, كوارون), and a definite plural beside a proper-noun
+   reading of the same stem is treated as a name (السراجون). Construct
+   forms without ـون/ـان (كيفو, باروسو, قاروه) are not judged, except the
+   numeral اثنا/اثنتا.
+
+   Default-on rules (9), with spec category, positive cases / zero-finding
+   controls in `arabic_grammar_rules_test.dart`:
+
+   | Rule id | Spec | What is reported | + | controls |
+   |---|---|---|---|---|
+   | `ar.grammar.preposition-case` | G7, G11 | a visibly nominative dual / sound masculine plural / tens numeral / dual demonstrative directly after في، إلى، على، عن، مع، لدى، عند (± و/ف), or after بالـ/كالـ/للـ (`إلى المهندسون` → `المهندسين`, `على عشرون`, `في اثنا عشر`) | 9 | 7 |
+   | `ar.grammar.inna-case` | G8 | the same after إنّ، أنّ، كأنّ، ليت، لعلّ (bare, ± و/ف/ب/ل); bare لكن (light لكنْ) and particles with a pronoun are excluded | 3 | 3 |
+   | `ar.grammar.kana-predicate` | G9 (visible part) | an indefinite nominative sound plural/dual right after a kana-sister with an attached plural/dual subject (`كانوا مجتهدون`), or after kana + one definite word | 1 | 4 |
+   | `ar.grammar.dual-demonstrative` | G2 | هذان/هاتان vs هذين/هاتين before a definite dual of the other case; both repairs offered | 2 | 2 |
+   | `ar.grammar.jussive` | G5 | after لم (± و/ف/أ): an imperfect with no jussive reading (five verbs keeping نون, kept weak final, kept long vowel of a hollow verb); vowelled لِمَ and questions excluded | 6 | 5 |
+   | `ar.grammar.subjunctive` | G5 (mood after particles) | after لن، كي، لكي، أن: a five-verb form keeping its نون; a future prefix (light أنْ) excluded | 3 | 3 |
+   | `ar.numeral.gender` | G10 | 3–10 with the gender of the counted plural's singular (`ثلاثة سيارات` → `ثلاث`); sound feminine plurals only when the lemma has ة; خمس/سبع/تسع/عشر/ثمان (fractions) and 51 lemmas of either gender, unmarked feminines and ة-masculines (أصابع, طرق, أسواق, خلفاء…) skipped | 5 | 10 |
+   | `ar.numeral.counted-number` | G11 | a plural after 11–19 or a tens word (`عشرون طلاب` → `طالبًا`) | 3 | 2 |
+   | `ar.grammar.verb-preposition` | G15 | 3 colloquial verb + على + pronoun entries (`يبحث عليها` → `عنها`) | 1 | 4 |
+
+   Opt-in rules (4):
+
+   | Rule id | Spec | What is reported | + | controls |
+   |---|---|---|---|---|
+   | `ar.grammar.la-past` | G6 | لا directly before a verb with only perfect readings, unless لا/ولا or الله follows in the sentence (repetition, prayer) or the verb is زال | 1 | 4 |
+   | `ar.numeral.counted-case` | G11 | a singular counted noun after 11–99 with no indefinite-accusative reading, at the end of the phrase (`ثلاثين دينار.` → `دينارًا`) | 1 | 2 |
+   | `ar.usage.verb-preposition` | G15, L2 lemma variant | 18 lemma-matched prescriptive entries (أكّد على، أثّر على، حاز على، تخرّج من، أجاب على، تعرّف على، تزوّج من، التقى مع، زاد عن، اعتذر على، تحدّث حول …); 94 adverbial phrase heads after the preposition (على هامش, من جديد …) excluded; no duplicate of a T1 finding on the same span | 3 | 2 |
+   | `ar.usage.word-inflected` | S9/L3 lemma variant | every inflection of ساهم، تواجد، استلم، احتار، توفّر (extends the frozen forms of `ar.usage.word`) | 2 | 1 |
+
+   Tests: 100 new engine tests (40 positive cases, 26 valid-sentence and 23
+   reasoned zero-finding controls, 5 analysis-set tests — one compatible
+   reading keeps a word silent, an unknown word and a proper-noun-only word
+   are never reported, a verb homograph silences a numeral, an unconfirmed
+   replacement is withheld — and 6 integration tests: no analyzer means no
+   requests and identical T1 findings, only needed words are analyzed,
+   ignored ids, offsets, protected spans, rule-id sets). The fixture
+   `arabic_grammar_fixture.dart` holds the reference analyses (camel_tools
+   1.6 over Camel Morph MSA v1.0 `noprob`, CC BY 4.0, attribution in the
+   file) of the words of our own test sentences only. The engine proofing
+   suite passes 1,610 tests on the branch base (1,510 before) and 1,652
+   after merging the current main; the editor Arabic integration test
+   passes.
+
+   **False-positive check** with the reference analyzer (camel_tools 1.6,
+   Camel Morph MSA v1.0 `noprob`, Hugging Face `cstr/camel-morph-msa-v1.0`
+   at `b31cf4a8`) over the 1,000 UD Arabic-PUD test sentences and the same
+   17,417-sentence Arabic Wikipedia sample as step 3b (evaluation only, not
+   committed). `tool/proofing/export_arabic_morph_analyses.py` precomputes
+   the analyses of every word the rules request into a scratch JSON;
+   `tool/proofing/arabic_grammar_corpus_check.dart` runs the provider with
+   every rule enabled through a fake `ArabicMorphology` over that JSON and
+   repeats until no word is missing (17,943 words analyzed). Default-on
+   findings, first run → after tightening (PUD / Wikipedia):
+
+   | Rule | PUD | Wikipedia | Inspection after tightening |
+   |---|---|---|---|
+   | `ar.grammar.preposition-case` | 2 → 0 | 15 → 2 | both real: `عند النوميديون`, `في اثنا عشر` |
+   | `ar.grammar.inna-case` | 1 → 0 | 3 → 1 | real: `أن الكثيرون` |
+   | `ar.grammar.kana-predicate` | 0 → 0 | 0 → 0 | |
+   | `ar.grammar.dual-demonstrative` | 0 → 0 | 0 → 0 | |
+   | `ar.grammar.jussive` | 0 → 0 | 6 → 6 | all real: `لم يكتفي`, `لم يرضيه`, `لم يُسميها`, `لم ينجو`, `لم يبقى`, `لم يُلاقي` |
+   | `ar.grammar.subjunctive` | 0 → 0 | 1 → 1 | real: `أن يرتدون` |
+   | `ar.numeral.gender` | 0 → 0 | 11 → 10 | all real (`ثلاث فنادق`, `ثلاثة بطولات`, `ثلاثة مباريات`, `بخمسة حنيات`, `وستة قاذفات`, `أربعة شخصيات` …) |
+   | `ar.numeral.counted-number` | 0 → 0 | 0 → 0 | |
+   | `ar.grammar.verb-preposition` | 0 → 0 | 0 → 0 | |
+
+   Removed false positives: 16 preposition/inna hits on foreign names the
+   analyzer inflects as duals or plurals (Makassan five times, Yucatán,
+   Barroso, Kivu, Cuarón, Dominican, Girondins, Caledonian, Aubrion, Puntas,
+   Stack Overflow via ستّ + ك, قاروه via قاري + ه), 2 on the place name
+   السراجون, and 3 numeral hits on
+   sound feminine plurals of masculine singulars (`ثلاثة مجلدات`,
+   `ثلاثة متطلبات`, `ثلاثة مستحلبات`: the analyzer tags them feminine). The
+   tightening also exposed 2 further real numeral errors and one either-gender
+   noun (`أربع أصابع`), now skipped. Opt-in rules on the same corpora:
+   `ar.usage.verb-preposition` 1 / 16 (`حاز على`, `تخرّج من`, `تزوّج من`,
+   `يُتعرّف على`), `ar.usage.word-inflected` 5 / 46 (`يتواجد`, `ساهم`,
+   `يتوفر`), all intended prescriptive targets; `ar.grammar.la-past` and
+   `ar.numeral.counted-case` 0 / 0.
+
+   **Default status.** A rule is default-on only when its corpus check was
+   clean *and* its error class is unambiguous. `ar.grammar.kana-predicate`
+   was opt-in in the first run and was promoted (0 findings; only attached
+   subjects or a definite subject qualify). `ar.grammar.la-past` (classical,
+   partly prescriptive) and `ar.numeral.counted-case` (number writing in
+   modern prose) stay opt-in despite 0 findings; the `ar.usage.*` rules are
+   prescriptive.
+
+   **Recall is deliberately low.** The analyzer offers many readings
+   (proper-noun inflections, clitic splits such as كـ + أنّ), and any one of
+   them keeps a word silent: `كان الطلاب مجتهدون` (كأنّ), `ثلاث كتب` (the
+   verb كتب), `يسألون عليه` (أسال) are not reported. A disambiguator (step 4)
+   would lift this without changing the rules.
+
+   **Deferred, and why.**
+   - S7 particle merging: the safe cases (عن ما، من ما) are already T1
+     fixed strings; the rest (كل ما/كلما, إن ما/إنما, حيث ما/حيثما, في ما,
+     بين ما) separate relative ما (written apart) from كافّة or temporal ما
+     (joined), and both are followed by a verb, so the verb test cannot
+     decide.
+   - Prohibitive لا (G5): لا + second-person indicative is also a valid
+     negation; لمّا + jussive (homograph of لمّا "when" and لِما); the
+     conditional jussive after إن/من/ما (إن is also إنّ and negating إنْ).
+   - Kana sisters that need a preceding negation (ما زال, ما دام …), and
+     general kana/inna predicate case (T3).
+   - G11 full number-phrase rebuilding and numbers in digits (needs a
+     generator; years and ranges), counted nouns after hundreds/thousands.
+   - L1 verb–object collocations and L5 light verbs (need synthesis and a
+     verbal-noun↔verb map), S1 general spelling (MIT dictionary needed;
+     Hunspell is step 2), G13 tense-aware parts, G14 future restriction.
+   - The step-3b T1 lists other than `ar.usage.word` verbs and the
+     verb–preposition expressions were not given lemma variants: they are
+     nouns, particles or fixed phrases whose inflection the frozen forms
+     already cover.
+
+3d. **Morphology lexicon: Camel Morph MSA (integrated 19 November 2026,
    branch `feat/arabic-morph-integration-20261119`).**
    `packages/quds_arabic_morph` implements the engine's `ArabicMorphology`
    with CrispEmbed's native analyzer (PR #254). That analyzer is a C++ port
@@ -401,10 +564,10 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
      without that click.
    - After installation, one long-lived analyzer loads in the background (at
      start-up too, without network), and the Word service is rebuilt when it
-     becomes available. `ArabicWritingRulesProvider` has no `morphology:`
-     parameter yet (the rules agent adds it). The construction site in
-     `suite_workspace.dart` already receives the analyzer and carries a
-     `TODO(arabic-rules)`.
+     becomes available. Studio passes the
+     analyzer to `ArabicWritingRulesProvider(morphology: …)`, so the T2
+     rules (step 3c) run once the database is installed and stay silent
+     otherwise.
    - Licence page: CrispEmbed (MIT), camel_tools 1.6.0 (MIT), Ryu
      (Apache-2.0), Unicode and CPython data notices, CrispEmbed's
      third-party summary, and the Camel Morph MSA CC BY 4.0 notice with the

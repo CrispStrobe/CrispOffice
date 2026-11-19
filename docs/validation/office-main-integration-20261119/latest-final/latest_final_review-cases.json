@@ -1,0 +1,6738 @@
+[
+  {
+    "suite": "packages/quds_mail_core/test/cancellation_test.dart",
+    "name": "dispose invalidates all callbacks and cannot reopen a session",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/cancellation_test.dart",
+    "name": "explicit cancellation is typed and keeps the first reason",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/cancellation_test.dart",
+    "name": "invalidate rejects old callbacks but allows a new generation",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "authoritative range rejects HTTPS identity in upserts and tombstones",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "authoritative range rejects UID above range in upserts and tombstones",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "authoritative range rejects UID below range in upserts and tombstones",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "authoritative range rejects different UIDVALIDITY in upserts and tombstones",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "authoritative range rejects different mailbox in upserts and tombstones",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "inclusive ranges support the full IMAP UID space and single UIDs",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range pages retain immutable survivor and tombstone snapshots",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range rejects negative UIDVALIDITY",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range rejects negative first UID",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range rejects negative last UID",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range rejects overflow UIDVALIDITY",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range rejects overflow first UID",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range rejects overflow last UID",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range rejects reversed UIDs",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range rejects zero UIDVALIDITY",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range rejects zero first UID",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range rejects zero last UID",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "name": "range scope must match the page even when the page is empty",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "UIDVALIDITY, mailbox and account form the IMAP persistent identity",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "full and preview budgets preserve planned resource bounds",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "mail capability does not imply Calendar, People or sending",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "message headers and attachments do not alias mutable input lists",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "move and sync cursor enforce account and mailbox scopes",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "observed standard flags have value equality and an empty snapshot",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "parse result cannot claim success without a message",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "profile and account identities cannot alias between products",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/models_test.dart",
+    "name": "snapshots own bytes, including buffer views and export copies",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "aggregate response does not fabricate recipient-level acceptance",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "connection loss after possible acceptance is uncertain and cannot retry",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "definite non-acceptance retries with a fresh attempt identity only",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "interrupted submitting state recovers as uncertain, never queued",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "missing recipient responses stay unknown on aggregate failure",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "mixed 250/550 RCPT responses abort every recipient before DATA",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "queued revision, wire and envelope remain frozen through submission",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "undo send only cancels work before submission",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "unrelated/duplicate recipient results and control injection are rejected",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/outbox_test.dart",
+    "name": "validated restoration preserves a pending attempt and recovers uncertain",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "account disposal while provider awaits prevents any commit",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "cooperative user cancellation differs from stale account work",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "fixture pages apply real upserts/tombstones and advance cursor atomically",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "out-of-order concurrent pulls cannot regress the stored cursor",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "sync commit compares the cursor it read before pulling",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "transaction failure leaves both old content and cursor unchanged",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "transaction rechecks the lease when disposal happens during persistence",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "unsupported provider operations are failures rather than empty success",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+    "name": "wrong account and oversized provider page fail before persistence",
+    "executions": [
+      {
+        "cohort": "core-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "core-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "UID validity reset preserves pending intent and its cached evidence",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "a corrupt persisted blob is rejected instead of silently served",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "a tombstone removes only its label membership",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "an older attempt identity cannot be reused after a newer retry",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "cache eviction preserves draft, outbox and active-editor byte owners",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "competing pages cannot overwrite a concurrently advanced cursor",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "durable recovery rolls back on failure and remains uncertain after reopening",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "failed draft replacement retains its old revision and every old blob",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "foreign-profile logout is a typed rejection without invalidating either session",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "frozen outbox payload and uncertain state cannot be replaced through restore",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "identical profile labels cannot open another host database",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "lease invalidated after cursor write rolls back the complete page",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "oversized provider identity is rejected before writing its cursor",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "profile removal can resume outstanding vault cleanup after reopening",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "rolled back notifications never reach repository observers",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/adversarial_store_test.dart",
+    "name": "tombstone-only pages consume account quota and roll back their cursor",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/browser_problem_test.dart",
+    "name": "DOM storage quota maps by name without copying private error text",
+    "executions": [
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/browser_problem_test.dart",
+    "name": "blocked and aborted browser storage have typed results",
+    "executions": [
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/browser_problem_test.dart",
+    "name": "typed SQLite and domain failures retain their classification",
+    "executions": [
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "draft payload body projection validates metadata without requiring payload bytes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "draft payload draft rejects missing, corrupted or mismatched-length attachment bytes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "draft payload draft rejects wrong metadata types, unknown fields and malformed hash",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "draft payload metadata and deduplicated immutable blobs round trip separately",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec bounded parser rejects deep nesting and redacts malformed content",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec duplicate literal and escaped keys are rejected before JSON collapse",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects future version",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects missing nullable field",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects normalized invalid date",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects offset date instead of canonical instant",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects unknown address field",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects unknown field",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects wrong UTC type",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects wrong address shape",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects wrong nullable address type",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects wrong reference type",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope rejects wrong subject type",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec envelope round trip preserves every header field and timestamp",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "metadata codec nullable empty metadata and local absolute timestamps round trip",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox payload every state round trips frozen bytes, recipients, result and attempt",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox payload restored in-flight entry becomes uncertain and never retryable",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox payload wire integrity and internal result/state consistency are enforced",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox persistence transitions attempt numbers, fresh identity and monotonic time are mandatory",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox persistence transitions cancellation must retain the previous definite failure result",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox persistence transitions new entries must be initial queued and all legitimate transitions pass",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox persistence transitions prepared bytes, envelope, revision, creation and ownership cannot change",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "outbox persistence transitions same-state saves are exact idempotence and terminal rewrites fail",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "provider identity codec canonical IMAP key preserves UIDVALIDITY and scope is supplied separately",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "provider identity codec gmail identity preserves exact opaque value",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "provider identity codec graph identity preserves exact opaque value",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "provider identity codec jmap identity preserves exact opaque value",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "provider identity codec remote codec rejects invalid provider, field set and IMAP range",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "standard flag codec every durable flag survives alone and in a combined snapshot",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "standard flag codec reserved flag bits and negative masks fail with redacted errors",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/codec_test.dart",
+    "name": "standard flag codec unknown flags remain distinct from an observed empty set",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/crash_recovery_test.dart",
+    "name": "SIGKILL afterDraftBlobs preserves the correct durable transaction boundary",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/crash_recovery_test.dart",
+    "name": "SIGKILL afterOutboxWrite preserves the correct durable transaction boundary",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/crash_recovery_test.dart",
+    "name": "SIGKILL afterSyncRecords preserves the correct durable transaction boundary",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/crash_recovery_test.dart",
+    "name": "SIGKILL beforeSyncCursor preserves the correct durable transaction boundary",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/crash_recovery_test.dart",
+    "name": "SIGKILL committedSubmitting preserves the correct durable transaction boundary",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "absent queued and applying edits reconcile while their cached bytes survive",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "account lease invalidation rolls back range removals and reconciliation",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "empty IMAP ranges reject a non-IMAP account and foreign account lease",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "empty observations advance the cursor without materializing UID holes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "existing range removals may exceed the incoming page row count",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "explicit tombstones coexist with authoritative range removals",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "inclusive range removal preserves mailbox, account and validity isolation",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "page limits, duplicate identities and metadata fail before range removals",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "range deletes, edits, indexes and cursor roll back at afterSyncRecords then retry",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "range deletes, edits, indexes and cursor roll back at beforeCommit then retry",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "range deletes, edits, indexes and cursor roll back at beforeSyncCursor then retry",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "reopening above the configured scan bound refuses range work without data loss",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "resetRequired retains full-mailbox reset across ranges and UID generations",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "sparse full-width ranges create tombstones only for stored absences",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "name": "stale range observations cannot delete the winning page or its pending edits",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "future schema 4 is rejected without changing existing data",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "future schema 9 is rejected without changing existing data",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "interrupted v1 migration rolls back schema and version, then retries without losing data",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "interrupted v2 flag migration rolls back the column and retains FTS",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "stricter aggregate payload limits reject persisted draft before transferring blobs",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "stricter individual blob limits reject persisted draft before transferring blobs",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "upgraded FTS requires bounded backfill without loading attachment or raw bytes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "v1 upgrade preserves scoped records, draft, cache and immutable queue bytes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/migration_test.dart",
+    "name": "v2 upgrade preserves existing search and flags survive file reopen",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "a relative container is rejected without choosing a global directory",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "a second live owner conflicts; a closed owner releases its lease",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "an unavailable app container returns a typed failure",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "migration failure releases ownership and rolls back before reopening",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "native committed accounts survive close and reopen",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "process termination releases ownership and preserves committed data",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/native_platform_test.dart",
+    "name": "same profile names in different hosts use separate containers",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/platform_configuration_test.dart",
+    "name": "assets reject remote origins, credentials, fragments and non-HTTP",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/platform_configuration_test.dart",
+    "name": "browser namespaces are explicit and bounded",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/platform_configuration_test.dart",
+    "name": "database identity separates hosts, profiles and browser namespaces",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/platform_configuration_test.dart",
+    "name": "relative and absolute same-origin assets resolve explicitly",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "portable-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "SQLite full has a typed redacted failure and leaves no partial write",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "UIDVALIDITY reset keeps local work and rejects stale cursor pages",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "account removal retires identity and rejects late writes",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "cache eviction preserves shared draft attachments and editor pins",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "commits headers and cursor with a compare-and-set precondition",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "draft revisions reject lost updates and attachment rollback",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "failure after records rolls back rows and cursor together",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "flag mutation and cursor roll back together on transaction failure",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "flag snapshots stay scoped to account, mailbox and UIDVALIDITY",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "header stream never exposes rolled-back or half-applied pages",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "lease invalidation at the final commit boundary rolls back",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "local FTS uses literal tokens and never indexes active HTML",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "logout preserves local drafts and queues durable vault cleanup",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "new and terminal outbox states cannot be forged",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "observed flags persist while an omitted snapshot preserves them",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "older attempt identifiers cannot be reused after multiple retries",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "profile and account scope reject matching foreign identifiers",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "recovery does not relabel an attempt started by this live owner",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_store/test/repository_test.dart",
+    "name": "tombstone preserves a pending intent for explicit reconciliation",
+    "executions": [
+      {
+        "cohort": "store-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "finite transport resource bounds rejects empty or excessive message, mailbox and UID sweep work",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "finite transport resource bounds rejects unbounded waits, invalid polling and negative backoff",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "finite transport resource bounds rejects unusable or excessive literal, line, response and credential budgets",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "finite transport resource bounds validates defaults and supported lower and upper policy boundaries",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "host-owned account configuration keeps the login identity, authentication mode and scoped vault locator",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "host-owned account configuration rejects empty, overlong and control-bearing login identities",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "host-owned account configuration vault locators are bounded identifiers rather than protocol lines",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "host-owned account configuration vault references cannot cross accounts, profiles or host applications",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "manual server endpoint accepts explicit DNS, IPv4 and unbracketed IPv6 hosts",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "manual server endpoint port selection never silently downgrades the mandatory TLS policy",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "manual server endpoint rejects address injection, ambiguous IPs and malformed DNS labels",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/configuration_test.dart",
+    "name": "manual server endpoint requires an explicit usable port without a service-port assumption",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      },
+      {
+        "cohort": "mail-configuration-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "name": "UIDVALIDITY reset replaces only its own account and mailbox membership",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "name": "account invalidation during a blocked IMAP response cannot commit later",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "name": "failed store transaction retains the cursor and retries the same UID window",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "name": "high discovered UID pages preserve flags and resume the durable cursor after reopen",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "name": "host-scoped credentials are checked before protocol work and on every pull",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "EXPUNGE followed by an uncorrelated rev1 update cannot confirm STORE",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with attached closing list cannot fabricate a successful tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with attached literal cannot fabricate a tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with attached quoted prefix cannot fabricate a successful tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with missing list separator cannot fabricate a successful tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with tab list separator cannot fabricate a successful tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with tab sequence separator cannot fabricate a successful tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "MOVE requires capability and verifies source absence without global EXPUNGE",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "OAuthBearer GS2 identity uses a= and secrets stay inside auth command",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "OAuthBearer error challenge is drained once and returns authenticationRequired",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "STORE proves requested UID flags with a fresh observation; delete never expunges",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "UIDVALIDITY rollover restarts the cursor and explicitly requests reset",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "acknowledged STORE without changed flags requires reconciliation",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "actual command parser discovers selectable folders over required TLS",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "aggregate response bytes are bounded across authentication commands",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "announced oversized literal is quota failure before payload reception",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "capabilities do not promise SMTP, calendar or missing MOVE extension",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "connection drop after remote mutation is conflict, never retryable success",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "discovered UID pages retain flags and reconcile gaps with scoped ranges",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "dropped connection fails and the next operation uses a fresh authenticated client",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "duplicate FETCH cannot turn a tagged OK into a partial success",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "flags alone never turn an omitted requested literal into an empty success",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "forged cross-mailbox cursor is rejected before vault or connection work",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "fragmented greeting is framed before any command executes",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "header literal limit fails the entire sync page without tombstones",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "in-range UID with no complete literal cannot fabricate a successful tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "late TLS upgrade cannot revive an aborted account generation",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "late UID flag update prevents false STORE confirmation",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "late sequence flag update prevents false STORE confirmation",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "late socket completion after cancellation is destroyed before greeting/auth",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed FETCH prefix cannot create an empty successful sync/tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed notification with duplicate UID fails atomically",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed notification with duplicate flags fails atomically",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed notification with invalid UID fails atomically",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed notification with missing BODY literal fails atomically",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed notification with nested flag fails atomically",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed raw response never logs private literal text",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "missing STARTTLS refuses credentials instead of downgrading",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "missing and rejected credentials are typed and never reused from cache",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "mixed-case IMAP FETCH atoms preserve messages instead of inventing tombstones",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "omitted FLAGS remains unknown instead of clearing durable observations",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "on-demand literal retains bare LF and non-UTF8 octets without reserialization",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "ordinary multipart source synchronizes only requested envelope headers",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "out-of-range UID cannot turn a tagged OK into a partial success",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "oversized greeting is a non-retryable quota failure before authentication",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "partial BODY literal cannot turn a tagged OK into a partial success",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "protocol line budget remains quota failure even before login",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "rejected duplicate sync record never advances a successful partial page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "required STARTTLS completes before authentication and refreshes capabilities",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "rev1 sequence identity changed by EXPUNGE cannot fabricate a successful tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "rev1 without UID flag notification after literal does not consume the page limit",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "rev1 without UID flag notification before literal does not consume the page limit",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "same UID flag notification after literal does not consume the page limit",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "same UID flag notification before literal does not consume the page limit",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "sequence-correlated rev1 notifications allow a sparse completed response",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "sparse high UIDNEXT synchronizes without enumerating numeric holes",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "stale full-message UIDVALIDITY fails before body fetch",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "status text containing FETCH: BAD before literal",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "status text containing FETCH: NO after literal",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "status text containing FETCH: OK before literal",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "status text containing FETCH: mixed-case OK after literal",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "timeout destroys the connection and rejects a delayed completion",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "token auth without SASL-IR is explicitly unsupported before sending a token",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unbalanced response cannot turn a tagged OK into a partial success",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unknown rev1 sequence in a sparse response cannot fabricate a successful tombstone page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unrelated UID flag notification after literal does not consume the page limit",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unrelated UID flag notification before literal does not consume the page limit",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unrelated rev1 updates stay bounded when a full UID interval is returned",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "vault completion after cancellation cannot open a connection",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "name": "implicitTls stalled handshake cancellation closes the real peer and permits a fresh connection",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "name": "implicitTls stalled handshake timeout closes the real peer and permits a fresh connection",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "name": "startTls stalled handshake cancellation closes the real peer and permits a fresh connection",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "name": "startTls stalled handshake timeout closes the real peer and permits a fresh connection",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "name": "STARTTLS default trust refuses the same public test certificate",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "name": "STARTTLS trusted TLS preserves delayed large writes and replies",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "name": "aborting trusted TLS fails and cancels an idle write producer",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "name": "implicit TLS default trust refuses the same public test certificate",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "name": "implicit TLS trusted TLS preserves delayed large writes and replies",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "aborting a blocked partial write rejects its pending flush",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "already secure manual sockets retain IMAP read and write behavior",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "hard abort closes retained TCP before a stalled secure close",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "implicitTls: default trust rejects the local certificate before login",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "implicitTls: direct pending TLS operation settles when aborted",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "implicitTls: operation deadline closes a real stalled handshake",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "implicitTls: real stalled handshake closes on cancellation and retries",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "implicitTls: trusted certificate still rejects a mismatched hostname",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "implicitTls: trusted local TLS authenticates and exchanges IMAP bytes",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "manual socket TLS upgrade preserves trust and secure connection metadata",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "queued partial writes and final readiness complete before write close",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "startTls: default trust rejects the local certificate before login",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "startTls: direct pending TLS operation settles when aborted",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "startTls: operation deadline closes a real stalled handshake",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "startTls: real stalled handshake closes on cancellation and retries",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "startTls: trusted certificate still rejects a mismatched hostname",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/native_tls_test.dart",
+    "name": "startTls: trusted local TLS authenticates and exchanges IMAP bytes",
+    "executions": [
+      {
+        "cohort": "transport-tls-loopback-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "SEARCH status prose and mixed-case data preserve valid discovery",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "UIDVALIDITY rollover discards an old high-UID continuation",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "a backwards UIDNEXT cannot authorize deletion of a saved range",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "a discovered message expunged before FETCH is absent in its range",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "a never-populated mailbox has no invalid zero-UID search range",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "a tagged SEARCH failure cannot commit a valid result prefix",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "an empty remaining search confirms its whole range without FETCH",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "an explicit legacy numeric ceiling retains its old meaning",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "an in-range FETCH UID absent from discovery rejects the whole page",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "cancelling stalled SEARCH prevents FETCH and allows a fresh operation",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "discovery count limits fail atomically and release the provider",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "discovery obeys the protocol line budget before parsing a prefix",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "duplicate UID discovery cannot authorize a page or FETCH",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "malformed suffix discovery cannot authorize a page or FETCH",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "missing discovery cannot authorize a page or FETCH",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "new arrivals beyond the frozen ceiling enter the next sweep",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "out-of-range UID discovery cannot authorize a page or FETCH",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "overflow UID discovery cannot authorize a page or FETCH",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "page size counts existing messages rather than numeric holes",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "repeated discovery cannot authorize a page or FETCH",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "saved v1 numeric-window cursors resume as discovered UID pages",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "sparse unordered discovery pages near the 32-bit UID ceiling",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "unrequested ESEARCH discovery cannot authorize a page or FETCH",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "name": "zero UID discovery cannot authorize a page or FETCH",
+    "executions": [
+      {
+        "cohort": "transport-uid-native",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+    "name": "default public factory remains unsupported without requiring a codec",
+    "executions": [
+      {
+        "cohort": "transport-node-boundary",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+    "name": "public JavaScript entry returns typed unsupported for every provider method",
+    "executions": [
+      {
+        "cohort": "transport-node-boundary",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+    "name": "unsupported factory still validates bounds without accessing host services",
+    "executions": [
+      {
+        "cohort": "transport-node-boundary",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/controller_test.dart",
+    "name": "full and preview modes pass their actual raw budgets into the codec",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/controller_test.dart",
+    "name": "match limit is explicit and result replacement clears stale selection",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/controller_test.dart",
+    "name": "search, selection and decoded copy include displayed headers and body",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/controller_test.dart",
+    "name": "selection never splits a surrogate or combined grapheme",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/controller_test.dart",
+    "name": "switching body alternative preserves raw bytes and invalidates action revision",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/example_test.dart",
+    "name": "actual example MIME bytes provide the displayed body, CID and exact attachment",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "attachment and source/hex callbacks receive exact immutable snapshots",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "bounded CID PNG decodes locally under runtime network denial",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "compact enlarged RTL view preserves actions without overflow",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "custom RenderBox supports keyboard select/copy and meaningful semantics",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "disposing the view invalidates a pending explicit link decision",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "find chrome accepts arbitrary query and finds attachment names",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "hostile saved HTML causes zero policy and runtime outbound requests",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "late link approval cannot act on a replaced message or disposed view",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "link activation is denied until host policy explicitly approves it",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "render rejection remains visible with exact source fallback",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/message_view_test.dart",
+    "name": "runtime network denial is active, independently of the injected policy",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "CID PNG is admitted by exact identity without touching source snapshots",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "PNG pixel bombs and truncated chunks are refused before native decode",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "all CSS, event, srcset, SVG and image schemes are inert",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "cumulative CID pixels count unique images and refuse excess",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "decoded and attachment budgets are cumulative before presentation",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "direct DTO plain/HTML bodies share one cumulative body budget",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "duplicate and unsupported CID inputs do not decode arbitrary images",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "hostile HTML becomes inert text and explicit absolute link metadata",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "link admission refuses encoded active schemes, protocol-relative, user info and controls",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "node and nesting rejection discards the entire partial projection",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "oversized text, body, header and input are explicitly rejected",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "plain alternative can be selected without changing original data",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_mail_ui/test/presentation_test.dart",
+    "name": "script raw text cannot smuggle fake nested style or image content",
+    "executions": [
+      {
+        "cohort": "mail-ui-store-consumers",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+    "name": "Arabic rules stay silent for German text",
+    "executions": [
+      {
+        "cohort": "arabic-editor-integration",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+    "name": "default review checks Arabic runs with the Arabic rules",
+    "executions": [
+      {
+        "cohort": "arabic-editor-integration",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ambiguous hamza words offer both spellings",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.alif-maqsura.final: \u0627\u0646\u062a\u0638\u0631 \u062d\u062a\u064a \u0627\u0644\u0635\u0628\u0627\u062d.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.alif-maqsura.final: \u0645\u062a\u064a \u064a\u0628\u062f\u0623 \u0627\u0644\u062f\u0631\u0633\u061f",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.alif-maqsura.final: \u0646\u0642\u0644 \u0625\u0644\u0649 \u0627\u0644\u0645\u0633\u062a\u0634\u0641\u064a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.digits.mixed: \u0627\u0644\u0635\u0641\u062d\u0629 1\u0662.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.digits.mixed: \u0648\u0644\u062f \u0639\u0627\u0645 \u0661\u06699\u0660.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u0623\u0639\u0631\u0641 \u0627\u0646 \u0627\u0644\u0637\u0631\u064a\u0642 \u0637\u0648\u064a\u0644.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u0627\u064a\u0646 \u0627\u0644\u0643\u062a\u0627\u0628\u061f",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u062c\u0627\u0621 \u0627\u0644\u0637\u0644\u0627\u0628 \u0627\u064a\u0636\u0627.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u0630\u0647\u0628 \u0627\u0644\u0648\u0644\u062f \u0627\u0644\u0649 \u0627\u0644\u0628\u064a\u062a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u0630\u0647\u0628\u064e \u0627\u0644\u064e\u0649 \u0627\u0644\u0633\u0648\u0642.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u0633\u0623\u062d\u0636\u0631 \u0627\u0630\u0627 \u0633\u0645\u062d \u0627\u0644\u0648\u0642\u062a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u0639\u0627\u062f \u0627\u0644\u064a\u0647 \u0628\u0639\u062f \u0633\u0627\u0639\u0629.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u063a\u0627\u0628 \u0644\u0627\u0646\u0647 \u0645\u0631\u064a\u0636.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u0647\u0630\u0627 \u0627\u0643\u0628\u0631 \u0628\u064a\u062a \u0641\u064a \u0627\u0644\u062d\u064a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u0647\u0644 \u062a\u0631\u064a\u062f \u0627\u0644\u0634\u0627\u064a \u0627\u0648 \u0627\u0644\u0642\u0647\u0648\u0629\u061f",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u0648\u0627\u0630\u0627 \u062a\u0623\u062e\u0631\u062a \u0641\u0627\u062a\u0635\u0644 \u0628\u064a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.hamza.initial: \u0648\u0642\u0641 \u0627\u0645\u0627\u0645 \u0627\u0644\u0628\u0627\u0628.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.punctuation.arabic-mark: \u062c\u0627\u0621 \u0623\u062d\u0645\u062f, \u0648\u0630\u0647\u0628 \u0639\u0644\u064a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.punctuation.arabic-mark: \u0642\u0631\u0623 \u0627\u0644\u0643\u062a\u0627\u0628; \u062b\u0645 \u0646\u0627\u0645.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.punctuation.arabic-mark: \u0647\u0644 \u0623\u0646\u062a \u0628\u062e\u064a\u0631?",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.punctuation.space-after: \u062c\u0627\u0621 \u0623\u062d\u0645\u062f\u060c\u0648\u0630\u0647\u0628 \u0639\u0644\u064a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.punctuation.space-before: \u062c\u0627\u0621 \u0623\u062d\u0645\u062f \u060c \u0648\u0630\u0647\u0628 \u0639\u0644\u064a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.punctuation.space-before: \u0647\u0644 \u0623\u0646\u062a \u0628\u062e\u064a\u0631 \u061f",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.repetition.word: \u062c\u0644\u0633 \u0641\u064a \u0641\u064a \u0627\u0644\u062d\u062f\u064a\u0642\u0629.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.repetition.word: \u0647\u0630\u0627 \u0647\u0648 \u0627\u0644\u0643\u062a\u0627\u0628 \u0627\u0644\u0630\u064a \u0627\u0644\u0630\u064a \u0642\u0631\u0623\u062a\u0647.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.spacing.conjunction-waw: \u0627\u0634\u062a\u0631\u0649 \u062e\u0628\u0632\u0627 \u0648  \u062d\u0644\u064a\u0628\u0627.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.spacing.conjunction-waw: \u062c\u0627\u0621 \u0623\u062d\u0645\u062f \u0648 \u0647\u0648 \u064a\u0628\u062a\u0633\u0645.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.style.tatweel: \u0647\u0630\u0627 \u0643\u062a\u0640\u0640\u0640\u0627\u0628 \u062c\u0645\u064a\u0644.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ta-marbuta.final: \u062f\u0631\u0633 \u0641\u064a \u0627\u0644\u062c\u0627\u0645\u0639\u0647 \u0633\u0646\u0648\u0627\u062a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ta-marbuta.final: \u0630\u0647\u0628 \u0628\u0627\u0644\u0633\u064a\u0627\u0631\u0647.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ta-marbuta.final: \u0630\u0647\u0628\u062a \u0627\u0644\u0649 \u0627\u0644\u0645\u062f\u0631\u0633\u0647 \u0635\u0628\u0627\u062d\u0627.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ta-marbuta.final: \u0639\u0627\u062f \u0645\u0646 \u0627\u0644\u0645\u062f\u064a\u0646\u0629 \u0627\u0644\u0643\u0628\u064a\u0631\u0647.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ta-marbuta.final: \u0639\u0627\u062f \u0645\u0646 \u0627\u0644\u0645\u062f\u064a\u0646\u0647 \u0627\u0644\u0643\u0628\u064a\u0631\u0629.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ta-marbuta.final: \u0643\u062a\u0628 \u0631\u0633\u0627\u0644\u0629 \u0644\u0644\u062d\u0643\u0648\u0645\u0647.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ta-marbuta.final: \u064a\u062d\u0628 \u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0647.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ta-marbuta.final: \u064a\u062d\u0628 \u0627\u0644\u0644\u063a\u0647 \u0627\u0644\u0639\u0631\u0628\u064a\u0629.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ya.final: \u0627\u0644\u0631\u062c\u0644 \u0627\u0644\u0630\u0649 \u062c\u0627\u0621.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ya.final: \u0627\u0644\u0643\u062a\u0627\u0628 \u0641\u0649 \u0627\u0644\u062d\u0642\u064a\u0628\u0629.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ar.ya.final: \u0647\u0649 \u0645\u0639\u0644\u0645\u0629.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: He said: hello, world? Yes; indeed.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0623\u0639\u0631\u0641 \u0623\u0646 \u0627\u0644\u0637\u0631\u064a\u0642 \u0637\u0648\u064a\u0644\u060c \u0648\u0625\u0646 \u0643\u0627\u0646 \u0645\u0645\u062a\u0639\u0627.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0627\u0633\u062a\u062e\u062f\u0645 \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0648\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0627\u0644\u062a\u0648\u062c\u064a\u0647 \u0648\u0627\u0644\u062a\u0646\u0628\u064a\u0647 \u0645\u0647\u0645\u0627\u0646.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0627\u0644\u062c\u0648 \u062c\u0645\u064a\u0644 \u062c\u062f\u0627 \u062c\u062f\u0627 \u0627\u0644\u064a\u0648\u0645.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0627\u0644\u062d\u064a\u0627\u0629 \u062c\u0645\u064a\u0644\u0629 \u0648\u0627\u0644\u0635\u0644\u0627\u0629 \u0639\u0645\u0627\u062f \u0627\u0644\u062f\u064a\u0646.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0627\u0644\u062e\u064a\u0627\u0631\u0627\u062a: \u0623\u060c \u0628\u060c \u0648.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0627\u0644\u0633\u0639\u0631 3,5 \u062f\u064a\u0646\u0627\u0631.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0627\u0644\u0644\u0647 \u0623\u0643\u0628\u0631.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0627\u0645\u0631\u0623\u0629 \u062a\u0642\u0631\u0623 \u0643\u062a\u0627\u0628\u0627 \u0641\u064a \u0627\u0644\u0645\u0643\u062a\u0628\u0629.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0627\u0646\u0637\u0644\u0642 \u0627\u0644\u0642\u0637\u0627\u0631 \u0641\u064a \u0627\u0644\u0645\u0648\u0639\u062f\u060c \u0648\u0627\u0633\u062a\u0645\u0631 \u0627\u0644\u0633\u0641\u0631 \u0633\u0627\u0639\u062a\u064a\u0646.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u062a\u0642\u062f\u0645 \u0631\u0648\u064a\u062f\u0627 \u0631\u0648\u064a\u062f\u0627.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u062c\u0627\u0621 \u0623\u062d\u0645\u062f \u0648\u0647\u0648 \u064a\u0628\u062a\u0633\u0645.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u062c\u0627\u0621 \u0639\u0644\u064a \u0645\u0639 \u0623\u062e\u064a\u0647.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0630\u0647\u0628 \u0627\u0644\u0648\u0644\u062f \u0625\u0644\u0649 \u0627\u0644\u0645\u062f\u0631\u0633\u0629 \u0635\u0628\u0627\u062d\u0627\u060c \u062b\u0645 \u0639\u0627\u062f \u0625\u0644\u0649 \u0627\u0644\u0628\u064a\u062a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0631\u0627\u0633\u0644 info@example.org \u0627\u0644\u064a\u0648\u0645.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0632\u0627\u0631 \u0627\u0644\u0637\u0627\u0644\u0628 \u0645\u062f\u0631\u0633\u0647 \u0641\u064a \u0627\u0644\u0628\u064a\u062a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0632\u0631 \u0627\u0644\u0645\u0648\u0642\u0639 https://example.com/\u0627\u0644\u0649?x=1 \u0627\u0644\u0622\u0646.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0642\u0627\u0644 \u0627\u0628\u0646 \u062e\u0644\u062f\u0648\u0646 \u0625\u0646 \u0627\u0644\u0639\u0645\u0631\u0627\u0646 \u0627\u0644\u0628\u0634\u0631\u064a \u0636\u0631\u0648\u0631\u064a.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0643\u062a\u0628 \u0627\u0644\u0645\u062f\u0631\u0651\u0633 \u0639\u0644\u0649 \u0627\u0644\u0633\u0628\u0648\u0631\u0629 \u062b\u0645 \u062c\u0644\u0633.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0643\u0644 \u0645\u0646 \u0639\u0644\u064a\u0647\u0627 \u0641\u0627\u0646.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0646\u0641\u0630 \u0627\u0644\u0623\u0645\u0631 `\u0641\u0649 \u0627\u0644\u0649` \u0641\u064a \u0627\u0644\u0637\u0631\u0641\u064a\u0629.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "control has no finding: \u0648\u0644\u062f \u0639\u0627\u0645 \u0661\u0669\u0669\u0660\u060c \u0648\u0641\u064a \u0639\u0627\u0645 2024 \u062a\u062e\u0631\u062c.",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "decomposed letters preserve adjacent correction UTF-16 offsets",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "disposed provider is unavailable",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "every rule id is declared",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "ignored rule ids suppress findings",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "language support: Arabic-script Arabic only",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "lexical matching preserves U+0653 madda",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "lexical matching preserves U+0654 hamza above",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "lexical matching preserves U+0655 hamza below",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "mixed digits offer both consistent spellings",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "offsets are original UTF-16 offsets plus startOffset",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "name": "semantic combining marks still allow punctuation checks",
+    "executions": [
+      {
+        "cohort": "arabic-writing-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "arabic-writing-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+    "name": "native handle ownership dispose during startup settles opening without allocation",
+    "executions": [
+      {
+        "cohort": "hunspell-native-lifecycle-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+    "name": "native handle ownership forced exit preserves ownership while native open returns",
+    "executions": [
+      {
+        "cohort": "hunspell-native-lifecycle-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+    "name": "native handle ownership forced exit releases a handle after a stalled check",
+    "executions": [
+      {
+        "cohort": "hunspell-native-lifecycle-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+    "name": "native handle ownership normal and repeated disposal close exactly once",
+    "executions": [
+      {
+        "cohort": "hunspell-native-lifecycle-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+    "name": "native handle ownership provider timeout settles and releases its native handle",
+    "executions": [
+      {
+        "cohort": "hunspell-native-lifecycle-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+    "name": "native handle ownership reopening replaces and releases each owned handle once",
+    "executions": [
+      {
+        "cohort": "hunspell-native-lifecycle-vm",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "name": "catalog AyaSpell resolves only at its immutable revision",
+    "executions": [
+      {
+        "cohort": "hunspell-provider-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "hunspell-provider-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "name": "catalog verified bytes reject anything but the pinned files",
+    "executions": [
+      {
+        "cohort": "hunspell-provider-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "hunspell-provider-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "name": "provider ignored rule, protected links and other languages",
+    "executions": [
+      {
+        "cohort": "hunspell-provider-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "hunspell-provider-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "name": "provider malformed backend output fails, never reports clean",
+    "executions": [
+      {
+        "cohort": "hunspell-provider-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "hunspell-provider-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "name": "provider personal and ignored words are not reported",
+    "executions": [
+      {
+        "cohort": "hunspell-provider-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "hunspell-provider-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "name": "provider reports findings at block offsets with capped suggestions",
+    "executions": [
+      {
+        "cohort": "hunspell-provider-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "hunspell-provider-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "name": "provider suggestion budget bounds work but keeps every finding",
+    "executions": [
+      {
+        "cohort": "hunspell-provider-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "hunspell-provider-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "name": "words Latin words in Arabic prose are left to other providers",
+    "executions": [
+      {
+        "cohort": "hunspell-provider-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "hunspell-provider-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "name": "words ZWNJ, digits and punctuation end words",
+    "executions": [
+      {
+        "cohort": "hunspell-provider-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "hunspell-provider-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "name": "words keep harakat and tatweel inside a word with UTF-16 offsets",
+    "executions": [
+      {
+        "cohort": "hunspell-provider-vm",
+        "platform": "vm"
+      },
+      {
+        "cohort": "hunspell-provider-node",
+        "platform": "node"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "IMAP: a pending command fails plainly when the client disconnects",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "IMAP: disconnecting while IDLE waits behind a pending command leaves no unhandled error",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "IMAP: losing the connection while IDLE waits behind a pending command leaves no unhandled error",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "POP: a malformed multi-line reply fails the command",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "POP: a pending command fails when the connection is lost",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "SMTP: a pending command fails when the connection is lost",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "a manually connected socket may close before the greeting",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "a pending command fails when the client disconnects",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "connect fails when no greeting arrives within the timeout",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/connection_robustness_test.dart",
+    "name": "connect fails when the server closes before greeting",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient LIST and SELECT",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient LSUB",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient append",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient append does not encode the path of a target mailbox again",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient append with a non-UTC internalDate is sent in UTC",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient append with internalDate sends RFC 3501 date-time",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient appendMessageBytes sends raw bytes unchanged, including a byte outside 7-bit ASCII",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient authenticateWithOAuth2",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient authenticateWithOAuthBearer",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient capability",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient check",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient close",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient copy",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient copy encodes a non-ASCII target path",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient copy quotes a target path containing parentheses",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient enable",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient expunge",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient extended search",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient extended sort",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient extended uid search",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient extended uid sort",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch BODY.PEEK[HEADER.FIELDS (References)]",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch BODY.PEEK[HEADER.FIELDS.NOT (References)]",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch BODY[1]",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch BODY[HEADER]",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch BODY[]",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch FULL",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient fetch with split response",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient getmetadata 1",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient getmetadata 2",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient getmetadata with several entries",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient getquota",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient getquotaroot",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient idle",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient idle waitForContinuation fails on disconnect",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient idle waitForContinuation resolves on + idling",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient listMailboxes via LIST-STATUS preserves parentheses in mailbox names",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient listMailboxes with escaped Mailbox-Flags",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient login",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient login without capability",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient logout",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient markFlagged",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient markSeen",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient move",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient namespace",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient namespace not supported",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient namespace with a literal prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient namespace without a NAMESPACE response",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient noop",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient search",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient setmetadata",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient setquota",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient sort",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient store",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient store with modified sequence",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid copy",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid fetch BODY[HEADER]",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid move",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid move does not encode the path of a target mailbox again",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid search",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid sort",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uid store",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/imap_client_test.dart",
+    "name": "ImapClient uidExpunge",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "UID count exhaustion is exposed as a resource limit",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "abort settles discovery before tagged completion without a prefix",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "an explicit empty result and status prose are accepted",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "client rejects incomplete or malformed wire <tag> NO discovery rejected",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "client rejects incomplete or malformed wire <tag> OK attached DEL",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "client rejects incomplete or malformed wire <tag> OK attached non-ASCII",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "client rejects incomplete or malformed wire <tag> OK duplicate UID",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "client rejects incomplete or malformed wire <tag> OK malformed prefix",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "client rejects incomplete or malformed wire <tag> OK malformed separator",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "client rejects incomplete or malformed wire <tag> OK malformed suffix",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "client rejects incomplete or malformed wire <tag> OK missing discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "client rejects incomplete or malformed wire <tag> OK repeated result",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "client rejects incomplete or malformed wire <tag> OK unrequested extension",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "existing protocol-line limits apply during discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "invalid request bounds fail before any command is sent",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "public API emits a closed UID command and returns sorted high IDs",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "name": "stream closure after SEARCH cannot become a successful prefix",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/reconnect_state_test.dart",
+    "name": "IMAP: a partial literal of a lost connection is discarded",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/reconnect_state_test.dart",
+    "name": "POP: a partial reply of a lost connection is discarded",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/reconnect_state_test.dart",
+    "name": "SMTP: a partial reply of a lost connection is discarded",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "FETCH with attached literal cannot yield an empty success",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "FETCH-like atoms and unrelated status/data remain unhandled",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "ambiguous header FETCH cannot yield a partial sync or false tombstones",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "body FETCH with attached closing list cannot yield an earlier successful prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "body FETCH with attached quoted prefix cannot yield an earlier successful prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "body FETCH with missing list separator cannot yield an earlier successful prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "body FETCH with tab list separator cannot yield an earlier successful prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "body FETCH with tab sequence separator cannot yield an earlier successful prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "canonical raw FETCH preserves exact fragmented literal octets",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "flag notification rejects non-decimal UID lexeme +1",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "flag notification rejects non-decimal UID lexeme 01",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "flag notification rejects non-decimal UID lexeme 0x1",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "full raw FETCH rejects non-decimal UID lexeme +1",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "full raw FETCH rejects non-decimal UID lexeme 01",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "full raw FETCH rejects non-decimal UID lexeme 0x1",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "header FETCH with attached closing list cannot yield an earlier successful prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "header FETCH with attached quoted prefix cannot yield an earlier successful prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "header FETCH with missing list separator cannot yield an earlier successful prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "header FETCH with tab list separator cannot yield an earlier successful prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "header FETCH with tab sequence separator cannot yield an earlier successful prefix",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "raw FETCH rejects trailing anonymous list and cannot accept a tagged OK",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "raw FETCH rejects trailing atom and cannot accept a tagged OK",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "raw FETCH rejects trailing empty list and cannot accept a tagged OK",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "separate canonical header FETCH responses preserve both UIDs",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "strict repeated-list checks preserve legacy iteration behavior",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "name": "two top-level FETCH bodies cannot silently select the last UID",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "UID 1 outside the requested closed interval fails",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "UID 4 outside the requested closed interval fails",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "a second result \"* ESEARCH UID ALL 2\" invalidates the first",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "a second result \"* SEARCH 2\" invalidates the first",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "a second result \"* SEARCH\" invalidates the first",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "control byte fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "count exhaustion has a typed resource failure and no prefix",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "duplicate UID fails without deduplicating malformed discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "excess decimal digits fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "explicit empty and mixed-case SEARCH responses are complete",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "exponent fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "extension data fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "fraction fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "fragmented high unordered UIDs become a sorted immutable result",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "hexadecimal fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "leading zero fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "malformed attached suffix \"(2)\" rejects an earlier complete result",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "malformed attached suffix \"\\\"2\\\"\" rejects an earlier complete result",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "malformed attached suffix \"\\t2\" rejects an earlier complete result",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "malformed attached suffix \"]2\" rejects an earlier complete result",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "malformed attached suffix \"\u007f2\" rejects an earlier complete result",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "malformed attached suffix \"\u00802\" rejects an earlier complete result",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "missing SEARCH fails and cannot become a later successful prefix",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "negative fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "nested list fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "ordinary text fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "overflow fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "positive sign fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "quoted number fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"*  SEARCH 1\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"* ESEARCH UID ALL 1:4294967295\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"* SEARCH {1}\\r\\n1\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"* SEARCH(1)\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"* SEARCH\\\"1\\\"\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"* SEARCH\\t1\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"* SEARCH{1}\\r\\n1\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"* SEARCH\u007f1\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"* SEARCH\u00801\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"* esearch\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"*SEARCH 1\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"*\\tSEARCH 1\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"*\u007fSEARCH 1\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "rejects malformed or extended shape \"*\u0080SEARCH 1\"",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "repeated space fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "sequence range fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "status prose and distinct response atoms remain separate",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "tab separator fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "tagged failure does not turn a complete discovery into success",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "trailing space fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "wildcard fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+    "name": "zero fails the entire discovery",
+    "executions": [
+      {
+        "cohort": "uid-search-parser-and-wire",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/search_parser_test.dart",
+    "name": "Extended search with COUNT, ALL",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/search_parser_test.dart",
+    "name": "Extended search with MIN, MAX, COUNT",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/search_parser_test.dart",
+    "name": "Extended search with MIN, MAX, MODSEQ",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/search_parser_test.dart",
+    "name": "Extended search with PARTIAL",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/search_parser_test.dart",
+    "name": "Search empty",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/search_parser_test.dart",
+    "name": "Search simple",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  },
+  {
+    "suite": "third_party/enough_mail/test/src/imap/search_parser_test.dart",
+    "name": "Search with mod sequence",
+    "executions": [
+      {
+        "cohort": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm"
+      }
+    ]
+  }
+]

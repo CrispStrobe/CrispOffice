@@ -706,13 +706,14 @@ class WmlRunProps {
   /// `w:noProof`; null inherits the surrounding style/default.
   bool? noProof;
 
-  /// Complex-script proofing language (`w:lang/@w:bidi`), including the
-  /// document default when resolved through styles. Read-only for routing:
-  /// the attribute itself round-trips through [sourcePropertiesXml].
+  /// Complex-script proofing language (`w:lang/@w:bidi`), including inherited
+  /// character/paragraph style values. Null uses the live document default.
+  /// Sparse export preserves unmodified native language attributes.
   String? complexScriptLanguage;
 
   /// `w:rtl` or `w:cs` is on: Word formats and proofs the run as complex
-  /// script, so [complexScriptLanguage] applies. Read-only, like above.
+  /// script, so [complexScriptLanguage] applies. Read-only for routing; the
+  /// original marker round-trips through [sourcePropertiesXml].
   bool? complexScript;
 
   /// fontSizePoints API.

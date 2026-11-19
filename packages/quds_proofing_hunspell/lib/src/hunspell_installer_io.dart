@@ -12,11 +12,37 @@ final class HunspellInstallException implements Exception {
   String toString() => message;
 }
 
-/// Cooperative cancellation for a running download.
+/// Cancellation for a running download, including stalled network requests.
 final class HunspellInstallCancellation {
   bool _cancelled = false;
+  final Set<void Function()> _listeners = {};
   bool get cancelled => _cancelled;
-  void cancel() => _cancelled = true;
+
+  void cancel() {
+    if (_cancelled) return;
+    _cancelled = true;
+    final listeners = List<void Function()>.of(_listeners);
+    _listeners.clear();
+    for (final listener in listeners) {
+      listener();
+    }
+  }
+
+  void addListener(void Function() listener) {
+    if (_cancelled) {
+      listener();
+    } else {
+      _listeners.add(listener);
+    }
+  }
+
+  void removeListener(void Function() listener) => _listeners.remove(listener);
+
+  void _throwIfCancelled() {
+    if (_cancelled) {
+      throw const HunspellInstallException('Download cancelled.');
+    }
+  }
 }
 
 /// Progress callback: bytes received so far of [total].
@@ -67,7 +93,9 @@ final class HunspellInstaller {
     HunspellDownloadProgress? onProgress,
     HunspellInstallCancellation? cancellation,
   }) async {
+    cancellation?._throwIfCancelled();
     final existing = await installed(bundle);
+    cancellation?._throwIfCancelled();
     if (existing != null) return existing;
     final parent = Directory('${root.path}/hunspell')
       ..createSync(recursive: true);
@@ -93,6 +121,7 @@ final class HunspellInstaller {
         );
       }
       await _verify(staging, bundle);
+      cancellation?._throwIfCancelled();
       final destination = _directory(bundle);
       try {
         staging.renameSync(destination.path);
@@ -169,10 +198,16 @@ final class HunspellInstaller {
     HunspellInstallCancellation? cancellation,
     void Function(int)? onBytes,
   }) async {
+    cancellation?._throwIfCancelled();
     final client = _httpClientFactory();
+    void abort() => client.close(force: true);
+    cancellation?.addListener(abort);
     try {
+      cancellation?._throwIfCancelled();
       final request = await client.getUrl(url);
+      cancellation?._throwIfCancelled();
       final response = await request.close();
+      cancellation?._throwIfCancelled();
       if (response.statusCode != HttpStatus.ok) {
         throw HunspellInstallException(
           'Download of ${artifact.file} failed with HTTP ${response.statusCode}.',
@@ -184,9 +219,7 @@ final class HunspellInstaller {
       var length = 0;
       try {
         await for (final chunk in response) {
-          if (cancellation?.cancelled ?? false) {
-            throw const HunspellInstallException('Download cancelled.');
-          }
+          cancellation?._throwIfCancelled();
           length += chunk.length;
           if (length > artifact.bytes) {
             throw HunspellInstallException(
@@ -200,6 +233,7 @@ final class HunspellInstaller {
       } finally {
         await sink.close();
       }
+      cancellation?._throwIfCancelled();
       hashing.close();
       if (length != artifact.bytes ||
           digest.value.toString() != artifact.sha256) {
@@ -207,7 +241,11 @@ final class HunspellInstaller {
           '${artifact.file} does not match its pinned SHA-256.',
         );
       }
+    } on Object {
+      cancellation?._throwIfCancelled();
+      rethrow;
     } finally {
+      cancellation?.removeListener(abort);
       client.close(force: true);
     }
   }

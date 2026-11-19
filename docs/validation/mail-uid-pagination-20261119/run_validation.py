@@ -63,10 +63,10 @@ def main() -> int:
     formatted = set(plan_data["native"]["format"])
     changed = {
         path for path in git("diff", "--name-only", "--diff-filter=ACMRT", "-z", base, head).split("\0")
-        if path.endswith(".dart") and path.startswith(("packages/quds_mail_", "third_party/enough_mail/"))
+        if path.endswith(".dart") and path.startswith(("packages/", "apps/", "third_party/"))
     }
     if changed - analyzed or changed - formatted:
-        raise RuntimeError("Changed Mail Dart paths missing strict checks: " + repr(sorted((changed - analyzed) | (changed - formatted))))
+        raise RuntimeError("Changed product Dart paths missing strict checks: " + repr(sorted((changed - analyzed) | (changed - formatted))))
     required = {str(path.relative_to(repo)) for path in [Path(__file__), *plans.values()]}
     if not required <= tracked:
         raise RuntimeError("Commit the driver and both plans before execution")
@@ -103,6 +103,14 @@ def main() -> int:
     for name, expected in receipt.get("additional_inputs", {}).items():
         if before_runtime["additional/" + name] != expected:
             raise RuntimeError("Additional runtime input changed: " + name)
+    native_preparation = receipt.get("hunspell_preparation", {})
+    build_verification = json.loads(Path(native_preparation["build_verification"]).read_text())
+    for name, expected in build_verification["compiled_inputs"].items():
+        if digest(repo / name) != expected:
+            raise RuntimeError("Hunspell compiled source changed after its build: " + name)
+    lifecycle = json.loads(Path(native_preparation["lifecycle_receipt"]).read_text())
+    if digest(repo / lifecycle["source"]) != lifecycle["source_sha256"]:
+        raise RuntimeError("Rebuild the native lifecycle fixture after changing its source")
     write_json(output / "source-before.json", before_source)
     write_json(output / "runtime-before.json", before_runtime)
     env = dict(os.environ, PUB_CACHE=str(runtime / "pub-cache"), FLUTTER_ROOT=str(runtime / "flutter"),
@@ -111,16 +119,39 @@ def main() -> int:
                XDG_CACHE_HOME=str(runtime / "cache"), XDG_DATA_HOME=str(runtime / "data"),
                TMPDIR=str(runtime / "tmp"))
     env["PATH"] = str(runtime / "bin") + os.pathsep + env.get("PATH", "")
+    qualification_environment = receipt.get("qualification_environment", {})
+    required_environment = {"QUDS_HUNSPELL_TEST_LIBRARY", "QUDS_HUNSPELL_TEST_DICTIONARY",
+                            "QUDS_HUNSPELL_LIFECYCLE_LIBRARY", "QUDS_HUNSPELL_LIVE_DOWNLOAD"}
+    if set(qualification_environment) != required_environment or any(
+        not isinstance(value, str) for value in qualification_environment.values()
+    ) or qualification_environment["QUDS_HUNSPELL_LIVE_DOWNLOAD"] != "1":
+        raise RuntimeError("Bind and enable the genuine native Hunspell and dictionary qualification environment")
+    for name in ("QUDS_HUNSPELL_TEST_LIBRARY", "QUDS_HUNSPELL_LIFECYCLE_LIBRARY"):
+        path = qualification_environment[name]
+        if path not in receipt.get("additional_inputs", {}):
+            raise RuntimeError("The selected native library is not hash-bound: " + name)
+    dictionary = Path(qualification_environment["QUDS_HUNSPELL_TEST_DICTIONARY"])
+    if not dictionary.is_dir() or len(list(dictionary.iterdir())) != 8 or any(
+        not path.is_file() or str(path) not in receipt.get("additional_inputs", {})
+        for path in dictionary.iterdir()
+    ):
+        raise RuntimeError("Bind all eight dictionary catalog files before qualification")
+    for name in list(env):
+        if name.startswith("QUDS_HUNSPELL_"):
+            del env[name]
+    env.update(qualification_environment)
     record = {"status": "RUNNING", "source_commit": head, "source_base": base,
               "source_tree": git("rev-parse", "HEAD^{tree}"), "runs": [],
               "started_at_utc": datetime.now(timezone.utc).isoformat(),
               "runtime_receipt_sha256": digest(runtime / "runtime.json"),
+              "qualification_environment": qualification_environment,
               "github_actions_queried_or_awaited": False}
 
     def save() -> None:
         write_json(output / "execution.json", record)
 
-    def run(name: str, command: list[str], result: Path | None = None) -> None:
+    def run(name: str, command: list[str], result: Path | None = None,
+            artifacts: list[Path] | None = None) -> None:
         log = output / (name + ".log")
         print("START " + name, flush=True)
         row = {"name": name, "command": command, "log": log.name}
@@ -135,6 +166,14 @@ def main() -> int:
             row["accepted"] = content.get("success") is True or content.get("status") == "PASS"
         else:
             row["accepted"] = result is None
+        if artifacts is not None:
+            row["artifacts"] = {
+                str(path.relative_to(output)): {"bytes": path.stat().st_size, "sha256": digest(path)}
+                for path in artifacts if path.is_file()
+            }
+            row["accepted"] = row["accepted"] and len(row["artifacts"]) == len(artifacts) and all(
+                item["bytes"] > 0 for item in row["artifacts"].values()
+            )
         save()
         if process.returncode or not row["accepted"]:
             raise RuntimeError(name + " failed; preserve its raw evidence")
@@ -146,6 +185,12 @@ def main() -> int:
             run(name, [sys.executable, str(path)])
         run("ayaspell-offline-controls", [sys.executable, "-m", "unittest", "discover",
                                           "-s", "tools/proofing/ayaspell", "-p", "test_*.py", "-v"])
+        run("hunspell-worker-syntax", [receipt["node_runtime"]["path"], "--check",
+                                       str(repo / "packages/quds_proofing_hunspell/web/hunspell_worker.mjs")])
+        hunspell_web_output = output / "hunspell-web-entry.js"
+        run("hunspell-web-entry", [str(runtime / "bin/dart"), "compile", "js",
+                                   str(repo / "packages/quds_proofing_hunspell/tool/web_compile_check.dart"),
+                                   "-o", str(hunspell_web_output)], artifacts=[hunspell_web_output])
         run("core-store", [sys.executable, str(repo / "tools/mail/check_store.py"),
                            "--flutter-sdk", str(runtime / "flutter"), "--offline", "--direct-tests",
                            "--command-timeout", str(args.command_timeout), "--output", str(output / "core-store")],

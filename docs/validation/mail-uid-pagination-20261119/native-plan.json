@@ -1,5 +1,5 @@
 {
-  "description": "Fresh local qualification of discovered-UID IMAP pagination on one frozen integrated source. Covers high/sparse UID discovery, strict bounded SEARCH parsing, cursor/version recovery and atomic SQLite range reconciliation; preserves current Socket-compatible TLS, raw FETCH, inherited IMAP/POP/SMTP protocols, MIME and saved-message UI consumers. Core/store VM and Node plus browser compilation run separately through check_store.py on the same source. These local controlled and Linux loopback cases do not establish live-account interoperability, actual browser persistence, OAuth/platform-vault hosts or other operating systems.",
+  "description": "Fresh combined qualification after captured incoming integration: UID discovery and monotonic v3 cursor revisions, atomic range reconciliation, current TLS/protocol/MIME/UI, Arabic Unicode writing rules and shared editor proofing, and the actual locally built Hunspell backend with pinned AyaSpell data. Native integration requires the bound library and dictionary environment plus the explicitly enabled immutable public dictionary download test; skips are not accepted. Core/store and Node cohorts run separately on the same frozen source. Actual browser/Wasm, other operating systems and live Mail accounts remain outside this gate.",
   "groups": [
     {
       "name": "transport-native",
@@ -9,7 +9,8 @@
         "test/configuration_test.dart",
         "test/native_provider_test.dart",
         "test/host_store_integration_test.dart",
-        "test/uid_discovery_test.dart"
+        "test/uid_discovery_test.dart",
+        "test/cursor_test.dart"
       ]
     },
     {
@@ -98,6 +99,44 @@
         "test/message_view_test.dart",
         "test/presentation_test.dart"
       ]
+    },
+    {
+      "name": "office-engine-proofing",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/office_proofing_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart",
+        "test/proofing/proofing_locale_test.dart",
+        "test/proofing/proofing_report_merge_test.dart",
+        "test/word_proofing_inheritance_test.dart"
+      ]
+    },
+    {
+      "name": "word-arabic-proofing",
+      "cwd": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/word_arabic_writing_integration_test.dart",
+        "test/word_german_grammar_integration_test.dart",
+        "test/word_proofing_session_test.dart",
+        "test/word_incremental_proofing_test.dart",
+        "test/word_live_proofing_session_test.dart",
+        "test/word_proofing_context_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_navigation_test.dart"
+      ]
+    },
+    {
+      "name": "hunspell-provider-and-native",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "tests": [
+        "test/hunspell_provider_test.dart",
+        "test/hunspell_native_test.dart",
+        "test/native_lifecycle_test.dart"
+      ]
     }
   ],
   "analysis": [
@@ -154,6 +193,7 @@
     "packages/quds_mail_transport/lib/src/native/provider.dart",
     "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
     "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/cursor_test.dart",
     "packages/quds_mail_transport/test/host_store_integration_test.dart",
     "packages/quds_mail_transport/test/native_provider_test.dart",
     "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
@@ -163,6 +203,27 @@
     "packages/quds_mail_transport/test/support/tls_server.dart",
     "packages/quds_mail_transport/test/uid_discovery_test.dart",
     "packages/quds_mail_transport/test/unsupported_test.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "packages/quds_proofing_hunspell/lib/installer_io.dart",
+    "packages/quds_proofing_hunspell/lib/quds_proofing_hunspell.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_transport.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_transport_stub.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_transport_web.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_words.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "packages/quds_proofing_hunspell/test/native_lifecycle_test.dart",
+    "packages/quds_proofing_hunspell/tool/corpus_check.dart",
+    "packages/quds_proofing_hunspell/tool/web_compile_check.dart",
     "third_party/enough_mail/lib/imap.dart",
     "third_party/enough_mail/lib/src/imap/imap_client.dart",
     "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
@@ -232,6 +293,7 @@
     "packages/quds_mail_transport/lib/src/native/provider.dart",
     "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
     "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/cursor_test.dart",
     "packages/quds_mail_transport/test/host_store_integration_test.dart",
     "packages/quds_mail_transport/test/native_provider_test.dart",
     "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
@@ -241,6 +303,27 @@
     "packages/quds_mail_transport/test/support/tls_server.dart",
     "packages/quds_mail_transport/test/uid_discovery_test.dart",
     "packages/quds_mail_transport/test/unsupported_test.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "packages/quds_proofing_hunspell/lib/installer_io.dart",
+    "packages/quds_proofing_hunspell/lib/quds_proofing_hunspell.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_transport.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_transport_stub.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_transport_web.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_words.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+    "packages/quds_proofing_hunspell/test/native_lifecycle_test.dart",
+    "packages/quds_proofing_hunspell/tool/corpus_check.dart",
+    "packages/quds_proofing_hunspell/tool/web_compile_check.dart",
     "third_party/enough_mail/lib/imap.dart",
     "third_party/enough_mail/lib/src/imap/imap_client.dart",
     "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
@@ -261,6 +344,8 @@
     "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
     "docs/validation/document-review-notes-20261118/test_run_checks.py",
     "docs/validation/mail-uid-pagination-20261119/run_validation.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/combined-runtime.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/refresh_runtime.py",
     "docs/validation/mail-uid-pagination-20261119/runtime/runtime.json",
     "packages/quds_mail_transport/test/fixtures/tls/README.md",
     "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
@@ -271,7 +356,24 @@
     "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
     "tools/mail/check_reader.py",
     "tools/mail/check_store.py",
-    "tools/mail/test_check_store.py"
+    "tools/mail/test_check_store.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/upstream-notice-preservation.json"
   ],
-  "whitespace_preserved_inputs": []
+  "whitespace_preserved_inputs": [
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    }
+  ]
 }

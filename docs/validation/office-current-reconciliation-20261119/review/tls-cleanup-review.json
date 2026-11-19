@@ -1,0 +1,63 @@
+{
+  "incoming": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "main": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+  "verified_members": 17,
+  "archive_sha256": "999f09ef354f6e6a1b70ad24bdb3477d53069c7a5c3fc6a5c1a81f880020a1a0",
+  "before_after_bindings": [
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "before_matches_main": true,
+      "after_matches_incoming": true
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "before_matches_main": true,
+      "after_matches_incoming": true
+    }
+  ],
+  "socket_adapter_unchanged": true,
+  "red": {
+    "source_commit": "022a974a96db23e22bc161f7d465e4b972e8c2a9",
+    "started_at": "2026-11-19T07:30:26.867534+00:00",
+    "command": [
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/socket-facade-review/failed-upgrade-probe.dart"
+    ],
+    "cwd": "/workspace/scratch/a7846890f2e1/runtime-recovery/socket-facade-review",
+    "exit_code": 1,
+    "stdout_sha256": "a93b12aa2b571fd02e518d738753f8bbd0dafc04e60c069ccfa894d7751febd4",
+    "inputs": {
+      "client_base.dart": "d9c739f9e85643368ea1e192625991d28e8a04b75e76e21e59b51eb80769f290",
+      "cancellable_socket.dart": "8d444dfb5af02330051839938b8477f1c01b3455418d9b910881a8d41e357fa8",
+      "failed-upgrade-probe.dart": "f4d117123b689e718d582d9c453e15912afdf4c7522bdfe5bfad4921f8c54a3e"
+    },
+    "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "scope": "Controlled factory rejection through actual incoming ClientBase; no live TLS assertion."
+  },
+  "green": {
+    "started_at": "2026-11-19T07:32:33.642738+00:00",
+    "finished_at": "2026-11-19T07:32:34.258935+00:00",
+    "command": [
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/socket-facade-review/failed-upgrade-green-probe.dart"
+    ],
+    "cwd": "/workspace/scratch/a7846890f2e1/runtime-recovery/socket-facade-review",
+    "exit_code": 0,
+    "stdout_sha256": "df66e25c669e630298f47bf319dc3e4a17b0855588a3345028048a39d7ffaa9f",
+    "before": {
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/socket-facade-review/green-source/client_base.dart": "660c7780730a1621934fa529840c6158cfbe8dea8d86ba1fc9aa9412e5baf286",
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/socket-facade-review/green-source/cancellable_socket.dart": "8d444dfb5af02330051839938b8477f1c01b3455418d9b910881a8d41e357fa8",
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/socket-facade-review/failed-upgrade-green-probe.dart": "48cbe53403e5b2f374decd5b504f39dbc30d6be48b9cf49cbddabac34715b31f",
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    },
+    "after": {
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/socket-facade-review/green-source/client_base.dart": "660c7780730a1621934fa529840c6158cfbe8dea8d86ba1fc9aa9412e5baf286",
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/socket-facade-review/green-source/cancellable_socket.dart": "8d444dfb5af02330051839938b8477f1c01b3455418d9b910881a8d41e357fa8",
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/socket-facade-review/failed-upgrade-green-probe.dart": "48cbe53403e5b2f374decd5b504f39dbc30d6be48b9cf49cbddabac34715b31f",
+      "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    },
+    "inputs_unchanged": true,
+    "scope": "Controlled factory rejection through actual incoming ClientBase plus cleanup patch; original HandshakeException remains observed. Not a live TLS test."
+  },
+  "live_tls_tests_in_archive": false
+}

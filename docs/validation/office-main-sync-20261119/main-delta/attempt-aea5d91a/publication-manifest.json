@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "source_commit": "aea5d91af0083bc088d599ed767188f0bb071195",
+  "created_at_utc": "2026-11-19T08:34:41.128509+00:00",
+  "spec_sha256": "7ca6fb550b647ad035354a3ebbbed2f500c3254c680666c63ba422ff74390623",
+  "packer_sha256": "546a0e6ed43b4258f060811e7d03ba5cfc46f447f556c61b331ecfe519ef87f5",
+  "archives": [
+    {
+      "name": "failed-native-reporter-attempt",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta/attempt-aea5d91a/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta/attempt-aea5d91a/evidence.index.json",
+      "scope": "Failed exact-source delta attempt. Native assertions reported159visible successes but three unexpected missing-dictionary stderr lines failed strict reporter admission. No result from this attempt contributes to accepted counts. Node/browser gates never began.",
+      "source_commit": "aea5d91af0083bc088d599ed767188f0bb071195",
+      "archive_bytes": 803324,
+      "archive_sha256": "067e96b699d02a3ae1d6b266da6c6e6fc90f98c7eee32a70398686fa204583fa",
+      "index_bytes": 14784,
+      "index_sha256": "8a56a84be215b5ea5644efe6ce5716a17287a1707c0c2cb84d5593952b7eb33c",
+      "member_count": 50
+    }
+  ],
+  "scope": "Byte-preserving evidence publication. Archive/member counts are not application test counts. Historical and development evidence retain their separate scopes."
+}

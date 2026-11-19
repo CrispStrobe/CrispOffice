@@ -1,5 +1,5 @@
 {
-  "description": "Portable transport configuration/browser-unsupported boundary, MIME, and fork portable MIME on Node on the same frozen source. Cross-runtime repetitions are reported separately from distinct named scenarios. This does not execute browser storage or UI.",
+  "description": "Combined portable Node qualification: Mail configuration/unsupported boundary and v3 cursor revisions, MIME/fork portability, Arabic Unicode text ranges and Hunspell scripted provider boundary. This does not execute a browser Worker or Wasm backend. Cross-platform repetitions are counted separately from distinct scenarios.",
   "groups": [
     {
       "name": "transport-node",
@@ -8,7 +8,8 @@
       "platform": "node",
       "tests": [
         "test/configuration_test.dart",
-        "test/unsupported_test.dart"
+        "test/unsupported_test.dart",
+        "test/cursor_test.dart"
       ]
     },
     {
@@ -33,6 +34,25 @@
       "tests": [
         "test/quds_portable_mime_test.dart"
       ]
+    },
+    {
+      "name": "arabic-unicode-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart"
+      ]
+    },
+    {
+      "name": "hunspell-portable-provider-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ]
     }
   ],
   "analysis": [],
@@ -42,6 +62,8 @@
     "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
     "docs/validation/document-review-notes-20261118/test_run_checks.py",
     "docs/validation/mail-uid-pagination-20261119/run_validation.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/combined-runtime.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/refresh_runtime.py",
     "docs/validation/mail-uid-pagination-20261119/runtime/runtime.json",
     "packages/quds_mail_transport/test/fixtures/tls/README.md",
     "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
@@ -52,7 +74,24 @@
     "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
     "tools/mail/check_reader.py",
     "tools/mail/check_store.py",
-    "tools/mail/test_check_store.py"
+    "tools/mail/test_check_store.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/upstream-notice-preservation.json"
   ],
-  "whitespace_preserved_inputs": []
+  "whitespace_preserved_inputs": [
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    }
+  ]
 }

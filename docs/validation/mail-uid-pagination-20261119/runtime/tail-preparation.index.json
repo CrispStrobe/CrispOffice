@@ -1,0 +1,47 @@
+{
+  "archive": "tail-preparation.tar.xz",
+  "bytes": 24352,
+  "members": [
+    {
+      "bytes": 81652,
+      "path": "runtime.json",
+      "sha256": "2d652bd61d2872999131418f845692386d1bf4ba2d037bceb72df10c586ab9a4"
+    },
+    {
+      "bytes": 18401,
+      "path": "prior-combined-runtime.json",
+      "sha256": "0b4544ac387f3efa23abacf71f66b834fcddec7d3b02414209c57dab14299729"
+    },
+    {
+      "bytes": 79940,
+      "path": "poppler-receipt.json",
+      "sha256": "60873f39046af6a53af47281ff7084b3422338d07727506b4fc18048cc2062e0"
+    },
+    {
+      "bytes": 68,
+      "path": "preparation/workspace-pub-get.log",
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "bytes": 313,
+      "path": "preparation/runtime-refresh.log",
+      "sha256": "941018e132f1447adf39e66edd05d98c6f963061a35096fba282ee87f0ee6979"
+    },
+    {
+      "bytes": 125,
+      "path": "preparation/shared-runner-controls.log",
+      "sha256": "7bbd284e9252c05cc3598dab72baf590bd30e374697c11fafc496ddd79cf2d6f"
+    },
+    {
+      "bytes": 6804,
+      "path": "preparation/mail-runner-controls.log",
+      "sha256": "d248d24f513b46dd8a0c861d52ad3b20aae16114c06fdf90b6148cbf6a0cc1e5"
+    },
+    {
+      "bytes": 2888,
+      "path": "refresh_tail_runtime.py",
+      "sha256": "d4d4b35522176315dbfa37db920f0d36b9f27cf6f4bd9a4e0a769bfca9680364"
+    }
+  ],
+  "sha256": "f5c95e1ade3ca1bf8683cc98d7aa90b6581e58002ca7b62e2cd4e5b53f4b0d23"
+}

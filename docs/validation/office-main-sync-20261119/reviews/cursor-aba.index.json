@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "archive": "cursor-aba.tar.xz",
+  "archive_bytes": 23096,
+  "archive_sha256": "e323bc99c7f7af6cf21455e228443b39b2bc5a9d55892b9bb215014430bf3c7f",
+  "source_commit": null,
+  "publication_source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "scope": "Original20-member cursor stale-write RED/GREEN development packet, excluded from acceptance totals.",
+  "members": [
+    {
+      "path": "analysis.log",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/analysis.log",
+      "bytes": 134,
+      "sha256": "ac0db08620b880d2def2fbf98fb2f0a0b83a2a370523d06e384cf5fe8ea60978"
+    },
+    {
+      "path": "collect_evidence.py",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/collect_evidence.py",
+      "bytes": 6105,
+      "sha256": "3818d6d3f595c0cfb5c3f930deaeb3b2a5671e3ac641110c657f70d21eea3ecb"
+    },
+    {
+      "path": "format.log",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/format.log",
+      "bytes": 47,
+      "sha256": "630fcbbeb52ca32769c7e608d30cac561a9df94ba05bd27270040c86cbab7573"
+    },
+    {
+      "path": "green-node-accounting.json",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-node-accounting.json",
+      "bytes": 2368,
+      "sha256": "694bfd385243bc8f76e4553e0c080fd757211840687b0274f5f86bd0114b9565"
+    },
+    {
+      "path": "green-node.jsonl",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-node.jsonl",
+      "bytes": 3193,
+      "sha256": "4e4243231fb3691852ce16a86ed2aba76b4dcee15b484c2edcba72fff4581854"
+    },
+    {
+      "path": "green-source/packages/quds_mail_transport/CHANGELOG.md",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-source/packages/quds_mail_transport/CHANGELOG.md",
+      "bytes": 1876,
+      "sha256": "fb3667f68bf66dc42af81f6ef2bb09adfe7e90af4df3d6fb1e84af5aaa0a2678"
+    },
+    {
+      "path": "green-source/packages/quds_mail_transport/README.md",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-source/packages/quds_mail_transport/README.md",
+      "bytes": 10931,
+      "sha256": "e97d0aacb96351258f10d1666d3e8a7f113e8746392f30218ecf6dc30e4e4293"
+    },
+    {
+      "path": "green-source/packages/quds_mail_transport/lib/src/cursor.dart",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-source/packages/quds_mail_transport/lib/src/cursor.dart",
+      "bytes": 3034,
+      "sha256": "9f8a0dd13ac4eecfb9211b2ebc2b88087137647b15918155e4fa7fb0fbd6b13a"
+    },
+    {
+      "path": "green-source/packages/quds_mail_transport/lib/src/native/provider.dart",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-source/packages/quds_mail_transport/lib/src/native/provider.dart",
+      "bytes": 21946,
+      "sha256": "48f75cfb1f8035a5a8b5b680b646a45b4bd3296a83f1abb93bc13a6371794747"
+    },
+    {
+      "path": "green-source/packages/quds_mail_transport/test/cursor_test.dart",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-source/packages/quds_mail_transport/test/cursor_test.dart",
+      "bytes": 2710,
+      "sha256": "e9da5d71253a48fb7b0c5f1aa53d2e536713efb03261237d467a535e5d2c6316"
+    },
+    {
+      "path": "green-source/packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-source/packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "bytes": 18126,
+      "sha256": "4237e7d0df8972b3f1057a1176028a76931cb66deccfcd4a9afa7305d923a8ef"
+    },
+    {
+      "path": "green-source/packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-source/packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "bytes": 14822,
+      "sha256": "3eb6733199f568412c333c1cd98d9b1b9270009d948144a715d8a98cabfb21b2"
+    },
+    {
+      "path": "green-vm-accounting.json",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-vm-accounting.json",
+      "bytes": 12221,
+      "sha256": "211a2d31fb36300c1a25e6106c11bb10b1a2628d7f3f7dcb721be1012ae1a040"
+    },
+    {
+      "path": "green-vm.jsonl",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/green-vm.jsonl",
+      "bytes": 18390,
+      "sha256": "1ac9e9e198de2425d012a2fef3c5ac2f94756bd4acd00b9e03e1e748405b238c"
+    },
+    {
+      "path": "receipt.json",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/receipt.json",
+      "bytes": 6039,
+      "sha256": "1e0e23d3d693f1e4cd9733aaead817e8552c1f580611043837245b6efa276a3a"
+    },
+    {
+      "path": "red-accounting.json",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/red-accounting.json",
+      "bytes": 1695,
+      "sha256": "6743f3dea5a0c829b84183ef63dc2ea61f72afe9ce0c34c5aa5bb791a23bcbed"
+    },
+    {
+      "path": "red-source/packages/quds_mail_transport/lib/src/cursor.dart",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/red-source/packages/quds_mail_transport/lib/src/cursor.dart",
+      "bytes": 2344,
+      "sha256": "2324deac7793bd01cac0395a938dc0b2f5a6f56b6e667c2b6360bc2cde27d24b"
+    },
+    {
+      "path": "red-source/packages/quds_mail_transport/lib/src/native/provider.dart",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/red-source/packages/quds_mail_transport/lib/src/native/provider.dart",
+      "bytes": 21681,
+      "sha256": "fb863edbc46a7d3f4c8c00a2ad3b5f45d4259112ef02154b98b73bcef07d57df"
+    },
+    {
+      "path": "red-source/packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/red-source/packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "bytes": 18142,
+      "sha256": "9b70033b869320f124a105b2783fb0d72e542ebc787ab8ec50dc82b70ecb5b3f"
+    },
+    {
+      "path": "red.jsonl",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba/red.jsonl",
+      "bytes": 1557,
+      "sha256": "0a2a49318e609c2ce60921556741718904081b8efd46cfd6eb9881b723c997dc"
+    }
+  ],
+  "reused_from": {
+    "archive": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba-evidence.tar.xz",
+    "index": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba-evidence.index.json",
+    "archive_sha256": "e323bc99c7f7af6cf21455e228443b39b2bc5a9d55892b9bb215014430bf3c7f",
+    "index_sha256": "f29594dd504a6a6702545ad9a2b296db3fdb35594f5d89556b633a3748847220"
+  }
+}

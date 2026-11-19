@@ -78,6 +78,57 @@ void main() {
   });
 
   test(
+    'completed sweeps reject stale pages without restoring expunged data',
+    () async {
+      final fixture = ImapFixture(
+        uidNext: 3,
+        messages: {
+          1: _message('Removed later', flags: [r'\Seen']),
+          2: _message('Retained', flags: [r'\Seen']),
+        },
+      );
+      final provider = fixture.provider(account: _account);
+      final session = MailAccountSession(_account);
+      await register(provider.configuration.credential);
+      expect(_value(await pull(provider, session)).hasMore, isFalse);
+      final observedCursor = _value(await store.readCursor(_inbox))!;
+
+      // Keep an actual complete provider result uncommitted while another
+      // complete sweep observes an expunge and newer flags from the server.
+      final stale = _value(
+        await provider.pullChanges(
+          _inbox,
+          cursor: observedCursor,
+          limit: 2,
+          lease: session.begin(),
+        ),
+      );
+      expect(stale.hasMore, isFalse);
+      expect(stale.upserts.map(_uid), [1, 2]);
+      fixture.messages
+        ..remove(1)
+        ..[2] = _message('Retained updated', flags: [r'\Flagged']);
+      final winner = _value(await pull(provider, session));
+      expect(winner.hasMore, isFalse);
+      expect(_byUid(_value(await store.listHeaders(_inbox))).keys, [2]);
+
+      final result = await store.commitSyncPage(
+        stale,
+        expectedCursor: observedCursor,
+        lease: session.begin(),
+      );
+      final retained = _byUid(_value(await store.listHeaders(_inbox)));
+      expect(retained.keys, [
+        2,
+      ], reason: 'A stale completed sweep must not restore expunged UID 1.');
+      _problem(result, MailProblemCode.conflict);
+      expect(retained[2]!.envelope.subject, 'Retained updated');
+      expect(retained[2]!.flags, const MailMessageFlags(isFlagged: true));
+      expect(_value(await store.readCursor(_inbox))!.value, winner.next.value);
+    },
+  );
+
+  test(
     'high discovered UID pages preserve flags and resume the durable cursor after reopen',
     () async {
       final fixture = ImapFixture(

@@ -1,0 +1,398 @@
+{
+  "saved_checkpoint": "86dc8b62d9f99ffc58f2391ef719002c523dca86",
+  "incoming_main": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+  "original_notes_source": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "scope": "Read-only review of protected Notes, Arabic semantic-fix preservation, default proofing registration, archive collisions and macOS project wiring. Mail UID implementation and full Hunspell backend acceptance are owned separately.",
+  "protected_notes": [
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "blobs": {
+        "original_3984": "8c0f6e830387e5658a04a61df3b385f2f89f6ba7",
+        "saved_86dc": "8c0f6e830387e5658a04a61df3b385f2f89f6ba7",
+        "incoming_b655": "8c0f6e830387e5658a04a61df3b385f2f89f6ba7"
+      },
+      "all_identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "blobs": {
+        "original_3984": "f8ac8e363a19bc143880b4b0a4b2292d98162641",
+        "saved_86dc": "f8ac8e363a19bc143880b4b0a4b2292d98162641",
+        "incoming_b655": "f8ac8e363a19bc143880b4b0a4b2292d98162641"
+      },
+      "all_identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "blobs": {
+        "original_3984": "c18e02fcec76b639ad84c9f1da5fffff23a8bfc6",
+        "saved_86dc": "c18e02fcec76b639ad84c9f1da5fffff23a8bfc6",
+        "incoming_b655": "c18e02fcec76b639ad84c9f1da5fffff23a8bfc6"
+      },
+      "all_identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "blobs": {
+        "original_3984": "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3",
+        "saved_86dc": "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3",
+        "incoming_b655": "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3"
+      },
+      "all_identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "blobs": {
+        "original_3984": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4",
+        "saved_86dc": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4",
+        "incoming_b655": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4"
+      },
+      "all_identical": true
+    }
+  ],
+  "recursive_merge_simulation": {
+    "ours": "86dc8b62d9f99ffc58f2391ef719002c523dca86",
+    "incoming": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+    "merge_bases": [
+      "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+      "f7117a493055008a72e6e16713dd67a4f7c2ad39"
+    ],
+    "merge_exit_code": 0,
+    "provisional_tree": "13254ad9b77e138b819176c533bb83ef8dc7ee2f",
+    "merge_messages": [
+      "",
+      "Auto-merging docs/PROOFING.md",
+      "Auto-merging docs/roadmaps/arabic-proofing.md"
+    ],
+    "arabic_and_registration_preservation": [
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+        "ours_blob": "d159216aa30a96f67120f2350a2d053e12bae3c1",
+        "simulated_merge_blob": "d159216aa30a96f67120f2350a2d053e12bae3c1",
+        "preserves_ours": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+        "ours_blob": "cda3f1f27f9397a877ca912f48e46e7e051426ec",
+        "simulated_merge_blob": "cda3f1f27f9397a877ca912f48e46e7e051426ec",
+        "preserves_ours": true
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "ours_blob": "8a64c3e463074723feb6bfc36e2b4eaeb1336116",
+        "simulated_merge_blob": "8a64c3e463074723feb6bfc36e2b4eaeb1336116",
+        "preserves_ours": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "ours_blob": "e291cb6663a819b13652d89862a9f6764c25314a",
+        "simulated_merge_blob": "e291cb6663a819b13652d89862a9f6764c25314a",
+        "preserves_ours": true
+      }
+    ],
+    "changed_paths": [
+      "M\tdocs/PROOFING.md",
+      "M\tdocs/roadmaps/arabic-proofing.md",
+      "A\tdocs/roadmaps/arabic-rule-spec.md",
+      "M\tdocs/roadmaps/mail/implementation-plan.md",
+      "M\tdocs/roadmaps/mail/status.md",
+      "M\tdocs/validation/mail-m06-resume-20261119/README.md",
+      "A\tdocs/validation/mail-uid-pagination-20261119/README.md",
+      "A\tdocs/validation/mail-uid-pagination-20261119/incoming/README.md",
+      "A\tdocs/validation/mail-uid-pagination-20261119/incoming/capture.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/incoming/initial-audit.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/incoming/origin-refs.txt",
+      "A\tdocs/validation/mail-uid-pagination-20261119/incoming/post-integration-audit.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/incoming/published-baseline-audit.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/incoming/replay_audit.py",
+      "A\tdocs/validation/mail-uid-pagination-20261119/incoming/summary.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/incoming/upstream-refs.txt",
+      "A\tdocs/validation/mail-uid-pagination-20261119/native-plan.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/node-plan.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/preflight-incoming/README.md",
+      "A\tdocs/validation/mail-uid-pagination-20261119/preflight-incoming/before-integration-audit.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/preflight-incoming/capture.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/preflight-incoming/origin-refs.txt",
+      "A\tdocs/validation/mail-uid-pagination-20261119/preflight-incoming/post-integration-audit.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/preflight-incoming/summary.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/preflight-incoming/upstream-refs.txt",
+      "A\tdocs/validation/mail-uid-pagination-20261119/review/range-transaction-review.md",
+      "A\tdocs/validation/mail-uid-pagination-20261119/run_validation.py",
+      "A\tdocs/validation/mail-uid-pagination-20261119/runtime/README.md",
+      "A\tdocs/validation/mail-uid-pagination-20261119/runtime/restore-evidence.index.json",
+      "A\tdocs/validation/mail-uid-pagination-20261119/runtime/restore-evidence.tar.xz",
+      "A\tdocs/validation/mail-uid-pagination-20261119/runtime/runtime.json",
+      "M\tdocs/validation/office-current-reconciliation-20261119/README.md",
+      "A\tdocs/validation/office-current-reconciliation-20261119/native/native-qualification.tar.index.json",
+      "A\tdocs/validation/office-current-reconciliation-20261119/native/native-qualification.tar.xz",
+      "M\tdocs/validation/office-main-completion-20261119/README.md",
+      "A\tdocs/validation/office-main-sync-20261119/merge-review.md",
+      "M\tpackages/quds_mail_core/README.md",
+      "M\tpackages/quds_mail_core/lib/src/ports/provider.dart",
+      "M\tpackages/quds_mail_core/lib/src/ports/repository.dart",
+      "A\tpackages/quds_mail_core/test/imap_sync_range_test.dart",
+      "M\tpackages/quds_mail_store/README.md",
+      "M\tpackages/quds_mail_store/lib/src/repository.dart",
+      "A\tpackages/quds_mail_store/test/imap_sync_range_test.dart",
+      "M\tpackages/quds_mail_transport/CHANGELOG.md",
+      "M\tpackages/quds_mail_transport/README.md",
+      "M\tpackages/quds_mail_transport/lib/src/configuration.dart",
+      "M\tpackages/quds_mail_transport/lib/src/cursor.dart",
+      "M\tpackages/quds_mail_transport/lib/src/native/provider.dart",
+      "M\tpackages/quds_mail_transport/test/configuration_test.dart",
+      "M\tpackages/quds_mail_transport/test/host_store_integration_test.dart",
+      "M\tpackages/quds_mail_transport/test/native_provider_test.dart",
+      "M\tpackages/quds_mail_transport/test/support/imap_fixture.dart",
+      "A\tpackages/quds_mail_transport/test/uid_discovery_test.dart",
+      "M\tpackages/quds_office_editor/example/analysis_options.yaml",
+      "A\tpackages/quds_office_editor/example/macos/.gitignore",
+      "A\tpackages/quds_office_editor/example/macos/Flutter/Flutter-Debug.xcconfig",
+      "A\tpackages/quds_office_editor/example/macos/Flutter/Flutter-Release.xcconfig",
+      "A\tpackages/quds_office_editor/example/macos/Flutter/GeneratedPluginRegistrant.swift",
+      "A\tpackages/quds_office_editor/example/macos/Podfile",
+      "A\tpackages/quds_office_editor/example/macos/Podfile.lock",
+      "A\tpackages/quds_office_editor/example/macos/Runner.xcodeproj/project.pbxproj",
+      "A\tpackages/quds_office_editor/example/macos/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+      "A\tpackages/quds_office_editor/example/macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme",
+      "A\tpackages/quds_office_editor/example/macos/Runner.xcworkspace/contents.xcworkspacedata",
+      "A\tpackages/quds_office_editor/example/macos/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+      "A\tpackages/quds_office_editor/example/macos/Runner/AppDelegate.swift",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_128.png",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_16.png",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_32.png",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_512.png",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_64.png",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Base.lproj/MainMenu.xib",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Configs/AppInfo.xcconfig",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Configs/Debug.xcconfig",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Configs/Release.xcconfig",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Configs/Warnings.xcconfig",
+      "A\tpackages/quds_office_editor/example/macos/Runner/DebugProfile.entitlements",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Info.plist",
+      "A\tpackages/quds_office_editor/example/macos/Runner/MainFlutterWindow.swift",
+      "A\tpackages/quds_office_editor/example/macos/Runner/Release.entitlements",
+      "A\tpackages/quds_office_editor/example/macos/RunnerTests/RunnerTests.swift",
+      "A\tpackages/quds_proofing_hunspell/.gitignore",
+      "A\tpackages/quds_proofing_hunspell/CHANGELOG.md",
+      "A\tpackages/quds_proofing_hunspell/LICENSE",
+      "A\tpackages/quds_proofing_hunspell/README.md",
+      "A\tpackages/quds_proofing_hunspell/lib/installer_io.dart",
+      "A\tpackages/quds_proofing_hunspell/lib/quds_proofing_hunspell.dart",
+      "A\tpackages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart",
+      "A\tpackages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+      "A\tpackages/quds_proofing_hunspell/lib/src/hunspell_provider.dart",
+      "A\tpackages/quds_proofing_hunspell/lib/src/hunspell_transport.dart",
+      "A\tpackages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+      "A\tpackages/quds_proofing_hunspell/lib/src/hunspell_transport_stub.dart",
+      "A\tpackages/quds_proofing_hunspell/lib/src/hunspell_transport_web.dart",
+      "A\tpackages/quds_proofing_hunspell/lib/src/hunspell_words.dart",
+      "A\tpackages/quds_proofing_hunspell/licenses/hunspell-1.7.2-library-sources.tar.gz",
+      "A\tpackages/quds_proofing_hunspell/licenses/manifest.json",
+      "A\tpackages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "A\tpackages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "A\tpackages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "A\tpackages/quds_proofing_hunspell/native/CMakeLists.txt",
+      "A\tpackages/quds_proofing_hunspell/native/src/quds_hunspell.cpp",
+      "A\tpackages/quds_proofing_hunspell/pubspec.yaml",
+      "A\tpackages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+      "A\tpackages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+      "A\tpackages/quds_proofing_hunspell/tool/build.py",
+      "A\tpackages/quds_proofing_hunspell/tool/corpus_check.dart",
+      "A\tpackages/quds_proofing_hunspell/tool/web_compile_check.dart",
+      "A\tpackages/quds_proofing_hunspell/tool/web_smoke.mjs",
+      "A\tpackages/quds_proofing_hunspell/web/hunspell_worker.mjs",
+      "M\tpubspec.yaml",
+      "M\tthird_party/enough_mail/QUDS_PATCHES.md",
+      "M\tthird_party/enough_mail/lib/src/imap/imap_client.dart",
+      "A\tthird_party/enough_mail/lib/src/private/imap/raw_uid_search_parser.dart",
+      "A\tthird_party/enough_mail/test/imap/raw_uid_search_test.dart",
+      "A\tthird_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+      "M\ttools/proofing/ayaspell/build_bundle.py",
+      "M\ttools/proofing/ayaspell/test_build_bundle.py",
+      "A\ttools/proofing/ayaspell/test_build_bundle_incoming.py",
+      "A\ttools/proofing/ayaspell/test_build_bundle_reproducibility.py"
+    ],
+    "scope": "Temporary object store only; no checkout/index/ref mutation; not a resolved final tree"
+  },
+  "semantic_mark_fix_preservation": "Clean recursive merge preserves exact ours Arabic provider d159216aa30a96f67120f2350a2d053e12bae3c1 and regression suite cda3f1f27f9397a877ca912f48e46e7e051426ec, including the semantic-mark repair and added regressions.",
+  "default_hunspell_integration": {
+    "registered_in_default_word_session": false,
+    "registered_in_studio_provider_list": false,
+    "application_import_or_instantiation_matches": 0,
+    "searched_paths": [
+      "packages/quds_office_editor/lib",
+      "packages/quds_office_editor/example/lib",
+      "packages/quds_office_engine/lib",
+      "apps"
+    ],
+    "searched_names": [
+      "HunspellProvider",
+      "HunspellProofingProvider",
+      "quds_proofing_hunspell"
+    ],
+    "editor_and_example_pubspecs_changed": false,
+    "root_workspace_adds_optional_package": true,
+    "existing_word_and_studio_arabic_writing_provider_bytes_preserved_by_merge": true,
+    "milestone": "Optional Hunspell provider, installer and native/web transport/build infrastructure are implemented; host registration, download UI and application library/worker packaging remain open.",
+    "qualification_implication": "New package/runtime/workspace inputs require their own source-bound validation. No new default Word/Studio Hunspell behavior is introduced by this commit. Keep e416 proofing results attributed to e416 and use focused regression checks for the combined workspace; do not describe the default app as offering the new dictionary workflow."
+  },
+  "artifacts": {
+    "ours": "86dc8b62d9f99ffc58f2391ef719002c523dca86",
+    "incoming": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+    "shared_raw_artifact_paths": 1462,
+    "raw_artifact_collisions": [],
+    "new_incoming_raw_artifacts": [
+      "docs/validation/mail-uid-pagination-20261119/runtime/restore-evidence.index.json",
+      "docs/validation/mail-uid-pagination-20261119/runtime/restore-evidence.tar.xz",
+      "docs/validation/office-current-reconciliation-20261119/native/native-qualification.tar.index.json",
+      "docs/validation/office-current-reconciliation-20261119/native/native-qualification.tar.xz"
+    ],
+    "ours_missing_from_incoming_tip": [
+      "docs/validation/office-main-integration-20261119/arabic-final/arabic-unicode-evidence.index.json",
+      "docs/validation/office-main-integration-20261119/arabic-final/arabic-unicode-evidence.tar.xz",
+      "docs/validation/office-main-integration-20261119/arabic-final/semantic-marks.patch.gz"
+    ]
+  },
+  "new_archive_integrity": {
+    "incoming": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+    "archives": [
+      {
+        "index": "docs/validation/mail-uid-pagination-20261119/runtime/restore-evidence.index.json",
+        "archive": "docs/validation/mail-uid-pagination-20261119/runtime/restore-evidence.tar.xz",
+        "archive_bytes": 906396,
+        "archive_sha256": "b990972a0f80ee203f2ed5d4267b704ab590993031ef9c2ac83677a4ec95604e",
+        "members": 12,
+        "uncompressed_bytes": 4805113,
+        "complete_member_sets_sizes_hashes_verified": true,
+        "index_source_commit": null,
+        "retained_receipt_headers": []
+      },
+      {
+        "index": "docs/validation/office-current-reconciliation-20261119/native/native-qualification.tar.index.json",
+        "archive": "docs/validation/office-current-reconciliation-20261119/native/native-qualification.tar.xz",
+        "archive_bytes": 777364,
+        "archive_sha256": "75302941259e49f5c2474da0e88d14cd55081b427f8fadce3207a8a2903067ee",
+        "members": 29,
+        "uncompressed_bytes": 7027061,
+        "complete_member_sets_sizes_hashes_verified": true,
+        "index_source_commit": null,
+        "retained_receipt_headers": [
+          {
+            "member": "native/verification.json",
+            "source_commit": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+            "source_tree": "aaa59b09bd369148e49495f1c480fc79d67c48d9",
+            "success": true,
+            "passed": 602,
+            "failed": 0,
+            "skipped": 0
+          }
+        ]
+      }
+    ],
+    "scope": "Archive integrity and retained receipt headers; no case recount, runtime revalidation or execution"
+  },
+  "macos_static_review": {
+    "incoming": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+    "macos_file_count": 30,
+    "structured_file_parses": [
+      {
+        "path": "packages/quds_office_editor/example/macos/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+        "format": "plist",
+        "parsed": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme",
+        "format": "xml",
+        "parsed": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/macos/Runner.xcworkspace/contents.xcworkspacedata",
+        "format": "xml",
+        "parsed": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/macos/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+        "format": "plist",
+        "parsed": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json",
+        "format": "json",
+        "parsed": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/macos/Runner/Base.lproj/MainMenu.xib",
+        "format": "xml",
+        "parsed": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/macos/Runner/DebugProfile.entitlements",
+        "format": "plist",
+        "parsed": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/macos/Runner/Info.plist",
+        "format": "plist",
+        "parsed": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/macos/Runner/Release.entitlements",
+        "format": "plist",
+        "parsed": true
+      }
+    ],
+    "deployment_targets": [
+      "12.0"
+    ],
+    "podfile_platform_12": true,
+    "plugin_registrant_modules": [
+      "file_picker",
+      "screen_retriever_macos",
+      "url_launcher_macos",
+      "window_manager"
+    ],
+    "all_registrant_modules_present_in_pod_lock": true,
+    "main_window_calls_plugin_registration": true,
+    "entitlements": {
+      "DebugProfile.entitlements": {
+        "com.apple.security.app-sandbox": true,
+        "com.apple.security.cs.allow-jit": true,
+        "com.apple.security.network.server": true
+      },
+      "Release.entitlements": {
+        "com.apple.security.app-sandbox": true
+      }
+    },
+    "hunspell_project_or_plugin_reference_present": false,
+    "runner_test_template_only": true,
+    "limits": [
+      "Static project/XML/plist/plugin wiring review only",
+      "No Xcode, CocoaPods resolution, signing, build, launch or installed OS/IME acceptance performed",
+      "Release entitlements declare app-sandbox only; neither release nor debug declares network.client or user-selected-file access",
+      "No Hunspell native library packaging hook appears in Runner project/Podfile/plugin registrant; optional package host wiring remains open"
+    ]
+  },
+  "documentation_merge_guidance": [
+    "Preserve incoming discovered-UID pagination and sync-range implementation milestones in Mail status/implementation-plan and package READMEs. Do not restore the older numeric-scan-only description or an obsolete pagination-not-implemented TODO.",
+    "Keep the completed e416 qualification checkpoint in its own source-bound report, then describe qualification of the new combined UID/Hunspell source separately. Do not add the retained 602-execution c268 native checkpoint or other historical counts to the new gate.",
+    "Preserve Arabic roadmap Step 2: package implemented, host wiring open. Narrow the stale Step 1 sentence saying the Hunspell adapter remains planned; only the in-app host/download workflow remains planned.",
+    "Contextualize the Hunspell package README opening: its in-app download and engine-in-app phrasing describe host integration instructions, not existing default Word/Studio behavior. Retain the implemented package milestone.",
+    "Preserve the new Arabic rule specification as a design record; it does not mean every specified future rule is implemented. Keep the existing semantic-mark repair and its five extra regressions.",
+    "Preserve macOS Runner scaffold and four plugin registrations, but describe validation as static project wiring only. No Mac build, signing, launch, OS/IME or installed-app acceptance was performed.",
+    "Preserve all incoming checkpoint/runtime archives and all ours Unicode diagnostic artifacts. No raw archive naming conflict requires replacing either source-bound record."
+  ],
+  "focused_proofing_validation_scope": [
+    "Retain the Arabic semantic-mark regressions and existing editor/Studio integration checks as selected by the combined qualification plan; the default provider factories themselves are unchanged.",
+    "Exercise new hunspell_provider_test.dart in its supported VM/portable contexts for language/vocabulary/protected-range and bounded-result behavior.",
+    "Qualify native backend/installer only with verified native library and dictionary inputs; a missing-backend or skipped fixture is not a live backend pass.",
+    "Treat worker/WASM compilation or controlled Node smoke separately from actual offline-browser rendering/lifecycle acceptance."
+  ],
+  "new_test_execution_performed_by_this_review": false,
+  "raw_case_recount_performed": false,
+  "remote_or_actions_queries_performed": false,
+  "tracked_checkout_or_runtime_mutations_performed": false,
+  "result": "Protected source preserved; recursive merge clean; artifact collision and integrity checks passed; optional host wiring and macOS runtime scope explicitly identified"
+}

@@ -1,0 +1,30 @@
+{
+  "sha": "960fb72fe904da92c41126b44fa65257931c6d65",
+  "tree": {
+    "sha": "2effd3b4cb816ef29d485d90099364219a22005d",
+    "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/trees/2effd3b4cb816ef29d485d90099364219a22005d"
+  },
+  "parents": [
+    {
+      "sha": "5fcdf726694b5356d8fb85fb8e01a715e0fadc0c"
+    },
+    {
+      "sha": "f059065fa622da8cee7824d66d29a2aff414d529"
+    },
+    {
+      "sha": "199690563b206948871ea0279f5e59f686265f8b"
+    },
+    {
+      "sha": "cd430b2229ff81e3d486c9ed95c80e92a41fe8af"
+    },
+    {
+      "sha": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e"
+    },
+    {
+      "sha": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c"
+    }
+  ],
+  "message": "Freeze reconciled UID discovery source and local qualification gates [skip ci]\n\nIntegrate all 417 captured refs by ancestry or verified historical equivalence, retain both incoming AyaSpell test suites, and bind offline builder controls with the full local Mail gate. Preserve pending final acceptance status; hosted CI is not an acceptance dependency.",
+  "url": "https://github.com/CrispStrobe/quds_office_suite/commit/960fb72fe904da92c41126b44fa65257931c6d65",
+  "observed_via": "GitHub plugin read-only GET git/commits; no Actions endpoints"
+}

@@ -1,0 +1,179 @@
+{
+  "evidence_ref": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+  "qualified_source": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "reviewed_head": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+  "incoming_head": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "archive": {
+    "sha256": "be1818b9a47f8e0aab39f0e54f00731ae83b161630aaab80bab987ce3633d77e",
+    "bytes": 1308664,
+    "members_verified": 114
+  },
+  "distinct_bound_source_inputs": 5033,
+  "qualified_blob_sha256_checked": 4725,
+  "source_manifest_comparisons": {
+    "55e262ef269634a0d618c0b5102dc9be5430a5f3": {
+      "native": {
+        "bound_inputs": 5031,
+        "mismatches": []
+      },
+      "node": {
+        "bound_inputs": 5031,
+        "mismatches": []
+      },
+      "store": {
+        "bound_inputs": 53,
+        "mismatches": []
+      },
+      "support": {
+        "bound_inputs": 4,
+        "mismatches": []
+      }
+    },
+    "ac1e4c8c788ea608402c2260488235c0189efcba": {
+      "native": {
+        "bound_inputs": 5031,
+        "mismatches": [
+          "packages/quds_mail_core/test/models_test.dart",
+          "packages/quds_mail_store/README.md",
+          "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+          "third_party/enough_mail/lib/src/private/util/client_base.dart"
+        ]
+      },
+      "node": {
+        "bound_inputs": 5031,
+        "mismatches": [
+          "packages/quds_mail_core/test/models_test.dart",
+          "packages/quds_mail_store/README.md",
+          "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+          "third_party/enough_mail/lib/src/private/util/client_base.dart"
+        ]
+      },
+      "store": {
+        "bound_inputs": 53,
+        "mismatches": [
+          "packages/quds_mail_core/test/models_test.dart"
+        ]
+      },
+      "support": {
+        "bound_inputs": 4,
+        "mismatches": []
+      }
+    }
+  },
+  "raw_reporter_recount": {
+    "cohorts": [
+      {
+        "name": "enough-mail-protocol-regressions",
+        "executions": 428,
+        "suite_platform_executions": 44,
+        "failures": 0,
+        "skips": 0,
+        "complete_starts_and_completions": true,
+        "terminal_success": true
+      },
+      {
+        "name": "mail-ui-consumers",
+        "executions": 30,
+        "suite_platform_executions": 4,
+        "failures": 0,
+        "skips": 0,
+        "complete_starts_and_completions": true,
+        "terminal_success": true
+      },
+      {
+        "name": "mime-consumer-vm",
+        "executions": 32,
+        "suite_platform_executions": 6,
+        "failures": 0,
+        "skips": 0,
+        "complete_starts_and_completions": true,
+        "terminal_success": true
+      },
+      {
+        "name": "transport-native",
+        "executions": 112,
+        "suite_platform_executions": 6,
+        "failures": 0,
+        "skips": 0,
+        "complete_starts_and_completions": true,
+        "terminal_success": true
+      },
+      {
+        "name": "mime-consumer-node",
+        "executions": 32,
+        "suite_platform_executions": 6,
+        "failures": 0,
+        "skips": 0,
+        "complete_starts_and_completions": true,
+        "terminal_success": true
+      },
+      {
+        "name": "transport-node-unsupported",
+        "executions": 3,
+        "suite_platform_executions": 1,
+        "failures": 0,
+        "skips": 0,
+        "complete_starts_and_completions": true,
+        "terminal_success": true
+      },
+      {
+        "name": "core-node",
+        "executions": 31,
+        "suite_platform_executions": 4,
+        "failures": 0,
+        "skips": 0,
+        "complete_starts_and_completions": true,
+        "terminal_success": true
+      },
+      {
+        "name": "core-vm",
+        "executions": 31,
+        "suite_platform_executions": 4,
+        "failures": 0,
+        "skips": 0,
+        "complete_starts_and_completions": true,
+        "terminal_success": true
+      },
+      {
+        "name": "portable-node",
+        "executions": 42,
+        "suite_platform_executions": 3,
+        "failures": 0,
+        "skips": 0,
+        "complete_starts_and_completions": true,
+        "terminal_success": true
+      },
+      {
+        "name": "store-vm",
+        "executions": 95,
+        "suite_platform_executions": 7,
+        "failures": 0,
+        "skips": 0,
+        "complete_starts_and_completions": true,
+        "terminal_success": true
+      }
+    ],
+    "application_case_executions": 836,
+    "suite_platform_executions": 85,
+    "distinct_test_files": 73,
+    "distinct_file_name_case_identities": 734,
+    "python_control_logs": [
+      {
+        "member": "qualification-release-store/results/runner-regressions.log",
+        "passed": 42
+      },
+      {
+        "member": "qualification-release-support/qualification-runner.log",
+        "passed": 20
+      },
+      {
+        "member": "qualification-release-support/runtime-replay.log",
+        "passed": 16
+      }
+    ],
+    "python_controls": 78
+  },
+  "tests_executed_by_this_review": false,
+  "github_actions_queried": false,
+  "scope": "Independent committed-archive readback, raw-event recount and immutable Git source comparison. Historical results are not rerun or relabeled. Runtime snapshots are checked for saved before/after equality; current runtime bytes are not available to this review."
+}

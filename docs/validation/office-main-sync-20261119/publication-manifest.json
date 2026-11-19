@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "created_at_utc": "2026-11-19T08:16:09.336607+00:00",
+  "spec_sha256": "5e63aeea08064e9947a27427def925aca51147ecb6745f631b8ffa4715e712f7",
+  "packer_sha256": "546a0e6ed43b4258f060811e7d03ba5cfc46f447f556c61b331ecfe519ef87f5",
+  "archives": [
+    {
+      "name": "source-0669-qualification",
+      "archive": "docs/validation/office-main-sync-20261119/final/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/final/evidence.index.json",
+      "scope": "1372 application executions and 90 separate Python controls at source0669. Includes accepted independent audit, original failed compact-output accounting audit and transparent verbose20 supplement; no historical/development totals added.",
+      "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+      "archive_bytes": 1316172,
+      "archive_sha256": "56c5e138fc291411a26628c641b39050c01dd1d26bbb71fe5a659a08a6aec66b",
+      "index_bytes": 37359,
+      "index_sha256": "5cc678f8d95541ed1e867ffe0db3fad8dde5bb1b1c90291f49c9e69804dcf932",
+      "member_count": 128
+    },
+    {
+      "name": "preliminary-qualification",
+      "archive": "docs/validation/office-main-sync-20261119/preliminary/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/preliminary/evidence.index.json",
+      "scope": "Historical preliminary237 application/90Python checkpoint; excluded from1372/90 accepted source0669 totals. Exact per-run sources remain in original receipts.",
+      "source_commit": null,
+      "archive_bytes": 754500,
+      "archive_sha256": "074d678ac227f51e11ddcf98da927e83e1f9939fd3e062764f7ca441c4231cdf",
+      "index_bytes": 15053,
+      "index_sha256": "0486a9f75bcd7a772574e1a4445aaf34822756d542b86414bc56bef136f5caf5",
+      "member_count": 54
+    },
+    {
+      "name": "fixed401-reconciliation",
+      "archive": "docs/validation/office-main-sync-20261119/reconciliation/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/reconciliation/evidence.index.json",
+      "scope": "Fixed401-ref direct capture at2026-11-19T07:51:46.468061Z and freshly recomputed373ancestor/28equivalent dispositions at0669; later concurrent main is separately reconciled.",
+      "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+      "archive_bytes": 22960,
+      "archive_sha256": "11eab4af547b51365fe0e751496aad030d914ec04d6353c18a5b42e22ded0f5c",
+      "index_bytes": 3041,
+      "index_sha256": "c0ae89cc5b02fcba15c32fad77a0c23cbcbc29bd44a9b4d43a220f0f15e819bc",
+      "member_count": 9
+    },
+    {
+      "name": "source-review-and-development",
+      "archive": "docs/validation/office-main-sync-20261119/reviews/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/reviews/evidence.index.json",
+      "scope": "Source reviews, inherited archive integrity and failing-before/passing-after Arabic/publisher development evidence; all development executions excluded from acceptance counts.",
+      "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+      "archive_bytes": 35064,
+      "archive_sha256": "01fb57587c4903e0c247eeb52fc48a846f05ec80edf3d6895e07ed98f52f753e",
+      "index_bytes": 5790,
+      "index_sha256": "eb7e03b4b4a692a858ed06a7649840c20abc72132b2b0dae4720bb1ee5362f8c",
+      "member_count": 20
+    },
+    {
+      "name": "cursor-development",
+      "archive": "docs/validation/office-main-sync-20261119/reviews/cursor-aba.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/reviews/cursor-aba.index.json",
+      "scope": "Original20-member cursor stale-write RED/GREEN development packet, excluded from acceptance totals.",
+      "source_commit": null,
+      "archive_bytes": 23096,
+      "archive_sha256": "e323bc99c7f7af6cf21455e228443b39b2bc5a9d55892b9bb215014430bf3c7f",
+      "index_bytes": 6695,
+      "index_sha256": "317aeab72222a78986e25aefa7bf05779a6f271cd019a31bd37296625f5a9bbc",
+      "member_count": 20
+    },
+    {
+      "name": "runtime-restoration",
+      "archive": "docs/validation/office-main-sync-20261119/runtime/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/runtime/evidence.index.json",
+      "scope": "Original verified pinned runtime restoration receipts and wrappers; no SDK/dependency binary payloads included.",
+      "source_commit": null,
+      "archive_bytes": 907096,
+      "archive_sha256": "af02fece4c4e69e75f1e7287d3bff70ef5a61691bbfea25b6fc443a643e1a757",
+      "index_bytes": 3681,
+      "index_sha256": "a90a35c7535a694bbf5b897685e8aab626affdcbce7b1652ae32dc875c464b11",
+      "member_count": 12
+    }
+  ],
+  "scope": "Byte-preserving evidence publication. Archive/member counts are not application test counts. Historical and development evidence retain their separate scopes."
+}

@@ -1,0 +1,100 @@
+{
+  "reviewed_commit": "18eb7bd7b37d7b43bf01a38da4770abe7a0e4eeb",
+  "tree": "a89f682249547a17cefe6a80e5c4460d09d80207",
+  "comparison_base": "275d029cfb8da4decb7809247d9b39bd5e7c1ea5",
+  "kind": "Independent static merge review; no new execution claims",
+  "paths": {
+    "packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart": {
+      "git_blob": "9290f4d0f746fe1a3d5de330111a825609fb94ad",
+      "bytes": 13651,
+      "sha256": "40ee9e5287febb042fa8e68f57dd406ce900205cf095823e911fe38a526c7607"
+    },
+    "packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart": {
+      "git_blob": "36ad097141706ffa98488b5564f5256a14af2968",
+      "bytes": 8962,
+      "sha256": "07271178b8e6314d3d5aa20dd53ee42d2ea3c4a971a2892993281e3736ae2b64"
+    },
+    "packages/quds_proofing_hunspell/test/native_lifecycle_test.dart": {
+      "git_blob": "fbebdc35781fa161e9602e5439408d9249f7091c",
+      "bytes": 6806,
+      "sha256": "ad8d7c341db4e9271aa996f9863a98aa9cfa41b27eb70b7efa74b920b2ce825a"
+    },
+    "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart": {
+      "git_blob": "ad8a129476feecf8181e63a3abe2410121d2b6dd",
+      "bytes": 6762,
+      "sha256": "c6168c73678766af7d13be7869bdc136d9ad1fef80a582cfe35163c9fb9fc648"
+    },
+    "packages/quds_proofing_hunspell/test/provider_native_lifecycle_test.dart": {
+      "git_blob": "f806e1b766b7351ff1aa0d92f5ad7b709021c888",
+      "bytes": 4080,
+      "sha256": "a402caa49c88fcc7fef34e31cb2767c2755c73d5385c910cbedfd063c83ba72b"
+    },
+    "packages/quds_proofing_hunspell/test/fixtures/lifecycle_hunspell.cpp": {
+      "git_blob": "b82870ff09dc881061bb7800586579a5249b9494",
+      "bytes": 2963,
+      "sha256": "aeb066f7ffdec75cd517c534228d77fe974fdf56c8cb8be756b027ffa9a3b9b9"
+    },
+    "packages/quds_proofing_hunspell/test/support/hunspell_lifecycle_shim.cpp": {
+      "git_blob": "3db526f95e3b42a76ee56d659edcac48ec5e592e",
+      "bytes": 1780,
+      "sha256": "54a6aa58c54af098629bd42d594efe6b0da47aa590bb0465e7c55568065e3ff1"
+    },
+    "packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp": {
+      "git_blob": "18ced00a3c8014f4901c0be5a3ec445e810b62be",
+      "bytes": 2080,
+      "sha256": "a37694aac5d5166a800418e291da48cab3857a96af120014f4ea34d19528a068"
+    },
+    "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart": {
+      "git_blob": "e4b8b2165ea9788105708e0b7a6235fc7b4105a9",
+      "bytes": 57663,
+      "sha256": "23e211b8c5b4b1671f5b90af09a44e14ce6c3cfc596eebfe07f47c51af2aff8f"
+    },
+    "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": {
+      "git_blob": "ce8d74cd53a655fa3a6380f3d4e41795a4520921",
+      "bytes": 27070,
+      "sha256": "4aefbacc964d79d014988f1ebb70888d86a15da1bf1028bddad2091176a54c45"
+    },
+    "packages/quds_office_editor/example/test/studio_mail_test.dart": {
+      "git_blob": "bd9be145ac7f57ec353b042dba34a71fb5e0ae86",
+      "bytes": 9035,
+      "sha256": "2f769632b83e173d3a8228b9f4742fcb14fd3c8b7200985b57144d27fa608376"
+    },
+    "tools/proofing/ayaspell/build_bundle.py": {
+      "git_blob": "c4fb264818101595ae9437cdc45563321f6a6599",
+      "bytes": 7224,
+      "sha256": "b943b1edd950af2f31e91d3ed1f3660766a388adeee4ba05f9ccb2b6539cfa9b"
+    },
+    "tools/proofing/ayaspell/test_build_bundle.py": {
+      "git_blob": "0d2cb3361de81d5a58ebb602a7f6de40a4a2d45f",
+      "bytes": 8042,
+      "sha256": "d0c121b762ec9ccbce55d0d396421a1643fcd17f0869ef10eab9aba4c60562f4"
+    },
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py": {
+      "git_blob": "a95de45cabb53b01f7254e9f7301d7a0e8e07409",
+      "bytes": 6850,
+      "sha256": "dd6c907311d3a2183da4042aa6748d3d6f48504443723986b7779b5401c615c0"
+    },
+    "packages/quds_mail_ui/analysis_options.yaml": {
+      "git_blob": "9aa1de6477f7db767dc57ba5152626516ba1625d",
+      "bytes": 73,
+      "sha256": "c3daa85e07661bf968765b6c240860e8bd24a196213c192a63f7a530f8150cfb"
+    }
+  },
+  "blocking_findings": [],
+  "conclusions": [
+    "Native fallback keeps the two-second bound and uses beforeNextEvent so an active native open can return and attach its owner before termination. Late-spawn immediate termination remains safe because no request is admitted before startup completes.",
+    "Explicit worker close acknowledgement, cleared ownership before reopen, Finalizable owner, and static callback-address finalizer cache are preserved. No immediate native destruction is promised for the forced fallback.",
+    "Provider disposal shares its completion future. File admission checks reject absent aff/dic before native open. The existing lifecycle fixture now uses temporary existing files and preserves native rejection/allocation-failure controls.",
+    "Three separate native fixture suites are retained: eight explicit ownership cases, six ownership/forced-exit cases, and four provider lifecycle cases. Some behavioral coverage overlaps; execution counts must not be called distinct scenarios without deduplication.",
+    "Arabic extended production source is byte-identical to the reviewed stronger Unicode implementation; all incoming positive/negative/offset controls are additive.",
+    "AyaSpell existing-output-directory support, exact upload allow_patterns, pinned checks and read-back verification are unchanged; only current Studio integration prose and associated assertions change.",
+    "New Studio Mail suite covers saved bytes, disposal during picker/file read, empty/cancel results, and English/German/Arabic language cycling. Existing label suites must retain the separate9b123dde English-default repairs.",
+    "Mail UI analysis config adds build/** exclusion. This is a declared source/configuration change: parent chose a fresh --replay-mail qualification instead of claiming unchanged953 inputs."
+  ],
+  "arabic_source_unchanged": true,
+  "scope_boundaries": [
+    "Static review of immutable18eb7bd7 only. The source combines later Word/cancellation/runner edits before final qualification.",
+    "Native forced-exit cases require the newly hash-bound compiled fixtures and Linux execution. No Windows/macOS/browser qualification is inferred.",
+    "No remote refresh or GitHub Actions endpoint used."
+  ]
+}

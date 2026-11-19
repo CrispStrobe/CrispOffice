@@ -1,0 +1,630 @@
+{
+  "accepted": true,
+  "audited_at_utc": "2026-11-19T08:48:27.863506+00:00",
+  "qualified_source": "29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e",
+  "qualified_tree": "c0a6041f33c485c83c2cb926d0b97464a3761e1c",
+  "core_store_qualified_source": "29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e",
+  "core_store_reused_by_source_continuity": false,
+  "counts": {
+    "cohorts": [
+      {
+        "name": "core-vm",
+        "platform": "vm",
+        "suites": 5,
+        "passed_executions": 49,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 5,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "core-node",
+        "platform": "node",
+        "suites": 5,
+        "passed_executions": 49,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 5,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "store-vm",
+        "platform": "vm",
+        "suites": 8,
+        "passed_executions": 110,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 8,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 2
+      },
+      {
+        "name": "portable-node",
+        "platform": "node",
+        "suites": 3,
+        "passed_executions": 42,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 3,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "transport-uid-native",
+        "platform": "vm",
+        "suites": 4,
+        "passed_executions": 110,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 4,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "transport-tls-loopback-vm",
+        "platform": "vm",
+        "suites": 3,
+        "passed_executions": 26,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 3,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "transport-node-boundary",
+        "platform": "node",
+        "suites": 1,
+        "passed_executions": 3,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 1,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "uid-search-parser-and-wire",
+        "platform": "vm",
+        "suites": 2,
+        "passed_executions": 68,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 2,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "imap-response-dispatch-and-lifecycle",
+        "platform": "vm",
+        "suites": 5,
+        "passed_executions": 109,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 5,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "mail-ui-store-consumers",
+        "platform": "vm",
+        "suites": 4,
+        "passed_executions": 30,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 4,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "hunspell-provider-vm",
+        "platform": "vm",
+        "suites": 1,
+        "passed_executions": 10,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 1,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "hunspell-native-lifecycle-vm",
+        "platform": "vm",
+        "suites": 1,
+        "passed_executions": 6,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 1,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "arabic-writing-vm",
+        "platform": "vm",
+        "suites": 1,
+        "passed_executions": 74,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 1,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "arabic-editor-integration",
+        "platform": "vm",
+        "suites": 1,
+        "passed_executions": 2,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 1,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "mail-configuration-node",
+        "platform": "node",
+        "suites": 1,
+        "passed_executions": 12,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 1,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "hunspell-provider-node",
+        "platform": "node",
+        "suites": 1,
+        "passed_executions": 10,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 1,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      },
+      {
+        "name": "arabic-writing-node",
+        "platform": "node",
+        "suites": 1,
+        "passed_executions": 74,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_completions": true,
+        "exact_suite_coverage": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0,
+        "excluded_lifecycle_events": 1,
+        "known_native_hook_prefixes": 0,
+        "warning_messages": 0
+      }
+    ],
+    "core_store_executions": 250,
+    "core_store_distinct_scenarios": 162,
+    "main_focused_executions": 438,
+    "main_focused_distinct_scenarios": 438,
+    "node_executions": 96,
+    "focused_executions": 534,
+    "focused_distinct_scenarios": 438,
+    "focused_suites": 23,
+    "focused_suite_platform_executions": 26,
+    "total_executions": 784,
+    "total_distinct_scenarios": 600,
+    "repeated_vm_node_executions": 184,
+    "distinct_suites": 37,
+    "total_suite_platform_executions": 47,
+    "python_runner_controls": 42,
+    "unrelated_historical_test_totals_added": false
+  },
+  "source_binding": {
+    "core_store_source_inputs_match_original_and_final_commit": true,
+    "core_store_before_after_identical": true,
+    "core_store_source_paths_verified": 55,
+    "focused_before_after_identical": true,
+    "focused_source_paths_verified": 5103,
+    "all_source_hashes_verified_against_qualified_git_and_live_checkout": true,
+    "focused_source_tree_and_index_stable": true,
+    "focused_complete_source_selection_verified": true,
+    "node_source_paths_verified": 5103,
+    "main_and_node_source_manifests_identical": true,
+    "node_before_after_identical": true,
+    "dependency_lock_unchanged": true
+  },
+  "runtime_binding": {
+    "core_store_direct_launcher_native_inputs_before_after_identical": true,
+    "core_store_direct_launcher_native_input_records": 7,
+    "focused_runtime_before_after_identical": true,
+    "focused_runtime_records": 11168,
+    "node_runtime_records": 11164,
+    "node_runtime_before_after_identical": true,
+    "node_runtime_values_match_main_and_live_readback": true,
+    "all_focused_runtime_records_match_live_readback": true,
+    "retained_restore_manifest_files_verified_live": 11142,
+    "official_sdk_archive_verified_in_restore_receipt": true,
+    "verified_hosted_archive_count": 176,
+    "scope": "The main focused and separate Node runners each captured their recorded runtime before/after their intervals; every recorded value also matches live readback. check_store captured its narrower direct launcher/config/native-asset inputs. Full retained-runtime readback corroborates provenance; it is not a full-runtime boundary capture for check_store."
+  },
+  "validation": {
+    "store_strict_analysis_format_resolution_and_whitespace_passed": true,
+    "focused_strict_analysis_format_whitespace_passed": true,
+    "focused_analysis_dart_paths": 34,
+    "focused_format_dart_paths": 34,
+    "browser_compilations": [
+      {
+        "name": "browser-entry",
+        "bytes": 1344706,
+        "sha256": "70a3037c075a48edb6f17e95bd43ed4ee25ffb414b6c26121349556198f2c678",
+        "exit_code": 0
+      },
+      {
+        "name": "browser-worker",
+        "bytes": 1218778,
+        "sha256": "ac65b51e34c049ed3cece7b5326838b3e1d3699063a15e49048f5b21d5a55495",
+        "exit_code": 0
+      }
+    ],
+    "actual_browser_execution": false,
+    "all_log_and_manifest_receipt_hashes_verified": true,
+    "compressed_focused_logs_equal_originals": true,
+    "node_log_and_manifest_hashes_verified": true,
+    "all_three_repeated_vm_and_node_case_identities_match_exactly": true
+  },
+  "tls_scope": {
+    "suite_counts": {
+      "packages/quds_mail_transport/test/native_tls_test.dart": 17,
+      "packages/quds_mail_transport/test/native_tls_round_trip_test.dart": 5,
+      "packages/quds_mail_transport/test/native_tls_cancellation_test.dart": 4
+    },
+    "distinct_loopback_and_adapter_cases": 26,
+    "live_external_accounts_exercised": false,
+    "fixtures_bound_by_source_manifest": true
+  },
+  "arabic_platform_scope": {
+    "suite": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "vm_cases": 74,
+    "node_cases": 74,
+    "same_case_identities": true,
+    "node_executions_add_zero_distinct_cases": true
+  },
+  "suite_counts": {
+    "packages/quds_mail_core/test/cancellation_test.dart": {
+      "distinct_cases": 3,
+      "executions": 6
+    },
+    "packages/quds_mail_core/test/imap_sync_range_test.dart": {
+      "distinct_cases": 18,
+      "executions": 36
+    },
+    "packages/quds_mail_core/test/models_test.dart": {
+      "distinct_cases": 9,
+      "executions": 18
+    },
+    "packages/quds_mail_core/test/outbox_test.dart": {
+      "distinct_cases": 10,
+      "executions": 20
+    },
+    "packages/quds_mail_core/test/sync_coordinator_test.dart": {
+      "distinct_cases": 9,
+      "executions": 18
+    },
+    "packages/quds_mail_store/test/adversarial_store_test.dart": {
+      "distinct_cases": 16,
+      "executions": 16
+    },
+    "packages/quds_mail_store/test/browser_problem_test.dart": {
+      "distinct_cases": 3,
+      "executions": 3
+    },
+    "packages/quds_mail_store/test/codec_test.dart": {
+      "distinct_cases": 35,
+      "executions": 70
+    },
+    "packages/quds_mail_store/test/crash_recovery_test.dart": {
+      "distinct_cases": 5,
+      "executions": 5
+    },
+    "packages/quds_mail_store/test/imap_sync_range_test.dart": {
+      "distinct_cases": 15,
+      "executions": 15
+    },
+    "packages/quds_mail_store/test/migration_test.dart": {
+      "distinct_cases": 9,
+      "executions": 9
+    },
+    "packages/quds_mail_store/test/native_platform_test.dart": {
+      "distinct_cases": 7,
+      "executions": 7
+    },
+    "packages/quds_mail_store/test/platform_configuration_test.dart": {
+      "distinct_cases": 4,
+      "executions": 8
+    },
+    "packages/quds_mail_store/test/repository_test.dart": {
+      "distinct_cases": 19,
+      "executions": 19
+    },
+    "packages/quds_mail_transport/test/configuration_test.dart": {
+      "distinct_cases": 12,
+      "executions": 24
+    },
+    "packages/quds_mail_transport/test/host_store_integration_test.dart": {
+      "distinct_cases": 5,
+      "executions": 5
+    },
+    "packages/quds_mail_transport/test/native_provider_test.dart": {
+      "distinct_cases": 69,
+      "executions": 69
+    },
+    "packages/quds_mail_transport/test/native_tls_cancellation_test.dart": {
+      "distinct_cases": 4,
+      "executions": 4
+    },
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart": {
+      "distinct_cases": 5,
+      "executions": 5
+    },
+    "packages/quds_mail_transport/test/native_tls_test.dart": {
+      "distinct_cases": 17,
+      "executions": 17
+    },
+    "packages/quds_mail_transport/test/uid_discovery_test.dart": {
+      "distinct_cases": 24,
+      "executions": 24
+    },
+    "packages/quds_mail_transport/test/unsupported_test.dart": {
+      "distinct_cases": 3,
+      "executions": 3
+    },
+    "packages/quds_mail_ui/test/controller_test.dart": {
+      "distinct_cases": 5,
+      "executions": 5
+    },
+    "packages/quds_mail_ui/test/example_test.dart": {
+      "distinct_cases": 1,
+      "executions": 1
+    },
+    "packages/quds_mail_ui/test/message_view_test.dart": {
+      "distinct_cases": 11,
+      "executions": 11
+    },
+    "packages/quds_mail_ui/test/presentation_test.dart": {
+      "distinct_cases": 13,
+      "executions": 13
+    },
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart": {
+      "distinct_cases": 2,
+      "executions": 2
+    },
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": {
+      "distinct_cases": 74,
+      "executions": 148
+    },
+    "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart": {
+      "distinct_cases": 6,
+      "executions": 6
+    },
+    "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart": {
+      "distinct_cases": 10,
+      "executions": 20
+    },
+    "third_party/enough_mail/test/connection_robustness_test.dart": {
+      "distinct_cases": 10,
+      "executions": 10
+    },
+    "third_party/enough_mail/test/imap/imap_client_test.dart": {
+      "distinct_cases": 63,
+      "executions": 63
+    },
+    "third_party/enough_mail/test/imap/raw_uid_search_test.dart": {
+      "distinct_cases": 17,
+      "executions": 17
+    },
+    "third_party/enough_mail/test/reconnect_state_test.dart": {
+      "distinct_cases": 3,
+      "executions": 3
+    },
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart": {
+      "distinct_cases": 26,
+      "executions": 26
+    },
+    "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart": {
+      "distinct_cases": 51,
+      "executions": 51
+    },
+    "third_party/enough_mail/test/src/imap/search_parser_test.dart": {
+      "distinct_cases": 7,
+      "executions": 7
+    }
+  },
+  "native_runtime_binding": {
+    "descriptor": "docs/validation/office-main-integration-20261119/latest-final/native-runtime-inputs.json",
+    "descriptor_sha256": "8417b7e404589406eaf31cab0d56e5427e07906c8a4e1f99229f8e22d2abb6b9",
+    "assets": {
+      "library": {
+        "path": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/libquds_hunspell_lifecycle_real.so",
+        "bytes": 892096,
+        "sha256": "46c7956036645284408a2017a9b025dfef3983dceb17a8fec203f8acfdb918cc",
+        "main_and_node_before_after_and_live_match": true
+      },
+      "build_receipt": {
+        "path": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/lifecycle-instrumented-build-receipt.json",
+        "bytes": 2199,
+        "sha256": "0c318b509b5b6105a9bedcb71d63a585c82e56106c5918f02717fd8d8b69b5c5",
+        "main_and_node_before_after_and_live_match": true
+      }
+    },
+    "production_adapter_matches_frozen_source": true,
+    "instrumented_adapter_matches_replay_archive": true,
+    "build_receipt_matches_archive": true,
+    "replay_archive_sha256": "395e07b1e33dbdb11158b0986e931c23f904486a6adf02ecc76509bbcb3d5fb8",
+    "replay_archive_git_and_live_match": true,
+    "declared_environment": {
+      "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/libquds_hunspell_lifecycle_real.so"
+    },
+    "environment_scope": "The committed descriptor records the declared/replay environment value. The runner captures native library and build-receipt hashes before/after both focused intervals, but does not independently serialize child process environment values.",
+    "scope": "Six handle-lifecycle cases use a synthetic dictionary. These do not establish AyaSpell linguistic accuracy, dictionary installation/download acceptance or another operating system."
+  },
+  "platform_repeats": [
+    {
+      "group": "mail-configuration-node",
+      "suites": [
+        "test/configuration_test.dart"
+      ],
+      "executions": 12,
+      "same_vm_node_case_identities": true,
+      "additional_distinct_cases": 0
+    },
+    {
+      "group": "hunspell-provider-node",
+      "suites": [
+        "test/hunspell_provider_test.dart"
+      ],
+      "executions": 10,
+      "same_vm_node_case_identities": true,
+      "additional_distinct_cases": 0
+    },
+    {
+      "group": "arabic-writing-node",
+      "suites": [
+        "test/proofing/arabic_writing_rules_test.dart"
+      ],
+      "executions": 74,
+      "same_vm_node_case_identities": true,
+      "additional_distinct_cases": 0
+    }
+  ],
+  "forecast_crosscheck": {
+    "forecast": {
+      "core_store_executions": 250,
+      "core_store_distinct_scenarios": 162,
+      "main_focused_executions": 438,
+      "node_executions": 96,
+      "total_executions": 784,
+      "total_distinct_scenarios": 600,
+      "distinct_suites": 37,
+      "core_store_platform_repeats": 88,
+      "all_platform_repeats": 184
+    },
+    "observed": {
+      "core_store_executions": 250,
+      "core_store_distinct_scenarios": 162,
+      "main_focused_executions": 438,
+      "node_executions": 96,
+      "total_executions": 784,
+      "total_distinct_scenarios": 600,
+      "distinct_suites": 37,
+      "core_store_platform_repeats": 88,
+      "all_platform_repeats": 184
+    },
+    "differences": {}
+  },
+  "hunspell_scope": {
+    "provider_vm_cases": 10,
+    "provider_node_cases": 10,
+    "provider_same_case_identities": true,
+    "instrumented_native_lifecycle_cases": 6,
+    "actual_ayaspell_dictionary_or_installer_cases_executed_here": false
+  },
+  "strict_static_diagnostics": [],
+  "warnings": [
+    {
+      "cohort": "store-vm",
+      "test_id": 102,
+      "message": "WARNING (drift): It looks like you've created the database class MailStoreDatabase multiple times. When these two databases use the same QueryExecutor, race conditions will occur and might corrupt the database. ",
+      "test_name": "same profile names in different hosts use separate containers"
+    },
+    {
+      "cohort": "store-vm",
+      "test_id": 102,
+      "message": "This warning will only appear on debug builds.",
+      "test_name": "same profile names in different hosts use separate containers"
+    }
+  ],
+  "warning_scope": "Runtime warning messages are preserved separately from strict analysis and failures. Test names identify their source. A Drift multiple-database warning in the separate-host-container test is expected debug output; other messages must be assessed individually.",
+  "case_inventory": {
+    "file": "latest_final_review-cases.json",
+    "sha256": "94f857bf9da6568d950cc2c7f6420ad0412d5a6a5c3fba744d1f256c8814baab"
+  },
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

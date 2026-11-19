@@ -1,0 +1,43 @@
+{
+  "prior_phase": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "new_frozen_source": "e41679f85c511bc8cf42447d3d1af0931884dee2",
+  "files": [
+    {
+      "path": "socket_fork_refs.txt",
+      "before_sha256": "4333ba447043356a3851541f606d96dfa7ace0fb5a3d4dfc514ac167c1c93c0a",
+      "after_sha256": "4333ba447043356a3851541f606d96dfa7ace0fb5a3d4dfc514ac167c1c93c0a",
+      "unchanged": true,
+      "bytes": 28403
+    },
+    {
+      "path": "socket_upstream_refs.txt",
+      "before_sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6",
+      "after_sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6",
+      "unchanged": true,
+      "bytes": 304
+    },
+    {
+      "path": "socket_ancestry_review.json",
+      "before_sha256": "7c881ee95fce7f1b2522cf3ad41c4dd655005de757628635324cfad56193a1f9",
+      "after_sha256": "7c881ee95fce7f1b2522cf3ad41c4dd655005de757628635324cfad56193a1f9",
+      "unchanged": true,
+      "bytes": 173918
+    },
+    {
+      "path": "socket_historical_continuity.json",
+      "before_sha256": "6c5317e227ace0287765293d81790d7b33db0c1f3e13e72a84543fb1f62a968d",
+      "after_sha256": "6c5317e227ace0287765293d81790d7b33db0c1f3e13e72a84543fb1f62a968d",
+      "unchanged": true,
+      "bytes": 113872
+    },
+    {
+      "path": "socket_capture_provenance.json",
+      "before_sha256": "f8517ffb929ca3acd262260335ab577185ee3424e9c2611fccc2809b94b0bde4",
+      "after_sha256": "f8517ffb929ca3acd262260335ab577185ee3424e9c2611fccc2809b94b0bde4",
+      "unchanged": true,
+      "bytes": 98391
+    }
+  ],
+  "all_prior_records_preserved": true,
+  "scope": "Existing ac1 phase audit and capture files were read only; no reattribution to the Arabic source."
+}

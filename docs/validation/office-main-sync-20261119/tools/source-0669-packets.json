@@ -1,0 +1,906 @@
+{
+  "schema": 1,
+  "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "archives": [
+    {
+      "name": "source-0669-qualification",
+      "archive": "docs/validation/office-main-sync-20261119/final/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/final/evidence.index.json",
+      "scope": "1372 application executions and 90 separate Python controls at source0669. Includes accepted independent audit, original failed compact-output accounting audit and transparent verbose20 supplement; no historical/development totals added.",
+      "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+      "members": [
+        {
+          "path": "results/bundle-controls.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/bundle-controls.log"
+        },
+        {
+          "path": "results/core-store/browser-entry.js",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/browser-entry.js"
+        },
+        {
+          "path": "results/core-store/browser-entry.js.deps",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/browser-entry.js.deps"
+        },
+        {
+          "path": "results/core-store/browser-entry.js.map",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/browser-entry.js.map"
+        },
+        {
+          "path": "results/core-store/browser-entry.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/browser-entry.log"
+        },
+        {
+          "path": "results/core-store/browser-worker.js",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/browser-worker.js"
+        },
+        {
+          "path": "results/core-store/browser-worker.js.deps",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/browser-worker.js.deps"
+        },
+        {
+          "path": "results/core-store/browser-worker.js.map",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/browser-worker.js.map"
+        },
+        {
+          "path": "results/core-store/browser-worker.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/browser-worker.log"
+        },
+        {
+          "path": "results/core-store/core-analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/core-analysis.log"
+        },
+        {
+          "path": "results/core-store/core-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/core-node-cases.json"
+        },
+        {
+          "path": "results/core-store/core-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/core-node.jsonl"
+        },
+        {
+          "path": "results/core-store/core-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/core-vm-cases.json"
+        },
+        {
+          "path": "results/core-store/core-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/core-vm.jsonl"
+        },
+        {
+          "path": "results/core-store/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/format.log"
+        },
+        {
+          "path": "results/core-store/locked-resolution.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/locked-resolution.log"
+        },
+        {
+          "path": "results/core-store/portable-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/portable-node-cases.json"
+        },
+        {
+          "path": "results/core-store/portable-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/portable-node.jsonl"
+        },
+        {
+          "path": "results/core-store/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/receipt.json"
+        },
+        {
+          "path": "results/core-store/runner-regressions.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/runner-regressions.log"
+        },
+        {
+          "path": "results/core-store/runtime.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/runtime.log"
+        },
+        {
+          "path": "results/core-store/store-analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/store-analysis.log"
+        },
+        {
+          "path": "results/core-store/store-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/store-vm-cases.json"
+        },
+        {
+          "path": "results/core-store/store-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/store-vm.jsonl"
+        },
+        {
+          "path": "results/core-store/whitespace.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store/whitespace.log"
+        },
+        {
+          "path": "results/core-store.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store.log"
+        },
+        {
+          "path": "results/execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/execution.json"
+        },
+        {
+          "path": "results/native/checks/analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/analysis.log"
+        },
+        {
+          "path": "results/native/checks/analysis.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/analysis.log.gz"
+        },
+        {
+          "path": "results/native/checks/enough-mail-protocol-regressions-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/enough-mail-protocol-regressions-cases.json"
+        },
+        {
+          "path": "results/native/checks/enough-mail-protocol-regressions-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/enough-mail-protocol-regressions-errors.json"
+        },
+        {
+          "path": "results/native/checks/enough-mail-protocol-regressions.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/enough-mail-protocol-regressions.jsonl"
+        },
+        {
+          "path": "results/native/checks/enough-mail-protocol-regressions.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/enough-mail-protocol-regressions.jsonl.gz"
+        },
+        {
+          "path": "results/native/checks/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/format.log"
+        },
+        {
+          "path": "results/native/checks/format.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/format.log.gz"
+        },
+        {
+          "path": "results/native/checks/mail-ui-consumers-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/mail-ui-consumers-cases.json"
+        },
+        {
+          "path": "results/native/checks/mail-ui-consumers-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/mail-ui-consumers-errors.json"
+        },
+        {
+          "path": "results/native/checks/mail-ui-consumers.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/mail-ui-consumers.jsonl"
+        },
+        {
+          "path": "results/native/checks/mail-ui-consumers.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/mail-ui-consumers.jsonl.gz"
+        },
+        {
+          "path": "results/native/checks/mime-consumer-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/mime-consumer-vm-cases.json"
+        },
+        {
+          "path": "results/native/checks/mime-consumer-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/mime-consumer-vm-errors.json"
+        },
+        {
+          "path": "results/native/checks/mime-consumer-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/mime-consumer-vm.jsonl"
+        },
+        {
+          "path": "results/native/checks/mime-consumer-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/mime-consumer-vm.jsonl.gz"
+        },
+        {
+          "path": "results/native/checks/office-engine-proofing-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/office-engine-proofing-cases.json"
+        },
+        {
+          "path": "results/native/checks/office-engine-proofing-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/office-engine-proofing-errors.json"
+        },
+        {
+          "path": "results/native/checks/office-engine-proofing.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/office-engine-proofing.jsonl"
+        },
+        {
+          "path": "results/native/checks/office-engine-proofing.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/office-engine-proofing.jsonl.gz"
+        },
+        {
+          "path": "results/native/checks/transport-native-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/transport-native-cases.json"
+        },
+        {
+          "path": "results/native/checks/transport-native-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/transport-native-errors.json"
+        },
+        {
+          "path": "results/native/checks/transport-native.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/transport-native.jsonl"
+        },
+        {
+          "path": "results/native/checks/transport-native.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/transport-native.jsonl.gz"
+        },
+        {
+          "path": "results/native/checks/transport-tls-loopback-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/transport-tls-loopback-vm-cases.json"
+        },
+        {
+          "path": "results/native/checks/transport-tls-loopback-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/transport-tls-loopback-vm-errors.json"
+        },
+        {
+          "path": "results/native/checks/transport-tls-loopback-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/transport-tls-loopback-vm.jsonl"
+        },
+        {
+          "path": "results/native/checks/transport-tls-loopback-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/transport-tls-loopback-vm.jsonl.gz"
+        },
+        {
+          "path": "results/native/checks/whitespace.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/whitespace.log"
+        },
+        {
+          "path": "results/native/checks/whitespace.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/whitespace.log.gz"
+        },
+        {
+          "path": "results/native/checks/word-arabic-proofing-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/word-arabic-proofing-cases.json"
+        },
+        {
+          "path": "results/native/checks/word-arabic-proofing-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/word-arabic-proofing-errors.json"
+        },
+        {
+          "path": "results/native/checks/word-arabic-proofing.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/word-arabic-proofing.jsonl"
+        },
+        {
+          "path": "results/native/checks/word-arabic-proofing.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/checks/word-arabic-proofing.jsonl.gz"
+        },
+        {
+          "path": "results/native/environment-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/environment-after.json"
+        },
+        {
+          "path": "results/native/environment-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/environment-before.json"
+        },
+        {
+          "path": "results/native/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/source-after.json"
+        },
+        {
+          "path": "results/native/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/source-before.json"
+        },
+        {
+          "path": "results/native/verification.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native/verification.json"
+        },
+        {
+          "path": "results/native.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/native.log"
+        },
+        {
+          "path": "results/node/checks/arabic-unicode-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/arabic-unicode-node-cases.json"
+        },
+        {
+          "path": "results/node/checks/arabic-unicode-node-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/arabic-unicode-node-errors.json"
+        },
+        {
+          "path": "results/node/checks/arabic-unicode-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/arabic-unicode-node.jsonl"
+        },
+        {
+          "path": "results/node/checks/arabic-unicode-node.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/arabic-unicode-node.jsonl.gz"
+        },
+        {
+          "path": "results/node/checks/fork-portable-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/fork-portable-node-cases.json"
+        },
+        {
+          "path": "results/node/checks/fork-portable-node-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/fork-portable-node-errors.json"
+        },
+        {
+          "path": "results/node/checks/fork-portable-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/fork-portable-node.jsonl"
+        },
+        {
+          "path": "results/node/checks/fork-portable-node.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/fork-portable-node.jsonl.gz"
+        },
+        {
+          "path": "results/node/checks/mime-consumer-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/mime-consumer-node-cases.json"
+        },
+        {
+          "path": "results/node/checks/mime-consumer-node-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/mime-consumer-node-errors.json"
+        },
+        {
+          "path": "results/node/checks/mime-consumer-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/mime-consumer-node.jsonl"
+        },
+        {
+          "path": "results/node/checks/mime-consumer-node.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/mime-consumer-node.jsonl.gz"
+        },
+        {
+          "path": "results/node/checks/transport-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/transport-node-cases.json"
+        },
+        {
+          "path": "results/node/checks/transport-node-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/transport-node-errors.json"
+        },
+        {
+          "path": "results/node/checks/transport-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/transport-node.jsonl"
+        },
+        {
+          "path": "results/node/checks/transport-node.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/transport-node.jsonl.gz"
+        },
+        {
+          "path": "results/node/checks/whitespace.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/whitespace.log"
+        },
+        {
+          "path": "results/node/checks/whitespace.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/checks/whitespace.log.gz"
+        },
+        {
+          "path": "results/node/environment-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/environment-after.json"
+        },
+        {
+          "path": "results/node/environment-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/environment-before.json"
+        },
+        {
+          "path": "results/node/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/source-after.json"
+        },
+        {
+          "path": "results/node/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/source-before.json"
+        },
+        {
+          "path": "results/node/verification.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node/verification.json"
+        },
+        {
+          "path": "results/node.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/node.log"
+        },
+        {
+          "path": "results/runtime-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/runtime-after.json"
+        },
+        {
+          "path": "results/runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/runtime-before.json"
+        },
+        {
+          "path": "results/runtime-controls.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/runtime-controls.log"
+        },
+        {
+          "path": "results/shared-runner-controls-verbose/raw.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/shared-runner-controls-verbose/raw.log"
+        },
+        {
+          "path": "results/shared-runner-controls-verbose/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/shared-runner-controls-verbose/receipt.json"
+        },
+        {
+          "path": "results/shared-runner-controls-verbose/runtime-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/shared-runner-controls-verbose/runtime-after.json"
+        },
+        {
+          "path": "results/shared-runner-controls-verbose/runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/shared-runner-controls-verbose/runtime-before.json"
+        },
+        {
+          "path": "results/shared-runner-controls-verbose/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/shared-runner-controls-verbose/source-after.json"
+        },
+        {
+          "path": "results/shared-runner-controls-verbose/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/shared-runner-controls-verbose/source-before.json"
+        },
+        {
+          "path": "results/shared-runner-controls.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/shared-runner-controls.log"
+        },
+        {
+          "path": "results/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/source-after.json"
+        },
+        {
+          "path": "results/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-integration-checks/source-before.json"
+        },
+        {
+          "path": "accepted-audit/independent-summary.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/independent-summary.json"
+        },
+        {
+          "path": "accepted-audit/native-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/native-audit.json"
+        },
+        {
+          "path": "accepted-audit/native-audit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/native-audit.log"
+        },
+        {
+          "path": "accepted-audit/node-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/node-audit.json"
+        },
+        {
+          "path": "accepted-audit/node-audit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/node-audit.log"
+        },
+        {
+          "path": "accepted-audit/python-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/python-audit.json"
+        },
+        {
+          "path": "accepted-audit/python-audit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/python-audit.log"
+        },
+        {
+          "path": "accepted-audit/store-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/store-audit.json"
+        },
+        {
+          "path": "accepted-audit/store-audit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/store-audit.log"
+        },
+        {
+          "path": "initial-audit/audit_final_integration.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/audit_final_integration.py"
+        },
+        {
+          "path": "initial-audit/audit_outer_python_controls.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/audit_outer_python_controls.py"
+        },
+        {
+          "path": "initial-audit/independent-summary.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/independent-summary.json"
+        },
+        {
+          "path": "initial-audit/native-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/native-audit.json"
+        },
+        {
+          "path": "initial-audit/native-audit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/native-audit.log"
+        },
+        {
+          "path": "initial-audit/node-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/node-audit.json"
+        },
+        {
+          "path": "initial-audit/node-audit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/node-audit.log"
+        },
+        {
+          "path": "initial-audit/preservation-index.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/preservation-index.json"
+        },
+        {
+          "path": "initial-audit/python-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/python-audit.json"
+        },
+        {
+          "path": "initial-audit/python-audit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/python-audit.log"
+        },
+        {
+          "path": "initial-audit/store-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/store-audit.json"
+        },
+        {
+          "path": "initial-audit/store-audit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-initial-audit/store-audit.log"
+        },
+        {
+          "path": "audit-tools/audit_final_integration.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_final_integration.py"
+        },
+        {
+          "path": "audit-tools/audit_current_gate.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_current_gate.py"
+        },
+        {
+          "path": "audit-tools/audit_store_current.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_store_current.py"
+        },
+        {
+          "path": "audit-tools/audit_outer_python_controls.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_outer_python_controls.py"
+        }
+      ]
+    },
+    {
+      "name": "preliminary-qualification",
+      "archive": "docs/validation/office-main-sync-20261119/preliminary/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/preliminary/evidence.index.json",
+      "scope": "Historical preliminary237 application/90Python checkpoint; excluded from1372/90 accepted source0669 totals. Exact per-run sources remain in original receipts.",
+      "source_commit": null,
+      "members": [
+        {
+          "path": "results/node/checks/core-model-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/checks/core-model-node-cases.json"
+        },
+        {
+          "path": "results/node/checks/core-model-node-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/checks/core-model-node-errors.json"
+        },
+        {
+          "path": "results/node/checks/core-model-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/checks/core-model-node.jsonl"
+        },
+        {
+          "path": "results/node/checks/core-model-node.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/checks/core-model-node.jsonl.gz"
+        },
+        {
+          "path": "results/node/checks/whitespace.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/checks/whitespace.log"
+        },
+        {
+          "path": "results/node/checks/whitespace.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/checks/whitespace.log.gz"
+        },
+        {
+          "path": "results/node/environment-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/environment-after.json"
+        },
+        {
+          "path": "results/node/environment-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/environment-before.json"
+        },
+        {
+          "path": "results/node/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/source-after.json"
+        },
+        {
+          "path": "results/node/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/source-before.json"
+        },
+        {
+          "path": "results/node/verification.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/node/verification.json"
+        },
+        {
+          "path": "results/python-bundle/bundle.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/python-bundle/bundle.log"
+        },
+        {
+          "path": "results/python-bundle/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/python-bundle/receipt.json"
+        },
+        {
+          "path": "results/python-controls/qualification-runner.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/python-controls/qualification-runner.log"
+        },
+        {
+          "path": "results/python-controls/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/python-controls/receipt.json"
+        },
+        {
+          "path": "results/python-controls/runtime-replay.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/python-controls/runtime-replay.log"
+        },
+        {
+          "path": "results/python-controls/store-launcher.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/python-controls/store-launcher.log"
+        },
+        {
+          "path": "results/vm/checks/analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/analysis.log"
+        },
+        {
+          "path": "results/vm/checks/analysis.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/analysis.log.gz"
+        },
+        {
+          "path": "results/vm/checks/core-model-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/core-model-vm-cases.json"
+        },
+        {
+          "path": "results/vm/checks/core-model-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/core-model-vm-errors.json"
+        },
+        {
+          "path": "results/vm/checks/core-model-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/core-model-vm.jsonl"
+        },
+        {
+          "path": "results/vm/checks/core-model-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/core-model-vm.jsonl.gz"
+        },
+        {
+          "path": "results/vm/checks/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/format.log"
+        },
+        {
+          "path": "results/vm/checks/format.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/format.log.gz"
+        },
+        {
+          "path": "results/vm/checks/native-tls-provider-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/native-tls-provider-cases.json"
+        },
+        {
+          "path": "results/vm/checks/native-tls-provider-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/native-tls-provider-errors.json"
+        },
+        {
+          "path": "results/vm/checks/native-tls-provider.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/native-tls-provider.jsonl"
+        },
+        {
+          "path": "results/vm/checks/native-tls-provider.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/native-tls-provider.jsonl.gz"
+        },
+        {
+          "path": "results/vm/checks/shared-connection-protocols-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/shared-connection-protocols-cases.json"
+        },
+        {
+          "path": "results/vm/checks/shared-connection-protocols-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/shared-connection-protocols-errors.json"
+        },
+        {
+          "path": "results/vm/checks/shared-connection-protocols.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/shared-connection-protocols.jsonl"
+        },
+        {
+          "path": "results/vm/checks/shared-connection-protocols.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/shared-connection-protocols.jsonl.gz"
+        },
+        {
+          "path": "results/vm/checks/whitespace.log",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/whitespace.log"
+        },
+        {
+          "path": "results/vm/checks/whitespace.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/checks/whitespace.log.gz"
+        },
+        {
+          "path": "results/vm/environment-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/environment-after.json"
+        },
+        {
+          "path": "results/vm/environment-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/environment-before.json"
+        },
+        {
+          "path": "results/vm/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/source-after.json"
+        },
+        {
+          "path": "results/vm/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/source-before.json"
+        },
+        {
+          "path": "results/vm/verification.json",
+          "original": "/workspace/scratch/79e6ad9e4046/final-checks/vm/verification.json"
+        },
+        {
+          "path": "audits/independent-qualification-summary-b8063b8a.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/independent-qualification-summary-b8063b8a.json"
+        },
+        {
+          "path": "audits/independent-gates-summary-0b8f8f7f.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/independent-gates-summary-0b8f8f7f.json"
+        },
+        {
+          "path": "audits/vm-audit-0b8f8f7f.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/vm-audit-0b8f8f7f.json"
+        },
+        {
+          "path": "audits/node-audit-0b8f8f7f.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/node-audit-0b8f8f7f.json"
+        },
+        {
+          "path": "audits/python-audit-0b8f8f7f.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/python-audit-0b8f8f7f.json"
+        },
+        {
+          "path": "audits/bundle-audit-b8063b8a.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/bundle-audit-b8063b8a.json"
+        },
+        {
+          "path": "audits/input-continuity-b8063b8a.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/input-continuity-b8063b8a.json"
+        },
+        {
+          "path": "audits/incoming-suite-preservation.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/incoming-suite-preservation.json"
+        },
+        {
+          "path": "audits/incoming-suite-preservation.patch",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/incoming-suite-preservation.patch"
+        },
+        {
+          "path": "audits/audit_bundle_controls.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_bundle_controls.py"
+        },
+        {
+          "path": "audits/audit_python_controls.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_python_controls.py"
+        },
+        {
+          "path": "audits/audit_input_continuity.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_input_continuity.py"
+        },
+        {
+          "path": "audits/summarize_current_gates.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/summarize_current_gates.py"
+        },
+        {
+          "path": "audits/summarize_qualification.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/summarize_qualification.py"
+        }
+      ]
+    },
+    {
+      "name": "fixed401-reconciliation",
+      "archive": "docs/validation/office-main-sync-20261119/reconciliation/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/reconciliation/evidence.index.json",
+      "scope": "Fixed401-ref direct capture at2026-11-19T07:51:46.468061Z and freshly recomputed373ancestor/28equivalent dispositions at0669; later concurrent main is separately reconciled.",
+      "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+      "members": [
+        {
+          "path": "capture/origin-advertisement.tsv",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/publication-b8063b8a-advertisement/origin-advertisement.tsv"
+        },
+        {
+          "path": "capture/remote-refs.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/publication-b8063b8a-advertisement/remote-refs.json"
+        },
+        {
+          "path": "capture/upstream-advertisement.tsv",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/publication-b8063b8a-advertisement/upstream-advertisement.tsv"
+        },
+        {
+          "path": "audit/publication-b8063b8a-capture-command.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/publication-b8063b8a-capture-command.json"
+        },
+        {
+          "path": "audit/publication-b8063b8a-vs-previous-delta.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/publication-b8063b8a-vs-previous-delta.json"
+        },
+        {
+          "path": "audit/ref-audit-0669ac11.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/ref-audit-0669ac11.json"
+        },
+        {
+          "path": "audit/prior-equivalence-candidates.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/prior-equivalence-candidates.json"
+        },
+        {
+          "path": "tools/capture_remote_refs.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/reconciliation-audit/capture_remote_refs.py"
+        },
+        {
+          "path": "tools/audit_published_refs.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/reconciliation-audit/audit_published_refs.py"
+        }
+      ]
+    },
+    {
+      "name": "source-review-and-development",
+      "archive": "docs/validation/office-main-sync-20261119/reviews/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/reviews/evidence.index.json",
+      "scope": "Source reviews, inherited archive integrity and failing-before/passing-after Arabic/publisher development evidence; all development executions excluded from acceptance counts.",
+      "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+      "members": [
+        {
+          "path": "bundle/before-fix.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/before-fix.log"
+        },
+        {
+          "path": "bundle/after-fix.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/after-fix.log"
+        },
+        {
+          "path": "bundle/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/receipt.json"
+        },
+        {
+          "path": "bundle/baseline/build_bundle.py",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/baseline/build_bundle.py"
+        },
+        {
+          "path": "bundle/baseline/test_build_bundle.py",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/baseline/test_build_bundle.py"
+        },
+        {
+          "path": "arabic-rules/arabic_writing_rules.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/arabic_writing_rules.dart"
+        },
+        {
+          "path": "arabic-rules/findings-before.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/findings-before.jsonl"
+        },
+        {
+          "path": "arabic-rules/probe.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/probe.dart"
+        },
+        {
+          "path": "arabic-rules/regressions-after-receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/regressions-after-receipt.json"
+        },
+        {
+          "path": "arabic-rules/regressions-after.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/regressions-after.jsonl"
+        },
+        {
+          "path": "arabic-rules/regressions-before-receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/regressions-before-receipt.json"
+        },
+        {
+          "path": "arabic-rules/regressions-before.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/regressions-before.jsonl"
+        },
+        {
+          "path": "imports/audit_imports.py",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/audit_imports.py"
+        },
+        {
+          "path": "imports/audit_newimports.py",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/audit_newimports.py"
+        },
+        {
+          "path": "imports/b806/archive-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/b806/archive-audit.json"
+        },
+        {
+          "path": "imports/0669-newimports/newimports-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/0669-newimports/newimports-audit.json"
+        },
+        {
+          "path": "imports/0669-newimports/source-review.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/0669-newimports/source-review.json"
+        },
+        {
+          "path": "imports/remote-review.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/remote-review.json"
+        },
+        {
+          "path": "imports/pr177-direct-tree-comparison.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/pr177-direct-tree-comparison.json"
+        },
+        {
+          "path": "imports/pr179-direct-tree-comparison.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/pr179-direct-tree-comparison.json"
+        }
+      ]
+    },
+    {
+      "name": "cursor-development",
+      "archive": "docs/validation/office-main-sync-20261119/reviews/cursor-aba.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/reviews/cursor-aba.index.json",
+      "source_commit": null,
+      "scope": "Original20-member cursor stale-write RED/GREEN development packet, excluded from acceptance totals.",
+      "reuse_archive": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba-evidence.tar.xz",
+      "reuse_index": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba-evidence.index.json",
+      "original_root": "/workspace/scratch/79e6ad9e4046/import-review/cursor-aba"
+    },
+    {
+      "name": "runtime-restoration",
+      "archive": "docs/validation/office-main-sync-20261119/runtime/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/runtime/evidence.index.json",
+      "source_commit": null,
+      "scope": "Original verified pinned runtime restoration receipts and wrappers; no SDK/dependency binary payloads included.",
+      "reuse_archive": "/workspace/scratch/79e6ad9e4046/runtime-publication/runtime-evidence.tar.xz",
+      "reuse_index": "/workspace/scratch/79e6ad9e4046/runtime-publication/runtime-evidence.index.json",
+      "original_root": "/workspace/scratch/79e6ad9e4046/quds-runtime"
+    }
+  ]
+}

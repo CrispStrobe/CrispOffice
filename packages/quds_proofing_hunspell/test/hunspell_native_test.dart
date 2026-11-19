@@ -118,6 +118,21 @@ void main() {
       expect(result.status, OfficeProofingStatus.unavailable);
       await missing.dispose();
     });
+
+    test('an existing aff with a missing dic is unavailable', () async {
+      final missing = HunspellProofingProvider(
+        bundle: ayaspellArabic,
+        dictionary: HunspellDictionaryFiles(
+          affPath: '$dictionary/ar.aff',
+          dicPath: '$dictionary/missing-dictionary.dic',
+        ),
+        nativeLibraryPath: library,
+      );
+      addTearDown(missing.dispose);
+      final result = await missing.check(_request('الى'));
+      expect(result.status, OfficeProofingStatus.unavailable);
+      expect(result.findings, isEmpty);
+    });
   }, skip: skip);
 
   group('installer', () {
