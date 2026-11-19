@@ -4,6 +4,10 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Resolve direct master-background edits while preserving imported secondary
+  master colors until the master changes. Keep explicit slide/layout fills
+  independent and carry inherited background provenance through slide copies.
+
 - Reconcile PPTX slide backgrounds, crop and rich-text fidelity. Distinguish
   inherited and explicit slide paper, apply scalar rich-text edits in PDF
   rendering without rewriting source runs, and retain the incoming interlaced

@@ -278,10 +278,20 @@ void main() {
       expect(inherited.background, 'FFFFFF');
       expect(explicit.background, 'FFFFFF');
       expect(fresh.background, '778899');
+      inherited.background = 'ABCDEF';
+      expect(inherited.inheritsMasterBackground, isFalse);
+      controller.applyMasterBackground('667788');
+      expect(inherited.background, 'ABCDEF');
+      expect(fresh.background, '667788');
+      expect(explicit.background, 'FFFFFF');
       inherited.background = '';
       expect(inherited.inheritsMasterBackground, isTrue);
       controller.applyMasterBackground('99AABB');
       expect(inherited.background, '99AABB');
+      controller.presentation.master.background = 'A0B0C0';
+      expect(inherited.resolveBackground('A0B0C0'), 'A0B0C0');
+      expect(fresh.resolveBackground('A0B0C0'), 'A0B0C0');
+      expect(explicit.resolveBackground('A0B0C0'), 'FFFFFF');
     },
   );
 
@@ -329,6 +339,10 @@ void main() {
         expect(
           unadapted.count(const ui.Rect.fromLTWH(400, 150, 100, 100), 0xFFFFFF),
           greaterThan(9000),
+        );
+        expect(
+          unadapted.count(const ui.Rect.fromLTWH(38, 28, 280, 60), 0x000000),
+          greaterThan(25),
         );
       }
       expect(slide.background, 'FFFFFF');
@@ -397,15 +411,23 @@ void main() {
     );
 
     slide.background = 'FFFFFF';
-    final _Raster authored = await _paint(tester, slide);
-    expect(authored.count(const ui.Rect.fromLTWH(0, 0, 20, 20), 0xFFFFFF), 400);
-    expect(
-      authored.contrastPixels(
-        const ui.Rect.fromLTWH(38, 48, 280, 28),
-        0xFFFFFF,
-      ),
-      greaterThan(25),
-    );
+    for (final OfficeTheme theme in <OfficeTheme>[
+      OfficeTheme.dark,
+      OfficeTheme.dark.copyWith(adaptDocumentColors: false),
+    ]) {
+      final _Raster authored = await _paint(tester, slide, theme: theme);
+      expect(
+        authored.count(const ui.Rect.fromLTWH(0, 0, 20, 20), 0xFFFFFF),
+        400,
+      );
+      expect(
+        authored.contrastPixels(
+          const ui.Rect.fromLTWH(38, 48, 280, 28),
+          0xFFFFFF,
+        ),
+        greaterThan(25),
+      );
+    }
     expect(slide.shapes.single.textColor, isEmpty);
   });
 

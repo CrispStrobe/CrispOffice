@@ -4,6 +4,9 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Preserve explicit white slide and layout fills while adapting inherited
+  neutral paper to the display theme; retain the document-color opt-out.
+
 - Add bounded multiple To recipients, Cc, Bcc and Reply all to native Studio
   mail. Keep hidden recipients in the explicit envelope, preserve all groups
   through uncertain retries, and reject unsupported decoded reply addresses.

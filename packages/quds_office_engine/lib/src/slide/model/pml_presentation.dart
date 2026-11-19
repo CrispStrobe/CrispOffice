@@ -617,6 +617,13 @@ class PmlSlide {
     return _background.isEmpty ? current : _background;
   }
 
+  /// Refreshes inherited paper without detaching it from future master edits.
+  void updateMasterBackground(String value) {
+    if (inheritsMasterBackground) {
+      setInheritedBackground(value, masterBackground: value);
+    }
+  }
+
   /// Original owning part, retained when slides are reordered.
   String? sourcePartUri;
 
