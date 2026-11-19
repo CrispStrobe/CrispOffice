@@ -1,0 +1,294 @@
+{
+  "status": "PASS",
+  "started_at_utc": "2026-11-19T08:02:39.251661+00:00",
+  "evidence": "/workspace/scratch/ab196f483cec/mail-uid-final-1",
+  "source_repo": "/workspace/scratch/ab196f483cec/quds_office_suite",
+  "errors": [],
+  "scope": "Independent retained-evidence audit; not another product execution",
+  "source_commit": "960fb72fe904da92c41126b44fa65257931c6d65",
+  "source_tree": "2effd3b4cb816ef29d485d90099364219a22005d",
+  "published_commit": "https://github.com/CrispStrobe/quds_office_suite/commit/960fb72fe904da92c41126b44fa65257931c6d65",
+  "published_git_blob_inputs_verified": 5044,
+  "distinct_git_blobs_verified": 4736,
+  "retained_runtime_inputs_verified": 11142,
+  "additional_runtime_inputs_verified": 4,
+  "passed_executions": 1000,
+  "distinct_scenarios": 868,
+  "cross_platform_repetitions": 132,
+  "distinct_test_files": 79,
+  "scenarios_on_both_platforms": 132,
+  "executions_by_platform": {
+    "vm": 853,
+    "node": 147
+  },
+  "groups": [
+    {
+      "gate": "core-store",
+      "group": "core-vm",
+      "platform": "vm",
+      "passed": 49,
+      "suite_count": 5,
+      "excluded": {
+        "hidden": 5
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 5,
+        "testStart": 54,
+        "allSuites": 1,
+        "testDone": 54,
+        "group": 5,
+        "done": 1
+      },
+      "sha256": "4b366818009b4f4fe70b8f11b80dd329919761cd7722d6a826792712299fb3e8"
+    },
+    {
+      "gate": "core-store",
+      "group": "core-node",
+      "platform": "node",
+      "passed": 49,
+      "suite_count": 5,
+      "excluded": {
+        "hidden": 5
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 5,
+        "testStart": 54,
+        "allSuites": 1,
+        "print": 5,
+        "testDone": 54,
+        "group": 5,
+        "done": 1
+      },
+      "sha256": "4873ecf3933efb4b9852ac98e1d13e6f12a88b8cdb7473bfee396632bec74dde"
+    },
+    {
+      "gate": "core-store",
+      "group": "store-vm",
+      "platform": "vm",
+      "passed": 110,
+      "suite_count": 8,
+      "excluded": {
+        "hidden": 8
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 8,
+        "testStart": 118,
+        "allSuites": 1,
+        "testDone": 118,
+        "group": 14,
+        "print": 29,
+        "done": 1
+      },
+      "sha256": "d3e8348f546845c7d95ed05f38f4b954b64ec1e5f3824082fdb83014ab6bb4af"
+    },
+    {
+      "gate": "core-store",
+      "group": "portable-node",
+      "platform": "node",
+      "passed": 42,
+      "suite_count": 3,
+      "excluded": {
+        "hidden": 3
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 3,
+        "testStart": 45,
+        "allSuites": 1,
+        "print": 3,
+        "testDone": 45,
+        "group": 9,
+        "done": 1
+      },
+      "sha256": "96479cac1c42493e43f072706494f13649ab2210c835e984e3d528130d8ebf4a"
+    },
+    {
+      "gate": "native",
+      "group": "transport-native",
+      "platform": "vm",
+      "passed": 110,
+      "suite_count": 4,
+      "excluded": {
+        "hidden": 4
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 4,
+        "testStart": 114,
+        "allSuites": 1,
+        "testDone": 114,
+        "group": 7,
+        "done": 1
+      },
+      "sha256": "96e4cfb5b7f864c7140b29614537fb4e16531a111e8b27c34b1e89517c74d3c8"
+    },
+    {
+      "gate": "native",
+      "group": "transport-tls-loopback-vm",
+      "platform": "vm",
+      "passed": 26,
+      "suite_count": 3,
+      "excluded": {
+        "hidden": 3
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 3,
+        "testStart": 29,
+        "allSuites": 1,
+        "testDone": 29,
+        "group": 3,
+        "done": 1
+      },
+      "sha256": "a9fa772f5240d09976123108bb90ef783d2769204f9ea46995ab328304ccf267"
+    },
+    {
+      "gate": "native",
+      "group": "enough-mail-protocol-regressions",
+      "platform": "vm",
+      "passed": 496,
+      "suite_count": 46,
+      "excluded": {
+        "hidden": 46
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 46,
+        "testStart": 542,
+        "allSuites": 1,
+        "testDone": 542,
+        "group": 85,
+        "print": 21,
+        "done": 1
+      },
+      "sha256": "5c5c8d7ed9df441815e27798eead0daa9fbaa8f9daeba18ff8418b8ea4eb1f85"
+    },
+    {
+      "gate": "native",
+      "group": "mime-consumer-vm",
+      "platform": "vm",
+      "passed": 32,
+      "suite_count": 6,
+      "excluded": {
+        "hidden": 6
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 6,
+        "testStart": 38,
+        "allSuites": 1,
+        "testDone": 38,
+        "group": 6,
+        "done": 1
+      },
+      "sha256": "3b8143febc6610d177f34ee22af01b95ec90fc673017a424f21da2d1201ac416"
+    },
+    {
+      "gate": "native",
+      "group": "mail-ui-consumers",
+      "platform": "vm",
+      "passed": 30,
+      "suite_count": 4,
+      "excluded": {
+        "hidden": 4
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 4,
+        "testStart": 34,
+        "allSuites": 1,
+        "testDone": 34,
+        "group": 4,
+        "done": 1
+      },
+      "sha256": "206f0c8d0ab8fc3344944d34a57bd6b78deacbd806c27e12fd35b81b39a740af"
+    },
+    {
+      "gate": "node",
+      "group": "transport-node",
+      "platform": "node",
+      "passed": 15,
+      "suite_count": 2,
+      "excluded": {
+        "hidden": 2
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 2,
+        "testStart": 17,
+        "allSuites": 1,
+        "print": 2,
+        "testDone": 17,
+        "group": 5,
+        "done": 1
+      },
+      "sha256": "767656f1751897082bcfdc45045701b72a5993d2f51f0d024d3d0fc173d3277f"
+    },
+    {
+      "gate": "node",
+      "group": "mime-consumer-node",
+      "platform": "node",
+      "passed": 32,
+      "suite_count": 6,
+      "excluded": {
+        "hidden": 6
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 6,
+        "testStart": 38,
+        "allSuites": 1,
+        "print": 6,
+        "testDone": 38,
+        "group": 6,
+        "done": 1
+      },
+      "sha256": "06521fcbc28c8faa6773682b8bb642b6d99f5e9483c4b34ea66796d27615416b"
+    },
+    {
+      "gate": "node",
+      "group": "fork-portable-node",
+      "platform": "node",
+      "passed": 9,
+      "suite_count": 1,
+      "excluded": {
+        "hidden": 1
+      },
+      "event_types": {
+        "start": 1,
+        "suite": 1,
+        "testStart": 10,
+        "allSuites": 1,
+        "print": 1,
+        "testDone": 10,
+        "group": 1,
+        "done": 1
+      },
+      "sha256": "eb0e6e10955c7238b22fd00749f43ba323dae3df745ff7d60c20dd1d3bce40fa"
+    }
+  ],
+  "python_controls": {
+    "shared-runner-controls": 20,
+    "runtime-controls": 16,
+    "ayaspell-offline-controls": 12,
+    "mail-runner-controls": 42
+  },
+  "python_controls_total": 90,
+  "archives": [
+    {
+      "archive": "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/mail-uid-pagination-20261119/runtime/restore-evidence.tar.xz",
+      "sha256": "b990972a0f80ee203f2ed5d4267b704ab590993031ef9c2ac83677a4ec95604e",
+      "bytes": 906396,
+      "members_verified": 12
+    }
+  ],
+  "failed": 0,
+  "skipped": 0,
+  "unfinished": 0,
+  "reporter_errors": 0,
+  "case_inventory_sha256": "f705d64f107ed8ca1de823812a501456a7d9c5130b8e6953289ed7ac9c47707c",
+  "finished_at_utc": "2026-11-19T08:02:43.292679+00:00"
+}

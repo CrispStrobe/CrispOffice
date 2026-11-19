@@ -1,0 +1,75 @@
+{
+  "created_at_utc": "2026-11-19T08:03:32.028131+00:00",
+  "source_directory": "/workspace/scratch/ab196f483cec/uid-development-evidence",
+  "archive": "development.tar.xz",
+  "archive_bytes": 10592,
+  "archive_sha256": "e6525d9ce4592fa08921408c805f799e7f6649567656d1c4e568235c37ae66b9",
+  "member_count": 13,
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 1152,
+      "sha256": "0eca39a0f724604448c6b5b666cf3c2c093aa3031686ad3601811ff92e523421"
+    },
+    {
+      "path": "ayaspell-merge-development.log",
+      "bytes": 1796,
+      "sha256": "dc31fd7963be563044e0413d4f204e816ac09ada39ace6c905b7f0a63c7d0cba"
+    },
+    {
+      "path": "mail-range-development/analysis-final.txt",
+      "bytes": 132,
+      "sha256": "54df56f770ff19151d1e27db01a425085fe29cd502520d1a68464ca1a9b372f1"
+    },
+    {
+      "path": "mail-range-development/core.jsonl",
+      "bytes": 8163,
+      "sha256": "01930c3e672ecb73755a034677179ec33f05efe41c10335a8df21ec09b30889b"
+    },
+    {
+      "path": "mail-range-development/store-repaired.jsonl",
+      "bytes": 7312,
+      "sha256": "4f8d9003dff485b2f1f99baf88df6933c9f68d9278f4a643be8a40ba00b76713"
+    },
+    {
+      "path": "mail-range-development/store.jsonl",
+      "bytes": 7872,
+      "sha256": "a05b7872085f3fe00cde81742863cca0750a52affa07857021bdd6f346b222d5"
+    },
+    {
+      "path": "transport-development-analysis.txt",
+      "bytes": 40,
+      "sha256": "95a28819c918db92d8f3f7dfadfc18f1248f79ab8313759391ad318fe94cf093"
+    },
+    {
+      "path": "transport-development-direct.jsonl",
+      "bytes": 52104,
+      "sha256": "69e2ebfe92520adb0b825ac78ed9828c593011106b78414b2dc39e50b188c039"
+    },
+    {
+      "path": "transport-development.jsonl",
+      "bytes": 44,
+      "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6"
+    },
+    {
+      "path": "uid-search-author-analysis-2.txt",
+      "bytes": 134,
+      "sha256": "7cfb4c758b48dffb3480576c55d82130865d750b8ac0e7dd17567a4204605d63"
+    },
+    {
+      "path": "uid-search-author-analysis.txt",
+      "bytes": 134,
+      "sha256": "7cfb4c758b48dffb3480576c55d82130865d750b8ac0e7dd17567a4204605d63"
+    },
+    {
+      "path": "uid-search-author-tests-2.jsonl",
+      "bytes": 32487,
+      "sha256": "3efa86e321048b28a66f213b65c47e1bf9f81a7877f921dbad1c759e50065a40"
+    },
+    {
+      "path": "uid-search-author-tests.jsonl",
+      "bytes": 26968,
+      "sha256": "8153c05e283a53a2dfae2835252f1af2db91e0b6e9aba65edea977c304fb86ce"
+    }
+  ]
+}
