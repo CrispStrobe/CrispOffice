@@ -608,6 +608,9 @@ void main() {
       expect(find.text(_strings.archiveDirectoryHelp), findsOneWidget);
       await tester.enterText(_key('archive-import-folder'), '/Imported');
       await _tap(tester, 'archive-choose-files');
+      // Cancelling the synchronous fake scan awaits Dart's shared root-zone
+      // completed future. Let its microtask run before settling the progress UI.
+      await tester.runAsync(() => Future<void>.delayed(Duration.zero));
       await tester.pumpAndSettle();
       expect(files.scanRecursive, isTrue);
       expect(store.importedOrigins.single.folder, '/Imported/Letters');

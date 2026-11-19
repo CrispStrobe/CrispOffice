@@ -1,13 +1,18 @@
 # CrispOffice mail archiving, indexing and search
 
 **Scope date:** 2026-11-19. **Goal:** work toward MailStore feature parity.
-This increment supplies a separate durable native archive, file and foreground
+The archive supplies separate durable native storage, file and foreground
 mailbox ingestion, local search, original-message export, and maintenance.
+The portability increment adds recursive directory ingestion, bulk EML export
+from a frozen search selection, and explicit recovery of interrupted exports.
 Full MailStore Server parity remains a roadmap goal. The comparison below keeps
 implemented behavior separate from outstanding enterprise and format support.
 
-The local qualification plan and its evidence rules are in
+The original milestone's acceptance remains in
 [mail-archive-search validation](../../validation/mail-archive-search-20261119/README.md).
+The portability increment's scope, current qualification status, and fresh-run
+rules are in
+[mail-archive-portability validation](../../validation/mail-archive-portability-20261119/README.md).
 Existing account, provider and standalone Office scope remains in
 [the Mail roadmap](README.md).
 
@@ -20,12 +25,12 @@ identical storage, search semantics, administration, or compliance properties.
 | Area | Available in this CrispOffice increment | Remaining parity work | MailStore reference |
 | --- | --- | --- | --- |
 | Durable archival | Separate native SQLite archive; immutable original message bytes; SHA-256 content identity; multiple source/folder origins for one exact byte sequence | Managed server archive stores and administration | [Archiving basics][mailstore-basics] |
-| File ingestion | Multiple EML files and streamed MBOX with explicit `mboxrd` or `mboxo` interpretation; bounded parsing and visible partial/skipped outcomes | PST, MSG, recursive directory jobs, other MBOX dialects, signed MailStore-export metadata import | [File import][mailstore-files] |
+| File ingestion | Multiple EML files, streamed MBOX with explicit `mboxrd` or `mboxo` interpretation, and bounded native directory import with optional recursive traversal and relative-folder provenance; visible skipped, failed, limited and partial outcomes | PST, MSG, other MBOX dialects, provenance-aware import of export manifests, signed MailStore-export metadata import and durable import cursors | [File import][mailstore-files] |
 | Connected mail | Archive an explicitly selected message or selected folder from the native IMAP, EWS, Gmail and Microsoft 365 readers; paginated, cancellable foreground collection | Whole-account/subfolder traversal, durable resume cursors, unattended scheduling, journal capture and administrative mailbox collection | [Archiving basics][mailstore-basics] |
 | Search | Indexed subject, sender/recipients including Bcc, body, attachment names and optional supported attachment text; phrases, prefix terms, Boolean groups, alternatives and exclusions | Leading/infix wildcards and `?`; identical MailStore tokenization and advanced search semantics | [Client search][mailstore-client] |
 | Search management | Source/folder filters, optional subfolders, sent/archive dates, exact byte-size filters, attachment filter, sorting, paging, saved searches | Shared search administration and full multi-user archive browsing | [Client search][mailstore-client] |
 | Attachment content | Explicit opt-in, bounded UTF-8/BOM-marked UTF-16 extraction for supported text formats; skipped/truncated text is reported | PDF, Office document, image/OCR, encrypted and other binary attachment extraction | [Search indexes][mailstore-indexes] |
-| Retrieval/export | Preview from the retained original and export its exact bytes as EML; existing destination paths are refused | Bulk export, restore into provider mailboxes/clients, PST/MSG exports, signed exports and exported archive hierarchies | [Export][mailstore-export] |
+| Retrieval/export | Exact single-message EML export; all-match bulk EML export with a transactionally frozen selection, provenance manifest and explicit hash-verified resume; existing mismatches are reported without replacement | Restore into provider mailboxes/clients, PST/MSG exports, signed exports, physical folder-hierarchy export and provenance-aware manifest restore | [Export][mailstore-export] |
 | Integrity/repair | Original and metadata hash checks, FTS integrity verification, index rebuilding, typed failures and content-free diagnostic events | Full backup/restore workflows, administrative maintenance scheduling and multi-store tooling | [Maintenance][mailstore-maintenance], [backup][mailstore-backup] |
 | Profiles | Credential-free source profile persistence and stable provenance; saved-search persistence | Full profile management UI, scheduling, policy-based source deletion and server job management | [Archiving basics][mailstore-basics] |
 | Enterprise controls | Host/profile separation and exclusive ownership of a native archive | Multi-user ACLs, auditor roles, durable audit trails, retention policies, legal hold, journaling, archive encryption/key administration and compliance qualification | [Compliance][mailstore-compliance], [service configuration][mailstore-service] |
@@ -50,6 +55,65 @@ be recovered automatically. `Content-Length` framing (`mboxcl`/`mboxcl2`) is
 rejected instead of guessed. An oversized record can be reported and skipped
 while scanning resumes at the next valid separator; cancellation also interrupts
 waiting for another stream event.
+
+### Import a directory
+
+Choose **Import directory** in native Studio, select the source label and base
+archive folder, and choose whether to include subfolders. Recursive traversal
+is enabled by default. The dialog also requires an explicit MBOX dialect
+selection and offers the existing attachment-text indexing option. It admits
+regular `.eml` and `.mbox` files, matching extensions without regard to case.
+Unsupported files and rejected entries remain visible in the outcome counts.
+Source files are not changed.
+
+Subfolders are preserved as provenance beneath the chosen base folder. For
+example, a file at `Projects/2026/message.eml` imported under `/Files` receives
+folder provenance `/Files/Projects/2026`. Source-message identities combine a
+SHA-256 of the complete portable relative file path with the record ordinal.
+Equal basenames in different folders therefore retain distinct provenance,
+while identical original message bytes still deduplicate in the archive.
+
+The walk streams directory entries in the operating system's enumeration order.
+It rejects links, including links in ancestors of the selected root; unsafe
+path components and non-regular files are rejected rather than renamed or read.
+The native reader rechecks ancestor and file types and the admitted file size
+before reading. MBOX reads stop at that observed size, and post-read metadata
+changes are reported. This is not a filesystem snapshot or an atomic defense
+against a hostile process replacing paths between operating-system calls.
+
+Each original commits separately. Progress distinguishes files admitted, saved
+messages, duplicates, failed records, skipped entries, traversal errors, limits
+and indexing warnings. `completed` means the observed walk ended without
+rejections or limits; `partial` reports skipped or failed work; `limited` means
+a traversal limit, overall message cap or archive quota stopped or excluded work;
+`cancelled` preserves earlier confirmed commits. A fatal source/storage error
+reports `failed`, or `partial` when earlier messages succeeded. Indexing warnings
+remain separate from original preservation. Rerunning starts at the beginning
+and deduplicates; there is no persistent directory-import cursor.
+
+| Default directory-import bound | Value |
+| --- | --- |
+| Accepted EML/MBOX files | 10,000 |
+| Inspected entries, including the selected root | 100,000 |
+| Processed message outcomes | 100,000 |
+| Nested directory depth; selected root is depth zero | 32 |
+| Open directory iterators | 64 |
+| Total admitted source-file sizes, including MBOX containers | 4 GiB |
+| Original EML or individual MBOX message | 32 MiB |
+| Absolute path / portable relative metadata | 4,096 UTF-16 code units each |
+| Selected-root path components | 128 |
+
+Directory import can ingest the published EML files from a CrispOffice export,
+but it is a generic file import: it does not restore the manifest's original
+provenance, archive profile, saved searches or query selection. The user-supplied
+source/base folder and observed file paths define the new provenance. The
+manifest and ownership files are unsupported input entries. Reserved exporter
+staging directories whose names start with `.pending-` are explicitly skipped
+when their parent contains a regular, non-link `manifest.json` marker; the
+marker is not parsed. The same exclusion applies when such a staging directory
+is selected directly. An unrelated `.pending-*` directory without that marker
+remains ordinary input. These rules keep interrupted staging files out of
+generic recursive import without claiming manifest restoration.
 
 ### Archive connected messages or a folder
 
@@ -91,6 +155,75 @@ not reconstruct the message from visible header fields. Removing an account,
 clearing the live cache, deleting a saved search, or removing a source profile
 does not delete archived messages. The archive UI has English, German and Arabic
 strings and narrow-layout coverage.
+
+### Export all search results and resume an export
+
+Choose **Export all results** to export every archive message matching the
+current query and structured filters, including results outside the displayed
+page. `SqliteMailArchive.planExport` freezes message IDs, original sizes and all
+recorded provenance for the selected messages in one transaction. It preserves
+the requested ordering while ignoring the visible page's limit and offset.
+Later imports cannot shift that selection. A plan exceeding the export limits
+is refused rather than silently truncated.
+
+After confirming the selected count and byte total, choose a parent directory.
+The native exporter creates a fresh `crispoffice-mail-export-*` directory. Each
+original is stored as `<SHA-256>.eml`, using its content identity instead of a
+subject or provider-supplied filename. The original is checked against its
+planned length and SHA-256 before publication; its MIME bytes are not rebuilt
+from indexed fields.
+
+`manifest.json` is flushed and published before any EML. Its versioned payload
+contains the local host/profile identity, creation time, ordered original IDs
+and sizes, and source/folder/source-message-ID provenance. It includes an
+**unsigned SHA-256 digest** for corruption detection. The digest is not a
+signature or proof of authenticity, and the manifest is neither an archive
+database backup nor a mailbox-restore format. It does not contain a saved search
+definition or reconstruct a physical provider folder hierarchy.
+
+To continue interrupted work, choose **Resume export** and select that export
+directory itself. Resume uses the immutable manifest selection and requires the
+same host/profile identity; current search filters do not alter it. Every
+existing target EML is checked in bounded chunks against both its planned length
+and SHA-256. Matching files count as verified existing files. Missing files are
+loaded again from the archive, checked and published. Conflicting files, links,
+invalid manifests and profile mismatches are reported; existing mismatches are
+never overwritten. A complete export can be resumed again to verify its files.
+
+Progress and the terminal report expose `planned`, newly `written`, verified
+`existing`, and `failed` counts for the current run. They also retain verified
+byte counts and bounded item failures. `completed` requires the selected work to
+finish successfully; `partial`, `cancelled` and `failed` preserve confirmed
+counts. Export has no separate `limited` status: over-budget plans/manifests
+and storage quota failures are typed problems, and any already-published files
+remain reported. Totals are not accumulated blindly across retries.
+
+The directory also contains `.export-owner.sqlite3` for cooperating exporter
+ownership. An exclusive SQLite transaction excludes overlapping exporters,
+including other processes, and releases the lock when its process exits.
+Manifest staging uses `.manifest.pending`; message staging uses
+`.pending-*/original.eml`. Files are flushed before publication, and resume
+never counts staging files as completed originals. Incomplete staging may remain
+for diagnosis after interruption. Keep the export directory and manifest for
+resume; a missing original must still be available in the bound archive.
+
+| Default bulk-export bound | Value |
+| --- | --- |
+| Selected originals | 10,000 |
+| Total original bytes | 1 GiB |
+| One original | 32 MiB |
+| Encoded UTF-8 manifest | 16 MiB |
+| Provenance records in the complete plan | 20,000 |
+| Retained per-item failure details | 50 |
+
+Use a destination under the user's control. The portable filesystem API checks
+observed conflicts and links but cannot atomically exclude hostile path
+replacement between checks and rename. Flush-and-rename recovery is qualified
+for process interruption, not all device, filesystem or power-loss failures.
+The regression suite includes an actual `SIGKILL` after one published original,
+followed by lock recovery, completion and a second verification-only resume.
+The portability validation record states the acceptance status for the frozen
+source; this guide does not substitute for that evidence.
 
 ## Query language and filters
 
@@ -246,13 +379,17 @@ Runner reports also count observer failures and bound retained per-item errors.
 The next work should preserve the existing separation between original data,
 searchable projections and host/provider authorization:
 
-1. Broader import/export: PST/MSG with an approved parser and fixtures, bulk EML
-   export, mailbox restore, recursive source enumeration and explicit container
-   format coverage.
+1. Broader import/export: PST/MSG with an approved parser and fixtures, mailbox
+   restore, provenance-aware import of export manifests, signed exports,
+   physical folder-hierarchy export and additional container dialects. Native
+   recursive file import and resumable bulk EML export are supplied above;
+   provider mailbox/subfolder traversal remains separate collection work.
 2. Searchable binary attachments: bounded PDF/Office extraction, cancellation,
    extractor failure reporting, format-specific fixtures and resource budgets.
-3. Collection operations: durable resume state, robust scheduling, journal
-   collection and source reconciliation with clearly stated completeness rules.
+3. Collection operations: durable import and provider-collection cursors,
+   recursive mailbox enumeration, background scheduling, journal collection and
+   source reconciliation with clearly stated completeness rules. Explicit bulk
+   export resume does not provide unattended or durable mailbox collection.
 4. Administration: multi-user authorization, durable audit records, retention,
    legal hold, encryption/key lifecycle, backup/restore and independent recovery
    qualification. Local hashes and a profile namespace do not satisfy these
