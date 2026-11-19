@@ -1,0 +1,142 @@
+{
+  "archive": "office-results.tar.xz",
+  "bytes": 832888,
+  "sha256": "5a113d3130eca2d7f948049e3d90374d119fa27d56b358d35fe51148702162b9",
+  "members": [
+    {
+      "path": "office-baseline/checks/analysis.log",
+      "bytes": 845,
+      "sha256": "cfcd4c8b4de5a773b444de1ad0ad75dad48c2a5dffe6cc9ce8dcb52be83e2e27"
+    },
+    {
+      "path": "office-baseline/checks/analysis.log.gz",
+      "bytes": 286,
+      "sha256": "10f6806f1c44af8d67bc8d08614c03ad1b70d06130b98fc77bff5503ba6cabfc"
+    },
+    {
+      "path": "office-baseline/checks/editor-review-notes-headers-and-zotero-cases.json",
+      "bytes": 248999,
+      "sha256": "290f8711f66b461c4a39887e4b48532e29d01619a24d5acece4cb488d9f1c3c3"
+    },
+    {
+      "path": "office-baseline/checks/editor-review-notes-headers-and-zotero-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "office-baseline/checks/editor-review-notes-headers-and-zotero.jsonl",
+      "bytes": 484963,
+      "sha256": "da1e2c57947469b27b745c3983c6fea8e279c1f9b069a78c6bc2a9ba30560124"
+    },
+    {
+      "path": "office-baseline/checks/editor-review-notes-headers-and-zotero.jsonl.gz",
+      "bytes": 42286,
+      "sha256": "19ccfaba841ec49613f6fc1c62a89e7d8080ca82aa503909e61d7660eaebffbd"
+    },
+    {
+      "path": "office-baseline/checks/engine-review-and-incoming-zotero-cases.json",
+      "bytes": 66536,
+      "sha256": "298ee107878736a19b14a3a719879f5c246db9b13d67aa5921ee57ea23f5217a"
+    },
+    {
+      "path": "office-baseline/checks/engine-review-and-incoming-zotero-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "office-baseline/checks/engine-review-and-incoming-zotero.jsonl",
+      "bytes": 113066,
+      "sha256": "a0bb31799843fc1ccd36c16f68ee5417cecbefc0fc70fafc5245d7ca80ca319f"
+    },
+    {
+      "path": "office-baseline/checks/engine-review-and-incoming-zotero.jsonl.gz",
+      "bytes": 10464,
+      "sha256": "67be1fc16fa84af82f47aaa34746699a57071c2483b892b67f9b5b352cb6e560"
+    },
+    {
+      "path": "office-baseline/checks/format.log",
+      "bytes": 48,
+      "sha256": "7688fee58536a2fad9570098f1bed5e9f58c273013b3506e3b692f5d104978f7"
+    },
+    {
+      "path": "office-baseline/checks/format.log.gz",
+      "bytes": 68,
+      "sha256": "340ba2bbbef5b73206469ffcb95969608af2eacfd0510349ba58c7d21b8d8771"
+    },
+    {
+      "path": "office-baseline/checks/incoming-mail-reader-cases.json",
+      "bytes": 2922,
+      "sha256": "1234ce30e3648a65dd5a6cd9331f8bb3df22aab0050e7fc329f0feb270b5bf8f"
+    },
+    {
+      "path": "office-baseline/checks/incoming-mail-reader-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "office-baseline/checks/incoming-mail-reader.jsonl",
+      "bytes": 6565,
+      "sha256": "c646181c728cfa1f5bcb718fdeae3c5aed450e1641bd5b7ca4e088f12b495840"
+    },
+    {
+      "path": "office-baseline/checks/incoming-mail-reader.jsonl.gz",
+      "bytes": 1140,
+      "sha256": "63131e9e36f537eacc53430fee3edb5c49aab52fb51fe4f814bfe9df41e4a9cb"
+    },
+    {
+      "path": "office-baseline/checks/studio-review-and-incoming-navigation-cases.json",
+      "bytes": 28318,
+      "sha256": "8870179b6d1c163fc8ed268268230ecf7554f0d93e375047d88913002622a629"
+    },
+    {
+      "path": "office-baseline/checks/studio-review-and-incoming-navigation-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "office-baseline/checks/studio-review-and-incoming-navigation.jsonl",
+      "bytes": 60046,
+      "sha256": "65a6445bb182e3a20d07d93c37229232c7853014160cda9313f4f17e44581d14"
+    },
+    {
+      "path": "office-baseline/checks/studio-review-and-incoming-navigation.jsonl.gz",
+      "bytes": 5594,
+      "sha256": "924ac7a64867b9a64afc46274f2cfd81d72af9c18fbf15cc53df23c8c74166b6"
+    },
+    {
+      "path": "office-baseline/checks/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "office-baseline/checks/whitespace.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "office-baseline/environment-after.json",
+      "bytes": 1707015,
+      "sha256": "0541cdcb5faceb0ab6b1753164db182faa3fd89d93cdff967da732e4bc510625"
+    },
+    {
+      "path": "office-baseline/environment-before.json",
+      "bytes": 1707015,
+      "sha256": "0541cdcb5faceb0ab6b1753164db182faa3fd89d93cdff967da732e4bc510625"
+    },
+    {
+      "path": "office-baseline/source-after.json",
+      "bytes": 1524091,
+      "sha256": "c09725bb8e55afeac2e33adab2ed61cb70f32fa11a56fa16e3ebd93e1432cf5a"
+    },
+    {
+      "path": "office-baseline/source-before.json",
+      "bytes": 1524091,
+      "sha256": "c09725bb8e55afeac2e33adab2ed61cb70f32fa11a56fa16e3ebd93e1432cf5a"
+    },
+    {
+      "path": "office-baseline/verification.json",
+      "bytes": 46262,
+      "sha256": "8edd4bbd2ca7d157d3b8e8001fbb0866f435b7766371c103d1bed6b57a5d585b"
+    }
+  ]
+}

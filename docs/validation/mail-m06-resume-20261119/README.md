@@ -49,14 +49,22 @@ and verified. The root dependency lock was unchanged. The [runtime receipt](runt
 and [original restoration evidence](runtime/restore-evidence.tar.xz) retain the
 new run's identities, command logs, retained input manifest and omissions.
 
-The existing 72-suite Office/reader plan is running against the same frozen
-source. Its result is pending at this checkpoint; earlier historical passing
-counts are not reused as a new result.
+The 72-suite Office/reader plan passed against the same frozen source with
+**1,230 cases, zero failures and zero skips**: 233 engine, 887 editor, 99 Studio
+and 11 Mail-reader cases. Strict analysis, formatting and whitespace checks
+passed. All 5,002 materialized source inputs and 11,163 runtime inputs remained
+unchanged. See the [complete receipt](baseline/office-verification.json),
+[original evidence](baseline/office-results.tar.xz), and
+[archive/case-list audit](baseline/office-archive-audit.json). Historical counts
+from earlier work are not included in these fresh results.
 
 ## Continuation boundaries
 
-The next source checkpoint adds nullable durable standard flags and bounded
-native IMAP transport, followed by integrated local protocol/store validation.
+Checkpoint `c2db80d4caacb4818c06d596566e50f25811d28a` preserves nullable
+durable standard flags and schema v3 migration source. Its additional behavior
+tests remain unexecuted at this evidence checkpoint. Bounded native IMAP
+transport is being integrated next, followed by complete local protocol/store
+validation. The baseline test results above apply to source `479e1e03`.
 System-browser OAuth, actual browser storage, live disposable-account
 interoperability, SMTP composition/submission and the account-aware UI retain
 their independent implementation and acceptance gates.
