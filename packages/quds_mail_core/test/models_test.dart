@@ -20,7 +20,7 @@ void main() {
     expect(observed, equivalent);
     expect(observed.hashCode, equivalent.hashCode);
     expect(observed, isNot(empty));
-    expect({observed, equivalent}, hasLength(1));
+    expect({observed}..add(equivalent), hasLength(1));
     for (final different in const [
       MailMessageFlags(isRead: true),
       MailMessageFlags(isFlagged: true),

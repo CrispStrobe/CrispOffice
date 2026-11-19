@@ -1,7 +1,13 @@
 # Mail implementation status — 19 November 2026
 
-The current integrated source and qualification are recorded in the
+The inherited main source and qualification are recorded in the
 [19 November completion report](../../validation/office-main-completion-20261119/README.md).
+Subsequent incoming-ref reconciliation and direct TLS-rejection cleanup are
+qualified in the [current reconciliation report](../../validation/office-current-reconciliation-20261119/README.md),
+with their own fresh gate and source identity. The concurrent
+[synchronization record](../../validation/office-main-sync-20261119/README.md)
+is preserved separately. Earlier qualification totals
+remain attached to their original source checkpoints.
 Fetch the canonical repository's current refs before resuming.
 The source of product scope remains [README.md](README.md) and the ordered work
 remains [implementation-plan.md](implementation-plan.md).

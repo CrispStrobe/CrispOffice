@@ -1,0 +1,67 @@
+{
+  "archive": "restore-evidence.tar.xz",
+  "bytes": 906396,
+  "sha256": "b990972a0f80ee203f2ed5d4267b704ab590993031ef9c2ac83677a4ec95604e",
+  "members": [
+    {
+      "path": "runtime.json",
+      "bytes": 12606,
+      "sha256": "dce4d5fec2c7bfabdc6d9298327a098bb3418486b37316881a9802a8a0d0fa20"
+    },
+    {
+      "path": "archive-members.json",
+      "bytes": 357030,
+      "sha256": "c30c0738a094f3b0bfc3ee4696204540798d4a4fbaf943a5abb0ce8833635f8f"
+    },
+    {
+      "path": "pub-cache-receipt.json",
+      "bytes": 44348,
+      "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591"
+    },
+    {
+      "path": "retained-inputs.json",
+      "bytes": 2049933,
+      "sha256": "8a14b584c2e9416dc73f79e556f3680feba49bdbb279e8f42cd47054c5b01a91"
+    },
+    {
+      "path": "cache-omissions.json",
+      "bytes": 2335744,
+      "sha256": "c16bf623008daa6c01cfeb16a2895d1048f42cda2274c084d9b8a58840e2d615"
+    },
+    {
+      "path": "env.sh",
+      "bytes": 588,
+      "sha256": "9e0ba15d763ecfa2127f426f75309da14f8d3b8724dbb67e656d436375064846"
+    },
+    {
+      "path": "logs/flutter-tools-pub-get.log",
+      "bytes": 1192,
+      "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+    },
+    {
+      "path": "logs/flutter-version.log",
+      "bytes": 628,
+      "sha256": "19568fa634fd63ed12e5ca8630b4f7aec871fb734677b563664ecb22aa634919"
+    },
+    {
+      "path": "logs/native-assets-smoke.log",
+      "bytes": 81,
+      "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2"
+    },
+    {
+      "path": "logs/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "restore.log",
+      "bytes": 318,
+      "sha256": "a43c26da94732260050df311117d56fbab63fbcc982865d6a1ade669bf1f7782"
+    },
+    {
+      "path": "restorer-controls.log",
+      "bytes": 2577,
+      "sha256": "c0de0e1c65beb99d8f631ef08233ca33ce0f5e8b41265cbfd60b9b64c7bc9f81"
+    }
+  ]
+}

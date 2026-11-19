@@ -2,11 +2,13 @@
 
 Profile-scoped Drift/SQLite persistence for the shared Mail contracts. Original
 source is MIT. Schema v3 flags and the bounded native IMAP integration passed
-combined local qualification at `5569c055`, including **199 fresh core/store test
-executions** and five transport/coordinator tests using actual SQLite. The
-[Office completion report](../../docs/validation/office-main-completion-20261119/README.md)
-records the full 836-application / 78-Python result; the earlier `71edec2d`
-Mail-branch receipt is retained below under its own identity.
+the [current reconciliation qualification](../../docs/validation/office-current-reconciliation-20261119/README.md)
+at `c268ce3b`, including **199 core/store test executions** within **801
+application executions**, plus **42 separate launcher controls**. The earlier
+`71edec2d` Mail-branch qualification is retained as historical evidence below.
+Subsequent reconciliation and TLS-rejection cleanup have a separate
+[captured synchronization record](../../docs/validation/office-main-sync-20261119/README.md),
+whose incoming history is preserved by the current reconciliation.
 The account-aware UI and SMTP remain subsequent work. Exact dependencies and
 retained notices are in
 [DEPENDENCIES.json](DEPENDENCIES.json) and
@@ -140,24 +142,40 @@ A failed migration rolls back, and an unknown future version returns
 
 ## Qualification boundary
 
-### Final reconciled application — PASS
+### Current reconciled source — PASS
 
-All final application execution is bound to
-`5569c055a021c893e941fc54d40499ad9d96a5db`: 836 application executions across
-85 suite/platform executions and 73 distinct files, with 78 separate Python
-controls. This includes a fresh full 199-case core/store run, 602 native
-transport/MIME/UI/protocol cases and 35 Node transport/MIME cases. The
-[independent audit](../../docs/validation/office-main-completion-20261119/release/independent-summary.json)
-verifies the exact source/runtime identity and raw counts. This README was
-updated afterward to publish the incoming Mail results and this current pointer;
-application code, tests, plans, dependency declarations and runtime inputs did
-not change.
+The [current reconciliation report](../../docs/validation/office-current-reconciliation-20261119/README.md)
+binds 801 application executions (731 distinct cases) and 42 launcher controls
+to `c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e`. The native gate passed 602 cases;
+the core/store gate passed 199 VM/Node executions. The direct TLS-rejection
+cleanup and strengthened assertions are included. Application, configuration,
+and test inputs are unchanged by later documentation/publication reconciliation;
+this README is the one explicitly reviewed documentation-input update.
 
-### Earlier Mail-branch schema v3 and transport qualification — PASS
+### Inherited main qualification — PASS
 
-The final gates bind published source
+The [Office completion report](../../docs/validation/office-main-completion-20261119/README.md)
+binds **836 application executions** and **78 separate Python controls** to
+source `5569c055a021c893e941fc54d40499ad9d96a5db`. Its fresh core/store gate
+passed 199 executions; native transport, MIME, UI and shared protocols passed
+602, and the additional Node boundary/MIME gate passed 35. Strict analysis,
+formatting and browser entry/worker compilation also passed. These results
+remain tied to that inherited source; compilation does not qualify actual
+browser persistence.
+
+The subsequent TLS-rejection cleanup restores disconnected and unauthenticated
+state for a failed direct upgrade while preserving a newer connection generation.
+Its fresh focused gate and incoming-ref reconciliation are recorded separately
+in the [Office synchronization report](../../docs/validation/office-main-sync-20261119/README.md).
+Neither the 836-execution main receipt nor the earlier 631-execution receipt is
+counted as a new run of that continuation.
+
+### Historical Mail-branch qualification — PASS on `71edec2d`
+
+The following gates qualify the earlier published source
 `71edec2de364805113d18e0f1d7edbb1f00467e5`, tree
-`8b7443bd15be09276764f62934b9d8ce32a6be68`, and unchanged runtime inputs:
+`8b7443bd15be09276764f62934b9d8ce32a6be68`, and its unchanged runtime inputs.
+They are retained independently of the later main and continuation results:
 
 | Gate | Passing executions | Cohorts |
 | --- | ---: | --- |
@@ -198,7 +216,7 @@ passed **1,230 cases** on the same frozen baseline. Original logs, case lists,
 archive indexes and source/runtime identities are retained in the dated record.
 
 These baseline results predate schema v3 and native transport and are not
-included in the final integrated totals. The continuation also retains the
+included in either later integrated total. The continuation also retains the
 failed attempts at `da78c0bb` (test-only constant-set/import diagnostics) and
 `e734e3bd` (a process-state read race in a Python cleanup control). Their repairs
 preceded the complete rerun on `71edec2d`; the failed receipts remain historical.

@@ -1,15 +1,20 @@
 # Mail M06 continuation — 19 November 2026
 
-**Historical Mail-branch qualification.** This record preserves 631 application
-executions and 66 Python controls at `71edec2d`, published in `700e5a35`.
-The later [Office completion report](../office-main-completion-20261119/README.md)
-records 836 fresh application executions and 78 Python controls at `5569c055`,
-including the final Socket-compatible TLS and strict FETCH resolution. The
-receipts below retain their own source identities and add zero to those totals.
-Their original plans describe the earlier Mail branch; use the completion plans
-when replaying the final merged application.
+**Historical Mail-branch qualification.** The complete 631 application
+executions / 508 distinct scenarios and 66 Python controls below qualify
+`71edec2d`, with evidence published at `700e5a35`. The [Office completion report](../office-main-completion-20261119/README.md)
+records the later 836 application executions and 78 Python controls at
+`5569c055`. Its Socket-compatible TLS implementation supersedes the manual
+socket restriction described in this historical report.
 
-## Final integrated qualification: PASS
+The [current reconciliation](../office-current-reconciliation-20261119/README.md)
+records fresh 801 application executions and 42 launcher controls at `c268ce3b`,
+including the direct TLS rejection cleanup. The concurrent
+[Office synchronization record](../office-main-sync-20261119/README.md) is also
+preserved with its captured source and scope. Counts from different checkpoints
+remain separate; no historical result is presented as a new execution.
+
+## Historical Mail-branch qualification: PASS on `71edec2d`
 
 The durable flags and bounded native IMAP foundation passed the complete local
 qualification on published source

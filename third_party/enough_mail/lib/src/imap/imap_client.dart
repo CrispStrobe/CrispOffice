@@ -17,6 +17,7 @@ import '../private/imap/command.dart';
 import '../private/imap/imap_response.dart';
 import '../private/imap/imap_response_reader.dart';
 import '../private/imap/raw_fetch_parser.dart';
+import '../private/imap/raw_uid_search_parser.dart';
 import '../private/imap/response_parser.dart';
 import '../private/util/client_base.dart';
 import '../private/util/protocol_resource_limit.dart';
@@ -1986,6 +1987,39 @@ class ImapClient extends ClientBase {
     responseTimeout: responseTimeout,
   );
 
+  /// Discovers all existing UIDs in one finite interval, without MIME parsing.
+  ///
+  /// The complete simple SEARCH result must contain at most [maxUids] unique
+  /// decimal UIDs inside [firstUid] through [lastUid]. Missing, malformed,
+  /// duplicate or extended responses fail; no partial result is returned.
+  /// The result is sorted and immutable. Configure protocol-line and aggregate
+  /// response-byte limits on the client before connecting as additional bounds.
+  Future<List<int>> uidSearchRaw({
+    required int firstUid,
+    required int lastUid,
+    required int maxUids,
+    Duration? responseTimeout,
+  }) {
+    if (firstUid < 1 ||
+        lastUid < firstUid ||
+        lastUid > 0xffffffff ||
+        maxUids < 1) {
+      throw ArgumentError('Invalid bounded UID SEARCH request');
+    }
+    return sendCommand<List<int>>(
+      Command(
+        'UID SEARCH UID $firstUid:$lastUid',
+        writeTimeout: defaultWriteTimeout,
+        responseTimeout: responseTimeout ?? defaultResponseTimeout,
+      ),
+      RawUidSearchParser(
+        firstUid: firstUid,
+        lastUid: lastUid,
+        maxUids: maxUids,
+      ),
+    );
+  }
+
   /// Fetches a single message by the given definition.
   ///
   /// [messageSequenceId] the message sequence ID of the desired message
@@ -3089,9 +3123,13 @@ class ImapClient extends ClientBase {
     //log("S: $log");
 
     //log("sub-line: " + line);
-    if (line.startsWith('* ')) {
+    if (line.startsWith('* ') ||
+        (_currentCommandTask?.parser is RawUidSearchParser &&
+            line.startsWith('*'))) {
       // this is an untagged response and can be anything
-      imapResponse.parseText = line.substring('* '.length);
+      imapResponse.parseText = line.startsWith('* ')
+          ? line.substring('* '.length)
+          : line;
       onUntaggedResponse(imapResponse);
     } else if (line.startsWith('+ ')) {
       imapResponse.parseText = line.substring('+ '.length);
@@ -3164,10 +3202,14 @@ class ImapClient extends ClientBase {
         log('untagged not handled: [$imapResponse] by task $task');
       }
     } catch (e, s) {
-      if (task?.parser is RawFetchParser) {
+      if (task?.parser is RawFetchParser ||
+          task?.parser is RawUidSearchParser) {
         // Raw synchronization must fail the whole response: accepting an
         // earlier prefix could turn rejected messages into false tombstones.
-        _completePendingTasksWithError('invalid bounded raw FETCH response');
+        if (e is ProtocolResourceLimit) {
+          responseLimitExceeded = true;
+        }
+        _completePendingTasksWithError('invalid bounded IMAP response');
         unawaited(abort());
         return;
       }

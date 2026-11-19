@@ -250,10 +250,10 @@ checks. Its 72-suite Office/reader gate also passed with 1,230 cases. The earlie
 historical evidence; its runner/formatting blockage is resolved for the fresh
 baseline. Those results predate schema v3 and native transport. The
 [Office integration report](../../validation/office-main-integration-20261119/README.md)
-records the subsequent passing flags/transport qualification, including the
-retained 199-execution core/store gate and its source-continuity checks. The
-[final completion report](../../validation/office-main-completion-20261119/README.md)
-records a fresh full 199-execution core/store gate on the final reconciled source,
+records the current 632-execution / 562-distinct-case qualification at
+`ac1e4c8c`, including a fresh 199-execution core/store gate. The
+[retained completion report](../../validation/office-main-completion-20261119/README.md)
+records its separate full 199-execution core/store gate at `5569c055`,
 within its 836 application executions and 78 separate Python controls.
 
 Browser entry/worker compilation and Node error-policy tests do not close actual
@@ -272,7 +272,8 @@ distinct from encryption. M06 is partially implemented; M07 and M04W remain open
 - [x] Load current host-owned password/token bytes for each operation using account/profile/host-scoped vault references. Negotiate XOAUTH2/OAUTHBEARER protocol capability and keep credential material out of ordinary account rows and public diagnostics.
 - [ ] Implement native system-browser OAuth/PKCE, registered redirect handling, token refresh and platform credential-vault hosts. No embedded confidential secret.
 - [x] Discover selectable folders, fetch bounded header/flag UID windows, retrieve exact full-message literals on demand, and apply observed UID flag changes and capability-gated MOVE. Delete marks only `\Deleted`, without mailbox-wide EXPUNGE or CLOSE.
-- [ ] Complete large/sparse mailbox pagination, archive/destination workflows and individual body-part retrieval beyond the initial full-message fetch boundary.
+- [x] Page by strictly discovered existing UIDs across sparse/high numeric UID spaces; reconcile actual stored absences through typed closed UID ranges and preserve v1 cursor continuation. Qualification is tracked in the [discovery continuation](../../validation/mail-uid-pagination-20261119/README.md).
+- [ ] Add discovery beyond bounded simple SEARCH, archive/destination workflows and individual body-part retrieval beyond the initial full-message fetch boundary.
 - [x] Use stable account/mailbox/UIDVALIDITY/UID identities and scoped transactional cursors. Request mailbox reset when UIDVALIDITY changes; never persist sequence-number identities.
 - [x] Implement an explicitly bounded full-sweep fallback that revisits old flags and expunges. Advertise no IDLE/CONDSTORE/QRESYNC behavior that is not implemented.
 - [ ] Add IDLE/CONDSTORE/QRESYNC only with genuine adapter/server support and independent qualification; retain a correct fallback.
@@ -282,20 +283,29 @@ distinct from encryption. M06 is partially implemented; M07 and M04W remain open
 
 **Implemented foundation and limits:**
 [quds_mail_transport](../../../packages/quds_mail_transport/README.md) is present,
-but M06 is not complete. `maxUidScan` defaults to **10,000** and has an upper
-limit of **100,000**; this bounds the highest numeric UID, not message count.
-Mailboxes with `UIDNEXT - 1` above the bound return `unsupported` before any
-page fetch or commit. Direct on-demand retrieval of a specified high UID remains
-available. Cursors freeze each sweep ceiling, and arrivals beyond it enter the
+but M06 is not complete. `maxDiscoveredUids` defaults to **10,000** and has an
+upper limit of **100,000**; it bounds existing UIDs in each complete
+remaining-range SEARCH response. Protocol byte budgets can bind sooner. Exceeding
+either budget fails with `quotaExceeded` before FETCH or commit. Numeric gaps
+consume neither the page limit nor tombstone storage. An optional explicitly
+supplied legacy `maxUidScan` retains its old numeric ceiling and `unsupported`
+outcome; no numeric ceiling applies by default. Repeated simple SEARCH remains
+a bounded fallback, with ESEARCH/PARTIAL optimizations outside this increment.
+Direct on-demand retrieval of a specified high UID remains available.
+Cursors freeze each sweep ceiling, and arrivals beyond it enter the
 next sweep; the fallback is not a server snapshot protocol. MOVE confirms source
 absence but does not expose COPYUID destination identities. Controlled parser,
 SQLite/coordinator, lifecycle and conditional-entry tests passed in the
-[32-suite integrated qualification](../../validation/office-main-integration-20261119/README.md)
+[32-suite earlier qualification](../../validation/office-main-integration-20261119/pre-tls-report.md)
 at `7d279e084bae438d383630726ad7b0514da77d35`, with 389 focused cases. The
-[final reconciled qualification](../../validation/office-main-completion-20261119/README.md)
+[retained qualification](../../validation/office-main-completion-20261119/README.md)
 at `5569c055a021c893e941fc54d40499ad9d96a5db` adds broader protocol coverage and
-real Linux TLS tests within 836 fresh application executions. External-provider,
-other-OS and disposable-account interoperability remain open.
+real Linux TLS tests within its separate 836 application executions. The
+[current combined qualification](../../validation/office-main-integration-20261119/README.md)
+at `ac1e4c8c788ea608402c2260488235c0189efcba` passes 433 focused cases across
+35 suites, including 26 TLS/ownership cases and the rejected-upgrade cleanup,
+plus the fresh 199-execution core/store gate. External-provider, other-OS and
+disposable-account interoperability remain open.
 The 186-execution Mail and 1,230-case Office passes above retain their separate
 baseline `479e1e03` identity.
 

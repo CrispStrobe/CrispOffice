@@ -1,5 +1,14 @@
 # Quds Office reconciliation and local qualification — 19 November 2026
 
+**Execution records with explicit source scope.** This report preserves the
+836-case Mail run at `5569c055` and the separate 179-case proofing run at
+`ba7c1e26`. During final publication, main advanced again to `b655b8a3`, bringing
+Mail UID discovery, later TLS continuations, optional Hunspell support, a macOS
+runner and an Arabic rule specification. The final merge retains that newer
+main history. Those incoming changes are not relabelled as executions of either
+frozen run below; their own implementation and validation records are preserved.
+The closeout review identifies the final differences against that newer main.
+
 ## Qualified sources and publication scope
 
 This completion has two separately recorded execution sources:
@@ -13,20 +22,22 @@ This completion has two separately recorded execution sources:
   files, after retaining concurrent main PR #180 and fixing decomposed Arabic
   spelling. This is a separate targeted run, not a rerun of all Mail gates.
 
-The later source changes three previously recorded Office inputs and adds three
+At `ba7c1e26`, the source changes three previously recorded Office inputs and adds three
 Office source/test files. The Store README is also a reviewed documentation
 change. Therefore the final source is **not** presented as byte-identical to
 the earlier complete Mail input inventory. The
 [Arabic/main audit](release/arabic-main-tail-review.json) enumerates these
-changes and proves that the Mail packages, protocol fork, Mail tools/plans
-and dependency inputs retain their prior bytes. Earlier continuity receipts
+changes and proves that, at that checkpoint, Mail packages, protocol fork,
+Mail tools/plans and dependency inputs retain their prior bytes. Later main
+adds further Mail functionality; earlier continuity receipts
 describe their own named checkpoints.
 
 PR [#173](https://github.com/CrispStrobe/quds_office_suite/pull/173) merged the
 qualified Mail application and evidence into remote `main` at `55e262ef`.
-PR [#172](https://github.com/CrispStrobe/quds_office_suite/pull/172) completes the
-remaining evidence, retains newer main history and carries the reviewed
-proofing repairs. The user authorized the merge and incremental checkpoints.
+The remaining reconciliation retains newer main history and carries the
+reviewed proofing repairs. PR #172 was closed during the concurrent main
+integration and reopened to complete the remaining fixes and evidence merge.
+The user authorized the merge and incremental checkpoints.
 **GitHub Actions were not queried, dispatched or awaited.** Remote updates use
 non-forced expected-head writes followed by fetched-object verification.
 
@@ -39,8 +50,9 @@ note placement, atomic undo/redo, cancellation safeguards and Quds DOCX persiste
 retain their prior implementation. This continuation adds no separate claim of a
 new live Zotero or Microsoft Word acceptance run.
 
-The Mail work addresses concrete defects found while reconciling the incoming
-implementation:
+The Mail work qualified at `5569c055` addresses the following concrete defects.
+Later UID discovery and TLS continuations are retained from newer main and
+keep their own source identities:
 
 - **Durable flags and schema v3.** Unknown observations remain distinct from an
   explicitly empty flag set. Migrations, reopen behavior, repository updates,
@@ -120,15 +132,18 @@ proofing documentation and `tools/proofing/ayaspell/build_bundle.py`. The
 [checkpoint review](release/proofing-tail-review.json) records publication
 `0796cb50`, before the later Arabic writing-rule integration.
 
-The standalone bundle helper now requires a **new output directory**. This
-prevents an explicit upload from including unrelated files already present in
-a reused directory. All seven isolated path-guard checks passed, including
+At checkpoint `0796cb50`, the standalone bundle helper required a **new output
+directory** to prevent uploads from including unrelated pre-existing files.
+All seven isolated path-guard checks passed, including
 existing files/directories, symlinks and concurrent directory creation, with
 fetch stubbed and publication prevented. The [receipt](release/proofing-output-guard.json)
 and [replay script](release/check_proofing_output_guard.py) preserve this separate
 scope. No dictionary resource was downloaded or published by these checks, and
 the seven checks are excluded from both application totals and the 78 Python
-qualification controls.
+qualification controls. The final merge retains newer main's verified-filename
+upload allowlist, which addresses the same disclosure risk while permitting
+directory reuse. The earlier directory-guard implementation and checks remain
+historical evidence; they are not presented as the final publisher policy.
 
 Main then advanced to `f7117a49` through PR
 [#180](https://github.com/CrispStrobe/quds_office_suite/pull/180). Its eight paths
@@ -140,12 +155,12 @@ combining maddah/hamza as spelling content, with three unchanged-text controls
 and a correction-offset regression after decomposed spelling and an emoji.
 The docs now distinguish built-in rules from planned dictionary integration.
 
-The [additive provenance audit](release/arabic-main-tail-review.json) records
+At `ba7c1e26`, the [additive provenance audit](release/arabic-main-tail-review.json) records
 **5,029 of the original 5,033 inputs identical to `5569c055`**, three changed
 existing Office code files, the earlier Store README change, and three new
 Office source/test inputs. The augmented old-input union is 5,036 entries.
 These are source-accounting figures, not passing-test counts. Mail source,
-tests, plans and dependency inputs remain exact; the changed proofing behavior
+tests, plans and dependency inputs remain exact at that checkpoint; the changed proofing behavior
 receives the separate execution below.
 
 ## Mail qualification at `5569c055`
@@ -343,7 +358,7 @@ python3 docs/validation/document-review-notes-20261118/run_checks.py \
   --command-timeout 300
 ```
 
-## Acceptance boundaries
+## Acceptance boundaries of the recorded runs
 
 Real TLS coverage is Linux loopback with the pinned Dart runtime, including
 ClientHello observation, peer-observed closure before teardown, trusted encrypted
@@ -352,10 +367,37 @@ external mail-provider, other-OS or installed-application interoperability.
 Arbitrary injected socket implementations retain responsibility for their own
 physical transport ownership.
 
-M06 remains partial: discovered-UID pagination for large/sparse mailboxes,
+At the recorded `5569c055` source, M06 remained partial: discovered-UID pagination for large/sparse mailboxes,
 OAuth authorization/refresh hosts, platform vault integration, SMTP/composition
 and the account-aware mailbox workspace remain future work. The numeric scan
 ceiling still defaults to 10,000 and is configurable up to 100,000. Browser
 compilation and Node tests do not establish actual browser persistence or
 cross-tab recovery. Live Zotero, installed shortcuts, Word/LibreOffice reopening
 and independent linguistic acceptance retain their earlier unperformed scope.
+
+## Later main retained at closeout
+
+The final reconciliation retains `b655b8a37fddc874bd42a453c371eed6253e82d8`
+and all of its incoming histories. This adds bounded discovered-UID pagination,
+later Mail/TLS continuations, the optional Hunspell package, macOS runner files
+and the clean-room Arabic rule specification. These are preserved main changes,
+not a new aggregate qualification claim from the two frozen runs above.
+
+The retained [UID continuation record](../mail-uid-pagination-20261119/README.md)
+labels its final product gates as not yet run. Its committed plans are not
+treated as passing evidence. The
+[Hunspell package guide](../../../packages/quds_proofing_hunspell/README.md)
+describes implemented native/web dictionary support; application host wiring
+and the in-app download workflow remain separate work. No fresh macOS build,
+external provider session or installed application acceptance is claimed here.
+
+Against this newer main, the only application source change is the already
+qualified decomposed-Arabic spelling fix, with its engine regression file.
+The publisher implementation remains byte-identical to newer main and uses its
+verified-filename upload allowlist. One stale publisher test assertion is
+aligned with the current bundle-card wording. The three publisher suites then
+pass **17/17 isolated controls**, with zero errors, skips or network attempts.
+The first 16-pass/one-wording-failure attempt is retained and excluded from that
+accepted 17 count. These controls are separate from the 78 earlier Python
+controls and from the seven historical fresh-directory checks. See the
+[publisher closeout evidence](release/publisher-main-controls/).

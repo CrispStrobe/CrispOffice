@@ -26,6 +26,10 @@ file, socket, credential-string, or `enough_mail` API dependency.
 - A bounded sync-page coordinator with injected provider/repository/session. The
   repository atomically commits records and cursor and rechecks its lease inside
   the transaction. Tests use a deterministic in-memory transaction fixture.
+- `MailImapSyncRange` marks an inclusive, fully observed UID range in one mailbox
+  and UIDVALIDITY. The page's upserts are its authoritative survivors; the store
+  reconciles absent existing memberships without inventing rows for numeric UID
+  gaps. Range values and every supplied identity are validated before use.
 - Segregated provider, submission, composition, repository, vault, attachment,
   external-resource, lifecycle and notification ports. The default external
   resource policy denies all actions without IO.

@@ -384,43 +384,57 @@ final class NativeMailImapProvider implements MailProvider {
     return _run(lease, (client, operation) async {
       final selected = await _select(client, operation, mailbox);
       final validity = selected.uidValidity!;
-      if (selected.uidNext! - 1 > limits.maxUidScan ||
-          (previous?.ceiling ?? 0) > limits.maxUidScan) {
+      final reset = previous != null && previous.uidValidity != validity;
+      final legacyCeiling = limits.maxUidScan;
+      if (legacyCeiling != null &&
+          (selected.uidNext! - 1 > legacyCeiling ||
+              (!reset && (previous?.ceiling ?? 0) > legacyCeiling))) {
         throw const _Failure(MailProblemCode.unsupported);
       }
-      final reset = previous != null && previous.uidValidity != validity;
       final beginning = previous == null || reset || previous.ceiling == 0;
       final first = beginning ? 1 : previous.nextUid;
       final ceiling = beginning ? selected.uidNext! - 1 : previous.ceiling;
-      final last = math.min(ceiling, first + limit - 1);
+      if (ceiling > selected.uidNext! - 1) {
+        // UIDNEXT must not move backwards within one UIDVALIDITY generation.
+        // A contradictory SELECT cannot authorize deletion of the old range.
+        throw const _Failure(MailProblemCode.providerFailure);
+      }
+      var last = ceiling;
       final upserts = <MailHeaderRecord>[];
-      final tombstones = <MailRemoteIdentity>[];
-      if (first <= last) {
-        final fetched = await client.uidFetchRawMessages(
+      MailImapSyncRange? range;
+      if (first <= ceiling) {
+        final discovered = await client.uidSearchRaw(
           firstUid: first,
-          lastUid: last,
-          headersOnly: true,
-          maxMessages: limit,
-          maxLiteralBytes: limits.maxHeaderBytes,
+          lastUid: ceiling,
+          maxUids: limits.maxDiscoveredUids,
           responseTimeout: limits.operationTimeout,
         );
         operation.check();
-        final present = <int>{};
-        for (final source in fetched.messages) {
-          present.add(source.uid);
-          upserts.add(_header(source, mailbox, validity, operation));
-        }
-        for (var uid = first; uid <= last; uid++) {
-          if (!present.contains(uid)) {
-            tombstones.add(
-              MailImapIdentity(
-                mailbox: mailbox,
-                uidValidity: validity,
-                uid: uid,
-              ),
-            );
+        if (discovered.length > limit) last = discovered[limit - 1];
+        final selectedUids = discovered.take(limit).toSet();
+        if (selectedUids.isNotEmpty) {
+          final fetched = await client.uidFetchRawMessages(
+            firstUid: first,
+            lastUid: last,
+            headersOnly: true,
+            maxMessages: limit,
+            maxLiteralBytes: limits.maxHeaderBytes,
+            responseTimeout: limits.operationTimeout,
+          );
+          operation.check();
+          for (final source in fetched.messages) {
+            if (!selectedUids.contains(source.uid)) {
+              throw const _Failure(MailProblemCode.providerFailure);
+            }
+            upserts.add(_header(source, mailbox, validity, operation));
           }
         }
+        range = MailImapSyncRange(
+          mailbox: mailbox,
+          uidValidity: validity,
+          firstUid: first,
+          lastUid: last,
+        );
       }
       final more = last < ceiling;
       final next = ImapScanCursor(
@@ -431,7 +445,8 @@ final class NativeMailImapProvider implements MailProvider {
       return MailSyncPage(
         mailbox: mailbox,
         upserts: upserts,
-        tombstones: tombstones,
+        tombstones: const [],
+        imapRange: range,
         next: next.encode(mailbox),
         hasMore: more,
         resetRequired: reset,
