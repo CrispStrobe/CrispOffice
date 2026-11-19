@@ -43,11 +43,13 @@ calculates **1,575** through a worksheet formula. It requires a `Summary` sheet.
 | Whole engine analysis | `dart analyze --fatal-infos` passed | [Final analysis log](engine-final/analysis.stdout.log) |
 | JavaScript portability | All **four** macro programs compiled and ran under Node | [Initial receipt](engine-initial/receipt.json), [corrected control-flow program](engine-final/receipt.json) |
 | Incoming engine branding changes | **249 tests passed** across nine targeted suites | [Branding receipt](incoming-branding/receipt.json) |
+| Later default-comment initials change | **67 existing tests repeated and passed**; whole-engine analysis passed | [Late engine receipt](late-incoming-engine/receipt.json), [exact one-line binding](late-incoming-engine/evidence-binding.json) |
 | Incoming mail implementation and local quota fix | **469 VM tests passed**; strict analysis and formatting passed | [Mail receipt](incoming-mail/receipt.json) |
 | Portable exact-byte mail manifest cases | **6 Node tests passed**, also counted within the VM suite | [Mail summary](incoming-mail/README.md) |
+| Incoming Studio, PDF and directory-import behavior | **148 distinct tests passed**; one opt-in screenshot generator skipped | [GUI receipt](incoming-gui/README.md), [final publication binding](incoming-gui/publication-followup/source-binding.json) |
 | Formatting and whitespace | Passed; 15 macro Dart files required no formatting changes | [Final receipt](engine-final/receipt.json) |
 | Stable inputs | All **970** macro/configuration inputs and **84** mail inputs remained unchanged within their final runs | Receipts above |
-| Published content binding | **1,048 distinct repository input hashes** match the published implementation checkpoint | [Binding](implementation-binding.json) |
+| Published content binding | **5,192 distinct repository inputs** match the final published code tree, including the 1,048 engine/mail inputs | [Final publication binding](publication-binding.json), [engine/mail binding](implementation-binding.json) |
 | Incoming macOS build script | Linux `bash -n` syntax check passed | [Scope and script hash](macos-build-script-syntax.json) |
 
 The initial frozen run passed all 427 macro tests and all four JavaScript
@@ -59,6 +61,13 @@ JavaScript program, whole-engine analysis, formatting and whitespace. The
 inputs did not change, retaining the 418 other tests and three other JavaScript
 programs. Repeat runs are not added to the distinct test totals. Production
 compiler source was unchanged between these runs.
+
+The final incoming GUI snapshot also changes the engine's default new-comment
+initials from `QO` to `CO`. The late engine qualification repeated the 67 affected
+existing tests and whole-engine analysis. Its binding verifies that this is the
+only change among the 970 recorded inputs; the other 969, including the compiler
+and all JavaScript smoke sources, are identical. These repeated tests do not
+increase the 427 distinct macro/command total.
 
 Tests exercised actual BAS CLI subprocesses, custom entry selection, saved native
 JSON playback, MCP compile/validate/run, host read-only/allowlist/step policies,
@@ -100,6 +109,52 @@ The incoming decoder preflight and this encoding correction were retained
 together. Export ordering was also corrected for strict analysis. The later
 mail branch independently published the same ordering correction.
 
+The subsequent mail publication from source `9bdef489` to `82b20dc8` adds only
+151 documentation, changelog and evidence paths. Its retained author evidence
+was independently audited: all 130 artifact hashes and lengths, 4,418 source
+hashes, and ten raw test-reporter cohorts agree with the recorded results.
+The author's **1,750 passing tests**, including 405 shared/Studio Mail UI tests,
+are supporting evidence at that accepted source. They are not tests executed
+again by this task and are not added to our local totals. The audit does not
+claim access to the author's original runtime or dependency installations.
+Current shared Mail UI and `studio_mail*` product files are unchanged; the
+current Studio shell is covered by the separate Flutter qualification.
+The [audit](mail-publication-audit.json) and its
+[reproducible checker](mail-publication-audit.py) are retained.
+
+## Incoming Flutter qualification
+
+The incoming Studio and PDF changes are exercised with the pinned Flutter
+3.47.8 SDK in an isolated copy of the repository packages. Dependency resolution
+does not edit the tracked repository manifests or lockfiles.
+
+The combined Studio selection passed 114 tests across 12 suites, and the PDF
+save-state suite passed four tests. The final runs preserved all 5,188 recorded
+source-input hashes. Product and test copies match the repository; the isolated
+root lockfile is explicitly recorded as dependency-resolution metadata.
+
+The author's final publication retains these product sources and adds an
+earlier window-show assertion, settles the worksheet-test timing, isolates its
+unused proofreader, and canonicalizes the directory-import fixture's system
+temporary path. Strict analysis of the three changed tests passed. The final
+targeted follow-up passed 12 repeated GUI cases and **30 additional unique
+directory-import cases**, with no failures or skips. Their source hashes and
+isolated copies remained identical. Thus the distinct local UI total is **148**;
+the 12 repeated cases are not added again.
+
+The first widget runs exposed incomplete or stale test fixtures. The macOS
+window-manager mock returned `null` for `isMinimized`, where the plugin requires
+a Boolean, so it failed before reaching the deliberately delayed `show` call.
+The corrected mock returns `false`; the delayed show/focus and modal-action
+assertions remain. The localized Mail switcher and compact File commands now
+use their tooltips. The worksheet reset cases explicitly confirm the new
+unsaved-changes dialog, assert that the old workbook survives until discard,
+and retain the original reset assertions. These corrections change tests only.
+
+The optional screenshot generator is skipped when `QUDS_SHOTS_DIR` is unset;
+it is not a skipped behavioral check. Native macOS/AppKit execution remains
+outside a Linux widget run, even when `TargetPlatform.macOS` is simulated.
+
 ## Source and remote reconciliation
 
 The initial fetch retrieved all **23** fork branches and every PR head. All
@@ -112,14 +167,36 @@ The macro branch makes the final recorded fork branch count **24**.
 | --- | --- | --- |
 | Existing VBA procedures, PR #204 | `304d4bff45da24f22cee420ec464882d7c7ce516` | Starting main |
 | macOS bundle script and explicit native gate | `d5abf0e09d9fef6a29821f412f791c1284d62be8` | History and implementation retained |
-| Mail portability, PR #205 | `9bdef4895922ae74f6275e421af5665552d18b4e` | Source, Studio wiring and bounded decoder retained; mail store independently qualified |
-| Studio GUI, PR #206 | `6c10cc30e61f4fd1333b0a385989cf6b3cdf1788` | Ribbon/menu/branding and later lifecycle/PDF-save-state checkpoint retained |
+| Mail portability, PR #205 | `82b20dc8b52d0b95efeff590c6023ed84704fa7a` | Accepted source `9bdef489`, final publication and author evidence retained; our mail store qualification and quota correction remain |
+| Updated remote main after PR #205 | `0c29b5d8a0a92148dcd95f3282b4d43c462be20d` | Merged into this branch before final publication |
+| Studio GUI, PR #206 | `f489cefe48e6fd4b0dcbada8fc4025682733a118` | Ribbon/menu/branding, lifecycle, PDF save state, keyboard/outside-click behavior and default comment initials retained |
+| Final GUI publication, PR #206 | `bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2` | Author's final evidence and equivalent or stronger test fixtures retained; no additional product source changes |
+| MacBook import-fixture integration, PR #208 | `de9d21f9014060c14263ce17fe323d5fdb063d11` | Canonical system temporary path retained and directory-import suite qualified |
+| Final refreshed main after PRs #208 and #206 | `0d87cebea232c3edf55c4f4a22f63684dbe5a3f5` | Same complete tree as our qualified `dde14aa6` checkpoint; ancestry incorporated before final evidence publication |
 
-The final GUI tip changes 19 editor paths and no engine or mail source. It also
-contains an earlier macro checkpoint through ancestry; merging it retained the
-newer stack-safe evaluator and final tests. GUI and mail PRs were still drafts
-in the [recorded frontier](final-frontier.json); this task did not manually
-close them or claim completion of their authors' continuing work.
+The first GUI refresh at `6c10cc30` changed 19 editor paths. The later genuine
+changes are `92941ac1` (keyboard/outside-click handling, native dialog and window
+guards, preference flushing, tests and previews) and `f489cefe` (default comment
+initials). Its intervening merge commits also absorb earlier macro checkpoints;
+our integration retained the newer stack-safe evaluator and final tests.
+
+The earlier [frontier](final-frontier.json) is retained as a historical snapshot.
+At the later publication audit, PR #205 was merged and PR #206 remained a draft
+at the frozen `f489cefe` product head. Its subsequent ready publication added
+tests, documentation and acceptance evidence only. That publication was also
+incorporated, keeping the qualified product sources unchanged. The main merge
+required a changelog conflict resolution preserving both the GUI and mail entries;
+the final publication required a test-timing conflict resolution retaining the
+author's strengthened worksheet assertions. No product source conflict was
+discarded. This task did not manually close the GUI PR.
+
+The final refresh found PR #208 merged at `bcb061e1` and PR #206 merged at
+`0d87cebe`. That main tree is **exactly identical** to the qualified `dde14aa6`
+tree. Its merge ancestry was incorporated without changing product or test
+inputs. The [final binding](publication-binding.json) verifies all 5,192 distinct
+accepted repository files against both their SHA-256 receipts and the published
+Git blobs, and records every incorporated head. It also verifies 59 referenced
+evidence-file hashes. No further test rerun is needed for an identical tree.
 
 The initial and subsequent audit JSON files in this directory preserve exact
 branch/PR heads, comparison results, prior merge equivalents and snapshot times.
@@ -136,6 +213,10 @@ Branch: `codex/vba-control-flow-20261119`.
 | `6fd1f976` | Stack-safe evaluator and cold maximum-depth regression |
 | `ab253c35` | Final smoke lint, integration formatting and changelog |
 | `8005b04b` | Latest GUI lifecycle/PDF checkpoint, preserving accepted engine/mail content |
+| `ca536ee0` | Macro, mail, branding and independent review receipts, logs and hashes |
+| `bba77ddc` | Updated main with merged mail publication and final frozen GUI snapshot |
+| `bc32a144` | Native-window mock, compact command locators and explicit discard/reset fixture corrections |
+| `dde14aa6` | Final GUI author publication and accepted fixtures, with no product source changes |
 
 `implementation-binding.json` binds the published code to the accepted source
 hashes, including publication after acceptance started from a staged checkpoint.
@@ -170,12 +251,11 @@ The full macro selection and four JavaScript programs are in
 ## Qualification limits
 
 These receipts qualify the engine macro path, targeted incoming engine changes,
-Linux mail storage/export behavior, and portable JavaScript paths. A separate
-targeted Flutter qualification of the final GUI snapshot is in progress at this
-checkpoint and will be recorded before merge. Native macOS bundle building,
-AppKit execution, the full repository suite, and native Microsoft Office
-interoperability are outside these checks. The existing explicit macOS gate is
-preserved for execution on a macOS host.
+Linux mail storage/export behavior, portable JavaScript paths, and targeted
+Studio/PDF/directory-import behavior through Flutter widget tests. Native macOS
+bundle building, AppKit execution, the full repository suite, and native
+Microsoft Office interoperability are outside these checks. The existing
+explicit macOS gate is preserved for execution on a macOS host.
 
 Live workbook reads, `ByRef`, optional/named arguments, arrays, recursion,
 cross-module calls, COM/events, and full VBA compatibility remain unsupported.

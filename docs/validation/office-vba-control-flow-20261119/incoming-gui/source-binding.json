@@ -1,0 +1,24 @@
+{
+  "qualified_commit": "bc32a14477c9254d0725eb563410c5c9ea059211",
+  "integration_source_head": "43129d2e675c9e6bbaf985f9756172d63a634c03",
+  "incoming_gui_head": "f489cefe48e6fd4b0dcbada8fc4025682733a118",
+  "source_inputs": "source-input-sha256.json",
+  "source_input_count": 5188,
+  "source_input_manifest_sha256": "d697411120f440a35df8f1c388f6d40464cfdb6a887772cd6cc6b51c9379fb30",
+  "studio_test_suites": 12,
+  "studio_passed": 114,
+  "pdf_test_suites": 1,
+  "pdf_passed": 4,
+  "total_behavioral_passed": 118,
+  "failed": 0,
+  "skipped": 1,
+  "skip": {
+    "file": "packages/quds_office_editor/example/test/studio_shots_test.dart",
+    "test": "capture Word, Excel, PowerPoint, and PDF studio frames",
+    "reason": "Opt-in screenshot generation; QUDS_SHOTS_DIR was unset."
+  },
+  "fixture_confirmation_passed": 26,
+  "fixture_confirmation_is_subset": true,
+  "host": "Linux x64",
+  "native_platform_scope": "Flutter widget target-platform variants and mocked platform channels; no native macOS/Windows app build or native menu execution."
+}

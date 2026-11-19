@@ -1,0 +1,14 @@
+00:00 +0: loading /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart
+00:00 +0: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:01 +1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:01 +2: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +4: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +5: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +6: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio worksheet tab keeps a rejected draft available
+00:03 +7: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio worksheet tab keeps a rejected draft available
+00:04 +8: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Open confirms the destination spreadsheet and cancellation keeps its draft (variant: TargetPlatform.windows)
+00:05 +9: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Open confirms the destination spreadsheet and cancellation keeps its draft (variant: TargetPlatform.windows)
+00:05 +10: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio Reload sample explicitly resets a same-index worksheet
+00:06 +11: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: macOS opens native dialogs safely and disables modal File actions (variant: TargetPlatform.macOS)
+00:07 +12: All tests passed!

@@ -1,0 +1,117 @@
+00:00 +0: loading /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart
+00:00 +0: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: desktop File menu invokes enabled actions and disables busy ones
+00:00 +1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: macOS menu serializes File shortcuts and dispatches native selection (variant: TargetPlatform.macOS)
+00:00 +2: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: native Quit waits for and respects the workspace close decision (variant: TargetPlatform.macOS)
+00:00 +3: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: macOS Close restores prevention and synchronizes fullscreen (variant: TargetPlatform.macOS)
+00:01 +4: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +5: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +6: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +7: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +8: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +9: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +10: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +11: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +12: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +13: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:02 +14: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: Save As cancellation keeps the document, dirty state and undo (variant: TargetPlatform.windows)
+00:04 +15: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: compact Insert menus execute table and footnote commands with undo (variant: TargetPlatform.linux)
+00:06 +16: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: compact Insert menus execute table and footnote commands with undo (variant: TargetPlatform.linux)
+00:06 +17: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: compact Insert menus execute table and footnote commands with undo (variant: TargetPlatform.linux)
+00:06 +18: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Reply focuses the inline draft without posting or a dialog
+00:08 +19: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Reply focuses the inline draft without posting or a dialog
+00:08 +20: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Reply focuses the inline draft without posting or a dialog
+00:09 +21: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: customization hides and orders groups, switches labels, and restores defaults
+00:09 +22: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: customization hides and orders groups, switches labels, and restores defaults
+00:10 +23: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_file_menu_test.dart: macOS opens native dialogs safely and disables modal File actions (variant: TargetPlatform.macOS)
+00:10 +24: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:11 +25: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:11 +26: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:12 +27: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: thread drafts survive switching and explicit posts are undoable
+00:12 +28: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart: F7 opens live review and only explicit checks run manual grammar
+00:13 +29: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart: F7 opens live review and only explicit checks run manual grammar
+00:14 +30: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart: F7 opens live review and only explicit checks run manual grammar
+00:14 +31: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart: F7 opens live review and only explicit checks run manual grammar
+00:14 +32: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart: F7 opens live review and only explicit checks run manual grammar
+00:14 +33: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: Insert menus support Escape, outside controls and keyboard selection (variant: TargetPlatform.linux)
+00:15 +34: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: Insert menus support Escape, outside controls and keyboard selection (variant: TargetPlatform.linux)
+00:15 +35: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: Insert menus support Escape, outside controls and keyboard selection (variant: TargetPlatform.linux)
+00:16 +36: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_review_pane_test.dart: typing check preference survives switching Studio applications
+00:16 +37: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart: comment keyboard context rejects a canvas from the prior thread before rebuild
+00:16 +38: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: a stale post callback cannot send into another document
+00:16 +39: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: all application tabs retain unique reachable groups
+00:17 +40: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: all application tabs retain unique reachable groups
+00:18 +41: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: all application tabs retain unique reachable groups
+00:18 +42: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: all application tabs retain unique reachable groups
+00:19 +43: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: all application tabs retain unique reachable groups
+00:19 +44: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: all application tabs retain unique reachable groups
+00:19 +45: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart: all application tabs retain unique reachable groups
+00:19 +46: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: find pane retains a rejected first search and shows correction
+00:19 +47: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: find pane retains a rejected first search and shows correction
+00:19 +48: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment writing marks offer focused inline corrections
+00:20 +49: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment writing marks offer focused inline corrections
+00:20 +50: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment writing marks offer focused inline corrections
+00:20 +51: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_saved_mail_test.dart: file read failure after closing saved Mail is ignored
+00:20 +52: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: find pane Next handles rejected navigation
+00:20 +53: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: find pane Next handles rejected navigation
+00:20 +54: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:20 +55: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:21 +55 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:21 +56 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:21 +57 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:21 +58 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:21 +59 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:21 +60 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:21 +61 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:22 +62 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment marks follow the existing Writing pane
+00:22 +63 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio worksheet tab keeps a rejected draft available
+00:23 +64 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:23 +65 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:25 +66 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:25 +67 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:25 +68 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C dispatches addEditCitation from the Word caret
+00:26 +69 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart: studio Reload sample explicitly resets a same-index worksheet
+00:26 +70 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment context Cut leaves a previously selected body table intact
+00:26 +71 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt R dispatches refresh from the Word caret
+00:27 +72 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt R dispatches refresh from the Word caret
+00:27 +73 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:29 +74 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:29 +75 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:30 +76 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:31 +77 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Review keeps spelling available without the retired AOT action
+00:31 +78 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: Select mode exposes real pointer comment selection and Copy
+00:32 +79 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: body composition blocks shortcuts and saved ribbon callbacks
+00:32 +80 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: studio hosts document, spreadsheet, and presentation workspaces
+00:33 +81 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: read-only comment Copy and Select all own the comment selection
+00:34 +82 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: successive shortcuts return directly to the writing caret
+00:34 +83 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Settings shows and hides Notes without another config change
+00:35 +84 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/widget_test.dart: Settings shows and hides Notes without another config change
+00:35 +85 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Add Zotero note ribbon invokes its native picker
+00:36 +86 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: delayed comment Cut validates its context after none change
+00:36 +87 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Add Zotero annotation ribbon invokes its native picker
+00:37 +88 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Add Zotero annotation ribbon invokes its native picker
+00:37 +89 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: delayed comment Cut validates its context after caret change
+00:38 +90 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: Ctrl Alt C finds the citation in the focused Notes editor
+00:39 +91 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: delayed comment Cut validates its context after document change
+00:40 +92 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation shortcuts and saved ribbon callbacks respect viewing mode
+00:41 +93 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation shortcuts and saved ribbon callbacks respect viewing mode
+00:41 +94 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: delayed comment Paste validates its context after source change
+00:42 +95 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation commands stay inactive in other Studio applications
+00:43 +96 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation commands stay inactive in other Studio applications
+00:44 +97 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: delayed comment Paste validates its context after document change
+00:44 +98 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:45 +99 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: a covering modal blocks Zotero even when Word retains focus
+00:45 +100 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu Ignore once respects the current finding
+00:46 +101 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: rapid ribbon and shortcut activation opens one Zotero workspace
+00:47 +102 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu Ignore this word respects the current finding
+00:47 +103 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation ribbon shows shortcuts for linux
+00:48 +104 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu Add to personal words respects the current finding
+00:48 +105 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart: citation ribbon shows shortcuts for macOS
+00:49 +106 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment suggestions survive unrelated in-flight check progress
+00:49 +107 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: stale comment menus cannot act on another document or reused ID
+00:50 +108 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menus dismiss on changed source or selected thread
+00:51 +109 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menus preserve IME and cannot act through a modal
+00:52 +110 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: resolved reply context offers Reopen for its whole thread
+00:53 +111 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: narrow English comments stay below the editor
+00:54 +112 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: narrow Arabic comments stay below the editor
+00:55 +113 ~1: /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_comment_review_test.dart: comment menu mutations respect a later viewing-mode change
+00:56 +114 ~1: All tests passed!

@@ -1,6 +1,6 @@
 {
-  "created_utc": "2026-11-19T17:33:36.318821+00:00",
-  "head": "ecdc74d87e71f7a1d7c542f8877911a5ffbee014",
+  "created_utc": "2026-11-19T17:38:56.559462+00:00",
+  "head": "df7f4b4c8df63cbcf80d9087d06707d166a2c678",
   "baseline_commit": "304d4bff45da24f22cee420ec464882d7c7ce516",
   "scope": "Current affected product source/config/tests compared with original main, plus new product/tests; excludes documentation",
   "sha256": {
@@ -38,7 +38,7 @@
     "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart": "bd13db2720ce53206000bc81ee867b4f929f326f05ca8a58c86ca28557434747",
     "packages/quds_office_editor/example/test/studio_file_menu_test.dart": "1711ec408a6010421bccd6bf8582ba6e3dab2e141bf1eed669d5f1a6cee36d8a",
     "packages/quds_office_editor/example/test/studio_macos_bundle_native_gate.dart": "4715782d5579472827466803855cad670c8587c4c1cfd8b9b15b44707f06590e",
-    "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart": "480b121c891db73bd4d3a18a935cbfc3eed725dfdd870f45dc73ab695fe57978",
+    "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart": "502daf24c427f95a801a0e6495eadd778096d922c6cdee079f669fd0885341cd",
     "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart": "1142862d247126c09ca78bd9a95625fd85cee6a5a981b8b86f2f72fcea47a2ab",
     "packages/quds_office_editor/example/test/studio_mail_archive_test.dart": "31805907293aeb0a45e69694fcf97b8efecf82b68c1c3179ca7050ef5ff43948",
     "packages/quds_office_editor/example/test/studio_review_pane_test.dart": "ff50bc199e55324d8a4939d0f4ccb0ab416f67f089484641072a015a329ae529",
@@ -82,6 +82,6 @@
     "packages/quds_office_engine/test/office_vba_control_flow_test.dart": "8cde7af243d4bb7d7cab59d29318f8e8e48b71b71cf1b71ad673771b3e6325e2",
     "packages/quds_office_engine/tool/macros/web_vba_control_flow_smoke.dart": "35129abc73378d861df95363a29c583ad0b1adc84c4ee2d25c4199426f9ac7b5"
   },
-  "source_set_sha256": "01172b76e35af56f1cd075e84659569de6d2256b0ade43f51483a5a69478b4b2",
+  "source_set_sha256": "def8a91709d3f58c3d4eb830f413284f8858d5e3aa68ee9c51a1a8afd3a43937",
   "changed_since_frozen": []
 }

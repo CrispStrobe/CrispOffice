@@ -1,0 +1,45 @@
+diff --git a/packages/quds_office_editor/example/test/studio_file_menu_test.dart b/packages/quds_office_editor/example/test/studio_file_menu_test.dart
+index bfe358bc1..680e32be9 100644
+--- a/packages/quds_office_editor/example/test/studio_file_menu_test.dart
++++ b/packages/quds_office_editor/example/test/studio_file_menu_test.dart
+@@ -194,6 +194,9 @@ void main() {
+       final windowCalls = <String>[];
+       messenger.setMockMethodCallHandler(windowChannel, (call) async {
+         windowCalls.add(call.method);
++        if (call.method == 'isMinimized') {
++          return false;
++        }
+         if (call.method == 'show') {
+           await shown.future;
+         }
+diff --git a/packages/quds_office_editor/example/test/studio_saved_mail_test.dart b/packages/quds_office_editor/example/test/studio_saved_mail_test.dart
+index 467497465..59427aef6 100644
+--- a/packages/quds_office_editor/example/test/studio_saved_mail_test.dart
++++ b/packages/quds_office_editor/example/test/studio_saved_mail_test.dart
+@@ -451,7 +451,7 @@ void main() {
+     await tester.tap(find.byTooltip('Tabellen'));
+     await _pump(tester);
+     final sheet = tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor));
+-    await tester.tap(find.text('E-Mail'));
++    await tester.tap(find.byTooltip('E-Mail'));
+     await _pump(tester);
+     expect(find.byType(StudioMailDialog), findsOneWidget);
+     await tester.tap(find.byTooltip('Gespeicherte Nachrichten'));
+diff --git a/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart b/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart
+index aa91a53ee..b7ec66f07 100644
+--- a/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart
++++ b/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart
+@@ -217,7 +217,12 @@ void main() {
+       controller.viewport.origin = const Offset(70, 80);
+       await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
+       await tester.pump();
+-      await tester.tap(find.text(command));
++      await tester.tap(find.byTooltip(command));
++      await tester.pump();
++      await tester.pump(const Duration(milliseconds: 300));
++      expect(find.text('Save changes?'), findsOneWidget);
++      expect(controller.workbook, same(previous));
++      await tester.tap(find.widgetWithText(TextButton, 'Don’t Save'));
+       await tester.pump();
+       expect(tester.takeException(), isNull);
+       expect(controller.workbook, isNot(same(previous)));

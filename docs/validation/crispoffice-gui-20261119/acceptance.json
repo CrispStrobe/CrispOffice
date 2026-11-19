@@ -1,7 +1,7 @@
 {
   "status": "accepted",
-  "finished_at": "2026-11-19T17:33:36.319121+00:00",
-  "git_head_at_verification": "ecdc74d87e71f7a1d7c542f8877911a5ffbee014",
+  "finished_at": "2026-11-19T17:38:56.559682+00:00",
+  "git_head_at_verification": "df7f4b4c8df63cbcf80d9087d06707d166a2c678",
   "unique_test_cases": 634,
   "test_files": 32,
   "cases_by_file": {
@@ -428,38 +428,6 @@
       "manifest byte boundary: 3 originals, Unicode: false": "incoming-mail-vm.log",
       "manifest byte boundary: 3 originals, Unicode: true": "incoming-mail-vm.log"
     },
-    "studio_mail_archive_directory_import_test.dart": {
-      "nested EML and MBOX import exact bytes into a real native archive": "incoming-mail-studio.log",
-      "identical basenames retain distinct folders and stable source identities": "incoming-mail-studio.log",
-      "a root file joins provenance without an extra path segment": "incoming-mail-studio.log",
-      "nonrecursive import reports nested and unsupported entries as skipped": "incoming-mail-studio.log",
-      "pre-cancelled import never enumerates or commits": "incoming-mail-studio.log",
-      "cancellation immediately after a confirmed commit preserves its count": "incoming-mail-studio.log",
-      "progress observer exceptions do not change import correctness": "incoming-mail-studio.log",
-      "message cap stops a multi-message container with exact committed counts": "incoming-mail-studio.log",
-      "message exactly at the raw cap imports; over-cap record remains a failure": "incoming-mail-studio.log",
-      "scanner EML and aggregate byte caps are reported as limited work": "incoming-mail-studio.log",
-      "depth and file limits report incomplete scanning instead of completion": "incoming-mail-studio.log",
-      "a missing source directory reports a scan error and no saved mail": "incoming-mail-studio.log",
-      "malformed MBOX preamble is counted without stopping other files": "incoming-mail-studio.log",
-      "selected MBOX dialect is passed through without rewriting MIME bytes": "incoming-mail-studio.log",
-      "typed MailProblemCode.storageFailure storage failure stops with confirmed previous work counted": "incoming-mail-studio.log",
-      "typed MailProblemCode.permissionDenied storage failure stops with confirmed previous work counted": "incoming-mail-studio.log",
-      "typed MailProblemCode.unavailable storage failure stops with confirmed previous work counted": "incoming-mail-studio.log",
-      "typed MailProblemCode.quotaExceeded storage failure stops with confirmed previous work counted": "incoming-mail-studio.log",
-      "unexpected storage exception is sanitized and stops before later files": "incoming-mail-studio.log",
-      "invalid source/folder/budget is rejected before source enumeration": "incoming-mail-studio.log",
-      "native read revalidation after scanning a valid scanned binary EML is returned byte for byte": "incoming-mail-studio.log",
-      "native read revalidation after scanning changed size before reading fails without returning message bytes": "incoming-mail-studio.log",
-      "native read revalidation after scanning a file replaced by a symlink is rejected before reading the target": "incoming-mail-studio.log",
-      "native read revalidation after scanning an ancestor replaced by a symlink is rejected after scan admission": "incoming-mail-studio.log",
-      "native read revalidation after scanning MBOX growth after a returned record cannot import appended messages": "incoming-mail-studio.log",
-      "native read revalidation after scanning file change after EML yield remains visible as a trailing conflict": "incoming-mail-studio.log",
-      "injected scanner and stream outcomes read failures and exceptions are counted without inventing originals": "incoming-mail-studio.log",
-      "injected scanner and stream outcomes scanner errors and skipped entries remain in the final report": "incoming-mail-studio.log",
-      "injected scanner and stream outcomes missing terminal scan event cannot be mistaken for completion": "incoming-mail-studio.log",
-      "injected scanner and stream outcomes unsafe relative metadata is rejected before a read": "incoming-mail-studio.log"
-    },
     "studio_mail_archive_test.dart": {
       "bulk export freezes all pages of the applied search and shows its destination": "incoming-mail-studio.log",
       "cancelled export picker does not start file publication": "incoming-mail-studio.log",
@@ -488,6 +456,38 @@
       "backend exceptions produce typed feedback without exception text": "incoming-mail-studio.log",
       "rebuild reparses originals with the selected attachment indexing policy": "incoming-mail-studio.log",
       "MBOX import forwards the explicitly chosen dialect": "incoming-mail-studio.log"
+    },
+    "studio_mail_archive_directory_import_test.dart": {
+      "nested EML and MBOX import exact bytes into a real native archive": "post-integration-mail-import.log",
+      "identical basenames retain distinct folders and stable source identities": "post-integration-mail-import.log",
+      "a root file joins provenance without an extra path segment": "post-integration-mail-import.log",
+      "nonrecursive import reports nested and unsupported entries as skipped": "post-integration-mail-import.log",
+      "pre-cancelled import never enumerates or commits": "post-integration-mail-import.log",
+      "cancellation immediately after a confirmed commit preserves its count": "post-integration-mail-import.log",
+      "progress observer exceptions do not change import correctness": "post-integration-mail-import.log",
+      "message cap stops a multi-message container with exact committed counts": "post-integration-mail-import.log",
+      "message exactly at the raw cap imports; over-cap record remains a failure": "post-integration-mail-import.log",
+      "scanner EML and aggregate byte caps are reported as limited work": "post-integration-mail-import.log",
+      "depth and file limits report incomplete scanning instead of completion": "post-integration-mail-import.log",
+      "a missing source directory reports a scan error and no saved mail": "post-integration-mail-import.log",
+      "malformed MBOX preamble is counted without stopping other files": "post-integration-mail-import.log",
+      "selected MBOX dialect is passed through without rewriting MIME bytes": "post-integration-mail-import.log",
+      "typed MailProblemCode.storageFailure storage failure stops with confirmed previous work counted": "post-integration-mail-import.log",
+      "typed MailProblemCode.permissionDenied storage failure stops with confirmed previous work counted": "post-integration-mail-import.log",
+      "typed MailProblemCode.unavailable storage failure stops with confirmed previous work counted": "post-integration-mail-import.log",
+      "typed MailProblemCode.quotaExceeded storage failure stops with confirmed previous work counted": "post-integration-mail-import.log",
+      "unexpected storage exception is sanitized and stops before later files": "post-integration-mail-import.log",
+      "invalid source/folder/budget is rejected before source enumeration": "post-integration-mail-import.log",
+      "native read revalidation after scanning a valid scanned binary EML is returned byte for byte": "post-integration-mail-import.log",
+      "native read revalidation after scanning changed size before reading fails without returning message bytes": "post-integration-mail-import.log",
+      "native read revalidation after scanning a file replaced by a symlink is rejected before reading the target": "post-integration-mail-import.log",
+      "native read revalidation after scanning an ancestor replaced by a symlink is rejected after scan admission": "post-integration-mail-import.log",
+      "native read revalidation after scanning MBOX growth after a returned record cannot import appended messages": "post-integration-mail-import.log",
+      "native read revalidation after scanning file change after EML yield remains visible as a trailing conflict": "post-integration-mail-import.log",
+      "injected scanner and stream outcomes read failures and exceptions are counted without inventing originals": "post-integration-mail-import.log",
+      "injected scanner and stream outcomes scanner errors and skipped entries remain in the final report": "post-integration-mail-import.log",
+      "injected scanner and stream outcomes missing terminal scan event cannot be mistaken for completion": "post-integration-mail-import.log",
+      "injected scanner and stream outcomes unsafe relative metadata is rejected before a read": "post-integration-mail-import.log"
     },
     "office_vba_control_flow_test.dart": {
       "all published nesting bounds compose without recursive block frames": "vba-final.log",
@@ -755,10 +755,11 @@
       "lateFailurePreservedBytes": true,
       "mcpCompileAndRun": true
     },
-    "github_actions_used": false
+    "github_actions_used": false,
+    "post_integration_mail_import_analysis": "passed"
   },
   "source_files": 77,
-  "source_set_sha256": "01172b76e35af56f1cd075e84659569de6d2256b0ade43f51483a5a69478b4b2",
+  "source_set_sha256": "def8a91709d3f58c3d4eb830f413284f8858d5e3aa68ee9c51a1a8afd3a43937",
   "source_hashes": "source-hashes-final.json",
   "source_changed_since_frozen": [],
   "log_sha256": {
@@ -767,6 +768,7 @@
     "word-automation-branding.log": "625a7b25e65761e7de490849813f7f8ced08d47203a78ec32d96e1df39f90ddc",
     "incoming-mail-vm.log": "10f0208db98f0ac0202cf727098ee3e3cf7ed9f59a55d586a0cd5e8b70a23ce5",
     "incoming-mail-studio.log": "4762bbe2cadf7d8bed306ea27bcdfd9b9f7ce507024aae5efae1db793675e269",
+    "post-integration-mail-import.log": "53848f05a634b4fa15aca02ffdd6c066169f69a7b88ef89a8f3e9178c2e53aaf",
     "vba-final.log": "0de763862aae0b4b1f525fe88049e73048e76b74b0d8e2c1b5ec82710d907c00",
     "gui-focused-2.log": "1c347dd63af2ddf6afdaa48bc63ae16ae89573a37ce756c590b594d82fed2d9c",
     "pdf-save-state.log": "2ad80c955d7b4fd5157893beb6453bdcb1d2a5aa14fb2091c45bad24e612d10e",
@@ -782,7 +784,7 @@
   ],
   "recorded_at_utc": "2026-11-19T17:34:26.230451+00:00",
   "product_source_commit": "f489cefe48e6fd4b0dcbada8fc4025682733a118",
-  "integrated_commit": "ecdc74d87e71f7a1d7c542f8877911a5ffbee014",
+  "integrated_commit": "df7f4b4c8df63cbcf80d9087d06707d166a2c678",
   "commands_and_attempts": [
     {
       "check": "editor-review",
@@ -1194,6 +1196,41 @@
       "log": "/workspace/scratch/9c3338a48b2c/validation/sheet-analysis-final.log",
       "receipt_source": "sheet-final.json",
       "retained_log": "logs/sheet-analysis-final.log.gz"
+    },
+    {
+      "check": "post-integration-mail-import-analysis",
+      "command": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "test/studio_mail_archive_directory_import_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "elapsed_seconds": 10.07,
+      "log": "/workspace/scratch/9c3338a48b2c/validation/post-integration-mail-import-analysis.log",
+      "log_sha256": "9f8dff458acbe3aa3d867f97627140593845e146c06846226184af6b86c5dd45",
+      "receipt_source": "post-integration-mail-import.json",
+      "retained_log": "logs/post-integration-mail-import-analysis.log.gz"
+    },
+    {
+      "check": "post-integration-mail-import",
+      "command": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_flutter.sh",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/studio_mail_archive_directory_import_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "elapsed_seconds": 8.01,
+      "log": "/workspace/scratch/9c3338a48b2c/validation/post-integration-mail-import.log",
+      "log_sha256": "53848f05a634b4fa15aca02ffdd6c066169f69a7b88ef89a8f3e9178c2e53aaf",
+      "receipt_source": "post-integration-mail-import.json",
+      "retained_log": "logs/post-integration-mail-import.log.gz"
     }
   ],
   "retained_logs": {
@@ -1328,6 +1365,18 @@
       "raw_bytes": 7569,
       "raw_sha256": "625a7b25e65761e7de490849813f7f8ced08d47203a78ec32d96e1df39f90ddc",
       "gzip_sha256": "83084b7946c9a41c8a72a272ee8ceff42b8df3c714a60bde1ce6951c74f12cac"
+    },
+    "post-integration-mail-import-analysis.log": {
+      "path": "logs/post-integration-mail-import-analysis.log.gz",
+      "raw_bytes": 77,
+      "raw_sha256": "9f8dff458acbe3aa3d867f97627140593845e146c06846226184af6b86c5dd45",
+      "gzip_sha256": "e90684198240fd05195dd4cc52cc46814760477631797d00c50ae14daf7ded9d"
+    },
+    "post-integration-mail-import.log": {
+      "path": "logs/post-integration-mail-import.log.gz",
+      "raw_bytes": 2969,
+      "raw_sha256": "53848f05a634b4fa15aca02ffdd6c066169f69a7b88ef89a8f3e9178c2e53aaf",
+      "gzip_sha256": "df5f7c6c98c921c1a1209c168dcb7cf1f48cb263f962a71766f461eb38e31911"
     }
   },
   "superseded_failures": [
@@ -1362,5 +1411,7 @@
       "insert-narrow-german.png": "46c7d6884dde4c5843688889b6ccedbdd9aaba6936063711f6e6ca00fef04500",
       "insert-text-menu.png": "eb12454641a79a9ba70de2807391769c2cf5bd41d822b369f84cd57434659d22"
     }
-  }
+  },
+  "post_integration_receipt": "post-integration-mail-import.json",
+  "previous_integrated_commit": "ecdc74d87e71f7a1d7c542f8877911a5ffbee014"
 }

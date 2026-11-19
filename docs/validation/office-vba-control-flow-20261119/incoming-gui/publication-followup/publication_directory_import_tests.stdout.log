@@ -1,0 +1,32 @@
+00:00 +0: loading /workspace/scratch/e9fb10bfe870/gui-validation/packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart
+00:00 +0: nested EML and MBOX import exact bytes into a real native archive
+00:00 +1: identical basenames retain distinct folders and stable source identities
+00:00 +2: a root file joins provenance without an extra path segment
+00:00 +3: nonrecursive import reports nested and unsupported entries as skipped
+00:00 +4: pre-cancelled import never enumerates or commits
+00:00 +5: cancellation immediately after a confirmed commit preserves its count
+00:00 +6: progress observer exceptions do not change import correctness
+00:00 +7: message cap stops a multi-message container with exact committed counts
+00:00 +8: message exactly at the raw cap imports; over-cap record remains a failure
+00:00 +9: scanner EML and aggregate byte caps are reported as limited work
+00:00 +10: depth and file limits report incomplete scanning instead of completion
+00:00 +11: a missing source directory reports a scan error and no saved mail
+00:00 +12: malformed MBOX preamble is counted without stopping other files
+00:00 +13: selected MBOX dialect is passed through without rewriting MIME bytes
+00:00 +14: typed MailProblemCode.storageFailure storage failure stops with confirmed previous work counted
+00:00 +15: typed MailProblemCode.permissionDenied storage failure stops with confirmed previous work counted
+00:01 +16: typed MailProblemCode.unavailable storage failure stops with confirmed previous work counted
+00:01 +17: typed MailProblemCode.quotaExceeded storage failure stops with confirmed previous work counted
+00:01 +18: unexpected storage exception is sanitized and stops before later files
+00:01 +19: invalid source/folder/budget is rejected before source enumeration
+00:01 +20: native read revalidation after scanning a valid scanned binary EML is returned byte for byte
+00:01 +21: native read revalidation after scanning changed size before reading fails without returning message bytes
+00:01 +22: native read revalidation after scanning a file replaced by a symlink is rejected before reading the target
+00:01 +23: native read revalidation after scanning an ancestor replaced by a symlink is rejected after scan admission
+00:01 +24: native read revalidation after scanning MBOX growth after a returned record cannot import appended messages
+00:01 +25: native read revalidation after scanning file change after EML yield remains visible as a trailing conflict
+00:01 +26: injected scanner and stream outcomes read failures and exceptions are counted without inventing originals
+00:01 +27: injected scanner and stream outcomes scanner errors and skipped entries remain in the final report
+00:01 +28: injected scanner and stream outcomes missing terminal scan event cannot be mistaken for completion
+00:01 +29: injected scanner and stream outcomes unsafe relative metadata is rejected before a read
+00:01 +30: All tests passed!
