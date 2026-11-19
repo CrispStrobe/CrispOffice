@@ -244,4 +244,19 @@ extension StudioMailFeedback on StudioStrings {
     'Gespeichertes Konto entfernen',
     'نسيان الحساب المحفوظ',
   );
+  String get mailAccountStorageNotice => _mailText(
+    'When enabled, your account is saved in the system keychain after connecting.',
+    'Wenn aktiviert, wird das Konto nach dem Verbinden im Systemschlüsselbund gespeichert.',
+    'عند التفعيل، يُحفظ حسابك في سلسلة مفاتيح النظام بعد الاتصال.',
+  );
+  String get mailAccountSaveFailed => _mailText(
+    'The account could not be saved in the system keychain.',
+    'Das Konto konnte nicht im Systemschlüsselbund gespeichert werden.',
+    'تعذر حفظ الحساب في سلسلة مفاتيح النظام.',
+  );
+  String get mailAccountForgetFailed => _mailText(
+    'The saved account could not be removed from the system keychain. Try forgetting it again.',
+    'Das gespeicherte Konto konnte nicht aus dem Systemschlüsselbund entfernt werden. Erneut versuchen.',
+    'تعذرت إزالة الحساب المحفوظ من سلسلة مفاتيح النظام. حاول إزالته مجددًا.',
+  );
 }

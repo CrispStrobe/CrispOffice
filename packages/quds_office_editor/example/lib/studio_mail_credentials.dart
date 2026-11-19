@@ -55,14 +55,25 @@ class StudioMailCredentials {
 }
 
 /// Persists one Mail account in the platform keychain.
-final class StudioMailCredentialStore {
+///
+/// Operations are ordered so a pending save cannot complete after a later
+/// deletion. Native dialogs share [shared], including across dialog lifetimes.
+class StudioMailCredentialStore {
   StudioMailCredentialStore({FlutterSecureStorage? storage})
     : _storage = storage ?? const FlutterSecureStorage();
 
+  static final shared = StudioMailCredentialStore();
   static const _key = 'crispoffice.mail.account.v1';
   final FlutterSecureStorage _storage;
+  Future<void> _pending = Future<void>.value();
 
-  Future<StudioMailCredentials?> load() async {
+  Future<T> _ordered<T>(Future<T> Function() operation) {
+    final result = _pending.then((_) => operation());
+    _pending = result.then<void>((_) {}, onError: (Object _, StackTrace _) {});
+    return result;
+  }
+
+  Future<StudioMailCredentials?> load() => _ordered(() async {
     try {
       final raw = await _storage.read(key: _key);
       if (raw == null || raw.isEmpty) return null;
@@ -73,21 +84,25 @@ final class StudioMailCredentialStore {
     } on Object {
       return null;
     }
-  }
+  });
 
-  Future<void> save(StudioMailCredentials credentials) async {
+  /// True only when the platform confirms the write. Failure is nonthrowing.
+  Future<bool> save(StudioMailCredentials credentials) => _ordered(() async {
     try {
       await _storage.write(key: _key, value: jsonEncode(credentials.toJson()));
+      return true;
     } on Object {
-      // A missing keychain entitlement must not lose the active session.
+      return false;
     }
-  }
+  });
 
-  Future<void> clear() async {
+  /// True only when the platform confirms deletion. Failure is nonthrowing.
+  Future<bool> clear() => _ordered(() async {
     try {
       await _storage.delete(key: _key);
+      return true;
     } on Object {
-      // Ignore unavailable platform keychains in the example host.
+      return false;
     }
-  }
+  });
 }

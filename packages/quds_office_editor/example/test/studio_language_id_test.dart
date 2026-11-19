@@ -62,7 +62,7 @@ void main() {
     addTearDown(host.dispose);
     await host.load();
     expect(host.detector, isNull);
-    expect(host.problem, contains('library'));
+    expect(host.problem, 'Automatic language detection is unavailable.');
   });
 
   testWidgets('Studio routes by detection, shows scripts and applies', (

@@ -29,6 +29,7 @@ class StudioMailDialog extends StatefulWidget {
     this.clientFactory,
     this.messageLoaderFactory,
     this.accountDiscovery,
+    this.credentialStore,
   });
 
   final StudioStrings strings;
@@ -45,6 +46,9 @@ class StudioMailDialog extends StatefulWidget {
   final StudioMailMessageLoader Function(mail.MailAccount account)?
   messageLoaderFactory;
 
+  /// Host-owned persistence; tests inject a store without a platform keychain.
+  final StudioMailCredentialStore? credentialStore;
+
   @override
   State<StudioMailDialog> createState() => _StudioMailDialogState();
 }
@@ -55,7 +59,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   final _imapHost = TextEditingController();
   final _smtpHost = TextEditingController();
   final _search = TextEditingController();
-  final _credentials = StudioMailCredentialStore();
+  late final StudioMailCredentialStore _credentials;
+  int _accountFormRevision = 0;
+  int _credentialOperation = 0;
   bool _remember = true;
   bool _startTls = false;
   bool _hasSavedCredentials = false;
@@ -83,24 +89,92 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   bool _showCompactMessage = false;
   String? _error;
   String? _notice;
+  String? _credentialError;
 
   @override
   void initState() {
     super.initState();
+    _credentials = widget.credentialStore ?? StudioMailCredentialStore.shared;
     unawaited(_loadCredentials());
   }
 
   Future<void> _loadCredentials() async {
-    final saved = await _credentials.load();
-    if (!mounted || saved == null) return;
+    final generation = _sessionGeneration;
+    final operation = _credentialOperation;
+    final formRevision = _accountFormRevision;
+    final StudioMailCredentials? saved;
+    try {
+      saved = await _credentials.load();
+    } on Object {
+      return;
+    }
+    if (!_currentAttempt(generation) || operation != _credentialOperation) {
+      return;
+    }
     setState(() {
+      _hasSavedCredentials = saved != null;
+      if (saved == null ||
+          _connecting ||
+          _client != null ||
+          formRevision != _accountFormRevision) {
+        return;
+      }
       _email.text = saved.email;
       _password.text = saved.password;
       _imapHost.text = saved.imapHost;
       _smtpHost.text = saved.smtpHost;
       _manual = saved.manual;
       _startTls = saved.startTls;
-      _hasSavedCredentials = true;
+    });
+  }
+
+  Future<void> _persistCredentials(
+    StudioMailCredentials credentials, {
+    required bool remember,
+    required mail.MailClient client,
+    required int generation,
+  }) async {
+    final operation = ++_credentialOperation;
+    var succeeded = false;
+    try {
+      succeeded = remember
+          ? await _credentials.save(credentials)
+          : await _credentials.clear();
+    } on Object {
+      // Host stores must not replace active Mail state with platform errors.
+    }
+    if (!_currentSession(client, generation) ||
+        operation != _credentialOperation) {
+      return;
+    }
+    setState(() {
+      if (succeeded) _hasSavedCredentials = remember;
+      _credentialError = succeeded
+          ? null
+          : remember
+          ? widget.strings.mailAccountSaveFailed
+          : widget.strings.mailAccountForgetFailed;
+    });
+  }
+
+  Future<void> _forgetCredentials() async {
+    if (_connecting) return;
+    final generation = _sessionGeneration;
+    final operation = ++_credentialOperation;
+    var succeeded = false;
+    try {
+      succeeded = await _credentials.clear();
+    } on Object {
+      // The fixed message below never includes the platform exception.
+    }
+    if (!_currentAttempt(generation) || operation != _credentialOperation) {
+      return;
+    }
+    setState(() {
+      if (succeeded) _hasSavedCredentials = false;
+      _credentialError = succeeded
+          ? null
+          : widget.strings.mailAccountForgetFailed;
     });
   }
 
@@ -165,12 +239,14 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     final domain = email.contains('@') ? email.split('@').last : '';
     final password = _password.text;
     final manual = _manual;
+    final startTls = _startTls;
+    final remember = _remember;
     final imapHost = _imapHost.text.trim();
     final smtpHost = _smtpHost.text.trim();
     mail.MailClient? candidate;
     StudioMailMessageLoader? candidateLoader;
     bool adopted = false;
-    var effectiveStartTls = manual && _startTls;
+    var effectiveStartTls = manual && startTls;
     try {
       mail.MailAccount account;
       if (manual) {
@@ -180,18 +256,18 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           incomingHost: imapHost,
           outgoingHost: smtpHost,
           password: password,
-          incomingPort: _startTls ? 143 : 993,
-          incomingSocketType: _startTls
+          incomingPort: startTls ? 143 : 993,
+          incomingSocketType: startTls
               ? mail.SocketType.starttls
               : mail.SocketType.ssl,
-          outgoingPort: _startTls ? 587 : 465,
-          outgoingSocketType: _startTls
+          outgoingPort: startTls ? 587 : 465,
+          outgoingSocketType: startTls
               ? mail.SocketType.starttls
               : mail.SocketType.ssl,
         );
       } else if (domain.toLowerCase() == 'mailbox.org') {
-        // mailbox.org resets Dart's implicit TLS 993 greeting but accepts
-        // STARTTLS on 143. Known settings avoid a flaky discovery round-trip.
+        // Use the provider's known STARTTLS settings before authentication.
+        // Connection failures never trigger a second authentication attempt.
         account = mail.MailAccount.fromManualSettings(
           name: email,
           email: email,
@@ -232,44 +308,19 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           userName: email,
         );
       }
-      mail.MailClient makeClient(mail.MailAccount value) =>
-          widget.clientFactory?.call(value) ??
-          mail.MailClient(value, isLogEnabled: false);
-      var client = makeClient(account);
+      final client =
+          widget.clientFactory?.call(account) ??
+          mail.MailClient(account, isLogEnabled: false);
       candidate = client;
       _pendingClient = client;
-      try {
-        await client.connect();
-      } on Object {
-        // Some providers reset implicit TLS 993 but accept STARTTLS on 143.
-        final incoming = account.incoming.serverConfig;
-        final outgoing = account.outgoing.serverConfig;
-        await _disconnectQuietly(client);
-        candidate = null;
-        _pendingClient = null;
-        account = mail.MailAccount.fromManualSettings(
-          name: email,
-          email: email,
-          incomingHost: incoming.hostname,
-          outgoingHost: outgoing.hostname,
-          password: password,
-          incomingPort: 143,
-          incomingSocketType: mail.SocketType.starttls,
-          outgoingPort: 587,
-          outgoingSocketType: mail.SocketType.starttls,
-        );
-        effectiveStartTls = true;
-        client = makeClient(account);
-        candidate = client;
-        _pendingClient = client;
-        await client.connect();
-      }
-      if (!_currentAttempt(generation)) return;
+      // Validate supported settings and bounded credentials before sending
+      // them to the high-level account connection.
       final loader =
           widget.messageLoaderFactory?.call(account) ??
           NativeStudioMailMessageLoader(account);
       candidateLoader = loader;
       _pendingLoader = loader;
+      await client.connect();
       if (!_currentAttempt(generation)) return;
       final boxes = await client.listMailboxes();
       if (!_currentAttempt(generation)) return;
@@ -300,23 +351,22 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         _notice = '${messages.length} messages';
       });
       adopted = true;
-      if (_remember) {
-        await _credentials.save(
-          StudioMailCredentials(
-            email: email,
-            password: password,
-            imapHost: account.incoming.serverConfig.hostname,
-            smtpHost: account.outgoing.serverConfig.hostname,
-            manual: manual,
-            startTls: effectiveStartTls,
-          ),
-        );
-        _hasSavedCredentials = true;
-      } else {
-        await _credentials.clear();
-        _hasSavedCredentials = false;
-      }
+      if (identical(_pendingClient, client)) _pendingClient = null;
+      if (identical(_pendingLoader, loader)) _pendingLoader = null;
       _retireReader(previous);
+      await _persistCredentials(
+        StudioMailCredentials(
+          email: email,
+          password: password,
+          imapHost: account.incoming.serverConfig.hostname,
+          smtpHost: account.outgoing.serverConfig.hostname,
+          manual: manual,
+          startTls: effectiveStartTls,
+        ),
+        remember: remember,
+        client: client,
+        generation: generation,
+      );
     } on Object {
       if (!_currentAttempt(generation)) return;
       setState(() {
@@ -808,6 +858,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                 const SizedBox(height: 20),
                 TextField(
                   controller: _email,
+                  onChanged: (_) => _accountFormRevision++,
                   keyboardType: TextInputType.emailAddress,
                   autofillHints: const <String>[AutofillHints.email],
                   decoration: InputDecoration(
@@ -818,6 +869,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                 const SizedBox(height: 12),
                 TextField(
                   controller: _password,
+                  onChanged: (_) => _accountFormRevision++,
                   obscureText: true,
                   autofillHints: const <String>[AutofillHints.password],
                   decoration: InputDecoration(
@@ -832,11 +884,15 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   value: _manual,
                   onChanged: _connecting
                       ? null
-                      : (value) => setState(() => _manual = value),
+                      : (value) => setState(() {
+                          _accountFormRevision++;
+                          _manual = value;
+                        }),
                 ),
                 if (_manual) ...<Widget>[
                   TextField(
                     controller: _imapHost,
+                    onChanged: (_) => _accountFormRevision++,
                     decoration: InputDecoration(
                       labelText: widget.strings.imapHost,
                       hintText: 'imap.example.com',
@@ -845,6 +901,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   const SizedBox(height: 12),
                   TextField(
                     controller: _smtpHost,
+                    onChanged: (_) => _accountFormRevision++,
                     decoration: InputDecoration(
                       labelText: widget.strings.smtpHost,
                       hintText: 'smtp.example.com',
@@ -856,7 +913,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                     value: _startTls,
                     onChanged: _connecting
                         ? null
-                        : (value) => setState(() => _startTls = value),
+                        : (value) => setState(() {
+                            _accountFormRevision++;
+                            _startTls = value;
+                          }),
                   ),
                   const SizedBox(height: 4),
                 ],
@@ -866,21 +926,18 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   value: _remember,
                   onChanged: _connecting
                       ? null
-                      : (value) => setState(() => _remember = value),
+                      : (value) => setState(() {
+                          _accountFormRevision++;
+                          _remember = value;
+                        }),
                 ),
                 if (_hasSavedCredentials)
                   TextButton.icon(
-                    onPressed: _connecting
-                        ? null
-                        : () async {
-                            await _credentials.clear();
-                            if (mounted) {
-                              setState(() => _hasSavedCredentials = false);
-                            }
-                          },
+                    onPressed: _connecting ? null : _forgetCredentials,
                     icon: const Icon(Icons.delete_outline, size: 18),
                     label: Text(widget.strings.forgetAccount),
                   ),
+                if (_credentialError != null) _credentialFeedback(context),
                 if (_error != null)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 12),
@@ -904,7 +961,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  widget.strings.mailSessionNotice,
+                  widget.strings.mailAccountStorageNotice,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
@@ -913,6 +970,14 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           ),
         ),
       ),
+    ),
+  );
+
+  Widget _credentialFeedback(BuildContext context) => Material(
+    color: Theme.of(context).colorScheme.errorContainer,
+    child: Padding(
+      padding: const EdgeInsets.all(12),
+      child: SelectableText(_credentialError!),
     ),
   );
 
@@ -934,6 +999,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     return Column(
       children: <Widget>[
         if (_busy) const LinearProgressIndicator(minHeight: 2),
+        if (_credentialError != null) _credentialFeedback(context),
         if (_error != null || _notice != null)
           Material(
             color: _error == null

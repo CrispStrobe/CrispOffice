@@ -116,19 +116,17 @@ final class WordProofingSummary {
     }
   }
 
-  bool get complete {
-    final supported = _supportedResults.toList();
-    return hasResults &&
-        !checking &&
-        !scheduled &&
-        !manualProvidersSkipped &&
-        checkedParagraphCount == paragraphCount &&
-        skippedContentCount == 0 &&
-        supported.isNotEmpty &&
-        supported.every(
-          (result) => result.status == OfficeProofingStatus.success,
-        );
-  }
+  bool get complete =>
+      hasResults &&
+      !checking &&
+      !scheduled &&
+      !manualProvidersSkipped &&
+      checkedParagraphCount == paragraphCount &&
+      skippedContentCount == 0 &&
+      reports.isNotEmpty &&
+      // Each text snapshot needs a successful checker. An unsupported
+      // snapshot cannot borrow coverage from another paragraph's success.
+      reports.every((report) => report.complete);
 
   String get statusMessage {
     if (checking) return 'Checking document…';

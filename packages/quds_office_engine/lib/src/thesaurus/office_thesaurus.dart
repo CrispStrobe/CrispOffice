@@ -440,6 +440,7 @@ final class OfficeThesaurusService {
         senses.values.toList(),
         epoch,
       );
+      _checkEpoch(epoch);
       final display = sourceForm;
       ordered.sort((a, b) {
         final aExact = a.terms.any((term) => term.text == display);
@@ -740,6 +741,8 @@ final class OfficeThesaurusService {
         if (text != null) senseLabels[target] = text;
         return text;
       } on Object {
+        // A label may be missing, but a reset invalidates the whole lookup.
+        _checkEpoch(epoch);
         return null;
       }
     }
