@@ -1,0 +1,23 @@
+{
+  "description": "Separate Node execution of the changed portable core flag-value test. It is one repeated file on a second platform, not another distinct source file. Native TLS behavior is qualified in the VM plan.",
+  "groups": [
+    {
+      "name": "core-model-node",
+      "cwd": "packages/quds_mail_core",
+      "runner": "dart",
+      "platform": "node",
+      "tests": ["test/models_test.dart"]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py"
+  ],
+  "whitespace_preserved_inputs": []
+}
