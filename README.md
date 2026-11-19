@@ -18,6 +18,13 @@
 
 The core suite has an engine, reports library, Flutter editor and desktop app. This fork also carries the maintained standalone legacy DOC parser.
 
+The engine now supports [native macros and MCP](docs/MACROS.md): record and replay
+parameterized calls across 67 shared Word, spreadsheet, and presentation
+operations, with complete-output publication and a local MCP stdio bridge.
+Registered language compilers can lower source into the same bounded command
+plan. VBA projects remain inert and preserved; a VBA interpreter and macro
+ribbon UI are not included.
+
 Word now includes an [offline English/German thesaurus](docs/roadmaps/thesaurus/README.md)
 with full OEWN 2025 and OpenThesaurus packs, alternatives grouped by meaning,
 language override and source notices. Use Review, the context menu or Shift+F7;

@@ -4,6 +4,16 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add `quds_office_automation.dart` with versioned, parameterized native macros,
+  successful-call recording, detached document transactions, host operation
+  allowlists, limits, cooperative cancellation, and a language-compiler registry
+  suitable for explicit future VBA adapters. Embedded VBA remains inert.
+- Promote all 67 fidelity document operations into one portable catalog shared
+  by native macros and MCP while retaining the original CLI entry points.
+  Refuse unsupported protected edits and require explicit host image lookups.
+- Add macro and MCP stdio CLIs, structured diagnostics, complete-output file
+  publication, examples, and regression tests including opaque VBA preservation.
+
 - Preserve combining maddah and hamza in Arabic phrase comparison and reject
   matches inside Unicode word/identifier tokens without changing source offsets.
 - Keep distinct findings from one provider separate when merging equivalent

@@ -38,7 +38,10 @@ only after their corresponding behavior is implemented and verified.
 
 ## Explicitly limited / out of scope (short term)
 
-- Legacy binary `.doc` / `.xls` / `.ppt`, VBA/macros, ActiveX
+- Legacy binary `.doc` / `.xls` / `.ppt`, VBA execution and ActiveX. Explicit
+  native JSON macros now use the shared Office operation catalog and MCP bridge;
+  see [MACROS.md](MACROS.md) for the bounded format, document admission, and
+  language-extension contract. Embedded VBA is preserved but never auto-run.
 - Full Word field zoo, full theme/style matrix, real DrawingML SmartArt (`dgm:`)
 - Full Excel LAMBDA / Power Pivot / rich pivot / Power Query beyond CSV helper
 - PPTX audio/video as a default core feature (optional media helper only)

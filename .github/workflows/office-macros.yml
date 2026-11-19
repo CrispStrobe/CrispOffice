@@ -1,0 +1,64 @@
+name: Office macros and MCP
+
+on:
+  pull_request:
+    paths:
+      - 'packages/quds_office_engine/**'
+      - 'packages/legacy_doc_parser/**'
+      - '.github/workflows/office-macros.yml'
+      - '.fvmrc'
+      - 'pubspec.yaml'
+  push:
+    branches: [main, 'codex/mcp-aligned-macros']
+    paths:
+      - 'packages/quds_office_engine/**'
+      - 'packages/legacy_doc_parser/**'
+      - '.github/workflows/office-macros.yml'
+      - '.fvmrc'
+      - 'pubspec.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  macros:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - id: sdk
+        name: Read repository SDK pin
+        run: python3 -c 'import json; print("flutter=" + json.load(open(".fvmrc"))["flutter"])' >> "$GITHUB_OUTPUT"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.sdk.outputs.flutter }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Analyze engine
+        working-directory: packages/quds_office_engine
+        run: dart analyze --fatal-infos
+      - name: Macro and existing command regressions
+        working-directory: packages/quds_office_engine
+        run: >-
+          dart test
+          test/office_operations_test.dart
+          test/office_macro_runtime_test.dart
+          test/office_macro_language_test.dart
+          test/office_macro_expansion_test.dart
+          test/office_macro_mcp_test.dart
+          test/office_macro_cli_test.dart
+          test/office_steps_test.dart
+          test/word_step_atomicity_test.dart
+          test/word_steps_vocabulary_test.dart
+          test/word_structure_steps_test.dart
+          test/table_grid_steps_test.dart
+          test/word_table_grid_addressing_test.dart
+          test/sheet_macro_preservation_test.dart
+      - name: Portable JavaScript execution
+        working-directory: packages/quds_office_engine
+        run: |
+          mkdir -p build/macros
+          dart compile js -O1 tool/macros/web_smoke.dart -o build/macros/web_smoke.js
+          node -e 'globalThis.self = globalThis; require("./build/macros/web_smoke.js")'
