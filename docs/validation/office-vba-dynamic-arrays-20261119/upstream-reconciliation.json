@@ -1,0 +1,33 @@
+{
+  "repository": "MohammedAsaadAsaad/quds_office_suite",
+  "heads": [
+    {
+      "branch": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor": true,
+      "exit_code": 0,
+      "error": ""
+    },
+    {
+      "branch": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor": true,
+      "exit_code": 0,
+      "error": ""
+    },
+    {
+      "branch": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor": true,
+      "exit_code": 0,
+      "error": ""
+    },
+    {
+      "branch": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor": true,
+      "exit_code": 0,
+      "error": ""
+    }
+  ]
+}

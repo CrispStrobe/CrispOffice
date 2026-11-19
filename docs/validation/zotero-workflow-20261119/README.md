@@ -161,3 +161,18 @@ workspace package config and `package:test`'s `bin/test.dart`, followed by
 Adapt recorded absolute harness/SDK paths to the local checkout. Run these
 cohorts sequentially on constrained hosts. The source fingerprint and formatting
 receipt distinguish exact tested bytes from the final normalized successor.
+
+## Subsequent combined-source qualification
+
+The Zotero main merge `88513f04cfbdec210340f2d70a674cf3f23e31c0` is preserved
+in combined checkpoint `6a7e0afaec7b597abf3a6ad5d43a8295fcce855a`. All 24
+incoming documentation/evidence files were retained at their exact main blobs
+in that reconciliation. The final publication adds this cross-reference.
+
+The combined source retains the final VBA array integration/web suites, mail
+host privacy regressions and master-background fixes. A separate focused
+Zotero selection passed 127 engine and 214 editor cases with strict analysis;
+its Zotero source/tests are unchanged in the final combined product. These
+341 cases overlap earlier selections and are not added to them. The
+[combined validation record](../office-vba-dynamic-arrays-20261119/README.md)
+records all final macro, mail and slide gates with exact source attribution.

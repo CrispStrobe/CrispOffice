@@ -1,0 +1,89 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/vba-dynamic-arrays-20261119",
+  "starting_main": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "remote_update_policy": "Expected-head, non-forced branch updates; every uploaded blob and assembled tree checked against local Git identities.",
+  "checkpoints": [
+    {
+      "sha": "73319103cef9bc93ae19dc95f844d52cd3830427",
+      "tree": "8d2f53245f7cd38390d838907cd3420b9824c340",
+      "parents": [
+        "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6"
+      ],
+      "committed_at": "2026-11-19T22:01:34+01:00",
+      "purpose": "Initial reconciliation and VBA parity roadmap"
+    },
+    {
+      "sha": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+      "tree": "9fe1ce643b816209c1042bc9eb2a48a48353533d",
+      "parents": [
+        "73319103cef9bc93ae19dc95f844d52cd3830427"
+      ],
+      "committed_at": "2026-11-19T22:05:16+01:00",
+      "purpose": "Bounded dynamic-array compiler, unit tests and example"
+    },
+    {
+      "sha": "32bc52338fa3e1d753ed2130ca069a69d0bc8710",
+      "tree": "cde57edfda4c2e7d29301ecacf2ea90131616972",
+      "parents": [
+        "1580807e1eb99a40d6c8620e93ebd039b9a01132"
+      ],
+      "committed_at": "2026-11-19T22:08:32+01:00",
+      "purpose": "Complete array tests, CLI/MCP integration, web smoke and dialect documentation"
+    },
+    {
+      "sha": "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760",
+      "tree": "76c61592dda5b998b7789a3452c6d29a59660878",
+      "parents": [
+        "32bc52338fa3e1d753ed2130ca069a69d0bc8710"
+      ],
+      "committed_at": "2026-11-19T22:09:53+01:00",
+      "purpose": "Incoming PPTX corrections and exact-color regressions"
+    },
+    {
+      "sha": "c1b98f12f802863fb602e9919ead524891bfbcc6",
+      "tree": "7a212957276dcf1ef9836c648b6b2d24c5409f7b",
+      "parents": [
+        "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760",
+        "780422316b4e37989e01ac871dd2956fbd2c8908",
+        "658095574de89cf3d6f3dfc874fab7e5c479b47e"
+      ],
+      "committed_at": "2026-11-19T22:19:51+01:00",
+      "purpose": "Captured Zotero, mail and PPTX source union"
+    },
+    {
+      "sha": "8356fb0ad4630824a39453ea9a5923d9fb2a2101",
+      "tree": "ff86534f86007d4a64962d2b2cb4f0ab339d6996",
+      "parents": [
+        "c1b98f12f802863fb602e9919ead524891bfbcc6"
+      ],
+      "committed_at": "2026-11-19T22:25:42+01:00",
+      "purpose": "Mail host privacy regressions and normalized slide formatting"
+    },
+    {
+      "sha": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+      "tree": "0a916bed8acace7078e031b76a690991ff323a0e",
+      "parents": [
+        "8356fb0ad4630824a39453ea9a5923d9fb2a2101",
+        "400fffd04fcceee78959e4c38b4d1dbe89767c2b",
+        "a0f27b2f61d332ff834d4bda59dadccdad020021"
+      ],
+      "committed_at": "2026-11-19T22:34:30+01:00",
+      "purpose": "Final PR218 and PR217 source snapshots with preserved history"
+    },
+    {
+      "sha": "6a7e0afaec7b597abf3a6ad5d43a8295fcce855a",
+      "tree": "f4b499799e50c5d1955f9c3f180a1560fb1531ae",
+      "parents": [
+        "435bc212401db13efa56483ac852e4bc25bcc5d2",
+        "88513f04cfbdec210340f2d70a674cf3f23e31c0"
+      ],
+      "committed_at": "2026-11-19T22:43:25+01:00",
+      "purpose": "Reconcile concurrently advanced main; preserve exact qualified product blobs and new main documentation."
+    }
+  ],
+  "final_product_source": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+  "documentation_evidence_commit": "The commit containing this ledger adds documentation and qualification evidence to the final product-source checkpoint.",
+  "github_actions_queried_or_awaited": false,
+  "main_reconciliation_checkpoint": "6a7e0afaec7b597abf3a6ad5d43a8295fcce855a"
+}

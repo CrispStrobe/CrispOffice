@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-19T21:40:21.879654+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "qualified_product_source": {
+    "commit": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+    "tree": "0a916bed8acace7078e031b76a690991ff323a0e",
+    "equivalent_test_worktree_head": "ff64db3ad47a63e495ece4d7dbdf9b0eb17bbf2e"
+  },
+  "gates": {
+    "macro_language_milestone": {
+      "source_commit": "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760",
+      "distinct_passed": 675,
+      "failed_remaining": 0,
+      "skipped": 0,
+      "initial_passed": 673,
+      "initial_cli_timeouts": 2,
+      "successful_exact_isolated_retries": 2,
+      "uninterrupted_clean_run": false,
+      "guarded_unchanged_inputs": 582,
+      "archive": "evidence/macro-9dbba0f7.tar.gz"
+    },
+    "macro_milestone_web": {
+      "source_commit": "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760",
+      "programs_passed": 6,
+      "dynamic_assertions": 27,
+      "compile_optimization": "-O1",
+      "runtime": "Node 24.22.3"
+    },
+    "captured_slides": {
+      "source_commit": "8356fb0ad4630824a39453ea9a5923d9fb2a2101",
+      "passed": 105,
+      "failed": 0,
+      "skipped": 0,
+      "archive": "evidence/captured-slides.tar.gz"
+    },
+    "captured_mail": {
+      "source_commit": "8356fb0ad4630824a39453ea9a5923d9fb2a2101",
+      "passed": 235,
+      "failed": 0,
+      "skipped": 0,
+      "archive": "evidence/captured-mail.tar.gz"
+    },
+    "zotero": {
+      "source_commit": "8356fb0ad4630824a39453ea9a5923d9fb2a2101",
+      "engine_passed": 127,
+      "editor_passed": 214,
+      "distinct_passed": 341,
+      "failed": 0,
+      "skipped": 0,
+      "guarded_unchanged_inputs": 656,
+      "final_zotero_source_and_tests_unchanged": true,
+      "archive": "evidence/captured-zotero.tar.gz"
+    },
+    "final_slides": {
+      "source_commit": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+      "engine_passed": 70,
+      "editor_passed": 37,
+      "distinct_passed": 107,
+      "failed": 0,
+      "skipped": 0,
+      "guarded_unchanged_inputs": 629,
+      "archive": "evidence/final-slides.tar.gz"
+    },
+    "final_mail": {
+      "source_commit": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+      "studio_passed": 249,
+      "targeted_provider_passed": 5,
+      "distinct_passed": 254,
+      "failed": 0,
+      "skipped": 0,
+      "guarded_unchanged_inputs": 736,
+      "archive": "evidence/final-mail.tar.gz"
+    },
+    "final_macro_boundaries": {
+      "source_commit": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+      "core_passed": 134,
+      "word_presentation_cli_passed": 1,
+      "distinct_passed": 135,
+      "failed": 0,
+      "skipped": 0,
+      "retries": 0,
+      "guarded_unchanged_inputs": 562,
+      "test_source_urls_verified": true,
+      "archive": "evidence/final-macros.tar.gz"
+    },
+    "final_macro_web_vm": {
+      "source_commit": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+      "web_programs_passed": 2,
+      "scope": [
+        "native spreadsheet publication",
+        "dynamic VBA arrays"
+      ],
+      "dynamic_assertions": 27,
+      "vm_and_javascript_equal": true,
+      "archive": "evidence/final-macros.tar.gz"
+    },
+    "static_analysis": {
+      "whole_engine": "passed --fatal-infos",
+      "affected_editor": "passed --fatal-infos",
+      "affected_studio": "passed --fatal-infos",
+      "format_and_whitespace": "passed",
+      "archives": [
+        "evidence/final-slides.tar.gz",
+        "evidence/final-mail.tar.gz"
+      ]
+    }
+  },
+  "counting_policy": "Rows overlap; do not sum baseline, captured-union and final-union rows into an overall unique test count. Earlier cases retain their actual source checkpoint.",
+  "excluded_attempts": [
+    {
+      "archive": "evidence/excluded-attempt.tar.gz",
+      "reason": "Imported Python helper retained the original checkout as its default cwd. Reporter URLs exposed the mismatch; interrupted with exit130, no final reporter completion. Zero qualifying cases."
+    }
+  ],
+  "runtime": {
+    "repository_flutter_pin": "3.47.8",
+    "bundled_dart": "3.13.7",
+    "observed_node": "24.22.3",
+    "flutter_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a7f06a6e9cefe386fec8075865be93adfa",
+    "archive": "evidence/runtime.tar.gz"
+  },
+  "limits": {
+    "github_actions_queried": false,
+    "github_actions_awaited": false,
+    "native_microsoft_office_differential_execution": false,
+    "live_mail_sent": false,
+    "live_zotero_account_exercised": false,
+    "full_vba_parity_claimed": false,
+    "source_compiler_reads_existing_workbook_values": false,
+    "embedded_vba_projects_executed": false
+  },
+  "status": "All recorded local gates passed. Concurrent main history and documentation are reconciled with exact preservation of qualified product source; only publication documentation is added afterward.",
+  "main_reconciliation": {
+    "checkpoint": "6a7e0afaec7b597abf3a6ad5d43a8295fcce855a",
+    "tree": "f4b499799e50c5d1955f9c3f180a1560fb1531ae",
+    "included_main": "88513f04cfbdec210340f2d70a674cf3f23e31c0",
+    "all_5647_product_entries_identical_to_qualified_source": true,
+    "product_manifest_sha256": "28ba94f1f167c10cd1940098dda7b3cd923cb3d75c46c9265c0c9b29f3aa4493",
+    "incoming_main_documentation_files_preserved_exactly": 24,
+    "receipt": "main-reconciliation.json",
+    "archive": "evidence/main-reconciliation.tar.gz"
+  }
+}
