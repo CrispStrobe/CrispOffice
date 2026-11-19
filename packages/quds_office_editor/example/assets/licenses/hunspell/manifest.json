@@ -1,0 +1,58 @@
+{
+  "component": {
+    "compiled_files": {
+      "affentry.cxx": "79b4dda7ed111bef62fafb1c10f0e570c2f904272fe77b213b9f62ec009f3472",
+      "affentry.hxx": "4bd5a8ffd6b3185b0b2cdc8809e41502030a0ad802f9d5bd9716a210d1388ef3",
+      "affixmgr.cxx": "e666d9f39b1ee92907f21b9f11d5909b0cf50fdb2d953f2d09142191361aa3e5",
+      "affixmgr.hxx": "b2a0894dae866630757728faca8b54c414098dc53863fbeb057eb4aaa6695e29",
+      "atypes.hxx": "8156292ffcbb2e5f6d554b41ea27124731e02bcb8c29e63b3e8051f593545348",
+      "baseaffix.hxx": "a2259da40510ff79845107b50d9478b4305e1f70d2533cdc31577c4f9e43a6b9",
+      "csutil.cxx": "24585ec021269567c9e4837d270bd9c5707b13c312212c0573f4f874b0be1227",
+      "csutil.hxx": "1b0653a4fe0fbb701283c415b15d64b4c481a88edb91874e82ac9a6470f86d73",
+      "filemgr.cxx": "20d34033466d1c8701545b9702e23d8c05a7e3340239b79da70227bd675c7a85",
+      "filemgr.hxx": "db943780bed1e3ac23577c3b9687f13908f69d8adac6e3d2a4f641f92d20e7aa",
+      "hashmgr.cxx": "cd6515aab496f2a25fa736d425b85645a24b615d12ea84426762cb9f614be151",
+      "hashmgr.hxx": "33b62e3362eab24c75e456c55713b66e38cade0a6facbb2e2c42ae0cc4f36446",
+      "htypes.hxx": "9487c9a58f575eb7aa2f7b57e8ff8dc18bf7b29724381d459a46f3fa65ab0bb7",
+      "hunspell.cxx": "a8c9db9900be42ff46d6d91ba732650ba931c437ef08191eaff60a922a347131",
+      "hunspell.h": "adcfed1f9aa673aefbd0ef05f3ab290dd4db8132639ed54847e46b29f05104e0",
+      "hunspell.hxx": "ddde2f0e8bb4cebc92cb893bb5103d4d80ef38a673a724c1891845c6e6453e4e",
+      "hunvisapi.h": "7bda44c1dad647e4bd1de1345aef32b9de88222a5b19d7ca395f02932ddcc1ac",
+      "hunzip.cxx": "0132100af762a2e2221f8d47351da50b7e48fb165d7727469a93de0f8cf45dde",
+      "hunzip.hxx": "ba32d9571f369dad0a44e6488d8a1379cbac4bf2346d7cab322303aadadd5936",
+      "langnum.hxx": "0a8c38f97a137a70320583121a3efb9d3d56fb1032c53e3e16671c23a9c9c978",
+      "phonet.cxx": "fec6d8a0741b6ca8bbef6f420a2c3d99a7966206d416252615ff07cce560eb27",
+      "phonet.hxx": "b66ed3023f56138b28d81939e8718198791d893182eb948e92d64e77c52a6f5f",
+      "replist.cxx": "5cd940d3f78fa82cf75fba7287db80a949da2de912ad02e66ac2c1fc7fa32262",
+      "replist.hxx": "c4d880bc20bc9b6487563a06ee34a9c3043f063b7fb729b0a40ec5ab4098a814",
+      "suggestmgr.cxx": "888d2390351f29ff157d588dc0069c6ec5db1a120e328fdff0577284208c0b83",
+      "suggestmgr.hxx": "946bd5122103da99698fd46e029309ddca05a6332e517897113600c36dddff94",
+      "utf_info.hxx": "52b7fcd879cd07ab3c5d2ccda04725391509fa075a001b193c1bd0c845f1a2ac",
+      "w_char.hxx": "f038b165a1e18118590bd15d8fe88d14ee4376ed3c66c8e61e84e4b3912e899a"
+    },
+    "name": "hunspell",
+    "notes": [
+      "phonet.cxx carries an LGPL 2.1 header whose changelog records its 2007 release by the author under the MPL/GPL/LGPL tri-licence for Hunspell; it is used under MPL 1.1 like the rest.",
+      "hunvisapi.h is a generated visibility header without a notice.",
+      "Compiled files are unmodified; their exact sources are in hunspell-1.7.2-library-sources.tar.gz."
+    ],
+    "offered_licenses": "MPL-1.1 OR GPL-2.0-or-later OR LGPL-2.1-or-later",
+    "selected_license": "MPL-1.1",
+    "source": "https://github.com/hunspell/hunspell/releases/download/v1.7.2/hunspell-1.7.2.tar.gz",
+    "tarball_sha256": "11ddfa39afe28c28539fe65fc4f1592d410c1e9b6dd7d8a91ca25d85e9ec65b8",
+    "version": "1.7.2"
+  },
+  "notices": {
+    "AUTHORS": "a0f915313286a6e359ffb3e6586adb445849a79f2e9f0380fae14365fc064519",
+    "COPYING.MPL": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f",
+    "THANKS": "d232e70992c9d507964cc3d70137707cec0b5c5902c291cfd269986c4449ac4f",
+    "license.hunspell": "3f7ddd07c296edbfe0a47c7bcc82038ad347a2c4f672345b24f95c624db68513",
+    "license.myspell": "dcda061adeed22b26f276c01ec374f930789ae0d684e5aa8f8be309dd680ff20"
+  },
+  "policy": "MIT adapter; Hunspell library files under the MPL 1.1 option of their MPL 1.1/GPL 2.0/LGPL 2.1 tri-licence; MySpell-derived parts under the MySpell BSD-style notice; no GPL/LGPL-only code",
+  "schema_version": 1,
+  "source_bundle": {
+    "file": "hunspell-1.7.2-library-sources.tar.gz",
+    "sha256": "7efc4a85839455eaaeeb5dae8c6aa48a4d85acddb2ac0d1723822a70e2f46723"
+  }
+}

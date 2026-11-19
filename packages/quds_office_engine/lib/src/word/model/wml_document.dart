@@ -1226,6 +1226,10 @@ class WmlDocument {
   /// Document default language, stored in styles.xml docDefaults/rPr/lang.
   String? proofingLanguage;
 
+  /// Document default complex-script language (docDefaults `w:lang/@w:bidi`).
+  /// Read-only for proofing routing; styles.xml keeps the attribute.
+  String? complexScriptLanguage;
+
   /// Automatic linguistic hyphenation (`w:autoHyphenation`).
   /// Explicit soft hyphens remain usable when this is disabled.
   bool autoHyphenation;
