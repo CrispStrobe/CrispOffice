@@ -16,7 +16,9 @@ Modules can share source logic through local `Sub` helpers and scalar
 `Function` procedures. Calls are evaluated during compilation with isolated
 local variables and explicit `ByVal` arguments; they do not introduce a second
 document execution path. Conditional `Do`/`While` loops and `Select Case`
-selection use the same source values and aggregate compilation budgets.
+selection use the same source values and aggregate compilation budgets. Fixed
+one-dimensional local arrays and `For Each` loops support bounded source-data
+processing and explicit cell-range iteration within those same budgets.
 
 This increment targets the spreadsheet family (`xlsx`, including macro-enabled
 and template workbook packages admitted by the existing runtime). Embedded VBA
@@ -134,7 +136,8 @@ to `ByRef`; this compiler rejects an omitted passing mode rather than silently
 changing its meaning. All arguments are required and positional. Parameter
 types are `Long`, `Double`, `String`, `Boolean`, scalar `Variant`, `Worksheet`,
 and `Range`; an omitted `As` means scalar `Variant`. `ByRef`, `Optional`, named
-arguments, default arguments, arrays, and `ParamArray` remain unsupported.
+arguments, default arguments, array parameters, and `ParamArray` remain unsupported.
+Individual scalar array elements can be passed to scalar `ByVal` parameters.
 
 Functions return one supported scalar, using assignment to their own name.
 An omitted return type means scalar `Variant`; object return types are not
@@ -153,8 +156,8 @@ writes appear in the generated plan in evaluation order. Source functions
 still cannot read workbook values.
 
 `Exit Sub` and `Exit Function` return from the containing procedure.
-`Exit For` exits the innermost `For` in that procedure and leaves its counter
-at the current value. `Exit Do` exits the innermost `Do` in that procedure.
+`Exit For` exits the innermost counted `For` or `For Each` in that procedure
+and leaves its control variable at the current value or binding. `Exit Do` exits the innermost `Do` in that procedure.
 Each loop exit passes through other loop kinds and nested `If`, `Select Case`,
 and `With` blocks until it reaches its own loop kind. The enclosing object
 context is restored when control returns. An exit cannot terminate a caller's
@@ -254,6 +257,108 @@ dart run tool/macros/office_macro.dart run-vba \
   input.xlsx example/macros/control_flow_report.bas output.xlsx
 ```
 
+## Fixed arrays and For Each
+
+Local procedures can declare fixed one-dimensional arrays of `Long`, `Double`,
+`String`, `Boolean`, or scalar `Variant` elements:
+
+```vb
+Option Explicit
+
+Const FirstRow As Long = 2
+
+Sub Main()
+    Dim amounts(FirstRow To FirstRow + 2) As Long
+    Dim item As Variant, total As Long, row As Long
+    Dim cell As Range
+
+    amounts(2) = 125
+    amounts(3) = 250
+    amounts(4) = 475
+
+    For row = LBound(amounts) To UBound(amounts)
+        Worksheets("Summary").Cells(row, 1).Value2 = amounts(row)
+    Next row
+
+    For Each item In amounts
+        total = total + item
+    Next item
+    Worksheets("Summary").Range("A5").Value2 = total
+
+    For Each cell In Worksheets("Summary").Range("A2:A5")
+        cell.Font.Bold = True
+    Next cell
+End Sub
+```
+
+This writes three source-defined amounts and their total, **850**, and formats
+four explicitly bound cells. No cell values are read from the input workbook.
+The committed [array report](../packages/quds_office_engine/example/macros/array_report.bas)
+combines typed label and amount arrays, scalar helper calls, both `For Each`
+forms, and an independently calculated worksheet formula total.
+
+Array declarations must precede executable statements, just like scalar
+`Dim` declarations. `Dim values(3) As Long` declares indices **0 through 3**;
+`Dim values(-2 To 2) As Long` declares indices **-2 through 2**. Explicit bounds
+are inclusive, must be signed 32-bit integers, and may use literals, supported
+constant expressions, and previously declared module or local constants.
+An upper bound below the lower bound is invalid. Bounds are checked even in
+unused procedures; source functions and variable-dependent bounds are not
+allowed. `Option Base` remains unsupported; an omitted lower bound is zero.
+
+Every typed element starts with its scalar default: zero, an empty string, or
+`False`. Each `Variant` element must be assigned before it is read or visited
+by `For Each`, because `Empty` is not implemented. Reads and writes use one
+integer index, as in `amounts(row)`; fractional indices and out-of-bounds
+indices produce structured compiler diagnostics. Element assignments retain
+the scalar type, finite-number, `Long`, and string limits. `Let` is optional.
+
+`LBound(values)` and `UBound(values)` return the declared bounds. Both accept
+an optional second argument specifying dimension **1**. Other dimensions are
+rejected. These intrinsics require a local array variable; array elements are
+ordinary scalar expressions and can be passed to existing scalar helpers.
+Arrays cannot be assigned, passed, returned, or placed inside another
+`Variant` as whole values. Dynamic or multidimensional arrays, arrays of
+objects, `Array`, `Split`, `ReDim`, and `Erase` remain outside this dialect.
+
+For an array, `For Each item In values` requires a `Variant` control variable.
+Without `Option Explicit`, an undeclared control variable may be introduced as
+an implicit scalar `Variant`. Elements are visited in ascending index order.
+The loop reads each slot when that iteration begins, so writing a later slot
+inside the body changes the value seen later. Assigning the control variable
+itself changes only that scalar variable; it does not write back into the
+array. On normal completion, the control variable retains the value left by
+the final body execution.
+
+For an explicitly bound rectangular `Range`, `For Each cell In target` requires
+a `Range` control variable. The collection expression is evaluated once at
+loop entry; subsequent rebinding of `target` does not change that iteration.
+Cells are visited from left to right, then top to bottom, with one single-cell
+binding per iteration. Rebinding the control variable changes only the current
+body's binding. The next iteration receives the next cell from the original
+range. `range.Row` and `range.Column` return the one-based top-left coordinates
+of any supported range. They are read-only source metadata, so they work during
+compilation without document access. Cell `.Value`, `.Value2`, and `.Formula`
+reads remain unsupported.
+
+`Next` may omit its control variable; when present, it must match the loop.
+Nested counted or collection loops cannot reuse an active control variable.
+`Exit For` leaves the nearest `For` or `For Each`, including through nested
+`Do`, `While`, `Select Case`, and `With` blocks. Procedure returns and matching
+loop exits restore enclosing object contexts. Loop bodies and collection
+expressions are checked even in inactive branches and unused procedures.
+
+Each array is limited to **4,096 elements**. The total across simultaneously
+active procedure frames is limited to **16,384 array slots**; slots are released
+when a procedure returns. Strings stored in all active array slots together
+are limited to **1,048,576 UTF-16 code units**. Each occupied slot counts its
+string length, including slots sharing equal or identical strings; replacing a
+slot or returning from a procedure releases its contribution. Allocation, bound
+evaluation, indexing, and iteration
+consume the shared compilation work budget. Large range collections are checked
+against the remaining work budget before iteration, including loops with empty
+bodies. Arrays do not increase the existing operation or encoded-plan limits.
+
 ## Object model and operation mappings
 
 | Source construct | Behavior |
@@ -270,6 +375,7 @@ dart run tool/macros/office_macro.dart run-vba \
 | `range.Font.Size = 14` | `xlsx.cellFormat` with `size` |
 | `range.Font.Color = RGB(r, g, b)` | `xlsx.cellFormat` with a normalized RGB hex color |
 | `range.Interior.Color = RGB(r, g, b)` | `xlsx.cellFormat` with `fill` |
+| `range.Row` / `range.Column` | Read-only one-based top-left coordinates from the explicit source range |
 | `range.ClearContents` | `xlsx.cellValue` with null, removing value/formula and retaining formatting |
 
 Names and keywords are case-insensitive. Worksheet names retain their original
@@ -297,6 +403,8 @@ ranges, and default members are not translated into approximate operations.
 | Calls and returns | In-module procedure calls, scalar functions in expressions, return assignment through the function name, and discarded function results in statement calls |
 | Early exits | `Exit Sub`, `Exit Function`, innermost `Exit For`, and innermost `Exit Do`, checked against the containing procedure or matching loop kind |
 | Declarations | `Dim` and `Const`, including comma-separated declarations; declarations must precede executable statements and remain outside control-flow blocks |
+| Fixed local arrays | One dimension of supported scalar elements, constant inclusive bounds, integer indexed reads/writes, `LBound`/`UBound` |
+| Collection loops | `For Each` over a local array with a `Variant` control variable, or an explicit rectangular range with a `Range` control variable |
 | Scalar types | `Long`, `Double`, `String`, `Boolean`, and scalar `Variant`; omitted `As` means `Variant` |
 | Object types | `Worksheet` and `Range` variables, assigned with `Set`; object default members are unsupported |
 | Constants | Literals, supported unary/binary expressions, and previously declared constants; function calls in constant initializers are unsupported |
@@ -316,7 +424,7 @@ Typed variables start at `0`, `0.0`, `""`, or `False`. An uninitialized
 `Variant`, `Worksheet`, or `Range` cannot be read; assign it first. With
 `Option Explicit`, undeclared variables are errors. Without it, assignment
 targets and loop counters can introduce scalar Variant variables, but an
-undeclared read still fails. Arrays, `Empty`, `Null`, and `Nothing` are not
+undeclared read still fails. Dynamic and multidimensional arrays, `Empty`, `Null`, and `Nothing` are not
 implemented.
 
 Assignments and operations use strict types. Arithmetic uses finite binary64
@@ -343,8 +451,8 @@ matching the documented `RGB` behavior. Explicit integer colors use VBA's
 red/green/blue byte ordering and are converted to the engine's six-digit RGB
 hex representation. System colors and palettes are unsupported.
 
-The compiler rejects other function calls, `ByRef`, recursion, `For Each`,
-other exit kinds, `GoTo`, error handlers, conditional compilation,
+The compiler rejects other function calls, `ByRef`, recursion, arbitrary
+collection enumeration, other exit kinds, `GoTo`, error handlers, conditional compilation,
 file/network operations, `Shell`, `CreateObject`, `Application.Run`, and
 document-value reads. Unsupported syntax,
 unknown names, and unsupported object shapes are checked in inactive branches
@@ -364,6 +472,9 @@ The compiler has its own limits before the native runtime receives a plan:
 | Block nesting | 32 |
 | Expression nesting / AST depth | 64 |
 | Visible variables per procedure, including constants, parameters, and function return slot | 256 |
+| Array elements per fixed local array | 4,096 |
+| Array slots across active procedure frames | 16,384 |
+| String code units stored across active array slots | 1,048,576 |
 | Parameters / arguments per procedure call | 16 |
 | Procedure frames, including the selected entry | 32 |
 | String literal / concatenation length | 32,767 UTF-16 code units |
@@ -464,6 +575,10 @@ The supported mappings are based on Microsoft's documented VBA behavior:
 - [Value2 and its distinction from Value](https://learn.microsoft.com/en-us/office/vba/api/excel.range.value2)
 - [Formula assignment to ranges](https://learn.microsoft.com/en-us/office/vba/api/excel.range.formula)
 - [ClearContents](https://learn.microsoft.com/en-us/office/vba/api/excel.range.clearcontents)
+- [Fixed array declarations and default bounds](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/dim-statement)
+- [For Each…Next and control-variable types](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/for-eachnext-statement)
+- [LBound](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/lbound-function) and [UBound](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/ubound-function)
+- [Range.Row](https://learn.microsoft.com/en-us/office/vba/api/excel.range.row) and [Range.Column](https://learn.microsoft.com/en-us/office/vba/api/excel.range.column)
 - [For…Next](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/fornext-statement)
 - [Do…Loop](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/doloop-statement)
 - [While…Wend](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/whilewend-statement)

@@ -1,0 +1,36 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/8eda9a4e1801/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/8eda9a4e1801/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/8eda9a4e1801/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=node",
+    "--compiler=dart2js",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/archive_export_manifest_test.dart",
+    "test/browser_problem_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_store",
+  "elapsed_seconds": 24.238,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "expected_test_files": [
+    "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+    "packages/quds_mail_store/test/browser_problem_test.dart"
+  ],
+  "finished_at_utc": "2026-11-19T18:48:51.570780+00:00",
+  "missing_files": [],
+  "name": "quds_mail_store-node",
+  "started_at_utc": "2026-11-19T18:48:27.332943+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "990ecb1fd29a76a8208446bdbde600ee6623c8bd982c29a428fd99203555ff69",
+  "test_cases_sha256": "3e1f75ddfe6c6ab37d267e4a0249ef511a5edf47f76b5220a594d5afee257163",
+  "test_counts": {
+    "failed": 0,
+    "passed": 9,
+    "skipped": 0
+  },
+  "unexpected_files": []
+}

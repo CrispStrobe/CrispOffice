@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "git",
+    "diff",
+    "--check",
+    "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+    "--",
+    ".",
+    ":(exclude)docs/validation/office-vba-arrays-20261119/independent-review/slide-table-color/before-source.diff",
+    ":(exclude)docs/validation/office-vba-arrays-20261119/independent-review/slide-table-color/after-source.diff",
+    ":(exclude)docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/incoming-context.diff"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
+  "environment_overrides": {},
+  "expected_test_files": [],
+  "name": "whitespace",
+  "started_at_utc": "2026-11-19T18:48:11.132904+00:00"
+}

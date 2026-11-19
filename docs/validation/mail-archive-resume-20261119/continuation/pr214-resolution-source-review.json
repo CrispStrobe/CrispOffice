@@ -1,0 +1,83 @@
+{
+  "status": "passed_source_review",
+  "reviewed_at_utc": "2026-11-19T19:59:51.555360+00:00",
+  "reviewer": "independent remote_reconciliation agent",
+  "mail_parent": "b2c05a0afa0ae606b061b13d5e50937c2a8eb1df",
+  "incoming_main_parent": "9ceb994d8edce3989228f1244cda90ecc9884931",
+  "previously_reviewed_integration_commit": "d3e90d0fc0a75e2abfc3efb52e495c032e20683f",
+  "checkout_head_at_review": "9fa5454cd81221d53501c89ed45e328bd3691227",
+  "scope": "Source and staged-diff review only; does not assert fresh runtime execution. Validation-document changes are outside this source review.",
+  "changed_paths": [
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "diff_stats": [
+    "4\t2\tpackages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "28\t1\tpackages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "2\t0\tpackages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "patch_sha256": "bf7abe56ed47d23e1aa132bff3cd66a87fbcf8584e4f78f9f7cdf333d57d0d87",
+  "compressed_patch_sha256": "17966e635b38c54cadb00324e372d2b7ff693dc2d192f7d7534f765ac1301c8f",
+  "files": {
+    "manager": {
+      "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+      "sha256": "94831669a91da4fd28812f0db4a4506729d49882330ce8edbea3d8b650b71bf0",
+      "git_blob_sha": "b0cbd72b5e172ce203eddc16a304de5233e1c9be",
+      "working_equals_index": true,
+      "equals_mail_parent": false,
+      "equals_main_parent": true
+    },
+    "native_host": {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+      "sha256": "2979ae5b496f4cfc9f79a7dafd6d2488fb83ad7276a92b3fb9b584ea6a6e17ce",
+      "git_blob_sha": "7e7407f15b5514dd1d07218901124962dc96fe2e",
+      "working_equals_index": true,
+      "equals_mail_parent": true,
+      "equals_main_parent": false
+    },
+    "manager_tests": {
+      "path": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "sha256": "f36ac697a4d6ec77b23354a4918517c2cf9c359b418b41d9ba68a5688afac010",
+      "git_blob_sha": "be7b66dc2d1bae71b6ee7e64db5450a2f3d66c63",
+      "working_equals_index": true,
+      "equals_mail_parent": false,
+      "equals_main_parent": false
+    },
+    "setup_tests": {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "sha256": "e7aca3a8e71b2ab65298dc504e61529bdd6df6ff8b424e0162548c79acbc91b1",
+      "git_blob_sha": "43bb2b021cbd4d01ce628c2ea8554fe57126293b",
+      "working_equals_index": true,
+      "equals_mail_parent": false,
+      "equals_main_parent": true
+    }
+  },
+  "checks": {
+    "exactly_three_intended_non_validation_paths_changed": true,
+    "working_files_match_staged_files": true,
+    "native_host_identical_to_accepted_mail_parent": true,
+    "download_manager_identical_to_latest_main": true,
+    "setup_test_identical_to_latest_main": true,
+    "all_prior_manager_test_bytes_retained_except_label_finder": true,
+    "new_label_test_exactly_matches_main_except_existing_fixture_argument": true,
+    "only_new_declaration_wrapping_changed_since_previous_review": true,
+    "scoped_staged_whitespace_check": true
+  },
+  "integration_decisions": [
+    "Keep the native host byte-identical to the accepted mail source: _nerStatus verifies installed NER data in both bundled and downloaded paths, with the same success/error results as main _nerState.",
+    "Adopt main download-manager title and explanatory model-only text verbatim, retaining model-only download size behavior already present in mail.",
+    "Keep the existing bundledLibrary/package test fixture and all prior tests. Adapt only the three size-case title finders; retain both native NER fixture cases byte-for-byte.",
+    "Add the incoming standalone bundled-label widget test using the existing bundledLibrary argument, and retain both incoming setup assertions.",
+    "Wrap only the new widget-test declaration to three lines, exactly as in incoming main. The rest of the previously reviewed test file is unchanged. The discarded formatter attempt is not part of the reviewed source."
+  ],
+  "retained_focused_mail_cases": [
+    "German download size: bundled runtime with a downloadable package",
+    "German download size: bundled runtime without a downloadable package",
+    "German download size: downloaded runtime",
+    "Bundled runtime verifies optional NER independently",
+    "Downloaded runtime verifies optional NER independently"
+  ],
+  "remaining_validation": "Execute the affected downloads-manager and spaCy-setup tests plus focused strict analysis/formatting on the resolved files. Bind subsequent receipts to the final published source.",
+  "findings": []
+}

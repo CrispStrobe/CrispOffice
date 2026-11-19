@@ -1,0 +1,649 @@
+{
+  "success": true,
+  "passed_distinct": 97,
+  "failed_distinct": 0,
+  "skipped_distinct": 0,
+  "visible_completed_events": 97,
+  "duplicate_suite_name_pairs": 0,
+  "by_suite": {
+    "analysis_test.dart": {
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    "bundle_test.dart": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    "distribution_test.dart": {
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    "grammar_evaluation_harness_test.dart": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    "grammar_planner_test.dart": {
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0
+    },
+    "grammar_provider_test.dart": {
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0
+    },
+    "language_catalog_test.dart": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    "ner_removal_test.dart": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    "worker_test.dart": {
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "missing_suites": [],
+  "reporter_done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 4286
+    }
+  ],
+  "reporter_errors": [],
+  "unparsed_lines": [],
+  "tests": [
+    {
+      "suite": "analysis_test.dart",
+      "name": "a cycle disconnected from the one root is rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "byte admission checks multibyte input without truncation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "coalescing keys are unambiguous and snapshot identity is complete",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "coordinate drift and scalar splits fail rather than clamp",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "empty is explicit and nonempty cannot masquerade as empty success",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "failed results cannot carry a successful partial document",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "repeated strings must match exact coordinates and source coverage",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "result owns immutable lists and preserves original nonzero offsets",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "sentence flags, roots and cross-sentence dependencies are checked",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "success is scoped to the exact declared locale and runtime profile",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "analysis_test.dart",
+      "name": "unpaired UTF16 never silently becomes replacement UTF8",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "bundle_test.dart",
+      "name": "closed bundle includes exact source notices and never accepts path input",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "bundle_test.dart",
+      "name": "missing explicit assets fail startup rather than produce empty success",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "bundle_test.dart",
+      "name": "native configuration rejects ambiguous hashes and NUL paths",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "catalog grammar claims match the planner's enforced build pin",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "catalog pins the published Linux capsule at an immutable revision",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "claims are bound to exact library digests",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "download failures leave no installation HTTP error",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "download failures leave no installation authentic bytes that are not a closed capsule are rejected",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "download failures leave no installation caller cancellation aborts the transfer",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "download failures leave no installation declared length mismatch",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "download failures leave no installation same length but wrong bytes fail SHA-256",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "download failures leave no installation undeclared oversized body is cut off",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "missing installation is null and a damaged one is reported",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "only immutable revisions and safe paths resolve",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "optional entities are validated against whole tokens",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "the macOS package is published without a grammar claim",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "distribution_test.dart",
+      "name": "unpublished platforms are unavailable with a stated reason",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_evaluation_harness_test.dart",
+      "name": "baseline closure permits additive API but rejects lexical data and ZIP drift",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_evaluation_harness_test.dart",
+      "name": "checkpoint replacement preserves last complete report on pending collision",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_evaluation_harness_test.dart",
+      "name": "consumed synthetic seal blocks a new receipt before native entry",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_evaluation_harness_test.dart",
+      "name": "exact scorer maps nonzero UTF-16 origin after an emoji",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_evaluation_harness_test.dart",
+      "name": "existing receipt rejects admission before reading missing assets",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_evaluation_harness_test.dart",
+      "name": "multiple choices and overlapping proposals cannot score exact",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_evaluation_harness_test.dart",
+      "name": "partial graphemes and wrong original text fail source mapping",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_evaluation_harness_test.dart",
+      "name": "summary counts raw native false positives despite merge suppression",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_evaluation_harness_test.dart",
+      "name": "unsupported and failed arms are never exact clean successes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "PP subject modifier proposes one reviewed edit at original origin",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "a quotation blocks its middle sentence even without local quote tokens",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "a single parsed quotation remains excluded",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "adverbial inversion uses the licensed singular target",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "all noun alternatives veto a false Leiter correction",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "analysis failure remains an operational failure, not no grammar errors",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "coordination, pronouns, names and unknown PP nouns are excluded",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "fronted object or extra nominal phrase cannot become a false subject",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "model-selected number cannot override licensed subject number",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "productive von/vom phrases stay outside mechanical agreement",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "protected source ranges include the whole governing context",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "provider and existing noun-verb ignore IDs suppress the actual proposal",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "quantity heads do not force lexical singular onto semantic agreement",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "regional and historical locales remain unsupported",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "source identity and exact accepted native identity are mandatory",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "the host merge keeps deterministic findings at a duplicate span",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "unknown and personal words cause explicit abstention",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "valid source is preserved and correctly rechecked",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_planner_test.dart",
+      "name": "wrong lemma, mood, person and root shape never generate forms",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "a new ignored request cancels an older pending check without inference",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "a vocabulary change during inference invalidates the returned snapshot",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "a vocabulary change while lexical planning yields invalidates completion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "admitted check preserves the exact request and nonzero source origin",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "all exact analysis snapshot fields are authenticated before planning",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "current cancellation invalidates even a late successful reply",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "default disabled provider makes zero analysis calls",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "disabled load refuses before any backend can open",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "dispose invalidates pending work and joins transport cleanup once",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "independent blocks retain independent cancellation ownership",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "native failures and timeouts remain explicit operational outcomes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "obsolete request cancellation and completion cannot invalidate its successor",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "personal and ignored words are captured before inference",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "reply runtime and grammar-qualified runtime identities are both enforced",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "transport exceptions stay failed or unavailable without findings",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "grammar_provider_test.dart",
+      "name": "unsupported locales and ignored rules make zero analysis calls",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "language_catalog_test.dart",
+      "name": "a language bundle needs a v2-capable runtime package",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "language_catalog_test.dart",
+      "name": "absent and damaged language trees are distinguished",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "language_catalog_test.dart",
+      "name": "bundles are distinct closed profiles with v2 capability masks",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "language_catalog_test.dart",
+      "name": "identities validate only against their own bundle",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "language_catalog_test.dart",
+      "name": "language downloads resolve only at their immutable revisions",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "language_catalog_test.dart",
+      "name": "request locales map to exactly one analysis language",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "language_catalog_test.dart",
+      "name": "the grammar planner pin never matches a v2 runtime or bundle",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "language_catalog_test.dart",
+      "name": "wrong bundle bytes of the pinned length leave no installation",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "ner_removal_test.dart",
+      "name": "NER removal refuses invalid model identity and redirected model storage",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "ner_removal_test.dart",
+      "name": "removing NER deletes only its content-addressed model, including disabled data",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "200 superseding snapshots retain one physical slot and other-key order",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "cancel releases caller but preserves slot until native acknowledgement",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "cleanup failure is explicit and repeated disposal preserves the error",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "dispose rejects callers immediately and joins the active context safely",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "invalid replacement does not cancel valid in-flight source",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "persistent native ownership serializes calls and recovers after failure",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "snapshot and runtime mismatch cannot become success",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "spawn failure has no unhandled readiness error",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "startup failure returns explicit unavailable",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "startup timeout returns promptly then releases late initialized context",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "timeout retains physical slot and never publishes a late result",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "unexpected isolate exit rejects all callers",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "web worker boundary reports unavailable without opening backend",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "suite": "worker_test.dart",
+      "name": "worker limit admission is explicit",
+      "result": "success",
+      "skipped": false
+    }
+  ]
+}

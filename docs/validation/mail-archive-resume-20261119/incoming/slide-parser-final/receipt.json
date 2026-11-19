@@ -1,0 +1,109 @@
+{
+  "success": true,
+  "commands": [
+    {
+      "name": "tests",
+      "command": [
+        "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/8eda9a4e1801/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/8eda9a4e1801/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=vm",
+        "--compiler=kernel",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/slide_table_cell_color_test.dart",
+        "test/slide_test.dart",
+        "test/slide_import_fidelity_test.dart",
+        "test/slide_text_fidelity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+      "started_at_utc": "2026-11-19T18:40:18.346653+00:00",
+      "elapsed_seconds": 37.178,
+      "exit_code": 0,
+      "stdout_sha256": "b1ec6d09712f60c116cc4683456afac6e508f95a5587607acd7915ab5fa5578b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "analysis",
+      "command": [
+        "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "lib/src/slide/shapes/drawingml.dart",
+        "test/slide_table_cell_color_test.dart"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+      "started_at_utc": "2026-11-19T18:40:55.525075+00:00",
+      "elapsed_seconds": 7.1,
+      "exit_code": 0,
+      "stdout_sha256": "278a3a26f247390a8772711f74a690686551a994fbb62ee1830553725c36434c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "format",
+      "command": [
+        "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib/src/slide/shapes/drawingml.dart",
+        "test/slide_table_cell_color_test.dart"
+      ],
+      "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+      "started_at_utc": "2026-11-19T18:41:02.625063+00:00",
+      "elapsed_seconds": 0.221,
+      "exit_code": 0,
+      "stdout_sha256": "70bd5cc5f55301f50998ea50c69514d38b66c794ddfeba351eb93c9a6de4c1f3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "summary": {
+    "success": true,
+    "passed_distinct": 34,
+    "failed_distinct": 0,
+    "skipped_distinct": 0,
+    "visible_completed_events": 34,
+    "duplicate_suite_name_pairs": 0,
+    "by_suite": {
+      "slide_import_fidelity_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      "slide_table_cell_color_test.dart": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "slide_test.dart": {
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0
+      },
+      "slide_text_fidelity_test.dart": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    "missing_suites": [],
+    "reporter_done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 8093
+      }
+    ],
+    "reporter_errors": [],
+    "unparsed_lines": []
+  },
+  "source_inputs": 857,
+  "changed_source_inputs": [],
+  "changed_dependency_inputs": [],
+  "executed_runner": {
+    "sha256": "734b5ae6f3e96281ed9b0a32f5c4c6ce10bc22f21a411705519cf9d1997b5b40",
+    "bytes": 3304
+  }
+}

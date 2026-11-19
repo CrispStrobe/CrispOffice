@@ -1,0 +1,3602 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-19T19:39:20.037Z",
+  "checked_publication_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
+  "previous_head": "fedabc7079db1c402cadcd9ef15296244979132e",
+  "new_head": "cacae8569814e4cb81f58d358734d31431f102be",
+  "new_tree": "3861b6559a754ddc5f070199f6bc22613ef8e2b4",
+  "parents": [
+    "fedabc7079db1c402cadcd9ef15296244979132e"
+  ],
+  "commit_message": "Preserve 921-case local acceptance and final GUI visual evidence [skip ci]",
+  "pr": {
+    "number": 211,
+    "state": "open",
+    "draft": true,
+    "head": "cacae8569814e4cb81f58d358734d31431f102be",
+    "base": "9f41e0427734d815b19149eba5eabef202f78ba6",
+    "updated_at": "2026-11-19T19:24:02Z",
+    "mergeable": true,
+    "mergeable_state": "clean",
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211"
+  },
+  "comparison_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/fedabc7079db1c402cadcd9ef15296244979132e...cacae8569814e4cb81f58d358734d31431f102be",
+  "commits": 1,
+  "changed_paths": 207,
+  "documentation_only": true,
+  "product_test_dependency_tree_unchanged": true,
+  "tree_proof": {
+    "Root": {
+      "before_tree": "ec7fe4262f93698f2a56b2ff334cde7574455fdb",
+      "after_tree": "3861b6559a754ddc5f070199f6bc22613ef8e2b4",
+      "truncated_before": false,
+      "truncated_after": false,
+      "differences": [
+        "docs",
+        "packages"
+      ],
+      "before": [
+        {
+          "path": ".cursorrules",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1a33e732cc093fa85ec14afcf9e8d7ee78f2253d"
+        },
+        {
+          "path": ".fvmrc",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4e46fba09bb9c1d654a226b7285b55b6949b3767"
+        },
+        {
+          "path": ".github",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8c6af08ccb1930cbe87f3c75ff637f622541037a"
+        },
+        {
+          "path": ".gitignore",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7c2bfda1f3938a75ea529cc25a8cdb7c6195d6c6"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8ac0d583dda68079b97b6c79a57a4803ecf13e40"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7b172a8eef21770142d5ba2b276c9a2ae812f66e"
+        },
+        {
+          "path": "LICENSE",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e"
+        },
+        {
+          "path": "README.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bc0b4884a1b6be672ff9324ea818773e729fb190"
+        },
+        {
+          "path": "analysis_options.yaml",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e40c961c5eda58a8470527fb768f093aa7dbbfff"
+        },
+        {
+          "path": "apps",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e97767581d70416a246cd149cdcd5e0a8d3f2352"
+        },
+        {
+          "path": "docs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "395d42d65a92b6d371282def715feeabb85468dd"
+        },
+        {
+          "path": "packages",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "5a45260e6ba4e30b7c7cd5e981cdeb9d9715bd61"
+        },
+        {
+          "path": "pubspec.lock",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b2b802bd19bcb5fd9ce4ad3ba91eeb025788b2a3"
+        },
+        {
+          "path": "pubspec.yaml",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96"
+        },
+        {
+          "path": "third_party",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "4ca1ad22af2e0a0bf6a47f7b1ccc6b4733011022"
+        },
+        {
+          "path": "tmp",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e22b873ec74ec2705f70fec6a09fa0787d4832c9"
+        },
+        {
+          "path": "tool",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a3d02a1de63b803d6d6e02e3e0deda8a5eb872f6"
+        },
+        {
+          "path": "tools",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0a8eee7641bed0db07f445966ccb6e61130a461a"
+        }
+      ],
+      "after": [
+        {
+          "path": ".cursorrules",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1a33e732cc093fa85ec14afcf9e8d7ee78f2253d"
+        },
+        {
+          "path": ".fvmrc",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4e46fba09bb9c1d654a226b7285b55b6949b3767"
+        },
+        {
+          "path": ".github",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8c6af08ccb1930cbe87f3c75ff637f622541037a"
+        },
+        {
+          "path": ".gitignore",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7c2bfda1f3938a75ea529cc25a8cdb7c6195d6c6"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8ac0d583dda68079b97b6c79a57a4803ecf13e40"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7b172a8eef21770142d5ba2b276c9a2ae812f66e"
+        },
+        {
+          "path": "LICENSE",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e"
+        },
+        {
+          "path": "README.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bc0b4884a1b6be672ff9324ea818773e729fb190"
+        },
+        {
+          "path": "analysis_options.yaml",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e40c961c5eda58a8470527fb768f093aa7dbbfff"
+        },
+        {
+          "path": "apps",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e97767581d70416a246cd149cdcd5e0a8d3f2352"
+        },
+        {
+          "path": "docs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "1405289a1643089bb32e5ade75ed39fdff327327"
+        },
+        {
+          "path": "packages",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "846ab6ee70c03ccdcc9c62c09fe9bb43f3254261"
+        },
+        {
+          "path": "pubspec.lock",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b2b802bd19bcb5fd9ce4ad3ba91eeb025788b2a3"
+        },
+        {
+          "path": "pubspec.yaml",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96"
+        },
+        {
+          "path": "third_party",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "4ca1ad22af2e0a0bf6a47f7b1ccc6b4733011022"
+        },
+        {
+          "path": "tmp",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e22b873ec74ec2705f70fec6a09fa0787d4832c9"
+        },
+        {
+          "path": "tool",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a3d02a1de63b803d6d6e02e3e0deda8a5eb872f6"
+        },
+        {
+          "path": "tools",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0a8eee7641bed0db07f445966ccb6e61130a461a"
+        }
+      ]
+    },
+    "Packages": {
+      "before_tree": "5a45260e6ba4e30b7c7cd5e981cdeb9d9715bd61",
+      "after_tree": "846ab6ee70c03ccdcc9c62c09fe9bb43f3254261",
+      "truncated_before": false,
+      "truncated_after": false,
+      "differences": [
+        "quds_mail_store"
+      ],
+      "before": [
+        {
+          "path": "legacy_doc_parser",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c5d871e967a3ba0b9d5224df3e8243e62bd782fc"
+        },
+        {
+          "path": "quds_arabic_morph",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c7ccebd7abddd2bdc10e6b01cc77a423df32c191"
+        },
+        {
+          "path": "quds_language_id",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3d90ad4ae0e83714d2eb6f05f944590ccad9a573"
+        },
+        {
+          "path": "quds_mail_core",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2860c22f05dacc4cdeb18552e419c01e9d9b6862"
+        },
+        {
+          "path": "quds_mail_mime",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "b52df11aefcbf668097fe25c27b31e6aaf15a95d"
+        },
+        {
+          "path": "quds_mail_store",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "18c22277f78029a7bda004825b3eebc2ee01789e"
+        },
+        {
+          "path": "quds_mail_transport",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8eb63a27b9a1672a0e7693ce522f470dd9654524"
+        },
+        {
+          "path": "quds_mail_ui",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "70e9483363b9182613236c8e34c96ee9514f4e32"
+        },
+        {
+          "path": "quds_office_editor",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "989fcd7c54d456374d150bd7d7aec4b29a48b522"
+        },
+        {
+          "path": "quds_office_engine",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f21399f38cadd762a5c55af4273bbb5df550bffa"
+        },
+        {
+          "path": "quds_proofing_gector",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "081d1dc98ba03c365e88acc9aeafe3768fd86771"
+        },
+        {
+          "path": "quds_proofing_harper",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "fd6fc9a3accf3650e44f17f179ee00b179bb62f8"
+        },
+        {
+          "path": "quds_proofing_hunspell",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6f288b6ef762781f33006b3de317bfdb1b8fd983"
+        },
+        {
+          "path": "quds_proofing_spacy",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "9dcf8993fd9cd0d47c7c8414306d49003b5520cb"
+        },
+        {
+          "path": "quds_reports",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "fa1ae346999ab49f180461e5a91aeafb3642d981"
+        }
+      ],
+      "after": [
+        {
+          "path": "legacy_doc_parser",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c5d871e967a3ba0b9d5224df3e8243e62bd782fc"
+        },
+        {
+          "path": "quds_arabic_morph",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c7ccebd7abddd2bdc10e6b01cc77a423df32c191"
+        },
+        {
+          "path": "quds_language_id",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3d90ad4ae0e83714d2eb6f05f944590ccad9a573"
+        },
+        {
+          "path": "quds_mail_core",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2860c22f05dacc4cdeb18552e419c01e9d9b6862"
+        },
+        {
+          "path": "quds_mail_mime",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "b52df11aefcbf668097fe25c27b31e6aaf15a95d"
+        },
+        {
+          "path": "quds_mail_store",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "538f3a0cab78c6197cb5867d99973170445eae00"
+        },
+        {
+          "path": "quds_mail_transport",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8eb63a27b9a1672a0e7693ce522f470dd9654524"
+        },
+        {
+          "path": "quds_mail_ui",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "70e9483363b9182613236c8e34c96ee9514f4e32"
+        },
+        {
+          "path": "quds_office_editor",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "989fcd7c54d456374d150bd7d7aec4b29a48b522"
+        },
+        {
+          "path": "quds_office_engine",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f21399f38cadd762a5c55af4273bbb5df550bffa"
+        },
+        {
+          "path": "quds_proofing_gector",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "081d1dc98ba03c365e88acc9aeafe3768fd86771"
+        },
+        {
+          "path": "quds_proofing_harper",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "fd6fc9a3accf3650e44f17f179ee00b179bb62f8"
+        },
+        {
+          "path": "quds_proofing_hunspell",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6f288b6ef762781f33006b3de317bfdb1b8fd983"
+        },
+        {
+          "path": "quds_proofing_spacy",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "9dcf8993fd9cd0d47c7c8414306d49003b5520cb"
+        },
+        {
+          "path": "quds_reports",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "fa1ae346999ab49f180461e5a91aeafb3642d981"
+        }
+      ]
+    },
+    "Mail": {
+      "before_tree": "18c22277f78029a7bda004825b3eebc2ee01789e",
+      "after_tree": "538f3a0cab78c6197cb5867d99973170445eae00",
+      "truncated_before": false,
+      "truncated_after": false,
+      "differences": [
+        "CHANGELOG.md"
+      ],
+      "before": [
+        {
+          "path": "CHANGELOG.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8e473dab222e999515e5ace22a14fc5ff87221d1"
+        },
+        {
+          "path": "DEPENDENCIES.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5c135eea6cedff31623310fcb8ab32982f6879b4"
+        },
+        {
+          "path": "LICENSE",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e"
+        },
+        {
+          "path": "README.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8f974e3851fc8ddc0088706b5d61a57fb39457cc"
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "733fc3981cd3ef88fd197e899fa980538ec5853d"
+        },
+        {
+          "path": "lib",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c41c518d1970e57de8d7a4b61a637a564fdec836"
+        },
+        {
+          "path": "pubspec.yaml",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4529099ff0aa052d780d77fd1b9f35b9ae80ea94"
+        },
+        {
+          "path": "test",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "43fff20dcb8036217ae49faa92e1801f9df5fa4b"
+        },
+        {
+          "path": "tool",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "109ca252b322756d6683614bc250280cce90e0a4"
+        }
+      ],
+      "after": [
+        {
+          "path": "CHANGELOG.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "499fdeea8bb80b3e9e847a95fce6e81f6e06bc31"
+        },
+        {
+          "path": "DEPENDENCIES.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5c135eea6cedff31623310fcb8ab32982f6879b4"
+        },
+        {
+          "path": "LICENSE",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e"
+        },
+        {
+          "path": "README.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8f974e3851fc8ddc0088706b5d61a57fb39457cc"
+        },
+        {
+          "path": "THIRD_PARTY_NOTICES.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "733fc3981cd3ef88fd197e899fa980538ec5853d"
+        },
+        {
+          "path": "lib",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c41c518d1970e57de8d7a4b61a637a564fdec836"
+        },
+        {
+          "path": "pubspec.yaml",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4529099ff0aa052d780d77fd1b9f35b9ae80ea94"
+        },
+        {
+          "path": "test",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "43fff20dcb8036217ae49faa92e1801f9df5fa4b"
+        },
+        {
+          "path": "tool",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "109ca252b322756d6683614bc250280cce90e0a4"
+        }
+      ]
+    },
+    "Docs": {
+      "before_tree": "395d42d65a92b6d371282def715feeabb85468dd",
+      "after_tree": "1405289a1643089bb32e5ade75ed39fdff327327",
+      "truncated_before": false,
+      "truncated_after": false,
+      "differences": [
+        "validation"
+      ],
+      "before": [
+        {
+          "path": "IMAGE_EDITOR_INTEGRATION.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "af61951357edcbe097d1085617dac4e7b021a8b0"
+        },
+        {
+          "path": "MACROS.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "26a640f277c0177ba5f29965f8b5e264ddb90aa9"
+        },
+        {
+          "path": "MISSION.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a39845bbc84ba74deff2a368ec9cc06571d10ec0"
+        },
+        {
+          "path": "PDF.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "012844f2854407ac79c06da311c09a576ca78917"
+        },
+        {
+          "path": "PROOFING.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b839c96f065d2ee0fd7f77544e9bfea808f5063f"
+        },
+        {
+          "path": "PUBLISHING.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "da4cfc5758ce18e06c5d0c910f1634e2b6e914b7"
+        },
+        {
+          "path": "ROADMAP.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "480f51b29ebb787584d2fac8ee71d201dba3e2e2"
+        },
+        {
+          "path": "STANDARDS.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "34edb7d959a79fd717ef63fa14c9edeba0734300"
+        },
+        {
+          "path": "VBA_MACROS.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "51057555e5765d551b7c24be931888a09cd70d84"
+        },
+        {
+          "path": "conditional-format-rendering.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "2e4dd59ee403c369f30ea76fbd48e14ae53d8102"
+        },
+        {
+          "path": "document-review.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "08cc2833413296c8230580a87990fcc344b5472a"
+        },
+        {
+          "path": "evidence",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2451d4aa2e25a1700ee98a9b51236200af3e5918"
+        },
+        {
+          "path": "legacy-doc-parser-integration-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "de388ee477ee2535e437f464ec02ed94990d1fb2"
+        },
+        {
+          "path": "odf-export-fidelity.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e0ec6e28f094f9be3101a165bb2f8aba52f10ce7"
+        },
+        {
+          "path": "office-capabilities-20261114.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f40e6ec3fe02221329e1c9939bf81626c686e4fc"
+        },
+        {
+          "path": "office-coverage-gaps.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e56482b04695cd2da9edc3136c1a96c55c85840c"
+        },
+        {
+          "path": "office-fidelity-audit.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0f9fb8598bb9e5c6cb16a773f0be80493fa5cd57"
+        },
+        {
+          "path": "office-fidelity-consolidation-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f81e576ce3ef509b55d2908595dc863e61eeeb2f"
+        },
+        {
+          "path": "office-fidelity-coverage-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "165bf360facbe1293f9ff429fb44c2ca0c5c9ff8"
+        },
+        {
+          "path": "office-fidelity-expansion-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a36d6b7e67465ff0b31a81d4e91ed4196acaeb3e"
+        },
+        {
+          "path": "office-fidelity-followup-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f5e705f69e38c21656afb298024ca0965aac77f3"
+        },
+        {
+          "path": "office-fidelity-gap-closure-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ee3f810646d667f2f1c31263c3de0f6b8b1a316b"
+        },
+        {
+          "path": "office-fidelity-gaps.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d88e8bc265eabfc649ac7c37be869a04ac4c5c32"
+        },
+        {
+          "path": "office-fidelity-workflows-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6fdf8ee566ec2a7a8bd40224a399db6399695201"
+        },
+        {
+          "path": "office-generated-bookmark-paste-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d4373530236850c0415db682b71d0e35d63cac07"
+        },
+        {
+          "path": "office-golden-review-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "13a9deb4422957d099b3c287bb42c27cf599c411"
+        },
+        {
+          "path": "office-recovery-20261114.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3839849c5f1cf634be4d46539a41297662565ded"
+        },
+        {
+          "path": "office-remaining-gaps.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c19a2b3772c48f8f635446b4a5869c4290fb98b9"
+        },
+        {
+          "path": "office-render-evidence.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f50dfd2d4ce80e329bf0cdfc4a69e8ba506b869d"
+        },
+        {
+          "path": "office-schema-evidence.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d42a2143612314c98bccb35ecf47aad522f4db1e"
+        },
+        {
+          "path": "office-slide-arrangement-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "70620bae2d2401f10fb59c333cfe9e2eeea3b622"
+        },
+        {
+          "path": "office-unsupported-word-probes.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0afb84870bda8d6c770fe229e925eb561da31974"
+        },
+        {
+          "path": "office-validation-20261112.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "69fc33da43e119e0daa9822c422be51117b6e8f5"
+        },
+        {
+          "path": "office-validation-692a326.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ad1061a8f83d385bab375e793c3382a7e31b6b9b"
+        },
+        {
+          "path": "office-worksheet-navigation-20261114.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "39198adf2c414743de8692a530789e46c9aec251"
+        },
+        {
+          "path": "office-worksheet-navigation-20261115.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "31f1e30259314e6bca7feaac47d313768a1eb66d"
+        },
+        {
+          "path": "office-worksheet-state-20261114.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ad974dabf9a5a6c1e25569584abbb6086e31902c"
+        },
+        {
+          "path": "pdf-text-string-decoding.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "29410f723971d3aa9b14d0c0b45c7c4edfe16fd7"
+        },
+        {
+          "path": "roadmaps",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "636f780d3349583ee5fccdff97cf1ecfa965b2ff"
+        },
+        {
+          "path": "text-rendering-strategy.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a784443a74ef9e0871a9aa40fea9ca696afe51b8"
+        },
+        {
+          "path": "validation",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "1c783217dcc82333dde5493b67f735e5cfd57447"
+        },
+        {
+          "path": "zotero-support.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fb8892d35ace0120eded8d80cec47b4f11e40593"
+        },
+        {
+          "path": "zotero-validation.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "16f781b48a9956525af20aa93142a47056441054"
+        }
+      ],
+      "after": [
+        {
+          "path": "IMAGE_EDITOR_INTEGRATION.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "af61951357edcbe097d1085617dac4e7b021a8b0"
+        },
+        {
+          "path": "MACROS.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "26a640f277c0177ba5f29965f8b5e264ddb90aa9"
+        },
+        {
+          "path": "MISSION.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a39845bbc84ba74deff2a368ec9cc06571d10ec0"
+        },
+        {
+          "path": "PDF.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "012844f2854407ac79c06da311c09a576ca78917"
+        },
+        {
+          "path": "PROOFING.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b839c96f065d2ee0fd7f77544e9bfea808f5063f"
+        },
+        {
+          "path": "PUBLISHING.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "da4cfc5758ce18e06c5d0c910f1634e2b6e914b7"
+        },
+        {
+          "path": "ROADMAP.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "480f51b29ebb787584d2fac8ee71d201dba3e2e2"
+        },
+        {
+          "path": "STANDARDS.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "34edb7d959a79fd717ef63fa14c9edeba0734300"
+        },
+        {
+          "path": "VBA_MACROS.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "51057555e5765d551b7c24be931888a09cd70d84"
+        },
+        {
+          "path": "conditional-format-rendering.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "2e4dd59ee403c369f30ea76fbd48e14ae53d8102"
+        },
+        {
+          "path": "document-review.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "08cc2833413296c8230580a87990fcc344b5472a"
+        },
+        {
+          "path": "evidence",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2451d4aa2e25a1700ee98a9b51236200af3e5918"
+        },
+        {
+          "path": "legacy-doc-parser-integration-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "de388ee477ee2535e437f464ec02ed94990d1fb2"
+        },
+        {
+          "path": "odf-export-fidelity.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e0ec6e28f094f9be3101a165bb2f8aba52f10ce7"
+        },
+        {
+          "path": "office-capabilities-20261114.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f40e6ec3fe02221329e1c9939bf81626c686e4fc"
+        },
+        {
+          "path": "office-coverage-gaps.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e56482b04695cd2da9edc3136c1a96c55c85840c"
+        },
+        {
+          "path": "office-fidelity-audit.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0f9fb8598bb9e5c6cb16a773f0be80493fa5cd57"
+        },
+        {
+          "path": "office-fidelity-consolidation-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f81e576ce3ef509b55d2908595dc863e61eeeb2f"
+        },
+        {
+          "path": "office-fidelity-coverage-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "165bf360facbe1293f9ff429fb44c2ca0c5c9ff8"
+        },
+        {
+          "path": "office-fidelity-expansion-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a36d6b7e67465ff0b31a81d4e91ed4196acaeb3e"
+        },
+        {
+          "path": "office-fidelity-followup-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f5e705f69e38c21656afb298024ca0965aac77f3"
+        },
+        {
+          "path": "office-fidelity-gap-closure-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ee3f810646d667f2f1c31263c3de0f6b8b1a316b"
+        },
+        {
+          "path": "office-fidelity-gaps.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d88e8bc265eabfc649ac7c37be869a04ac4c5c32"
+        },
+        {
+          "path": "office-fidelity-workflows-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6fdf8ee566ec2a7a8bd40224a399db6399695201"
+        },
+        {
+          "path": "office-generated-bookmark-paste-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d4373530236850c0415db682b71d0e35d63cac07"
+        },
+        {
+          "path": "office-golden-review-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "13a9deb4422957d099b3c287bb42c27cf599c411"
+        },
+        {
+          "path": "office-recovery-20261114.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3839849c5f1cf634be4d46539a41297662565ded"
+        },
+        {
+          "path": "office-remaining-gaps.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c19a2b3772c48f8f635446b4a5869c4290fb98b9"
+        },
+        {
+          "path": "office-render-evidence.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f50dfd2d4ce80e329bf0cdfc4a69e8ba506b869d"
+        },
+        {
+          "path": "office-schema-evidence.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d42a2143612314c98bccb35ecf47aad522f4db1e"
+        },
+        {
+          "path": "office-slide-arrangement-20261112.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "70620bae2d2401f10fb59c333cfe9e2eeea3b622"
+        },
+        {
+          "path": "office-unsupported-word-probes.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0afb84870bda8d6c770fe229e925eb561da31974"
+        },
+        {
+          "path": "office-validation-20261112.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "69fc33da43e119e0daa9822c422be51117b6e8f5"
+        },
+        {
+          "path": "office-validation-692a326.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ad1061a8f83d385bab375e793c3382a7e31b6b9b"
+        },
+        {
+          "path": "office-worksheet-navigation-20261114.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "39198adf2c414743de8692a530789e46c9aec251"
+        },
+        {
+          "path": "office-worksheet-navigation-20261115.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "31f1e30259314e6bca7feaac47d313768a1eb66d"
+        },
+        {
+          "path": "office-worksheet-state-20261114.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ad974dabf9a5a6c1e25569584abbb6086e31902c"
+        },
+        {
+          "path": "pdf-text-string-decoding.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "29410f723971d3aa9b14d0c0b45c7c4edfe16fd7"
+        },
+        {
+          "path": "roadmaps",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "636f780d3349583ee5fccdff97cf1ecfa965b2ff"
+        },
+        {
+          "path": "text-rendering-strategy.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a784443a74ef9e0871a9aa40fea9ca696afe51b8"
+        },
+        {
+          "path": "validation",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "cf100f5486d82ebc185e581b7157fefc158657c1"
+        },
+        {
+          "path": "zotero-support.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fb8892d35ace0120eded8d80cec47b4f11e40593"
+        },
+        {
+          "path": "zotero-validation.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "16f781b48a9956525af20aa93142a47056441054"
+        }
+      ]
+    },
+    "Validation": {
+      "before_tree": "1c783217dcc82333dde5493b67f735e5cfd57447",
+      "after_tree": "cf100f5486d82ebc185e581b7157fefc158657c1",
+      "truncated_before": false,
+      "truncated_after": false,
+      "differences": [
+        "crispoffice-layout-theme-20261119"
+      ],
+      "before": [
+        {
+          "path": "aot-daemon-free-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "b48f8e2dbfc3c63dcd232bdb46fbcc5a8f267b96"
+        },
+        {
+          "path": "aot-integration-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "fa86c8d52aa70468f598fc2279ca5b9c9f5cb159"
+        },
+        {
+          "path": "canonical-merge-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "264bf794276cc96cfae950eb3f48f38d8ce9a69e"
+        },
+        {
+          "path": "crispcloud-rebuild-refresh-20261116.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "14d666b1a7d9c5c2a0b82fa02a88349eaedc531a"
+        },
+        {
+          "path": "crispcloud-testflight-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "973a4856732fb9e00b2ca1be51f1cfe0121342df"
+        },
+        {
+          "path": "crispoffice-gui-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "fcac8d2f78267d07fbc98879e2de40c46cc16be0"
+        },
+        {
+          "path": "crispoffice-layout-theme-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0342a38a5275a1541b7f2a204c71a81b723b7bd3"
+        },
+        {
+          "path": "document-review-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0fd75a8f281daa06b60262103744488718aaeda2"
+        },
+        {
+          "path": "document-review-continuation-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "85d315c9fb6f5a2240e58867b240104d94ed0278"
+        },
+        {
+          "path": "document-review-drafts-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8427b1ce9df1e8b3cf7ec0181b3c5a347ef50192"
+        },
+        {
+          "path": "document-review-inflight-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "35ddcc84ee2814b0133c94229d95049f5cc885f1"
+        },
+        {
+          "path": "document-review-keyboard-comments-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6614603c1be674dac43767e9b8adebed8c27d814"
+        },
+        {
+          "path": "document-review-live-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "af2646ab1e13268cedaaa56a55ac37b14daed0f4"
+        },
+        {
+          "path": "document-review-notes-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "1d584ce2d5957df7805b204ca9048af2a906f5a2"
+        },
+        {
+          "path": "document-review-notes-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8a39ce235fdafc8e06ee258e767975972ac97b7d"
+        },
+        {
+          "path": "gector-office-resume-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "5efcfd8a638a8899846a6c444575a99391bf0709"
+        },
+        {
+          "path": "german-context-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d8c4a161e3b40d24f4d26ec4ce7986ca3bb8ac1d"
+        },
+        {
+          "path": "german-gector",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "bfbf302b984cbd0b8473f3349244250aec650f54"
+        },
+        {
+          "path": "german-morphology-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "750167ac3746fb00ff5b25de938142e4de94c589"
+        },
+        {
+          "path": "german-morphology-completion-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a8831d30eff44cdc0156d04e01f667f492a7a836"
+        },
+        {
+          "path": "german-options-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6e449b0277119252e552a95db4325697abfc602a"
+        },
+        {
+          "path": "german-proofing-continuation-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "32af7c656438ffb16304a145982514ebfce45448"
+        },
+        {
+          "path": "german-proofing-next-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c4b25663717ad004b8e985c77a14486953e1e157"
+        },
+        {
+          "path": "german-proofing-recovery-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "825f9c7775c0ad5863cc6de7b913a0f779900060"
+        },
+        {
+          "path": "german-syntax-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "56aa5c869584aa968b11a9b60e46acb0a6921cdd"
+        },
+        {
+          "path": "grammar-release-build30-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ebb2c92b0c95ffac89e81971b332cf0d75f0a07f"
+        },
+        {
+          "path": "language-downloads-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "310ff83a4bbdeffeeb64222b6e919241673250d8"
+        },
+        {
+          "path": "mail-archive-portability-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d974c5165797334cb4e58fd5e5000f3b0efbba81"
+        },
+        {
+          "path": "mail-archive-restore-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0d067666239feb18704bf187a975ba7751a96b2f"
+        },
+        {
+          "path": "mail-archive-resume-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ef497dacc6dd375e5c971bf8610ec1df054f9dea"
+        },
+        {
+          "path": "mail-archive-search-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "175d239b79b6c49e51955e6d4c7054e8174e27d1"
+        },
+        {
+          "path": "mail-continue-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "cd497a7cdb3088bcca18cac50f44a7bed740038a"
+        },
+        {
+          "path": "mail-ews-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "1ca42da109fb5476536bac30216d09b2abcffc97"
+        },
+        {
+          "path": "mail-m06-resume-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e48b871b778c760cf110b72ebc365a88720b44aa"
+        },
+        {
+          "path": "mail-native-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "eeed07cd751c782181d8d14bc235abe03815a4e6"
+        },
+        {
+          "path": "mail-providers-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e34c98c31d0195b506879d321144be46de4b5fb2"
+        },
+        {
+          "path": "mail-reader-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d15bdedbc4c1fc4a92ef75b3f503f92023ecfc05"
+        },
+        {
+          "path": "mail-resume-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2977dab71a58287773e603a937ea7628873068b4"
+        },
+        {
+          "path": "mail-store-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c177ea7688ac70de07a191f51d8cd0789d24f803"
+        },
+        {
+          "path": "mail-uid-pagination-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e33b8ec4b550c61856a7907ed759e7e32efd5bb2"
+        },
+        {
+          "path": "native-spacy-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3c5633af94ef49f1fcd9238fb2aa3567a293aabc"
+        },
+        {
+          "path": "native-spacy-distribution-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6d027f4bdaaab22920d4d8ecc8050b09d451d3df"
+        },
+        {
+          "path": "native-spacy-en-fr-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "710897ed5f46b8a0acf6ff6bf1ea832c5a3d94b3"
+        },
+        {
+          "path": "native-spacy-w5-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "19a89bbfe2638fcd26ba7ee535db92893b2eaea2"
+        },
+        {
+          "path": "native-spacy-w6-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "948ce5cf879eac4410b3e5af3f0c8d0a792ad59f"
+        },
+        {
+          "path": "native-spacy-w7-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "1b8f69e421d9c4e84958e4ff218244a4f09da72c"
+        },
+        {
+          "path": "native-spelling-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "7a674c26331488845e8a2774e10921d63635d968"
+        },
+        {
+          "path": "native-spelling-continuation-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "4a5b8eb60f561e6fb9bb47041682d920e53d065e"
+        },
+        {
+          "path": "native-spelling-quality-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f90dcbf142dae5d747890cb3753b167ffd829315"
+        },
+        {
+          "path": "native-spelling-resume-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3f6a6d28b93696163f0d6cf3ae0a4f0952e19161"
+        },
+        {
+          "path": "odf-annotation-visibility-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "16e218bf4438a1c34e04150356b82f59595b407b"
+        },
+        {
+          "path": "odt-field-continuation-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6bbffd88fead3020c24c4ec69af01916aa4752b0"
+        },
+        {
+          "path": "office-completion-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "494385786c777f24628ad3bf6dc372817cc30425"
+        },
+        {
+          "path": "office-consolidation-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e82101748d07822da34b972bbb6665656a839fae"
+        },
+        {
+          "path": "office-continuation-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a39a018d372f0fde864c92ec7178450741ba42d5"
+        },
+        {
+          "path": "office-continuation-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "7cec714919e452cf352c527624d2cbb66b780c63"
+        },
+        {
+          "path": "office-continue-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c2b420342090a3b31c7cfa09ae93fa18a8d5b6f7"
+        },
+        {
+          "path": "office-current-reconciliation-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "b6c1d9a36f33e7f5bdf190a2f94233136f45e2ca"
+        },
+        {
+          "path": "office-fidelity-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "884e6beb367dd45acfb34c98043ec77aa8a3fa47"
+        },
+        {
+          "path": "office-fidelity-continuation-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "81285bb677ad77a28c8c4c4fb09ef1f924ee8a38"
+        },
+        {
+          "path": "office-fidelity-lists-sections-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ba128628d9ae82035b3b70477d74edb2140e79fd"
+        },
+        {
+          "path": "office-fidelity-resume-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "324d336317f1c8fae8c3dfdea093fed079f555c4"
+        },
+        {
+          "path": "office-final-union-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2c5647336b31d95cb02d21328b315178ed4dff01"
+        },
+        {
+          "path": "office-finish-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "fdf71c6d44fadfd7f18e93e9115735fe19051a12"
+        },
+        {
+          "path": "office-improvements-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "39f8fe5f3046b400225bd9c6e57f7edfb202814b"
+        },
+        {
+          "path": "office-local-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d72f91fc3af7ff2e1684b1f46290ffa5acfbf2c0"
+        },
+        {
+          "path": "office-macros-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2b203885ea6867dfe3d758263e73016bd71f4a74"
+        },
+        {
+          "path": "office-mail-continuation-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "041efe0c92fae862be57bc4a3ebdce90935df826"
+        },
+        {
+          "path": "office-main-completion-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "06b79ab6355300cc3db5f6319a0316a2ec7b7585"
+        },
+        {
+          "path": "office-main-integration-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f37595c0cd689fe93a1ad0ed2951ac6018d2a1e7"
+        },
+        {
+          "path": "office-main-sync-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "cfc919f0573e8991934a28a591f378d4e43fbb86"
+        },
+        {
+          "path": "office-reconcile-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "051340aaf5bdc32bbdebfeb49479b7c496942fa1"
+        },
+        {
+          "path": "office-reconciled-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "bfddbdf10c0e234ec940a335d9e4f7d1a1e0c316"
+        },
+        {
+          "path": "office-recovery-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "85b6e30df429945749cd02c21e8706d5c2bb7b64"
+        },
+        {
+          "path": "office-resume-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "efdf59d7042da13a8a2113db834faa9de7eb5175"
+        },
+        {
+          "path": "office-resume-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "323391222fc4a4357040af13c0e687ae07691ea4"
+        },
+        {
+          "path": "office-resume-main-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a3a50e401d2aeb18d8d589f1bea064e38d2c39a3"
+        },
+        {
+          "path": "office-retry-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "125fe1c6acb87515c05f9163a9fccc4581be94ab"
+        },
+        {
+          "path": "office-union-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "4ef9ba2f3d28a24ccb588f8841dba347428f9d36"
+        },
+        {
+          "path": "office-union-resume-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "b95e40d4cf393402a5a9d3aedb7743a7ed729108"
+        },
+        {
+          "path": "office-validation-recovery-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "db3c4d61bc7ed176540deee2f49bd48952e6e490"
+        },
+        {
+          "path": "office-vba-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8ccb1a57d988e933d7525d642b34e21a933f81d9"
+        },
+        {
+          "path": "office-vba-arrays-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2411f20399fd665a94cb588c439a383d69d623fc"
+        },
+        {
+          "path": "office-vba-control-flow-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "83cb410dc7f67a3fa2637eb6c0a1b39ec59ab4ac"
+        },
+        {
+          "path": "office-vba-procedures-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "7138a33b00f5d5606eaeade7828726b201028a79"
+        },
+        {
+          "path": "office-workflows-20261116.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f3ff7b3a525d28d6fa0286b93e84a29c22ad1d85"
+        },
+        {
+          "path": "proofing-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8e5d6b01463e2bfd2971e27e89487f926afb1858"
+        },
+        {
+          "path": "proofing-en-de-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "7cab8f967a86a71912103b0ca2a1f6dc05eba3a7"
+        },
+        {
+          "path": "proofing-en-de-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a0a662474e1a25fd1afc695a14fcd7cabdcd6c6a"
+        },
+        {
+          "path": "proofing-grammar-expansion-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8ac136210c828970e378351fe9f563a1150ba9e9"
+        },
+        {
+          "path": "proofing-office-followup-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "395a2d5aef8464cfd55cd3a8c38ae85872f0bee8"
+        },
+        {
+          "path": "terminal-integration-ods-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "90e152eae8a7d8f73195bcac80fdc578693722e1"
+        },
+        {
+          "path": "text-rendering-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d102e6dc6b51f976ee2a5f4b477defb8dec07e11"
+        },
+        {
+          "path": "text-rendering-continuation-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "dbbe30ebc20f460ca7dd8aceb025fb6aa0987dc1"
+        },
+        {
+          "path": "text-rendering-followup-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6c5eccf54ac0e095ebb6c9aa1d55122df7ed977e"
+        },
+        {
+          "path": "thesaurus-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ed371023d3f992d63c4fe13cc9ad266eb10781b7"
+        },
+        {
+          "path": "zotero-20261115",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0112a46869bb45dcb3b90cd76751e927a4d68fe1"
+        },
+        {
+          "path": "zotero-annotations-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "eb17d4175a00f350501fb7a25b2dbd0c293cdc83"
+        },
+        {
+          "path": "zotero-capabilities-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "b22cc81402b36790817130b19a08acd93fcb6699"
+        },
+        {
+          "path": "zotero-capabilities-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f7328a23d7de44be5ea5fa1456e35170ce1b2dff"
+        },
+        {
+          "path": "zotero-citation-workflow-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3b085c64d4af49ecc5faa617f39205fedc0e5106"
+        },
+        {
+          "path": "zotero-citing-20261115",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f0cbfb6d19c9e175d645ba344f5921e2d866f410"
+        },
+        {
+          "path": "zotero-continuation-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "10a059ff2241f10ea210f4e0c7a1bfdcfd3ddaac"
+        },
+        {
+          "path": "zotero-continuation-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a88cccac54cc2fe469eefa96fe3f8b4cf58e5700"
+        },
+        {
+          "path": "zotero-desktop-20261115",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "11102477934ea2d818cf7e1ef62158d85bac9373"
+        },
+        {
+          "path": "zotero-fidelity-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0ab856b6eece824c50cd6cc83050025277dd6aac"
+        },
+        {
+          "path": "zotero-finalization-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3824c764b3cccee6dc81ead59c047478e83d424b"
+        },
+        {
+          "path": "zotero-landing-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ca35fecaa7ef728765317ed3ebc4b8e5927c99d5"
+        },
+        {
+          "path": "zotero-large-library-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "089104da8a0a13db4a47b48f793c32ce481c123f"
+        },
+        {
+          "path": "zotero-local-identity-20261115",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ff833181443132a20dc3ce6f6e974f6c9246565b"
+        },
+        {
+          "path": "zotero-main-integration-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6d7f31e406571ec11af287110cd0d4188c1a1659"
+        },
+        {
+          "path": "zotero-note-workflow-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a37f3dc83b1c83340055214081321a5cf0fedeb3"
+        },
+        {
+          "path": "zotero-offline-workflow-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "4a2c608cf379971cbdeb8e7fcf395dfe3773e3e0"
+        },
+        {
+          "path": "zotero-optimization-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2ad2e7e279651c671f9d0257f87f361ae1e49d00"
+        },
+        {
+          "path": "zotero-recovery-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "40f8c391afcb5cd27f9dcca20924f0c24217a112"
+        },
+        {
+          "path": "zotero-rich-text-20261115",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "4c678c7f1b0413e35139a246f5bb4cab6d092c2c"
+        },
+        {
+          "path": "zotero-tags-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "17efb32e97482471a6c4271aab7351bb7f1f5495"
+        },
+        {
+          "path": "zotero-word-parity-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "69f3103c806797fa7e13c0967236a4203d7122ef"
+        },
+        {
+          "path": "zotero-wordlike-continuation-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "743729f6fbe5437ee2630e44e2af8dd7a4d8984e"
+        },
+        {
+          "path": "zotero-workspace-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0f9ea76e8e196cbf4b92b82a2f8baf5b4f1495bf"
+        }
+      ],
+      "after": [
+        {
+          "path": "aot-daemon-free-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "b48f8e2dbfc3c63dcd232bdb46fbcc5a8f267b96"
+        },
+        {
+          "path": "aot-integration-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "fa86c8d52aa70468f598fc2279ca5b9c9f5cb159"
+        },
+        {
+          "path": "canonical-merge-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "264bf794276cc96cfae950eb3f48f38d8ce9a69e"
+        },
+        {
+          "path": "crispcloud-rebuild-refresh-20261116.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "14d666b1a7d9c5c2a0b82fa02a88349eaedc531a"
+        },
+        {
+          "path": "crispcloud-testflight-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "973a4856732fb9e00b2ca1be51f1cfe0121342df"
+        },
+        {
+          "path": "crispoffice-gui-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "fcac8d2f78267d07fbc98879e2de40c46cc16be0"
+        },
+        {
+          "path": "crispoffice-layout-theme-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c829e13eac56c908a19b6b56b0124455ebd0ec19"
+        },
+        {
+          "path": "document-review-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0fd75a8f281daa06b60262103744488718aaeda2"
+        },
+        {
+          "path": "document-review-continuation-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "85d315c9fb6f5a2240e58867b240104d94ed0278"
+        },
+        {
+          "path": "document-review-drafts-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8427b1ce9df1e8b3cf7ec0181b3c5a347ef50192"
+        },
+        {
+          "path": "document-review-inflight-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "35ddcc84ee2814b0133c94229d95049f5cc885f1"
+        },
+        {
+          "path": "document-review-keyboard-comments-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6614603c1be674dac43767e9b8adebed8c27d814"
+        },
+        {
+          "path": "document-review-live-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "af2646ab1e13268cedaaa56a55ac37b14daed0f4"
+        },
+        {
+          "path": "document-review-notes-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "1d584ce2d5957df7805b204ca9048af2a906f5a2"
+        },
+        {
+          "path": "document-review-notes-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8a39ce235fdafc8e06ee258e767975972ac97b7d"
+        },
+        {
+          "path": "gector-office-resume-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "5efcfd8a638a8899846a6c444575a99391bf0709"
+        },
+        {
+          "path": "german-context-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d8c4a161e3b40d24f4d26ec4ce7986ca3bb8ac1d"
+        },
+        {
+          "path": "german-gector",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "bfbf302b984cbd0b8473f3349244250aec650f54"
+        },
+        {
+          "path": "german-morphology-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "750167ac3746fb00ff5b25de938142e4de94c589"
+        },
+        {
+          "path": "german-morphology-completion-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a8831d30eff44cdc0156d04e01f667f492a7a836"
+        },
+        {
+          "path": "german-options-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6e449b0277119252e552a95db4325697abfc602a"
+        },
+        {
+          "path": "german-proofing-continuation-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "32af7c656438ffb16304a145982514ebfce45448"
+        },
+        {
+          "path": "german-proofing-next-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c4b25663717ad004b8e985c77a14486953e1e157"
+        },
+        {
+          "path": "german-proofing-recovery-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "825f9c7775c0ad5863cc6de7b913a0f779900060"
+        },
+        {
+          "path": "german-syntax-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "56aa5c869584aa968b11a9b60e46acb0a6921cdd"
+        },
+        {
+          "path": "grammar-release-build30-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ebb2c92b0c95ffac89e81971b332cf0d75f0a07f"
+        },
+        {
+          "path": "language-downloads-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "310ff83a4bbdeffeeb64222b6e919241673250d8"
+        },
+        {
+          "path": "mail-archive-portability-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d974c5165797334cb4e58fd5e5000f3b0efbba81"
+        },
+        {
+          "path": "mail-archive-restore-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0d067666239feb18704bf187a975ba7751a96b2f"
+        },
+        {
+          "path": "mail-archive-resume-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ef497dacc6dd375e5c971bf8610ec1df054f9dea"
+        },
+        {
+          "path": "mail-archive-search-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "175d239b79b6c49e51955e6d4c7054e8174e27d1"
+        },
+        {
+          "path": "mail-continue-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "cd497a7cdb3088bcca18cac50f44a7bed740038a"
+        },
+        {
+          "path": "mail-ews-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "1ca42da109fb5476536bac30216d09b2abcffc97"
+        },
+        {
+          "path": "mail-m06-resume-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e48b871b778c760cf110b72ebc365a88720b44aa"
+        },
+        {
+          "path": "mail-native-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "eeed07cd751c782181d8d14bc235abe03815a4e6"
+        },
+        {
+          "path": "mail-providers-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e34c98c31d0195b506879d321144be46de4b5fb2"
+        },
+        {
+          "path": "mail-reader-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d15bdedbc4c1fc4a92ef75b3f503f92023ecfc05"
+        },
+        {
+          "path": "mail-resume-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2977dab71a58287773e603a937ea7628873068b4"
+        },
+        {
+          "path": "mail-store-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c177ea7688ac70de07a191f51d8cd0789d24f803"
+        },
+        {
+          "path": "mail-uid-pagination-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e33b8ec4b550c61856a7907ed759e7e32efd5bb2"
+        },
+        {
+          "path": "native-spacy-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3c5633af94ef49f1fcd9238fb2aa3567a293aabc"
+        },
+        {
+          "path": "native-spacy-distribution-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6d027f4bdaaab22920d4d8ecc8050b09d451d3df"
+        },
+        {
+          "path": "native-spacy-en-fr-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "710897ed5f46b8a0acf6ff6bf1ea832c5a3d94b3"
+        },
+        {
+          "path": "native-spacy-w5-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "19a89bbfe2638fcd26ba7ee535db92893b2eaea2"
+        },
+        {
+          "path": "native-spacy-w6-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "948ce5cf879eac4410b3e5af3f0c8d0a792ad59f"
+        },
+        {
+          "path": "native-spacy-w7-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "1b8f69e421d9c4e84958e4ff218244a4f09da72c"
+        },
+        {
+          "path": "native-spelling-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "7a674c26331488845e8a2774e10921d63635d968"
+        },
+        {
+          "path": "native-spelling-continuation-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "4a5b8eb60f561e6fb9bb47041682d920e53d065e"
+        },
+        {
+          "path": "native-spelling-quality-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f90dcbf142dae5d747890cb3753b167ffd829315"
+        },
+        {
+          "path": "native-spelling-resume-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3f6a6d28b93696163f0d6cf3ae0a4f0952e19161"
+        },
+        {
+          "path": "odf-annotation-visibility-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "16e218bf4438a1c34e04150356b82f59595b407b"
+        },
+        {
+          "path": "odt-field-continuation-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6bbffd88fead3020c24c4ec69af01916aa4752b0"
+        },
+        {
+          "path": "office-completion-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "494385786c777f24628ad3bf6dc372817cc30425"
+        },
+        {
+          "path": "office-consolidation-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "e82101748d07822da34b972bbb6665656a839fae"
+        },
+        {
+          "path": "office-continuation-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a39a018d372f0fde864c92ec7178450741ba42d5"
+        },
+        {
+          "path": "office-continuation-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "7cec714919e452cf352c527624d2cbb66b780c63"
+        },
+        {
+          "path": "office-continue-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c2b420342090a3b31c7cfa09ae93fa18a8d5b6f7"
+        },
+        {
+          "path": "office-current-reconciliation-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "b6c1d9a36f33e7f5bdf190a2f94233136f45e2ca"
+        },
+        {
+          "path": "office-fidelity-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "884e6beb367dd45acfb34c98043ec77aa8a3fa47"
+        },
+        {
+          "path": "office-fidelity-continuation-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "81285bb677ad77a28c8c4c4fb09ef1f924ee8a38"
+        },
+        {
+          "path": "office-fidelity-lists-sections-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ba128628d9ae82035b3b70477d74edb2140e79fd"
+        },
+        {
+          "path": "office-fidelity-resume-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "324d336317f1c8fae8c3dfdea093fed079f555c4"
+        },
+        {
+          "path": "office-final-union-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2c5647336b31d95cb02d21328b315178ed4dff01"
+        },
+        {
+          "path": "office-finish-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "fdf71c6d44fadfd7f18e93e9115735fe19051a12"
+        },
+        {
+          "path": "office-improvements-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "39f8fe5f3046b400225bd9c6e57f7edfb202814b"
+        },
+        {
+          "path": "office-local-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d72f91fc3af7ff2e1684b1f46290ffa5acfbf2c0"
+        },
+        {
+          "path": "office-macros-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2b203885ea6867dfe3d758263e73016bd71f4a74"
+        },
+        {
+          "path": "office-mail-continuation-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "041efe0c92fae862be57bc4a3ebdce90935df826"
+        },
+        {
+          "path": "office-main-completion-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "06b79ab6355300cc3db5f6319a0316a2ec7b7585"
+        },
+        {
+          "path": "office-main-integration-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f37595c0cd689fe93a1ad0ed2951ac6018d2a1e7"
+        },
+        {
+          "path": "office-main-sync-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "cfc919f0573e8991934a28a591f378d4e43fbb86"
+        },
+        {
+          "path": "office-reconcile-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "051340aaf5bdc32bbdebfeb49479b7c496942fa1"
+        },
+        {
+          "path": "office-reconciled-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "bfddbdf10c0e234ec940a335d9e4f7d1a1e0c316"
+        },
+        {
+          "path": "office-recovery-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "85b6e30df429945749cd02c21e8706d5c2bb7b64"
+        },
+        {
+          "path": "office-resume-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "efdf59d7042da13a8a2113db834faa9de7eb5175"
+        },
+        {
+          "path": "office-resume-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "323391222fc4a4357040af13c0e687ae07691ea4"
+        },
+        {
+          "path": "office-resume-main-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a3a50e401d2aeb18d8d589f1bea064e38d2c39a3"
+        },
+        {
+          "path": "office-retry-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "125fe1c6acb87515c05f9163a9fccc4581be94ab"
+        },
+        {
+          "path": "office-union-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "4ef9ba2f3d28a24ccb588f8841dba347428f9d36"
+        },
+        {
+          "path": "office-union-resume-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "b95e40d4cf393402a5a9d3aedb7743a7ed729108"
+        },
+        {
+          "path": "office-validation-recovery-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "db3c4d61bc7ed176540deee2f49bd48952e6e490"
+        },
+        {
+          "path": "office-vba-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8ccb1a57d988e933d7525d642b34e21a933f81d9"
+        },
+        {
+          "path": "office-vba-arrays-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2411f20399fd665a94cb588c439a383d69d623fc"
+        },
+        {
+          "path": "office-vba-control-flow-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "83cb410dc7f67a3fa2637eb6c0a1b39ec59ab4ac"
+        },
+        {
+          "path": "office-vba-procedures-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "7138a33b00f5d5606eaeade7828726b201028a79"
+        },
+        {
+          "path": "office-workflows-20261116.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f3ff7b3a525d28d6fa0286b93e84a29c22ad1d85"
+        },
+        {
+          "path": "proofing-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8e5d6b01463e2bfd2971e27e89487f926afb1858"
+        },
+        {
+          "path": "proofing-en-de-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "7cab8f967a86a71912103b0ca2a1f6dc05eba3a7"
+        },
+        {
+          "path": "proofing-en-de-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a0a662474e1a25fd1afc695a14fcd7cabdcd6c6a"
+        },
+        {
+          "path": "proofing-grammar-expansion-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8ac136210c828970e378351fe9f563a1150ba9e9"
+        },
+        {
+          "path": "proofing-office-followup-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "395a2d5aef8464cfd55cd3a8c38ae85872f0bee8"
+        },
+        {
+          "path": "terminal-integration-ods-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "90e152eae8a7d8f73195bcac80fdc578693722e1"
+        },
+        {
+          "path": "text-rendering-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d102e6dc6b51f976ee2a5f4b477defb8dec07e11"
+        },
+        {
+          "path": "text-rendering-continuation-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "dbbe30ebc20f460ca7dd8aceb025fb6aa0987dc1"
+        },
+        {
+          "path": "text-rendering-followup-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6c5eccf54ac0e095ebb6c9aa1d55122df7ed977e"
+        },
+        {
+          "path": "thesaurus-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ed371023d3f992d63c4fe13cc9ad266eb10781b7"
+        },
+        {
+          "path": "zotero-20261115",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0112a46869bb45dcb3b90cd76751e927a4d68fe1"
+        },
+        {
+          "path": "zotero-annotations-20261119",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "eb17d4175a00f350501fb7a25b2dbd0c293cdc83"
+        },
+        {
+          "path": "zotero-capabilities-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "b22cc81402b36790817130b19a08acd93fcb6699"
+        },
+        {
+          "path": "zotero-capabilities-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f7328a23d7de44be5ea5fa1456e35170ce1b2dff"
+        },
+        {
+          "path": "zotero-citation-workflow-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3b085c64d4af49ecc5faa617f39205fedc0e5106"
+        },
+        {
+          "path": "zotero-citing-20261115",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f0cbfb6d19c9e175d645ba344f5921e2d866f410"
+        },
+        {
+          "path": "zotero-continuation-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "10a059ff2241f10ea210f4e0c7a1bfdcfd3ddaac"
+        },
+        {
+          "path": "zotero-continuation-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a88cccac54cc2fe469eefa96fe3f8b4cf58e5700"
+        },
+        {
+          "path": "zotero-desktop-20261115",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "11102477934ea2d818cf7e1ef62158d85bac9373"
+        },
+        {
+          "path": "zotero-fidelity-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0ab856b6eece824c50cd6cc83050025277dd6aac"
+        },
+        {
+          "path": "zotero-finalization-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3824c764b3cccee6dc81ead59c047478e83d424b"
+        },
+        {
+          "path": "zotero-landing-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ca35fecaa7ef728765317ed3ebc4b8e5927c99d5"
+        },
+        {
+          "path": "zotero-large-library-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "089104da8a0a13db4a47b48f793c32ce481c123f"
+        },
+        {
+          "path": "zotero-local-identity-20261115",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ff833181443132a20dc3ce6f6e974f6c9246565b"
+        },
+        {
+          "path": "zotero-main-integration-20261117",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6d7f31e406571ec11af287110cd0d4188c1a1659"
+        },
+        {
+          "path": "zotero-note-workflow-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a37f3dc83b1c83340055214081321a5cf0fedeb3"
+        },
+        {
+          "path": "zotero-offline-workflow-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "4a2c608cf379971cbdeb8e7fcf395dfe3773e3e0"
+        },
+        {
+          "path": "zotero-optimization-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2ad2e7e279651c671f9d0257f87f361ae1e49d00"
+        },
+        {
+          "path": "zotero-recovery-20261116",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "40f8c391afcb5cd27f9dcca20924f0c24217a112"
+        },
+        {
+          "path": "zotero-rich-text-20261115",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "4c678c7f1b0413e35139a246f5bb4cab6d092c2c"
+        },
+        {
+          "path": "zotero-tags-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "17efb32e97482471a6c4271aab7351bb7f1f5495"
+        },
+        {
+          "path": "zotero-word-parity-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "69f3103c806797fa7e13c0967236a4203d7122ef"
+        },
+        {
+          "path": "zotero-wordlike-continuation-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "743729f6fbe5437ee2630e44e2af8dd7a4d8984e"
+        },
+        {
+          "path": "zotero-workspace-20261118",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0f9ea76e8e196cbf4b92b82a2f8baf5b4f1495bf"
+        }
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/README.md",
+      "blob": "c3918cb8761303568494314e880b94e4971bfa1e",
+      "status": "modified"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/integration-review-publication.json",
+      "blob": "b82577336dcd88b5d7db12b76cfb913115cc2d94",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/acceptance-summary.json",
+      "blob": "999fcd8a3c2223f2711989c9beb1e0f2ee809881",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/accepted-cases.json.gz",
+      "blob": "db69f2c76950cf63e3745fe5e44aa12f1b175e32",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/accepted-source-comparisons.json",
+      "blob": "68c766a90b4046c8986c762e38b993c96ae42f10",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/audit-for-final-run-2.json",
+      "blob": "9b927e0f3e6c4bb9fe6fbaef45945ba22d134d4b",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/audit-for-final-run.json",
+      "blob": "9b927e0f3e6c4bb9fe6fbaef45945ba22d134d4b",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-analysis.log",
+      "blob": "4e4a845c86bac80896563e5c0b1f8a6bf0491fa4",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-checkpoint-vs-final.json",
+      "blob": "fbd0831003eaa53fcabbd19b917d0372f0b1950d",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-focused.extracted.json",
+      "blob": "28520f283b616ab32b2b89f20a95b9e5a8173eac",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-focused.log",
+      "blob": "258272e272b90092449641a86857838b6b2318ea",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-format.log",
+      "blob": "046eb42415ba2e89ea0f90fb8ba2ad7d78bd1988",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-original-gate-comparison.json",
+      "blob": "26d673e281fbd9cf1f5b02a29ac32f38d02b16e7",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-1.json",
+      "blob": "61b1931ea87c66688003ee299a2d62327538469a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-1.log",
+      "blob": "14c722d1f606f031339ca808d6446fabaed855a9",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-source-checkpoint.json",
+      "blob": "2b2a7c796d06d4475a24849a5e4528340312b763",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-workspace-2.extracted.json",
+      "blob": "ef5e13d2229a439f4b955db16b7625b798729cf0",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-workspace-2.json",
+      "blob": "c80bed5fdd3dd17a51bb031ef4a396f7031470f9",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-workspace-2.log",
+      "blob": "d724879ab6e6bf1e2895d97c4032711b20722293",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-workspace-2.source-before.json.gz",
+      "blob": "c9ac9c24efd31f6f5f1228f6a187016234dbabc3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/example-analysis-1.json",
+      "blob": "d4a0fda55fae10ab465d7970d997b5db1d5ad9b5",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/example-analysis-1.log",
+      "blob": "27c49a15138f8a68181b9a7aeb97f0919a247593",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/example-analysis-2.json",
+      "blob": "d07ed546b0f28d1c7e8d4d7033a9ff259247858e",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/example-analysis-2.log",
+      "blob": "7614120ef42f7ed64f85edae1238c5cea46f13b7",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/example-analysis-2.source-before.json.gz",
+      "blob": "126afea797a640e1b0d4a756cd830a969e7c590a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-gui-format.json",
+      "blob": "bfd966d13fca7c47ba848191cb0288ef5c589728",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-gui-format.log",
+      "blob": "ed618b5ceac4ddeeba19e6fb8212b092543ecffe",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-gui-format.source-before.json.gz",
+      "blob": "1994ef24eed64ce820a066bef00c5662fdec7d21",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-incoming-run-plan-2.json",
+      "blob": "e10636c0bd5aff679e84b4d35336c048ac48d7f3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-incoming-run-plan.json",
+      "blob": "a4de78c8d4b3c3b01a2c97f20bb5011167625617",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-2.cases.json",
+      "blob": "a8c798c1860378d865b7a8cde09e6071f0283891",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-2.extracted.json",
+      "blob": "e42bda8134990fde4698d1201f5b130051d85d7a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-2.json",
+      "blob": "62ac88021db5f25b473a9eac736e87e258495023",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-2.log",
+      "blob": "1e8a7da81d203f9274f516f31ec3838693ba021e",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-2.source-before.json.gz",
+      "blob": "761c0cf0e9b235612f1cccb5ee8e50b74641561d",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-analysis.json",
+      "blob": "5f8133241f6ce800d9b39f60cebefcee905fe91a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-analysis.log",
+      "blob": "029bed85e125e625bc883a147966299f44915508",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-analysis.source-before.json.gz",
+      "blob": "48d1a9da9b2ff5deab22f387bac7a44f41746436",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide.cases.json",
+      "blob": "8eab6e79a71ad7a110dad655168ad33f1af338e5",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide.json",
+      "blob": "6a922528e921d6eac7bb5120efb05b12c07b3c50",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide.log",
+      "blob": "704617dd9aec727df77699c9683fcc274498da85",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide.source-before.json.gz",
+      "blob": "48d1a9da9b2ff5deab22f387bac7a44f41746436",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-slide-test-analysis.json",
+      "blob": "974a954820e74519475e4812fee3c81b8440eba3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-slide-test-analysis.log",
+      "blob": "93b8f30beec82b17f0312437ab29f0d472a70a12",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-slide-test-analysis.source-before.json.gz",
+      "blob": "db2df75430fc09a3c42495cd72ad2f8bbea71938",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/gui-regressions.extracted.json",
+      "blob": "9068098f27806af166ce11e77bcb11ae6c9e39a1",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/gui-regressions.json",
+      "blob": "67b89a97c48b3a4b9c1dcf350ee3a7e166c1816c",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/gui-regressions.log.gz",
+      "blob": "6ea275f645512fa737e60c05dd902238d63b6bce",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/gui-regressions.source-before.json.gz",
+      "blob": "add8db81b772d89aa826c472926cfaf06c044862",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-embed-host-fixture.cases.json",
+      "blob": "2c4142b507c90fcd99f22b29769ad840f26d031a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-embed-host-fixture.extracted.json",
+      "blob": "18a2291517efa1c40e991d7be4ea4724b0aa99d6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-embed-host-fixture.json",
+      "blob": "a744b4b876da1a05873fdeeb6fb82453f4ec881a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-embed-host-fixture.log.gz",
+      "blob": "4cbd31d11db4ad81ea940e732550e5d4649cc523",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-embed-host-fixture.source-before.json.gz",
+      "blob": "1de6cd59889aadd0cbf7b2970a123dc0beda8cbc",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native-2.cases.json",
+      "blob": "4eb7fbe51f2a42c55bd2a2114e5c98cedfd5a8c7",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native-2.extracted.json.gz",
+      "blob": "445f6d852801d8f6079d13891fde8133c3e21c29",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native-2.json",
+      "blob": "16c731870914368ebaf9c2500e85a8a0e834a02d",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native-2.log.gz",
+      "blob": "77fcbbe42686ac3851b8625fb6f782fa3ae37aca",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native-2.source-before.json.gz",
+      "blob": "5d3c15156f71829e412c3be5bb0a8e7a38ca188c",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native.cases.json",
+      "blob": "65663ffed6328f0c6d14e7371747b3b6b89400c6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native.json",
+      "blob": "749dcdcad9cedd26ea21b947b25c79983c07a4a5",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native.log.gz",
+      "blob": "d07844359aa7a7b0002ca7375359217097611bb3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native.source-before.json.gz",
+      "blob": "d176e8038ad63c196b6beb4064fede19e475893e",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-portable.cases.json",
+      "blob": "df75cf95baf4c0e78985907f80950dd0b4834bb6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-portable.extracted.json",
+      "blob": "bde64231a6e4ef2db12c3f29eb9c46f990e13281",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-portable.json",
+      "blob": "791c4e1d20b1ac812f3ed973a7e992a4ffcf56b4",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-portable.log",
+      "blob": "6210584f28b94f7cd5cbb6963737db61d21d150a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-portable.source-before.json.gz",
+      "blob": "f45253725c5f5e51b7effbeb4aaca5deb35258ba",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis-2.json",
+      "blob": "fa0c483e5448a1ebae8b86b205a66c2716993115",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis-2.log",
+      "blob": "88c2e1f321ef5e635ed3a17b11ec8fbac250b0d6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis-2.source-before.json.gz",
+      "blob": "e9558cac0ba13771ad01e41dd7baefb005729fa6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis.json",
+      "blob": "c77351b94267ff4ef68b9e17cd06e7fd06026e20",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis.log",
+      "blob": "88c2e1f321ef5e635ed3a17b11ec8fbac250b0d6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis.source-before.json.gz",
+      "blob": "504bf1fe44a63305a7fea920c5b4e55480ed5303",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-studio.cases.json",
+      "blob": "8aa666d1a38b89581d13b6a607898ed916dbd3c4",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-studio.extracted.json",
+      "blob": "e6081d70950f6033151fd3110061bfadcf0053d9",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-studio.json",
+      "blob": "51038624bb6cff0207e16c3e81ac49b98ad13ec6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-studio.log.gz",
+      "blob": "db045128641d06db7a56748e018326a913657f9f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-studio.source-before.json.gz",
+      "blob": "0894c497536b7b36913738925d9b39a68dc01056",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-run-plan.json",
+      "blob": "092c8e2214f553b3cb3f70744b70b803b279db9c",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-scoped-analysis.json",
+      "blob": "7074da0b3f8338f033fc25b78eab4c8da70525ab",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-scoped-analysis.log",
+      "blob": "4b7e18605b09a9ae38538839d81d43d0c835fd66",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-scoped-analysis.source-before.json.gz",
+      "blob": "5868039e098414a9a85dd3a342c806efadb0bb0a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-vm.cases.json.gz",
+      "blob": "b60b7a02f118a378fc083d5d16402a3e85428ab2",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-vm.extracted.json.gz",
+      "blob": "4fbea6b7706e8686dd5286257cc0881dec92f60d",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-vm.json",
+      "blob": "a0377f6ae6dfe323ccfe4fc1c17a1033b5c53abc",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-vm.log.gz",
+      "blob": "f43fc7b313e53942375bd57b17124f4745aba23b",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-vm.source-before.json.gz",
+      "blob": "be2a6b3f374624a1e2447de2d72528fba2dfeff3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-compile.json",
+      "blob": "da1c511821d50032c33e44c939fe186f7269c5d3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-compile.log",
+      "blob": "7c43d7cfd975f37257a8d3eaa57e511a7ad2a1c1",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-compile.source-before.json.gz",
+      "blob": "696ebdd6f6eb5b8681587e69c1039409846f2be4",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-node.assertions.json",
+      "blob": "d7459545b250e015122e1da38b95eaef3be01b9b",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-node.json",
+      "blob": "78a23642f89d9fb49ede36e434dcbc93de5025a9",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-node.log",
+      "blob": "4c163a37da158adc7ad61a4c9d71b33868fc4466",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-node.source-before.json.gz",
+      "blob": "696ebdd6f6eb5b8681587e69c1039409846f2be4",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-compile.json",
+      "blob": "c654af7d554f54f7573f9abee2ad8218005a4307",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-compile.log",
+      "blob": "eef99b0e02d1b371280535f68c6d46a83b51ee8b",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-compile.source-before.json.gz",
+      "blob": "696ebdd6f6eb5b8681587e69c1039409846f2be4",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-node.assertions.json",
+      "blob": "eedf3a25660e3512212fc0953645dedea7dade1f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-node.json",
+      "blob": "9532829388bcc3e535fcfb70daa8022b6db1e6b9",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-node.log",
+      "blob": "fc79d3e0c1c931ecc8ad145848a48f911a3d3ba3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-node.source-before.json.gz",
+      "blob": "696ebdd6f6eb5b8681587e69c1039409846f2be4",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-9f-adoption.log",
+      "blob": "e3391a4bfcbbd97b985a8b855b977a57a01fab30",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-analysis.json",
+      "blob": "f169b5b44fe8fb9c3b3e56240878f94665a3dba2",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-analysis.log",
+      "blob": "174d87d25158a518803184ea621e8cd71df9b47f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-analysis.source-before.json.gz",
+      "blob": "73b60494e80f055d17b49b14fe38b22c210f945f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-case-counts.json",
+      "blob": "24f144db83eafe03163d9d01b71e53782f9ff693",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-core.cases.json",
+      "blob": "a727d2aaa4301166140f01b09dc8b0b497d5fa20",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-core.extracted.json",
+      "blob": "2209fd9697e12bba34e45a95689a8bb946a5fd4d",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-core.json",
+      "blob": "c513877e26ce948e4e4ff5b3582be5aa97fe04ce",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-core.log.gz",
+      "blob": "5f0352b96c351dda509c20b21c05977bff7ace8f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-core.source-before.json.gz",
+      "blob": "b2e77ccabaefea300bce7c01db8cb2ae2a35cdb1",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-example.cases.json",
+      "blob": "7254c05d57e45de5bd1ba3e79c31f811fb8d9283",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-example.extracted.json",
+      "blob": "6f9fe68376621bd1c75674ee104f25d474e56e93",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-example.json",
+      "blob": "102d4e64bb57fef205977b855731e8a54f306454",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-example.log.gz",
+      "blob": "ae435c5b2329c56edd47441e69133838b3cdaee0",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-example.source-before.json.gz",
+      "blob": "d0cce9d4672462e9c03f774c71309dca5d683804",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-format.json",
+      "blob": "2be3b6359bbc21944eee0b8bc770103bc3c5b241",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-format.log",
+      "blob": "f5b93855bf3c7fdc330179d04fbf2bee86ff7803",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-format.source-before.json.gz",
+      "blob": "73b60494e80f055d17b49b14fe38b22c210f945f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-ner-removal.cases.json",
+      "blob": "17e1a34c6fa149ef5895888b615de06ed3165230",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-ner-removal.extracted.json",
+      "blob": "eff5a5c17734a2f57345135f9058f8c86e295b01",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-ner-removal.json",
+      "blob": "43b1b34e63bbaecbc22aadac0dd6e3182a12841b",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-ner-removal.log",
+      "blob": "d6e62d075d6c69cf013642e2451f106b501dcae0",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-ner-removal.source-before.json.gz",
+      "blob": "90a07a7dc98221d878d3201f311edadf50ab66a9",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-source-retention.json",
+      "blob": "417c567900db4208e6dc489f444ac85678945253",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/merge-main-9f41/packages/quds_office_editor/example/lib/suite_workspace.dart.gz",
+      "blob": "e69ff8fe2f9f19bd3db515101e4ba68be72b057a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/merge-main-9f41/resolution.json",
+      "blob": "415d0a788bb79c852e84c11700665a0f6625125c",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/merge-main-9f41/workspace-resolution.diff",
+      "blob": "ed9f18503a3fa35caec0e8f4d9b16ea6cf342155",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/native-hook-input.json",
+      "blob": "2137982d82cf9b1302f939f56e069d197b1f9ca6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/native-hook-output.json",
+      "blob": "d27b616c1ba82bd01774def8a36cc3bb0095db8d",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/native-runtime-receipt.json",
+      "blob": "f44470becb51302cfa7cd06b0f335f7084910e11",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/pre-mail-integration-boundary.json",
+      "blob": "9f965f377f9ee35ef13651f3be2798cbdfae0c98",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-2.json",
+      "blob": "58c66f0009f81a4381184b5a9e02b6702d940657",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-2.log",
+      "blob": "87f3bc600b5c4b36c4d386b1652ac380e1567b81",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-2.source-before.json.gz",
+      "blob": "080dadcbb008e8ab8772e783b98b22a5d19c2291",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-3.json",
+      "blob": "7492d8f527e92e9147b5e767cd7f392fca38b206",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-3.log",
+      "blob": "142d5613b4cde515d08c3089c0ba41ba8c1b8f94",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-3.source-before.json.gz",
+      "blob": "80f8c3f141b5d79ccd30f96355b0d1de1ffaa3e8",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-images-final.json",
+      "blob": "7f278b104dc003b82b67f8766d42ea7c87127e39",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-images.json",
+      "blob": "709b5e75cf10fd5f7285971e03e756484b34fbc3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-publication-images.json",
+      "blob": "aa3ab9c4a3b8bdc6b3b09a4a7256d98b799c3cb7",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-publication.json",
+      "blob": "e01fd6f2b94c4585e87143b36d0cd963eb9df457",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-publication.log",
+      "blob": "142d5613b4cde515d08c3089c0ba41ba8c1b8f94",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-publication.source-before.json.gz",
+      "blob": "697ecb4711248c7617bd3fa75a2def647c1f9f21",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews.json",
+      "blob": "46818ff7fbd92c73330998267b3f8187cbc83759",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews.log",
+      "blob": "46dbd31edae3512e4a225ca2a7afc0179339d1a3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews.source-before.json.gz",
+      "blob": "d0cd552b8953c27fdd3007429d680cb00acc7b68",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-adoption.log.gz",
+      "blob": "3f18ef6feca720127a007d64dd56d0edbdf60720",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-audit-for-final-run-2.json.gz",
+      "blob": "96f51b229c113dd62ae8f512f4e077f17c7758af",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-audit-for-final-run.json.gz",
+      "blob": "88b44eb0473eff07c96c5afda7bec6109557b921",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-mail-merge.json",
+      "blob": "b72eb2d867886a2e4b014e4791336245a2a3a7cf",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-main-merge.json",
+      "blob": "3fd60fecbb3ad1b2639723253ecf00e84f3903c1",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-vba-merge.json",
+      "blob": "d8eda9cdd829cb281bbf8560bbf7ef1eb99a4a74",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/restore-repair-format.json",
+      "blob": "48336dad6a2ffa54e02df9b3a05d4b8c13befcc6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/restore-repair-format.log",
+      "blob": "a5b0a2bae10003f32de23a2c104075387862aefe",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/restore-repair-format.source-before.json.gz",
+      "blob": "696ebdd6f6eb5b8681587e69c1039409846f2be4",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/restore-repair-source-proof.json",
+      "blob": "fccc744a2442295d25c026501a1860fd1c302bc3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-core.json",
+      "blob": "72484811196a16e95784807bad9628a482c265fe",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-core.log",
+      "blob": "9fba7f4b08aa27b9d51bfdebe1428a75e3d9f3bc",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-core.source-before.json.gz",
+      "blob": "768ae7626c7adf9860d9319e8e3baeb27ca617fb",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis-2.json",
+      "blob": "5a04250c18671f2b196b7e9ba696fb6aff3cea8c",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis-2.log",
+      "blob": "482cf313c1957f40ee938b404fdcffd4861f3c32",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis-2.source-before.json.gz",
+      "blob": "7d5d8d6af10402975839a15c4ce21a1b5302c63b",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis.json",
+      "blob": "490ce39091fe1f889895888fc639e0079f3003a9",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis.log",
+      "blob": "a2144954b23a515b5840bada802d63ce5deffa84",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis.source-before.json.gz",
+      "blob": "21886e8bc8a4498563d1187b38b85e33e24a50fa",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/source-hashes-final.json.gz",
+      "blob": "a9bea96eb757811494a3c98f4623062d242cad96",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-analysis.json",
+      "blob": "31c8ab45d99d8cf6eabd261f531972a09545c064",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-analysis.log",
+      "blob": "f63bedc3ca644237cadf0003d63d7cd8024461c8",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-analysis.source-before.json.gz",
+      "blob": "c8b4af1b593b3c02128640fe72081e225b4a5a6a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-workspace-customization.cases.json",
+      "blob": "952217282de238d82527f11529c78f04dee4ced0",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-workspace-customization.json",
+      "blob": "be9749aa933b69b0a7b9b663b4f868ecca8804d7",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-workspace-customization.log",
+      "blob": "fea5988937ca1a1efafa0c25d8aa430587e76573",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-workspace-customization.source-before.json.gz",
+      "blob": "08cd99489c18f92951e69bc5f6ed228859544bce",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tool-and-macro-inputs.json",
+      "blob": "0fc410ed3519b9f98e230381f56d152e4f3b6af0",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/vba-post-integration-retention.json",
+      "blob": "84978c54dd9cace36e95e677ce863f7f79219662",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/workspace-final.json",
+      "blob": "17011e8866423d4835f9bc567e51ceb719bc2058",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/workspace-final.log",
+      "blob": "a8c545d901e3d570e4ba8bbe054984e45dac0cb7",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/workspace-final.source-before.json.gz",
+      "blob": "55176e94cfb39d3ba737cbcb64572f3371787354",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/build_acceptance.py",
+      "blob": "b0ba3bae2d34590781e0808cc52d90828fc775ff",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/extract_cases.py",
+      "blob": "2041ad1b8a8f8924dddb19c9b15f87dced0c1a2a",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/package_layout_evidence.py",
+      "blob": "6aa322231eddbad5c23a776a004737864c7159f9",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/run_example_validation.py",
+      "blob": "7a24f78b2c6fd08336cb4eb53022ae51949b4a26",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/run_final_incoming.py",
+      "blob": "3e4adce805c42f19d2e5d94d4564412a294e0601",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/run_incoming.py",
+      "blob": "a36c10ef8b4beaabcc12eef4dde53e0880274098",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/run_validation.py",
+      "blob": "ee55835fa1357fe1ebc2b94793bad0f65d1cee66",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/manifest.json",
+      "blob": "4119b90c46d8d94465eb4334edf8be02ca085ac7",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/path-map.json",
+      "blob": "221b3bb659e93070e7d7659486ab186db0057faa",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/runtime/env.sh",
+      "blob": "d9f3be05580a5d16dd59b6b6a5a3d7a30d835f44",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/runtime/run_dart.sh",
+      "blob": "135b92bf57d48f3bda4a30b16974d7f48be446d6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/runtime/run_flutter.sh",
+      "blob": "d990614e2df630f4829612fb1d1b54a451a462ec",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/runtime/runtime.json",
+      "blob": "d1dfc74b42a19934c2142a6f7d6bc00730a5d037",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-dark-menu.png",
+      "blob": "926fa0294ff4782e5117e4e635654518f1447a35",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-dark.png",
+      "blob": "df51cd608b9708a24ad8eaa13e4881c55da79167",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-light.png",
+      "blob": "4dc514d51d22dd92830a60b34b399a02d9bd0892",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-margins-menu.png",
+      "blob": "e3aae427933447bbe1fdacbfb44119d44c3804dd",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-narrow-arabic.png",
+      "blob": "ca255d987dadd51df2f8f2126e3cfcb893e0b661",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/layout-narrow-german.png",
+      "blob": "03ade2208d238a28e426c734a94b7b820b767be6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/page-layout-columns.png",
+      "blob": "0e2f10ae6fc7f0f7c85a345b33a4f211fe403944",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/page-layout-dark.png",
+      "blob": "7f3a13a3ce76860cfd1bfe5dde14e87dd6951bf3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/page-layout-margins.png",
+      "blob": "06f99b791c5d4940f6842aba9190d0422f8348c6",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/page-layout-paper.png",
+      "blob": "d564f88951f92dcd5fd2c86d45f4d6f782b2ed46",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/paragraph-dark.png",
+      "blob": "6a85b88d97e41761941ed0014a94e8ecf321fac3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/screenshots-publication/settings-dark.png",
+      "blob": "2fe5bbc4ba6ce72217ef7b51bbd43ed5c4c55d5d",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/crispoffice-layout-theme-20261119/visual-review-publication.json",
+      "blob": "b54d8da417eeb0d7f4f1806633e81765401b945e",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/CHANGELOG.md",
+      "blob": "499fdeea8bb80b3e9e847a95fce6e81f6e06bc31",
+      "status": "modified"
+    }
+  ],
+  "decision": "Continue to classify this exact branch/PR head as reviewed independent post-cutoff work. The new commit changes only GUI validation documentation/evidence and the mail-store changelog; its authored 921-case receipt is not replayed or included in this milestone's accepted counts. The underlying extra dark-dialog test remains outside accepted source.",
+  "previous_observation_files": [
+    "publication-frontier-fedabc.json",
+    "publication-pr-metadata-fedabc.json",
+    "publication-ref-inventory-fedabc.json",
+    "publication-remote-fedabc.txt"
+  ],
+  "github_actions_queried_or_awaited": false,
+  "git_ref_or_product_source_mutation": false
+}

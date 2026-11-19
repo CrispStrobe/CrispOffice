@@ -1,0 +1,23 @@
+{
+  "accepted": false,
+  "argv": [
+    "git",
+    "diff",
+    "--check",
+    "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+    "--",
+    ".",
+    ":(exclude)docs/validation/office-vba-arrays-20261119/independent-review/slide-table-color/before-source.diff",
+    ":(exclude)docs/validation/office-vba-arrays-20261119/independent-review/slide-table-color/after-source.diff"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
+  "elapsed_seconds": 0.119,
+  "environment_overrides": {},
+  "exit_code": 2,
+  "expected_test_files": [],
+  "finished_at_utc": "2026-11-19T18:46:15.874040+00:00",
+  "name": "whitespace",
+  "started_at_utc": "2026-11-19T18:46:15.754832+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "f2f68c61fa20c10e5e1bf818b4087dd754aa74fce84687f2ae5830458fc45043"
+}

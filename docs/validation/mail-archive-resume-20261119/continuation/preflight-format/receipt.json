@@ -1,0 +1,21 @@
+{
+  "kind": "superseded-unresolved-format-preflight",
+  "checked_at_utc": "2026-11-19T19:58:28.113206+00:00",
+  "command": [
+    "/workspace/scratch/f6338d3de284/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite",
+  "exit_code": 0,
+  "source_checkpoint_before": "d3e90d0fc0a75e2abfc3efb52e495c032e20683f",
+  "path": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+  "before_sha256": "9ec9ddc258845c1b9389ed57af32fd2bd38dc0bd3253fca01bd346ea9c7fde3d",
+  "after_sha256": "3a0c5a1147b40c0c0889a33ef9db8b2bc7b98e7b56b33b56573e2b7f1d089d1c",
+  "stdout_sha256": "becca754bba355bb2c3cb17c315f2c4cca7adfa3713fd08c9d26c4f0443e35b7",
+  "stderr_sha256": "7a397df9e82134b2a4500ecd7eeaca6bae1fb2e6cfe81dd62fbd7ba7aee97c11",
+  "accepted_test_executions": 0,
+  "note": "An early formatter attempt without package configuration also rewrote two existing constructs. Its output is preserved separately and is not accepted. Only the incoming PR #214 declaration wrapping is retained; prior source bytes otherwise remain unchanged. The final focused gate must pass formatting with resolved locked dependencies.",
+  "accepted_output": false,
+  "retained_source_sha256": "f36ac697a4d6ec77b23354a4918517c2cf9c359b418b41d9ba68a5688afac010"
+}

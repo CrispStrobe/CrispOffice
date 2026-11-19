@@ -1,0 +1,140 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-19T20:07:02.504822+00:00",
+  "source_head": "9b8853667b68c7bebff050e52445b47ea0bbd188",
+  "source_tree": "57d90e137f5b6c452a809080d4067f53c8209f09",
+  "focused_receipt_sha256": "d113f2a84451aae58ff8c4acd062a955369448a8b75eb1a3d837a8943fdd0ffd",
+  "runner_sha256": "7a048c12441303a563e9bc5d001197d1e78dfff690a28e0338873876cf310271",
+  "event_parser_sha256": "299ce6d8fffae555e9a0381903815156fd7d416046e1dbd66c1a2e4bb344a6a5",
+  "combined_source_review_sha256": "7a8dd41dac7c3c2f4a8cda34004268bde7487d770eb29d9816fd7461ecbe6679",
+  "auditor_sha256": "8d44e21be2b1f14cb5e4bcb3160310d6abf6fa9fed73cf1141badd2189d09f53",
+  "test_counts": {
+    "passed": 50,
+    "failed": 0,
+    "skipped": 0
+  },
+  "distinct_case_identities": 50,
+  "distinct_test_files": 3,
+  "required_commands_passed": 4,
+  "commands": [
+    {
+      "name": "format",
+      "exit_code": 0,
+      "argv": [
+        "/workspace/scratch/f6338d3de284/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "stdout_sha256": "c0d096b6943cd9b59b0d727672d819283909401bdd7e582377619ea6e041072a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "analysis",
+      "exit_code": 0,
+      "argv": [
+        "/workspace/scratch/f6338d3de284/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "stdout_sha256": "b3f49218b6895a83d257ab192111cd3236f729aefcece24184d6f88853cbe599",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "whitespace",
+      "exit_code": 0,
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "b2c05a0afa0ae606b061b13d5e50937c2a8eb1df",
+        "9b8853667b68c7bebff050e52445b47ea0bbd188",
+        "--",
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "studio-downloads-spacy",
+      "exit_code": 0,
+      "argv": [
+        "/workspace/scratch/f6338d3de284/runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/studio_downloads_manager_test.dart",
+        "test/studio_spacy_setup_test.dart",
+        "test/studio_linguistic_analysis_test.dart"
+      ],
+      "stdout_sha256": "3b29f402094a74dbff889b6a3bb82b4d7d9fb6ba8c2cdf6f2a9a004c08decade",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_counts": {
+        "passed": 50,
+        "failed": 0,
+        "skipped": 0
+      },
+      "distinct_case_identities": 50,
+      "distinct_test_files": 3,
+      "error_events": [],
+      "hidden_failures": [],
+      "non_json_lines": [],
+      "terminal_events": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 28917
+        }
+      ]
+    }
+  ],
+  "source_changes_from_historical_acceptance": [
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "current_input_checks": {
+    "source": {
+      "inputs": 4493,
+      "digest": "84657d14aaf7d3df6ca89a3e23fcd37780092fc65f8b7897c83ae0c5f3d1fa69",
+      "before_after_equal": true,
+      "current_files_rehashed": 4493,
+      "bound_to_source_git_blobs": 4493
+    },
+    "dependencies": {
+      "inputs": 9298,
+      "digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+      "before_after_equal": true,
+      "current_files_rehashed": 9298,
+      "bound_to_source_git_blobs": 0
+    },
+    "runtime": {
+      "inputs": 695,
+      "digest": "b0e61620f23fa8e07886661b986e654fe9ee0ded7059071574b89eccf3edf057",
+      "before_after_equal": true,
+      "current_files_rehashed": 695,
+      "bound_to_source_git_blobs": 0
+    }
+  },
+  "generated_native_asset_files_rehashed": 21,
+  "failures": [],
+  "tests_rerun_by_auditor": false,
+  "github_actions_used": false,
+  "historical_2243_executions_included_in_these_counts": false,
+  "superseded_attempt_executions_included_in_these_counts": false,
+  "scope": "Independent raw-event replay and current-file rehash of focused Linux Flutter fixture qualification only. No installed macOS/native-model or real-account qualification."
+}

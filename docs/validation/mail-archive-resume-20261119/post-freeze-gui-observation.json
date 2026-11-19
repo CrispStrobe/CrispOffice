@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-19T18:48:36.142Z",
+  "remote_commit": "8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af",
+  "remote_tree": "86d4b9fa8ed4a04fa73996af69fc6097aacd376e",
+  "remote_parents": [
+    "a2c144beaea7b46218d3b8c4932dcdb5681004aa",
+    "85c8c55186b8eefd242159ee606b2ad1fa61038f"
+  ],
+  "remote_commit_message": "Integrate durable mail restore checkpoint while retaining accepted Slide coverage [skip ci]",
+  "commit_api_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/commits/8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af",
+  "comparison_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/a2c144be...8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af",
+  "comparison_base": "a2c144beaea7b46218d3b8c4932dcdb5681004aa",
+  "comparison_merge_base": "a2c144beaea7b46218d3b8c4932dcdb5681004aa",
+  "comparison_status": "ahead",
+  "comparison_ahead_by": 3,
+  "comparison_total_commits": 3,
+  "files": [
+    {
+      "path": "docs/roadmaps/mail/archive-search.md",
+      "blob": "948f263d7e0171b8c57a1fa145d7a5997b9eecbb",
+      "status": "modified"
+    },
+    {
+      "path": "docs/validation/mail-archive-resume-20261119/README.md",
+      "blob": "4c9b211939654184c2077f999f052ca57caebb93",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-archive-resume-20261119/reconciliation-initial.json",
+      "blob": "4481760400c0ce05120ebda5516452729babe99d",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/mail-archive-resume-20261119/run-mail-validation.py",
+      "blob": "5b6b1bb7a52dd35bc5dfd614b0ce8e94a3e0f855",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/quds_mail_store.dart",
+      "blob": "1de0ad31f16fdb76f1c24c45b0c81184dfa59d5d",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_database.dart",
+      "blob": "320abe6053370b50c5346caa7c44fb9ce0ffa646",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_models.dart",
+      "blob": "7d0d2cce436a9bd58e890a0dbd28143ab714bd3c",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_repository.dart",
+      "blob": "10a8f51cefb081d1a3077d4c34f7bac52c05c36a",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+      "blob": "55a9513645d9be8b105a08a052c2fae053e33bf8",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+      "blob": "41ae1348be925d4d71438daf356094c4763c0a1f",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+      "blob": "dbde7ecfb9971c591edd16a5c7c4324c7ab0c61d",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+      "blob": "76818bd338f0804685b3947e65cffabaf5c09b68",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "blob": "17d26fe2f02c19a6b2d3f4c76223ad6a9dc5754c",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+      "blob": "c163b1b503ba255c7ee1167b66014904ceb80f3e",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "blob": "356f9ca14c625767863e5457ae4ab6ca9bc2c711",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "blob": "b06e2e4d873b70f163f4800dd46878184985cab3",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+      "blob": "fa5a9ec4f86ac0433681756dd16c763e1c38a18f",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+      "blob": "f700c2c32fffdaf93df3a9fca9ca27f2c07b8166",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+      "blob": "624dc9d93b6a28fcbda0b69addc57a6c71d92a3f",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+      "blob": "65f9f9fb736ec4b1ba00d0e78e357cb817fc969f",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+      "blob": "69184a1cb70078308cdd297320f6e426ca9f32e2",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+      "blob": "0f56b4ce8916b5ff07f10a4983b5887b232a3d2e",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+      "blob": "f303ab2ffef7ba0da1be64b9fbe4ed5dacf7a8c3",
+      "status": "modified"
+    }
+  ],
+  "frozen_source": "11543634c25b639098d177d0add2afa011e3d0d5",
+  "scope": "Read-only API observation of the post-freeze GUI merge; no fetch or local ref mutations. Full local tree reconstruction proof is recorded separately."
+}

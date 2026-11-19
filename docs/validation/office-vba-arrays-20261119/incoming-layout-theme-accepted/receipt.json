@@ -1,0 +1,260 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/office_chrome_theme_test.dart",
+        "test/office_dark_document_test.dart",
+        "test/office_dark_slide_test.dart",
+        "test/word_page_layout_test.dart",
+        "test/embed_test.dart",
+        "test/word_tab_stops_editor_test.dart",
+        "test/sheet_conditional_rendering_test.dart",
+        "test/word_selection_paint_test.dart",
+        "test/word_header_footer_navigation_test.dart",
+        "test/editor_test.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor",
+      "elapsed_seconds": 55.668620109558105,
+      "environment_overrides": {
+        "CI": "true",
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "FLUTTER_SUPPRESS_ANALYTICS": "true",
+        "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+        "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+      },
+      "exit_code": 0,
+      "name": "editor-tests",
+      "removed_optional_environment": [
+        "QUDS_MAIL_PORTABILITY_SHOTS"
+      ],
+      "started_at_utc": "2026-11-19T18:40:00Z",
+      "stderr": "editor-tests.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "editor-tests.stdout.log",
+      "stdout_sha256": "1e57939292db0025ca81fb9457fd1791a2c0dde4c8a73b86eced6d04904808c7"
+    },
+    {
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/studio_mail_archive_restore_test.dart",
+        "test/studio_mail_archive_restore_native_test.dart",
+        "test/studio_mail_archive_portability_visual_test.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example",
+      "elapsed_seconds": 32.4861946105957,
+      "environment_overrides": {
+        "CI": "true",
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "FLUTTER_SUPPRESS_ANALYTICS": "true",
+        "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+        "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+      },
+      "exit_code": 0,
+      "name": "repeated-studio-tests",
+      "removed_optional_environment": [
+        "QUDS_MAIL_PORTABILITY_SHOTS"
+      ],
+      "started_at_utc": "2026-11-19T18:40:56Z",
+      "stderr": "repeated-studio-tests.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "repeated-studio-tests.stdout.log",
+      "stdout_sha256": "63baec1e08e038e7cfcb8c7e3377f0927ddd7b5f52fc2bfa325dbc1254a8ccc1"
+    },
+    {
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/studio_layout_theme_test.dart",
+        "test/studio_page_layout_dialog_test.dart",
+        "test/studio_paragraph_dialog_test.dart",
+        "test/studio_slide_sheet_menus_test.dart",
+        "test/studio_comment_keyboard_review_test.dart",
+        "test/studio_comment_review_test.dart",
+        "test/studio_review_pane_test.dart",
+        "test/studio_zotero_shortcuts_test.dart",
+        "test/studio_file_menu_test.dart",
+        "test/studio_desktop_menu_test.dart",
+        "test/studio_ribbon_customization_test.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example",
+      "elapsed_seconds": 184.63896703720093,
+      "environment_overrides": {
+        "CI": "true",
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "FLUTTER_SUPPRESS_ANALYTICS": "true",
+        "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+        "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+      },
+      "exit_code": 0,
+      "name": "studio-theme-tests",
+      "removed_optional_environment": [
+        "QUDS_MAIL_PORTABILITY_SHOTS"
+      ],
+      "started_at_utc": "2026-11-19T18:41:28Z",
+      "stderr": "studio-theme-tests.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "studio-theme-tests.stdout.log",
+      "stdout_sha256": "3ef379ef09f8022cec1440d5f0cfdf963af80d1ea04ee7a765eba2e3ab930454"
+    },
+    {
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+        "--no-version-check",
+        "--suppress-analytics",
+        "analyze",
+        "--no-pub",
+        "--fatal-infos",
+        "lib/quds_office_editor.dart",
+        "lib/src/editor_sheet/render_sheet_grid.dart",
+        "lib/src/editor_slide/render_slide_stage.dart",
+        "lib/src/editor_word/office_ruler.dart",
+        "lib/src/editor_word/render_word_canvas.dart",
+        "lib/src/embed/office_controller.dart",
+        "lib/src/embed/office_theme.dart",
+        "lib/src/embed/word_page_layout.dart",
+        "lib/src/ui_components/office_chrome.dart",
+        "test/office_chrome_theme_test.dart",
+        "test/office_dark_document_test.dart",
+        "test/office_dark_slide_test.dart",
+        "test/word_page_layout_test.dart",
+        "test/embed_test.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor",
+      "elapsed_seconds": 14.530714750289917,
+      "environment_overrides": {
+        "CI": "true",
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "FLUTTER_SUPPRESS_ANALYTICS": "true",
+        "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+        "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+      },
+      "exit_code": 0,
+      "name": "changed-analysis",
+      "removed_optional_environment": [
+        "QUDS_MAIL_PORTABILITY_SHOTS"
+      ],
+      "started_at_utc": "2026-11-19T18:44:33Z",
+      "stderr": "changed-analysis.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "changed-analysis.stdout.log",
+      "stdout_sha256": "5bc556ea67c3f2d67bae6a571c9c467cc8921d5afbfd0f89cd626a73f2a757fc"
+    },
+    {
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+        "--no-version-check",
+        "--suppress-analytics",
+        "analyze",
+        "--no-pub",
+        "--fatal-infos",
+        "lib/studio_chrome.dart",
+        "lib/studio_material_theme.dart",
+        "lib/studio_page_layout_dialog.dart",
+        "lib/studio_paragraph_dialog.dart",
+        "lib/suite_workspace.dart",
+        "lib/studio_hunspell_setup.dart",
+        "lib/studio_pdf_flutter_samples.dart",
+        "lib/studio_pdf_toc_samples.dart",
+        "test/studio_layout_theme_test.dart",
+        "test/studio_page_layout_dialog_test.dart",
+        "test/studio_paragraph_dialog_test.dart",
+        "test/studio_slide_sheet_menus_test.dart",
+        "test/studio_comment_keyboard_review_test.dart",
+        "test/studio_comment_review_test.dart",
+        "test/studio_review_pane_test.dart",
+        "test/studio_zotero_shortcuts_test.dart",
+        "test/studio_file_menu_test.dart",
+        "test/studio_desktop_menu_test.dart",
+        "test/studio_ribbon_customization_test.dart",
+        "test/support/studio_document_mode.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example",
+      "elapsed_seconds": 15.574559211730957,
+      "environment_overrides": {
+        "CI": "true",
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "FLUTTER_SUPPRESS_ANALYTICS": "true",
+        "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+        "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+      },
+      "exit_code": 0,
+      "name": "studio-analysis",
+      "removed_optional_environment": [
+        "QUDS_MAIL_PORTABILITY_SHOTS"
+      ],
+      "started_at_utc": "2026-11-19T18:44:48Z",
+      "stderr": "studio-analysis.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "studio-analysis.stdout.log",
+      "stdout_sha256": "585647408ac1ea811cb43a34a7a43c525d304d0b48b8d4e205c5628681560c2e"
+    }
+  ],
+  "counting_note": "The repeated-studio-tests command repeats the 18 already qualified mail cases; count those once. studio-theme-tests contains the additional GUI cohort. De-duplicate all final totals by repository suite path and test name.",
+  "editor": {
+    "done_events": [
+      {
+        "success": true,
+        "time": 53816,
+        "type": "done"
+      }
+    ],
+    "failed": 0,
+    "non_json_stdout_lines": 0,
+    "passed": 213,
+    "skipped": 0,
+    "visible_test_count": 213
+  },
+  "input_stability": {
+    "after_count": 2495,
+    "before_count": 2495,
+    "changed": [],
+    "unchanged": true
+  },
+  "repeated_studio": {
+    "done_events": [
+      {
+        "success": true,
+        "time": 29245,
+        "type": "done"
+      }
+    ],
+    "failed": 0,
+    "non_json_stdout_lines": 0,
+    "passed": 18,
+    "skipped": 0,
+    "visible_test_count": 18
+  },
+  "studio_theme": {
+    "done_events": [
+      {
+        "success": true,
+        "time": 182161,
+        "type": "done"
+      }
+    ],
+    "failed": 0,
+    "non_json_stdout_lines": 0,
+    "passed": 116,
+    "skipped": 0,
+    "visible_test_count": 116
+  },
+  "success": true
+}

@@ -447,7 +447,7 @@ void main() {
   });
 
   test(
-    'SIGKILL after one atomic restore releases ownership and reruns safely',
+    'SIGKILL preserves a receipt, resumes unfinished originals and verifies reruns',
     () async {
       final library = await Isolate.resolvePackageUri(
         Uri.parse('package:quds_mail_store/quds_mail_store.dart'),
@@ -522,14 +522,25 @@ void main() {
           codec: const fixture.RestoreCrashCodec(),
         );
         final recoveryPlan = _value(await recovery.inspect(package));
-        final resumed = await recovery.restore(recoveryPlan);
+        expect(recoveryPlan.checkpoint?.completedMessages, 1);
+        expect(recoveryPlan.checkpoint?.completedBytes, originals.first.length);
+        final firstFile = File(
+          p.join(package.path, '${originals.first.sha256}.eml'),
+        );
+        await firstFile.delete();
+        final resumed = await recovery.restore(recoveryPlan, resume: true);
         expect(resumed.status, MailArchiveRestoreStatus.completed);
         expect(resumed.saved, 1);
-        expect(resumed.duplicates, 1);
+        expect(resumed.duplicates, 0);
+        expect(resumed.resumed, 1);
+        expect(resumed.resumedBytes, originals.first.length);
+        expect(resumed.bytes, originals.last.length);
         expect(resumed.originsAdded, 1);
+        await firstFile.writeAsBytes(originals.first.bytes, flush: true);
         final repeated = await recovery.restore(recoveryPlan);
         expect(repeated.saved, 0);
         expect(repeated.duplicates, 2);
+        expect(repeated.resumed, 0);
         expect(repeated.originsAdded, 0);
         for (final original in originals) {
           expect(

@@ -1,0 +1,28 @@
+{
+  "name": "web_vba_smoke-compile",
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+    "compile",
+    "js",
+    "-O1",
+    "tool/macros/web_vba_smoke.dart",
+    "-o",
+    "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_smoke.js"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+  "started_utc": "2026-11-19T18:31:22.980823+00:00",
+  "completed_utc": "2026-11-19T18:31:32.339849+00:00",
+  "elapsed_seconds": 9.359,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": {
+    "path": "logs/web_vba_smoke-compile.stdout.log",
+    "sha256": "a35ed01fa846133dff48c94e563fb1ebef39a0157360f70f49865996f719c691",
+    "bytes": 114
+  },
+  "stderr": {
+    "path": "logs/web_vba_smoke-compile.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/office_dark_slide_test.dart"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor",
+  "environment_overrides": {
+    "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "CI": "true"
+  },
+  "started_at_utc": "2026-11-19T18:37:36.600560+00:00",
+  "source_before": {
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": "8a4bfdcf1a4fb913a2533ed523c05b6250427a49596a2051dc022dad5e262109",
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": "7b5900c123fafb788b3629b18d04e860b6a0ec317a2993e3e54718929cc2851a",
+    "packages/quds_office_editor/lib/src/embed/office_theme.dart": "d707398a8be0e76573c6074d8e91e5fe50925135f44cace231574833b0aefdbd",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "7d77b680b43bf2a02bd3ea24642c8f9faf3f19f814c3dba61398c1d01ca34c12"
+  },
+  "qualification_counting": "Focused follow-up; separate from eventual full accepted run.",
+  "exit_code": 0,
+  "elapsed_seconds": 9.604,
+  "finished_at_utc": "2026-11-19T18:37:46.205009+00:00",
+  "source_after": {
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": "8a4bfdcf1a4fb913a2533ed523c05b6250427a49596a2051dc022dad5e262109",
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": "7b5900c123fafb788b3629b18d04e860b6a0ec317a2993e3e54718929cc2851a",
+    "packages/quds_office_editor/lib/src/embed/office_theme.dart": "d707398a8be0e76573c6074d8e91e5fe50925135f44cace231574833b0aefdbd",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "7d77b680b43bf2a02bd3ea24642c8f9faf3f19f814c3dba61398c1d01ca34c12"
+  },
+  "inputs_stable": true,
+  "test_counts": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0
+  },
+  "stdout_sha256": "ed682afdbc824a7827c0d363eb4d919d8e1906df00011b48ba9a982fe21cc89f",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

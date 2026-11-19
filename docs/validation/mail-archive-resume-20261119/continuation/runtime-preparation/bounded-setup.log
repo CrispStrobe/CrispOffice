@@ -1,0 +1,14 @@
+{"completed_archives": 1, "free_bytes": 727367680}
+{"completed_archives": 21, "free_bytes": 814051328}
+{"completed_archives": 41, "free_bytes": 820903936}
+{"completed_archives": 61, "free_bytes": 763510784}
+{"completed_archives": 81, "free_bytes": 735297536}
+{"completed_archives": 101, "free_bytes": 716730368}
+{"completed_archives": 121, "free_bytes": 716726272}
+{"completed_archives": 141, "free_bytes": 716718080}
+{"completed_archives": 161, "free_bytes": 716709888}
+{"completed_archives": 181, "free_bytes": 716705792}
+flutter-tools-pub-get 0
+workspace-pub-get 0
+flutter-version 0
+{"status": "ready", "error": null, "free_bytes": 699609088}

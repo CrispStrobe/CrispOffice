@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "required_true_fields": [
+    "liveArraySlotsAndIndependentControlVariables",
+    "rangeSnapshotAndRowMajorOrder",
+    "exactArrayAllocationAndNegativeBounds",
+    "boundedArraysAndRangeIteration",
+    "staticInactiveChecks",
+    "validationPreservedBytes",
+    "lateFailurePreservedBytes",
+    "mcpCompileAndRun"
+  ],
+  "reported": [
+    {
+      "language": "vba-excel",
+      "revision": 2,
+      "steps": 13,
+      "formulaTotal": 28,
+      "coldDepthStress": "32 procedure frames / 32 For Each blocks / 63 unary operators, then mixed blocks",
+      "liveArraySlotsAndIndependentControlVariables": true,
+      "rangeSnapshotAndRowMajorOrder": true,
+      "exactArrayAllocationAndNegativeBounds": true,
+      "boundedArraysAndRangeIteration": true,
+      "staticInactiveChecks": true,
+      "validationPreservedBytes": true,
+      "lateFailurePreservedBytes": true,
+      "mcpCompileAndRun": true
+    }
+  ]
+}

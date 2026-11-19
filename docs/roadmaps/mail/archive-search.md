@@ -7,6 +7,8 @@ The portability increment adds recursive directory ingestion, bulk EML export
 from a frozen search selection, and explicit recovery of interrupted exports.
 The restoration increment imports those exported originals with all recorded
 provenance into an existing archive, including a different host/profile.
+Durable restore progress now survives restarts and confirms previously committed
+destination messages before continuing unfinished items.
 Full MailStore Server parity remains a roadmap goal. The comparison below keeps
 implemented behavior separate from outstanding enterprise and format support.
 
@@ -17,6 +19,8 @@ rules are in
 [mail-archive-portability validation](../../validation/mail-archive-portability-20261119/README.md).
 The restoration increment and its fresh local checks are recorded in
 [mail archive restoration validation](../../validation/mail-archive-restore-20261119/README.md).
+The durable restoration increment and its local qualification are recorded in
+[mail archive resume validation](../../validation/mail-archive-resume-20261119/README.md).
 Existing account, provider and standalone Office scope remains in
 [the Mail roadmap](README.md).
 
@@ -29,7 +33,7 @@ identical storage, search semantics, administration, or compliance properties.
 | Area | Available in this CrispOffice increment | Remaining parity work | MailStore reference |
 | --- | --- | --- | --- |
 | Durable archival | Separate native SQLite archive; immutable original message bytes; SHA-256 content identity; multiple source/folder origins for one exact byte sequence | Managed server archive stores and administration | [Archiving basics][mailstore-basics] |
-| File ingestion | Multiple EML files, streamed MBOX with explicit `mboxrd` or `mboxo` interpretation, and bounded native directory import with optional recursive traversal and relative-folder provenance; verified import of CrispOffice export manifests with atomic per-message provenance; visible skipped, failed, limited and partial outcomes | PST, MSG, other MBOX dialects, signed MailStore-export metadata import and durable import cursors | [File import][mailstore-files] |
+| File ingestion | Multiple EML files, streamed MBOX with explicit `mboxrd` or `mboxo` interpretation, and bounded native directory import with optional recursive traversal and relative-folder provenance; verified import of CrispOffice export manifests with atomic per-message provenance and durable resume receipts; visible skipped, failed, limited and partial outcomes | PST, MSG, other MBOX dialects, signed MailStore-export metadata import and durable cursors for generic file/directory ingestion | [File import][mailstore-files] |
 | Connected mail | Archive an explicitly selected message or selected folder from the native IMAP, EWS, Gmail and Microsoft 365 readers; paginated, cancellable foreground collection | Whole-account/subfolder traversal, durable resume cursors, unattended scheduling, journal capture and administrative mailbox collection | [Archiving basics][mailstore-basics] |
 | Search | Indexed subject, sender/recipients including Bcc, body, attachment names and optional supported attachment text; phrases, prefix terms, Boolean groups, alternatives and exclusions | Leading/infix wildcards and `?`; identical MailStore tokenization and advanced search semantics | [Client search][mailstore-client] |
 | Search management | Source/folder filters, optional subfolders, sent/archive dates, exact byte-size filters, attachment filter, sorting, paging, saved searches | Shared search administration and full multi-user archive browsing | [Client search][mailstore-client] |
@@ -251,8 +255,9 @@ bytes remain the retained original. A codec that returns different original
 bytes is rejected. Supported attachment-text indexing remains an explicit
 option with the same extraction bounds and warnings as ordinary file import.
 
-One database transaction stores each original, its index and **all** recorded
-`source`, `folder` and `sourceMessageId` values. An existing identical original
+One database transaction stores each original, its index, **all** recorded
+`source`, `folder` and `sourceMessageId` values, and a durable completion receipt.
+The receipt cannot get ahead of its message or provenance. An existing identical original
 is integrity-checked and receives any missing origins. It is counted as one
 duplicate, even if several origins are added. Repeated provenance entries never
 multiply stored rows. Invalid provenance, quota failure, cancellation before
@@ -261,19 +266,46 @@ including new origins for an existing original. A corrupted destination original
 is reported and retained for diagnosis. Earlier successful messages remain
 committed when later work fails or is cancelled.
 
-After interruption, select the export again and repeat the workflow. Every
-selected original is checked again, and the destination deduplicates retained
-bytes and origins. There is no persistent import cursor or unattended retry.
-Missing source originals are reported even when the same message already exists
-in the destination. The old source archive database is not required once all
-exported EML files are available. Newly saved messages receive the destination's
-current archive date; existing archive dates and verified projections are kept.
-Saved searches, profiles, accounts and provider mailboxes are outside the format.
+After interruption, select the export again. The preview shows previously
+committed messages and bytes, and selects **Resume unfinished work** when progress
+exists. **Resume restore** confirms each recorded item against its retained
+destination original, metadata, search index and complete expected provenance.
+It reads and parses source EML only for items without a valid receipt. A missing
+provenance row causes normal verified import to repair the origin set. Damaged
+originals, metadata or indexes are reported instead of being accepted as resumed.
+Earlier successful items can be sparse: a failed middle item is retried while
+confirmed later items resume. Cancellation and actual process termination retain
+the exact set of committed receipts.
 
-Progress and the terminal report distinguish planned, saved, duplicate and failed
-originals, newly added origins, verified committed bytes, indexing warnings and
-observer errors. Byte totals include successful duplicates; they do not measure
-new disk consumption. Retained item failures contain only an ordinal and safe
+Progress belongs to the destination archive and the digest of the decoded UTF-8
+manifest text, with an optional UTF-8 BOM ignored. Moving an unchanged export
+directory keeps its progress. Changing the manifest content creates a different
+selection; an already displayed preview is rejected if its manifest changes.
+Preview counts alone never authorize skipping work. A source EML already covered
+by a valid receipt need not remain available for resume; uncompleted originals
+and the manifest must remain available. Resume verifies retained destination
+content and does not certify that skipped source files are still intact.
+
+Clear **Resume unfinished work** for a full verification rerun. Every selected
+source original is checked again and retained content/provenance deduplicates.
+Missing source files are reported in that mode even when the destination has a
+valid receipt. The public `restore` API defaults to this full verification mode;
+pass `resume: true` explicitly to reuse receipts. Changing attachment indexing
+does not replace existing projections; use index rebuilding to change those.
+There is no unattended retry or background scheduling.
+
+The old source archive database is unnecessary once exported EML files are
+available. Newly saved messages receive the destination's current archive date;
+existing archive dates and verified projections are kept. Saved searches,
+profiles, accounts and provider mailboxes are outside the format.
+
+Progress and the terminal report distinguish planned, newly saved, duplicate,
+failed and resumed originals. Newly added origins, source-verified committed
+bytes, indexing warnings and observer errors describe the current run. Separate
+`resumedBytes` and `resumedIndexWarnings` describe confirmed earlier work.
+`processed` includes resumed confirmations. Current-run byte totals include
+successful duplicates; neither byte counter measures new disk consumption.
+Retained item failures contain only a one-based ordinal and safe
 problem code, with a separate omitted-detail count. `completed` requires all
 selected messages to succeed; `partial`, `cancelled` and `failed` retain confirmed
 counts. Missing or mismatching individual source files can be reported while
@@ -289,6 +321,32 @@ combined provenance labels for one atomic call are bounded by its metadata
 budget. Public `archiveMessageWithOrigins` provides the atomic multi-origin
 operation, while `archiveMessage` remains the compatible single-origin API.
 `MailArchiveImportResult.originsAdded` reports the actual newly committed count.
+
+### Manage saved restore progress
+
+Choose **Restore progress** to inspect retained export identities, completed
+message counts and bytes. **Forget progress** requires confirmation and removes
+only the selected receipt metadata. Archived originals, provenance, dates,
+search indexes, source files and other exports' progress remain intact. The next
+restore of that export verifies its source files again and deduplicates existing
+messages. Progress is not silently evicted when a limit is reached.
+
+The default destination limits are 64 restore jobs and 100,000 completion
+receipts across all jobs. Logical archive accounting charges 192 bytes per job
+and 256 bytes per receipt; these are deterministic quota charges, not measured
+SQLite disk usage. The existing logical archive-byte limit also applies. A
+quota failure rolls back the current message and receipt together; earlier
+commits remain. Forgetting progress can free this capacity. Cleanup remains
+available under tighter reopened quotas, but does not raise or bypass limits
+on new imports.
+
+`SqliteMailArchive.restoreCheckpoint` reads a selection's saved progress,
+`listRestoreCheckpoints` supplies the bounded management view, and
+`forgetRestoreCheckpoint` deletes only that selection's progress.
+`archiveRestoreMessage` commits a validated manifest item and its receipt in one
+transaction; ordinals are one-based. `loadRestoreReceipt` verifies a previously
+committed item before returning its confirmation. The receipt tables contain
+identities, counts and warning flags, without source paths or credentials.
 
 `NativeMailArchiveRestorer.inspect` returns a `MailArchiveRestorePlan` bound to
 the digest of the decoded manifest text (a UTF-8 BOM is ignored). `restore` re-reads the manifest under its
@@ -373,7 +431,9 @@ the same archive path. Close rejects new work, drains already accepted work,
 then closes the archive and releases ownership. A future schema version is
 refused rather than downgraded. Fault-injection checkpoints and actual
 subprocess termination tests exercise rollback before commit and persistence
-after a confirmed commit.
+after a confirmed commit. Schema version 2 additively upgrades version 1 with
+restore progress tables, counters and quota-accounting triggers; original bytes,
+provenance and search data are retained.
 
 These mechanisms protect local transactional integrity. Hashes stored beside
 the data are not signatures or an independent tamper-proof audit trail. They
@@ -406,6 +466,7 @@ content do not acquire searchable attachment text through this implementation.
 | Decoded attachment bytes considered per message | 1 MiB |
 | Search/maintenance maximum page size | 200 records |
 | Saved searches / source profiles | 100 / 100 |
+| Saved restore jobs / completion receipts | 64 / 100,000 |
 | References, each address group, attachments | 1,024 entries each |
 
 Logical quotas do not reserve disk space or predict SQLite/WAL/index overhead.

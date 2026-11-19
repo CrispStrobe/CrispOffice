@@ -1,0 +1,607 @@
+{
+  "done_events": [
+    {
+      "success": true,
+      "time": 12086,
+      "type": "done"
+    }
+  ],
+  "failed": 0,
+  "non_json_stdout_lines": 0,
+  "passed": 18,
+  "skipped": 0,
+  "tests": [
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 3,
+        "time": 4337,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 3,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "preview requires confirmation and preserves the selection",
+        "root_column": 3,
+        "root_line": 181,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 4,
+        "time": 4663,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 4,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "dismissing preview performs no restore",
+        "root_column": 3,
+        "root_line": 209,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 5,
+        "time": 4829,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 5,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "cancelling the folder picker performs no inspection",
+        "root_column": 3,
+        "root_line": 218,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 6,
+        "time": 4990,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 6,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "invalid export is reported before showing the preview",
+        "root_column": 3,
+        "root_line": 230,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 7,
+        "time": 5150,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 7,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "unexpected inspection exceptions are sanitized",
+        "root_column": 3,
+        "root_line": 243,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 8,
+        "time": 5522,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 8,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "cancellation awaits confirmed counts and keeps earlier saves",
+        "root_column": 3,
+        "root_line": 254,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 9,
+        "time": 5845,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 9,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "partial restore exposes bounded item failures",
+        "root_column": 3,
+        "root_line": 295,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 10,
+        "time": 6113,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 10,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "disposing during inspection cancels and drops late preview",
+        "root_column": 3,
+        "root_line": 318,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 11,
+        "time": 6340,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 11,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "disposing during restore ignores late progress and result",
+        "root_column": 3,
+        "root_line": 334,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 12,
+        "time": 6593,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 12,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "narrow StudioLanguage.en preview supports long profile labels",
+        "root_column": 5,
+        "root_line": 351,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 13,
+        "time": 6814,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 13,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "narrow StudioLanguage.de preview supports long profile labels",
+        "root_column": 5,
+        "root_line": 351,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 14,
+        "time": 7081,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 14,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "narrow StudioLanguage.ar preview supports long profile labels",
+        "root_column": 5,
+        "root_line": 351,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+        "suiteID": 0,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 18,
+        "time": 7951,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 15,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          17
+        ],
+        "id": 18,
+        "line": 52,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "real MIME export restores exact originals, origins and searchable text",
+        "suiteID": 15,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 22,
+        "time": 10711,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 19,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          21
+        ],
+        "id": 22,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "restore preview and result in StudioLanguage.en",
+        "root_column": 5,
+        "root_line": 286,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "suiteID": 19,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 23,
+        "time": 11034,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 19,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          21
+        ],
+        "id": 23,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "restore preview and result in StudioLanguage.de",
+        "root_column": 5,
+        "root_line": 286,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "suiteID": 19,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 24,
+        "time": 11361,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 19,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          21
+        ],
+        "id": 24,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "restore preview and result in StudioLanguage.ar",
+        "root_column": 5,
+        "root_line": 286,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "suiteID": 19,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 25,
+        "time": 11701,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 19,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          21
+        ],
+        "id": 25,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "desktop portability controls, export confirmation and long destination",
+        "root_column": 3,
+        "root_line": 321,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "suiteID": 19,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 26,
+        "time": 12065,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 19,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          21
+        ],
+        "id": 26,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "narrow Arabic portability controls and export report remain usable",
+        "root_column": 3,
+        "root_line": 350,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+        "suiteID": 19,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    }
+  ],
+  "visible_test_count": 18
+}

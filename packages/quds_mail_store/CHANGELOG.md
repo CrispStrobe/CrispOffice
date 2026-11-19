@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Add durable restore receipts committed atomically with originals, indexes and
+  all provenance. Explicit `resume: true` verifies previously committed
+  destination items and imports only unfinished items; default reruns still
+  verify every source file. Report resumed counts, bytes and warnings separately.
+- Upgrade archive schema v1 to v2 additively and account for bounded progress
+  metadata in archive quotas. Add checkpoint inspection, listing and explicit
+  removal without deleting messages, including cleanup under lowered quotas.
+- Verify sparse retry, changed manifests, destination corruption, cancellation,
+  cross-profile isolation and actual SIGKILL/reopen resume.
+
 - Add `NativeMailArchiveRestorer` for read-only inspection and verified
   cross-profile restoration of exported originals with all recorded provenance.
   Repeated restores deduplicate originals, add missing origins, and retain

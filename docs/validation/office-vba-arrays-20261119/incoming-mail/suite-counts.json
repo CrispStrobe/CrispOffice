@@ -1,0 +1,22 @@
+{
+  "adversarial_store_test.dart": 16,
+  "archive_directory_native_test.dart": 44,
+  "archive_export_manifest_test.dart": 6,
+  "archive_export_native_test.dart": 46,
+  "archive_export_plan_test.dart": 13,
+  "archive_multi_origin_test.dart": 9,
+  "archive_native_test.dart": 13,
+  "archive_query_test.dart": 94,
+  "archive_repository_test.dart": 81,
+  "archive_restore_adversarial_test.dart": 15,
+  "archive_restore_native_test.dart": 15,
+  "archive_runner_test.dart": 54,
+  "codec_test.dart": 35,
+  "crash_recovery_test.dart": 5,
+  "ews_store_test.dart": 8,
+  "imap_sync_range_test.dart": 15,
+  "migration_test.dart": 9,
+  "native_platform_test.dart": 7,
+  "platform_configuration_test.dart": 4,
+  "repository_test.dart": 19
+}

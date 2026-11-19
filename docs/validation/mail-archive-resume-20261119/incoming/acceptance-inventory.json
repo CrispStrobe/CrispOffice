@@ -1,0 +1,426 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "window": "final-window-v3",
+  "accepted_groups": [
+    {
+      "name": "engine",
+      "path": "engine-accepted-v3",
+      "kind": "engine",
+      "executed_runner": "run-engine-validation-direct.py"
+    },
+    {
+      "name": "slide-parser",
+      "path": "slide-parser-accepted-v3",
+      "kind": "commands",
+      "executed_runner": "run-slide-validation-accepted.py"
+    },
+    {
+      "name": "editor",
+      "path": "editor-final-v3",
+      "kind": "ui-tests",
+      "executed_runner": "run-ui-validation.py"
+    },
+    {
+      "name": "studio",
+      "path": "studio-final-v3",
+      "kind": "ui-tests",
+      "executed_runner": "run-ui-validation.py"
+    },
+    {
+      "name": "editor-analysis",
+      "path": "editor-analysis-final-v3",
+      "kind": "commands",
+      "executed_runner": "run-ui-analysis.py"
+    },
+    {
+      "name": "studio-analysis",
+      "path": "studio-analysis-final-v3",
+      "kind": "commands",
+      "executed_runner": "run-ui-analysis.py"
+    },
+    {
+      "name": "spacy",
+      "path": "spacy-accepted-v3",
+      "kind": "spacy",
+      "executed_runner": "run-spacy-validation.py"
+    },
+    {
+      "name": "static",
+      "path": "static-accepted-v3",
+      "kind": "static",
+      "executed_runner": "run-static-validation.py"
+    }
+  ],
+  "excluded_groups": [
+    {
+      "path": "engine",
+      "reason": "Incomplete plain Dart CLI startup; interrupted with no test events. All required commands superseded by direct-entrypoint final qualification."
+    },
+    {
+      "path": "engine-final",
+      "reason": "Successful development replay on pre-parser/pre-latest-GUI source; superseded by fresh final-window engine acceptance."
+    },
+    {
+      "path": "editor",
+      "reason": "Initial development run exposed near-solid black-pixel assertion failure in incoming dark-slide test."
+    },
+    {
+      "path": "editor-dark-slide-final",
+      "reason": "Narrow raster correction exposed actual table-cell color import defect; not accepted."
+    },
+    {
+      "path": "editor-analysis",
+      "reason": "Development analysis on earlier source; superseded by editor-analysis-final."
+    },
+    {
+      "path": "slide-parser-final",
+      "reason": "Successful focused development proof before latest incoming parser/raster/ruler commits; superseded by slide-parser-accepted."
+    },
+    {
+      "path": "engine-accepted",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "slide-parser-accepted",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "editor-final",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "studio-final",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "editor-analysis-final",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "studio-analysis-final",
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "final-window",
+      "reason": "Initial capture only; enclosing run was interrupted and latest external source integration superseded this source."
+    },
+    {
+      "path": "engine-accepted-v2",
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "slide-parser-accepted-v2",
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "editor-final-v2",
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "studio-final-v2",
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "editor-analysis-final-v2",
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "studio-analysis-final-v2",
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "spacy-accepted",
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "static-accepted",
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "final-window-v2",
+      "reason": "Completed stable input window for superseded v2 exploration; two editor golden failures and an over-broad unchanged-CLI lint diagnostic exclude the selection from final accepted counts."
+    }
+  ],
+  "excluded_diagnostics": [
+    "dark-slide-probe.log",
+    "dark-slide-probe.png",
+    "table-color-before.log",
+    "table-color-before-in-package.log",
+    "abandoned-vba-cli-GOYJGA.tar.gz",
+    "abandoned-vba-cli-GOYJGA.json",
+    "editor-ruler-golden-diagnostic"
+  ],
+  "counting": "Only explicit accepted_groups inside the enclosing final window contribute accepted counts. Development passes, incomplete runs and expected failing probes are excluded.",
+  "window_runner": "capture-final-window.py",
+  "source_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+  "execution_exclusions": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart",
+      "reason": "Requires an installed macOS app with bundled native libraries and verified downloaded models; Linux synthetic/native-status checks do not qualify that application."
+    }
+  ],
+  "test_plan": {
+    "path": "test-plan.json",
+    "sha256": "f048fcc4cee7e1d551228a22f334a6196134fd04dc728d70da2a33db0aac3b5c",
+    "runtime_original": "runtime/incoming-test-plan.json"
+  },
+  "frozen_head": "be93371b680d8e39365a6b356fb727bda81dbed1",
+  "scoped_analysis": {
+    "spacy_targets": [
+      "lib",
+      "test"
+    ],
+    "unchanged_exploratory_diagnostic": {
+      "path": "packages/quds_proofing_spacy/tool/consume_distribution.dart",
+      "baseline": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "git_blob": "644c0e686fc47e328eebb5b7705b2ee84827cf80",
+      "sha256": "cecbc3a4c52dc8880c9eae7add5a925b0c74660e9d1ba1aee7aaae0ffe02cdf6",
+      "log": "spacy-accepted/analysis.stdout.log",
+      "issues": 9,
+      "note": "Outside incoming installer/native/test scope; no source edits, lint suppression, or skipped tests."
+    }
+  },
+  "completed_at_utc": "2026-11-19T19:35:07.930732+00:00",
+  "summary": {
+    "test_counts": {
+      "passed": 1105,
+      "failed": 0,
+      "skipped": 0
+    },
+    "distinct_test_files": 59,
+    "required_commands": 33,
+    "javascript_programs": 6,
+    "groups": [
+      {
+        "name": "engine",
+        "path": "engine-accepted-v3",
+        "receipt_sha256": "6c47191bd99de572f189af59d8beb7e02549adf5f66b4589918f2a5c361f28ec",
+        "test_counts": {
+          "passed": 614,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test_files": 24,
+        "commands": 16
+      },
+      {
+        "name": "slide-parser",
+        "path": "slide-parser-accepted-v3",
+        "receipt_sha256": "f69c094e073d09bc8c769219f227a51e87314aa0dc7d5a09ef43dd9e526716f7",
+        "test_counts": {
+          "passed": 36,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test_files": 4,
+        "commands": 3
+      },
+      {
+        "name": "editor",
+        "path": "editor-final-v3",
+        "receipt_sha256": "8f192ac3f0170ee399c4640de222116dc0d370fdd3c1112d301193a7c1dca8a2",
+        "test_counts": {
+          "passed": 228,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test_files": 11,
+        "commands": 1
+      },
+      {
+        "name": "studio",
+        "path": "studio-final-v3",
+        "receipt_sha256": "b5d05de9534b6f1b74af03c518ea0df81f5a0a88b975239cbaf5d43e70b76661",
+        "test_counts": {
+          "passed": 130,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test_files": 11,
+        "commands": 1
+      },
+      {
+        "name": "editor-analysis",
+        "path": "editor-analysis-final-v3",
+        "receipt_sha256": "ec5fffc0b02cfd901b30194b48b5ff8ee87937d9670e0cad796757942a297142",
+        "test_counts": {
+          "passed": 0,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test_files": 0,
+        "commands": 2
+      },
+      {
+        "name": "studio-analysis",
+        "path": "studio-analysis-final-v3",
+        "receipt_sha256": "a6c7fc340c139c900d0269f5ed1cd5673122a20ada78e4558969aff574e8d4dc",
+        "test_counts": {
+          "passed": 0,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test_files": 0,
+        "commands": 2
+      },
+      {
+        "name": "spacy",
+        "path": "spacy-accepted-v3",
+        "receipt_sha256": "40bf7ec5ff65f8b0ae419ff1b206be3accfd1d4f30f02c52f73810591d686384",
+        "test_counts": {
+          "passed": 97,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test_files": 9,
+        "commands": 5
+      },
+      {
+        "name": "static",
+        "path": "static-accepted-v3",
+        "receipt_sha256": "293fb778847faa8612f6216b857efa9b66d3b1576a0360946bd16962114c72a3",
+        "test_counts": {
+          "passed": 0,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test_files": 0,
+        "commands": 3
+      }
+    ],
+    "window_counts": {
+      "dependencies": 9298,
+      "harnesses": 13,
+      "runtime": 1118,
+      "source": 4494
+    },
+    "window_started_at_utc": "2026-11-19T19:16:43.316964+00:00",
+    "window_finished_at_utc": "2026-11-19T19:33:21.973713+00:00",
+    "window_source_head_before": "be93371b680d8e39365a6b356fb727bda81dbed1",
+    "window_source_head_after": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
+    "input_changes": {
+      "dependencies": [],
+      "harnesses": [],
+      "runtime": [],
+      "source": []
+    },
+    "all_required_commands_passed": true
+  },
+  "excluded_evidence": [
+    {
+      "path": "engine",
+      "present": true,
+      "reason": "Incomplete plain Dart CLI startup; interrupted with no test events. All required commands superseded by direct-entrypoint final qualification."
+    },
+    {
+      "path": "engine-final",
+      "present": true,
+      "reason": "Successful development replay on pre-parser/pre-latest-GUI source; superseded by fresh final-window engine acceptance."
+    },
+    {
+      "path": "editor",
+      "present": true,
+      "reason": "Initial development run exposed near-solid black-pixel assertion failure in incoming dark-slide test."
+    },
+    {
+      "path": "editor-dark-slide-final",
+      "present": true,
+      "reason": "Narrow raster correction exposed actual table-cell color import defect; not accepted."
+    },
+    {
+      "path": "editor-analysis",
+      "present": true,
+      "reason": "Development analysis on earlier source; superseded by editor-analysis-final."
+    },
+    {
+      "path": "slide-parser-final",
+      "present": true,
+      "reason": "Successful focused development proof before latest incoming parser/raster/ruler commits; superseded by slide-parser-accepted."
+    },
+    {
+      "path": "engine-accepted",
+      "present": true,
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "slide-parser-accepted",
+      "present": true,
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "editor-final",
+      "present": false,
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "studio-final",
+      "present": false,
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "editor-analysis-final",
+      "present": true,
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "studio-analysis-final",
+      "present": true,
+      "reason": "Superseded before latest main/app-gaps integration; original final window was incomplete after session loss. No accepted executions from this directory."
+    },
+    {
+      "path": "final-window",
+      "present": true,
+      "reason": "Initial capture only; enclosing run was interrupted and latest external source integration superseded this source."
+    },
+    {
+      "path": "engine-accepted-v2",
+      "present": true,
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "slide-parser-accepted-v2",
+      "present": true,
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "editor-final-v2",
+      "present": true,
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "studio-final-v2",
+      "present": true,
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "editor-analysis-final-v2",
+      "present": true,
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "studio-analysis-final-v2",
+      "present": true,
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "spacy-accepted",
+      "present": true,
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "static-accepted",
+      "present": true,
+      "reason": "Completed v2 exploration on the previous exact golden references. The editor exposed intentional ruler-font reference drift, and spaCy package-wide analysis exposed unchanged CLI info lints. Final v3 reruns all required scoped gates; no v2 cases count."
+    },
+    {
+      "path": "final-window-v2",
+      "present": true,
+      "reason": "Completed stable input window for superseded v2 exploration; two editor golden failures and an over-broad unchanged-CLI lint diagnostic exclude the selection from final accepted counts."
+    }
+  ],
+  "supporting_harness_archives": [
+    "pre-final-v2-harnesses",
+    "pre-final-v3-harnesses"
+  ]
+}

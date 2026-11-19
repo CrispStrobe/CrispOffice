@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/validation-workspace/packages/quds_mail_core",
+  "elapsed_seconds": 0.9770174026489258,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+  },
+  "exit_code": 0,
+  "name": "analyze-quds_mail_core",
+  "started_at_utc": "2026-11-19T18:02:14Z",
+  "stderr": "analyze-quds_mail_core.stderr.log",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout": "analyze-quds_mail_core.stdout.log",
+  "stdout_sha256": "ba8f111031783cd9617e408cf4a69a31be131b4256751d349ccf5fcd426087c9"
+}

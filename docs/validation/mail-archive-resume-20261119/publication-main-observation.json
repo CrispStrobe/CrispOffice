@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "frozen_source": "be93371b680d8e39365a6b356fb727bda81dbed1",
+  "remote_head": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+  "base": "9f41e0427734d815b19149eba5eabef202f78ba6",
+  "comparison_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/9f41e0427734d815b19149eba5eabef202f78ba6...4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+  "merge_base": "9f41e0427734d815b19149eba5eabef202f78ba6",
+  "files": [
+    {
+      "path": "docs/validation/language-downloads-20261119/README.md",
+      "remote_blob": "e313d66184cff1db95372640df403f9391251df5",
+      "status": "modified",
+      "frozen_blob": "49665bd0a72c6f9510eab8cba70214b40e1ce61e",
+      "same_as_frozen": false,
+      "scope": "validation_documentation"
+    },
+    {
+      "path": "docs/validation/language-downloads-20261119/acceptance.json",
+      "remote_blob": "a02e323309af78fd19096df31c9ab07313574849",
+      "status": "added",
+      "frozen_blob": null,
+      "same_as_frozen": false,
+      "scope": "validation_documentation"
+    },
+    {
+      "path": "docs/validation/language-downloads-20261119/native-en-GB.json",
+      "remote_blob": "54415431964e08e223c5efd97d20d03974242987",
+      "status": "added",
+      "frozen_blob": null,
+      "same_as_frozen": false,
+      "scope": "validation_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/README.md",
+      "remote_blob": "79d35eb52ec36066a3ac8c2c67cd0bec6f782f00",
+      "status": "modified",
+      "frozen_blob": "34e682ad44ed92607f63366e79565dd1e9f78625",
+      "same_as_frozen": false,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/harper/DEPENDENCIES.txt",
+      "remote_blob": "f97af1392c646cad4fdb7dba6104341fc28eb366",
+      "status": "added",
+      "frozen_blob": "f97af1392c646cad4fdb7dba6104341fc28eb366",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/harper/HARPER-LICENSE",
+      "remote_blob": "28d2cac5045bb6add164520569a6ebff5f1df9d7",
+      "status": "added",
+      "frozen_blob": "28d2cac5045bb6add164520569a6ebff5f1df9d7",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/spacy/CPython-LICENSE",
+      "remote_blob": "f26bcf4d2de6eb136e31006ca3ab447d5e488adf",
+      "status": "added",
+      "frozen_blob": "f26bcf4d2de6eb136e31006ca3ab447d5e488adf",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/spacy/CrispEmbed-LICENSE",
+      "remote_blob": "bd6ec050511889fcec725b6c5807c686aafef368",
+      "status": "added",
+      "frozen_blob": "bd6ec050511889fcec725b6c5807c686aafef368",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/spacy/PCRE2-LICENCE.md",
+      "remote_blob": "f58ceb75a63e5f958631932f83d0786ee7593485",
+      "status": "added",
+      "frozen_blob": "f58ceb75a63e5f958631932f83d0786ee7593485",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/spacy/THIRD_PARTY_NOTICES",
+      "remote_blob": "ea854e891d4815e643bf93b1774c07550da09b82",
+      "status": "added",
+      "frozen_blob": "ea854e891d4815e643bf93b1774c07550da09b82",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/spacy/Thinc-LICENSE",
+      "remote_blob": "d52557b3f85739e59f9dee341036adfcdf7f2970",
+      "status": "added",
+      "frozen_blob": "d52557b3f85739e59f9dee341036adfcdf7f2970",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/spacy/Unicode-LICENSE.txt",
+      "remote_blob": "56da58912807030b451a4700687d5bd02c72d6ed",
+      "status": "added",
+      "frozen_blob": "56da58912807030b451a4700687d5bd02c72d6ed",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/spacy/de_core_news_sm-LICENSE",
+      "remote_blob": "739e44823171447c0c2398ba9fe7364fb7ca24b6",
+      "status": "added",
+      "frozen_blob": "739e44823171447c0c2398ba9fe7364fb7ca24b6",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/spacy/ggml-LICENSE",
+      "remote_blob": "e7dca554bcb802f98408383a864404e3aa4eacca",
+      "status": "added",
+      "frozen_blob": "e7dca554bcb802f98408383a864404e3aa4eacca",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/spacy/spaCy-LICENSE",
+      "remote_blob": "6cb7810c6ee4ca32c79e68b9f39fbbce2183243a",
+      "status": "added",
+      "frozen_blob": "6cb7810c6ee4ca32c79e68b9f39fbbce2183243a",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+      "remote_blob": "c3c2f61f4fde61804599c390d5776ff3d38f4f7d",
+      "status": "modified",
+      "frozen_blob": "c3c2f61f4fde61804599c390d5776ff3d38f4f7d",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+      "remote_blob": "5958a80e3c5824bc1835220a1fe3903b04ed7b09",
+      "status": "modified",
+      "frozen_blob": "5958a80e3c5824bc1835220a1fe3903b04ed7b09",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+      "remote_blob": "fbfda1d1618b9ba3f02a0a41a3059bdc36941d9d",
+      "status": "modified",
+      "frozen_blob": "7e7407f15b5514dd1d07218901124962dc96fe2e",
+      "same_as_frozen": false,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+      "remote_blob": "520e1879626d75e3df5c1324a851a8a947da3d93",
+      "status": "modified",
+      "frozen_blob": "520e1879626d75e3df5c1324a851a8a947da3d93",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/pubspec.yaml",
+      "remote_blob": "413384af320d3cad00e3820e62c87a96881e6415",
+      "status": "modified",
+      "frozen_blob": "413384af320d3cad00e3820e62c87a96881e6415",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_language_id_test.dart",
+      "remote_blob": "334a2571d68faac083a4b793f6bfde7a86df1e27",
+      "status": "modified",
+      "frozen_blob": "334a2571d68faac083a4b793f6bfde7a86df1e27",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart",
+      "remote_blob": "c7b0550fff598a7c71db72a1ec8a7d08d455902d",
+      "status": "added",
+      "frozen_blob": "8a4285bf935dcfa154177eeca7388177f2fb8391",
+      "same_as_frozen": false,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "remote_blob": "ecf7ca9d1d74188888135341e38c3cbe701c7f20",
+      "status": "modified",
+      "frozen_blob": "ecf7ca9d1d74188888135341e38c3cbe701c7f20",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "remote_blob": "f94df52cbdb721cecb655794c52f6aa02e1026ff",
+      "status": "modified",
+      "frozen_blob": "f94df52cbdb721cecb655794c52f6aa02e1026ff",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/README.md",
+      "remote_blob": "d2b6c32d0051d53b71247fbf83b53542539c3660",
+      "status": "modified",
+      "frozen_blob": "d2b6c32d0051d53b71247fbf83b53542539c3660",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+      "remote_blob": "5d3b617723323a9a39c6944e3367e67bf1d0b03f",
+      "status": "modified",
+      "frozen_blob": "5d3b617723323a9a39c6944e3367e67bf1d0b03f",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+      "remote_blob": "4e629afa0503b89112b39b90c4452916f10a022f",
+      "status": "modified",
+      "frozen_blob": "4e629afa0503b89112b39b90c4452916f10a022f",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart",
+      "remote_blob": "af5a99f78136a541dbe6f700308d635bcca254bd",
+      "status": "modified",
+      "frozen_blob": "af5a99f78136a541dbe6f700308d635bcca254bd",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/CrispEmbed-LICENSE",
+      "remote_blob": "bd6ec050511889fcec725b6c5807c686aafef368",
+      "status": "added",
+      "frozen_blob": "bd6ec050511889fcec725b6c5807c686aafef368",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/THIRD_PARTY_NOTICES",
+      "remote_blob": "ea854e891d4815e643bf93b1774c07550da09b82",
+      "status": "added",
+      "frozen_blob": "ea854e891d4815e643bf93b1774c07550da09b82",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/ggml-LICENSE",
+      "remote_blob": "e7dca554bcb802f98408383a864404e3aa4eacca",
+      "status": "added",
+      "frozen_blob": "e7dca554bcb802f98408383a864404e3aa4eacca",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/manifest.json",
+      "remote_blob": "4e33a07586f2b03c9be265143e103d84cede7d13",
+      "status": "added",
+      "frozen_blob": "4e33a07586f2b03c9be265143e103d84cede7d13",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/notices/CPython-LICENSE",
+      "remote_blob": "f26bcf4d2de6eb136e31006ca3ab447d5e488adf",
+      "status": "added",
+      "frozen_blob": "f26bcf4d2de6eb136e31006ca3ab447d5e488adf",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/notices/PCRE2-LICENCE.md",
+      "remote_blob": "f58ceb75a63e5f958631932f83d0786ee7593485",
+      "status": "added",
+      "frozen_blob": "f58ceb75a63e5f958631932f83d0786ee7593485",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/notices/Thinc-LICENSE",
+      "remote_blob": "d52557b3f85739e59f9dee341036adfcdf7f2970",
+      "status": "added",
+      "frozen_blob": "d52557b3f85739e59f9dee341036adfcdf7f2970",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/notices/Unicode-15.0.0-ReadMe.txt",
+      "remote_blob": "f8fd7bb707a03411aa667d86f38d7011e03b6936",
+      "status": "added",
+      "frozen_blob": "f8fd7bb707a03411aa667d86f38d7011e03b6936",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/notices/Unicode-LICENSE.txt",
+      "remote_blob": "56da58912807030b451a4700687d5bd02c72d6ed",
+      "status": "added",
+      "frozen_blob": "56da58912807030b451a4700687d5bd02c72d6ed",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/notices/continuation-notice-sources.json",
+      "remote_blob": "fe2ec124f199add374f1a348f40e64124833b168",
+      "status": "added",
+      "frozen_blob": "fe2ec124f199add374f1a348f40e64124833b168",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSE",
+      "remote_blob": "739e44823171447c0c2398ba9fe7364fb7ca24b6",
+      "status": "added",
+      "frozen_blob": "739e44823171447c0c2398ba9fe7364fb7ca24b6",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSES_SOURCES",
+      "remote_blob": "090bdfde8abd69a8740e0d15a228e121043e35fe",
+      "status": "added",
+      "frozen_blob": "090bdfde8abd69a8740e0d15a228e121043e35fe",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/notices/ggml-LICENSE",
+      "remote_blob": "e7dca554bcb802f98408383a864404e3aa4eacca",
+      "status": "added",
+      "frozen_blob": "e7dca554bcb802f98408383a864404e3aa4eacca",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/licenses/notices/spaCy-LICENSE",
+      "remote_blob": "6cb7810c6ee4ca32c79e68b9f39fbbce2183243a",
+      "status": "added",
+      "frozen_blob": "6cb7810c6ee4ca32c79e68b9f39fbbce2183243a",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/tool/build.py",
+      "remote_blob": "c78fb595d39f27022950126f8b879b8e8ae30712",
+      "status": "added",
+      "frozen_blob": "c78fb595d39f27022950126f8b879b8e8ae30712",
+      "same_as_frozen": true,
+      "scope": "product_or_product_documentation"
+    }
+  ],
+  "counts": {
+    "equal": 37,
+    "different": 6
+  }
+}

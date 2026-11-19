@@ -10,6 +10,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'studio_mail_archive_host.dart';
 import 'studio_mail_archive_directory_import.dart';
 import 'studio_mail_archive_restore.dart';
+import 'studio_mail_archive_restore_progress.dart';
 import 'studio_mail_archive_restore_strings.dart';
 import 'studio_mail_archive_strings.dart';
 import 'studio_strings.dart';
@@ -672,6 +673,7 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
       final report = await store.restoreExport(
         plan,
         indexAttachmentText: options.indexAttachmentText,
+        resume: options.resume,
         cancellation: cancellation,
         onProgress: (progress) {
           if (!_current(generation, store)) return;
@@ -685,6 +687,9 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
               progress.originsAdded,
               progress.bytes,
               progress.indexWarnings,
+              resumed: progress.resumed,
+              resumedBytes: progress.resumedBytes,
+              resumedIndexWarnings: progress.resumedIndexWarnings,
             );
           });
           if (_verbose) {
@@ -713,6 +718,40 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
       }
     }
   }
+
+  Future<void> _restoreProgress() => _work((
+    store,
+    cancellation,
+    generation,
+  ) async {
+    final result = await _safe(store.listRestoreCheckpoints);
+    if (!_current(generation, store) || cancellation.isCancelled) return;
+    if (result case MailFailure(:final problem)) {
+      setState(() => _error = s.archiveProblem(problem.code));
+      return;
+    }
+    final checkpoints =
+        (result as MailSuccess<List<MailArchiveRestoreCheckpoint>>).value;
+    if (!mounted) return;
+    await showDialog<void>(
+      context: context,
+      builder: (_) => StudioMailArchiveRestoreProgressDialog(
+        strings: s,
+        checkpoints: checkpoints,
+        onForget: (manifestSha256) async {
+          if (!_current(generation, store) || cancellation.isCancelled) {
+            return const MailFailure(MailProblem(MailProblemCode.cancelled));
+          }
+          return _safe(
+            () => store.forgetRestoreCheckpoint(
+              manifestSha256,
+              cancellation: cancellation,
+            ),
+          );
+        },
+      ),
+    );
+  });
 
   Future<void> _bulkExport({bool resume = false}) async {
     if (!_ready || _searching) return;
@@ -1110,6 +1149,12 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
               onPressed: _ready && !_searching ? () => _bulkExport() : null,
               icon: const Icon(Icons.drive_folder_upload_outlined),
               label: Text(s.archiveBulkExport),
+            ),
+            TextButton.icon(
+              key: const ValueKey('archive-restore-progress'),
+              onPressed: _ready && !_searching ? _restoreProgress : null,
+              icon: const Icon(Icons.history),
+              label: Text(s.archiveRestoreProgress),
             ),
             TextButton.icon(
               key: const ValueKey('archive-resume-export'),

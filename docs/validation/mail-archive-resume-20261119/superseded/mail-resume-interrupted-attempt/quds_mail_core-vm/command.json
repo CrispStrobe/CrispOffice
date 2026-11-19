@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "/workspace/scratch/8eda9a4e1801/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/8eda9a4e1801/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/8eda9a4e1801/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/cancellation_test.dart",
+    "test/ews_identity_test.dart",
+    "test/imap_sync_range_test.dart",
+    "test/models_test.dart",
+    "test/outbox_test.dart",
+    "test/sync_coordinator_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core",
+  "environment_overrides": {},
+  "expected_test_files": [
+    "packages/quds_mail_core/test/cancellation_test.dart",
+    "packages/quds_mail_core/test/ews_identity_test.dart",
+    "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "packages/quds_mail_core/test/models_test.dart",
+    "packages/quds_mail_core/test/outbox_test.dart",
+    "packages/quds_mail_core/test/sync_coordinator_test.dart"
+  ],
+  "name": "quds_mail_core-vm",
+  "started_at_utc": "2026-11-19T18:48:11.204666+00:00"
+}

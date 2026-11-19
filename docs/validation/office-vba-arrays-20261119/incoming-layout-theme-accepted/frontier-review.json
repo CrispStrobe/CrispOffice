@@ -1,0 +1,23 @@
+{
+  "additional_cohort_needed": false,
+  "from_gui_head": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+  "new_engine_code_in_gui_delta": false,
+  "new_runtime_dependencies": false,
+  "planning_head_scope": "Two validation/planning documents only; durable archive resume is planned and is not claimed as implemented or accepted.",
+  "planning_only_head": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+  "review_result": "No concrete defect found in these small read-only deltas; final execution remains required.",
+  "runtime_and_test_deltas": {
+    "packages/quds_office_editor/example/lib/studio_chrome.dart": "Inactive tab label uses theme onSurfaceVariant.",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "Actual chrome line metrics determine tab-strip height; active paragraph follows current header/footer story and caret without creating content; identical measurement callback braces fix.",
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart": "Adds first-page-header formatting/undo case and assertions for inactive dark-tab contrast and Arabic tab glyph bounds."
+  },
+  "selected_coverage": [
+    "studio_layout_theme_test.dart",
+    "studio_paragraph_dialog_test.dart",
+    "word_header_footer_navigation_test.dart",
+    "studio_file_menu_test.dart",
+    "studio_desktop_menu_test.dart",
+    "studio_ribbon_customization_test.dart"
+  ],
+  "to_gui_head": "8c6acd04637ef627959fe40f518254ed538ab087"
+}

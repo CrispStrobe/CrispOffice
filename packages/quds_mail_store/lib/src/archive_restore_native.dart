@@ -9,6 +9,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'archive_export_models.dart';
 import 'archive_models.dart';
 import 'archive_repository.dart';
+import 'archive_restore_checkpoint_models.dart';
 import 'archive_restore_models.dart';
 import 'errors.dart';
 
@@ -16,8 +17,10 @@ import 'errors.dart';
 ///
 /// Inspection reads only the manifest. Restoration verifies every named EML
 /// against its exact length and SHA-256 before parsing, then commits the
-/// original, index and all exported provenance atomically per message. Reruns
-/// start at the beginning, verify input again and merge missing origins.
+/// original, index, all exported provenance and a durable receipt atomically
+/// per message. Full reruns verify input again and merge missing origins.
+/// Explicit resume verifies recorded messages in the destination and reads
+/// source EML only for unfinished items. Receipts survive process termination.
 /// Source files, ownership files and staging directories are never changed.
 /// The export profile is informative and may differ from [archive.profile].
 ///
@@ -28,8 +31,9 @@ import 'errors.dart';
 /// Observed links (including ancestor components), non-regular files, changed
 /// metadata and changed manifests are rejected. Portable Dart file APIs cannot
 /// atomically prevent a hostile process replacing paths between system calls;
-/// use a source directory under the user's control. No filesystem snapshot or
-/// cross-run cursor is implied.
+/// use a source directory under the user's control. No filesystem snapshot is
+/// implied. Resume is bound to decoded manifest text and the destination archive,
+/// not the source directory's location or the preview's recorded counts.
 final class NativeMailArchiveRestorer {
   NativeMailArchiveRestorer({
     required this.archive,
@@ -56,8 +60,15 @@ final class NativeMailArchiveRestorer {
         manifest: manifest.text,
         limits: limits,
       );
+      final checkpoint = await archive.restoreCheckpoint(
+        plan,
+        cancellation: cancellation,
+      );
       cancellation?.throwIfCancelled();
-      return MailSuccess(plan);
+      return switch (checkpoint) {
+        MailSuccess(:final value) => MailSuccess(plan.withCheckpoint(value)),
+        MailFailure(:final problem) => MailFailure(problem),
+      };
     } on Object catch (error) {
       return MailFailure(_problem(error));
     }
@@ -66,6 +77,7 @@ final class NativeMailArchiveRestorer {
   Future<MailArchiveRestoreReport> restore(
     MailArchiveRestorePlan preview, {
     bool indexAttachmentText = false,
+    bool resume = false,
     MailCancellationToken? cancellation,
     MailArchiveRestoreProgressSink? onProgress,
   }) async {
@@ -85,7 +97,12 @@ final class NativeMailArchiveRestorer {
       }
       // Decode afresh under this restorer's limits, not the limits used by the
       // preview's creator. Do not silently truncate an over-budget selection.
-      final plan = decodeMailArchiveExportManifest(manifest.text, limits);
+      final selection = MailArchiveRestorePlan.fromManifest(
+        directoryPath: root,
+        manifest: manifest.text,
+        limits: limits,
+      );
+      final plan = selection.exportPlan;
       run.planned = plan.items.length;
       run.emit(MailArchiveRestorePhase.started);
       for (var index = 0; index < plan.items.length; index++) {
@@ -93,9 +110,33 @@ final class NativeMailArchiveRestorer {
         await _unchanged(manifest.file, manifest.stat, cancellation);
         final item = plan.items[index];
         MailParseResult parsed;
+        var destinationFailure = false;
         try {
           if (item.byteLength > archive.limits.maxMessageBytes) {
             _fail(MailProblemCode.quotaExceeded);
+          }
+          if (resume) {
+            final restored = await archive.loadRestoreReceipt(
+              selection,
+              index + 1,
+              cancellation: cancellation,
+            );
+            if (restored case MailFailure(:final problem)) {
+              destinationFailure = true;
+              _fail(problem.code);
+            }
+            final receipt =
+                (restored as MailSuccess<MailArchiveRestoreReceipt?>).value;
+            if (receipt != null) {
+              await _unchanged(manifest.file, manifest.stat, cancellation);
+              run.resumed++;
+              run.resumedBytes += receipt.byteLength;
+              if (receipt.indexWarning) run.resumedIndexWarnings++;
+              run.emit(MailArchiveRestorePhase.message);
+              cancellation?.throwIfCancelled();
+              await Future<void>.delayed(Duration.zero);
+              continue;
+            }
           }
           final file = File(p.join(root, '${item.id}.eml'));
           final original = await _readFile(
@@ -138,7 +179,12 @@ final class NativeMailArchiveRestorer {
           if (_cancelled(problem.code)) rethrow;
           run.fail(index + 1, problem);
           run.emit(MailArchiveRestorePhase.message);
+          // Destination corruption or loss stops resumption. A source/codec
+          // failure remains per-item even when sanitized to storageFailure.
           if (problem.code == MailProblemCode.quotaExceeded ||
+              (destinationFailure &&
+                  (problem.code == MailProblemCode.storageFailure ||
+                      problem.code == MailProblemCode.unavailable)) ||
               problem.code == MailProblemCode.permissionDenied) {
             rethrow;
           }
@@ -150,10 +196,12 @@ final class NativeMailArchiveRestorer {
         // has returned, immediately before accepting any database mutation.
         await _unchanged(manifest.file, manifest.stat, cancellation);
         cancellation?.throwIfCancelled();
-        final stored = await archive.archiveMessageWithOrigins(
+        final stored = await archive.archiveRestoreMessage(
           parsed.message!,
-          origins: item.origins,
+          plan: selection,
+          ordinal: index + 1,
           indexAttachmentText: indexAttachmentText,
+          indexWarning: parsed.status != MailParseStatus.complete,
           cancellation: cancellation,
         );
         if (stored case MailSuccess<MailArchiveImportResult>(:final value)) {
@@ -197,7 +245,7 @@ final class NativeMailArchiveRestorer {
       return run.finish(
         run.failed == 0
             ? MailArchiveRestoreStatus.completed
-            : run.saved + run.duplicates > 0
+            : run.saved + run.duplicates + run.resumed > 0
             ? MailArchiveRestoreStatus.partial
             : MailArchiveRestoreStatus.failed,
       );
@@ -377,6 +425,9 @@ final class _RestoreRun {
   int failed = 0;
   int originsAdded = 0;
   int bytes = 0;
+  int resumed = 0;
+  int resumedBytes = 0;
+  int resumedIndexWarnings = 0;
   int indexWarnings = 0;
   int observerErrors = 0;
   int droppedFailures = 0;
@@ -410,6 +461,9 @@ final class _RestoreRun {
           failed: failed,
           originsAdded: originsAdded,
           bytes: bytes,
+          resumed: resumed,
+          resumedBytes: resumedBytes,
+          resumedIndexWarnings: resumedIndexWarnings,
           indexWarnings: indexWarnings,
           elapsedMicroseconds: clock.elapsedMicroseconds,
           observerErrors: observerErrors,
@@ -425,7 +479,7 @@ final class _RestoreRun {
   MailArchiveRestoreReport failedResult(MailProblem problem) => finish(
     NativeMailArchiveRestorer._cancelled(problem.code)
         ? MailArchiveRestoreStatus.cancelled
-        : saved + duplicates > 0
+        : saved + duplicates + resumed > 0
         ? MailArchiveRestoreStatus.partial
         : MailArchiveRestoreStatus.failed,
     problem: problem,
@@ -450,6 +504,9 @@ final class _RestoreRun {
       failed: failed,
       originsAdded: originsAdded,
       bytes: bytes,
+      resumed: resumed,
+      resumedBytes: resumedBytes,
+      resumedIndexWarnings: resumedIndexWarnings,
       indexWarnings: indexWarnings,
       elapsedMicroseconds: clock.elapsedMicroseconds,
       observerErrors: observerErrors,

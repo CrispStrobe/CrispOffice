@@ -8,7 +8,7 @@ final class MailArchiveDatabase extends GeneratedDatabase {
   MailArchiveDatabase(super.executor);
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -19,10 +19,21 @@ final class MailArchiveDatabase extends GeneratedDatabase {
       for (final statement in mailArchiveSchemaV1) {
         await customStatement(statement);
       }
-      await customStatement('PRAGMA user_version = 1');
+      for (final statement in mailArchiveSchemaV2) {
+        await customStatement(statement);
+      }
+      await customStatement('PRAGMA user_version = 2');
     }),
-    onUpgrade: (_, _, _) =>
-        throw const MailStoreStorageException(MailProblemCode.unsupported),
+    onUpgrade: (_, from, to) async {
+      if (from != 1 || to != 2) {
+        throw const MailStoreStorageException(MailProblemCode.unsupported);
+      }
+      await transaction(() async {
+        for (final statement in mailArchiveSchemaV2) {
+          await customStatement(statement);
+        }
+      });
+    },
     beforeOpen: (_) async {
       await customStatement('PRAGMA foreign_keys = ON');
       await customStatement('PRAGMA busy_timeout = 5000');
@@ -89,5 +100,45 @@ const mailArchiveSchemaV1 = <String>[
   '''CREATE TRIGGER archive_origin_added AFTER INSERT ON archive_origins BEGIN
     UPDATE archive_totals SET origins=origins+1,
       logical_bytes=logical_bytes+new.stored_size WHERE singleton=1;
+  END''',
+];
+
+/// Additive restore metadata. Original messages, provenance, index projections,
+/// and FTS tables are untouched by the version-one migration. Fixed logical
+/// overhead accounts for keys, scalar fields and conservative per-row storage;
+/// it is a quota estimate, not a measurement of SQLite's physical file size.
+const mailArchiveSchemaV2 = <String>[
+  'ALTER TABLE archive_totals ADD COLUMN restore_jobs INTEGER NOT NULL DEFAULT 0',
+  'ALTER TABLE archive_totals ADD COLUMN restore_receipts INTEGER NOT NULL DEFAULT 0',
+  '''CREATE TABLE archive_restore_jobs (
+    manifest TEXT PRIMARY KEY CHECK(length(manifest)=64),
+    planned INTEGER NOT NULL CHECK(planned>=0 AND planned<=100000),
+    total_bytes INTEGER NOT NULL CHECK(total_bytes>=0 AND total_bytes<=4398046511104),
+    stored_size INTEGER NOT NULL DEFAULT 192 CHECK(stored_size=192)
+  )''',
+  '''CREATE TABLE archive_restore_receipts (
+    manifest TEXT NOT NULL REFERENCES archive_restore_jobs(manifest) ON DELETE CASCADE,
+    ordinal INTEGER NOT NULL CHECK(ordinal>=1 AND ordinal<=100000),
+    message TEXT NOT NULL REFERENCES archive_items(id) ON DELETE RESTRICT,
+    byte_length INTEGER NOT NULL CHECK(byte_length>0 AND byte_length<=268435456),
+    index_warning INTEGER NOT NULL CHECK(index_warning IN (0,1)),
+    stored_size INTEGER NOT NULL DEFAULT 256 CHECK(stored_size=256),
+    PRIMARY KEY(manifest,ordinal), UNIQUE(manifest,message)
+  )''',
+  '''CREATE TRIGGER archive_restore_job_added AFTER INSERT ON archive_restore_jobs BEGIN
+    UPDATE archive_totals SET restore_jobs=restore_jobs+1,
+      logical_bytes=logical_bytes+new.stored_size WHERE singleton=1;
+  END''',
+  '''CREATE TRIGGER archive_restore_job_removed AFTER DELETE ON archive_restore_jobs BEGIN
+    UPDATE archive_totals SET restore_jobs=restore_jobs-1,
+      logical_bytes=logical_bytes-old.stored_size WHERE singleton=1;
+  END''',
+  '''CREATE TRIGGER archive_restore_receipt_added AFTER INSERT ON archive_restore_receipts BEGIN
+    UPDATE archive_totals SET restore_receipts=restore_receipts+1,
+      logical_bytes=logical_bytes+new.stored_size WHERE singleton=1;
+  END''',
+  '''CREATE TRIGGER archive_restore_receipt_removed AFTER DELETE ON archive_restore_receipts BEGIN
+    UPDATE archive_totals SET restore_receipts=restore_receipts-1,
+      logical_bytes=logical_bytes-old.stored_size WHERE singleton=1;
   END''',
 ];

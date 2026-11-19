@@ -1,0 +1,107 @@
+{
+  "prs": [
+    {
+      "number": 211,
+      "state": "open",
+      "draft": true,
+      "head": "cacae8569814e4cb81f58d358734d31431f102be",
+      "updated_at": "2026-11-19T19:24:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211",
+      "base": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "mergeable": true,
+      "mergeable_state": "clean"
+    },
+    {
+      "number": 210,
+      "state": "open",
+      "draft": true,
+      "head": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "updated_at": "2026-11-19T19:04:23Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/210"
+    }
+  ],
+  "pr213": {
+    "number": 213,
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "merged_at": "2026-11-19T19:15:39Z",
+    "head": "0e03878b028ec25ed3d84a790633433eafc3bede",
+    "branch": "fix/app-gaps-20261119",
+    "base": "d9bee6e507f6b631aee55bb8a89187119410847f",
+    "merge_commit_sha": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/213"
+  },
+  "vbaDocs": [
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/.gitattributes",
+      "blob": "244fe8300e1fe16cf2aac683c36c0b897462694d"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/finalize.py",
+      "blob": "2a8620976ff83ea04f972858003444118b59207b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/qualify.py",
+      "blob": "c4cf3f65edf72ecb1056cc66d02cf37973fbcf72"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/focused-dark-downloads-summary.json",
+      "blob": "61624e9d7bc54137b5a500631d0ffebae46b0c0b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/focused-dark-downloads.json",
+      "blob": "180d84048acd38a0477d383ecef446263e9072d0"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/focused-dark-downloads.stderr.log",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/focused-dark-downloads.stdout.log",
+      "blob": "ebb364f960947cb98b4f0a6a44e82c5056be91e7"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/format.json",
+      "blob": "e5f75297483a0574339c9fd1722b276d65fd7961"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/format.stderr.log",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/format.stdout.log",
+      "blob": "a8252689e01004a0dbcf8edab879e5726c3abec4"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/receipt.json",
+      "blob": "2c7a838301fcd22404f288855c4edda14387c83c"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-main-accepted/theme-regression/regression.diff",
+      "blob": "74016442bb66ae9845db6e9bc8d8cd987b9f22a6"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/late-main-integration/integration.json",
+      "blob": "a93e8d013d28173ebc6174773aaae113494abc4f"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/late-main-integration/studio-conflict.diff",
+      "blob": "0c2c0c98bfb34ec752fdf38de9e50d6d3340f522"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/late-main-integration/studio-resolution-vs-main.diff",
+      "blob": "29c1d0ccd59ed4aed0709e2c8b45b0a9ccaff18e"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/late-main-integration/studio-resolution-vs-pr.diff",
+      "blob": "a9ae8fe9de06ade19e6358c9f71f881a010717b1"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/publication-binding-main.py",
+      "blob": "d9a40f283f86859598629ae3896e960be8270569"
+    }
+  ],
+  "previous_observation": "publication-pr-metadata-fedabc.json",
+  "gui_refresh": "publication-gui-refresh.json"
+}

@@ -1,0 +1,168 @@
+{
+  "status": "passed",
+  "source_head": "71053bf61521e093903d55cba890ef4beee039e1",
+  "source_tree": "456cb5169f4359a8dcf4ec958445e918b367cac2",
+  "incoming_window_source": "be93371b680d8e39365a6b356fb727bda81dbed1",
+  "audited_head": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
+  "test_totals": {
+    "passed": 2243,
+    "failed": 0,
+    "skipped": 0
+  },
+  "distinct_case_identities": 2243,
+  "distinct_test_files": 121,
+  "test_cohorts": 11,
+  "required_commands_passed": 42,
+  "javascript_programs": 6,
+  "mail": {
+    "test_counts": {
+      "passed": 1138,
+      "failed": 0,
+      "skipped": 0
+    },
+    "bound_inputs": {
+      "source": {
+        "inputs": 4493,
+        "digest": "e0af69079a15dfc22640df645dec390b250d61816146672e71282891c4d1f6e5",
+        "before_after_equal": true,
+        "git_bound_inputs": 4493,
+        "external_inputs": 0,
+        "current_identity_failures": 0
+      },
+      "dependency": {
+        "inputs": 9298,
+        "digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+        "before_after_equal": true,
+        "git_bound_inputs": 0,
+        "external_inputs": 9298,
+        "current_identity_failures": 0
+      },
+      "runtime": {
+        "inputs": 1108,
+        "digest": "f342b20b059035b2e37abd35975c40c354d38042ac830c0ba2fca9fd364836f9",
+        "before_after_equal": true,
+        "git_bound_inputs": 0,
+        "external_inputs": 1108,
+        "current_identity_failures": 0
+      }
+    }
+  },
+  "incoming": {
+    "test_counts": {
+      "passed": 1105,
+      "failed": 0,
+      "skipped": 0
+    },
+    "window_inputs": {
+      "source": {
+        "inputs": 4494,
+        "digest": "f11afc45beb46614f026f3aecd3b7bea98708e7fc949ec25b4b742d00dd5065e",
+        "before_after_equal": true,
+        "git_bound_inputs": 4494,
+        "external_inputs": 0,
+        "current_identity_failures": 0
+      },
+      "dependencies": {
+        "inputs": 9298,
+        "digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+        "before_after_equal": true,
+        "git_bound_inputs": 0,
+        "external_inputs": 9298,
+        "current_identity_failures": 0
+      },
+      "runtime": {
+        "inputs": 1118,
+        "digest": "2cc3bc0196d7ffdb8d79b77c6b1b59ba813010140a5d5060af6020a73225b906",
+        "before_after_equal": true,
+        "git_bound_inputs": 0,
+        "external_inputs": 1118,
+        "current_identity_failures": 0
+      },
+      "harnesses": {
+        "inputs": 13,
+        "digest": "3c43b07b2a141bbc45487c265b1dc539fd181b2536669943e8c5b8574772777f",
+        "before_after_equal": true,
+        "git_bound_inputs": 1,
+        "external_inputs": 12,
+        "current_identity_failures": 0
+      }
+    },
+    "groups": [
+      {
+        "name": "engine",
+        "test_counts": {
+          "passed": 614,
+          "failed": 0,
+          "skipped": 0
+        },
+        "commands": 16
+      },
+      {
+        "name": "slide-parser",
+        "test_counts": {
+          "passed": 36,
+          "failed": 0,
+          "skipped": 0
+        },
+        "commands": 3
+      },
+      {
+        "name": "editor",
+        "test_counts": {
+          "passed": 228,
+          "failed": 0,
+          "skipped": 0
+        },
+        "commands": 1
+      },
+      {
+        "name": "studio",
+        "test_counts": {
+          "passed": 130,
+          "failed": 0,
+          "skipped": 0
+        },
+        "commands": 1
+      },
+      {
+        "name": "editor-analysis",
+        "test_counts": {},
+        "commands": 2
+      },
+      {
+        "name": "studio-analysis",
+        "test_counts": {},
+        "commands": 2
+      },
+      {
+        "name": "spacy",
+        "test_counts": {
+          "passed": 97,
+          "failed": 0,
+          "skipped": 0
+        },
+        "commands": 5
+      },
+      {
+        "name": "static",
+        "test_counts": {
+          "passed": 0,
+          "failed": 0,
+          "skipped": 0
+        },
+        "commands": 3
+      }
+    ]
+  },
+  "accepted_ui_images": 24,
+  "individually_reviewed_new_resume_ui_states": 12,
+  "mail_strict_analysis_targets": 81,
+  "formatted_changed_dart_files": 71,
+  "independent_audit_sha256": "6416ba6b312445edd4819bc345c0799ba90fa84ce9c21657aa8c8f5fe73350c0",
+  "executed_auditor_sha256": "9c364149ebcdc978a301379f38e25dbb969ffd674ffa850a8517ed86bd64dc1f",
+  "mail_receipt_sha256": "68f2dcd5b85c664a5dae35627a9ef1fe4ebd2066b4279d5fd688eadc62dd8b66",
+  "incoming_inventory_sha256": "c6ed73f8b67072c39bea23673a9e3af8b85db252a1006564cec835090975981d",
+  "github_actions_used": false,
+  "failed_interrupted_development_or_superseded_executions_added": false,
+  "scope": "Linux native SQLite, synthetic/loopback mail, Flutter widgets, engine and declared Node/browser boundaries. macOS shell/Python syntax and licence integrity only; no installed macOS/Windows/mobile or real accounts/native models."
+}

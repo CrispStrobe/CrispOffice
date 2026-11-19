@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "verified_at_utc": "2026-11-19T20:12:58.474472+00:00",
+  "candidate_commit": "c7a7153191d5b6d3c87bdbb5477b5820f8405adb",
+  "candidate_tree": "7ba6c844e1b761117136afe6024cb8df473c5912",
+  "candidate_parents": [
+    "9b8853667b68c7bebff050e52445b47ea0bbd188"
+  ],
+  "required_ancestors": [
+    "b2c05a0afa0ae606b061b13d5e50937c2a8eb1df",
+    "9b8853667b68c7bebff050e52445b47ea0bbd188",
+    "088d80905e3f76542dd9813e96584cd5c61454ff"
+  ],
+  "source_freeze": "9b8853667b68c7bebff050e52445b47ea0bbd188",
+  "source_tree": "57d90e137f5b6c452a809080d4067f53c8209f09",
+  "source_delta_from_original_acceptance": [
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "historical_acceptance_preserved": true,
+  "historical_test_executions": {
+    "passed": 2243,
+    "failed": 0,
+    "skipped": 0
+  },
+  "fresh_focused_test_executions": {
+    "passed": 50,
+    "failed": 0,
+    "skipped": 0
+  },
+  "focused_commands_passed": 4,
+  "counts_kept_separate_due_to_overlap": true,
+  "focused_receipt_sha256": "d113f2a84451aae58ff8c4acd062a955369448a8b75eb1a3d837a8943fdd0ffd",
+  "focused_independent_audit_sha256": "e4ee938fa8a6c12378cb8da7360f03f1ef25319eba15fc44a946b29709263fae",
+  "historical_replay_sha256": "e9a4722bdd3b053cce22dd7640d6d18b6fa8a6e72586b5b1fae2bf65e0d08687",
+  "reviewed_source_git_blobs_match": true,
+  "changes_after_source_freeze_only_milestone_documentation": true,
+  "input_reverification": {
+    "source": {
+      "inputs": 4493,
+      "digest": "84657d14aaf7d3df6ca89a3e23fcd37780092fc65f8b7897c83ae0c5f3d1fa69",
+      "current_identity_failures": 0
+    },
+    "dependencies": {
+      "inputs": 9298,
+      "digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+      "current_identity_failures": 0
+    },
+    "runtime": {
+      "inputs": 695,
+      "digest": "b0e61620f23fa8e07886661b986e654fe9ee0ded7059071574b89eccf3edf057",
+      "current_identity_failures": 0
+    }
+  },
+  "external_refs_accounted": 227,
+  "incoming_native_qualification_documents_match_main": true,
+  "incoming_author_test_counts_added": false,
+  "github_actions_used": false,
+  "verifier_sha256": "1091d374a83a790a179857faff25e5e2dcc8ed63d18fd04894e4335f5699695e"
+}

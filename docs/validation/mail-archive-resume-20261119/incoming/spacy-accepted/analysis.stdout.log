@@ -1,0 +1,13 @@
+Analyzing quds_proofing_spacy...
+
+   info - tool/consume_distribution.dart:65:17 - Use of an async 'dart:io' method. Try using the synchronous version of the method. - avoid_slow_async_io
+   info - tool/consume_distribution.dart:67:24 - Use of an async 'dart:io' method. Try using the synchronous version of the method. - avoid_slow_async_io
+   info - tool/consume_distribution.dart:72:23 - Use of an async 'dart:io' method. Try using the synchronous version of the method. - avoid_slow_async_io
+   info - tool/consume_distribution.dart:82:19 - Use of an async 'dart:io' method. Try using the synchronous version of the method. - avoid_slow_async_io
+   info - tool/consume_distribution.dart:94:18 - Use of an async 'dart:io' method. Try using the synchronous version of the method. - avoid_slow_async_io
+   info - tool/consume_distribution.dart:105:44 - Statements in a for should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - tool/consume_distribution.dart:114:24 - Use of an async 'dart:io' method. Try using the synchronous version of the method. - avoid_slow_async_io
+   info - tool/consume_distribution.dart:117:18 - Use of an async 'dart:io' method. Try using the synchronous version of the method. - avoid_slow_async_io
+   info - tool/consume_distribution.dart:283:15 - Use of an async 'dart:io' method. Try using the synchronous version of the method. - avoid_slow_async_io
+
+9 issues found.

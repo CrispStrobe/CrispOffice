@@ -1,0 +1,377 @@
+{
+  "accepted": true,
+  "cases": [
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "English sample language survives DOCX export and import",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "workspace language change opens support review before any download",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "language change review lists coverage and never downloads on open or decline",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "removing a dictionary leaves models and morphology untouched",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "NER removal is offered even when the model is not enabled",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "German download size reflects bundled runtime with a downloadable package",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "German download size reflects bundled runtime without a downloadable package",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "German download size reflects downloaded runtime",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "a bundled library lists only the model download",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "Downloaded runtime verifies optional NER independently",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "name": "Bundled runtime verifies optional NER independently",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "unpublished platform explains why nothing is offered",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "download is explicit and names immutable source and digest",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "grammar opt-in is unavailable for an unrecorded build",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "qualified build exposes manual grammar and removal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "workspace registers manual grammar only while enabled and releases it",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "English and French are offered as explicit downloads",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "bundled library downloads only the model files",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "native host without downloads developer environment keeps precedence and its digest",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "native host without downloads nothing installed: no grammar, no worker, no network",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "native host without downloads unpublished platform has a reason and refuses install",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "native host without downloads languages need a published v2 runtime for the platform",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "native host without downloads bundled library: model-only setup on any platform",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "native host without downloads the first analysis verifies the saved setup itself",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "native host without downloads bundled library is found next to the executable",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "name": "native host without downloads damaged installation is reported, not used",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "optional named entities are shown only when reported",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "snapshot and navigation add the nonzero origin once",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "body table paragraphs preserve their flattened source mapping",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "cross-paragraph and split-Unicode selections are refused exactly",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "mixed-language text is refused but a German subrange is supported",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "English and French text select their language; a choice overrides",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "silent source replacement, language and configuration invalidate identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "comment and header editing never use the body caret as a substitute",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "manual start shows annotations and navigates without editing",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "cancel completes the view and discards a late successful reply",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "text changes clear results and cancel pending requests",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "locale changes clear results and cancel pending requests",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "document changes clear results and cancel pending requests",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "configuration replacement disposes the old worker once",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "closing while loading disposes a late worker and never analyzes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "cancel during loading permits a later explicit retry safely",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "startup failures stay actionable and never show empty success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "operational failure and mismatched snapshot cannot publish tokens",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "unsupported locale is rejected before loading the worker",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "editing after success removes all token navigation immediately",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "closing an active request disposes once and absorbs late failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "cancelled startup failure allows one fresh explicit retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "unavailable worker is replaced only on the next explicit action",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "file": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+      "name": "frame and generated TOC paragraphs cannot masquerade as body text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false
+    }
+  ],
+  "done_events": [
+    {
+      "success": true,
+      "time": 28917,
+      "type": "done"
+    }
+  ],
+  "duplicate_case_keys": 0,
+  "error_events": [],
+  "expected_files": [
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "missing_files": [],
+  "non_json_lines": 0,
+  "passed": 50,
+  "skipped": 0,
+  "unexpected_files": []
+}

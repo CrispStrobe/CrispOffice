@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "required_true_fields": [
+    "validationPreservedBytes",
+    "lateFailurePreservedBytes",
+    "mcpCompileAndRun",
+    "numericBoundsAndPrecedence"
+  ],
+  "reported": [
+    {
+      "language": "vba-excel",
+      "revision": 2,
+      "A3": 42,
+      "B1": 84,
+      "fill": "0A141E",
+      "validationPreservedBytes": true,
+      "lateFailurePreservedBytes": true,
+      "mcpCompileAndRun": true,
+      "numericBoundsAndPrecedence": true
+    }
+  ]
+}

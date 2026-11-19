@@ -1,0 +1,539 @@
+{
+  "engine-analysis": {
+    "commands": [
+      {
+        "name": "engine-analysis",
+        "command": [
+          "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+          "analyze",
+          "--fatal-infos"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:01.210511+00:00",
+        "completed_utc": "2026-11-19T18:31:13.493546+00:00",
+        "elapsed_seconds": 12.283,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/engine-analysis.stdout.log",
+          "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0",
+          "bytes": 49
+        },
+        "stderr": {
+          "path": "logs/engine-analysis.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    ],
+    "success": true
+  },
+  "format": {
+    "commands": [
+      {
+        "name": "format",
+        "command": [
+          "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+          "format",
+          "--output=none",
+          "--set-exit-if-changed",
+          "lib/src/automation/office_vba_language.dart",
+          "test/office_vba_arrays_test.dart",
+          "test/office_vba_arrays_boundaries_test.dart",
+          "test/office_vba_arrays_integration_test.dart",
+          "tool/macros/web_vba_arrays_smoke.dart"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:13.494351+00:00",
+        "completed_utc": "2026-11-19T18:31:13.709908+00:00",
+        "elapsed_seconds": 0.216,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/format.stdout.log",
+          "sha256": "888fc2c83d73d43cd0bdd34ce873a5bab487d15e436e745c6a145d60e653dabf",
+          "bytes": 47
+        },
+        "stderr": {
+          "path": "logs/format.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    ],
+    "success": true
+  },
+  "whitespace": {
+    "commands": [
+      {
+        "name": "whitespace",
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+          "--",
+          "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "packages/quds_office_engine/test/office_vba_arrays_test.dart",
+          "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+          "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart",
+          "packages/quds_office_engine/tool/macros/web_vba_arrays_smoke.dart",
+          "packages/quds_office_engine/example/macros/array_report.bas",
+          "docs/MACROS.md",
+          "docs/VBA_MACROS.md",
+          ".github/workflows/office-macros.yml"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite",
+        "started_utc": "2026-11-19T18:31:13.710576+00:00",
+        "completed_utc": "2026-11-19T18:31:13.726933+00:00",
+        "elapsed_seconds": 0.016,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/whitespace.stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "stderr": {
+          "path": "logs/whitespace.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    ],
+    "success": true
+  },
+  "web_smoke": {
+    "commands": [
+      {
+        "name": "web_smoke-compile",
+        "command": [
+          "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "tool/macros/web_smoke.dart",
+          "-o",
+          "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_smoke.js"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:13.727432+00:00",
+        "completed_utc": "2026-11-19T18:31:22.761730+00:00",
+        "elapsed_seconds": 9.034,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/web_smoke-compile.stdout.log",
+          "sha256": "de81e5eeb1447cdf6b1d3295f374dfd20541b7e6c7b64b2d80eb282337054b2f",
+          "bytes": 114
+        },
+        "stderr": {
+          "path": "logs/web_smoke-compile.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      },
+      {
+        "name": "web_smoke-run",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "-e",
+          "globalThis.self = globalThis; require(\"/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_smoke.js\");"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:22.762412+00:00",
+        "completed_utc": "2026-11-19T18:31:22.977249+00:00",
+        "elapsed_seconds": 0.215,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/web_smoke-run.stdout.log",
+          "sha256": "733f79b8c8c236f674a733d3c205f6f46c6a52d4a6da005729755db94d853971",
+          "bytes": 85
+        },
+        "stderr": {
+          "path": "logs/web_smoke-run.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    ],
+    "success": true,
+    "generated_javascript": {
+      "path": "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_smoke.js",
+      "sha256": "ecc722ec603213e4ed14a38e0d6d0d34b65086e00a7621790a76d29aa4d8aab2",
+      "bytes": 2543947
+    },
+    "assertions": {
+      "success": true,
+      "required_true_fields": [
+        "lateFailurePreservedBytes",
+        "mcpInspection"
+      ],
+      "reported": [
+        {
+          "revision": 1,
+          "A1": 42,
+          "A2": 84,
+          "lateFailurePreservedBytes": true,
+          "mcpInspection": true
+        }
+      ]
+    }
+  },
+  "web_vba_smoke": {
+    "commands": [
+      {
+        "name": "web_vba_smoke-compile",
+        "command": [
+          "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "tool/macros/web_vba_smoke.dart",
+          "-o",
+          "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_smoke.js"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:22.980823+00:00",
+        "completed_utc": "2026-11-19T18:31:32.339849+00:00",
+        "elapsed_seconds": 9.359,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/web_vba_smoke-compile.stdout.log",
+          "sha256": "a35ed01fa846133dff48c94e563fb1ebef39a0157360f70f49865996f719c691",
+          "bytes": 114
+        },
+        "stderr": {
+          "path": "logs/web_vba_smoke-compile.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      },
+      {
+        "name": "web_vba_smoke-run",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "-e",
+          "globalThis.self = globalThis; require(\"/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_smoke.js\");"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:32.340338+00:00",
+        "completed_utc": "2026-11-19T18:31:32.655703+00:00",
+        "elapsed_seconds": 0.315,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/web_vba_smoke-run.stdout.log",
+          "sha256": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8",
+          "bytes": 193
+        },
+        "stderr": {
+          "path": "logs/web_vba_smoke-run.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    ],
+    "success": true,
+    "generated_javascript": {
+      "path": "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_smoke.js",
+      "sha256": "88b697641647535030c92f5fbeddeef7d131c2e7dc3507c1e5d9a2e57c9bea09",
+      "bytes": 2702282
+    },
+    "assertions": {
+      "success": true,
+      "required_true_fields": [
+        "validationPreservedBytes",
+        "lateFailurePreservedBytes",
+        "mcpCompileAndRun",
+        "numericBoundsAndPrecedence"
+      ],
+      "reported": [
+        {
+          "language": "vba-excel",
+          "revision": 2,
+          "A3": 42,
+          "B1": 84,
+          "fill": "0A141E",
+          "validationPreservedBytes": true,
+          "lateFailurePreservedBytes": true,
+          "mcpCompileAndRun": true,
+          "numericBoundsAndPrecedence": true
+        }
+      ]
+    }
+  },
+  "web_vba_procedures_smoke": {
+    "commands": [
+      {
+        "name": "web_vba_procedures_smoke-compile",
+        "command": [
+          "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "tool/macros/web_vba_procedures_smoke.dart",
+          "-o",
+          "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_procedures_smoke.js"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:32.659760+00:00",
+        "completed_utc": "2026-11-19T18:31:46.034729+00:00",
+        "elapsed_seconds": 13.375,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/web_vba_procedures_smoke-compile.stdout.log",
+          "sha256": "0731de7a8e0fc1d9ee3c1ff4d2a800cbc35c7a4d24fd608c2db14c9afef2368a",
+          "bytes": 114
+        },
+        "stderr": {
+          "path": "logs/web_vba_procedures_smoke-compile.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      },
+      {
+        "name": "web_vba_procedures_smoke-run",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "-e",
+          "globalThis.self = globalThis; require(\"/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_procedures_smoke.js\");"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:46.035896+00:00",
+        "completed_utc": "2026-11-19T18:31:46.401733+00:00",
+        "elapsed_seconds": 0.366,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/web_vba_procedures_smoke-run.stdout.log",
+          "sha256": "b97b85b585bbc40e339293fec350fa8cd8f916aa6861fabf8fb3326d7235a3d4",
+          "bytes": 299
+        },
+        "stderr": {
+          "path": "logs/web_vba_procedures_smoke-run.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    ],
+    "success": true,
+    "generated_javascript": {
+      "path": "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_procedures_smoke.js",
+      "sha256": "abbe2a528d6b4abba23b901aa377cf5bf9374421d5ca3dbf19facd770277c5d4",
+      "bytes": 2703783
+    },
+    "assertions": {
+      "success": true,
+      "required_true_fields": [
+        "procedureScopesAndExits",
+        "recursionRejected",
+        "sharedWorkBudget",
+        "numericBounds",
+        "validationPreservedBytes",
+        "lateFailurePreservedBytes",
+        "mcpCompileAndRun"
+      ],
+      "reported": [
+        {
+          "language": "vba-excel",
+          "revision": 2,
+          "steps": 6,
+          "byValCallerAmount": 21,
+          "exitForCounter": 4,
+          "formulaTotal": 126,
+          "procedureScopesAndExits": true,
+          "recursionRejected": true,
+          "sharedWorkBudget": true,
+          "numericBounds": true,
+          "validationPreservedBytes": true,
+          "lateFailurePreservedBytes": true,
+          "mcpCompileAndRun": true
+        }
+      ]
+    }
+  },
+  "web_vba_control_flow_smoke": {
+    "commands": [
+      {
+        "name": "web_vba_control_flow_smoke-compile",
+        "command": [
+          "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "tool/macros/web_vba_control_flow_smoke.dart",
+          "-o",
+          "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_control_flow_smoke.js"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:46.405704+00:00",
+        "completed_utc": "2026-11-19T18:31:57.412352+00:00",
+        "elapsed_seconds": 11.007,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/web_vba_control_flow_smoke-compile.stdout.log",
+          "sha256": "f8c7b3d1f29acb7b653e857298f39fa0a918a98a70b7cdb4b60b1d110318d515",
+          "bytes": 114
+        },
+        "stderr": {
+          "path": "logs/web_vba_control_flow_smoke-compile.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      },
+      {
+        "name": "web_vba_control_flow_smoke-run",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "-e",
+          "globalThis.self = globalThis; require(\"/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_control_flow_smoke.js\");"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:57.413616+00:00",
+        "completed_utc": "2026-11-19T18:31:57.879306+00:00",
+        "elapsed_seconds": 0.466,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/web_vba_control_flow_smoke-run.stdout.log",
+          "sha256": "4cbea514876f652fac9ad4cb832d003ebc99ecc02015a62686e495a6afc731fb",
+          "bytes": 330
+        },
+        "stderr": {
+          "path": "logs/web_vba_control_flow_smoke-run.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    ],
+    "success": true,
+    "generated_javascript": {
+      "path": "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_control_flow_smoke.js",
+      "sha256": "b5dc54f4b8615f502389adc2c19858c69cf5b8f214c64dfe0bce88d1a8fb33d4",
+      "bytes": 2705464
+    },
+    "assertions": {
+      "success": true,
+      "required_true_fields": [
+        "orderedCasesAndEagerRangeBounds",
+        "sharedLoopWorkBudget",
+        "staticInactiveChecks",
+        "validationPreservedBytes",
+        "lateFailurePreservedBytes",
+        "mcpCompileAndRun"
+      ],
+      "reported": [
+        {
+          "language": "vba-excel",
+          "revision": 2,
+          "steps": 9,
+          "formulaTotal": 100,
+          "coldDepthStress": "32 procedure frames / 32 mixed blocks / 63 unary operators",
+          "orderedCasesAndEagerRangeBounds": true,
+          "sharedLoopWorkBudget": true,
+          "staticInactiveChecks": true,
+          "validationPreservedBytes": true,
+          "lateFailurePreservedBytes": true,
+          "mcpCompileAndRun": true
+        }
+      ]
+    }
+  },
+  "web_vba_arrays_smoke": {
+    "commands": [
+      {
+        "name": "web_vba_arrays_smoke-compile",
+        "command": [
+          "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "tool/macros/web_vba_arrays_smoke.dart",
+          "-o",
+          "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_arrays_smoke.js"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:31:57.882332+00:00",
+        "completed_utc": "2026-11-19T18:32:07.499482+00:00",
+        "elapsed_seconds": 9.617,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/web_vba_arrays_smoke-compile.stdout.log",
+          "sha256": "48ee7b5a129c0b477eb00fa54cc3f0af8452ffa63705523a97757ffa3ec09f05",
+          "bytes": 114
+        },
+        "stderr": {
+          "path": "logs/web_vba_arrays_smoke-compile.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      },
+      {
+        "name": "web_vba_arrays_smoke-run",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "-e",
+          "globalThis.self = globalThis; require(\"/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_arrays_smoke.js\");"
+        ],
+        "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+        "started_utc": "2026-11-19T18:32:07.500301+00:00",
+        "completed_utc": "2026-11-19T18:32:07.865668+00:00",
+        "elapsed_seconds": 0.365,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": {
+          "path": "logs/web_vba_arrays_smoke-run.stdout.log",
+          "sha256": "f4ec0fda78a40375c6ee3beb04fe4126a2b5c81726fe946bf59f6f9c8326d6aa",
+          "bytes": 457
+        },
+        "stderr": {
+          "path": "logs/web_vba_arrays_smoke-run.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    ],
+    "success": true,
+    "generated_javascript": {
+      "path": "/workspace/scratch/8eda9a4e1801/runtime/tmp/vba-arrays-acceptance-1795113061102878943/web_vba_arrays_smoke.js",
+      "sha256": "21c1efd24042bfb855cdbae50070a58cf0c1b6f967eeb80bee5f984df5ada3b2",
+      "bytes": 2707577
+    },
+    "assertions": {
+      "success": true,
+      "required_true_fields": [
+        "liveArraySlotsAndIndependentControlVariables",
+        "rangeSnapshotAndRowMajorOrder",
+        "exactArrayAllocationAndNegativeBounds",
+        "boundedArraysAndRangeIteration",
+        "staticInactiveChecks",
+        "validationPreservedBytes",
+        "lateFailurePreservedBytes",
+        "mcpCompileAndRun"
+      ],
+      "reported": [
+        {
+          "language": "vba-excel",
+          "revision": 2,
+          "steps": 13,
+          "formulaTotal": 28,
+          "coldDepthStress": "32 procedure frames / 32 For Each blocks / 63 unary operators, then mixed blocks",
+          "liveArraySlotsAndIndependentControlVariables": true,
+          "rangeSnapshotAndRowMajorOrder": true,
+          "exactArrayAllocationAndNegativeBounds": true,
+          "boundedArraysAndRangeIteration": true,
+          "staticInactiveChecks": true,
+          "validationPreservedBytes": true,
+          "lateFailurePreservedBytes": true,
+          "mcpCompileAndRun": true
+        }
+      ]
+    }
+  }
+}

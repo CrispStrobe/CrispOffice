@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-19T20:14:31.693408+00:00",
+  "previous_capture": "remote-refs-after-pr215.txt",
+  "previous_sha256": "3febfef63437ec1d195f673d033c6b675c1c7be3e4d3d98b825037abd8973579",
+  "latest_capture": "remote-refs-publication-final.txt",
+  "latest_sha256": "49cd91b2c5fedcfd957ab0faefc5ea6361af403c9416704a1860c451f2dc033f",
+  "external_refs": 227,
+  "changes": [
+    {
+      "ref": "refs/heads/main",
+      "before": "088d80905e3f76542dd9813e96584cd5c61454ff",
+      "after": "756885bc9cb1612f8d400889f8d3020cec9ad945"
+    }
+  ],
+  "other_external_refs_unchanged": true,
+  "required_main": "756885bc9cb1612f8d400889f8d3020cec9ad945",
+  "latest_main_change": "Exactly five reviewed validation documents; product/test/dependency/harness inputs unchanged. Required main ancestry and exact document blobs are checked by verify-continuation.py."
+}

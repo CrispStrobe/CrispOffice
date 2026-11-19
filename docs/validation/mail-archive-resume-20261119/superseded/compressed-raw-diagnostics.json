@@ -1,0 +1,26 @@
+{
+  "reason": "Preserve literal whitespace-check diagnostics without applying source whitespace rules to their quoted raw data. Decompression reproduces the bytes recorded by the original command receipts.",
+  "files": [
+    {
+      "stored_path": "superseded/mail-resume-evidence-preflight-attempt/whitespace/stdout.log.gz",
+      "original_path": "superseded/mail-resume-evidence-preflight-attempt/whitespace/stdout.log",
+      "uncompressed_bytes": 3969,
+      "uncompressed_sha256": "1f933cfbf3c7bc3c1e8a0707487e4c9d70a9352026f533cc07a805c8ff04f511",
+      "gzip_sha256": "6f200a3c56ce46b817e658e1bb729cc531dc2d55f738992bb3f1fa0eb4cbc501"
+    },
+    {
+      "stored_path": "superseded/mail-resume-license-preflight-attempt/whitespace/stdout.log.gz",
+      "original_path": "superseded/mail-resume-license-preflight-attempt/whitespace/stdout.log",
+      "uncompressed_bytes": 107,
+      "uncompressed_sha256": "1e3113e743b45d2568f957aa63254b2832db1c451b0d6a5a678ddf003818e40d",
+      "gzip_sha256": "734ebfd7cf0edc19d1dc72e605a24b15a3311a8341c71468ce4367446f58aa4e"
+    },
+    {
+      "stored_path": "superseded/mail-resume-preflight-attempt/whitespace/stdout.log.gz",
+      "original_path": "superseded/mail-resume-preflight-attempt/whitespace/stdout.log",
+      "uncompressed_bytes": 4072,
+      "uncompressed_sha256": "f2f68c61fa20c10e5e1bf818b4087dd754aa74fce84687f2ae5830458fc45043",
+      "gzip_sha256": "bafffe2a5ce7804600807624b739f6491e08cdb263a991a2041a42b20ad65d08"
+    }
+  ]
+}

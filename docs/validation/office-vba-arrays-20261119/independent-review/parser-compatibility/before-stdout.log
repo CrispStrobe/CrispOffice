@@ -1,0 +1,2 @@
+{"compiler":"baseline","steps":[{"sheet":0,"cell":"A1","value":false}]}
+{"compiler":"candidate","error":{"code":"vba_name_error","message":"Probe.Main:2:3: Unknown name Helper; active selections, default members, and undeclared reads are unsupported.","moduleName":"Probe","entryPoint":"Main","line":2,"column":3}}

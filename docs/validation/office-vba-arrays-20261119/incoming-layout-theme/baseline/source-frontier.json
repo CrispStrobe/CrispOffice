@@ -1,0 +1,9 @@
+{
+  "baseline_commit": "c3eaf57c85d363b1453f2a3407ba62768b0e2c08",
+  "baseline_fixture_sha256": "da15cf7fd4062591e0a75da580fef324d5d2abfc1f07a6f548d0138a529c1678",
+  "current_fixture_sha256": "da15cf7fd4062591e0a75da580fef324d5d2abfc1f07a6f548d0138a529c1678",
+  "editor_lib_from_git_archive": true,
+  "fixture_is_identical_to_baseline": true,
+  "frozen_editor_directory": "/workspace/scratch/652d74384990/baseline-editor-lib-c3eaf57c",
+  "original_editor_link": "/workspace/scratch/652d74384990/quds_office_suite/packages/quds_office_editor/lib"
+}

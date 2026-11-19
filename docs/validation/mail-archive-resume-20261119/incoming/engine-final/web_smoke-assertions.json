@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "required_true_fields": [
+    "lateFailurePreservedBytes",
+    "mcpInspection"
+  ],
+  "reported": [
+    {
+      "revision": 1,
+      "A1": 42,
+      "A2": 84,
+      "lateFailurePreservedBytes": true,
+      "mcpInspection": true
+    }
+  ]
+}

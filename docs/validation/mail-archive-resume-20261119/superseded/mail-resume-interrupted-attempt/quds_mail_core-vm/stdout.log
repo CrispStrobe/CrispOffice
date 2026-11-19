@@ -1,0 +1,135 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":150,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"test/cancellation_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading test/cancellation_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":2}
+{"count":6,"time":20,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1061}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":null,"column":null,"url":null},"type":"group","time":1064}
+{"test":{"id":3,"name":"invalidate rejects old callbacks but allows a new generation","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":12,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart"},"type":"testStart","time":1065}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1078}
+{"test":{"id":4,"name":"dispose invalidates all callbacks and cannot reopen a session","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":30,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart"},"type":"testStart","time":1079}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1080}
+{"test":{"id":5,"name":"explicit cancellation is typed and keeps the first reason","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":50,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/cancellation_test.dart"},"type":"testStart","time":1081}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1082}
+{"suite":{"id":6,"platform":"vm","path":"test/ews_identity_test.dart"},"type":"suite","time":1088}
+{"test":{"id":7,"name":"loading test/ews_identity_test.dart","suiteID":6,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1088}
+{"testID":7,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1205}
+{"group":{"id":8,"suiteID":6,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":5,"line":null,"column":null,"url":null},"type":"group","time":1205}
+{"test":{"id":9,"name":"EWS item IDs retain exact case and opaque punctuation","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":18,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart"},"type":"testStart","time":1205}
+{"testID":9,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1218}
+{"test":{"id":10,"name":"equal server IDs remain isolated by host, account and provider","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":27,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart"},"type":"testStart","time":1218}
+{"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1220}
+{"test":{"id":11,"name":"an Exchange move can replace the server identity","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":40,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart"},"type":"testStart","time":1220}
+{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1221}
+{"test":{"id":12,"name":"EWS identities reject empty values and control characters","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":47,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart"},"type":"testStart","time":1221}
+{"testID":12,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1224}
+{"test":{"id":13,"name":"cross-account Exchange moves fail before provider work","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":53,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/ews_identity_test.dart"},"type":"testStart","time":1224}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1225}
+{"suite":{"id":14,"platform":"vm","path":"test/imap_sync_range_test.dart"},"type":"suite","time":1227}
+{"test":{"id":15,"name":"loading test/imap_sync_range_test.dart","suiteID":14,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1227}
+{"testID":15,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1425}
+{"group":{"id":16,"suiteID":14,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":18,"line":null,"column":null,"url":null},"type":"group","time":1425}
+{"test":{"id":17,"name":"inclusive ranges support the full IMAP UID space and single UIDs","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":28,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1425}
+{"testID":17,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1437}
+{"test":{"id":18,"name":"range rejects zero UIDVALIDITY","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1438}
+{"testID":18,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1439}
+{"test":{"id":19,"name":"range rejects negative UIDVALIDITY","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1440}
+{"testID":19,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1443}
+{"test":{"id":20,"name":"range rejects overflow UIDVALIDITY","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1443}
+{"testID":20,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1444}
+{"test":{"id":21,"name":"range rejects zero first UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1445}
+{"testID":21,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1446}
+{"test":{"id":22,"name":"range rejects negative first UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1446}
+{"testID":22,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1447}
+{"test":{"id":23,"name":"range rejects overflow first UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1447}
+{"testID":23,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1449}
+{"test":{"id":24,"name":"range rejects zero last UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1449}
+{"testID":24,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1450}
+{"test":{"id":25,"name":"range rejects negative last UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1454}
+{"testID":25,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1455}
+{"test":{"id":26,"name":"range rejects overflow last UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1455}
+{"testID":26,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1456}
+{"test":{"id":27,"name":"range rejects reversed UIDs","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1456}
+{"testID":27,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1458}
+{"test":{"id":28,"name":"range scope must match the page even when the page is empty","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":92,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1459}
+{"testID":28,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1460}
+{"test":{"id":29,"name":"authoritative range rejects HTTPS identity in upserts and tombstones","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1460}
+{"testID":29,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1461}
+{"test":{"id":30,"name":"authoritative range rejects different UIDVALIDITY in upserts and tombstones","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1461}
+{"testID":30,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1463}
+{"test":{"id":31,"name":"authoritative range rejects UID below range in upserts and tombstones","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1464}
+{"testID":31,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1465}
+{"test":{"id":32,"name":"authoritative range rejects UID above range in upserts and tombstones","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1465}
+{"testID":32,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1466}
+{"test":{"id":33,"name":"authoritative range rejects different mailbox in upserts and tombstones","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1466}
+{"testID":33,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1467}
+{"test":{"id":34,"name":"range pages retain immutable survivor and tombstone snapshots","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":167,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":1468}
+{"testID":34,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1470}
+{"suite":{"id":35,"platform":"vm","path":"test/models_test.dart"},"type":"suite","time":1471}
+{"test":{"id":36,"name":"loading test/models_test.dart","suiteID":35,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1471}
+{"testID":36,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1626}
+{"group":{"id":37,"suiteID":35,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":9,"line":null,"column":null,"url":null},"type":"group","time":1627}
+{"test":{"id":38,"name":"observed standard flags have value equality and an empty snapshot","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":7,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":1627}
+{"testID":38,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1645}
+{"test":{"id":39,"name":"snapshots own bytes, including buffer views and export copies","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":35,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":1645}
+{"testID":39,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1661}
+{"test":{"id":40,"name":"message headers and attachments do not alias mutable input lists","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":56,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":1661}
+{"testID":40,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1665}
+{"test":{"id":41,"name":"parse result cannot claim success without a message","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":79,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":1665}
+{"testID":41,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1668}
+{"test":{"id":42,"name":"full and preview budgets preserve planned resource bounds","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":116,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":1668}
+{"testID":42,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1670}
+{"test":{"id":43,"name":"profile and account identities cannot alias between products","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":137,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":1670}
+{"testID":43,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1672}
+{"test":{"id":44,"name":"UIDVALIDITY, mailbox and account form the IMAP persistent identity","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":154,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":1673}
+{"testID":44,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1675}
+{"test":{"id":45,"name":"move and sync cursor enforce account and mailbox scopes","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":190,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":1675}
+{"testID":45,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1678}
+{"test":{"id":46,"name":"mail capability does not imply Calendar, People or sending","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":230,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":1679}
+{"testID":46,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1681}
+{"suite":{"id":47,"platform":"vm","path":"test/outbox_test.dart"},"type":"suite","time":1683}
+{"test":{"id":48,"name":"loading test/outbox_test.dart","suiteID":47,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1683}
+{"testID":48,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1868}
+{"group":{"id":49,"suiteID":47,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":10,"line":null,"column":null,"url":null},"type":"group","time":1868}
+{"test":{"id":50,"name":"queued revision, wire and envelope remain frozen through submission","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":36,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1868}
+{"testID":50,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1895}
+{"test":{"id":51,"name":"mixed 250/550 RCPT responses abort every recipient before DATA","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":78,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1895}
+{"testID":51,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1897}
+{"test":{"id":52,"name":"aggregate response does not fabricate recipient-level acceptance","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":121,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1897}
+{"testID":52,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1898}
+{"test":{"id":53,"name":"missing recipient responses stay unknown on aggregate failure","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":136,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1899}
+{"testID":53,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1900}
+{"test":{"id":54,"name":"connection loss after possible acceptance is uncertain and cannot retry","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":161,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1900}
+{"testID":54,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1902}
+{"test":{"id":55,"name":"interrupted submitting state recovers as uncertain, never queued","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":185,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1902}
+{"testID":55,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1906}
+{"test":{"id":56,"name":"definite non-acceptance retries with a fresh attempt identity only","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":194,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1907}
+{"testID":56,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1908}
+{"test":{"id":57,"name":"validated restoration preserves a pending attempt and recovers uncertain","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":226,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1908}
+{"testID":57,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1918}
+{"test":{"id":58,"name":"undo send only cancels work before submission","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":274,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1918}
+{"testID":58,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1920}
+{"test":{"id":59,"name":"unrelated/duplicate recipient results and control injection are rejected","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":286,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1920}
+{"testID":59,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1922}
+{"suite":{"id":60,"platform":"vm","path":"test/sync_coordinator_test.dart"},"type":"suite","time":1923}
+{"test":{"id":61,"name":"loading test/sync_coordinator_test.dart","suiteID":60,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1923}
+{"testID":61,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2100}
+{"group":{"id":62,"suiteID":60,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":9,"line":null,"column":null,"url":null},"type":"group","time":2101}
+{"test":{"id":63,"name":"fixture pages apply real upserts/tombstones and advance cursor atomically","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":22,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":2101}
+{"testID":63,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2128}
+{"test":{"id":64,"name":"transaction failure leaves both old content and cursor unchanged","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":57,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":2129}
+{"testID":64,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2131}
+{"test":{"id":65,"name":"out-of-order concurrent pulls cannot regress the stored cursor","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":86,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":2132}
+{"testID":65,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2135}
+{"test":{"id":66,"name":"sync commit compares the cursor it read before pulling","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":123,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":2135}
+{"testID":66,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2137}
+{"test":{"id":67,"name":"account disposal while provider awaits prevents any commit","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":146,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":2138}
+{"testID":67,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2140}
+{"test":{"id":68,"name":"transaction rechecks the lease when disposal happens during persistence","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":167,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":2140}
+{"testID":68,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2143}
+{"test":{"id":69,"name":"cooperative user cancellation differs from stale account work","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":187,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":2143}
+{"testID":69,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2145}
+{"test":{"id":70,"name":"wrong account and oversized provider page fail before persistence","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":207,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":2145}
+{"testID":70,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2147}
+{"test":{"id":71,"name":"unsupported provider operations are failures rather than empty success","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":237,"column":3,"url":"file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":2148}
+{"testID":71,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2150}
+{"success":true,"type":"done","time":2161}

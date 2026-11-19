@@ -1,0 +1,51 @@
+{
+  "name": "macro-tests",
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/dart-sdk/bin/dart",
+    "test",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "4",
+    "test/office_operations_test.dart",
+    "test/office_macro_runtime_test.dart",
+    "test/office_macro_language_test.dart",
+    "test/office_vba_language_test.dart",
+    "test/office_vba_integration_test.dart",
+    "test/office_vba_procedures_test.dart",
+    "test/office_vba_procedure_boundaries_test.dart",
+    "test/office_vba_procedures_integration_test.dart",
+    "test/office_vba_control_flow_test.dart",
+    "test/office_vba_control_flow_boundaries_test.dart",
+    "test/office_vba_control_flow_integration_test.dart",
+    "test/office_vba_arrays_test.dart",
+    "test/office_vba_arrays_boundaries_test.dart",
+    "test/office_vba_arrays_integration_test.dart",
+    "test/office_macro_expansion_test.dart",
+    "test/office_macro_mcp_test.dart",
+    "test/office_macro_cli_test.dart",
+    "test/office_steps_test.dart",
+    "test/word_step_atomicity_test.dart",
+    "test/word_steps_vocabulary_test.dart",
+    "test/word_structure_steps_test.dart",
+    "test/table_grid_steps_test.dart",
+    "test/word_table_grid_addressing_test.dart",
+    "test/sheet_macro_preservation_test.dart"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/validation-workspace/packages/quds_office_engine",
+  "started_utc": "2026-11-19T18:10:56.302400+00:00",
+  "completed_utc": "2026-11-19T18:13:38.662896+00:00",
+  "elapsed_seconds": 162.361,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": {
+    "path": "logs/macro-tests.stdout.log",
+    "sha256": "cb16371692f11ad76e7a7ad3eb557ef37b3fb395544a5208692a144499e4abbf",
+    "bytes": 324601
+  },
+  "stderr": {
+    "path": "logs/macro-tests.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

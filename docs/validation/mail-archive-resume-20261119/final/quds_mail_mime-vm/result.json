@@ -1,0 +1,46 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/8eda9a4e1801/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/8eda9a4e1801/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/8eda9a4e1801/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/eml_bytes_test.dart",
+    "test/mbox_test.dart",
+    "test/mime_encodings_test.dart",
+    "test/mime_limits_test.dart",
+    "test/mime_parts_test.dart",
+    "test/mime_review_regressions_test.dart",
+    "test/portable_import_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_mail_mime",
+  "elapsed_seconds": 12.718,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "expected_test_files": [
+    "packages/quds_mail_mime/test/eml_bytes_test.dart",
+    "packages/quds_mail_mime/test/mbox_test.dart",
+    "packages/quds_mail_mime/test/mime_encodings_test.dart",
+    "packages/quds_mail_mime/test/mime_limits_test.dart",
+    "packages/quds_mail_mime/test/mime_parts_test.dart",
+    "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+    "packages/quds_mail_mime/test/portable_import_test.dart"
+  ],
+  "finished_at_utc": "2026-11-19T19:23:59.482655+00:00",
+  "missing_files": [],
+  "name": "quds_mail_mime-vm",
+  "started_at_utc": "2026-11-19T19:23:46.763886+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "90f9f618bb1090f6537c459464c9ab41a2a28b9b4831d3138f1111d4555dbd7d",
+  "test_cases_sha256": "7c6f71b4a7d6b825c3f4ffae0b7786806127d992b64d5cb104f529db050a7b41",
+  "test_counts": {
+    "failed": 0,
+    "passed": 84,
+    "skipped": 0
+  },
+  "unexpected_files": []
+}

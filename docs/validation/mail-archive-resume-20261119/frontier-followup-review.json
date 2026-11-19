@@ -1,0 +1,1055 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-19T18:57:22.987Z",
+  "checked_local_head": "0401252abac80cd4c2bd1b23a663afb65a113df8",
+  "scope": "Read-only follow-up after the GUI 8d9d1fe tree proof. Git advertisements and API reads are separate observations; root owns incoming integration and the next acceptance freeze.",
+  "commits": [
+    {
+      "category": "guiLatest",
+      "sha": "ba51c40abc664758df3cfc846625bdeb81e3ac13",
+      "tree": "e3b0c194fc9b0ccbdcc16b052daffc6646d216cc",
+      "parents": [
+        "24ad6fbea334e4ce51a40f79f7616a27f6e58dcc"
+      ],
+      "message": "Preserve restore completion cancellation and bounded source failure reporting [skip ci]",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/commits/ba51c40abc664758df3cfc846625bdeb81e3ac13"
+    },
+    {
+      "category": "vbaLatest",
+      "sha": "d8be43a408473da4b45059561dbc387f5b868d5b",
+      "tree": "8803473ae23b7b7cb3a80da9cf9e3e90a5865db5",
+      "parents": [
+        "4b26bfaa81e1f0bef7d63ddd6a28fccc05fa88fd"
+      ],
+      "message": "Bind 1,502 accepted local tests to published source and evidence [skip ci]\n\nPublish the independent source/evidence audit: 2,792 accepted repository inputs match working bytes and published Git blobs, and all 287 artifact files across eight manifests match their hashes and Git objects. De-duplicate accepted reporters to 1,502 passes with zero failures/skips; retain superseded source and failure histories explicitly. Add the final report review and verified pre-merge main frontier. Documentation/evidence only; accepted runtime, test and dependency inputs are unchanged.",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/commits/d8be43a408473da4b45059561dbc387f5b868d5b"
+    },
+    {
+      "category": "newMain",
+      "sha": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "tree": "de8137789a9965121d4299e1ad1fee51eeba12f4",
+      "parents": [
+        "caf378f40fd5bda50f504a6816404d01d8bbb8f8"
+      ],
+      "message": "Fix language review and add explicit model/data download management [skip ci]",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/commits/9f41e0427734d815b19149eba5eabef202f78ba6"
+    },
+    {
+      "category": "appGaps",
+      "sha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "tree": "57eb3220d94e1d1c08acd4d7e0bc89b2d75106cc",
+      "parents": [
+        "a1058aad3d0fc5fdb74f2a7faa8ade1da2b7988b",
+        "caf378f40fd5bda50f504a6816404d01d8bbb8f8"
+      ],
+      "message": "Merge origin/main (PR #209) into fix/app-gaps-20261119 [skip ci]\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/commits/0e03878b028ec25ed3d84a790633433eafc3bede"
+    }
+  ],
+  "comparisons": [
+    {
+      "category": "guiDelta",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af...ba51c40abc664758df3cfc846625bdeb81e3ac13",
+      "base": "8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af",
+      "merge_base": "8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af",
+      "status": "ahead",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "total_commits": 2,
+      "files": [
+        {
+          "path": "docs/validation/crispoffice-layout-theme-20261119/README.md",
+          "blob": "1a2d57016bc16a316ecfcd9605ed7fbf2e7bb9c9",
+          "status": "modified"
+        },
+        {
+          "path": "docs/validation/crispoffice-layout-theme-20261119/incoming/publication-README.md",
+          "blob": "ff8d37bb587e8c0cdefd642ba9383cc28a4a77b4",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/crispoffice-layout-theme-20261119/incoming/publication-audit.json",
+          "blob": "bc9b005243df73e7687b7355df555906de00c5af",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/crispoffice-layout-theme-20261119/reconciliation-publication.json",
+          "blob": "aaf91d8addd364fc5ea8b8f29061175b88753e4d",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/crispoffice-layout-theme-20261119/remote-publication-capture.json",
+          "blob": "216af66316c2d1766282ce1ebb02fe1f97e611fa",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+          "blob": "115cc8ae1312b7ba8c4c826e8be11e0634b5c947",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+          "blob": "56ce590c4eec67dcce926fe570fc98174db08a60",
+          "status": "modified"
+        }
+      ],
+      "non_validation_paths": [
+        "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+        "packages/quds_mail_store/lib/src/archive_restore_native.dart"
+      ]
+    },
+    {
+      "category": "vbaDelta",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/61bb3ee42a385c5ffaffa44047693a6f378a8424...d8be43a408473da4b45059561dbc387f5b868d5b",
+      "base": "61bb3ee42a385c5ffaffa44047693a6f378a8424",
+      "merge_base": "61bb3ee42a385c5ffaffa44047693a6f378a8424",
+      "status": "ahead",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "total_commits": 2,
+      "files": [
+        {
+          "path": "README.md",
+          "blob": "a9919150060fd71ade4d824d6066702604e4c4e9",
+          "status": "modified"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/README.md",
+          "blob": "aa7ad665ff2971ab8e8828d101ef5c7911e1067f",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/artifact-manifest.json",
+          "blob": "d59a105ac0b784d2ab96db8fe5f39cc2e6e664b6",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/checks-progress.json",
+          "blob": "b987effdbb39e502ec736424d2597a71ed4ca664",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/dart-version.json",
+          "blob": "7923d488941332e82a00e174f8f3fb57f85deaa8",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/dependencies-after.json",
+          "blob": "bb79f9ad19912ae0716eaa26673093b6dbedce5e",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/dependencies-before.json",
+          "blob": "bb79f9ad19912ae0716eaa26673093b6dbedce5e",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/engine-analysis.json",
+          "blob": "065b3bdc0844579488f66a80754767965f3b908a",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/format.json",
+          "blob": "8a5e385b414a2ffa731446fa5b5f0ebb50a9fb60",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/inputs-after.json",
+          "blob": "0a209b02298db8ad5acffd57e937ef8f2e3cd60b",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/inputs-before.json",
+          "blob": "0a209b02298db8ad5acffd57e937ef8f2e3cd60b",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/dart-version.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/dart-version.stdout.log",
+          "blob": "3e19f53e747b4151824669d32a560dc4921fad45",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/engine-analysis.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/engine-analysis.stdout.log",
+          "blob": "a78eb66b3a8527c4d96187983660555b7e7d582f",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/format.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/format.stdout.log",
+          "blob": "03494ff47e5709305bf8ae90a126fd2d277ae9a2",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/macro-tests.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/macro-tests.stdout.log",
+          "blob": "968e88b2238132a68bd4739718b034de04de96bf",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/node-version.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/node-version.stdout.log",
+          "blob": "22fbfc060a4e628c604aabc07ac2f2a5fdc51fb6",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_smoke-compile.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_smoke-compile.stdout.log",
+          "blob": "d4fc70f867c27c97e6dc12ea27eedf2dcc250bef",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_smoke-run.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_smoke-run.stdout.log",
+          "blob": "1babe1783229ca96c6e64303fe222ea18f0a73c5",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_arrays_smoke-compile.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_arrays_smoke-compile.stdout.log",
+          "blob": "a0450b1c11c89953fadb6f1cff6a778877901e2e",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_arrays_smoke-run.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_arrays_smoke-run.stdout.log",
+          "blob": "4c163a37da158adc7ad61a4c9d71b33868fc4466",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_control_flow_smoke-compile.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_control_flow_smoke-compile.stdout.log",
+          "blob": "6425deb3d0eeafedc80570e2c64bfea036da7dcf",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_control_flow_smoke-run.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_control_flow_smoke-run.stdout.log",
+          "blob": "fc79d3e0c1c931ecc8ad145848a48f911a3d3ba3",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_procedures_smoke-compile.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_procedures_smoke-compile.stdout.log",
+          "blob": "757f1773d12a9efb1425c372e039b3a4a348c754",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_procedures_smoke-run.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_procedures_smoke-run.stdout.log",
+          "blob": "18e4395f6a4ea5740cbe40c1d45ce6e37a96de5b",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_smoke-compile.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_smoke-compile.stdout.log",
+          "blob": "6633fe4f553b95ad6e3d799a0ec7bf2909ff21f6",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_smoke-run.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/web_vba_smoke-run.stdout.log",
+          "blob": "b229cb421cf91010850031418ba698d910644ac7",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/whitespace.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/logs/whitespace.stdout.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/macro-tests.json",
+          "blob": "1dfe6977bea958dfa49c2c87f27f424003e1f01b",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/node-version.json",
+          "blob": "6908a7f8c984d2a4f13ca4adfed5a0a1437467b4",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/package-config.json",
+          "blob": "81d28a66c9c4cbdb44040c34df24b374cff929bc",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/receipt.json",
+          "blob": "42660bcfcbbd953d7efc4398b0579fda578e6d69",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/resolved-pubspec.lock",
+          "blob": "4f33282d534ac17a79abd6a4547662820de49d07",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/test-summary.json",
+          "blob": "6a2c3bb812e685e5e6846b33f519f466d304d9cb",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/validation-pubspec.yaml",
+          "blob": "7c57714573f42a6a8a20f962737d7b98123af89d",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_smoke-assertions.json",
+          "blob": "b3b8f831fdbed511f4403c3c4b32493cad17a3d3",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_smoke-compile.json",
+          "blob": "1bfb30b12096b6f70d2b01fcb77ddd8438b18917",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_smoke-run.json",
+          "blob": "41578c885d42f311f4c24f51f8d1cddae647f53a",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_arrays_smoke-assertions.json",
+          "blob": "62517b1c25798c74815eef35a85828ebf6c5aba8",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_arrays_smoke-compile.json",
+          "blob": "ecbc41cb7436828bc7cd9a743b628af7f4b902ed",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_arrays_smoke-run.json",
+          "blob": "fd9bf21399c9fc1d08aee1a6b732306c3bbbd87e",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_control_flow_smoke-assertions.json",
+          "blob": "26d26ebb85bf2cc4ca7af78e61feffccf92324db",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_control_flow_smoke-compile.json",
+          "blob": "4e2522e0d365a95242fa9ffcc6840706f6838c10",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_control_flow_smoke-run.json",
+          "blob": "d0b98082d25f91eaee11e53f746d98468c238215",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_procedures_smoke-assertions.json",
+          "blob": "3e7997cab5fcedf132fedf61fa84f46f6aa81770",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_procedures_smoke-compile.json",
+          "blob": "286ab1c972fdee0b93583ac3e2c4f467aa00a1e2",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_procedures_smoke-run.json",
+          "blob": "f20fdf31cdf202ca308ae5a9aac981fc20d612ae",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_smoke-assertions.json",
+          "blob": "13383da198ffe88aadc7e57e516c972af100606c",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_smoke-compile.json",
+          "blob": "256a81afed3b414709fe6a7c89592f71cf64855b",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/web_vba_smoke-run.json",
+          "blob": "5cd99153ab71f2ed2990283ad4fc037fdd9ee0ac",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/engine-publication/whitespace.json",
+          "blob": "02829c71111426068be7409b4fb81937bc473e16",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/dark-slide-corrected/README.md",
+          "blob": "411a74c813e2703d7f7ffc5f63ef812d3b43aa63",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/dark-slide-corrected/focused-after-parser.json",
+          "blob": "905b2e97cfdb3beef88fd6d5f7a6c991544e7dfd",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/dark-slide-corrected/focused-after-parser.stderr",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/dark-slide-corrected/focused-after-parser.stdout",
+          "blob": "6ef940692260b6dda0a7d255ca7b5df9c8d969e7",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/dark-slide-corrected/independent-review.json",
+          "blob": "0b5518f626cb88dc73482d34099e41bd2f2d5254",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/publication-source/README.md",
+          "blob": "fd9dbca77072a3e45108536a80a935a89ee34b69",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/publication-source/audit.json",
+          "blob": "a4c865b22a0f99870030cebf8627c47e019a18de",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-review/publication-source/final-receipt-review.json",
+          "blob": "20da48b67457264d63208e6f0c0203060bb72c25",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/final-source-checkpoint.json",
+          "blob": "84b56006bd7def743700d6603b8e7af289169c95",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/README.md",
+          "blob": "9bc45dbb27c1c4e1b2d98396791105125c573797",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/artifacts-sha256.json",
+          "blob": "21e365e3165adf12e8f0b4234938147676fa5985",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/changed-analysis.json",
+          "blob": "b77350d08f0b45cb781891b70dae53c57a001b51",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/changed-analysis.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/changed-analysis.stdout.log",
+          "blob": "cc462ec56c48681526bc4fb6327762e8ff49daf0",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/distinct-tests.json",
+          "blob": "422a13644a76e8c62eba8c4ee223c909ba377bad",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/editor-tests-summary.json",
+          "blob": "40d36dc470c80b82ea21b586bc8a8794ab95726b",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/editor-tests.json",
+          "blob": "044c58cbb4a873afc5e99e5fb94568e4bf839c39",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/editor-tests.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/editor-tests.stdout.log",
+          "blob": "d6601bce992ddc3d89443f3be2b95b1ffaf75c47",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/finalize.py",
+          "blob": "8b717da0f8bbff0f7331aae29e8f430328149cab",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/frontier-review.json",
+          "blob": "feab725d98cde3558355aeaa219f28c224364568",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/input-stability.json",
+          "blob": "3c8ead3acbdbe83371fb9935d50f28a62fd0f02c",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/inputs-after.json",
+          "blob": "892ffb93b93b8dbcd38493958726fcc3662097ec",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/inputs-before.json",
+          "blob": "892ffb93b93b8dbcd38493958726fcc3662097ec",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/native-runtime.json",
+          "blob": "c3818593790c134283e57b6072ff6ba9accd682d",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/qualify.py",
+          "blob": "164d705f2d9342b1ca769eeee6777eca687d844d",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/receipt.json",
+          "blob": "1560947ad2c45e7b1c3bcdc421b8ef82326cf508",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/repeated-studio-tests-summary.json",
+          "blob": "69df3d8f7e1f299d15d4ca9c3669c57b26ac9c09",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/repeated-studio-tests.json",
+          "blob": "70f25ea2f06b1ee80f09974966d2ec78b7948055",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/repeated-studio-tests.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/repeated-studio-tests.stdout.log",
+          "blob": "7850d852e371c2f999a047ef3758b1a4854414ec",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/source-binding.json",
+          "blob": "41e2a98ec09e526bcd1e102b477f8faf2195fad0",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/source-frontier.json",
+          "blob": "a6f2669b0e98a37ec7c58c1935efb13e33c2d754",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/studio-analysis.json",
+          "blob": "bc3cd2e9d642bea876e2f313dbc6dced3a7cf18a",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/studio-analysis.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/studio-analysis.stdout.log",
+          "blob": "11eca5d7ca05ab9a6c2c19b531ac51235ddd6019",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/studio-theme-tests-summary.json",
+          "blob": "22efa5ccaa081afbcd8e120d8de3b8902df7a811",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/studio-theme-tests.json",
+          "blob": "503386c45f6bb4f6b11637fc3ff1b84c3dd067f3",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/studio-theme-tests.stderr.log",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/studio-theme-tests.stdout.log",
+          "blob": "7a76f5c581d18dc26d700fe418b18601da53d521",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-accepted/suite-counts.json",
+          "blob": "c36d43236132ce8164a0ac8beb259e65161dbc99",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/pre-merge-remote.json",
+          "blob": "97320d6fb08fe80f16ff3d461bf171a3509131cc",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/publication-binding.json",
+          "blob": "a9dc0faa2fc670ec720391cd6a32665971fa43e6",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/publication-binding.md",
+          "blob": "a760663909f6479860cf8f6d82cd6aa733b1e663",
+          "status": "added"
+        },
+        {
+          "path": "docs/validation/office-vba-arrays-20261119/publication-binding.py",
+          "blob": "165e501eb5436081f831443001469daa1fb90532",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_engine/CHANGELOG.md",
+          "blob": "14f634f5c0d4116889fad84b81784bbf0f82618e",
+          "status": "modified"
+        }
+      ],
+      "non_validation_paths": [
+        "README.md",
+        "packages/quds_office_engine/CHANGELOG.md"
+      ]
+    },
+    {
+      "category": "newMainDelta",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/caf378f40fd5bda50f504a6816404d01d8bbb8f8...9f41e0427734d815b19149eba5eabef202f78ba6",
+      "base": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "merge_base": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "status": "ahead",
+      "ahead_by": 1,
+      "behind_by": 0,
+      "total_commits": 1,
+      "files": [
+        {
+          "path": "docs/validation/language-downloads-20261119/README.md",
+          "blob": "49665bd0a72c6f9510eab8cba70214b40e1ce61e",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/crisp_office_sample.dart",
+          "blob": "79711bd22d851fe9cba38e5e5afcdd957036d458",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+          "blob": "2086663977dc9e711af24554a2542c463e2cddc4",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+          "blob": "01b35e855be9c9c812b797f034c33430133fa512",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+          "blob": "2c48b6937450ece3e98915de877c4f0e673ff3df",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "blob": "54e62782d0b9dbd58955aa40027915e7505bb2b5",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+          "blob": "6bd155c95253e92006992c284d4293908028c059",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "blob": "9afebb96b5d941c648d6064a942a5515545622c8",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+          "blob": "cc95542a1b16a051698f5c5115c2516e3bcc5bdc",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+          "blob": "6c9ad57b48146def4da53e2841d631457f739b2f",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+          "blob": "576528a56a639d6b846c6c400c09e981880ba863",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+          "blob": "a11ad2bc23a17994570e5a505926bfdbe1a57f9a",
+          "status": "added"
+        }
+      ],
+      "non_validation_paths": [
+        "packages/quds_office_editor/example/lib/crisp_office_sample.dart",
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+        "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+        "packages/quds_proofing_spacy/test/ner_removal_test.dart"
+      ]
+    },
+    {
+      "category": "appGapsDelta",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/caf378f40fd5bda50f504a6816404d01d8bbb8f8...0e03878b028ec25ed3d84a790633433eafc3bede",
+      "base": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "merge_base": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "status": "ahead",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "total_commits": 2,
+      "files": [
+        {
+          "path": "packages/quds_office_editor/example/README.md",
+          "blob": "79d35eb52ec36066a3ac8c2c67cd0bec6f782f00",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/harper/DEPENDENCIES.txt",
+          "blob": "f97af1392c646cad4fdb7dba6104341fc28eb366",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/harper/HARPER-LICENSE",
+          "blob": "28d2cac5045bb6add164520569a6ebff5f1df9d7",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/spacy/CPython-LICENSE",
+          "blob": "f26bcf4d2de6eb136e31006ca3ab447d5e488adf",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/spacy/CrispEmbed-LICENSE",
+          "blob": "bd6ec050511889fcec725b6c5807c686aafef368",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/spacy/PCRE2-LICENCE.md",
+          "blob": "f58ceb75a63e5f958631932f83d0786ee7593485",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/spacy/THIRD_PARTY_NOTICES",
+          "blob": "ea854e891d4815e643bf93b1774c07550da09b82",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/spacy/Thinc-LICENSE",
+          "blob": "d52557b3f85739e59f9dee341036adfcdf7f2970",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/spacy/Unicode-LICENSE.txt",
+          "blob": "56da58912807030b451a4700687d5bd02c72d6ed",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/spacy/de_core_news_sm-LICENSE",
+          "blob": "739e44823171447c0c2398ba9fe7364fb7ca24b6",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/spacy/ggml-LICENSE",
+          "blob": "e7dca554bcb802f98408383a864404e3aa4eacca",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/assets/licenses/spacy/spaCy-LICENSE",
+          "blob": "6cb7810c6ee4ca32c79e68b9f39fbbce2183243a",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+          "blob": "c3c2f61f4fde61804599c390d5776ff3d38f4f7d",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+          "blob": "3adba68b446194fccc05dc4aed93c3a7908ef090",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+          "blob": "a8e667c7e025bbe151edc75da102e92401077494",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+          "blob": "520e1879626d75e3df5c1324a851a8a947da3d93",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/pubspec.yaml",
+          "blob": "413384af320d3cad00e3820e62c87a96881e6415",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_language_id_test.dart",
+          "blob": "334a2571d68faac083a4b793f6bfde7a86df1e27",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart",
+          "blob": "c7b0550fff598a7c71db72a1ec8a7d08d455902d",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+          "blob": "ecf7ca9d1d74188888135341e38c3cbe701c7f20",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+          "blob": "f94df52cbdb721cecb655794c52f6aa02e1026ff",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/README.md",
+          "blob": "d2b6c32d0051d53b71247fbf83b53542539c3660",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+          "blob": "2accd8449d2745d2dc33c749a4f0061f3cb79262",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+          "blob": "4e629afa0503b89112b39b90c4452916f10a022f",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart",
+          "blob": "af5a99f78136a541dbe6f700308d635bcca254bd",
+          "status": "modified"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/CrispEmbed-LICENSE",
+          "blob": "bd6ec050511889fcec725b6c5807c686aafef368",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/THIRD_PARTY_NOTICES",
+          "blob": "ea854e891d4815e643bf93b1774c07550da09b82",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/ggml-LICENSE",
+          "blob": "e7dca554bcb802f98408383a864404e3aa4eacca",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/manifest.json",
+          "blob": "4e33a07586f2b03c9be265143e103d84cede7d13",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/notices/CPython-LICENSE",
+          "blob": "f26bcf4d2de6eb136e31006ca3ab447d5e488adf",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/notices/PCRE2-LICENCE.md",
+          "blob": "f58ceb75a63e5f958631932f83d0786ee7593485",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/notices/Thinc-LICENSE",
+          "blob": "d52557b3f85739e59f9dee341036adfcdf7f2970",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/notices/Unicode-15.0.0-ReadMe.txt",
+          "blob": "f8fd7bb707a03411aa667d86f38d7011e03b6936",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/notices/Unicode-LICENSE.txt",
+          "blob": "56da58912807030b451a4700687d5bd02c72d6ed",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/notices/continuation-notice-sources.json",
+          "blob": "fe2ec124f199add374f1a348f40e64124833b168",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSE",
+          "blob": "739e44823171447c0c2398ba9fe7364fb7ca24b6",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSES_SOURCES",
+          "blob": "090bdfde8abd69a8740e0d15a228e121043e35fe",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/notices/ggml-LICENSE",
+          "blob": "e7dca554bcb802f98408383a864404e3aa4eacca",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/licenses/notices/spaCy-LICENSE",
+          "blob": "6cb7810c6ee4ca32c79e68b9f39fbbce2183243a",
+          "status": "added"
+        },
+        {
+          "path": "packages/quds_proofing_spacy/tool/build.py",
+          "blob": "c78fb595d39f27022950126f8b879b8e8ae30712",
+          "status": "added"
+        }
+      ],
+      "non_validation_paths": [
+        "packages/quds_office_editor/example/README.md",
+        "packages/quds_office_editor/example/assets/licenses/harper/DEPENDENCIES.txt",
+        "packages/quds_office_editor/example/assets/licenses/harper/HARPER-LICENSE",
+        "packages/quds_office_editor/example/assets/licenses/spacy/CPython-LICENSE",
+        "packages/quds_office_editor/example/assets/licenses/spacy/CrispEmbed-LICENSE",
+        "packages/quds_office_editor/example/assets/licenses/spacy/PCRE2-LICENCE.md",
+        "packages/quds_office_editor/example/assets/licenses/spacy/THIRD_PARTY_NOTICES",
+        "packages/quds_office_editor/example/assets/licenses/spacy/Thinc-LICENSE",
+        "packages/quds_office_editor/example/assets/licenses/spacy/Unicode-LICENSE.txt",
+        "packages/quds_office_editor/example/assets/licenses/spacy/de_core_news_sm-LICENSE",
+        "packages/quds_office_editor/example/assets/licenses/spacy/ggml-LICENSE",
+        "packages/quds_office_editor/example/assets/licenses/spacy/spaCy-LICENSE",
+        "packages/quds_office_editor/example/lib/studio_licenses.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+        "packages/quds_office_editor/example/pubspec.yaml",
+        "packages/quds_office_editor/example/test/studio_language_id_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+        "packages/quds_office_editor/example/tool/build_macos_app.sh",
+        "packages/quds_proofing_spacy/README.md",
+        "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+        "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+        "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart",
+        "packages/quds_proofing_spacy/licenses/CrispEmbed-LICENSE",
+        "packages/quds_proofing_spacy/licenses/THIRD_PARTY_NOTICES",
+        "packages/quds_proofing_spacy/licenses/ggml-LICENSE",
+        "packages/quds_proofing_spacy/licenses/manifest.json",
+        "packages/quds_proofing_spacy/licenses/notices/CPython-LICENSE",
+        "packages/quds_proofing_spacy/licenses/notices/PCRE2-LICENCE.md",
+        "packages/quds_proofing_spacy/licenses/notices/Thinc-LICENSE",
+        "packages/quds_proofing_spacy/licenses/notices/Unicode-15.0.0-ReadMe.txt",
+        "packages/quds_proofing_spacy/licenses/notices/Unicode-LICENSE.txt",
+        "packages/quds_proofing_spacy/licenses/notices/continuation-notice-sources.json",
+        "packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSE",
+        "packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSES_SOURCES",
+        "packages/quds_proofing_spacy/licenses/notices/ggml-LICENSE",
+        "packages/quds_proofing_spacy/licenses/notices/spaCy-LICENSE",
+        "packages/quds_proofing_spacy/tool/build.py"
+      ]
+    }
+  ],
+  "review": {
+    "gui": "Keep incoming archive diagnostics for existing cancellation observers, and source/codec storage failures as individual failures. Combine with current destination-unavailable terminal behavior; preserve later checkpoint quota/cleanup corrections.",
+    "vba": "The two commits after 61bb3ee4 change only publication documentation, raw evidence, root README and engine CHANGELOG. Incorporate ancestry/evidence without replacing stronger combined product source.",
+    "main": "New language review callbacks, explicit download manager, optional NER removal and associated tests need integration and new local qualification.",
+    "app_gaps": "New macOS bundled spaCy runtime, model-only setup, license notices and build tooling need integration. Real installed macOS native acceptance gate requires separate platform inputs.",
+    "cross_stream_findings": [
+      {
+        "status": "resolved_in_product_checkpoint",
+        "area": "Studio bundled spaCy status",
+        "finding": "Bundled refresh bypasses newly added installed NER verification; its default status hides installed/error state and may enable a missing model.",
+        "resolution": "Use the same NER verification result in ordinary and bundled status, including nerInstalled, nerProblem and nerEnabled gating. Add absent/corrupt/present bundled regression.",
+        "resolution_commit": "7e13a48c2e591f436123a41211950702c13f8df2",
+        "review": "Combined source inspected; final execution is recorded in the accepted incoming inventory."
+      },
+      {
+        "status": "resolved_in_product_checkpoint",
+        "area": "Downloads manager size",
+        "finding": "German row reports complete platform package size even when app ships the runtime.",
+        "resolution": "Use StudioSpacyStatus.downloadBytes and installOffered.",
+        "resolution_commit": "7e13a48c2e591f436123a41211950702c13f8df2",
+        "review": "Combined source inspected; final execution is recorded in the accepted incoming inventory."
+      }
+    ]
+  },
+  "required_delta_checks": [
+    "archive_restore_adversarial_test.dart",
+    "archive_restore_resume_test.dart",
+    "word_text_proofing_pane_test.dart",
+    "studio_downloads_manager_test.dart",
+    "studio_spacy_setup_test.dart",
+    "studio_language_id_test.dart",
+    "ner_removal_test.dart",
+    "Existing spaCy installer and native boundary tests",
+    "Strict analysis of changed Dart targets",
+    "bash -n for build_macos_app.sh; Python syntax and license manifest hash verification"
+  ],
+  "github_actions_queried_or_awaited": false,
+  "ref_or_source_mutation": false
+}

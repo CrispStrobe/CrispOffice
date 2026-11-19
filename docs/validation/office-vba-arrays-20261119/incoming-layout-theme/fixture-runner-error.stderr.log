@@ -1,0 +1,2 @@
+Failed to parse /workspace/scratch/652d74384990/quds_office_suite/.dart_tool/package_graph.json: dependencies for `quds_office_suite` missing.
+Try running `flutter pub get`

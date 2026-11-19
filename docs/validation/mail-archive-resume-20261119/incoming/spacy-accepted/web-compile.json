@@ -1,0 +1,20 @@
+{
+  "name": "web-compile",
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+    "compile",
+    "js",
+    "-O1",
+    "test/studio_spacy_web_import_gate.dart",
+    "-o",
+    "/workspace/scratch/8eda9a4e1801/incoming-validation/spacy-accepted/studio_spacy_web_import_gate.js"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example",
+  "started_at_utc": "2026-11-19T19:12:32.629333+00:00",
+  "finished_at_utc": "2026-11-19T19:12:33.197747+00:00",
+  "elapsed_seconds": 0.568,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_sha256": "fce56ff25f3f1a9bbc84b0698a07ade6ec0da4cefbcb73fc620e0089e0a9049b",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

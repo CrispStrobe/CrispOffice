@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "review_completed_at_utc": "2026-11-19 18:13:33 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "pr": 211,
+  "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211",
+  "inspected_head": "4fd010fcae209b6ea033828d76908508b7327b9f",
+  "branch": "codex/crispoffice-layout-theme-20261119",
+  "draft_at_inspection": true,
+  "review_base": "c3eaf57c85d363b1453f2a3407ba62768b0e2c08",
+  "common_ancestor": "37ac6ea8a08225a42098c455deb5375837912eec",
+  "ahead_by": 1,
+  "behind_by": 6,
+  "unique_changed_files": [
+    {
+      "path": "docs/IMAGE_EDITOR_INTEGRATION.md",
+      "status": "added",
+      "additions": 407,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/lib/quds_office_editor.dart",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart",
+      "status": "modified",
+      "additions": 96,
+      "deletions": 3
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+      "status": "modified",
+      "additions": 50,
+      "deletions": 24
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "status": "modified",
+      "additions": 102,
+      "deletions": 10
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "status": "modified",
+      "additions": 135,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_theme.dart",
+      "status": "modified",
+      "additions": 65,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_page_layout.dart",
+      "status": "added",
+      "additions": 183,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/ui_components/office_chrome.dart",
+      "status": "modified",
+      "additions": 9,
+      "deletions": 3
+    },
+    {
+      "path": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+      "status": "added",
+      "additions": 103,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/test/office_dark_document_test.dart",
+      "status": "added",
+      "additions": 294,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "status": "added",
+      "additions": 372,
+      "deletions": 0
+    }
+  ],
+  "overlapping_paths_with_review_base_changes": [],
+  "relationship_note": "PR metadata reports33changed files against main because it also contains21mail-restoration files already incorporated by root. Exactly12paths are unique after the common ancestor.",
+  "implemented_at_inspected_head": [
+    "Public immutable WordPageLayoutSettings/Target values and current-section/whole-document scope.",
+    "Controller capture/currentness checks and validated, single-command undoable page-layout application; changed geometry propagates across currently continuous siblings.",
+    "Display-only dark document-ink adaptation for Word and Sheet, readonly theme settings, themed ruler/chrome painting.",
+    "Three focused test files.",
+    "Image-editor integration design only; no new runtime dependency or vendor copied."
+  ],
+  "not_yet_implemented_from_pr_body": [
+    "Compact preset menus and host Page Layout/Paragraph dialogs",
+    "File/View document-mode presentation",
+    "Material app theme integration beyond the editor components shown"
+  ],
+  "source_review": {
+    "definite_defects_found": [],
+    "conflict_assessment": "No changed-path overlap between incoming delta and c3eaf57c delta from37ac6ea8. Normal merge should not require textual conflict resolution; root owns actual merge.",
+    "behavior_risks": [
+      "Page-layout application must remain one undoable operation, reject stale/modal targets and preserve unsupported section XML.",
+      "Changing geometry for continuous siblings must leave every affected column usable and preserve section-scoped options.",
+      "Dark text color must follow actual paragraph/table/frame/highlight/selection/header-footer backgrounds without mutating authored/exported colors.",
+      "Sheet conditional data bars now use clipped dual-color text painting, alongside selection/find background composition.",
+      "Ruler dark/high-contrast palette should retain light-mode layout and hit behavior."
+    ],
+    "no_macro_engine_or_dependency_changes": true
+  },
+  "author_evidence": {
+    "statement": "The draft PR claims17focused editor tests and scoped analysis passed with Flutter3.47.8/Dart3.13.7; host dialog/ribbon tests and visual review are in progress.",
+    "final_receipt_or_raw_logs_published_in_unique_delta": false,
+    "attributed_pass_claim": 17,
+    "independently_executed_here": 0,
+    "static_test_inventory": {
+      "word_page_layout_test": 10,
+      "office_dark_document_test": 3,
+      "office_chrome_theme_test": "2test declarations; first is parameterized over3themes, yielding4cases"
+    },
+    "acceptance_status": "Unqualified author claim at review time. Do not add these claims to local execution totals."
+  },
+  "recommended_local_qualification": {
+    "package": "packages/quds_office_editor",
+    "new_tests": [
+      "test/word_page_layout_test.dart",
+      "test/office_dark_document_test.dart",
+      "test/office_chrome_theme_test.dart"
+    ],
+    "existing_tests": [
+      "test/embed_test.dart",
+      "test/word_tab_stops_editor_test.dart",
+      "test/sheet_conditional_rendering_test.dart",
+      "test/word_selection_paint_test.dart",
+      "test/word_header_footer_navigation_test.dart",
+      "test/editor_test.dart"
+    ],
+    "further_checks": [
+      "Strict analysis of changed editor sources and new tests",
+      "Formatting/whitespace",
+      "Repeat affected Studio mail/ribbon fixtures after merge if those hosts share edited editor types"
+    ],
+    "owner": "Root and array_integration agent run local checks after integration; this reviewer only inspected source."
+  },
+  "constraints": "No production or macro-input edits, no Git/PR mutations, no Actions or status endpoints. Review artifacts only are written under final-review/gui-layout-theme."
+}

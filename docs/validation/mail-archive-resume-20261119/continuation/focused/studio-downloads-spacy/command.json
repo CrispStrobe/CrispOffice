@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/workspace/scratch/f6338d3de284/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_downloads_manager_test.dart",
+    "test/studio_spacy_setup_test.dart",
+    "test/studio_linguistic_analysis_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite/packages/quds_office_editor/example",
+  "expected_test_files": [
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+    "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart"
+  ],
+  "name": "studio-downloads-spacy",
+  "started_at_utc": "2026-11-19T20:06:02.429162+00:00"
+}

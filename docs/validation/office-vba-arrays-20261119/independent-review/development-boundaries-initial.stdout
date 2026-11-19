@@ -1,0 +1,189 @@
+Command: dart test test/office_vba_arrays_boundaries_test.dart --reporter expanded
+Working directory: reduced validation workspace/packages/quds_office_engine
+The preceding invocation used unsupported --no-pub and exited 64 before loading tests.
+This is development output, not the final frozen acceptance record.
+
+00:00 +0: array bounds are finite portable constant shapes narrow arrays retain both signed 32-bit endpoint indexes
+00:00 +1: array bounds are finite portable constant shapes exact 4096-slot array supports its last slot and full traversal
+00:00 +2: array bounds are finite portable constant shapes oversized 0 To 4096 is rejected even in unused procedure
+00:00 +3: array bounds are finite portable constant shapes oversized -2048 To 2048 is rejected even in unused procedure
+00:00 +4: array bounds are finite portable constant shapes oversized -2147483648 To -2147479552 is rejected even in unused procedure
+00:00 +5: array bounds are finite portable constant shapes oversized 0 To 2147483647 is rejected even in unused procedure
+00:00 +6: array bounds are finite portable constant shapes oversized -2147483648 To 2147483647 is rejected even in unused procedure
+00:00 +7: array bounds are finite portable constant shapes invalid constant bounds 2 To 1 fail in unused code
+00:00 +8: array bounds are finite portable constant shapes invalid constant bounds -1 fail in unused code
+00:00 +9: array bounds are finite portable constant shapes invalid constant bounds -2147483649 To -2147483648 fail in unused code
+00:00 +10: array bounds are finite portable constant shapes invalid constant bounds 2147483647 To 2147483648 fail in unused code
+00:00 +11: array bounds are finite portable constant shapes invalid constant bounds 0.5 To 2 fail in unused code
+00:00 +12: array bounds are finite portable constant shapes invalid constant bounds 0 To 2.5 fail in unused code
+00:00 +13: array bounds are finite portable constant shapes invalid constant bounds "0" To 2 fail in unused code
+00:00 +14: array bounds are finite portable constant shapes invalid constant bounds 0 To True fail in unused code
+00:00 +15: array bounds are finite portable constant shapes prior constant expressions determine signed bounds exactly
+00:00 +16: array bounds are finite portable constant shapes nonconstant declaration shape is rejected: Dim count As Long
+Dim values(count) As Long
+00:00 +17: array bounds are finite portable constant shapes nonconstant declaration shape is rejected: Dim values(Later) As Long
+Const Later As Long = 2
+00:00 +18: array bounds are finite portable constant shapes nonconstant declaration shape is rejected: Dim values(Worksheets(1).Range("A1").Value2) As Long
+00:00 +19: array bounds are finite portable constant shapes nonconstant declaration shape is rejected: Dim values(LBound(other)) As Long
+Dim other(2) As Long
+00:00 +20: array bounds are finite portable constant shapes bounds cannot call a user function even if it returns a constant
+00:00 +21: array bounds are finite portable constant shapes unsupported declaration is rejected: Dim values() As Long
+00:00 +22: array bounds are finite portable constant shapes unsupported declaration is rejected: Dim values(1 To 2, 1 To 2) As Long
+00:00 +23: array bounds are finite portable constant shapes unsupported declaration is rejected: Dim values(1 To 2) As Range
+00:00 +24: array bounds are finite portable constant shapes unsupported declaration is rejected: Dim values(1 To 2) As Worksheet
+00:00 +25: array bounds are finite portable constant shapes unsupported declaration is rejected: Const values(1 To 2) As Long = 0
+00:00 +26: array bounds are finite portable constant shapes array declaration cannot be global or hidden inside a dead block
+00:00 +27: array bounds are finite portable constant shapes bound builtin LBound cannot be shadowed
+00:00 +28: array bounds are finite portable constant shapes bound builtin uBoUnD cannot be shadowed
+00:00 +29: array indexing has explicit diagnostics and scalar storage read index 0 outside 1..2 fails
+00:00 +30: array indexing has explicit diagnostics and scalar storage write index 0 outside 1..2 fails
+00:00 +31: array indexing has explicit diagnostics and scalar storage read index 3 outside 1..2 fails
+00:00 +32: array indexing has explicit diagnostics and scalar storage write index 3 outside 1..2 fails
+00:00 +33: array indexing has explicit diagnostics and scalar storage read index -2147483648 outside 1..2 fails
+00:00 +34: array indexing has explicit diagnostics and scalar storage write index -2147483648 outside 1..2 fails
+00:00 +35: array indexing has explicit diagnostics and scalar storage read index 2147483647 outside 1..2 fails
+00:00 +36: array indexing has explicit diagnostics and scalar storage write index 2147483647 outside 1..2 fails
+00:00 +37: array indexing has explicit diagnostics and scalar storage index 1.5 is not coerced to an integer
+00:00 +38: array indexing has explicit diagnostics and scalar storage index "1" is not coerced to an integer
+00:00 +39: array indexing has explicit diagnostics and scalar storage index True is not coerced to an integer
+00:00 +40: array indexing has explicit diagnostics and scalar storage integral doubles and negative zero are valid indexes
+00:00 +41: array indexing has explicit diagnostics and scalar storage read and write index functions each execute once
+00:00 +42: array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: values() = 1
+00:00 +43: array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: values(0, 1) = 1
+00:00 +44: array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: Worksheets(1).Range("A1").Value2 = values()
+00:00 +45: array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: Worksheets(1).Range("A1").Value2 = values(0, 1)
+00:00 +46: array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: Set values(0) = Worksheets(1).Range("A1")
+00:00 +47: array indexing has explicit diagnostics and scalar storage invalid index/object shape remains checked after Exit: values(0).Value2 = 7
+00:00 +48: array indexing has explicit diagnostics and scalar storage Long slot rejects incompatible 1.5
+00:00 +49: array indexing has explicit diagnostics and scalar storage Long slot rejects incompatible 2147483648
+00:00 +50: array indexing has explicit diagnostics and scalar storage Long slot rejects incompatible "1"
+00:00 +51: array indexing has explicit diagnostics and scalar storage Double slot rejects incompatible True
+00:00 +52: array indexing has explicit diagnostics and scalar storage String slot rejects incompatible 1
+00:00 +53: array indexing has explicit diagnostics and scalar storage Boolean slot rejects incompatible 1
+00:00 +54: array indexing has explicit diagnostics and scalar storage Variant slot rejects incompatible Worksheets(1)
+00:00 +55: array indexing has explicit diagnostics and scalar storage Variant slot rejects incompatible Worksheets(1).Range("A1")
+00:00 +56: array indexing has explicit diagnostics and scalar storage unused code still checks element assignment types and names
+00:00 +57: array indexing has explicit diagnostics and scalar storage a fresh Variant array can be traversed without reading Empty values
+00:00 +57 -1: array indexing has explicit diagnostics and scalar storage a fresh Variant array can be traversed without reading Empty values [E]
+  OfficeMacroException(vba_unsupported): ArrayBoundaries.Main:3:10: Uninitialized Variant/objects (Empty or Nothing) are unsupported; assign before reading.
+  package:quds_office_engine/src/automation/office_vba_language.dart 89:8     _Context.fail
+  package:quds_office_engine/src/automation/office_vba_language.dart 99:7     _Context.unsupported
+  package:quds_office_engine/src/automation/office_vba_language.dart 2766:15  _Evaluator._initialized
+  package:quds_office_engine/src/automation/office_vba_language.dart 2389:21  _Evaluator._execute
+  package:quds_office_engine/src/automation/office_vba_language.dart 2277:7   _Evaluator._invoke
+  package:quds_office_engine/src/automation/office_vba_language.dart 2228:5   _Evaluator.compile
+  package:quds_office_engine/src/automation/office_vba_language.dart 61:49    OfficeVbaMacroLanguage.compile
+  test/office_vba_arrays_boundaries_test.dart 4:71                            _compile
+  test/office_vba_arrays_boundaries_test.dart 367:22                          main.<fn>.<fn>
+  
+00:00 +57 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: copy = values
+00:00 +58 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: values = 1
+00:00 +59 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: values = other
+00:00 +60 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: values(0) = other
+00:00 +61 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: copy = LBound
+00:00 +62 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: Worksheets(1).Range("A1").Value2 = values
+00:00 +63 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: Worksheets(1).Range("A1").Value2 = values & ""
+00:00 +64 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: If values = other Then
+End If
+00:00 +65 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: If values Then
+End If
+00:00 +66 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: Select Case values
+Case Else
+End Select
+00:00 +67 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: With values
+End With
+00:00 +68 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: Set target = values
+00:00 +69 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: ReDim values(4)
+00:00 +70 -1: arrays cannot escape through scalar or object APIs array escape stays invalid in inactive code: Erase values
+00:00 +71 -1: arrays cannot escape through scalar or object APIs whole arrays cannot be passed ByVal as Variant or typed scalar
+00:00 +72 -1: arrays cannot escape through scalar or object APIs whole arrays cannot be returned by a Variant function
+00:00 +73 -1: arrays cannot escape through scalar or object APIs array parameter syntax is unsupported in unused helpers
+00:00 +74 -1: arrays cannot escape through scalar or object APIs scalar element arguments remain isolated ByVal copies
+00:00 +75 -1: arrays cannot escape through scalar or object APIs invalid bound query is statically checked: LBound(1)
+00:00 +76 -1: arrays cannot escape through scalar or object APIs invalid bound query is statically checked: UBound("values")
+00:00 +77 -1: arrays cannot escape through scalar or object APIs invalid bound query is statically checked: LBound(values(0))
+00:00 +78 -1: arrays cannot escape through scalar or object APIs invalid bound query is statically checked: UBound(Worksheets(1).Range("A1"))
+00:00 +79 -1: arrays cannot escape through scalar or object APIs invalid bound query is statically checked: LBound()
+00:00 +80 -1: arrays cannot escape through scalar or object APIs invalid bound query is statically checked: UBound(values, 1, 1)
+00:00 +81 -1: arrays cannot escape through scalar or object APIs nonexistent dimension 0 has subscript diagnostic
+00:00 +82 -1: arrays cannot escape through scalar or object APIs nonexistent dimension 2 has subscript diagnostic
+00:00 +83 -1: arrays cannot escape through scalar or object APIs nonexistent dimension -1 has subscript diagnostic
+00:00 +84 -1: arrays cannot escape through scalar or object APIs nonexistent dimension 2147483647 has subscript diagnostic
+00:00 +85 -1: arrays cannot escape through scalar or object APIs dimension 1.5 cannot be coerced
+00:00 +86 -1: arrays cannot escape through scalar or object APIs dimension "1" cannot be coerced
+00:00 +87 -1: arrays cannot escape through scalar or object APIs dimension True cannot be coerced
+00:00 +88 -1: For Each keeps typed controls and captures its collection array iteration rejects Long controller even on dead path
+00:00 +89 -1: For Each keeps typed controls and captures its collection array iteration rejects Double controller even on dead path
+00:00 +90 -1: For Each keeps typed controls and captures its collection array iteration rejects String controller even on dead path
+00:00 +91 -1: For Each keeps typed controls and captures its collection array iteration rejects Boolean controller even on dead path
+00:00 +92 -1: For Each keeps typed controls and captures its collection array iteration rejects Range controller even on dead path
+00:00 +93 -1: For Each keeps typed controls and captures its collection array control itself cannot be an array or a constant
+00:00 +94 -1: For Each keeps typed controls and captures its collection Option Explicit requires a declared For Each controller
+00:00 +95 -1: For Each keeps typed controls and captures its collection implicit array controllers are scalar Variants
+00:00 +96 -1: For Each keeps typed controls and captures its collection controller assignment is a copy while future slots remain live
+00:00 +97 -1: For Each keeps typed controls and captures its collection Range traversal requires an explicitly typed Range: Dim cell As Variant
+00:00 +98 -1: For Each keeps typed controls and captures its collection Range traversal requires an explicitly typed Range: Dim cell As Worksheet
+00:00 +99 -1: For Each keeps typed controls and captures its collection Range traversal requires an explicitly typed Range: 
+00:00 +100 -1: For Each keeps typed controls and captures its collection unsupported iteration collection is rejected: 1
+00:00 +101 -1: For Each keeps typed controls and captures its collection unsupported iteration collection is rejected: "A1:B2"
+00:00 +102 -1: For Each keeps typed controls and captures its collection unsupported iteration collection is rejected: Worksheets(1)
+00:00 +103 -1: For Each keeps typed controls and captures its collection unsupported iteration collection is rejected: values(0)
+00:00 +104 -1: For Each keeps typed controls and captures its collection unsupported iteration collection is rejected: Worksheets(1).Range("A1").Value2
+00:00 +105 -1: For Each keeps typed controls and captures its collection Range source is captured before source and controller rebinding
+00:00 +106 -1: For Each keeps typed controls and captures its collection Range collection function arguments execute once before traversal
+00:00 +107 -1: For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: cell.Row = 1
+00:00 +108 -1: For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: cell.Column = 1
+00:00 +109 -1: For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: Worksheets(1).Range("A1").Value2 = cell.Value2
+00:00 +110 -1: For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: Worksheets(1).Range("A1").Value2 = cell.Formula
+00:00 +111 -1: For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: copy = cell
+00:00 +112 -1: For Each keeps typed controls and captures its collection Range loop preserves readonly/write-only boundaries: Set copy = cell
+00:00 +113 -1: active loop controls and procedure frames unwind consistently nested reuse is rejected even when inactive: For Each item In values
+For Each item In values
+Next item
+Next item
+00:00 +114 -1: active loop controls and procedure frames unwind consistently nested reuse is rejected even when inactive: For Each item In values
+For item = 1 To 2
+Next item
+Next item
+00:00 +115 -1: active loop controls and procedure frames unwind consistently nested reuse is rejected even when inactive: For item = 1 To 2
+For Each item In values
+Next item
+Next item
+00:00 +116 -1: active loop controls and procedure frames unwind consistently nested reuse is rejected even when inactive: For Each item In values
+Do While False
+For Each ITEM In values
+Next ITEM
+Loop
+Next item
+00:00 +117 -1: active loop controls and procedure frames unwind consistently numeric For counter is not assignable inside an array traversal
+00:00 +118 -1: active loop controls and procedure frames unwind consistently Exit For targets nearest mixed loop and retains outer iteration
+00:00 +119 -1: active loop controls and procedure frames unwind consistently Exit Do unwinds inner each and With then permits controller reuse
+00:00 +120 -1: active loop controls and procedure frames unwind consistently callee can reuse caller names and Exit Sub restores caller With
+00:00 +121 -1: active loop controls and procedure frames unwind consistently callee cannot target caller each with Exit For
+00:00 +122 -1: active loop controls and procedure frames unwind consistently index function edges participate in unused recursion validation
+00:00 +123 -1: active loop controls and procedure frames unwind consistently separate invocations receive fresh scalar array storage
+00:00 +124 -1: arrays and iteration share compilation resource limits String slots honor exact aggregate string bound and one over
+00:00 +125 -1: arrays and iteration share compilation resource limits Variant slots honor exact aggregate string bound and one over
+00:00 +126 -1: arrays and iteration share compilation resource limits array string budget counts UTF-16 units, including surrogate pairs
+00:00 +127 -1: arrays and iteration share compilation resource limits same-value writes preserve budget and replacing a slot frees it
+00:00 +128 -1: arrays and iteration share compilation resource limits array string occupancy is shared across frames and released on exit
+00:00 +129 -1: arrays and iteration share compilation resource limits 16384 active slots across four frames work; a fifth frame fails
+00:00 +130 -1: arrays and iteration share compilation resource limits one procedure may use four 4096-slot arrays but not five
+00:00 +131 -1: arrays and iteration share compilation resource limits sequential early returns release slots while allocations charge work
+00:00 +132 -1: arrays and iteration share compilation resource limits unused procedures do not allocate active array storage
+00:00 +133 -1: arrays and iteration share compilation resource limits empty-body iteration still consumes cumulative work
+00:00 +134 -1: arrays and iteration share compilation resource limits oversized range A1:A100001 fails even with empty body
+00:00 +135 -1: arrays and iteration share compilation resource limits oversized range A1:XFD1048576 fails even with empty body
+00:00 +136 -1: arrays and iteration share compilation resource limits For Each emitted operations retain the shared 10000-step cap
+00:00 +137 -1: arrays and iteration share compilation resource limits array strings do not bypass the per-string limit
+00:00 +138 -1: arrays and iteration share compilation resource limits array iteration retains the encoded-plan byte cap
+00:00 +139 -1: arrays and iteration share compilation resource limits 32 frames with 32 each blocks and 63 unary operators compose
+00:00 +140 -1: arrays and iteration share compilation resource limits 33 For Each blocks fail the shared nesting boundary
+00:00 +141 -1: arrays and iteration share compilation resource limits 33 procedure frames fail before any array traversal executes
+00:00 +142 -1: Some tests failed.
+
+Failing tests:
+  test/office_vba_arrays_boundaries_test.dart: array indexing has explicit diagnostics and scalar storage a fresh Variant array can be traversed without reading Empty values
+
+Consider enabling the flag chain-stack-traces to receive more detailed exceptions.
+For example, 'dart test --chain-stack-traces'.

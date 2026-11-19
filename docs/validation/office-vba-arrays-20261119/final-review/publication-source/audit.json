@@ -1,0 +1,259 @@
+{
+  "api_and_scope_review": {
+    "described_api_additions": [
+      "WordPageLayout value/target/scope types and controller capture, freshness check, apply methods",
+      "OfficeTheme documentText, adaptDocumentColors and resolveDocumentColor for display-only color handling",
+      "Macro source-language arrays, LBound/UBound, For Each and Range.Row/Column; existing compiler host API retained"
+    ],
+    "mail_implementation_paths_changed": [],
+    "new_editor_export": "src/embed/word_page_layout.dart",
+    "other_api_changes_found": [],
+    "workflow_change": "Adds the three array suites and array JavaScript compile/run steps to the existing macro workflow; no Actions or status checks queried."
+  },
+  "audited_at_utc": "2026-11-19T18:42:47.640820+00:00",
+  "changes_from_gui_head_outside_validation": [
+    {
+      "path": "packages/quds_office_editor/test/embed_test.dart",
+      "reason": "Historical fixture host/disposal correction; prior assertion-preservation proof retained."
+    },
+    {
+      "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+      "reason": "Independent raster-coverage correction and explicit wrong-color/blank controls; original export assertions retained."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "reason": "Narrow table-cell textFillPending routing correction."
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_test.dart",
+      "reason": "Two parser/round-trip regressions for cell color, fill and neighboring shape isolation."
+    }
+  ],
+  "changes_since_previous_root": {
+    "deleted_paths": [],
+    "outside_validation": [
+      "docs/IMAGE_EDITOR_INTEGRATION.md",
+      "packages/quds_office_editor/example/lib/studio_chrome.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "packages/quds_office_editor/test/office_dark_slide_test.dart",
+      "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "packages/quds_office_engine/test/slide_test.dart"
+    ]
+  },
+  "changes_since_remote_main": {
+    "deleted_paths": [],
+    "other_paths": [
+      ".github/workflows/office-macros.yml",
+      "docs/IMAGE_EDITOR_INTEGRATION.md",
+      "docs/MACROS.md",
+      "docs/VBA_MACROS.md",
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_editor/example/README.md",
+      "packages/quds_office_editor/example/lib/studio_chrome.dart",
+      "packages/quds_office_editor/example/lib/studio_material_theme.dart",
+      "packages/quds_office_editor/example/lib/studio_page_layout_dialog.dart",
+      "packages/quds_office_editor/example/lib/studio_paragraph_dialog.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+      "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+      "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+      "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+      "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+      "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/example/test/support/studio_document_mode.dart",
+      "packages/quds_office_editor/lib/quds_office_editor.dart",
+      "packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart",
+      "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/embed/office_theme.dart",
+      "packages/quds_office_editor/lib/src/embed/word_page_layout.dart",
+      "packages/quds_office_editor/lib/src/ui_components/office_chrome.dart",
+      "packages/quds_office_editor/test/embed_test.dart",
+      "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+      "packages/quds_office_editor/test/office_dark_document_test.dart",
+      "packages/quds_office_editor/test/office_dark_slide_test.dart",
+      "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "packages/quds_office_engine/example/macros/array_report.bas",
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+      "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_arrays_test.dart",
+      "packages/quds_office_engine/test/slide_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_arrays_smoke.dart"
+    ],
+    "total_paths": 403,
+    "validation_paths": 361
+  },
+  "dependency_review": {
+    "changed_paths": [],
+    "tracked_manifest_lock_and_runtime_pin_paths_compared": 34
+  },
+  "expected_tree": "c812fb1f2d1156099f50313390346b98f8f3d56a",
+  "incoming_contributions": [
+    {
+      "changed_paths": 14,
+      "commit": "8c6acd04637ef627959fe40f518254ed538ab087",
+      "comparison_base": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "contribution": "gui",
+      "files": [
+        {
+          "exact_match": true,
+          "final_blob": "af61951357edcbe097d1085617dac4e7b021a8b0",
+          "incoming_blob": "af61951357edcbe097d1085617dac4e7b021a8b0",
+          "path": "docs/IMAGE_EDITOR_INTEGRATION.md"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "ebecc2125ccfada6bdd8377256dd33d85e48e185",
+          "incoming_blob": "ebecc2125ccfada6bdd8377256dd33d85e48e185",
+          "path": "docs/validation/crispoffice-layout-theme-20261119/README.md"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "cbe44308174451849607c39c547d16ecd694e99e",
+          "incoming_blob": "cbe44308174451849607c39c547d16ecd694e99e",
+          "path": "docs/validation/crispoffice-layout-theme-20261119/incoming/README.md"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "5152fb7275bfe9f96e0584cb5700da1b976e0232",
+          "incoming_blob": "5152fb7275bfe9f96e0584cb5700da1b976e0232",
+          "path": "docs/validation/crispoffice-layout-theme-20261119/incoming/audit-refresh.json"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "9b927e0f3e6c4bb9fe6fbaef45945ba22d134d4b",
+          "incoming_blob": "9b927e0f3e6c4bb9fe6fbaef45945ba22d134d4b",
+          "path": "docs/validation/crispoffice-layout-theme-20261119/incoming/audit.json"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "e714f39e7fa8f755f900752a848078cf101e263c",
+          "incoming_blob": "e714f39e7fa8f755f900752a848078cf101e263c",
+          "path": "docs/validation/crispoffice-layout-theme-20261119/incoming/audit_frontier.py"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "0820225f7db537068c88d859f37e5a4638e91b75",
+          "incoming_blob": "0820225f7db537068c88d859f37e5a4638e91b75",
+          "path": "docs/validation/crispoffice-layout-theme-20261119/incoming/audit_refresh.py"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "7d32cd17f76d0db0f67aed1907bbc37a2d2c5857",
+          "incoming_blob": "7d32cd17f76d0db0f67aed1907bbc37a2d2c5857",
+          "path": "docs/validation/crispoffice-layout-theme-20261119/reconciliation-initial.json"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "2f43f0d22725f8a768ca810c460ad309e7b07132",
+          "incoming_blob": "2f43f0d22725f8a768ca810c460ad309e7b07132",
+          "path": "docs/validation/crispoffice-layout-theme-20261119/reconciliation-integrated.json"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "0fb0b71eeb7454508b8a1b8166a39b3f475d9b6e",
+          "incoming_blob": "0fb0b71eeb7454508b8a1b8166a39b3f475d9b6e",
+          "path": "docs/validation/crispoffice-layout-theme-20261119/remote-capture.json"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "2733c054e7602d2240588855ce4cb76fe97d2dc1",
+          "incoming_blob": "2733c054e7602d2240588855ce4cb76fe97d2dc1",
+          "path": "docs/validation/crispoffice-layout-theme-20261119/render_previews.dart"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "26e7b242e08c96c68b55abc7b720f0d8c194ec23",
+          "incoming_blob": "26e7b242e08c96c68b55abc7b720f0d8c194ec23",
+          "path": "packages/quds_office_editor/example/lib/studio_chrome.dart"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "a51758734c35b897480ca949fa3f36de2f55c3ec",
+          "incoming_blob": "a51758734c35b897480ca949fa3f36de2f55c3ec",
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "959adbd3c24fb2eb8d0cd236fad20986bdfd19fc",
+          "incoming_blob": "959adbd3c24fb2eb8d0cd236fad20986bdfd19fc",
+          "path": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart"
+        }
+      ],
+      "preserved_paths": 14
+    },
+    {
+      "changed_paths": 2,
+      "commit": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+      "comparison_base": "596430dcb816dd418204d62e78f4dc518afdc0e1",
+      "contribution": "planning",
+      "files": [
+        {
+          "exact_match": true,
+          "final_blob": "d0f4e9a367f3eca9d44bf85ea6203e9c182a6d88",
+          "incoming_blob": "d0f4e9a367f3eca9d44bf85ea6203e9c182a6d88",
+          "path": "docs/validation/mail-archive-resume-20261119/README.md"
+        },
+        {
+          "exact_match": true,
+          "final_blob": "4481760400c0ce05120ebda5516452729babe99d",
+          "incoming_blob": "4481760400c0ce05120ebda5516452729babe99d",
+          "path": "docs/validation/mail-archive-resume-20261119/reconciliation-initial.json"
+        }
+      ],
+      "preserved_paths": 2
+    }
+  ],
+  "limits": [
+    "This audit is bound to the named source checkpoint and incoming heads; it does not refresh remote refs or evaluate newer work.",
+    "Published evidence and focused development counts are not reused as final full acceptance.",
+    "Prior diagnostic directories are unchanged."
+  ],
+  "parents": [
+    "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c",
+    "8c6acd04637ef627959fe40f518254ed538ab087",
+    "9d6cd0504094632825d3a0990a37fffd5c1b2c05"
+  ],
+  "parents_match_exactly": true,
+  "post_source_checkpoint_documentation": [
+    {
+      "changed_after_source_checkpoint": true,
+      "current_git_blob": "a9919150060fd71ade4d824d6066702604e4c4e9",
+      "current_sha256": "cc7f52446d46ff561059572aa208fe05ad3fded55215457b99844d804395b596",
+      "path": "README.md",
+      "present_in_frozen_input_snapshots": {
+        "engine-publication": false,
+        "incoming-layout-theme-accepted": false
+      },
+      "review": "Accurate concise description of implemented arrays/For Each and source-only behavior, or first representative PPTX table-cell ink and bounded regressions.",
+      "source_checkpoint_git_blob": "bc0b4884a1b6be672ff9324ea818773e729fb190"
+    },
+    {
+      "changed_after_source_checkpoint": true,
+      "current_git_blob": "14f634f5c0d4116889fad84b81784bbf0f82618e",
+      "current_sha256": "cfb28ef14e60af4a7a17bf97066a73f0802596a28cb2ef138a335294df8ab263",
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "present_in_frozen_input_snapshots": {
+        "engine-publication": false,
+        "incoming-layout-theme-accepted": false
+      },
+      "review": "Accurate concise description of implemented arrays/For Each and source-only behavior, or first representative PPTX table-cell ink and bounded regressions.",
+      "source_checkpoint_git_blob": "a189624b662c90872e435eb3e26974dc957bf033"
+    }
+  ],
+  "qualification_review": "Completed independently: see final-receipt-review.json for raw event counts, source stability, strict analysis and final README consistency.",
+  "remote_main_is_ancestor": true,
+  "remote_main_snapshot": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+  "schema": 1,
+  "source_commit": "61bb3ee42a385c5ffaffa44047693a6f378a8424",
+  "source_tree": "c812fb1f2d1156099f50313390346b98f8f3d56a",
+  "status": "passed",
+  "unexpected_changes_from_gui_head": []
+}

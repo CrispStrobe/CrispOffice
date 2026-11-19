@@ -1,0 +1,59 @@
+{
+  "changed_dependency_inputs": [],
+  "changed_source_inputs": [],
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/office_dark_slide_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor",
+  "dependency_inputs": 5972,
+  "elapsed_seconds": 7.019,
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/8eda9a4e1801/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/8eda9a4e1801/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/8eda9a4e1801/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/8eda9a4e1801/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/8eda9a4e1801/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/8eda9a4e1801/runtime/data"
+  },
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-19T18:34:37.558344+00:00",
+  "group": "editor",
+  "source_commit_after": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+  "source_commit_before": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+  "source_inputs": 1595,
+  "started_at_utc": "2026-11-19T18:34:30.539852+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "78521ff1293988c30d7e415f3482ad629e26ed5e6c90a6eb73c88f65df090ef5",
+  "success": false,
+  "test_summary": {
+    "distinct_suites": 1,
+    "done_events": [
+      {
+        "success": false,
+        "time": 4678,
+        "type": "done"
+      }
+    ],
+    "failed": 1,
+    "missing_suites": [],
+    "passed": 5,
+    "reporter_errors": [
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: dark Slides adapt explicit ink and preserve automatic and exported colors",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 4,
+        "time": 3987,
+        "type": "error"
+      }
+    ],
+    "skipped": 0,
+    "success": false
+  }
+}

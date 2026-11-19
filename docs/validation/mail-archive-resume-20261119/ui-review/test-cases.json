@@ -1,0 +1,182 @@
+[
+  {
+    "name": "preview requires confirmation and preserves the selection",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "recorded progress defaults to resume and keeps the exact selection",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "turning resume off requests full source verification without forgetting progress",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "resumed progress and previous indexing warnings remain separate from this run",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "restore progress management confirms forgetting and keeps messages untouched",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "forget failure is sanitized and retains the listed progress",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "disposing during progress listing drops a late dialog",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "disposing during forgetting cancels its token and ignores the result",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "dismissing preview performs no restore",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "cancelling the folder picker performs no inspection",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "invalid export is reported before showing the preview",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "unexpected inspection exceptions are sanitized",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "cancellation awaits confirmed counts and keeps earlier saves",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "partial restore exposes bounded item failures",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "disposing during inspection cancels and drops late preview",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "disposing during restore ignores late progress and result",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "narrow StudioLanguage.en resume and progress controls remain usable",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "narrow StudioLanguage.en preview supports long profile labels",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "narrow StudioLanguage.de resume and progress controls remain usable",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "narrow StudioLanguage.de preview supports long profile labels",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "narrow StudioLanguage.ar resume and progress controls remain usable",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "narrow StudioLanguage.ar preview supports long profile labels",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  },
+  {
+    "name": "resumable restore preview, result and progress management in StudioLanguage.en",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart"
+  },
+  {
+    "name": "restore preview and result in StudioLanguage.en",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart"
+  },
+  {
+    "name": "resumable restore preview, result and progress management in StudioLanguage.de",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart"
+  },
+  {
+    "name": "restore preview and result in StudioLanguage.de",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart"
+  },
+  {
+    "name": "resumable restore preview, result and progress management in StudioLanguage.ar",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart"
+  },
+  {
+    "name": "restore preview and result in StudioLanguage.ar",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart"
+  },
+  {
+    "name": "desktop portability controls, export confirmation and long destination",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart"
+  },
+  {
+    "name": "narrow Arabic portability controls and export report remain usable",
+    "result": "success",
+    "skipped": false,
+    "path": "file:///workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart"
+  }
+]

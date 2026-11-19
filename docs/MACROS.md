@@ -10,8 +10,8 @@ This is a headless engine capability with a command-line runner and an MCP
 stdio bridge. The bundled [`vba-excel` dialect](VBA_MACROS.md) compiles a bounded
 Excel VBA subset from explicitly selected source into the same native plans.
 The subset includes reusable in-module procedures, scalar functions, explicit
-`ByVal` arguments, bounded `For`/`Do`/`While` loops, `Select Case`, and early
-exits. Its compiler evaluates those constructs before execution; workbook
+`ByVal` arguments, fixed one-dimensional scalar arrays, bounded
+`For`/`For Each`/`Do`/`While` loops, `Select Case`, and early exits. Its compiler evaluates those constructs before execution; workbook
 values are not available to source logic.
 It does not add a ribbon editor, a full VBA interpreter, document-open events,
 or editor undo integration. Existing opaque VBA project bytes remain inert and
@@ -153,8 +153,11 @@ The `example/macros/procedural_report.bas` example demonstrates shared heading
 and row helpers, `Worksheet`/`Range` arguments, and nested scalar functions.
 The `example/macros/control_flow_report.bas` example combines conditional loops
 and `Select Case` to create six synthetic rows in `Summary`, emitting 35 native
-operations and a formula total of 1,575. Both examples use the same CLI and MCP
-compilation, validation, and execution paths.
+operations and a formula total of 1,575. The
+`example/macros/array_report.bas` example uses typed arrays, indexed reads/writes,
+`LBound`/`UBound`, scalar helpers, and both `For Each` forms to emit 24 native
+operations. Its source and worksheet totals are both 850. All examples use the
+same CLI and MCP compilation, validation, and execution paths.
 
 ## Dart embedding and recording
 
@@ -358,25 +361,30 @@ Focused tests live in `office_operations_test.dart`,
 `office_macro_expansion_test.dart`,
 `office_macro_mcp_test.dart`, `office_macro_cli_test.dart`,
 `office_vba_language_test.dart`, and `office_vba_integration_test.dart`.
-Procedure and control-flow suites add unit, boundary, and integration coverage:
+Procedure, control-flow, and array suites add unit, boundary, and integration coverage:
 `office_vba_procedures_test.dart`, `office_vba_procedure_boundaries_test.dart`,
 `office_vba_procedures_integration_test.dart`,
 `office_vba_control_flow_test.dart`,
-`office_vba_control_flow_boundaries_test.dart`, and
-`office_vba_control_flow_integration_test.dart`.
+`office_vba_control_flow_boundaries_test.dart`,
+`office_vba_control_flow_integration_test.dart`, `office_vba_arrays_test.dart`,
+`office_vba_arrays_boundaries_test.dart`, and
+`office_vba_arrays_integration_test.dart`.
 
 These tests cover shared handler parity, package admission,
 immutable/parameterized plans, publish-on-success, recording, bounded source
 compilation, protocol/domain errors, and real subprocess persistence. Control
 flow checks include crossed loop exits, evaluation order, inactive-source
-validation, shared limits, and saved-plan playback. Existing fidelity step
+validation, shared limits, and saved-plan playback. Array checks include
+constant-bound validation, indexed type/range diagnostics, live element
+iteration, captured cell-range bindings, storage/work limits, and cleanup across
+procedure returns and matching-loop exits. Existing fidelity step
 tests continue to use their original paths and exercise the same promoted
 handlers.
 
 The dedicated Office macros workflow uses the repository's `.fvmrc` pin. It
 also compiles `tool/macros/web_smoke.dart`, `web_vba_smoke.dart`,
-`web_vba_procedures_smoke.dart`, and `web_vba_control_flow_smoke.dart` from that
-directory to JavaScript, then executes the macro/MCP paths under Node. These
+`web_vba_procedures_smoke.dart`, `web_vba_control_flow_smoke.dart`, and
+`web_vba_arrays_smoke.dart` from that directory to JavaScript, then executes the macro/MCP paths under Node. These
 programs check compilation, calculation, formatting, and late-failure byte
 preservation. This qualifies the portable runtime; Flutter browser UI and
 native Microsoft Office interoperability require separate testing.

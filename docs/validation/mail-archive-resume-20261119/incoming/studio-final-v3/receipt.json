@@ -1,0 +1,61 @@
+{
+  "changed_dependency_inputs": [],
+  "changed_source_inputs": [],
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_layout_theme_test.dart",
+    "test/studio_page_layout_dialog_test.dart",
+    "test/studio_paragraph_dialog_test.dart",
+    "test/studio_comment_keyboard_review_test.dart",
+    "test/studio_comment_review_test.dart",
+    "test/studio_review_pane_test.dart",
+    "test/studio_slide_sheet_menus_test.dart",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_downloads_manager_test.dart",
+    "test/studio_spacy_setup_test.dart",
+    "test/studio_language_id_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor/example",
+  "dependency_inputs": 5972,
+  "elapsed_seconds": 142.039,
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/8eda9a4e1801/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/8eda9a4e1801/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/8eda9a4e1801/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/8eda9a4e1801/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/8eda9a4e1801/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/8eda9a4e1801/runtime/data"
+  },
+  "executed_runner_sha256": "cccf5daa0691b497fd3172199612721262dfdbdc0ea54f9db678682c74a1c93f",
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T19:31:29.512754+00:00",
+  "group": "studio",
+  "source_commit_after": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
+  "source_commit_before": "906b8bc90ea352f03dfdab5f9bc50f3aafc359de",
+  "source_inputs": 2027,
+  "started_at_utc": "2026-11-19T19:29:07.473650+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "2418b3570d4e04ed001d6e5a20ae411a89ed3499b79d47f47bf4a9d5c63658d2",
+  "success": true,
+  "test_summary": {
+    "distinct_suites": 11,
+    "done_events": [
+      {
+        "success": true,
+        "time": 139277,
+        "type": "done"
+      }
+    ],
+    "failed": 0,
+    "missing_suites": [],
+    "passed": 130,
+    "reporter_errors": [],
+    "skipped": 0,
+    "success": true
+  }
+}

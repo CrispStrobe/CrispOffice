@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "status": "running",
+  "window": "final-window",
+  "accepted_groups": [
+    {
+      "name": "engine",
+      "path": "engine-accepted",
+      "kind": "engine",
+      "executed_runner": "run-engine-validation-direct.py"
+    },
+    {
+      "name": "slide-parser",
+      "path": "slide-parser-accepted",
+      "kind": "commands",
+      "executed_runner": "run-slide-validation-accepted.py"
+    },
+    {
+      "name": "editor",
+      "path": "editor-final",
+      "kind": "ui-tests",
+      "executed_runner": "run-ui-validation.py"
+    },
+    {
+      "name": "studio",
+      "path": "studio-final",
+      "kind": "ui-tests",
+      "executed_runner": "run-ui-validation.py"
+    },
+    {
+      "name": "editor-analysis",
+      "path": "editor-analysis-final",
+      "kind": "commands",
+      "executed_runner": "run-ui-analysis.py"
+    },
+    {
+      "name": "studio-analysis",
+      "path": "studio-analysis-final",
+      "kind": "commands",
+      "executed_runner": "run-ui-analysis.py"
+    }
+  ],
+  "excluded_groups": [
+    {
+      "path": "engine",
+      "reason": "Incomplete plain Dart CLI startup; interrupted with no test events. All required commands superseded by direct-entrypoint final qualification."
+    },
+    {
+      "path": "engine-final",
+      "reason": "Successful development replay on pre-parser/pre-latest-GUI source; superseded by fresh final-window engine acceptance."
+    },
+    {
+      "path": "editor",
+      "reason": "Initial development run exposed near-solid black-pixel assertion failure in incoming dark-slide test."
+    },
+    {
+      "path": "editor-dark-slide-final",
+      "reason": "Narrow raster correction exposed actual table-cell color import defect; not accepted."
+    },
+    {
+      "path": "editor-analysis",
+      "reason": "Development analysis on earlier source; superseded by editor-analysis-final."
+    },
+    {
+      "path": "slide-parser-final",
+      "reason": "Successful focused development proof before latest incoming parser/raster/ruler commits; superseded by slide-parser-accepted."
+    }
+  ],
+  "excluded_diagnostics": [
+    "dark-slide-probe.log",
+    "dark-slide-probe.png",
+    "table-color-before.log",
+    "table-color-before-in-package.log",
+    "abandoned-vba-cli-GOYJGA.tar.gz",
+    "abandoned-vba-cli-GOYJGA.json"
+  ],
+  "counting": "Only explicit accepted_groups inside the enclosing final window contribute accepted counts. Development passes, incomplete runs and expected failing probes are excluded.",
+  "window_runner": "capture-final-window.py"
+}

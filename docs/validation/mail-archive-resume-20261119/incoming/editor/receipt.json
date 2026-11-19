@@ -1,0 +1,68 @@
+{
+  "changed_dependency_inputs": [],
+  "changed_source_inputs": [],
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/office_chrome_theme_test.dart",
+    "test/office_dark_document_test.dart",
+    "test/office_dark_slide_test.dart",
+    "test/word_page_layout_test.dart",
+    "test/embed_test.dart",
+    "test/word_tab_stops_editor_test.dart",
+    "test/sheet_conditional_rendering_test.dart",
+    "test/word_selection_paint_test.dart",
+    "test/word_header_footer_navigation_test.dart",
+    "test/editor_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_editor",
+  "dependency_inputs": 5972,
+  "elapsed_seconds": 26.287,
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/8eda9a4e1801/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/8eda9a4e1801/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/8eda9a4e1801/runtime/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/8eda9a4e1801/runtime/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/8eda9a4e1801/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/8eda9a4e1801/runtime/data"
+  },
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-19T18:31:51.652021+00:00",
+  "group": "editor",
+  "source_commit_after": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+  "source_commit_before": "607792228699f726d7abbe731df0789996c8c306",
+  "source_inputs": 1604,
+  "started_at_utc": "2026-11-19T18:31:25.365283+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "05f4baf094786554bb0576e89fa83299d242279598df06b33835221c98ecb4bf",
+  "success": false,
+  "test_summary": {
+    "distinct_suites": 10,
+    "done_events": [
+      {
+        "success": false,
+        "time": 24291,
+        "type": "done"
+      }
+    ],
+    "failed": 1,
+    "missing_suites": [],
+    "passed": 212,
+    "reporter_errors": [
+      {
+        "error": "Test failed. See exception logs above.\nThe test description was: dark Slides adapt explicit ink and preserve automatic and exported colors",
+        "isFailure": false,
+        "stackTrace": "",
+        "testID": 19,
+        "time": 6100,
+        "type": "error"
+      }
+    ],
+    "skipped": 0,
+    "success": false
+  }
+}

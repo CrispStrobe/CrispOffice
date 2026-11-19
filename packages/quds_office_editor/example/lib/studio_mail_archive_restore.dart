@@ -6,9 +6,13 @@ import 'studio_mail_archive_strings.dart';
 import 'studio_strings.dart';
 
 final class StudioMailArchiveRestoreOptions {
-  const StudioMailArchiveRestoreOptions({required this.indexAttachmentText});
+  const StudioMailArchiveRestoreOptions({
+    required this.indexAttachmentText,
+    this.resume = false,
+  });
 
   final bool indexAttachmentText;
+  final bool resume;
 }
 
 /// Preview is informational until the user explicitly starts restoration.
@@ -32,6 +36,7 @@ class StudioMailArchiveRestoreDialog extends StatefulWidget {
 class _StudioMailArchiveRestoreDialogState
     extends State<StudioMailArchiveRestoreDialog> {
   late bool _attachments = widget.indexAttachmentText;
+  late bool _resume = (widget.plan.checkpoint?.completedMessages ?? 0) > 0;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +79,10 @@ class _StudioMailArchiveRestoreDialogState
                 overflow: TextOverflow.ellipsis,
               ),
               Text(s.archiveRestoreCreatedAt('\u2066$createdAt UTC\u2069')),
+              Text(
+                s.archiveRestoreExportId(plan.manifestSha256.substring(0, 16)),
+                key: const ValueKey('archive-restore-export-id'),
+              ),
               const SizedBox(height: 8),
               SelectableText(
                 plan.directoryPath,
@@ -85,6 +94,27 @@ class _StudioMailArchiveRestoreDialogState
               Text(s.archiveRestoreTrust),
               const SizedBox(height: 8),
               Text(s.archiveRestoreHelp),
+              if (plan.checkpoint case final checkpoint?) ...[
+                const SizedBox(height: 12),
+                Text(
+                  s.archiveRestoreRecorded(
+                    checkpoint.completedMessages,
+                    checkpoint.planned,
+                    checkpoint.completedBytes,
+                  ),
+                  key: const ValueKey('archive-restore-recorded'),
+                ),
+                if (checkpoint.completedMessages > 0)
+                  CheckboxListTile(
+                    key: const ValueKey('archive-restore-resume'),
+                    contentPadding: EdgeInsets.zero,
+                    value: _resume,
+                    title: Text(s.archiveRestoreResume),
+                    subtitle: Text(s.archiveRestoreResumeHelp),
+                    onChanged: (value) =>
+                        setState(() => _resume = value ?? false),
+                  ),
+              ],
               const SizedBox(height: 8),
               CheckboxListTile(
                 key: const ValueKey('archive-restore-attachments'),
@@ -109,9 +139,12 @@ class _StudioMailArchiveRestoreDialogState
             onPressed: () => Navigator.of(context).pop(
               StudioMailArchiveRestoreOptions(
                 indexAttachmentText: _attachments,
+                resume: _resume,
               ),
             ),
-            child: Text(s.archiveRestoreStart),
+            child: Text(
+              _resume ? s.archiveRestoreResumeStart : s.archiveRestoreStart,
+            ),
           ),
         ],
       ),

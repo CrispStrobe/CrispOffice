@@ -1,0 +1,21 @@
+{
+  "name": "format",
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "lib/src/installer_io.dart",
+    "lib/src/native_backend.dart",
+    "lib/src/native_backend_unsupported.dart",
+    "test/ner_removal_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_proofing_spacy",
+  "started_at_utc": "2026-11-19T19:12:32.564195+00:00",
+  "finished_at_utc": "2026-11-19T19:12:32.628678+00:00",
+  "elapsed_seconds": 0.064,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout_sha256": "32af0bda87e046566b8b0cd70d7bf261160165770f08bc7aac5b7c000ecff6af",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

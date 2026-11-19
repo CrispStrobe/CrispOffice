@@ -1,0 +1,8 @@
+{
+  "status": "interrupted",
+  "accepted": false,
+  "accepted_test_counts": 0,
+  "reason": "Executor session no longer existed after context recovery; native and Studio event streams have no terminal done event or command result. Complete rerun required.",
+  "source_head": "0401252abac80cd4c2bd1b23a663afb65a113df8",
+  "recorded_utc": "2026-11-19T18:55:31.756645+00:00"
+}

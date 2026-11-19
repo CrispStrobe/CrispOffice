@@ -45,6 +45,66 @@ macOS uses its native red/yellow/green window controls and application menu
 bar, including File, Edit, View and Window. Closing the window keeps the app
 available from the Dock; Quit checks all open workspaces before exiting.
 
+## Precise layout and appearance
+
+**Layout** uses menus for margins, orientation, paper size, columns, breaks,
+paragraph presets, headers and paragraph appearance. Menus mark the current
+choice and keep their full labels available without expanding the ribbon.
+
+Open **Layout → Page Layout…** for a staged, precise draft:
+
+- Custom paper width/height and portrait/landscape presets.
+- Independent top, bottom, left and right margins and header/footer distances.
+- One to four equal columns, exact spacing and an optional separator.
+- Section start, first-page and odd/even headers, and line numbers.
+- Current-section or whole-document scope, with a live geometry preview.
+
+Enter lengths in millimetres, centimetres, inches or points. An explicit suffix
+such as `2.5 cm` overrides the displayed unit; decimal commas and Arabic digits
+are accepted. Changing units alone preserves the original model precision.
+Apply creates one Undo step; Cancel leaves the document untouched. The dialog
+rejects impossible geometry and a draft whose document changed while open.
+Continuous sections that share a physical page retain shared page geometry;
+the odd/even header setting applies to the entire document, as shown in the
+dialog. Imported properties outside these supported settings are preserved.
+
+**Home → Paragraph…** (the sliders icon in the Paragraph group), or
+**Layout → Paragraph → Paragraph…**, provides exact spacing before/after,
+multiple/exact/minimum line spacing, left/right indentation, first-line or
+hanging indents, and page/column breaks. Mixed selections preserve each
+paragraph's values unless that field is edited. Apply uses a single Undo step.
+
+Large equation, spreadsheet function, slide shape, transition and animation
+galleries also use compact menus. Slide direction, trigger, duration, delay
+and automatic advance use explicit choices, with actual timing values.
+
+Choose **Settings → Appearance → Dark** for matching dark chrome, menus,
+dialogs, fields, rulers and document surfaces. The canvas adapts low-contrast
+ink against known dark backgrounds while preserving authored colors in the
+model and exports. Images are not inverted. Light filled objects keep their
+original readable ink; text over unknown image or mixed slide backgrounds
+retains its authored color. Hosts needing exact on-screen color reproduction
+can set `OfficeTheme.adaptDocumentColors` to `false`.
+
+## Document modes
+
+Choose **File → Document mode** or **View → Document mode**. These are document
+interaction choices, separate from general Settings:
+
+| Mode | Behavior |
+| --- | --- |
+| Edit document | Edit text, formatting and objects. |
+| Read and copy | Select and copy without changing the document. |
+| Preview only | Scroll and zoom without text selection or editing. |
+
+The status bar and menu indicate the current mode. Return to **Edit document**
+to enable formatting and content changes.
+
+The [image-editor integration design](../../../docs/IMAGE_EDITOR_INTEGRATION.md)
+describes a native Flutter picture editor using CrispCloud's maintained vendor
+package, an independent CrispOffice host, and one undoable result per picture.
+It is a design document; no image-editor runtime dependency has been added yet.
+
 ## macOS release app with the native proofing libraries
 
 ```bash
@@ -87,7 +147,7 @@ command is in the file header.
   subscript / color / highlight / grow-shrink. Alignment, lists, indent.
 - **Insert** — heading, paragraph, quote, page break, tables 2×2 / 3×3 / 4×4,
   picture, column / bar / pie / line charts, process / cycle / hierarchy diagrams.
-- **Layout** — RTL/LTR, line spacing, A4 / Letter.
+- **Layout** — compact preset menus, precise Page Layout and Paragraph dialogs.
 - **Review** — select all / word / paragraph, undo / redo.
 - **View** — rulers and zoom. Double-click a word, triple-click a paragraph,
   drag across a table. `Ctrl+Z` / `Ctrl+Y`.
@@ -110,7 +170,7 @@ command is in the file header.
 
 ### File
 New blank document, open / save OOXML, reload the in-memory sample.
-Switch Edit · Select · View from File or Settings.
+Choose Edit document, Read and copy, or Preview only from File or View.
 
 Chrome (ribbons, panes, formula bar) is Material. The page, grid, and stage
 are custom `RenderBox` editors — not `TextField` / `ListView`.

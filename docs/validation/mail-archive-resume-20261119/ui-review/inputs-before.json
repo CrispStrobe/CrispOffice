@@ -1,0 +1,9 @@
+{
+  "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart": "6294640f1f0ed779652940b18d414ad5ea31f6dcdbb9fae11cf64f9a20a833a0",
+  "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart": "d23cf185e51a167e9e0aa31e1195875967a81d697b7c6a9fd61b502d7fde6dce",
+  "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart": "5edfd33a0a7123b2416262d2f4a65070123261e3207a9c98964a1f38bc383da8",
+  "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart": "8b4fd67c8898062f2c434de2b5cd0d8c4a29bcce19200a0118a4625d212db2f0",
+  "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart": "82b479ce094c139375971240c8172b381965e9250e0678a42f986b4fc2c547ae",
+  "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart": "34d72894b4c6df750e6d784297292e7f5e7b04be0f2f1abe616596847bd0dae2",
+  "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart": "bd90b879483d67faa265705dbeea0a64b1499cf6ac224bbaa138561f8ad3cf52"
+}

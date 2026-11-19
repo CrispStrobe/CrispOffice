@@ -1,0 +1,5 @@
+# Retain raw process evidence byte-for-byte.
+*.log -whitespace
+*.stdout -whitespace
+*.stderr -whitespace
+*.jsonl -whitespace

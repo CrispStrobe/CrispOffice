@@ -35,7 +35,9 @@ records the original durable-archive milestone. The
 [portability validation report](../../docs/validation/mail-archive-portability-20261119/README.md)
 records that increment's scope and qualification. The
 [restoration validation report](../../docs/validation/mail-archive-restore-20261119/README.md)
-covers provenance-aware export restoration; historical cache qualifications
+covers provenance-aware export restoration. The
+[durable resume validation report](../../docs/validation/mail-archive-resume-20261119/README.md)
+covers persisted restore receipts and their management; historical cache qualifications
 remain separate below.
 
 ### Bulk export and directory import
@@ -92,21 +94,25 @@ if (inspected case MailSuccess(value: final plan)) {
   // Present the plan and obtain the user's deliberate restore action first.
   final report = await restorer.restore(
     plan,
+    // Set true only after the user chooses to resume recorded destination work.
+    // false keeps full verification of all source EML files.
+    resume: false,
     indexAttachmentText: false,
     cancellation: cancellation,
     onProgress: onProgress,
   );
-  // Report saved, duplicates, failed, originsAdded and any indexing warnings.
+  // Report saved, duplicates, failed, originsAdded and indexing warnings.
+  // Show resumed/resumedBytes/resumedIndexWarnings separately from this run.
 }
 ```
 
 The source profile can differ from the destination. Each original, searchable
-projection and all recorded origins commit together. Identical originals are
+projection, all recorded origins and a durable restore receipt commit together. Identical originals are
 verified and deduplicated; missing origins are added atomically. The existing
 `archiveMessage` single-origin API remains compatible, and the new
 `archiveMessageWithOrigins` API exposes this atomic operation directly.
 
-Rerunning checks the source again and merges missing originals/provenance.
+By default, rerunning checks the source again and merges missing originals/provenance.
 Confirmed earlier work remains counted after cancellation or a later error;
 `bytes` includes verified successful duplicates. Changed manifests, observed
 links/ancestors and conflicting files are reported. Source exports are read
@@ -115,6 +121,32 @@ This is message/provenance restoration: archive dates for new records are set
 locally, existing projections remain intact, and archive settings, saved
 searches, credentials and provider mailboxes are outside the export format.
 The archive guide documents filesystem race boundaries and failure semantics.
+
+Pass `resume: true` to confirm previously committed destination messages before
+reading unfinished source items. Each receipt verifies the retained original,
+metadata, search projection and every expected provenance row. Missing provenance
+is repaired through normal verified import; corrupt destination data is reported.
+Already confirmed source EML files are not read again in this mode. The manifest
+and unfinished source files must still exist. `plan.checkpoint` is advisory preview
+data; receipts are looked up again during restoration.
+
+Progress survives archive reopening and process termination, is isolated by
+destination, and follows the decoded UTF-8 manifest digest (a UTF-8 BOM is ignored).
+Moving the export directory preserves its progress. A changed manifest creates
+a separate selection and invalidates an earlier preview. Counts include sparse
+successful receipts, so a failed middle item can be retried without parsing
+successful later items again.
+
+Use `restoreCheckpoint(plan)` and `listRestoreCheckpoints()` to inspect saved
+progress. `forgetRestoreCheckpoint(manifestSha256)` removes only that export's
+progress; originals, provenance, dates and indexes remain intact. New imports
+are bounded by `maxRestoreJobs` (64 by default), `maxRestoreReceipts` (100,000)
+and the logical archive-byte quota. Jobs cost 192 logical bytes and receipts
+256 each, without claiming actual disk usage. Records are never silently evicted.
+Management reads and explicit cleanup remain available under lower write quotas,
+within absolute supported read bounds. Archive schema v2 adds these tables and
+counters to v1 without replacing existing mail. The live-cache v3 schema is
+unchanged.
 
 ## Live account cache
 

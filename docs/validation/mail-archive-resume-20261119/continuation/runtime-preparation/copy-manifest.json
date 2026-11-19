@@ -1,0 +1,437 @@
+{
+  "status": "copied-and-verified",
+  "source_checkpoint": "9b8853667b68c7bebff050e52445b47ea0bbd188",
+  "focused_accepted_test_executions": 50,
+  "superseded_accepted_test_executions": 0,
+  "file_count": 71,
+  "total_bytes": 2497684,
+  "content_verification": "Every copied file matches its source SHA256; text inputs scanned for private-key, GitHub token, OpenAI secret-key and URL-password patterns. No runtime binary/archive or actual credentials included.",
+  "files": [
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/analysis/command.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/analysis/command.json",
+      "bytes": 645,
+      "sha256": "2c06e15b231361260c3a53acabc2da3df2550264e3fe65ead900640504a3c6ff"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/analysis/result.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/analysis/result.json",
+      "bytes": 943,
+      "sha256": "a5e8091f58d5b21c40bac98e34ce9500a16f8bf50aa690c4ff733e0da44365ee"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/analysis/stderr.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/analysis/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/analysis/stdout.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/analysis/stdout.log",
+      "bytes": 157,
+      "sha256": "b3f49218b6895a83d257ab192111cd3236f729aefcece24184d6f88853cbe599"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/dependencies-after.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/dependencies-after.json.gz",
+      "bytes": 474940,
+      "sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/dependencies-before.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/dependencies-before.json.gz",
+      "bytes": 474940,
+      "sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/executed-runner.py",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/executed-runner.py",
+      "bytes": 8952,
+      "sha256": "7a048c12441303a563e9bc5d001197d1e78dfff690a28e0338873876cf310271"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/format/command.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/format/command.json",
+      "bytes": 647,
+      "sha256": "b6dfa930dfbead34d1ed4061e92baf0d79c32317934e53cc1fcae5c14ee41f18"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/format/result.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/format/result.json",
+      "bytes": 944,
+      "sha256": "042d15da555bd7ed5bfc88240e1e57f9696450f541393f14ac8423a21b9359f5"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/format/stderr.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/format/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/format/stdout.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/format/stdout.log",
+      "bytes": 47,
+      "sha256": "c0d096b6943cd9b59b0d727672d819283909401bdd7e582377619ea6e041072a"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/receipt.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/receipt.json",
+      "bytes": 12432,
+      "sha256": "d113f2a84451aae58ff8c4acd062a955369448a8b75eb1a3d837a8943fdd0ffd"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/runtime-after.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/runtime-after.json.gz",
+      "bytes": 36462,
+      "sha256": "29c6de4832e1379f940835387fbbe73d8450c3075e425228b3ffd6b62c5cc051"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/runtime-before.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/runtime-before.json.gz",
+      "bytes": 36462,
+      "sha256": "29c6de4832e1379f940835387fbbe73d8450c3075e425228b3ffd6b62c5cc051"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/selection.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/selection.json",
+      "bytes": 718,
+      "sha256": "dcb908eaf2752a480d580d90af288b3f2cd616465be2ad57f8215b57d7c3c72e"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/source-after.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/source-after.json.gz",
+      "bytes": 224759,
+      "sha256": "17a3c0b1c0a5481247d89c2f415c89acc9dbc03ef91a582f2f5ef559f812c471"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/source-before.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/source-before.json.gz",
+      "bytes": 224759,
+      "sha256": "17a3c0b1c0a5481247d89c2f415c89acc9dbc03ef91a582f2f5ef559f812c471"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/studio-downloads-spacy/command.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/studio-downloads-spacy/command.json",
+      "bytes": 755,
+      "sha256": "ef64abefb5ff1ede433c66759c2cc37dfd3d46fee465042415d1039178c1e538"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/studio-downloads-spacy/result.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/studio-downloads-spacy/result.json",
+      "bytes": 1220,
+      "sha256": "16ab4ae33950eae3240d3a7c733691e894bf90af8db80b696c3804a4dc8c6a0e"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/studio-downloads-spacy/stderr.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/studio-downloads-spacy/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/studio-downloads-spacy/stdout.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/studio-downloads-spacy/stdout.log",
+      "bytes": 28256,
+      "sha256": "3b29f402094a74dbff889b6a3bb82b4d7d9fb6ba8c2cdf6f2a9a004c08decade"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/studio-downloads-spacy/test-cases.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/studio-downloads-spacy/test-cases.json",
+      "bytes": 13624,
+      "sha256": "256b07c59d56493f0e2c03673dbe105ed684bd422b308aa856403208544c7ff7"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/whitespace/command.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/whitespace/command.json",
+      "bytes": 648,
+      "sha256": "81218d4727093648281075ff48d1e0ab93fd636b839b9dd00e77ee8759201582"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/whitespace/result.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/whitespace/result.json",
+      "bytes": 945,
+      "sha256": "4e3bc9bc5d36ebd9d86bbfd19728589383441cc7cd1d06128370bd9a0cddd9cf"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/whitespace/stderr.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/whitespace/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused/whitespace/stdout.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/focused/whitespace/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/analysis/command.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/analysis/command.json",
+      "bytes": 645,
+      "sha256": "b1df568d00686f66f1ad4741faa7c7e574761955414555910a161fd6ba57de3a"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/analysis/result.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/analysis/result.json",
+      "bytes": 943,
+      "sha256": "ec12d695f4c24728448347c47cda66c891c02fe8f76f68b1c481ef459be08d54"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/analysis/stderr.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/analysis/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/analysis/stdout.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/analysis/stdout.log",
+      "bytes": 157,
+      "sha256": "b3f49218b6895a83d257ab192111cd3236f729aefcece24184d6f88853cbe599"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/dependencies-before.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/dependencies-before.json.gz",
+      "bytes": 474940,
+      "sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/disposition.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/disposition.json",
+      "bytes": 343,
+      "sha256": "10999556642686a1c64c83d4348eab154ba1f141630d28f9e5e10a0af2398bfd"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/executed-runner.py",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/executed-runner.py",
+      "bytes": 8216,
+      "sha256": "c806b839c507612258a16ca4eca05a8d013e516586cfbbf3279fc644960007f7"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/format/command.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/format/command.json",
+      "bytes": 647,
+      "sha256": "1af1cfb8d346b7d91e390bc201ac70fc78616bbb4de48e83751fefb7262bde09"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/format/result.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/format/result.json",
+      "bytes": 944,
+      "sha256": "4eaf2edcd94f909e86bb876e6bab910c060ecec3c0ca861923ed98f586840004"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/format/stderr.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/format/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/format/stdout.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/format/stdout.log",
+      "bytes": 47,
+      "sha256": "82f9b6d44abe9019c4ef72d3e300c473ba76393f81efdf7076ee7f7a648a23fd"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/receipt.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/receipt.json",
+      "bytes": 6280,
+      "sha256": "d7e91ee9700bf0b6bbe642f30b41a270b4497487ac6b842b40205ec54181f53e"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/runtime-before.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/runtime-before.json.gz",
+      "bytes": 36275,
+      "sha256": "f9ee04f3af7cfde82bedfd1385b72821fe138d52c16c2fe8f31ac7a28d0e5885"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/selection.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/selection.json",
+      "bytes": 633,
+      "sha256": "f00b94bb86cafe626d4b2748f165a9dd32316a8d2a7a34b067cf7e18ef40a718"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/source-before.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/source-before.json.gz",
+      "bytes": 224756,
+      "sha256": "3a552180700f14fa53536d5356610ce46bf11ff0754f2884a9ffea0e107c6ba1"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/studio-downloads-spacy/command.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/studio-downloads-spacy/command.json",
+      "bytes": 598,
+      "sha256": "1d540eae37cf2762ec1e640438c0e70850d004e787c09dfe3863dd3e65cdba75"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/studio-downloads-spacy/result.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/studio-downloads-spacy/result.json",
+      "bytes": 1118,
+      "sha256": "e01d96ff967a540c0fc48f5ac6a60c0ceca1899a53c38db78e5495495a6ee7fd"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/studio-downloads-spacy/stderr.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/studio-downloads-spacy/stderr.log",
+      "bytes": 2302,
+      "sha256": "49acae29a256c1e8c446b81072671908758ec4abe8a814dcabe66bed937dea8e"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/studio-downloads-spacy/stdout.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/studio-downloads-spacy/stdout.log",
+      "bytes": 2752,
+      "sha256": "052f21aa5a195086166f0645e9e4dd59c1660d2c5cec9a09d51c1ae882f1e4c1"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/studio-downloads-spacy/test-cases.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/studio-downloads-spacy/test-cases.json",
+      "bytes": 1753,
+      "sha256": "acc255025e64c725cca34c332a1e8c4aac5c1eb20a1d4f42a94110cbe58843c6"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/whitespace/command.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/whitespace/command.json",
+      "bytes": 648,
+      "sha256": "6172e096edada1e6b3c7d5492897d13734c1d8d383edb56ad06ba25e520eb72a"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/whitespace/result.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/whitespace/result.json",
+      "bytes": 945,
+      "sha256": "0ffa4708b5ebb515388de45ad5b34fcd81fbc536b0f5ba76805551c0a589b293"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/whitespace/stderr.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/whitespace/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/continuation-validation/focused-disk-guard-attempt/whitespace/stdout.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/superseded/focused-disk-guard-attempt/whitespace/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/runtime.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/runtime.json",
+      "bytes": 4090,
+      "sha256": "4ea4c57e922e74d4428369c30a4255974b5f11d4cace7e8023f10166c1120cf5"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/selected-official-release.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/selected-official-release.json",
+      "bytes": 654,
+      "sha256": "622877cb383682ed21264bcadd9a251b23128dba84defa28ec22c66268314251"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/sdk-history-reduction.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/sdk-history-reduction.json",
+      "bytes": 335,
+      "sha256": "71119f34b2b7c979cd52fe1bc6615530cec2a337de178efe86c48b81632dc726"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/archive-members.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/archive-members.json.gz",
+      "bytes": 40406,
+      "sha256": "b7cfdcc0dfbab117a2225dba5bcbcbb5cc4a6d191555a05839b9c5da50857b7f"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/omitted-unexecuted-components.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/omitted-unexecuted-components.json.gz",
+      "bytes": 22814,
+      "sha256": "4042772ca8b2d53092e683996c7765f680d94f7e4ab77c87c77a865d5f4c8540"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/omitted-dependency-nonruntime-directories.json.gz",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/omitted-dependency-nonruntime-directories.json.gz",
+      "bytes": 870,
+      "sha256": "de4708c56239e470a34af22c44e610cbbc580a36496fd6483875afbb0a181554"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/pub-cache-receipt.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/pub-cache-receipt.json",
+      "bytes": 70294,
+      "sha256": "1019c3e3924668541dc89314e6c42658b02dd05aacca8c373b091e51881becaa"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/bounded-tail-prefetch.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/bounded-tail-prefetch.json",
+      "bytes": 26081,
+      "sha256": "b439a167de30fd269d5ecc7a072f3553a7d7ba62e7cf3832c175494c2f3fefae"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/discarded-interrupted-compile-cache.json",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/discarded-interrupted-compile-cache.json",
+      "bytes": 624,
+      "sha256": "b1f023ce441b97edfa62648594d6edabaa950997e6cf76c6010cc952697e4cef"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/restore_runtime.py",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/restore_runtime.py",
+      "bytes": 8938,
+      "sha256": "38cdae4f097748645f948912e94c6088772781b4c22bbcd619947aa511c07014"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/finish_runtime_bounded.py",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/finish_runtime_bounded.py",
+      "bytes": 7118,
+      "sha256": "53ce58a50ab22f6d164f97e0b57a9b02fb4a234a274a2715e8c2bb5ba7fd5fc0"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/prefetch_tail_bounded.py",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/prefetch_tail_bounded.py",
+      "bytes": 3050,
+      "sha256": "92ae3dc346408b7ca3bbb6abdb2a7c745bd9634eef294cb90d12b81199de9211"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/setup.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/setup.log",
+      "bytes": 257,
+      "sha256": "9363d4058e67a5348def3d063fe96d5bc67a5ca4d1e178e6184525cc697b49f2"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/bounded-setup.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/bounded-setup.log",
+      "bytes": 646,
+      "sha256": "18e4ae0b9fbd65a469991505bacdf8581e86825837a0feaa51e38693b6ef978d"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/bounded-tail-prefetch.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/bounded-tail-prefetch.log",
+      "bytes": 390,
+      "sha256": "9d72ce33af991d54070bc475e1770ef205c4bc00fde14c7d9698598a28c675d8"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/flutter-tools-pub-get.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/flutter-tools-pub-get.log",
+      "bytes": 1192,
+      "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/workspace-pub-get.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/workspace-pub-get.log",
+      "bytes": 214,
+      "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime-preparation/flutter-version.log",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/flutter-version.log",
+      "bytes": 628,
+      "sha256": "99d7fa8703345dd3ce61bc174ff70a742896643b38c0dfd7560c95cc088fb7e8"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime/env.sh",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/environment.sh",
+      "bytes": 588,
+      "sha256": "77bb44118d507db2f8e5ce8e46a0b82d67b195477ad750b6088675f991b19e71"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime/bin/dart",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/dart-wrapper.sh",
+      "bytes": 98,
+      "sha256": "b72e9e47d8de52b4d105243f84a56932a75a13edc37f743ce99b41d6b39825af"
+    },
+    {
+      "source_path": "/workspace/scratch/f6338d3de284/runtime/bin/flutter",
+      "repository_path": "docs/validation/mail-archive-resume-20261119/continuation/runtime-preparation/flutter-wrapper.sh",
+      "bytes": 200,
+      "sha256": "a8911ced6bc160849110350960a1ae3a08ea48b89d39a4ec35f4bccf576a2ac5"
+    }
+  ]
+}

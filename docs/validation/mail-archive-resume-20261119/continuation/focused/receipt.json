@@ -1,0 +1,255 @@
+{
+  "analysis_and_format_targets": [
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "bound_inputs": {
+    "dependencies": {
+      "before_after_equal": true,
+      "changes": [],
+      "digest": "c400b0220ab948cd68a54521cda95e92ec96447acb4ea0c4c487a2fbb28292c2",
+      "inputs": 9298
+    },
+    "runtime": {
+      "before_after_equal": true,
+      "changes": [],
+      "digest": "b0e61620f23fa8e07886661b986e654fe9ee0ded7059071574b89eccf3edf057",
+      "inputs": 695
+    },
+    "source": {
+      "before_after_equal": true,
+      "changes": [],
+      "digest": "84657d14aaf7d3df6ca89a3e23fcd37780092fc65f8b7897c83ae0c5f3d1fa69",
+      "inputs": 4493
+    }
+  },
+  "dependency_resolution_during_validation": false,
+  "differences_from_original_accepted_source": [
+    "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+  ],
+  "event_parser_sha256": "299ce6d8fffae555e9a0381903815156fd7d416046e1dbd66c1a2e4bb344a6a5",
+  "execution_head": "9b8853667b68c7bebff050e52445b47ea0bbd188",
+  "execution_head_after": "9b8853667b68c7bebff050e52445b47ea0bbd188",
+  "execution_tree": "57d90e137f5b6c452a809080d4067f53c8209f09",
+  "finished_at_utc": "2026-11-19T20:06:35.067615+00:00",
+  "free_bytes": 510816256,
+  "github_actions_used": false,
+  "native_assets_generated": {
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/objective_c/6b4ebf10e7/.lock": {
+      "bytes": 228,
+      "sha256": "0a9aa885a5b956c1a313290d9b1d6e029321182cb9034de7f9023f2ae55a137d"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/objective_c/6b4ebf10e7/dependencies.dependencies_hash_file.json": {
+      "bytes": 453,
+      "sha256": "42e0892a4cd622cda1522be94507965a38428bc53d9c50967c01923ce614be37"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/objective_c/6b4ebf10e7/hook.dependencies_hash_file.json": {
+      "bytes": 267,
+      "sha256": "f0edc6a2d563070347c7877753a961f7fdee3dd2e28ed252bb9971edc01227a4"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/objective_c/6b4ebf10e7/hook.dill": {
+      "bytes": 11286560,
+      "sha256": "7a254e639855ea8f480509c2c6363ced560aefce8c2cc25bc1635a68edde06bb"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/objective_c/6b4ebf10e7/hook.dill.d": {
+      "bytes": 15261,
+      "sha256": "8a40fb0746987cd445970f4152fb88cc77f43bf89b7b39ffd0a844af1d59dfdd"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/objective_c/6b4ebf10e7/input.json": {
+      "bytes": 702,
+      "sha256": "4cb66be43aada41acf8bd61dfb9dd5da45dd7ef33446735d534b685af0dbb721"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/objective_c/6b4ebf10e7/output.json": {
+      "bytes": 95,
+      "sha256": "95a02c4038f0ef553bb6b9e618b2ef661d32c29c39a05d7f60a36a7d9c4241df"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/objective_c/6b4ebf10e7/stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/objective_c/6b4ebf10e7/stdout.txt": {
+      "bytes": 1319,
+      "sha256": "227c5a63e001184b455f3c1cd3bce01bcf915687ac460e7e304ca51da77bbc03"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/shared/objective_c/.lock": {
+      "bytes": 228,
+      "sha256": "2222b333303b213ffe80455b45896c6480dc2b2f617b670f4f351db6bdd0af40"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/shared/sqlite3/.lock": {
+      "bytes": 228,
+      "sha256": "916b23a45f1cf92009938c22396ae0d6c71e165e7d764b575cae1b35fb017d8d"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/shared/sqlite3/build/download-0a658527/libsqlite3.so": {
+      "bytes": 1823736,
+      "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/.lock": {
+      "bytes": 228,
+      "sha256": "ee0d615a5e5a886a1f69c11d2c5693d083c51b978386ba1e901aeace08e81ff3"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/dependencies.dependencies_hash_file.json": {
+      "bytes": 618,
+      "sha256": "be14200f0a3cd7b5cf58f00a21d09be045fd50d13a8163209f0170538738f079"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/hook.dependencies_hash_file.json": {
+      "bytes": 267,
+      "sha256": "f0edc6a2d563070347c7877753a961f7fdee3dd2e28ed252bb9971edc01227a4"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/hook.dill": {
+      "bytes": 12713656,
+      "sha256": "c60763fc7fa00e9fca06e6c36bf092b43ccaf1eb0a801a7b2683983f0553ea90"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/hook.dill.d": {
+      "bytes": 32262,
+      "sha256": "037d8c4423dd5915e3d355d574378b2ad730f4ad743abc0859e8dad5fc73857b"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/input.json": {
+      "bytes": 686,
+      "sha256": "8aedadfff3a7cf7f6695d9f1a39d014718dca3543d1a489f0bbf7d7e07bc3a08"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/output.json": {
+      "bytes": 469,
+      "sha256": "c2d4fbfdb5382b5fb536a4b6a6ca8db08372be97977d526845af97af3012bb95"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/workspace/scratch/f6338d3de284/quds_office_suite/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/stdout.txt": {
+      "bytes": 1307,
+      "sha256": "a3e31ce39fcff89465f6b2c9012b7ed7a8bdf176b6adaeaa360da3f487372364"
+    }
+  },
+  "prior_acceptance_counted_again": false,
+  "required_commands_passed": 4,
+  "runner_sha256": "7a048c12441303a563e9bc5d001197d1e78dfff690a28e0338873876cf310271",
+  "schema": 1,
+  "scope": "Incremental Linux Flutter widget/fixture qualification of bundled language download labels, sizing, first-use refresh and NER status after reconciling PR214/PR215. No installed macOS/native-model/network interoperability claim. Original 2243-case acceptance is retained separately.",
+  "selected_test_files": [
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+    "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart"
+  ],
+  "source_head": "9b8853667b68c7bebff050e52445b47ea0bbd188",
+  "source_tree": "57d90e137f5b6c452a809080d4067f53c8209f09",
+  "sqlite_default_asset": {
+    "fts5": true,
+    "path": "/workspace/scratch/f6338d3de284/quds_office_suite/packages/quds_office_editor/example/build/native_assets/linux/libsqlite3.so",
+    "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "version": "3.54.1"
+  },
+  "started_at_utc": "2026-11-19T20:05:45.221775+00:00",
+  "status": "passed",
+  "steps": [
+    {
+      "accepted": true,
+      "argv": [
+        "/workspace/scratch/f6338d3de284/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite",
+      "elapsed_seconds": 0.252,
+      "exit_code": 0,
+      "expected_test_files": [],
+      "finished_at_utc": "2026-11-19T20:05:47.658121+00:00",
+      "name": "format",
+      "started_at_utc": "2026-11-19T20:05:47.406258+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "c0d096b6943cd9b59b0d727672d819283909401bdd7e582377619ea6e041072a"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/workspace/scratch/f6338d3de284/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite",
+      "elapsed_seconds": 14.517,
+      "exit_code": 0,
+      "expected_test_files": [],
+      "finished_at_utc": "2026-11-19T20:06:02.175968+00:00",
+      "name": "analysis",
+      "started_at_utc": "2026-11-19T20:05:47.658732+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b3f49218b6895a83d257ab192111cd3236f729aefcece24184d6f88853cbe599"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "b2c05a0afa0ae606b061b13d5e50937c2a8eb1df",
+        "9b8853667b68c7bebff050e52445b47ea0bbd188",
+        "--",
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite",
+      "elapsed_seconds": 0.251,
+      "exit_code": 0,
+      "expected_test_files": [],
+      "finished_at_utc": "2026-11-19T20:06:02.428487+00:00",
+      "name": "whitespace",
+      "started_at_utc": "2026-11-19T20:06:02.177446+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/workspace/scratch/f6338d3de284/runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/studio_downloads_manager_test.dart",
+        "test/studio_spacy_setup_test.dart",
+        "test/studio_linguistic_analysis_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f6338d3de284/quds_office_suite/packages/quds_office_editor/example",
+      "elapsed_seconds": 30.291,
+      "exit_code": 0,
+      "expected_test_files": [
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+        "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart"
+      ],
+      "finished_at_utc": "2026-11-19T20:06:32.719878+00:00",
+      "name": "studio-downloads-spacy",
+      "started_at_utc": "2026-11-19T20:06:02.429162+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "3b29f402094a74dbff889b6a3bb82b4d7d9fb6ba8c2cdf6f2a9a004c08decade",
+      "test_cases_sha256": "256b07c59d56493f0e2c03673dbe105ed684bd422b308aa856403208544c7ff7",
+      "test_counts": {
+        "failed": 0,
+        "passed": 50,
+        "skipped": 0
+      }
+    }
+  ],
+  "test_totals": {
+    "failed": 0,
+    "passed": 50,
+    "skipped": 0
+  }
+}

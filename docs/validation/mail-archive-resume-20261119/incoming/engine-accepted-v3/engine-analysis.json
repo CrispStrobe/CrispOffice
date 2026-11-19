@@ -1,0 +1,25 @@
+{
+  "name": "engine-analysis",
+  "command": [
+    "/workspace/scratch/8eda9a4e1801/runtime/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings"
+  ],
+  "cwd": "/workspace/scratch/8eda9a4e1801/quds_office_suite/packages/quds_office_engine",
+  "started_utc": "2026-11-19T19:26:33.755416+00:00",
+  "completed_utc": "2026-11-19T19:26:44.641965+00:00",
+  "elapsed_seconds": 10.887,
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": {
+    "path": "logs/engine-analysis.stdout.log",
+    "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0",
+    "bytes": 49
+  },
+  "stderr": {
+    "path": "logs/engine-analysis.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "accepted_source": "61bb3ee42a385c5ffaffa44047693a6f378a8424",
+  "cohorts": [
+    {
+      "cohort": "macro",
+      "counts": {
+        "failed": 0,
+        "passed": 614,
+        "skipped": 0
+      },
+      "distinct_cases": 614,
+      "distinct_files": 24,
+      "done_events": [
+        true
+      ],
+      "error_events": 0,
+      "non_json_lines": 0,
+      "per_file": {
+        "test/office_macro_cli_test.dart": 5,
+        "test/office_macro_expansion_test.dart": 5,
+        "test/office_macro_language_test.dart": 11,
+        "test/office_macro_mcp_test.dart": 15,
+        "test/office_macro_runtime_test.dart": 25,
+        "test/office_operations_test.dart": 27,
+        "test/office_steps_test.dart": 6,
+        "test/office_vba_arrays_boundaries_test.dart": 144,
+        "test/office_vba_arrays_integration_test.dart": 11,
+        "test/office_vba_arrays_test.dart": 32,
+        "test/office_vba_control_flow_boundaries_test.dart": 42,
+        "test/office_vba_control_flow_integration_test.dart": 9,
+        "test/office_vba_control_flow_test.dart": 35,
+        "test/office_vba_integration_test.dart": 12,
+        "test/office_vba_language_test.dart": 55,
+        "test/office_vba_procedure_boundaries_test.dart": 19,
+        "test/office_vba_procedures_integration_test.dart": 10,
+        "test/office_vba_procedures_test.dart": 26,
+        "test/sheet_macro_preservation_test.dart": 2,
+        "test/table_grid_steps_test.dart": 46,
+        "test/word_step_atomicity_test.dart": 31,
+        "test/word_steps_vocabulary_test.dart": 4,
+        "test/word_structure_steps_test.dart": 20,
+        "test/word_table_grid_addressing_test.dart": 22
+      },
+      "raw_log": "engine-publication/logs/macro-tests.stdout.log",
+      "sha256": "7138f8e79c49f74bd0655c7b220734426e7d3e1af3c54f1799f21b05ef33c4dd"
+    },
+    {
+      "cohort": "editor",
+      "counts": {
+        "failed": 0,
+        "passed": 213,
+        "skipped": 0
+      },
+      "distinct_cases": 213,
+      "distinct_files": 10,
+      "done_events": [
+        true
+      ],
+      "error_events": 0,
+      "non_json_lines": 0,
+      "per_file": {
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart": 57,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart": 88,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_chrome_theme_test.dart": 4,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_document_test.dart": 3,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart": 6,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart": 9,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart": 19,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart": 10,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart": 10,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart": 7
+      },
+      "raw_log": "incoming-layout-theme-accepted/editor-tests.stdout.log",
+      "sha256": "1e57939292db0025ca81fb9457fd1791a2c0dde4c8a73b86eced6d04904808c7"
+    },
+    {
+      "cohort": "studio_gui",
+      "counts": {
+        "failed": 0,
+        "passed": 116,
+        "skipped": 0
+      },
+      "distinct_cases": 116,
+      "distinct_files": 11,
+      "done_events": [
+        true
+      ],
+      "error_events": 0,
+      "non_json_lines": 0,
+      "per_file": {
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart": 9,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_comment_review_test.dart": 38,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart": 4,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_file_menu_test.dart": 4,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_layout_theme_test.dart": 7,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart": 9,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart": 18,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_review_pane_test.dart": 3,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart": 6,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart": 3,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": 15
+      },
+      "raw_log": "incoming-layout-theme-accepted/studio-theme-tests.stdout.log",
+      "sha256": "3ef379ef09f8022cec1440d5f0cfdf963af80d1ea04ee7a765eba2e3ab930454"
+    },
+    {
+      "cohort": "repeated_mail",
+      "counts": {
+        "failed": 0,
+        "passed": 18,
+        "skipped": 0
+      },
+      "distinct_cases": 18,
+      "distinct_files": 3,
+      "done_events": [
+        true
+      ],
+      "error_events": 0,
+      "non_json_lines": 0,
+      "per_file": {
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart": 5,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart": 1,
+        "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart": 12
+      },
+      "raw_log": "incoming-layout-theme-accepted/repeated-studio-tests.stdout.log",
+      "sha256": "63baec1e08e038e7cfcb8c7e3377f0927ddd7b5f52fc2bfa325dbc1254a8ccc1"
+    }
+  ],
+  "counting": "Macro and GUI cohort results agree with the report. The repeated 18 mail cases are counted once across initial and final Studio runs. No incoming-author totals or historical failed attempts are added here.",
+  "engine_checks_passed": [
+    "whitespace",
+    "format",
+    "web_vba_smoke",
+    "web_smoke",
+    "engine-analysis",
+    "web_vba_control_flow_smoke",
+    "web_vba_procedures_smoke",
+    "web_vba_arrays_smoke",
+    "macro-tests"
+  ],
+  "javascript_program_count": 5,
+  "method": "Independent raw Dart JSON event recount, per-file identities, receipt inspection and before/after inventory equality. No product tests rerun.",
+  "pending_readme_corrections": [],
+  "publication_binding_state": "The final publication binding is a separate pending operation; its execution is not asserted by this review.",
+  "reviewed_at_utc": "2026-11-19T18:47:57.438012+00:00",
+  "root_readme_accuracy_errors": [],
+  "root_readme_sha256": "e48270674347082716b44442f4d170e9271e6f1da5bc22fe74604557a564bc73",
+  "schema": 1,
+  "source_stability": [
+    {
+      "after_sha256": "73ed4bca1ea55fdfdc9d2a8af1ff8c28c20f375d25a7ea93b5bea912e9eadea9",
+      "before_after_equal": true,
+      "before_sha256": "73ed4bca1ea55fdfdc9d2a8af1ff8c28c20f375d25a7ea93b5bea912e9eadea9",
+      "cohort": "engine-publication",
+      "count": 856
+    },
+    {
+      "after_sha256": "158dc8c9dfc75be01ab85e96b1c6044ca71506806ff8ed2c4e15aaa9cf980283",
+      "before_after_equal": true,
+      "before_sha256": "158dc8c9dfc75be01ab85e96b1c6044ca71506806ff8ed2c4e15aaa9cf980283",
+      "cohort": "incoming-layout-theme-accepted",
+      "count": 2495
+    }
+  ],
+  "status": "passed",
+  "strict_gui_analysis": [
+    {
+      "exit_code": 0,
+      "record": "incoming-layout-theme-accepted/changed-analysis.json",
+      "sha256": "87c538f5b3d25607be4f78477ef623000f2dcc3739ea9ff07fcad13c36c7ca37"
+    },
+    {
+      "exit_code": 0,
+      "record": "incoming-layout-theme-accepted/studio-analysis.json",
+      "sha256": "c2860bb602bc23ca15f1c5417dae03deb681f4d45aa998eef43cf1c3da3a3791"
+    }
+  ],
+  "wording_clarification_applied": true
+}
