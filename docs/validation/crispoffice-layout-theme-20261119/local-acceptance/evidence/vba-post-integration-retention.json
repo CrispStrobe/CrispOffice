@@ -1,0 +1,7 @@
+{
+  "accepted_run_head": "8c6acd04637ef627959fe40f518254ed538ab087",
+  "final_head": "fedabc7079db1c402cadcd9ef15296244979132e",
+  "engine_lib_test_tool_macro_changes": [],
+  "pubspec_lock_sha256": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+  "qualification": "Mail and language/proofing integrations preserve complete engine lib/test/tool/macro source; VBA395 is retained without rerun. Both web smoke programs ran after the mail integration and remain source-identical through the language integration."
+}

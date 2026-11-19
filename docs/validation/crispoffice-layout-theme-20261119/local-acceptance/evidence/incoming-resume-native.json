@@ -1,0 +1,52 @@
+{
+  "head": "8d9d1fe77284f76e71fbd6cb2718d3f6cfb636af",
+  "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_mail_store",
+  "command": [
+    "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+    "--packages=/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/package_config.json",
+    "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/archive_restore_checkpoint_test.dart",
+    "test/archive_restore_resume_test.dart",
+    "test/archive_restore_native_test.dart",
+    "test/archive_restore_adversarial_test.dart",
+    "test/archive_native_test.dart",
+    "test/archive_multi_origin_test.dart",
+    "test/archive_repository_test.dart"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 38.01,
+  "log": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native.log",
+  "log_sha256": "eb2d8a998db98793c9548fe99d396e1888758bc0287203ab4f46963938b3b1a8",
+  "source_before": {
+    "path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native.source-before.json",
+    "sha256": "ae1ea15d98073025a6fbbdb835f7be6b5d01c5baa5ec75323ad1516ae81342f1",
+    "file_count": 1002
+  },
+  "source_changed_during_run": [],
+  "runtime_source_sha256": {
+    "/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/native_assets.yaml": "13ae5c5672ba5fa9a1dd292119ea38cd89a0740600a502f015730324c5d410b1",
+    "/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/package_config.json": "65f5c9528f7da93cde8f3c2230bb955cb05a307fd48fd1dbefaa5ee32cb25831",
+    "/workspace/scratch/9c3338a48b2c/toolchain/env.sh": "55b66012721c42155ef2ca7d9362d9366212fdfcd77418858ebe8298e19c5f33",
+    "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008",
+    "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh": "03162c8f04d997e66a8bd9a58290d8a9f7a27e2d842eb2f7874d198e76e45c4b",
+    "/workspace/scratch/9c3338a48b2c/toolchain/run_flutter.sh": "93fd3cbc998bf6402ed753d3e4e1079371004d780c53ae1c22b518ba6a37716c",
+    "/workspace/scratch/9c3338a48b2c/toolchain/runtime.json": "42ad8e76713acc730ecb2b941c4dfc92d474127492eebd984c928212e0c57c91"
+  },
+  "test_summary": {
+    "completed_cases": 181,
+    "passed": 178,
+    "skipped": 0,
+    "failed": 3,
+    "runner_done": {
+      "success": false,
+      "type": "done",
+      "time": 26054
+    },
+    "cases": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native.cases.json",
+    "cases_sha256": "0b6ac8d2207d7392ddb10b8bd031e92b4157118fdcff6ed7eed4041c1bddf115"
+  }
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Layout dropdown commands apply and Undo restores each setting (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 132
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Paragraph presets switch exact spacing back to multiples without truncating custom spacing (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 172
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Paragraph menu reflects the active first-page header and preserves body formatting (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 203
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Page Layout and Paragraph dialogs are reachable from the ribbon (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 246
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Document mode explains restrictions and disables layout editing (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 277
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "Dark appearance updates the open Settings dialog and later routes (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 332
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "name": "narrow Arabic Layout menus and dialog stay reachable at 160 percent (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 384
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "compact Insert menus execute table and footnote commands with undo (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 87
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "customization hides and orders groups, switches labels, and restores defaults",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 165
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "hidden tabs recover selection and collapsed ribbon can always be expanded",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 212
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "compact commands and customization work in narrow Arabic at large text scale (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 240
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "Insert menus support Escape, outside controls and keyboard selection (variant: TargetPlatform.linux)",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 273
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+    "name": "all application tabs retain unique reachable groups",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 324
+  }
+]

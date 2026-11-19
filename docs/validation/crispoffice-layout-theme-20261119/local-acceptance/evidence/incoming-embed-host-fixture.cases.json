@@ -1,0 +1,706 @@
+[
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word controller inserts, undoes, and respects viewing mode",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 19
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "backspace at the start of a paragraph joins the previous one",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 49
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "backspace on an empty paragraph moves to the previous end",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 78
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "delete at the end of a paragraph joins the next one",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 108
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word controller deletes with backspace and delete",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 130
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word ruler indent preview commits as one undo",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 152
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word tab inserts a half-inch gap",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 173
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word editor tab key inserts a tab",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 189
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word editor backspace key deletes a character",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 216
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "tapping the canvas reattaches IME after another client steals it",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 245
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word editor ctrl+z undoes and ctrl+y redoes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 283
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word editor shift arrows grow and shrink the selection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 321
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word editor ctrl+a selects the whole document",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 368
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet controller toggles rightToLeft and moves selection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 413
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet navigation follows Excel limits and keeps the cell in view",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 425
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "grid display uses the cell number format",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 448
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "selection fill covers every selected cell and undoes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 465
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "merge and center joins the selection and can undo",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 476
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "freeze panes follow the Excel selection rules",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 496
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet arrow keys move between cells",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 525
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "rtl sheet inverts horizontal arrow keys",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 561
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet Ctrl+arrow jumps by same occupancy",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 589
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet Ctrl+arrow keys follow same occupancy",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 607
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet controller ctrl+a selects the used range",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 640
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide controller selectAll selects text while editing",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 650
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "reorderSlide moves a deck card and keeps the active index",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 670
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide text edit selects a word, paragraph, and drag range",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 699
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word controller formats only the selected range",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 741
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word controller applies font face and size at the caret run",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 767
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word controller extends selection across table cells",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 793
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word caret lands on a chart between paragraphs and can delete it",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 851
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word range selection includes a chart between paragraphs",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 900
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word arrows move the caret along a line",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 934
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "shift arrows grow and shrink the character selection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 950
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "shift arrows grow and shrink an RTL selection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 973
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet controller selects a drawing and can delete it",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1001
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "linked sheet chart follows evaluated cells including zero",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1051
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet chart drag on the canvas moves the drawing",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1085
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet controller clears the selected cell",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1132
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet controller edits a cell and can save bytes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1144
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet cell display evaluates formulas and edits in place",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1155
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet commit evaluates formula and recalculates dependents",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1179
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet edit backspace deletes and function suggestions apply",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1223
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet edit click points at another cell instead of committing",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1245
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "tapping another cell inserts a formula reference",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1268
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide controller edits shape text in place",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1293
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word clipboard pastes source formatting or plain text",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1313
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word cut paste restores heading style and table structure",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1348
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word merge and split consecutive table cells",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1432
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word page margins and orientation update layout",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1474
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "landscape applies to the whole continuous section group",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1492
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "selectTable covers every cell paragraph",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1527
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "selectTableBand selects a column or row without the whole table",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1579
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "backspace deletes a selected table column or row",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1646
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "insertSectionBreak and header edit target the active section",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1715
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "header edit on a zero-margin then landscape section stays usable",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1747
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word delete removes a selected table instead of emptying it",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1785
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word delete of a spanning selection removes the table",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1830
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet clipboard copies a range and pastes values",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1867
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide clipboard duplicates a selected shape",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1888
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide text edit keeps the shape rotation",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1914
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide controller nudges a shape via undoable transform",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1937
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide ctrl-select nudges together and groups as one unit",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 1965
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide controller edits a picture visual",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2019
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide controller applies transitions, animations, and slideshow clicks",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2045
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "theme copyWith and Arabic strings stay typed",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2116
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "QudsOfficeHost embeds a word editor with custom chrome",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2130
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "QudsSheetEditor and QudsSlideEditor mount",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2166
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "choosing a transition or animation starts a quick preview",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2201
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "Morph preview uses the previous slide as the outgoing pair",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2223
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "F5 starts and ends a slide show",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2280
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide controller loads builder deck notes and word builder bytes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2309
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word controller inserts and deletes table rows and columns",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2329
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word tab walks table cells across then down",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2395
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet controller inserts rows and columns with undo",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2475
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "office context menu dismiss is safe to call twice",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2492
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "office context menu builds table actions",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2496
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide sorter hide and show actions toggle hidden with undo",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2533
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide sorter copy pastes a clone after any thumbnail",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2564
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "controllers expose find replace stats print and styles",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2598
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "studio ribbon APIs mutate word sheet and slides",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2653
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word notes pane APIs jump and header flags",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2730
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "sheet extras and slide media",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2761
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "merged cells select as one named origin",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2793
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "find next wraps and revealFindHit moves the word caret",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2808
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "Ctrl+F requests find from the word surface",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2825
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "word lines laid out with paint metrics fit the column",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2856
+  },
+  {
+    "file": "packages/quds_office_editor/test/embed_test.dart",
+    "name": "slide editor places the navigation and notes builders",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 2895
+  }
+]

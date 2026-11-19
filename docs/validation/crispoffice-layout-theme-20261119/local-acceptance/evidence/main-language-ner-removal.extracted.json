@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "format": "dart-json",
+  "context": {
+    "platform": "vm",
+    "exit_code": 0,
+    "repo_root": "/workspace/scratch/9c3338a48b2c/crispoffice",
+    "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_proofing_spacy"
+  },
+  "cases": [
+    {
+      "test_id": 3,
+      "name": "removing NER deletes only its content-addressed model, including disabled data",
+      "result": "passed",
+      "start_line": 7,
+      "result_source": "json-events",
+      "end_line": 8,
+      "file": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 4,
+      "name": "NER removal refuses invalid model identity and redirected model storage",
+      "result": "passed",
+      "start_line": 9,
+      "result_source": "json-events",
+      "end_line": 10,
+      "file": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    }
+  ],
+  "excluded_events": [
+    {
+      "test_id": 1,
+      "name": "loading test/ner_removal_test.dart",
+      "result": "passed",
+      "start_line": 3,
+      "result_source": "json-events",
+      "end_line": 5,
+      "file": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter",
+      "excluded_reason": "loader"
+    }
+  ],
+  "ambiguities": [],
+  "warnings": [],
+  "errors": [],
+  "terminal_success": true,
+  "terminal_count": 1,
+  "suite_count": 1,
+  "unfinished_hidden_events": 0,
+  "complete": true,
+  "status": "passed",
+  "process_success_confirmed": true,
+  "usable_pass_evidence": true,
+  "scope": "Log/process evidence only; source-revision acceptance must be supplied separately.",
+  "counts": {
+    "visible_case_occurrences": 2,
+    "results": {
+      "passed": 2
+    },
+    "excluded_event_occurrences": 1,
+    "confirmed_pass_occurrences": 2,
+    "distinct_file_name_platform": 2,
+    "distinct_file_name": 2
+  },
+  "per_file": [
+    {
+      "file": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 2
+      },
+      "total": 2
+    }
+  ],
+  "log": {
+    "path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-ner-removal.log",
+    "sha256": "f385b394b4b1686ede66ce5141662469d82c191a2903e71876541d1de4e54e89",
+    "bytes": 1597
+  }
+}

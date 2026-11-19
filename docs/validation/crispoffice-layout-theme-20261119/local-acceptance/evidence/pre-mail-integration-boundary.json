@@ -1,0 +1,29 @@
+{
+  "status": "not_started",
+  "reason": "Root requested source integration after completed VBA gate, before old mail gates.",
+  "name": "incoming-archive-scoped-analysis",
+  "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice",
+  "command_not_run": [
+    "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "packages/quds_mail_store/lib/quds_mail_archive_native.dart",
+    "packages/quds_mail_store/lib/quds_mail_store.dart",
+    "packages/quds_mail_store/lib/src/archive_models.dart",
+    "packages/quds_mail_store/lib/src/archive_repository.dart",
+    "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+    "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+    "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+    "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+    "packages/quds_mail_store/test/archive_restore_native_test.dart",
+    "packages/quds_mail_store/tool/archive_restore_crash_fixture.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+    "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+  ]
+}

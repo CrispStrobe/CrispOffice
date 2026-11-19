@@ -1,0 +1,74 @@
+[
+  {
+    "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+    "name": "manifest byte boundary: 0 originals, Unicode: false",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "line": 10
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+    "name": "manifest byte boundary: 0 originals, Unicode: true",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "line": 10
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+    "name": "manifest byte boundary: 1 originals, Unicode: false",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "line": 10
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+    "name": "manifest byte boundary: 1 originals, Unicode: true",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "line": 10
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+    "name": "manifest byte boundary: 3 originals, Unicode: false",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "line": 10
+  },
+  {
+    "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+    "name": "manifest byte boundary: 3 originals, Unicode: true",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "line": 10
+  },
+  {
+    "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+    "name": "DOM storage quota maps by name without copying private error text",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "line": 12
+  },
+  {
+    "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+    "name": "blocked and aborted browser storage have typed results",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "line": 23
+  },
+  {
+    "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+    "name": "typed SQLite and domain failures retain their classification",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "line": 42
+  }
+]

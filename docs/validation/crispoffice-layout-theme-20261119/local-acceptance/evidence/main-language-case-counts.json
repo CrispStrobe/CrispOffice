@@ -1,0 +1,30 @@
+{
+  "main-language-example": {
+    "cases": 45,
+    "files": {
+      "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart": 5,
+      "packages/quds_office_editor/example/test/studio_layout_theme_test.dart": 7,
+      "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart": 9,
+      "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart": 18,
+      "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart": 6
+    },
+    "receipt": "main-language-example.json"
+  },
+  "main-language-core": {
+    "cases": 76,
+    "files": {
+      "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": 40,
+      "packages/quds_office_editor/test/word_text_proofing_pane_test.dart": 15,
+      "packages/quds_office_editor/test/word_review_pane_test.dart": 11,
+      "packages/quds_office_editor/test/word_page_layout_test.dart": 10
+    },
+    "receipt": "main-language-core.json"
+  },
+  "main-language-ner-removal": {
+    "cases": 2,
+    "files": {
+      "packages/quds_proofing_spacy/test/ner_removal_test.dart": 2
+    },
+    "receipt": "main-language-ner-removal.json"
+  }
+}

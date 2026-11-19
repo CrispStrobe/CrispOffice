@@ -1,0 +1,250 @@
+[
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "preview requires confirmation and preserves the selection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 231
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "recorded progress defaults to resume and keeps the exact selection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 260
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "turning resume off requests full source verification without forgetting progress",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 297
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "resumed progress and previous indexing warnings remain separate from this run",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 311
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "restore progress management confirms forgetting and keeps messages untouched",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 365
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "forget failure is sanitized and retains the listed progress",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 399
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "disposing during progress listing drops a late dialog",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 413
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "disposing during forgetting cancels its token and ignores the result",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 428
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "dismissing preview performs no restore",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 456
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "cancelling the folder picker performs no inspection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 465
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "invalid export is reported before showing the preview",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 477
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "unexpected inspection exceptions are sanitized",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 490
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "cancellation awaits confirmed counts and keeps earlier saves",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 501
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "partial restore exposes bounded item failures",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 542
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "disposing during inspection cancels and drops late preview",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 565
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "disposing during restore ignores late progress and result",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 581
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "narrow StudioLanguage.en resume and progress controls remain usable",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 598
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "narrow StudioLanguage.en preview supports long profile labels",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 636
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "narrow StudioLanguage.de resume and progress controls remain usable",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 598
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "narrow StudioLanguage.de preview supports long profile labels",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 636
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "narrow StudioLanguage.ar resume and progress controls remain usable",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 598
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+    "name": "narrow StudioLanguage.ar preview supports long profile labels",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 636
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+    "name": "resumable restore preview, result and progress management in StudioLanguage.en",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 321
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+    "name": "restore preview and result in StudioLanguage.en",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 371
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+    "name": "resumable restore preview, result and progress management in StudioLanguage.de",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 321
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+    "name": "restore preview and result in StudioLanguage.de",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 371
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+    "name": "resumable restore preview, result and progress management in StudioLanguage.ar",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 321
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+    "name": "restore preview and result in StudioLanguage.ar",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 371
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+    "name": "desktop portability controls, export confirmation and long destination",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 406
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+    "name": "narrow Arabic portability controls and export report remain usable",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 435
+  },
+  {
+    "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart",
+    "name": "real MIME export restores exact originals, origins and searchable text",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "line": 52
+  }
+]

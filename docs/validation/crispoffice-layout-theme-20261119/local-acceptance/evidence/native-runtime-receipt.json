@@ -1,0 +1,37 @@
+{
+  "native_assets_manifest": "/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/native_assets.yaml",
+  "native_assets_sha256": "13ae5c5672ba5fa9a1dd292119ea38cd89a0740600a502f015730324c5d410b1",
+  "sqlite3_asset_mapping": [
+    "absolute",
+    "/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/lib/libsqlite3.so"
+  ],
+  "sqlite3_resolved_library": "/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/lib/libsqlite3.so",
+  "sqlite3_library_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+  "sqlite3_library_bytes": 1823736,
+  "native_source": "Repository default sqlite3 code-asset hook and actual generated JIT mapping; no system-library source override was configured.",
+  "pubspec_lock_sha256": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+  "node_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "node_version": "v24.22.3",
+  "hook_input": {
+    "path": "/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/input.json",
+    "sha256": "083639ef4046b8af9d9617a3bdd385c8978673c1fc22b1ef0828b0a21347f66a",
+    "user_defines": {},
+    "package_root": "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/sqlite3-3.9.1/",
+    "preserved_copy": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/native-hook-input.json"
+  },
+  "hook_output": {
+    "path": "/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/hooks_runner/sqlite3/6b4ebf10e7/output.json",
+    "sha256": "21e19e5cb70b5e2e03fb6f24b11418cf8ef2f5c028064c48cdfcf24acd3d3bce",
+    "status": "success",
+    "asset": {
+      "file": "/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/hooks_runner/shared/sqlite3/build/download-0a658527/libsqlite3.so",
+      "id": "package:sqlite3/src/ffi/libsqlite3.g.dart",
+      "link_mode": {
+        "type": "dynamic_loading_bundle"
+      }
+    },
+    "library_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "preserved_copy": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/native-hook-output.json"
+  },
+  "jit_mapping_matches_default_hook_library": true
+}
