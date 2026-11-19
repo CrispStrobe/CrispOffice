@@ -5,6 +5,11 @@ part of 'archive_repository.dart';
 // every ordinal does not repeatedly scan the whole manifest.
 final _restorePlanIdentities = Expando<_RestorePlanIdentity>();
 
+// Management reads must still expose retained progress after a host lowers
+// write quotas. These match MailArchiveLimits' absolute supported maxima.
+const _restoreReadMaxJobs = 10000;
+const _restoreReadMaxReceipts = 1000000;
+
 final class _RestorePlanIdentity {
   const _RestorePlanIdentity(this.planned, this.totalBytes);
   final int planned;
@@ -143,13 +148,21 @@ extension MailArchiveRestoreCheckpoints on SqliteMailArchive {
       final sizes = await _rows(
         'SELECT length(CAST(manifest AS BLOB)) AS manifest_bytes '
         'FROM archive_restore_jobs LIMIT ?',
-        [limits.maxRestoreJobs + 1],
+        [_restoreReadMaxJobs + 1],
       );
-      if (sizes.length > limits.maxRestoreJobs) {
+      if (sizes.length > _restoreReadMaxJobs) {
         SqliteMailArchive._fail(MailProblemCode.quotaExceeded);
       }
       if (sizes.any((row) => row.read<int>('manifest_bytes') != 64)) {
         SqliteMailArchive._fail(MailProblemCode.storageFailure);
+      }
+      final receiptCount = (await _rows(
+        'SELECT count(*) AS n FROM '
+        '(SELECT 1 FROM archive_restore_receipts LIMIT ?)',
+        [_restoreReadMaxReceipts + 1],
+      )).single.read<int>('n');
+      if (receiptCount > _restoreReadMaxReceipts) {
+        SqliteMailArchive._fail(MailProblemCode.quotaExceeded);
       }
       final rows = await _rows(
         'SELECT j.manifest,j.planned,j.total_bytes,j.stored_size,'
@@ -159,7 +172,7 @@ extension MailArchiveRestoreCheckpoints on SqliteMailArchive {
         'coalesce(max(r.ordinal),0) AS last_ordinal '
         'FROM archive_restore_jobs j LEFT JOIN archive_restore_receipts r '
         'ON r.manifest=j.manifest GROUP BY j.manifest ORDER BY j.manifest LIMIT ?',
-        [limits.maxRestoreJobs + 1],
+        [_restoreReadMaxJobs + 1],
       );
       final result = <MailArchiveRestoreCheckpoint>[];
       var totalReceipts = 0;
@@ -185,7 +198,7 @@ extension MailArchiveRestoreCheckpoints on SqliteMailArchive {
           SqliteMailArchive._fail(MailProblemCode.storageFailure);
         }
         totalReceipts += completed;
-        if (totalReceipts > limits.maxRestoreReceipts) {
+        if (totalReceipts > _restoreReadMaxReceipts) {
           SqliteMailArchive._fail(MailProblemCode.quotaExceeded);
         }
         result.add(

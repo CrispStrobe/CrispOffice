@@ -349,6 +349,31 @@ void main() {
   );
 
   test(
+    'losing the destination stops after one failed receipt lookup',
+    () async {
+      expect((await restorer.restore(plan)).saved, 3);
+      Future<void>? closing;
+      codec.calls = 0;
+      final report = await restorer.restore(
+        plan,
+        resume: true,
+        onProgress: (event) {
+          if (event.phase == MailArchiveRestorePhase.message &&
+              event.resumed == 1) {
+            closing ??= archive.close();
+          }
+        },
+      );
+      await closing;
+      expect(report.status, MailArchiveRestoreStatus.partial);
+      expect(report.problem?.code, MailProblemCode.unavailable);
+      expect((report.resumed, report.failed, report.processed), (1, 1, 2));
+      expect(report.failures.single.ordinal, 2);
+      expect(codec.calls, 0);
+    },
+  );
+
+  test(
     'destination per-message bounds also apply to previously committed items',
     () async {
       expect((await restorer.restore(plan)).saved, 3);

@@ -73,7 +73,7 @@ final class _VisualStore extends Fake implements StudioMailArchiveStore {
   final profile = MailProfileId('visual-fixture', hostId: 'studio-tests');
   final entries = <MailArchiveSearchHit>[];
   final originals = <String, MailBytes>{};
-  final int restored;
+  int restored;
 
   @override
   set diagnostics(MailArchiveDiagnostics? value) {}
@@ -181,7 +181,10 @@ final class _VisualStore extends Fake implements StudioMailArchiveStore {
   Future<MailResult<MailUnit>> forgetRestoreCheckpoint(
     String manifestSha256, {
     MailCancellationToken? cancellation,
-  }) async => const MailSuccess(MailUnit.value);
+  }) async {
+    restored = 0;
+    return const MailSuccess(MailUnit.value);
+  }
 
   @override
   Future<MailArchiveRestoreReport> restoreExport(
@@ -190,22 +193,29 @@ final class _VisualStore extends Fake implements StudioMailArchiveStore {
     bool resume = false,
     MailCancellationToken? cancellation,
     MailArchiveRestoreProgressSink? onProgress,
-  }) async => MailArchiveRestoreReport(
-    status: MailArchiveRestoreStatus.completed,
-    planned: plan.messageCount,
-    saved: 3,
-    duplicates: resume ? 0 : 2,
-    failed: 0,
-    originsAdded: 4,
-    bytes: plan.totalBytes - (resume ? restoredBytes : 0),
-    resumed: resume ? restored : 0,
-    resumedBytes: resume ? restoredBytes : 0,
-    indexWarnings: 0,
-    elapsedMicroseconds: 15000,
-    observerErrors: 0,
-    failures: const [],
-    droppedFailures: 0,
-  );
+  }) async {
+    final previous = resume ? restored : 0;
+    final previousBytes = resume ? restoredBytes : 0;
+    final saved = resume ? plan.messageCount - previous : 3;
+    final report = MailArchiveRestoreReport(
+      status: MailArchiveRestoreStatus.completed,
+      planned: plan.messageCount,
+      saved: saved,
+      duplicates: resume ? 0 : 2,
+      failed: 0,
+      originsAdded: resume ? saved : 4,
+      bytes: plan.totalBytes - previousBytes,
+      resumed: previous,
+      resumedBytes: previousBytes,
+      indexWarnings: 0,
+      elapsedMicroseconds: 15000,
+      observerErrors: 0,
+      failures: const [],
+      droppedFailures: 0,
+    );
+    restored = plan.messageCount;
+    return report;
+  }
 }
 
 final class _VisualFiles extends Fake implements StudioMailArchiveFiles {

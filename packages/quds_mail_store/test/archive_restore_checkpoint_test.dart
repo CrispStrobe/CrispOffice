@@ -601,9 +601,18 @@ void main() {
           maxRestoreReceipts: 1,
         ),
       );
-      _failure(
-        await archive.listRestoreCheckpoints(),
-        MailProblemCode.quotaExceeded,
+      final retained = _value(await archive.listRestoreCheckpoints());
+      expect(retained, hasLength(2));
+      expect(
+        retained.map((entry) => entry.manifestSha256),
+        containsAll([plan.manifestSha256, otherPlan.manifestSha256]),
+      );
+      expect(
+        retained.fold<int>(
+          0,
+          (count, entry) => count + entry.completedMessages,
+        ),
+        2,
       );
       _value(await archive.forgetRestoreCheckpoint(plan.manifestSha256));
       expect(

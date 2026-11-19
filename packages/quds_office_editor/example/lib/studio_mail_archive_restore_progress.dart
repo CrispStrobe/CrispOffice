@@ -42,9 +42,12 @@ class _StudioMailArchiveRestoreProgressDialogState
         child: AlertDialog(
           scrollable: true,
           title: Text(s.archiveRestoreForget),
-          content: Text(
-            s.archiveRestoreForgetConfirmation(
-              checkpoint.manifestSha256.substring(0, 16),
+          content: SizedBox(
+            width: 440,
+            child: Text(
+              s.archiveRestoreForgetConfirmation(
+                checkpoint.manifestSha256.substring(0, 16),
+              ),
             ),
           ),
           actions: [

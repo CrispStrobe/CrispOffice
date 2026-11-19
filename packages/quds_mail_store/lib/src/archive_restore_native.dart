@@ -110,6 +110,7 @@ final class NativeMailArchiveRestorer {
         await _unchanged(manifest.file, manifest.stat, cancellation);
         final item = plan.items[index];
         MailParseResult parsed;
+        var destinationFailure = false;
         try {
           if (item.byteLength > archive.limits.maxMessageBytes) {
             _fail(MailProblemCode.quotaExceeded);
@@ -121,6 +122,7 @@ final class NativeMailArchiveRestorer {
               cancellation: cancellation,
             );
             if (restored case MailFailure(:final problem)) {
+              destinationFailure = true;
               _fail(problem.code);
             }
             final receipt =
@@ -179,6 +181,8 @@ final class NativeMailArchiveRestorer {
           run.emit(MailArchiveRestorePhase.message);
           if (problem.code == MailProblemCode.quotaExceeded ||
               problem.code == MailProblemCode.storageFailure ||
+              (destinationFailure &&
+                  problem.code == MailProblemCode.unavailable) ||
               problem.code == MailProblemCode.permissionDenied) {
             rethrow;
           }
