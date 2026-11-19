@@ -1,0 +1,129 @@
+{
+  "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "archive": "preparation.tar.xz",
+  "archive_bytes": 20444,
+  "archive_sha256": "c29b4678f948a3811f6223a5ae0b713ca5a9255c1ca4eb0f456c1e4dba3aebd6",
+  "members": [
+    {
+      "path": "preparation/native-assets-smoke.json",
+      "bytes": 602,
+      "sha256": "8b861abe3b0171cb0333c5bafd36bab7c2583982c34fd6eb4f6fc61e2d88d225"
+    },
+    {
+      "path": "preparation/native-assets-smoke.log",
+      "bytes": 81,
+      "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2"
+    },
+    {
+      "path": "preparation/python-controls.json",
+      "bytes": 1006,
+      "sha256": "0a9d97705c04ff72a1b88940538f20b3d59f5be9aacda8a5cc0569f1b61004b9"
+    },
+    {
+      "path": "preparation/runtime.json",
+      "bytes": 7723,
+      "sha256": "0c42466c584c88844cf70b79d26d2da789f9361044eccde4eea27d361f1643df"
+    },
+    {
+      "path": "preparation/test_check_store.log",
+      "bytes": 141,
+      "sha256": "e00f50653d412a523e3e3b722e1ae81cc626ee46b145eb3f1227b838e716b321"
+    },
+    {
+      "path": "preparation/test_restore_runtime.log",
+      "bytes": 682,
+      "sha256": "239bcc7877d6d0424eaa00bbc8139f3bca894b8b8543084acf9f1f82f5a14684"
+    },
+    {
+      "path": "preparation/test_run_checks.log",
+      "bytes": 119,
+      "sha256": "1e5831a32e9da3669c367186c193165d13d875774c94f6bbaf565c174bb4da35"
+    },
+    {
+      "path": "preparation/workspace-pub-get.json",
+      "bytes": 310,
+      "sha256": "3b307fd3e78fa35a3a3c850a8f0d22301e3ea21ef3316acd33c6bf65ae3c0af1"
+    },
+    {
+      "path": "preparation/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "runner-race-repair/checks.json",
+      "bytes": 901,
+      "sha256": "351fbe775841bf670161a81115d588501bae895828a9a8386fdbcfabe1fd2f4c"
+    },
+    {
+      "path": "runner-race-repair/controls-1.log",
+      "bytes": 141,
+      "sha256": "2fa4e3f7df92870828f74cec54dd99c2929f43bc8fb6c7ac0dbcbd0288960706"
+    },
+    {
+      "path": "runner-race-repair/controls-2.log",
+      "bytes": 141,
+      "sha256": "1aabba89352e00f6bff696149ca4493208ced0043c20810ed34f4497c47c3d5f"
+    },
+    {
+      "path": "runner-race-repair/controls-3.log",
+      "bytes": 141,
+      "sha256": "0636c4bd1373f6d12949677ce2f5e52bef1a225d516e426ade5f2efcac46fa32"
+    },
+    {
+      "path": "support/audit-controls.json",
+      "bytes": 522,
+      "sha256": "befbd3da9fcc639c2b7f27a7c19402f7ba8ea073b5fe9b365aee8f9ee5b92c47"
+    },
+    {
+      "path": "support/audit_final_mail.py",
+      "bytes": 44349,
+      "sha256": "6556b8153880cba50754c6cdec5ad7034f00a683c6c54fcff040648ec3058ed6"
+    },
+    {
+      "path": "support/final-evidence-audit.json",
+      "bytes": 21526,
+      "sha256": "d56d91700f2f31f9c7b6a171d6fe41efd736405f0442f0bba8ab18575d6dbd1a"
+    },
+    {
+      "path": "support/final-execution.json",
+      "bytes": 3677,
+      "sha256": "4c547260bc627b09087a8a61e89a056ec3006e3eea17d0f5e5a3ca9db704bd16"
+    },
+    {
+      "path": "support/package_final.py",
+      "bytes": 7512,
+      "sha256": "84a5572fff686b6918a387d8d4c3df55d52c5fca373105ea0822ea0194ee8950"
+    },
+    {
+      "path": "support/run_final.py",
+      "bytes": 3926,
+      "sha256": "be941aa21f9c9e07b8ae58a73da54cc35cf4b5b8b1ca137466d84fd7eff66bd9"
+    },
+    {
+      "path": "support/runner-controls.log",
+      "bytes": 119,
+      "sha256": "f836e94d5aacd008f64ea6b5ce818639493bf99effcc09c9711cfa1ba0b67ece"
+    },
+    {
+      "path": "support/runtime-controls.log",
+      "bytes": 682,
+      "sha256": "47e942e5df0d126973e01f36d9a00f081eaee662db178f48a1f1c23d5fb4fdc9"
+    },
+    {
+      "path": "test-repair/analyze.log",
+      "bytes": 68,
+      "sha256": "c81a45e13d4535bd55ddc2eaddb5ea59c36c0c0cbe1d2e7966e2583e469ca0b6"
+    },
+    {
+      "path": "test-repair/checks.json",
+      "bytes": 781,
+      "sha256": "a36b154282f773e69f04ba0bbad31f2d0ebe1dc33a1f62281eef15c5bd692504"
+    },
+    {
+      "path": "test-repair/format.log",
+      "bytes": 47,
+      "sha256": "48119b7f93f88ac166398c1576d4686ff2163286c1e198494980483fef718e84"
+    }
+  ],
+  "omitted_generated_compilation_outputs": []
+}

@@ -1,0 +1,255 @@
+{
+  "source_commit": null,
+  "archive": "source-review.tar.xz",
+  "archive_bytes": 335832,
+  "archive_sha256": "51e669538061d4912bafd34c911536dd07a952377a95c8bda9e18e87053862ba",
+  "members": [
+    {
+      "path": "source-review/README.md",
+      "bytes": 911,
+      "sha256": "7d72b5430bfe0ba0fd160bb0d1c535563429d4666896e6256771e2162d8a38ac"
+    },
+    {
+      "path": "source-review/final-71edec2d/README.md",
+      "bytes": 3608,
+      "sha256": "a468dd76a43c7b95ad4a836c915602b324c4ded1dbb208e56ce6949e8a53c899"
+    },
+    {
+      "path": "source-review/final-71edec2d/all-reviewed-inputs.json",
+      "bytes": 9238,
+      "sha256": "467a30932f374910cfec4474b95fd5c64c3692964e65d085b762de8447858b42"
+    },
+    {
+      "path": "source-review/final-71edec2d/declared-source-exceptions.json",
+      "bytes": 20357,
+      "sha256": "36a2949427d047d58d10baaad49b62555887891970026ce0c44dc254532d6390"
+    },
+    {
+      "path": "source-review/final-71edec2d/effective-reviewed-source-manifest.json",
+      "bytes": 9017,
+      "sha256": "bc531e933e992e2915415b0271dd16cb161a84873c31eac31a524c24c14f28aa"
+    },
+    {
+      "path": "source-review/final-71edec2d/protected-git-inputs.json",
+      "bytes": 934131,
+      "sha256": "1aeeddf45da99903f98369e77ecbb59bedd401b7ba78faf335b9f69cce452076"
+    },
+    {
+      "path": "source-review/final-71edec2d/protected-materialized-inputs.json",
+      "bytes": 1462180,
+      "sha256": "eec6d3d88c0501bb04d4972fa8100f6211e707ab0ae416a0f23af13d08f68b0a"
+    },
+    {
+      "path": "source-review/final-71edec2d/published-readback.json",
+      "bytes": 498,
+      "sha256": "01e7c3dcd1dd28e485f14869a2dedbf85a449d287dd1dbc35f150d270594dbbb"
+    },
+    {
+      "path": "source-review/final-71edec2d/runner-repair-evidence/checks.json",
+      "bytes": 901,
+      "sha256": "351fbe775841bf670161a81115d588501bae895828a9a8386fdbcfabe1fd2f4c"
+    },
+    {
+      "path": "source-review/final-71edec2d/runner-repair-evidence/controls-1.log",
+      "bytes": 141,
+      "sha256": "2fa4e3f7df92870828f74cec54dd99c2929f43bc8fb6c7ac0dbcbd0288960706"
+    },
+    {
+      "path": "source-review/final-71edec2d/runner-repair-evidence/controls-2.log",
+      "bytes": 141,
+      "sha256": "1aabba89352e00f6bff696149ca4493208ced0043c20810ed34f4497c47c3d5f"
+    },
+    {
+      "path": "source-review/final-71edec2d/runner-repair-evidence/controls-3.log",
+      "bytes": 141,
+      "sha256": "0636c4bd1373f6d12949677ce2f5e52bef1a225d516e426ade5f2efcac46fa32"
+    },
+    {
+      "path": "source-review/final-71edec2d/runner-test-repair.patch",
+      "bytes": 999,
+      "sha256": "eecb2c88c44c61ed5e8228004b0a6974c60fa71285499842c5478c4231ca06d9"
+    },
+    {
+      "path": "source-review/final-71edec2d/runner-test-review.json",
+      "bytes": 2594,
+      "sha256": "afdcee9274ae00e7041cb464438acbce88f5e2a506d59d914167189e3fc42e2d"
+    },
+    {
+      "path": "source-review/final-71edec2d/source-continuity.json",
+      "bytes": 8842,
+      "sha256": "57962d885fe024f6bbab7dc89ef414f8d71068b5c5b7182542570ffb9eec79a5"
+    },
+    {
+      "path": "source-review/final-71edec2d/transport-review-binding.json",
+      "bytes": 31739,
+      "sha256": "1100a8a703ec58062a655b91b2dfddc934dcf18480bafdb77f5c32aa932d83da"
+    },
+    {
+      "path": "source-review/final-71edec2d/workspace-and-plan-binding.json",
+      "bytes": 1112,
+      "sha256": "555a363aba3ba0608396b193601f12ebb29f370c3820bec224dd8293599b1e36"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/README.md",
+      "bytes": 4157,
+      "sha256": "3ec170aab95496eb0f1f31817c8f36164e97577c9d3696530b5c17cbec19af51"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/declared-source-exceptions.json",
+      "bytes": 20357,
+      "sha256": "6151c419fd87e742168fe26193ee8c90e2cb6552d571cd48d0422ef1db5afa08"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/failed-gate-evidence/core-analysis.log",
+      "bytes": 198,
+      "sha256": "ac382ca37780eba875e03a0409726f91a8374f7bc732809e5d89a59024d81d97"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/failed-gate-evidence/final-execution.json",
+      "bytes": 1820,
+      "sha256": "bdcc7f819825f8203e27fd22bb54c97aea5c345939612ca4b1c2e0d4e2b3fa8e"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/failed-gate-evidence/mail-receipt.json",
+      "bytes": 26003,
+      "sha256": "54ad717c8ac8853b803dcae36e5552e4d927d648468d61972b651b6e257a4897"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/failed-gate-evidence/store-analysis.log",
+      "bytes": 1582,
+      "sha256": "952ac29d4b3aa7f8187e4199aa07f86cea5b986f71a66c874182382a727c6201"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/failed-gate-evidence/store-vm.jsonl",
+      "bytes": 49329,
+      "sha256": "804d33f97080c6229b02e81a1f9610e8cbbad4405444a9143f9c220f9cd347df"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/failed-gate-summary.json",
+      "bytes": 1424,
+      "sha256": "bc9c86b92b342dce207a2f1b03fc7bdb746951b9bd4cbc66119a632433596bc9"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/protected-git-inputs.json",
+      "bytes": 934131,
+      "sha256": "1aeeddf45da99903f98369e77ecbb59bedd401b7ba78faf335b9f69cce452076"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/protected-materialized-inputs.json",
+      "bytes": 1462180,
+      "sha256": "eec6d3d88c0501bb04d4972fa8100f6211e707ab0ae416a0f23af13d08f68b0a"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/published-readback.json",
+      "bytes": 517,
+      "sha256": "a70599db4793c07766461782542364a45f2a980fcb1fb8556b5beea11525547c"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/source-continuity.json",
+      "bytes": 8124,
+      "sha256": "97597d103b9cecada98adc10b2ebffeda5f47876b4fa83e1befbc5ab767c1e32"
+    },
+    {
+      "path": "source-review/first-attempt-da78c0bb/transport-review-binding.json",
+      "bytes": 18747,
+      "sha256": "f945b5cddf9583d4b485c62e0a3d9b4025b0b32c9a1147c2d702efca8ea8ef75"
+    },
+    {
+      "path": "source-review/published-readback.json",
+      "bytes": 517,
+      "sha256": "a70599db4793c07766461782542364a45f2a980fcb1fb8556b5beea11525547c"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/README.md",
+      "bytes": 4109,
+      "sha256": "77cfe840ce4c478a88b044e0bf075bf627434cc53d7fd0064526e76d36baf5fd"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/declared-source-exceptions.json",
+      "bytes": 20357,
+      "sha256": "36a2949427d047d58d10baaad49b62555887891970026ce0c44dc254532d6390"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/effective-reviewed-source-manifest.json",
+      "bytes": 9017,
+      "sha256": "bc531e933e992e2915415b0271dd16cb161a84873c31eac31a524c24c14f28aa"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/failed-gate-evidence/final-execution.json",
+      "bytes": 1819,
+      "sha256": "5dd034b486267f2cdbac13620e72a694a793e9d03f5ec9cd291214964a01d342"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/failed-gate-evidence/mail-receipt.json",
+      "bytes": 15017,
+      "sha256": "97c370a1da61a8adbe1776d30897467676258fb8837662d60a8796afcec24581"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/failed-gate-evidence/runner-regressions.log",
+      "bytes": 7608,
+      "sha256": "82ad9554ea3db6c405a159d2bc583d142bb8ed4b8e8dd9a7633997b4f97a4bf3"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/failed-gate-summary.json",
+      "bytes": 995,
+      "sha256": "42bff898851f7994dbdde7994878f92ee59cb8fa3e9110d5bb81899fa307f71c"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/protected-git-inputs.json",
+      "bytes": 934131,
+      "sha256": "1aeeddf45da99903f98369e77ecbb59bedd401b7ba78faf335b9f69cce452076"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/protected-materialized-inputs.json",
+      "bytes": 1462180,
+      "sha256": "eec6d3d88c0501bb04d4972fa8100f6211e707ab0ae416a0f23af13d08f68b0a"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/published-readback.json",
+      "bytes": 503,
+      "sha256": "3159fd588dc9010225388b34dc0d4430d7f9bb06c279e45524f5e0a9ab4be716"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/source-continuity.json",
+      "bytes": 8381,
+      "sha256": "ba98423706bba01f3b2004438a2ec5b1e23a95e5eb31e7f3cc7c01376fb54066"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/test-repair-evidence/analyze.log",
+      "bytes": 68,
+      "sha256": "c81a45e13d4535bd55ddc2eaddb5ea59c36c0c0cbe1d2e7966e2583e469ca0b6"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/test-repair-evidence/checks.json",
+      "bytes": 781,
+      "sha256": "a36b154282f773e69f04ba0bbad31f2d0ebe1dc33a1f62281eef15c5bd692504"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/test-repair-evidence/format.log",
+      "bytes": 47,
+      "sha256": "48119b7f93f88ac166398c1576d4686ff2163286c1e198494980483fef718e84"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/test-repair-review.json",
+      "bytes": 2755,
+      "sha256": "bc0563e7cee95ae80766bfd24ae705d7506df3ea45a0ff2a46f3a10da64919f7"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/test-repair.patch",
+      "bytes": 1881,
+      "sha256": "1623691b6767f7b58f911da644f2fea9294043c0b509daf4181fb149d1516f11"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/transport-review-binding.json",
+      "bytes": 31048,
+      "sha256": "a7c07f8d57447ba2f79b07c8aaef002077e7e66f701021317c2d4418f0eebe1b"
+    },
+    {
+      "path": "source-review/second-attempt-e734e3bd/workspace-and-plan-binding.json",
+      "bytes": 1112,
+      "sha256": "3177a9b784cf14024defc8a481b303a335e97becbc4d276bf46db2f206cd6e9e"
+    }
+  ],
+  "omitted_generated_compilation_outputs": [],
+  "scope": "Independent source-review and Office continuity records for final source 71edec2de364805113d18e0f1d7edbb1f00467e5 plus the separately identified earlier failed attempts. Each record carries its own source identity; these audits do not execute tests."
+}

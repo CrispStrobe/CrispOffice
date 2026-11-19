@@ -1,0 +1,50 @@
+{
+  "source_commit": "e734e3bd14f6c802a1da1c05969bd51108890ded",
+  "archive": "second-attempt.tar.xz",
+  "archive_bytes": 5512,
+  "archive_sha256": "0e7571bd6a4912a75b1c1cd34ad5eea98d166a60a3c9f615fc6efe1497fee05a",
+  "members": [
+    {
+      "path": "second-attempt/final-execution.json",
+      "bytes": 1819,
+      "sha256": "5dd034b486267f2cdbac13620e72a694a793e9d03f5ec9cd291214964a01d342"
+    },
+    {
+      "path": "second-attempt/mail-final.log",
+      "bytes": 120,
+      "sha256": "82a48f455224a0d66a27a95a704932a0ed85e7e8e1bdee4dc4101a81b367314a"
+    },
+    {
+      "path": "second-attempt/mail-final/locked-resolution.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "second-attempt/mail-final/receipt.json",
+      "bytes": 15017,
+      "sha256": "97c370a1da61a8adbe1776d30897467676258fb8837662d60a8796afcec24581"
+    },
+    {
+      "path": "second-attempt/mail-final/runner-regressions.log",
+      "bytes": 7608,
+      "sha256": "82ad9554ea3db6c405a159d2bc583d142bb8ed4b8e8dd9a7633997b4f97a4bf3"
+    },
+    {
+      "path": "second-attempt/mail-final/runtime.log",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "second-attempt/runner-controls.log",
+      "bytes": 119,
+      "sha256": "b1bad05ca47ac486ffb3d47e667df2eedac313e81c2c4cb6b52eab92625c798f"
+    },
+    {
+      "path": "second-attempt/runtime-controls.log",
+      "bytes": 682,
+      "sha256": "47e942e5df0d126973e01f36d9a00f081eaee662db178f48a1f1c23d5fb4fdc9"
+    }
+  ],
+  "omitted_generated_compilation_outputs": [],
+  "scope": "Failed tooling preflight: the killed child disappeared during /proc stat reading. No Dart product cohort started. A subsequent test-only observation fix handles reaping without changing process termination or Mail product behavior."
+}

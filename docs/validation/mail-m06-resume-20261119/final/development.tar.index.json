@@ -1,0 +1,250 @@
+{
+  "source_commit": null,
+  "archive": "development.tar.xz",
+  "archive_bytes": 10484,
+  "archive_sha256": "10290d92a601ddeff32bcf7e20952c8e11542e5a372b022c488f64f354b3b082",
+  "members": [
+    {
+      "path": "transport-development/analyze-clean.json",
+      "bytes": 904,
+      "sha256": "eb3b5deb4029ec79fc8713dc0b3abb311bcb155814c8a8e4938171ab91661b3b"
+    },
+    {
+      "path": "transport-development/analyze-clean.log",
+      "bytes": 237,
+      "sha256": "a6cc542e792f1bf4ab1757e9809abc2bfb70c410dea0034faf88108ab9884cad"
+    },
+    {
+      "path": "transport-development/analyze-final.json",
+      "bytes": 904,
+      "sha256": "435e241b0343a6f9ad9c8ec22eb55a32b7640f2b55eba1c173e16a3cb2eb04d6"
+    },
+    {
+      "path": "transport-development/analyze-final.log",
+      "bytes": 237,
+      "sha256": "a6cc542e792f1bf4ab1757e9809abc2bfb70c410dea0034faf88108ab9884cad"
+    },
+    {
+      "path": "transport-development/analyze.log",
+      "bytes": 6366,
+      "sha256": "28f5788dbebccba0f53f5337b497d9ea5528ac1686e1892528a96a13c293e38f"
+    },
+    {
+      "path": "transport-development/browser-node.json",
+      "bytes": 552,
+      "sha256": "d8b90f35269319e57aacd93092fd927bb3843b0e633374f1e965c3c6b7891e78"
+    },
+    {
+      "path": "transport-development/browser-node.log",
+      "bytes": 582,
+      "sha256": "0ef6bc81837f581dc57d0b8559ebf9773f5af95d67806a15d39042548a30f9ba"
+    },
+    {
+      "path": "transport-development/fix.log",
+      "bytes": 246,
+      "sha256": "52acaec135fa67de75be773665b82509db7daccfd673c823e4135e020f6a61af"
+    },
+    {
+      "path": "transport-development/followup-format.json",
+      "bytes": 368,
+      "sha256": "4d866c9e962aec2dfe28a6168834286211b1a9b89cd802091ff7636fbbd23ad5"
+    },
+    {
+      "path": "transport-development/followup-format.log",
+      "bytes": 46,
+      "sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec"
+    },
+    {
+      "path": "transport-development/fork-fix.log",
+      "bytes": 417,
+      "sha256": "c1aa231dbf96607aa93f83bedb27652ce200b056b4322363ab1e1c91f20aefd9"
+    },
+    {
+      "path": "transport-development/format.log",
+      "bytes": 959,
+      "sha256": "fb8ea453222760259e57be1abe4747e9f79cc2db556b64b7970763aba0da7dde"
+    },
+    {
+      "path": "transport-development/format2.log",
+      "bytes": 905,
+      "sha256": "488aa1449ac7b41b8bf55a7193573f6c7528be79e6d79f52279661b20e977e08"
+    },
+    {
+      "path": "transport-development/format3.log",
+      "bytes": 188,
+      "sha256": "95ee5b9b56e95dcb99b6459ed19fe82ea815ac61e9139d0bf2dc9733ac9d76ae"
+    },
+    {
+      "path": "transport-development/format4.log",
+      "bytes": 47,
+      "sha256": "45677745de22edb703c8d6f33aa97667c853d61fd53a4d91027d6116d8b5d32f"
+    },
+    {
+      "path": "transport-development/host-store.json",
+      "bytes": 563,
+      "sha256": "4a34f9abe0e5ff7e6bd94912dd93a5d57dcd95076383b34069ca1b5bb16d1314"
+    },
+    {
+      "path": "transport-development/host-store.log",
+      "bytes": 581,
+      "sha256": "7cfc8c02b9d8ce5ef324cdc03b622b40def4af0e542c35d6f9e902a818a34fb2"
+    },
+    {
+      "path": "transport-development/inherited-fork.json",
+      "bytes": 1320,
+      "sha256": "e736f34954d1d3bf35332ab82ba49f00d04380eadb8645792df9d612620f3c92"
+    },
+    {
+      "path": "transport-development/inherited-fork.log",
+      "bytes": 26647,
+      "sha256": "c4683cd674907c4650487ec19b77da70aaac592d2bb782dc6f2667771735cac3"
+    },
+    {
+      "path": "transport-development/native-first.log",
+      "bytes": 3252,
+      "sha256": "222eb48711e35df7b844e494048001438962b6f483c3177d853a4892b25f3fb8"
+    },
+    {
+      "path": "transport-development/native-hook.log",
+      "bytes": 81,
+      "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2"
+    },
+    {
+      "path": "transport-development/native-second.json",
+      "bytes": 595,
+      "sha256": "244586caa775ce3b432a52bf6d63d20065e3350171cdb35f3576d95a76b948b5"
+    },
+    {
+      "path": "transport-development/native-second.log",
+      "bytes": 6343,
+      "sha256": "06d519f97091264934294ed27ae50cfa1ae7a1ac7696e95060e2dd072ef1bf29"
+    },
+    {
+      "path": "transport-development/native-source.json",
+      "bytes": 559,
+      "sha256": "539db73d89f73cce8cc5d92194f4efb8054f39835de2111c1297bffd63d49464"
+    },
+    {
+      "path": "transport-development/native-source.log",
+      "bytes": 3734,
+      "sha256": "93c023775935cfef20ae9f5f4982e6ad7b2601db7e7fe35e353c68f37cec4774"
+    },
+    {
+      "path": "transport-development/pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "transport-development/quota-final.json",
+      "bytes": 602,
+      "sha256": "b94eb6c07cfcf7a9c55ba85dd7b85c4360a6fc5bafc5e43ca61966f918f52a11"
+    },
+    {
+      "path": "transport-development/quota-final.log",
+      "bytes": 549,
+      "sha256": "967a7e6496b0311cdf27e9138aead38ed76a49bde546f211b02d6cb9f4006db3"
+    },
+    {
+      "path": "transport-development/real-tls-first.json",
+      "bytes": 575,
+      "sha256": "628e95dbc701902fd455e138e6586b76cd1d8679227ee57506a63b682d8128e3"
+    },
+    {
+      "path": "transport-development/real-tls-first.log",
+      "bytes": 2181,
+      "sha256": "90c3ff574ad6e9e8808222632691ced3674af4a39b36d1c07110510e2e6f749a"
+    },
+    {
+      "path": "transport-development/real-tls-native.json",
+      "bytes": 614,
+      "sha256": "8626eebf4f05ec694fcee2365091ac2d31838c24e8897574400504d32d022abe"
+    },
+    {
+      "path": "transport-development/real-tls-native.log",
+      "bytes": 6688,
+      "sha256": "67b633a01e13755d2df28ce35ecea9ecea040be333389ad299f12099083ed7bd"
+    },
+    {
+      "path": "transport-development/real-tls-reviewed.json",
+      "bytes": 578,
+      "sha256": "a18a0c187225d83556ecb48c1876e772225e407e7c6947f42d41bcf788bb8e78"
+    },
+    {
+      "path": "transport-development/real-tls-reviewed.log",
+      "bytes": 1346,
+      "sha256": "269c0e7e1f6c2cd27b268bc5fde6c63afecf4f607d05008af72ac70f279ab39e"
+    },
+    {
+      "path": "transport-development/tls-analyze-final.json",
+      "bytes": 983,
+      "sha256": "ea3dbbd5a7b97cfc632f1fb3971dc4c0e774b93f9080802a0c84d34bf4838286"
+    },
+    {
+      "path": "transport-development/tls-analyze-final.log",
+      "bytes": 261,
+      "sha256": "30db40cd39f89a81cce790b2c7fa858a21dd201659e982d35e7168449823316b"
+    },
+    {
+      "path": "transport-development/tls-analyze-first.json",
+      "bytes": 510,
+      "sha256": "89236cfbb1b61a40a9bb0ce09d7b9a7cca9dd8274ef0568ecd175021d4b42238"
+    },
+    {
+      "path": "transport-development/tls-analyze-first.log",
+      "bytes": 4400,
+      "sha256": "6542c735ca0fcd53374f6845c53b3a4bae9bd71f5e99f0615426de0d2cafca4e"
+    },
+    {
+      "path": "transport-development/tls-final-format.json",
+      "bytes": 625,
+      "sha256": "1ee6534a27714a28f9217ae6dc031ac178817c68d955ae2776ec02d615422bd2"
+    },
+    {
+      "path": "transport-development/tls-final-format.log",
+      "bytes": 47,
+      "sha256": "3f6a3f991a1f59e9f26975c37bc8644d058aa6f461201bf1e93a50d39cf1708e"
+    },
+    {
+      "path": "transport-development/tls-format.json",
+      "bytes": 570,
+      "sha256": "4449d0b0b44086f3b2456a23d5bfda9436e9e787491dff239f670943a840351f"
+    },
+    {
+      "path": "transport-development/tls-format.log",
+      "bytes": 258,
+      "sha256": "570b123014513fae52ffdf6cf2f12416311051182c386c507718f9b00377b0df"
+    },
+    {
+      "path": "transport-development/tls-inherited-connections.json",
+      "bytes": 678,
+      "sha256": "205bd41af87836e1153b47443b137f0dc936e00f0498ff648ceb0551f99d7bbd"
+    },
+    {
+      "path": "transport-development/tls-inherited-connections.log",
+      "bytes": 2304,
+      "sha256": "441394d50c84078306111a93230d2151d73a19f6d8e5150fced7b1eb31f403eb"
+    },
+    {
+      "path": "transport-development/tls-reviewed-analyze.json",
+      "bytes": 986,
+      "sha256": "5b6268313dffa628a78fa66273b90acf01ec0d923f7efc715e80b7535e6f9643"
+    },
+    {
+      "path": "transport-development/tls-reviewed-analyze.log",
+      "bytes": 261,
+      "sha256": "30db40cd39f89a81cce790b2c7fa858a21dd201659e982d35e7168449823316b"
+    },
+    {
+      "path": "transport-development/tls-test-format.json",
+      "bytes": 438,
+      "sha256": "f872e701450f03a479edbc03473a609dfcb115a2105ef4cf499fec0e6f1a339d"
+    },
+    {
+      "path": "transport-development/tls-test-format.log",
+      "bytes": 112,
+      "sha256": "25d2b96b0b6c381e117caff46d50b138ad50b0800d43c417a816dbd7a770486e"
+    }
+  ],
+  "omitted_generated_compilation_outputs": [],
+  "scope": "Development diagnostics from multiple intermediate source states, including failed fixture/style attempts and later successful controls. These logs are historical and are not attributed collectively to the final source or counted as final acceptance. Exact final acceptance is in the three source-bound gate archives."
+}
