@@ -9339,9 +9339,13 @@ class WordEditorController extends OfficeController {
           if (selected && from < end && to > offset) {
             languages.add(
               normalizeProofingLanguage(
-                inline.properties.proofingLanguage ??
-                    paragraph.properties.proofingLanguage ??
-                    document.proofingLanguage ??
+                wordRunProofingLanguage(
+                      inline,
+                      paragraph,
+                      documentLanguage: document.proofingLanguage,
+                      documentComplexScriptLanguage:
+                          document.complexScriptLanguage,
+                    ) ??
                     'de-DE',
               ),
             );
@@ -9557,6 +9561,8 @@ class WordEditorController extends OfficeController {
       [
         run.text,
         run.properties.proofingLanguage,
+        run.properties.complexScriptLanguage,
+        run.properties.complexScript,
         run.properties.noProof,
         run.properties.styleId,
         run.properties.bold,
