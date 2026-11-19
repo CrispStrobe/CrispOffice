@@ -15,6 +15,39 @@ Fetch the canonical repository's current refs before resuming.
 The source of product scope remains [README.md](README.md) and the ordered work
 remains [implementation-plan.md](implementation-plan.md).
 
+## Studio foreground-session follow-up
+
+The [current Studio continuation](../../validation/office-mail-continuation-20261119/README.md)
+reconciles the later `10bd0cc4` and `004b2ad6` branches with main `b070e228`.
+It preserves their independent source-bound evidence and restores saved EML
+reading beside the newly introduced account view. The browser entry supports
+saved messages and explicitly declines direct IMAP/SMTP accounts.
+
+The native Studio host lists folders and fifty envelope records per load through
+the existing high-level client. Selected bodies use the bounded shared IMAP
+provider with exact original octets and a frozen mailbox/UIDVALIDITY/UID identity.
+Connection and read callbacks cannot publish into a replaced session. Secure
+account discovery is required before credentials are used, public failures are
+redacted, and legacy protocol print output is scoped away from application logs.
+
+Its plain-text composer uses the shared Word RenderBox editing surface. It
+validates a single ASCII mailbox and headers, snapshots the body, generates
+quoted-printable MIME, and submits with an explicit recipient and no concurrent
+Sent-folder append. Successful submission means the sending server accepted the
+message, not delivery to the recipient. An exception after a submission attempt
+is conservatively uncertain; the session retains the draft and requires an
+explicit delivery-check acknowledgement before another attempt.
+
+This does **not** close M04W or M07: accounts/drafts remain session-only, there is
+no repository-driven mailbox or durable outbox, and no automatic resend is added.
+Only on-demand body reads use the bounded provider. The high-level folder,
+envelope and SMTP paths retain their own reconnect behavior and do not acquire
+the provider's protocol-byte limits or immediate cancellation guarantees.
+Real provider accounts, OAuth/PKCE, native credential vaults, actual browser
+persistence and installed-platform distribution remain separate acceptance gates.
+See the current report for fresh execution identity and results; previous totals
+below are historical and are not added to that gate.
+
 ## Delivered code
 
 | Area | Current implementation | Acceptance limits |

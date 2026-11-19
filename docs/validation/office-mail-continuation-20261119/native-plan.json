@@ -63,6 +63,7 @@
         "test/studio_mail_discovery_test.dart",
         "test/studio_mail_lifecycle_test.dart",
         "test/studio_mail_message_loader_test.dart",
+        "test/studio_mail_operation_test.dart",
         "test/studio_mail_test.dart",
         "test/studio_mail_web_test.dart",
         "test/studio_review_pane_test.dart",

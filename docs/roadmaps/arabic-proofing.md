@@ -101,7 +101,7 @@ below. No Arabic resource is downloaded by default.
      user-selected files); `web/proofing/` and `android/.../jniLibs/` are
      generated and ignored. The app licence page lists the Hunspell MPL 1.1
      notices (`assets/licenses/hunspell/`, `registerStudioLicenses`).
-   - Evidence (macOS arm64, Flutter 3.47.8): macOS release app built, the
+   - Incoming packaging evidence (macOS arm64, Flutter 3.47.8): macOS release app built, the
      dylib installed into `Contents/Frameworks` and the bundle re-signed
      (`codesign --verify --deep --strict` passes); the end-to-end test loads
      that bundled dylib with the AyaSpell bundle and checks a Word document
@@ -165,11 +165,12 @@ below. No Arabic resource is downloaded by default.
    `w:val="en-US" w:bidi="ar-SA"` reaches the Arabic providers; Latin runs
    keep `w:val`. Digits, punctuation and combining marks alone do not select
    the complex-script language. Unmodified attributes round-trip unchanged.
-   Setting the selection language updates both `w:val` and `w:bidi`, so the
-   choice also takes effect for Arabic/RTL runs; resetting to inherit clears
-   those two direct overrides while retaining East Asian language and other
-   native formatting. Document defaults remain live, and a changed default
-   invalidates an already captured selection target.
+   Setting the selection language updates each selected fragment's active
+   language slot (`w:bidi` for complex-script text, `w:val` otherwise); resetting
+   to inherit clears that active direct override while preserving the inactive
+   slot, East Asian language and other native formatting. Document defaults
+   remain live, and a changed default invalidates an already captured selection
+   target. Engine callers can also explicitly clear both slots.
 
    Interpreting LanguageTool's Arabic rules is assessed
    [below](#languagetool-arabic-assessment-v68).

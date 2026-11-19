@@ -9651,15 +9651,18 @@ class WordEditorController extends OfficeController {
     String language,
   ) {
     final range = WmlRunEdit.normalizeRange(preview, start, end);
-    WmlRunEdit.splitAt(preview, range.end);
-    WmlRunEdit.splitAt(preview, range.start);
+    final routingChanged = WmlRunEdit.splitProofingRange(
+      preview,
+      range.start,
+      range.end,
+    );
     // Choose the language slot from each selected fragment, rather than from
     // unselected Arabic/Hebrew letters elsewhere in its original run.
     final complexProperties = {
       for (final run in preview.inlines.whereType<WmlRun>())
         if (wordRunUsesComplexScriptLanguage(run)) run.properties,
     };
-    return _prepareTextProofingRuns(
+    final propertiesChanged = _prepareTextProofingRuns(
       preview,
       range.start,
       range.end,
@@ -9676,6 +9679,7 @@ class WordEditorController extends OfficeController {
         }
       },
     );
+    return propertiesChanged || routingChanged;
   }
 
   static bool _prepareTextProofingRuns(

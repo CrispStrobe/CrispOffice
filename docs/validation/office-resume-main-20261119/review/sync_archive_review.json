@@ -1,0 +1,22 @@
+{
+  "reviewed_ref": "origin/codex/office-main-sync-20261119",
+  "reviewed_commit": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+  "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+  "archives": [
+    {
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v4/final/evidence.tar.xz",
+      "members": 103,
+      "bytes": 1006716,
+      "sha256": "72b36a50b2096e0ff516983bbb90c342f36281a85d56eb893a3fc471671a98fc",
+      "all_member_digests_match": true
+    },
+    {
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v4/reviews/evidence.tar.xz",
+      "members": 233,
+      "bytes": 391548,
+      "sha256": "3f990831408e7867153b4546d59c466fd8418cfa7c44a003ab2374ec65c1ffdb",
+      "all_member_digests_match": true
+    }
+  ],
+  "scope": "Checks byte identity and archive completeness. Historic application counts remain bound to 5c18db77, not current merged source."
+}

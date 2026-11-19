@@ -149,6 +149,13 @@ On the right is the engine's, made in pure Dart.
 
 ## About this fork (CrispStrobe)
 
+The [19 November continuation](docs/validation/office-finish-20261119/README.md)
+reconciles the current Mail, Arabic morphology, proofing and Studio work with
+the earlier source-qualified evidence. Mail retains its account mailbox and
+saved-message reader; Word language changes preserve the inactive language
+setting. The report records the exact source, local checks and remaining
+installed-application and external-service acceptance boundaries.
+
 The Word editor now has a [document review workspace](docs/document-review.md):
 reviewer attribution, filtered pending changes, undoable batch accept/reject,
 original/final paragraph previews, and read-only comparison of two Word

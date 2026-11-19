@@ -4,6 +4,19 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Restore Studio's saved EML reader alongside native Mail accounts, preserving
+  original message bytes, full/compact reading and safe delayed file selection.
+  Keep native account transports outside the browser Mail entry and use a
+  mailbox list/detail layout on narrow windows.
+- Fetch selected native messages through the bounded Quds IMAP provider with
+  mailbox/UIDVALIDITY/UID checks. Reject insecure-origin account discovery and
+  contain server diagnostics at the Studio boundary.
+- Use the Word RenderBox surface for plain-text Mail composition. Validate one
+  recipient and headers, encode non-ASCII MIME safely, separate SMTP submission
+  from Sent-folder filing, and retain unconfirmed drafts with an explicit
+  acknowledgement before another attempt. This remains a foreground,
+  session-only host; durable outbox and real-provider qualification are separate.
+
 - Add **Add Zotero annotation** to the native Word ribbon and **Add annotation
   from Zotero…** to the references workspace. Text annotations and their active
   citations insert as one undoable operation and return focus to writing.

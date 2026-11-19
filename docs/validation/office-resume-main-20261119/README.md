@@ -34,7 +34,7 @@ or complete changed-path mode/type/blob identity. The saved union audit is a
 graph projection only. An actual integrated-head audit and fresh local
 qualification will be recorded before completion.
 
-## Integration decisions in progress
+## Reviewed integration decisions
 
 - Keep main's functional IMAP/SMTP client. Adapt lifecycle and dismissal checks
   to that client; obsolete saved-message UI tests are not valid acceptance for
@@ -47,5 +47,69 @@ qualification will be recorded before completion.
   attempts with their original source attribution. Their case counts are not
   added together or relabelled as fresh validation of this source.
 
-This checkpoint is a saved integration in progress, not a completed release or
-an accepted qualification result.
+The combined source is being frozen for fresh qualification. This checkpoint
+is not yet an accepted qualification result.
+
+
+## Remote checkpoints and validation plan
+
+The first merge is saved at `004b2ad6342cae7b2fe2750dbba5a9fdcebd3413`.
+It retains the complete `c63558c0` history and adapts its Mail lifecycle controls
+to main's current IMAP/SMTP UI. The second merge retains `1b6d280b` and preserves
+main's newer public language and native lifecycle contracts.
+
+The remaining source changes prevent token-interior Arabic phrase matches,
+keep separately formatted complex-script Word runs separate, preserve multiple
+findings from the same provider, honor dictionary cancellation at the final
+progress callback, and distinguish paused, scheduled and partial Review results
+from a completed clean check. Studio Settings/Notes and review fixtures use the
+current UI. The AyaSpell builder's executable AST and pinned constants are
+unchanged; only its generated card and corresponding wording assertions differ.
+
+The [native plan](native-plan.json) selects 33 affected test files; the
+[Node plan](node-plan.json) repeats seven portable engine files. Strict analysis
+and formatting cover every changed application/test Dart path. Three separately
+compiled C ABI libraries expose native lifecycle counters; they contain no real
+Hunspell dictionary. The native web-host tests use controlled HTTP clients and
+do not claim actual browser execution. Offline publisher and packaging controls
+are run separately from application test counts.
+
+The [independent saved-evidence audit](review/saved-evidence-independent-audit.json)
+verified all ten incoming archives and 828 members, including rejected attempts.
+It recounts the historical host run as 1,285 executions / 979 distinct cases and
+the historical sync run as 1,026 executions / 634 distinct cases. Those results
+remain attached to `9833831a` and `5c18db77`, respectively.
+
+
+## Bounded concurrent continuation and rejected first gate
+
+The first combined gate at `409258f9` was rejected because one Zotero fixture
+retained an undefined helper call after its import changed. Its complete
+[rejected-attempt archive](attempt-409258f9/README.md) is preserved; its 797
+successful visible completions contribute zero to final accepted totals.
+The helper call is corrected, and later source receives a fresh qualification.
+
+A bounded remote recapture completed at 11:18:49 UTC on 19 November 2026
+(12:18:49 CET). The raw advertisements are saved under `reconciliation/`.
+It adds three concurrent continuation heads to the prior capture:
+
+| Branch | Exact captured head | Current disposition |
+| --- | --- | --- |
+| `codex/office-mail-continuation-20261119` | `3119a4598e61f061e7b7633ea4a352d841332b9e` | Reconciled in this checkpoint |
+| `codex/office-continuation-20261119` | `e80beb2ed2fe70397a5a8fff5c9e908b04862f78` | Reviewed integration follows |
+| `codex/office-finish-20261119` | `2abf5d264e5065772fc4ca05c7cab6d34256ab9d` | Reviewed integration follows |
+
+The first of these is a reconciliation/planning checkpoint; its advertised
+saved-reader work is not implemented at that source. The other two contain
+working saved-reader implementations and additional Word metadata controls.
+Those actual implementation heads, rather than their future branch state, form
+the remaining scope. Remote main will be rechecked before merge.
+
+Compact Review controls retain truthful localized state in their tooltip and
+receive a real 390-pixel, 1.4-scale tap/visibility regression. The current Mail
+lifecycle controls explicitly cover dismissal with an existing reader and a
+pending replacement. SMTP submission is now sequenced before saving the Sent
+copy. A typed post-submission outcome preserves confirmation separately from
+Sent-copy and connection-cleanup failures; Studio reports Message sent with the
+applicable warning instead of inviting a duplicate submission. Actual submission
+failures preserve their original error/stack and never file a Sent copy.

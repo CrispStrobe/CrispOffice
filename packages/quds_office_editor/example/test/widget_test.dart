@@ -23,27 +23,28 @@ void main() {
     },
   );
 
-  testWidgets('studio hosts document, spreadsheet, and presentation workspaces', (
-    WidgetTester tester,
-  ) async {
-    await tester.binding.setSurfaceSize(const Size(1440, 900));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    await tester.pumpWidget(const QudsOfficeStudioApp());
-    await tester.pump();
+  testWidgets(
+    'studio hosts document, spreadsheet, and presentation workspaces',
+    (WidgetTester tester) async {
+      await tester.binding.setSurfaceSize(const Size(1440, 900));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      await tester.pumpWidget(const QudsOfficeStudioApp());
+      await tester.pump();
 
-    expect(find.text('CrispOffice'), findsOneWidget);
-    expect(find.text('Documents'), findsWidgets);
+      expect(find.text('CrispOffice'), findsOneWidget);
+      expect(find.text('Documents'), findsWidgets);
 
-    await tester.tap(find.text('Spreadsheets').first);
-    await tester.pump();
-    expect(find.text('Budget'), findsWidgets);
-    expect(find.text('Roster'), findsWidgets);
+      await tester.tap(find.text('Spreadsheets').first);
+      await tester.pump();
+      expect(find.text('Budget'), findsWidgets);
+      expect(find.text('Roster'), findsWidgets);
 
-    await tester.tap(find.text('Presentations').first);
-    await tester.pump();
-    expect(find.textContaining('.pptx'), findsWidgets);
-    expect(tester.takeException(), isNull);
-  });
+      await tester.tap(find.text('Presentations').first);
+      await tester.pump();
+      expect(find.textContaining('.pptx'), findsWidgets);
+      expect(tester.takeException(), isNull);
+    },
+  );
   testWidgets('Settings shows and hides Notes without another config change', (
     WidgetTester tester,
   ) async {
