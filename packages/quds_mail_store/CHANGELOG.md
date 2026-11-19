@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Add `NativeMailArchiveRestorer` for read-only inspection and verified
+  cross-profile restoration of exported originals with all recorded provenance.
+  Repeated restores deduplicate originals, add missing origins, and retain
+  confirmed progress after cancellation or partial failure.
+- Add atomic `archiveMessageWithOrigins` and `MailArchiveImportResult.originsAdded`
+  while retaining the single-origin `archiveMessage` API. The complete current
+  message and its provenance roll back together on quota or storage failure.
+- Cover changed manifests, source and codec substitution, existing corruption,
+  bounded failures, and real importer SIGKILL/reopen/retry recovery.
+
 - Add transactional `SqliteMailArchive.planExport` for an immutable selection of
   every matching original, its size and provenance, independent of paging.
 - Add native bulk EML export and explicit manifest-based resume with profile
