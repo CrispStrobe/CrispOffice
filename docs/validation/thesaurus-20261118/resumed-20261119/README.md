@@ -48,9 +48,32 @@ The plan selects 42 engine, 73 editor, ten Studio and four Mail UI suites.
 Analysis and formatting cover 29 changed Dart paths, including the new font
 helper. Original failed/interrupted evidence remains in its historical folders.
 
-## Work pending at this checkpoint
+## Complete first replay and bounded late refresh
 
-- Execute the 129-suite affected-source union and its analysis/format checks.
+The complete first replay at `59f13897` passed 1,985 distinct cases across all
+129 suites, plus strict analysis and formatting of 29 paths. Independent raw
+log and source/runtime auditing passed. Its saved results are in
+`prior-union-summary.json`, `evidence/combined-before-annotations.tar.xz` and
+`review/before-annotations/`. These results are not added to subsequent runs.
+
+A bounded final capture found Notes `bb241a34`, Mail `db7501ee` and Zotero
+`ff06e554`. Their ancestry, tests and evidence are integrated. The last adds
+Zotero Add Annotation to the engine protocol, guarded Word transaction,
+workspace/direct dialogs and Studio ribbon. The merge keeps the stable Flex
+layout and existing selection fixtures, and retains two stronger tracked
+revision assertions from Notes. No further moving-head refresh is part of
+this frozen qualification.
+
+The same 129 suites cover the incoming annotation and Mail plans. Strict
+analysis and formatting now include 30 paths. Since the annotation feature
+changes application bytes, a new final union replay and native/web fixture
+build are required. Earlier native/build source equivalence is retained only
+for the earlier checkpoint, not claimed for this new application source.
+
+## Work pending at this source checkpoint
+
+- Execute the final 129-suite affected-source union and its 30-path analysis/format checks.
+- Rebuild and verify the native/browser fixture against the final combined source.
 - Independently audit the final results and publish the exact source/evidence
   relationship without double-counting overlapping historical runs.
 - Keep the actual offline browser, installed Studio/real OS IME, and independent

@@ -7575,9 +7575,10 @@ class WordEditorController extends OfficeController {
     }
     final noteTarget = noteEditingTarget;
     _assertNoteTargetReady(noteTarget);
-    if (command == ZoteroCitingCommand.addNote && noteTarget != null) {
+    final insertsNoteText = command?.insertsNoteText == true;
+    if (insertsNoteText && noteTarget != null) {
       throw UnsupportedError(
-        'Insert Zotero notes from the document body. Citations can still be added inside footnotes and endnotes.',
+        'Insert Zotero notes and annotations from the document body. Citations can still be added inside footnotes and endnotes.',
       );
     }
     commitNoteEdits();
@@ -7608,7 +7609,7 @@ class WordEditorController extends OfficeController {
       selectedField: resolvedField,
       seedCitation: seedCitation,
     );
-    if (command == ZoteroCitingCommand.addNote) {
+    if (insertsNoteText) {
       session.assertCanInsertNoteText();
     }
     return WordZoteroTransaction._(this, session);

@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add **Add Zotero annotation** to the native Word ribbon and **Add annotation
+  from Zotero…** to the references workspace. Text annotations and their active
+  citations insert as one undoable operation and return focus to writing.
+- Apply the research-note caret, composition and stale-target guards to
+  annotation insertion. Cancelling the picker discards staged preferences and
+  temporary fields; image/ink annotations remain explicitly unsupported.
+
 - Preserve the active Notes editor, selection and composition when opening,
   closing or resizing the Review pane so language and checking actions keep
   targeting the selected footnote or endnote text.

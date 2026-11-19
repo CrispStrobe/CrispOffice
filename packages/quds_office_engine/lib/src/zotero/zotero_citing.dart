@@ -8,9 +8,16 @@ enum ZoteroCitingCommand {
   addEditCitation,
   addEditBibliography,
   addNote,
+
+  /// Opens Zotero's annotation picker, available in Zotero 9 and later.
+  addAnnotation,
   refresh,
   setDocPrefs,
-  removeCodes,
+  removeCodes;
+
+  /// These commands must insert research content before staged preferences or
+  /// temporary fields can be applied. A cancelled picker supplies no text.
+  bool get insertsNoteText => this == addNote || this == addAnnotation;
 }
 
 typedef ZoteroCitingHandler =

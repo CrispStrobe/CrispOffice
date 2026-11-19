@@ -277,8 +277,62 @@ void main() {
   ) async {
     await _open(tester);
     expect(find.text('Citation in Zotero…'), findsNothing);
+    expect(find.text('Add annotation from Zotero…'), findsNothing);
     expect(find.text('Document style…'), findsNothing);
     expect(find.text('Refresh all with Zotero'), findsNothing);
+  });
+
+  testWidgets('annotation workspace command discards cancelled staged edits', (
+    tester,
+  ) async {
+    final desktop = _Desktop([
+      (d) => d.message('Application.getActiveDocument', []),
+      (d) =>
+          d.message('Document.setDocumentData', [d.documentId, _data('Http')]),
+      (d) => d.message('Document.insertField', [d.documentId, 'Http', 0]),
+      (d) => d.message('Field.delete', [d.documentId, d.fieldId]),
+      (d) => d.message('Document.complete', [d.documentId]),
+    ]);
+    final controller = await _open(tester, desktop: desktop);
+    expect(
+      find.byTooltip(
+        'Insert text annotations and comments with active citations. Requires Zotero 9 or later.',
+      ),
+      findsOneWidget,
+    );
+    await _tap(tester, 'Add annotation from Zotero…');
+    expect(desktop.command, 'addAnnotation');
+    expect(desktop.requests, hasLength(5));
+    expect(controller.document.paragraphs.single.text, 'Before after');
+    expect(controller.zoteroFields, isEmpty);
+    expect(WordZoteroDocumentData.read(controller.document), isEmpty);
+    expect(controller.canUndo, isFalse);
+    expect(controller.isDirty, isFalse);
+    expect(
+      find.text('No Zotero annotation was inserted. The document was kept.'),
+      findsOneWidget,
+    );
+    expect(find.text('Document'), findsOneWidget);
+  });
+
+  testWidgets('annotation workspace action is disabled during Track changes', (
+    tester,
+  ) async {
+    final desktop = _Desktop([]);
+    final document = WmlDocument.empty(text: 'Before after')
+      ..trackRevisions = true;
+    final controller = await _open(
+      tester,
+      desktop: desktop,
+      document: document,
+    );
+    final button = tester.widget<OutlinedButton>(
+      find.byKey(const ValueKey<String>('zotero-add-annotation')),
+    );
+    expect(button.onPressed, isNull);
+    expect(desktop.requests, isEmpty);
+    expect(controller.document.paragraphs.single.text, 'Before after');
+    expect(controller.canUndo, isFalse);
   });
 
   testWidgets(

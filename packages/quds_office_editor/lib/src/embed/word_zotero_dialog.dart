@@ -1146,10 +1146,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       _checkTarget();
       transaction.assertCurrent();
       final result = transaction.session;
-      if (command == ZoteroCitingCommand.addNote &&
-          !result.hasInsertedNoteText) {
+      if (command.insertsNoteText && !result.hasInsertedNoteText) {
+        final content = command == ZoteroCitingCommand.addAnnotation
+            ? 'annotation'
+            : 'note';
         setState(
-          () => _notice = 'No Zotero note was inserted. The document was kept.',
+          () => _notice =
+              'No Zotero $content was inserted. The document was kept.',
         );
         return;
       }
@@ -1270,6 +1273,18 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                     ? null
                     : () => _citeWithDesktop(ZoteroCitingCommand.addNote),
                 child: const Text('Add note from Zotero…'),
+              ),
+              Tooltip(
+                message:
+                    'Insert text annotations and comments with active citations. Requires Zotero 9 or later.',
+                child: OutlinedButton(
+                  key: const ValueKey('zotero-add-annotation'),
+                  onPressed: _busy || !_canEdit
+                      ? null
+                      : () =>
+                            _citeWithDesktop(ZoteroCitingCommand.addAnnotation),
+                  child: const Text('Add annotation from Zotero…'),
+                ),
               ),
               OutlinedButton(
                 onPressed: _busy || !_canEdit
@@ -1735,6 +1750,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       ZoteroCitingCommand.addEditCitation => 'Zotero citation',
       ZoteroCitingCommand.addEditBibliography => 'Zotero bibliography',
       ZoteroCitingCommand.addNote => 'Add note from Zotero',
+      ZoteroCitingCommand.addAnnotation => 'Add annotation from Zotero',
       ZoteroCitingCommand.refresh => 'Refresh Zotero citations',
       ZoteroCitingCommand.setDocPrefs => 'Zotero document style',
       ZoteroCitingCommand.removeCodes => 'Unlink Zotero citations',
@@ -1762,6 +1778,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                     'Finish or cancel the open dialog in Zotero. You will return to your document when Zotero finishes.',
                 key: const ValueKey('zotero-command-status'),
               ),
+              if (command == ZoteroCitingCommand.addAnnotation) ...[
+                const SizedBox(height: 12),
+                const Text(
+                  'Requires Zotero 9 or later. Choose text annotations; image and ink annotations are not yet supported.',
+                  key: ValueKey('zotero-annotation-requirements'),
+                ),
+              ],
             ],
           ),
         ),

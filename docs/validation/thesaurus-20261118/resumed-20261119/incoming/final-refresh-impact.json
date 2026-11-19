@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-19T05:40:58.435704+00:00",
+  "capture": {
+    "file": "final-refresh.json",
+    "started_at_utc": "2026-11-19T05:35:16.724Z",
+    "finished_at_utc": "2026-11-19T05:35:17.867Z",
+    "refs": 391,
+    "distinct_heads": 253,
+    "changes_besides_own_branch_and_pr": 6,
+    "new_distinct_heads": 3
+  },
+  "comparison_head": "15d519599017c9df18ebfba19704998825a2c86e",
+  "frozen_validation_source": "59f13897fd5aafccc234c58f41370dd786703418",
+  "main_unchanged": true,
+  "working_pr": {
+    "number": 174,
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/174",
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "mergeable": true,
+    "head": "codex/offline-thesaurus-20261118",
+    "head_sha": "15d519599017c9df18ebfba19704998825a2c86e",
+    "base": "main",
+    "base_sha": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+    "updated_at": "2026-11-19T05:34:10Z"
+  },
+  "merge_order": [
+    {
+      "order": 1,
+      "name": "Notes",
+      "head": "bb241a34a1722a44b29f51fdce4be64e0ffc47b9",
+      "reason": "Contains our frozen59f13897 source checkpoint, Mail0ce21097 and Zotero integrationf3b7dc3. Resolve equivalent merge choices first.",
+      "source_choice": "Keep current stable Flex and omit redundant document-pane GlobalKey; retain existing disjoint provider fixture names if desired; add the two stronger tracked-revision length/identity assertions."
+    },
+    {
+      "order": 2,
+      "name": "Mail",
+      "head": "db7501ee42c97e8da42b776a4213802cac41a9b0",
+      "reason": "Its parent0ce21097 is already in Notes. Its sole later commit adds five runtime/evidence files, without application/test/harness changes."
+    },
+    {
+      "order": 3,
+      "name": "Zotero",
+      "head": "ff06e5544673ce7f70be983299241bcdcef780d3",
+      "reason": "Its parentf3b7dc3 is already in Notes. The remaining commit introduces Add Annotation and its regression cases."
+    }
+  ],
+  "annotation_feature": {
+    "commit": "ff06e5544673ce7f70be983299241bcdcef780d3",
+    "parent": "f3b7dc3bf4a994781e40fa89e076ebe485ce3d0d",
+    "application_source_files": [
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart"
+    ],
+    "changed_test_suites": [
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart"
+    ],
+    "behavior": "Adds Add Annotation to the existing guarded Zotero text-insertion transaction, protocol enum, workspace/direct dialog and Studio ribbon. Cancelled pickers retain the document; note/body composition and supported-target guards apply to both insertion commands. The incoming source documents Zotero9 or later and rejects image/ink structures.",
+    "qualification_status_in_incoming_readme": "Frozen98-file qualification pending at captured commit; development checks are not final qualification.",
+    "expected_net_new_case_count_from_static_loop_expansion": 32,
+    "expected_case_deltas": {
+      "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart": {
+        "net_new_cases": 2,
+        "basis": "Existing note protocol case becomes a two-command loop (+1); new unsupported-annotation error/drain case (+1)."
+      },
+      "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart": {
+        "net_new_cases": 26,
+        "basis": "Three citation style variants (+3); fourteen early-refusal scenarios (+14); seven existing guard scenarios run for both commands (+7); two existing widget scenarios run for both commands (+2)."
+      },
+      "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": {
+        "net_new_cases": 2,
+        "basis": "Cancelled annotation staging and Track Changes disabled action."
+      },
+      "packages/quds_office_editor/test/word_zotero_direct_command_test.dart": {
+        "net_new_cases": 1,
+        "basis": "Unavailable annotation command retains version guidance and untouched data."
+      },
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": {
+        "net_new_cases": 1,
+        "basis": "One ribbon test becomes a two-command loop."
+      }
+    },
+    "case_count_limit": "Static expectation of +32 compared with the frozen129 source. Actual fresh raw events determine accepted counts; changed case names and repeated runs must not be added as independent passes."
+  },
+  "plan_impact": {
+    "current_plan_sha256": "014d754194049684543e4c3b430c1f60769a4b5ad1644469c466a199e2ffd02e",
+    "current_suite_count": 129,
+    "required_suite_count_after_integration": 129,
+    "new_suite_files": [],
+    "annotation_plan_suite_pairs": 98,
+    "annotation_plan_selected": 92,
+    "annotation_plan_preserved_mail": 6,
+    "annotation_plan_uncovered": [],
+    "incoming_mail_plan_suite_pairs": 72,
+    "incoming_mail_plan_uncovered": [],
+    "feature_test_paths_selected": true,
+    "analysis_additions": [
+      "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart"
+    ],
+    "format_additions": [
+      "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart"
+    ],
+    "expected_analysis_and_format_targets": 30
+  },
+  "preservation_decisions": [
+    "Finish and archive the running129-suite attempt under59f13897 before any application/test mutation.",
+    "Keep current source-bound run_targeted.py, test_run_targeted.py and plan.json. Mail/Zotero forks predate these hardening commits; do not replace them with earlier branch versions.",
+    "Keep Notes controller/focus/selection assertions through responsive transitions and the existing real-font helper.",
+    "Adding annotation changes application bytes, so the earlier source-continuity statement no longer extends to the new integrated app. Keep old native/build evidence under3847d5f4; a current combined-source compile/native claim requires a fresh source-bound run.",
+    "Saved Mail package/tool sources have no feature delta in any captured late head; preserve their separate qualification under original receipts."
+  ],
+  "validation_followup": {
+    "minimum_new_or_resolved_suites": [
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart"
+    ],
+    "full_selected_plan_after_freeze": 129,
+    "native_fixture_if_current_build_claimed": "Rerun source-bound native/build fixture after final integration; preserve all original attempts.",
+    "static_checks": "Run30 analysis/format targets including word_zotero_citing_dialog_test.dart; do not count this report as test execution."
+  },
+  "exact_tree_comparison_file": "final-refresh-tree-differences.json",
+  "api_comparison_inputs": "final-refresh-impact-inputs.json",
+  "root_checkout_mutated": false,
+  "scratch_only_fetch": "Three fixed captured SHAs fetched into incoming-audit/late-objects.git for immutable tree comparison; root checkout/ref/object store unchanged.",
+  "github_actions_calls": 0,
+  "further_remote_refresh_recommended": false,
+  "passed": true
+}
