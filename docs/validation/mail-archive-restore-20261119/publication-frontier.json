@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "observation_cutoff_utc": "2026-11-19T18:12:15Z",
+  "scope": "Bounded read-only publication frontier observation. No branch, PR or repository source was modified by this review.",
+  "captured_ref_inventory": {
+    "path": "publication-remote-refs.txt",
+    "sha256": "5d08cf39f33a9708aeb09546fb6585107abae5d222c38f54e12822159b2597b2",
+    "ref_count": 227,
+    "branch_ref_count": 16,
+    "pull_ref_count": 211,
+    "relevant_refs": {
+      "refs/heads/codex/crispoffice-layout-theme-20261119": "4fd010fcae209b6ea033828d76908508b7327b9f",
+      "refs/heads/codex/mail-archive-restore-20261119": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+      "refs/heads/codex/vba-arrays-foreach-20261119": "edd3508661bd3a2a07c84bda468ba4a4b8a27826",
+      "refs/heads/main": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "refs/pull/209/head": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+      "refs/pull/210/head": "ac9de9e000274718145659da0abc7c8cadb9e8c3",
+      "refs/pull/211/head": "4fd010fcae209b6ea033828d76908508b7327b9f"
+    }
+  },
+  "accepted_milestone": {
+    "product_source_freeze": "358544a48466c942873a4718a87fa9d1c2be11f7",
+    "product_source_freeze_committed_at_utc": "2026-11-19T17:55:59Z",
+    "final_mail_accepted_source": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+    "final_mail_accepted_tree": "8e21cf2370f18ee6f02836cb6b465799a6512004",
+    "final_validation_harness_commit_at_utc": "2026-11-19T18:02:02Z",
+    "final_mail_run_completed_at_utc": "2026-11-19T18:08:09.154384+00:00",
+    "timing_note": "PR210 was opened one second before the final validation-harness commit, but its branch and substantive new code appeared after the product-source freeze. Its latest observed compiler fix was published after the mail acceptance run completed.",
+    "subsequent_evidence_publication_reported_by_parent": {
+      "sha": "1a99845fe628c9e539d4bca7e7c586c5616da267",
+      "tree": "50a2e5a00cb30f81036fa29311c3fcf6bc24da35",
+      "basis": "Parent's verified remote checkpoint reported after this bounded PR observation; not a new fetch of the moving draft frontier."
+    }
+  },
+  "main": {
+    "sha": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+    "url": "https://github.com/CrispStrobe/quds_office_suite/tree/main",
+    "matches_accepted_base": true,
+    "movement_observed": false,
+    "committed_at_utc": "2026-11-19T17:49:23Z"
+  },
+  "own_pr_at_observation": {
+    "number": 209,
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/209",
+    "title": "Restore exported mail archives with verified originals and provenance",
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "created_at_utc": "2026-11-19T17:54:02Z",
+    "updated_at_utc": "2026-11-19T18:02:06Z",
+    "head_ref": "codex/mail-archive-restore-20261119",
+    "head_sha": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+    "base_ref": "main",
+    "base_sha": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+    "mergeable": true,
+    "note": "The observed head was the accepted source before evidence-only publication. The parent subsequently reported the evidence checkpoint above; the final merge must use the final reviewed PR head."
+  },
+  "post_freeze_development": [
+    {
+      "number": 210,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/210",
+      "title": "Extend bounded VBA macros with typed arrays and For Each",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "created_at_utc": "2026-11-19T18:02:01Z",
+      "updated_at_utc": "2026-11-19T18:10:35Z",
+      "head_ref": "codex/vba-arrays-foreach-20261119",
+      "head_sha": "c3eaf57c85d363b1453f2a3407ba62768b0e2c08",
+      "base_ref": "main",
+      "base_sha": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "mergeable": true,
+      "classification": "independent ongoing post-freeze development",
+      "first_branch_checkpoint": {
+        "sha": "6918f91dabc79a778f944d0ad0cfd2ff8ef4d809",
+        "date_utc": "2026-11-19T17:57:13Z"
+      },
+      "first_substantive_checkpoint": {
+        "sha": "21a6b9a5a8ae4956d2829e7b7359f3b06dc55697",
+        "date_utc": "2026-11-19T18:00:14Z"
+      },
+      "latest_observed_commit": {
+        "sha": "c3eaf57c85d363b1453f2a3407ba62768b0e2c08",
+        "date_utc": "2026-11-19T18:10:32Z",
+        "message": "Preserve bare VBA comparison calls alongside indexed array writes [skip ci]"
+      },
+      "published_qualification": {
+        "path": "docs/validation/office-vba-arrays-20261119/engine/receipt.json",
+        "success": true,
+        "source_commit": "ac9de9e000274718145659da0abc7c8cadb9e8c3",
+        "source_commit_after": "ac9de9e000274718145659da0abc7c8cadb9e8c3",
+        "completed_at_utc": "2026-11-19T18:07:31.499799+00:00",
+        "covers_latest_observed_product_tip": false,
+        "latest_tip_changes_after_qualification": [
+          "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "packages/quds_office_engine/test/office_vba_arrays_test.dart"
+        ],
+        "note": "Published acceptance binds ac9de9e0. The later c3eaf57c commit changes the compiler and array regression tests, so that earlier receipt does not qualify the latest observed tip. PR remains a draft and its description says final acceptance and review are in progress."
+      },
+      "comparison_to_accepted_mail": {
+        "base": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+        "head": "c3eaf57c85d363b1453f2a3407ba62768b0e2c08",
+        "url": "https://github.com/CrispStrobe/quds_office_suite/compare/0c77b3488eb534868a7f98271ba2923d06759b8d...c3eaf57c85d363b1453f2a3407ba62768b0e2c08",
+        "status": "diverged",
+        "ahead_by": 5,
+        "behind_by": 1,
+        "merge_base": "358544a48466c942873a4718a87fa9d1c2be11f7",
+        "changed_path_count": 106,
+        "product_and_test_paths": [
+          "packages/quds_office_engine/example/macros/array_report.bas",
+          "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+          "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart",
+          "packages/quds_office_engine/test/office_vba_arrays_test.dart",
+          "packages/quds_office_engine/tool/macros/web_vba_arrays_smoke.dart"
+        ],
+        "workflow_paths": [
+          ".github/workflows/office-macros.yml"
+        ],
+        "overlap_with_accepted_delta_from_main": [],
+        "conflict_assessment": "No changed-path overlap with the accepted mail delta from current main. This is a path comparison, not an attempted merge or a new combined-source qualification."
+      },
+      "requires_integration_before_mail_merge": false
+    },
+    {
+      "number": 211,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211",
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "created_at_utc": "2026-11-19T18:09:34Z",
+      "updated_at_utc": "2026-11-19T18:11:37Z",
+      "head_ref": "codex/crispoffice-layout-theme-20261119",
+      "head_sha": "288b493ee5891ba3abc44c37584c7517f46a6a5c",
+      "base_ref": "main",
+      "base_sha": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "mergeable": true,
+      "classification": "independent ongoing post-freeze development",
+      "first_substantive_checkpoint": {
+        "sha": "4fd010fcae209b6ea033828d76908508b7327b9f",
+        "date_utc": "2026-11-19T18:06:39Z"
+      },
+      "latest_observed_commit": {
+        "sha": "288b493ee5891ba3abc44c37584c7517f46a6a5c",
+        "date_utc": "2026-11-19T18:11:34Z",
+        "message": "Add compact choice menus, precise layout dialogs, and themed Studio chrome [skip ci]"
+      },
+      "published_qualification": {
+        "note": "Draft PR reports 17 focused editor cases for the first checkpoint and says host dialog/ribbon tests and visual review are in progress. A second substantive Studio/dialog commit appeared during this observation. No completed final qualification for that later head was established by this review."
+      },
+      "comparison_to_accepted_mail": {
+        "base": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+        "head": "288b493ee5891ba3abc44c37584c7517f46a6a5c",
+        "url": "https://github.com/CrispStrobe/quds_office_suite/compare/0c77b3488eb534868a7f98271ba2923d06759b8d...288b493ee5891ba3abc44c37584c7517f46a6a5c",
+        "status": "diverged",
+        "ahead_by": 2,
+        "behind_by": 2,
+        "merge_base": "37ac6ea8a08225a42098c455deb5375837912eec",
+        "changed_path_count": 27,
+        "product_and_test_paths": [
+          "packages/quds_office_editor/CHANGELOG.md",
+          "packages/quds_office_editor/example/lib/studio_chrome.dart",
+          "packages/quds_office_editor/example/lib/studio_material_theme.dart",
+          "packages/quds_office_editor/example/lib/studio_page_layout_dialog.dart",
+          "packages/quds_office_editor/example/lib/studio_paragraph_dialog.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+          "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+          "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+          "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+          "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+          "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/test/support/studio_document_mode.dart",
+          "packages/quds_office_editor/lib/quds_office_editor.dart",
+          "packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart",
+          "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+          "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+          "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "packages/quds_office_editor/lib/src/embed/office_theme.dart",
+          "packages/quds_office_editor/lib/src/embed/word_page_layout.dart",
+          "packages/quds_office_editor/lib/src/ui_components/office_chrome.dart",
+          "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+          "packages/quds_office_editor/test/office_dark_document_test.dart",
+          "packages/quds_office_editor/test/word_page_layout_test.dart"
+        ],
+        "workflow_paths": [],
+        "overlap_with_accepted_delta_from_main": [],
+        "conflict_assessment": "No changed-path overlap with the accepted mail delta from current main. This is a path comparison, not an attempted merge or a new combined-source qualification."
+      },
+      "requires_integration_before_mail_merge": false
+    }
+  ],
+  "observation_limits": [
+    "The supplied ls-remote capture and subsequent API reads are not atomic. Both new branches advanced between captured references and this review; their immutable inspected SHAs are recorded explicitly.",
+    "No Actions, workflow-run, job, status or check-run endpoints were queried or awaited.",
+    "No merge was attempted and no product/test source was changed. Path-disjoint changes still require their own combined-source qualification when integrated later.",
+    "Subsequent draft-branch development is outside this bounded observation. Refresh the expected main and final own-PR head immediately before publishing the accepted milestone."
+  ],
+  "conclusion": {
+    "main_moved": false,
+    "completed_new_incoming_work_requiring_integration_identified": false,
+    "observed_dependency_of_mail_restore_on_new_branches": false,
+    "recommendation": "Publish and merge the accepted mail restoration milestone while preserving expected-main and final-head checks. Keep PR210/211 as independent draft work for their own completion and qualification."
+  }
+}

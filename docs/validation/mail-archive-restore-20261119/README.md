@@ -137,6 +137,27 @@ also retained, with no duplicate contribution to accepted counts. Test totals
 count a case separately when deliberately executed on VM and Node; file totals
 deduplicate paths. Previous milestone totals are never reused.
 
+## Publication
+
+The implementation, tests, harness and accepted evidence were saved incrementally
+to `codex/mail-archive-restore-20261119` with expected-head, non-forced updates.
+Evidence checkpoint `1a99845fe628c9e539d4bca7e7c586c5616da267` has tree
+`50a2e5a00cb30f81036fa29311c3fcf6bc24da35`, verified against the local staged
+tree before publication. The [publication check](publication-check.json) rehashes
+all 4,441 accepted source inputs and checks their published Git blobs, incoming
+main ancestry and unchanged audit/receipt identities. The final checkpoint adds
+only publication documentation. [verify-publication.py](verify-publication.py)
+can repeat the check against the final PR head or merge commit.
+
+The [bounded publication-frontier review](publication-frontier.json) records
+two newer, independent draft PRs: #210 (VBA arrays/For Each) and #211 (Layout and
+theme). They began substantive development after this milestone's product
+freeze and were still undergoing qualification at the recorded cutoff. Neither
+is a prerequisite for archive restoration. They remain separate work; the
+accepted GUI/VBA/macOS frontier through `cf59efa9` is included in this milestone.
+The remote main and final PR head are checked again immediately before merging
+PR #209, and the resulting merge tree is compared with the publication tree.
+
 ## Boundaries
 
 This restores exported messages and provenance. It does not restore a complete
