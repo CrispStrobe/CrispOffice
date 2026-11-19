@@ -17,6 +17,7 @@ abstract final class CrispOfficeSample {
     }
 
     return WmlDocument(
+      proofingLanguage: 'en-GB',
       sections: <WmlSection>[
         WmlSection(
           blocks: <WmlBlock>[

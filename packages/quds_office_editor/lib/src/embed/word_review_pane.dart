@@ -463,11 +463,19 @@ class _WordReviewPaneState extends State<WordReviewPane> {
     final problems = <String>{
       for (final report in summary.reports)
         for (final result in report.results)
-          if (result.status != OfficeProofingStatus.success)
+          if (result.status != OfficeProofingStatus.success &&
+              result.status != OfficeProofingStatus.unsupported)
             '${result.providerId}: ${result.message ?? result.status.name}',
     };
     return <Widget>[
       if (_c.reviewTextProofingOptionsVisible) _textProofingOptions(),
+      if (_c.onManageProofingDownloads != null)
+        TextButton.icon(
+          key: const ValueKey<String>('proofing-downloads-manager'),
+          onPressed: _c.onManageProofingDownloads,
+          icon: const Icon(Icons.download_outlined),
+          label: Text(_s('Language downloads', 'تنزيلات اللغة')),
+        ),
       SwitchListTile.adaptive(
         key: const ValueKey<String>('live-proofing-background'),
         contentPadding: EdgeInsets.zero,

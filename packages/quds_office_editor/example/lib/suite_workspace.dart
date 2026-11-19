@@ -1,3 +1,4 @@
+import 'studio_downloads_manager.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -30,7 +31,6 @@ import 'studio_pdf_surface.dart';
 import 'studio_arabic_morph_host.dart';
 import 'studio_language_id_host.dart';
 import 'studio_hunspell_host.dart';
-import 'studio_hunspell_setup.dart';
 import 'studio_spacy_host.dart';
 import 'studio_spacy_setup.dart';
 import 'studio_window.dart';
@@ -1286,6 +1286,20 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
+                    ListTile(
+                      leading: const Icon(Icons.download_outlined),
+                      title: Text(
+                        _t(
+                          'Language downloads',
+                          'Sprachdownloads',
+                          'تنزيلات اللغة',
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.pop(dialogContext);
+                        unawaited(_showLanguageDownloads());
+                      },
+                    ),
                     DropdownButtonFormField<OfficeInteractionMode>(
                       isExpanded: true,
                       initialValue: _mode,
@@ -3957,12 +3971,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
           _cmd(
             Icons.download_for_offline_outlined,
-            _t(
-              'Dictionaries',
-              StudioStrings.de('Dictionaries'),
-              'قواميس التدقيق',
-            ),
-            _showHunspellSetup,
+            _t('Language downloads', 'Sprachdownloads', 'تنزيلات اللغة'),
+            _showLanguageDownloads,
           ),
           _cmd(
             Icons.edit_note,
@@ -6329,6 +6339,24 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       // Harper remains local and initializes only for an English request.
       // Missing optional native/web artifacts are reported in the review UI.
       controller.proofing.configure(_wordProofingService(controller));
+      controller.onManageProofingDownloads = () => _showLanguageDownloads();
+      controller.onProofingLanguageChanged = (language) {
+        if (!mounted || !identical(controller, _word)) return;
+        _pendingDownloadLanguages.add(language);
+        if (_languageDownloadsScheduled) return;
+        _languageDownloadsScheduled = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _languageDownloadsScheduled = false;
+          if (!mounted || !identical(controller, _word)) {
+            _pendingDownloadLanguages.clear();
+            return;
+          }
+          final languages = Set<String>.of(_pendingDownloadLanguages);
+          _pendingDownloadLanguages.clear();
+          unawaited(_showLanguageDownloads(languages: languages));
+        });
+      };
+
       // Set the Studio session's initial preference once. Rebuilding the editor
       // or returning from another app must preserve a later user opt-out.
       controller.proofing.enabled = true;
@@ -6517,9 +6545,23 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _word.proofing.configure(_wordProofingService(_word));
   }
 
-  Future<void> _showHunspellSetup() async {
-    await showStudioHunspellSetup(context, morphHost: studioArabicMorphHost);
-    if (mounted) _wordFocus.requestFocus();
+  final Set<String> _pendingDownloadLanguages = <String>{};
+  bool _languageDownloadsScheduled = false;
+  Future<void> _showLanguageDownloads({
+    Set<String> languages = const <String>{},
+  }) async {
+    await showStudioDownloadsManager(context, languages: languages);
+    if (!mounted) return;
+    switch (_app) {
+      case SuiteApp.word:
+        _wordFocus.requestFocus();
+      case SuiteApp.excel:
+        _sheetFocus.requestFocus();
+      case SuiteApp.powerpoint:
+        _slideFocus.requestFocus();
+      case SuiteApp.pdf:
+        break;
+    }
   }
 
   Future<void> _showSpacySetup() async {
