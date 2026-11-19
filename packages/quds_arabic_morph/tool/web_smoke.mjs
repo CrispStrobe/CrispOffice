@@ -1,8 +1,10 @@
 // Drives the shipped web worker (build/web/arabic_morph_worker.mjs + the
 // bundled Emscripten module) through its message protocol in Node:
-//   node tool/web_smoke.mjs <build/web dir> <noprob bundle dir> [corpus.txt]
-// The corpus (one sentence per line, e.g. the UD Arabic-PUD `# text` lines)
-// is split into distinct Arabic words and analyzed in one batch.
+//   node tool/web_smoke.mjs <build/web dir> <bundle dir> [corpus.txt]
+// The bundle dir holds a verified bundle (proofing-bin); its manifest lists
+// the files. The corpus (one sentence per line, e.g. the UD Arabic-PUD
+// `# text` lines) is split into distinct Arabic words and analyzed in
+// batches of 512, like the Dart transport; replies are compact buffers.
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -23,9 +25,9 @@ const mb = bytes => Math.round(bytes / 1048576);
 
 const before = await send({op: 'analyze', words: ['كتبوا']});
 assert(before.unavailable, 'analyze before open is unavailable');
-const names = ['manifest.json', 'NOTICE', 'LICENSE', 'camel_morph_msa_v1.0.noprob.db'];
 const read = name => fs.readFileSync(path.join(bundleDir, name));
 const manifest = read('manifest.json');
+const names = ['manifest.json', ...JSON.parse(manifest).files.map(f => f.path)];
 const manifestSha256 = crypto.createHash('sha256').update(manifest).digest('hex');
 const badOpen = await send({op: 'open', manifestSha256: '0'.repeat(64),
   files: [{name: 'manifest.json', bytes: manifest}]});
@@ -36,8 +38,50 @@ const opened = await send({op: 'open', manifestSha256, files: names.map(name => 
 const loadSeconds = (performance.now() - started) / 1000;
 const openBody = JSON.parse(opened.response);
 assert(openBody.status === 'success', `open: ${opened.response}`);
-const analyses = JSON.parse((await send({op: 'analyze', words: ['كتبوا', 'والمدرسة', 'xyzzy', '']})).response);
-const [katabu, walmadrasa, latin] = analyses.results;
+// Decodes a compact batch buffer into arrays of {feature: value} objects
+// (null for a rejected word).
+const keys = openBody.info.keys;
+const utf8 = new TextDecoder();
+function decode(buffer, count) {
+  const view = new DataView(buffer);
+  assert(view.getUint32(0, true) === 0x31434D41 && view.getUint32(4, true) === count, 'compact header');
+  let at = 8;
+  const out = [];
+  for (let w = 0; w < count; w++) {
+    const status = view.getUint32(at, true);
+    const length = view.getUint32(at + 4, true);
+    at += 8;
+    if (status !== 0) { out.push(null); at += length; continue; }
+    const n = view.getUint32(at, true), strings = view.getUint32(at + 4, true), wide = view.getUint8(at + 8);
+    let p = at + 12;
+    const values = [];
+    for (let i = 0; i < strings; i++) {
+      const len = view.getUint32(p + 1, true);
+      values.push(utf8.decode(new Uint8Array(buffer, p + 5, len)));
+      p += 5 + len;
+    }
+    const analyses = [];
+    for (let a = 0; a < n; a++) {
+      const features = view.getUint16(p, true);
+      p += 2;
+      const analysis = {};
+      for (let f = 0; f < features; f++) {
+        const key = wide ? view.getUint16(p, true) : view.getUint8(p);
+        const ref = wide ? view.getUint32(p + 2, true) : view.getUint16(p + 1, true);
+        p += wide ? 6 : 3;
+        if (ref !== (wide ? 0xFFFFFFFF : 0xFFFF)) analysis[keys[key]] = values[ref];
+      }
+      analyses.push(analysis);
+    }
+    assert(p === at + length, 'record length');
+    out.push(analyses);
+    at += length;
+  }
+  assert(at === buffer.byteLength, 'buffer length');
+  return out;
+}
+const analyze = async words => decode((await send({op: 'analyze', words})).buffer, words.length);
+const [katabu, walmadrasa, latin] = await analyze(['كتبوا', 'والمدرسة', 'xyzzy', '']);
 assert(katabu.some(a => a.lex === 'كَتَب' && a.pos === 'verb' && a.num === 'p'), 'كتبوا: lex كَتَب verb plural');
 assert(walmadrasa.some(a => a.pos === 'noun' && a.prc2 === 'wa_conj' && a.prc0 === 'Al_det'),
   'والمدرسة: noun with wa_conj and Al_det');
@@ -51,7 +95,8 @@ if (corpus) {
   const words = [...new Set(fs.readFileSync(corpus, 'utf8').split('\n')
     .flatMap(line => line.match(/[\p{L}\p{M}]+/gu) ?? []).filter(word => arabic.test(word)))];
   started = performance.now();
-  const results = JSON.parse((await send({op: 'analyze', words})).response).results;
+  const results = [];
+  for (let i = 0; i < words.length; i += 512) results.push(...await analyze(words.slice(i, i + 512)));
   const seconds = (performance.now() - started) / 1000;
   report.distinct_words = words.length;
   report.analyzed = results.filter(r => Array.isArray(r) && r.length).length;
@@ -59,5 +104,6 @@ if (corpus) {
   report.seconds = seconds;
   report.words_per_second = Math.round(words.length / seconds);
   report.wasm_heap_mb_after = mb(JSON.parse((await send({op: 'stats'})).response).heapBytes);
+  report.process_rss_growth_mb_after = mb(process.memoryUsage().rss - rssBefore);
 }
 console.log(JSON.stringify(report, null, 2));

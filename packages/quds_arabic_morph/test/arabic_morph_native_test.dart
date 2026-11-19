@@ -10,7 +10,8 @@ import 'package:test/test.dart';
 
 /// Real-backend tests: QUDS_ARABIC_MORPH_TEST_LIBRARY is the built
 /// libquds_arabic_morph and QUDS_ARABIC_MORPH_TEST_BUNDLE the directory with
-/// the verified noprob bundle (manifest.json, NOTICE, LICENSE, database).
+/// the verified proofing-bin bundle (manifest.json, NOTICE, LICENSE,
+/// database).
 final _library = Platform.environment['QUDS_ARABIC_MORPH_TEST_LIBRARY'];
 final _bundle = Platform.environment['QUDS_ARABIC_MORPH_TEST_BUNDLE'];
 final Object _skip = _library == null || _bundle == null
@@ -18,13 +19,13 @@ final Object _skip = _library == null || _bundle == null
     : false;
 
 MorphDatabaseFiles _files(String directory) => MorphDatabaseFiles(
-  camelMorphMsaNoprob,
+  camelMorphMsaProofingBin,
   manifestPath: '$directory/manifest.json',
 );
 
 Directory _copyBundle() {
   final copy = Directory.systemTemp.createTempSync('arabic-morph-bundle-');
-  for (final artifact in camelMorphMsaNoprob.files) {
+  for (final artifact in camelMorphMsaProofingBin.files) {
     File('$_bundle/${artifact.file}').copySync('${copy.path}/${artifact.file}');
   }
   return copy;
@@ -46,7 +47,7 @@ void main() {
     await morphology.dispose();
   });
 
-  group('real library and noprob database', () {
+  group('real library and proofing-bin database', () {
     late CamelArabicMorphology morphology;
     setUpAll(() async {
       morphology = CamelArabicMorphology(
@@ -58,12 +59,14 @@ void main() {
     });
     tearDownAll(() => morphology.dispose());
 
-    test('loads the pinned noprob variant', () {
+    test('maps the pinned proofing-bin variant', () {
       expect(morphology.isAvailable, isTrue);
       final info = morphology.info!;
-      expect(info['variant'], 'noprob');
-      expect(info['db_sha256'], camelMorphMsaNoprob.database.sha256);
-      expect(info['manifest_sha256'], camelMorphMsaNoprob.manifest.sha256);
+      expect(info['variant'], 'proofing-bin');
+      expect(info['db_format'], 'binary');
+      expect(info['storage'], 'mapped');
+      expect(info['db_sha256'], camelMorphMsaProofingBin.database.sha256);
+      expect(info['manifest_sha256'], camelMorphMsaProofingBin.manifest.sha256);
       expect(info['backoff'], 'NONE');
     });
 
@@ -89,10 +92,15 @@ void main() {
           ),
         ),
       );
-      // noprob carries the -99.0 placeholder for every probability field.
+      // Only the proofing profile is stored and returned.
       final first = result['كتبوا']!.first;
-      expect(first['pos_lex_logprob'], '-99.0');
-      expect(first.keys, containsAll(['diac', 'lex', 'bw', 'pos', 'gloss']));
+      expect(
+        first.keys,
+        containsAll(['diac', 'lex', 'root', 'pos', 'per', 'gen', 'num']),
+      );
+      for (final dropped in ['gloss', 'bw', 'caphi', 'pos_lex_logprob']) {
+        expect(first[dropped], isNull);
+      }
     });
 
     test('harakat and tatweel are normalized by the analyzer', () async {
@@ -171,6 +179,48 @@ void main() {
     });
   }, skip: _skip);
 
+  test('earlier bundles are removed, the current one is kept', () async {
+    final root = Directory.systemTemp.createTempSync('arabic-morph-stale-');
+    try {
+      final parent = Directory('${root.path}/arabic_morph')..createSync();
+      final current = camelMorphMsaProofingBin;
+      final old = camelMorphMsaNoprob;
+      for (final name in [
+        '${current.revision}-${current.id}',
+        '${old.revision}-${old.id}',
+        '.removing-x-1',
+        '.staging-abc',
+      ]) {
+        Directory('${parent.path}/$name').createSync();
+        File('${parent.path}/$name/file').writeAsStringSync('x');
+      }
+      File('${parent.path}/unrelated.txt').writeAsStringSync('x');
+      final removed = await MorphInstaller(root).removeOtherBundles(current);
+      expect(
+        removed,
+        unorderedEquals(['${old.revision}-${old.id}', '.removing-x-1']),
+      );
+      expect(
+        parent.listSync().map(
+          (e) => e.uri.pathSegments.lastWhere((s) => s.isNotEmpty),
+        ),
+        unorderedEquals([
+          '${current.revision}-${current.id}',
+          '.staging-abc',
+          'unrelated.txt',
+        ]),
+      );
+      expect(
+        await MorphInstaller(
+          Directory('${root.path}/none'),
+        ).removeOtherBundles(current),
+        isEmpty,
+      );
+    } finally {
+      root.deleteSync(recursive: true);
+    }
+  });
+
   group('installer', () {
     late Directory root;
     late HttpServer server;
@@ -179,7 +229,7 @@ void main() {
     setUp(() async {
       root = Directory.systemTemp.createTempSync('arabic-morph-install-');
       requests = 0;
-      for (final artifact in camelMorphMsaNoprob.files) {
+      for (final artifact in camelMorphMsaProofingBin.files) {
         served[artifact.file] = File(
           '$_bundle/${artifact.file}',
         ).readAsBytesSync();
@@ -210,11 +260,11 @@ void main() {
       () async {
         final progress = <int>[];
         final files = await installer().install(
-          camelMorphMsaNoprob,
+          camelMorphMsaProofingBin,
           onProgress: (received, total) => progress.add(received),
         );
-        expect(progress.last, camelMorphMsaNoprob.totalBytes);
-        expect(requests, camelMorphMsaNoprob.files.length);
+        expect(progress.last, camelMorphMsaProofingBin.totalBytes);
+        expect(requests, camelMorphMsaProofingBin.files.length);
         final morphology = CamelArabicMorphology(
           database: files,
           nativeLibraryPath: _library,
@@ -223,9 +273,12 @@ void main() {
         expect(morphology.isAvailable, isTrue);
         await morphology.dispose();
         // Reuse: no second download.
-        await installer().install(camelMorphMsaNoprob);
-        expect(requests, camelMorphMsaNoprob.files.length);
-        expect(await installer().installed(camelMorphMsaNoprob), isNotNull);
+        await installer().install(camelMorphMsaProofingBin);
+        expect(requests, camelMorphMsaProofingBin.files.length);
+        expect(
+          await installer().installed(camelMorphMsaProofingBin),
+          isNotNull,
+        );
         // Tampering after installation is detected, never used.
         File(files.manifestPath).parent
             .listSync()
@@ -233,30 +286,30 @@ void main() {
             .first
             .writeAsStringSync('x', mode: FileMode.append);
         await expectLater(
-          installer().installed(camelMorphMsaNoprob),
+          installer().installed(camelMorphMsaProofingBin),
           throwsA(isA<MorphInstallException>()),
         );
-        await installer().remove(camelMorphMsaNoprob);
-        expect(await installer().installed(camelMorphMsaNoprob), isNull);
+        await installer().remove(camelMorphMsaProofingBin);
+        expect(await installer().installed(camelMorphMsaProofingBin), isNull);
         expect(Directory('${root.path}/arabic_morph').listSync(), isEmpty);
       },
     );
 
     test('a changed download is rejected and nothing is installed', () async {
-      final db = camelMorphMsaNoprob.database.file;
+      final db = camelMorphMsaProofingBin.database.file;
       served[db] = [...served[db]!]..[1000] ^= 1;
       await expectLater(
-        installer().install(camelMorphMsaNoprob),
+        installer().install(camelMorphMsaProofingBin),
         throwsA(isA<MorphInstallException>()),
       );
-      expect(await installer().installed(camelMorphMsaNoprob), isNull);
+      expect(await installer().installed(camelMorphMsaProofingBin), isNull);
       expect(Directory('${root.path}/arabic_morph').listSync(), isEmpty);
     });
 
     test('a longer download is rejected while streaming', () async {
       served['NOTICE'] = [...served['NOTICE']!, 0x0a];
       await expectLater(
-        installer().install(camelMorphMsaNoprob),
+        installer().install(camelMorphMsaProofingBin),
         throwsA(
           isA<MorphInstallException>().having(
             (e) => e.message,
@@ -269,12 +322,12 @@ void main() {
     });
 
     test('an extra file in the installed tree is not trusted', () async {
-      final files = await installer().install(camelMorphMsaNoprob);
+      final files = await installer().install(camelMorphMsaProofingBin);
       File(
         '${File(files.manifestPath).parent.path}/extra',
       ).writeAsStringSync('');
       await expectLater(
-        installer().installed(camelMorphMsaNoprob),
+        installer().installed(camelMorphMsaProofingBin),
         throwsA(isA<MorphInstallException>()),
       );
     });
@@ -283,7 +336,7 @@ void main() {
       final cancellation = MorphInstallCancellation();
       await expectLater(
         installer().install(
-          camelMorphMsaNoprob,
+          camelMorphMsaProofingBin,
           cancellation: cancellation,
           onProgress: (received, total) {
             if (received > 1 << 20) cancellation.cancel();
@@ -297,7 +350,7 @@ void main() {
           ),
         ),
       );
-      expect(await installer().installed(camelMorphMsaNoprob), isNull);
+      expect(await installer().installed(camelMorphMsaProofingBin), isNull);
       expect(Directory('${root.path}/arabic_morph').listSync(), isEmpty);
     });
   }, skip: _skip);
@@ -307,13 +360,15 @@ void main() {
     () async {
       final root = Directory.systemTemp.createTempSync('arabic-morph-live-');
       try {
-        final files = await MorphInstaller(root).install(camelMorphMsaNoprob);
+        final files = await MorphInstaller(
+          root,
+        ).install(camelMorphMsaProofingBin);
         expect(
           File(
             '${File(files.manifestPath).parent.path}/'
-            '${camelMorphMsaNoprob.database.file}',
+            '${camelMorphMsaProofingBin.database.file}',
           ).lengthSync(),
-          camelMorphMsaNoprob.database.bytes,
+          camelMorphMsaProofingBin.database.bytes,
         );
         if (_library != null) {
           final morphology = CamelArabicMorphology(

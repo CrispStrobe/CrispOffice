@@ -70,7 +70,7 @@ final class MailMailboxId {
   int get hashCode => Object.hash(value, account);
 }
 
-enum MailProviderKind { imap, graph, gmail, jmap, local }
+enum MailProviderKind { imap, graph, gmail, jmap, local, ews }
 
 sealed class MailRemoteIdentity {
   const MailRemoteIdentity();

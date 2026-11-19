@@ -38,7 +38,7 @@ class _NoDictionaries extends StudioHunspellHost {
 
 /// Records host calls; installation completes only when the test allows it.
 class _FakeMorphHost extends StudioArabicMorphHost {
-  var _status = const StudioArabicMorphStatus(bundle: camelMorphMsaNoprob);
+  var _status = const StudioArabicMorphStatus(bundle: camelMorphMsaProofingBin);
   final calls = <String>[];
   Completer<void>? installGate;
   void Function(int, int)? progress;
@@ -71,7 +71,7 @@ class _FakeMorphHost extends StudioArabicMorphHost {
     }
     _set(
       const StudioArabicMorphStatus(
-        bundle: camelMorphMsaNoprob,
+        bundle: camelMorphMsaProofingBin,
         installed: true,
         loaded: true,
         location: '/x',
@@ -82,7 +82,7 @@ class _FakeMorphHost extends StudioArabicMorphHost {
   @override
   Future<void> remove() async {
     calls.add('remove');
-    _set(const StudioArabicMorphStatus(bundle: camelMorphMsaNoprob));
+    _set(const StudioArabicMorphStatus(bundle: camelMorphMsaProofingBin));
   }
 }
 
@@ -124,14 +124,14 @@ void main() {
         text(),
         contains(
           'cstr/camel-morph-msa-v1.0/tree/'
-          'b31cf4a83f8ad63bb1989cf2879e72f23fadbfb0/noprob',
+          'd5364e04af7a40b0c9044ed127606e585be15272/proofing-bin',
         ),
       );
       expect(text(), contains('CC BY 4.0'));
       expect(text(), contains('New York University Abu Dhabi'));
       expect(text(), contains('github.com/CAMeL-Lab/camel_morph'));
-      expect(text(), contains('74.5 MB'));
-      expect(text(), contains('database 2dfbec413288'));
+      expect(text(), contains('11.6 MB'));
+      expect(text(), contains('database fc9d9109ddb5'));
       expect(
         find.descendant(
           of: section,

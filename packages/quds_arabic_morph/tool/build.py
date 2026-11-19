@@ -30,16 +30,16 @@ NATIVE = PACKAGE / "native"
 LICENSES = PACKAGE / "licenses"
 CRISPEMBED = {
     "repository": "https://github.com/CrispStrobe/CrispEmbed",
-    "commit": "8e40ad88945ca2e0b5e22f311835664c67501fee",
-    "pull_request": 254,
+    "commit": "0ed76631843cadd9b5c8296f25ed8a414d8f51db",
+    "pull_request": 255,
 }
 RAW = "https://raw.githubusercontent.com/CrispStrobe/CrispEmbed/{commit}/{path}"
 # Every file fetched from CrispEmbed: path -> (SHA-256, bytes). Compiled
 # sources and their notices; nothing else of CrispEmbed (no ggml) is used.
 SOURCES = {
     "LICENSE": ("a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e", 4739),
-    "src/arabic_morph.cpp": ("6173cd83d8e420674fd4218e13f4006621823c978ead7a10f62fdd388616c38b", 74877),
-    "src/arabic_morph.h": ("03e801985a06b08ef29141c26518e26b185c24c415044fb0554ca039d11a5619", 4469),
+    "src/arabic_morph.cpp": ("fff60440de9faaff4f5a5a0ec2c2b593a17eea8f94b6e55231d4059f361e910f", 111218),
+    "src/arabic_morph.h": ("98a2d0e6ec9ffed02c7d63e8e19c0ce7a46ed995859c2085fecad5b10620bc4c", 7377),
     "src/arabic_morph_tables.h": ("72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174", 8028),
     "src/core/env_gate.h": ("2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e", 3245),
     "src/core/json.h": ("7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589", 23378),
@@ -74,9 +74,9 @@ NOTICES = {
     "CPython-LICENSE": "tools/arabic_morph/notices/CPython-LICENSE",
 }
 # Attribution of the user-downloaded data (never compiled in), copied from
-# the pinned noprob bundle so hosts can show it on their licence page.
+# the pinned proofing-bin bundle so hosts can show it on their licence page.
 DATA_NOTICES = {
-    "camel-morph-msa-NOTICE": ("b10936a72acb6f6dbc246ed75003e45f5f130deb6c7a0003c0a54ec11785bc9f", 1381),
+    "camel-morph-msa-NOTICE": ("ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd", 1799),
     "camel-morph-msa-LICENSE": ("214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94", 442),
 }
 LIBRARY = "quds_arabic_morph"
@@ -136,7 +136,7 @@ def license_bundle(root: Path) -> dict:
         },
         "notices": {name: sha((upstream / name).read_bytes()) for name in sorted(NOTICES)},
         "data_notices": {
-            "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@b31cf4a83f8ad63bb1989cf2879e72f23fadbfb0/noprob",
+            "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin",
             "license": "CC-BY-4.0",
             "files": {name: digest for name, (digest, _) in sorted(DATA_NOTICES.items())},
         },

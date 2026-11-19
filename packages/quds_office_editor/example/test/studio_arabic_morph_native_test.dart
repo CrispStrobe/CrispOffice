@@ -1,6 +1,6 @@
 // Real Arabic morphology host acceptance. Run with both pinned native inputs:
 //   QUDS_ARABIC_MORPH_TEST_LIBRARY=<native library>
-//   QUDS_ARABIC_MORPH_TEST_BUNDLE=<verified noprob bundle directory>
+//   QUDS_ARABIC_MORPH_TEST_BUNDLE=<verified proofing-bin bundle directory>
 // Ordinary dialog, missing-install and licence checks stay in
 // studio_arabic_morph_setup_test.dart.
 import 'dart:io';

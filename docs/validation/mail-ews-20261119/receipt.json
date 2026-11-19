@@ -1,0 +1,130 @@
+{
+  "analysis": {
+    "mail": "core, MIME, store, transport: clean --fatal-infos",
+    "studio": "flutter analyze --no-pub lib/studio_mail_ews.dart lib/studio_mail_native.dart lib/studio_mail_strings.dart test/studio_mail_ews_test.dart: clean"
+  },
+  "base_commit": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+  "created_utc": "2026-11-19T13:54:45.817588+00:00",
+  "environment": {
+    "dart_archive_sha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+    "dart_version": "3.13.7",
+    "dependency_resolution": "official pub offline --enforce-lockfile; exact locked hosted archives hash-verified",
+    "flutter_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "flutter_framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "flutter_version": "3.47.8",
+    "official_sdk_archives_verified": true,
+    "os": "Linux x64"
+  },
+  "independent_ntlm_acceptor": {
+    "implementation": "pyspnego 0.12.4",
+    "live_exchange": false,
+    "receipt": "ntlm-interop-receipt.json",
+    "successful_expected_outcomes": 5
+  },
+  "limits": [
+    "No live Exchange endpoint or credentials supplied.",
+    "No packaged desktop/mobile installation acceptance performed.",
+    "No hosted GitHub Actions result asserted.",
+    "Studio mail is session-only; repository-backed persistence and durable outbox host integration are separate milestones."
+  ],
+  "logs": {
+    "logs/ews-core-store-analyze.log.gz": {
+      "compressed_sha256": "e5045bb84dc9560d01c75e83335a7e6294dc6c5b3c7fd9ad0984ffc6dd4e4354",
+      "original_bytes": 168,
+      "original_sha256": "6e0d3b926daee8569c07c3fdfbecad2d5ddee72fae25f9f05f74bff9743f9d4b"
+    },
+    "logs/ews-core-tests.log.gz": {
+      "compressed_sha256": "cbdefc4c8e4071a66b4344f652e50618890bb33a367e28249fd55c9df249cfda",
+      "original_bytes": 5351,
+      "original_sha256": "70e9f470e1d4f3cff574d6fdf4e8dc7a22f66b73a4eea008092e3268b4801beb"
+    },
+    "logs/ews-mime-analyze.log.gz": {
+      "compressed_sha256": "24fb7c235be4f0ed81146133a5a1049b9ec76be8773009c582a0aa09bc489124",
+      "original_bytes": 45,
+      "original_sha256": "1c03de9a0ecf5ed3ed3a1a9b6c4440d69eecfa68da2e47445a85dce210c3e027"
+    },
+    "logs/ews-mime-tests.log.gz": {
+      "compressed_sha256": "ca39cca417e89785234689b9d2e19dd0cd089fb6c3ae02208361c8f054372236",
+      "original_bytes": 3256,
+      "original_sha256": "984447cb89c50db73b047dd37da1cec757220d46f791e467b2dccbeac7c785e7"
+    },
+    "logs/ews-store-analyze.log.gz": {
+      "compressed_sha256": "c8e9e672c88435121e351c9f6f39f69cafce945bf53dd3fdb698f27c26cf637b",
+      "original_bytes": 46,
+      "original_sha256": "6573947ce493b867fb233613853e29c908e91977b0e23360aa95417b9071bef1"
+    },
+    "logs/ews-store-tests.log.gz": {
+      "compressed_sha256": "2715aeb1b27a70aa7a7e02a318959f3cd3f8c3fc7d0a85ff19b22bf8e9cb63dd",
+      "original_bytes": 15653,
+      "original_sha256": "2ae8918fbb57738146c2c44a06502c5d04f7654197cd2af4165a81f310e4eedb"
+    },
+    "logs/ews-studio-analyze.log.gz": {
+      "compressed_sha256": "24472788b89765ac2f3fce2cd87c0adb3939b110babd4abfa498a396e1175f64",
+      "original_bytes": 97,
+      "original_sha256": "11a8cf3d963662ae0e82367515f08e94012408688f2b602055d8d01fbc71c657"
+    },
+    "logs/ews-studio-regression.log.gz": {
+      "compressed_sha256": "bcf9f80fec6c0ca321d671d9874de671076463022b7a3ff061bd86dd47a93288",
+      "original_bytes": 29862,
+      "original_sha256": "38fb8fb7b462c286b89e700efb0a2e5935a4e8d62e6d319d3f137cd07536739a"
+    },
+    "logs/ews-studio-tests.log.gz": {
+      "compressed_sha256": "48c02c6795ccfde7abd022288a8dc4436d68a505a4390f7ecbc5db960ac53e3e",
+      "original_bytes": 1266,
+      "original_sha256": "4a9fb8b2cf2c044f072092024bc4651c7aaa29c98295d1ac97c7280c47254d9f"
+    },
+    "logs/ews-transport-analyze.log.gz": {
+      "compressed_sha256": "3ba5150d40a995f018e0176d0ae8e914a868dd0f4ed07c3bfef912811221fa12",
+      "original_bytes": 50,
+      "original_sha256": "51fcea49aced5237de361329d4715e6b12fa54512664be8f13a58865f5c50e1f"
+    },
+    "logs/ews-transport-tests.jsonl.gz": {
+      "compressed_sha256": "47ee2984847892f856fd0ea79e01cb8ede25363c19dceedfb1211640b6058428",
+      "original_bytes": 111222,
+      "original_sha256": "768100ada5687bb44ea0bcdb537207a3a5e0771c56db35be92421913e850c41c"
+    }
+  },
+  "native_vm": {
+    "all_passed": true,
+    "command": "dart test",
+    "quds_mail_core": 54,
+    "quds_mail_mime": 32,
+    "quds_mail_store": 118,
+    "quds_mail_transport": 227,
+    "source_mode": "isolated workspace; lib and test directories are direct symlinks to the active checkout",
+    "total": 431
+  },
+  "node": {
+    "all_passed": true,
+    "command": "dart test --platform node test/ews_unsupported_test.dart test/ews_configuration_test.dart test/unsupported_test.dart",
+    "evidence": "successful result observed in session transcript; raw log not preserved",
+    "files": {
+      "ews_configuration_test.dart": 7,
+      "ews_unsupported_test.dart": 1,
+      "unsupported_test.dart": 3
+    },
+    "tests": 11
+  },
+  "review": {
+    "independent_source_review": "no remaining blocking findings after refresh-gate fix",
+    "initial_manifest_file_count": 203,
+    "initial_manifest_independent_drift_count": 0,
+    "initial_manifest_sha256": "48351aa827f20bdfb4f1ef1a496c0c178d3183d2fc03a2768e9eda696353f763",
+    "post_review_formatting": "store EWS test formatting only; full118 store tests and store analysis rerun successfully afterward"
+  },
+  "root_lockfile_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "root_lockfile_unchanged": true,
+  "source_manifest": {
+    "file": "source-sha256.json",
+    "files": 139,
+    "sha256": "a6c07b74a3b498211039fc386af3ba5cbb7c3d182e3802656161cd2915cb2c06"
+  },
+  "studio": {
+    "all_passed": true,
+    "command": "flutter test --no-pub test/studio_mail*_test.dart test/studio_saved_mail_test.dart --reporter expanded",
+    "focused_ews_tests": 15,
+    "regression_files": 11,
+    "regression_tests_including_focused": 157,
+    "source_mode": "actual repository workspace; final refresh-gate correction included"
+  }
+}

@@ -9,14 +9,14 @@ import 'studio_hunspell_host.dart' show StudioHunspellCancellation;
 
 StudioArabicMorphHost createHost() => WebStudioArabicMorphHost();
 
-/// Browser host: the user's download is verified in memory and handed to the
-/// bundled WebAssembly analyzer in a Web Worker for this session (the worker
-/// then holds about 320 MB). Nothing is stored; a reload needs a new
-/// download.
+/// Browser host: the user's download (12 MB) is verified in memory and handed
+/// to the bundled WebAssembly analyzer in a Web Worker for this session (the
+/// worker keeps one copy of the binary database in its Wasm memory). Nothing
+/// is stored; a reload needs a new download.
 class WebStudioArabicMorphHost extends StudioArabicMorphHost {
   WebStudioArabicMorphHost({
     http.Client Function()? client,
-    this.bundle = camelMorphMsaNoprob,
+    this.bundle = camelMorphMsaProofingBin,
     this.workerUrl,
   }) : _client = client ?? http.Client.new,
        _status = StudioArabicMorphStatus(bundle: bundle);
