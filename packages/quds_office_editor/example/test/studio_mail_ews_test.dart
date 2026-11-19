@@ -650,6 +650,66 @@ void main() {
   );
 
   testWidgets(
+    'EWS host preserves visible groups and hides Bcc from canonical MIME',
+    (tester) async {
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials),
+      );
+      await _connect(tester);
+      await tester.tap(find.byTooltip(_strings.compose));
+      await _pump(tester);
+      await tester.enterText(
+        _composerField(_strings.to),
+        'primary@Example.test; second@example.test',
+      );
+      await tester.tap(find.text(_strings.mailCopyRecipients));
+      await _pump(tester);
+      await tester.enterText(
+        _composerField(_strings.mailCc),
+        'primary@example.test, copy@example.test',
+      );
+      await tester.enterText(
+        _composerField(_strings.mailBcc),
+        'copy@example.test; hidden@example.test',
+      );
+      await tester.enterText(
+        _composerField(_strings.subject),
+        'Recipient privacy',
+      );
+      final send = find.widgetWithText(FilledButton, _strings.send);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      final submitted = provider.submissions.single;
+      expect(submitted.envelope.recipients, [
+        'primary@Example.test',
+        'second@example.test',
+        'copy@example.test',
+        'hidden@example.test',
+      ]);
+      final decoded = const QudsMimeCodec().parse(submitted.wire.bytes);
+      expect(decoded.status, MailParseStatus.complete);
+      expect(decoded.message!.envelope.to.map((entry) => entry.address), [
+        'primary@Example.test',
+        'second@example.test',
+      ]);
+      expect(decoded.message!.envelope.cc.map((entry) => entry.address), [
+        'copy@example.test',
+      ]);
+      expect(decoded.message!.envelope.bcc, isEmpty);
+      expect(
+        utf8.decode(submitted.wire.bytes),
+        isNot(contains('hidden@example.test')),
+      );
+      expect(find.text(_strings.ewsSubmissionAccepted), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
     'uncertain submissions retain the draft and require acknowledged retry',
     (tester) async {
       late _Provider provider;

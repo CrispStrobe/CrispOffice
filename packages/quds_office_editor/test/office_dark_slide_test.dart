@@ -631,9 +631,9 @@ void main() {
       );
       // Verify serialized colors independently of the now-corrected importer.
       final exportedSlide = XmlDocument.parse(
-        OpcPackage.openBytes(savedBytes)
-            .getPart('/ppt/slides/slide1.xml')!
-            .readText(),
+        OpcPackage.openBytes(
+          savedBytes,
+        ).getPart('/ppt/slides/slide1.xml')!.readText(),
       ).root!;
       final cells = _descendants(exportedSlide, 'tc').toList();
       expect(cells, hasLength(2));
