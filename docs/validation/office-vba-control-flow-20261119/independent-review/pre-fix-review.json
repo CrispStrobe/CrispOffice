@@ -1,0 +1,36 @@
+{
+  "recorded_utc": "2026-11-19T17:09:31.635183+00:00",
+  "source_commit": "983cfc3decfe639f9e5b9033f95617c361f847c8",
+  "note": "Independent read-only control-flow review. Dart VM passes174 checks, including combined depth. Initial fresh Node JS probe fails with unstructured RangeError. Depth matrix with lower-depth warmup passes. This is pre-fix evidence, not acceptance.",
+  "sha256": {
+    "quds_office_suite/packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "d38aaed62005d81ccaa98e5afa6a8269803dcfa25cbfe7535239ec5373edd3c5",
+    "toolchains/review/control_flow_probe.dart": "cdb32343418685e6530f54d9917c6941a75f8ff5218768d4e687aa806d4928a0",
+    "toolchains/review/control_flow_probe.js": "0db36282693b55a9598737b22122e24cf8b4c3328db91d2b23d8a73b888a5d13",
+    "toolchains/review/vm.stdout.log": "d325931d1c6593162543d850dcdbec3f46a9a7817c199f1016e0b79f14833983",
+    "toolchains/review/vm.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "toolchains/review/js-compile.stdout.log": "5672b481d104c8323633b49d15a327a4f5a3a3109ff92207d0bcab9757f1792b",
+    "toolchains/review/js-compile.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "toolchains/review/js-run.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "toolchains/review/js-run.stderr.log": "63d5b366c6a4a2b5bef926304128ff17967583cb1b6609655a0312bc7896dba2",
+    "toolchains/review/control_flow_depth_matrix.dart": "0fcbb34aa491875984d9e041a9888eab71f0380ae9e34c02a634d2d817772b53",
+    "toolchains/review/matrix-js.stdout.log": "a1618bcb4d2b9c4616d56f833f79918fb4409728e9fa3ff1a59436a768da78c5"
+  },
+  "gates": [
+    {
+      "name": "probe_vm",
+      "exit_code": 0
+    },
+    {
+      "name": "probe_js_compile",
+      "exit_code": 0
+    },
+    {
+      "name": "probe_js_cold_run",
+      "exit_code": 1
+    },
+    {
+      "name": "warmup_depth_matrix",
+      "exit_code": 0
+    }
+  ]
+}

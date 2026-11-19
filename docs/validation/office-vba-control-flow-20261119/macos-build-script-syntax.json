@@ -1,0 +1,12 @@
+{
+  "command": [
+    "bash",
+    "-n",
+    "packages/quds_office_editor/example/tool/build_macos_app.sh"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "script_sha256": "29bdacc77aacbdcfdabd775c1340271fe8f105cb06f66cda1b6d92f7eaa986f7",
+  "scope": "Linux shell syntax check only; native macOS bundle build and AppKit behavior were not executed."
+}

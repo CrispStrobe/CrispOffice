@@ -1,0 +1,1534 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-19T17:00:51.791Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "main": "304d4bff45da24f22cee420ec464882d7c7ce516",
+  "method": "GitHub plugin GET repository, branches, PRs, commits, comparisons and read-only local Git. No GitHub Actions queried or awaited.",
+  "fork_branches": [
+    {
+      "name": "codex/crispoffice-gui-20261119",
+      "head": "304d4bff45da24f22cee420ec464882d7c7ce516"
+    },
+    {
+      "name": "codex/mail-archive-portability-20261119",
+      "head": "cbec3c775eefc1ebd8a0bcbe6ae7e84bc0f53158"
+    },
+    {
+      "name": "codex/mail-archive-search-20261119",
+      "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb"
+    },
+    {
+      "name": "codex/mail-providers-20261119",
+      "head": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897"
+    },
+    {
+      "name": "codex/mcp-aligned-macros",
+      "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/office-validation-recovery-20261119",
+      "head": "623057111a9179552eb02b21a753a1728de9905d"
+    },
+    {
+      "name": "codex/vba-excel-macros",
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b"
+    },
+    {
+      "name": "codex/vba-procedures-20261119",
+      "head": "3db248be978b24d0693d1133505d9be200fd1256"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/arabic-morph-binary-20261119",
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7"
+    },
+    {
+      "name": "feat/ews-on-premises",
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "feat/paragraph-language-id-20261119",
+      "head": "ff71fa44c693ee2a30fb0372eac206af257c8477"
+    },
+    {
+      "name": "integrate/macbook-build-20261119",
+      "head": "d5abf0e09d9fef6a29821f412f791c1284d62be8"
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "head": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "main",
+      "head": "304d4bff45da24f22cee420ec464882d7c7ce516"
+    }
+  ],
+  "comparisons": [
+    {
+      "branch": "codex/crispoffice-gui-20261119",
+      "head": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "status": "identical",
+      "ahead_by": 0,
+      "behind_by": 0,
+      "merge_base": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "files": []
+    },
+    {
+      "branch": "codex/mail-archive-portability-20261119",
+      "head": "cbec3c775eefc1ebd8a0bcbe6ae7e84bc0f53158",
+      "status": "ahead",
+      "ahead_by": 3,
+      "behind_by": 0,
+      "merge_base": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "files": [
+        {
+          "filename": "packages/quds_mail_store/lib/quds_mail_archive_native.dart",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/lib/quds_mail_store.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/lib/src/archive_directory_native.dart",
+          "status": "added",
+          "additions": 616,
+          "deletions": 0,
+          "changes": 616,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/lib/src/archive_export_models.dart",
+          "status": "added",
+          "additions": 400,
+          "deletions": 0,
+          "changes": 400,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/lib/src/archive_export_native.dart",
+          "status": "added",
+          "additions": 530,
+          "deletions": 0,
+          "changes": 530,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/lib/src/archive_export_plan.dart",
+          "status": "added",
+          "additions": 123,
+          "deletions": 0,
+          "changes": 123,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/lib/src/archive_models.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/lib/src/archive_repository.dart",
+          "status": "modified",
+          "additions": 24,
+          "deletions": 6,
+          "changes": 30,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+          "status": "added",
+          "additions": 579,
+          "deletions": 0,
+          "changes": 579,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/test/archive_export_native_test.dart",
+          "status": "added",
+          "additions": 706,
+          "deletions": 0,
+          "changes": 706,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/test/archive_export_plan_test.dart",
+          "status": "added",
+          "additions": 298,
+          "deletions": 0,
+          "changes": 298,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_mail_store/tool/archive_export_crash_fixture.dart",
+          "status": "added",
+          "additions": 72,
+          "deletions": 0,
+          "changes": 72,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "branch": "codex/mail-archive-search-20261119",
+      "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 8,
+      "merge_base": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "files": []
+    },
+    {
+      "branch": "codex/mail-providers-20261119",
+      "head": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 24,
+      "merge_base": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+      "files": []
+    },
+    {
+      "branch": "codex/mcp-aligned-macros",
+      "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 23,
+      "merge_base": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "files": []
+    },
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "status": "diverged",
+      "ahead_by": 2,
+      "behind_by": 856,
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "files": [
+        {
+          "filename": "docs/odf-export-fidelity.md",
+          "status": "modified",
+          "additions": 68,
+          "deletions": 16,
+          "changes": 84,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/german-proofing-recovery-20261117/README.md",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 1,
+          "changes": 8,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/README.md",
+          "status": "added",
+          "additions": 153,
+          "deletions": 0,
+          "changes": 153,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+          "status": "added",
+          "additions": 24,
+          "deletions": 0,
+          "changes": 24,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+          "status": "added",
+          "additions": 252,
+          "deletions": 0,
+          "changes": 252,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+          "status": "added",
+          "additions": 129,
+          "deletions": 0,
+          "changes": 129,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+          "status": "added",
+          "additions": 57,
+          "deletions": 0,
+          "changes": 57,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+          "status": "added",
+          "additions": 259,
+          "deletions": 0,
+          "changes": 259,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+          "status": "added",
+          "additions": 83,
+          "deletions": 0,
+          "changes": 83,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+          "status": "added",
+          "additions": 143,
+          "deletions": 0,
+          "changes": 143,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/package-config.json",
+          "status": "added",
+          "additions": 356,
+          "deletions": 0,
+          "changes": 356,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+          "status": "added",
+          "additions": 54,
+          "deletions": 0,
+          "changes": 54,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+          "status": "added",
+          "additions": 6,
+          "deletions": 0,
+          "changes": 6,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+          "status": "added",
+          "additions": 144,
+          "deletions": 0,
+          "changes": 144,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+          "status": "added",
+          "additions": 445,
+          "deletions": 0,
+          "changes": 445,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/run_logged.py",
+          "status": "added",
+          "additions": 128,
+          "deletions": 0,
+          "changes": 128,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/runtime.json",
+          "status": "added",
+          "additions": 34,
+          "deletions": 0,
+          "changes": 34,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+          "status": "added",
+          "additions": 12,
+          "deletions": 0,
+          "changes": 12,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+          "status": "added",
+          "additions": 14,
+          "deletions": 0,
+          "changes": 14,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/verification.json",
+          "status": "added",
+          "additions": 225,
+          "deletions": 0,
+          "changes": 225,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+          "status": "added",
+          "additions": 155,
+          "deletions": 0,
+          "changes": 155,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 6,
+          "changes": 14,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "status": "modified",
+          "additions": 82,
+          "deletions": 1,
+          "changes": 83,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "status": "added",
+          "additions": 271,
+          "deletions": 0,
+          "changes": 271,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "status": "modified",
+          "additions": 98,
+          "deletions": 6,
+          "changes": 104,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "branch": "codex/office-validation-recovery-20261119",
+      "head": "623057111a9179552eb02b21a753a1728de9905d",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 26,
+      "merge_base": "623057111a9179552eb02b21a753a1728de9905d",
+      "files": []
+    },
+    {
+      "branch": "codex/vba-excel-macros",
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 22,
+      "merge_base": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "files": []
+    },
+    {
+      "branch": "codex/vba-procedures-20261119",
+      "head": "3db248be978b24d0693d1133505d9be200fd1256",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 1,
+      "merge_base": "3db248be978b24d0693d1133505d9be200fd1256",
+      "files": []
+    },
+    {
+      "branch": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 855,
+      "merge_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "files": [
+        {
+          "filename": "docs/office-remaining-gaps.md",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 851,
+      "merge_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "files": [
+        {
+          "filename": "docs/office-remaining-gaps.md",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "branch": "feat/arabic-morph-binary-20261119",
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 48,
+      "merge_base": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "files": []
+    },
+    {
+      "branch": "feat/ews-on-premises",
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 49,
+      "merge_base": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "files": []
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 856,
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "files": [
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "status": "modified",
+          "additions": 29,
+          "deletions": 0,
+          "changes": 29,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "status": "modified",
+          "additions": 22,
+          "deletions": 0,
+          "changes": 22,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "status": "modified",
+          "additions": 89,
+          "deletions": 1,
+          "changes": 90,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 0,
+          "changes": 1,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "status": "modified",
+          "additions": 56,
+          "deletions": 3,
+          "changes": 59,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "status": "modified",
+          "additions": 28,
+          "deletions": 0,
+          "changes": 28,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "status": "modified",
+          "additions": 31,
+          "deletions": 0,
+          "changes": 31,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "status": "diverged",
+      "ahead_by": 2,
+      "behind_by": 853,
+      "merge_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "files": [
+        {
+          "filename": "docs/office-remaining-gaps.md",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 2,
+          "changes": 5,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "status": "modified",
+          "additions": 26,
+          "deletions": 0,
+          "changes": 26,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "status": "modified",
+          "additions": 23,
+          "deletions": 0,
+          "changes": 23,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 1,
+          "changes": 9,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+          "status": "modified",
+          "additions": 56,
+          "deletions": 3,
+          "changes": 59,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "status": "modified",
+          "additions": 24,
+          "deletions": 9,
+          "changes": 33,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "status": "modified",
+          "additions": 33,
+          "deletions": 0,
+          "changes": 33,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "status": "modified",
+          "additions": 30,
+          "deletions": 0,
+          "changes": 30,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 854,
+      "merge_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "files": [
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 3,
+          "changes": 11,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "status": "modified",
+          "additions": 19,
+          "deletions": 2,
+          "changes": 21,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "status": "modified",
+          "additions": 8,
+          "deletions": 0,
+          "changes": 8,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "status": "modified",
+          "additions": 24,
+          "deletions": 0,
+          "changes": 24,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 840,
+      "merge_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "files": [
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "status": "modified",
+          "additions": 26,
+          "deletions": 0,
+          "changes": 26,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "status": "modified",
+          "additions": 22,
+          "deletions": 0,
+          "changes": 22,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 0,
+          "changes": 7,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+          "status": "modified",
+          "additions": 30,
+          "deletions": 0,
+          "changes": 30,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "status": "modified",
+          "additions": 26,
+          "deletions": 5,
+          "changes": 31,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "status": "modified",
+          "additions": 32,
+          "deletions": 0,
+          "changes": 32,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "status": "modified",
+          "additions": 32,
+          "deletions": 0,
+          "changes": 32,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 836,
+      "merge_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "files": [
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "status": "modified",
+          "additions": 42,
+          "deletions": 6,
+          "changes": 48,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "status": "modified",
+          "additions": 30,
+          "deletions": 0,
+          "changes": 30,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 0,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+          "status": "modified",
+          "additions": 54,
+          "deletions": 4,
+          "changes": 58,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "status": "modified",
+          "additions": 14,
+          "deletions": 3,
+          "changes": 17,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "status": "modified",
+          "additions": 35,
+          "deletions": 0,
+          "changes": 35,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "status": "modified",
+          "additions": 28,
+          "deletions": 0,
+          "changes": 28,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "branch": "feat/paragraph-language-id-20261119",
+      "head": "ff71fa44c693ee2a30fb0372eac206af257c8477",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 36,
+      "merge_base": "ff71fa44c693ee2a30fb0372eac206af257c8477",
+      "files": []
+    },
+    {
+      "branch": "integrate/macbook-build-20261119",
+      "head": "d5abf0e09d9fef6a29821f412f791c1284d62be8",
+      "status": "diverged",
+      "ahead_by": 2,
+      "behind_by": 5,
+      "merge_base": "81ae98688860599f118748afca19bdb2ec45da37",
+      "files": [
+        {
+          "filename": "packages/quds_language_id/test/language_id_native_test.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/README.md",
+          "status": "modified",
+          "additions": 22,
+          "deletions": 0,
+          "changes": 22,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/test/studio_macos_bundle_native_gate.dart",
+          "status": "added",
+          "additions": 230,
+          "deletions": 0,
+          "changes": 230,
+          "previous_filename": null
+        },
+        {
+          "filename": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+          "status": "added",
+          "additions": 96,
+          "deletions": 0,
+          "changes": 96,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "branch": "integrate/macbook-current-20261118",
+      "head": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 486,
+      "merge_base": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "files": []
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 652,
+      "merge_base": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "files": [
+        {
+          "filename": "docs/office-remaining-gaps.md",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 2,
+          "changes": 4,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-portable-9e21.tar.index.json",
+          "status": "added",
+          "additions": 40,
+          "deletions": 0,
+          "changes": 40,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-portable-9e21.tar.xz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-preflight-9e21.tar.index.json",
+          "status": "added",
+          "additions": 145,
+          "deletions": 0,
+          "changes": 145,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-preflight-9e21.tar.xz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-zotero-9e21.tar.index.json",
+          "status": "added",
+          "additions": 45,
+          "deletions": 0,
+          "changes": 45,
+          "previous_filename": null
+        },
+        {
+          "filename": "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-zotero-9e21.tar.xz",
+          "status": "added",
+          "additions": 0,
+          "deletions": 0,
+          "changes": 0,
+          "previous_filename": null
+        }
+      ]
+    }
+  ],
+  "open_prs": [
+    {
+      "number": 205,
+      "title": "Add resumable bulk mail export and recursive archive import [skip ci]",
+      "draft": true,
+      "head": "cbec3c775eefc1ebd8a0bcbe6ae7e84bc0f53158",
+      "base": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "updated": "2026-11-19T16:53:45Z"
+    }
+  ],
+  "recent_commits": [
+    {
+      "sha": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "message": "Merge PR #204: reusable bounded VBA procedures and functions [skip ci]\n\nExtend the Excel VBA source compiler with explicit ByVal helper procedures, scalar functions, isolated scopes, and early exits. Preserve the shared atomic native macro runtime, host policy, and aggregate compiler limits.\n\nLocal acceptance: 341 focused tests, strict whole-engine analysis, three JavaScript compile/run programs, formatting and whitespace. Independent depth stress passed on VM and JavaScript. All 448 inputs were stable during acceptance; implementation/test hashes remain unchanged through publication. Exact evidence is committed under docs/validation/office-vba-procedures-20261119.\n\nIncludes the reconciled language-ID test fix. GitHub Actions were not awaited, as requested. Incremental branch checkpoints are retained.",
+      "parents": [
+        "81ae98688860599f118748afca19bdb2ec45da37",
+        "3db248be978b24d0693d1133505d9be200fd1256"
+      ]
+    },
+    {
+      "sha": "3db248be978b24d0693d1133505d9be200fd1256",
+      "message": "Record local acceptance for reusable VBA macros [skip ci]\n\n341 focused tests, strict whole-engine analysis, three portable JavaScript compile/run checks, formatting and whitespace all passed. All 448 input hashes remained unchanged during acceptance. Independent VM/JS stress passed at 32 frames with nested expressions and blocks.\n\nRetain exact commands, environment, logs, remote reconciliation and source hashes. Only a documented per-string budget wording clarification followed acceptance; implementation and test source are unchanged. No GitHub Actions wait.",
+      "parents": [
+        "24eee8145f4edb19a33a95156a7e0a94093a8f75"
+      ]
+    },
+    {
+      "sha": "24eee8145f4edb19a33a95156a7e0a94093a8f75",
+      "message": "Reject ambiguous VBA labels before helper invocation [skip ci]\n\nKeep unsupported line labels from silently becoming zero-argument procedure calls, including unused branches and helper names. Explicit Call Helper and Helper() still support colon separators. Current compiler selection passes100 local tests.",
+      "parents": [
+        "9b48009fae8d5325db9fc9ba05cdb4e90db840f5"
+      ]
+    },
+    {
+      "sha": "9b48009fae8d5325db9fc9ba05cdb4e90db840f5",
+      "message": "Extend bounded VBA with local procedures, functions and early exits [skip ci]\n\nAdd explicit ByVal arguments, fresh local frames, scalar return values, static call graph checks, and shared compilation budgets. Cover reusable helpers through native plans, CLI, MCP and portable JavaScript; include the procedural report and compatibility guide.\n\nDevelopment procedure, boundary and integration checks passed. Full combined local acceptance is recorded in a subsequent checkpoint; GitHub Actions are not awaited.",
+      "parents": [
+        "f0ce86842452ee7397afcf21b93c73e126d7d07e"
+      ]
+    },
+    {
+      "sha": "f0ce86842452ee7397afcf21b93c73e126d7d07e",
+      "message": "Reconcile recent language identifier branch before VBA extension [skip ci]\n\nPreserve all integrated main work and merge the new language-id smoke assertion using the configured topK. Local native macro extension validation follows in this branch; GitHub Actions are not a blocking gate.",
+      "parents": [
+        "81ae98688860599f118748afca19bdb2ec45da37",
+        "ff71fa44c693ee2a30fb0372eac206af257c8477"
+      ]
+    },
+    {
+      "sha": "ff71fa44c693ee2a30fb0372eac206af257c8477",
+      "message": "test(language-id): smoke test follows the configured top-k [skip ci]\n\nThe calibration commit raised the default topK to 5; the native smoke test\nstill expected 3 guesses.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+      "parents": [
+        "b2dd5f61b3f42c05701407eab7a34c86209d53db"
+      ]
+    },
+    {
+      "sha": "81ae98688860599f118748afca19bdb2ec45da37",
+      "message": "Merge PR #203: durable mail archiving, indexing and search [skip ci]\n\nPreserve the reconciled Office recovery, macros and VBA histories and the independently qualified mail archive/search implementation. Local acceptance: 2765 passed, zero failed/skipped; all 25 gates passed. Source/runtime/dependency inputs remained stable. GitHub Actions were not queried or awaited.",
+      "parents": [
+        "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+        "aa9fb9de14347ed69182be90f13c99a443a0ecbb"
+      ]
+    },
+    {
+      "sha": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "message": "Record 2765 passing local checks and independently audited archive evidence [skip ci]",
+      "parents": [
+        "947120ee46a39d6f8d6f6fd4d556e9d2c12c8d98"
+      ]
+    },
+    {
+      "sha": "947120ee46a39d6f8d6f6fd4d556e9d2c12c8d98",
+      "message": "Record failed formatting gate and extend qualification to latest VBA work [skip ci]",
+      "parents": [
+        "2cd623b7f78634c5118f1f434dd847222bccde4f"
+      ]
+    },
+    {
+      "sha": "2cd623b7f78634c5118f1f434dd847222bccde4f",
+      "message": "Reconcile latest VBA macro follow-up and format recovered tests [skip ci]",
+      "parents": [
+        "750eba1e856ee4b524186cb95feadad1727c2763",
+        "d98c8ae020a60715fbb02f5332b2f3414fb6805b"
+      ]
+    },
+    {
+      "sha": "750eba1e856ee4b524186cb95feadad1727c2763",
+      "message": "Document archive workflows and freeze local qualification plan [skip ci]",
+      "parents": [
+        "232171ca828a1f62e69d6c033f60c706c8979970"
+      ]
+    },
+    {
+      "sha": "232171ca828a1f62e69d6c033f60c706c8979970",
+      "message": "Wire durable message and folder archiving into connected Studio mail [skip ci]",
+      "parents": [
+        "9f87eff5e9c3ade6a13f5a816b7b42313e5a9f74"
+      ]
+    },
+    {
+      "sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "message": "Add bounded Excel VBA compilation to shared Office macros\n\nCompile explicit BAS source through the existing native plan, add shared named worksheet targets, and expose the dialect through CLI and MCP. Include source diagnostics, expansion bounds, examples, and 286-test acceptance evidence.",
+      "parents": [
+        "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a"
+      ]
+    },
+    {
+      "sha": "9f87eff5e9c3ade6a13f5a816b7b42313e5a9f74",
+      "message": "Reconcile newly published Office macros and MCP branch [skip ci]",
+      "parents": [
+        "8ef489f67e22280df79b4f214af4785104f708a3",
+        "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a"
+      ]
+    },
+    {
+      "sha": "8ef489f67e22280df79b4f214af4785104f708a3",
+      "message": "Harden archive recovery bounds and add mailbox collection runner [skip ci]",
+      "parents": [
+        "3ba7acd4b8d121a44228a2b41fd970ea7a268813"
+      ]
+    },
+    {
+      "sha": "3ba7acd4b8d121a44228a2b41fd970ea7a268813",
+      "message": "Add durable mail archive, bounded search, MBOX import and Studio workflow [skip ci]",
+      "parents": [
+        "d7584360c187fa20167c6330f5476042983f524c"
+      ]
+    },
+    {
+      "sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "message": "Add native Office macros with shared MCP commands and language adapters",
+      "parents": [
+        "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897"
+      ]
+    },
+    {
+      "sha": "d7584360c187fa20167c6330f5476042983f524c",
+      "message": "Reconcile latest Office histories before durable mail archive work [skip ci]",
+      "parents": [
+        "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+        "623057111a9179552eb02b21a753a1728de9905d"
+      ]
+    },
+    {
+      "sha": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+      "message": "Merge PR #200: Gmail, Microsoft 365 and CrispOffice mail providers [skip ci]\n\nPreserve EWS and captured Office histories; add cloud OAuth/API providers and secure mail presets. Local qualification: 994 accepted cases with exact source/runtime evidence and transparent one-cohort test correction. GitHub Actions were not queried or awaited.",
+      "parents": [
+        "07b815a79d011f88b048900e22aa6544f44f2758",
+        "4b2ad7995c1ddff052232c21749d847701d77f96"
+      ]
+    },
+    {
+      "sha": "4b2ad7995c1ddff052232c21749d847701d77f96",
+      "message": "Document mail provider qualification and preserve complete validation evidence [skip ci]",
+      "parents": [
+        "34153224a63112de3006335ae36cf9b2f744f513"
+      ]
+    },
+    {
+      "sha": "623057111a9179552eb02b21a753a1728de9905d",
+      "message": "Preserve runtime extension and latest regression evidence before qualification [skip ci]\n\nBind the exact 18-package additive runtime extension, independent archive reconstruction and required controls. Expand local plans to 150 native/24 Node suite executions and 147 strict Dart targets. Preserve all original development failures, passing reporters, exact archives and the explicit post-cutoff cloud draft boundary.\n\nThis is a preparation checkpoint. Final frozen-source aggregate acceptance is pending.",
+      "parents": [
+        "58a7b3ff2966b2b972fd2f40fb8f7993fc425768"
+      ]
+    },
+    {
+      "sha": "34153224a63112de3006335ae36cf9b2f744f513",
+      "message": "Fix language identification fixture with explicit candidate budget [skip ci]",
+      "parents": [
+        "e3212327954ac144847a7c06b5d2420f00debab3"
+      ]
+    },
+    {
+      "sha": "58a7b3ff2966b2b972fd2f40fb8f7993fc425768",
+      "message": "Repair latest Mail credential ownership and thesaurus proofing state [skip ci]\n\nRequire explicit connection attempts, validate settings before authentication, order credential operations and guard delayed results. Preserve SMTP feedback independently of keychain failures. Invalidate delayed thesaurus relation lookups and derive proofing completeness from reports.\n\nFocused development: 64 Mail/credential cases, 28 thesaurus VM plus 28 Node, 33 Word session and 4 incoming Studio language cases passed. Full aggregate qualification is pending.",
+      "parents": [
+        "d5e34fda24a3085a98f9072fb30869fd3c4a7b21"
+      ]
+    },
+    {
+      "sha": "e3212327954ac144847a7c06b5d2420f00debab3",
+      "message": "Finalize mail credential lifecycle and Studio regressions [skip ci]",
+      "parents": [
+        "0812a07e07856b885853b203089bc085d0ce9c57"
+      ]
+    },
+    {
+      "sha": "0812a07e07856b885853b203089bc085d0ce9c57",
+      "message": "Reconcile current main, keychain lifecycle and validation histories with cloud mail [skip ci]",
+      "parents": [
+        "b5eb7b81a02123446e9737e40e2a2e9e1631f7d8",
+        "07b815a79d011f88b048900e22aa6544f44f2758",
+        "58e1de23c60f0f822bbcb23ce38ee1e2bf26265c",
+        "107155216505590e2eabfb93fc67cb908ad6173d"
+      ]
+    },
+    {
+      "sha": "d5e34fda24a3085a98f9072fb30869fd3c4a7b21",
+      "message": "Retain final language-ID documentation and Studio regression additions [skip ci]\n\nIntegrate PR #199 head 10715521 without changing its original evidence attribution. Complete frozen-source qualification remains pending.",
+      "parents": [
+        "e3f5fa01304837734404c34e21056cf4a1cc65b0",
+        "107155216505590e2eabfb93fc67cb908ad6173d"
+      ]
+    },
+    {
+      "sha": "e3f5fa01304837734404c34e21056cf4a1cc65b0",
+      "message": "Merge latest main Mail connectivity and thesaurus work for local qualification [skip ci]\n\nPreserve main 07b815a and the prepared validation recovery branch. This is an integration checkpoint before targeted lifecycle repairs and the complete local qualification run.",
+      "parents": [
+        "b45e143e38da9fe4a6886bb3b63cee33808895fc",
+        "07b815a79d011f88b048900e22aa6544f44f2758"
+      ]
+    },
+    {
+      "sha": "b2dd5f61b3f42c05701407eab7a34c86209d53db",
+      "message": "Merge origin/main [skip ci]",
+      "parents": [
+        "107155216505590e2eabfb93fc67cb908ad6173d",
+        "07b815a79d011f88b048900e22aa6544f44f2758"
+      ]
+    },
+    {
+      "sha": "b45e143e38da9fe4a6886bb3b63cee33808895fc",
+      "message": "Preserve native and Studio lifecycle repairs before newer-main reconciliation [skip ci]\n\nSave real mapped-database cleanup, host/session stale-completion guards, complete regression sources and byte-verified development archives. Prepare143 native and23 Node suite executions plus full Store and133 strict Dart targets, with exact native/data bindings. Pre-freeze remote check found newer main07b815a7 and a new dependency lock; no aggregate was started or accepted. Retain prepared work before integrating those changes. No GitHub Actions queried or awaited.",
+      "parents": [
+        "58e1de23c60f0f822bbcb23ce38ee1e2bf26265c"
+      ]
+    },
+    {
+      "sha": "b5eb7b81a02123446e9737e40e2a2e9e1631f7d8",
+      "message": "Add Gmail and Microsoft 365 mail providers with OAuth and regression tests [skip ci]\n\nAdd native system-browser PKCE authorization, bounded Gmail/Graph mail APIs, scoped sync cursors, message actions, MIME submission, provider presets, error handling and redacted structured diagnostics. Preserve ambiguous send outcomes without automatic replay. Add independent HTTP, OAuth, actual loopback, provider, store, unsupported-boundary and Studio regressions plus setup/probe documentation.\n\nExact tree matches local snapshot 8d114120. Local development checks passed 146 new cloud VM cases and strict analysis; further incoming-main reconciliation and final combined qualification follow. GitHub Actions are neither queried nor awaited.",
+      "parents": [
+        "f2131f3813d042fc6f3b16813c5ba0937e6ff0ec"
+      ]
+    }
+  ],
+  "upstream": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "branches": [
+      {
+        "name": "ci/flutter-workspace",
+        "head": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+      },
+      {
+        "name": "cursor/class-certificates-2db8",
+        "head": "f45099688e7a3f67a1302efdb442830d052f2240"
+      },
+      {
+        "name": "cursor/cloud-agent-1790580069020-0rk1h",
+        "head": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+      },
+      {
+        "name": "main",
+        "head": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+      }
+    ],
+    "open_prs": [],
+    "comparisons": [
+      {
+        "branch": "ci/flutter-workspace",
+        "head": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "status": "ahead",
+        "ahead_by": 2004,
+        "behind_by": 0
+      },
+      {
+        "branch": "cursor/class-certificates-2db8",
+        "head": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "status": "ahead",
+        "ahead_by": 1997,
+        "behind_by": 0
+      },
+      {
+        "branch": "cursor/cloud-agent-1790580069020-0rk1h",
+        "head": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "status": "ahead",
+        "ahead_by": 2007,
+        "behind_by": 0
+      },
+      {
+        "branch": "main",
+        "head": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "status": "ahead",
+        "ahead_by": 1991,
+        "behind_by": 0
+      }
+    ]
+  },
+  "historical_merged_prs": [
+    {
+      "number": 135,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/135",
+      "state": "closed",
+      "merged_at": "2026-11-17T19:45:42Z",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "branch": "feat/ods-color-scale",
+      "merge_commit": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 137,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/137",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:01:17Z",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "branch": "feat/ods-dynamic-validation-links",
+      "merge_commit": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 140,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/140",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:14:56Z",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "branch": "codex/odt-field-continuation-20261117",
+      "merge_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 141,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/141",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:13:20Z",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "branch": "feat/ods-data-bar",
+      "merge_commit": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 145,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/145",
+      "state": "closed",
+      "merged_at": "2026-11-17T21:23:29Z",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "branch": "feat/ods-icon-sets",
+      "merge_commit": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 149,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/149",
+      "state": "closed",
+      "merged_at": "2026-11-17T21:32:16Z",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "branch": "integrate/office-union-148",
+      "merge_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 151,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/151",
+      "state": "closed",
+      "merged_at": "2026-11-17T22:05:16Z",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "branch": "feat/ods-time-period-conditions",
+      "merge_commit": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "merge_commit_is_ancestor_of_main": true
+    }
+  ],
+  "historical_verification": [
+    {
+      "number": 135,
+      "merge": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "status": "ahead",
+      "ahead_by": 855,
+      "behind_by": 0
+    },
+    {
+      "number": 137,
+      "merge": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "status": "ahead",
+      "ahead_by": 853,
+      "behind_by": 0
+    },
+    {
+      "number": 140,
+      "merge": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "status": "ahead",
+      "ahead_by": 849,
+      "behind_by": 0
+    },
+    {
+      "number": 141,
+      "merge": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "status": "ahead",
+      "ahead_by": 851,
+      "behind_by": 0
+    },
+    {
+      "number": 145,
+      "merge": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "status": "ahead",
+      "ahead_by": 839,
+      "behind_by": 0
+    },
+    {
+      "number": 149,
+      "merge": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "status": "ahead",
+      "ahead_by": 836,
+      "behind_by": 0
+    },
+    {
+      "number": 151,
+      "merge": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "status": "ahead",
+      "ahead_by": 835,
+      "behind_by": 0
+    }
+  ],
+  "subsumed_docs_branches": [
+    {
+      "branch": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "change": "Remove color scales from remaining work",
+      "main_contains_change": true
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "change": "Remove data bars from remaining work",
+      "main_contains_change": true
+    }
+  ],
+  "new_incoming": {
+    "mail": {
+      "head": "cbec3c775eefc1ebd8a0bcbe6ae7e84bc0f53158",
+      "pr": 205,
+      "draft": true,
+      "commits": [
+        {
+          "sha": "de8ab2e93cc5f2139e89ba72d117bf9b18ba4cae",
+          "message": "Reconcile published incoming work before mail portability [skip ci]"
+        },
+        {
+          "sha": "eb60e7da0a7bf4597c7e9b063f562de1bfb2f209",
+          "message": "Add frozen bulk export plans, resumable originals and bounded directory walking [skip ci]"
+        },
+        {
+          "sha": "cbec3c775eefc1ebd8a0bcbe6ae7e84bc0f53158",
+          "message": "Reconcile merged VBA procedures before mail portability acceptance [skip ci]"
+        }
+      ],
+      "comment_count": 0,
+      "review_count": 0,
+      "qualification": "Parent requested integration of exact snapshot followed by independent local qualification; active draft remains open."
+    },
+    "macos": {
+      "head": "d5abf0e09d9fef6a29821f412f791c1284d62be8",
+      "commits": [
+        {
+          "sha": "2866dda13996c4e837aa09493d5df339ab437881",
+          "message": "Merge feat/paragraph-language-id-20261119 follow-up: top-k smoke test\n\nConflict: main fixed the expectation to hasLength(5); the branch uses\nidentifier.topK. Kept the branch form, which follows the configured default (5).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+        },
+        {
+          "sha": "d5abf0e09d9fef6a29821f412f791c1284d62be8",
+          "message": "build(studio): scripted macOS release app with bundled native proofing libraries\n\ntool/build_macos_app.sh builds the pinned Hunspell, Arabic morphology,\nCLD3 language-ID and Harper libraries, runs flutter build macos --release,\ninstalls the receipt-verified libraries into Contents/Frameworks and their\nnotices into Contents/Resources, normalizes Harper's install name to @rpath,\nre-signs ad hoc with Release.entitlements and verifies the signature, the\nload commands and that each library opens from the bundle.\n\ntest/studio_macos_bundle_native_gate.dart (explicit gate, not auto-discovered)\nboots Studio with the in-bundle libraries and data installed by the real\ninstallers and checks a mixed Arabic/German/English document: Arabic rules,\nAyaSpell, morphology rules (jussive, numeral gender), German spelling routed\nby detection, Harper, the Detected display and Apply detected language.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+        }
+      ],
+      "qualification": "Source/shell checks possible on Linux; native macOS bundle gate requires macOS. Endpoint language-ID assertion equals main."
+    }
+  }
+}
