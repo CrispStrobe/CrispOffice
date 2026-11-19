@@ -1,3 +1,6 @@
+// These print probes verify that protocol output stays inside the private zone.
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';

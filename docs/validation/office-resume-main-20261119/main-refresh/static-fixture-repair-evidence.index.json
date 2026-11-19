@@ -1,0 +1,30 @@
+{
+  "source_commit": "08336f71b273eb81a4f2652328ad1c91c08e048c",
+  "status": "development-static-preflight",
+  "archive": "static-fixture-repair-evidence.tar.xz",
+  "bytes": 1788,
+  "sha256": "c2d970d0b3d2d3ea7f2c9882261bb3d9d54f2fe7697fa6aad74fcebd7013b502",
+  "member_count": 4,
+  "members": [
+    {
+      "path": "diagnostics/static-fixture-repair/analysis.log",
+      "bytes": 1358,
+      "sha256": "29f2c3d855a5af72c869993169eef96be282ba72e465ae2a709df49bf3959d28"
+    },
+    {
+      "path": "diagnostics/static-fixture-repair/receipt.json",
+      "bytes": 4311,
+      "sha256": "5e160deeaa9e6660ff6a42384b6547f1833f1befbd04c945e2f4ccb4305cdcdd"
+    },
+    {
+      "path": "diagnostics/static-fixture-repair/source-delta.json",
+      "bytes": 526,
+      "sha256": "f00f5c866ee012108aec0afe5055b4501e574d6b372692bc268d3435c03568ff"
+    },
+    {
+      "path": "diagnostics/static-fixture-repair/static-fixture-repair.patch",
+      "bytes": 1357,
+      "sha256": "de45d7527c71e079ccffcaf58d2f4a9f5ec7a1ba59657938551e20e328f30d48"
+    }
+  ]
+}

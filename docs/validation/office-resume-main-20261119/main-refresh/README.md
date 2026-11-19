@@ -33,3 +33,8 @@ checks; live browser/file-picker and service acceptance remain separate.
 
 The exact incoming overview is retained in incoming-overview-76fe761f.md.
 No GitHub Actions runs, jobs or queues are queried, dispatched or awaited.
+
+The first frozen attempt at `08336f71` passed all 382 native cases but was
+rejected by strict analysis. Two test-only fixture issues were corrected and
+the full 45-path strict-analysis preflight passed. The original attempt and
+repair evidence remain separate; final frozen qualification is still pending.

@@ -2,7 +2,7 @@ import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
-import 'package:quds_office_studio/studio_mail.dart';
+import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 const mailStrings = StudioStrings(StudioLanguage.en);
