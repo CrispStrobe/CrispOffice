@@ -91,7 +91,10 @@ Future<void> _pump(WidgetTester tester) async {
   await tester.pump();
 }
 
-Future<void> _openDialog(WidgetTester tester) async {
+Future<void> _openDialog(
+  WidgetTester tester, {
+  StudioStrings strings = const StudioStrings(StudioLanguage.en),
+}) async {
   await tester.binding.setSurfaceSize(const Size(1440, 900));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(
@@ -101,9 +104,7 @@ Future<void> _openDialog(WidgetTester tester) async {
           body: TextButton(
             onPressed: () => showDialog<void>(
               context: context,
-              builder: (_) => const StudioMailDialog(
-                strings: StudioStrings(StudioLanguage.en),
-              ),
+              builder: (_) => StudioMailDialog(strings: strings),
             ),
             child: const Text('Launch Mail'),
           ),
@@ -115,9 +116,29 @@ Future<void> _openDialog(WidgetTester tester) async {
   await _pump(tester);
   expect(find.byType(StudioMailDialog), findsOneWidget);
   expect(find.byType(MailMessageView), findsNothing);
-  await tester.tap(find.byTooltip('Saved messages'));
+  await tester.tap(find.byTooltip(strings.savedMessages));
   await _pump(tester);
 }
+
+void _openInFileZone(
+  WidgetTester tester,
+  _DeferredFile file, {
+  StudioStrings strings = const StudioStrings(StudioLanguage.en),
+}) {
+  IOOverrides.runWithIOOverrides(() {
+    // Invoke the real callback in this zone: pointer dispatch itself uses the
+    // test binding's zone, which would bypass the controlled file read.
+    tester
+        .widget<TextButton>(
+          find.widgetWithText(TextButton, strings.openMessage),
+        )
+        .onPressed!();
+  }, _DeferredReadOverrides(file));
+}
+
+FilePickerResult _pickedPath(_DeferredFile file) => FilePickerResult([
+  PlatformFile(name: 'Deferred.eml', size: 1, path: file.path),
+]);
 
 void main() {
   late _DeferredPicker picker;
@@ -126,6 +147,8 @@ void main() {
     picker = _DeferredPicker();
     FilePicker.platform = picker;
   });
+
+  tearDown(() => FilePicker.platform = FilePickerIO());
 
   testWidgets('Mail opens saved bytes and disposes replaced controllers', (
     tester,
@@ -209,20 +232,108 @@ void main() {
     },
   );
 
-  testWidgets('saved message picker failures retain the current reader', (
+  for (final fromRead in [false, true]) {
+    final phase = fromRead ? 'file read' : 'picker';
+    testWidgets('$phase failure preserves the reader with localized feedback', (
+      tester,
+    ) async {
+      const strings = StudioStrings(StudioLanguage.de);
+      await _openDialog(tester, strings: strings);
+      final initial = _reader(tester);
+      if (fromRead) {
+        final file = _DeferredFile();
+        _openInFileZone(tester, file, strings: strings);
+        picker.result.complete(_pickedPath(file));
+        await _pump(tester);
+        expect(file.reads, 1);
+        file.result.completeError(
+          const FileSystemException('private path must not be shown'),
+        );
+      } else {
+        await tester.tap(find.text(strings.openMessage));
+        picker.result.completeError(
+          StateError('private path must not be shown'),
+        );
+      }
+      await _pump(tester);
+      expect(_reader(tester), same(initial));
+      expect(initial.isDisposed, isFalse);
+      expect(find.text(strings.openMessageFailed), findsOneWidget);
+      expect(find.textContaining('private path'), findsNothing);
+      expect(tester.takeException(), isNull);
+      await tester.tap(find.byTooltip(strings.close));
+      await _pump(tester);
+    });
+
+    testWidgets('$phase failure after closing saved Mail is ignored', (
+      tester,
+    ) async {
+      await _openDialog(tester);
+      final initial = _reader(tester);
+      final file = fromRead ? _DeferredFile() : null;
+      if (file != null) {
+        _openInFileZone(tester, file);
+        picker.result.complete(_pickedPath(file));
+        await _pump(tester);
+        expect(file.reads, 1);
+      } else {
+        await tester.tap(find.text('Open message'));
+      }
+      await tester.tap(find.byTooltip('Close'));
+      await _pump(tester);
+      expect(initial.isDisposed, isTrue);
+      if (file != null) {
+        file.result.completeError(
+          const FileSystemException('late private read'),
+        );
+      } else {
+        picker.result.completeError(StateError('late private picker'));
+      }
+      await _pump(tester);
+      expect(find.byType(StudioMailDialog), findsNothing);
+      expect(find.textContaining('late private'), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets('a delayed saved-message path read replaces the chosen mode', (
     tester,
   ) async {
     await _openDialog(tester);
-    final initial = _reader(tester);
-    await tester.tap(find.text('Open message'));
-    picker.result.completeError(StateError('private path must not be shown'));
+    await tester.tap(find.text('Compact'));
     await _pump(tester);
+    final initial = _reader(tester);
+    final file = _DeferredFile();
+    _openInFileZone(tester, file);
+    picker.result.complete(_pickedPath(file));
+    await _pump(tester);
+    expect(file.reads, 1);
     expect(_reader(tester), same(initial));
-    expect(find.text('The message could not be opened.'), findsOneWidget);
-    expect(find.textContaining('private path'), findsNothing);
-    expect(tester.takeException(), isNull);
+    expect(initial.isDisposed, isFalse);
+    file.result.complete(_message());
+    await _pump(tester);
+    expect(initial.isDisposed, isTrue);
+    expect(_reader(tester).mode, MailReaderMode.preview);
+    expect(_reader(tester).decodedText, contains('Saved message body.'));
+    expect(find.text('CrispOffice Mail · Deferred.eml'), findsOneWidget);
     await tester.tap(find.byTooltip('Close'));
     await _pump(tester);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('a late picker path after closing saved Mail is never read', (
+    tester,
+  ) async {
+    await _openDialog(tester);
+    final file = _DeferredFile();
+    _openInFileZone(tester, file);
+    await tester.tap(find.byTooltip('Close'));
+    await _pump(tester);
+    picker.result.complete(_pickedPath(file));
+    await _pump(tester);
+    expect(file.reads, 0);
+    expect(find.byType(StudioMailDialog), findsNothing);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('saved reader toolbar fits a narrow enlarged-text window', (
@@ -287,18 +398,8 @@ void main() {
     await _openDialog(tester);
     final initial = _reader(tester);
     final file = _DeferredFile();
-    IOOverrides.runWithIOOverrides(() {
-      // Invoke the actual button callback in the IO zone. Test pointer dispatch
-      // runs in the binding's zone and would bypass this controlled file read.
-      tester
-          .widget<TextButton>(find.widgetWithText(TextButton, 'Open message'))
-          .onPressed!();
-    }, _DeferredReadOverrides(file));
-    picker.result.complete(
-      FilePickerResult(<PlatformFile>[
-        PlatformFile(name: 'Deferred.eml', size: 1, path: file.path),
-      ]),
-    );
+    _openInFileZone(tester, file);
+    picker.result.complete(_pickedPath(file));
     await _pump(tester);
     expect(file.reads, 1);
     await tester.tap(find.byTooltip('Close'));

@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "scope": "Bounded remote advertisement before final source freeze; not a promise about later concurrent pushes.",
+  "captures": [
+    {
+      "started_at_utc": "2026-11-19T11:38:37.526975+00:00",
+      "github_actions_queried_or_awaited": false,
+      "method": "Read-only git ls-remote; no local refs fetched or updated",
+      "url": "https://github.com/CrispStrobe/quds_office_suite.git",
+      "file": "remote-refs-pre-freeze.tsv",
+      "sha256": "8ac36307840f2d2559419be7ac56875eb0b0df0087335b4e03a4856ee0845b44",
+      "advertisement_lines": 452,
+      "finished_at_utc": "2026-11-19T11:38:45.688548+00:00"
+    },
+    {
+      "started_at_utc": "2026-11-19T11:38:37.527857+00:00",
+      "github_actions_queried_or_awaited": false,
+      "method": "Read-only git ls-remote; no local refs fetched or updated",
+      "url": "https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+      "file": "upstream-refs-pre-freeze.tsv",
+      "sha256": "ff18c5e1bae03ba5acb473c259bfdd1eb7d2ed78a814578c30fc3a0531e2ed88",
+      "advertisement_lines": 28,
+      "finished_at_utc": "2026-11-19T11:38:44.619701+00:00"
+    }
+  ],
+  "open_pr_metadata_file": "open-prs-pre-freeze.json",
+  "open_pr_metadata_sha256": "df78d8b8db2cb94354e26fff1aa580d545a5a430e96e5c99b47b9985e723b2a3",
+  "actual_reference_counts": {
+    "fork_branch": 232,
+    "fork_pull_request_head": 194,
+    "fork_tag": 17,
+    "upstream_branch": 4,
+    "upstream_pull_request_head": 4,
+    "upstream_tag": 16
+  },
+  "actual_reference_total": 467,
+  "excluded_advertisements": [
+    "HEAD aliases",
+    "peeled tag advertisements",
+    "synthetic PR merge refs"
+  ],
+  "github_actions_queried_or_awaited": false,
+  "local_refs_fetched_or_modified_by_capture": false
+}

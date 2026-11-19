@@ -1,0 +1,1155 @@
+{
+  "schema": 1,
+  "source_commit": "4b8b9e2ecec349542bd34bc7f983e1cf500e8cbf",
+  "source_tree": "62c5bcab1813976bc4330bfa5268fe148f587eea",
+  "verified_at_utc": "2026-11-19T11:32:26.846585+00:00",
+  "archive": "evidence.tar.xz",
+  "archive_bytes": 1653152,
+  "archive_sha256": "2e10cf8a32cd02010b9d7aa89a9db8223bd14697ee8d05561bd3f5dcf4cadf74",
+  "member_count": 125,
+  "uncompressed_bytes": 10814973,
+  "categories": {
+    "audit-preparation": 3,
+    "development": 20,
+    "fixtures": 50,
+    "reconciliation": 13,
+    "review-proofing": 4,
+    "runtime": 15,
+    "source": 11,
+    "support-audit": 9
+  },
+  "frozen_bound_members": 64,
+  "all_members_reopened_and_hash_verified": true,
+  "all_originals_rechecked_unchanged": true,
+  "repository_or_runtime_mutations": 0,
+  "network_calls": 0,
+  "scope": "Stable reconciliation, source/runtime/fixture preparation, independent input preservation, and development evidence. Development and earlier executions do not count toward the separately frozen final qualification. Archive members are not test executions.",
+  "excluded_payloads_manifest": "support-audit/omitted-payloads.json",
+  "files": [
+    {
+      "path": "audit-preparation/audit_outer_validation.py",
+      "original": "/workspace/scratch/ca9c01a86531/audit-preparation/audit_outer_validation.py",
+      "bytes": 32336,
+      "sha256": "28c1e57b37b628506e6230a9a40485c5c87cc9a01ce3051c8e33c10f90a85b8d",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "audit-preparation/auditor-controls.json",
+      "original": "/workspace/scratch/ca9c01a86531/audit-preparation/auditor-controls.json",
+      "bytes": 2859,
+      "sha256": "3ab3837c2138c0e18fc5256d21304087eda904656431e3b6e0986fe66f51a99f",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "audit-preparation/outer-preparation.json",
+      "original": "/workspace/scratch/ca9c01a86531/audit-preparation/outer-preparation.json",
+      "bytes": 1239,
+      "sha256": "09d5953d374b1baeb1280a9ab10190458ef28544c8c6b52d68eac9d9bbcefb53",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/mail/analysis.log",
+      "original": "/workspace/scratch/ca9c01a86531/development/mail/analysis.log",
+      "bytes": 171,
+      "sha256": "071ab3db5ed6c6a860d56ff8385fccda942979947e4512afe4275786b4a216d1",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/mail/results.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/development/mail/results.jsonl",
+      "bytes": 25385,
+      "sha256": "de7d6c75868b8ba2d14db358e13b45370d97e9888d147ebaa30cfb74591a7af3",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/mail/review.json",
+      "original": "/workspace/scratch/ca9c01a86531/development/mail/review.json",
+      "bytes": 6184,
+      "sha256": "8c84594842684e2776910ca14a54acd463bcd6e050bb4f047585b6914ada8c3c",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/mail/source-at-2abf5d26.json",
+      "original": "/workspace/scratch/ca9c01a86531/development/mail/source-at-2abf5d26.json",
+      "bytes": 2059,
+      "sha256": "9fa177b86d1b5ca958729a49b7c3a4bd255b26625cc5ccc415d85469b541a1c5",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/mail/stderr.log",
+      "original": "/workspace/scratch/ca9c01a86531/development/mail/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/preflight/analysis-final.log",
+      "original": "/workspace/scratch/ca9c01a86531/development/preflight/analysis-final.log",
+      "bytes": 4465,
+      "sha256": "c042257188f3251979eecc4e4c3b65c78e7385cd8d6905912845e99451ad88bd",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/preflight/analysis.log",
+      "original": "/workspace/scratch/ca9c01a86531/development/preflight/analysis.log",
+      "bytes": 4687,
+      "sha256": "3176407dd93beb8e9b27a8a62688339c7cf8446e268b3f596c8eb67b2c0e0e28",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/preflight/bundle-controls.log",
+      "original": "/workspace/scratch/ca9c01a86531/development/preflight/bundle-controls.log",
+      "bytes": 2586,
+      "sha256": "21e34e6a0780410acbf429ee64d9ec5862088d3a8fd380457a92f4a2c6c389da",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/preflight/format-final.log",
+      "original": "/workspace/scratch/ca9c01a86531/development/preflight/format-final.log",
+      "bytes": 49,
+      "sha256": "44defac122f128a57d9acb3676d0cce94400f3028224571ea53aa3faf0d1d60f",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/preflight/format-initial.log",
+      "original": "/workspace/scratch/ca9c01a86531/development/preflight/format-initial.log",
+      "bytes": 275,
+      "sha256": "e49c3f5c5b84b23d2846cf7cc876a8bda686eaac52f654bb58428cc5012b54d3",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/preflight/format-repair.log",
+      "original": "/workspace/scratch/ca9c01a86531/development/preflight/format-repair.log",
+      "bytes": 279,
+      "sha256": "3971bf5ffe402a96a5945fb763e71e2e65d773fc04ebd64ddeb376bea06368a0",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/preflight/packaging-controls.log",
+      "original": "/workspace/scratch/ca9c01a86531/development/preflight/packaging-controls.log",
+      "bytes": 698,
+      "sha256": "c1b154db3e080b78681d2a640855eff7e24bca610e39404fe43e2153f33a4368",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/word/analyze.log",
+      "original": "/workspace/scratch/ca9c01a86531/development/word/analyze.log",
+      "bytes": 131,
+      "sha256": "5fe9c8c7b7b4b040f49ba87057ee1d7b8385bde9a51b1115b6b35454808f7e65",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/word/editor-controls-first.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/development/word/editor-controls-first.jsonl",
+      "bytes": 17772,
+      "sha256": "ad376edf15942191638931060617386baf47ee93808231817c414c6901c0cc69",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/word/editor-controls-first.stderr",
+      "original": "/workspace/scratch/ca9c01a86531/development/word/editor-controls-first.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/word/editor-controls.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/development/word/editor-controls.jsonl",
+      "bytes": 21694,
+      "sha256": "c398b21f3bbab38ec024c6e8bbafcc4e47cdce5d0446f31ad11d2bbe2352cf8e",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/word/editor-controls.stderr",
+      "original": "/workspace/scratch/ca9c01a86531/development/word/editor-controls.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/word/engine-language.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/development/word/engine-language.jsonl",
+      "bytes": 22053,
+      "sha256": "87a0c11e8e7e7e0ec7649627e8ede0854f7cf504db6db817ad101af59ee7396b",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/word/engine-language.stderr",
+      "original": "/workspace/scratch/ca9c01a86531/development/word/engine-language.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "development/word/review.json",
+      "original": "/workspace/scratch/ca9c01a86531/development/word/review.json",
+      "bytes": 27329,
+      "sha256": "2477494c132ef1c2e024caa94e254af70a67324dcf84fbee3a2592c2c1c24218",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "fixtures/arabic-morph/build-receipt.json",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/build-receipt.json",
+      "bytes": 532,
+      "sha256": "59fba38a8f794d64f3757239406fa31115878ac98321d41b3ae39ebe9f13b7e8",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "59fba38a8f794d64f3757239406fa31115878ac98321d41b3ae39ebe9f13b7e8"
+    },
+    {
+      "path": "fixtures/arabic-morph/build.log",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/build.log",
+      "bytes": 2167,
+      "sha256": "129f723a825dc25d207c0c457bf71c1ba1d762c377dbdaccd86214e651db7272",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "129f723a825dc25d207c0c457bf71c1ba1d762c377dbdaccd86214e651db7272"
+    },
+    {
+      "path": "fixtures/arabic-morph/bundle/LICENSE",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/bundle/LICENSE",
+      "bytes": 442,
+      "sha256": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94"
+    },
+    {
+      "path": "fixtures/arabic-morph/bundle/NOTICE",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/bundle/NOTICE",
+      "bytes": 1381,
+      "sha256": "b10936a72acb6f6dbc246ed75003e45f5f130deb6c7a0003c0a54ec11785bc9f",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "b10936a72acb6f6dbc246ed75003e45f5f130deb6c7a0003c0a54ec11785bc9f"
+    },
+    {
+      "path": "fixtures/arabic-morph/bundle/manifest.json",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/bundle/manifest.json",
+      "bytes": 1430,
+      "sha256": "96b949981e76c0d2b4892ec7aac1f1e519813ac6d55d4e39303d94822df68050",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "96b949981e76c0d2b4892ec7aac1f1e519813ac6d55d4e39303d94822df68050"
+    },
+    {
+      "path": "fixtures/arabic-morph/fixture-download-receipt.json",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/fixture-download-receipt.json",
+      "bytes": 1673,
+      "sha256": "e1a3c1522058446422b602525649a3eb5889c9cf0970ef89844bede212cac949",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "e1a3c1522058446422b602525649a3eb5889c9cf0970ef89844bede212cac949"
+    },
+    {
+      "path": "fixtures/arabic-morph/native/libquds_arabic_morph.so",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/native/libquds_arabic_morph.so",
+      "bytes": 220568,
+      "sha256": "b4a80d86274d6624a009539b8c038c40b1e26e426be6fd8d5f8237fe3a86887a",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "b4a80d86274d6624a009539b8c038c40b1e26e426be6fd8d5f8237fe3a86887a"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/LICENSE",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/LICENSE",
+      "bytes": 4739,
+      "sha256": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/arabic_morph.cpp",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/arabic_morph.cpp",
+      "bytes": 74877,
+      "sha256": "6173cd83d8e420674fd4218e13f4006621823c978ead7a10f62fdd388616c38b",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "6173cd83d8e420674fd4218e13f4006621823c978ead7a10f62fdd388616c38b"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/arabic_morph.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/arabic_morph.h",
+      "bytes": 4469,
+      "sha256": "03e801985a06b08ef29141c26518e26b185c24c415044fb0554ca039d11a5619",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "03e801985a06b08ef29141c26518e26b185c24c415044fb0554ca039d11a5619"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/arabic_morph_tables.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/arabic_morph_tables.h",
+      "bytes": 8028,
+      "sha256": "72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/env_gate.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/env_gate.h",
+      "bytes": 3245,
+      "sha256": "2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/json.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/json.h",
+      "bytes": 23378,
+      "sha256": "7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/json_value.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/json_value.h",
+      "bytes": 9017,
+      "sha256": "f6af418a13cc5285f977fd29c5644d7fc2cf957f5c4b6d31a3bf0c33243dacf4",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "f6af418a13cc5285f977fd29c5644d7fc2cf957f5c4b6d31a3bf0c33243dacf4"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/py_str.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/py_str.h",
+      "bytes": 12423,
+      "sha256": "1936161cfea194de155ec58601a0ca7f36577f3c8973231e704a6dc0fcd315e7",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "1936161cfea194de155ec58601a0ca7f36577f3c8973231e704a6dc0fcd315e7"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/py_str_tables.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/py_str_tables.h",
+      "bytes": 33940,
+      "sha256": "c66cdf3e8b2dc40ee2e09e8dc2411af0ad7a43dedc107ce867d939aa7d55c8e8",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "c66cdf3e8b2dc40ee2e09e8dc2411af0ad7a43dedc107ce867d939aa7d55c8e8"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/sha256.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/sha256.h",
+      "bytes": 5024,
+      "sha256": "409ab494061b042d4a84698b7bf2caf6dd68f6639cbeb532cb47a2f2337d9a6f",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "409ab494061b042d4a84698b7bf2caf6dd68f6639cbeb532cb47a2f2337d9a6f"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/shortest_double.c",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/shortest_double.c",
+      "bytes": 246,
+      "sha256": "9d4e8d9d2be344ba17d141378274f9a19192b49e6995a9edb1e80f589c1e71c2",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "9d4e8d9d2be344ba17d141378274f9a19192b49e6995a9edb1e80f589c1e71c2"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/shortest_double.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/shortest_double.h",
+      "bytes": 282,
+      "sha256": "51f642d86c72d730426338ede6f603697dde1da556d96b53dffec9781416c60c",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "51f642d86c72d730426338ede6f603697dde1da556d96b53dffec9781416c60c"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/LICENSE-Apache2",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/LICENSE-Apache2",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/README.md",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/README.md",
+      "bytes": 792,
+      "sha256": "8ecc8a0aec4481a424349da8267c2cf76733a9b4187a981e8154ea648cd40e5b",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "8ecc8a0aec4481a424349da8267c2cf76733a9b4187a981e8154ea648cd40e5b"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/common.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/common.h",
+      "bytes": 3648,
+      "sha256": "0bbd71d26da6193e678d0776cf418f43f287c73d6fd6725353df0aadf70f2a19",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "0bbd71d26da6193e678d0776cf418f43f287c73d6fd6725353df0aadf70f2a19"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/d2s.c",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/d2s.c",
+      "bytes": 17705,
+      "sha256": "d24323c7eb77d63f1e52c415212b50060b776f0883525d907d04954fcd48cf64",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "d24323c7eb77d63f1e52c415212b50060b776f0883525d907d04954fcd48cf64"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/d2s_full_table.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/d2s_full_table.h",
+      "bytes": 34501,
+      "sha256": "2618f6e5fae6c4443899b184efe3d08295dd267dc9f1a994c983c7caca59ebe6",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "2618f6e5fae6c4443899b184efe3d08295dd267dc9f1a994c983c7caca59ebe6"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/d2s_intrinsics.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/d2s_intrinsics.h",
+      "bytes": 13015,
+      "sha256": "1d05702f2edacce428223d4b43dd3095c1bd1f3ad30128ce1761d84356dddc7d",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "1d05702f2edacce428223d4b43dd3095c1bd1f3ad30128ce1761d84356dddc7d"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/d2s_small_table.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/d2s_small_table.h",
+      "bytes": 7641,
+      "sha256": "54fec51f1c5eed786a8ce6de881b81582dd71f0812dcd4324b37396617bb0fa9",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "54fec51f1c5eed786a8ce6de881b81582dd71f0812dcd4324b37396617bb0fa9"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/digit_table.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/digit_table.h",
+      "bytes": 1745,
+      "sha256": "8b782573abc0b8554d74163ae6c02f0beb5c30d1e63eaebdb0ddf2c98d817e01",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "8b782573abc0b8554d74163ae6c02f0beb5c30d1e63eaebdb0ddf2c98d817e01"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/ryu.h",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/src/core/third_party/ryu/ryu.h",
+      "bytes": 1360,
+      "sha256": "b7feab0ba1df5e9ef3d602f386592ad152491405e49b408fb21c0e0e9e6bfb16",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "b7feab0ba1df5e9ef3d602f386592ad152491405e49b408fb21c0e0e9e6bfb16"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/tools/arabic_morph/THIRD_PARTY_NOTICES",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/tools/arabic_morph/THIRD_PARTY_NOTICES",
+      "bytes": 1710,
+      "sha256": "6e74d4648626177a13a8b41d45f62af1a6c97b7062e55c38c52c74c28e136e21",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "6e74d4648626177a13a8b41d45f62af1a6c97b7062e55c38c52c74c28e136e21"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/tools/arabic_morph/notices/CPython-LICENSE",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/tools/arabic_morph/notices/CPython-LICENSE",
+      "bytes": 13936,
+      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/tools/arabic_morph/notices/Ryu-LICENSE-Apache2",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/tools/arabic_morph/notices/Ryu-LICENSE-Apache2",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/tools/arabic_morph/notices/Unicode-LICENSE.txt",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/tools/arabic_morph/notices/Unicode-LICENSE.txt",
+      "bytes": 1995,
+      "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+    },
+    {
+      "path": "fixtures/arabic-morph/source/crispembed-8e40ad88945c/tools/arabic_morph/notices/camel_tools-LICENSE",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/arabic-morph/source/crispembed-8e40ad88945c/tools/arabic_morph/notices/camel_tools-LICENSE",
+      "bytes": 1087,
+      "sha256": "7a3ef160e8957145490ff66591aa9cb8cb08601a2e9fb1673c5fb7af74c727f2",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "7a3ef160e8957145490ff66591aa9cb8cb08601a2e9fb1673c5fb7af74c727f2"
+    },
+    {
+      "path": "fixtures/bind_runtime_fixtures.py",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/bind_runtime_fixtures.py",
+      "bytes": 6471,
+      "sha256": "628eb8cd88564144463c5cd45c93f96b0edef00dc04b5829a37254b0dbba3183",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "628eb8cd88564144463c5cd45c93f96b0edef00dc04b5829a37254b0dbba3183"
+    },
+    {
+      "path": "fixtures/env.sh",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/env.sh",
+      "bytes": 901,
+      "sha256": "bcaf3324ab62fc5046772ab2fa26ec88442248b24567fcbb86206123901c6ae6",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "bcaf3324ab62fc5046772ab2fa26ec88442248b24567fcbb86206123901c6ae6"
+    },
+    {
+      "path": "fixtures/hunspell/additional-lifecycle-build-receipt.json",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/additional-lifecycle-build-receipt.json",
+      "bytes": 2095,
+      "sha256": "14c09f1a58970f33c67a169c5325e81f7df69b9511d52794d537b7bf7a2bd16b",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "14c09f1a58970f33c67a169c5325e81f7df69b9511d52794d537b7bf7a2bd16b"
+    },
+    {
+      "path": "fixtures/hunspell/dictionary-download-receipt.json",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/dictionary-download-receipt.json",
+      "bytes": 7461,
+      "sha256": "4d5dd5970944cba6217d26b7106583856ae4f791f0e0a03f390ee5e93ac1a685",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "4d5dd5970944cba6217d26b7106583856ae4f791f0e0a03f390ee5e93ac1a685"
+    },
+    {
+      "path": "fixtures/hunspell/dictionary/AUTHORS.txt",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/dictionary/AUTHORS.txt",
+      "bytes": 200,
+      "sha256": "bade1d2d0d47dff5956c08732cdb9c02432d9b0b8016a56e27f58b8d7e842462",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "bade1d2d0d47dff5956c08732cdb9c02432d9b0b8016a56e27f58b8d7e842462"
+    },
+    {
+      "path": "fixtures/hunspell/dictionary/COPYING.txt",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/dictionary/COPYING.txt",
+      "bytes": 532,
+      "sha256": "73480d918cd78d655508e80aa88c022cbd53634524a0f714b5f2519f2cf19124",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "73480d918cd78d655508e80aa88c022cbd53634524a0f714b5f2519f2cf19124"
+    },
+    {
+      "path": "fixtures/hunspell/dictionary/MPL-1.1.txt",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/dictionary/MPL-1.1.txt",
+      "bytes": 23669,
+      "sha256": "6214f8b1300bb9f37b16ebc146f8f61af0187e0025042ff95c8b3030744a8795",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "6214f8b1300bb9f37b16ebc146f8f61af0187e0025042ff95c8b3030744a8795"
+    },
+    {
+      "path": "fixtures/hunspell/dictionary/README.md",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/dictionary/README.md",
+      "bytes": 1427,
+      "sha256": "84a4cf6b537069d98fd438d37ea7e8b08b2c74565d76cb553be47bd4aeb426ad",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "84a4cf6b537069d98fd438d37ea7e8b08b2c74565d76cb553be47bd4aeb426ad"
+    },
+    {
+      "path": "fixtures/hunspell/dictionary/README_ar.txt",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/dictionary/README_ar.txt",
+      "bytes": 420,
+      "sha256": "5ead684ae5211ccf615686959e24bd21ef6eebbb6195997529fda08b993f615e",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "5ead684ae5211ccf615686959e24bd21ef6eebbb6195997529fda08b993f615e"
+    },
+    {
+      "path": "fixtures/hunspell/dictionary/manifest.json",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/dictionary/manifest.json",
+      "bytes": 2333,
+      "sha256": "37ef845d5527fe0f0a693ba6854e43bde73acdf2cc5164a8209552ecb20f5e31",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "37ef845d5527fe0f0a693ba6854e43bde73acdf2cc5164a8209552ecb20f5e31"
+    },
+    {
+      "path": "fixtures/hunspell/lifecycle-shim-build-receipt.json",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/lifecycle-shim-build-receipt.json",
+      "bytes": 1105,
+      "sha256": "42f7592f11938c4f912818748ae2518722250b1f6d976c3bb0ed9fb68dfb5ab3",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "42f7592f11938c4f912818748ae2518722250b1f6d976c3bb0ed9fb68dfb5ab3"
+    },
+    {
+      "path": "fixtures/hunspell/native-build-receipt.json",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/native-build-receipt.json",
+      "bytes": 23379,
+      "sha256": "bee9d9d9d7481b4661e30ef26c6c2fde0be2e94cb58f69fdeec5796eaf94cecd",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "bee9d9d9d7481b4661e30ef26c6c2fde0be2e94cb58f69fdeec5796eaf94cecd"
+    },
+    {
+      "path": "fixtures/hunspell/native/libhunspell_lifecycle_shim.so",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/native/libhunspell_lifecycle_shim.so",
+      "bytes": 16328,
+      "sha256": "0a560fe5f1e13002e9271aa18ae98c977cc2e616c901e41ed1cea04c29f37576",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "0a560fe5f1e13002e9271aa18ae98c977cc2e616c901e41ed1cea04c29f37576"
+    },
+    {
+      "path": "fixtures/hunspell/native/libhunspell_native_lifecycle.so",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/native/libhunspell_native_lifecycle.so",
+      "bytes": 18216,
+      "sha256": "8a48f5c4aba8c132372fb6b9d8dce7ba46b8890535d73430a4bec528d0c4a77e",
+      "mode": 493,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "8a48f5c4aba8c132372fb6b9d8dce7ba46b8890535d73430a4bec528d0c4a77e"
+    },
+    {
+      "path": "fixtures/hunspell/native/libhunspell_ownership.so",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/native/libhunspell_ownership.so",
+      "bytes": 16680,
+      "sha256": "da812930d543625e24ed36ac50b161a4ccb7861f43e0254b4d0c7d9e131c36db",
+      "mode": 493,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "da812930d543625e24ed36ac50b161a4ccb7861f43e0254b4d0c7d9e131c36db"
+    },
+    {
+      "path": "fixtures/hunspell/native/libquds_proofing_hunspell.so",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/native/libquds_proofing_hunspell.so",
+      "bytes": 841360,
+      "sha256": "437bbdce8ec8a53ae4d5482c8235f0491ed17d3d112604477bc0579c49c485b8",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "437bbdce8ec8a53ae4d5482c8235f0491ed17d3d112604477bc0579c49c485b8"
+    },
+    {
+      "path": "fixtures/hunspell/restore-receipt.json",
+      "original": "/workspace/scratch/ca9c01a86531/fixtures/hunspell/restore-receipt.json",
+      "bytes": 3569,
+      "sha256": "53931764d2bb814876fa914915a63833d3230064ffbff34de3775a5153c2f54e",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "53931764d2bb814876fa914915a63833d3230064ffbff34de3775a5153c2f54e"
+    },
+    {
+      "path": "reconciliation/audit-10bd0cc4.json",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/audit-10bd0cc4.json",
+      "bytes": 238219,
+      "sha256": "fd0254cf49bd9b60dbcde1d317d2f4a7c9167f772289f2134a5ddca178bc505b",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/audit-2abf5d26.json",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/audit-2abf5d26.json",
+      "bytes": 237566,
+      "sha256": "0f1efc21d8fc82ea600f335932c9edc9e6deaa1ef222796d9f43a030d33e2a79",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/audit-4b8b9e2e.json",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/audit-4b8b9e2e.json",
+      "bytes": 237566,
+      "sha256": "69dcc8e89e8aab2c75e2833b5b4ad7060b9a0e56a3c7c09e09d46288c40d9c32",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/audit-projected-union.json",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/audit-projected-union.json",
+      "bytes": 260370,
+      "sha256": "4f3b69ca9b030ccb31aea8923e7e64840d79c974d61ba6eb172196ae663904ba",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/historical-source-proof.json",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/historical-source-proof.json",
+      "bytes": 135548,
+      "sha256": "a77527ce274e4e6fcd78edb7799f15f7426c57cc187b4ca9c56b05fb76a70564",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/origin-capture.json",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/origin-capture.json",
+      "bytes": 375,
+      "sha256": "1457ea589490ce108359e568e906aecaddf6e596a48eb53255e49d3a8f7495fa",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/origin-refs.txt",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/origin-refs.txt",
+      "bytes": 30934,
+      "sha256": "e3a126f781eee88e7337bd60dc62f57aad55ec20bc0e30e3e4f496ccf5fb42fb",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/pr-metadata.json",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/pr-metadata.json",
+      "bytes": 16659,
+      "sha256": "134d11ad74d892b83a02e76efe195af15071bce834ae3597ca311a6c3de1d933",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/supplementary-upstream-audit.json",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/supplementary-upstream-audit.json",
+      "bytes": 8565,
+      "sha256": "e9009f25dd14bc8d87c50ffd1c5bb378f02fec8cb909bf105ecbe00a2703a220",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/supplementary-upstream-extra-refs.txt",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/supplementary-upstream-extra-refs.txt",
+      "bytes": 1209,
+      "sha256": "f885b9edc9479054592d959e4a6e834baad256427f4498111e9cd04b489f36b7",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/supplementary-upstream-source.txt",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/supplementary-upstream-source.txt",
+      "bytes": 1703,
+      "sha256": "3d5a57caa42f4a0af2bc4c77d1a1052dbc6c95fa1ca44def3cfe39d6a99180be",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/upstream-capture.json",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/upstream-capture.json",
+      "bytes": 311,
+      "sha256": "a0687b8dfeb756b4ef59824bbd9e6778c31b2e5c2d132aed1db5544749f2df57",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "reconciliation/upstream-refs.txt",
+      "original": "/workspace/scratch/ca9c01a86531/reconciliation/upstream-refs.txt",
+      "bytes": 304,
+      "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "review-proofing/editor-controls.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/review-proofing/editor-controls.jsonl",
+      "bytes": 17772,
+      "sha256": "ad376edf15942191638931060617386baf47ee93808231817c414c6901c0cc69",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "review-proofing/editor-controls.stderr",
+      "original": "/workspace/scratch/ca9c01a86531/review-proofing/editor-controls.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "review-proofing/engine-language.jsonl",
+      "original": "/workspace/scratch/ca9c01a86531/review-proofing/engine-language.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "review-proofing/engine-language.stderr",
+      "original": "/workspace/scratch/ca9c01a86531/review-proofing/engine-language.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "runtime/archive-members.json",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/archive-members.json",
+      "bytes": 357030,
+      "sha256": "c30c0738a094f3b0bfc3ee4696204540798d4a4fbaf943a5abb0ce8833635f8f",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "runtime/bin/dart",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/bin/dart",
+      "bytes": 98,
+      "sha256": "932913a7766f97a123b8ef5c9ad6448e8f41eb2e474a4a4e5efe6b53cdfe2af2",
+      "mode": 493,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "runtime/bin/flutter",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/bin/flutter",
+      "bytes": 200,
+      "sha256": "372333db0b02dff3b74b26dacbb6a902e058d10ba8b50ac5c1238d052e42bc54",
+      "mode": 493,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "runtime/cache-omissions.json",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/cache-omissions.json",
+      "bytes": 2335744,
+      "sha256": "c16bf623008daa6c01cfeb16a2895d1048f42cda2274c084d9b8a58840e2d615",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "runtime/env.sh",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/env.sh",
+      "bytes": 588,
+      "sha256": "23fbcf639a498ea0660d209b6f1b16aa5ff92e2fc566480d42cb72fad92c38b6",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "23fbcf639a498ea0660d209b6f1b16aa5ff92e2fc566480d42cb72fad92c38b6"
+    },
+    {
+      "path": "runtime/fixture-environment.json",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/fixture-environment.json",
+      "bytes": 1275,
+      "sha256": "24362835d89efd6570512755f1cbcc4e446e41b6de10a5bf82eafeba3b2c3942",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "24362835d89efd6570512755f1cbcc4e446e41b6de10a5bf82eafeba3b2c3942"
+    },
+    {
+      "path": "runtime/logs/flutter-tools-pub-get.log",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/logs/flutter-tools-pub-get.log",
+      "bytes": 1192,
+      "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "runtime/logs/flutter-version.log",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/logs/flutter-version.log",
+      "bytes": 628,
+      "sha256": "6b6f6603da183c23c6731970f9621cc37ceaa03435d76ec2ce1edafae8e99211",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "runtime/logs/native-assets-smoke.log",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/logs/native-assets-smoke.log",
+      "bytes": 81,
+      "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "runtime/logs/workspace-pub-get.log",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/logs/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "runtime/pub-cache-receipt.json",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/pub-cache-receipt.json",
+      "bytes": 44348,
+      "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591"
+    },
+    {
+      "path": "runtime/retained-inputs.json",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/retained-inputs.json",
+      "bytes": 2049933,
+      "sha256": "8a14b584c2e9416dc73f79e556f3680feba49bdbb279e8f42cd47054c5b01a91",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "8a14b584c2e9416dc73f79e556f3680feba49bdbb279e8f42cd47054c5b01a91"
+    },
+    {
+      "path": "runtime/runtime-fixture-addendum.json",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/runtime-fixture-addendum.json",
+      "bytes": 16045,
+      "sha256": "eb459f2f390995f7fe74d5c29471b20b514a561294b51d2ab1053f54b3cd024b",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "eb459f2f390995f7fe74d5c29471b20b514a561294b51d2ab1053f54b3cd024b"
+    },
+    {
+      "path": "runtime/runtime-restore-original.json",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/runtime-restore-original.json",
+      "bytes": 12724,
+      "sha256": "67503462026940432cb43b74375048a57c179ab3dd426cca753862e0a973ee54",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "67503462026940432cb43b74375048a57c179ab3dd426cca753862e0a973ee54"
+    },
+    {
+      "path": "runtime/runtime.json",
+      "original": "/workspace/scratch/ca9c01a86531/runtime/runtime.json",
+      "bytes": 28390,
+      "sha256": "761fea6147247e520254fb0008fe9c6e4c08f35ac591a1f3b8e3054532be05e7",
+      "mode": 420,
+      "frozen_binding_kind": "environment",
+      "frozen_binding_sha256": "761fea6147247e520254fb0008fe9c6e4c08f35ac591a1f3b8e3054532be05e7"
+    },
+    {
+      "path": "source/docs/validation/document-review-notes-20261118/run_checks.py",
+      "original": "/workspace/scratch/ca9c01a86531/quds_office_suite/docs/validation/document-review-notes-20261118/run_checks.py",
+      "bytes": 34529,
+      "sha256": "160c12f8b0b88edfb0fef38429e007ff8c49ebcec66fca901acc548f5e0144fa",
+      "mode": 420,
+      "frozen_binding_kind": "source",
+      "frozen_binding_sha256": "160c12f8b0b88edfb0fef38429e007ff8c49ebcec66fca901acc548f5e0144fa"
+    },
+    {
+      "path": "source/docs/validation/document-review-notes-20261118/test_run_checks.py",
+      "original": "/workspace/scratch/ca9c01a86531/quds_office_suite/docs/validation/document-review-notes-20261118/test_run_checks.py",
+      "bytes": 20384,
+      "sha256": "651f42dd8f5f847bd8ad5658e2b2681d38dadfdaa05d89c843b46a3ed63dda9c",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "source/docs/validation/office-finish-20261119/README.md",
+      "original": "/workspace/scratch/ca9c01a86531/quds_office_suite/docs/validation/office-finish-20261119/README.md",
+      "bytes": 6980,
+      "sha256": "d66c300e3efef2923ec09420ffb5dcfbaeab321ec18f04ee16b6a00812930a43",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "source/docs/validation/office-finish-20261119/audit_qualification.py",
+      "original": "/workspace/scratch/ca9c01a86531/quds_office_suite/docs/validation/office-finish-20261119/audit_qualification.py",
+      "bytes": 46923,
+      "sha256": "f0bf4515ba4722f193702ef15ef66fa30a5f2fd18f545fdd3fcd7a1d30ff8399",
+      "mode": 420,
+      "frozen_binding_kind": "source",
+      "frozen_binding_sha256": "f0bf4515ba4722f193702ef15ef66fa30a5f2fd18f545fdd3fcd7a1d30ff8399"
+    },
+    {
+      "path": "source/docs/validation/office-finish-20261119/native-plan.json",
+      "original": "/workspace/scratch/ca9c01a86531/quds_office_suite/docs/validation/office-finish-20261119/native-plan.json",
+      "bytes": 28274,
+      "sha256": "c307d0fd0c86e4561b1325a1aefcb46ad38a7a5c88cf9f2e439424340c55880b",
+      "mode": 420,
+      "frozen_binding_kind": "source",
+      "frozen_binding_sha256": "c307d0fd0c86e4561b1325a1aefcb46ad38a7a5c88cf9f2e439424340c55880b"
+    },
+    {
+      "path": "source/docs/validation/office-finish-20261119/node-plan.json",
+      "original": "/workspace/scratch/ca9c01a86531/quds_office_suite/docs/validation/office-finish-20261119/node-plan.json",
+      "bytes": 2729,
+      "sha256": "25a6533d20f68d29054b08ed12027445e1e3d641257b3d89f233ae3b2a8dc7ab",
+      "mode": 420,
+      "frozen_binding_kind": "source",
+      "frozen_binding_sha256": "25a6533d20f68d29054b08ed12027445e1e3d641257b3d89f233ae3b2a8dc7ab"
+    },
+    {
+      "path": "source/docs/validation/office-finish-20261119/run_validation.py",
+      "original": "/workspace/scratch/ca9c01a86531/quds_office_suite/docs/validation/office-finish-20261119/run_validation.py",
+      "bytes": 9767,
+      "sha256": "b44d53f68fd370bbaa8cf362200bf7fe7fc26359d7ea17edb4b5e361d5970b7a",
+      "mode": 420,
+      "frozen_binding_kind": "source",
+      "frozen_binding_sha256": "b44d53f68fd370bbaa8cf362200bf7fe7fc26359d7ea17edb4b5e361d5970b7a"
+    },
+    {
+      "path": "source/docs/validation/office-finish-20261119/source-review.json",
+      "original": "/workspace/scratch/ca9c01a86531/quds_office_suite/docs/validation/office-finish-20261119/source-review.json",
+      "bytes": 1863,
+      "sha256": "8fab308dac11c3b94c89927cb19ccfa5d6433da628ef9d4eb455bc69e1680801",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "source/inputs-before.json",
+      "original": "/workspace/scratch/ca9c01a86531/final-results/inputs-before.json",
+      "bytes": 2867524,
+      "sha256": "a3b625f196f4aa466ee228f8150696c57e2f92660eb97be1d5b6d17da7ad34cd",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "source/packages/quds_arabic_morph/lib/src/morph_catalog.dart",
+      "original": "/workspace/scratch/ca9c01a86531/quds_office_suite/packages/quds_arabic_morph/lib/src/morph_catalog.dart",
+      "bytes": 5650,
+      "sha256": "13fe9a0316013b5cfaa1f005e91a83537c8ef72c57b9b864a756109beaa6440e",
+      "mode": 420,
+      "frozen_binding_kind": "source",
+      "frozen_binding_sha256": "13fe9a0316013b5cfaa1f005e91a83537c8ef72c57b9b864a756109beaa6440e"
+    },
+    {
+      "path": "source/packages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart",
+      "original": "/workspace/scratch/ca9c01a86531/quds_office_suite/packages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart",
+      "bytes": 4801,
+      "sha256": "a8ae5aac4a07afd95c009cd2ed42369b0a883865846992e6f5790c2f74d0e32c",
+      "mode": 420,
+      "frozen_binding_kind": "source",
+      "frozen_binding_sha256": "a8ae5aac4a07afd95c009cd2ed42369b0a883865846992e6f5790c2f74d0e32c"
+    },
+    {
+      "path": "support-audit/README.md",
+      "original": "/workspace/scratch/ca9c01a86531/support-audit/README.md",
+      "bytes": 3188,
+      "sha256": "47f239d0395c677e259842a6626ca35cd1390894b628235d996c34cc1d86cbb9",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "support-audit/audit_continuity.py",
+      "original": "/workspace/scratch/ca9c01a86531/support-audit/audit_continuity.py",
+      "bytes": 5377,
+      "sha256": "87ad527e4a2fcd92a7bc54db514c4f142d1046f887793208f4f09d8d9af15e71",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "support-audit/audit_historical_preservation.py",
+      "original": "/workspace/scratch/ca9c01a86531/support-audit/audit_historical_preservation.py",
+      "bytes": 5924,
+      "sha256": "1fc46c2d480143d74e7b595917eaec57b08900afadaec16cf58e290eb6a266f2",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "support-audit/audit_supplementary_upstream.py",
+      "original": "/workspace/scratch/ca9c01a86531/support-audit/audit_supplementary_upstream.py",
+      "bytes": 5635,
+      "sha256": "6ee2742171b0522f587918da9e2336927fbfc5c17ee47c28ba1e25c428620231",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "support-audit/development-continuity.json",
+      "original": "/workspace/scratch/ca9c01a86531/support-audit/development-continuity.json",
+      "bytes": 4781,
+      "sha256": "8eab8376049fd6e54a6ab31604cb0fe3bfe31a64302026c2612a9e169213ee05",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "support-audit/historical-preservation.json",
+      "original": "/workspace/scratch/ca9c01a86531/support-audit/historical-preservation.json",
+      "bytes": 42738,
+      "sha256": "8b9286f0195248520922d16a1e4cef0272abea84ca93c1ba2cbf941f63984fd0",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "support-audit/input-continuity-4b8b9e2e.json",
+      "original": "/workspace/scratch/ca9c01a86531/support-audit/input-continuity-4b8b9e2e.json",
+      "bytes": 1334,
+      "sha256": "73983d548921a0fcf480f343bb76011d40838d22d029bc3261a33cf7796b2d15",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "support-audit/omitted-payloads.json",
+      "original": "/workspace/scratch/ca9c01a86531/support-audit/omitted-payloads.json",
+      "bytes": 2939,
+      "sha256": "d46b6a473d5fdfa9579f09810e7ff81402bc592bd7edf68e5720b5afd5e40d1d",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    },
+    {
+      "path": "support-audit/package_support.py",
+      "original": "/workspace/scratch/ca9c01a86531/support-audit/package_support.py",
+      "bytes": 10081,
+      "sha256": "c1b186252e7700dcf53edf7fd211d52cc959872979339f7c5d4a28c9e7f8d1f2",
+      "mode": 420,
+      "frozen_binding_kind": null,
+      "frozen_binding_sha256": null
+    }
+  ]
+}

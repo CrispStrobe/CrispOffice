@@ -1,0 +1,44 @@
+{
+  "checked_at_utc": "2026-11-19T11:41:41.424961+00:00",
+  "classification": "SUPERSEDED_SOURCE_NOT_FINAL_ACCEPTANCE",
+  "source_commit": "79e77725925d937bae944b03aac795ffb3fd967d",
+  "source_tree": "e71c487e07dbf323fb964e795f2a3b803dc02d96",
+  "superseded_reason": "Subsequent implementation review identified that SMTP abort did not complete a pending command. The corrected source requires a fresh qualification; these successful receipts are preserved only as historical evidence.",
+  "successful_raw_reporter_recount": {
+    "native_passed_executions": 928,
+    "native_distinct_cases": 928,
+    "native_suite_paths": 43,
+    "python_passed_controls": 21,
+    "node_run_present": false,
+    "node_executions": 0
+  },
+  "native_static_checks": {
+    "analysis_paths": 48,
+    "formatted_paths": 48
+  },
+  "source_and_runtime_bindings": {
+    "source_records": 5177,
+    "runtime_records": 11171,
+    "recorded_before_after_identical": true,
+    "pinned_git_source_blobs_verified": true,
+    "historical_source_mode": true
+  },
+  "final_source_accepted_case_contribution": 0,
+  "reports": {
+    "native": {
+      "file": "superseded-79e7772-native-independent-audit.json",
+      "sha256": "b97806386fe78ddfee105086c0512d7be9f06930886410c148d846a7aa75c72b"
+    },
+    "native_cases": {
+      "file": "superseded-79e7772-native-independent-audit-cases.json",
+      "sha256": "632709f5f1bdc14e47f223c47244b7d69d9f98e4eb5981387f64da87bcfd6540"
+    },
+    "python": {
+      "file": "superseded-79e7772-python-independent-audit.json",
+      "sha256": "adf71f1803f63c603ef7a1451be2e46a56f6a2865c4d011e751e506498248969"
+    }
+  },
+  "historical_integrity_audit_passed": true,
+  "application_tests_executed_by_auditor": 0,
+  "github_actions_calls": 0
+}

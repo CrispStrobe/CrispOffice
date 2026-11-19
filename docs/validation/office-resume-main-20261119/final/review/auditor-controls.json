@@ -1,0 +1,308 @@
+{
+  "accepted": true,
+  "scope": "Auditor controls only; zero product executions contributed",
+  "retained_streams": 11,
+  "retained_visible_events": 1285,
+  "controls": 16,
+  "valid_control": true,
+  "invalid_streams_rejected": [
+    {
+      "name": "unfinished_case",
+      "rejected": true,
+      "issues": [
+        "Started events without exactly one completion: [3]",
+        "One or more selected suites have no visible completed cases"
+      ]
+    },
+    {
+      "name": "duplicate_completion",
+      "rejected": true,
+      "issues": [
+        "Line 9: Second completion for one start: 3"
+      ]
+    },
+    {
+      "name": "missing_terminal",
+      "rejected": true,
+      "issues": [
+        "Expected exactly one successful terminal event"
+      ]
+    },
+    {
+      "name": "failed_result",
+      "rejected": true,
+      "issues": [
+        "Unsuccessful test: one actual case"
+      ]
+    },
+    {
+      "name": "skipped_result",
+      "rejected": true,
+      "issues": [
+        "Skipped completion: one actual case"
+      ]
+    },
+    {
+      "name": "unexpected_suite",
+      "rejected": true,
+      "issues": [
+        "Unexpected suite: packages/a/test/another_test.dart",
+        "Exact suite set mismatch: missing=['packages/a/test/example_test.dart']; unexpected=['packages/a/test/another_test.dart']",
+        "One or more selected suites have no visible completed cases"
+      ]
+    },
+    {
+      "name": "hidden_actual_case",
+      "rejected": true,
+      "issues": [
+        "A non-infrastructure case was hidden: one actual case",
+        "One or more selected suites have no visible completed cases"
+      ]
+    },
+    {
+      "name": "layout_diagnostic",
+      "rejected": true,
+      "issues": [
+        "Layout/tap/disposal diagnostics were printed"
+      ]
+    },
+    {
+      "name": "extra_post_terminal_event",
+      "rejected": true,
+      "issues": [
+        "Event after terminal success at line 10"
+      ]
+    },
+    {
+      "name": "unknown_test_completion",
+      "rejected": true,
+      "issues": [
+        "Line 8: Completion without start: 999",
+        "Started events without exactly one completion: [3]",
+        "One or more selected suites have no visible completed cases"
+      ]
+    },
+    {
+      "name": "no_visible_cases",
+      "rejected": true,
+      "issues": [
+        "One or more selected suites have no visible completed cases"
+      ]
+    },
+    {
+      "name": "duplicate_visible_identity",
+      "rejected": true,
+      "issues": [
+        "Duplicate visible suite/name identities"
+      ]
+    },
+    {
+      "name": "non_json_stdout",
+      "rejected": true,
+      "issues": [
+        "Line 10: Expecting value: line 1 column 1 (char 0)"
+      ]
+    }
+  ],
+  "outcome_accounting_controls": [
+    {
+      "name": "honest_failure",
+      "accepted_as_qualification": false,
+      "reported_counts_match": true,
+      "counts": {
+        "executions": 1,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "honest_skip",
+      "accepted_as_qualification": false,
+      "reported_counts_match": true,
+      "counts": {
+        "executions": 1,
+        "passed": 0,
+        "failed": 0,
+        "skipped": 1
+      }
+    }
+  ],
+  "failed_attempt_raw_recount": {
+    "source_commit": "911d8f43c420bd0d2bea1b9844f3f59f61d46dcf",
+    "scope": "Raw outcomes only; current live source is intentionally not requalified",
+    "counts": {
+      "executions": 1312,
+      "passed": 1303,
+      "failed": 9,
+      "skipped": 0
+    },
+    "reported_counts_match": true,
+    "groups": [
+      {
+        "name": "office-proofing-engine-vm",
+        "counts": {
+          "executions": 714,
+          "passed": 714,
+          "failed": 0,
+          "skipped": 0
+        },
+        "reported_counts_match": true,
+        "raw_acceptance": true,
+        "log_sha256": "97e8cafc030af6ad6a1b6443cad0a7e1f6af2de78841b79ca6cc6a82a27f670e"
+      },
+      {
+        "name": "english-proofing-contracts-vm",
+        "counts": {
+          "executions": 29,
+          "passed": 29,
+          "failed": 0,
+          "skipped": 0
+        },
+        "reported_counts_match": true,
+        "raw_acceptance": true,
+        "log_sha256": "cba77d26d877dcadef485ab04a86ecb83bd0829f50ca43359d7637612f939665"
+      },
+      {
+        "name": "office-proofing-editor",
+        "counts": {
+          "executions": 332,
+          "passed": 330,
+          "failed": 2,
+          "skipped": 0
+        },
+        "reported_counts_match": true,
+        "raw_acceptance": false,
+        "log_sha256": "78e83d58c58c0c847158d1bfe6aa9899ea1871c481ecec9246c38040bd8977bf"
+      },
+      {
+        "name": "studio-functional-host-integration",
+        "counts": {
+          "executions": 210,
+          "passed": 203,
+          "failed": 7,
+          "skipped": 0
+        },
+        "reported_counts_match": true,
+        "raw_acceptance": false,
+        "log_sha256": "47747a347e282de244f6b81b99a69d49a07ca88e7cb1c15ebb567a93c6bd0ec3"
+      },
+      {
+        "name": "hunspell-provider-vm",
+        "counts": {
+          "executions": 19,
+          "passed": 19,
+          "failed": 0,
+          "skipped": 0
+        },
+        "reported_counts_match": true,
+        "raw_acceptance": true,
+        "log_sha256": "793dd0cee9189f7ea76d45cceca510cd64de5a8721c642b9be606808535a065d"
+      },
+      {
+        "name": "arabic-morphology-contracts-vm",
+        "counts": {
+          "executions": 8,
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        },
+        "reported_counts_match": true,
+        "raw_acceptance": true,
+        "log_sha256": "ec761ec5cbd2d470c883bf29ce82d6d3088ab3ac42a8cef19c5a6dfa170321c3"
+      }
+    ],
+    "receipt_sha256": "a2d7ca4d1ca2186aa118a6ed7266623ebfbb29e7c15810d6df2889b804372265"
+  },
+  "historical_reparses": [
+    {
+      "phase": "main",
+      "group": "office-proofing-engine-vm",
+      "accepted": true,
+      "reconstructed_cases": 442,
+      "matches_saved_count": true,
+      "issues": []
+    },
+    {
+      "phase": "main",
+      "group": "english-proofing-contracts-vm",
+      "accepted": true,
+      "reconstructed_cases": 29,
+      "matches_saved_count": true,
+      "issues": []
+    },
+    {
+      "phase": "main",
+      "group": "office-proofing-editor",
+      "accepted": true,
+      "reconstructed_cases": 321,
+      "matches_saved_count": true,
+      "issues": []
+    },
+    {
+      "phase": "main",
+      "group": "studio-functional-host-integration",
+      "accepted": true,
+      "reconstructed_cases": 171,
+      "matches_saved_count": true,
+      "issues": []
+    },
+    {
+      "phase": "main",
+      "group": "hunspell-provider-vm",
+      "accepted": true,
+      "reconstructed_cases": 10,
+      "matches_saved_count": true,
+      "issues": []
+    },
+    {
+      "phase": "main",
+      "group": "hunspell-native-lifecycle-vm",
+      "accepted": true,
+      "reconstructed_cases": 6,
+      "matches_saved_count": true,
+      "issues": []
+    },
+    {
+      "phase": "node",
+      "group": "arabic-writing-node",
+      "accepted": true,
+      "reconstructed_cases": 78,
+      "matches_saved_count": true,
+      "issues": []
+    },
+    {
+      "phase": "node",
+      "group": "arabic-extended-node",
+      "accepted": true,
+      "reconstructed_cases": 200,
+      "matches_saved_count": true,
+      "issues": []
+    },
+    {
+      "phase": "node",
+      "group": "proofing-merge-node",
+      "accepted": true,
+      "reconstructed_cases": 5,
+      "matches_saved_count": true,
+      "issues": []
+    },
+    {
+      "phase": "node",
+      "group": "complex-script-routing-node",
+      "accepted": true,
+      "reconstructed_cases": 13,
+      "matches_saved_count": true,
+      "issues": []
+    },
+    {
+      "phase": "node",
+      "group": "hunspell-provider-node",
+      "accepted": true,
+      "reconstructed_cases": 10,
+      "matches_saved_count": true,
+      "issues": []
+    }
+  ],
+  "auditor_sha256": "52c76f3a0b9bd0c3d509dc9686a46fcf94dc471bf082ba9313879b416dedaa93"
+}

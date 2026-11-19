@@ -1,20 +1,5 @@
 # Mail implementation status — 19 November 2026
 
-## Current reconciliation
-
-The [Office continuation](../../validation/office-continuation-20261119/README.md)
-reconciles the current main, UID/Word/Studio fixes and both later remote
-qualification histories. Their results retain their original source identities;
-the combined source is undergoing fresh local qualification. The
-[host checkpoint](../../validation/office-main-integration-20261119/host-final/README.md)
-preserves its separate 1,285-execution run.
-
-Studio now includes a session-only IMAP/SMTP example with manual/discovered
-account setup, folders, message retrieval and composition, alongside the saved
-`.eml` reader. It does not implement the durable repository-driven workspace,
-persistent credential-vault hosts or queued/reconciled SMTP submission planned
-below. Live account and platform acceptance remain separate.
-
 The current [UID discovery continuation](../../validation/mail-uid-pagination-20261119/README.md)
 adds bounded discovery, atomic stored-range reconciliation and monotonic v3
 cursor revisions. Combined qualification follows the fully retained first
@@ -29,6 +14,59 @@ remain attached to their original source checkpoints.
 Fetch the canonical repository's current refs before resuming.
 The source of product scope remains [README.md](README.md) and the ordered work
 remains [implementation-plan.md](implementation-plan.md).
+
+## Studio foreground-session follow-up
+
+The [current Studio continuation](../../validation/office-mail-continuation-20261119/README.md)
+reconciles the later `10bd0cc4` and `004b2ad6` branches and concurrent
+PRs #192–#194 with main `b070e228`.
+It preserves their independent source-bound evidence and restores saved EML
+reading beside the newly introduced account view. The browser entry supports
+saved messages and explicitly declines direct IMAP/SMTP accounts.
+
+The native Studio host lists folders and fifty envelope records per load through
+the existing high-level client. Selected bodies and read-flag writes use the
+bounded shared IMAP provider with a frozen mailbox/UIDVALIDITY/UID identity.
+Body reads preserve exact original octets; mark-read verifies the remote flag
+before changing the displayed header and never automatically retries a write.
+Connection and read callbacks cannot publish into a replaced session. Secure
+account discovery is required before credentials are used, public failures are
+redacted, and legacy protocol print output is scoped away from application logs.
+
+Its plain-text composer uses the shared Word RenderBox editing surface. It
+validates a single ASCII mailbox and headers, snapshots the body, generates
+quoted-printable MIME, and submits with an explicit recipient and no concurrent
+Sent-folder append. Successful submission means the sending server accepted the
+message, not delivery to the recipient. A typed outcome confirms acceptance even
+when subsequent cleanup fails: the draft clears and the user is told not to
+resend it. Other exceptions after a submission attempt remain conservatively
+uncertain; the session retains the draft and requires an explicit delivery-check
+acknowledgement before another attempt. DATA and BDAT must return final SMTP 250
+acceptance; an earlier positive reply or a recorded command failure cannot
+certify submission.
+
+Reply and text-only forwarding quote the fetched message's plain-text part,
+preserve complete Unicode characters at their explicit quote limit, and do not
+copy Bcc or attachments. HTML-only quotation and threading headers remain outside
+this increment. A retained uncertain draft cannot be silently replaced by a
+reply/forward; Compose resumes it, and an explicit confirmed discard removes
+only the session draft without cancelling a message already submitted.
+
+This does **not** close M04W or M07: accounts/drafts remain session-only, there is
+no repository-driven mailbox or durable outbox, and no automatic resend is added.
+On-demand body reads and mark-read use the bounded provider. The high-level folder,
+envelope and SMTP paths retain their own reconnect behavior and do not acquire
+the provider's protocol-byte limits. Session release attempts both owned
+low-level transport aborts independently of high-level disconnect, including
+after stale connection completions; this does not establish a bounded physical
+shutdown time or disable those clients' reconnect policies.
+Real provider accounts, OAuth/PKCE, native credential vaults, actual browser
+persistence and installed-platform distribution remain separate acceptance gates.
+The final combined source is saved remotely, but its latest local aggregate
+qualification failed before completion and subsequent filesystem tool launches
+reported no space left on device. No accepted aggregate result is claimed for
+that source. See the current report for the exact source, preserved earlier
+attempts and replay instructions; previous totals below remain historical.
 
 ## Delivered code
 

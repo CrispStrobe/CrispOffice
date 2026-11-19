@@ -1,0 +1,351 @@
+{
+  "started_at_utc": "2026-11-19T11:57:36.151655+00:00",
+  "source_commit": "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9",
+  "source_tree": "37d9017ca00c5abe491819af3373e83b80a4da98",
+  "source_base": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+  "plan": "docs/validation/office-resume-main-20261119/final/node-plan.json",
+  "plan_sha256": "c37c49dabead28ad7787bc783b9d758c16f287f92fee43b8d77d9c5dabf01524",
+  "source_input_count": 5164,
+  "materialized_source_inputs": 5164,
+  "sparse_source_omissions": [],
+  "runtime_input_count": 11162,
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/e63c6a1344bc/runtime/flutter"
+  },
+  "workspace_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "runtime_receipt_sha256": "cc2589fedb04b9bb8aeb291390efff72136896396c228d8ea081bd68f777a5c7",
+  "test_launcher": "/workspace/scratch/e63c6a1344bc/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+  "package_config": "/workspace/scratch/e63c6a1344bc/quds_office_suite/.dart_tool/package_config.json",
+  "additional_runtime_inputs": {
+    "/workspace/scratch/e63c6a1344bc/quds_office_suite/.dart_tool/native_assets.yaml": "ba785970c180afe32ebb2ede330a36399e68d757681fd6618701a1fa7935be00",
+    "/workspace/scratch/e63c6a1344bc/quds_office_suite/.dart_tool/lib/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "/workspace/scratch/e63c6a1344bc/quds_office_suite/.dart_tool/hooks_runner/shared/sqlite3/build/download-0a658527/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa"
+  },
+  "whitespace_preserved_inputs": [],
+  "planned_groups": [
+    {
+      "name": "arabic-language-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart",
+        "test/proofing/arabic_grammar_rules_test.dart",
+        "test/word_complex_script_language_test.dart",
+        "test/word_proofing_language_test.dart",
+        "test/proofing/office_proofing_merge_test.dart"
+      ]
+    },
+    {
+      "name": "hunspell-contracts-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-morphology-contracts-node",
+      "cwd": "packages/quds_arabic_morph",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/arabic_morph_unit_test.dart"
+      ]
+    }
+  ],
+  "analysis_files": [],
+  "formatted_files": [],
+  "tracked_worktree_clean_before": true,
+  "runs": [
+    {
+      "name": "arabic-language-node",
+      "command": [
+        "/workspace/scratch/e63c6a1344bc/runtime/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/e63c6a1344bc/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/e63c6a1344bc/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart",
+        "test/proofing/arabic_grammar_rules_test.dart",
+        "test/word_complex_script_language_test.dart",
+        "test/word_proofing_language_test.dart",
+        "test/proofing/office_proofing_merge_test.dart"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 93.241,
+      "log": "checks/arabic-language-node.jsonl",
+      "log_sha256": "3dcdd9828493eacc12a171c100876a4a964145b65da5e21a1c11086d517f1f50",
+      "stderr_log": "checks/arabic-language-node.stderr.log",
+      "stderr_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_compressed_log": "checks/arabic-language-node.stderr.log.gz",
+      "stderr_compressed_log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "cases_file": "checks/arabic-language-node-cases.json",
+      "cases_sha256": "d09d236dd2a5535c2619ef3cf71be28bf6962e92439dc9d11716936f846f7bed",
+      "errors_file": "checks/arabic-language-node-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 551,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart": {
+          "passed": 104,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": {
+          "passed": 311,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_engine/test/proofing/arabic_grammar_rules_test.dart": {
+          "passed": 100,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_engine/test/word_complex_script_language_test.dart": {
+          "passed": 17,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_engine/test/word_proofing_language_test.dart": {
+          "passed": 13,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 6
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 551,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/arabic-language-node.jsonl.gz",
+      "compressed_log_sha256": "36d325609c0caf221545fb166a2e6617adb8e7b25ee7bd1c6473c41b6ba9068f"
+    },
+    {
+      "name": "hunspell-contracts-node",
+      "command": [
+        "/workspace/scratch/e63c6a1344bc/runtime/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/e63c6a1344bc/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/e63c6a1344bc/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/hunspell_provider_test.dart"
+      ],
+      "cwd": "packages/quds_proofing_hunspell",
+      "exit_code": 0,
+      "elapsed_seconds": 23.847,
+      "log": "checks/hunspell-contracts-node.jsonl",
+      "log_sha256": "f3af12fa9b776e37294ebcf096528982e8c8cb97e233a858f93d2d69a6d2ece1",
+      "stderr_log": "checks/hunspell-contracts-node.stderr.log",
+      "stderr_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_compressed_log": "checks/hunspell-contracts-node.stderr.log.gz",
+      "stderr_compressed_log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "cases_file": "checks/hunspell-contracts-node-cases.json",
+      "cases_sha256": "4f5e05da473c676a67027d4a66e98de1f34bdc48bc19f9cda92d8dd380b6cc07",
+      "errors_file": "checks/hunspell-contracts-node-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_proofing_hunspell/test/hunspell_provider_test.dart": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 1
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 11,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/hunspell-contracts-node.jsonl.gz",
+      "compressed_log_sha256": "dd42a06f2a6a9ff8685ae001f2bc1adadbcd31f7f56ffa99ae087faf0668eecd"
+    },
+    {
+      "name": "arabic-morphology-contracts-node",
+      "command": [
+        "/workspace/scratch/e63c6a1344bc/runtime/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/e63c6a1344bc/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/e63c6a1344bc/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/arabic_morph_unit_test.dart"
+      ],
+      "cwd": "packages/quds_arabic_morph",
+      "exit_code": 0,
+      "elapsed_seconds": 24.437,
+      "log": "checks/arabic-morphology-contracts-node.jsonl",
+      "log_sha256": "26c89192e185947741d55d85dae152cb6508be103e456eff1eb9435b71363f0d",
+      "stderr_log": "checks/arabic-morphology-contracts-node.stderr.log",
+      "stderr_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_compressed_log": "checks/arabic-morphology-contracts-node.stderr.log.gz",
+      "stderr_compressed_log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "cases_file": "checks/arabic-morphology-contracts-node-cases.json",
+      "cases_sha256": "2bd03e06791cef5d6abf717bd8a2d87dcea30b9061be3d2b697ff0a44307f4c2",
+      "errors_file": "checks/arabic-morphology-contracts-node-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": {
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 1
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 9,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/arabic-morphology-contracts-node.jsonl.gz",
+      "compressed_log_sha256": "700a5f3b985178914cf4bf55a1e29979cefaded94fac96d8863890a39742f5b1"
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+        "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9",
+        "--",
+        "."
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "elapsed_seconds": 0.064,
+      "log": "checks/whitespace.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true,
+      "compressed_log": "checks/whitespace.log.gz",
+      "compressed_log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    }
+  ],
+  "github_actions_queried_or_awaited": false,
+  "source_unchanged": true,
+  "environment_unchanged": true,
+  "source_mismatches": [],
+  "environment_mismatches": [],
+  "source_head_unchanged": true,
+  "source_index_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "unexpected_native_mappings_after": [],
+  "passed": 571,
+  "failed": 0,
+  "skipped": 0,
+  "finished_at_utc": "2026-11-19T12:00:00.233747+00:00",
+  "manifest_sha256": {
+    "source-before.json": "e55975fd38efd74afd42568002957824fcfd509d52d21013602337bfec7be27c",
+    "source-after.json": "e55975fd38efd74afd42568002957824fcfd509d52d21013602337bfec7be27c",
+    "environment-before.json": "48c057cac2ccd53285e8790ce7671fbc71eb9c9c0b63a86396a57e4cbb9b89ed",
+    "environment-after.json": "48c057cac2ccd53285e8790ce7671fbc71eb9c9c0b63a86396a57e4cbb9b89ed"
+  },
+  "success": true
+}

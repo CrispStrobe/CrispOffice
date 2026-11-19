@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:quds_arabic_morph/quds_arabic_morph.dart';
@@ -39,7 +40,7 @@ final class _FakeTransport implements ArabicMorphTransport {
 CamelArabicMorphology _morphology(_FakeTransport transport, {int cache = 10}) =>
     CamelArabicMorphology(
       database: const MorphDatabaseFiles(
-        camelMorphMsaNoprob,
+        camelMorphMsaProofingBin,
         manifestPath: 'unused',
       ),
       transport: transport,
@@ -47,7 +48,137 @@ CamelArabicMorphology _morphology(_FakeTransport transport, {int cache = 10}) =>
       batchWords: 2,
     );
 
+/// One word record of the compact format: [analyses] as (key id, value)
+/// lists, null values allowed.
+List<int> _record(List<List<(int, String?)>> analyses, {bool wide = false}) {
+  final strings = <String>[];
+  for (final a in analyses) {
+    for (final (_, v) in a) {
+      if (v != null && !strings.contains(v)) strings.add(v);
+    }
+  }
+  final out = BytesBuilder();
+  void u32(int v) => out.add(
+    (ByteData(4)..setUint32(0, v, Endian.little)).buffer.asUint8List(),
+  );
+  void u16(int v) => out.add(
+    (ByteData(2)..setUint16(0, v, Endian.little)).buffer.asUint8List(),
+  );
+  u32(analyses.length);
+  u32(strings.length);
+  out.add([wide ? 1 : 0, 0, 0, 0]);
+  for (final s in strings) {
+    final bytes = utf8.encode(s);
+    out.addByte(0);
+    u32(bytes.length);
+    out.add(bytes);
+  }
+  for (final a in analyses) {
+    u16(a.length);
+    for (final (k, v) in a) {
+      final ref = v == null ? -1 : strings.indexOf(v);
+      if (wide) {
+        u16(k);
+        u32(ref < 0 ? 0xFFFFFFFF : ref);
+      } else {
+        out.addByte(k);
+        u16(ref < 0 ? 0xFFFF : ref);
+      }
+    }
+  }
+  return out.takeBytes();
+}
+
+/// A batch buffer: per word a record, or null for a rejected word.
+Uint8List _batch(List<List<int>?> records) {
+  final out = BytesBuilder();
+  void u32(int v) => out.add(
+    (ByteData(4)..setUint32(0, v, Endian.little)).buffer.asUint8List(),
+  );
+  u32(CompactAnalysisDecoder.magic);
+  u32(records.length);
+  for (final r in records) {
+    u32(r == null ? 5 : 0);
+    u32(r?.length ?? 0);
+    if (r != null) out.add(r);
+  }
+  return out.takeBytes();
+}
+
 void main() {
+  group('CompactAnalysisDecoder', () {
+    const keys = ['diac', 'lex', 'pos', 'gen', 'source'];
+
+    test('reads features lazily, omits nulls and rejects writes', () {
+      final decoder = CompactAnalysisDecoder(keys);
+      final words = decoder.decode(
+        _batch([
+          _record([
+            [(0, 'كَتَبُوا'), (1, 'كَتَب'), (2, 'verb'), (3, null)],
+            [(0, 'كُتُب'), (1, 'كِتَاب'), (2, 'noun'), (4, 'lex')],
+          ]),
+          null,
+          _record([]),
+        ]),
+        3,
+      );
+      expect(words, hasLength(3));
+      final first = words[0]!;
+      expect(first, hasLength(2));
+      expect(first[0], {'diac': 'كَتَبُوا', 'lex': 'كَتَب', 'pos': 'verb'});
+      expect(first[0]['gen'], isNull);
+      expect(first[0].containsKey('gen'), isFalse);
+      expect(first[0]['missing'], isNull);
+      expect(first[1]['source'], 'lex');
+      expect(first[1].keys, ['diac', 'lex', 'pos', 'source']);
+      expect(words[1], isNull);
+      expect(words[2], isEmpty);
+      expect(() => first[0]['pos'] = 'x', throwsUnsupportedError);
+      expect(() => first.clear(), throwsUnsupportedError);
+      expect(() => first[0] = const {}, throwsUnsupportedError);
+      expect(() => first[2], throwsRangeError);
+    });
+
+    test('decodes the wide layout and shares equal values', () {
+      final decoder = CompactAnalysisDecoder(keys);
+      final words = decoder.decode(
+        _batch([
+          _record([
+            [(2, 'noun'), (3, 'm')],
+          ], wide: true),
+          _record([
+            [(2, 'noun')],
+          ]),
+        ]),
+        2,
+      );
+      expect(words[0]!.single, {'pos': 'noun', 'gen': 'm'});
+      expect(
+        identical(words[0]!.single['pos'], words[1]!.single['pos']),
+        isTrue,
+      );
+    });
+
+    test('rejects malformed buffers', () {
+      final decoder = CompactAnalysisDecoder(keys);
+      final good = _batch([
+        _record([
+          [(2, 'noun')],
+        ]),
+      ]);
+      expect(() => decoder.decode(good, 2), throwsFormatException);
+      expect(
+        () =>
+            decoder.decode(Uint8List.sublistView(good, 0, good.length - 1), 1),
+        throwsFormatException,
+      );
+      final bad = Uint8List.fromList(good)..[0] ^= 1;
+      expect(() => decoder.decode(bad, 1), throwsFormatException);
+      final status = Uint8List.fromList(good)..[8] = 6;
+      expect(() => decoder.decode(status, 1), throwsFormatException);
+    });
+  });
+
   group('ArabicAnalysisDecoder', () {
     test('keeps strings, formats numbers, omits nulls, shares layouts', () {
       final decoder = ArabicAnalysisDecoder();
@@ -73,6 +204,33 @@ void main() {
       expect(() => analyses[0]['pos'] = 'noun', throwsUnsupportedError);
     });
 
+    test('numeric feature text preserves fractions, signs and exponents', () {
+      final analysis = ArabicAnalysisDecoder().decode([
+        {
+          'negative': -99,
+          'positive': 7,
+          'zero': 0,
+          'negative_zero': -0.0,
+          'fraction': -1.25,
+          'tiny': 1e-7,
+          'large_plain': 1e20,
+          'exponent': 1e21,
+          'text': '-99',
+        },
+      ]).single;
+      expect(analysis, {
+        'negative': '-99.0',
+        'positive': '7.0',
+        'zero': '0.0',
+        'negative_zero': '-0.0',
+        'fraction': '-1.25',
+        'tiny': '1e-7',
+        'large_plain': '100000000000000000000.0',
+        'exponent': '1e+21',
+        'text': '-99',
+      });
+    });
+
     test('rejects malformed input', () {
       final decoder = ArabicAnalysisDecoder();
       expect(() => decoder.decode({'a': 1}), throwsFormatException);
@@ -89,6 +247,26 @@ void main() {
   });
 
   group('catalog', () {
+    test('the catalog offers the binary proofing bundle', () {
+      expect(morphCatalog, [camelMorphMsaProofingBin]);
+      final bundle = camelMorphMsaProofingBin;
+      expect(
+        bundle.url(bundle.database).toString(),
+        'https://huggingface.co/cstr/camel-morph-msa-v1.0/resolve/'
+        'd5364e04af7a40b0c9044ed127606e585be15272/proofing-bin/'
+        'camel_morph_msa_v1.0.proofing.cmorph',
+      );
+      expect(bundle.files.map((f) => f.file).toSet(), {
+        'manifest.json',
+        'camel_morph_msa_v1.0.proofing.cmorph',
+        'NOTICE',
+        'LICENSE',
+      });
+      expect(bundle.totalBytes, 12166992 + 2064 + 1799 + 442);
+      expect(bundle.license, 'CC-BY-4.0');
+      expect(bundle.attribution, contains('New York University Abu Dhabi'));
+    });
+
     test('noprob bundle is pinned to the immutable revision', () {
       final bundle = camelMorphMsaNoprob;
       expect(bundle.revision, matches(RegExp(r'^[0-9a-f]{40}$')));

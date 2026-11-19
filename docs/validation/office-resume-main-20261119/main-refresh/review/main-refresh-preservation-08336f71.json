@@ -1,0 +1,604 @@
+{
+  "status": "pass",
+  "observed_at_utc": "2026-11-19T12:14:18.616081+00:00",
+  "target": "08336f71b273eb81a4f2652328ad1c91c08e048c",
+  "prepared_tree": "9c9f580c193bab32594697f44f141d5f1269c622",
+  "incoming_main": "76fe761f1c97c31ca8d8add405aa54c436a336aa",
+  "qualified_source": "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9",
+  "qualified_publication": "fb402a5d18e588753744e533c2c96609afd73d94",
+  "qualified_publication_final_records_preserved": 39,
+  "qualified_source_receipts_are_not_merged_source_qualification": true,
+  "entry_map_sha256": "008d2e9a58e73989f24ea2ba074e8fb7a1bfaf8bc13898795369388742d93e1e",
+  "product_entry_map_sha256": "4bde2d0ead48629651f6336e4a86506d182b4129489fdc4d78b20dd2ecd8a7e7",
+  "incoming_product_records": 5039,
+  "incoming_product_records_exact": 5031,
+  "product_exceptions": [
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+      "before": [
+        "100644",
+        "blob",
+        "797c96deba6fa344ed2d390347c6008f85ea078b"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "d30e36fcfbe35dc545f7a3cf40ba09b3fda1420a"
+      ],
+      "disposition": "qualified portable numeric decoder"
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "3fda7a7b0073ccdd1d731a46d91557c6acf1af57"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "889aa4ea4932ee9f64fae623aa6611a254732c21"
+      ],
+      "disposition": "qualified numeric controls"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "before": [
+        "100644",
+        "blob",
+        "5e41318affd588717eb5bae5afdac0d1200c14d0"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "f1256f033cbc19a84e780e6b9f71456d7d4d5fc3"
+      ],
+      "disposition": "confirmed submission cleanup branch"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_strings.dart",
+      "before": [
+        "100644",
+        "blob",
+        "1fcf6c66243e17cd62a784cf953ed6a92f801bd3"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "ac7c3831d59ca07e4903942ecb43ead6aae0b0ad"
+      ],
+      "disposition": "Dart formatter layout only"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "1f7846b9c48b9ad63e9dd62196305687524045ba"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "2da81208cd88dca7635d1bb8986fceb7e23baa3d"
+      ],
+      "disposition": "one confirmed submission regression"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "f7faf1b08107dc9084f39934d95e1c4918992ccf"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "dbd1a335dcb5070e36eb056ed4ec9444137f7e92"
+      ],
+      "disposition": "13-case footer coverage union"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "before": [
+        "100644",
+        "blob",
+        "c2c4e1a2d95985e98a57dd8161d79053ea8ade00"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "1d0b894a0f1e0489c7086165484ac8198e1f74f2"
+      ],
+      "disposition": "qualified active-slot API documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "5f8003868e1d4b42846a308447c9c7d4319ad9ea"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "5543cc51d7ad2b9fc0a36d8ad693013d281508db"
+      ],
+      "disposition": "qualified stronger inactive-slot assertions"
+    }
+  ],
+  "incoming_evidence_records": 7830,
+  "incoming_evidence_records_exact_at_original_path": 7828,
+  "incoming_evidence_relocations": {
+    "docs/validation/office-resume-main-20261119/README.md": "docs/validation/office-resume-main-20261119/main-refresh/incoming-overview-76fe761f.md",
+    "docs/validation/office-resume-main-20261119/final/plan.json": "docs/validation/office-resume-main-20261119/main-refresh/incoming-final-plan-76fe761f.json"
+  },
+  "development_archive": {
+    "path": "docs/validation/office-resume-main-20261119/main-refresh/development-evidence.tar.xz",
+    "sha256": "2652a578cd369914ef82e7d3877284a605817f23db733ec25e5ab8ff04aba889",
+    "members": 62,
+    "focused_red_green_receipts": {
+      "red": {
+        "selected_case_starts": 1,
+        "selected_case_completions": 1,
+        "result": "error",
+        "terminal": [
+          {
+            "success": false,
+            "type": "done",
+            "time": 12181
+          }
+        ]
+      },
+      "green": {
+        "selected_case_starts": 1,
+        "selected_case_completions": 1,
+        "result": "success",
+        "terminal": [
+          {
+            "success": true,
+            "type": "done",
+            "time": 8669
+          }
+        ]
+      }
+    }
+  },
+  "plans": {
+    "native-plan.json": {
+      "groups": 8,
+      "suites": [
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+        "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+        "third_party/enough_mail/test/mail/mail_client_send_test.dart",
+        "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+        "packages/quds_mail_transport/test/native_provider_test.dart",
+        "packages/quds_office_engine/test/wml_run_edit_test.dart",
+        "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+        "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+        "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+        "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+        "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart",
+        "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart"
+      ],
+      "analysis_paths": [
+        "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+        "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+        "packages/quds_office_editor/example/lib/studio_mail.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_file.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_file_web.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_operation.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_web.dart",
+        "packages/quds_office_editor/example/lib/studio_saved_mail.dart",
+        "packages/quds_office_editor/example/lib/studio_strings.dart",
+        "packages/quds_office_editor/example/test/studio_arabic_morph_native_test.dart",
+        "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+        "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "packages/quds_office_editor/example/test/support/studio_mail_fixture.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+        "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+        "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+        "packages/quds_office_engine/test/wml_run_edit_test.dart",
+        "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+        "third_party/enough_mail/lib/src/mail/mail_client.dart",
+        "third_party/enough_mail/lib/src/mail/mail_exception.dart",
+        "third_party/enough_mail/lib/src/private/mail/send_message_transaction.dart",
+        "third_party/enough_mail/test/mail/mail_send_transaction_test.dart"
+      ],
+      "format_paths": [
+        "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+        "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+        "packages/quds_office_editor/example/lib/studio_mail.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_file.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_file_web.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_operation.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_web.dart",
+        "packages/quds_office_editor/example/lib/studio_saved_mail.dart",
+        "packages/quds_office_editor/example/lib/studio_strings.dart",
+        "packages/quds_office_editor/example/test/studio_arabic_morph_native_test.dart",
+        "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+        "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "packages/quds_office_editor/example/test/support/studio_mail_fixture.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+        "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+        "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+        "packages/quds_office_engine/test/wml_run_edit_test.dart",
+        "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+        "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+        "third_party/enough_mail/lib/src/mail/mail_client.dart",
+        "third_party/enough_mail/lib/src/mail/mail_exception.dart",
+        "third_party/enough_mail/lib/src/private/mail/send_message_transaction.dart",
+        "third_party/enough_mail/test/mail/mail_send_transaction_test.dart"
+      ],
+      "sha256": "b43866b5ddecac87d7189f1f9b515a517b5a0d10dc136db46e1ce982f6a310be"
+    },
+    "node-plan.json": {
+      "groups": 4,
+      "suites": [
+        "packages/quds_mail_transport/test/unsupported_test.dart",
+        "packages/quds_mail_mime/test/portable_import_test.dart",
+        "third_party/enough_mail/test/quds_portable_mime_test.dart",
+        "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart"
+      ],
+      "analysis_paths": [],
+      "format_paths": [],
+      "sha256": "7d6331187959590e9610d29d94bf726563b3d0c6d78caaac36510ab8a0f6fa00"
+    }
+  },
+  "checks": [
+    {
+      "name": "source_equals_prepared_tree",
+      "passed": true
+    },
+    {
+      "name": "exact_eight_product_exceptions",
+      "passed": true,
+      "actual": [
+        {
+          "path": "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+          "before": [
+            "100644",
+            "blob",
+            "797c96deba6fa344ed2d390347c6008f85ea078b"
+          ],
+          "after": [
+            "100644",
+            "blob",
+            "d30e36fcfbe35dc545f7a3cf40ba09b3fda1420a"
+          ]
+        },
+        {
+          "path": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+          "before": [
+            "100644",
+            "blob",
+            "3fda7a7b0073ccdd1d731a46d91557c6acf1af57"
+          ],
+          "after": [
+            "100644",
+            "blob",
+            "889aa4ea4932ee9f64fae623aa6611a254732c21"
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "before": [
+            "100644",
+            "blob",
+            "5e41318affd588717eb5bae5afdac0d1200c14d0"
+          ],
+          "after": [
+            "100644",
+            "blob",
+            "f1256f033cbc19a84e780e6b9f71456d7d4d5fc3"
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_strings.dart",
+          "before": [
+            "100644",
+            "blob",
+            "1fcf6c66243e17cd62a784cf953ed6a92f801bd3"
+          ],
+          "after": [
+            "100644",
+            "blob",
+            "ac7c3831d59ca07e4903942ecb43ead6aae0b0ad"
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+          "before": [
+            "100644",
+            "blob",
+            "1f7846b9c48b9ad63e9dd62196305687524045ba"
+          ],
+          "after": [
+            "100644",
+            "blob",
+            "2da81208cd88dca7635d1bb8986fceb7e23baa3d"
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+          "before": [
+            "100644",
+            "blob",
+            "f7faf1b08107dc9084f39934d95e1c4918992ccf"
+          ],
+          "after": [
+            "100644",
+            "blob",
+            "dbd1a335dcb5070e36eb056ed4ec9444137f7e92"
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "before": [
+            "100644",
+            "blob",
+            "c2c4e1a2d95985e98a57dd8161d79053ea8ade00"
+          ],
+          "after": [
+            "100644",
+            "blob",
+            "1d0b894a0f1e0489c7086165484ac8198e1f74f2"
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+          "before": [
+            "100644",
+            "blob",
+            "5f8003868e1d4b42846a308447c9c7d4319ad9ea"
+          ],
+          "after": [
+            "100644",
+            "blob",
+            "5543cc51d7ad2b9fc0a36d8ad693013d281508db"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "qualified_blob_retained:packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+      "passed": true
+    },
+    {
+      "name": "qualified_blob_retained:packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+      "passed": true
+    },
+    {
+      "name": "qualified_blob_retained:packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "passed": true
+    },
+    {
+      "name": "studio_strings_format_only",
+      "passed": true
+    },
+    {
+      "name": "incoming_controller_code_retained",
+      "passed": true
+    },
+    {
+      "name": "qualified_active_slot_documentation_retained",
+      "passed": true
+    },
+    {
+      "name": "mail_native_only_typed_outcome_branch_added",
+      "passed": true
+    },
+    {
+      "name": "mail_confirmed_outcome_clears_draft_and_uncertainty",
+      "passed": true
+    },
+    {
+      "name": "mail_test_only_one_regression_added",
+      "passed": true
+    },
+    {
+      "name": "mail_regression_checks_accepted_no_retry_and_empty_draft",
+      "passed": true
+    },
+    {
+      "name": "qualified_footer_fixture_and_ten_cases_retained_verbatim",
+      "passed": true
+    },
+    {
+      "name": "incoming_three_locale_footer_controls_retained",
+      "passed": true
+    },
+    {
+      "name": "arabic_incoming_source_exact",
+      "passed": true
+    },
+    {
+      "name": "arabic_qualified_code_tokens_equal",
+      "passed": true
+    },
+    {
+      "name": "arabic_tests_exact_both_parents",
+      "passed": true
+    },
+    {
+      "name": "only_two_incoming_evidence_paths_relocated",
+      "passed": true,
+      "actual": [
+        {
+          "path": "docs/validation/office-resume-main-20261119/README.md",
+          "before": [
+            "100644",
+            "blob",
+            "251ddacb7185c0bcfa5159004d40e6c03dc481fa"
+          ],
+          "after": [
+            "100644",
+            "blob",
+            "6d84c342290173c9859d4c2f12846c57fefcf899"
+          ]
+        },
+        {
+          "path": "docs/validation/office-resume-main-20261119/final/plan.json",
+          "before": [
+            "100644",
+            "blob",
+            "51d7f95490864ed38eb033331a353690a90f5095"
+          ],
+          "after": [
+            "100644",
+            "blob",
+            "7581e0ad5a81bf14230549cb5655cec1d295fd0e"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "incoming_evidence_exact_copy:docs/validation/office-resume-main-20261119/README.md",
+      "passed": true,
+      "destination": "docs/validation/office-resume-main-20261119/main-refresh/incoming-overview-76fe761f.md"
+    },
+    {
+      "name": "incoming_evidence_exact_copy:docs/validation/office-resume-main-20261119/final/plan.json",
+      "passed": true,
+      "destination": "docs/validation/office-resume-main-20261119/main-refresh/incoming-final-plan-76fe761f.json"
+    },
+    {
+      "name": "qualified_final_evidence_exact",
+      "passed": true,
+      "records": 12
+    },
+    {
+      "name": "all_published_qualified_receipts_retained_exact",
+      "passed": true,
+      "records": 39
+    },
+    {
+      "name": "root_dependency_manifest_exact_both_parents:pubspec.lock",
+      "passed": true
+    },
+    {
+      "name": "root_dependency_manifest_exact_both_parents:pubspec.yaml",
+      "passed": true
+    },
+    {
+      "name": "plan_suite_count:native-plan.json",
+      "passed": true,
+      "suites": 25,
+      "unique_suites": 25
+    },
+    {
+      "name": "plan_references_existing_tests:native-plan.json",
+      "passed": true
+    },
+    {
+      "name": "plan_suite_count:node-plan.json",
+      "passed": true,
+      "suites": 4,
+      "unique_suites": 4
+    },
+    {
+      "name": "plan_references_existing_tests:node-plan.json",
+      "passed": true
+    },
+    {
+      "name": "native_static_scope_45_paths",
+      "passed": true
+    },
+    {
+      "name": "development_archive_hash_and_size",
+      "passed": true
+    },
+    {
+      "name": "development_archive_exact_62_members",
+      "passed": true
+    },
+    {
+      "name": "development_archive_member_hashes",
+      "passed": true
+    },
+    {
+      "name": "retained_confirmed_send_red_outcome",
+      "passed": true
+    },
+    {
+      "name": "red_is_missing_accepted_notice_assertion",
+      "passed": true
+    },
+    {
+      "name": "retained_confirmed_send_green_outcome",
+      "passed": true
+    },
+    {
+      "name": "observed_source_snapshot_stable",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "No product tests launched by this audit.",
+    "No Git index/tree writes, fetch, or Actions access.",
+    "Development RED/GREEN receipts are retained focused evidence, not final qualification.",
+    "Runtime package-config/graph preservation is recorded by the root run, not independently established by this Git-only comparison."
+  ],
+  "actual_tree": "9c9f580c193bab32594697f44f141d5f1269c622",
+  "actual_parents": [
+    "fb402a5d18e588753744e533c2c96609afd73d94",
+    "76fe761f1c97c31ca8d8add405aa54c436a336aa"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "description": "Fresh bounded qualification of the union of captured main b070e228, host checkpoint c63558c0 and complementary continuation 10bd0cc4. Covers all changed application paths, current Mail lifecycle consumers, Word complex-script controls, Arabic semantic marks/T2 rules, Studio Settings/Review/About, and cancellation boundaries. Prior native/backend, browser, installed app and external-service acceptance retains original attribution. Counts are reconstructed from complete raw events.",
+  "description": "Fresh bounded qualification of the union of captured main b070e228, host checkpoint c63558c0 and complementary continuation 10bd0cc4. Covers all changed application paths, current Mail lifecycle consumers, Word complex-script controls, Arabic semantic marks/T2 rules, Studio Settings/Review/About, and cancellation boundaries. Prior native/backend, browser, installed app and external-service acceptance retains original attribution. Counts are reconstructed from complete raw events. Includes mixed-script token-boundary regressions, active-language metadata preservation, and explicit wide/compact footer view metrics. Includes portable morphology numeric-feature formatting across VM and Node.",
   "groups": [
     {
       "name": "office-proofing-engine-vm",
@@ -113,6 +113,8 @@
     }
   ],
   "analysis": [
+    "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
     "packages/quds_office_editor/example/lib/studio_about.dart",
     "packages/quds_office_editor/example/lib/studio_de_strings.dart",
     "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
@@ -135,6 +137,7 @@
     "packages/quds_office_editor/example/test/widget_test.dart",
     "packages/quds_office_editor/lib/src/embed/office_controller.dart",
     "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
     "packages/quds_office_engine/lib/quds_office_engine.dart",
     "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
     "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
@@ -149,6 +152,8 @@
     "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart"
   ],
   "format": [
+    "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
     "packages/quds_office_editor/example/lib/studio_about.dart",
     "packages/quds_office_editor/example/lib/studio_de_strings.dart",
     "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
@@ -171,6 +176,7 @@
     "packages/quds_office_editor/example/test/widget_test.dart",
     "packages/quds_office_editor/lib/src/embed/office_controller.dart",
     "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
     "packages/quds_office_engine/lib/quds_office_engine.dart",
     "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
     "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",

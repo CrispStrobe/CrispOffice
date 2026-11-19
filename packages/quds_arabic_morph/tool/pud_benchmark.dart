@@ -1,6 +1,8 @@
 // Load time, memory and throughput of the native backend through the Dart
-// API (FFI isolate, JSON decoding, compact maps, isolate transfer):
-//   dart run tool/pud_benchmark.dart <library> <noprob bundle dir> <corpus.txt>
+// API (FFI isolate, compact batch buffers, isolate transfer, lazy maps):
+//   dart run tool/pud_benchmark.dart <library> <bundle dir> <corpus.txt>
+// The bundle dir holds a verified proofing-bin (or the earlier noprob)
+// bundle; its manifest's variant selects the pinned bundle.
 // The corpus has one sentence per line (e.g. the 1,000 `# text` lines of
 // UD Arabic-PUD r2.14 test); distinct Arabic words are analyzed cold, then
 // again from the session cache.
@@ -27,11 +29,14 @@ Future<void> main(List<String> args) async {
   int mb(int bytes) => bytes ~/ (1024 * 1024);
   final rssStart = ProcessInfo.currentRss;
 
+  final variant =
+      (jsonDecode(File('$bundle/manifest.json').readAsStringSync())
+          as Map)['variant'];
+  final pinned = variant == 'noprob'
+      ? camelMorphMsaNoprob
+      : camelMorphMsaProofingBin;
   final morphology = CamelArabicMorphology(
-    database: MorphDatabaseFiles(
-      camelMorphMsaNoprob,
-      manifestPath: '$bundle/manifest.json',
-    ),
+    database: MorphDatabaseFiles(pinned, manifestPath: '$bundle/manifest.json'),
     nativeLibraryPath: library,
   );
   final load = Stopwatch()..start();
@@ -48,6 +53,18 @@ Future<void> main(List<String> args) async {
   await morphology.analyzeWords(tokens);
   warm.stop();
 
+  // Every feature of every analysis is read once, as rules would.
+  var features = 0;
+  final read = Stopwatch()..start();
+  for (final list in result.values) {
+    for (final analysis in list) {
+      for (final key in analysis.keys) {
+        if (analysis[key] != null) features++;
+      }
+    }
+  }
+  read.stop();
+  final rssRead = ProcessInfo.currentRss;
   final analyses = result.values.fold<int>(0, (sum, list) => sum + list.length);
   final report = {
     'sentences': lines.length,
@@ -60,10 +77,13 @@ Future<void> main(List<String> args) async {
     'cold_words_per_second':
         (distinct.length / cold.elapsed.inMicroseconds * 1e6).round(),
     'cached_tokens_seconds': warm.elapsedMilliseconds / 1000,
+    'features_read': features,
+    'read_all_features_seconds': read.elapsedMilliseconds / 1000,
     'rss_mb': {
       'start': mb(rssStart),
       'after_load': mb(rssLoaded),
       'after_analysis_and_cache': mb(rssAnalyzed),
+      'after_reading_all_features': mb(rssRead),
       'peak': mb(ProcessInfo.maxRss),
     },
     'platform': Platform.operatingSystemVersion,

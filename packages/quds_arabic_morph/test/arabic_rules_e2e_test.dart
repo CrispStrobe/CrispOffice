@@ -7,7 +7,7 @@ import 'package:quds_arabic_morph/quds_arabic_morph.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
-/// End to end: the real native analyzer and noprob database feeding the
+/// End to end: the real native analyzer and proofing-bin database feeding the
 /// morphology-based Arabic rules (ArabicWritingRulesProvider(morphology:)).
 final _library = Platform.environment['QUDS_ARABIC_MORPH_TEST_LIBRARY'];
 final _bundle = Platform.environment['QUDS_ARABIC_MORPH_TEST_BUNDLE'];
@@ -23,7 +23,7 @@ void main() {
     if (_skip != false) return;
     morphology = CamelArabicMorphology(
       database: MorphDatabaseFiles(
-        camelMorphMsaNoprob,
+        camelMorphMsaProofingBin,
         manifestPath: '$_bundle/manifest.json',
       ),
       nativeLibraryPath: _library,

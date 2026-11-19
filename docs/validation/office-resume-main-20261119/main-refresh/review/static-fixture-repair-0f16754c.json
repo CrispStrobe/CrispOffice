@@ -1,0 +1,472 @@
+{
+  "status": "pass",
+  "source_commit": "0f16754c278aa83cc79d5777e5b45d3f739e5469",
+  "source_tree": "83d24b0ef7a82f9dfb65dc4e0b2015ee743f237c",
+  "parents": [
+    "08336f71b273eb81a4f2652328ad1c91c08e048c"
+  ],
+  "baseline_source": "08336f71b273eb81a4f2652328ad1c91c08e048c",
+  "incoming_main": "76fe761f1c97c31ca8d8add405aa54c436a336aa",
+  "source_delta": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "fcc27953ac384fb216f9100bcfe9148b658cca25"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "b8899ce92e33ae229c71058c942597bd4be36859"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/studio_mail_fixture.dart",
+      "before": [
+        "100644",
+        "blob",
+        "3335fbfcde5168948fe51744580590475ac9b812"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "57a90f28c0758f5946452af79a944ed7be78315d"
+      ]
+    }
+  ],
+  "all_changed_paths": [
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/README.md",
+      "before": [
+        "100644",
+        "blob",
+        "e20ba8539544ad0567a767e09a21e157ccea2895"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "be748f9b559864c69f22020df4c1225e28914ad4"
+      ]
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/attempt-083-evidence.index.json",
+      "before": null,
+      "after": [
+        "100644",
+        "blob",
+        "a12ddf752e9c6982a361ef8e72130238d1eb5657"
+      ]
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/attempt-083-evidence.tar.xz",
+      "before": null,
+      "after": [
+        "100644",
+        "blob",
+        "1ac59256b80a3a72657258c513905c5aae2e74ae"
+      ]
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/attempt-083.md",
+      "before": null,
+      "after": [
+        "100644",
+        "blob",
+        "6c8fdb2ce5022cd2a53294793d022a9b64f59e9f"
+      ]
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/static-fixture-repair-evidence.index.json",
+      "before": null,
+      "after": [
+        "100644",
+        "blob",
+        "d58d2bfc8e85c3433d2d3fdc7333905e69860733"
+      ]
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/static-fixture-repair-evidence.tar.xz",
+      "before": null,
+      "after": [
+        "100644",
+        "blob",
+        "ad018598e34a5b74a5ef8b02ae72d04b362c5591"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "fcc27953ac384fb216f9100bcfe9148b658cca25"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "b8899ce92e33ae229c71058c942597bd4be36859"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/studio_mail_fixture.dart",
+      "before": [
+        "100644",
+        "blob",
+        "3335fbfcde5168948fe51744580590475ac9b812"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "57a90f28c0758f5946452af79a944ed7be78315d"
+      ]
+    }
+  ],
+  "incoming_package_and_third_party_records": 5039,
+  "incoming_package_and_third_party_records_exact": 5029,
+  "reviewed_exceptions_to_main": [
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+      "before": [
+        "100644",
+        "blob",
+        "797c96deba6fa344ed2d390347c6008f85ea078b"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "d30e36fcfbe35dc545f7a3cf40ba09b3fda1420a"
+      ]
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "3fda7a7b0073ccdd1d731a46d91557c6acf1af57"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "889aa4ea4932ee9f64fae623aa6611a254732c21"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "before": [
+        "100644",
+        "blob",
+        "5e41318affd588717eb5bae5afdac0d1200c14d0"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "f1256f033cbc19a84e780e6b9f71456d7d4d5fc3"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_strings.dart",
+      "before": [
+        "100644",
+        "blob",
+        "1fcf6c66243e17cd62a784cf953ed6a92f801bd3"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "ac7c3831d59ca07e4903942ecb43ead6aae0b0ad"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "fcc27953ac384fb216f9100bcfe9148b658cca25"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "b8899ce92e33ae229c71058c942597bd4be36859"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "1f7846b9c48b9ad63e9dd62196305687524045ba"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "2da81208cd88dca7635d1bb8986fceb7e23baa3d"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "f7faf1b08107dc9084f39934d95e1c4918992ccf"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "dbd1a335dcb5070e36eb056ed4ec9444137f7e92"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/studio_mail_fixture.dart",
+      "before": [
+        "100644",
+        "blob",
+        "3335fbfcde5168948fe51744580590475ac9b812"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "57a90f28c0758f5946452af79a944ed7be78315d"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "before": [
+        "100644",
+        "blob",
+        "c2c4e1a2d95985e98a57dd8161d79053ea8ade00"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "1d0b894a0f1e0489c7086165484ac8198e1f74f2"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "before": [
+        "100644",
+        "blob",
+        "5f8003868e1d4b42846a308447c9c7d4319ad9ea"
+      ],
+      "after": [
+        "100644",
+        "blob",
+        "5543cc51d7ad2b9fc0a36d8ad693013d281508db"
+      ]
+    }
+  ],
+  "incoming_evidence_records": 7830,
+  "incoming_evidence_exact_original_paths": 7828,
+  "incoming_evidence_exact_relocations": {
+    "docs/validation/office-resume-main-20261119/README.md": "docs/validation/office-resume-main-20261119/main-refresh/incoming-overview-76fe761f.md",
+    "docs/validation/office-resume-main-20261119/final/plan.json": "docs/validation/office-resume-main-20261119/main-refresh/incoming-final-plan-76fe761f.json"
+  },
+  "previous_qualified_final_records_preserved": 39,
+  "native_suite_count": 25,
+  "node_suite_count": 4,
+  "analysis_path_count": 45,
+  "preserved_rejected_083_runtime_groups": {
+    "qualification-refresh-main/checks/hunspell-cancellation-delta.jsonl": {
+      "visible_cases": 9,
+      "suites": 2
+    },
+    "qualification-refresh-main/checks/mail-bounded-reader-vm.jsonl": {
+      "visible_cases": 69,
+      "suites": 1
+    },
+    "qualification-refresh-main/checks/mail-send-transaction-vm.jsonl": {
+      "visible_cases": 14,
+      "suites": 2
+    },
+    "qualification-refresh-main/checks/morphology-portable-contract-vm.jsonl": {
+      "visible_cases": 9,
+      "suites": 1
+    },
+    "qualification-refresh-main/checks/studio-mail-modular.jsonl": {
+      "visible_cases": 95,
+      "suites": 8
+    },
+    "qualification-refresh-main/checks/studio-settings-footer-delta.jsonl": {
+      "visible_cases": 95,
+      "suites": 6
+    },
+    "qualification-refresh-main/checks/word-language-editor-delta.jsonl": {
+      "visible_cases": 44,
+      "suites": 2
+    },
+    "qualification-refresh-main/checks/word-routing-engine-delta.jsonl": {
+      "visible_cases": 47,
+      "suites": 3
+    }
+  },
+  "new_archives": {
+    "attempt-083-evidence": {
+      "bytes": 773816,
+      "sha256": "ff2faf52ba92a616baf6c51eb3bb9dc0937abbf0f60da72d41f3f7b787d6bc09",
+      "members": 62,
+      "status": "rejected-strict-analysis"
+    },
+    "static-fixture-repair-evidence": {
+      "bytes": 1788,
+      "sha256": "c2d970d0b3d2d3ea7f2c9882261bb3d9d54f2fe7697fa6aad74fcebd7013b502",
+      "members": 4,
+      "status": "development-static-preflight"
+    }
+  },
+  "checks": [
+    {
+      "name": "exact_frozen_tree_and_parent",
+      "passed": true
+    },
+    {
+      "name": "only_two_test_paths_change_outside_evidence",
+      "passed": true
+    },
+    {
+      "name": "application_code_and_all_other_non_evidence_objects_preserved",
+      "passed": true
+    },
+    {
+      "name": "exact_eight_path_total_delta",
+      "passed": true
+    },
+    {
+      "name": "fixture_exact_single_native_import_replacement",
+      "passed": true
+    },
+    {
+      "name": "operation_test_executable_body_and_assertions_exact",
+      "passed": true
+    },
+    {
+      "name": "all_twenty_intentional_print_probes_retained",
+      "passed": true
+    },
+    {
+      "name": "exact_ten_reviewed_exceptions_to_main",
+      "passed": true
+    },
+    {
+      "name": "original_eight_exceptions_exactly_preserved_from_083",
+      "passed": true
+    },
+    {
+      "name": "only_prior_evidence_overview_changed",
+      "passed": true
+    },
+    {
+      "name": "prior_overview_text_retained_with_appended_rejection_note",
+      "passed": true
+    },
+    {
+      "name": "plan_or_historical_copy_exact:docs/validation/office-resume-main-20261119/final/plan.json",
+      "passed": true
+    },
+    {
+      "name": "plan_or_historical_copy_exact:docs/validation/office-resume-main-20261119/main-refresh/native-plan.json",
+      "passed": true
+    },
+    {
+      "name": "plan_or_historical_copy_exact:docs/validation/office-resume-main-20261119/main-refresh/node-plan.json",
+      "passed": true
+    },
+    {
+      "name": "plan_or_historical_copy_exact:docs/validation/office-resume-main-20261119/main-refresh/incoming-overview-76fe761f.md",
+      "passed": true
+    },
+    {
+      "name": "plan_or_historical_copy_exact:docs/validation/office-resume-main-20261119/main-refresh/incoming-final-plan-76fe761f.json",
+      "passed": true
+    },
+    {
+      "name": "all_39_qualified_publication_files_preserved",
+      "passed": true
+    },
+    {
+      "name": "all_incoming_main_evidence_preserved_at_original_or_exact_copy",
+      "passed": true
+    },
+    {
+      "name": "root_dependency_manifest_unchanged:pubspec.yaml",
+      "passed": true
+    },
+    {
+      "name": "root_dependency_manifest_unchanged:pubspec.lock",
+      "passed": true
+    },
+    {
+      "name": "attempt-083-evidence:archive_binding_and_hash",
+      "passed": true
+    },
+    {
+      "name": "attempt-083-evidence:exact_member_inventory_and_hashes",
+      "passed": true
+    },
+    {
+      "name": "static-fixture-repair-evidence:archive_binding_and_hash",
+      "passed": true
+    },
+    {
+      "name": "static-fixture-repair-evidence:exact_member_inventory_and_hashes",
+      "passed": true
+    },
+    {
+      "name": "retained_083_attempt_remains_rejected",
+      "passed": true
+    },
+    {
+      "name": "retained_raw_group_complete:qualification-refresh-main/checks/hunspell-cancellation-delta.jsonl",
+      "passed": true
+    },
+    {
+      "name": "retained_raw_group_complete:qualification-refresh-main/checks/mail-bounded-reader-vm.jsonl",
+      "passed": true
+    },
+    {
+      "name": "retained_raw_group_complete:qualification-refresh-main/checks/mail-send-transaction-vm.jsonl",
+      "passed": true
+    },
+    {
+      "name": "retained_raw_group_complete:qualification-refresh-main/checks/morphology-portable-contract-vm.jsonl",
+      "passed": true
+    },
+    {
+      "name": "retained_raw_group_complete:qualification-refresh-main/checks/studio-mail-modular.jsonl",
+      "passed": true
+    },
+    {
+      "name": "retained_raw_group_complete:qualification-refresh-main/checks/studio-settings-footer-delta.jsonl",
+      "passed": true
+    },
+    {
+      "name": "retained_raw_group_complete:qualification-refresh-main/checks/word-language-editor-delta.jsonl",
+      "passed": true
+    },
+    {
+      "name": "retained_raw_group_complete:qualification-refresh-main/checks/word-routing-engine-delta.jsonl",
+      "passed": true
+    },
+    {
+      "name": "retained_083_native_382_cases_25_suites",
+      "passed": true
+    },
+    {
+      "name": "retained_analysis_failure_is_one_fixture_error_and_twenty_print_infos",
+      "passed": true
+    },
+    {
+      "name": "preflight_exact_45_path_strict_analysis_scope",
+      "passed": true
+    },
+    {
+      "name": "preflight_source_hashes_match_exact_two_committed_repairs",
+      "passed": true
+    }
+  ],
+  "qualification_limits": [
+    "The 382 passed native cases belong to rejected source 08336f71; they do not qualify this repaired source.",
+    "The strict analysis preflight is development evidence; final 0f16754c gates are separately attributed.",
+    "No product tests, index/source edits, tree writes, fetches, or Actions requests performed by this auditor.",
+    "Original main-refresh-preservation-08336f71.json is retained unchanged; this is a supplemental repair review."
+  ]
+}

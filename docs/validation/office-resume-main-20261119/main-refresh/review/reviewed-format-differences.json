@@ -1,0 +1,148 @@
+[
+  {
+    "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "approved_semantic_equivalence": true,
+    "reason": "Only optional trailing function-call argument commas changed by formatter; all literals and behavior tokens otherwise preserved.",
+    "before_sha256": "a7e70d78eb41e96968a114a2a5d9e6dfff774b0b7a45beeac0d5f3111a9d86c8",
+    "after_sha256": "91b48570175a123d8b8b8ab4806d33a2fcdd2fbf96887db02356ae9764de2f05",
+    "edits": [
+      {
+        "operation": "insert",
+        "removed": [],
+        "added": [
+          ","
+        ],
+        "before_context": [
+          "(",
+          "'private outgoing cleanup details'",
+          ")",
+          ",",
+          "findsNothing",
+          ")",
+          ";",
+          "await",
+          "tester",
+          "."
+        ],
+        "after_context": [
+          "(",
+          "'private outgoing cleanup details'",
+          ")",
+          ",",
+          "findsNothing",
+          ",",
+          ")",
+          ";",
+          "await",
+          "tester",
+          "."
+        ]
+      },
+      {
+        "operation": "insert",
+        "removed": [],
+        "added": [
+          ","
+        ],
+        "before_context": [
+          "!",
+          ".",
+          "text",
+          ",",
+          "isEmpty",
+          ")",
+          ";",
+          "expect",
+          "(",
+          "tester"
+        ],
+        "after_context": [
+          "!",
+          ".",
+          "text",
+          ",",
+          "isEmpty",
+          ",",
+          ")",
+          ";",
+          "expect",
+          "(",
+          "tester"
+        ]
+      }
+    ]
+  },
+  {
+    "path": "packages/quds_office_editor/example/lib/studio_strings.dart",
+    "approved_semantic_equivalence": true,
+    "reason": "Only optional trailing function-call argument commas changed by formatter; all literals and behavior tokens otherwise preserved.",
+    "before_sha256": "b3f60ca29312e68a422c44a2fb63b173fa0f2bb694e036c39bc7a7649b4380e0",
+    "after_sha256": "501b9b9715a32775e8a3631038fc98dec1cd049aba1dbd3f507e7c2a80c5304f",
+    "edits": [
+      {
+        "operation": "delete",
+        "removed": [
+          ","
+        ],
+        "added": [],
+        "before_context": [
+          "'Saved messages'",
+          ",",
+          "'Gespeicherte Nachrichten'",
+          ",",
+          "'الرسائل المحفوظة'",
+          ",",
+          ")",
+          ";",
+          "String",
+          "get",
+          "mailAccounts"
+        ],
+        "after_context": [
+          "'Saved messages'",
+          ",",
+          "'Gespeicherte Nachrichten'",
+          ",",
+          "'الرسائل المحفوظة'",
+          ")",
+          ";",
+          "String",
+          "get",
+          "mailAccounts"
+        ]
+      },
+      {
+        "operation": "delete",
+        "removed": [
+          ","
+        ],
+        "added": [],
+        "before_context": [
+          "'Back to messages'",
+          ",",
+          "'Zurück zu Nachrichten'",
+          ",",
+          "'العودة إلى الرسائل'",
+          ",",
+          ")",
+          ";",
+          "String",
+          "get",
+          "openMessage"
+        ],
+        "after_context": [
+          "'Back to messages'",
+          ",",
+          "'Zurück zu Nachrichten'",
+          ",",
+          "'العودة إلى الرسائل'",
+          ")",
+          ";",
+          "String",
+          "get",
+          "openMessage"
+        ]
+      }
+    ]
+  }
+]

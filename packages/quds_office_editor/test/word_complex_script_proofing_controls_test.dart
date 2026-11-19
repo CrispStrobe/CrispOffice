@@ -45,14 +45,18 @@ List<WmlRun> _runs(WordEditorController controller) =>
 WmlDocument _reload(WordEditorController controller) =>
     WordDeserializer().readBytes(controller.saveBytes());
 
-void _expectMetadata(WmlDocument document, {required String? directBidi}) {
+void _expectMetadata(
+  WmlDocument document, {
+  required String? directBidi,
+  required String? directLatin,
+}) {
   final xml = XmlDocument.parse(
     document.package!.getPart('/word/document.xml')!.readText(),
   );
   final run = xml.root!.firstChild('body')!.firstChild('p')!.firstChild('r')!;
   final props = run.firstChild('rPr')!;
   final language = props.firstChild('lang')!;
-  expect(language.getAttribute('val'), 'en-GB');
+  expect(language.getAttribute('val'), directLatin);
   expect(language.getAttribute('eastAsia'), 'ja-JP');
   expect(language.getAttribute('bidi'), directBidi);
   expect(props.firstChild('rtl'), isNotNull);
@@ -63,90 +67,109 @@ void _expectMetadata(WmlDocument document, {required String? directBidi}) {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  for (final language in ['ar-DZ', 'en-GB']) {
-    test(
-      'choosing $language updates the routed language and survives history',
-      () {
-        final controller = _controller(_document());
-        expect(controller.textProofingTarget!.language, 'ar-SA');
-        expect(
-          controller.setTextProofingLanguage(
-            language,
-            target: controller.textProofingTarget!,
-          ),
-          isTrue,
-        );
-        expect(controller.textProofingTarget!.language, language);
-        expect(_runs(controller).single.properties.proofingLanguage, 'en-GB');
-        expect(
-          _runs(controller).single.properties.complexScriptLanguage,
-          language,
-        );
-        expect(_runs(controller).single.properties.complexScript, isTrue);
-        controller.undo();
-        expect(controller.textProofingTarget!.language, 'ar-SA');
-        expect(controller.canUndo, isFalse);
-        controller.redo();
-        expect(controller.textProofingTarget!.language, language);
-        final loaded = _reload(controller);
-        _expectMetadata(loaded, directBidi: language);
-        expect(_controller(loaded).textProofingTarget!.language, language);
-      },
-    );
-  }
-
-  for (final (name, characterStyle, paragraphStyle, inherited) in [
-    ('character style', true, true, 'ar-MA'),
-    ('paragraph style', false, true, 'ar-EG'),
-    ('document default', false, false, 'ar-AE'),
-  ]) {
-    test(
-      'reset inherits $name through undo and DOCX without a direct bidi tag',
-      () {
-        final controller = _controller(
-          _document(
-            characterStyle: characterStyle,
-            paragraphStyle: paragraphStyle,
-          ),
-        );
-        expect(
-          controller.setTextProofingLanguage(
-            null,
-            target: controller.textProofingTarget!,
-          ),
-          isTrue,
-        );
-        expect(controller.textProofingTarget!.language, inherited);
-        expect(_runs(controller).single.properties.proofingLanguage, 'en-GB');
-        expect(_runs(controller).single.properties.complexScript, isTrue);
-        final revision = controller.contentRevision;
-        expect(
-          controller.setTextProofingLanguage(
-            null,
-            target: controller.textProofingTarget!,
-          ),
-          isTrue,
-        );
-        expect(controller.contentRevision, revision);
-        controller.undo();
-        expect(controller.textProofingTarget!.language, 'ar-SA');
-        expect(controller.canUndo, isFalse);
-        controller.redo();
-        expect(controller.textProofingTarget!.language, inherited);
-        final loaded = _reload(controller);
-        _expectMetadata(loaded, directBidi: null);
-        final reopened = _controller(loaded);
-        expect(reopened.textProofingTarget!.language, inherited);
-        if (!paragraphStyle) {
+  for (final activeLanguageOnly in [false, true]) {
+    for (final language in ['ar-DZ', 'en-GB']) {
+      test(
+        '${activeLanguageOnly ? 'active-only' : 'both-slot'} choosing $language updates the routed language and survives history',
+        () {
+          final controller = _controller(_document());
+          expect(controller.textProofingTarget!.language, 'ar-SA');
           expect(
-            _runs(reopened).single.properties.complexScriptLanguage,
-            isNull,
+            controller.setTextProofingLanguage(
+              language,
+              target: controller.textProofingTarget!,
+              activeLanguageOnly: activeLanguageOnly,
+            ),
+            isTrue,
           );
-          loaded.complexScriptLanguage = 'ar-QA';
-          expect(reopened.textProofingTarget!.language, 'ar-QA');
-        }
-      },
-    );
+          expect(controller.textProofingTarget!.language, language);
+          expect(
+            _runs(controller).single.properties.proofingLanguage,
+            activeLanguageOnly ? 'en-GB' : language,
+          );
+          expect(
+            _runs(controller).single.properties.complexScriptLanguage,
+            language,
+          );
+          expect(_runs(controller).single.properties.complexScript, isTrue);
+          controller.undo();
+          expect(controller.textProofingTarget!.language, 'ar-SA');
+          expect(controller.canUndo, isFalse);
+          controller.redo();
+          expect(controller.textProofingTarget!.language, language);
+          final loaded = _reload(controller);
+          _expectMetadata(
+            loaded,
+            directBidi: language,
+            directLatin: activeLanguageOnly ? 'en-GB' : language,
+          );
+          expect(_controller(loaded).textProofingTarget!.language, language);
+        },
+      );
+    }
+
+    for (final (name, characterStyle, paragraphStyle, inherited) in [
+      ('character style', true, true, 'ar-MA'),
+      ('paragraph style', false, true, 'ar-EG'),
+      ('document default', false, false, 'ar-AE'),
+    ]) {
+      test(
+        '${activeLanguageOnly ? 'active-only' : 'both-slot'} reset inherits $name through undo and DOCX without a direct bidi tag',
+        () {
+          final controller = _controller(
+            _document(
+              characterStyle: characterStyle,
+              paragraphStyle: paragraphStyle,
+            ),
+          );
+          expect(
+            controller.setTextProofingLanguage(
+              null,
+              target: controller.textProofingTarget!,
+              activeLanguageOnly: activeLanguageOnly,
+            ),
+            isTrue,
+          );
+          expect(controller.textProofingTarget!.language, inherited);
+          expect(
+            _runs(controller).single.properties.proofingLanguage,
+            activeLanguageOnly ? 'en-GB' : null,
+          );
+          expect(_runs(controller).single.properties.complexScript, isTrue);
+          final revision = controller.contentRevision;
+          expect(
+            controller.setTextProofingLanguage(
+              null,
+              target: controller.textProofingTarget!,
+              activeLanguageOnly: activeLanguageOnly,
+            ),
+            isTrue,
+          );
+          expect(controller.contentRevision, revision);
+          controller.undo();
+          expect(controller.textProofingTarget!.language, 'ar-SA');
+          expect(controller.canUndo, isFalse);
+          controller.redo();
+          expect(controller.textProofingTarget!.language, inherited);
+          final loaded = _reload(controller);
+          _expectMetadata(
+            loaded,
+            directBidi: null,
+            directLatin: activeLanguageOnly ? 'en-GB' : null,
+          );
+          final reopened = _controller(loaded);
+          expect(reopened.textProofingTarget!.language, inherited);
+          if (!paragraphStyle) {
+            expect(
+              _runs(reopened).single.properties.complexScriptLanguage,
+              isNull,
+            );
+            loaded.complexScriptLanguage = 'ar-QA';
+            expect(reopened.textProofingTarget!.language, 'ar-QA');
+          }
+        },
+      );
+    }
   }
 
   test('partial Arabic selection keeps its chosen language separate', () {
@@ -208,6 +231,60 @@ void main() {
     },
   );
 
+  test(
+    'explicit both-slot Latin selection changes both overrides without changing the Arabic tail',
+    () {
+      final controller = _controller(_document(text: 'Text فكرة', flags: ''));
+      controller.caret
+        ..selectionAnchor = 0
+        ..logicalIndex = 4;
+      expect(
+        controller.setTextProofingLanguage(
+          'de-DE',
+          target: controller.textProofingTarget!,
+          activeLanguageOnly: false,
+        ),
+        isTrue,
+      );
+      expect(
+        _runs(controller).map(
+          (run) => (
+            run.text,
+            run.properties.proofingLanguage,
+            run.properties.complexScriptLanguage,
+          ),
+        ),
+        [('Text', 'de-DE', 'de-DE'), (' فكرة', 'en-GB', 'ar-SA')],
+      );
+      expect(controller.textProofingTarget!.language, 'de-DE');
+    },
+  );
+
+  test('active-only Latin text with an explicit cs marker uses bidi', () {
+    final controller = _controller(_document(text: 'Latin', flags: '<w:cs/>'));
+    expect(controller.textProofingTarget!.language, 'ar-SA');
+    expect(
+      controller.setTextProofingLanguage(
+        'he-IL',
+        target: controller.textProofingTarget!,
+        activeLanguageOnly: true,
+      ),
+      isTrue,
+    );
+    expect(controller.textProofingTarget!.language, 'he-IL');
+    expect(_runs(controller).single.properties.proofingLanguage, 'en-GB');
+    expect(_runs(controller).single.properties.complexScriptLanguage, 'he-IL');
+    final loaded = _reload(controller);
+    final props = loaded.paragraphs.single.inlines
+        .whereType<WmlRun>()
+        .single
+        .properties;
+    expect(props.proofingLanguage, 'en-GB');
+    expect(props.complexScriptLanguage, 'he-IL');
+    expect(props.complexScript, isTrue);
+    expect(props.sourcePropertiesXml, contains('ja-JP'));
+  });
+
   test('a changed document bidi default makes a displayed target stale', () {
     final controller = _controller(
       _document(characterStyle: false, paragraphStyle: false, directBidi: null),
@@ -221,7 +298,6 @@ void main() {
     );
     expect(controller.canUndo, isFalse);
   });
-
   test(
     'choosing existing Latin metadata retains the selected script boundary through history and save',
     () {
@@ -229,7 +305,7 @@ void main() {
       controller.caret
         ..selectionAnchor = 0
         ..logicalIndex = 4;
-      expect(controller.textProofingTarget!.language, 'ar-SA');
+      expect(controller.textProofingTarget!.language, 'en-GB');
       expect(
         controller.setTextProofingLanguage(
           'en-GB',
@@ -255,7 +331,7 @@ void main() {
       expect(controller.contentRevision, revision);
       controller.undo();
       expect(_runs(controller).single.text, 'Text فكرة');
-      expect(controller.textProofingTarget!.language, 'ar-SA');
+      expect(controller.textProofingTarget!.language, 'en-GB');
       controller.redo();
       expect(controller.textProofingTarget!.language, 'en-GB');
       final loaded = _reload(controller);
@@ -294,7 +370,7 @@ void main() {
       controller.caret
         ..selectionAnchor = 0
         ..logicalIndex = 4;
-      expect(controller.textProofingTarget!.language, 'ar-SA');
+      expect(controller.textProofingTarget!.language, 'en-GB');
       expect(
         controller.setTextProofingLanguage(
           null,
@@ -320,7 +396,7 @@ void main() {
       expect(controller.contentRevision, revision);
       controller.undo();
       expect(_runs(controller).single.text, 'Text فكرة');
-      expect(controller.textProofingTarget!.language, 'ar-SA');
+      expect(controller.textProofingTarget!.language, 'en-GB');
       controller.redo();
       expect(controller.textProofingTarget!.language, 'en-GB');
       final reopened = _controller(_reload(controller));

@@ -1,0 +1,698 @@
+{
+  "schema": 1,
+  "audited_at_utc": "2026-11-19T11:40:18.609486+00:00",
+  "source": "47ce5f726f1a0b1f213b926162528533dc0a3aab",
+  "tree": "97cad8c95409bee4af74b57c8e0e90cd4fc43585",
+  "parent": "911d8f43c420bd0d2bea1b9844f3f59f61d46dcf",
+  "captured_main": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+  "auditor_sha256": "f47503ab071b0f7c98c9a3986a24d2d7835b4709500cb3b0a1afdb48d678dcf4",
+  "exact_changed_paths": [
+    "docs/validation/office-resume-main-20261119/final/development-evidence.index.json",
+    "docs/validation/office-resume-main-20261119/final/development-evidence.tar.xz",
+    "docs/validation/office-resume-main-20261119/final/first-attempt-evidence.index.json",
+    "docs/validation/office-resume-main-20261119/final/first-attempt-evidence.tar.xz",
+    "docs/validation/office-resume-main-20261119/final/first-attempt.md",
+    "docs/validation/office-resume-main-20261119/final/plan.json",
+    "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+    "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart"
+  ],
+  "application_logic_changes": [
+    "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart"
+  ],
+  "controller_documentation_only": true,
+  "arabic_table_sections": {
+    "b070e228a749e22cc8ce2098029a76ab5fb8eccb": {
+      "bytes": 65848,
+      "sha256": "0b0869da01cf66ab2e614ff96a7af8d8e2ebfa76926a8612db54d20a2f3136dc"
+    },
+    "911d8f43c420bd0d2bea1b9844f3f59f61d46dcf": {
+      "bytes": 65848,
+      "sha256": "0b0869da01cf66ab2e614ff96a7af8d8e2ebfa76926a8612db54d20a2f3136dc"
+    },
+    "47ce5f726f1a0b1f213b926162528533dc0a3aab": {
+      "bytes": 65848,
+      "sha256": "0b0869da01cf66ab2e614ff96a7af8d8e2ebfa76926a8612db54d20a2f3136dc"
+    }
+  },
+  "existing_arabic_static_constants": [
+    {
+      "name": "_l",
+      "tokens_unchanged": true,
+      "token_sha256": "bee30988729c1364b7fb8e5071e1138116b964f43d650b2ab684e638df8dd12f"
+    },
+    {
+      "name": "_divineNames",
+      "tokens_unchanged": true,
+      "token_sha256": "a476d2d6fa25d93b9fbfbc6187e78b7c86e92abad5ee3415a04b62f2d0e1781e"
+    },
+    {
+      "name": "_c",
+      "tokens_unchanged": true,
+      "token_sha256": "8cec43c88d4d461efd122de63282dbd6dcbf4d70acfdcc932b987afef90f8702"
+    },
+    {
+      "name": "_assimilatedVIII",
+      "tokens_unchanged": true,
+      "token_sha256": "6fb27c155d66fa383c889a72fc9d033a4c6e9f1df6dccd1d679e013f74119242"
+    },
+    {
+      "name": "_measureExceptions",
+      "tokens_unchanged": true,
+      "token_sha256": "1139c78ea70eccdbcb2ce73850c3bcbf3e2caa74cf6b18943087d3e057a9f98b"
+    },
+    {
+      "name": "_measureSuffixes",
+      "tokens_unchanged": true,
+      "token_sha256": "504a1ba60c7925cffded47f824984a38a7288ebdf5371d239849f2686e84c0c4"
+    },
+    {
+      "name": "_measurePrefixes",
+      "tokens_unchanged": true,
+      "token_sha256": "98eda05c06f271b9a8d3a699ff21c4516a068f531201196499aba231592ddf2b"
+    },
+    {
+      "name": "_variantGroups",
+      "tokens_unchanged": true,
+      "token_sha256": "915f2f4d1e95700c885be26d4c8aef4ccf2e52a7b85b2b6720c7f87d3d5f3318"
+    },
+    {
+      "name": "_weekdays",
+      "tokens_unchanged": true,
+      "token_sha256": "47334226374d26a34c4108cb77a03e8cbe9c8d49e82ca975c94a48b5996d3c3e"
+    },
+    {
+      "name": "_weekdayNames",
+      "tokens_unchanged": true,
+      "token_sha256": "7d0f9cb6346f0f8c91730fe3893940b6a4be69f8b1a820343c115205919ac02d"
+    },
+    {
+      "name": "_months",
+      "tokens_unchanged": true,
+      "token_sha256": "bec045de52e6c4baecf7b77c10131ea7c7226a0eda31893547ebad7ebbc4ea56"
+    },
+    {
+      "name": "_digit",
+      "tokens_unchanged": true,
+      "token_sha256": "2f9960260cb877ea900723ee41f59385bcec9a5940ec23143f7df94e34d557bb"
+    },
+    {
+      "name": "_afterHal",
+      "tokens_unchanged": true,
+      "token_sha256": "92b3a49d0fbd35d22aacb7cb43fc1e804404d0ec53431c82944b3f6633763126"
+    },
+    {
+      "name": "_w",
+      "tokens_unchanged": true,
+      "token_sha256": "8e76be0beca0e8cfa01abf1eee26398ea5d6bbec8e1e489104e9c50b0d78eb6f"
+    },
+    {
+      "name": "_redundancy",
+      "tokens_unchanged": true,
+      "token_sha256": "0b14e0abe4b0806d0436651bd8a9ae3b36583c07fc6b2e102081d1ca8082c2c9"
+    },
+    {
+      "name": "_adverbials",
+      "tokens_unchanged": true,
+      "token_sha256": "b8ff594b8f143da3023228680221578f23f603899d2cd6a6ba957e5054ed6df6"
+    },
+    {
+      "name": "_lightVerbs",
+      "tokens_unchanged": true,
+      "token_sha256": "f6598808621e9a750789e2c1ad1be57c06e3e5bca67ed97ae78f7ff7225ceff4"
+    },
+    {
+      "name": "_toIla",
+      "tokens_unchanged": true,
+      "token_sha256": "b20d12b37ff92c44a5b91493680ee38e67bbdc87eaa40cb5e55037719ed5a5e6"
+    },
+    {
+      "name": "_expressionErrors",
+      "tokens_unchanged": true,
+      "token_sha256": "31bac08f42757543e50d4107168ab501ae8482879e9103dd842ac6166d1b2fe9"
+    },
+    {
+      "name": "_commonSpelling",
+      "tokens_unchanged": true,
+      "token_sha256": "efe4a22caaa372f9ddf1fc3b2e3becd33104a681d0f751346a9cb5948bc77224"
+    },
+    {
+      "name": "_colloquial",
+      "tokens_unchanged": true,
+      "token_sha256": "8c5016e99210b99ffb90ec4c2efe845c4d9ee661ebda33d34c13bf04dc391fd9"
+    },
+    {
+      "name": "_loanwords",
+      "tokens_unchanged": true,
+      "token_sha256": "c9a1ec4dd29db87548d8696ac80c2b28904d8dd0e535e691d5e5b0aadf109e42"
+    },
+    {
+      "name": "_usageWords",
+      "tokens_unchanged": true,
+      "token_sha256": "7519b9f831aae49953c03dbef99636fd9eb32a19dcb9451271cfad939159d817"
+    },
+    {
+      "name": "_vowelling",
+      "tokens_unchanged": true,
+      "token_sha256": "7aed16335cc2cc679517c4c1844cd06cdda76647cda5eae6001bf2e18211fb4c"
+    },
+    {
+      "name": "_dadZa",
+      "tokens_unchanged": true,
+      "token_sha256": "0d5eb054a1871c0be2418ee7919e338256f1517981807aef1c1a3dab203508e4"
+    },
+    {
+      "name": "_sunLetters",
+      "tokens_unchanged": true,
+      "token_sha256": "d33d11ca7044559f8cc86a85b032c6e3745c8bddeb1e754fcb0491e4429de17c"
+    },
+    {
+      "name": "_reduplicated",
+      "tokens_unchanged": true,
+      "token_sha256": "7fa744b9aca7d7b52b1a2076c15b366e07343f08bbadb83e1b09ac6e6d11f65a"
+    },
+    {
+      "name": "longSentenceWords",
+      "tokens_unchanged": true,
+      "token_sha256": "2c835d066314308ebe748f7eca307ee9bff30fb1bbb29dd39a63be254ac84e9b"
+    }
+  ],
+  "unchanged_arabic_base_grammar_morphology": {
+    "records": 39,
+    "identical_from_main": true,
+    "entries": {
+      "packages/quds_arabic_morph/.gitignore": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "84c048a73cc2e5dd24f807669eb99b0ce3123195"
+      },
+      "packages/quds_arabic_morph/CHANGELOG.md": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "09bdb8cd00f551d90963d244991b1c33e3cf6d38"
+      },
+      "packages/quds_arabic_morph/LICENSE": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+      },
+      "packages/quds_arabic_morph/README.md": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6aef1a0416395f48161f88d36ea5489c8f5fb096"
+      },
+      "packages/quds_arabic_morph/lib/installer_io.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e565c261763511ca89f16ef78a981fc446ee3e54"
+      },
+      "packages/quds_arabic_morph/lib/quds_arabic_morph.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f8ea6bb92de12c7def85b0201f6e7926536c813f"
+      },
+      "packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "81a6f057634e93e741f8bdd8d1015b4157665ca2"
+      },
+      "packages/quds_arabic_morph/lib/src/morph_analysis.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "797c96deba6fa344ed2d390347c6008f85ea078b"
+      },
+      "packages/quds_arabic_morph/lib/src/morph_catalog.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f5b0dd37e68200443fdeba7712699987339c338b"
+      },
+      "packages/quds_arabic_morph/lib/src/morph_installer_io.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f17e5bf61126ac844d16ec73b9943b70aa7319fd"
+      },
+      "packages/quds_arabic_morph/lib/src/morph_transport.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b733cf31366f0788e4852a5f25b86a332047b28c"
+      },
+      "packages/quds_arabic_morph/lib/src/morph_transport_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "0e340aa4459a0ab92aab633340889d702db1a8e9"
+      },
+      "packages/quds_arabic_morph/lib/src/morph_transport_stub.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6a49ecd61bbabb9d99f22a67bbbf7ed2b057735a"
+      },
+      "packages/quds_arabic_morph/lib/src/morph_transport_web.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d0660550ad8908b266f8a57a90a964f89c406aa5"
+      },
+      "packages/quds_arabic_morph/licenses/data/camel-morph-msa-LICENSE": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7ebcf9a3d2e36b39467b5886167a14d98db31942"
+      },
+      "packages/quds_arabic_morph/licenses/data/camel-morph-msa-NOTICE": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3b84650e62ab788d7836e7386c0f237473b36372"
+      },
+      "packages/quds_arabic_morph/licenses/manifest.json": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "fd3b3851297fe6d9002a42eaa7e875ba1a0ecee2"
+      },
+      "packages/quds_arabic_morph/licenses/upstream/CPython-LICENSE": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f26bcf4d2de6eb136e31006ca3ab447d5e488adf"
+      },
+      "packages/quds_arabic_morph/licenses/upstream/CrispEmbed-LICENSE": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "bd6ec050511889fcec725b6c5807c686aafef368"
+      },
+      "packages/quds_arabic_morph/licenses/upstream/Ryu-LICENSE-Apache2": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64"
+      },
+      "packages/quds_arabic_morph/licenses/upstream/THIRD_PARTY_NOTICES": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "26533b3d34812647ca344a8b57fe7cfebe0b51e6"
+      },
+      "packages/quds_arabic_morph/licenses/upstream/Unicode-LICENSE.txt": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "56da58912807030b451a4700687d5bd02c72d6ed"
+      },
+      "packages/quds_arabic_morph/licenses/upstream/camel_tools-LICENSE": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "dc1d0de50bf877534b3169a81e17a90e17a7d182"
+      },
+      "packages/quds_arabic_morph/native/CMakeLists.txt": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "896daa4e0f976a298f90c67c57449d666019f6e5"
+      },
+      "packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "9389515b7416617ce530b3ec088833addac78995"
+      },
+      "packages/quds_arabic_morph/pubspec.yaml": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e1e05011f9b954f0ab9f1bd1363c010cbb4352d2"
+      },
+      "packages/quds_arabic_morph/test/arabic_morph_native_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a7bfbd0e1f6bb9f916952649b225c065291a272b"
+      },
+      "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3fda7a7b0073ccdd1d731a46d91557c6acf1af57"
+      },
+      "packages/quds_arabic_morph/test/arabic_rules_e2e_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "cc5b5f7760c6d669347239fb520d27b157a451b9"
+      },
+      "packages/quds_arabic_morph/tool/browser_smoke.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f77085c11d9ef0335291db60886c37282a381a1d"
+      },
+      "packages/quds_arabic_morph/tool/browser_smoke.py": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "966591ac87aa45273afd4b0fe767e7ce387102ce"
+      },
+      "packages/quds_arabic_morph/tool/build.py": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e6eb295b06ddef3eec1075cac125a943dc695e65"
+      },
+      "packages/quds_arabic_morph/tool/pud_benchmark.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "fa25b665c37f7c302946ec8d06432ce6b2fce596"
+      },
+      "packages/quds_arabic_morph/tool/web_compile_check.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2e5fa6933a8c8f9edc1b337ed92840370461c2b6"
+      },
+      "packages/quds_arabic_morph/tool/web_smoke.mjs": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "416d667752e3e3415723e063071a512b3538c7ef"
+      },
+      "packages/quds_arabic_morph/web/arabic_morph_worker.mjs": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b92395e481bad20bd6453d16af50536fa45719d4"
+      },
+      "packages/quds_office_engine/lib/src/proofing/arabic_grammar_rules.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "05e7d071bc011b71d1db8ffa0ccd8207431f64a8"
+      },
+      "packages/quds_office_engine/lib/src/proofing/arabic_morphology.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f2073caec2974448823635a06116e798e24584d4"
+      },
+      "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "fbf5a8061455c96c6f6bcb2363d4ada8dac81f72"
+      }
+    }
+  },
+  "semantic_mark_and_utf16_mapping_unchanged": true,
+  "arabic_boundary_control_count": 11,
+  "existing_arabic_cases_retained_verbatim": true,
+  "prior_footer_test_bodies_retained_verbatim": true,
+  "new_compact_footer_cases": [
+    "compact footer exposes partial status and opens Review",
+    "compact footer replaces a clean result with paused status",
+    "compact footer exposes waiting until the pending check finishes"
+  ],
+  "review_findings": [
+    "Arabic phrase/date/implausible-year/double-future patterns now use the existing Unicode letter/mark/number/connector/joiner continuation class, preserving semantic marks and original offset mapping.",
+    "Word language code is unchanged in this delta. Reconciled tests assert active-slot changes while retaining inactive Latin/complex-script/East-Asian metadata, style, formatting, undo/redo and DOCX serialization.",
+    "Footer production code is unchanged. Test view metrics now agree with the requested RenderView geometry; all prior test bodies remain intact and three compact-state controls cover partial, paused and waiting states."
+  ],
+  "new_archives": [
+    {
+      "name": "first-attempt",
+      "bytes": 851108,
+      "sha256": "c5af4288683b932ac8cdf12310c67d9994aa1d0ffa1ebca157dd9c15681f93f9",
+      "members": 47,
+      "status": "rejected"
+    },
+    {
+      "name": "development",
+      "bytes": 27588,
+      "sha256": "f9b7da22f6f107269b83f3922855a53887f98322b24dda70cc62d3b937a3dbdb",
+      "members": 26,
+      "status": "development evidence, not final accepted counts"
+    }
+  ],
+  "rejected_run": {
+    "source": "911d8f43c420bd0d2bea1b9844f3f59f61d46dcf",
+    "success": false,
+    "case_executions": 1312,
+    "counts": {
+      "success": 1303,
+      "failure": 2,
+      "error": 7
+    },
+    "failed_or_error_cases": 9,
+    "suites": 68,
+    "source_records": 5164,
+    "runtime_records": 11165,
+    "source_hash_verification": {
+      "source": "911d8f43c420bd0d2bea1b9844f3f59f61d46dcf",
+      "records": 5164,
+      "distinct_blob_sha256_checks": 4826,
+      "mismatches": []
+    },
+    "failures": [
+      {
+        "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+        "name": "selection language replaces stale bidi metadata and resets both overrides through history and save",
+        "result": "failure",
+        "skipped": false
+      },
+      {
+        "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+        "name": "resetting imported language preserves style inheritance live, through history and after save",
+        "result": "failure",
+        "skipped": false
+      },
+      {
+        "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "name": "English footer keeps unavailable proofing visibly partial",
+        "result": "error",
+        "skipped": false
+      },
+      {
+        "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "name": "German footer keeps unavailable proofing visibly partial",
+        "result": "error",
+        "skipped": false
+      },
+      {
+        "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "name": "Arabic footer keeps unavailable proofing visibly partial",
+        "result": "error",
+        "skipped": false
+      },
+      {
+        "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "name": "footer keeps skipped manual coverage partial until checked",
+        "result": "error",
+        "skipped": false
+      },
+      {
+        "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "name": "footer labels paused checking after a complete clean result",
+        "result": "error",
+        "skipped": false
+      },
+      {
+        "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "name": "footer labels a pending typing debounce as waiting",
+        "result": "error",
+        "skipped": false
+      },
+      {
+        "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "name": "footer stays checking while a real provider request is pending",
+        "result": "error",
+        "skipped": false
+      }
+    ],
+    "groups": [
+      {
+        "name": "office-proofing-engine-vm",
+        "counts": {
+          "success": 714
+        },
+        "suites": [
+          "test/proofing/arabic_extended_rules_test.dart",
+          "test/proofing/arabic_grammar_rules_test.dart",
+          "test/proofing/arabic_writing_rules_test.dart",
+          "test/proofing/german_spelling_test.dart",
+          "test/proofing/german_writing_rules_test.dart",
+          "test/proofing/office_proofing_merge_test.dart",
+          "test/proofing/office_proofing_test.dart",
+          "test/proofing/proofing_locale_test.dart",
+          "test/proofing/proofing_report_merge_test.dart",
+          "test/proofing/proofing_text_ranges_test.dart",
+          "test/proofing/word_proofing_language_test.dart",
+          "test/style_cascade_test.dart",
+          "test/word_comment_proofing_styles_test.dart",
+          "test/word_complex_script_language_test.dart",
+          "test/word_proofing_inheritance_test.dart",
+          "test/word_proofing_language_test.dart",
+          "test/word_referenced_styles_and_breaks_test.dart"
+        ],
+        "terminal_success": true,
+        "reporter_errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "english-proofing-contracts-vm",
+        "counts": {
+          "success": 29
+        },
+        "suites": [
+          "test/harper_provider_test.dart",
+          "test/harper_source_contract_test.dart",
+          "test/harper_source_text_test.dart"
+        ],
+        "terminal_success": true,
+        "reporter_errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "office-proofing-editor",
+        "counts": {
+          "success": 330,
+          "failure": 2
+        },
+        "suites": [
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_draft_proofing_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_german_grammar_integration_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_proofing_context_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_proofing_priority_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart"
+        ],
+        "terminal_success": false,
+        "reporter_errors": 2,
+        "skipped": 0
+      },
+      {
+        "name": "studio-functional-host-integration",
+        "counts": {
+          "success": 203,
+          "error": 7
+        },
+        "suites": [
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/pdf_showcase_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_about_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_hunspell_web_host_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_review_status_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/word_pdf_face_export_test.dart"
+        ],
+        "terminal_success": false,
+        "reporter_errors": 7,
+        "skipped": 0
+      },
+      {
+        "name": "hunspell-provider-vm",
+        "counts": {
+          "success": 19
+        },
+        "suites": [
+          "test/hunspell_installer_cancellation_incoming_test.dart",
+          "test/hunspell_installer_cancellation_test.dart",
+          "test/hunspell_provider_test.dart"
+        ],
+        "terminal_success": true,
+        "reporter_errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "arabic-morphology-contracts-vm",
+        "counts": {
+          "success": 8
+        },
+        "suites": [
+          "test/arabic_morph_unit_test.dart"
+        ],
+        "terminal_success": true,
+        "reporter_errors": 0,
+        "skipped": 0
+      }
+    ],
+    "contribution_to_accepted_totals": 0
+  },
+  "development": {
+    "arabic_red_counts": {
+      "failure": 9,
+      "success": 2
+    },
+    "green": [
+      {
+        "name": "arabic-extended-green",
+        "counts": {
+          "success": 311
+        },
+        "suites": [
+          "test/proofing/arabic_extended_rules_test.dart"
+        ],
+        "terminal_success": true,
+        "reporter_errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "word-language-green",
+        "counts": {
+          "success": 42
+        },
+        "suites": [
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart"
+        ],
+        "terminal_success": true,
+        "reporter_errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "studio-footer-green",
+        "counts": {
+          "success": 10
+        },
+        "suites": [
+          "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_review_status_test.dart"
+        ],
+        "terminal_success": true,
+        "reporter_errors": 0,
+        "skipped": 0
+      }
+    ],
+    "reviewed_source_snapshots": [
+      {
+        "snapshot": "audit-studio/studio_review_status_test.patched.dart",
+        "target": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "snapshot_sha256": "7c130ad202e1a5b228b61b98cab74a82c4a928586a617dc18b020fe52a6937ba",
+        "committed_sha256": "30944e19464b3dbf1136397f75a078077cff7e0da4a767b525812ab177ce1417",
+        "byte_identical": false,
+        "tokens_identical_ignoring_layout_and_optional_trailing_commas": true
+      },
+      {
+        "snapshot": "audit-studio/word_text_proofing_controls_test.patched.dart",
+        "target": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+        "snapshot_sha256": "e2cb2bd73c270368b7e8fd3b8432b1d49035f6591be79c2594b84e50fed42ada",
+        "committed_sha256": "2e7d1ad7cfa33b0668425a8c0c60dd441d585bb7aa01b7d5918c0a873b4c03ba",
+        "byte_identical": false,
+        "tokens_identical_ignoring_layout_and_optional_trailing_commas": true
+      }
+    ],
+    "contribution_to_accepted_totals": 0
+  },
+  "fresh_test_executions_by_auditor": 0,
+  "repository_mutations_by_auditor": 0,
+  "github_actions_calls": 0,
+  "errors": [],
+  "passed": true,
+  "scope": "Independent immutable source/evidence preservation review. Fresh qualification on this source is performed separately by the owning session."
+}

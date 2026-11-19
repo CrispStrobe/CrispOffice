@@ -10,25 +10,31 @@ default.
   `native/src/quds_arabic_morph.cpp` compiled with CrispEmbed's
   `src/arabic_morph.cpp`. That file is MIT and keeps camel_tools' MIT notice.
   Its header-only helpers and Ryu (Apache-2.0 option) are compiled in too.
-  The sources come from CrispEmbed commit `8e40ad88` (PR #254). Native
+  The sources come from CrispEmbed commit `0ed76631` (PR #255). Native
   platforms load it as a shared library in a persistent Dart isolate. The web
   build runs the same code as a bundled Emscripten WebAssembly module in a
   module Web Worker. No analyzer code is ever downloaded (App Store guideline
   2.5.2).
-- **Database (downloaded data):** the `noprob` bundle of
-  [`cstr/camel-morph-msa-v1.0`](https://huggingface.co/cstr/camel-morph-msa-v1.0/tree/b31cf4a83f8ad63bb1989cf2879e72f23fadbfb0/noprob),
-  at the immutable revision `b31cf4a8…`. It has four files and 74.5 MB:
-  `manifest.json`, the 78,083,392-byte database, `NOTICE` and `LICENSE`. The
-  data is CC BY 4.0, © 2024 New York University Abu Dhabi. The app must show
-  the attribution in `NOTICE` (`camelMorphMsaNoprob.attribution`).
+- **Database (downloaded data):** the `proofing-bin` bundle of
+  [`cstr/camel-morph-msa-v1.0`](https://huggingface.co/cstr/camel-morph-msa-v1.0/tree/d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin),
+  at the immutable revision `d5364e04…`. It has four files and 11.6 MB:
+  `manifest.json`, the 12,166,992-byte binary database, `NOTICE` and
+  `LICENSE`. The database is the `noprob` one (see below) converted to
+  CrispEmbed's memory-mapped binary format and reduced to the proofing
+  features. The data is CC BY 4.0, © 2024 New York University Abu Dhabi. The
+  app must show the attribution in `NOTICE`
+  (`camelMorphMsaProofingBin.attribution`).
 - **Installation:** `MorphInstaller` (`package:quds_arabic_morph/installer_io.dart`)
   works like the Hunspell installer:
   - it streams each pinned file into private staging;
   - it admits a file only when its length and SHA-256 equal the compiled-in
-    catalog (`camelMorphMsaNoprob`);
+    catalog (`camelMorphMsaProofingBin`);
   - it publishes the tree as `<root>/arabic_morph/<revision>-<id>` with one
     rename and verifies it again;
-  - `remove` renames the tree before deleting it.
+  - `remove` renames the tree before deleting it;
+  - `removeOtherBundles` deletes earlier bundles. The Studio host calls it
+    on every refresh, so an install of the previous 78 MB `noprob` text
+    bundle is removed and the user downloads the binary bundle once.
 
   The analyzer then checks the manifest against the pinned SHA-256, and every
   listed file against the manifest, before it parses anything. On the web,
@@ -48,8 +54,26 @@ from 73.0% to 47.0%.
 
 Quds therefore never ranks: `analyzeWords` returns every analysis in no
 particular order. Rules reason over the whole set, for example by reporting
-only when **no** analysis of a word is compatible. The `*_logprob` features
-appear as the constant `-99.0`.
+only when **no** analysis of a word is compatible.
+
+## The proofing feature profile
+
+The rules (`arabic_grammar_rules.dart`) read `pos`, `lex`, `cas`, `stt`,
+`num`, `gen`, `per`, `asp`, `mod`, `form_gen`, `form_num`, `prc0`–`prc3` and
+`enc0`. The `proofing-bin` database keeps those plus `diac`, `root`, `vox`,
+`rat`, `prc1.5`, `enc1`, `enc2` and `source`, which is `spvar` for
+spelling-variant readings.
+
+It drops `gloss`, `bw`, `caphi`, `pattern`, `pattern_abstract`, the `cm_*`
+ids, the tokenization features, `catib6`/`ud`, `stem*` and the constant
+`*_logprob` features. Those made up most of the 78 MB.
+
+CrispEmbed's receipt shows that analyses and the kept feature values are
+exactly camel_tools'. A repeated analysis of a word, one that differs only in
+dropped features, is returned once (about 6% of them). Rules only ask
+whether any or every analysis matches, so they are unaffected. On all 1,000
+UD Arabic-PUD sentences, the rules report the same 673 findings as with the
+previous backend and the full database.
 
 ## Use
 
@@ -59,12 +83,12 @@ import 'package:quds_arabic_morph/quds_arabic_morph.dart';
 
 // After the user chose "Download" in the Dictionaries dialog:
 final files = await MorphInstaller(applicationSupportDirectory)
-    .install(camelMorphMsaNoprob, onProgress: report);
+    .install(camelMorphMsaProofingBin, onProgress: report);
 final morphology = CamelArabicMorphology(
   database: files,
   nativeLibraryPath: '/application/lib/libquds_arabic_morph.so',
 );
-await morphology.load(); // about 1.3 s; isAvailable turns true
+await morphology.load(); // about 0.2 s; isAvailable turns true
 final analyses = await morphology.analyzeWords(['كتبوا', 'والمدرسة']);
 // analyses['كتبوا'] contains {lex: كَتَب, pos: verb, num: p, ...}
 ```
@@ -90,41 +114,45 @@ or a tampered file, leaves `isAvailable` false (`failure` says why), and
 - **Output:** every requested word is a key of the result. Unknown words,
   words the analyzer rejects (over 4,096 UTF-8 bytes) and the empty string
   map to an empty list.
-- **Features:** analyses are read-only maps of camel_tools features (`lex`,
-  `pos`, `gen`, `num`, `cas`, `stt`, `asp`, `per`, `vox`, `prc0`–`prc3`,
-  `enc0`, `diac`, `bw`, `gloss`, …). `null` features are omitted, and
-  numbers become decimal text. Analyses with the same feature layout share
-  one key list, and repeated values are interned.
+- **Features:** analyses are read-only maps of the profile features above.
+  `null` features are omitted.
+- **Transport:** the worker isolate (native) or Web Worker (browser) calls
+  CrispEmbed's batched `crispembed_ar_morph_analyze_compact` (ABI 2). It
+  sends back one buffer per batch, with no JSON: per word, a table of unique
+  value strings and the analyses as (key id, string index) pairs.
 - **Batching and cache:** distinct words go to the worker in batches of 512.
+  Each word keeps its compact record (about 1–2 KB). The maps read features
+  from that record on demand, and decoded values are interned across words.
   Results are cached for the session, with least-recently-used eviction
-  after 4,096 distinct words (about 90 MB).
+  after 4,096 distinct words (a few MB).
 
 ## Performance and memory
 
-These figures were measured on an Apple M1 (macOS 26.2, Dart 3.13.7, a shared
-machine with load 3–7). The corpus is the 1,000 UD Arabic-PUD r2.14 test
-`# text` lines: 15,676 Arabic tokens and 7,419 distinct words, of which
-7,144 are analyzed (215,212 analyses). Tools:
+These figures were measured on an Apple M1 (macOS 26.2, Dart 3.13.7), a
+machine shared with other agents (load average 4–26). Before and after were
+run back to back or interleaved; absolute speeds vary by up to 3× with load.
+
+The corpus is the 1,000 UD Arabic-PUD r2.14 test `# text` lines: 7,419
+distinct Arabic words, of which 7,144 are analyzed. That gives 201,930
+analyses after deduplication (215,212 before). Tools:
 `tool/pud_benchmark.dart` (AOT), `tool/web_smoke.mjs` (Node 26) and
-`tool/browser_smoke.{dart,py}` (headless Chrome 157, dart2js).
+`tool/browser_smoke.{dart,py}` (headless Chrome 157, dart2js). The raw
+numbers are in CrispEmbed's
+`docs/validation/camel-morph-binary-20261119/performance.json`.
 
 | | Load | Distinct words/s (cold) | Memory |
 | --- | ---: | ---: | --- |
-| Native (FFI isolate, 3 runs) | 1.19–1.41 s, incl. SHA-256 of all files | 1,240–1,360 | 250 MB RSS after load; 415 MB with all 7,419 words cached |
-| Wasm worker in Node | 1.51–1.63 s | 1,075–1,460 | 320 MB Wasm heap (it does not shrink); about 340 MB process growth |
-| Wasm worker in Chrome, via the Dart web transport | 1.50–1.97 s | 600–890 | 320 MB Wasm heap in the worker. The page heap holds 76 MB of bundle bytes before opening and 1–2 MB after (the buffers are transferred), then 200–340 MB with all 7,419 words' analyses alive |
+| Native (FFI isolate), before: JSON, noprob | 1.5–2.5 s | 709–921 | 230–250 MB RSS after load; 373–415 MB with all words cached |
+| Native (FFI isolate), now | 0.16–0.26 s, incl. SHA-256 of all files | 1,750–2,955 (interleaved medians: 429 before, 1,802 now) | 30 MB RSS after load (the process starts at 18 MB); 90–100 MB after all words, mostly uncollected garbage (Dart old space about 40 MB, was 180 MB) |
+| Wasm worker in Node, before / now | 1.4–1.8 s / 0.13 s | 1,725–1,785 / 3,270–3,297 | Wasm heap 320 MB / 16 MB after load and 19 MB after all words |
+| Wasm worker in Chrome via the Dart web transport, before / now | 1.4 s / 0.15 s | 916–948 / 3,493–3,523 | worker heap 320 MB / 16–19 MB; page heap with all analyses 203 MB / 41 MB |
 
-Cached words return in about 1 ms for the whole corpus. The analyzer alone
-runs at about 2,250 words/s natively. The Dart side adds JSON parsing of 190
-MB of analyses (about 26 kB per word) and building the compact maps. A
-custom byte-level parser could roughly double throughput, so this remains
-open.
+Cached words return in about 1 ms for the whole corpus.
 
-**Browser memory:** a tab needs roughly 320 MB of Wasm memory plus the
-analyses it keeps. That is fine for desktop browsers. It is risky on phones
-and low-memory tablets, where Safari and Chrome may kill the worker; the
-analyzer then reports itself unavailable. The download is kept only for the
-session, so a reload needs a new download.
+**Browser memory:** a tab needs about 20 MB of Wasm memory plus the analyses
+it keeps, so low-memory mobile browsers are no longer a concern for the
+analyzer. The download (12 MB) is kept only for the session, so a reload
+needs a new download.
 
 ## Build and package
 
@@ -152,7 +180,7 @@ python3 tool/build.py --install-licenses ../quds_office_editor/example/assets/li
 ```
 
 `build.py` downloads exactly the 26 CrispEmbed files it needs from
-`raw.githubusercontent.com` at commit `8e40ad88945ca2e0b5e22f311835664c67501fee`.
+`raw.githubusercontent.com` at commit `0ed76631843cadd9b5c8296f25ed8a414d8f51db`.
 It admits each one only when its length and SHA-256 equal the pins in the
 script, and refuses to build if any compiled file or notice differs from
 `licenses/manifest.json`. It writes `build-receipt.json` with the hash of
@@ -180,7 +208,8 @@ Cross builds use the same CMake project, for example
   resources are not used.
 - **Data (downloaded, never compiled in):** Camel Morph MSA v1.0, CC BY 4.0.
   `licenses/data/` keeps the bundle's `NOTICE` (attribution, citation,
-  provenance, the noprob change) and `LICENSE`, both pinned by SHA-256, so
+  provenance, and the noprob and proofing-profile changes) and `LICENSE`,
+  both pinned by SHA-256, so
   hosts can show them on their licence page before any download.
 
 Hosts must ship the notices with the binary (`--install-licenses`).
@@ -189,9 +218,10 @@ Hosts must ship the notices with the binary (`--install-licenses`).
 
 ```sh
 QUDS_ARABIC_MORPH_TEST_LIBRARY=build/native/libquds_arabic_morph.dylib \
-QUDS_ARABIC_MORPH_TEST_BUNDLE=/path/to/verified/noprob \
+QUDS_ARABIC_MORPH_TEST_BUNDLE=/path/to/verified/proofing-bin \
 QUDS_ARABIC_MORPH_LIVE_DOWNLOAD=1 dart test
 dart run tool/pud_benchmark.dart <library> <bundle dir> pud.txt
+dart run tool/pud_rule_findings.dart <library> <bundle dir> pud.txt > findings.jsonl
 node tool/web_smoke.mjs build/web <bundle dir> pud.txt
 dart compile js -O2 tool/browser_smoke.dart -o out/smoke.js
 python3 tool/browser_smoke.py --script out/smoke.js --web build/web \

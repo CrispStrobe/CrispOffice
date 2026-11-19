@@ -151,7 +151,7 @@ typedef _ArabicAdd =
       List<String> replacements,
     });
 
-/// Text without optional harakat and tatweel, mapped back to its source.
+/// The text with optional harakat and tatweel removed, mapped to the source.
 /// Combining maddah and hamza retain their spelling identity, as in `_bare`.
 final class _ArabicBareText {
   _ArabicBareText(String text) : _sourceLength = text.length {

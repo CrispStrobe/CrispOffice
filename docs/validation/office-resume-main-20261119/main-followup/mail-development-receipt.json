@@ -1,0 +1,163 @@
+{
+  "checked_at_utc": "2026-11-19T12:13:55.660942+00:00",
+  "scope": "Focused development validation during a normal merge; final integrated frozen-source acceptance is separate. The unused helper deletion and a non-executable lint-explanation comment followed test launch; tested behavior did not change.",
+  "main_source": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+  "prior_qualified_source": "22ffa8bdcc11e5e10eb37f2326f832066f609a08",
+  "checkout_head_at_readback": "656ff82366c6d835acee29affb9f77371e4cd383",
+  "current_source_sha256": {
+    "packages/quds_office_editor/example/lib/studio_mail.dart": "39301e57311bfb8f672c554adcee422265fd36eef72eb90dd35fbab27f5c66f7",
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart": "4417f2d15cf5b46cfa213c66499b2fa6b917eff2d202a2a1563a88982d61b19c",
+    "packages/quds_office_editor/example/lib/studio_mail_file.dart": "8f8d3f39c1bd29e69fbbe03b3166a85fe85cd9dfc0d3a2e28e71b35955f81fd9",
+    "packages/quds_office_editor/example/lib/studio_mail_file_native.dart": "11489b85b888f2c31c7357a98e61d83c9a1c87bdeba208d71f8fd855faef55cb",
+    "packages/quds_office_editor/example/lib/studio_mail_file_web.dart": "846f46e17f4806ef1cb62f148180a7970680ea045601a4a9aa63d65c559a4b7d",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart": "21671964a618702df5580c7abdca26c0b295dfef1630de7eef1f1677954b2f31",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "6de785da888022e9991fee675559a7634a36c31f60b0aba09b0c2da144e83937",
+    "packages/quds_office_editor/example/lib/studio_mail_operation.dart": "15a0edd35881194f39b09c90ebfe3ff688d3a60a26cd2b38fe7a8ae15a45cfa4",
+    "packages/quds_office_editor/example/lib/studio_mail_strings.dart": "499f4cd476cf9cbc775c290fdde51cfb4c85033729653964321399cd5a152f14",
+    "packages/quds_office_editor/example/lib/studio_mail_submission.dart": "2e5e0b94bc91bd834ae650f79fb0ddb8d8f86fd89d96a76c9706643499b5618d",
+    "packages/quds_office_editor/example/lib/studio_mail_web.dart": "4131dd787a4c2114fb90c0737e7e0a61c2a75196990439921cd8c488699aadda",
+    "packages/quds_office_editor/example/lib/studio_saved_mail.dart": "b68fb855a16f75e4b1201e91315a054281c36817b039cce51866b99b3d5e1edb",
+    "packages/quds_office_editor/example/lib/studio_strings.dart": "501b9b9715a32775e8a3631038fc98dec1cd049aba1dbd3f507e7c2a80c5304f",
+    "packages/quds_office_editor/example/test/studio_mail_compose_test.dart": "3a08bcb0bff7d40a34f8c68b57e58864fab7821c7c0298e341c6d88a5cb784eb",
+    "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart": "bbbcaf6ea04d700ddd0b6c263a28e8c064fbd009efeda74f8592f6d40b30d156",
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": "5246e8bb16f0f7de0d5c892b259ab3ae7651bfc823e1577b78aa86b145ac49a2",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": "613f4f99aa636ab2a92c6a2d2ceb28c50b8bc24409e0d55810860233a36eeea2",
+    "packages/quds_office_editor/example/test/studio_mail_operation_test.dart": "1aec209d69e701b1ac12c9e9f33d37cfc29b002090e28d9c96f2ce01d0c1dce2",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart": "42d564189e40e71487c7184a7ca4c731b5b160433b78fac7f71472367c567cc4",
+    "packages/quds_office_editor/example/test/studio_mail_web_test.dart": "476537853d348a9fd16fafdc417a59d741776a5f653dce33821c71a126777f69",
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart": "b9089024a12278f9d4a45f101004a0f2507a9951a584a414720cd86d4983c23b"
+  },
+  "production_vs_exact_main": {
+    "packages/quds_office_editor/example/lib/studio_mail.dart": {
+      "sha256": "39301e57311bfb8f672c554adcee422265fd36eef72eb90dd35fbab27f5c66f7",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart": {
+      "sha256": "4417f2d15cf5b46cfa213c66499b2fa6b917eff2d202a2a1563a88982d61b19c",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_file.dart": {
+      "sha256": "8f8d3f39c1bd29e69fbbe03b3166a85fe85cd9dfc0d3a2e28e71b35955f81fd9",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_file_native.dart": {
+      "sha256": "11489b85b888f2c31c7357a98e61d83c9a1c87bdeba208d71f8fd855faef55cb",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_file_web.dart": {
+      "sha256": "846f46e17f4806ef1cb62f148180a7970680ea045601a4a9aa63d65c559a4b7d",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart": {
+      "sha256": "21671964a618702df5580c7abdca26c0b295dfef1630de7eef1f1677954b2f31",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": {
+      "sha256": "6de785da888022e9991fee675559a7634a36c31f60b0aba09b0c2da144e83937",
+      "identical_to_main_666e9a2e": false
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_operation.dart": {
+      "sha256": "15a0edd35881194f39b09c90ebfe3ff688d3a60a26cd2b38fe7a8ae15a45cfa4",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_strings.dart": {
+      "sha256": "499f4cd476cf9cbc775c290fdde51cfb4c85033729653964321399cd5a152f14",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_submission.dart": {
+      "sha256": "2e5e0b94bc91bd834ae650f79fb0ddb8d8f86fd89d96a76c9706643499b5618d",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_web.dart": {
+      "sha256": "4131dd787a4c2114fb90c0737e7e0a61c2a75196990439921cd8c488699aadda",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_saved_mail.dart": {
+      "sha256": "b68fb855a16f75e4b1201e91315a054281c36817b039cce51866b99b3d5e1edb",
+      "identical_to_main_666e9a2e": true
+    },
+    "packages/quds_office_editor/example/lib/studio_strings.dart": {
+      "sha256": "501b9b9715a32775e8a3631038fc98dec1cd049aba1dbd3f507e7c2a80c5304f",
+      "identical_to_main_666e9a2e": false
+    }
+  },
+  "backend_safeguard_readback": {
+    "third_party/enough_mail/lib/src/smtp/smtp_client.dart": {
+      "sha256": "bb2a03f102ba346a4ea8960db7d9120df7024c2c4c51990ec3513fd169d067d4",
+      "identical_to_22ffa8bd": true
+    },
+    "third_party/enough_mail/lib/src/mail/mail_client.dart": {
+      "sha256": "856a11828d072f9045d034f0a684c9f539b39e058d9bcde2681f91f6ea3bb0ce",
+      "identical_to_22ffa8bd": true
+    },
+    "third_party/enough_mail/lib/src/mail/mail_exception.dart": {
+      "sha256": "4fb16b585c44d116c1399862b13cd7be37d2014053651c6d99ac5133f02ede97",
+      "identical_to_22ffa8bd": true
+    },
+    "third_party/enough_mail/lib/src/private/mail/send_message_transaction.dart": {
+      "sha256": "2a02aea8edd9eaa93c32ad455914a7792f7a73c77c0ab1512a921b8fe69e4d16",
+      "identical_to_22ffa8bd": true
+    },
+    "third_party/enough_mail/test/mail/mail_send_transaction_test.dart": {
+      "sha256": "fc920483557a4fde94045b359b88ff9e3ab2e5d9156e9a1a631198dba2c4bf20",
+      "identical_to_22ffa8bd": true
+    }
+  },
+  "raw_log_sha256": {
+    "mail-main-666-development.jsonl": "ceb46d452a34f87593cdfcee8175ed6fe013d7f776a13696e4ca823babab384e",
+    "mail-main-666-development.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mail-main-666-analysis.log": "4e6fe1d836060109f0689edbae590e20666d69f00370f8315788f1741bd9fb01",
+    "mail-main-666-analysis-corrected.log": "2cf6bfcdb469809ea0aa382ca7e0648d8731b9ac5d252e0b7802d71f20df3e7e",
+    "mail-main-666-format.log": "cddc2549c3ccfb51157e8e1cd9d5a858c783e3f1f11c7213737e0d27f7032102"
+  },
+  "tests": {
+    "command": "flutter test --no-pub --concurrency=1 <the eight listed suites> --reporter json",
+    "cwd": "packages/quds_office_editor/example",
+    "suites": {
+      "studio_mail_test.dart": {
+        "success": 42
+      },
+      "studio_mail_discovery_test.dart": {
+        "success": 9
+      },
+      "studio_mail_lifecycle_test.dart": {
+        "success": 1
+      },
+      "studio_mail_compose_test.dart": {
+        "success": 21
+      },
+      "studio_mail_message_loader_test.dart": {
+        "success": 19
+      },
+      "studio_mail_operation_test.dart": {
+        "success": 7
+      },
+      "studio_mail_web_test.dart": {
+        "success": 1
+      },
+      "studio_saved_mail_test.dart": {
+        "success": 14
+      }
+    },
+    "passed": 114,
+    "failed": 0,
+    "skipped": 0,
+    "error_events": 0,
+    "terminal": {
+      "success": true,
+      "type": "done",
+      "time": 59400
+    },
+    "exit_code": 0
+  },
+  "strict_analysis": {
+    "paths": 21,
+    "initial_exit_code": 3,
+    "corrected_exit_code": 0,
+    "correction": "Remove unreferenced obsolete helper and document intentional print calls in print-containment controls."
+  },
+  "format_exit_code": 0,
+  "github_actions_calls": 0,
+  "external_mail_accounts_used": false,
+  "source_edits_staged_only": true
+}

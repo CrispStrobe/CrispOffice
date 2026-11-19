@@ -1,0 +1,874 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-19T12:08:44.642040+00:00",
+  "classification": "INDEPENDENT_ARCHIVE_INTEGRITY_VERIFICATION",
+  "attempt_source": "97393efd234e390375a19a98321911ecd80f7a69",
+  "attempt_tree": "63debc84852f735c6d8051704655c3f120951dd4",
+  "archive_sha256": "e8a21f72df1d8411ae155a1b849ec7e5736f3a983da14167efa9e25baeb22d7f",
+  "index_sha256": "bdeb010fdf89aac86456617e560f3a32007c2bb15c3b0c73e9fbd710eb079033",
+  "verifier_sha256": "d05483a07c2fdc0aba09901281738400a36d31e8893f6161329f5691364cb1e5",
+  "member_count": 108,
+  "regular_file_count": 103,
+  "directory_count": 5,
+  "originals_compared": true,
+  "checks": [
+    {
+      "member": "gate",
+      "kind": "directory",
+      "archive_directory_matches_index": true,
+      "original_directory_exists": true
+    },
+    {
+      "member": "gate/core-store",
+      "kind": "directory",
+      "archive_directory_matches_index": true,
+      "original_directory_exists": true
+    },
+    {
+      "member": "gate/core-store.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 250,
+      "sha256": "3dae20fd04741fdc078e1eb83bc4e3c10459e92631e19b9e6fafd70dd294de17",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/browser-entry.js",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1344706,
+      "sha256": "70a3037c075a48edb6f17e95bd43ed4ee25ffb414b6c26121349556198f2c678",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/browser-entry.js.deps",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 73813,
+      "sha256": "89948ea9dd5b4c990ad1ad70ccf6e29fd32e2b8c508c586bd7ceb1da2e508b02",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/browser-entry.js.map",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 578130,
+      "sha256": "f9cd51dbfa6813665add32d9f0aa6db455a418f100143fcc5d519f7ac5a1098a",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/browser-entry.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 114,
+      "sha256": "62d30976c4e74a8db2af9919da98843b0f112c72c0714e1942f2f7bf4b360294",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/browser-worker.js",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1218778,
+      "sha256": "ac65b51e34c049ed3cece7b5326838b3e1d3699063a15e49048f5b21d5a55495",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/browser-worker.js.deps",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 69750,
+      "sha256": "4897852ff05b4aaaaf3dd58fa3a5f726006323f639cf43ee0d79cc7d2a393f7f",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/browser-worker.js.map",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 520398,
+      "sha256": "c08f3573982045b12b36e9db4dee0dcb50eedd6492e359097c7a78bef0f42636",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/browser-worker.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 113,
+      "sha256": "ad5d844e0f80d2aa623341b63fd75be16b001f02ae805a969a5a3573b0a70aa2",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/core-analysis.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 45,
+      "sha256": "ba8f111031783cd9617e408cf4a69a31be131b4256751d349ccf5fcd426087c9",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/core-node-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 9250,
+      "sha256": "1b0dc442ce59497013ef8fc2a418e1272bf7c0e852e94109ac848feb317b61c1",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/core-node.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 25362,
+      "sha256": "164d50f561cc270abb04ebe944c2fad922bbbc5ab2ec2ab32b737c47219e3a69",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/core-vm-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 9250,
+      "sha256": "9f7d5fad499924de46c56d27a4baec07cb7d5a7b765735695e54c0c0f093c908",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/core-vm.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 23637,
+      "sha256": "eaa96b396ca95566bd361a996422b925635d381c96505ce1873b0ef5ff7fb6e7",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/format.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 48,
+      "sha256": "945a18480bbc0941bcaca460b046b7297d2a2846398303fc2acf0db1aff35de4",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/locked-resolution.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/portable-node-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 8566,
+      "sha256": "be024fb7737ba2ee8fe44c5a23a6756ada51e9a5a021c39c669010021483fff0",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/portable-node.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 22858,
+      "sha256": "39bd7a90d1472983deca8e2a3668b241364a66f514d532b00d7cafa7aa8fbeda",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/receipt.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 26660,
+      "sha256": "372961502c186ae55a24579ad1aaafb4eeb379d66fef5bf07600f051293a2209",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/runner-regressions.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 6804,
+      "sha256": "6d4217000d2ba045471cffb6cdd56933ff3e9f8ecdb725b502a5fcc74a6dd65f",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/runtime.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/store-analysis.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 46,
+      "sha256": "6573947ce493b867fb233613853e29c908e91977b0e23360aa95417b9071bef1",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/store-vm-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 21729,
+      "sha256": "5fe4c7bf9d1c8082f00e50cb8c3a35c3e0444e5a5554842f49f7ea9292dd6f9f",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/store-vm.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 59022,
+      "sha256": "3a82f57552c07355a86952326e827850003ce68dce22abdb45708f728e87b0e4",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/core-store/tmp",
+      "kind": "directory",
+      "archive_directory_matches_index": true,
+      "original_directory_exists": true
+    },
+    {
+      "member": "gate/core-store/whitespace.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/execution.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 16368,
+      "sha256": "d9e1a5ac5c8f157c74dfeec867e48d150d0e020a28fb769c9aa7bf4c04016525",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/hunspell-packaging-controls.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 698,
+      "sha256": "f0aafa22984706b5c86f2ddce0f3982d9346003b314c87ed5ece3f20d7c9e4a9",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native",
+      "kind": "directory",
+      "archive_directory_matches_index": true,
+      "original_directory_exists": true
+    },
+    {
+      "member": "gate/native.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1866,
+      "sha256": "cd4729bc4be988566f6e80a21e1fc2c88cabbd0552c7b26c180f249921e10a35",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks",
+      "kind": "directory",
+      "archive_directory_matches_index": true,
+      "original_directory_exists": true
+    },
+    {
+      "member": "gate/native/checks/analysis.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1977,
+      "sha256": "20c807f3ff039676eebb9898d89125ce277a425d96db92a4d4a6809da28c6005",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/analysis.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 529,
+      "sha256": "95743ca3e056ce212bdb1aadfa2b8724f4d0f32f16b73dccdf77785cc7d87037",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/arabic-morph-scripted-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 2189,
+      "sha256": "cde64ef934c55bc07b362d3fd77e3210d2b4d1aba2b17858a5d6599e84897437",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/arabic-morph-scripted-errors.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/arabic-morph-scripted.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 5134,
+      "sha256": "e4da1f6a5b16328c95ffcfbb951c2d74c93457d494fd0614829fa23d6ab12340",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/arabic-morph-scripted.jsonl.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 919,
+      "sha256": "d8e7b94fd56c8a03b18c4b24c4dfc3ea29206f7f593de8cd45a51ef6a06f2b94",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/arabic-morph-scripted.stderr.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/arabic-morph-scripted.stderr.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/editor-proofing-controls-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 51621,
+      "sha256": "fb5705c2d20d0f093a1bd459289b9df272b36a9dd4116b1ee4fa319555bba093",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/editor-proofing-controls-errors.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/editor-proofing-controls.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 92476,
+      "sha256": "35d97b839de733135a695a07078ee7f53ea564b114926163daa1b5f0412717d1",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/editor-proofing-controls.jsonl.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 9123,
+      "sha256": "87c23726d3d4eaec2aabccacaa751fd9e405b732e8d46213f3d05d3eb5356a0f",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/editor-proofing-controls.stderr.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/editor-proofing-controls.stderr.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/engine-proofing-and-language-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 235586,
+      "sha256": "9c7c7cc342c20c263a482ce1d7cd592b17df50c2fbbd2a07afb0ebee77fad341",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/engine-proofing-and-language-errors.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/engine-proofing-and-language.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 333579,
+      "sha256": "acd8a60676f279c28fd8b37ccb1ea63a07be9993132c93a967646e274178af09",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/engine-proofing-and-language.jsonl.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 25398,
+      "sha256": "14e7fb196b72055e77dd642cc60b93bfd1bdea2e3f8c345ef451bfac9d0c37b6",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/engine-proofing-and-language.stderr.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/engine-proofing-and-language.stderr.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/enough-mail-protocol-regressions-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 117186,
+      "sha256": "fcd82f915615558e758e91eb432502742d904716e0b2969c40a6c8df1e0d8cef",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/enough-mail-protocol-regressions-errors.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/enough-mail-protocol-regressions.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 236264,
+      "sha256": "22e82bf5cfd899e5010aa3bc8e61ae60c440ee68d85f39bcb4d9c4ee0200f57f",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/enough-mail-protocol-regressions.jsonl.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 19299,
+      "sha256": "632d0628c2397475831259fff2dee4849802a524903cf095aedad667b288e154",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/enough-mail-protocol-regressions.stderr.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/enough-mail-protocol-regressions.stderr.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/format.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 48,
+      "sha256": "5075f7cf5c5e986fdb8455aff094e60712849a254417ef83aa0bdaca0e30796c",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/format.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 68,
+      "sha256": "d55fb6ef0ef8a080b945939c09601bc49fb487949ddc23472014a9ba3eb83fc6",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/hunspell-scripted-and-cancellation-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 5671,
+      "sha256": "002312666537b5370e1d3a824ee5c446224a7285313628ae135495db8f1aa188",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/hunspell-scripted-and-cancellation-errors.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/hunspell-scripted-and-cancellation.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 11807,
+      "sha256": "71de57490836ece5014d436e01a5331118838753d118e6bd1cda080f2789c346",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/hunspell-scripted-and-cancellation.jsonl.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1623,
+      "sha256": "80e6e4fce58cb5be17970a8249f72af7b7ce59f9c759e46129873c5adad7ac53",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/hunspell-scripted-and-cancellation.stderr.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/hunspell-scripted-and-cancellation.stderr.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-mime-native-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 8352,
+      "sha256": "3f798d672a3b39dc4630d158d40965c5083a4d47156261a627dbda8a9240794f",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-mime-native-errors.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-mime-native.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 17146,
+      "sha256": "9321e80bb13e660c3446f61dff4c020a7f9340312cbf0fbfb30419766cda55ea",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-mime-native.jsonl.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 2384,
+      "sha256": "5a1a97b31d63c19e2f29248e66710b59bdbff09663a14b16bdb7084a863a607c",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-mime-native.stderr.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-mime-native.stderr.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-reader-ui-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 8002,
+      "sha256": "5d1ab1a5996a1beae72c805cf77b8c7d731bd44bc6129876914685239e4b7ec1",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-reader-ui-errors.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-reader-ui.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 16939,
+      "sha256": "012328652e61890e6cf84e52e264bf715607f9f4c3f66be1dbcf1a653591bdcd",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-reader-ui.jsonl.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 2391,
+      "sha256": "584bdec57cb54f79a68bf210f7b6723fe4f22718537030d13f1a756c25b1cee9",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-reader-ui.stderr.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-reader-ui.stderr.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-transport-native-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 40598,
+      "sha256": "121b9f244e6cefb28c94e0a2b78c87d8012650865d1c018e2d058a9c45875915",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-transport-native-errors.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-transport-native.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 70281,
+      "sha256": "f30dadf3c7e4f672e85d290c2fd83d178be90577fef4447ba78b706c71ff3daf",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-transport-native.jsonl.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 7238,
+      "sha256": "28524fa2b180fcd779fe9bf617e37e8369c59b036d16743d4c2dd68565271f72",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-transport-native.stderr.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/mail-transport-native.stderr.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/studio-ordinary-cases.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 86830,
+      "sha256": "9dd8844bb83a534e98b3b807bf43a3197979e6fac8d609041fd08f79c39dc0b5",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/studio-ordinary-errors.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/studio-ordinary.jsonl",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 182319,
+      "sha256": "37bd028a73661aa7df06c467b5c7a9a47a5ceafbf1380f8010f12b807031c261",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/studio-ordinary.jsonl.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 16154,
+      "sha256": "7a8d1c07c213fe5122fee58622b0fd979d29fd9224140a35a6040dc701ca4dbe",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/studio-ordinary.stderr.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/studio-ordinary.stderr.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/whitespace.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 95,
+      "sha256": "36ba181f59447939d0542f9ef485fba140b3b19c9b20a92d9773ace61c5cef8a",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/checks/whitespace.log.gz",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 110,
+      "sha256": "7fca6743e3eec46e430f13f61f122ee94e8a6f023696a5ec7f3916f061f077da",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/environment-after.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1707469,
+      "sha256": "c594bd60f301dd212f0f9575e8f1828578e738c4f9eb393401a8d1c6e6356133",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/environment-before.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1707469,
+      "sha256": "c594bd60f301dd212f0f9575e8f1828578e738c4f9eb393401a8d1c6e6356133",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/source-after.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1580068,
+      "sha256": "f9c7bcb5f1806f6994bbb9d65c0fc950fdb55638379849c32c298517a1c46125",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/source-before.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1580068,
+      "sha256": "f9c7bcb5f1806f6994bbb9d65c0fc950fdb55638379849c32c298517a1c46125",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/native/verification.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 86708,
+      "sha256": "d6b1764a7c684ff640e507ec20f191dcd836bc1c24f37e54694e0d1d0c0bd133",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/package_config.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 28244,
+      "sha256": "7388e760b883bb252e917f2a24d6c3c60d0064323d6b327d20bac9a2f1adb90f",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/package_graph.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 24756,
+      "sha256": "6ee0b6ff2b049ac59aa62f9788ea4413f5a41146ecabd8e98048f3cb3f24d58f",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/publisher-offline-controls.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 2586,
+      "sha256": "41437f5faef6d01eb9c9b9da3b7646c4b9519d91db56ce18bb325d5cf38639db",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/runtime-after.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1775781,
+      "sha256": "44f8f0b909738c18aaae8f44ef1b869cd6638de72e81e4e2ada7cbc9f03d5e6c",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/runtime-before.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 1775781,
+      "sha256": "44f8f0b909738c18aaae8f44ef1b869cd6638de72e81e4e2ada7cbc9f03d5e6c",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/runtime-replay-controls.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 2577,
+      "sha256": "21fde9c4510647ef587e24250a4981440046914d61f20c33e28fe84a36fd57dc",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/shared-runner-controls.log",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 125,
+      "sha256": "128a0134f1140e60c227b23c22c603075c888c83b7ce488acf852f6762214d74",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/source-after.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 760740,
+      "sha256": "cc3133f451409e4091ef82872b95c2b02f55b6d8689b7dc513c5f60ae9f88266",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "gate/source-before.json",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 760740,
+      "sha256": "cc3133f451409e4091ef82872b95c2b02f55b6d8689b7dc513c5f60ae9f88266",
+      "original_bytes_identical": true
+    },
+    {
+      "member": "review/imap-reader-scaling-followup-97393efd.md",
+      "kind": "file",
+      "archive_file_matches_index": true,
+      "bytes": 6343,
+      "sha256": "510b64b55b5522634b9ae4c7520b11bb16020484210c1a7ca2d4fd4ce667e08e",
+      "original_bytes_identical": true
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "product_code_executed": false,
+  "network_or_github_actions_calls": 0
+}

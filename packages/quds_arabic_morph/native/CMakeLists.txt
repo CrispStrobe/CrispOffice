@@ -19,15 +19,16 @@ set(MORPH_SOURCES
 if(EMSCRIPTEN)
   add_executable(quds_arabic_morph ${MORPH_SOURCES})
   set_target_properties(quds_arabic_morph PROPERTIES SUFFIX ".mjs")
-  # The parsed database needs a few hundred MB; wasm32 allows up to 4 GB.
+  # The binary proofing database is read into one 12 MB heap buffer (the text
+  # database parses into a few hundred MB); memory grows as needed.
   target_link_options(quds_arabic_morph PRIVATE
     -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createArabicMorphModule
     -sENVIRONMENT=worker,node -sALLOW_MEMORY_GROWTH=1 -sMAXIMUM_MEMORY=4GB
-    -sINITIAL_MEMORY=64MB -sFORCE_FILESYSTEM=1
+    -sINITIAL_MEMORY=16MB -sFORCE_FILESYSTEM=1
     # Plain (non-resizable) heap views: current Chrome's TextDecoder rejects
     # views of resizable buffers, which emscripten's runtime decodes paths with.
     -sGROWABLE_ARRAYBUFFERS=0
-    -sEXPORTED_FUNCTIONS=_quds_arabic_morph_adapter_version,_crispembed_ar_morph_abi_version,_crispembed_ar_morph_open,_crispembed_ar_morph_analyze,_crispembed_ar_morph_string_free,_crispembed_ar_morph_info,_crispembed_ar_morph_free,_malloc,_free
+    -sEXPORTED_FUNCTIONS=_quds_arabic_morph_adapter_version,_crispembed_ar_morph_abi_version,_crispembed_ar_morph_open,_crispembed_ar_morph_analyze,_crispembed_ar_morph_analyze_compact,_crispembed_ar_morph_buffer_free,_crispembed_ar_morph_string_free,_crispembed_ar_morph_info,_crispembed_ar_morph_free,_malloc,_free
     -sEXPORTED_RUNTIME_METHODS=FS,stringToNewUTF8,lengthBytesUTF8,HEAPU8,HEAPU32
     -sINCOMING_MODULE_JS_API=locateFile,print,printErr)
   # The analyzer reports errors through C++ exceptions caught at the ABI;

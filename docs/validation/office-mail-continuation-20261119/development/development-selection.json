@@ -1,0 +1,486 @@
+{
+  "schema": 1,
+  "classification": "DEVELOPMENT_ONLY_NOT_ACCEPTED_AGGREGATE_QUALIFICATION",
+  "files": [
+    {
+      "path": "composer-narrow-review-1.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "composer-narrow-review-1.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "composer-narrow-review-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "composer-narrow-review-2.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "composer-narrow-review_test.dart",
+      "role": "diagnostic_probe_source",
+      "source_boundary": "Probe bytes as present at evidence capture. Earlier diagnostic logs may have used an earlier edited version; no exact source/log pairing is asserted."
+    },
+    {
+      "path": "initial-union-diff.txt",
+      "role": "merge_reconciliation_diagnostic",
+      "source_boundary": "Scratch source comparison/conflict record preserved during current reconciliation; not an executed test or a complete source snapshot."
+    },
+    {
+      "path": "loader-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "loader-final-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "loader-final-tests.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "loader-final-tests.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "loader-pub-get.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "loader-tests-formatted.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "loader-tests-formatted.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "loader-tests.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "loader-tests.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-compose-development-1.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-compose-development-1.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-compose-development-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-compose-development-2.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-compose-development-3-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification."
+    },
+    {
+      "path": "mail-compose-development-3.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-compose-development-3.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-final-development-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-operation-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-operation-final-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-operation-final-tests.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-operation-final-tests.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-operation-tests.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-operation-tests.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-postsubmission-development-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-postsubmission-development-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification."
+    },
+    {
+      "path": "mail-postsubmission-development.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "mail-postsubmission-development.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "office-runtime/archive-members.json",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "office-runtime/cache-omissions.json",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "office-runtime/env.sh",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "office-runtime/logs/flutter-tools-pub-get.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "office-runtime/logs/flutter-version.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "office-runtime/logs/native-assets-smoke.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "office-runtime/logs/workspace-pub-get.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "office-runtime/pub-cache-receipt.json",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "office-runtime/retained-inputs.json",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "office-runtime/runtime.json",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "office-web-sdk/development/cfe.log",
+      "role": "development_web_compiler_log_dependency_list_or_acquisition_receipt",
+      "source_boundary": "Exploratory Flutter web compilation or component acquisition. Complete application source before/after fingerprints were not recorded for this development compile."
+    },
+    {
+      "path": "office-web-sdk/development/js.log",
+      "role": "development_web_compiler_log_dependency_list_or_acquisition_receipt",
+      "source_boundary": "Exploratory Flutter web compilation or component acquisition. Complete application source before/after fingerprints were not recorded for this development compile."
+    },
+    {
+      "path": "office-web-sdk/development/mail-web.dill.deps",
+      "role": "development_web_compiler_log_dependency_list_or_acquisition_receipt",
+      "source_boundary": "Exploratory Flutter web compilation or component acquisition. Complete application source before/after fingerprints were not recorded for this development compile."
+    },
+    {
+      "path": "office-web-sdk/development/mail-web.js.deps",
+      "role": "development_web_compiler_log_dependency_list_or_acquisition_receipt",
+      "source_boundary": "Exploratory Flutter web compilation or component acquisition. Complete application source before/after fingerprints were not recorded for this development compile."
+    },
+    {
+      "path": "office-web-sdk/download-receipt.json",
+      "role": "development_web_compiler_log_dependency_list_or_acquisition_receipt",
+      "source_boundary": "Exploratory Flutter web compilation or component acquisition. Complete application source before/after fingerprints were not recorded for this development compile."
+    },
+    {
+      "path": "review-status-conflict-original.txt",
+      "role": "merge_reconciliation_diagnostic",
+      "source_boundary": "Scratch source comparison/conflict record preserved during current reconciliation; not an executed test or a complete source snapshot."
+    },
+    {
+      "path": "runtime-restore.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "runtime-restorer-controls.log",
+      "role": "runtime_preparation_receipt_manifest_or_control_log",
+      "source_boundary": "Runtime preparation/control evidence only. Embedded runtime, package, and lock identities have their stated scope; this is not application qualification."
+    },
+    {
+      "path": "smtp-acceptance-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "smtp-acceptance-final-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "smtp-acceptance-final.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "smtp-acceptance-final.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "smtp-acceptance-green.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "smtp-acceptance-green.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "smtp-acceptance-red.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "smtp-acceptance-red.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "smtp_acceptance_probe-expanded.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "smtp_acceptance_probe.dart",
+      "role": "diagnostic_probe_source",
+      "source_boundary": "Probe bytes as present at evidence capture. Earlier diagnostic logs may have used an earlier edited version; no exact source/log pairing is asserted."
+    },
+    {
+      "path": "smtp_acceptance_probe.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-discovery-development-1.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-discovery-development-1.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-discovery-development-2-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification."
+    },
+    {
+      "path": "studio-discovery-development-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-discovery-development-2.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-final-union-development.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-final-union-development.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-incoming-mail-development-1.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-incoming-mail-development-1.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-incoming-mail-development-2-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification."
+    },
+    {
+      "path": "studio-incoming-mail-development-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-incoming-mail-development-2.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-incoming-mail-development-analyze.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-review-status-development-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-review-status-development-2.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-saved-development-1-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification."
+    },
+    {
+      "path": "studio-saved-development-1.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-saved-development-1.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-saved-development-2-summary.json",
+      "role": "development_summary_from_original_diagnostic",
+      "source_boundary": "Contemporaneous diagnostic summary only. Retained raw events are authoritative; this summary is not accepted aggregate qualification."
+    },
+    {
+      "path": "studio-saved-development-2.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-saved-development-2.stderr",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-ui-development-analyze-2.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "studio-ui-development-analyze.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit."
+    },
+    {
+      "path": "word-synthesis-editor-first.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "note": "Author reported these runs used local 062150ac plus uncommitted Word synthesis. This names a base, not an exact execution commit. No complete before/after execution source snapshot is available."
+    },
+    {
+      "path": "word-synthesis-editor-first.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "note": "Author reported these runs used local 062150ac plus uncommitted Word synthesis. This names a base, not an exact execution commit. No complete before/after execution source snapshot is available."
+    },
+    {
+      "path": "word-synthesis-engine-first.stderr.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "note": "Author reported these runs used local 062150ac plus uncommitted Word synthesis. This names a base, not an exact execution commit. No complete before/after execution source snapshot is available."
+    },
+    {
+      "path": "word-synthesis-engine-first.stdout.jsonl",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "note": "Author reported these runs used local 062150ac plus uncommitted Word synthesis. This names a base, not an exact execution commit. No complete before/after execution source snapshot is available."
+    },
+    {
+      "path": "word-synthesis-first-analysis.log",
+      "role": "development_stdout_or_stderr",
+      "source_boundary": "Diagnostic execution while source was edited/reconciled; exact complete execution source identity was not captured. Do not attribute this run to a later commit.",
+      "note": "Author reported these runs used local 062150ac plus uncommitted Word synthesis. This names a base, not an exact execution commit. No complete before/after execution source snapshot is available."
+    }
+  ],
+  "omitted_rebuildable_artifacts": [
+    {
+      "original_relative_path": "office-web-sdk/development/mail-web.dill",
+      "bytes": 34178680,
+      "sha256": "6aed9416249455a144bc278734679cd8cd95e7f24f69de656183fd8992dbb69b",
+      "reason": "Rebuildable generated compiler binary/output or separately pinned official SDK archive; raw development logs/dependency lists and component acquisition receipt are retained."
+    },
+    {
+      "original_relative_path": "office-web-sdk/development/mail-web.js",
+      "bytes": 6466663,
+      "sha256": "3265e5029f3b49fbdcbb58c7910bd7e45d36b1091cc9efc259b0a30477a35123",
+      "reason": "Rebuildable generated compiler binary/output or separately pinned official SDK archive; raw development logs/dependency lists and component acquisition receipt are retained."
+    },
+    {
+      "original_relative_path": "office-web-sdk/flutter-web-sdk.zip",
+      "bytes": 32388908,
+      "sha256": "230093aa91f3197d40317fd3a8a06675d5bd5a3913fd66a01b44ac16cebb6e44",
+      "reason": "Rebuildable generated compiler binary/output or separately pinned official SDK archive; raw development logs/dependency lists and component acquisition receipt are retained."
+    }
+  ],
+  "excluded_scope": [
+    "Final accepted aggregate gate outputs (not part of this development selection)",
+    "Official Flutter/Dart executables, native libraries, package archives and web SDK members",
+    "Previous conversation/repository validation archives"
+  ]
+}
