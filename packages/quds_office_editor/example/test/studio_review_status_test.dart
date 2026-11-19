@@ -41,6 +41,10 @@ Future<WordEditorController> _studio(
   _StatusProvider provider, {
   int languageSteps = 0,
 }) async {
+  tester.view.devicePixelRatio = 1;
+  tester.view.physicalSize = const Size(1440, 900);
+  addTearDown(tester.view.resetDevicePixelRatio);
+  addTearDown(tester.view.resetPhysicalSize);
   await tester.binding.setSurfaceSize(const Size(1440, 900));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(const QudsOfficeStudioApp());
@@ -220,4 +224,106 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+
+  for (final language in [
+    (
+      steps: 0,
+      name: 'English',
+      partial: '0 issues · partial check',
+      paused: 'Live checking paused',
+      languageTooltip: 'Language and checking',
+      changesTooltip: 'Review tracked changes',
+    ),
+    (
+      steps: 1,
+      name: 'German',
+      partial: '0 Hinweise · teilweise geprüft',
+      paused: 'Automatische Prüfung pausiert',
+      languageTooltip: 'Sprache und Prüfung',
+      changesTooltip: 'Nachverfolgte Änderungen prüfen',
+    ),
+    (
+      steps: 2,
+      name: 'Arabic',
+      partial: '0 ملاحظات · تدقيق جزئي',
+      paused: 'التدقيق التلقائي متوقف',
+      languageTooltip: 'اللغة والتدقيق',
+      changesTooltip: 'مراجعة التغييرات المتعقبة',
+    ),
+  ]) {
+    testWidgets(
+      '${language.name} compact footer keeps truthful status and reachable review actions',
+      (tester) async {
+        final controller = await _studio(
+          tester,
+          _StatusProvider(status: OfficeProofingStatus.unavailable),
+          languageSteps: language.steps,
+        );
+        await _finish(tester, controller, controller.proofing.checkNow());
+        tester.platformDispatcher.textScaleFactorTestValue = 1.4;
+        addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+
+        Finder compactStatus(String label) => find.byWidgetPredicate(
+          (widget) =>
+              widget is IconButton && (widget.tooltip ?? '').startsWith(label),
+        );
+
+        tester.view.physicalSize = const Size(390, 900);
+        await tester.binding.setSurfaceSize(const Size(390, 900));
+        await tester.pump();
+        final status = compactStatus(language.partial);
+        expect(status.hitTestable(), findsOneWidget);
+        expect(
+          find.descendant(
+            of: status,
+            matching: find.byIcon(Icons.info_outline),
+          ),
+          findsOneWidget,
+        );
+        expect(
+          find.byTooltip(language.languageTooltip).hitTestable(),
+          findsOneWidget,
+        );
+        await tester.tap(status);
+        await tester.pump();
+        expect(controller.reviewPaneVisible, isTrue);
+        expect(controller.reviewPaneTab, WordReviewPaneTab.proofing);
+        expect(tester.takeException(), isNull);
+        controller.closeReviewPane();
+        await tester.pump();
+
+        // At the transition to text actions, long translated labels remain
+        // bounded, while their full status remains available in a tooltip.
+        tester.view.physicalSize = const Size(820, 900);
+        await tester.binding.setSurfaceSize(const Size(820, 900));
+        await tester.pump();
+        _expectStatus(language.partial, Icons.info_outline);
+        expect(_statusButton(language.partial).hitTestable(), findsOneWidget);
+        expect(tester.takeException(), isNull);
+
+        controller.proofing.enabled = false;
+        tester.view.physicalSize = const Size(390, 900);
+        await tester.binding.setSurfaceSize(const Size(390, 900));
+        await tester.pump();
+        final paused = compactStatus(language.paused);
+        expect(paused.hitTestable(), findsOneWidget);
+        expect(
+          find.descendant(
+            of: paused,
+            matching: find.byIcon(Icons.pause_circle_outline),
+          ),
+          findsOneWidget,
+        );
+        final changes = find.byTooltip(language.changesTooltip);
+        expect(changes.hitTestable(), findsOneWidget);
+        await tester.tap(changes);
+        await tester.pump();
+        expect(controller.reviewPaneVisible, isTrue);
+        expect(controller.reviewPaneTab, WordReviewPaneTab.changes);
+        expect(tester.takeException(), isNull);
+        await tester.pumpWidget(const SizedBox.shrink());
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
 }

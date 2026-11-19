@@ -11,6 +11,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_mail.dart';
+import 'package:quds_office_studio/studio_saved_message.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 class _DeferredPicker extends FilePicker {
@@ -101,7 +102,7 @@ Future<void> _openDialog(WidgetTester tester) async {
           body: TextButton(
             onPressed: () => showDialog<void>(
               context: context,
-              builder: (_) => const StudioMailDialog(
+              builder: (_) => const StudioSavedMessageDialog(
                 strings: StudioStrings(StudioLanguage.en),
               ),
             ),
@@ -113,7 +114,7 @@ Future<void> _openDialog(WidgetTester tester) async {
   );
   await tester.tap(find.text('Launch Mail'));
   await _pump(tester);
-  expect(find.byType(StudioMailDialog), findsOneWidget);
+  expect(find.byType(StudioSavedMessageDialog), findsOneWidget);
 }
 
 void main() {
@@ -150,7 +151,7 @@ void main() {
     await tester.tap(find.byTooltip('Close'));
     await _pump(tester);
     expect(opened.isDisposed, isTrue);
-    expect(find.byType(StudioMailDialog), findsNothing);
+    expect(find.byType(StudioSavedMessageDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });
 
@@ -191,7 +192,7 @@ void main() {
     expect(initial.isDisposed, isTrue);
     picker.result.complete(_pickedMessage());
     await _pump(tester);
-    expect(find.byType(StudioMailDialog), findsNothing);
+    expect(find.byType(StudioSavedMessageDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });
 
@@ -220,7 +221,7 @@ void main() {
     expect(initial.isDisposed, isTrue);
     file.result.complete(_message());
     await _pump(tester);
-    expect(find.byType(StudioMailDialog), findsNothing);
+    expect(find.byType(StudioSavedMessageDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });
 
@@ -267,10 +268,16 @@ void main() {
     await tester.tap(find.text('E-Mail'));
     await _pump(tester);
     expect(find.byType(StudioMailDialog), findsOneWidget);
+    await tester.tap(find.byTooltip('Nachricht öffnen'));
+    await _pump(tester);
+    expect(find.byType(StudioSavedMessageDialog), findsOneWidget);
     expect(find.text('Nachricht öffnen'), findsOneWidget);
     expect(find.text('Vollständig'), findsOneWidget);
     expect(find.text('Kompakt'), findsOneWidget);
-    await tester.tap(find.byTooltip('Schließen').last);
+    await tester.tap(find.byTooltip('Schließen').hitTestable().last);
+    await _pump(tester);
+    expect(find.byType(StudioSavedMessageDialog), findsNothing);
+    await tester.tap(find.byTooltip('Schließen').hitTestable().last);
     await _pump(tester);
     expect(find.byType(StudioMailDialog), findsNothing);
     expect(

@@ -218,7 +218,9 @@ class _StyleCascade {
             .firstChild('lang', namespaceUri: OfficeNamespaces.w)
             ?.getAttribute(attribute, namespaceUri: OfficeNamespaces.w);
         final pendingOverride = hasSparseSource && imported[key] != '$current';
-        if (directLanguage == null && !pendingOverride && current == inherited) {
+        if (directLanguage == null &&
+            !pendingOverride &&
+            current == inherited) {
           continue;
         }
         WordPropertyIo.mergeLanguage(direct, null, attribute: attribute);

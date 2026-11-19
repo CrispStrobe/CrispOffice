@@ -6,7 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
-import 'package:quds_office_studio/studio_mail.dart';
+import 'package:quds_office_studio/studio_saved_message.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 void main() {
@@ -24,9 +24,10 @@ void main() {
             body: TextButton(
               onPressed: () => showDialog<void>(
                 context: context,
-                builder: (BuildContext context) => const StudioMailDialog(
-                  strings: StudioStrings(StudioLanguage.en),
-                ),
+                builder: (BuildContext context) =>
+                    const StudioSavedMessageDialog(
+                      strings: StudioStrings(StudioLanguage.en),
+                    ),
               ),
               child: const Text('Show mail'),
             ),
@@ -46,7 +47,7 @@ void main() {
 
     await tester.tap(find.byTooltip('Close'));
     await tester.pumpAndSettle();
-    expect(find.byType(StudioMailDialog), findsNothing);
+    expect(find.byType(StudioSavedMessageDialog), findsNothing);
     expect(controller.isDisposed, isTrue);
 
     final Uint8List message = Uint8List.fromList(
@@ -58,7 +59,7 @@ void main() {
       ]),
     );
     await tester.pumpAndSettle();
-    expect(find.byType(StudioMailDialog), findsNothing);
+    expect(find.byType(StudioSavedMessageDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });
 }

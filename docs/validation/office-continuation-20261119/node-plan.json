@@ -1,0 +1,99 @@
+{
+  "description": "Fresh portable Node union of retained Mail transport/MIME/fork coverage and current Arabic T1/T2, Word language/complex-script controls, Hunspell provider and morphology decoder/provider contracts. This does not establish actual browser Worker/Wasm or persistence behavior.",
+  "groups": [
+    {
+      "name": "transport-node",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/configuration_test.dart",
+        "test/unsupported_test.dart",
+        "test/cursor_test.dart"
+      ]
+    },
+    {
+      "name": "mime-consumer-node",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "fork-portable-node",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/quds_portable_mime_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-unicode-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart",
+        "test/proofing/office_proofing_merge_test.dart",
+        "test/word_proofing_inheritance_test.dart",
+        "test/word_comment_proofing_styles_test.dart",
+        "test/wml_run_edit_test.dart",
+        "test/proofing/word_proofing_language_test.dart",
+        "test/proofing/arabic_grammar_rules_test.dart",
+        "test/word_proofing_language_test.dart",
+        "test/word_complex_script_language_test.dart"
+      ]
+    },
+    {
+      "name": "hunspell-portable-provider-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-morphology-portable-node",
+      "cwd": "packages/quds_arabic_morph",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/arabic_morph_unit_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "docs/validation/office-continuation-20261119/run_validation.py",
+    "docs/validation/office-continuation-20261119/native-plan.json",
+    "docs/validation/office-continuation-20261119/node-plan.json",
+    "docs/validation/office-continuation-20261119/runtime/runtime.json",
+    "docs/validation/office-continuation-20261119/runtime/preparation-evidence.tar.xz",
+    "docs/validation/office-continuation-20261119/runtime/preparation-evidence.index.json",
+    "docs/validation/document-review-notes-20261118/run_checks.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart",
+    "tools/mail/check_store.py",
+    "tools/mail/test_check_store.py",
+    "tools/mail/check_reader.py",
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py"
+  ],
+  "whitespace_preserved_inputs": []
+}
