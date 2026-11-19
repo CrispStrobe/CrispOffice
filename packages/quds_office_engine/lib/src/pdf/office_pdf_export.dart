@@ -331,13 +331,7 @@ abstract final class OfficePdfExport {
         sink.canvas.clipRect(ox, oy, slideW * scale, slideH * scale);
         sink.canvas.translateScale(ox, oy, scale);
       }
-      sink.canvas.fillRect(
-        0,
-        0,
-        slideW,
-        slideH,
-        slide.background.isEmpty ? 'FFFFFF' : slide.background,
-      );
+      sink.canvas.fillRect(0, 0, slideW, slideH, _slideBackground(deck, slide));
       for (final PmlShape shape in deck.master.shapes) {
         _paintShape(sink, deck, slide, shape);
       }
@@ -458,7 +452,7 @@ abstract final class OfficePdfExport {
           0,
           slideW,
           slideH,
-          slide.background.isEmpty ? 'FFFFFF' : slide.background,
+          _slideBackground(deck, slide),
         );
         for (final PmlShape shape in deck.master.shapes) {
           _paintShape(sink, deck, slide, shape);
@@ -1661,11 +1655,9 @@ abstract final class OfficePdfExport {
       }
       final String text = deck.resolveText(shape, slide);
       if (text.isNotEmpty) {
-        final bool richCurrent =
-            shape.richText.isNotEmpty &&
-            (shape.textSource?.text ?? shape.text) == shape.text;
-        if (richCurrent) {
-          _paintRichText(sink, shape, x, y, w, h);
+        final List<PmlTextParagraph> paragraphs = shape.resolvedRichText;
+        if (paragraphs.isNotEmpty && text == shape.text) {
+          _paintRichText(sink, shape, paragraphs, x, y, w, h);
         } else {
           final String ink = shape.textColor.isNotEmpty
               ? shape.textColor
@@ -1831,9 +1823,15 @@ abstract final class OfficePdfExport {
     }
   }
 
+  static String _slideBackground(PmlPresentation deck, PmlSlide slide) {
+    if (slide.background.isNotEmpty) return slide.background;
+    return deck.master.background.isEmpty ? 'FFFFFF' : deck.master.background;
+  }
+
   static void _paintRichText(
     _PageSink sink,
     PmlShape shape,
+    List<PmlTextParagraph> paragraphs,
     double x,
     double y,
     double w,
@@ -1843,7 +1841,6 @@ abstract final class OfficePdfExport {
     const double topInset = 3.6;
     const double rightInset = 7.2;
     final double width = math.max(8, w - leftInset - rightInset);
-    final List<PmlTextParagraph> paragraphs = shape.richText;
     const String fallbackColor = '000000';
     final double fallbackSize = shape.fontSizePt > 0 ? shape.fontSizePt : 12;
     double total = 0;

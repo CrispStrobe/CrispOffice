@@ -1048,7 +1048,8 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
           : _theme.resolveDocumentColor(authored, background: background);
     }
     final int? fill = int.tryParse(shape.fillColor, radix: 16);
-    final int rgb = fill ?? (_theme.slideBackground.toARGB32() & 0xFFFFFF);
+    final int rgb =
+        fill ?? ((background ?? _theme.slideBackground).toARGB32() & 0xFFFFFF);
     final int r = (rgb >> 16) & 0xFF;
     final int g = (rgb >> 8) & 0xFF;
     final int b = rgb & 0xFF;
@@ -1148,7 +1149,13 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     }
   }
 
-  TextPainter _shapePainter(PmlShape shape, String text, Rect r, Color color) {
+  TextPainter _shapePainter(
+    PmlShape shape,
+    String text,
+    Rect r,
+    Color color, {
+    Color? background,
+  }) {
     final double autoSize = (r.height * 0.22).clamp(10.0, 18.0);
     final double baseSize = shape.fontSizePt > 0 ? shape.fontSizePt : autoSize;
     final int lines = _growsWithText(r)
@@ -1162,9 +1169,18 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       PmlTextAlign.left =>
         shape.rightToLeft == null && rtl ? TextAlign.right : TextAlign.left,
     };
-    if (shape.richText.isNotEmpty &&
-        (shape.textSource?.text ?? shape.text) == shape.text) {
-      return _richShapePainter(shape, r, color, lines, align, rtl);
+    final List<PmlTextParagraph> paragraphs = shape.resolvedRichText;
+    if (paragraphs.isNotEmpty && text == shape.text) {
+      return _richShapePainter(
+        shape,
+        paragraphs,
+        r,
+        color,
+        lines,
+        align,
+        rtl,
+        background: background,
+      );
     }
     return PaintRunText.plain(
       text: text,
@@ -1182,23 +1198,28 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
 
   TextPainter _richShapePainter(
     PmlShape shape,
+    List<PmlTextParagraph> paragraphs,
     Rect r,
     Color color,
     int maxLines,
     TextAlign align,
-    bool rtl,
-  ) {
+    bool rtl, {
+    Color? background,
+  }) {
     final List<InlineSpan> spans = <InlineSpan>[];
-    for (final PmlTextParagraph paragraph in shape.richText) {
+    for (final PmlTextParagraph paragraph in paragraphs) {
       for (final PmlTextRun run in paragraph.runs) {
         final String runText = run.text.replaceAll('\t', '    ');
         if (runText.isEmpty) continue;
         final double size = run.fontSizePt > 0
             ? run.fontSizePt
             : (r.height * 0.22).clamp(10.0, 18.0);
-        final Color runColor = run.color.isEmpty
-            ? const Color(0xFF000000)
+        final Color authored = run.color.isEmpty
+            ? color
             : _hexColor(run.color, color);
+        final Color runColor = background == null
+            ? authored
+            : _theme.resolveDocumentColor(authored, background: background);
         final String? family = run.fontFamily.isEmpty
             ? _theme.fontFamily
             : run.fontFamily;
@@ -1393,8 +1414,13 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       canvas.clipRect(r);
     }
     final Color color = _textColor(shape, background: background);
-    final TextPainter painter = _shapePainter(shape, body, r, color)
-      ..layout(maxWidth: r.width - 16);
+    final TextPainter painter = _shapePainter(
+      shape,
+      body,
+      r,
+      color,
+      background: background,
+    )..layout(maxWidth: r.width - 16);
     final double oy = switch (shape.textAnchor) {
       PmlTextAnchor.center =>
         r.top + math.max(4, (r.height - painter.height) / 2),
@@ -1553,7 +1579,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
 
   Color _slidePaper(PmlSlide target) {
     final int? rgb = int.tryParse(target.background, radix: 16);
-    return rgb == null
+    // Neutral white paper follows the selected display theme. Authored
+    // colored backgrounds and the stored/exported RGB values stay intact.
+    return rgb == null || (rgb & 0xFFFFFF) == 0xFFFFFF
         ? _theme.slideBackground
         : Color(0xFF000000 | (rgb & 0xFFFFFF));
   }

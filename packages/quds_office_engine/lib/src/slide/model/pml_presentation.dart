@@ -440,6 +440,41 @@ class PmlShape {
   /// True when this shape has playable media.
   bool get hasMedia => mediaBytes.isNotEmpty || mediaName.isNotEmpty;
 
+  /// Rich runs with the scalar edits exposed by the shape editor applied.
+  /// The imported runs and source snapshot remain unchanged for undo/export.
+  List<PmlTextParagraph> get resolvedRichText {
+    final PmlTextSource? source = textSource;
+    if (richText.isEmpty || (source != null && source.text != text)) {
+      return const <PmlTextParagraph>[];
+    }
+    if (source == null) return richText;
+    final bool sizeChanged = source.fontSizePt != fontSizePt;
+    final bool colorChanged = source.textColor != textColor;
+    final bool alignChanged = source.textAlign != textAlign;
+    final bool directionChanged = source.rightToLeft != rightToLeft;
+    if (!sizeChanged && !colorChanged && !alignChanged && !directionChanged) {
+      return richText;
+    }
+    return <PmlTextParagraph>[
+      for (final PmlTextParagraph paragraph in richText)
+        paragraph.copy()
+          ..align = alignChanged ? textAlign : paragraph.align
+          ..rightToLeft = directionChanged
+              ? (rightToLeft ?? false)
+              : paragraph.rightToLeft
+          ..defaultFontSizePt = sizeChanged
+              ? fontSizePt
+              : paragraph.defaultFontSizePt
+          ..defaultColor = colorChanged ? textColor : paragraph.defaultColor
+          ..runs = <PmlTextRun>[
+            for (final PmlTextRun run in paragraph.runs)
+              run.copy()
+                ..fontSizePt = sizeChanged ? fontSizePt : run.fontSizePt
+                ..color = colorChanged ? textColor : run.color,
+          ],
+    ];
+  }
+
   /// copy API.
   PmlShape copy({int? id}) {
     return PmlShape(
@@ -495,13 +530,16 @@ class PmlSlide {
     List<PmlShape>? shapes,
     this.layoutName = 'Blank',
     this.masterName = 'Office Theme',
-    this.background = 'FFFFFF',
+    this.background = '',
+    bool? inheritsMasterBackground,
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
-  }) : shapes = shapes ?? <PmlShape>[],
+  }) : inheritsMasterBackground =
+           inheritsMasterBackground ?? background.isEmpty,
+       shapes = shapes ?? <PmlShape>[],
        animations = animations ?? <PmlShapeAnimation>[];
 
   /// id API.
@@ -516,8 +554,12 @@ class PmlSlide {
   /// masterName API.
   String masterName;
 
-  /// Resolved solid slide background (`RRGGBB`), inherited from layout/master.
+  /// Resolved solid background (`RRGGBB`); empty uses the current master.
   String background;
+
+  /// Whether a master-background edit should update this slide's paper.
+  /// Explicit slide/layout fills remain independent of master edits.
+  bool inheritsMasterBackground;
 
   /// Original owning part, retained when slides are reordered.
   String? sourcePartUri;
@@ -541,6 +583,7 @@ class PmlSlide {
       layoutName: layoutName,
       masterName: masterName,
       background: background,
+      inheritsMasterBackground: inheritsMasterBackground,
       notes: notes,
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
       transition: transition,
