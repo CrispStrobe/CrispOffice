@@ -440,8 +440,9 @@ below. No Arabic resource is downloaded by default.
    `arabic_grammar_fixture.dart` holds the reference analyses (camel_tools
    1.6 over Camel Morph MSA v1.0 `noprob`, CC BY 4.0, attribution in the
    file) of the words of our own test sentences only. The engine proofing
-   suite passes 1,610 tests (1,510 before); the editor Arabic integration
-   test passes.
+   suite passes 1,610 tests on the branch base (1,510 before) and 1,652
+   after merging the current main; the editor Arabic integration test
+   passes.
 
    **False-positive check** with the reference analyzer (camel_tools 1.6,
    Camel Morph MSA v1.0 `noprob`, Hugging Face `cstr/camel-morph-msa-v1.0`
