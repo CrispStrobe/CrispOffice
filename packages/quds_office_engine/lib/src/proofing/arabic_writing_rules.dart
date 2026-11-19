@@ -11,8 +11,10 @@ import 'proofing_text_ranges.dart';
 /// on syntax or meaning are either offered with several suggestions or left
 /// out (for example `علي` is also the name Ali, `فان` is also "perishing").
 ///
-/// Matching ignores harakat (U+064B–U+065F, U+0670) and tatweel (U+0640), but
-/// findings always cover the original source text and suggestions keep the
+/// Matching ignores optional vowel marks and tatweel (U+0640). Combining
+/// madda and hamza (U+0653–U+0655) retain their letter identity, so closed
+/// lexical rules leave those decomposed spellings unchanged. Findings always
+/// cover the original source text and suggestions keep the
 /// writer's harakat, replacing only the corrected letters. Offsets are
 /// original UTF-16 offsets; the text is never rewritten. Links, email
 /// addresses and closed backtick spans are excluded.
@@ -202,15 +204,19 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
   static const String _marks = r'ً-ٰٟـ';
   static final RegExp _word = RegExp('[$_letters][$_letters$_marks]*');
   static final RegExp _mark = RegExp('[$_marks]');
+  // Madda/hamza above/below change letter identity, unlike optional vowels.
+  static final RegExp _optionalMark = RegExp(
+    r'[\u064B-\u0652\u0656-\u065F\u0670\u0640]',
+  );
   static final RegExp _arabicLetter = RegExp('[$_letters]');
 
-  /// The bare spelling and, for each bare letter, its source offset.
+  /// Spelling without optional marks, and each retained unit's source offset.
   static (String, List<int>) _bare(String word) {
     final StringBuffer bare = StringBuffer();
     final List<int> positions = <int>[];
     for (int i = 0; i < word.length; i++) {
       final String unit = word[i];
-      if (_mark.hasMatch(unit)) continue;
+      if (_optionalMark.hasMatch(unit)) continue;
       bare.write(unit);
       positions.add(i);
     }

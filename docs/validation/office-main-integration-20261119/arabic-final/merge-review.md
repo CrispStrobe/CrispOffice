@@ -19,3 +19,22 @@ records retain their historical source identities.
 No GitHub Actions are queried, dispatched or awaited. Actual browser, installed
 Studio/OS IME, live Zotero/external Office or mail-service interoperability, and
 independent linguistic acceptance remain separate.
+
+## Reproduced Unicode repair
+
+Review found that stripping U+0653, U+0654 and U+0655 as optional vowels could
+flag correct decomposed Arabic and generate doubled hamza in replacements. The
+minimal fix retains these semantic combining marks in lexical lookup, without
+normalizing or rewriting source text or adding a dependency. Optional vowels
+and tatweel keep their existing behavior. Five new cases cover the three marks,
+adjacent corrections with original UTF-16 offsets/vowels, and punctuation.
+The augmented controlled suite produced 70 passes and four failures before the
+fix, then 74 passes after it; those development runs remain separate from the
+fresh integrated qualification.
+
+The expanded main plan retains all original 35 Mail/TLS/parser/MIME/UI suites
+and adds affected engine, English/German, editor/Notes and Studio proofing
+regressions: 68 distinct suites total. A separate Node plan runs the Arabic
+engine suite so the runner's same-plan duplicate guard remains unchanged.
+Both plans bind each other and the same extra inputs. Static targets 32.
+The complete core/store gate is freshly run on this same source.
