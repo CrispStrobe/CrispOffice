@@ -13,6 +13,8 @@ abstract interface class MailSyncRepository {
   /// no cursor exists. A concurrently advanced cursor returns conflict rather
   /// than allowing an older page to overwrite newer mailbox state.
   /// A reset must reconcile pending local edits instead of discarding them.
+  /// An IMAP authoritative range reconciles absent existing memberships in
+  /// that mailbox and UIDVALIDITY; numeric holes do not create stored records.
   Future<MailResult<MailUnit>> commitSyncPage(
     MailSyncPage page, {
     required MailCursor? expectedCursor,

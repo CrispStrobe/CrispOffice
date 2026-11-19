@@ -246,6 +246,7 @@ void main() {
           maxPageSize: 1,
           maxMailboxes: 1,
           maxUidScan: 1,
+          maxDiscoveredUids: 1,
           maxHeaderBytes: 1,
           maxProtocolLineBytes: 128,
           maxResponseBytes: 128,
@@ -258,6 +259,7 @@ void main() {
           maxPageSize: 1000,
           maxMailboxes: 10000,
           maxUidScan: 100000,
+          maxDiscoveredUids: 100000,
           maxHeaderBytes: 1024 * 1024,
           maxProtocolLineBytes: 1024 * 1024,
           maxResponseBytes: 128 * 1024 * 1024,
@@ -276,6 +278,8 @@ void main() {
         MailTransportLimits(maxMailboxes: 10001),
         MailTransportLimits(maxUidScan: 0),
         MailTransportLimits(maxUidScan: 100001),
+        MailTransportLimits(maxDiscoveredUids: 0),
+        MailTransportLimits(maxDiscoveredUids: 100001),
       ]) {
         expect(limits.validate, throwsArgumentError);
       }

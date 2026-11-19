@@ -16,7 +16,7 @@ remains [implementation-plan.md](implementation-plan.md).
 | M03 codec | Bounded byte-range scanning, public upstream header parsing, strict transfer/charset decoding, exact raw export and attachment snapshots, deterministic multipart alternatives/CID metadata | Synchronous bounded work; no streaming claim or low-memory-device qualification |
 | M04 reader | Account-free full/compact reader, custom RenderBox selection, decoded search/copy, static HTML projection, local bounded CID PNG/JPEG, immutable source/attachment callbacks, policy-approved links, actual MIME example | Browser runtime no-fetch gate remains unqualified; host parity is a separate task |
 | M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema v3 with nullable durable flags | Schema v3 and the integrated flags/transport source passed local qualification; browser storage and power-loss durability are unqualified; the database is unencrypted |
-| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, finite UID-window synchronization, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated qualification and real Linux TLS loopback checks passed; external-provider/other-OS interoperability, OAuth authorization hosts, large or sparse mailbox pagination, SMTP and the account-aware UI remain open |
+| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, bounded discovered-UID pages and atomic range reconciliation, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Earlier integrated qualification and real Linux TLS loopback checks passed; the new discovery increment has its own qualification below. External-provider/other-OS interoperability, OAuth authorization hosts, discovery beyond bounded simple SEARCH, SMTP and the account-aware UI remain open |
 
 M06 is partially implemented, not complete. M04W and M07–M13 still require the
 mailbox workspace, composition/SMTP sending, Office attachment editing,
@@ -93,17 +93,27 @@ Separate real Linux loopback tests exercise successful TLS, stalled-handshake
 cancellation/deadlines, trust and hostname refusal, credential sequencing and
 write lifecycle. These do not establish external-provider or other-OS acceptance.
 
-Synchronization fetches bounded header projections and flags by numeric UID
-window. Scoped cursors include UIDVALIDITY and a fixed sweep ceiling; records,
-absent-UID tombstones and the next cursor commit atomically through the existing
-coordinator/store. Completed sweeps restart to observe old flag changes and
-expunges without claiming IDLE, CONDSTORE or QRESYNC. The default `maxUidScan`
-is **10,000**, configurable up to **100,000**. It limits the highest UID, not
-message count. A mailbox whose `UIDNEXT - 1` exceeds it returns `unsupported`
-before fetching or committing a page, including sparse mailboxes with few
-messages and high UIDs. Discovered-UID pagination remains open. Direct retrieval
-of a specified high UID is supported and retains the exact full-message literal
-before bounded MIME parsing; partial projections fail explicitly.
+Synchronization discovers existing UIDs with strict bounded simple SEARCH, then
+fetches at most the requested number of header/flag records. Scoped v2 cursors
+retain UIDVALIDITY and a fixed sweep ceiling and can resume persisted v1 numeric
+window cursors. An authoritative `MailImapSyncRange`, upserts, actual stored
+absence tombstones and the next cursor commit atomically through the coordinator
+and store. Numeric gaps create no synthetic tombstone rows. Pending local edits
+for expunged messages retain their reconciliation state.
+
+The default `maxDiscoveredUids` is **10,000**, configurable up to **100,000**;
+it limits the existing UIDs admitted by each remaining-sweep SEARCH response,
+independently of their numeric values. Line/response budgets also apply and can
+bind first. An oversized response fails with `quotaExceeded` before FETCH or
+commit. There is no default numeric UID ceiling; an explicitly supplied legacy
+`maxUidScan` retains its numeric meaning and `unsupported` outcome. This fallback
+repeats remaining-range discovery per page; scalable ESEARCH/PARTIAL is separate.
+
+Completed sweeps restart to observe old flag changes and expunges without
+claiming IDLE, CONDSTORE, QRESYNC or snapshot semantics. New arrivals above the
+frozen ceiling wait for the next sweep. Direct retrieval of a specified high UID
+retains the exact full-message literal before bounded MIME parsing; partial
+projections fail explicitly.
 
 Flag mutations use UID STORE and verify the resulting observation. Delete
 sets `\Deleted` only; it does not expunge mail or issue mailbox-wide CLOSE.
@@ -122,6 +132,13 @@ redirects/refresh, other operating systems, SMTP, the mailbox UI and actual brow
 persistence remain separate gates.
 
 ## Local verification
+
+### Discovered-UID continuation — qualification in progress
+
+The [new continuation report](../../validation/mail-uid-pagination-20261119/README.md)
+records incoming reconciliation, the discovery/range implementation, fresh
+runtime provenance and committed local gate plans. Earlier counts below retain
+their original source identities and are not evidence for this new increment.
 
 ### Final reconciled source — PASS
 
@@ -363,8 +380,8 @@ harness, not the standalone Office application.
 1. Preserve the completed integrated qualification and its source/runtime
    identities. Rerun affected checks for subsequent source changes and retain
    their raw logs and remote checkpoints separately from earlier evidence.
-2. Continue the remaining M06 work: discovered-UID pagination for large/sparse
-   mailboxes, host OAuth/refresh and lifecycle scheduling, other-OS TLS coverage
+2. Continue the remaining M06 work: discovery beyond bounded simple SEARCH,
+   host OAuth/refresh and lifecycle scheduling, other-OS TLS coverage
    and authorized disposable-account interoperability. Generic browser
    socket transport remains explicitly unsupported; no automatic retry is added
    without its own bounded policy and reconciliation checks.

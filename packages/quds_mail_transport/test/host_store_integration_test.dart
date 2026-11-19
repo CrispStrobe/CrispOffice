@@ -78,26 +78,25 @@ void main() {
   });
 
   test(
-    'native UID pages preserve flags and resume the durable cursor after reopen',
+    'high discovered UID pages preserve flags and resume the durable cursor after reopen',
     () async {
       final fixture = ImapFixture(
-        uidNext: 4,
+        uidNext: 3000001,
         messages: {
-          1: _message('First', flags: [r'\Seen', r'\Flagged']),
-          3: _message('Third', flags: [r'\Answered', r'\Draft']),
+          1000000: _message('First', flags: [r'\Seen', r'\Flagged']),
+          3000000: _message('Third', flags: [r'\Answered', r'\Draft']),
         },
       );
       final provider = fixture.provider(account: _account);
       final session = MailAccountSession(_account);
       await register(provider.configuration.credential);
 
-      final firstPage = _value(await pull(provider, session));
+      final firstPage = _value(await pull(provider, session, limit: 1));
       expect(firstPage.hasMore, isTrue);
-      expect(firstPage.upserts.map(_uid), [1]);
-      expect(
-        firstPage.tombstones.single,
-        MailImapIdentity(mailbox: _inbox, uidValidity: 41, uid: 2),
-      );
+      expect(firstPage.upserts.map(_uid), [1000000]);
+      expect(firstPage.tombstones, isEmpty);
+      expect(firstPage.imapRange!.firstUid, 1);
+      expect(firstPage.imapRange!.lastUid, 1000000);
       final firstCursor = _value(await store.readCursor(_inbox))!.value;
       final firstId = _value(await store.listHeaders(_inbox)).single.id;
       expect(
@@ -114,31 +113,35 @@ void main() {
         const MailMessageFlags(isRead: true, isFlagged: true),
       );
 
-      final secondPage = _value(await pull(provider, session));
+      final secondPage = _value(await pull(provider, session, limit: 1));
       expect(secondPage.hasMore, isFalse);
-      expect(secondPage.upserts.map(_uid), [3]);
+      expect(secondPage.upserts.map(_uid), [3000000]);
       final completed = _byUid(_value(await store.listHeaders(_inbox)));
-      expect(completed.keys, unorderedEquals([1, 3]));
+      expect(completed.keys, unorderedEquals([1000000, 3000000]));
       expect(
-        completed[3]!.flags,
+        completed[3000000]!.flags,
         const MailMessageFlags(isAnswered: true, isDraft: true),
       );
       expect(_value(await store.readCursor(_inbox))!.value, isNot(firstCursor));
 
       // An observed empty FLAGS response clears known bits on a later sweep.
       // The unvisited next page retains its own prior observation.
-      fixture.messages[1] = _message('First updated');
-      _value(await pull(provider, session));
+      fixture.messages[1000000] = _message('First updated');
+      _value(await pull(provider, session, limit: 1));
       await store.close();
       await open();
       final refreshed = _byUid(_value(await store.listHeaders(_inbox)));
-      expect(refreshed[1]!.id, firstId);
-      expect(refreshed[1]!.flags, const MailMessageFlags());
+      expect(refreshed[1000000]!.id, firstId);
+      expect(refreshed[1000000]!.flags, const MailMessageFlags());
       expect(
-        refreshed[3]!.flags,
+        refreshed[3000000]!.flags,
         const MailMessageFlags(isAnswered: true, isDraft: true),
       );
-      expect(_fetchRanges(fixture), ['1:2', '3:3', '1:2']);
+      expect(_fetchRanges(fixture), [
+        '1:1000000',
+        '1000001:3000000',
+        '1:1000000',
+      ]);
     },
   );
 
