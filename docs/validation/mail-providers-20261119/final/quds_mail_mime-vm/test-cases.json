@@ -1,0 +1,308 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 2124,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 32,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "test/eml_bytes_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 7,
+      "path": "test/mime_encodings_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 17,
+      "path": "test/mime_limits_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 30,
+      "path": "test/mime_parts_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 41,
+      "path": "test/mime_review_regressions_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 46,
+      "path": "test/portable_import_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "test/eml_bytes_test.dart",
+      "name": "original input remains exact and cannot be mutated through aliases",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "test/eml_bytes_test.dart",
+      "name": "non UTF-8 source and LF line endings survive display decoding",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "test/eml_bytes_test.dart",
+      "name": "identity attachment bytes retain internal CRLF and high bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "test/eml_bytes_test.dart",
+      "name": "signed MIME source exports without canonicalizing any octet",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 6
+    },
+    {
+      "file": "test/mime_encodings_test.dart",
+      "name": "encoded subject, display name, date and text project through public MIME",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 10
+    },
+    {
+      "file": "test/mime_encodings_test.dart",
+      "name": "strict UTF8, ASCII, Latin1 and Windows1252 bodies",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "test/mime_encodings_test.dart",
+      "name": "unknown header/body charset has diagnostics and source fallback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 12
+    },
+    {
+      "file": "test/mime_encodings_test.dart",
+      "name": "malformed UTF8 is never silently replaced",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 13
+    },
+    {
+      "file": "test/mime_encodings_test.dart",
+      "name": "malformed transfer alphabets, padding and QP escapes fail explicitly",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 14
+    },
+    {
+      "file": "test/mime_encodings_test.dart",
+      "name": "malformed words and dates do not leak private source to print",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 15
+    },
+    {
+      "file": "test/mime_encodings_test.dart",
+      "name": "unknown transfer encoding is not passed through as exact content",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 16
+    },
+    {
+      "file": "test/mime_limits_test.dart",
+      "name": "raw limit is enforced before retaining another copy",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 20
+    },
+    {
+      "file": "test/mime_limits_test.dart",
+      "name": "decoded and body budgets count alternatives cumulatively",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 21
+    },
+    {
+      "file": "test/mime_limits_test.dart",
+      "name": "attachment decoded size is checked before base64 allocation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 22
+    },
+    {
+      "file": "test/mime_limits_test.dart",
+      "name": "part and attachment count bounds stop traversal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 23
+    },
+    {
+      "file": "test/mime_limits_test.dart",
+      "name": "depth bounds are checked before entering child headers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 24
+    },
+    {
+      "file": "test/mime_limits_test.dart",
+      "name": "unsupported attachments still count toward the attachment budget",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 25
+    },
+    {
+      "file": "test/mime_limits_test.dart",
+      "name": "folded fields and cumulative header bytes are bounded",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 26
+    },
+    {
+      "file": "test/mime_limits_test.dart",
+      "name": "decoded legacy charset expansion respects rendering bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 27
+    },
+    {
+      "file": "test/mime_limits_test.dart",
+      "name": "a cancelled parse never starts copying or projecting source",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 28
+    },
+    {
+      "file": "test/mime_limits_test.dart",
+      "name": "invalid caller budgets are programmer errors",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 29
+    },
+    {
+      "file": "test/mime_parts_test.dart",
+      "name": "multipart alternatives and RFC2231 attachment filename",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 33
+    },
+    {
+      "file": "test/mime_parts_test.dart",
+      "name": "alternative selection is deterministic and uses last supported type",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 34
+    },
+    {
+      "file": "test/mime_parts_test.dart",
+      "name": "text attachment does not become a message body",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 35
+    },
+    {
+      "file": "test/mime_parts_test.dart",
+      "name": "related root start parameter and local CID attachment mapping",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 36
+    },
+    {
+      "file": "test/mime_parts_test.dart",
+      "name": "boundary prefixes within content are not recognized as delimiters",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 37
+    },
+    {
+      "file": "test/mime_parts_test.dart",
+      "name": "missing closing boundary is partial rather than silent success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 38
+    },
+    {
+      "file": "test/mime_parts_test.dart",
+      "name": "duplicate structural headers and missing boundaries fail closed",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 39
+    },
+    {
+      "file": "test/mime_parts_test.dart",
+      "name": "safe display names remove paths and bidi control characters",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 40
+    },
+    {
+      "file": "test/mime_review_regressions_test.dart",
+      "name": "encoded Q word can start with an escaped UTF8 octet",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 44
+    },
+    {
+      "file": "test/mime_review_regressions_test.dart",
+      "name": "rendered bytes accumulate across every MIME alternative",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 45
+    },
+    {
+      "file": "test/portable_import_test.dart",
+      "name": "both supported public MIME imports work without native libraries",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 49
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/flutter",
+    "analyze",
+    "--no-pub",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "test/word_proofing_dialog_test.dart",
+    "test/word_proofing_session_test.dart",
+    "test/word_thesaurus_dialog_test.dart",
+    "lib/src/embed/word_proofing_dialog.dart",
+    "lib/src/embed/word_thesaurus_dialog.dart",
+    "lib/src/proofing/word_proofing.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor",
+  "elapsed_seconds": 4.78,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T14:43:48.425748+00:00",
+  "kind": "command",
+  "name": "strict-incoming-editor-analysis",
+  "started_at_utc": "2026-11-19T14:43:43.645937+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "9a6507863c9f8e8d42c603b25f12f27c689cefd425ebb44a58210069ea8a3b1f",
+  "timeout_seconds": 900
+}

@@ -1,0 +1,306 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 11280,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 33,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/controller_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 8,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/example_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 12,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 26,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/controller_test.dart",
+      "name": "full and preview modes pass their actual raw budgets into the codec",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/controller_test.dart",
+      "name": "search, selection and decoded copy include displayed headers and body",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/controller_test.dart",
+      "name": "selection never splits a surrogate or combined grapheme",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/controller_test.dart",
+      "name": "match limit is explicit and result replacement clears stale selection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 6
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/controller_test.dart",
+      "name": "switching body alternative preserves raw bytes and invalidates action revision",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 7
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/example_test.dart",
+      "name": "actual example MIME bytes provide the displayed body, CID and exact attachment",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "disposing the view invalidates a pending explicit link decision",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 15
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "find chrome accepts arbitrary query and finds attachment names",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 16
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "runtime network denial is active, independently of the injected policy",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 17
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "hostile saved HTML causes zero policy and runtime outbound requests",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 18
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "link activation is denied until host policy explicitly approves it",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 19
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "late link approval cannot act on a replaced message or disposed view",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 20
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "attachment and source/hex callbacks receive exact immutable snapshots",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 21
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "custom RenderBox supports keyboard select/copy and meaningful semantics",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 22
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "render rejection remains visible with exact source fallback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 23
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "compact enlarged RTL view preserves actions without overflow",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 24
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/message_view_test.dart",
+      "name": "bounded CID PNG decodes locally under runtime network denial",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 25
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "existing presentation constructors default to an empty body projection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 29
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "plain body projection excludes reader metadata",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 30
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "HTML body projection excludes reader metadata",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 31
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "direct DTO plain/HTML bodies share one cumulative body budget",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 32
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "hostile HTML becomes inert text and explicit absolute link metadata",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 33
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "script raw text cannot smuggle fake nested style or image content",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 34
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "all CSS, event, srcset, SVG and image schemes are inert",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 35
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "link admission refuses encoded active schemes, protocol-relative, user info and controls",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 36
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "node and nesting rejection discards the entire partial projection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 37
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "oversized text, body, header and input are explicitly rejected",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 38
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "decoded and attachment budgets are cumulative before presentation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 39
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "CID PNG is admitted by exact identity without touching source snapshots",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 40
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "duplicate and unsupported CID inputs do not decode arbitrary images",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 41
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "PNG pixel bombs and truncated chunks are refused before native decode",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 42
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "cumulative CID pixels count unique images and refuse excess",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 43
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui/test/presentation_test.dart",
+      "name": "plain alternative can be selected without changing original data",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 44
+    }
+  ]
+}

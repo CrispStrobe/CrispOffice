@@ -1,0 +1,21 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "test/language_id_unit_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id",
+  "elapsed_seconds": 0.114,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T14:49:37.549474+00:00",
+  "kind": "command",
+  "name": "strict-corrected-format",
+  "started_at_utc": "2026-11-19T14:49:37.435397+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec",
+  "timeout_seconds": 900
+}

@@ -1,0 +1,484 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 1282,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 54,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "test/cancellation_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 6,
+      "path": "test/ews_identity_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 14,
+      "path": "test/imap_sync_range_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 35,
+      "path": "test/models_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 47,
+      "path": "test/outbox_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 60,
+      "path": "test/sync_coordinator_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "test/cancellation_test.dart",
+      "name": "invalidate rejects old callbacks but allows a new generation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "test/cancellation_test.dart",
+      "name": "dispose invalidates all callbacks and cannot reopen a session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "test/cancellation_test.dart",
+      "name": "explicit cancellation is typed and keeps the first reason",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "test/ews_identity_test.dart",
+      "name": "EWS item IDs retain exact case and opaque punctuation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 9
+    },
+    {
+      "file": "test/ews_identity_test.dart",
+      "name": "equal server IDs remain isolated by host, account and provider",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 10
+    },
+    {
+      "file": "test/ews_identity_test.dart",
+      "name": "an Exchange move can replace the server identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "test/ews_identity_test.dart",
+      "name": "EWS identities reject empty values and control characters",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 12
+    },
+    {
+      "file": "test/ews_identity_test.dart",
+      "name": "cross-account Exchange moves fail before provider work",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 13
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "inclusive ranges support the full IMAP UID space and single UIDs",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 17
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range rejects zero UIDVALIDITY",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 18
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range rejects negative UIDVALIDITY",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 19
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range rejects overflow UIDVALIDITY",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 20
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range rejects zero first UID",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 21
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range rejects negative first UID",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 22
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range rejects overflow first UID",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 23
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range rejects zero last UID",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 24
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range rejects negative last UID",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 25
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range rejects overflow last UID",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 26
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range rejects reversed UIDs",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 27
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range scope must match the page even when the page is empty",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 28
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "authoritative range rejects HTTPS identity in upserts and tombstones",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 29
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "authoritative range rejects different UIDVALIDITY in upserts and tombstones",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 30
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "authoritative range rejects UID below range in upserts and tombstones",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 31
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "authoritative range rejects UID above range in upserts and tombstones",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 32
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "authoritative range rejects different mailbox in upserts and tombstones",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 33
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range pages retain immutable survivor and tombstone snapshots",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 34
+    },
+    {
+      "file": "test/models_test.dart",
+      "name": "observed standard flags have value equality and an empty snapshot",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 38
+    },
+    {
+      "file": "test/models_test.dart",
+      "name": "snapshots own bytes, including buffer views and export copies",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 39
+    },
+    {
+      "file": "test/models_test.dart",
+      "name": "message headers and attachments do not alias mutable input lists",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 40
+    },
+    {
+      "file": "test/models_test.dart",
+      "name": "parse result cannot claim success without a message",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 41
+    },
+    {
+      "file": "test/models_test.dart",
+      "name": "full and preview budgets preserve planned resource bounds",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 42
+    },
+    {
+      "file": "test/models_test.dart",
+      "name": "profile and account identities cannot alias between products",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 43
+    },
+    {
+      "file": "test/models_test.dart",
+      "name": "UIDVALIDITY, mailbox and account form the IMAP persistent identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 44
+    },
+    {
+      "file": "test/models_test.dart",
+      "name": "move and sync cursor enforce account and mailbox scopes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 45
+    },
+    {
+      "file": "test/models_test.dart",
+      "name": "mail capability does not imply Calendar, People or sending",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 46
+    },
+    {
+      "file": "test/outbox_test.dart",
+      "name": "queued revision, wire and envelope remain frozen through submission",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 50
+    },
+    {
+      "file": "test/outbox_test.dart",
+      "name": "mixed 250/550 RCPT responses abort every recipient before DATA",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 51
+    },
+    {
+      "file": "test/outbox_test.dart",
+      "name": "aggregate response does not fabricate recipient-level acceptance",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 52
+    },
+    {
+      "file": "test/outbox_test.dart",
+      "name": "missing recipient responses stay unknown on aggregate failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 53
+    },
+    {
+      "file": "test/outbox_test.dart",
+      "name": "connection loss after possible acceptance is uncertain and cannot retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 54
+    },
+    {
+      "file": "test/outbox_test.dart",
+      "name": "interrupted submitting state recovers as uncertain, never queued",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 55
+    },
+    {
+      "file": "test/outbox_test.dart",
+      "name": "definite non-acceptance retries with a fresh attempt identity only",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 56
+    },
+    {
+      "file": "test/outbox_test.dart",
+      "name": "validated restoration preserves a pending attempt and recovers uncertain",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 57
+    },
+    {
+      "file": "test/outbox_test.dart",
+      "name": "undo send only cancels work before submission",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 58
+    },
+    {
+      "file": "test/outbox_test.dart",
+      "name": "unrelated/duplicate recipient results and control injection are rejected",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 59
+    },
+    {
+      "file": "test/sync_coordinator_test.dart",
+      "name": "fixture pages apply real upserts/tombstones and advance cursor atomically",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 63
+    },
+    {
+      "file": "test/sync_coordinator_test.dart",
+      "name": "transaction failure leaves both old content and cursor unchanged",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 64
+    },
+    {
+      "file": "test/sync_coordinator_test.dart",
+      "name": "out-of-order concurrent pulls cannot regress the stored cursor",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 65
+    },
+    {
+      "file": "test/sync_coordinator_test.dart",
+      "name": "sync commit compares the cursor it read before pulling",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 66
+    },
+    {
+      "file": "test/sync_coordinator_test.dart",
+      "name": "account disposal while provider awaits prevents any commit",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 67
+    },
+    {
+      "file": "test/sync_coordinator_test.dart",
+      "name": "transaction rechecks the lease when disposal happens during persistence",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 68
+    },
+    {
+      "file": "test/sync_coordinator_test.dart",
+      "name": "cooperative user cancellation differs from stale account work",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 69
+    },
+    {
+      "file": "test/sync_coordinator_test.dart",
+      "name": "wrong account and oversized provider page fail before persistence",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 70
+    },
+    {
+      "file": "test/sync_coordinator_test.dart",
+      "name": "unsupported provider operations are failures rather than empty success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 71
+    }
+  ]
+}

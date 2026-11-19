@@ -1,0 +1,217 @@
+{
+  "accepted": false,
+  "done_events": [
+    {
+      "success": false,
+      "time": 5696,
+      "type": "done"
+    }
+  ],
+  "error_events": [
+    {
+      "error": "Expected: empty\n  Actual: [\n            LanguageGuess:en 0.400,\n            LanguageGuess:fr 0.300,\n            LanguageGuess:de 0.200,\n            LanguageGuess:es 0.100\n          ]\n",
+      "isFailure": true,
+      "stackTrace": "package:matcher                        expect\ntest/language_id_unit_test.dart 207:9  main.<fn>\n",
+      "testID": 12,
+      "time": 4988,
+      "type": "error"
+    }
+  ],
+  "failed": 1,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 21,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "test/language_id_unit_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 19,
+      "path": "test/language_id_native_transport_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "the bundled model is the pinned one",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "CLD3 has 109 distinct labels and legacy codes map to BCP-47",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "result lines parse into label/probability pairs",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "identify maps labels, batches and keeps input order",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 6
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "a tampered model is never opened",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 7
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "a stopped worker degrades to empty answers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 8
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "batch and candidate limits reject invalid arguments immediately",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 9
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "Unicode digits, marks, punctuation and emoji never reach the worker",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 10
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "malformed response counts degrade without throwing or accepting a prefix",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "invalid probabilities, labels, order and candidate counts fail closed",
+      "platform": "vm",
+      "result": "error",
+      "skipped": false,
+      "test_id": 12
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "a failed later batch retains only already completed valid results",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 13
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "dispose before loading never opens or classifies and is idempotent",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 14
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "late opening cannot reactivate a disposed identifier",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 15
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "late detection cannot publish results after disposal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 16
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "disposal rejection clears results from an earlier successful batch",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 17
+    },
+    {
+      "file": "test/language_id_unit_test.dart",
+      "name": "input identity is frozen across asynchronous model loading",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 18
+    },
+    {
+      "file": "test/language_id_native_transport_test.dart",
+      "name": "normal disposal releases the model and all worker buffers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 23
+    },
+    {
+      "file": "test/language_id_native_transport_test.dart",
+      "name": "reopening closes the previous model before replacement",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 24
+    },
+    {
+      "file": "test/language_id_native_transport_test.dart",
+      "name": "disposal during startup still releases initialized buffers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 25
+    },
+    {
+      "file": "test/language_id_native_transport_test.dart",
+      "name": "disposal settles callers then waits for active native cleanup",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 26
+    },
+    {
+      "file": "test/language_id_native_transport_test.dart",
+      "name": "failed initialization releases partial buffer allocations",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 27
+    },
+    {
+      "file": "test/language_id_native_transport_test.dart",
+      "name": "failed buffer growth retains the live buffer for later cleanup",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 28
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/61cbd6db9300/crisp-office/.dart_tool/package_config.json",
+    "/workspace/scratch/61cbd6db9300/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/eml_bytes_test.dart",
+    "test/mime_encodings_test.dart",
+    "test/mime_limits_test.dart",
+    "test/mime_parts_test.dart",
+    "test/mime_review_regressions_test.dart",
+    "test/portable_import_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime",
+  "environment_overrides": {},
+  "kind": "tests",
+  "name": "quds_mail_mime-vm",
+  "started_at_utc": "2026-11-19T14:43:49.269632+00:00",
+  "timeout_seconds": 900
+}

@@ -1,0 +1,25 @@
+{
+  "accepted": true,
+  "argv": [
+    "/usr/bin/x86_64-linux-gnu-g++-14",
+    "-std=c++17",
+    "-shared",
+    "-fPIC",
+    "-O2",
+    "-pthread",
+    "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/fixtures/native_transport_fixture.cpp",
+    "-o",
+    "/workspace/scratch/61cbd6db9300/qualification/build/language-id-fixture.so"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office",
+  "elapsed_seconds": 0.315,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T14:43:22.887190+00:00",
+  "kind": "command",
+  "name": "language-fixture-build",
+  "started_at_utc": "2026-11-19T14:43:22.572170+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "timeout_seconds": 900
+}

@@ -1,0 +1,38 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/61cbd6db9300/crisp-office/.dart_tool/package_config.json",
+    "/workspace/scratch/61cbd6db9300/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/adversarial_store_test.dart",
+    "test/codec_test.dart",
+    "test/crash_recovery_test.dart",
+    "test/ews_store_test.dart",
+    "test/imap_sync_range_test.dart",
+    "test/migration_test.dart",
+    "test/native_platform_test.dart",
+    "test/platform_configuration_test.dart",
+    "test/repository_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_store",
+  "elapsed_seconds": 35.846,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T14:44:37.546932+00:00",
+  "kind": "tests",
+  "name": "quds_mail_store-vm",
+  "started_at_utc": "2026-11-19T14:44:01.701233+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "dc26bc9ac7fad95f635391ddcbc031a866fa34d92dd0a17fbc8d2bc20f745e0f",
+  "test_counts": {
+    "failed": 0,
+    "passed": 118,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}

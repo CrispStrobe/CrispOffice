@@ -1,0 +1,146 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 15397,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 13,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "test/unsupported_test.dart",
+      "platform": "node"
+    },
+    {
+      "id": 6,
+      "path": "test/ews_configuration_test.dart",
+      "platform": "node"
+    },
+    {
+      "id": 16,
+      "path": "test/ews_unsupported_test.dart",
+      "platform": "node"
+    },
+    {
+      "id": 20,
+      "path": "test/cloud_unsupported_test.dart",
+      "platform": "node"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "test/unsupported_test.dart",
+      "name": "public JavaScript entry returns typed unsupported for every provider method",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "test/unsupported_test.dart",
+      "name": "default public factory remains unsupported without requiring a codec",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "test/unsupported_test.dart",
+      "name": "unsupported factory still validates bounds without accessing host services",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "on-prem private names, explicit ports and IPv6 retain verified HTTPS",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 9
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "unsafe or ambiguous endpoints are refused at construction",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 10
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "delegated mailbox uses a separate SMTP-address field",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "credential reference cannot cross accounts",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 12
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "work bounds reflect EWS and existing store limits",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 13
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "opaque SyncState roundtrips without decoding or normalizing",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 14
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "cursor serialized size cannot exceed durable store admission",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 15
+    },
+    {
+      "file": "test/ews_unsupported_test.dart",
+      "name": "public browser EWS import and every operation are vault-free unsupported",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 19
+    },
+    {
+      "file": "test/cloud_unsupported_test.dart",
+      "name": "gmail public browser boundary is explicitly unsupported",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 23
+    },
+    {
+      "file": "test/cloud_unsupported_test.dart",
+      "name": "microsoft365 public browser boundary is explicitly unsupported",
+      "platform": "node",
+      "result": "success",
+      "skipped": false,
+      "test_id": 24
+    }
+  ]
+}

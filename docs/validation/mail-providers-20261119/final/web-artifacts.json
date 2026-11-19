@@ -1,0 +1,10 @@
+{
+  "mail-web.dill": {
+    "bytes": 34178952,
+    "sha256": "aa83a3f375ba326961ef54d1dc278b2a6fb7a5f35821a06421b36dfab8e5e6c2"
+  },
+  "mail-web.js": {
+    "bytes": 6466892,
+    "sha256": "23348e6cffd0f2808004b542734b17d3664900bf24bfd2f4615a81170f65e100"
+  }
+}

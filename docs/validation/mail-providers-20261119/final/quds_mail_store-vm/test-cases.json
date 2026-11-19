@@ -1,0 +1,1011 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 25819,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 118,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "test/adversarial_store_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 19,
+      "path": "test/codec_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 63,
+      "path": "test/crash_recovery_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 71,
+      "path": "test/ews_store_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 82,
+      "path": "test/imap_sync_range_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 100,
+      "path": "test/migration_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 112,
+      "path": "test/native_platform_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 122,
+      "path": "test/platform_configuration_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 129,
+      "path": "test/repository_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "competing pages cannot overwrite a concurrently advanced cursor",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "lease invalidated after cursor write rolls back the complete page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "rolled back notifications never reach repository observers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "UID validity reset preserves pending intent and its cached evidence",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 6
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "a tombstone removes only its label membership",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 7
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "cache eviction preserves draft, outbox and active-editor byte owners",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 8
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "frozen outbox payload and uncertain state cannot be replaced through restore",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 9
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "an older attempt identity cannot be reused after a newer retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 10
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "failed draft replacement retains its old revision and every old blob",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "durable recovery rolls back on failure and remains uncertain after reopening",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 12
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "a corrupt persisted blob is rejected instead of silently served",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 13
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "identical profile labels cannot open another host database",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 14
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "profile removal can resume outstanding vault cleanup after reopening",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 15
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "oversized provider identity is rejected before writing its cursor",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 16
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "tombstone-only pages consume account quota and roll back their cursor",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 17
+    },
+    {
+      "file": "test/adversarial_store_test.dart",
+      "name": "foreign-profile logout is a typed rejection without invalidating either session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 18
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "standard flag codec unknown flags remain distinct from an observed empty set",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 23
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "standard flag codec every durable flag survives alone and in a combined snapshot",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 24
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "standard flag codec reserved flag bits and negative masks fail with redacted errors",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 25
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope round trip preserves every header field and timestamp",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 27
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec nullable empty metadata and local absolute timestamps round trip",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 28
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects unknown field",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 29
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects missing nullable field",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 30
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects future version",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 31
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects wrong subject type",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 32
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects wrong reference type",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 33
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects wrong address shape",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 34
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects unknown address field",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 35
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects wrong nullable address type",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 36
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects normalized invalid date",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 37
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects offset date instead of canonical instant",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 38
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec envelope rejects wrong UTC type",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 39
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec duplicate literal and escaped keys are rejected before JSON collapse",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 40
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "metadata codec bounded parser rejects deep nesting and redacts malformed content",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 41
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "provider identity codec canonical IMAP key preserves UIDVALIDITY and scope is supplied separately",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 43
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "provider identity codec graph identity preserves exact opaque value",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 44
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "provider identity codec gmail identity preserves exact opaque value",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 45
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "provider identity codec jmap identity preserves exact opaque value",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 46
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "provider identity codec remote codec rejects invalid provider, field set and IMAP range",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 47
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "draft payload body projection validates metadata without requiring payload bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 49
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "draft payload metadata and deduplicated immutable blobs round trip separately",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 50
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "draft payload draft rejects missing, corrupted or mismatched-length attachment bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 51
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "draft payload draft rejects wrong metadata types, unknown fields and malformed hash",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 52
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "outbox payload every state round trips frozen bytes, recipients, result and attempt",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 54
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "outbox payload restored in-flight entry becomes uncertain and never retryable",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 55
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "outbox payload wire integrity and internal result/state consistency are enforced",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 56
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "outbox persistence transitions new entries must be initial queued and all legitimate transitions pass",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 58
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "outbox persistence transitions prepared bytes, envelope, revision, creation and ownership cannot change",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 59
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "outbox persistence transitions attempt numbers, fresh identity and monotonic time are mandatory",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 60
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "outbox persistence transitions same-state saves are exact idempotence and terminal rewrites fail",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 61
+    },
+    {
+      "file": "test/codec_test.dart",
+      "name": "outbox persistence transitions cancellation must retain the previous definite failure result",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 62
+    },
+    {
+      "file": "test/crash_recovery_test.dart",
+      "name": "SIGKILL afterSyncRecords preserves the correct durable transaction boundary",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 66
+    },
+    {
+      "file": "test/crash_recovery_test.dart",
+      "name": "SIGKILL beforeSyncCursor preserves the correct durable transaction boundary",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 67
+    },
+    {
+      "file": "test/crash_recovery_test.dart",
+      "name": "SIGKILL afterDraftBlobs preserves the correct durable transaction boundary",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 68
+    },
+    {
+      "file": "test/crash_recovery_test.dart",
+      "name": "SIGKILL afterOutboxWrite preserves the correct durable transaction boundary",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 69
+    },
+    {
+      "file": "test/crash_recovery_test.dart",
+      "name": "SIGKILL committedSubmitting preserves the correct durable transaction boundary",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 70
+    },
+    {
+      "file": "test/ews_store_test.dart",
+      "name": "EWS account and opaque item keys round trip without migration",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 74
+    },
+    {
+      "file": "test/ews_store_test.dart",
+      "name": "incremental read changes preserve local identity and exact sync state",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 75
+    },
+    {
+      "file": "test/ews_store_test.dart",
+      "name": "upserts, deletions and Exchange sync state roll back together",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 76
+    },
+    {
+      "file": "test/ews_store_test.dart",
+      "name": "a stale Exchange page cannot replace an already committed cursor",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 77
+    },
+    {
+      "file": "test/ews_store_test.dart",
+      "name": "an EWS tombstone affects only its folder membership",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 78
+    },
+    {
+      "file": "test/ews_store_test.dart",
+      "name": "equal server IDs in separate Exchange accounts remain independent",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 79
+    },
+    {
+      "file": "test/ews_store_test.dart",
+      "name": "sync reset reconciles pending edits to removed EWS identities",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 80
+    },
+    {
+      "file": "test/ews_store_test.dart",
+      "name": "a conflicting local ID cannot hide an Exchange ItemId replacement",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 81
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "sparse full-width ranges create tombstones only for stored absences",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 85
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "empty observations advance the cursor without materializing UID holes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 86
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "inclusive range removal preserves mailbox, account and validity isolation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 87
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "absent queued and applying edits reconcile while their cached bytes survive",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 88
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range deletes, edits, indexes and cursor roll back at afterSyncRecords then retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 89
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range deletes, edits, indexes and cursor roll back at beforeSyncCursor then retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 90
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "range deletes, edits, indexes and cursor roll back at beforeCommit then retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 91
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "stale range observations cannot delete the winning page or its pending edits",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 92
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "account lease invalidation rolls back range removals and reconciliation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 93
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "page limits, duplicate identities and metadata fail before range removals",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 94
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "empty IMAP ranges reject a non-IMAP account and foreign account lease",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 95
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "reopening above the configured scan bound refuses range work without data loss",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 96
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "existing range removals may exceed the incoming page row count",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 97
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "explicit tombstones coexist with authoritative range removals",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 98
+    },
+    {
+      "file": "test/imap_sync_range_test.dart",
+      "name": "resetRequired retains full-mailbox reset across ranges and UID generations",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 99
+    },
+    {
+      "file": "test/migration_test.dart",
+      "name": "v1 upgrade preserves scoped records, draft, cache and immutable queue bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 103
+    },
+    {
+      "file": "test/migration_test.dart",
+      "name": "v2 upgrade preserves existing search and flags survive file reopen",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 104
+    },
+    {
+      "file": "test/migration_test.dart",
+      "name": "interrupted v2 flag migration rolls back the column and retains FTS",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 105
+    },
+    {
+      "file": "test/migration_test.dart",
+      "name": "upgraded FTS requires bounded backfill without loading attachment or raw bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 106
+    },
+    {
+      "file": "test/migration_test.dart",
+      "name": "interrupted v1 migration rolls back schema and version, then retries without losing data",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 107
+    },
+    {
+      "file": "test/migration_test.dart",
+      "name": "future schema 4 is rejected without changing existing data",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 108
+    },
+    {
+      "file": "test/migration_test.dart",
+      "name": "future schema 9 is rejected without changing existing data",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 109
+    },
+    {
+      "file": "test/migration_test.dart",
+      "name": "stricter individual blob limits reject persisted draft before transferring blobs",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 110
+    },
+    {
+      "file": "test/migration_test.dart",
+      "name": "stricter aggregate payload limits reject persisted draft before transferring blobs",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 111
+    },
+    {
+      "file": "test/native_platform_test.dart",
+      "name": "native committed accounts survive close and reopen",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 115
+    },
+    {
+      "file": "test/native_platform_test.dart",
+      "name": "a second live owner conflicts; a closed owner releases its lease",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 116
+    },
+    {
+      "file": "test/native_platform_test.dart",
+      "name": "same profile names in different hosts use separate containers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 117
+    },
+    {
+      "file": "test/native_platform_test.dart",
+      "name": "migration failure releases ownership and rolls back before reopening",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 118
+    },
+    {
+      "file": "test/native_platform_test.dart",
+      "name": "a relative container is rejected without choosing a global directory",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 119
+    },
+    {
+      "file": "test/native_platform_test.dart",
+      "name": "an unavailable app container returns a typed failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 120
+    },
+    {
+      "file": "test/native_platform_test.dart",
+      "name": "process termination releases ownership and preserves committed data",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 121
+    },
+    {
+      "file": "test/platform_configuration_test.dart",
+      "name": "database identity separates hosts, profiles and browser namespaces",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 125
+    },
+    {
+      "file": "test/platform_configuration_test.dart",
+      "name": "browser namespaces are explicit and bounded",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 126
+    },
+    {
+      "file": "test/platform_configuration_test.dart",
+      "name": "relative and absolute same-origin assets resolve explicitly",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 127
+    },
+    {
+      "file": "test/platform_configuration_test.dart",
+      "name": "assets reject remote origins, credentials, fragments and non-HTTP",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 128
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "observed flags persist while an omitted snapshot preserves them",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 132
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "flag mutation and cursor roll back together on transaction failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 133
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "flag snapshots stay scoped to account, mailbox and UIDVALIDITY",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 134
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "commits headers and cursor with a compare-and-set precondition",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 135
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "failure after records rolls back rows and cursor together",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 136
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "lease invalidation at the final commit boundary rolls back",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 137
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "header stream never exposes rolled-back or half-applied pages",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 138
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "draft revisions reject lost updates and attachment rollback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 139
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "new and terminal outbox states cannot be forged",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 140
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "recovery does not relabel an attempt started by this live owner",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 141
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "older attempt identifiers cannot be reused after multiple retries",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 142
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "cache eviction preserves shared draft attachments and editor pins",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 143
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "local FTS uses literal tokens and never indexes active HTML",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 144
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "tombstone preserves a pending intent for explicit reconciliation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 145
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "UIDVALIDITY reset keeps local work and rejects stale cursor pages",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 146
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "logout preserves local drafts and queues durable vault cleanup",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 147
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "account removal retires identity and rejects late writes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 148
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "profile and account scope reject matching foreign identifiers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 149
+    },
+    {
+      "file": "test/repository_test.dart",
+      "name": "SQLite full has a typed redacted failure and leaves no partial write",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 150
+    }
+  ]
+}

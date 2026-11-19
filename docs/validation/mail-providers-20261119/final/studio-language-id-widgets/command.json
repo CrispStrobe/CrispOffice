@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_language_id_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example",
+  "environment_overrides": {},
+  "kind": "tests",
+  "name": "studio-language-id-widgets",
+  "started_at_utc": "2026-11-19T14:47:11.401293+00:00",
+  "timeout_seconds": 900
+}

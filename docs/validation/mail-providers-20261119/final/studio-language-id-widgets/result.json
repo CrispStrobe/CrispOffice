@@ -1,0 +1,27 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_language_id_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example",
+  "elapsed_seconds": 8.968,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T14:47:20.369706+00:00",
+  "kind": "tests",
+  "name": "studio-language-id-widgets",
+  "started_at_utc": "2026-11-19T14:47:11.401293+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "402e5b609cc5a11a1ad1b716ca228b282e3a6c796efaf23c1a54e080b866b1c8",
+  "test_counts": {
+    "failed": 0,
+    "passed": 4,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}

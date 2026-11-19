@@ -1,0 +1,1764 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 67251,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 209,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 22,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 46,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 72,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 84,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 102,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 106,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 135,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 145,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 155,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 168,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 179,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 230,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 234,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "native setup offers Gmail, Microsoft 365 and Exchange",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "gmail signs in and adopts the matching mailbox session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "microsoft365 signs in and adopts the matching mailbox session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "invalid settings never authorize or construct a provider",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 6
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "authorization exceptions are redacted and leave retry available",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 7
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "denied OAuth permissions use localized actionable feedback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 8
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "cancelled browser authorization rejects and disposes late tokens",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 9
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "closing during authorization invalidates the lease and clears late tokens",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 10
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "mailbox rejection closes provider and tokens without exposing metadata secret",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "wrong-account provider is rejected and disposed before mailbox reads",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 12
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "provider construction errors retire the authorized tokens",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 13
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "throttling displays the rounded delay without an automatic retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 14
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "provider cleanup failure cannot prevent token cleanup or disconnect",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 15
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "disconnect ignores a pending message body and retires session resources",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 16
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "verbose diagnostics opt in passes only structured safe events to the log",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 17
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "cloud composition uses canonical MIME and does not overclaim delivery",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 18
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "uncertain cloud send retains draft and never automatically resubmits",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 19
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "definite rejected sends retain drafts and show Retry-After without resending",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 20
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "name": "narrow cloud setup and mailbox remain usable without overflow",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 21
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 25
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"a@example.invalid,b@example.invalid\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 26
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"Name <a@example.invalid>\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 27
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"a@\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 28
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"@example.invalid\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 29
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"a..b@example.invalid\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 30
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \".a@example.invalid\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 31
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"a.@example.invalid\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 32
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"a@-example.invalid\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 33
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"a@exam ple.invalid\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 34
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"a@example.invalid\\r\\nBcc: hidden@example.invalid\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 35
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "rejects unsupported recipient \"\u0645\u0633\u062a\u062e\u062f\u0645@example.invalid\"",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 36
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "accepts supported mailbox punctuation and rejects header injection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 37
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "bounds encoded body size and rejects null characters",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 38
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "Arabic subject and body produce ASCII-safe MIME with exact decoded content",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 39
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "body uses the Word editor and snapshots undoable text before disposal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 40
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "invalid recipient keeps the draft open with bounded feedback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 41
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "uncertain draft is retained and requires explicit resend acknowledgement",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 42
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "composer fits a narrow window without substituting a body text field",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 43
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "uncertain composer scrolls in a short landscape window",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 44
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "name": "uncertain composer scrolls in a short keyboard window",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 45
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "old keychain records remain readable and new preset settings round trip",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 49
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "invalid persisted values cannot silently select security or provider settings",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 50
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "platform keychain failures report failed save and clear without erasing prior values",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 51
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "malformed or excessive keychain records fail closed",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 52
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "a later Forget waits for an older write across store instances",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 53
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "failed platform writes do not poison later keychain operations",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 54
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "late keychain load cannot replace newly typed account settings",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 55
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "late keychain load cannot undo a newly selected provider",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 56
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "remembered iCloud settings restore the visible preset and login mode",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 57
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "keychain save failure retains the connected mailbox and reports fixed feedback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 58
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "Remember opt-out clears the old account and reports success accurately",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 59
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "Remember opt-out clears the old account and reports failure accurately",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 60
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "failed Forget preserves filled credentials and remains retryable",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 61
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "late Forget failure cannot replace newer provider feedback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 62
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "late Forget failure cannot overwrite a newer successful remembered session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 63
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "late saved-account completion cannot undo a newer Forget",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 64
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "closing while saving cannot update the disposed dialog",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 65
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "explicit manual STARTTLS is honored without automatic authentication retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 66
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "Yahoo Mail authentication failures never switch fixed transport settings",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 67
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "iCloud Mail authentication failures never switch fixed transport settings",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 68
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "Fastmail authentication failures never switch fixed transport settings",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 69
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "closing an in-flight failed connection never creates a fallback client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 70
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+      "name": "mailbox.org keeps its known verified STARTTLS route without discovery",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 71
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "name": "HTTP discovery is rejected before credentials reach a client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 75
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "name": "POP-only discovery is rejected before credentials reach a client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 76
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "name": "non-SMTP outgoing discovery is rejected before credentials reach a client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 77
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "name": "missing server discovery is rejected before credentials reach a client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 78
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "name": "no discovery result is rejected before credentials reach a client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 79
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "name": "trusted IMAP discovery creates SSL-only account endpoints",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 80
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "name": "discovery uses the credentials captured when connection begins",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 81
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "name": "closing during discovery ignores its late success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 82
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "name": "closing during discovery ignores its late failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 83
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "native account setup exposes the Exchange Server entry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 87
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "manual NTLM connection loads bounded headers and clears the password field",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 88
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "explicit read, flag and move actions use the EWS provider",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 89
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "Basic authentication is available only by explicit selection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 90
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "read-only capabilities disable submission, reply and move actions",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 91
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "delete requires explicit confirmation before moving to Deleted Items",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 92
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "failed write confirmation requires refresh before another change",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 93
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "insecure endpoints fail before provider creation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 94
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "closing a pending connection invalidates its lease and clears credentials",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 95
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "disconnect ignores late message bodies and returns to cleared setup",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 96
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "composer sends canonical MIME with one explicit envelope through EWS",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 97
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "uncertain submissions retain the draft and require acknowledged retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 98
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "disposing during send ignores a late acceptance",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 99
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "provider exceptions stay redacted in connection feedback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 100
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "name": "narrow Exchange layout keeps setup, message and actions usable",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 101
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+      "name": "closing Mail ignores a pending file picker result",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 105
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "mark-read freezes the full identity and requires provider success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 109
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "mark-read refuses incomplete or stale identities without networking",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 110
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "mark-read never retries or turns an unconfirmed write into success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 111
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "mark-read rejects a provider from another account before writing",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 112
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "a mark-read operation cancels an older read without replaying it",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 113
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "a new read cancels a pending write and ignores late write completion",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 114
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "dispose promptly cancels a pending mark-read and prohibits later writes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 115
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "returns exact original non-UTF8 octets in an independent copy",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 116
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "freezes exact mailbox generation and UID, never sequence ID",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 117
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "uses the decoded full path for international nested mailboxes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 118
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "passes every read budget and TLS transport bound unchanged",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 119
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "full-message budget is the default",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 120
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "rejects invalid UID and UIDVALIDITY before provider creation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 121
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "rejects invalid or unselectable mailbox before provider access",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 122
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "rejects inconsistent envelope GUID before provider access",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 123
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "accepts a matching high-level GUID with full identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 124
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "rejects unsupported accounts and insecure modes without a provider",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 125
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "rejects invalid credentials, endpoint and budgets before networking",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 126
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "rejects wrong account, mailbox, UIDVALIDITY, UID or absent identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 127
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "rejects excess raw bytes even when an injected provider returns success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 128
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "cancel settles a stalled request and prevents a late completion",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 129
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "starting another read cancels the first lease and ignores its late error",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 130
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "dispose cancels in-flight work, clears credentials and refuses reuse",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 131
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "credentials are account-scoped and cannot be overwritten",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 132
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "distinct account sessions never share identity or credentials",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 133
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "name": "provider failures are fixed typed errors without server details",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 134
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "name": "contains synchronous protocol prints and preserves the return value",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 138
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "name": "contains asynchronous prints before and after an await",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 139
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "name": "registered future and timer callbacks retain the private zone",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 140
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "name": "stream listeners registered during client construction stay contained",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 141
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "name": "a pending Mail operation does not suppress unrelated output",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 142
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "name": "does not swallow or replace a synchronous failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 143
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "name": "does not swallow or replace an asynchronous failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 144
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "name": "Yahoo uses authenticated implicit TLS and full-address login",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 148
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "name": "iCloud uses TLS IMAP, mandatory SMTP STARTTLS and separate login forms",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 149
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "name": "Fastmail preserves a primary login distinct from a custom sender",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 150
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "name": "iCloud offers Apple\u2019s full-address IMAP login fallback explicitly",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 151
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "name": "presets reject malformed identity and credential settings before connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 152
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "name": "choosing a preset clears old credentials and exposes app-password guidance",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 153
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "name": "preset connection uses explicit settings without discovery",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 154
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "name": "reply uses authoritative Reply-To and quotes only decoded plain body",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 158
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "name": "reply falls back to From when no Reply-To exists",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 159
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "name": "missing source addresses require an explicit recipient before send",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 160
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "name": "forward requires a recipient and declares the text-only boundary",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 161
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "name": "existing reply prefix is not duplicated",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 162
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "name": "existing forward prefix is not duplicated",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 163
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "name": "quote cutoff preserves an emoji and explicitly identifies truncation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 164
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "name": "an exact-boundary quote is preserved without a truncation notice",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 165
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "name": "HTML-only bodies produce a fixed typed unavailable outcome",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 166
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "name": "an explicitly empty plain body never falls back to HTML",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 167
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "name": "closing during connect aborts pending owned clients",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 171
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "name": "discovery uses the credentials captured when connect starts",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 172
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "name": "only nonselectable folders release both owned transports",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 173
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "name": "old mailbox results cannot replace a new session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 174
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "name": "old mailbox failure cannot replace a new session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 175
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "name": "a draft from a disconnected session is not sent",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 176
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "name": "late send failure cannot alter a replacement session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 177
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "name": "disconnect contains cleanup errors and aborts both transports",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 178
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "reply uses the exact loaded body and envelope, not the list header",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 182
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "reply reports an HTML-only body without quoting presentation headers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 183
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "reply cannot replace an uncertain draft; only confirmed discard releases it",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 184
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "forward uses the exact loaded body and envelope, not the list header",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 185
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "forward reports an HTML-only body without quoting presentation headers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 186
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "forward cannot replace an uncertain draft; only confirmed discard releases it",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 187
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "mark-read holds the UI busy and updates only after confirmation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 188
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "failed mark-read preserves unread status with fixed feedback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 189
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "failed mark-read allows an explicit successful retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 190
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "mark-read completion cannot mark a header whose UID changed",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 191
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "mark-read late success cannot mutate a disconnected session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 192
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "mark-read late success preserves a replacement pending request",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 193
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "mark-read late failure cannot mutate a disconnected session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 194
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "mark-read late failure preserves a replacement pending request",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 195
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "manual setup connects with secure settings and disconnects",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 196
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "closing during connect ignores its late success and closes the client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 197
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "closing during connect ignores its late error and closes the client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 198
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "connect failure releases the candidate and allows a fresh connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 199
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "closing during list ignores its late success and closes the client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 200
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "closing during list ignores its late error and closes the client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 201
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "list failure releases the candidate and allows a fresh connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 202
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "closing during fetch ignores its late success and closes the client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 203
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "closing during fetch ignores its late error and closes the client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 204
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "fetch failure releases the candidate and allows a fresh connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 205
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "an account without a selectable mailbox is closed and reports its error",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 206
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "a nonselectable INBOX falls back to a selectable mailbox",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 207
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "opening messages replaces and disposes readers; a failed read preserves the current message",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 208
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "a message read success cannot alter a reconnected session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 209
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "a message read error cannot alter a reconnected session",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 210
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "disconnect during mailbox select ignores a late success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 211
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "disconnect during mailbox select ignores a late error",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 212
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "disconnect during mailbox fetch ignores a late success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 213
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "disconnect during mailbox fetch ignores a late error",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 214
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "mailbox failure does not leave another folder\u2019s messages visible",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 215
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "composing sends the draft and reports success or failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 216
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "confirmed submission with failed cleanup clears draft in en",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 217
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "confirmed submission with failed cleanup clears draft in de",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 218
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "confirmed submission with failed cleanup clears draft in ar",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 219
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "foreign client outcome cannot confirm the active submission",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 220
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "disconnect during send ignores its late success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 221
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "disconnect during send ignores its late error",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 222
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "disconnect during send ignores its late accepted follow-up error",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 223
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "search tolerates messages with an empty sender list",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 224
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "disconnecting catches asynchronous cleanup errors",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 225
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "closing catches asynchronous cleanup errors",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 226
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "German Mail retains localized account controls and reading prompt",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 227
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "narrow inbox supports folders, reading and back navigation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 228
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "name": "saved-message navigation retains the connected account",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 229
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+      "name": "browser Mail explains account availability and opens saved bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 233
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "Mail opens saved bytes and disposes replaced controllers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 237
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "saved EML keeps exact octets across modes and account navigation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 238
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "picker failure preserves the reader with localized feedback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 239
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "picker failure after closing saved Mail is ignored",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 240
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "file read failure preserves the reader with localized feedback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 241
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "file read failure after closing saved Mail is ignored",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 242
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "a delayed saved-message path read replaces the chosen mode",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 243
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "a late picker path after closing saved Mail is never read",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 244
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "saved reader toolbar fits a narrow enlarged-text window",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 245
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "cancelling the picker preserves the current Mail message",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 246
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "an empty picker result preserves the current Mail message",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 247
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "a picker result after closing Mail is discarded",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 248
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "a file read finishing after closing Mail is discarded",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 249
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "name": "Studio cycles languages and Mail preserves its active sheet",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 250
+    }
+  ]
+}

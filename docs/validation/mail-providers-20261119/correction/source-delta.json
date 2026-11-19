@@ -1,0 +1,12 @@
+{
+  "packages/quds_language_id/test/language_id_unit_test.dart": {
+    "corrected": {
+      "bytes": 11076,
+      "sha256": "52c87b431ae251cfdbf968ef07c06a297031b0b036b66399f4b906398b9ae65f"
+    },
+    "previous": {
+      "bytes": 11057,
+      "sha256": "7da0d70077cf244762e9e7e40c653f8e84b4907e1046555ab534a8b0893f9ec3"
+    }
+  }
+}

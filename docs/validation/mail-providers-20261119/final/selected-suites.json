@@ -1,0 +1,19 @@
+{
+  "real_native_language_excluded": "packages/quds_language_id/test/language_id_native_test.dart",
+  "studio_mail": [
+    "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+  ]
+}

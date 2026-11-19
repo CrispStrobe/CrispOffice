@@ -1,0 +1,91 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":305,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"test/eml_bytes_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading test/eml_bytes_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+{"count":6,"time":8,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1178}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":4,"line":null,"column":null,"url":null},"type":"group","time":1180}
+{"test":{"id":3,"name":"original input remains exact and cannot be mutated through aliases","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":11,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/eml_bytes_test.dart"},"type":"testStart","time":1180}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1238}
+{"test":{"id":4,"name":"non UTF-8 source and LF line endings survive display decoding","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":28,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/eml_bytes_test.dart"},"type":"testStart","time":1238}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1240}
+{"test":{"id":5,"name":"identity attachment bytes retain internal CRLF and high bytes","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":42,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/eml_bytes_test.dart"},"type":"testStart","time":1241}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1244}
+{"test":{"id":6,"name":"signed MIME source exports without canonicalizing any octet","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":71,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/eml_bytes_test.dart"},"type":"testStart","time":1244}
+{"testID":6,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1247}
+{"suite":{"id":7,"platform":"vm","path":"test/mime_encodings_test.dart"},"type":"suite","time":1253}
+{"test":{"id":8,"name":"loading test/mime_encodings_test.dart","suiteID":7,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1253}
+{"testID":8,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1414}
+{"group":{"id":9,"suiteID":7,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":7,"line":null,"column":null,"url":null},"type":"group","time":1415}
+{"test":{"id":10,"name":"encoded subject, display name, date and text project through public MIME","suiteID":7,"groupIDs":[9],"metadata":{"skip":false,"skipReason":null},"line":12,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_encodings_test.dart"},"type":"testStart","time":1415}
+{"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1453}
+{"test":{"id":11,"name":"strict UTF8, ASCII, Latin1 and Windows1252 bodies","suiteID":7,"groupIDs":[9],"metadata":{"skip":false,"skipReason":null},"line":26,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_encodings_test.dart"},"type":"testStart","time":1453}
+{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1457}
+{"test":{"id":12,"name":"unknown header/body charset has diagnostics and source fallback","suiteID":7,"groupIDs":[9],"metadata":{"skip":false,"skipReason":null},"line":53,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_encodings_test.dart"},"type":"testStart","time":1457}
+{"testID":12,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1460}
+{"test":{"id":13,"name":"malformed UTF8 is never silently replaced","suiteID":7,"groupIDs":[9],"metadata":{"skip":false,"skipReason":null},"line":70,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_encodings_test.dart"},"type":"testStart","time":1460}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1462}
+{"test":{"id":14,"name":"malformed transfer alphabets, padding and QP escapes fail explicitly","suiteID":7,"groupIDs":[9],"metadata":{"skip":false,"skipReason":null},"line":87,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_encodings_test.dart"},"type":"testStart","time":1462}
+{"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1467}
+{"test":{"id":15,"name":"malformed words and dates do not leak private source to print","suiteID":7,"groupIDs":[9],"metadata":{"skip":false,"skipReason":null},"line":104,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_encodings_test.dart"},"type":"testStart","time":1468}
+{"testID":15,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1470}
+{"test":{"id":16,"name":"unknown transfer encoding is not passed through as exact content","suiteID":7,"groupIDs":[9],"metadata":{"skip":false,"skipReason":null},"line":134,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_encodings_test.dart"},"type":"testStart","time":1471}
+{"testID":16,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1472}
+{"suite":{"id":17,"platform":"vm","path":"test/mime_limits_test.dart"},"type":"suite","time":1474}
+{"test":{"id":18,"name":"loading test/mime_limits_test.dart","suiteID":17,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1474}
+{"testID":18,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1620}
+{"group":{"id":19,"suiteID":17,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":10,"line":null,"column":null,"url":null},"type":"group","time":1621}
+{"test":{"id":20,"name":"raw limit is enforced before retaining another copy","suiteID":17,"groupIDs":[19],"metadata":{"skip":false,"skipReason":null},"line":16,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_limits_test.dart"},"type":"testStart","time":1621}
+{"testID":20,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1635}
+{"test":{"id":21,"name":"decoded and body budgets count alternatives cumulatively","suiteID":17,"groupIDs":[19],"metadata":{"skip":false,"skipReason":null},"line":25,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_limits_test.dart"},"type":"testStart","time":1636}
+{"testID":21,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1656}
+{"test":{"id":22,"name":"attachment decoded size is checked before base64 allocation","suiteID":17,"groupIDs":[19],"metadata":{"skip":false,"skipReason":null},"line":41,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_limits_test.dart"},"type":"testStart","time":1657}
+{"testID":22,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1658}
+{"test":{"id":23,"name":"part and attachment count bounds stop traversal","suiteID":17,"groupIDs":[19],"metadata":{"skip":false,"skipReason":null},"line":49,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_limits_test.dart"},"type":"testStart","time":1659}
+{"testID":23,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1662}
+{"test":{"id":24,"name":"depth bounds are checked before entering child headers","suiteID":17,"groupIDs":[19],"metadata":{"skip":false,"skipReason":null},"line":67,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_limits_test.dart"},"type":"testStart","time":1662}
+{"testID":24,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1664}
+{"test":{"id":25,"name":"unsupported attachments still count toward the attachment budget","suiteID":17,"groupIDs":[19],"metadata":{"skip":false,"skipReason":null},"line":80,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_limits_test.dart"},"type":"testStart","time":1665}
+{"testID":25,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1667}
+{"test":{"id":26,"name":"folded fields and cumulative header bytes are bounded","suiteID":17,"groupIDs":[19],"metadata":{"skip":false,"skipReason":null},"line":95,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_limits_test.dart"},"type":"testStart","time":1668}
+{"testID":26,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1669}
+{"test":{"id":27,"name":"decoded legacy charset expansion respects rendering bytes","suiteID":17,"groupIDs":[19],"metadata":{"skip":false,"skipReason":null},"line":107,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_limits_test.dart"},"type":"testStart","time":1670}
+{"testID":27,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1672}
+{"test":{"id":28,"name":"a cancelled parse never starts copying or projecting source","suiteID":17,"groupIDs":[19],"metadata":{"skip":false,"skipReason":null},"line":118,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_limits_test.dart"},"type":"testStart","time":1673}
+{"testID":28,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1674}
+{"test":{"id":29,"name":"invalid caller budgets are programmer errors","suiteID":17,"groupIDs":[19],"metadata":{"skip":false,"skipReason":null},"line":127,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_limits_test.dart"},"type":"testStart","time":1674}
+{"testID":29,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1676}
+{"suite":{"id":30,"platform":"vm","path":"test/mime_parts_test.dart"},"type":"suite","time":1677}
+{"test":{"id":31,"name":"loading test/mime_parts_test.dart","suiteID":30,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1677}
+{"testID":31,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1797}
+{"group":{"id":32,"suiteID":30,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":8,"line":null,"column":null,"url":null},"type":"group","time":1797}
+{"test":{"id":33,"name":"multipart alternatives and RFC2231 attachment filename","suiteID":30,"groupIDs":[32],"metadata":{"skip":false,"skipReason":null},"line":9,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_parts_test.dart"},"type":"testStart","time":1797}
+{"testID":33,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1833}
+{"test":{"id":34,"name":"alternative selection is deterministic and uses last supported type","suiteID":30,"groupIDs":[32],"metadata":{"skip":false,"skipReason":null},"line":19,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_parts_test.dart"},"type":"testStart","time":1833}
+{"testID":34,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1835}
+{"test":{"id":35,"name":"text attachment does not become a message body","suiteID":30,"groupIDs":[32],"metadata":{"skip":false,"skipReason":null},"line":28,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_parts_test.dart"},"type":"testStart","time":1835}
+{"testID":35,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1838}
+{"test":{"id":36,"name":"related root start parameter and local CID attachment mapping","suiteID":30,"groupIDs":[32],"metadata":{"skip":false,"skipReason":null},"line":40,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_parts_test.dart"},"type":"testStart","time":1838}
+{"testID":36,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1841}
+{"test":{"id":37,"name":"boundary prefixes within content are not recognized as delimiters","suiteID":30,"groupIDs":[32],"metadata":{"skip":false,"skipReason":null},"line":52,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_parts_test.dart"},"type":"testStart","time":1841}
+{"testID":37,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1842}
+{"test":{"id":38,"name":"missing closing boundary is partial rather than silent success","suiteID":30,"groupIDs":[32],"metadata":{"skip":false,"skipReason":null},"line":61,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_parts_test.dart"},"type":"testStart","time":1843}
+{"testID":38,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1844}
+{"test":{"id":39,"name":"duplicate structural headers and missing boundaries fail closed","suiteID":30,"groupIDs":[32],"metadata":{"skip":false,"skipReason":null},"line":73,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_parts_test.dart"},"type":"testStart","time":1845}
+{"testID":39,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1846}
+{"test":{"id":40,"name":"safe display names remove paths and bidi control characters","suiteID":30,"groupIDs":[32],"metadata":{"skip":false,"skipReason":null},"line":84,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_parts_test.dart"},"type":"testStart","time":1846}
+{"testID":40,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1848}
+{"suite":{"id":41,"platform":"vm","path":"test/mime_review_regressions_test.dart"},"type":"suite","time":1849}
+{"test":{"id":42,"name":"loading test/mime_review_regressions_test.dart","suiteID":41,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1849}
+{"testID":42,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1952}
+{"group":{"id":43,"suiteID":41,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":null,"column":null,"url":null},"type":"group","time":1952}
+{"test":{"id":44,"name":"encoded Q word can start with an escaped UTF8 octet","suiteID":41,"groupIDs":[43],"metadata":{"skip":false,"skipReason":null},"line":9,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_review_regressions_test.dart"},"type":"testStart","time":1952}
+{"testID":44,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1980}
+{"test":{"id":45,"name":"rendered bytes accumulate across every MIME alternative","suiteID":41,"groupIDs":[43],"metadata":{"skip":false,"skipReason":null},"line":18,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/mime_review_regressions_test.dart"},"type":"testStart","time":1981}
+{"testID":45,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1986}
+{"suite":{"id":46,"platform":"vm","path":"test/portable_import_test.dart"},"type":"suite","time":1987}
+{"test":{"id":47,"name":"loading test/portable_import_test.dart","suiteID":46,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1987}
+{"testID":47,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2082}
+{"group":{"id":48,"suiteID":46,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":2082}
+{"test":{"id":49,"name":"both supported public MIME imports work without native libraries","suiteID":46,"groupIDs":[48],"metadata":{"skip":false,"skipReason":null},"line":8,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_mime/test/portable_import_test.dart"},"type":"testStart","time":2082}
+{"testID":49,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2122}
+{"success":true,"type":"done","time":2124}

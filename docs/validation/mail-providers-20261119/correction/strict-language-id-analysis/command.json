@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "lib",
+    "test/language_id_unit_test.dart",
+    "test/language_id_native_transport_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id",
+  "environment_overrides": {},
+  "kind": "command",
+  "name": "strict-language-id-analysis",
+  "started_at_utc": "2026-11-19T14:49:37.550016+00:00",
+  "timeout_seconds": 900
+}

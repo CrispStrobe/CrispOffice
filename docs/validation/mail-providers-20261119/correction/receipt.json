@@ -1,0 +1,152 @@
+{
+  "cause": "The calibrated incoming default is topK=5; a four-candidate overflow fixture had implicitly assumed topK=3.",
+  "checkout_head_after": "34153224a63112de3006335ae36cf9b2f744f513",
+  "combined_qualified_test_counts": {
+    "failed": 0,
+    "passed": 994,
+    "skipped": 0
+  },
+  "commands": [
+    {
+      "accepted": true,
+      "argv": [
+        "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "test/language_id_unit_test.dart"
+      ],
+      "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id",
+      "elapsed_seconds": 0.114,
+      "environment_overrides": {},
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-19T14:49:37.549474+00:00",
+      "kind": "command",
+      "name": "strict-corrected-format",
+      "started_at_utc": "2026-11-19T14:49:37.435397+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec",
+      "timeout_seconds": 900
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "lib",
+        "test/language_id_unit_test.dart",
+        "test/language_id_native_transport_test.dart"
+      ],
+      "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id",
+      "elapsed_seconds": 5.585,
+      "environment_overrides": {},
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-19T14:49:43.134909+00:00",
+      "kind": "command",
+      "name": "strict-language-id-analysis",
+      "started_at_utc": "2026-11-19T14:49:37.550016+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e0a009ff51b6ed761c5a80c7bc9e9e05ae23db685ff63777f69270c07a2c6550",
+      "timeout_seconds": 900
+    },
+    {
+      "accepted": true,
+      "argv": [
+        "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/61cbd6db9300/crisp-office/.dart_tool/package_config.json",
+        "/workspace/scratch/61cbd6db9300/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=vm",
+        "--compiler=kernel",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/language_id_unit_test.dart",
+        "test/language_id_native_transport_test.dart"
+      ],
+      "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id",
+      "elapsed_seconds": 11.615,
+      "environment_overrides": {
+        "QUDS_LANGUAGE_ID_FIXTURE_LIBRARY": "/workspace/scratch/61cbd6db9300/qualification/build/language-id-fixture.so"
+      },
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-19T14:49:54.755816+00:00",
+      "kind": "tests",
+      "name": "language-id-synthetic",
+      "started_at_utc": "2026-11-19T14:49:43.140397+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "8599a1c7237c9aa78aff799e42b3b129fcf6a8f7591817b6d61fd61f89398c7f",
+      "test_counts": {
+        "failed": 0,
+        "passed": 22,
+        "skipped": 0
+      },
+      "timeout_seconds": 900
+    }
+  ],
+  "correction": "Set topK: 3 explicitly only in the existing malformed-candidate fixture loop; production default and guard unchanged.",
+  "count_policy": "Replace the complete old synthetic cohort with the corrected cohort once. No earlier development runs or superseded synthetic passes are added.",
+  "created_at_utc": "2026-11-19T14:49:36.704935+00:00",
+  "excluded_acceptance": [
+    "Real Gmail, Microsoft 365, IMAP/SMTP and EWS accounts: no endpoint credentials supplied.",
+    "Real language-identification external native library acceptance: not supplied; synthetic allocation fixture only.",
+    "Signed macOS application build, installed Keychain integration and OS browser callback acceptance.",
+    "Browser runtime interaction: compiler import closure and JavaScript syntax only."
+  ],
+  "finished_at_utc": "2026-11-19T14:49:55.321638+00:00",
+  "github_actions_used": false,
+  "lock_sha256_after": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+  "lock_sha256_before": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+  "lock_unchanged": true,
+  "previous_receipt_sha256": "1ffe927c4f9b15b2c7ea5206e0c2fe1f6cd540a83ecddf46a6d6a3effe736240",
+  "previous_receipt_unchanged": true,
+  "previous_source_commit": "e3212327954ac144847a7c06b5d2420f00debab3",
+  "prior_runner_sha256": "fe9d32731299a8e97353bc191b880fdc0af3fda7a2858f6ed6ab553150520cc5",
+  "replaced_gate": "language-id-synthetic",
+  "replacement_has_same_cases": true,
+  "reused_gates": [
+    "language-fixture-build",
+    "strict-format",
+    "strict-transport-analysis",
+    "strict-studio-analysis",
+    "strict-mail-ui-analysis",
+    "strict-incoming-editor-analysis",
+    "strict-incoming-thesaurus-analysis",
+    "macos-entitlements",
+    "quds_mail_core-vm",
+    "quds_mail_mime-vm",
+    "quds_mail_transport-vm",
+    "quds_mail_store-vm",
+    "engine-language-id",
+    "engine-thesaurus",
+    "transport-node-boundaries",
+    "mail-ui-widgets",
+    "editor-proofing-thesaurus-widgets",
+    "studio-mail-widgets",
+    "studio-language-id-widgets",
+    "mail-browser-frontend",
+    "mail-browser-javascript",
+    "mail-browser-node-syntax"
+  ],
+  "runner_sha256": "3895d3b68c9cfd7bf69fea6dbccbbbde07c395e333f4494daf3cdb195fc9b436",
+  "runtime_manifest_sha256": "89a4c7bd995379bdeffda84184393345b1081ccfac4f9109aabb609e90ba6549",
+  "runtime_matches_previous": true,
+  "runtime_unchanged": true,
+  "scope": "Fresh local mail/provider, Studio, synthetic language identification, and browser compilation qualification.",
+  "source_after_sha256": "13bbce663ea3da2c587bf17126b899d419d3a8a199f6212ebe596ecdbc910ec1",
+  "source_before_sha256": "13bbce663ea3da2c587bf17126b899d419d3a8a199f6212ebe596ecdbc910ec1",
+  "source_commit": "34153224a63112de3006335ae36cf9b2f744f513",
+  "source_file_count": 4334,
+  "source_head_unchanged": true,
+  "source_tree": "d7491007d718299e4b9e90bfecf8cba34c62cb5a",
+  "source_unchanged": true,
+  "started_at_utc": "2026-11-19T14:49:37.410575+00:00",
+  "status": "passed",
+  "test_counts": {
+    "failed": 0,
+    "passed": 22,
+    "skipped": 0
+  },
+  "unchanged_source_except_explicit_fixture": true
+}

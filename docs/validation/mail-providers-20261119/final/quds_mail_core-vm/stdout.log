@@ -1,0 +1,135 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":304,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"test/cancellation_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading test/cancellation_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+{"count":6,"time":8,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":411}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":null,"column":null,"url":null},"type":"group","time":414}
+{"test":{"id":3,"name":"invalidate rejects old callbacks but allows a new generation","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":12,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/cancellation_test.dart"},"type":"testStart","time":415}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":429}
+{"test":{"id":4,"name":"dispose invalidates all callbacks and cannot reopen a session","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":30,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/cancellation_test.dart"},"type":"testStart","time":429}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":430}
+{"test":{"id":5,"name":"explicit cancellation is typed and keeps the first reason","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":50,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/cancellation_test.dart"},"type":"testStart","time":431}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":432}
+{"suite":{"id":6,"platform":"vm","path":"test/ews_identity_test.dart"},"type":"suite","time":437}
+{"test":{"id":7,"name":"loading test/ews_identity_test.dart","suiteID":6,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":437}
+{"testID":7,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":570}
+{"group":{"id":8,"suiteID":6,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":5,"line":null,"column":null,"url":null},"type":"group","time":571}
+{"test":{"id":9,"name":"EWS item IDs retain exact case and opaque punctuation","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":18,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/ews_identity_test.dart"},"type":"testStart","time":571}
+{"testID":9,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":585}
+{"test":{"id":10,"name":"equal server IDs remain isolated by host, account and provider","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":27,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/ews_identity_test.dart"},"type":"testStart","time":585}
+{"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":587}
+{"test":{"id":11,"name":"an Exchange move can replace the server identity","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":40,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/ews_identity_test.dart"},"type":"testStart","time":587}
+{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":588}
+{"test":{"id":12,"name":"EWS identities reject empty values and control characters","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":47,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/ews_identity_test.dart"},"type":"testStart","time":588}
+{"testID":12,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":591}
+{"test":{"id":13,"name":"cross-account Exchange moves fail before provider work","suiteID":6,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":53,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/ews_identity_test.dart"},"type":"testStart","time":591}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":592}
+{"suite":{"id":14,"platform":"vm","path":"test/imap_sync_range_test.dart"},"type":"suite","time":595}
+{"test":{"id":15,"name":"loading test/imap_sync_range_test.dart","suiteID":14,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":595}
+{"testID":15,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":726}
+{"group":{"id":16,"suiteID":14,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":18,"line":null,"column":null,"url":null},"type":"group","time":727}
+{"test":{"id":17,"name":"inclusive ranges support the full IMAP UID space and single UIDs","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":28,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":727}
+{"testID":17,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":739}
+{"test":{"id":18,"name":"range rejects zero UIDVALIDITY","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":740}
+{"testID":18,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":742}
+{"test":{"id":19,"name":"range rejects negative UIDVALIDITY","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":742}
+{"testID":19,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":743}
+{"test":{"id":20,"name":"range rejects overflow UIDVALIDITY","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":744}
+{"testID":20,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":744}
+{"test":{"id":21,"name":"range rejects zero first UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":745}
+{"testID":21,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":745}
+{"test":{"id":22,"name":"range rejects negative first UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":746}
+{"testID":22,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":746}
+{"test":{"id":23,"name":"range rejects overflow first UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":746}
+{"testID":23,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":747}
+{"test":{"id":24,"name":"range rejects zero last UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":747}
+{"testID":24,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":748}
+{"test":{"id":25,"name":"range rejects negative last UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":748}
+{"testID":25,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":749}
+{"test":{"id":26,"name":"range rejects overflow last UID","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":749}
+{"testID":26,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":750}
+{"test":{"id":27,"name":"range rejects reversed UIDs","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":79,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":750}
+{"testID":27,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":751}
+{"test":{"id":28,"name":"range scope must match the page even when the page is empty","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":92,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":752}
+{"testID":28,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":753}
+{"test":{"id":29,"name":"authoritative range rejects HTTPS identity in upserts and tombstones","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":754}
+{"testID":29,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":754}
+{"test":{"id":30,"name":"authoritative range rejects different UIDVALIDITY in upserts and tombstones","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":755}
+{"testID":30,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":755}
+{"test":{"id":31,"name":"authoritative range rejects UID below range in upserts and tombstones","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":756}
+{"testID":31,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":756}
+{"test":{"id":32,"name":"authoritative range rejects UID above range in upserts and tombstones","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":757}
+{"testID":32,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":757}
+{"test":{"id":33,"name":"authoritative range rejects different mailbox in upserts and tombstones","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":757}
+{"testID":33,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":758}
+{"test":{"id":34,"name":"range pages retain immutable survivor and tombstone snapshots","suiteID":14,"groupIDs":[16],"metadata":{"skip":false,"skipReason":null},"line":167,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/imap_sync_range_test.dart"},"type":"testStart","time":758}
+{"testID":34,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":759}
+{"suite":{"id":35,"platform":"vm","path":"test/models_test.dart"},"type":"suite","time":761}
+{"test":{"id":36,"name":"loading test/models_test.dart","suiteID":35,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":761}
+{"testID":36,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":875}
+{"group":{"id":37,"suiteID":35,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":9,"line":null,"column":null,"url":null},"type":"group","time":875}
+{"test":{"id":38,"name":"observed standard flags have value equality and an empty snapshot","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":7,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":876}
+{"testID":38,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":892}
+{"test":{"id":39,"name":"snapshots own bytes, including buffer views and export copies","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":35,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":893}
+{"testID":39,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":907}
+{"test":{"id":40,"name":"message headers and attachments do not alias mutable input lists","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":56,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":907}
+{"testID":40,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":910}
+{"test":{"id":41,"name":"parse result cannot claim success without a message","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":79,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":911}
+{"testID":41,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":913}
+{"test":{"id":42,"name":"full and preview budgets preserve planned resource bounds","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":116,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":913}
+{"testID":42,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":915}
+{"test":{"id":43,"name":"profile and account identities cannot alias between products","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":137,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":915}
+{"testID":43,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":917}
+{"test":{"id":44,"name":"UIDVALIDITY, mailbox and account form the IMAP persistent identity","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":154,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":917}
+{"testID":44,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":919}
+{"test":{"id":45,"name":"move and sync cursor enforce account and mailbox scopes","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":190,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":919}
+{"testID":45,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":923}
+{"test":{"id":46,"name":"mail capability does not imply Calendar, People or sending","suiteID":35,"groupIDs":[37],"metadata":{"skip":false,"skipReason":null},"line":230,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/models_test.dart"},"type":"testStart","time":923}
+{"testID":46,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":925}
+{"suite":{"id":47,"platform":"vm","path":"test/outbox_test.dart"},"type":"suite","time":926}
+{"test":{"id":48,"name":"loading test/outbox_test.dart","suiteID":47,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":926}
+{"testID":48,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1058}
+{"group":{"id":49,"suiteID":47,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":10,"line":null,"column":null,"url":null},"type":"group","time":1059}
+{"test":{"id":50,"name":"queued revision, wire and envelope remain frozen through submission","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":36,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1059}
+{"testID":50,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1081}
+{"test":{"id":51,"name":"mixed 250/550 RCPT responses abort every recipient before DATA","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":78,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1081}
+{"testID":51,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1083}
+{"test":{"id":52,"name":"aggregate response does not fabricate recipient-level acceptance","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":121,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1083}
+{"testID":52,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1084}
+{"test":{"id":53,"name":"missing recipient responses stay unknown on aggregate failure","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":136,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1085}
+{"testID":53,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1086}
+{"test":{"id":54,"name":"connection loss after possible acceptance is uncertain and cannot retry","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":161,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1086}
+{"testID":54,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1088}
+{"test":{"id":55,"name":"interrupted submitting state recovers as uncertain, never queued","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":185,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1088}
+{"testID":55,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1090}
+{"test":{"id":56,"name":"definite non-acceptance retries with a fresh attempt identity only","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":194,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1090}
+{"testID":56,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1092}
+{"test":{"id":57,"name":"validated restoration preserves a pending attempt and recovers uncertain","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":226,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1092}
+{"testID":57,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1100}
+{"test":{"id":58,"name":"undo send only cancels work before submission","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":274,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1100}
+{"testID":58,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1102}
+{"test":{"id":59,"name":"unrelated/duplicate recipient results and control injection are rejected","suiteID":47,"groupIDs":[49],"metadata":{"skip":false,"skipReason":null},"line":286,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/outbox_test.dart"},"type":"testStart","time":1102}
+{"testID":59,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1103}
+{"suite":{"id":60,"platform":"vm","path":"test/sync_coordinator_test.dart"},"type":"suite","time":1105}
+{"test":{"id":61,"name":"loading test/sync_coordinator_test.dart","suiteID":60,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1105}
+{"testID":61,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":1250}
+{"group":{"id":62,"suiteID":60,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":9,"line":null,"column":null,"url":null},"type":"group","time":1250}
+{"test":{"id":63,"name":"fixture pages apply real upserts/tombstones and advance cursor atomically","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":22,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":1250}
+{"testID":63,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1266}
+{"test":{"id":64,"name":"transaction failure leaves both old content and cursor unchanged","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":57,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":1266}
+{"testID":64,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1268}
+{"test":{"id":65,"name":"out-of-order concurrent pulls cannot regress the stored cursor","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":86,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":1268}
+{"testID":65,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1269}
+{"test":{"id":66,"name":"sync commit compares the cursor it read before pulling","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":123,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":1270}
+{"testID":66,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1271}
+{"test":{"id":67,"name":"account disposal while provider awaits prevents any commit","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":146,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":1271}
+{"testID":67,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1272}
+{"test":{"id":68,"name":"transaction rechecks the lease when disposal happens during persistence","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":167,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":1273}
+{"testID":68,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1275}
+{"test":{"id":69,"name":"cooperative user cancellation differs from stale account work","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":187,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":1275}
+{"testID":69,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1276}
+{"test":{"id":70,"name":"wrong account and oversized provider page fail before persistence","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":207,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":1276}
+{"testID":70,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1277}
+{"test":{"id":71,"name":"unsupported provider operations are failures rather than empty success","suiteID":60,"groupIDs":[62],"metadata":{"skip":false,"skipReason":null},"line":237,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core/test/sync_coordinator_test.dart"},"type":"testStart","time":1278}
+{"testID":71,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":1279}
+{"success":true,"type":"done","time":1282}

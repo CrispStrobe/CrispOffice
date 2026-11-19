@@ -1,0 +1,227 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 1417,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 25,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "test/office_thesaurus_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "UTF-8 shard vectors match the compiler on VM and JavaScript",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "unsupported language and missing pack are distinct",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "source meanings, labels and relations remain separate",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "normalization keeps original source query and phrase spellings",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 6
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "German sharp-s and umlauts are not folded",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 7
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "source aliases preserve ambiguity and compatible POS",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 8
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "German noun fallback normalizes lookup whitespace and soft hyphens",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 9
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "detachment fallback cannot import an incompatible POS",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 10
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "no entry remains separate from malformed index",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "null index record is a damaged pack",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 12
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "a missing referenced meaning is a damaged pack",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 13
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "source identity mismatch fails closed",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 14
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "control characters in literal replacement terms are rejected",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 15
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "pinned manifest rejects modification",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 16
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "logical digest detects damaged shard bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 17
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "compressed shards verify both forms and load on demand",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 18
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "compressed digest detects damage before decompression",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 19
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "decompression cannot exceed declared logical size",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 20
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "compressed packs require an explicit byte loader",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 21
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "missing shard is a failed pack, not missing corpus or no entry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 22
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "pack clear rejects an in-flight result without restoring old caches",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 23
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "pack clear during relation loading cannot cache stale results",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 24
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "cache limits remain bounded and repeated results retain candidate identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 25
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "pack notices are read through integrity checks",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 26
+    },
+    {
+      "file": "test/office_thesaurus_test.dart",
+      "name": "default cache retains high-polysemy meanings across equivalent queries",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 27
+    }
+  ]
+}

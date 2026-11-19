@@ -1,0 +1,3096 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 17145,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 373,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "test/cloud_http_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 23,
+      "path": "test/cloud_oauth_loopback_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 29,
+      "path": "test/cloud_oauth_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 65,
+      "path": "test/cloud_provider_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 164,
+      "path": "test/cloud_store_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 171,
+      "path": "test/configuration_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 189,
+      "path": "test/cursor_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 197,
+      "path": "test/ews_configuration_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 207,
+      "path": "test/ews_http_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 228,
+      "path": "test/ews_ntlm_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 243,
+      "path": "test/ews_provider_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 268,
+      "path": "test/ews_soap_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 297,
+      "path": "test/host_store_integration_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 306,
+      "path": "test/native_provider_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 378,
+      "path": "test/native_tls_cancellation_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 385,
+      "path": "test/native_tls_round_trip_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 393,
+      "path": "test/native_tls_test.dart",
+      "platform": "vm"
+    },
+    {
+      "id": 413,
+      "path": "test/uid_discovery_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "cloud request boundaries whitelists public-cloud endpoints with verified HTTPS",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "cloud request boundaries request and response freeze caller-owned collections",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "cloud request boundaries debug diagnostics expose only structured non-secret fields",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 6
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP disables redirects and forwards auth only to the permitted URL",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 8
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP rejects off-host credentials before opening a socket",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 9
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP rejects invalid timeout, limits and method before IO",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 10
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP stale lease is rejected before connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 11
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP returns exact streamed bytes and only the response-header allowlist",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 12
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP declared oversize response retires the unread response stream",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 13
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP streaming response overflow cancels subscription and aborts request",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 14
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP deadline before open completes aborts a late request without auth",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 15
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP deadline after close discards and cancels a late response stream",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 16
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP deadline cancels a response body even when request abort cannot",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 17
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP cancellation aborts a request stalled awaiting a response",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 18
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP invalidating session during IO rejects the stale result",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 19
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP close aborts active work and future sends; close is idempotent",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 20
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP unexpected open failure is caught and does not retain raw secrets",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 21
+    },
+    {
+      "file": "test/cloud_http_test.dart",
+      "name": "native cloud HTTP TLS and body stream failures are caught after request dispatch",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 22
+    },
+    {
+      "file": "test/cloud_oauth_loopback_test.dart",
+      "name": "real gmail loopback accepts provider redirect and Host",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 26
+    },
+    {
+      "file": "test/cloud_oauth_loopback_test.dart",
+      "name": "real microsoft365 loopback accepts provider redirect and Host",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 27
+    },
+    {
+      "file": "test/cloud_oauth_loopback_test.dart",
+      "name": "cancellation closes real listener and a late callback cannot revive it",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 28
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "PKCE challenge and callback uses independent random URL-safe state and verifier with S256",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 33
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "PKCE challenge and callback builds provider-specific authorization requests without secrets",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 34
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "PKCE challenge and callback accepts only the one code bound to the expected redirect and state",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 35
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "PKCE challenge and callback malformed UTF-8 callback query is a typed validation failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 36
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "PKCE challenge and callback provider denial requires valid state and never returns server text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 37
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session exchanges exactly once with verifier and bounded form transport",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 39
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session rejects foreign account, invalid code and non-loopback redirect before IO",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 40
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session refreshes before expiry and preserves refresh token when omitted",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 41
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session commits token rotation before the next refresh and coalesces concurrent callers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 42
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session revoked refresh token clears credentials and requires new authorization",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 43
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session throttled refresh retains rotation state and exposes bounded retry delay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 44
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session non-retryable exchange never automatically replays an authorization code",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 45
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session optional missing refresh token permits current access only",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 46
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session rejects insufficient Gmail and Microsoft delegated scopes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 47
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session Microsoft refresh requests all delegated mail scopes and no client secret",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 48
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session malformed token responses are rejected before credentials are adopted",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 49
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session redirects, malformed JSON, oversized and server errors stay typed",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 50
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session stale exchange completion cannot adopt or leak the token",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 51
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session each coalesced refresh caller validates its own lease",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 52
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session disposal prevents a pending refresh from restoring credentials",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 53
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session throwing diagnostics never turn successful OAuth into failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 54
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "OAuth token session throwing cleanup cannot escape a typed failed exchange",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 55
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "native browser callback ownership rejects foreign callback requests then accepts one valid response",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 57
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "native browser callback ownership Microsoft uses registered localhost root redirect and exact Host header",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 58
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "native browser callback ownership a stalled browser launcher still times out and closes its listener",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 59
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "native browser callback ownership user cancellation retires a stalled launch and rejects late completion",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 60
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "native browser callback ownership failed browser launch closes listener without opening token transport",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 61
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "native browser callback ownership callback denial never exchanges a code",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 62
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "native browser callback ownership invalid callback flood has a finite rejection budget",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 63
+    },
+    {
+      "file": "test/cloud_oauth_test.dart",
+      "name": "native browser callback ownership binding deadline closes a late listener without launching browser",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 64
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail capabilities verifies mailbox and reports only implemented operations",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 69
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail wrong signed-in account is rejected before any mailbox operation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 70
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail profile authentication refresh is bounded and verifies refreshed identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 71
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail repeated profile 401 stops after one refresh",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 72
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail token-source failure and stale tokens never reach transport",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 73
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail unexpected host errors are normalized and logs contain no sensitive text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 74
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail throwing logger cannot fail a successful operation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 75
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail account lease and cancellation are checked before acquiring credentials",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 76
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail invalid identity, mailbox and page bounds do not touch credentials",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 77
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail bounded operation timeout prevents later mailbox work",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 78
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail parallel operations fail safely and disposal closes only transport",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 79
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail HTTP errors carry useful safe classifications and retry delay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 80
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail malformed and oversized success responses are never empty success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 81
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail request budget prevents unbounded service traversal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 82
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail raw MIME retrieval reuses bounded codec and stable scoped identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 83
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail successful API sends restore hidden recipients without modifying frozen wire",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 84
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail sender mismatch and unapproved visible recipient cannot send",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 85
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail potentially accepted send is uncertain and is attempted exactly once",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 86
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail definite send rejection is distinguished from a lost response",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 87
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail definite send 404 is rejected without uncertainty or replay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 88
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail definite send 409 is rejected without uncertainty or replay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 89
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail definite send 410 is rejected without uncertainty or replay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 90
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail definite send 412 is rejected without uncertainty or replay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 91
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail profile 404 before submission is a definite unsent failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 92
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail cancellation after send starts is uncertain",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 93
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "gmail unconfirmed mutation is conflict, never success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 94
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 capabilities verifies mailbox and reports only implemented operations",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 96
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 wrong signed-in account is rejected before any mailbox operation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 97
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 profile authentication refresh is bounded and verifies refreshed identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 98
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 repeated profile 401 stops after one refresh",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 99
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 token-source failure and stale tokens never reach transport",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 100
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 unexpected host errors are normalized and logs contain no sensitive text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 101
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 throwing logger cannot fail a successful operation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 102
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 account lease and cancellation are checked before acquiring credentials",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 103
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 invalid identity, mailbox and page bounds do not touch credentials",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 104
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 bounded operation timeout prevents later mailbox work",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 105
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 parallel operations fail safely and disposal closes only transport",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 106
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 HTTP errors carry useful safe classifications and retry delay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 107
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 malformed and oversized success responses are never empty success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 108
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 request budget prevents unbounded service traversal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 109
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 raw MIME retrieval reuses bounded codec and stable scoped identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 110
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 successful API sends restore hidden recipients without modifying frozen wire",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 111
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 sender mismatch and unapproved visible recipient cannot send",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 112
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 potentially accepted send is uncertain and is attempted exactly once",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 113
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 definite send rejection is distinguished from a lost response",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 114
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 definite send 404 is rejected without uncertainty or replay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 115
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 definite send 409 is rejected without uncertainty or replay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 116
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 definite send 410 is rejected without uncertainty or replay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 117
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 definite send 412 is rejected without uncertainty or replay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 118
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 profile 404 before submission is a definite unsent failure",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 119
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 cancellation after send starts is uncertain",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 120
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "microsoft365 unconfirmed mutation is conflict, never success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 121
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions gmail rejects duplicate or resent delivery headers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 123
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions gmail pending send timeout remains uncertain after late response",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 124
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions gmail corrupt cursor is rejected before account lookup",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 125
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions gmail successful verbose logs expose only structured counters",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 126
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions microsoft365 rejects duplicate or resent delivery headers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 127
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions microsoft365 pending send timeout remains uncertain after late response",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 128
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions microsoft365 corrupt cursor is rejected before account lookup",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 129
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions microsoft365 successful verbose logs expose only structured counters",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 130
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions Gmail metadata requests only projection headers and accepts legal folding",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 131
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions Gmail no-label messages produce membership tombstones after removal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 132
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions Gmail history pagination retains start checkpoint until final page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 133
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions Gmail repeated browse token is rejected without claiming completion",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 134
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions Gmail history overlarge pending cursor fails without committing a partial page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 135
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions Graph canonical user links are bound to verified profile identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 136
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions Graph delta page preference stays bounded across continuations",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 137
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "cloud boundary regressions Graph detects recursive folder cycles with no truncated success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 138
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics labels retain provider IDs and reject duplicates or oversize collections",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 140
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics headers page metadata, observe flags and reject foreign cursors",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 141
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics forged metadata header injection and mismatched message IDs fail closed",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 142
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics a disappeared listed message is not a fabricated header",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 143
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics move is explicitly unsupported and makes no request",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 144
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics read, star and trash use exact targeted changes and require confirmation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 145
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics snapshot checkpoint starts before listing and catches concurrent changes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 146
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics snapshot paging only resets membership on first page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 147
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics history changes deduplicate IDs and persist bounded pending detail work",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 148
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics expired history resets from a new profile baseline and revision advances",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 149
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics empty history advances local revision without inventing deletions",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 150
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Gmail semantics 403 quota reason maps to retryable quota without exposing provider text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 151
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics nested folder traversal follows pages and retains immutable ID preference",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 153
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics headers and cursor preserve ID case and page URLs",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 154
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics foreign-host, foreign-folder and fragment continuation URLs are refused",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 155
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics OData parenthesized same-folder continuations are accepted",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 156
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics read, flag, move and recoverable delete require observed confirmation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 157
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics delta applies updates and membership tombstones across complete pages",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 158
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics partial delta update retrieves full selected metadata before upsert",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 159
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics explicit expired delta state resets, unrelated failures do not",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 160
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics delta requires exactly one terminal or continuation link",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 161
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics unchanged delta state still advances the local CAS revision",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 162
+    },
+    {
+      "file": "test/cloud_provider_test.dart",
+      "name": "Graph semantics wrong message ID in confirmed move remains uncertain conflict",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 163
+    },
+    {
+      "file": "test/cloud_store_test.dart",
+      "name": "Gmail label removal commits one membership and preserves the other label",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 167
+    },
+    {
+      "file": "test/cloud_store_test.dart",
+      "name": "failed cloud page transaction rolls back membership and opaque cursor together",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 168
+    },
+    {
+      "file": "test/cloud_store_test.dart",
+      "name": "malformed cloud history does not advance or clear a persisted mailbox",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 169
+    },
+    {
+      "file": "test/cloud_store_test.dart",
+      "name": "completed empty history pages advance CAS revision and reject stale replay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 170
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "manual server endpoint accepts explicit DNS, IPv4 and unbracketed IPv6 hosts",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 175
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "manual server endpoint rejects address injection, ambiguous IPs and malformed DNS labels",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 176
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "manual server endpoint requires an explicit usable port without a service-port assumption",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 177
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "manual server endpoint port selection never silently downgrades the mandatory TLS policy",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 178
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "host-owned account configuration keeps the login identity, authentication mode and scoped vault locator",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 180
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "host-owned account configuration rejects empty, overlong and control-bearing login identities",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 181
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "host-owned account configuration vault references cannot cross accounts, profiles or host applications",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 182
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "host-owned account configuration vault locators are bounded identifiers rather than protocol lines",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 183
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "finite transport resource bounds validates defaults and supported lower and upper policy boundaries",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 185
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "finite transport resource bounds rejects empty or excessive message, mailbox and UID sweep work",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 186
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "finite transport resource bounds rejects unusable or excessive literal, line, response and credential budgets",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 187
+    },
+    {
+      "file": "test/configuration_test.dart",
+      "name": "finite transport resource bounds rejects unbounded waits, invalid polling and negative backoff",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 188
+    },
+    {
+      "file": "test/cursor_test.dart",
+      "name": "quds-imap-window-v1 keeps its position and migrates from revision zero",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 192
+    },
+    {
+      "file": "test/cursor_test.dart",
+      "name": "quds-imap-discovery-v2 keeps its position and migrates from revision zero",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 193
+    },
+    {
+      "file": "test/cursor_test.dart",
+      "name": "v3 revisions round-trip exactly at the JavaScript integer boundary",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 194
+    },
+    {
+      "file": "test/cursor_test.dart",
+      "name": "v3 rejects invalid revisions instead of rounding or resetting them",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 195
+    },
+    {
+      "file": "test/cursor_test.dart",
+      "name": "cursor versions require their exact shape and mailbox scope",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 196
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "on-prem private names, explicit ports and IPv6 retain verified HTTPS",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 200
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "unsafe or ambiguous endpoints are refused at construction",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 201
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "delegated mailbox uses a separate SMTP-address field",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 202
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "credential reference cannot cross accounts",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 203
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "work bounds reflect EWS and existing store limits",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 204
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "opaque SyncState roundtrips without decoding or normalizing",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 205
+    },
+    {
+      "file": "test/ews_configuration_test.dart",
+      "name": "cursor serialized size cannot exceed durable store admission",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 206
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "verified HTTPS sends one explicit Basic request and retains operation scope",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 210
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "NTLM uses body-free HEAD handshake then one authenticated connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 211
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "TLS write backpressure preserves a multi-buffer SOAP body",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 212
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "failed NTLM authentication sends no SOAP and never marks a mutation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 213
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "IIS per-request NTLM policy is rejected before a mailbox mutation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 214
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "abort closes peer during stalled TLS handshake",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 215
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "deadline closes peer during stalled TLS handshake",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 216
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "SOAP authentication failure is never retried or reauthenticated",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 217
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "redirect cannot forward credentials or replay the request",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 218
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "untrusted TLS certificate blocks credentials and SOAP",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 219
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "chunked response and cumulative responses obey byte budget",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 220
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "gzip expansion is bounded by decompressed response bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 221
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "oversized requests are rejected before connection and mutation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 222
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "HTTP 503 reports bounded backoff without retry or server text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 223
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "closed persistent connection never opens a second connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 224
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "abort cancels active read, blocks late completion and marks sent mutation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 225
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "operation deadline aborts a stalled response without retry",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 226
+    },
+    {
+      "file": "test/ews_http_test.dart",
+      "name": "bearer tokens use explicit HTTPS and reject header injection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 227
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "NTLMv2 proof and session key match MS-NLMP 4.2.4 vectors",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 231
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "Type 3 binds the TLS channel and SPN and authenticates all three messages",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 232
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "server timestamp takes precedence over the workstation clock",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 233
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "DOMAIN\\user and separate domain generate the same identity proof",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 234
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "TLS channel binding matches independently calculated certificate digest",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 235
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "weak challenge flags never trigger an NTLMv1 fallback",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 236
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "extended SingleHost target information preserves reserved bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 237
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "malformed truncated challenge fails without retaining input",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 238
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "malformed offset overflow challenge fails without retaining input",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 239
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "malformed unterminated challenge fails without retaining input",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 240
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "malformed duplicate AV challenge fails without retaining input",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 241
+    },
+    {
+      "file": "test/ews_ntlm_test.dart",
+      "name": "certificate ASN.1 bounds reject malformed encodings",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 242
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "initial sync coalesces changes and loads complete headers once",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 246
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "repeated empty SyncState advances durable revision",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 247
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "expired server state resets exactly once and retains revision",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 248
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "unrelated server conflict does not reset mailbox cache",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 249
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "concurrent confirmed disappearance is a tombstone",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 250
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "omitted/mismatched GetItem results never become deletion success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 251
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "cursor from another endpoint is rejected before vault access",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 252
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "revision exhaustion and invalid budgets fail before vault access",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 253
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "FindFolder paginates and excludes non-mail folder classes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 254
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "FindFolder duplicate page fails instead of looping/partial success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 255
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "header browsing has a separate continuation cursor",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 256
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "MIME fetch preserves returned bytes and stable opaque identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 257
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "flag update uses fresh key and verifies observed flags",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 258
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "successful acknowledgment without changed flags requires reconciliation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 259
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "delete moves to Deleted Items and confirms old identity absence",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 260
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "lost write response is conflict and is never replayed",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 261
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "submission keeps hidden recipients separate and reports aggregate acceptance",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 262
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "submission refuses MIME/envelope mismatch before vault access",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 263
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "lost submission response is uncertain without retry hint or replay",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 264
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "current vault credentials are loaded again for every operation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 265
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "cancelled pending vault read cannot open a late connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 266
+    },
+    {
+      "file": "test/ews_provider_test.dart",
+      "name": "timeout aborts pending request and provider accepts fresh work",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 267
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS SOAP requests escapes opaque identifiers and binds the schema and mailbox",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 272
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS SOAP requests folder and item paging are bounded and initially IdOnly",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 273
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS SOAP requests GetItem loads full headers and actual Exchange flag properties",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 274
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS SOAP requests sync state is omitted on first sync and escaped on continuation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 275
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS SOAP requests updates use current ChangeKey and suppress read receipts",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 276
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS SOAP requests submission preserves MIME and supplies Bcc only as an EWS recipient",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 277
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response projection parses namespaces by URI and bounded folder continuation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 279
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response projection paged folder results require continuation and reject duplicates",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 280
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response projection search and strongly typed nonmail folders are not sync mailboxes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 281
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response projection sync retains ordered create/update/delete/read-state changes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 282
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response projection sync rejects missing state, unknown changes and excessive page counts",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 283
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response projection projects complete GetItem headers and observed flags",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 284
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response projection missing GetItem slots remain correlated and errors reject the batch",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 285
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response projection MIME bytes are exact and malformed or oversized base64 fails",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 286
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response projection mutation responses require the expected count and item identity",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 287
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response rejection and budgets server errors are redacted and throttling duration is preserved",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 289
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response rejection and budgets a success class does not hide a failing response code",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 290
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response rejection and budgets only an explicit sync state rejection authorizes a mailbox reset",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 291
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response rejection and budgets wrong namespaces, actions, duplicate required fields and DTD fail",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 292
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response rejection and budgets SOAP faults cannot become empty successful operations",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 293
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response rejection and budgets SOAP server-busy fault retains the typed backoff hint",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 294
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response rejection and budgets bounds XML depth, total nodes, headers and sync state",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 295
+    },
+    {
+      "file": "test/ews_soap_test.dart",
+      "name": "EWS response rejection and budgets invalid boolean and nested scalar data are rejected",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 296
+    },
+    {
+      "file": "test/host_store_integration_test.dart",
+      "name": "completed sweeps reject stale pages without restoring expunged data",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 300
+    },
+    {
+      "file": "test/host_store_integration_test.dart",
+      "name": "high discovered UID pages preserve flags and resume the durable cursor after reopen",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 301
+    },
+    {
+      "file": "test/host_store_integration_test.dart",
+      "name": "failed store transaction retains the cursor and retries the same UID window",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 302
+    },
+    {
+      "file": "test/host_store_integration_test.dart",
+      "name": "UIDVALIDITY reset replaces only its own account and mailbox membership",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 303
+    },
+    {
+      "file": "test/host_store_integration_test.dart",
+      "name": "account invalidation during a blocked IMAP response cannot commit later",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 304
+    },
+    {
+      "file": "test/host_store_integration_test.dart",
+      "name": "host-scoped credentials are checked before protocol work and on every pull",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 305
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "actual command parser discovers selectable folders over required TLS",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 309
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "late socket completion after cancellation is destroyed before greeting/auth",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 310
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "required STARTTLS completes before authentication and refreshes capabilities",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 311
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "late TLS upgrade cannot revive an aborted account generation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 312
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "capabilities do not promise SMTP, calendar or missing MOVE extension",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 313
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "missing STARTTLS refuses credentials instead of downgrading",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 314
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "missing and rejected credentials are typed and never reused from cache",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 315
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "fragmented greeting is framed before any command executes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 316
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "discovered UID pages retain flags and reconcile gaps with scoped ranges",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 317
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "omitted FLAGS remains unknown instead of clearing durable observations",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 318
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "ordinary multipart source synchronizes only requested envelope headers",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 319
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "mixed-case IMAP FETCH atoms preserve messages instead of inventing tombstones",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 320
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "UIDVALIDITY rollover restarts the cursor and explicitly requests reset",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 321
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "same UID flag notification before literal does not consume the page limit",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 322
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "unrelated UID flag notification before literal does not consume the page limit",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 323
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "rev1 without UID flag notification before literal does not consume the page limit",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 324
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "same UID flag notification after literal does not consume the page limit",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 325
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "unrelated UID flag notification after literal does not consume the page limit",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 326
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "rev1 without UID flag notification after literal does not consume the page limit",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 327
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "sequence-correlated rev1 notifications allow a sparse completed response",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 328
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "unrelated rev1 updates stay bounded when a full UID interval is returned",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 329
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "in-range UID with no complete literal cannot fabricate a successful tombstone page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 330
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "unknown rev1 sequence in a sparse response cannot fabricate a successful tombstone page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 331
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "rev1 sequence identity changed by EXPUNGE cannot fabricate a successful tombstone page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 332
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "malformed notification with invalid UID fails atomically",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 333
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "malformed notification with duplicate UID fails atomically",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 334
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "malformed notification with duplicate flags fails atomically",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 335
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "malformed notification with nested flag fails atomically",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 336
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "malformed notification with missing BODY literal fails atomically",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 337
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "flags alone never turn an omitted requested literal into an empty success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 338
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "late sequence flag update prevents false STORE confirmation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 339
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "late UID flag update prevents false STORE confirmation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 340
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "EXPUNGE followed by an uncorrelated rev1 update cannot confirm STORE",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 341
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "status text containing FETCH: OK before literal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 342
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "status text containing FETCH: mixed-case OK after literal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 343
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "status text containing FETCH: NO after literal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 344
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "status text containing FETCH: BAD before literal",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 345
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "forged cross-mailbox cursor is rejected before vault or connection work",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 346
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "sparse high UIDNEXT synchronizes without enumerating numeric holes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 347
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "on-demand literal retains bare LF and non-UTF8 octets without reserialization",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 348
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "stale full-message UIDVALIDITY fails before body fetch",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 349
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "out-of-range UID cannot turn a tagged OK into a partial success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 350
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "duplicate FETCH cannot turn a tagged OK into a partial success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 351
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "unbalanced response cannot turn a tagged OK into a partial success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 352
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "partial BODY literal cannot turn a tagged OK into a partial success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 353
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "malformed FETCH prefix cannot create an empty successful sync/tombstone page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 354
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "FETCH with missing list separator cannot fabricate a successful tombstone page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 355
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "FETCH with tab list separator cannot fabricate a successful tombstone page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 356
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "FETCH with tab sequence separator cannot fabricate a successful tombstone page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 357
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "FETCH with attached quoted prefix cannot fabricate a successful tombstone page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 358
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "FETCH with attached closing list cannot fabricate a successful tombstone page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 359
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "FETCH with attached literal cannot fabricate a tombstone page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 360
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "rejected duplicate sync record never advances a successful partial page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 361
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "malformed raw response never logs private literal text",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 362
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "announced oversized literal is quota failure before payload reception",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 363
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "oversized greeting is a non-retryable quota failure before authentication",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 364
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "protocol line budget remains quota failure even before login",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 365
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "aggregate response bytes are bounded across authentication commands",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 366
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "header literal limit fails the entire sync page without tombstones",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 367
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "dropped connection fails and the next operation uses a fresh authenticated client",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 368
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "timeout destroys the connection and rejects a delayed completion",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 369
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "vault completion after cancellation cannot open a connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 370
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "STORE proves requested UID flags with a fresh observation; delete never expunges",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 371
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "acknowledged STORE without changed flags requires reconciliation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 372
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "connection drop after remote mutation is conflict, never retryable success",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 373
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "MOVE requires capability and verifies source absence without global EXPUNGE",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 374
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "OAuthBearer GS2 identity uses a= and secrets stay inside auth command",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 375
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "OAuthBearer error challenge is drained once and returns authenticationRequired",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 376
+    },
+    {
+      "file": "test/native_provider_test.dart",
+      "name": "token auth without SASL-IR is explicitly unsupported before sending a token",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 377
+    },
+    {
+      "file": "test/native_tls_cancellation_test.dart",
+      "name": "implicitTls stalled handshake cancellation closes the real peer and permits a fresh connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 381
+    },
+    {
+      "file": "test/native_tls_cancellation_test.dart",
+      "name": "implicitTls stalled handshake timeout closes the real peer and permits a fresh connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 382
+    },
+    {
+      "file": "test/native_tls_cancellation_test.dart",
+      "name": "startTls stalled handshake cancellation closes the real peer and permits a fresh connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 383
+    },
+    {
+      "file": "test/native_tls_cancellation_test.dart",
+      "name": "startTls stalled handshake timeout closes the real peer and permits a fresh connection",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 384
+    },
+    {
+      "file": "test/native_tls_round_trip_test.dart",
+      "name": "implicit TLS trusted TLS preserves delayed large writes and replies",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 388
+    },
+    {
+      "file": "test/native_tls_round_trip_test.dart",
+      "name": "implicit TLS default trust refuses the same public test certificate",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 389
+    },
+    {
+      "file": "test/native_tls_round_trip_test.dart",
+      "name": "STARTTLS trusted TLS preserves delayed large writes and replies",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 390
+    },
+    {
+      "file": "test/native_tls_round_trip_test.dart",
+      "name": "STARTTLS default trust refuses the same public test certificate",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 391
+    },
+    {
+      "file": "test/native_tls_round_trip_test.dart",
+      "name": "aborting trusted TLS fails and cancels an idle write producer",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 392
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "implicitTls: direct pending TLS operation settles when aborted",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 396
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "implicitTls: real stalled handshake closes on cancellation and retries",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 397
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "implicitTls: operation deadline closes a real stalled handshake",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 398
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "implicitTls: trusted local TLS authenticates and exchanges IMAP bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 399
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "implicitTls: default trust rejects the local certificate before login",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 400
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "implicitTls: trusted certificate still rejects a mismatched hostname",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 401
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "startTls: direct pending TLS operation settles when aborted",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 402
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "startTls: real stalled handshake closes on cancellation and retries",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 403
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "startTls: operation deadline closes a real stalled handshake",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 404
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "startTls: trusted local TLS authenticates and exchanges IMAP bytes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 405
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "startTls: default trust rejects the local certificate before login",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 406
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "startTls: trusted certificate still rejects a mismatched hostname",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 407
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "manual socket TLS upgrade preserves trust and secure connection metadata",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 408
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "already secure manual sockets retain IMAP read and write behavior",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 409
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "queued partial writes and final readiness complete before write close",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 410
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "aborting a blocked partial write rejects its pending flush",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 411
+    },
+    {
+      "file": "test/native_tls_test.dart",
+      "name": "hard abort closes retained TCP before a stalled secure close",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 412
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "sparse unordered discovery pages near the 32-bit UID ceiling",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 416
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "page size counts existing messages rather than numeric holes",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 417
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "an empty remaining search confirms its whole range without FETCH",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 418
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "a never-populated mailbox has no invalid zero-UID search range",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 419
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "new arrivals beyond the frozen ceiling enter the next sweep",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 420
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "saved quds-imap-window-v1 cursors resume with a new revision",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 421
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "saved quds-imap-discovery-v2 cursors resume with a new revision",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 422
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "page revisions advance through completed, empty and reset sweeps",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 423
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "revision exhaustion fails before protocol work without wrapping",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 424
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "UIDVALIDITY rollover discards an old high-UID continuation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 425
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "a backwards UIDNEXT cannot authorize deletion of a saved range",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 426
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "a discovered message expunged before FETCH is absent in its range",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 427
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "an in-range FETCH UID absent from discovery rejects the whole page",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 428
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "missing discovery cannot authorize a page or FETCH",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 429
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "repeated discovery cannot authorize a page or FETCH",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 430
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "duplicate UID discovery cannot authorize a page or FETCH",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 431
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "zero UID discovery cannot authorize a page or FETCH",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 432
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "overflow UID discovery cannot authorize a page or FETCH",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 433
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "out-of-range UID discovery cannot authorize a page or FETCH",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 434
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "malformed suffix discovery cannot authorize a page or FETCH",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 435
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "unrequested ESEARCH discovery cannot authorize a page or FETCH",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 436
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "SEARCH status prose and mixed-case data preserve valid discovery",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 437
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "a tagged SEARCH failure cannot commit a valid result prefix",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 438
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "discovery count limits fail atomically and release the provider",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 439
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "discovery obeys the protocol line budget before parsing a prefix",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 440
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "an explicit legacy numeric ceiling retains its old meaning",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 441
+    },
+    {
+      "file": "test/uid_discovery_test.dart",
+      "name": "cancelling stalled SEARCH prevents FETCH and allows a fresh operation",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 442
+    }
+  ]
+}

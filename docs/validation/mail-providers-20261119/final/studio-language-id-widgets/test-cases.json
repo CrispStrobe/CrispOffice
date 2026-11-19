@@ -1,0 +1,59 @@
+{
+  "accepted": true,
+  "done_events": [
+    {
+      "success": true,
+      "time": 8136,
+      "type": "done"
+    }
+  ],
+  "error_events": [],
+  "failed": 0,
+  "hidden_failures": [],
+  "incomplete": [],
+  "non_json_lines": 0,
+  "passed": 4,
+  "skipped": 0,
+  "skipped_cases": [],
+  "suites": [
+    {
+      "id": 0,
+      "path": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_language_id_test.dart",
+      "platform": "vm"
+    }
+  ],
+  "visible_cases": [
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_language_id_test.dart",
+      "name": "the bundled model asset is the pinned CLD3 model",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 3
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_language_id_test.dart",
+      "name": "a host without the native library reports the problem",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 4
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_language_id_test.dart",
+      "name": "Studio routes by detection, shows scripts and applies",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 5
+    },
+    {
+      "file": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_office_editor/example/test/studio_language_id_test.dart",
+      "name": "the licence page lists CLD3 (Apache-2.0) and CrispASR",
+      "platform": "vm",
+      "result": "success",
+      "skipped": false,
+      "test_id": 6
+    }
+  ]
+}

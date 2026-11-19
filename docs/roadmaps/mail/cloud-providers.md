@@ -107,6 +107,14 @@ or fall back to plaintext. Changing presets clears the previous password.
 | iCloud | `imap.mail.me.com` | `smtp.mail.me.com` | Short incoming username by default; explicit full-address fallback. SMTP uses the full primary address. |
 | Fastmail | `imap.fastmail.com` | `smtp.fastmail.com` | Primary account and app password; Basic plans exclude third-party IMAP/SMTP |
 
+Native IMAP/SMTP setup also has a **Remember account** option backed by the
+platform's secure storage. It remembers the selected preset, primary login and
+iCloud login mode together with the account credentials. Failed saves and
+failed Forget operations are shown explicitly; a save failure does not close a
+connected mailbox. This option does not persist cloud OAuth tokens, EWS
+credentials, downloaded messages or unsent drafts. Actual installed keychain
+integration still requires a deployment acceptance check.
+
 ## Shared API and lifecycle
 
 Import `package:quds_mail_transport/quds_mail_transport.dart`. Create a host-owned

@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_ui",
+  "environment_overrides": {},
+  "kind": "tests",
+  "name": "mail-ui-widgets",
+  "started_at_utc": "2026-11-19T14:45:24.319863+00:00",
+  "timeout_seconds": 900
+}

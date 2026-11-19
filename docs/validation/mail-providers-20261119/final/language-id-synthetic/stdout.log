@@ -1,0 +1,60 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":550,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"test/language_id_unit_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading test/language_id_unit_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+{"count":2,"time":8,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":4781}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":16,"line":null,"column":null,"url":null},"type":"group","time":4784}
+{"test":{"id":3,"name":"the bundled model is the pinned one","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":47,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4785}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4883}
+{"test":{"id":4,"name":"CLD3 has 109 distinct labels and legacy codes map to BCP-47","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":55,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4884}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4887}
+{"test":{"id":5,"name":"result lines parse into label/probability pairs","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":67,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4887}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4889}
+{"test":{"id":6,"name":"identify maps labels, batches and keeps input order","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":75,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4890}
+{"testID":6,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4900}
+{"test":{"id":7,"name":"a tampered model is never opened","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":107,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4901}
+{"testID":7,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4902}
+{"test":{"id":8,"name":"a stopped worker degrades to empty answers","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":119,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4903}
+{"testID":8,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4912}
+{"test":{"id":9,"name":"batch and candidate limits reject invalid arguments immediately","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":132,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4913}
+{"testID":9,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4915}
+{"test":{"id":10,"name":"Unicode digits, marks, punctuation and emoji never reach the worker","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":147,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4916}
+{"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4918}
+{"test":{"id":11,"name":"malformed response counts degrade without throwing or accepting a prefix","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":167,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4919}
+{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4933}
+{"test":{"id":12,"name":"invalid probabilities, labels, order and candidate counts fail closed","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":190,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4933}
+{"testID":12,"error":"Expected: empty\n  Actual: [\n            LanguageGuess:en 0.400,\n            LanguageGuess:fr 0.300,\n            LanguageGuess:de 0.200,\n            LanguageGuess:es 0.100\n          ]\n","stackTrace":"package:matcher                        expect\ntest/language_id_unit_test.dart 207:9  main.<fn>\n","isFailure":true,"type":"error","time":4988}
+{"testID":12,"result":"failure","skipped":false,"hidden":false,"type":"testDone","time":4989}
+{"test":{"id":13,"name":"a failed later batch retains only already completed valid results","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":215,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4989}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4997}
+{"test":{"id":14,"name":"dispose before loading never opens or classifies and is idempotent","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":244,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":4997}
+{"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5000}
+{"test":{"id":15,"name":"late opening cannot reactivate a disposed identifier","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":262,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":5000}
+{"testID":15,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5014}
+{"test":{"id":16,"name":"late detection cannot publish results after disposal","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":278,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":5014}
+{"testID":16,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5022}
+{"test":{"id":17,"name":"disposal rejection clears results from an earlier successful batch","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":301,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":5022}
+{"testID":17,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5031}
+{"test":{"id":18,"name":"input identity is frozen across asynchronous model loading","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":335,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_unit_test.dart"},"type":"testStart","time":5031}
+{"testID":18,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5038}
+{"suite":{"id":19,"platform":"vm","path":"test/language_id_native_transport_test.dart"},"type":"suite","time":5047}
+{"test":{"id":20,"name":"loading test/language_id_native_transport_test.dart","suiteID":19,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":5048}
+{"testID":20,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":5525}
+{"group":{"id":21,"suiteID":19,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":6,"line":null,"column":null,"url":null},"type":"group","time":5525}
+{"test":{"id":22,"name":"(setUpAll)","suiteID":19,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":31,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_native_transport_test.dart"},"type":"testStart","time":5525}
+{"testID":22,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":5538}
+{"test":{"id":23,"name":"normal disposal releases the model and all worker buffers","suiteID":19,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":64,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_native_transport_test.dart"},"type":"testStart","time":5538}
+{"testID":23,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5572}
+{"test":{"id":24,"name":"reopening closes the previous model before replacement","suiteID":19,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":78,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_native_transport_test.dart"},"type":"testStart","time":5573}
+{"testID":24,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5575}
+{"test":{"id":25,"name":"disposal during startup still releases initialized buffers","suiteID":19,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":86,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_native_transport_test.dart"},"type":"testStart","time":5575}
+{"testID":25,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5579}
+{"test":{"id":26,"name":"disposal settles callers then waits for active native cleanup","suiteID":19,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":98,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_native_transport_test.dart"},"type":"testStart","time":5579}
+{"testID":26,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5684}
+{"test":{"id":27,"name":"failed initialization releases partial buffer allocations","suiteID":19,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":122,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_native_transport_test.dart"},"type":"testStart","time":5684}
+{"testID":27,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5687}
+{"test":{"id":28,"name":"failed buffer growth retains the live buffer for later cleanup","suiteID":19,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":133,"column":3,"url":"file:///workspace/scratch/61cbd6db9300/crisp-office/packages/quds_language_id/test/language_id_native_transport_test.dart"},"type":"testStart","time":5687}
+{"testID":28,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5691}
+{"test":{"id":29,"name":"(tearDownAll)","suiteID":19,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":5691}
+{"testID":29,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":5693}
+{"success":false,"type":"done","time":5696}

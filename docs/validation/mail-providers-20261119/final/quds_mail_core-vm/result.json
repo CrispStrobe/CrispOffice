@@ -1,0 +1,35 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/61cbd6db9300/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/61cbd6db9300/crisp-office/.dart_tool/package_config.json",
+    "/workspace/scratch/61cbd6db9300/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/cancellation_test.dart",
+    "test/ews_identity_test.dart",
+    "test/imap_sync_range_test.dart",
+    "test/models_test.dart",
+    "test/outbox_test.dart",
+    "test/sync_coordinator_test.dart"
+  ],
+  "cwd": "/workspace/scratch/61cbd6db9300/crisp-office/packages/quds_mail_core",
+  "elapsed_seconds": 12.428,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T14:44:01.697332+00:00",
+  "kind": "tests",
+  "name": "quds_mail_core-vm",
+  "started_at_utc": "2026-11-19T14:43:49.268877+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "b9c84e6d4f1a7fa0674cd9e9de767da3dc03e7bfc551285b0c603fc4c0b43828",
+  "test_counts": {
+    "failed": 0,
+    "passed": 54,
+    "skipped": 0
+  },
+  "timeout_seconds": 900
+}
