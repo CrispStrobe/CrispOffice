@@ -1,0 +1,10 @@
+name: quds_macro_validation
+publish_to: none
+environment:
+  sdk: ^3.12.0
+workspace:
+  - packages/legacy_doc_parser
+  - packages/quds_office_engine
+  - packages/quds_office_engine/example
+  - packages/quds_mail_core
+  - packages/quds_mail_store

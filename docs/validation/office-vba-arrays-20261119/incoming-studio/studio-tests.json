@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_mail_archive_restore_test.dart",
+    "test/studio_mail_archive_restore_native_test.dart",
+    "test/studio_mail_archive_portability_visual_test.dart"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example",
+  "elapsed_seconds": 45.50123429298401,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+  },
+  "exit_code": 0,
+  "name": "studio-tests",
+  "removed_optional_environment": [
+    "QUDS_MAIL_PORTABILITY_SHOTS"
+  ],
+  "started_at_utc": "2026-11-19T18:09:16Z",
+  "stderr": "studio-tests.stderr.log",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout": "studio-tests.stdout.log",
+  "stdout_sha256": "f3be5866c7a109b60af37d51231712d06502904d39aaf95e7b8163b4e87297c0"
+}

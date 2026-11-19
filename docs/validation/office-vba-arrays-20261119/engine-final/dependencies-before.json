@@ -1,0 +1,50 @@
+{
+  "pubspec.yaml": {
+    "sha256": "ccddc3d82f98fc73802bebbcf1598c7496a38febe3c93a863ddd838f7771767a",
+    "bytes": 244
+  },
+  "pubspec.lock": {
+    "sha256": "0050bd9b30c963b5a59e1b48efb52e9a67ac697e52e56101c47dd6b463067884",
+    "bytes": 14584
+  },
+  "analysis_options.yaml": {
+    "sha256": "2605ddd3559825e867cab2f5c4536f4172d6ba3514cb10da19f17d7dbe7179e4",
+    "bytes": 658
+  },
+  ".dart_tool/package_config.json": {
+    "sha256": "65f6fcee3ec76e1a8fdd99206b6fdc07c9f867df177f0e8b26a24816e9e970c4",
+    "bytes": 14253
+  },
+  ".dart_tool/package_graph.json": {
+    "sha256": "e2091b5e5278b6ee5264a2601ba3e154be7476fa0667e4fab1f8ae0da19a79b0",
+    "bytes": 11811
+  },
+  "packages/legacy_doc_parser/pubspec.yaml": {
+    "sha256": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+    "bytes": 448
+  },
+  "packages/legacy_doc_parser/analysis_options.yaml": {
+    "sha256": "69d5fc7c4dc082613882215d52d18b02b1688b833d674ce9b281f45821626b7d",
+    "bytes": 40
+  },
+  "packages/quds_office_engine/pubspec.yaml": {
+    "sha256": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+    "bytes": 2496
+  },
+  "packages/quds_office_engine/analysis_options.yaml": {
+    "sha256": "bf7d17dfdbc3aa4dcba00ef52506c50fd798bbcf3d0f907e875fa38bdfa9846f",
+    "bytes": 37
+  },
+  "packages/quds_office_engine/example/pubspec.yaml": {
+    "sha256": "9f1b07bb8665c2125d92074aef74f2892963e34171ab0ea381df7a1cf798fb6c",
+    "bytes": 221
+  },
+  "packages/quds_mail_core/pubspec.yaml": {
+    "sha256": "9ecb33312a62c29481def03efd177e8da0186b9627fe2d804d38c9d5db05fb21",
+    "bytes": 268
+  },
+  "packages/quds_mail_store/pubspec.yaml": {
+    "sha256": "c19f88e29dc3f530505d992e9f79c287336f9ee0310b081c6cfa0017a5c626b6",
+    "bytes": 387
+  }
+}

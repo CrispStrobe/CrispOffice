@@ -1,0 +1,213 @@
+{
+  "audited_at_utc": "2026-11-19T18:27:52.563599+00:00",
+  "evidence_method_caution": "GitHub compare responses stopped at 300 files despite no explicit too_large flag; all file-count and overlap claims here use complete local Git tree diffs.",
+  "focused_source_review": {
+    "additional_scope_requested_after_final_cohort_started": false,
+    "areas": [
+      "Page Layout staged draft, precision-preserving unit conversion, localized numeric parsing, stale-target rejection and one controller transaction",
+      "Paragraph mixed-value patching, editable-story capture, selection/revision/property/geometry freshness, numeric and geometry preflight before one apply call",
+      "Studio themed dialog context, File/View Document mode and compact ribbon changes",
+      "Slide display-only ink adaptation, known solid backing checks and Morph interpolated fill"
+    ],
+    "definite_new_production_defects_found": [],
+    "regression_risks": [
+      "File menu mode control affects existing comment/review/Zotero fixtures and permissions assertions",
+      "Dialog cancellation, exact imported values, mixed selections and stale selection must survive host integration",
+      "Dark ink must preserve authored/exported colors and refrain from guessing mixed/animated backing"
+    ]
+  },
+  "gui": {
+    "author_acceptance_state": "PR body still reports only the first-checkpoint 17 focused editor tests; host dialog/ribbon tests and visual review remain in progress. No final GUI-head receipt was identified in this exact source tree.",
+    "changed_paths": 433,
+    "comparison_base": "ae4c8223d1814df4a500518c8b223831cbb0b51f",
+    "draft_at_remote_snapshot": true,
+    "head": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+    "other_paths": [
+      {
+        "incoming_blob": "9ff69944eeb468d3fa1e9bc93fdc43f7b3aa1e16",
+        "integrated_blob": "9ff69944eeb468d3fa1e9bc93fdc43f7b3aa1e16",
+        "path": "packages/quds_office_editor/CHANGELOG.md",
+        "preserved_exactly": true,
+        "status": "M"
+      },
+      {
+        "incoming_blob": "6184ce88e4915c7b9860f07eaaa7a97ce41b2acc",
+        "integrated_blob": "6184ce88e4915c7b9860f07eaaa7a97ce41b2acc",
+        "path": "packages/quds_office_editor/example/README.md",
+        "preserved_exactly": true,
+        "status": "M"
+      },
+      {
+        "incoming_blob": "c35086f9e0e909f8f24c96f135b3fae83b4e4ea1",
+        "integrated_blob": "c35086f9e0e909f8f24c96f135b3fae83b4e4ea1",
+        "path": "packages/quds_office_editor/example/lib/studio_chrome.dart",
+        "preserved_exactly": true,
+        "status": "M"
+      },
+      {
+        "incoming_blob": "ae1c0456e4e6bcac2cc7832dfef41f5a53c92863",
+        "integrated_blob": "ae1c0456e4e6bcac2cc7832dfef41f5a53c92863",
+        "path": "packages/quds_office_editor/example/lib/studio_material_theme.dart",
+        "preserved_exactly": true,
+        "status": "A"
+      },
+      {
+        "incoming_blob": "3b403851d49bba285a22602ee4e5a451b8266783",
+        "integrated_blob": "3b403851d49bba285a22602ee4e5a451b8266783",
+        "path": "packages/quds_office_editor/example/lib/studio_page_layout_dialog.dart",
+        "preserved_exactly": true,
+        "status": "A"
+      },
+      {
+        "incoming_blob": "b684c315d9552bc4dbbbda1eb450b2361f5255fa",
+        "integrated_blob": "b684c315d9552bc4dbbbda1eb450b2361f5255fa",
+        "path": "packages/quds_office_editor/example/lib/studio_paragraph_dialog.dart",
+        "preserved_exactly": true,
+        "status": "A"
+      },
+      {
+        "incoming_blob": "fd45a58364bcee32bc28f628d209ad29b7a50391",
+        "integrated_blob": "fd45a58364bcee32bc28f628d209ad29b7a50391",
+        "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "preserved_exactly": true,
+        "status": "M"
+      },
+      {
+        "incoming_blob": "08ec54a85ccacf7ff6ef27e61c966db656d840f7",
+        "integrated_blob": "08ec54a85ccacf7ff6ef27e61c966db656d840f7",
+        "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "preserved_exactly": true,
+        "status": "M"
+      },
+      {
+        "incoming_blob": "d8b29aa0e2f196ff6eb62383d51f96e8e4e73429",
+        "integrated_blob": "d8b29aa0e2f196ff6eb62383d51f96e8e4e73429",
+        "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "preserved_exactly": true,
+        "status": "M"
+      },
+      {
+        "incoming_blob": "c90b426253dcea38535b28ae8d0a81e61c910c4c",
+        "integrated_blob": "c90b426253dcea38535b28ae8d0a81e61c910c4c",
+        "path": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+        "preserved_exactly": true,
+        "status": "A"
+      },
+      {
+        "incoming_blob": "f0c46348b755ff0f546a4409c49cffd483cb9e1b",
+        "integrated_blob": "f0c46348b755ff0f546a4409c49cffd483cb9e1b",
+        "path": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+        "preserved_exactly": true,
+        "status": "A"
+      },
+      {
+        "incoming_blob": "8b7dea4bd6a2ed0acf8288d2d0525e3891b6ad45",
+        "integrated_blob": "8b7dea4bd6a2ed0acf8288d2d0525e3891b6ad45",
+        "path": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+        "preserved_exactly": true,
+        "status": "A"
+      },
+      {
+        "incoming_blob": "1636cfba5308196a1f5dcfb5721f75fe866d322c",
+        "integrated_blob": "1636cfba5308196a1f5dcfb5721f75fe866d322c",
+        "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "preserved_exactly": true,
+        "status": "M"
+      },
+      {
+        "incoming_blob": "94ea28bca1a6249be72b8ec60236362fa1bca3cc",
+        "integrated_blob": "94ea28bca1a6249be72b8ec60236362fa1bca3cc",
+        "path": "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+        "preserved_exactly": true,
+        "status": "A"
+      },
+      {
+        "incoming_blob": "4e62ab3326bdd745a305b187cc01dfd742ac58a8",
+        "integrated_blob": "4e62ab3326bdd745a305b187cc01dfd742ac58a8",
+        "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "preserved_exactly": true,
+        "status": "M"
+      },
+      {
+        "incoming_blob": "8145856799ac4fee5ad221329bf3543b5e3409e8",
+        "integrated_blob": "8145856799ac4fee5ad221329bf3543b5e3409e8",
+        "path": "packages/quds_office_editor/example/test/support/studio_document_mode.dart",
+        "preserved_exactly": true,
+        "status": "A"
+      },
+      {
+        "incoming_blob": "6588e1d531b7e38d5a3fb91fbd7692a47acb4c9c",
+        "integrated_blob": "6588e1d531b7e38d5a3fb91fbd7692a47acb4c9c",
+        "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "preserved_exactly": true,
+        "status": "M"
+      },
+      {
+        "incoming_blob": "18935bd2572e3a72de175dc0681f20d13d3b60f3",
+        "integrated_blob": "18935bd2572e3a72de175dc0681f20d13d3b60f3",
+        "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "preserved_exactly": true,
+        "status": "A"
+      }
+    ],
+    "overlap_with_root_since_common_base": [],
+    "previous_reviewed_head": "4fd010fcae209b6ea033828d76908508b7327b9f",
+    "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/211",
+    "remote_updated_at_utc": "2026-11-19T18:21:07Z",
+    "state_at_remote_snapshot": "open",
+    "unique_commits_since_root": [
+      "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5 Preserve accepted mail restoration evidence in the GUI integration [skip ci]",
+      "96d36bfd06a02c3b3a49a603bb9c83f06e09a2c4 Integrate VBA parser follow-up and accepted qualification evidence [skip ci]",
+      "466d757fef48df5541b37f06fffbc2efbb62a848 Preserve precise paragraph presets, readable slides, and Arabic settings [skip ci]",
+      "1a99845fe628c9e539d4bca7e7c586c5616da267 Preserve accepted mail restore qualification and independent audit [skip ci]",
+      "5fe62a07c1ad8fb85f8c2202fc7f52a5586fb5b2 Preserve latest mail restoration documentation and validation frontier [skip ci]",
+      "084e770458349857c561f2064b8c02ef090a9738 Integrate latest VBA arrays and mail formatting into Layout work [skip ci]",
+      "288b493ee5891ba3abc44c37584c7517f46a6a5c Add compact choice menus, precise layout dialogs, and themed Studio chrome [skip ci]"
+    ],
+    "validation_paths": 415
+  },
+  "integrated_checkpoint": "596430dcb816dd418204d62e78f4dc518afdc0e1",
+  "integrated_direct_parents": [
+    "2aff66a8540beb2015e606e67e46d228d7bf695e",
+    "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+    "caf378f40fd5bda50f504a6816404d01d8bbb8f8"
+  ],
+  "integration_verification": {
+    "incoming_gui_and_remote_main_are_direct_parents": true,
+    "macro_engine_paths_changed": [],
+    "new_gui_paths_preserved_exactly": true
+  },
+  "limitations": [
+    "This is a bounded review of named commits, not a guarantee that remote refs will remain unchanged.",
+    "GUI final local acceptance runs are owned by the integration agent and were not yet complete at this review.",
+    "Read-only review found no definite issue in the listed paths; it is not a full repository code audit."
+  ],
+  "mail": {
+    "accepted_source": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+    "all_changed_paths_under_validation": true,
+    "author_executions": "See mail-evidence-audit.json; author run counts are separate from our qualification.",
+    "changed_paths_since_accepted": 419,
+    "head": "6275d21246040e03f6264b27171992c88d1474a2",
+    "merge_commit": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+    "merged_at_utc": "2026-11-19T18:16:42Z",
+    "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/209",
+    "state_at_remote_snapshot": "closed"
+  },
+  "modified_test_files": [
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+  ],
+  "new_test_files": [
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+    "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart"
+  ],
+  "repository": "CrispStrobe/quds_office_suite",
+  "review_root": "2aff66a8540beb2015e606e67e46d228d7bf695e",
+  "schema": 1,
+  "scope": "Read-only exact-commit source review and published author-evidence audit; no Actions or status-check calls."
+}

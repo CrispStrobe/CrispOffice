@@ -1,0 +1,19 @@
+{
+  "all_assertion_expressions_byte_identical_in_same_order": true,
+  "assertion_count_after": 510,
+  "assertion_count_before": 510,
+  "assertion_sequence_sha256": "49a9c4609b461ca7aff3da17046328cf1f02d803a229741094e765373a05df93",
+  "baseline_commit": "c3eaf57c85d363b1453f2a3407ba62768b0e2c08",
+  "baseline_fixture_sha256": "da15cf7fd4062591e0a75da580fef324d5d2abfc1f07a6f548d0138a529c1678",
+  "corrected_fixture_sha256": "8274bed0a40708ad34f26324d8c05113024005f2ceddc8e566aa5f86f0a11a34",
+  "default_review_and_live_proofing_disabled": false,
+  "explicit_controller_cleanup_count": 7,
+  "fixture_path": "packages/quds_office_editor/test/embed_test.dart",
+  "overlay_fixture_wrapper_count": 8,
+  "probe_log": "fixture-check-final.stdout.log",
+  "probe_log_sha256": "a8bc7b4db74bf3bf6b821ee4c2aac985092a1fed017cfb9a3285e2d1c5b05e79",
+  "probe_process_exit_recorded": false,
+  "probe_result_basis": "Raw JSON reporter done success and eight non-hidden passing testDone events; the final full acceptance records the process exit status.",
+  "reason": "Default review Tooltip requires the app Overlay. Externally owned Word controllers must be unmounted and disposed before Flutter checks pending timers.",
+  "scope": "Test fixture correction only; no production code changes."
+}

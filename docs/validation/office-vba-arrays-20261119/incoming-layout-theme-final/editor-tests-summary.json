@@ -1,0 +1,6614 @@
+{
+  "done_events": [
+    {
+      "success": false,
+      "time": 21984,
+      "type": "done"
+    }
+  ],
+  "failed": 1,
+  "non_json_stdout_lines": 0,
+  "passed": 212,
+  "skipped": 0,
+  "tests": [
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 3,
+        "time": 3471,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_chrome_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 3,
+        "line": 42,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "dark rulers and drag readouts follow chrome colors",
+        "suiteID": 0,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_chrome_theme_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 4,
+        "time": 3479,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_chrome_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 4,
+        "line": 42,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "high contrast rulers and drag readouts follow chrome colors",
+        "suiteID": 0,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_chrome_theme_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 5,
+        "time": 3484,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_chrome_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          2
+        ],
+        "id": 5,
+        "line": 42,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "dark chrome with white paper rulers and drag readouts follow chrome colors",
+        "suiteID": 0,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_chrome_theme_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 6,
+        "time": 3490,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 0,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_chrome_theme_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          2
+        ],
+        "id": 6,
+        "line": 82,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "light ruler surfaces retain their established palette",
+        "suiteID": 0,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_chrome_theme_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 11,
+        "time": 4211,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 7,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_document_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          9
+        ],
+        "id": 11,
+        "line": 101,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "dark ink policy preserves light backgrounds and readable colors",
+        "suiteID": 7,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_document_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 12,
+        "time": 4666,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 7,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_document_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          9
+        ],
+        "id": 12,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word dark paper respects fills, highlights and exported ink",
+        "root_column": 3,
+        "root_line": 127,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_document_test.dart",
+        "suiteID": 7,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 13,
+        "time": 4721,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 7,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_document_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          9
+        ],
+        "id": 13,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Sheet dark ink follows explicit and conditional cell backing",
+        "root_column": 3,
+        "root_line": 223,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_document_test.dart",
+        "suiteID": 7,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "error",
+        "skipped": false,
+        "testID": 19,
+        "time": 5599,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 15,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          17
+        ],
+        "id": 19,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "dark Slides adapt explicit ink and preserve automatic and exported colors",
+        "root_column": 3,
+        "root_line": 158,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "suiteID": 15,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 20,
+        "time": 5766,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 15,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          17
+        ],
+        "id": 20,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "unfilled Slide text preserves authored ink over picture",
+        "root_column": 5,
+        "root_line": 273,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "suiteID": 15,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 21,
+        "time": 5889,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 15,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          17
+        ],
+        "id": 21,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "unfilled Slide text preserves authored ink over chart",
+        "root_column": 5,
+        "root_line": 273,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "suiteID": 15,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 22,
+        "time": 5990,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 15,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          17
+        ],
+        "id": 22,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "unfilled Slide text preserves authored ink over partial fill",
+        "root_column": 5,
+        "root_line": 273,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "suiteID": 15,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 23,
+        "time": 6102,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 15,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          17
+        ],
+        "id": 23,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "unfilled Slide text preserves authored ink over rotated fill",
+        "root_column": 5,
+        "root_line": 273,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "suiteID": 15,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 24,
+        "time": 6121,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 15,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          17
+        ],
+        "id": 24,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "dark Morph ink uses the interpolated fill instead of target fill",
+        "root_column": 3,
+        "root_line": 329,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "suiteID": 15,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 29,
+        "time": 6913,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 26,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          28
+        ],
+        "id": 29,
+        "line": 33,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Page Layout applies every supported setting in one undo step",
+        "suiteID": 26,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 30,
+        "time": 6926,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 26,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          28
+        ],
+        "id": 30,
+        "line": 90,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "page geometry follows continuous siblings but section options do not",
+        "suiteID": 26,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 31,
+        "time": 6936,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 26,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          28
+        ],
+        "id": 31,
+        "line": 125,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "whole document applies values while preserving existing section starts",
+        "suiteID": 26,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 32,
+        "time": 6941,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 26,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          28
+        ],
+        "id": 32,
+        "line": 178,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "invalid drafts are atomic and do not mark the document dirty",
+        "suiteID": 26,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 33,
+        "time": 6945,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 26,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          28
+        ],
+        "id": 33,
+        "line": 208,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "shared geometry rejects a change that cannot fit a sibling column",
+        "suiteID": 26,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 34,
+        "time": 6949,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 26,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          28
+        ],
+        "id": 34,
+        "line": 226,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "unchanged exact measurements produce no history or rounding",
+        "suiteID": 26,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 35,
+        "time": 6965,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 26,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          28
+        ],
+        "id": 35,
+        "line": 240,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "stale document, section, revision and direct layout edits are rejected",
+        "suiteID": 26,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 36,
+        "time": 6971,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 26,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          28
+        ],
+        "id": 36,
+        "line": 277,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "captured section survives caret movement while the dialog is open",
+        "suiteID": 26,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 37,
+        "time": 7078,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 26,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          28
+        ],
+        "id": 37,
+        "line": 294,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "DOCX roundtrip keeps all applied modeled values",
+        "suiteID": 26,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 38,
+        "time": 7099,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 26,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          28
+        ],
+        "id": 38,
+        "line": 325,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "unrelated layout edits preserve imported section XML and custom columns",
+        "suiteID": 26,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_page_layout_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 42,
+        "time": 7956,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 42,
+        "line": 19,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word controller inserts, undoes, and respects viewing mode",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 43,
+        "time": 7967,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 43,
+        "line": 49,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "backspace at the start of a paragraph joins the previous one",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 44,
+        "time": 7980,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 44,
+        "line": 78,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "backspace on an empty paragraph moves to the previous end",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 45,
+        "time": 7985,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 45,
+        "line": 108,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "delete at the end of a paragraph joins the next one",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 46,
+        "time": 7994,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 46,
+        "line": 130,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word controller deletes with backspace and delete",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 47,
+        "time": 8001,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 47,
+        "line": 152,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word ruler indent preview commits as one undo",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 48,
+        "time": 8006,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 48,
+        "line": 173,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word tab inserts a half-inch gap",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 49,
+        "time": 8739,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 49,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word editor tab key inserts a tab",
+        "root_column": 3,
+        "root_line": 189,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 50,
+        "time": 8854,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 50,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word editor backspace key deletes a character",
+        "root_column": 3,
+        "root_line": 216,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 51,
+        "time": 8931,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 51,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "tapping the canvas reattaches IME after another client steals it",
+        "root_column": 3,
+        "root_line": 245,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 52,
+        "time": 9029,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 52,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word editor ctrl+z undoes and ctrl+y redoes",
+        "root_column": 3,
+        "root_line": 283,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 53,
+        "time": 9128,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 53,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word editor shift arrows grow and shrink the selection",
+        "root_column": 3,
+        "root_line": 321,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 54,
+        "time": 9191,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 54,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word editor ctrl+a selects the whole document",
+        "root_column": 3,
+        "root_line": 368,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 55,
+        "time": 9202,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 55,
+        "line": 413,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet controller toggles rightToLeft and moves selection",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 56,
+        "time": 9208,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 56,
+        "line": 425,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet navigation follows Excel limits and keeps the cell in view",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 57,
+        "time": 9214,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 57,
+        "line": 448,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "grid display uses the cell number format",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 58,
+        "time": 9219,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 58,
+        "line": 465,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selection fill covers every selected cell and undoes",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 59,
+        "time": 9223,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 59,
+        "line": 476,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "merge and center joins the selection and can undo",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 60,
+        "time": 9225,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 60,
+        "line": 496,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "freeze panes follow the Excel selection rules",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 61,
+        "time": 9301,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 61,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet arrow keys move between cells",
+        "root_column": 3,
+        "root_line": 525,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 62,
+        "time": 9333,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 62,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "rtl sheet inverts horizontal arrow keys",
+        "root_column": 3,
+        "root_line": 561,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 63,
+        "time": 9338,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 63,
+        "line": 589,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet Ctrl+arrow jumps by same occupancy",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 64,
+        "time": 9373,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 64,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet Ctrl+arrow keys follow same occupancy",
+        "root_column": 3,
+        "root_line": 607,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 65,
+        "time": 9377,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 65,
+        "line": 640,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet controller ctrl+a selects the used range",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 66,
+        "time": 9384,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 66,
+        "line": 650,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide controller selectAll selects text while editing",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 67,
+        "time": 9389,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 67,
+        "line": 670,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "reorderSlide moves a deck card and keeps the active index",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 68,
+        "time": 9396,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 68,
+        "line": 699,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide text edit selects a word, paragraph, and drag range",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 69,
+        "time": 9405,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 69,
+        "line": 741,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word controller formats only the selected range",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 70,
+        "time": 9411,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 70,
+        "line": 767,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word controller applies font face and size at the caret run",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 71,
+        "time": 9432,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 71,
+        "line": 793,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word controller extends selection across table cells",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 72,
+        "time": 9449,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 72,
+        "line": 851,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word caret lands on a chart between paragraphs and can delete it",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 73,
+        "time": 9458,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 73,
+        "line": 900,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word range selection includes a chart between paragraphs",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 74,
+        "time": 9463,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 74,
+        "line": 934,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word arrows move the caret along a line",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 75,
+        "time": 9467,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 75,
+        "line": 950,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "shift arrows grow and shrink the character selection",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 76,
+        "time": 9478,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 76,
+        "line": 973,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "shift arrows grow and shrink an RTL selection",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 77,
+        "time": 9485,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 77,
+        "line": 1001,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet controller selects a drawing and can delete it",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 78,
+        "time": 9489,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 78,
+        "line": 1051,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "linked sheet chart follows evaluated cells including zero",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 79,
+        "time": 9575,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 79,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet chart drag on the canvas moves the drawing",
+        "root_column": 3,
+        "root_line": 1085,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 80,
+        "time": 9582,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 80,
+        "line": 1132,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet controller clears the selected cell",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 81,
+        "time": 9613,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 81,
+        "line": 1144,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet controller edits a cell and can save bytes",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 82,
+        "time": 9621,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 82,
+        "line": 1155,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet cell display evaluates formulas and edits in place",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 83,
+        "time": 9631,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 83,
+        "line": 1179,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet commit evaluates formula and recalculates dependents",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 84,
+        "time": 9637,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 84,
+        "line": 1223,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet edit backspace deletes and function suggestions apply",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 85,
+        "time": 9646,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 85,
+        "line": 1245,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet edit click points at another cell instead of committing",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 86,
+        "time": 9674,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 86,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "tapping another cell inserts a formula reference",
+        "root_column": 3,
+        "root_line": 1268,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 87,
+        "time": 9678,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 87,
+        "line": 1293,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide controller edits shape text in place",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 88,
+        "time": 9692,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 88,
+        "line": 1313,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word clipboard pastes source formatting or plain text",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 89,
+        "time": 9706,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 89,
+        "line": 1348,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word cut paste restores heading style and table structure",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 90,
+        "time": 9718,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 90,
+        "line": 1432,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word merge and split consecutive table cells",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 91,
+        "time": 9723,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 91,
+        "line": 1474,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word page margins and orientation update layout",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 92,
+        "time": 9732,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 92,
+        "line": 1492,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "landscape applies to the whole continuous section group",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 93,
+        "time": 9738,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 93,
+        "line": 1527,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selectTable covers every cell paragraph",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 94,
+        "time": 9745,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 94,
+        "line": 1579,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selectTableBand selects a column or row without the whole table",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 95,
+        "time": 9761,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 95,
+        "line": 1646,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "backspace deletes a selected table column or row",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 96,
+        "time": 9772,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 96,
+        "line": 1715,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "insertSectionBreak and header edit target the active section",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 97,
+        "time": 9779,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 97,
+        "line": 1747,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "header edit on a zero-margin then landscape section stays usable",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 98,
+        "time": 9784,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 98,
+        "line": 1785,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word delete removes a selected table instead of emptying it",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 99,
+        "time": 9789,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 99,
+        "line": 1830,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word delete of a spanning selection removes the table",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 100,
+        "time": 9795,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 100,
+        "line": 1867,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet clipboard copies a range and pastes values",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 101,
+        "time": 9799,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 101,
+        "line": 1888,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide clipboard duplicates a selected shape",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 102,
+        "time": 9801,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 102,
+        "line": 1914,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide text edit keeps the shape rotation",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 103,
+        "time": 9805,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 103,
+        "line": 1937,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide controller nudges a shape via undoable transform",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 104,
+        "time": 9809,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 104,
+        "line": 1965,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide ctrl-select nudges together and groups as one unit",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 105,
+        "time": 9820,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 105,
+        "line": 2019,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide controller edits a picture visual",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 106,
+        "time": 9828,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 106,
+        "line": 2045,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide controller applies transitions, animations, and slideshow clicks",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 107,
+        "time": 9831,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 107,
+        "line": 2116,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "theme copyWith and Arabic strings stay typed",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 108,
+        "time": 9869,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 108,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "QudsOfficeHost embeds a word editor with custom chrome",
+        "root_column": 3,
+        "root_line": 2130,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 109,
+        "time": 9903,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 109,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "QudsSheetEditor and QudsSlideEditor mount",
+        "root_column": 3,
+        "root_line": 2166,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 110,
+        "time": 9906,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 110,
+        "line": 2201,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "choosing a transition or animation starts a quick preview",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 111,
+        "time": 9914,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 111,
+        "line": 2223,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Morph preview uses the previous slide as the outgoing pair",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 112,
+        "time": 9945,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 112,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "F5 starts and ends a slide show",
+        "root_column": 3,
+        "root_line": 2280,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 113,
+        "time": 10046,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 113,
+        "line": 2309,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide controller loads builder deck notes and word builder bytes",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 114,
+        "time": 10069,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 114,
+        "line": 2329,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word controller inserts and deletes table rows and columns",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 115,
+        "time": 10076,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 115,
+        "line": 2395,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word tab walks table cells across then down",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 116,
+        "time": 10081,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 116,
+        "line": 2475,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet controller inserts rows and columns with undo",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 117,
+        "time": 10083,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 117,
+        "line": 2492,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "office context menu dismiss is safe to call twice",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 118,
+        "time": 10090,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 118,
+        "line": 2496,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "office context menu builds table actions",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 119,
+        "time": 10094,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 119,
+        "line": 2533,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide sorter hide and show actions toggle hidden with undo",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 120,
+        "time": 10098,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 120,
+        "line": 2564,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide sorter copy pastes a clone after any thumbnail",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 121,
+        "time": 10183,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 121,
+        "line": 2598,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "controllers expose find replace stats print and styles",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 122,
+        "time": 10214,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 122,
+        "line": 2653,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "studio ribbon APIs mutate word sheet and slides",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 123,
+        "time": 10239,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 123,
+        "line": 2730,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word notes pane APIs jump and header flags",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 124,
+        "time": 10247,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 124,
+        "line": 2761,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet extras and slide media",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 125,
+        "time": 10250,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 125,
+        "line": 2793,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "merged cells select as one named origin",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 126,
+        "time": 10255,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          41
+        ],
+        "id": 126,
+        "line": 2808,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "find next wraps and revealFindHit moves the word caret",
+        "suiteID": 39,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 127,
+        "time": 10324,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 127,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Ctrl+F requests find from the word surface",
+        "root_column": 3,
+        "root_line": 2825,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 128,
+        "time": 10349,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 128,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word lines laid out with paint metrics fit the column",
+        "root_column": 3,
+        "root_line": 2856,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 129,
+        "time": 10365,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 39,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          41
+        ],
+        "id": 129,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide editor places the navigation and notes builders",
+        "root_column": 3,
+        "root_line": 2895,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/embed_test.dart",
+        "suiteID": 39,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 133,
+        "time": 12323,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 130,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          132
+        ],
+        "id": 133,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "opening and discarding typed tab drafts never mutates imported stops",
+        "root_column": 3,
+        "root_line": 122,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "suiteID": 130,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 134,
+        "time": 13791,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 130,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          132
+        ],
+        "id": 134,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "alignment and leader controls export native values through history and three saves",
+        "root_column": 3,
+        "root_line": 157,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "suiteID": 130,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 135,
+        "time": 14208,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 130,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          132
+        ],
+        "id": 135,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "invalid and duplicate native positions retain draft text and prevent apply",
+        "root_column": 3,
+        "root_line": 220,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "suiteID": 130,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 136,
+        "time": 14364,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 130,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          132
+        ],
+        "id": 136,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "removing invalid or final rows yields valid immutable drafts",
+        "root_column": 3,
+        "root_line": 266,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "suiteID": 130,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 137,
+        "time": 14561,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 130,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          132
+        ],
+        "id": 137,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "disabled controls and a controller made read-only cannot change tabs",
+        "root_column": 3,
+        "root_line": 287,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "suiteID": 130,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 138,
+        "time": 14703,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 130,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          132
+        ],
+        "id": 138,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "invalid tab drafts do not commit or discard an unrelated pending note",
+        "root_column": 3,
+        "root_line": 337,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "suiteID": 130,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 139,
+        "time": 14821,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 130,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          132
+        ],
+        "id": 139,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "translated controls fit narrow RTL layouts with enlarged text",
+        "root_column": 3,
+        "root_line": 375,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "suiteID": 130,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 143,
+        "time": 15700,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 143,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "icon sets visibly paint without mutating values or rules",
+        "root_column": 3,
+        "root_line": 109,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 144,
+        "time": 15722,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 144,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "data bars visibly paint without changing cell values",
+        "root_column": 3,
+        "root_line": 141,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 145,
+        "time": 15748,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 145,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "grid paints priority and independent property cascade",
+        "root_column": 3,
+        "root_line": 178,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 146,
+        "time": 15767,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 146,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "font-only rule retains ordinary cell fill",
+        "root_column": 3,
+        "root_line": 199,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 147,
+        "time": 15784,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 147,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "unstyled stopping rule keeps ordinary fill and font",
+        "root_column": 3,
+        "root_line": 210,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 148,
+        "time": 15802,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 148,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "cross-sheet expression colors absent cells without creating them",
+        "root_column": 3,
+        "root_line": 226,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 149,
+        "time": 15820,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 149,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "grid refresh observes later referenced cell edits",
+        "root_column": 3,
+        "root_line": 245,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 150,
+        "time": 15835,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 150,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "merged frozen cells use their anchor conditional style",
+        "root_column": 3,
+        "root_line": 261,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 151,
+        "time": 15885,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 140,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          142
+        ],
+        "id": 151,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "editor supplies workbook scope to the rendered sheet",
+        "root_column": 3,
+        "root_line": 278,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+        "suiteID": 140,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 157,
+        "time": 16627,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 152,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          154,
+          156
+        ],
+        "id": 157,
+        "line": 200,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selection band geometry a line with mixed font sizes gets one even band",
+        "suiteID": 152,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 158,
+        "time": 16630,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 152,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          154,
+          156
+        ],
+        "id": 158,
+        "line": 215,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selection band geometry multi-line selection is seamless, stops at the text and adds a paragraph-mark block",
+        "suiteID": 152,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 159,
+        "time": 16633,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 152,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          154,
+          156
+        ],
+        "id": 159,
+        "line": 254,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selection band geometry a selection ending at the paragraph end leaves the mark out",
+        "suiteID": 152,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 160,
+        "time": 16635,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 152,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          154,
+          156
+        ],
+        "id": 160,
+        "line": 261,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selection band geometry paragraph spacing before and after is not highlighted",
+        "suiteID": 152,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 161,
+        "time": 16638,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 152,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          154,
+          156
+        ],
+        "id": 161,
+        "line": 273,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selection band geometry right-to-left paragraphs show the mark on the left",
+        "suiteID": 152,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 162,
+        "time": 16640,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 152,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          154,
+          156
+        ],
+        "id": 162,
+        "line": 288,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selection band geometry an empty paragraph shows only its mark block",
+        "suiteID": 152,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 164,
+        "time": 16644,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 152,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          154,
+          163
+        ],
+        "id": 164,
+        "line": 316,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selection colour defaults to Word's colour per platform and stays configurable",
+        "suiteID": 152,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 165,
+        "time": 17081,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 152,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          154
+        ],
+        "id": 165,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "whole cells are filled; a selection inside one cell is not",
+        "root_column": 3,
+        "root_line": 347,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "suiteID": 152,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 166,
+        "time": 17147,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 152,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          154
+        ],
+        "id": 166,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word-like selection golden (variant: TargetPlatform.macOS)",
+        "root_column": 3,
+        "root_line": 370,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "suiteID": 152,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 167,
+        "time": 17191,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 152,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          154
+        ],
+        "id": 167,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word-like selection golden (Windows grey) (variant: TargetPlatform.windows)",
+        "root_column": 3,
+        "root_line": 380,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "suiteID": 152,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 173,
+        "time": 18204,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 7,
+        "groupIDs": [
+          171
+        ],
+        "id": 173,
+        "line": 117,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "standard header reveals, edits and undoes its exact source",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 174,
+        "time": 18235,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 7,
+        "groupIDs": [
+          171
+        ],
+        "id": 174,
+        "line": 117,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "firstPage header reveals, edits and undoes its exact source",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 175,
+        "time": 18262,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 7,
+        "groupIDs": [
+          171
+        ],
+        "id": 175,
+        "line": 117,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "evenPage header reveals, edits and undoes its exact source",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 176,
+        "time": 18296,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 7,
+        "groupIDs": [
+          171
+        ],
+        "id": 176,
+        "line": 117,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "standard footer reveals, edits and undoes its exact source",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 177,
+        "time": 18324,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 7,
+        "groupIDs": [
+          171
+        ],
+        "id": 177,
+        "line": 117,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "firstPage footer reveals, edits and undoes its exact source",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 178,
+        "time": 18347,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 7,
+        "groupIDs": [
+          171
+        ],
+        "id": 178,
+        "line": 117,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "evenPage footer reveals, edits and undoes its exact source",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 179,
+        "time": 18380,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          171
+        ],
+        "id": 179,
+        "line": 171,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "firstPage typing and language controls stay in that story",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 180,
+        "time": 18407,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          171
+        ],
+        "id": 180,
+        "line": 171,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "evenPage typing and language controls stay in that story",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 181,
+        "time": 18417,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          171
+        ],
+        "id": 181,
+        "line": 218,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "first-page selection takes precedence in a later even-numbered section",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 182,
+        "time": 18432,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          171
+        ],
+        "id": 182,
+        "line": 239,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "hidden variants do not change page settings or redirect to the default story",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 183,
+        "time": 18451,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          171
+        ],
+        "id": 183,
+        "line": 272,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "select-only variant navigation preserves source",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 184,
+        "time": 18465,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          171
+        ],
+        "id": 184,
+        "line": 272,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "protected variant navigation preserves source",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 185,
+        "time": 18468,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          171
+        ],
+        "id": 185,
+        "line": 300,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "inspecting an empty header in select-only mode creates no paragraph",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 186,
+        "time": 18478,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          171
+        ],
+        "id": 186,
+        "line": 314,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "a captured language action expires after switching variants at the same offsets",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 187,
+        "time": 18672,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          171
+        ],
+        "id": 187,
+        "line": 346,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "tracked changes reveal the exact alternate story and survive DOCX save",
+        "suiteID": 169,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 188,
+        "time": 19373,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          171
+        ],
+        "id": 188,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "pointer switches first/even stories and keyboard hit uses actual text geometry",
+        "root_column": 3,
+        "root_line": 377,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "suiteID": 169,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 189,
+        "time": 19628,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          171
+        ],
+        "id": 189,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selecting header paragraphs leaves body table cells unselected",
+        "root_column": 5,
+        "root_line": 456,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "suiteID": 169,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 190,
+        "time": 19753,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          171
+        ],
+        "id": 190,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selecting footer paragraphs leaves body table cells unselected",
+        "root_column": 5,
+        "root_line": 456,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "suiteID": 169,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 191,
+        "time": 19846,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 169,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          171
+        ],
+        "id": 191,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "alternate header selection remains visible below its text",
+        "root_column": 3,
+        "root_line": 572,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "suiteID": 169,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 196,
+        "time": 20522,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 196,
+        "line": 10,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "command pipeline undo/redo insert and delete",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 197,
+        "time": 20529,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 197,
+        "line": 62,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "paint run rebuilds logical Arabic for HarfBuzz",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 198,
+        "time": 20534,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 198,
+        "line": 106,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "script runs stay in their own paint group and sit off the baseline",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 199,
+        "time": 20540,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 199,
+        "line": 154,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "caret selects a word and a paragraph",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 200,
+        "time": 20554,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 200,
+        "line": 178,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "flagged caret points with the writing direction",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 201,
+        "time": 20617,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 201,
+        "line": 265,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "justified caret and selection share the same word X",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 202,
+        "time": 20623,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 202,
+        "line": 326,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "justified hitTest and range rects stay on word edges",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 203,
+        "time": 20629,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 203,
+        "line": 377,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "caret X snaps to TextPainter glyph edges after fitLine",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 204,
+        "time": 20633,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 204,
+        "line": 432,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "caret stays on an RTL line whose visual order is reversed",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 205,
+        "time": 20636,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 205,
+        "line": 473,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "caret covers a contiguous range of table paragraphs",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 206,
+        "time": 20640,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 206,
+        "line": 498,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "selection matrix and table resizer",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 207,
+        "time": 20889,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 207,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word canvas and sheet grid mount as RenderBoxes",
+        "root_column": 3,
+        "root_line": 525,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 208,
+        "time": 20932,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 208,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "header edit paints a usable header band",
+        "root_column": 3,
+        "root_line": 561,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 209,
+        "time": 20977,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 209,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word canvas pans from a trackpad swipe",
+        "root_column": 3,
+        "root_line": 600,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 210,
+        "time": 21022,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 210,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word canvas cursor follows handles, objects, and text",
+        "root_column": 3,
+        "root_line": 643,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 211,
+        "time": 21136,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 211,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "word canvas click hits the second table cell",
+        "root_column": 3,
+        "root_line": 706,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 212,
+        "time": 21140,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 212,
+        "line": 738,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "caret coversIndex includes the selected range",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 213,
+        "time": 21152,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 213,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "right click inside a text selection keeps the range",
+        "root_column": 3,
+        "root_line": 750,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 214,
+        "time": 21162,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 214,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "right click outside a text selection keeps the range",
+        "root_column": 3,
+        "root_line": 789,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 215,
+        "time": 21176,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 215,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "right click keeps a multi-cell table selection",
+        "root_column": 3,
+        "root_line": 817,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 216,
+        "time": 21265,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 216,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet drag extends a contiguous cell range",
+        "root_column": 3,
+        "root_line": 875,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 217,
+        "time": 21345,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 217,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "header drag keeps whole columns and whole rows",
+        "root_column": 3,
+        "root_line": 907,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 218,
+        "time": 21363,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 218,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "rtl sheet places column A on the right",
+        "root_column": 3,
+        "root_line": 945,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 219,
+        "time": 21376,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 219,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "sheet scroll and hit-test reach past the used-range window",
+        "root_column": 3,
+        "root_line": 972,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 220,
+        "time": 21403,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 220,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "frozen row stays put after vertical scroll",
+        "root_column": 3,
+        "root_line": 1000,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 221,
+        "time": 21423,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 221,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "frozen column stays put and hides scrolled columns under it",
+        "root_column": 3,
+        "root_line": 1032,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 222,
+        "time": 21461,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 222,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "dragging a column header edge resizes the column",
+        "root_column": 3,
+        "root_line": 1071,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 223,
+        "time": 21500,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 223,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "dragging a row header edge resizes the row",
+        "root_column": 3,
+        "root_line": 1099,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 224,
+        "time": 21504,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 224,
+        "line": 1127,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "viewport clamp stops endless scrolling",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 225,
+        "time": 21507,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 225,
+        "line": 1141,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "slide snap guidelines and transform handles",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 226,
+        "time": 21522,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 226,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Slide stage mounts as a RenderBox",
+        "root_column": 3,
+        "root_line": 1160,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 227,
+        "time": 21533,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 227,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "leaving slide text edit does not rotate the shape",
+        "root_column": 3,
+        "root_line": 1181,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 228,
+        "time": 21538,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 228,
+        "line": 1226,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "styled runs do not overlap after paint fit",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 229,
+        "time": 21545,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 229,
+        "line": 1266,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "paint fit keeps justified wrapped lines flush to the column",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 230,
+        "time": 21549,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 230,
+        "line": 1305,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "paint fit places glyphs next to each other without justify gaps",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 231,
+        "time": 21567,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 231,
+        "line": 1337,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "embedded host unpacks a nested workbook",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 232,
+        "time": 21593,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 232,
+        "line": 1346,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word controller inserts and edits an equation",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 233,
+        "time": 21718,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 233,
+        "line": 1376,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word equation cells navigate and stay editable after reopen",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 234,
+        "time": 21726,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 234,
+        "line": 1404,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "equation arrows move by character and cross cells at the edges",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 235,
+        "time": 21741,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 235,
+        "line": 1424,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "equation backspace deletes letters then the empty tool",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 236,
+        "time": 21747,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 236,
+        "line": 1444,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "clicking an equation cell routes IME into that cell",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 237,
+        "time": 21760,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 237,
+        "line": 1455,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word text frame can be selected, moved, and resized",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 238,
+        "time": 21764,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 238,
+        "line": 1477,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word text frame edit mode keeps the box and hides transform",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 239,
+        "time": 21777,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 239,
+        "line": 1490,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word picture handles resize, move, and crop on the canvas",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 240,
+        "time": 21820,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 240,
+        "line": 1534,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word comments can be inserted, edited, and deleted",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 241,
+        "time": 21831,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 241,
+        "line": 1608,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ribbon formatting bolds only the selected comment range",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 242,
+        "time": 21879,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 242,
+        "line": 1656,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "rejected native TOC refresh preserves heading aliases, selection and history",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 243,
+        "time": 21913,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 5,
+        "groupIDs": [
+          195
+        ],
+        "id": 243,
+        "line": 174,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "Word headings feed a live table of contents",
+        "root_column": 3,
+        "root_line": 1749,
+        "root_url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "suiteID": 193,
+        "url": "package:flutter_test/src/widget_tester.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 244,
+        "time": 21918,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 244,
+        "line": 1826,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ruler first-line drag sets firstLine and hanging stays exclusive",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 245,
+        "time": 21921,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 245,
+        "line": 1852,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ruler hanging drag keeps the first-line page position",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 246,
+        "time": 21923,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 246,
+        "line": 1869,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ruler left-indent square moves both markers together",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 247,
+        "time": 21925,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 247,
+        "line": 1884,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ruler tab alignment cycles left-center-right-decimal",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 248,
+        "time": 21927,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 248,
+        "line": 1895,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ruler zero sits at the content origin",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 249,
+        "time": 21930,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 249,
+        "line": 1927,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ruler drag guide follows the active marker",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 250,
+        "time": 21934,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 250,
+        "line": 1973,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ruler paragraph box follows page, cell, column, and frame",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 251,
+        "time": 21954,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 251,
+        "line": 2056,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ruler selected frame follows native insets and the laid-out width",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    },
+    {
+      "result": {
+        "hidden": false,
+        "result": "success",
+        "skipped": false,
+        "testID": 252,
+        "time": 21957,
+        "type": "testDone"
+      },
+      "suite": {
+        "id": 193,
+        "path": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart",
+        "platform": "vm"
+      },
+      "test": {
+        "column": 3,
+        "groupIDs": [
+          195
+        ],
+        "id": 252,
+        "line": 2110,
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "name": "ruler focus line follows the active page caret",
+        "suiteID": 193,
+        "url": "file:///workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/test/editor_test.dart"
+      }
+    }
+  ],
+  "visible_test_count": 213
+}

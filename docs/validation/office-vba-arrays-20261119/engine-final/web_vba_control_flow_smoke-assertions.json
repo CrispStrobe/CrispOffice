@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "required_true_fields": [
+    "orderedCasesAndEagerRangeBounds",
+    "sharedLoopWorkBudget",
+    "staticInactiveChecks",
+    "validationPreservedBytes",
+    "lateFailurePreservedBytes",
+    "mcpCompileAndRun"
+  ],
+  "reported": [
+    {
+      "language": "vba-excel",
+      "revision": 2,
+      "steps": 9,
+      "formulaTotal": 100,
+      "coldDepthStress": "32 procedure frames / 32 mixed blocks / 63 unary operators",
+      "orderedCasesAndEagerRangeBounds": true,
+      "sharedLoopWorkBudget": true,
+      "staticInactiveChecks": true,
+      "validationPreservedBytes": true,
+      "lateFailurePreservedBytes": true,
+      "mcpCompileAndRun": true
+    }
+  ]
+}

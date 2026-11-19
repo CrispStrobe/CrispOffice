@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/652d74384990/validation-workspace/.dart_tool/package_config.json",
+    "/workspace/scratch/652d74384990/runtime/array-parser-committed-before/probe.dart"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/quds_office_suite",
+  "exit_code": 0,
+  "bindings": {
+    "baseline": {
+      "revision": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "git_blob": "9ac62dc478dbd3d1e0d9cdc566239e08ce213cb7",
+      "original_sha256": "63455d9f4b097b8e348bbaafabf62ff924210527736f87813a958282c547aed9",
+      "loaded_sha256": "ade9522b31721cd991299b24172f75ed22b9808d8d1d921b0a7f037db7769717",
+      "rewrite": "Only the three relative imports are rewritten to package URIs so both compilers share dependency type identities."
+    },
+    "candidate": {
+      "revision": "ac9de9e000274718145659da0abc7c8cadb9e8c3",
+      "git_blob": "20d071fd314ac7167e53c2ac1c37765c9681f053",
+      "original_sha256": "04233b63db9b18b892b4b665334e950d15481282b4641c7b6946d685a5dadbee",
+      "loaded_sha256": "631831acc0eae4a431043d270a1a7cdd5cee51336e46c2e8c9f3aa1a9aed78e7",
+      "rewrite": "Only the three relative imports are rewritten to package URIs so both compilers share dependency type identities."
+    }
+  },
+  "probe_sha256": "12560c34af78aad7640f3300dd4afda3279f68cd2aa6a2f149dfa3c93f2428c0",
+  "stdout_sha256": "4c27ee9135050063b33fd7200a0067997673f6b5d6e00ee00711ca709dba54d4",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
