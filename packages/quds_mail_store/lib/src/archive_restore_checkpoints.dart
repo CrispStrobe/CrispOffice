@@ -293,6 +293,8 @@ extension MailArchiveRestoreCheckpoints on SqliteMailArchive {
 
   /// Retain an original, its index, every manifest origin and its completion
   /// receipt in one transaction. Any cancellation/failure rolls all four back.
+  /// The write retains [MailArchiveOperation.archive] diagnostics so existing
+  /// completion observers still see confirmed archival work.
   Future<MailResult<MailArchiveImportResult>> archiveRestoreMessage(
     MailMessage message, {
     required MailArchiveRestorePlan plan,
@@ -300,7 +302,7 @@ extension MailArchiveRestoreCheckpoints on SqliteMailArchive {
     bool indexAttachmentText = false,
     bool indexWarning = false,
     MailCancellationToken? cancellation,
-  }) => _run(MailArchiveOperation.archiveRestoreMessage, (trace) async {
+  }) => _run(MailArchiveOperation.archive, (trace) async {
     cancellation?.throwIfCancelled();
     final item = _restoreItem(plan, ordinal);
     final identity = _restoreIdentity(plan);

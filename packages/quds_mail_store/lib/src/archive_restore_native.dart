@@ -110,11 +110,13 @@ final class NativeMailArchiveRestorer {
         await _unchanged(manifest.file, manifest.stat, cancellation);
         final item = plan.items[index];
         MailParseResult parsed;
+        var checkingDestinationReceipt = false;
         try {
           if (item.byteLength > archive.limits.maxMessageBytes) {
             _fail(MailProblemCode.quotaExceeded);
           }
           if (resume) {
+            checkingDestinationReceipt = true;
             final restored = await archive.loadRestoreReceipt(
               selection,
               index + 1,
@@ -123,6 +125,7 @@ final class NativeMailArchiveRestorer {
             if (restored case MailFailure(:final problem)) {
               _fail(problem.code);
             }
+            checkingDestinationReceipt = false;
             final receipt =
                 (restored as MailSuccess<MailArchiveRestoreReceipt?>).value;
             if (receipt != null) {
@@ -177,8 +180,11 @@ final class NativeMailArchiveRestorer {
           if (_cancelled(problem.code)) rethrow;
           run.fail(index + 1, problem);
           run.emit(MailArchiveRestorePhase.message);
+          // Destination corruption stops resumption. A source/codec failure
+          // remains per-item even when sanitized to storageFailure.
           if (problem.code == MailProblemCode.quotaExceeded ||
-              problem.code == MailProblemCode.storageFailure ||
+              (checkingDestinationReceipt &&
+                  problem.code == MailProblemCode.storageFailure) ||
               problem.code == MailProblemCode.permissionDenied) {
             rethrow;
           }
