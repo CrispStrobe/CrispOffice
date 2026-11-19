@@ -131,7 +131,7 @@ executions / 562 distinct cases / 47 distinct suites**. The focused gate passed
 433 cases across 35 suites: 86 native transport, 26 TLS/ownership, three Node
 boundary, 256 shared IMAP/POP/SMTP/byte-reader, 32 MIME and 30 Mail UI cases.
 The fresh full core/store gate passed 199 executions representing 129 distinct
-cases, including 70 VM/Node repeats. Strict analysis/formatting of 26 changed
+cases, including 70 VM/Node repeats. Strict analysis/formatting of 26 selected
 Dart paths, 42 launcher controls, offline dependency resolution and browser
 entry/worker compilation passed.
 
