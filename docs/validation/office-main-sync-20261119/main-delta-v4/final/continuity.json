@@ -1,0 +1,3285 @@
+{
+  "passed": true,
+  "issues": [],
+  "audited_at_utc": "2026-11-19T09:51:53.749073+00:00",
+  "method": "Exact immutable Git identities, preserved runtime/workspace inputs and source scopes; no test result is reassigned to another source.",
+  "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+  "source_tree": "c29e6bae74ed0c1d0375fa230bf54762658c69cb",
+  "prior_qualified_source": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "incoming_main_source": "9160eb0dba211225c85242114989631c0d14fb72",
+  "prior_application_case_executions": 1372,
+  "prior_separate_python_controls": 90,
+  "prior_cases_added_to_current_delta": 0,
+  "prior_controls_added_to_current_delta": 0,
+  "prior_independent_summary_sha256": "338f588f5c3ae08ff8fb84c3663911f3cda07f820573fc30f384323da192efea",
+  "prior_runtime_receipt_sha256": "94b3e458524c84d6f4f9bbdbec107a9d55ba3e6e38f54b76529d6c11aacd229f",
+  "prior_bound_inputs": 5051,
+  "changed_prior_bound_inputs": [
+    {
+      "path": "docs/PROOFING.md",
+      "before_sha256": "63e3491ee6ecb763d53be38ebe7f6d574ce084c61187339937423205c176bc51",
+      "after_sha256": "a75e980ce25e44e554a5ce83ec2a2ff63af5d195206c5948a9b352bd540e6d05"
+    },
+    {
+      "path": "docs/roadmaps/arabic-proofing.md",
+      "before_sha256": "96d1519215711155beb9eee110dad3b02adaaa1aa81c40680e7b6d8b9dbdfa63",
+      "after_sha256": "a1ccf13757c913aaa709fed2c8825f63d14c17c8f121b92ddf7e812a509f81c0"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/run_validation.py",
+      "before_sha256": "1e1521e8f3baef61e7a7cf0517dad250ee6ac3086c0f999cec7cbe26ea214845",
+      "after_sha256": "bea9cbf8e46372f8ace913e402e506a3c3499dd05264ba7a85ccdf06e8d5ad3e"
+    },
+    {
+      "path": "packages/quds_mail_store/README.md",
+      "before_sha256": "dc4c154ee202565070f7c5e53ab7de22962f5083024d9584df2533249cfe14ed",
+      "after_sha256": "d56bb5e1e02816340bd846afeace8862f8881f920a2424d5354100f55d5af5e2"
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/configuration.dart",
+      "before_sha256": "39cacc1fe0ea4977940a9293db5954fe908610a3b1784a80e7c075f657a99260",
+      "after_sha256": "1eac0dd491ac016389f6af8b63c34b7cc34ce652213f67b5b2d8131342230f33"
+    },
+    {
+      "path": "packages/quds_office_editor/example/.gitignore",
+      "before_sha256": "4a8d984279954e0461e0ffef9b9e7455340a0a762f227c01065a53482a83a4f1",
+      "after_sha256": "da4d508666c0b28e564c9ceb347c3ddd981f5b7324e220eccf65cb56423de724"
+    },
+    {
+      "path": "packages/quds_office_editor/example/README.md",
+      "before_sha256": "e0d0e329e25ed1156b387d22d84b7c5552c374ab54068b8a9a8ea0ba99b590fd",
+      "after_sha256": "861d9cecc6b798204370e2a46b2c5b00cbc2523e456847a4f42629db95dc6481"
+    },
+    {
+      "path": "packages/quds_office_editor/example/analysis_options.yaml",
+      "before_sha256": "9023ab263bcddd4110f941c6872163e7db9d8ad8201d6db5eaf335bf34474eca",
+      "after_sha256": "3d51a36f8ac9d0013560735c6e0d33979da1305826549734866f76520d99ebe4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "before_sha256": "6a7c8f0d703e3682108f9662f813302236240d3f8f638bb391e32bfb96055fef",
+      "after_sha256": "d0766dd02b7673024e063d7734dc333e0ba4ccb6fee839db940021fc4a0cc89f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "before_sha256": "c7c0c0189145e4e32a401c61c9bdc615754b0264e7afae24e834bb81049eaf81",
+      "after_sha256": "fe751a7f373febcbe8b0a90a18d79f38f29a4961226e6d834b080eec93052fe4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "before_sha256": "e14aa40904929bf313fded22cf7e7ffcbf1d1aac4263b5ef1be8bfce650397aa",
+      "after_sha256": "b08784d2e9c5b13a3ee74ca7c870edff2f5f5e8048ee377c34891fd75197f2da"
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "before_sha256": "4d470bf22d5c17d84edc5f82516d1ba8a1c09559cd761cefb792f86d9f52b540",
+      "after_sha256": "4d1c233f36b7037a7abf846aa16ec7eb2c7b1cd615ad03c9842323359ccda640"
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "before_sha256": "3c34e1f298d0c9ea3455d46db6b7759c8211a49e9ec6e44b635fc5c87dfb4180",
+      "after_sha256": "4b7328d42934986349d97ba3a30e42149fb1092673721c830bbc5b44dbfc94ee"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/main.dart",
+      "before_sha256": "d641642762e72e9df4809689a5e4a32aad9d3cfd4f2af16a66edc063b7666a1e",
+      "after_sha256": "61d0fd39e8a61d6a5d3c960fdda7f43a21538465a71cb3c349ebae938687b33d"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/sample_library.dart",
+      "before_sha256": "98816d80373fb47bbdd934cd1fd4e771a5c0069daa0d2c6c93e5f51a352b7174",
+      "after_sha256": "cdf77aadf83e442bdb21e4ccce2df981b302ef260e5ac6175b0aa3c1a4a74f84"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_chrome.dart",
+      "before_sha256": "eb8fa1fa1ff1f87f819eb062acc8b262a87f3e4c6cee1d982488b58241dbc217",
+      "after_sha256": "9521fe2220e1fd4da72b5e68e0fc64ae4317e5eb0d595be0a06968b62c0ef920"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_face_samples.dart",
+      "before_sha256": "a5f8de4a584532b729e02c8f379f116af796d83900b626e2d9b0a57cee867d30",
+      "after_sha256": "0ac43e4d804a675747b0a5a300ad3eeeab35c5927af6b6aa8968b059d2030d2b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_gallery.dart",
+      "before_sha256": "dcab30e8d4b1da3a02e236571c3f653293819cb111e00e0bd25d4456133d7274",
+      "after_sha256": "357b390f1fdf937b475158339171a7ff4a6b1c4e1a2d9bf972eb1d49d26f5be8"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_rich_samples.dart",
+      "before_sha256": "4ef7d7ce33135af22b4a4bd1c2b0d369bcdd25dcb1346e048c42a9a7bb8ea85a",
+      "after_sha256": "3d8e44ae2ce02b3cd1022a20df96afa82c0b4a6022c2d6cf8357837ceb2263ab"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_showcase.dart",
+      "before_sha256": "f071658a30a4be8798dcdba8cebc8927d468667075b708c50db5c1f3a49c4be5",
+      "after_sha256": "65445ed58ff34bc96e99b46b2374969a0aa7d0a01b5d189891a9daa267afbcbd"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_sample_pdf.dart",
+      "before_sha256": "4ae647a1d1c7a2bf61e882649086380eb6f75ac8e2c66e825fbc3c25ccb5d136",
+      "after_sha256": "37800eafae0f933a381126326a83dc81a46b6bc68f1d30208213cb9cb5f0ade0"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_window.dart",
+      "before_sha256": "a8df0a3715e771dba3fd6fab14804f1c569e3db9cd6aeb1a2b9153a7f5369dba",
+      "after_sha256": "62569071ebe27f51b55fc87f04eaa797fc01c10c40f17d9f5df38a0ae9455337"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "before_sha256": "f0bccf4edadc96a5f738beddc044e9f9aabc0cecf7c0e3e7064c64351758ceba",
+      "after_sha256": "c58d6964daf91dd60c124c71cf4939e1b4a77c0ecc7c2a9cc6463dd3805a127e"
+    },
+    {
+      "path": "packages/quds_office_editor/example/pubspec.yaml",
+      "before_sha256": "ccd93525f92813df224a3691d45f30d1c99482a1168844568841721487f0945f",
+      "after_sha256": "90157d4fe8016cdff5da96540cf3175d894e528a05772748df3373cee79dc36b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart",
+      "before_sha256": "2c226e3526a1da06654caccfedf2500b892d7e95623274dd8b8199c2c13e0c9a",
+      "after_sha256": "4ed421efed8158d674652e68f961ce3af42d255cb59ad946996d87ced53cc38f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
+      "before_sha256": "5a6c8bc51df0b029c42028e868a14517bee4dce5dba808c2d5b6aa07101505d5",
+      "after_sha256": "430da58ecca85aa566ff5b988d9ff86578bb6a5f4e17d9c362563058b3279275"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/pdf_showcase_test.dart",
+      "before_sha256": "5a06db0162ff489999187b0317e9484162f8b0b0c6c06b7720da211c96f7ca45",
+      "after_sha256": "e722d725c3b2d1412e1625e43e6c230faa109eb2b76963f4038c1dc9b59f5573"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "before_sha256": "ab67b95eca6ea7ed597df8b5df241dc2ed46f89808e6b8d4b1ae753ee732dac5",
+      "after_sha256": "5144a9586cdc94ef0e0d301eb0000cc5447e770f29be12d67951e01fbf244816"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+      "before_sha256": "6602840c2be7d7135f745cc75b23a1b2c47ca31b02b934c9d01c6c6231fe1806",
+      "after_sha256": "771fbd65f26cfe08eaa4817ba83627c62ed2bf1b3f67cf2ca7809421c7229557"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+      "before_sha256": "7974c9cc6c62f273bfdf635d85ecd715800de8dbf0762458ed0919fcd1138588",
+      "after_sha256": "5a11b5d7c84e5fb2d623fc7fc21fd386682d716e91b4c66a01305ad865d2c39c"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+      "before_sha256": "5536eb45dda41bfffdee16395165f2e29ea1878a900c7fca1a9f489277827156",
+      "after_sha256": "a16c1d95398778d296da0d0ea00ac751b2ee6fadbc52bcec7f6e9a8ac5506be4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+      "before_sha256": "0db14563c309aedb65250dd87cf7d07478827c42119e4462c06a4c47f5dfe8fa",
+      "after_sha256": "94dfa2b82f8177cd81d22a3fd83246a3fe7d703b6738a11df64be457682247cd"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+      "before_sha256": "91e8098243192ee4595ff285de5fdae80438f51934e0a91e52aed9bf3f120bc7",
+      "after_sha256": "0d7aacb898cc813dd1d6ea61d81ae1f0cfc726593e5a2b94211b6a6ee14de0c3"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shots_test.dart",
+      "before_sha256": "05637e5d6396285f98d19e67637a964b74fe41a70a28831baeca0764833dfb52",
+      "after_sha256": "66d182f653e18b540d9655f5592b5f84e9108b1352fcc58f6e404fc835d7b617"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "before_sha256": "27916e7a920fa463e0f06c4fdfcf5903fbfb70bf503db3b83775792b5b2a1e1c",
+      "after_sha256": "e1946d9a65acf6fa821713f9e84d9ce62de13d0fd1d840f416f13eed6ab01011"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/widget_test.dart",
+      "before_sha256": "37b8f1f8373932e3242324191d1ad77ac168452199fb75c5b7345fbf8ec7cb72",
+      "after_sha256": "8c3cf07eac8861fc7790b56a1612414117a9e57114f875c23a01f943fbefc8db"
+    },
+    {
+      "path": "packages/quds_office_editor/example/web/icons/Icon-192.png",
+      "before_sha256": "3dce99077602f70421c1c6b2a240bc9b83d64d86681d45f2154143310c980be3",
+      "after_sha256": "4b98d43f987a95531aee266cacb05c9907e13a14d89ee566aa6ca278b7814be0"
+    },
+    {
+      "path": "packages/quds_office_editor/example/web/icons/Icon-512.png",
+      "before_sha256": "baccb205ae45f0b421be1657259b4943ac40c95094ab877f3bcbe12cd544dcbe",
+      "after_sha256": "b089975d1bd4c708f65dbd9ab2bf71e59c8392bd8712421e6d2c18dc1ef0d10b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/web/icons/Icon-maskable-192.png",
+      "before_sha256": "d2c842e22a9f4ec9d996b23373a905c88d9a203b220c5c151885ad621f974b5c",
+      "after_sha256": "4b7328d42934986349d97ba3a30e42149fb1092673721c830bbc5b44dbfc94ee"
+    },
+    {
+      "path": "packages/quds_office_editor/example/web/icons/Icon-maskable-512.png",
+      "before_sha256": "6aee06cdcab6b2aef74b1734c4778f4421d2da100b0ff9e52b21b55240202929",
+      "after_sha256": "b089975d1bd4c708f65dbd9ab2bf71e59c8392bd8712421e6d2c18dc1ef0d10b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/windows/runner/resources/app_icon.ico",
+      "before_sha256": "c098d3fc85cacff98b8e69811b48e9f0d852fcee278132d794411d978869cbf8",
+      "after_sha256": "9f339fa6eee32322bcae69ef10f06bb4dd518fc94bfaa3862da8554f17786b7e"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "before_sha256": "8849c0545deb504e73f521f5b0f432e2abd1d0a394b3c21e23383cf98a7d4182",
+      "after_sha256": "66174b191872e13f581a4b5cf51ec41279a299eefd9a12f385f87222dc706615"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "before_sha256": "2f21dcc1d5a92a884085bcac669ae0e58f04d1528c6d5ef6de35ec10d5452a76",
+      "after_sha256": "992198c120f82ac0a1cc661f75d967d17f0a60564ee26811fb7e4208457c91e1"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+      "before_sha256": "493531667e27c5e9e0ff9f3daf639b3439b15682fd5ed4fea6eac2fb9c68fc89",
+      "after_sha256": "553d62f72f855229156705b4bf44692df5861a8456d36cdc549f41d8d55bc8a6"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/quds_office_engine.dart",
+      "before_sha256": "c51a5d9b80226f698f6e30d9adc28c480dfc7a8754eb33d45d138569246a0947",
+      "after_sha256": "eb36528fa3aa0449a5115e69ff81789f80d87cc711682607ac9c4e0f5c767b8d"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+      "before_sha256": "7eda42aa47f310a5a96ec306cca09bf8032b7957b1e345ac462ee67ea43702bb",
+      "after_sha256": "66bdcbe946c17508786981a644e4cf1f138696cd55fa7c00e54f3d1631f3b0ca"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+      "before_sha256": "5a2711e5102948b88524aa6933c447791bf0839e83429c7e861d7a51cd23518e",
+      "after_sha256": "60a0044f72b2e831f1c20365c2ad0ec8fe468d7a83e11d75f1ecc3de4482243a"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+      "before_sha256": "941f81781871aacea236eb87cbb0767a9e6307a5cdd974916924a206a32d3f79",
+      "after_sha256": "b6a5f98713189e333bf6460d37d2772041c54c52de8d589437f16fa5afbebbde"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+      "before_sha256": "e9dc3be5aef6069b6a04e4b4dedb2d64a522be9dbf5b50bf4283dbba2ac93879",
+      "after_sha256": "994f41390ce0df501f50e3052e1642167b02593db70dd0e932f2b080f7981258"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+      "before_sha256": "bc9581a4e0be7063a8b19e18ee8defb17e212b5efb055472eb72d36d108a03b5",
+      "after_sha256": "bf4c47772b1e08186c21c92351e865a53b66fe67586825bb9f65789375ef9c96"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "before_sha256": "f981a70babb25997859ffa16d2c093409805e293fd33b38196ba2e733712f31f",
+      "after_sha256": "2e76ffd619dde83fbabb567d81a26a735f4836d6bfc157d12fdebf6c28384016"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "before_sha256": "fad0cbe9069626e75f4895118227aef3ade9c54219f4893121f721be7695c28a",
+      "after_sha256": "6ae2f09ab03508b55016edd2cda6fb2d1df757eb78f3e2dc4efaa1011a7b7e42"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "before_sha256": "525e67d8243473db7fa4a79c3131ec2c05f72af4635e2cacb009bfce6baece14",
+      "after_sha256": "fc6be4341183f9e7a9d27708f293ba4ab7f67d330aff25863fbbafe7408c0db8"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "before_sha256": "894d44b9a078dc23b624be55a6b942de9c30b6b8568493f44f8dea1bdacd44f8",
+      "after_sha256": "75a0072f023b9db06be37b62efe32d19e5ddb5f7b9299439bb0288f32d811ca5"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+      "before_sha256": "67911b3b2c91bbf9201492be24733d0a6861dc789d69113e6f40847fa8469a69",
+      "after_sha256": "141524cbb9923f2de5eee36e454312080db0c12d21d90ed535ae25935c0bea91"
+    },
+    {
+      "path": "pubspec.yaml",
+      "before_sha256": "e1a41dca16b70767fcdb747940b1a63de6598d6ee8d62cef3367088f48ccaa1a",
+      "after_sha256": "393a876ff298dd9f74aa33e4185e31d769392921f0334fc5014dbcadf3ad87d9"
+    },
+    {
+      "path": "tools/proofing/ayaspell/build_bundle.py",
+      "before_sha256": "998765c1c0d066c80e6fa2b10cc54718cc97a79d221fb536a97547ce5b49460a",
+      "after_sha256": "4f72fb1d2bdf9ba44362a92ae522e3e9c1ed9e7a163a8f6f04a607f9bb0f0a7a"
+    },
+    {
+      "path": "tools/proofing/ayaspell/test_build_bundle.py",
+      "before_sha256": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096",
+      "after_sha256": "d92c2e806fe9767b75bd8a8655e5df618e5eaf6b4449f70c3af1a41907b0e66d"
+    },
+    {
+      "path": "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+      "before_sha256": "568bce4e0552152d8a2c7f632bfa0809982226ef2f29954c436f76a1b884a5cc",
+      "after_sha256": "a2b63911afbb6931f5a900e41450b8eff9f8ad7c2044868625cbb7f45f3be8f8"
+    }
+  ],
+  "unchanged_existing_product_paths": 4942,
+  "existing_dart_changed_paths": [
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_office_editor/example/lib/al_tahreer_sample.dart",
+    "packages/quds_office_editor/example/lib/main.dart",
+    "packages/quds_office_editor/example/lib/sample_library.dart",
+    "packages/quds_office_editor/example/lib/studio_chrome.dart",
+    "packages/quds_office_editor/example/lib/studio_pdf_face_samples.dart",
+    "packages/quds_office_editor/example/lib/studio_pdf_gallery.dart",
+    "packages/quds_office_editor/example/lib/studio_pdf_rich_samples.dart",
+    "packages/quds_office_editor/example/lib/studio_pdf_showcase.dart",
+    "packages/quds_office_editor/example/lib/studio_sample_pdf.dart",
+    "packages/quds_office_editor/example/lib/studio_window.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart",
+    "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
+    "packages/quds_office_editor/example/test/pdf_showcase_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+    "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+    "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+    "packages/quds_office_editor/example/test/studio_shots_test.dart",
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "packages/quds_office_editor/example/test/widget_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+    "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+    "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+    "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+  ],
+  "intentionally_deleted_source_paths": [
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/cover_map.jpg",
+      "before_mode": "100644",
+      "before_blob": "63a385bb47a2bd05b2d8b152d5ce3de3d976ef8e",
+      "before_sha256": "b54ee3ad26042b783573d11a47d882dc59a9c239621cedf7672779007b03fa95",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/cover_photo.jpg",
+      "before_mode": "100644",
+      "before_blob": "f032a8e73a44fdf0eaf2c1a6311103f63c3221db",
+      "before_sha256": "3ef637bf99d90f8a16caf9444b1bc8b96ae0d62748fedf4b7868fb052ec0fa77",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_1_1_pillars.jpg",
+      "before_mode": "100644",
+      "before_blob": "38cb590c93e1d431b5d8a3e210ea3bd6050d3101",
+      "before_sha256": "227f895e958e5890be918d4404ca0aca2f7284cd0e00688a6cde2dfc4bc00184",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_10_zone_b.jpg",
+      "before_mode": "100644",
+      "before_blob": "1f3593b1449ee509cae57dea255551623603cd38",
+      "before_sha256": "ee099b7ded34d852905cf47c603fa538963ad08c13694e2d0bb50af56b76834b",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_11_zone_c.jpg",
+      "before_mode": "100644",
+      "before_blob": "588d91deaa23139eaaba5f3878101e459ceb328f",
+      "before_sha256": "a18444067f5463920e9839c9697917d967a79a64c03c6266d8a97e4146552f15",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_12_longterm.jpg",
+      "before_mode": "100644",
+      "before_blob": "9ac3341fa00f49b4e13c34ec2bc5b8e8592577b0",
+      "before_sha256": "8988b86355d8badb76e459a87c58d54ec7d8e9130fda432cab6d48ff2cb9d53a",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_1_location.jpg",
+      "before_mode": "100644",
+      "before_blob": "6d5f0de5203228a8a8cd6b6ac2ae8c1c13028894",
+      "before_sha256": "a4e38dfa53583469624bf1ef6b83bb0e13ecb65ea64bb60c70d5d2c4dcb9fcda",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_3_general.jpg",
+      "before_mode": "100644",
+      "before_blob": "11ffb1cd86ffd8f522ed1d1ea2badfd47f2c5906",
+      "before_sha256": "9fd3ef460080226b8168c21a3750143da539b5fcb0c6d07d543933187379c11e",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_4_prewar.jpg",
+      "before_mode": "100644",
+      "before_blob": "668f992ba5de4cb427d5d54e818ab5e7cf0acc48",
+      "before_sha256": "d6b50a2a283a72402e091a6b54b51c26e3c51f19a56e87261b39493b3966452f",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_5_landuse_a.jpg",
+      "before_mode": "100644",
+      "before_blob": "719faa60a02c4c1ed93f2478acfe66c1929c9566",
+      "before_sha256": "a4cf7e18b8cae3c4c9684ca3ab3b085d12b795fd096321b7df8361f935cb9424",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_5_landuse_b.jpg",
+      "before_mode": "100644",
+      "before_blob": "d2af75d2bff7100c17cf3ebb8792f7697d6e4d90",
+      "before_sha256": "3542d3135b6846caa1d42d6e90222fea1c6f5f357331f84ae0c013372ba9b4aa",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_6_a.jpg",
+      "before_mode": "100644",
+      "before_blob": "6d99afc4a84c89c6b1e37ffce48420f6a5aaa29e",
+      "before_sha256": "725f575e61fc6046181725e0aed19fd9ca6b2d650b3a87eddebe394fc3e7731a",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_6_b.jpg",
+      "before_mode": "100644",
+      "before_blob": "972f484d253806961bd7140069a318e17a88ac05",
+      "before_sha256": "22ef4e0c37e0d062f919f0a5e03b7ecd0fa79a3dbff984c5e8ac65efb77ac2f6",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_6_map.jpg",
+      "before_mode": "100644",
+      "before_blob": "981cc940c09433a014664968b809b5af1d734a60",
+      "before_sha256": "ce7701534df31cc7c43d732ee6d6f7476f6f0e8cac0ee067eece476e270f0462",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_7_post.jpg",
+      "before_mode": "100644",
+      "before_blob": "78c2c45f66fa8746ea2f99512c9eeffea96421a1",
+      "before_sha256": "6eef912442ea6c50ceeb8a651999dbc541eb84c72e56cd5e81de9a7ace9758d1",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_7_pre.jpg",
+      "before_mode": "100644",
+      "before_blob": "f0c74ef794064e0f31a969e6cc76b9821001015e",
+      "before_sha256": "2b5865fc2b976ecb55a7b799d3fad021d4b4273d69cd8fd06db899af2f1e58f9",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_8_zones.jpg",
+      "before_mode": "100644",
+      "before_blob": "1695dbbc375b93c695fe329f637cbee3c9dcde66",
+      "before_sha256": "b891fe4a92a78942b4f74514331684a659dbf76eb34c82e028c1fc5201af34e3",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_9_zone_a.jpg",
+      "before_mode": "100644",
+      "before_blob": "2e52cbb58d6a664d4c2ae4cc4414bbef42aa8fd7",
+      "before_sha256": "d25031255d25648aa27839adc49ceedc925df860f9ae37ee1b6418bb39676544",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_lt_zone_a.jpg",
+      "before_mode": "100644",
+      "before_blob": "cb86a87afcd060e67510ac5c764ae80e6f6db263",
+      "before_sha256": "6a73f57b22cc6b67dc5adf1fbc71f42ddab67f65ddf66cd014a3d61298a97eda",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_lt_zone_b.jpg",
+      "before_mode": "100644",
+      "before_blob": "d26938dbe6f9684067f2ba9fa8e1a3261e3654f2",
+      "before_sha256": "fcb4943785be2ba180f073162b20d1f18490a7fbbde529ce489fd1d69f0d486a",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_lt_zone_c.jpg",
+      "before_mode": "100644",
+      "before_blob": "9c4e6575ab1877662e786db6f03140476f3d94ce",
+      "before_sha256": "861352a0309f69f25bc8c10abd6b077ff2c5c39233fb3cab33486d9105fb6e8d",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_urban_a.jpg",
+      "before_mode": "100644",
+      "before_blob": "63eb12b247d79537449a97fbce87761107bb76e4",
+      "before_sha256": "53f8ba556d175f80e62719f9837f3650a489a55e142fe544d11807f830816331",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_urban_b.jpg",
+      "before_mode": "100644",
+      "before_blob": "095c3f4c3e3fd6084ed8ce3d2da87a1cedc4cf54",
+      "before_sha256": "359ffb2b9a8ac47e5fdf5c0a3b470f3bd1ec5df96d1061a1e3dfd03658be3de4",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_zone_a_inset.jpg",
+      "before_mode": "100644",
+      "before_blob": "2ee5dac2435e95e59292f65e08faac1b455592bd",
+      "before_sha256": "3dbe7e388b0f4d0253f5b054ae6a5b2b0234e3714c852841d9552e8c3d378d28",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_zone_b_inset.jpg",
+      "before_mode": "100644",
+      "before_blob": "eeaec00573bce56c4439412c92f053dcf8277e96",
+      "before_sha256": "c3e066b9f4a548830146c3a0df3ea56502ce449dbb0f645b3968d4f425cccc7a",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_zone_c_inset.jpg",
+      "before_mode": "100644",
+      "before_blob": "007400ea601c46132eed75255ef42a5ae267faae",
+      "before_sha256": "017e5b8247081e04cb7de408e307a8c8abd09323c07642d1e6702b0f086bc2af",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_zoning.jpg",
+      "before_mode": "100644",
+      "before_blob": "ec7be4c583ce3068e880f6d8c2e2970949fa1c43",
+      "before_sha256": "24039d372359a31b35c21ee09711b1f2fcc53e9e916531ff172f6d6984a732e3",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/logo_back.png",
+      "before_mode": "100644",
+      "before_blob": "85999d75ee37497f95daddce374ffe6085bdb3ca",
+      "before_sha256": "582f00446956c72edb649a7be3e961baeda6bd29828d005b5ae3c3743341ad4b",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/logo_credits.jpg",
+      "before_mode": "100644",
+      "before_blob": "b3141d1d99fe072b3c3bb27df5461bf00da402f8",
+      "before_sha256": "e3c57845b58005f492c3f8efd1abc6576c7431325b2903729e1fca4e57191ea6",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/logo_japan.png",
+      "before_mode": "100644",
+      "before_blob": "eee89b7be14d5e51e2f413b04f80cd59c1ac9117",
+      "before_sha256": "855f619a0330184ea4672ace5ae65727a6a453ebe48dbe713df03ac46be5ce80",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/logo_unhabitat.png",
+      "before_mode": "100644",
+      "before_blob": "09400693793786e2a78dccba63951df31c742560",
+      "before_sha256": "1861d89de25e9d5a3225b9f97122aedadc5604b613b642712d8acb19ba19d6a2",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/photo_housing.jpg",
+      "before_mode": "100644",
+      "before_blob": "65387c364b51e629d7bbd8c2dc75ef02ded12b60",
+      "before_sha256": "f3a2d40c9d50867cf8c89f84be7b23e89121b8bf8e6c835e1cca28b9be7bbb0d",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/photo_overview.jpg",
+      "before_mode": "100644",
+      "before_blob": "82e3301cdb415e86141484e2d93ded31f8fb0365",
+      "before_sha256": "de99ac0d3dd7348b671cc446b73ae3921f276bce2c980e5460fdb1b67fec159e",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/photo_profile.jpg",
+      "before_mode": "100644",
+      "before_blob": "850fb427102862ba4e414e288c6e38f57e3ce1c7",
+      "before_sha256": "aed06fb29526ef962783b41b5eb375f754a3018774f7ef7afc4f01d0479e2c53",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/photo_unrwa.jpg",
+      "before_mode": "100644",
+      "before_blob": "13ac6cc51ca3b84dc4dd6e4ca5668a8202e06b16",
+      "before_sha256": "504d898ac16c7fb4691502af8437237c5703ef4e68565191d06d17bca0855ca9",
+      "absent_from_incoming_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/al_tahreer_sample.dart",
+      "before_mode": "100644",
+      "before_blob": "eb5a67ca87f6e6d6a02049e71d59cc86c2cc5887",
+      "before_sha256": "dce869f7fbb7156217ce8adc17f0bfa2dbb5e0866ccab4347296e37a98f76fa2",
+      "absent_from_incoming_main": true
+    }
+  ],
+  "removed_prior_bound_inputs": [
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/cover_map.jpg",
+      "before_sha256": "b54ee3ad26042b783573d11a47d882dc59a9c239621cedf7672779007b03fa95"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/cover_photo.jpg",
+      "before_sha256": "3ef637bf99d90f8a16caf9444b1bc8b96ae0d62748fedf4b7868fb052ec0fa77"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_1_1_pillars.jpg",
+      "before_sha256": "227f895e958e5890be918d4404ca0aca2f7284cd0e00688a6cde2dfc4bc00184"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_10_zone_b.jpg",
+      "before_sha256": "ee099b7ded34d852905cf47c603fa538963ad08c13694e2d0bb50af56b76834b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_11_zone_c.jpg",
+      "before_sha256": "a18444067f5463920e9839c9697917d967a79a64c03c6266d8a97e4146552f15"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_12_longterm.jpg",
+      "before_sha256": "8988b86355d8badb76e459a87c58d54ec7d8e9130fda432cab6d48ff2cb9d53a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_1_location.jpg",
+      "before_sha256": "a4e38dfa53583469624bf1ef6b83bb0e13ecb65ea64bb60c70d5d2c4dcb9fcda"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_3_general.jpg",
+      "before_sha256": "9fd3ef460080226b8168c21a3750143da539b5fcb0c6d07d543933187379c11e"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_4_prewar.jpg",
+      "before_sha256": "d6b50a2a283a72402e091a6b54b51c26e3c51f19a56e87261b39493b3966452f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_5_landuse_a.jpg",
+      "before_sha256": "a4cf7e18b8cae3c4c9684ca3ab3b085d12b795fd096321b7df8361f935cb9424"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_5_landuse_b.jpg",
+      "before_sha256": "3542d3135b6846caa1d42d6e90222fea1c6f5f357331f84ae0c013372ba9b4aa"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_6_a.jpg",
+      "before_sha256": "725f575e61fc6046181725e0aed19fd9ca6b2d650b3a87eddebe394fc3e7731a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_6_b.jpg",
+      "before_sha256": "22ef4e0c37e0d062f919f0a5e03b7ecd0fa79a3dbff984c5e8ac65efb77ac2f6"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_6_map.jpg",
+      "before_sha256": "ce7701534df31cc7c43d732ee6d6f7476f6f0e8cac0ee067eece476e270f0462"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_7_post.jpg",
+      "before_sha256": "6eef912442ea6c50ceeb8a651999dbc541eb84c72e56cd5e81de9a7ace9758d1"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_7_pre.jpg",
+      "before_sha256": "2b5865fc2b976ecb55a7b799d3fad021d4b4273d69cd8fd06db899af2f1e58f9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_8_zones.jpg",
+      "before_sha256": "b891fe4a92a78942b4f74514331684a659dbf76eb34c82e028c1fc5201af34e3"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_2_9_zone_a.jpg",
+      "before_sha256": "d25031255d25648aa27839adc49ceedc925df860f9ae37ee1b6418bb39676544"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_lt_zone_a.jpg",
+      "before_sha256": "6a73f57b22cc6b67dc5adf1fbc71f42ddab67f65ddf66cd014a3d61298a97eda"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_lt_zone_b.jpg",
+      "before_sha256": "fcb4943785be2ba180f073162b20d1f18490a7fbbde529ce489fd1d69f0d486a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_lt_zone_c.jpg",
+      "before_sha256": "861352a0309f69f25bc8c10abd6b077ff2c5c39233fb3cab33486d9105fb6e8d"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_urban_a.jpg",
+      "before_sha256": "53f8ba556d175f80e62719f9837f3650a489a55e142fe544d11807f830816331"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_urban_b.jpg",
+      "before_sha256": "359ffb2b9a8ac47e5fdf5c0a3b470f3bd1ec5df96d1061a1e3dfd03658be3de4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_zone_a_inset.jpg",
+      "before_sha256": "3dbe7e388b0f4d0253f5b054ae6a5b2b0234e3714c852841d9552e8c3d378d28"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_zone_b_inset.jpg",
+      "before_sha256": "c3e066b9f4a548830146c3a0df3ea56502ce449dbb0f645b3968d4f425cccc7a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_zone_c_inset.jpg",
+      "before_sha256": "017e5b8247081e04cb7de408e307a8c8abd09323c07642d1e6702b0f086bc2af"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/fig_zoning.jpg",
+      "before_sha256": "24039d372359a31b35c21ee09711b1f2fcc53e9e916531ff172f6d6984a732e3"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/logo_back.png",
+      "before_sha256": "582f00446956c72edb649a7be3e961baeda6bd29828d005b5ae3c3743341ad4b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/logo_credits.jpg",
+      "before_sha256": "e3c57845b58005f492c3f8efd1abc6576c7431325b2903729e1fca4e57191ea6"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/logo_japan.png",
+      "before_sha256": "855f619a0330184ea4672ace5ae65727a6a453ebe48dbe713df03ac46be5ce80"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/logo_unhabitat.png",
+      "before_sha256": "1861d89de25e9d5a3225b9f97122aedadc5604b613b642712d8acb19ba19d6a2"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/photo_housing.jpg",
+      "before_sha256": "f3a2d40c9d50867cf8c89f84be7b23e89121b8bf8e6c835e1cca28b9be7bbb0d"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/photo_overview.jpg",
+      "before_sha256": "de99ac0d3dd7348b671cc446b73ae3921f276bce2c980e5460fdb1b67fec159e"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/photo_profile.jpg",
+      "before_sha256": "aed06fb29526ef962783b41b5eb375f754a3018774f7ef7afc4f01d0479e2c53"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/al_tahreer/photo_unrwa.jpg",
+      "before_sha256": "504d898ac16c7fb4691502af8437237c5703ef4e68565191d06d17bca0855ca9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/al_tahreer_sample.dart",
+      "before_sha256": "dce869f7fbb7156217ce8adc17f0bfa2dbb5e0866ccab4347296e37a98f76fa2"
+    }
+  ],
+  "reviewed_source_overrides": [
+    {
+      "path": ".github/workflows/crispoffice-binaries.yml",
+      "after_sha256": "07d0589d18d5403efb70d5eb9ae715bd28a86cb717e9f00629438a35d33a3d0d",
+      "reason": "Accept clean three-way merge; preserves reviewed local fixes and new incoming delta. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "07d0589d18d5403efb70d5eb9ae715bd28a86cb717e9f00629438a35d33a3d0d"
+    },
+    {
+      "path": "docs/PROOFING.md",
+      "after_sha256": "a75e980ce25e44e554a5ce83ec2a2ff63af5d195206c5948a9b352bd540e6d05",
+      "reason": "Remove the stale claim that host registration and the download UI remain open; the same frozen guide later describes their implemented Studio wiring and the frozen source contains both platform hosts and setup dialog.",
+      "incoming_sha256": "b7880bf41119db481171ca1e5c9b9051b04d5275e72e0df0875c6d4a4398d450"
+    },
+    {
+      "path": "docs/roadmaps/arabic-proofing.md",
+      "after_sha256": "a1ccf13757c913aaa709fed2c8825f63d14c17c8f121b92ddf7e812a509f81c0",
+      "reason": "Reconcile incoming Studio registration/setup and packaging history with exact Linux qualification boundaries, active complex-script language editing and the matching bundle-card assertion.",
+      "incoming_sha256": "c125ff689f5cd34a57d190a5e66cadd2fd479d15b8f79e8b797b144f2097ec3c"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host.dart",
+      "after_sha256": "6765b6de82e8badb0e9d86b47bd1309f6cb9cbc6dee8367d56d14f2dec57aad0",
+      "reason": "Cancel before request, after final progress and during a stalled response; abort pending work, prevent publishing a cancelled dictionary and release cancellation listeners; controlled native/web-host regression suites are required.",
+      "incoming_sha256": "e750a3ad93f313d2bfcc547cda26a99f01a37775a84e7dbeb3deb662522036d7"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+      "after_sha256": "6c65c91071f4e91fd741970ceb41c750da6ca863e2e26f85031ced6579ba062d",
+      "reason": "Cancel before request, after final progress and during a stalled response; abort pending work, prevent publishing a cancelled dictionary and release cancellation listeners; controlled native/web-host regression suites are required.",
+      "incoming_sha256": "5579ff3c0886762f2886d17cabb225dd9cc22fa29fe058a429e48e0c04026cb4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail.dart",
+      "after_sha256": "f1dae49946a6ebeef254dcf51a059b1f76c668d0812ccbdf85ca2418aed56e36",
+      "reason": "Prevent setState after either picker or file-read completion when the Mail dialog is already disposed.",
+      "incoming_sha256": "15d140b251f4255d2bdf7ef02fb745917410fa58cbbcc7611a6f280758f704c9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "after_sha256": "c58d6964daf91dd60c124c71cf4939e1b4a77c0ecc7c2a9cc6463dd3805a127e",
+      "reason": "Accept clean three-way merge; preserves reviewed local fixes and new incoming delta. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "a9a61ff0a1e443dc60e42095f293015aa30d31c27cfdf5a6516643727689f566"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
+      "after_sha256": "430da58ecca85aa566ff5b988d9ff86578bb6a5f4e17d9c362563058b3279275",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "7f2b0a5fefb0807b50fb8962fd17c4ef7638989a19dde32b22aae00e3d197f8a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/pdf_showcase_test.dart",
+      "after_sha256": "e722d725c3b2d1412e1625e43e6c230faa109eb2b76963f4038c1dc9b59f5573",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "5a06db0162ff489999187b0317e9484162f8b0b0c6c06b7720da211c96f7ca45"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "after_sha256": "5144a9586cdc94ef0e0d301eb0000cc5447e770f29be12d67951e01fbf244816",
+      "reason": "Use incoming selector/shared-helper changes; prior assertion calls and proofing isolation verified below. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "5144a9586cdc94ef0e0d301eb0000cc5447e770f29be12d67951e01fbf244816"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+      "after_sha256": "771fbd65f26cfe08eaa4817ba83627c62ed2bf1b3f67cf2ca7809421c7229557",
+      "reason": "Use incoming selector/shared-helper changes; prior assertion calls and proofing isolation verified below. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "771fbd65f26cfe08eaa4817ba83627c62ed2bf1b3f67cf2ca7809421c7229557"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+      "after_sha256": "5a11b5d7c84e5fb2d623fc7fc21fd386682d716e91b4c66a01305ad865d2c39c",
+      "reason": "Use incoming selector/shared-helper changes; prior assertion calls and proofing isolation verified below. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "5a11b5d7c84e5fb2d623fc7fc21fd386682d716e91b4c66a01305ad865d2c39c"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+      "after_sha256": "a16c1d95398778d296da0d0ea00ac751b2ee6fadbc52bcec7f6e9a8ac5506be4",
+      "reason": "Use incoming selector/shared-helper changes; prior assertion calls and proofing isolation verified below. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "a16c1d95398778d296da0d0ea00ac751b2ee6fadbc52bcec7f6e9a8ac5506be4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+      "after_sha256": "c71a72e029b66a5c99c37ddb25634c58f9bb545395d2ebf4c2b2768d971aed33",
+      "reason": "Cancel before request, after final progress and during a stalled response; abort pending work, prevent publishing a cancelled dictionary and release cancellation listeners; controlled native/web-host regression suites are required."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "after_sha256": "8eeabb02027a2e941f8a6cc4d804fc2b0dbd6bfe03a53e6d868b08e387576ca6",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+      "after_sha256": "94dfa2b82f8177cd81d22a3fd83246a3fe7d703b6738a11df64be457682247cd",
+      "reason": "Use incoming selector/shared-helper changes; prior assertion calls and proofing isolation verified below. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "94dfa2b82f8177cd81d22a3fd83246a3fe7d703b6738a11df64be457682247cd"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+      "after_sha256": "0399a11aa9e2c6c9ac3aacec7004d4f015c9aee3c7c764c698ee5a0dace8cad7",
+      "reason": "Preserve exact incoming footer/chrome/localization while retaining the notes cache key, distinguishing scheduled/paused/incomplete checks from clear results, and constraining the proven narrow-layout overflow; seven public controller/provider regressions are selected for fresh qualification."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "after_sha256": "dfe523fee8dade5f45ffc707e526c3f7d05e09467d10c315ef2f60421623fef8",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+      "after_sha256": "0d7aacb898cc813dd1d6ea61d81ae1f0cfc726593e5a2b94211b6a6ee14de0c3",
+      "reason": "Use incoming selector/shared-helper changes; prior assertion calls and proofing isolation verified below. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "0d7aacb898cc813dd1d6ea61d81ae1f0cfc726593e5a2b94211b6a6ee14de0c3"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shots_test.dart",
+      "after_sha256": "66d182f653e18b540d9655f5592b5f84e9108b1352fcc58f6e404fc835d7b617",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "05637e5d6396285f98d19e67637a964b74fe41a70a28831baeca0764833dfb52"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "after_sha256": "e1946d9a65acf6fa821713f9e84d9ce62de13d0fd1d840f416f13eed6ab01011",
+      "reason": "Use incoming selector/shared-helper changes; prior assertion calls and proofing isolation verified below. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "e1946d9a65acf6fa821713f9e84d9ce62de13d0fd1d840f416f13eed6ab01011"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/studio_settings.dart",
+      "after_sha256": "efe2e709d0c726ba9ad96d261b4ae15c11fbb762dd5513390012046ccfebcf2c",
+      "reason": "Retain incoming enable-only/Arabic-cycle helper and assertions; retain prior dialog-scoped Close finder. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "eeace0a24bf50a029a78dc8f220c9ce4384f73bfcdc96d31401d714d7dba98ce"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/widget_test.dart",
+      "after_sha256": "8c3cf07eac8861fc7790b56a1612414117a9e57114f875c23a01f943fbefc8db",
+      "reason": "Use incoming selector/shared-helper changes; prior assertion calls and proofing isolation verified below. The complete v4 selection qualifies the merged source afresh; earlier rejected cases contribute zero.",
+      "incoming_sha256": "8c3cf07eac8861fc7790b56a1612414117a9e57114f875c23a01f943fbefc8db"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "after_sha256": "66174b191872e13f581a4b5cf51ec41279a299eefd9a12f385f87222dc706615",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "c7caa0c4b18c21dd604b230162b166bc87031c559fa3734c9bc97b2ccc8af4dc"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "after_sha256": "992198c120f82ac0a1cc661f75d967d17f0a60564ee26811fb7e4208457c91e1",
+      "reason": "Pinned Dart formatter only; incoming semantic source retained and full affected tests selected.",
+      "incoming_sha256": "1f49594faa601205a4cd9c1dfa6cffb4a37141a14c8d82b85f52ee4d42091c4f"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+      "after_sha256": "553d62f72f855229156705b4bf44692df5861a8456d36cdc549f41d8d55bc8a6",
+      "reason": "Pinned Dart formatter only; incoming semantic source retained and full affected tests selected.",
+      "incoming_sha256": "bcb469c5128078b348fd451cd94db476ec7e3ba1407ed3010e15a3d5a677bbf0"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+      "after_sha256": "0197553773e1f1cd559f8f722cedf1cad4e49068822c114483871634d7d251f6",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/quds_office_engine.dart",
+      "after_sha256": "eb36528fa3aa0449a5115e69ff81789f80d87cc711682607ac9c4e0f5c767b8d",
+      "reason": "Move the existing word_proofing_language export to its alphabetical position; identical exported directives and all other bytes.",
+      "incoming_sha256": "26a4f51aa8114041ad6ce2a995739351c963599a096cb956c01383f33b783990"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+      "incoming_sha256": "8f92ca7e8400c828d4f6245a7a51f5802b8cad04f74ea25bd67462feaacdc207",
+      "after_sha256": "e5eea6d461a90a694bd70299bea1766f133812a8087fe5692797f65effc98219",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+      "incoming_sha256": "137ab2f071ca60a7512612dcf05f09bb84721610b784c52a79cf94ac5bed955e",
+      "after_sha256": "66bdcbe946c17508786981a644e4cf1f138696cd55fa7c00e54f3d1631f3b0ca",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+      "after_sha256": "60a0044f72b2e831f1c20365c2ad0ec8fe468d7a83e11d75f1ecc3de4482243a",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "a6984f9d372479d63b02d1ce8d680d11ac8f4ec89f4e555931701b1ef3ab88a9"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+      "after_sha256": "994f41390ce0df501f50e3052e1642167b02593db70dd0e932f2b080f7981258",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "e9dc3be5aef6069b6a04e4b4dedb2d64a522be9dbf5b50bf4283dbba2ac93879"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+      "after_sha256": "ba9993a5fe92ffaaf8613e43c9ae0a95702cad12ce1be09e2c872dc18decdfa1",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "729870b4c0c99ea5b92545cedc5254a1acb5d58ddd423021ff01cd6c420ee083"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+      "after_sha256": "bf4c47772b1e08186c21c92351e865a53b66fe67586825bb9f65789375ef9c96",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "f5841b570e6c094fd0f4930e97bd9dd813ff4c79033602dfba3511286823df33"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "after_sha256": "2e76ffd619dde83fbabb567d81a26a735f4836d6bfc157d12fdebf6c28384016",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "2fda59a5cec4bc5a02ad722aaaaf40921c409ccb8d2555f31a41b8f514da791a"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "after_sha256": "6ae2f09ab03508b55016edd2cda6fb2d1df757eb78f3e2dc4efaa1011a7b7e42",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "fad0cbe9069626e75f4895118227aef3ade9c54219f4893121f721be7695c28a"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "after_sha256": "fc6be4341183f9e7a9d27708f293ba4ab7f67d330aff25863fbbafe7408c0db8",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "525e67d8243473db7fa4a79c3131ec2c05f72af4635e2cacb009bfce6baece14"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "after_sha256": "75a0072f023b9db06be37b62efe32d19e5ddb5f7b9299439bb0288f32d811ca5",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "894d44b9a078dc23b624be55a6b942de9c30b6b8568493f44f8dea1bdacd44f8"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+      "incoming_sha256": "61a9335eef69a39fa2562aabc7523e4d0ffefe6f65427d9fe9d9ded9aaa3f751",
+      "after_sha256": "c591de6a69be97b3fe5cad335d885531d155e99630416476dcbe7a45dc3395ea",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+      "incoming_sha256": "2013b4b910a496fad7ea227db197da431669269ca8c0b0ff4571b463ad6c83cf",
+      "after_sha256": "141524cbb9923f2de5eee36e454312080db0c12d21d90ed535ae25935c0bea91",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+      "after_sha256": "29c820b50cf6d47c42f481a2b8a9cd07b26ab2ee1ff1fa0fac98ea9ba13feb73",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "8108875a33c807c6a3ed5df96d947f726a3aa3d354ace982d699e3a6e08e670e"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_complex_script_language_test.dart",
+      "after_sha256": "928b5d73ae2e46e1ee95b302778fab48aedd3cf73658ce28e96e5fdb39a9ff67",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/README.md",
+      "after_sha256": "de31c1ac6d4cafbc071840e2b038e2e254f45eefd456f5b4843cc9b9f71d6fcb",
+      "reason": "Document actual Studio registration and explicit setup, cancellation publication boundaries, and preserved native lifecycle behavior without claiming an executed macOS or WebAssembly build.",
+      "incoming_sha256": "a9ef958cf6960919225b6472eb732bd44cb1cc48f391217bf725b82190c855c7"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+      "after_sha256": "fae0ed783f67f7bdd5a5d45a0208929ac377e7b6d6df4d14c26599c5c501bb0b",
+      "reason": "Cancel before request, after final progress and during a stalled response; abort pending work, prevent publishing a cancelled dictionary and release cancellation listeners; controlled native/web-host regression suites are required.",
+      "incoming_sha256": "c9e5f1dc3d2e7ff160f0a1c2a1e81df6df565f24e9cd44543dea5881b39fc666"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart",
+      "after_sha256": "07271178b8e6314d3d5aa20dd53ee42d2ea3c4a971a2892993281e3736ae2b64",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate.",
+      "incoming_sha256": "410f66f563b58653cafb404673734c725c7372c7ca84310d71a83c7195ed8d1a"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+      "after_sha256": "cb360c50796dae1ba222dcb9e411476fce1a24aa6cf0fa038555bdaf24252ceb",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate.",
+      "incoming_sha256": "d16e4af1258787657118c3e062427c4caa2428c0083e5cfd8e70346ca35b91d0"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+      "after_sha256": "42838729ba13b577058991d48e4725b30b4b0f3e0d47b44baba43630ebcd875e",
+      "reason": "Cancel before request, after final progress and during a stalled response; abort pending work, prevent publishing a cancelled dictionary and release cancellation listeners; controlled native/web-host regression suites are required."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+      "after_sha256": "e003caefe1bbc832e7b56e2e64cae1e8675c3be99ea074de8a821b11a7dfdcb2",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+      "after_sha256": "bdcd2a390b0f5496ab064d42929dc79d8e4f27c03ad051aa91962bf6219f1d63",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate.",
+      "incoming_sha256": "3bea0e48f42d6fa61b093d3ea5a7cb9571257ff091d0a146be9a3bc94fc80dee"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+      "after_sha256": "ff467fda15817b04f3652dc1a7228afc9917d5b3c5b13652fc45f9bbbc8b18e7",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate.",
+      "incoming_sha256": "da97d35a0241e8fbb162f730e5b28258f6f2a9eb7ba7063ca899b8fffd557925"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/support/hunspell_lifecycle_shim.cpp",
+      "after_sha256": "54a6aa58c54af098629bd42d594efe6b0da47aa590bb0465e7c55568065e3ff1",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/tool/test_build.py",
+      "after_sha256": "90730e4f17286574545ffae216958c395606c69939ccc6f90c3efbb4e3a956f9",
+      "reason": "Four separate offline Python controls for exact receipt-declared copies, tamper rejection before writes, install-flag validation before fetch and exact license/source/receipt copying; incoming build.py remains unchanged."
+    },
+    {
+      "path": "tools/proofing/ayaspell/build_bundle.py",
+      "after_sha256": "4f72fb1d2bdf9ba44362a92ae522e3e9c1ed9e7a163a8f6f04a607f9bb0f0a7a",
+      "reason": "Reconcile incoming Studio registration/setup and packaging history with exact Linux qualification boundaries, active complex-script language editing and the matching bundle-card assertion.",
+      "incoming_sha256": "d34d326ff41709fd740f2324487487aaca2c6056381de0fb26c4b973bec12ec0"
+    },
+    {
+      "path": "tools/proofing/ayaspell/test_build_bundle.py",
+      "after_sha256": "d92c2e806fe9767b75bd8a8655e5df618e5eaf6b4449f70c3af1a41907b0e66d",
+      "reason": "Reconcile incoming Studio registration/setup and packaging history with exact Linux qualification boundaries, active complex-script language editing and the matching bundle-card assertion.",
+      "incoming_sha256": "ace3e8d193360145c873291863be876533e4ea8ff2c9ad7fc63c44ce1e5646ef"
+    }
+  ],
+  "reviewed_override_file_sha256": "8dc25722966dd316d6405cb43cd58ded0e7a297bbdace922f12001d78d50d885",
+  "changed_dependency_graph_nodes": {
+    "quds_office_studio": {
+      "before": {
+        "name": "quds_office_studio",
+        "version": "1.0.0+1",
+        "dependencies": [
+          "file_picker",
+          "flutter",
+          "http",
+          "quds_office_editor",
+          "quds_office_engine",
+          "quds_proofing_harper",
+          "quds_proofing_spacy",
+          "window_manager"
+        ],
+        "devDependencies": [
+          "flutter_lints",
+          "flutter_test"
+        ]
+      },
+      "after": {
+        "name": "quds_office_studio",
+        "version": "1.0.0+1",
+        "dependencies": [
+          "file_picker",
+          "flutter",
+          "http",
+          "quds_mail_core",
+          "quds_mail_mime",
+          "quds_mail_ui",
+          "quds_office_editor",
+          "quds_office_engine",
+          "quds_proofing_harper",
+          "quds_proofing_hunspell",
+          "quds_proofing_spacy",
+          "url_launcher",
+          "window_manager"
+        ],
+        "devDependencies": [
+          "flutter_lints",
+          "flutter_test"
+        ]
+      }
+    }
+  },
+  "earlier_incoming_main_sources": [
+    "b655b8a37fddc874bd42a453c371eed6253e82d8",
+    "b559f6c764fbfac143f593e89ddc1096ad8b5c4e",
+    "be641457c8c7d1acc25091b31c87c73eaa3c9c2a",
+    "00014577265d1f95d4c016159029510d3a10804b",
+    "d8b7f1c4a576f727a0901c555dc327562dfff2b2"
+  ],
+  "changed_existing_source": [
+    {
+      "path": "README.md",
+      "category": "documentation with exact changed bytes recorded",
+      "before_mode": "100644",
+      "before_blob": "ed2dc9a6d3374bcd402a4c94a84bd887e8282a2e",
+      "after_mode": "100644",
+      "after_blob": "98c13c77b030d5d0166ea0790f32506a1d682dbf",
+      "before_sha256": "b28c132d920c763aeca56f74388de881eeaabdcbb75bad65e87fa8502c25576a",
+      "after_sha256": "4fe4f8c8b479cd2039feb41fb236c109bbe05fd1bc9a479f878dbadce2c757db"
+    },
+    {
+      "path": "docs/PROOFING.md",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "5fafa999ee635961587e31ea17e2e28d77d679c2",
+      "after_mode": "100644",
+      "after_blob": "dac15707cc2091d3255ad8fbae2802f10d10e3f8",
+      "before_sha256": "63e3491ee6ecb763d53be38ebe7f6d574ce084c61187339937423205c176bc51",
+      "after_sha256": "a75e980ce25e44e554a5ce83ec2a2ff63af5d195206c5948a9b352bd540e6d05"
+    },
+    {
+      "path": "docs/roadmaps/arabic-proofing.md",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "dbd08f20f70c57ac23a31a979e69b52ac4be37a4",
+      "after_mode": "100644",
+      "after_blob": "fad5600b28ca0184c131a10822a5e2f13444efb2",
+      "before_sha256": "96d1519215711155beb9eee110dad3b02adaaa1aa81c40680e7b6d8b9dbdfa63",
+      "after_sha256": "a1ccf13757c913aaa709fed2c8825f63d14c17c8f121b92ddf7e812a509f81c0"
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "category": "documentation with exact changed bytes recorded",
+      "before_mode": "100644",
+      "before_blob": "68414bd5d4d1ec15d33a898248d1eea0371e6451",
+      "after_mode": "100644",
+      "after_blob": "bd55235e003b04787f9141786a9a2a8db8923c61",
+      "before_sha256": "30004db1855237790c90163b3af9552c28c8b5c1cc5935ad4c830073145b8bc2",
+      "after_sha256": "6776e266d5c0d0c0db1e8afb18a97b0a690ec1202e29f9b89c054872fc4f84e9"
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/README.md",
+      "category": "documentation with exact changed bytes recorded",
+      "before_mode": "100644",
+      "before_blob": "9850bca1c8674c84b05f674ca48f54c9301d9cdf",
+      "after_mode": "100644",
+      "after_blob": "0e5217fd9ef5bfdff6e79ad506c8f4f998f0ad63",
+      "before_sha256": "b7dc65f0262edac620da53b8b732f3c4065593404504e3d99b40f7a194af264f",
+      "after_sha256": "01997752a38e20240119c96bf39418b55ee9dc7fdb6f4ffe400ae16c647e6aa7"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/README.md",
+      "category": "documentation with exact changed bytes recorded",
+      "before_mode": "100644",
+      "before_blob": "945ce77575ef7fb8b2a7ac9fe9dc6f27eb6f0d26",
+      "after_mode": "100644",
+      "after_blob": "6fd459c7848251e7c997935670c357adc1a8e19f",
+      "before_sha256": "5e37dcead1f07036a63d0d14a6401880427f285b845a1d068dbe4c24bc327c8f",
+      "after_sha256": "2231793287844c801bd809254a801ae5f0c4de45bfdbb91cf4a053ce7962b502"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/run_validation.py",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "4af0670926ead72334939a17c91dba9bdf8b99a7",
+      "after_mode": "100644",
+      "after_blob": "dde85061fa83e63c92873e5272f567e481d979f0",
+      "before_sha256": "1e1521e8f3baef61e7a7cf0517dad250ee6ac3086c0f999cec7cbe26ea214845",
+      "after_sha256": "bea9cbf8e46372f8ace913e402e506a3c3499dd05264ba7a85ccdf06e8d5ad3e"
+    },
+    {
+      "path": "docs/validation/office-current-reconciliation-20261119/README.md",
+      "category": "documentation with exact changed bytes recorded",
+      "before_mode": "100644",
+      "before_blob": "81dae3d10875e5a1e0e317b67b4c56730b4e913b",
+      "after_mode": "100644",
+      "after_blob": "b7b75cd9b90f0a444b27c364cd7dcaa53c18290f",
+      "before_sha256": "4e02d6b96f00acaaaa84b724965d8a3066c1bfe852ba55d5218a8e67b42a16a1",
+      "after_sha256": "a92669555bd69b278deac418f7bad43d563b2171d58c2133621b2a82c90ae22b"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/README.md",
+      "category": "documentation with exact changed bytes recorded",
+      "before_mode": "100644",
+      "before_blob": "6ae70bec2c46e88d6029743373ecb51138f9ddbb",
+      "after_mode": "100644",
+      "after_blob": "9a68176849f93ab3146953dcf5bff28bd04e2fd9",
+      "before_sha256": "ddca4d6a0277e4ce4ff208bf4b39735c9f58c8bc2eafce43b8333893258f2623",
+      "after_sha256": "865e2cadec0cd93da9892584a9d5b9011c847201c440166337ad50bf6f090190"
+    },
+    {
+      "path": "docs/validation/office-main-integration-20261119/README.md",
+      "category": "documentation with exact changed bytes recorded",
+      "before_mode": "100644",
+      "before_blob": "6930dbb6eabfc5155fa3a9420f6c21c85cdb7ccc",
+      "after_mode": "100644",
+      "after_blob": "470f201fefac1705e999b541fe8cdb565a03acf3",
+      "before_sha256": "2b532601bce99ef1a322b60f5abeff10ad17143eb0cccd3fee7f1ac673063a6d",
+      "after_sha256": "7e89362c15ed13447fac150fd3b96f0e8bb1345240f0e03ca331530a932aae1f"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/README.md",
+      "category": "documentation with exact changed bytes recorded",
+      "before_mode": "100644",
+      "before_blob": "b66e1d2905718651e33092dabc508da3a113530d",
+      "after_mode": "100644",
+      "after_blob": "f6a09e7a24f7e9ed0db98513de12b76abb2c5174",
+      "before_sha256": "03400e543a8c7cd1b0ef97ffb91b2ecd9a905408b6fb81759de04ed04fcc802b",
+      "after_sha256": "7174bc8985a30fe8146a3cf16b4463b38a8d5198069eca2918fa0faa01857798"
+    },
+    {
+      "path": "packages/quds_mail_store/README.md",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "4ee042356a1d1f140ae267ffb820d51370620f9e",
+      "after_mode": "100644",
+      "after_blob": "24777ace4a44bab6850070164cdb8ef5d77d265c",
+      "before_sha256": "dc4c154ee202565070f7c5e53ab7de22962f5083024d9584df2533249cfe14ed",
+      "after_sha256": "d56bb5e1e02816340bd846afeace8862f8881f920a2424d5354100f55d5af5e2"
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/configuration.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "ed5493d72d1964d455004efb0b0e0508d55f45fa",
+      "after_mode": "100644",
+      "after_blob": "e2a4cc67ec3064d8fdf31bf7120ccea393a07f77",
+      "before_sha256": "39cacc1fe0ea4977940a9293db5954fe908610a3b1784a80e7c075f657a99260",
+      "after_sha256": "1eac0dd491ac016389f6af8b63c34b7cc34ce652213f67b5b2d8131342230f33"
+    },
+    {
+      "path": "packages/quds_office_editor/example/.gitignore",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "3820a95c65c3e5983cc66d481e2e68706a750090",
+      "after_mode": "100644",
+      "after_blob": "1271d7e25515718fa1fc6b2c09cc789cf4e7b605",
+      "before_sha256": "4a8d984279954e0461e0ffef9b9e7455340a0a762f227c01065a53482a83a4f1",
+      "after_sha256": "da4d508666c0b28e564c9ceb347c3ddd981f5b7324e220eccf65cb56423de724"
+    },
+    {
+      "path": "packages/quds_office_editor/example/README.md",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "6aef96eb5fe74f4ccf139c930c855b32562d89a2",
+      "after_mode": "100644",
+      "after_blob": "5a0aaeff14569ddd428d75d6c614860d2184f722",
+      "before_sha256": "e0d0e329e25ed1156b387d22d84b7c5552c374ab54068b8a9a8ea0ba99b590fd",
+      "after_sha256": "861d9cecc6b798204370e2a46b2c5b00cbc2523e456847a4f42629db95dc6481"
+    },
+    {
+      "path": "packages/quds_office_editor/example/analysis_options.yaml",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "59138aea0bf7704d780c6971d08e49464200ac98",
+      "after_mode": "100644",
+      "after_blob": "74a684c0f3f02e4f6df41cbecf3c65d2fe3bd72f",
+      "before_sha256": "9023ab263bcddd4110f941c6872163e7db9d8ad8201d6db5eaf335bf34474eca",
+      "after_sha256": "3d51a36f8ac9d0013560735c6e0d33979da1305826549734866f76520d99ebe4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "db77bb4b7b0906d62b1847e87f15cdcacf6a4f29",
+      "after_mode": "100644",
+      "after_blob": "fce22cafea1a79249ef1e675e0666a4a4ee51a37",
+      "before_sha256": "6a7c8f0d703e3682108f9662f813302236240d3f8f638bb391e32bfb96055fef",
+      "after_sha256": "d0766dd02b7673024e063d7734dc333e0ba4ccb6fee839db940021fc4a0cc89f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "17987b79bb8a35cc66c3c1fd44f5a5526c1b78be",
+      "after_mode": "100644",
+      "after_blob": "13f56e06acdd988004e89e5439e1f468a57c18ba",
+      "before_sha256": "c7c0c0189145e4e32a401c61c9bdc615754b0264e7afae24e834bb81049eaf81",
+      "after_sha256": "fe751a7f373febcbe8b0a90a18d79f38f29a4961226e6d834b080eec93052fe4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "09d4391482be68e9e4a07fab769b5de337d16eb1",
+      "after_mode": "100644",
+      "after_blob": "6fdd4c76af2b237fc5ab06972851a3e92b5dc457",
+      "before_sha256": "e14aa40904929bf313fded22cf7e7ffcbf1d1aac4263b5ef1be8bfce650397aa",
+      "after_sha256": "b08784d2e9c5b13a3ee74ca7c870edff2f5f5e8048ee377c34891fd75197f2da"
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "d5f1c8d34e7a88e3f88bea192c3a370d44689c3c",
+      "after_mode": "100644",
+      "after_blob": "5b9c704ce1dd1a551bbfd615cdcb7a200b063a85",
+      "before_sha256": "4d470bf22d5c17d84edc5f82516d1ba8a1c09559cd761cefb792f86d9f52b540",
+      "after_sha256": "4d1c233f36b7037a7abf846aa16ec7eb2c7b1cd615ad03c9842323359ccda640"
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "4d6372eebdb28e45604e46eeda8dd24651419bc0",
+      "after_mode": "100644",
+      "after_blob": "2628aad1e7526d46bf4fd4b6ee7421f0ce81ef78",
+      "before_sha256": "3c34e1f298d0c9ea3455d46db6b7759c8211a49e9ec6e44b635fc5c87dfb4180",
+      "after_sha256": "4b7328d42934986349d97ba3a30e42149fb1092673721c830bbc5b44dbfc94ee"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/main.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "9699892adbc4974ace2ba3156e6dc7b7aa74d356",
+      "after_mode": "100644",
+      "after_blob": "31fdfc842883c5709ce02494ab50404b4c57b4f3",
+      "before_sha256": "d641642762e72e9df4809689a5e4a32aad9d3cfd4f2af16a66edc063b7666a1e",
+      "after_sha256": "61d0fd39e8a61d6a5d3c960fdda7f43a21538465a71cb3c349ebae938687b33d"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/sample_library.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "0e4e0e91547273fcca6b58d98fd3872b11d9fab1",
+      "after_mode": "100644",
+      "after_blob": "2a07ab71cd039adb64b2a302da2d569470ead879",
+      "before_sha256": "98816d80373fb47bbdd934cd1fd4e771a5c0069daa0d2c6c93e5f51a352b7174",
+      "after_sha256": "cdf77aadf83e442bdb21e4ccce2df981b302ef260e5ac6175b0aa3c1a4a74f84"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_chrome.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "fc655d783d39dda834ab36b64fca421322177b8f",
+      "after_mode": "100644",
+      "after_blob": "1fef0b7bd8af0b8663f2436c0dffd4f6ec19404f",
+      "before_sha256": "eb8fa1fa1ff1f87f819eb062acc8b262a87f3e4c6cee1d982488b58241dbc217",
+      "after_sha256": "9521fe2220e1fd4da72b5e68e0fc64ae4317e5eb0d595be0a06968b62c0ef920"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_face_samples.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "2caa8e09534bcfb445ba2c1e6ba3fcf8aeefbdd6",
+      "after_mode": "100644",
+      "after_blob": "13460a848d01e3140c748519d581cc8f83997d29",
+      "before_sha256": "a5f8de4a584532b729e02c8f379f116af796d83900b626e2d9b0a57cee867d30",
+      "after_sha256": "0ac43e4d804a675747b0a5a300ad3eeeab35c5927af6b6aa8968b059d2030d2b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_gallery.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "f175e42c96bfdcdac7ea45a82e293c8563cae39a",
+      "after_mode": "100644",
+      "after_blob": "f90d908f85a95f26bcdd4c54bda0bd0d8dd1eaf0",
+      "before_sha256": "dcab30e8d4b1da3a02e236571c3f653293819cb111e00e0bd25d4456133d7274",
+      "after_sha256": "357b390f1fdf937b475158339171a7ff4a6b1c4e1a2d9bf972eb1d49d26f5be8"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_rich_samples.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "7548cf465ff626e690dd0c73d5a882a7eb80a41e",
+      "after_mode": "100644",
+      "after_blob": "89db71f8b1c554b5b5b41400fe26345261acf3f6",
+      "before_sha256": "4ef7d7ce33135af22b4a4bd1c2b0d369bcdd25dcb1346e048c42a9a7bb8ea85a",
+      "after_sha256": "3d8e44ae2ce02b3cd1022a20df96afa82c0b4a6022c2d6cf8357837ceb2263ab"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_showcase.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "16784080881ebfe30cfb4ae10b18e01b1d0b0341",
+      "after_mode": "100644",
+      "after_blob": "6ddb3764546819c552886154cd66c074341a0c38",
+      "before_sha256": "f071658a30a4be8798dcdba8cebc8927d468667075b708c50db5c1f3a49c4be5",
+      "after_sha256": "65445ed58ff34bc96e99b46b2374969a0aa7d0a01b5d189891a9daa267afbcbd"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_sample_pdf.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "96cc4162c438a83416ceb6718c1c8f9c5f086340",
+      "after_mode": "100644",
+      "after_blob": "1ad8864b815c0e062783fbaf019ec8a8bbbe64c5",
+      "before_sha256": "4ae647a1d1c7a2bf61e882649086380eb6f75ac8e2c66e825fbc3c25ccb5d136",
+      "after_sha256": "37800eafae0f933a381126326a83dc81a46b6bc68f1d30208213cb9cb5f0ade0"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_window.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "836732d071743875e79d3c88b762c1aa2d119915",
+      "after_mode": "100644",
+      "after_blob": "2059788228088c24fdb62b0740c7d2bf1f70e232",
+      "before_sha256": "a8df0a3715e771dba3fd6fab14804f1c569e3db9cd6aeb1a2b9153a7f5369dba",
+      "after_sha256": "62569071ebe27f51b55fc87f04eaa797fc01c10c40f17d9f5df38a0ae9455337"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "e291cb6663a819b13652d89862a9f6764c25314a",
+      "after_mode": "100644",
+      "after_blob": "d69130c888cf4e8ff0b044a2051e589cbf6f5635",
+      "before_sha256": "f0bccf4edadc96a5f738beddc044e9f9aabc0cecf7c0e3e7064c64351758ceba",
+      "after_sha256": "c58d6964daf91dd60c124c71cf4939e1b4a77c0ecc7c2a9cc6463dd3805a127e"
+    },
+    {
+      "path": "packages/quds_office_editor/example/pubspec.yaml",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "ca8dba5d7a187e2a5f2a2c66e8d45abddab3d9dd",
+      "after_mode": "100644",
+      "after_blob": "f50724869d36b449212935c236af93877a3ee4a9",
+      "before_sha256": "ccd93525f92813df224a3691d45f30d1c99482a1168844568841721487f0945f",
+      "after_sha256": "90157d4fe8016cdff5da96540cf3175d894e528a05772748df3373cee79dc36b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/pdf_gallery_faces_test.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "319bac26bef6ebe9a1799fbd95bc6407d868d981",
+      "after_mode": "100644",
+      "after_blob": "9f32d9c278e6b12f0903b7fda5028c5b6cbc60cd",
+      "before_sha256": "2c226e3526a1da06654caccfedf2500b892d7e95623274dd8b8199c2c13e0c9a",
+      "after_sha256": "4ed421efed8158d674652e68f961ce3af42d255cb59ad946996d87ced53cc38f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "950bdb3f4e95133bcd4e9c0423ed51012fc1bf49",
+      "after_mode": "100644",
+      "after_blob": "17b170bef9acd1ad367893923b23ad032da74ecb",
+      "before_sha256": "5a6c8bc51df0b029c42028e868a14517bee4dce5dba808c2d5b6aa07101505d5",
+      "after_sha256": "430da58ecca85aa566ff5b988d9ff86578bb6a5f4e17d9c362563058b3279275"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/pdf_showcase_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "9cfd732fb7b2b30c8440fb2fa2eccd6e8b4c69db",
+      "after_mode": "100644",
+      "after_blob": "6e94a6b0d501976f19cca3d950b3aa0e19accbf3",
+      "before_sha256": "5a06db0162ff489999187b0317e9484162f8b0b0c6c06b7720da211c96f7ca45",
+      "after_sha256": "e722d725c3b2d1412e1625e43e6c230faa109eb2b76963f4038c1dc9b59f5573"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "2d3849dd91e956442c5dee3b29f2a846d1a57aea",
+      "after_mode": "100644",
+      "after_blob": "8641eef91012bc14f5490cf078a236446c4986a2",
+      "before_sha256": "ab67b95eca6ea7ed597df8b5df241dc2ed46f89808e6b8d4b1ae753ee732dac5",
+      "after_sha256": "5144a9586cdc94ef0e0d301eb0000cc5447e770f29be12d67951e01fbf244816"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "019591c559a590003fec473908db1d3a5ea242b7",
+      "after_mode": "100644",
+      "after_blob": "47918b0731d0abc285887728f2b280f736b2adc3",
+      "before_sha256": "6602840c2be7d7135f745cc75b23a1b2c47ca31b02b934c9d01c6c6231fe1806",
+      "after_sha256": "771fbd65f26cfe08eaa4817ba83627c62ed2bf1b3f67cf2ca7809421c7229557"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "e19577525c6edabd0c5631cbcfea5e9c00ca67ea",
+      "after_mode": "100644",
+      "after_blob": "a92a222d77a029cafd28e2c9fc44c2587e5f60b5",
+      "before_sha256": "7974c9cc6c62f273bfdf635d85ecd715800de8dbf0762458ed0919fcd1138588",
+      "after_sha256": "5a11b5d7c84e5fb2d623fc7fc21fd386682d716e91b4c66a01305ad865d2c39c"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "175e6f30fc357c5bf8a788a15d781d07b6279a05",
+      "after_mode": "100644",
+      "after_blob": "db35b40789f3392e5a4020af9c6a31be0a9fdb19",
+      "before_sha256": "5536eb45dda41bfffdee16395165f2e29ea1878a900c7fca1a9f489277827156",
+      "after_sha256": "a16c1d95398778d296da0d0ea00ac751b2ee6fadbc52bcec7f6e9a8ac5506be4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "1751dfd4c587a782facb314cd844afa7a7b4566f",
+      "after_mode": "100644",
+      "after_blob": "f32cb486127deb04d2e416138148c22e1dce7e47",
+      "before_sha256": "0db14563c309aedb65250dd87cf7d07478827c42119e4462c06a4c47f5dfe8fa",
+      "after_sha256": "94dfa2b82f8177cd81d22a3fd83246a3fe7d703b6738a11df64be457682247cd"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "a98e9d2764b314545eacf06ca1c4af54ce803c3e",
+      "after_mode": "100644",
+      "after_blob": "6db7a3267e87fe2db48392775abc3ec6b55635e8",
+      "before_sha256": "91e8098243192ee4595ff285de5fdae80438f51934e0a91e52aed9bf3f120bc7",
+      "after_sha256": "0d7aacb898cc813dd1d6ea61d81ae1f0cfc726593e5a2b94211b6a6ee14de0c3"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shots_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "1b356c342666714306f1b58ea2d3f097595186d8",
+      "after_mode": "100644",
+      "after_blob": "68afb8b7c95b66b8483716b65013f43d35eb35ac",
+      "before_sha256": "05637e5d6396285f98d19e67637a964b74fe41a70a28831baeca0764833dfb52",
+      "after_sha256": "66d182f653e18b540d9655f5592b5f84e9108b1352fcc58f6e404fc835d7b617"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "226e657e847852379e223c2b1b8864736b87bf3a",
+      "after_mode": "100644",
+      "after_blob": "482ae50f9e9a197956089b5cb1007a32f1f47466",
+      "before_sha256": "27916e7a920fa463e0f06c4fdfcf5903fbfb70bf503db3b83775792b5b2a1e1c",
+      "after_sha256": "e1946d9a65acf6fa821713f9e84d9ce62de13d0fd1d840f416f13eed6ab01011"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/widget_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "4ded3a70495230650599d11f1f0ed71e837b280d",
+      "after_mode": "100644",
+      "after_blob": "f26040e1280c523878c2d891df096e083f1ae78f",
+      "before_sha256": "37b8f1f8373932e3242324191d1ad77ac168452199fb75c5b7345fbf8ec7cb72",
+      "after_sha256": "8c3cf07eac8861fc7790b56a1612414117a9e57114f875c23a01f943fbefc8db"
+    },
+    {
+      "path": "packages/quds_office_editor/example/web/icons/Icon-192.png",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "b749bfef07473333cf1dd31e9eed89862a5d52aa",
+      "after_mode": "100644",
+      "after_blob": "e6a28b6116a2dafa24984f676f5dcfb073b814cf",
+      "before_sha256": "3dce99077602f70421c1c6b2a240bc9b83d64d86681d45f2154143310c980be3",
+      "after_sha256": "4b98d43f987a95531aee266cacb05c9907e13a14d89ee566aa6ca278b7814be0"
+    },
+    {
+      "path": "packages/quds_office_editor/example/web/icons/Icon-512.png",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "88cfd48dff1169879ba46840804b412fe02fefd6",
+      "after_mode": "100644",
+      "after_blob": "6b8ec15e7bbe1bd05c9e6a6e1f11f2474e8e00c9",
+      "before_sha256": "baccb205ae45f0b421be1657259b4943ac40c95094ab877f3bcbe12cd544dcbe",
+      "after_sha256": "b089975d1bd4c708f65dbd9ab2bf71e59c8392bd8712421e6d2c18dc1ef0d10b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/web/icons/Icon-maskable-192.png",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "eb9b4d76e525556d5d89141648c724331630325d",
+      "after_mode": "100644",
+      "after_blob": "2628aad1e7526d46bf4fd4b6ee7421f0ce81ef78",
+      "before_sha256": "d2c842e22a9f4ec9d996b23373a905c88d9a203b220c5c151885ad621f974b5c",
+      "after_sha256": "4b7328d42934986349d97ba3a30e42149fb1092673721c830bbc5b44dbfc94ee"
+    },
+    {
+      "path": "packages/quds_office_editor/example/web/icons/Icon-maskable-512.png",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "d69c56691fbdb0b7efa65097c7cc1edac12a6d3e",
+      "after_mode": "100644",
+      "after_blob": "6b8ec15e7bbe1bd05c9e6a6e1f11f2474e8e00c9",
+      "before_sha256": "6aee06cdcab6b2aef74b1734c4778f4421d2da100b0ff9e52b21b55240202929",
+      "after_sha256": "b089975d1bd4c708f65dbd9ab2bf71e59c8392bd8712421e6d2c18dc1ef0d10b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/windows/runner/resources/app_icon.ico",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "c04e20caf6370ebb9253ad831cc31de4a9c965f6",
+      "after_mode": "100644",
+      "after_blob": "4b18836b9ccf28ed2ad4ccff324da1432df34380",
+      "before_sha256": "c098d3fc85cacff98b8e69811b48e9f0d852fcee278132d794411d978869cbf8",
+      "after_sha256": "9f339fa6eee32322bcae69ef10f06bb4dd518fc94bfaa3862da8554f17786b7e"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "1d2d67e509ba67f3c8c079fdeeae335911d69835",
+      "after_mode": "100644",
+      "after_blob": "13168e29184e0babdd8a575fb117641d5b3f5120",
+      "before_sha256": "8849c0545deb504e73f521f5b0f432e2abd1d0a394b3c21e23383cf98a7d4182",
+      "after_sha256": "66174b191872e13f581a4b5cf51ec41279a299eefd9a12f385f87222dc706615"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "8a64c3e463074723feb6bfc36e2b4eaeb1336116",
+      "after_mode": "100644",
+      "after_blob": "f540b52073a54ce62c98c1b0baef8f6c4e4079af",
+      "before_sha256": "2f21dcc1d5a92a884085bcac669ae0e58f04d1528c6d5ef6de35ec10d5452a76",
+      "after_sha256": "992198c120f82ac0a1cc661f75d967d17f0a60564ee26811fb7e4208457c91e1"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "2a1c67db6b5a9c82691111f8e7f508a95f246324",
+      "after_mode": "100644",
+      "after_blob": "a5e619a805f24157d6f788f35fc671aeb7a0f4c9",
+      "before_sha256": "493531667e27c5e9e0ff9f3daf639b3439b15682fd5ed4fea6eac2fb9c68fc89",
+      "after_sha256": "553d62f72f855229156705b4bf44692df5861a8456d36cdc549f41d8d55bc8a6"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/quds_office_engine.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "512a2dc198a30cbf9bf67bf1ec585eb6e8828a63",
+      "after_mode": "100644",
+      "after_blob": "794343e3de74be222aac975b2340858bd28076a6",
+      "before_sha256": "c51a5d9b80226f698f6e30d9adc28c480dfc7a8754eb33d45d138569246a0947",
+      "after_sha256": "eb36528fa3aa0449a5115e69ff81789f80d87cc711682607ac9c4e0f5c767b8d"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "6938c5272b99365042463169be29b2421d77013b",
+      "after_mode": "100644",
+      "after_blob": "1b67102365d7e1f244c97cafac913d7b585c58f7",
+      "before_sha256": "7eda42aa47f310a5a96ec306cca09bf8032b7957b1e345ac462ee67ea43702bb",
+      "after_sha256": "66bdcbe946c17508786981a644e4cf1f138696cd55fa7c00e54f3d1631f3b0ca"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "cc9d139554d5e3c599daa3d3d4ee175aea305a4a",
+      "after_mode": "100644",
+      "after_blob": "05718531eb80964f49c7dfedbbb0a9d1c4ff5006",
+      "before_sha256": "5a2711e5102948b88524aa6933c447791bf0839e83429c7e861d7a51cd23518e",
+      "after_sha256": "60a0044f72b2e831f1c20365c2ad0ec8fe468d7a83e11d75f1ecc3de4482243a"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "425dc1f786e620a5170aeb670f150e396eaa175b",
+      "after_mode": "100644",
+      "after_blob": "ab6519863786f553ee9588ff2c3ae1ee9f028556",
+      "before_sha256": "941f81781871aacea236eb87cbb0767a9e6307a5cdd974916924a206a32d3f79",
+      "after_sha256": "b6a5f98713189e333bf6460d37d2772041c54c52de8d589437f16fa5afbebbde"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "70c8b50c41cd732959ffb70c42c4fdef9f0f84f3",
+      "after_mode": "100644",
+      "after_blob": "b33ebbb93825853c29918a9a32cbd4ee3f60f958",
+      "before_sha256": "e9dc3be5aef6069b6a04e4b4dedb2d64a522be9dbf5b50bf4283dbba2ac93879",
+      "after_sha256": "994f41390ce0df501f50e3052e1642167b02593db70dd0e932f2b080f7981258"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "989250cd4a58f1bddbaaf02f145a66fa27bbaddc",
+      "after_mode": "100644",
+      "after_blob": "c9cfa97eac356e90b5232852062eada05414983d",
+      "before_sha256": "bc9581a4e0be7063a8b19e18ee8defb17e212b5efb055472eb72d36d108a03b5",
+      "after_sha256": "bf4c47772b1e08186c21c92351e865a53b66fe67586825bb9f65789375ef9c96"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "36a43464890d7308d589d5aab58572fe2b4e6575",
+      "after_mode": "100644",
+      "after_blob": "e2e1307bbafd1e895d319baf8a04198475d18b90",
+      "before_sha256": "f981a70babb25997859ffa16d2c093409805e293fd33b38196ba2e733712f31f",
+      "after_sha256": "2e76ffd619dde83fbabb567d81a26a735f4836d6bfc157d12fdebf6c28384016"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "148aa35f6987d6bca6f2ac946ca390b4d650b28b",
+      "after_mode": "100644",
+      "after_blob": "61f839b18083a99e9d7b9a1e7e06036227a46ec2",
+      "before_sha256": "fad0cbe9069626e75f4895118227aef3ade9c54219f4893121f721be7695c28a",
+      "after_sha256": "6ae2f09ab03508b55016edd2cda6fb2d1df757eb78f3e2dc4efaa1011a7b7e42"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "68870647bfc232acc6b5226d30709fe0d5f54c57",
+      "after_mode": "100644",
+      "after_blob": "4a28e4e0bb2eb31ca364cf3ea54da6b30d3875c8",
+      "before_sha256": "525e67d8243473db7fa4a79c3131ec2c05f72af4635e2cacb009bfce6baece14",
+      "after_sha256": "fc6be4341183f9e7a9d27708f293ba4ab7f67d330aff25863fbbafe7408c0db8"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "0fc3fc52d5a29e2083dbc4bbd69c3dcda30bff54",
+      "after_mode": "100644",
+      "after_blob": "beb2354d012626b558d39e87aab2546053df7f5b",
+      "before_sha256": "894d44b9a078dc23b624be55a6b942de9c30b6b8568493f44f8dea1bdacd44f8",
+      "after_sha256": "75a0072f023b9db06be37b62efe32d19e5ddb5f7b9299439bb0288f32d811ca5"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "2a312fa2c373f94c5af085276a9f7261b30784fd",
+      "after_mode": "100644",
+      "after_blob": "7ef4e89e4aa5c12515fdb5a0fd5d1fdf41faceb8",
+      "before_sha256": "67911b3b2c91bbf9201492be24733d0a6861dc789d69113e6f40847fa8469a69",
+      "after_sha256": "141524cbb9923f2de5eee36e454312080db0c12d21d90ed535ae25935c0bea91"
+    },
+    {
+      "path": "pubspec.yaml",
+      "category": "reviewed exact incoming identity",
+      "before_mode": "100644",
+      "before_blob": "80a898679ac54995b3df012117db47c21784894b",
+      "after_mode": "100644",
+      "after_blob": "a3792e29a61c5c25cc0ba99b1fb82fba586ebac2",
+      "before_sha256": "e1a41dca16b70767fcdb747940b1a63de6598d6ee8d62cef3367088f48ccaa1a",
+      "after_sha256": "393a876ff298dd9f74aa33e4185e31d769392921f0334fc5014dbcadf3ad87d9"
+    },
+    {
+      "path": "tools/proofing/ayaspell/build_bundle.py",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "19901f37f82b7fff8840f84cfefbec641baa99d7",
+      "after_mode": "100644",
+      "after_blob": "ec4dcdbaa69659ee6eb34fdf0ace176ff6586a4b",
+      "before_sha256": "998765c1c0d066c80e6fa2b10cc54718cc97a79d221fb536a97547ce5b49460a",
+      "after_sha256": "4f72fb1d2bdf9ba44362a92ae522e3e9c1ed9e7a163a8f6f04a607f9bb0f0a7a"
+    },
+    {
+      "path": "tools/proofing/ayaspell/test_build_bundle.py",
+      "category": "reviewed exact source override; fresh affected suites required",
+      "before_mode": "100644",
+      "before_blob": "6288d9cf4e72d8a78bffb355da525806fb426b82",
+      "after_mode": "100644",
+      "after_blob": "b68fa167322a03262b9f8a1df2eda194dd1be64b",
+      "before_sha256": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096",
+      "after_sha256": "d92c2e806fe9767b75bd8a8655e5df618e5eaf6b4449f70c3af1a41907b0e66d"
+    },
+    {
+      "path": "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+      "category": "Arabic bundle delta; requires fresh seventeen controls",
+      "before_mode": "100644",
+      "before_blob": "674a138826c74df8c3a165871600943983d48857",
+      "after_mode": "100644",
+      "after_blob": "a7f11e72b2bbfdefa29f17986c8b5fe9d9efe536",
+      "before_sha256": "568bce4e0552152d8a2c7f632bfa0809982226ef2f29954c436f76a1b884a5cc",
+      "after_sha256": "a2b63911afbb6931f5a900e41450b8eff9f8ad7c2044868625cbb7f45f3be8f8"
+    }
+  ],
+  "new_paths": [
+    {
+      "path": ".github/workflows/crispoffice-binaries.yml",
+      "mode": "100644",
+      "git_blob": "d27df04a950241cc872f955d2ccbd69cca8c2e7e"
+    },
+    {
+      "path": "docs/roadmaps/arabic-rule-spec.md",
+      "mode": "100644",
+      "git_blob": "d64122e13604a4066c8dd37d4750cda9027a06c0"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/preflight-incoming/README.md",
+      "mode": "100644",
+      "git_blob": "0ad63ff9e3e020fd411de1eb3fca3cbedb82a8d3"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/preflight-incoming/before-integration-audit.json",
+      "mode": "100644",
+      "git_blob": "7423544bb9166365c716bca9e69ad5b180a84b12"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/preflight-incoming/capture.json",
+      "mode": "100644",
+      "git_blob": "7866158fef55bd76dc72f1734a0202bbad5e878d"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/preflight-incoming/origin-refs.txt",
+      "mode": "100644",
+      "git_blob": "d8f8c4510662f21b6fc13f8ffdfb768fc9b0841f"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/preflight-incoming/post-integration-audit.json",
+      "mode": "100644",
+      "git_blob": "42dc9f7149afff9abcac9eb4e808bfa01f73d26b"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/preflight-incoming/summary.json",
+      "mode": "100644",
+      "git_blob": "d95742b3b8d19bd56fc5aa26e3fae5d5c498888f"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/preflight-incoming/upstream-refs.txt",
+      "mode": "100644",
+      "git_blob": "991550f94eec4b054b5354946c41f0730e1b60da"
+    },
+    {
+      "path": "docs/validation/mail-uid-pagination-20261119/review/range-transaction-review.md",
+      "mode": "100644",
+      "git_blob": "552dd624b9d7cd06418488231784342d1e4cfb4f"
+    },
+    {
+      "path": "docs/validation/office-current-reconciliation-20261119/native/native-qualification.tar.index.json",
+      "mode": "100644",
+      "git_blob": "4f0b1a20132102af88fcf0d3d14f0654829645af"
+    },
+    {
+      "path": "docs/validation/office-current-reconciliation-20261119/native/native-qualification.tar.xz",
+      "mode": "100644",
+      "git_blob": "e4adde94e4c4a1dfab5dcb8407bee84b30b787da"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/arabic-plan.json",
+      "mode": "100644",
+      "git_blob": "e69268c9bfcdfe62ec66866158a2bf86423b211c"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/arabic-archive-audit.json",
+      "mode": "100644",
+      "git_blob": "779a1ad811277d3ddd08ee4122cea938bdf160b5"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/arabic-audit-adapter-review.json",
+      "mode": "100644",
+      "git_blob": "2b6104a6ceef91f68987828eaaf468e3ab8b6641"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/arabic-main-tail-review.json",
+      "mode": "100644",
+      "git_blob": "df6c82c45dc1826eb655d366078a4d625d259766"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/arabic-proofing.index.json",
+      "mode": "100644",
+      "git_blob": "5156868d78dd8112381e670846d87552145cfb7b"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/arabic-proofing.tar.xz",
+      "mode": "100644",
+      "git_blob": "2e9b2481c132d657742b7c4d1b15735e17ef57a9"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/arabic-publication-receipt.json",
+      "mode": "100644",
+      "git_blob": "d6b64dd100637aa519e249e923435516dfab5b4b"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/audit_arabic_main_tail.py",
+      "mode": "100644",
+      "git_blob": "c39f3f63cdd5b1ef9db659bfe4c41592dddc5146"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/audit_arabic_qualification.py",
+      "mode": "100644",
+      "git_blob": "56c696c9dbcf4b4057b1ef257d96f6cbddfa3d1b"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/audit_final_main_carryforward.py",
+      "mode": "100644",
+      "git_blob": "bf104fa45dd4190e128464f49cd3a89557121f64"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/audit_mail_tail.py",
+      "mode": "100644",
+      "git_blob": "8217f90ee6a5f084020980f71a55899c9294a219"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/audit_proofing_tail.py",
+      "mode": "100644",
+      "git_blob": "13e5dc57291a089dd11e4424d074ba8a6be1f0fe"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/build_arabic_archive.py",
+      "mode": "100644",
+      "git_blob": "e7233316806ac4363496ea74587a5c15156d3531"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/check_proofing_output_guard.py",
+      "mode": "100644",
+      "git_blob": "d49be11acace1b472120e8c9a5ecbaea451f330f"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/final-main-carryforward-review.json",
+      "mode": "100644",
+      "git_blob": "0cd3d6069ae103f6fe7944fc046d75a7d5834262"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/independent-arabic-summary.json",
+      "mode": "100644",
+      "git_blob": "440c98db6087843b8c5f7e073f7cc7d17d4af8a5"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/mail-tail-immutable-readback.json",
+      "mode": "100644",
+      "git_blob": "13c8cde7d16aa77d2324b15b35e4869c1f95a8ac"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/mail-tail-review.json",
+      "mode": "100644",
+      "git_blob": "42a02fd129b541ce397ffb1e5a765bfa565d713b"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/proofing-output-guard.json",
+      "mode": "100644",
+      "git_blob": "1ccd1833e8314affd85287de804c24f85cde1cfb"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/proofing-tail-review.json",
+      "mode": "100644",
+      "git_blob": "0dd7af0294051b89dd4ce64bfab9a77d2d88d1e3"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/publisher-main-controls/README.md",
+      "mode": "100644",
+      "git_blob": "22b9dcfffce2c70e4756cd1e8fe72a342a82448d"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/publisher-main-controls/final-run/receipt.json",
+      "mode": "100644",
+      "git_blob": "5908f4a66bba0c49a14e28ea5025297de87d61db"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/publisher-main-controls/final-run/unittest.log",
+      "mode": "100644",
+      "git_blob": "300201bcf0c94fb8da22a8331e618c98217d32c8"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/publisher-main-controls/first-run/receipt.json",
+      "mode": "100644",
+      "git_blob": "86a8d7197b5b4de49f01c81fa893e46e454b6f95"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/publisher-main-controls/first-run/unittest.log",
+      "mode": "100644",
+      "git_blob": "05f7e683edfdd72c45cb47f0be1fe15083c93af3"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/publisher-main-controls/index.json",
+      "mode": "100644",
+      "git_blob": "670bf899d273e8bfa2cc7608f8b3e871f0b4e069"
+    },
+    {
+      "path": "docs/validation/office-main-completion-20261119/release/publisher-main-controls/run_offline_publisher_tests.py",
+      "mode": "100644",
+      "git_blob": "295a097e1b5040447f853b70914c71f7125a782a"
+    },
+    {
+      "path": "docs/validation/office-main-integration-20261119/socket-final/arabic-combined-review.json",
+      "mode": "100644",
+      "git_blob": "1bab23b236093a509bf7ec943dbb5859d32f755f"
+    },
+    {
+      "path": "docs/validation/office-main-integration-20261119/socket-final/arabic-controls-evidence.index.json",
+      "mode": "100644",
+      "git_blob": "4e58ccc423a05032f8c8511a38cfc2b6a1f26d7b"
+    },
+    {
+      "path": "docs/validation/office-main-integration-20261119/socket-final/arabic-controls-evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "4dcf5e1170977e966caf71bcd1aed69296839036"
+    },
+    {
+      "path": "docs/validation/office-main-integration-20261119/socket-final/arabic-controls-receipt.json",
+      "mode": "100644",
+      "git_blob": "829c665f8d654f5af44793ceaa3d39394c2d8095"
+    },
+    {
+      "path": "docs/validation/office-main-integration-20261119/socket-final/arabic_late_main_review.json",
+      "mode": "100644",
+      "git_blob": "2a188e6bdfb3d0d1072f1e6425feca6eba3d5969"
+    },
+    {
+      "path": "docs/validation/office-main-integration-20261119/socket-final/bounded_pr177_178_review.json",
+      "mode": "100644",
+      "git_blob": "96e9d192a15d3209f9e91090ef82ceaa42704191"
+    },
+    {
+      "path": "docs/validation/office-main-integration-20261119/socket-final/late-continuation-continuity.json",
+      "mode": "100644",
+      "git_blob": "0e96a6370d39604a510c27f0131fcfeee162649e"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/final/archive-audit.json",
+      "mode": "100644",
+      "git_blob": "607dbe7777d6805b7b2ae872e9207b5e9cf164ef"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/final/evidence.index.json",
+      "mode": "100644",
+      "git_blob": "8e97994e52e02eebdbe60a46a2f013ce767dd26b"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/final/evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "b5c70217363c7ba377d54beea129d48add38721d"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/final/execution.json",
+      "mode": "100644",
+      "git_blob": "fa7696ae6fc6217e42a2be0c3e24aa070cfe9e96"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/final/independent-summary.json",
+      "mode": "100644",
+      "git_blob": "5093fb3220ec53c16f291a9668305a5606cb703a"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/final/summary.json",
+      "mode": "100644",
+      "git_blob": "500a8490d65cc1f1c4be13ca5cf3deb482c83b60"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/README.md",
+      "mode": "100644",
+      "git_blob": "15b6c24e63266085f5bfc7e43c593eb752fbc9c9"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/archive-audit.json",
+      "mode": "100644",
+      "git_blob": "904652b740d6de7eacddfaf33c1afed1ea823303"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/attempt-c0c71a26/README.md",
+      "mode": "100644",
+      "git_blob": "08cce94fb63723c5e74ddd762ae7586a11ee304b"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/attempt-c0c71a26/audit_failed_v2_attempt.py",
+      "mode": "100644",
+      "git_blob": "918bcfe353ca69d09478a8e40434ae65f71e23c0"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/attempt-c0c71a26/evidence.index.json",
+      "mode": "100644",
+      "git_blob": "da7920e662e29a88f0c41e8e293927d62b356bc8"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/attempt-c0c71a26/evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "2c1c266f451ebbc33c56783597d2e830ea6a7b24"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/attempt-c0c71a26/execution.json",
+      "mode": "100644",
+      "git_blob": "932f23d62df18568dbe9cfb6fbbf6c0800f3438b"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/attempt-c0c71a26/independent-audit.json",
+      "mode": "100644",
+      "git_blob": "b204159e69c5acdc40414b070c22bd1c6837a02b"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/delta-native-plan.json",
+      "mode": "100644",
+      "git_blob": "e6142ab70484ed7b8e8bf83bd84ac112ea6345d1"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/delta-node-plan.json",
+      "mode": "100644",
+      "git_blob": "66a3493f36a568b0650a9050c52dcf6750621cce"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/fixture-plan.json",
+      "mode": "100644",
+      "git_blob": "04075bd2ef25a9668b9fc1faf40e8d9c3a32292b"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/packet-selection.json",
+      "mode": "100644",
+      "git_blob": "00f6124817ddab20f44e4e040f723cbb12b24634"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/proposal-manifest.json",
+      "mode": "100644",
+      "git_blob": "452c638321830a38ea44eb9b66175e98d043721c"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/publication-manifest.json",
+      "mode": "100644",
+      "git_blob": "6c0ab9aba393ce15dbfb61e8f581e41d6c1800e6"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/reviewed-source-overrides.json",
+      "mode": "100644",
+      "git_blob": "6a6507a059df8d0e683e14e59356d10d8aa0a1ea"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/reviews/evidence.index.json",
+      "mode": "100644",
+      "git_blob": "7bda6825b5b3a0c0380aeb19337282b5baa39ce3"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/reviews/evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "2a0fcd237140057b973c05c71f99e2537af86480"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/run-delta-validation.py",
+      "mode": "100644",
+      "git_blob": "d53db1a03a509864c2bd44822a7a78c178740c54"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/verify-delta-continuity.py",
+      "mode": "100644",
+      "git_blob": "07639141da0a262fb93683847d622dafa4a8b7ca"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/README.md",
+      "mode": "100644",
+      "git_blob": "2838c2c33061224925bcd9d113d82fd1746f5d22"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/README.md",
+      "mode": "100644",
+      "git_blob": "6e171527beb477b6ffee5f603f991578a75a8435"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/archive-audit.json",
+      "mode": "100644",
+      "git_blob": "7f3f0da43c2cf9d3ecaf57ee022d09c4fa59f4f1"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.index.json",
+      "mode": "100644",
+      "git_blob": "75c7498a4556c8e7be871e025630b48e1e13b8f4"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "154fc1549d7c79ae2b587013660ff0de356fac45"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/execution.json",
+      "mode": "100644",
+      "git_blob": "90dd0322702bae6b48ffbc821dd91650d45ce2c4"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/independent-audit.json",
+      "mode": "100644",
+      "git_blob": "429e3accd72cd1b97482eea4fc8de6d1f2b018a5"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/packet-selection.json",
+      "mode": "100644",
+      "git_blob": "f5b12495084d92b677e0b81303a201b987310692"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/publication-manifest.json",
+      "mode": "100644",
+      "git_blob": "50f1c902f2235a75bb8f7c0898cae79c84d3a09e"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/README.md",
+      "mode": "100644",
+      "git_blob": "5e7330fcc7ef0301d067fd6cdd19266579ed50e4"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/archive-audit.json",
+      "mode": "100644",
+      "git_blob": "a0689cbcad49967054a810ec23a7553add099a02"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.index.json",
+      "mode": "100644",
+      "git_blob": "53558f4faab4b209c1324418cb304e956bd43740"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "99f6f19429eb202cbe048afc8ed2bd89423d68d9"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/execution.json",
+      "mode": "100644",
+      "git_blob": "dde15c24d957db751b3bf1136919608028ce5eca"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/independent-audit.json",
+      "mode": "100644",
+      "git_blob": "77b57b832bec1f73ef022fbcc601a32578dc4d1d"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/packet-selection.json",
+      "mode": "100644",
+      "git_blob": "0b16decd8ac8475508a0ee16390bedb60508933d"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/publication-manifest.json",
+      "mode": "100644",
+      "git_blob": "c309d45514cb2ee344b4a7088f6fa9ca8d161340"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/delta-native-plan.json",
+      "mode": "100644",
+      "git_blob": "f4aa62c74ed28cf12d5e939312996d44d03cce58"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/delta-node-plan.json",
+      "mode": "100644",
+      "git_blob": "bf51b40a0661afee6b8d1411a96985e4362e1ecd"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/fixture-plan.json",
+      "mode": "100644",
+      "git_blob": "04075bd2ef25a9668b9fc1faf40e8d9c3a32292b"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/proposal-manifest.json",
+      "mode": "100644",
+      "git_blob": "58eb36fd2cc456b3b6b084794ff72c7108ee5246"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/reviewed-source-overrides.json",
+      "mode": "100644",
+      "git_blob": "9f3808c306278a3fc2acfde4e909722f24629837"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/run-delta-validation.py",
+      "mode": "100644",
+      "git_blob": "b38d4a173fe42db4895b8d75c0907925a920e000"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/verify-delta-continuity.py",
+      "mode": "100644",
+      "git_blob": "beb578a1c22603df21519a63315257c545a83de5"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v4/README.md",
+      "mode": "100644",
+      "git_blob": "a5f844e977352846b2b670230843f6bcf4578972"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v4/delta-native-plan.json",
+      "mode": "100644",
+      "git_blob": "3be50fec482d66b60340479fd0b55de845c44354"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v4/delta-node-plan.json",
+      "mode": "100644",
+      "git_blob": "3fac0254a220683e7d9d0c41a7414430cc484beb"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v4/fixture-plan.json",
+      "mode": "100644",
+      "git_blob": "04075bd2ef25a9668b9fc1faf40e8d9c3a32292b"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v4/proposal-manifest.json",
+      "mode": "100644",
+      "git_blob": "65aef59a0cbd34352829f14cbfeb0fb109fdf2c0"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v4/reviewed-source-overrides.json",
+      "mode": "100644",
+      "git_blob": "a673bba68da7d45d0dfc0bbcc0db8170cebcc5d5"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v4/run-delta-validation.py",
+      "mode": "100644",
+      "git_blob": "dbd97325aeb2e03706a6d17be4340c4ea665b74a"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v4/verify-delta-continuity.py",
+      "mode": "100644",
+      "git_blob": "cbe5ebc0abb7d6e61edf701770c6503865873e7c"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/README.md",
+      "mode": "100644",
+      "git_blob": "a87cc66da523bee017d14fa9412ffa68e03b4cde"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/attempt-aea5d91a/README.md",
+      "mode": "100644",
+      "git_blob": "850ff6321ccaece572da82bc31289cf1dfbb5201"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/attempt-aea5d91a/archive-audit.json",
+      "mode": "100644",
+      "git_blob": "ba0f4c8963845e2908f10f7ea6c43d53ad0a6fb0"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/attempt-aea5d91a/audit_failed_delta_attempt.py",
+      "mode": "100644",
+      "git_blob": "77839aef19a1cdb32e2ab59dc672bb28fa36c2d0"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/attempt-aea5d91a/evidence.index.json",
+      "mode": "100644",
+      "git_blob": "916bea301050eee031aeccc6067eb3a8ee09aabe"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/attempt-aea5d91a/evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "779034b0f6dc6b118d2f98b777adcaa3238fb76f"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/attempt-aea5d91a/execution.json",
+      "mode": "100644",
+      "git_blob": "642516c5b53e57f99715bb408f3af0bddc1ebadd"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/attempt-aea5d91a/independent-audit.json",
+      "mode": "100644",
+      "git_blob": "ae73f843899d1ced646b8419fae0e76e35a4460c"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/attempt-aea5d91a/publication-manifest.json",
+      "mode": "100644",
+      "git_blob": "275fb037cc80fd04d2fb0b8aeabfd79cd7367fd4"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/delta-native-plan.json",
+      "mode": "100644",
+      "git_blob": "85807a1b6aad7aa7a1d72328f2a00d18864020f1"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/delta-node-plan.json",
+      "mode": "100644",
+      "git_blob": "ca4c72cb602b9f3a2b5755a1e50a577a2a9e5332"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/fixture-plan.json",
+      "mode": "100644",
+      "git_blob": "04075bd2ef25a9668b9fc1faf40e8d9c3a32292b"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/run-delta-validation.py",
+      "mode": "100644",
+      "git_blob": "0cd83281084e1b79f679e00fe20b8e1af57bfe4a"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-delta/verify-delta-continuity.py",
+      "mode": "100644",
+      "git_blob": "68cdfcf98a9d066e63a4ad05c61d4c9907a26e61"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/main-reconciliation.md",
+      "mode": "100644",
+      "git_blob": "03bf62f9b19fc3dbfb274bc8f7bab18d7628d7c0"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/preliminary/evidence.index.json",
+      "mode": "100644",
+      "git_blob": "c7ea8890948399d7d5d1222c74cb7fb019d08eab"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/preliminary/evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "63934e8fc5b1a8444476ccfd819f1159ede6ba95"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/publication-manifest.json",
+      "mode": "100644",
+      "git_blob": "d9abeef436c16822d689b578051c6de7cfc3b80c"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/reconciliation/evidence.index.json",
+      "mode": "100644",
+      "git_blob": "688874225c12384b1741255cf41676bec1efae33"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/reconciliation/evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "5cf0344c7c759cd460a1c546757e88dffbe77446"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/reconciliation/ref-audit-0669ac11.json",
+      "mode": "100644",
+      "git_blob": "65efdf69d65cf9e89c597b4ce6586a9c000a7ec6"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/reviews/cursor-aba.index.json",
+      "mode": "100644",
+      "git_blob": "5050a3cf047c19f8e2cc7f4134650e06c0c7c9cd"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/reviews/cursor-aba.tar.xz",
+      "mode": "100644",
+      "git_blob": "2655cc1fa69d96b2f566f95649b7827ec8fe1260"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/reviews/evidence.index.json",
+      "mode": "100644",
+      "git_blob": "38964c59e8a1a857b2447dfacbfdd0fae0dc291e"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/reviews/evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "df822d4886542fda7191db6144c8f8813de04583"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/runtime/evidence.index.json",
+      "mode": "100644",
+      "git_blob": "f7896d0455bb02ac0e7a6cbf7e5b5322e7507a33"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/runtime/evidence.tar.xz",
+      "mode": "100644",
+      "git_blob": "cb6c64a03ee96e4a2a2628f4985c9b8f457fd89c"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/tools/audit_current_gate.py",
+      "mode": "100644",
+      "git_blob": "da1a26e6430b43e5dc1720f81a5c3ebfd22d2258"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/tools/audit_final_integration.py",
+      "mode": "100644",
+      "git_blob": "5eb2d45438cb42564a95ffd357f9909e7fd48255"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/tools/audit_outer_python_controls.py",
+      "mode": "100644",
+      "git_blob": "d58c07380de2f336016ba4f02b88eb8a8588f29c"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/tools/audit_store_current.py",
+      "mode": "100644",
+      "git_blob": "69b4be38bd875f32f689be0aa1c50d55dbea6432"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/tools/package_publication_evidence.py",
+      "mode": "100644",
+      "git_blob": "83f0119823054cc236ab873c894d220bf30714dc"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/tools/publication-verifier-controls.json",
+      "mode": "100644",
+      "git_blob": "6762634b4acb4e2cb960266b82a85d09857721d7"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/tools/source-0669-packets.json",
+      "mode": "100644",
+      "git_blob": "38de34c5fe8296db13d8486f432269bff5616ad8"
+    },
+    {
+      "path": "docs/validation/office-main-sync-20261119/tools/verify_publication_archives.py",
+      "mode": "100644",
+      "git_blob": "f92b0240216d490ae49883d280624ab5c15fb625"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/branding/crispoffice_icon.svg",
+      "mode": "100644",
+      "git_blob": "da4d4d719bfdc3915d769804e38348cade65e4ee"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/branding/crispoffice_icon_1024.png",
+      "mode": "100644",
+      "git_blob": "72bec3ec30153bbbaa98a2aaedc5bd77c44e8553"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/branding/crispoffice_icon_512.png",
+      "mode": "100644",
+      "git_blob": "6b8ec15e7bbe1bd05c9e6a6e1f11f2474e8e00c9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/COPYING.MPL",
+      "mode": "100644",
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/license.hunspell",
+      "mode": "100644",
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/license.myspell",
+      "mode": "100644",
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81"
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/manifest.json",
+      "mode": "100644",
+      "git_blob": "047583cef801a41b7ef20e85ef85bbcd877b24ec"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/crisp_office_sample.dart",
+      "mode": "100644",
+      "git_blob": "6da40bdab1bd00840d81ddadcdabcd39fde64907"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_about.dart",
+      "mode": "100644",
+      "git_blob": "2b3d62dd98d655b2e98ce4771f5ebed9d244abb9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_de_strings.dart",
+      "mode": "100644",
+      "git_blob": "d8834daaf2e1999d431ff4a1752bfc2ac8a447aa"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host.dart",
+      "mode": "100644",
+      "git_blob": "350943bdf435b3463a116a3407182991ca384303"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host_native.dart",
+      "mode": "100644",
+      "git_blob": "2c2ba7139a5cbadfdaef3364f8ee00344dcbd76e"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+      "mode": "100644",
+      "git_blob": "c0ab6d4bfbd0e9dc1341ac79c7ec854c3071164f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+      "mode": "100644",
+      "git_blob": "1730273860af5f80244e89e1a257e45c7c9038d0"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+      "mode": "100644",
+      "git_blob": "069b20e0bcfee788ab21e9eced6592d1ab05735c"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail.dart",
+      "mode": "100644",
+      "git_blob": "309adb142e4a3556bcd6d1e29025d306d1bc1cee"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_strings.dart",
+      "mode": "100644",
+      "git_blob": "88268b805c817bc5c2cc8f9af33b13f67bb5c88c"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/.gitignore",
+      "mode": "100644",
+      "git_blob": "746adbb6b9e14b7e685c91e280a4d37a672afbd8"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Flutter/Flutter-Debug.xcconfig",
+      "mode": "100644",
+      "git_blob": "4b81f9b2d200fc807eed25bca04dff9ee9dcc45f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Flutter/Flutter-Release.xcconfig",
+      "mode": "100644",
+      "git_blob": "5caa9d1579e481a5894c37e2e56b0da062e95b35"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Flutter/GeneratedPluginRegistrant.swift",
+      "mode": "100644",
+      "git_blob": "17359ffe28b44e4297e19478aa1ab0c7a0f5b68d"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Podfile",
+      "mode": "100644",
+      "git_blob": "167132a2fb51b9dfad31d6b61f0f1788d3e13154"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Podfile.lock",
+      "mode": "100644",
+      "git_blob": "b3ccc337411316b04dffe0e11ce7d62deadf9f7b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner.xcodeproj/project.pbxproj",
+      "mode": "100644",
+      "git_blob": "43a2a4c0ade3808823a662c514feb9606ac16f4d"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+      "mode": "100644",
+      "git_blob": "18d981003d68d0546c4804ac2ff47dd97c6e7921"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme",
+      "mode": "100644",
+      "git_blob": "e18e912cb0db8b3b15639aa016003e27c0dcc7b3"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner.xcworkspace/contents.xcworkspacedata",
+      "mode": "100644",
+      "git_blob": "21a3cc14c74e969ab1548274a8512ebfecc40f78"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+      "mode": "100644",
+      "git_blob": "18d981003d68d0546c4804ac2ff47dd97c6e7921"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/AppDelegate.swift",
+      "mode": "100644",
+      "git_blob": "695c8f26f83baffb5754614e7dfef8ed118cb4d9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "mode": "100644",
+      "git_blob": "a2ec33f19f110ebff51a23342d7bc29ec9a1aaa6"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "mode": "100644",
+      "git_blob": "de8f0af6413496a0360188c42ff0ddd4fc516ef9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_128.png",
+      "mode": "100644",
+      "git_blob": "ca2d1a30113f08e969d40726cd046781aebf4a57"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_16.png",
+      "mode": "100644",
+      "git_blob": "5519f5dddc2a6e542862e1450ab0531a65205d09"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png",
+      "mode": "100644",
+      "git_blob": "d9633190eedda26ab62d0b35f80d7a4de74d0595"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_32.png",
+      "mode": "100644",
+      "git_blob": "a01b497f2abb6e33a7e0c991e18b053fee028552"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_512.png",
+      "mode": "100644",
+      "git_blob": "5e3ddec27f3b878234387a57a1e9721c2351034f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_64.png",
+      "mode": "100644",
+      "git_blob": "88b8d62d4935f24929af878465597024c174f18f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Base.lproj/MainMenu.xib",
+      "mode": "100644",
+      "git_blob": "14c406665077282620938ca373ed19a55f907618"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Configs/AppInfo.xcconfig",
+      "mode": "100644",
+      "git_blob": "261c97be96db48d39895d0539591e37264bf8fa2"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Configs/Debug.xcconfig",
+      "mode": "100644",
+      "git_blob": "36b0fd9464f45b33f482e64bea579787e142affa"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Configs/Release.xcconfig",
+      "mode": "100644",
+      "git_blob": "dff4f49561c816f70eaea557d889d31cf63447ac"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Configs/Warnings.xcconfig",
+      "mode": "100644",
+      "git_blob": "42bcbf4780b187e80025b7917058bcb882012aa1"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/DebugProfile.entitlements",
+      "mode": "100644",
+      "git_blob": "cff5a4b38187333e066fa73f189d627f7c915892"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Info.plist",
+      "mode": "100644",
+      "git_blob": "d307e86d259d3e9f9a16f9e25488c213352f483e"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/MainFlutterWindow.swift",
+      "mode": "100644",
+      "git_blob": "3cc05eb23491684aae1c51ce94668a142bad5125"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Release.entitlements",
+      "mode": "100644",
+      "git_blob": "38da9a976819359ce83aff27dbd6341393655029"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/RunnerTests/RunnerTests.swift",
+      "mode": "100644",
+      "git_blob": "61f3bd1fc504c3b78271416d8cfd14faa1dae2b4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_arabic_proofing_native_test.dart",
+      "mode": "100644",
+      "git_blob": "34ad4631f5abdddcc59c6720b1ae4afe9cde41b9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart",
+      "mode": "100644",
+      "git_blob": "a0d9f6a288d02a4bca818e7e277aea96ab5c3af2"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+      "mode": "100644",
+      "git_blob": "787ac1ad3d88e1f3eb3ae59671594b70d318afc6"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "mode": "100644",
+      "git_blob": "c9c111cfd539cad6067e9a28784b3a69986b3c65"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+      "mode": "100644",
+      "git_blob": "0e107dfe4a92d772189678b630f7328429e362dd"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "mode": "100644",
+      "git_blob": "1e077eb38492bc880d96eac3428957e2c4aece41"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/studio_settings.dart",
+      "mode": "100644",
+      "git_blob": "6538a2ecedd67a3f3a2c50aae086810b68fe0b8e"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+      "mode": "100644",
+      "git_blob": "ea6f67f1e317771c52ffdbccb563bae9db0fd9ba"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+      "mode": "100644",
+      "git_blob": "3ccc7f0cc47d189f36f614660522a3003a249dd6"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+      "mode": "100644",
+      "git_blob": "0c20b82afd15f77e66402f5966905137fa39f074"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+      "mode": "100644",
+      "git_blob": "e2845af85c065c269dcdfc810eb2a5bd17f211e2"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+      "mode": "100644",
+      "git_blob": "5f75f51dfaf69ed171223244e318caab0af68c96"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_complex_script_language_test.dart",
+      "mode": "100644",
+      "git_blob": "1ee13814551fbb5adeb77afe4b7c7f6a82b4feeb"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/.gitignore",
+      "mode": "100644",
+      "git_blob": "84c048a73cc2e5dd24f807669eb99b0ce3123195"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/CHANGELOG.md",
+      "mode": "100644",
+      "git_blob": "4823a4f881c951c91b530d42acda48ff9ef15bdc"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/LICENSE",
+      "mode": "100644",
+      "git_blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/README.md",
+      "mode": "100644",
+      "git_blob": "7e5f13b93a66a33069cbf109ad2d0da660c41c59"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/installer_io.dart",
+      "mode": "100644",
+      "git_blob": "e347b7b94e065d9abe897b6721e6b0b6cae038a8"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/quds_proofing_hunspell.dart",
+      "mode": "100644",
+      "git_blob": "11344318a423edd12ada233f6703fcc1cc53a355"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart",
+      "mode": "100644",
+      "git_blob": "d22335feb17434c842f2422d76a9fceab522188d"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+      "mode": "100644",
+      "git_blob": "943fdbd0a20981e414fe856d36664d83faa7dd8d"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart",
+      "mode": "100644",
+      "git_blob": "36ad097141706ffa98488b5564f5256a14af2968"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_transport.dart",
+      "mode": "100644",
+      "git_blob": "e5c896210b77c4a5196169d6b23c84e77d4fb4e5"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+      "mode": "100644",
+      "git_blob": "8a521dcbc93e55473747370f70c6f1aef62c132d"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_transport_stub.dart",
+      "mode": "100644",
+      "git_blob": "340cb81aa80417f59a5261f2e386db740e87f46a"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_transport_web.dart",
+      "mode": "100644",
+      "git_blob": "505967a908d81a9373d15a0861519f4fb9b6ac41"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_words.dart",
+      "mode": "100644",
+      "git_blob": "72e4dd9d0991bfb840de13843e9fccfb4c2fc0bc"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/hunspell-1.7.2-library-sources.tar.gz",
+      "mode": "100644",
+      "git_blob": "1d123ee7c0dc165e0ffa1264b01ef7b120ec7edb"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/manifest.json",
+      "mode": "100644",
+      "git_blob": "047583cef801a41b7ef20e85ef85bbcd877b24ec"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "mode": "100644",
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "mode": "100644",
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "mode": "100644",
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/native/CMakeLists.txt",
+      "mode": "100644",
+      "git_blob": "07d74f1df592c678d3b8251ad167a87e7e95d3db"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/native/src/quds_hunspell.cpp",
+      "mode": "100644",
+      "git_blob": "04021de84c0d5eef7167ca47648339eb6271eb75"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/pubspec.yaml",
+      "mode": "100644",
+      "git_blob": "4227a404904086d2195d9c54fbbdab35d26fc760"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+      "mode": "100644",
+      "git_blob": "c9a9faf8598e655593bc5993e70b1907a89bbc45"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+      "mode": "100644",
+      "git_blob": "0daa80241e0c71a483e1edf4be7a356e0748c5ea"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+      "mode": "100644",
+      "git_blob": "4e35965e40f82c869fa16e5a482ff6cf47e0d7fa"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+      "mode": "100644",
+      "git_blob": "77381ddd0c9cd65f982229df872b6964259520d6"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/support/hunspell_lifecycle_shim.cpp",
+      "mode": "100644",
+      "git_blob": "3db526f95e3b42a76ee56d659edcac48ec5e592e"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/tool/build.py",
+      "mode": "100644",
+      "git_blob": "73a7b29fae2382a03f9f25a71adec61d5ec00d6a"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/tool/corpus_check.dart",
+      "mode": "100644",
+      "git_blob": "7436f31e49ce52c64aa54ac357a47bc1490e57de"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/tool/test_build.py",
+      "mode": "100644",
+      "git_blob": "3df3e9f8c540bcf9b27a33d7068bc76092ed9af2"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/tool/web_compile_check.dart",
+      "mode": "100644",
+      "git_blob": "16af68237e10a68ba2c5ec982f8fcba1c5194799"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/tool/web_smoke.mjs",
+      "mode": "100644",
+      "git_blob": "3cc78b567facd55b8be7573df036d903f45e20dc"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/web/hunspell_worker.mjs",
+      "mode": "100644",
+      "git_blob": "0bae4b913332caeca1a34ab8a4c1b08a0d5bc915"
+    },
+    {
+      "path": "tools/proofing/ayaspell/test_build_bundle_reproducibility.py",
+      "mode": "100644",
+      "git_blob": "6288d9cf4e72d8a78bffb355da525806fb426b82"
+    }
+  ],
+  "runtime_changed_paths": [
+    "workspace/package_config.json"
+  ],
+  "workspace_before": [
+    "_fe_analyzer_shared",
+    "analyzer",
+    "archive",
+    "args",
+    "asn1lib",
+    "async",
+    "barcode",
+    "basic_utils",
+    "bidi",
+    "boolean_selector",
+    "characters",
+    "cli_config",
+    "cli_util",
+    "clock",
+    "code_assets",
+    "collection",
+    "convert",
+    "coverage",
+    "cross_file",
+    "crypto",
+    "dbus",
+    "drift",
+    "encrypter_plus",
+    "enough_convert",
+    "enough_mail",
+    "fake_async",
+    "ffi",
+    "file",
+    "file_picker",
+    "flutter",
+    "flutter_lints",
+    "flutter_localizations",
+    "flutter_plugin_android_lifecycle",
+    "flutter_test",
+    "flutter_web_plugins",
+    "frontend_server_client",
+    "glob",
+    "hooks",
+    "http",
+    "http_multi_server",
+    "http_parser",
+    "image",
+    "intl",
+    "io",
+    "json_annotation",
+    "leak_tracker",
+    "leak_tracker_flutter_testing",
+    "leak_tracker_testing",
+    "legacy_doc_parser",
+    "lints",
+    "logging",
+    "matcher",
+    "material_color_utilities",
+    "meta",
+    "mime",
+    "native_toolchain_c",
+    "node_preamble",
+    "package_config",
+    "path",
+    "path_parsing",
+    "pdf",
+    "pdf_widget_wrapper",
+    "petitparser",
+    "platform",
+    "plugin_platform_interface",
+    "pointycastle",
+    "pool",
+    "posix",
+    "printing",
+    "process",
+    "pub_semver",
+    "qr",
+    "quds_mail_core",
+    "quds_mail_mime",
+    "quds_mail_reader_example",
+    "quds_mail_store",
+    "quds_mail_transport",
+    "quds_mail_ui",
+    "quds_office_editor",
+    "quds_office_engine",
+    "quds_office_engine_example",
+    "quds_office_studio",
+    "quds_office_suite",
+    "quds_proofing_gector",
+    "quds_proofing_harper",
+    "quds_proofing_spacy",
+    "quds_report_studio",
+    "quds_reports",
+    "record_use",
+    "screen_retriever",
+    "screen_retriever_linux",
+    "screen_retriever_macos",
+    "screen_retriever_platform_interface",
+    "screen_retriever_windows",
+    "shelf",
+    "shelf_packages_handler",
+    "shelf_static",
+    "shelf_web_socket",
+    "sky_engine",
+    "source_map_stack_trace",
+    "source_maps",
+    "source_span",
+    "sqlite3",
+    "stack_trace",
+    "stream_channel",
+    "string_scanner",
+    "synchronized",
+    "term_glyph",
+    "test",
+    "test_api",
+    "test_core",
+    "typed_data",
+    "url_launcher",
+    "url_launcher_android",
+    "url_launcher_ios",
+    "url_launcher_linux",
+    "url_launcher_macos",
+    "url_launcher_platform_interface",
+    "url_launcher_web",
+    "url_launcher_windows",
+    "vector_math",
+    "vm_service",
+    "watcher",
+    "web",
+    "web_socket",
+    "web_socket_channel",
+    "webkit_inspection_protocol",
+    "win32",
+    "window_manager",
+    "xml",
+    "yaml"
+  ],
+  "workspace_after": [
+    "_fe_analyzer_shared",
+    "analyzer",
+    "archive",
+    "args",
+    "asn1lib",
+    "async",
+    "barcode",
+    "basic_utils",
+    "bidi",
+    "boolean_selector",
+    "characters",
+    "cli_config",
+    "cli_util",
+    "clock",
+    "code_assets",
+    "collection",
+    "convert",
+    "coverage",
+    "cross_file",
+    "crypto",
+    "dbus",
+    "drift",
+    "encrypter_plus",
+    "enough_convert",
+    "enough_mail",
+    "fake_async",
+    "ffi",
+    "file",
+    "file_picker",
+    "flutter",
+    "flutter_lints",
+    "flutter_localizations",
+    "flutter_plugin_android_lifecycle",
+    "flutter_test",
+    "flutter_web_plugins",
+    "frontend_server_client",
+    "glob",
+    "hooks",
+    "http",
+    "http_multi_server",
+    "http_parser",
+    "image",
+    "intl",
+    "io",
+    "json_annotation",
+    "leak_tracker",
+    "leak_tracker_flutter_testing",
+    "leak_tracker_testing",
+    "legacy_doc_parser",
+    "lints",
+    "logging",
+    "matcher",
+    "material_color_utilities",
+    "meta",
+    "mime",
+    "native_toolchain_c",
+    "node_preamble",
+    "package_config",
+    "path",
+    "path_parsing",
+    "pdf",
+    "pdf_widget_wrapper",
+    "petitparser",
+    "platform",
+    "plugin_platform_interface",
+    "pointycastle",
+    "pool",
+    "posix",
+    "printing",
+    "process",
+    "pub_semver",
+    "qr",
+    "quds_mail_core",
+    "quds_mail_mime",
+    "quds_mail_reader_example",
+    "quds_mail_store",
+    "quds_mail_transport",
+    "quds_mail_ui",
+    "quds_office_editor",
+    "quds_office_engine",
+    "quds_office_engine_example",
+    "quds_office_studio",
+    "quds_office_suite",
+    "quds_proofing_gector",
+    "quds_proofing_harper",
+    "quds_proofing_hunspell",
+    "quds_proofing_spacy",
+    "quds_report_studio",
+    "quds_reports",
+    "record_use",
+    "screen_retriever",
+    "screen_retriever_linux",
+    "screen_retriever_macos",
+    "screen_retriever_platform_interface",
+    "screen_retriever_windows",
+    "shelf",
+    "shelf_packages_handler",
+    "shelf_static",
+    "shelf_web_socket",
+    "sky_engine",
+    "source_map_stack_trace",
+    "source_maps",
+    "source_span",
+    "sqlite3",
+    "stack_trace",
+    "stream_channel",
+    "string_scanner",
+    "synchronized",
+    "term_glyph",
+    "test",
+    "test_api",
+    "test_core",
+    "typed_data",
+    "url_launcher",
+    "url_launcher_android",
+    "url_launcher_ios",
+    "url_launcher_linux",
+    "url_launcher_macos",
+    "url_launcher_platform_interface",
+    "url_launcher_web",
+    "url_launcher_windows",
+    "vector_math",
+    "vm_service",
+    "watcher",
+    "web",
+    "web_socket",
+    "web_socket_channel",
+    "webkit_inspection_protocol",
+    "win32",
+    "window_manager",
+    "xml",
+    "yaml"
+  ],
+  "workspace_before_count": 131,
+  "workspace_after_count": 132,
+  "new_workspace_mapping": {
+    "name": "quds_proofing_hunspell",
+    "rootUri": "../packages/quds_proofing_hunspell",
+    "packageUri": "lib/",
+    "languageVersion": "3.12"
+  },
+  "workspace_package_config_before_sha256": "d5ea7285c68c37bfdd8a4339462d67f24470d815c6d87adae39ce2bf27980fb1",
+  "workspace_package_config_after_sha256": "18f883d9af9b9d30da6aed9e870ba135afc0fe9a1757f6e9b9da4d92e1985423",
+  "workspace_all_prior_rows_unchanged": true,
+  "inherited_license_identities": [
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7",
+      "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+      "sha256": "3f7ddd07c296edbfe0a47c7bcc82038ad347a2c4f672345b24f95c624db68513"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
+      "sha256": "dcda061adeed22b26f276c01ec374f930789ae0d684e5aa8f8be309dd680ff20"
+    }
+  ],
+  "whitespace_base": "9160eb0dba211225c85242114989631c0d14fb72",
+  "macos_entitlements_static_check": [
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/DebugProfile.entitlements",
+      "sha256": "5a9621fe8a85d8c76966442f29b1286ebf066194a703fd1f418b3892fa296375",
+      "plist": {
+        "com.apple.security.app-sandbox": true,
+        "com.apple.security.cs.allow-jit": true,
+        "com.apple.security.network.server": true,
+        "com.apple.security.network.client": true,
+        "com.apple.security.files.user-selected.read-write": true
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos/Runner/Release.entitlements",
+      "sha256": "d3dcf28bbd8c4589addd4e9259d7406544e896f90d359038e833e7f54cdaa129",
+      "plist": {
+        "com.apple.security.app-sandbox": true,
+        "com.apple.security.network.client": true,
+        "com.apple.security.files.user-selected.read-write": true
+      }
+    }
+  ],
+  "limitations": [
+    "The original 1372 executions apply to 0669, not this new source.",
+    "Fresh delta execution is required for all rejected v2 selections plus complex-script routing/editing, merged findings, Studio settings/native setup and cancellation, with seventeen bundle controls and four offline packaging controls.",
+    "Linux native qualification and browser compilation do not establish macOS execution or a real WebAssembly worker session."
+  ],
+  "script_sha256": "f155aed098efb7ee2b7be8caa23738f2222db3e04a3c93e425c8870a0228de89"
+}

@@ -1,0 +1,40 @@
+{
+  "checked_at_utc": "2026-11-19T11:46:18.192491+00:00",
+  "scope": "Archive/index integrity from the named immutable commit only. No application execution, raw test recount, or current/final-source test acceptance is inferred from archive integrity.",
+  "source_commit": "22ffa8bdcc11e5e10eb37f2326f832066f609a08",
+  "source_tree": "f538a4fbe7f32fb778f34849d2added580202dfe",
+  "script_sha256": "e0c054e02b791b47e0b1db73320b0e740cfa99cf15d25e629944392b39b64f03",
+  "archives": [
+    {
+      "archive": "docs/validation/office-resume-main-20261119/superseded-79e7772/evidence.tar.xz",
+      "archive_git_blob": "9a3b8efe694c32c9f077852835bc17bad2857dcf",
+      "archive_bytes": 850108,
+      "archive_sha256": "50d554ff3d826313a7ad77c73a50474b59f8d00665c31de5c94abf5248def648",
+      "index": "docs/validation/office-resume-main-20261119/superseded-79e7772/evidence.index.json",
+      "index_git_blob": "1717dca2f467fd678014f31381c8d4a3ca54ba6e",
+      "index_sha256": "ba1ecf80a3039ced1a7f35f5b77f924d4ebef67cdec6e5474ca8b777747f014a",
+      "member_count": 57,
+      "exact_membership": true,
+      "all_member_bytes_and_hashes_verified": true,
+      "unsafe_duplicate_nonregular_members": [],
+      "passed": true
+    },
+    {
+      "archive": "docs/validation/office-resume-main-20261119/review/development-evidence.tar.xz",
+      "archive_git_blob": "1354d8f5220ca56e15590102de96e40969ee80dd",
+      "archive_bytes": 35996,
+      "archive_sha256": "ae70ae63a2e11db2c95fb65a9b55ff1d4564e504393b7c56c07a66f14caeddcb",
+      "index": "docs/validation/office-resume-main-20261119/review/development-evidence.index.json",
+      "index_git_blob": "2d4a131af44b434c2c7bf18c409b1fc52eb28fe6",
+      "index_sha256": "e29422baaf811d30364e4782382c99241add479bfb4817a3d5d931f4839af89a",
+      "member_count": 80,
+      "exact_membership": true,
+      "all_member_bytes_and_hashes_verified": true,
+      "unsafe_duplicate_nonregular_members": [],
+      "passed": true
+    }
+  ],
+  "archive_count": 2,
+  "member_count": 137,
+  "all_passed": true
+}

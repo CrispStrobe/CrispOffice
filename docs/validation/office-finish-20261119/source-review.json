@@ -1,0 +1,40 @@
+{
+  "purpose": "Bounded continuation plan review before the final remote source freeze",
+  "captured_main": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+  "source_checkpoint": "2abf5d264e5065772fc4ca05c7cab6d34256ab9d",
+  "native_suites": 78,
+  "node_suites": 15,
+  "strict_targets": 151,
+  "python_controls": 21,
+  "reviewed_changes": [
+    "All fixed captured refs preserved by ancestry or freshly recomputed immutable equivalence",
+    "Incoming network Mail session safeguards retained; saved-message functionality and regressions restored",
+    "Unicode script routing and both inactive Word language slots retained",
+    "Both cancellation suites and all three independent native Hunspell lifecycle fixtures retained",
+    "Incoming Arabic semantic-mark fix, grammar and real analyzer integration retained",
+    "Source/runtime/environment forwarding independently reviewed",
+    "Browser compilation requires nonempty output files"
+  ],
+  "development_passes_excluded": {
+    "mail": 42,
+    "word": 91
+  },
+  "development_failures_preserved": {
+    "editor_inherited_stale_assertion": {
+      "passed": 35,
+      "failed": 1
+    },
+    "initial_dart_invocation": {
+      "case_events": 0,
+      "exit_code": 130
+    }
+  },
+  "plan_files": {
+    "native-plan.json": "c307d0fd0c86e4561b1325a1aefcb46ad38a7a5c88cf9f2e439424340c55880b",
+    "node-plan.json": "25a6533d20f68d29054b08ed12027445e1e3d641257b3d89f233ae3b2a8dc7ab",
+    "run_validation.py": "b44d53f68fd370bbaa8cf362200bf7fe7fc26359d7ea17edb4b5e361d5970b7a",
+    "audit_qualification.py": "f0bf4515ba4722f193702ef15ef66fa30a5f2fd18f545fdd3fcd7a1d30ff8399"
+  },
+  "independent_auditor_preparation_controls": 14,
+  "limitations": "Not a final passing qualification; source checkpoint and final source may differ by the reviewed formatting/lint repairs and exact committed plan. No Actions queried."
+}

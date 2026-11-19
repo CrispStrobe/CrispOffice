@@ -155,8 +155,12 @@ class BundleBuilderTest(unittest.TestCase):
         self.assertEqual(self.create_calls, [])
         self.assertEqual(self.upload_calls, [])
         card = (self.output / "README.md").read_text(encoding="utf-8")
-        self.assertIn("optional dictionary download workflow in Studio", " ".join(card.split()))
-        self.assertIn("Nothing is downloaded by default", " ".join(card.split()))
+        normalized_card = " ".join(card.split())
+        self.assertIn("optional Hunspell adapter package is implemented", normalized_card)
+        self.assertIn("Studio offers an explicit dictionary download/install dialog", normalized_card)
+        self.assertIn("registers the provider after installation", normalized_card)
+        self.assertIn("engine assets must be packaged with each host target", normalized_card)
+        self.assertIn("Nothing is downloaded by default", normalized_card)
 
 
 if __name__ == "__main__":

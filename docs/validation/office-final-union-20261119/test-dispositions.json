@@ -1,0 +1,142 @@
+{
+  "source_binding": {
+    "reviewed_product_source": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+    "reviewed_source_tree": "af6b6cb49b7ab1fd01aabe2acdc66c7fe72c8b84",
+    "documentation_closeout": "1d762d4c369795175b55a4ecb9c44efd29f041b1",
+    "merged_main": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+    "merged_main_tree": "15e1d979abdcacaf316b849e58dac4249e643424",
+    "preservation": "Exactly six documentation/observation changes after de24; product, tests, plans and runners unchanged through 4c25."
+  },
+  "review_kind": "Independent read-only source/evidence review by studio_review; no tests executed. Root transcribed its disposition report.",
+  "five_case_dispositions": [
+    {
+      "our_case": "reply quotes the loaded body and uses Reply-To without resending",
+      "peer_cases": [
+        [
+          "studio_mail_test.dart",
+          "reply uses the exact loaded body and envelope, not the list header"
+        ],
+        [
+          "studio_mail_reply_test.dart",
+          "reply uses authoritative Reply-To and quotes only decoded plain body"
+        ],
+        [
+          "studio_mail_reply_test.dart",
+          "existing reply prefix is not duplicated"
+        ]
+      ],
+      "coverage": "Distinct envelope/raw metadata and decoded ISO-8859-1 body; recipient and quotation checked, Bcc/list-header content excluded, no implicit send. Reply-To and prefix unit coverage retained.",
+      "coverage_gap_refs": []
+    },
+    {
+      "our_case": "forward quotes the loaded body and requires a new recipient",
+      "peer_cases": [
+        [
+          "studio_mail_test.dart",
+          "forward uses the exact loaded body and envelope, not the list header"
+        ],
+        [
+          "studio_mail_reply_test.dart",
+          "forward requires a recipient and declares the text-only boundary"
+        ],
+        [
+          "studio_mail_compose_test.dart",
+          "invalid recipient keeps the draft open with bounded feedback"
+        ]
+      ],
+      "coverage": "Loaded body/source metadata, empty recipient, Fwd subject and no implicit send covered. Recipient validation is covered separately rather than an empty-recipient click in the Forward widget case.",
+      "coverage_gap_refs": []
+    },
+    {
+      "our_case": "mark read owns the pending action and permits retry after failure",
+      "peer_cases": [
+        [
+          "studio_mail_test.dart",
+          "mark-read holds the UI busy and updates only after confirmation"
+        ],
+        [
+          "studio_mail_test.dart",
+          "failed mark-read preserves unread status with fixed feedback"
+        ]
+      ],
+      "coverage": "Duplicate captured activation rejected; unread until confirmation; mailbox switching blocked; frozen mailbox/UID checked; fixed failure feedback and re-enabled action.",
+      "coverage_gap_refs": [
+        "failure_then_successful_retry"
+      ]
+    },
+    {
+      "our_case": "late mark-read success cannot mutate a reconnected session",
+      "peer_cases": [
+        [
+          "studio_mail_test.dart",
+          "mark-read late success cannot mutate a disconnected session"
+        ]
+      ],
+      "coverage": "Reconnect before old success; loader disposal, unread old/new headers, suppressed stale feedback and replacement session checked.",
+      "coverage_gap_refs": [
+        "old_completion_during_new_pending_request"
+      ]
+    },
+    {
+      "our_case": "late mark-read error cannot mutate a reconnected session",
+      "peer_cases": [
+        [
+          "studio_mail_test.dart",
+          "mark-read late failure cannot mutate a disconnected session"
+        ]
+      ],
+      "coverage": "Reconnect before old error; disposal, unread headers, replacement UI and suppressed stale error checked.",
+      "coverage_gap_refs": [
+        "old_completion_during_new_pending_request"
+      ]
+    }
+  ],
+  "peer_test_directory": "packages/quds_office_editor/example/test/",
+  "precise_coverage_gaps": [
+    {
+      "id": "failure_then_successful_retry",
+      "description": "Peer failure case stops when Mark read is enabled again; our prepared case performs and successfully completes a second request on the same selection.",
+      "assessment": "Sequence-coverage gap, not a demonstrated defect. Failure releases busy ownership and leaves the request path available."
+    },
+    {
+      "id": "old_completion_during_new_pending_request",
+      "description": "Peer stale success/error cases reconnect into an idle session. Our prepared cases start a new mark request before resolving the old request, asserting no release of the new busy state, flag mutation or stale feedback.",
+      "assessment": "Sequence-coverage gap, not a demonstrated defect. Current session/client guards block old publication; loader/mailbox/header/UID checks further protect flag updates."
+    }
+  ],
+  "preservation_decision": {
+    "product": "Retain de24 product and canonical tests unchanged.",
+    "our_action_patch": "Preserve f824 and its five prepared cases historically; do not overwrite peer production/tests.",
+    "reason": "Peer adds bounded MailSetRead verification, Unicode-scalar quoting, HTML-only rejection, retained-draft protection, confirmed discard and client-bound post-submission handling. Loader requires markRead.",
+    "ownership": "No concrete ordinary-workflow regression found from omitted PR192 duplicate shutdown/post-factory guards; this is static review."
+  },
+  "qualification_limits": {
+    "current_product_has_accepted_final_aggregate": false,
+    "source_failure_notice": "docs/validation/office-mail-continuation-20261119/attempt-de24bdfc/environment-failure-notice.json",
+    "notice_blob": "1fa2c47f8ee926c4aab166b04ae76c7a85cb29f4",
+    "observed_exit_code": 1,
+    "stage": "core-store",
+    "accepted_application_case_count": null,
+    "independent_acceptance_audit_executed": false,
+    "accepted_archive_created": false,
+    "unknowns": [
+      "Exact Store failure and final source/runtime fingerprints unconfirmed; original receipt/log could not be inspected.",
+      "ENOSPC was independently observed later; not proven to have caused the original Store failure.",
+      "Final raw attempt and identified late-development logs were not uploaded."
+    ],
+    "separate_accepted_source": "0f16754c278aa83cc79d5777e5b45d3f739e5469",
+    "separate_accepted_audit_blob": "391685785ec9777d274de5c019d9c19ba212ea6a",
+    "separate_counts": {
+      "passed": 404,
+      "distinct_cases": 395,
+      "distinct_suites": 28,
+      "failed": 0,
+      "skipped": 0
+    },
+    "attribution": "The independently read accepted 0f evidence contributes zero to final-source acceptance.",
+    "boundaries": [
+      "No new real-provider, installed-platform, actual browser persistence or Word/LibreOffice acceptance.",
+      "Reply/Forward remains plain-text only; no threading metadata or attachment forwarding."
+    ]
+  }
+}

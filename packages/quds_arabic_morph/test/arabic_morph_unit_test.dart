@@ -204,6 +204,33 @@ void main() {
       expect(() => analyses[0]['pos'] = 'noun', throwsUnsupportedError);
     });
 
+    test('numeric feature text preserves fractions, signs and exponents', () {
+      final analysis = ArabicAnalysisDecoder().decode([
+        {
+          'negative': -99,
+          'positive': 7,
+          'zero': 0,
+          'negative_zero': -0.0,
+          'fraction': -1.25,
+          'tiny': 1e-7,
+          'large_plain': 1e20,
+          'exponent': 1e21,
+          'text': '-99',
+        },
+      ]).single;
+      expect(analysis, {
+        'negative': '-99.0',
+        'positive': '7.0',
+        'zero': '0.0',
+        'negative_zero': '-0.0',
+        'fraction': '-1.25',
+        'tiny': '1e-7',
+        'large_plain': '100000000000000000000.0',
+        'exponent': '1e+21',
+        'text': '-99',
+      });
+    });
+
     test('rejects malformed input', () {
       final decoder = ArabicAnalysisDecoder();
       expect(() => decoder.decode({'a': 1}), throwsFormatException);

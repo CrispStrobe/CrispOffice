@@ -1,0 +1,50 @@
+{
+  "status": "pass",
+  "scope": "stdout-only final preservation audit before peer-branch reconciliation",
+  "baseline_commit": "ae5bb49cd9167c73086cc45428a8d52b18b96412",
+  "baseline_tree": "82d49d7b67a0bb074a056083ad5e32fd0799db26",
+  "incoming_main": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+  "preservation_checks_passed": 12,
+  "publication_inputs": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "bytes": 34915,
+      "git_blob_sha1": "5b8b8a5d6e7bef4ddf0a21f65de0b91859e75e17",
+      "sha256": "b347506375abce38502d0d2f9b08a4a375d8cba7ab19248b2d1b7a1fc465fce1",
+      "verification": "Byte-exact desired union, including confirmed-send handling and reviewed action repairs."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+      "bytes": 4157,
+      "git_blob_sha1": "6ae33030644d8f36d55eaa0c4704424f15d65a6c",
+      "sha256": "499f4cd476cf9cbc775c290fdde51cfb4c85033729653964321399cd5a152f14",
+      "verification": "Exact incoming main666 blob."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "bytes": 35578,
+      "git_blob_sha1": "be6f2436a547a0cfcb3408fae149ba276ad1ae83",
+      "sha256": "8e7cc630ae0fecf139c687670e65c271f687c3544b6789e3a10cdfd6d99923b4",
+      "verification": "Matches prepared additive regression tokens, including literals and comments; all baseline tokens preserved.",
+      "new_cases_prepared": 5,
+      "prepared_unformatted_sha256": "f2c27ae11685e5e6eb7c34e10991ee12ddbe8acd1148654d5bae41d312ccb3ac"
+    }
+  ],
+  "other_tracked_product_entries_checked": 5172,
+  "other_tracked_product_entries_exact": 5172,
+  "sparse_omissions": 0,
+  "unexpected_missing_product_files": 0,
+  "untracked_unignored_product_files": 0,
+  "other_index_entry_changes": 0,
+  "unmerged_index_entries": 0,
+  "index_stable_during_audit": true,
+  "prior_evidence_index_entries_exact_to_ae5": true,
+  "use_worktree_bytes_not_stale_index": true,
+  "new_action_runtime_validation": {
+    "product_cases_executed": 0,
+    "meaningful_red_green_result": false,
+    "startup_blocker": "Flutter could not create its font temporary directory because the host filesystem is full (ENOSPC).",
+    "strict_three_path_analysis": "Passed; analysis receipt binds the three exact current file hashes.",
+    "attribution": "The 0f qualification published at ae5 remains attributed to that earlier source and does not qualify the new actions."
+  }
+}

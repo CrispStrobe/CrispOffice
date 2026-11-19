@@ -1,0 +1,320 @@
+{
+  "source_commit": "76fe761f1c97c31ca8d8add405aa54c436a336aa",
+  "status": "development-and-incoming-review",
+  "archive": "development-evidence.tar.xz",
+  "bytes": 82916,
+  "sha256": "2652a578cd369914ef82e7d3877284a605817f23db733ec25e5ab8ff04aba889",
+  "member_count": 62,
+  "members": [
+    {
+      "path": "audit-mail/latest-main-76fe761f/confirmed-send-proposal/after/packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "bytes": 31247,
+      "sha256": "15385516b2af03ebcf4913ca9d09df8a8521c6f6afffdb6ec3f6af4584dad369"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/confirmed-send-proposal/after/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "bytes": 23999,
+      "sha256": "a7e70d78eb41e96968a114a2a5d9e6dfff774b0b7a45beeac0d5f3111a9d86c8"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/confirmed-send-proposal/before/packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "bytes": 30809,
+      "sha256": "7f1f4170a61cfe17cc55bf7f41bef7871dfebaeddbc894cb030476e7f29ef995"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/confirmed-send-proposal/before/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "bytes": 22418,
+      "sha256": "3403bfaef9987dc645a11a24c478b63be68b9c39863f3d4d31886591acda05d1"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/confirmed-send-proposal/confirmed-send-cleanup.patch",
+      "bytes": 2778,
+      "sha256": "28d4a6cfea9123f087ab9003641f47864285492aa57cdab88730aac4cc1620e4"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/confirmed-send-proposal/review.json",
+      "bytes": 1475,
+      "sha256": "9a165e19be91816b3919667f6a6684c346a42aa36a9d8fea0c493cc8e66a15ed"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/native-plan.json",
+      "bytes": 5335,
+      "sha256": "71e382513f73de5cd93d6818a6a527962b8bf2cf0e95b0578db365181dcf575f"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/node-plan.json",
+      "bytes": 1099,
+      "sha256": "5d8cb031d2c9773c47ca8a6fb8856b5de920254223835e26e76f3ce9811db432"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/review.json",
+      "bytes": 10908,
+      "sha256": "f79c05f8331abc94b94d27d3703f3c182a0e62f5bf2856482ad13b8f5cc0f214"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source-snapshot.json",
+      "bytes": 11150,
+      "sha256": "3c4a65189c93905f6801b5ebde7ae830283a16613acca14c2a4b90ed1bac44bd"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/docs/validation/office-mail-continuation-20261119/README.md",
+      "bytes": 2570,
+      "sha256": "c8696c54c80cc3af72b235f75d285213e6d855f8b5e9f971d28c770657777844"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/docs/validation/office-mail-continuation-20261119/native-plan.json",
+      "bytes": 10094,
+      "sha256": "4c71a038cb874880ea01be225bf81ddfb66de44dae66cd5c85ade8d685fc6fb6"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/docs/validation/office-mail-continuation-20261119/node-plan.json",
+      "bytes": 2872,
+      "sha256": "e91e996690bce07284fbc5e07646f6d644ce2716f72696a75a27aca1e9107895"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail.dart",
+      "bytes": 159,
+      "sha256": "39301e57311bfb8f672c554adcee422265fd36eef72eb90dd35fbab27f5c66f7"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+      "bytes": 8719,
+      "sha256": "4417f2d15cf5b46cfa213c66499b2fa6b917eff2d202a2a1563a88982d61b19c"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail_file.dart",
+      "bytes": 92,
+      "sha256": "8f8d3f39c1bd29e69fbbe03b3166a85fe85cd9dfc0d3a2e28e71b35955f81fd9"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
+      "bytes": 125,
+      "sha256": "11489b85b888f2c31c7357a98e61d83c9a1c87bdeba208d71f8fd855faef55cb"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail_file_web.dart",
+      "bytes": 237,
+      "sha256": "846f46e17f4806ef1cb62f148180a7970680ea045601a4a9aa63d65c559a4b7d"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+      "bytes": 12074,
+      "sha256": "21671964a618702df5580c7abdca26c0b295dfef1630de7eef1f1677954b2f31"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "bytes": 30809,
+      "sha256": "7f1f4170a61cfe17cc55bf7f41bef7871dfebaeddbc894cb030476e7f29ef995"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail_operation.dart",
+      "bytes": 738,
+      "sha256": "15a0edd35881194f39b09c90ebfe3ff688d3a60a26cd2b38fe7a8ae15a45cfa4"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+      "bytes": 3890,
+      "sha256": "72f795b6408e4caa660ecd57ea488f135b2faae47baf33819e922d436944fc40"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+      "bytes": 1162,
+      "sha256": "2e5e0b94bc91bd834ae650f79fb0ddb8d8f86fd89d96a76c9706643499b5618d"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_mail_web.dart",
+      "bytes": 521,
+      "sha256": "4131dd787a4c2114fb90c0737e7e0a61c2a75196990439921cd8c488699aadda"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_saved_mail.dart",
+      "bytes": 5979,
+      "sha256": "b68fb855a16f75e4b1201e91315a054281c36817b039cce51866b99b3d5e1edb"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/lib/studio_strings.dart",
+      "bytes": 10816,
+      "sha256": "b3f60ca29312e68a422c44a2fb63b173fa0f2bb694e036c39bc7a7649b4380e0"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/pubspec.yaml",
+      "bytes": 1153,
+      "sha256": "a5d298f531358c38cf6f6ea63eb65d65ab2f483517e0969e098ad023fbc38d49"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "bytes": 9542,
+      "sha256": "3a08bcb0bff7d40a34f8c68b57e58864fab7821c7c0298e341c6d88a5cb784eb"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "bytes": 7797,
+      "sha256": "89ffb077d75db42967075020ef78cdcd1b5d337acad3d830cd8785c83d368471"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+      "bytes": 2872,
+      "sha256": "5246e8bb16f0f7de0d5c892b259ab3ae7651bfc823e1577b78aa86b145ac49a2"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "bytes": 20243,
+      "sha256": "613f4f99aa636ab2a92c6a2d2ceb28c50b8bc24409e0d55810860233a36eeea2"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "bytes": 4716,
+      "sha256": "1770640d1ed577ef5b29ce8803bc03879c3805af1e5306ad2fdb63a2946154c3"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "bytes": 22418,
+      "sha256": "3403bfaef9987dc645a11a24c478b63be68b9c39863f3d4d31886591acda05d1"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+      "bytes": 2943,
+      "sha256": "476537853d348a9fd16fafdc417a59d741776a5f653dce33821c71a126777f69"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "bytes": 12818,
+      "sha256": "cbe95be6a38e7fca5cf676686e2b15e905ae248830c1d3a21e2baaca2b15b49e"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/packages/quds_office_editor/example/test/support/studio_mail_fixture.dart",
+      "bytes": 5978,
+      "sha256": "855c412ee50463b907f169bb01d1cacfdf2ac79ab4788dd00b83c27c78770e4c"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/pubspec.lock",
+      "bytes": 26074,
+      "sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/pubspec.yaml",
+      "bytes": 1013,
+      "sha256": "1d13dab2606651970542629bc0532a06d6b70a27f4cc79fdc15ca2bd9398da43"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/lib/src/mail/mail_client.dart",
+      "bytes": 117620,
+      "sha256": "856a11828d072f9045d034f0a684c9f539b39e058d9bcde2681f91f6ea3bb0ce"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/lib/src/mail/mail_exception.dart",
+      "bytes": 3029,
+      "sha256": "4fb16b585c44d116c1399862b13cd7be37d2014053651c6d99ac5133f02ede97"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/lib/src/private/mail/send_message_transaction.dart",
+      "bytes": 1490,
+      "sha256": "2a02aea8edd9eaa93c32ad455914a7792f7a73c77c0ab1512a921b8fe69e4d16"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/pubspec.yaml",
+      "bytes": 807,
+      "sha256": "d38d11b0aaf151286c8abec5f83b434aad91339a90113c46065f464ac48ee27e"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/imap_loopback_server.dart",
+      "bytes": 2921,
+      "sha256": "85366ad536b6a053c8db04b769ccaabee4158d3075bc7058bdb27211e2b989ab"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/mail_account_test.dart",
+      "bytes": 8377,
+      "sha256": "ff1ddf05752ff6f1fd94d23afa597bd9fc0fddd3f2b0af9da777a6a105470ae5"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/mail_client_delete_test.dart",
+      "bytes": 2190,
+      "sha256": "2314a4862261239a1c5984ce22ff7b1d09cb813c941c01ed400a59ea2c5322b3"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/mail_client_oauth_test.dart",
+      "bytes": 2753,
+      "sha256": "39877eaada6b354a53423b318d5a746b61a3828cb6eb644d07741b0489019438"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/mail_client_pop_test.dart",
+      "bytes": 5998,
+      "sha256": "1447c08acfe9e18c1eb43b85d2e4ff43bc8af7c79acff5b816e177ee879ac50a"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/mail_client_reconnect_test.dart",
+      "bytes": 1840,
+      "sha256": "dfa71c78fe374276093990de6fad6321767f88971810d73d5f654e10d4138468"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/mail_client_send_test.dart",
+      "bytes": 2282,
+      "sha256": "56091640deb44621bf621ee635ea3d0a1f4d8812d1d2e6e951c9e91bb9c57270"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/mail_client_starttls_test.dart",
+      "bytes": 3925,
+      "sha256": "ff2a741bf1eb1e01ccc54202c4e913358f4e90dbd9d952a7ab2dec23281ff312"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+      "bytes": 11991,
+      "sha256": "22d834f10027a4160ff73a8844e1632df157de176f105a759fb1ac052c374611"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/redaction_test.dart",
+      "bytes": 1717,
+      "sha256": "b455654e6b65d5a45d8d2daae404c4751ed230b607d1c4b6544175dab3e20b98"
+    },
+    {
+      "path": "audit-mail/latest-main-76fe761f/source/third_party/enough_mail/test/mail/results_test.dart",
+      "bytes": 2237,
+      "sha256": "04cfe8032cdd478095f7803cda984a982285ebd02cbd2beecff4125a5b1eb043"
+    },
+    {
+      "path": "audit-preservation/main-delta-76-review.json",
+      "bytes": 37895,
+      "sha256": "eecbad61eaa5e52b2571903e7b09fb4b945f7611042f3a7492085d9998a7a663"
+    },
+    {
+      "path": "audit-studio/studio_review_status_test.merged.dart",
+      "bytes": 15935,
+      "sha256": "f41f71ec1c6180ab43f4eedf800655e138533016d1b2d21a92d1d45a6dcbc7f7"
+    },
+    {
+      "path": "diagnostics/main-refresh/confirmed-send-green.jsonl",
+      "bytes": 1431,
+      "sha256": "66991bb84e719c412cbf9fa747353e21f631169a76e621fc9f87f12846f7fb93"
+    },
+    {
+      "path": "diagnostics/main-refresh/confirmed-send-green.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "diagnostics/main-refresh/confirmed-send-receipts.json",
+      "bytes": 4767,
+      "sha256": "c8e0cb32b90d5ddf65821650a05a93fa99ee99d869eff64e0f564de7cd2469db"
+    },
+    {
+      "path": "diagnostics/main-refresh/confirmed-send-red.jsonl",
+      "bytes": 3408,
+      "sha256": "3e9eeae6d3f6db58ac2f9e96d7dbbe2864c7f4adce301ecdfd116f0221fbfe7f"
+    },
+    {
+      "path": "diagnostics/main-refresh/confirmed-send-red.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "diagnostics/main-refresh/offline-resolution.json",
+      "bytes": 794,
+      "sha256": "d72b0a8ab37c438bb601362e6425b96fee9ff4d12229be0c47d314b771830937"
+    },
+    {
+      "path": "diagnostics/main-refresh/offline-resolution.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ]
+}

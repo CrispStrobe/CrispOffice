@@ -1,0 +1,234 @@
+{
+  "archive": "development.tar.xz",
+  "bytes": 21720,
+  "sha256": "defc800546eeca7deb2ecfcceb40a847b9737f33e84d5dc7993bb5693359a984",
+  "members": [
+    {
+      "path": "mail/mail-main-666-analysis-corrected.log",
+      "bytes": 608,
+      "sha256": "2cf6bfcdb469809ea0aa382ca7e0648d8731b9ac5d252e0b7802d71f20df3e7e"
+    },
+    {
+      "path": "mail/mail-main-666-analysis.log",
+      "bytes": 3708,
+      "sha256": "4e6fe1d836060109f0689edbae590e20666d69f00370f8315788f1741bd9fb01"
+    },
+    {
+      "path": "mail/mail-main-666-development-receipt.json",
+      "bytes": 9122,
+      "sha256": "2c9fb2c071b71b3405716c00eab818d2e2340ef71abd557768c0e0f3f683ec54"
+    },
+    {
+      "path": "mail/mail-main-666-development.jsonl",
+      "bytes": 63512,
+      "sha256": "ceb46d452a34f87593cdfcee8175ed6fe013d7f776a13696e4ca823babab384e"
+    },
+    {
+      "path": "mail/mail-main-666-development.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "mail/mail-main-666-format.log",
+      "bytes": 48,
+      "sha256": "cddc2549c3ccfb51157e8e1cd9d5a858c783e3f1f11c7213737e0d27f7032102"
+    },
+    {
+      "path": "mail/mail-main-666-reconciliation-review.md",
+      "bytes": 7725,
+      "sha256": "850f36ade89a5a84bc5c9b9c998b281832d61025b05da6a034b1cd0e963fc147"
+    },
+    {
+      "path": "nonmail/analyze-arabic_extended_rules.dart.log",
+      "bytes": 57,
+      "sha256": "d00dbe63d4ed9e7bcd1759357c24b453b411d71f5de885db9803873059878f2e"
+    },
+    {
+      "path": "nonmail/analyze-office_controller.dart.log",
+      "bytes": 53,
+      "sha256": "b3f9cc4a9c4f5e0d4a2a81cc95d5460c7cf070c7da2a40c48b026ebc40a7cea6"
+    },
+    {
+      "path": "nonmail/analyze-studio_about.dart.log",
+      "bytes": 48,
+      "sha256": "8e2e7464d8f32795a5a5a8239d9e330853dcd6fa5c58ed37d872e7fc24a2718e"
+    },
+    {
+      "path": "nonmail/analyze-studio_about_test.dart.log",
+      "bytes": 53,
+      "sha256": "68eca6000de6975f4848334956042b011fce5cfd7f12e2fb7689f7a57e298441"
+    },
+    {
+      "path": "nonmail/analyze-studio_arabic_morph_native_test.dart.log",
+      "bytes": 67,
+      "sha256": "09ec62c86ee45191da2b4609fcd677bcdbdc525dfa6703f2366c123f9ab24178"
+    },
+    {
+      "path": "nonmail/analyze-studio_arabic_morph_setup_test.dart.log",
+      "bytes": 66,
+      "sha256": "a1133554e3a5239f6e1637b75efdfae54e2c1cb0ccfcc47902967c591349f9f5"
+    },
+    {
+      "path": "nonmail/analyze-studio_comment_draft_proofing_test.dart.log",
+      "bytes": 70,
+      "sha256": "08a60ff7d030530948202d7cfed760c3a2cdc5f6c5d9ee9550382963072e904a"
+    },
+    {
+      "path": "nonmail/analyze-studio_comment_keyboard_review_test.dart.log",
+      "bytes": 71,
+      "sha256": "28a4d6512098607e1bc661d7c1a857aaa3f49dd4d4e72d22cfc28e493c564f77"
+    },
+    {
+      "path": "nonmail/analyze-studio_comment_review_test.dart.log",
+      "bytes": 62,
+      "sha256": "a87e204ba97925104b91bafd6af5bee7cd5a2ba3d31aba40918aedd6f3510a62"
+    },
+    {
+      "path": "nonmail/analyze-studio_review_status_test.dart.log",
+      "bytes": 61,
+      "sha256": "8aa14f2072b80da5a4bc66cbbc84f7036e8f45dfb1915d914a2a13eaeeda1ba9"
+    },
+    {
+      "path": "nonmail/analyze-studio_settings_test.dart.log",
+      "bytes": 56,
+      "sha256": "a060d81c87875d1a1830076576be7bb0022cc108b1d8f63fd3e42c794334c690"
+    },
+    {
+      "path": "nonmail/analyze-widget_test.dart.log",
+      "bytes": 47,
+      "sha256": "44263e7eec72d87759062e9c085f2eb1dd2e937e5d9799f720f0b5f01b3bd683"
+    },
+    {
+      "path": "nonmail/analyze-wml_run_edit.dart.log",
+      "bytes": 48,
+      "sha256": "87963e3a107ae046947eb2d3811273f301c3ac05ac9d936fecadf526ea453ef7"
+    },
+    {
+      "path": "nonmail/analyze-wml_run_edit_test.dart.log",
+      "bytes": 53,
+      "sha256": "27ce23b5b6662ab2492445f41cc47735e8abad34904125cb9284be44ddf9a837"
+    },
+    {
+      "path": "nonmail/analyze-word_complex_script_proofing_controls_test.dart.log",
+      "bytes": 78,
+      "sha256": "85018c0ae2f3773cb4a83ab9c95ed5e3f341fbc34f35e497e8693716ed28e048"
+    },
+    {
+      "path": "nonmail/analyze-word_deserializer.dart.log",
+      "bytes": 53,
+      "sha256": "1b8245104c0664548724210ad6caa19fae01e30f3f686ce05eceb7981feff5c9"
+    },
+    {
+      "path": "nonmail/analyze-word_proofing_language.dart.log",
+      "bytes": 58,
+      "sha256": "638e6c6dad027b11986c095a681b2ee852eaf2f563d2cd3754a684db7859b984"
+    },
+    {
+      "path": "nonmail/analyze-word_style_cascade.dart.log",
+      "bytes": 54,
+      "sha256": "600bfe917727d7f032a096f937e4b7a59494640b34ba4283ac8fdc38438c6e36"
+    },
+    {
+      "path": "nonmail/analyze-word_text_proofing_controls_test.dart.log",
+      "bytes": 68,
+      "sha256": "f62927439026179f7eefd44e8684574751582e27bad4600068b204f9eaf8adb8"
+    },
+    {
+      "path": "nonmail/editor.jsonl",
+      "bytes": 26520,
+      "sha256": "000c0e0fe9fa01091b2381307bd9145b20630d2e344c78a8bda183cf9cba3ebf"
+    },
+    {
+      "path": "nonmail/editor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "nonmail/editor.summary.json",
+      "bytes": 6270,
+      "sha256": "ba2a3d5880c8bb3627651e1212e9a8c8346f4c22b2c6a12b7520a9ce7f71a605"
+    },
+    {
+      "path": "nonmail/engine.jsonl",
+      "bytes": 26540,
+      "sha256": "8e64714262fd34245f62769fec8aa8b570db90d4ec2c42f004c9009275bbc6de"
+    },
+    {
+      "path": "nonmail/engine.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "nonmail/engine.summary.json",
+      "bytes": 7082,
+      "sha256": "78182c6720dbef17d6c61b2397dfca240ac72768e09fa403fdf016e7ea1f93ed"
+    },
+    {
+      "path": "nonmail/format.log",
+      "bytes": 48,
+      "sha256": "7b4d477857b8c39737642a91454461ceea6d48f04ea7a28fe2a9bfc4c74f6ead"
+    },
+    {
+      "path": "nonmail/owned-paths.json",
+      "bytes": 1436,
+      "sha256": "9aa73120ada0c4086efdbb5c4d78927ba4fa792aeb199301493ad436fd5e4579"
+    },
+    {
+      "path": "nonmail/run_check.py",
+      "bytes": 2921,
+      "sha256": "58d8e710bd6f53e6978c87df2be6c1c334487ef36d0606311e6c39bc6604a687"
+    },
+    {
+      "path": "nonmail/source-hashes.json",
+      "bytes": 2728,
+      "sha256": "51a96fc40d806fe53a83091fb14ccb4c0ee0c41dc950f293ca72490324ff0bb5"
+    },
+    {
+      "path": "nonmail/staged-verification.json",
+      "bytes": 118,
+      "sha256": "4775dc30402cc33f2c8740e7f4c8775602bda2c3e0cc62951a1bd439ed0c6809"
+    },
+    {
+      "path": "nonmail/studio-analysis-summary.json",
+      "bytes": 3034,
+      "sha256": "11ddb4c630fca9550eae7df54b00ae392ea5b7133e2e8a59522e72ba86e0907a"
+    },
+    {
+      "path": "nonmail/studio-cohort.jsonl",
+      "bytes": 46325,
+      "sha256": "47cecc06a7f5c820d43ac015f37d97120ece625cee03b93a4b4522f861c6f76d"
+    },
+    {
+      "path": "nonmail/studio-cohort.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "nonmail/studio-cohort.summary.json",
+      "bytes": 6922,
+      "sha256": "f7be3bc7dff01dc116e89ccaa358eba47590d401b5150b0ebcc6ea33c099f9fe"
+    },
+    {
+      "path": "nonmail/studio-independent.jsonl",
+      "bytes": 6367,
+      "sha256": "55da5e13c76acf546fdf88d1b911b6d48a13222a961c414eda7c95febb1ea799"
+    },
+    {
+      "path": "nonmail/studio-independent.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "nonmail/studio-independent.summary.json",
+      "bytes": 6648,
+      "sha256": "fcf0e53ae11bdea15b3890d6e17a61f4988628e487d0cc6a67a05b6d34aa58c4"
+    },
+    {
+      "path": "nonmail/word-analysis-summary.json",
+      "bytes": 2701,
+      "sha256": "24b129ad3ad01830e29bb3755cd459f08685153d23119e0694ebdef40822478d"
+    }
+  ],
+  "member_count": 45,
+  "all_members_reopened_and_verified": true
+}

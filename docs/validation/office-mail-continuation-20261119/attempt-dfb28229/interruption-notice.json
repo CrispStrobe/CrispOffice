@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "classification": "EXTERNAL_INTERRUPTION_NOTICE_NOT_AN_ORIGINAL_RUNNER_RECEIPT",
+  "recorded_at_utc": "2026-11-19T12:11:59.759694+00:00",
+  "attempt_source": "dfb2822953156496f60efd62f68ff4dc885c93ab",
+  "reported_external_exit_code": 130,
+  "report_origin": "Root coordinator messages in this task; independently corroborated by the audit agent.",
+  "reason": "Root interrupted the gate after core/store and the start of native checks because remote main advanced to commit beginning666 with Mail reply, forward and mark-read changes. Root chose reconciliation and a new full source freeze.",
+  "original_outer_receipt_status_observed": "RUNNING",
+  "original_receipt_rewritten": false,
+  "independent_acceptance_audit_produced": false,
+  "accepted_case_contribution": 0,
+  "operational_observation": "A read-only process listing at archive preparation found no active command referencing this interrupted gate directory."
+}

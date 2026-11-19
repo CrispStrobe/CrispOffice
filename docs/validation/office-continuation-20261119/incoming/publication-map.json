@@ -1,0 +1,20 @@
+{
+  "purpose": "Identical local and connector-published checkpoint trees. Local author commit objects are retained in local-checkpoints.bundle.",
+  "checkpoints": [
+    {
+      "local_commit": "ce5dfa029670642926101d0a950663f30a50e457",
+      "published_commit": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "tree": "7679eef3ed733e1409d5be5061a5e25241e700de"
+    },
+    {
+      "local_commit": "2e6bc30a87125f3209ce4c58208b3f7bf1d84dd8",
+      "published_commit": "e80beb2ed2fe70397a5a8fff5c9e908b04862f78",
+      "tree": "09f094eaff1988fe436c0beeca016b94e714365b"
+    },
+    {
+      "local_commit": "eb6020864508dd8df10aa2fdb3091f5493f6f5f2",
+      "published_commit": "4ed8154a41bef8688b3ce2e89e96e52f9a49120d",
+      "tree": "5b6bffbd3d611414fe83d098f0f1c93b7f2f81a0"
+    }
+  ]
+}

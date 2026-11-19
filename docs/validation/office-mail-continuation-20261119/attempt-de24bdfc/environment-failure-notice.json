@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "record_kind": "external_observation_not_original_execution_receipt",
+  "recorded_at_utc": "2026-11-19 12:50:11 UTC",
+  "source_commit": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+  "source_tree": "af6b6cb49b7ab1fd01aabe2acdc66c7fe72c8b84",
+  "qualification_base": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+  "disposition": "FAILED_ATTEMPT_WITH_ENVIRONMENT_BLOCKER",
+  "accepted_aggregate": false,
+  "accepted_application_case_count": null,
+  "independent_acceptance_audit_executed": false,
+  "accepted_archive_created": false,
+  "github_actions_queried_or_awaited": false,
+  "command": [
+    "python3",
+    "-B",
+    "docs/validation/office-mail-continuation-20261119/run_validation.py",
+    "--head",
+    "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+    "--base",
+    "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+    "--runtime",
+    "/workspace/scratch/82189ef49fff/office-runtime",
+    "--web-sdk",
+    "/workspace/scratch/82189ef49fff/office-web-sdk",
+    "--output",
+    "/workspace/scratch/82189ef49fff/office-mail-gate-de24bdfc",
+    "--command-timeout",
+    "900"
+  ],
+  "observed_process": {
+    "session_id": 28187,
+    "exit_code": 1,
+    "console_lines": [
+      "START shared-runner-controls",
+      "START runtime-replay-controls",
+      "START publisher-offline-controls",
+      "START hunspell-packaging-controls",
+      "START core-store",
+      "FAIL: /workspace/scratch/82189ef49fff/office-mail-gate-de24bdfc/execution.json"
+    ]
+  },
+  "subsequent_environment_observation": {
+    "normal_sandbox_launch_error": "bwrap: Can't create file /workspace/scratch/82189ef49fff/.git: No space left on device",
+    "simple_disk_status_commands_started": false,
+    "desktop_inventory_error": "Browser runtime unavailable",
+    "elevated_read_only_diagnostic": "Rejected by the configured automatic approval policy; not executed",
+    "deletions_performed_for_recovery": false
+  },
+  "evidence_boundary": [
+    "The final console status and process exit are directly observed. The original execution.json and core-store logs could not be read after the launch failure.",
+    "The exact Store-step failure and final before/after source/runtime fingerprints therefore remain unconfirmed; ENOSPC is independently observed at subsequent tool launch.",
+    "The four earlier control names appear before core-store in the strict sequential driver. No new per-family counts or final acceptance are inferred from that sequence.",
+    "No native application group, outer Node plan, or final Studio Mail browser stage was observed starting in this attempt.",
+    "The original attempt directory is not rewritten or relabelled. This file is a separate external notice.",
+    "All implementation, regression sources, plans, runners and reconciliation evidence were remotely committed at the frozen source before the attempt.",
+    "The new attempt's raw local files and later focused development logs were not uploaded before filesystem tool launch became unavailable."
+  ],
+  "known_local_evidence_not_remotely_archived": [
+    {
+      "path": "/workspace/scratch/82189ef49fff/office-mail-gate-de24bdfc",
+      "role": "Original final failed-attempt directory; exact complete file inventory unavailable after the block",
+      "remotely_archived": false
+    },
+    {
+      "path": "/workspace/scratch/82189ef49fff/independent-office-mail-audit.json",
+      "role": "Intended independent acceptance output",
+      "created": false
+    },
+    {
+      "path": "/workspace/scratch/82189ef49fff/independent-office-mail-audit-cases.json",
+      "role": "Intended independent accepted-case output",
+      "created": false
+    }
+  ],
+  "resumption": "Preserve and inspect the original failed attempt when filesystem access is restored. Rerun the complete gate in a new empty external directory on the same frozen source, or assign a new source identity if any controlled input changes. Audit only a completed passing gate. Do not sum earlier runs into its acceptance count.",
+  "late_development_recovery_pointers": {
+    "inventory_kind": "Planned unarchived selection recovered from task observations; not a fresh filesystem listing or complete inventory",
+    "paths": [
+      "/workspace/scratch/82189ef49fff/studio-reply-development-1.jsonl",
+      "/workspace/scratch/82189ef49fff/studio-reply-development-1.stderr",
+      "/workspace/scratch/82189ef49fff/studio-reply-development-2.jsonl",
+      "/workspace/scratch/82189ef49fff/studio-reply-development-2.stderr",
+      "/workspace/scratch/82189ef49fff/studio-reply-development-2-summary.json",
+      "/workspace/scratch/82189ef49fff/studio-reply-development-analyze.log",
+      "/workspace/scratch/82189ef49fff/mail-actions-development-first.stdout.jsonl",
+      "/workspace/scratch/82189ef49fff/mail-actions-development-first.stderr.log",
+      "/workspace/scratch/82189ef49fff/mail-actions-development-analysis.log",
+      "/workspace/scratch/82189ef49fff/mail-actions-development-final.stdout.jsonl",
+      "/workspace/scratch/82189ef49fff/mail-actions-development-final.stderr.log",
+      "/workspace/scratch/82189ef49fff/mail-actions-development-final-analysis.log",
+      "/workspace/scratch/82189ef49fff/mail-tail-smtp-development.stdout.jsonl",
+      "/workspace/scratch/82189ef49fff/mail-tail-smtp-development.stderr.log",
+      "/workspace/scratch/82189ef49fff/mail-tail-ui-development.stdout.jsonl",
+      "/workspace/scratch/82189ef49fff/mail-tail-ui-development.stderr.log",
+      "/workspace/scratch/82189ef49fff/mail-tail-development-analysis.log",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development.json",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development-morph-vm.jsonl",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development-morph-vm.stderr",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development-morph-node.jsonl",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development-morph-node.stderr",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development-presentation-vm.jsonl",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development-presentation-vm.stderr",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development-analysis.log",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development-analysis.stderr",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development-format.log",
+      "/workspace/scratch/82189ef49fff/final-tail-morph-presentation-development-format.stderr",
+      "/workspace/scratch/82189ef49fff/tail-footer-development.stdout.jsonl",
+      "/workspace/scratch/82189ef49fff/tail-footer-development.stderr.log",
+      "/workspace/scratch/82189ef49fff/tail-footer-development-analysis.log",
+      "/workspace/scratch/82189ef49fff/tail-footer-development-summary.json"
+    ],
+    "known_paths": 32,
+    "additional_diagnostic_pointer": "/workspace/scratch/82189ef49fff/auditor-schema-review-97393efd.json",
+    "missing_inventory_scope": "Additional pre-freeze static-check log names were not recovered. No hashes, complete inventory or exact source identities are invented.",
+    "raw_upload_complete": false
+  }
+}

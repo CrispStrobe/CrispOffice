@@ -149,6 +149,14 @@ On the right is the engine's, made in pure Dart.
 
 ## About this fork (CrispStrobe)
 
+The [19 November continuation](docs/validation/office-mail-continuation-20261119/README.md)
+reconciles the current Mail, Arabic morphology, proofing and Studio work with
+the earlier source-qualified evidence. Mail retains its account mailbox and
+saved-message reader; Word language changes preserve the inactive language
+setting. The report records the exact source, preserved local checks and remaining
+acceptance boundaries. The latest combined qualification is incomplete after
+local filesystem exhaustion; earlier passing results retain their own sources.
+
 The Word editor now has a [document review workspace](docs/document-review.md):
 reviewer attribution, filtered pending changes, undoable batch accept/reject,
 original/final paragraph previews, and read-only comparison of two Word
@@ -538,8 +546,12 @@ message retrieval and guarded flag/move operations with required TLS. Real Linux
 loopback checks cover TLS cancellation, deadlines, trust and hostname refusal,
 encrypted transfers and write lifecycle. External-provider and other-OS
 interoperability, host OAuth/refresh, large or sparse
-mailbox pagination, composition/SMTP and the shared mailbox workspace remain
+mailbox pagination and the shared mailbox workspace remain
 open. See the [implementation status and local checks](docs/roadmaps/mail/status.md).
+Studio now also provides a foreground account session and plain-text composer;
+its controlled SMTP checks do not qualify real-provider delivery or a durable
+outbox. Confirmed acceptance is distinguished from later cleanup failure, and
+unconfirmed submissions retain their session draft without automatic retry.
 The standalone Office host and CrispCloud migration remain later tasks; these
 packages do not qualify an application release.
 

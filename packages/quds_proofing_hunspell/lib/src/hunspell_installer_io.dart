@@ -229,6 +229,7 @@ final class HunspellInstaller {
           hashing.add(chunk);
           sink.add(chunk);
           onBytes?.call(chunk.length);
+          cancellation?._throwIfCancelled();
         }
       } finally {
         await sink.close();

@@ -1,0 +1,82 @@
+{
+  "created_at_utc": "2026-11-19T11:08:48.616935+00:00",
+  "scope": "Synthetic native C ABI ownership and lifecycle controls only",
+  "compiler": {
+    "path": "/usr/bin/x86_64-linux-gnu-g++-14",
+    "sha256": "6b3696e4dcb85e1c949c732a02befa50e3983ecf94ce7e8e58d9d503b954b79d",
+    "version": "x86_64-linux-gnu-g++-14 (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "implementation_sha256": "8c0bef14c59b6bcc4cc2fdf7ec3865ab7ea95a327015bda7a5fce67d6c5baf0c",
+  "runtime_before_sha256": "bcba7d2c05c9f3228fb944b71b308c9d9ceff3c5974a99be15ee809de8811bb3",
+  "builds": [
+    {
+      "source": "packages/quds_proofing_hunspell/test/fixtures/lifecycle_hunspell.cpp",
+      "source_sha256": "aeb066f7ffdec75cd517c534228d77fe974fdf56c8cb8be756b027ffa9a3b9b9",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-g++-14",
+        "-std=c++17",
+        "-O2",
+        "-shared",
+        "-fPIC",
+        "-pthread",
+        "/workspace/scratch/261cd76b2166/quds_office_suite/packages/quds_proofing_hunspell/test/fixtures/lifecycle_hunspell.cpp",
+        "-o",
+        "/workspace/scratch/261cd76b2166/quds-fixtures/lifecycle.so"
+      ],
+      "exit_code": 0,
+      "log": "lifecycle.so.build.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "library": "/workspace/scratch/261cd76b2166/quds-fixtures/lifecycle.so",
+      "bytes": 18216,
+      "sha256": "8a48f5c4aba8c132372fb6b9d8dce7ba46b8890535d73430a4bec528d0c4a77e"
+    },
+    {
+      "source": "packages/quds_proofing_hunspell/test/support/hunspell_lifecycle_shim.cpp",
+      "source_sha256": "54a6aa58c54af098629bd42d594efe6b0da47aa590bb0465e7c55568065e3ff1",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-g++-14",
+        "-std=c++17",
+        "-O2",
+        "-shared",
+        "-fPIC",
+        "-pthread",
+        "/workspace/scratch/261cd76b2166/quds_office_suite/packages/quds_proofing_hunspell/test/support/hunspell_lifecycle_shim.cpp",
+        "-o",
+        "/workspace/scratch/261cd76b2166/quds-fixtures/provider.so"
+      ],
+      "exit_code": 0,
+      "log": "provider.so.build.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "library": "/workspace/scratch/261cd76b2166/quds-fixtures/provider.so",
+      "bytes": 16328,
+      "sha256": "0a560fe5f1e13002e9271aa18ae98c977cc2e616c901e41ed1cea04c29f37576"
+    },
+    {
+      "source": "packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp",
+      "source_sha256": "a37694aac5d5166a800418e291da48cab3857a96af120014f4ea34d19528a068",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-g++-14",
+        "-std=c++17",
+        "-O2",
+        "-shared",
+        "-fPIC",
+        "-pthread",
+        "/workspace/scratch/261cd76b2166/quds_office_suite/packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp",
+        "-o",
+        "/workspace/scratch/261cd76b2166/quds-fixtures/ownership.so"
+      ],
+      "exit_code": 0,
+      "log": "ownership.so.build.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "library": "/workspace/scratch/261cd76b2166/quds-fixtures/ownership.so",
+      "bytes": 16680,
+      "sha256": "da812930d543625e24ed36ac50b161a4ccb7861f43e0254b4d0c7d9e131c36db"
+    }
+  ],
+  "environment": {
+    "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/261cd76b2166/quds-fixtures/lifecycle.so",
+    "QUDS_HUNSPELL_PROVIDER_LIFECYCLE_LIBRARY": "/workspace/scratch/261cd76b2166/quds-fixtures/provider.so",
+    "QUDS_HUNSPELL_OWNERSHIP_LIBRARY": "/workspace/scratch/261cd76b2166/quds-fixtures/ownership.so"
+  },
+  "environment_script_sha256": "72ee7de62895cf6273c991816d247e08a20d76c8c166aec79a413d42db17acbe"
+}

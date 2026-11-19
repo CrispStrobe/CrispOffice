@@ -1,0 +1,183 @@
+{
+  "scope": "Development evidence only: exact two late heads, source-specific red/green proofs and coverage reconciliation. No GitHub Actions/status/check queries. Initial bounded 436-ref audit untouched.",
+  "archive": "late-concurrent-evidence.tar.xz",
+  "sha256": "a634203dc4fc0517569acf7f0d7b5a99c72816e2ee8c53269a40f2d00a20ac68",
+  "bytes": 75428,
+  "members": [
+    {
+      "path": "late-concurrent-pr-inventory.json",
+      "bytes": 8578,
+      "sha256": "74aef846cec9a5df7d9edb7fd98df501a514c4f10c54cd138a32fa46d8ed3140"
+    },
+    {
+      "path": "late-concurrent-pr-observation.json",
+      "bytes": 640,
+      "sha256": "b4b5b27d86a4a0eb22eae54758259c2e111600c2b4711af207cec774a54bb633"
+    },
+    {
+      "path": "late-concurrent-pr-review.json",
+      "bytes": 25660,
+      "sha256": "c5aa916d56ed3713210c6e73ddf65d147ff30278c04316ce83b97cd6acda8bec"
+    },
+    {
+      "path": "late-mail-integrated.jsonl",
+      "bytes": 18323,
+      "sha256": "b1b063b38b6a20bb4531b5805f18d588d86eaf8eb5cd410e08a0d9f2d4e800fe"
+    },
+    {
+      "path": "late-mail-integrated.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "late-mail-supplemental-format.txt",
+      "bytes": 46,
+      "sha256": "ebf8691cd9669b02dd9d748aaf543551b337b2beb44f2d128dc7ffbfa0318f03"
+    },
+    {
+      "path": "late-mail-supplemental.jsonl",
+      "bytes": 9252,
+      "sha256": "0660fca2520c69d8f2ce43a3f023bdb2fca7d70fd41e598d38425514b0720160"
+    },
+    {
+      "path": "late-mail-supplemental.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "late-pr192-arabic/after.jsonl",
+      "bytes": 148595,
+      "sha256": "d2edf8b4c62e31ea8b0b4894de7650247a0cdb3a1f8753012a0d4b1653524266"
+    },
+    {
+      "path": "late-pr192-arabic/after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "late-pr192-arabic/before-direct.jsonl",
+      "bytes": 9314,
+      "sha256": "8a81c8a060eee208052b74ba162302ad7b3159932b86921a2771c1254ba558d7"
+    },
+    {
+      "path": "late-pr192-arabic/before-direct.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "late-pr192-arabic/before.jsonl",
+      "bytes": 564,
+      "sha256": "c8501b7a7e368c0a8cbb0a6d3cfd2988bd3d26254147c5c4bd0e6836744e9cb0"
+    },
+    {
+      "path": "late-pr192-arabic/before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "late-pr192-arabic/before_arabic_extended_rules.dart",
+      "bytes": 140057,
+      "sha256": "849086889107df1cbbf88c0cf39bef2580c7274870cb192684e6a6b1fd39b744"
+    },
+    {
+      "path": "late-pr192-arabic/incoming_arabic_extended_rules.dart",
+      "bytes": 140460,
+      "sha256": "8b1bd8db8d21bf06bd695bf699ca515cd76cb212285d2639dab5634bd6bdeefd"
+    },
+    {
+      "path": "late-pr192-arabic/incoming_arabic_extended_rules_test.dart",
+      "bytes": 35422,
+      "sha256": "912965d98ed9e627b1d079048a19b5a942fe83d6d5e4c27fcbc595ee86a86129"
+    },
+    {
+      "path": "late-pr192-arabic/manifest.json",
+      "bytes": 455,
+      "sha256": "74c3831d442a3667110abf783d55a9cda2e3dd7b4082556b7299d267bde07b82"
+    },
+    {
+      "path": "late-pr192-arabic/unique-boundaries.patch",
+      "bytes": 5702,
+      "sha256": "2f2b324debc377127b95555aff12ad28cead5bccee3770d6a597854dbaaa876e"
+    },
+    {
+      "path": "late-source-after/manifest.json",
+      "bytes": 1694,
+      "sha256": "44cd6914ea90b649664ca6418696ed71d8fab89db536d909d4a8b18f3fa18990"
+    },
+    {
+      "path": "late-source-after/packages/quds_office_editor/example/lib/studio_mail.dart",
+      "bytes": 26059,
+      "sha256": "a3bbe4dbf8b393930692b44769a951129abf653587191bccbbece23ecb52cd11"
+    },
+    {
+      "path": "late-source-after/packages/quds_office_editor/example/lib/studio_saved_message.dart",
+      "bytes": 4259,
+      "sha256": "cc7074de1b6a1703408cc322a42e9cf5e15ca809a877165a2572867c2f357e1d"
+    },
+    {
+      "path": "late-source-after/packages/quds_office_editor/example/lib/studio_strings.dart",
+      "bytes": 9600,
+      "sha256": "3aa9a5ebaa326615764c59c66d231eb8cb9521dba9c5b6b72bd0c166094aa3f8"
+    },
+    {
+      "path": "late-source-after/packages/quds_office_editor/example/test/studio_live_mail_continuation_test.dart",
+      "bytes": 17021,
+      "sha256": "3f9a43bbde6014708071189945726475d39ffddcbed7c065853d96496cdab99f"
+    },
+    {
+      "path": "late-source-after/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "bytes": 15913,
+      "sha256": "f2e3a7b0d5482be9298d708c89aab062c2e41fbd9a3d53b02aa84946573bde5f"
+    },
+    {
+      "path": "late-source-after/packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+      "bytes": 140456,
+      "sha256": "f3145dc335813de8d8e4ec8650dec25565eb9df078e3d8aa72edbbee02d4affb"
+    },
+    {
+      "path": "late-source-after/packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+      "bytes": 35422,
+      "sha256": "912965d98ed9e627b1d079048a19b5a942fe83d6d5e4c27fcbc595ee86a86129"
+    },
+    {
+      "path": "late-source-analysis.txt",
+      "bytes": 131,
+      "sha256": "773c18e4e871f8382780bf2e127905bd60bb38ada35190037b444d9dd77859eb"
+    },
+    {
+      "path": "late-source-format.txt",
+      "bytes": 47,
+      "sha256": "8e856f9a8e4b855b19177f1ed69965e8345f754ad5b0a7c6719ee0d95ff7183f"
+    },
+    {
+      "path": "pr191-studio-mail-test.dart",
+      "bytes": 17695,
+      "sha256": "22ab13d07d5c8c0759343f87fbaa2ad369915653dd4a62e4eb63b3f35ddfff9a"
+    },
+    {
+      "path": "pr191-vs-working-source.diff",
+      "bytes": 72582,
+      "sha256": "4b524b39ad61a9fc36281d804498f3d54489888b593f0a0b8fd9c9ae7eb4e574"
+    },
+    {
+      "path": "pr191-working-source-comparison.json",
+      "bytes": 2966,
+      "sha256": "05b5783a83dcdbdccb84f1b8b495e7f46627edeb513e90ee1250167dce70af57"
+    },
+    {
+      "path": "pr192-vs-working-source.diff",
+      "bytes": 75625,
+      "sha256": "ba68ec41d4914da832c4f1fb37660b0e70fb0491c38bdb98276a5f23350400fa"
+    },
+    {
+      "path": "pr192-working-source-comparison.json",
+      "bytes": 3692,
+      "sha256": "9aa2e2106faf794f8b880e474e9296b58fd67a262d3a0eada7316e3cfad3e298"
+    },
+    {
+      "path": "studio_live_mail_continuation_test.dart",
+      "bytes": 17021,
+      "sha256": "3f9a43bbde6014708071189945726475d39ffddcbed7c065853d96496cdab99f"
+    }
+  ]
+}

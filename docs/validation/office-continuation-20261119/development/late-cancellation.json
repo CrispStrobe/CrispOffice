@@ -1,0 +1,16 @@
+{
+  "scope": "Development check only; excluded from final frozen-source execution totals.",
+  "passed": 9,
+  "failed": 0,
+  "skipped": 0,
+  "terminal_success": true,
+  "source_sha256": {
+    "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart": "f3471d55b0c22aad76791a7c83b176d76e1dc3d118d251372e4d775b5483ea04",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart": "e991227609357fcfcbcb7955644eb06d9d3a003ff97149370efa2f090766b599",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart": "42838729ba13b577058991d48e4725b30b4b0f3e0d47b44baba43630ebcd875e"
+  },
+  "logs": {
+    "late-cancellation.jsonl": "2f30238a6e9628d1dac2a39ccaac7d0ce09769bc6ba32d339e81554cdf09c1d4",
+    "late-cancellation.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

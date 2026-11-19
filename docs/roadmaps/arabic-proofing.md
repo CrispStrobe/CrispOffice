@@ -101,7 +101,7 @@ below. No Arabic resource is downloaded by default.
      user-selected files); `web/proofing/` and `android/.../jniLibs/` are
      generated and ignored. The app licence page lists the Hunspell MPL 1.1
      notices (`assets/licenses/hunspell/`, `registerStudioLicenses`).
-   - Evidence (macOS arm64, Flutter 3.47.8): macOS release app built, the
+   - Incoming packaging evidence (macOS arm64, Flutter 3.47.8): macOS release app built, the
      dylib installed into `Contents/Frameworks` and the bundle re-signed
      (`codesign --verify --deep --strict` passes); the end-to-end test loads
      that bundled dylib with the AyaSpell bundle and checks a Word document
@@ -165,11 +165,15 @@ below. No Arabic resource is downloaded by default.
    `w:val="en-US" w:bidi="ar-SA"` reaches the Arabic providers; Latin runs
    keep `w:val`. Digits, punctuation and combining marks alone do not select
    the complex-script language. Unmodified attributes round-trip unchanged.
-   Setting the selection language updates both `w:val` and `w:bidi`, so the
-   choice also takes effect for Arabic/RTL runs; resetting to inherit clears
-   those two direct overrides while retaining East Asian language and other
-   native formatting. Document defaults remain live, and a changed default
-   invalidates an already captured selection target.
+   The existing selection-language command updates both `w:val` and `w:bidi`;
+   resetting to inherit clears both direct overrides. Hosts can explicitly use
+   `activeLanguageOnly: true` to change only the slots used by the selected
+   fragment: `w:val` for Latin text, `w:bidi` for Arabic/Hebrew text, and both
+   for an unmarked fragment containing both scripts. Explicit complex-script
+   formatting retains precedence. Selection inspection clips each run to the
+   selected text. Unused language slots, East Asian metadata and unrelated
+   native formatting remain intact. Document defaults stay live, and a changed
+   default invalidates an already captured selection target.
 
    Interpreting LanguageTool's Arabic rules is assessed
    [below](#languagetool-arabic-assessment-v68).

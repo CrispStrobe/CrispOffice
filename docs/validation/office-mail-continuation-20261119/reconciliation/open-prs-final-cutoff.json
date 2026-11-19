@@ -1,0 +1,20 @@
+{
+  "capture_recorded_at_utc": "2026-11-19T12:24:18.875Z",
+  "endpoint": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=open&per_page=100",
+  "returned_count": 1,
+  "page_size": 100,
+  "all_open_pull_requests": [
+    {
+      "number": 191,
+      "state": "open",
+      "title": "Reconcile Office continuations and qualify Mail and Word integration [skip ci]",
+      "head": "fee5e98481d1f21528756668a9072b8cb3d5efcb",
+      "base": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+      "head_ref": "codex/office-mail-continuation-20261119",
+      "base_ref": "main",
+      "updated_at": "2026-11-19T12:17:17Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/191"
+    }
+  ],
+  "github_actions_queried_or_awaited": false
+}

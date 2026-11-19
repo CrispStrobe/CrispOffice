@@ -1,0 +1,56 @@
+{
+  "purpose": "Historical snapshots of the two related draft PRs at the reconciliation cutoff. Reported counts are not independently accepted final-union results.",
+  "pull_requests": [
+    {
+      "number": 191,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/191",
+      "title": "Reconcile Office continuations and qualify Mail and Word integration [skip ci]",
+      "state": "open",
+      "draft": true,
+      "head": "codex/office-mail-continuation-20261119",
+      "head_sha": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+      "base": "main",
+      "base_sha": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+      "updated_at": "2026-11-19T12:38:11Z",
+      "body": "## Reconciliation and source\nFrozen qualification source: `de24bdfc2b2a1c6691d53d963c993fc236d1ffe5`, tree `af6b6cb49b7ab1fd01aabe2acdc66c7fe72c8b84`.\n\nThe final bounded capture (19 November, 12:23:58–12:24:05 UTC) accounts for all 468 actual references: 440 ancestors, 28 verified historical equivalents, 0 unaccounted, 14 freshly recomputed proofs. Current main 666e9a2e and all four final frontier heads are retained as ancestors. Earlier qualified and incomplete incoming reports preserve their actual sources.\n\n## Resulting behavior\n- Saved EML and native Mail accounts coexist; browser imports stay separate from native transports.\n- Exact body reads and mark-read use the bounded mailbox/UIDVALIDITY/UID provider. Flag writes are verified before local updates, with no automatic retry.\n- Plain-text Word RenderBox composition validates recipient/header/body inputs. Confirmed SMTP acceptance stays final when later cleanup fails; uncertain drafts are retained with an explicit retry acknowledgement and confirmed discard.\n- Reply/text-only forward use authoritative decoded bodies, Unicode-safe quoting and explicit limits; existing drafts cannot be silently replaced.\n- SMTP rejects preliminary/non-final acceptance and recorded command failures; abort settles pending work before closing.\n- Word preserves selected-script defaults, explicit two-slot operations, mixed-fragment inspection and split/coalescing safeguards.\n- Arabic boundaries, morphology numeric portability, reader body-only projection, Hunspell cancellation, publisher safeguards and About-link behavior are retained.\n\n## Validation\nAll 72 strict Dart targets and focused incoming/action regressions passed before freeze. The complete native, Node, Store, offline control and browser-compilation gate is RUNNING against the exact source above. Final accepted counts and independent audit will replace this status before merge.\n\nThe failed 97393efd aggregate and interrupted dfb28229 attempt, including every original log and source/runtime receipt, are saved separately with byte-verified archives. Their passing cases are not added to accepted totals.\n\nNo GitHub Actions are queried or awaited. Branch writes are non-forced with expected-head checks and fetched-tree verification.\n\n## Boundaries\nThis is a foreground Mail session, not a durable repository-driven workspace or application release. Real-provider delivery, OAuth/vault hosts, installed-platform sessions, actual browser persistence and external Word/LibreOffice reopening are not claimed. Current reply/forward is plain-text only, without threading headers or attachment forwarding.\n\nComplete evidence, reconciliation decisions and replay tooling: `docs/validation/office-mail-continuation-20261119/`.\n"
+    },
+    {
+      "number": 192,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/192",
+      "title": "Complete Office reconciliation after modular Mail integration",
+      "state": "open",
+      "draft": true,
+      "head": "codex/office-resume-main-20261119",
+      "head_sha": "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+      "base": "main",
+      "base_sha": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+      "updated_at": "2026-11-19T12:47:26Z",
+      "body": "## Why\nMain adopted the modular native/browser Mail client while this continuation was being qualified. This PR reconciles exact main `666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd` with the saved continuation and preserves both histories through a normal merge.\n\n## Reviewed changes\n- Preserve the modular native/browser host, shared saved reader, bounded UID/raw-octet loader, Word composer, and reply, forward and mark-read actions.\n- Restore independent transport shutdown, pending-client/session ownership, nonselectable-INBOX fallback, stale-completion guards and deferred reader retirement.\n- Preserve main's explicit `appendToSent: false` policy. Distinguish confirmed post-submission cleanup outcomes from uncertain submission, clear confirmed drafts, and avoid automatic retries. Retain the backend SMTP pending-command abort repair.\n- Quote only the existing bounded, sanitized message-body projection. Exclude reader-generated Bcc headers and attachment metadata while retaining literal body text and intended forwarding headers. Serialize mark-read and reject stale session completions.\n- Preserve the public two-slot Word language default and explicit `activeLanguageOnly` behavior, clipped/mixed selections, inheritance, undo/redo, save/reopen and script-routing boundaries.\n- Retain Arabic semantic-mark/Unicode-boundary, finding-merge, dictionary-cancellation, narrow Review, current Settings/comment/Notes/Zotero, About and ordinary morphology setup work.\n\n## Completed source qualification\nQualified remote source: [`0601d2790c7636bc02d53430f6e99f471e8ac83e`](https://github.com/CrispStrobe/quds_office_suite/commit/0601d2790c7636bc02d53430f6e99f471e8ac83e)\nTree: `6b9f83ea730cc8e1982d3744a3fa7685468a4395`\n\n| Gate | Result |\n| --- | --- |\n| Native/VM | 1,035 passed across 51 suites |\n| Portable Node | 607 passed across nine repeated suites |\n| Combined Dart/Flutter | 1,642 executions; 1,035 distinct case identities; 60 suite-platform runs |\n| Python | 21 passed separately: 17 AyaSpell and four packaging controls |\n| Strict analysis and formatting | All 65 changed Dart paths passed, including vendored backend code |\n| Whitespace | Passed |\n\nAll 607 Node identities repeat native cases. Accepted raw reporters have no failures, skips, unfinished cases or excluded loading failures. Source/runtime manifests, HEAD, index and tracked worktree remained unchanged. The independent raw-event audit and independent archive readback agree on these totals.\n\nThe fixed capture remains 465 source references: 437 ancestors and 28 historical equivalents, all 14 equivalence proofs recomputed, zero gaps. Exact main `666e9a2e` is an additional integrated ancestor. Historical, development, rejected and superseded results contribute zero to the fresh totals.\n\n## Publication blocker — PR remains a draft\nThe tested source is saved remotely. The complete final report and evidence are committed locally as `3cb2431b003cd6ae5af1a30376e1898dd1e1cd61`, tree `b7ccd63cfb672d97fd2c2f27ecfaa1ec67b0a8c2`, with parent `0601d279`. The local publication-continuity check passed: all 5,193 accepted source inputs are exact and the 13 changed paths contain only reports/evidence.\n\nThat final documentation/evidence commit has **not** been uploaded to GitHub. The workspace exhausted storage immediately before its upload; even read and cleanup commands fail during filesystem-sandbox startup. The approval policy rejected the scoped fallback cleanup because sandbox escalation is disabled. The alternate file-upload route failed with the same storage error.\n\nRecovery payload: `/workspace/scratch/261cd76b2166/checkpoint-9.json`. It contains the exact pending tree delta and binary payload. After restoring workspace capacity, upload this prepared publication, verify the remote tree and source continuity, mark this PR ready, and merge normally. Do not recreate or relabel the accepted raw evidence.\n\nThe pending final archive has **83 independently verified members**, **920,480 bytes**, and SHA-256 `031a63eed992c8cb2ead6e1dfce649538b7facca1ddaf03ccd2ad8260baf1f4c`. Its members are native 47, Node 13, Python three and audit 20; exact member sets, sizes, hashes and original bytes all passed.\n\n## Acceptance boundaries\nNo GitHub Actions queue, run, job or status was queried, dispatched or awaited. Actual browser persistence, installed Studio/OS IME, live external Mail accounts, Zotero/Word/LibreOffice interoperability and independent linguistic acceptance remain separate. The browser-host widget ran on the VM; the real morphology library/bundle test remains separate from this zero-skip gate.\n"
+    }
+  ],
+  "latest_peer191": {
+    "number": 191,
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/191",
+    "state": "closed",
+    "merged": true,
+    "draft": false,
+    "head_sha": "1d762d4c369795175b55a4ecb9c44efd29f041b1",
+    "merge_commit_sha": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+    "updated_at": "2026-11-19T12:55:23Z",
+    "merged_at": "2026-11-19T12:54:11Z",
+    "current_validation_status": "Published closeout explicitly reports no accepted combined aggregate: de24 failed at core-store, exact original Store cause/fingerprints unavailable after environment block.",
+    "source_notice": "docs/validation/office-mail-continuation-20261119/attempt-de24bdfc/environment-failure-notice.json"
+  },
+  "note": "Earlier RUNNING description is superseded by merged PR191's explicit failed/unqualified closeout. PR192's absent final publication does not establish accepted final-main results.",
+  "latest_peer192": {
+    "number": 192,
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/192",
+    "state": "closed",
+    "merged": true,
+    "draft": true,
+    "head_sha": "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+    "merge_commit_sha": "1c415fef97a9552191e83a6e5f8a071a6fe06710",
+    "updated_at": "2026-11-19T12:54:13Z",
+    "merged_at": "2026-11-19T12:54:13Z"
+  }
+}

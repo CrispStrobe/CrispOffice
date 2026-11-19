@@ -1,0 +1,35 @@
+{
+  "description": "Node execution of portable changed Arabic/Word/proofing behavior. Repeated VM cases are counted as executions, not additional distinct cases. This is not actual browser acceptance.",
+  "groups": [
+    {
+      "name": "portable-engine-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart",
+        "test/proofing/arabic_grammar_rules_test.dart",
+        "test/proofing/office_proofing_merge_test.dart",
+        "test/wml_run_edit_test.dart",
+        "test/word_complex_script_language_test.dart",
+        "test/word_proofing_language_test.dart",
+        "test/proofing/word_proofing_language_test.dart",
+        "test/word_proofing_inheritance_test.dart"
+      ],
+      "platform": "node"
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    ".fvmrc",
+    "docs/validation/office-resume-main-20261119/prepare_native_fixtures.py",
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py",
+    "docs/validation/office-resume-main-20261119/run_python_controls.py",
+    "packages/quds_proofing_hunspell/tool/build.py",
+    "packages/quds_proofing_hunspell/tool/test_build.py"
+  ]
+}

@@ -1,0 +1,798 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "audited_at_utc": "2026-11-19T09:49:17.609744+00:00",
+  "source_commit": "26df787326f58a002b62241b7feb52acff089f2f",
+  "publication_commit": null,
+  "manifest_sha256": "4ea003635e677cc79a9cc130d7bb2b3ead0c292e8d15b2beca81b208fc58e2b5",
+  "auditor_sha256": "285a3f767310d9a73cc6d26d90486297666d38c7973d437997270c1dfb428e40",
+  "archive_count": 1,
+  "verified_member_count": 62,
+  "publication_checks": null,
+  "archives": [
+    {
+      "name": "rejected-26df7873-strict-analysis-attempt",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.index.json",
+      "scope": "Rejected 26df7873 strict-analysis attempt: the single incoming engine directives_ordering diagnostic prevents acceptance despite 634 native application successes and 21 separately counted Python control successes. accepted_qualification=false; no Node or browser stage started; zero results contribute to accepted totals. Original raw evidence and the completed independent rejection audit are preserved without reruns.",
+      "source_commit": "26df787326f58a002b62241b7feb52acff089f2f",
+      "archive_sha256": "e865a927ac0c5fbcf72af4beef2f3e2512a2691ad90caa15c75c5b6d03c5ee51",
+      "index_sha256": "edf1aad387ea109754fa8d2ec6cd1d0ca8bddea81b06e2b71720f0cf80d87235",
+      "checks": {
+        "index_schema": true,
+        "archive_name_matches_index": true,
+        "archive_size_matches_index_and_manifest": true,
+        "archive_hash_matches_index_and_manifest": true,
+        "index_size_matches_manifest": true,
+        "index_hash_matches_manifest": true,
+        "source_identity_matches_manifest": true,
+        "publication_source_matches_manifest": true,
+        "scope_matches_manifest": true,
+        "unique_index_member_paths": true,
+        "indexed_member_count_matches_manifest": true,
+        "unique_archive_member_paths": true,
+        "exact_archive_and_index_member_path_sets": true,
+        "all_indexed_members_verified": true
+      },
+      "member_count": 62,
+      "members": [
+        {
+          "path": "audit-review/audit_failed_26df_attempt.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_failed_26df_attempt.py",
+          "bytes": 10611,
+          "sha256": "bb399283de466d2e9b010fd5222ee65eb4f42ae64972a71cd3d3d4e18a2b0f7a",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-26df-failed-attempt-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-26df-failed-attempt-audit.json",
+          "bytes": 151308,
+          "sha256": "23e4efc3e63a79138fcb5b0f1e02114c288a857aca077c04f97cb3cdc2bb3992",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/bundle-controls.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/bundle-controls.log",
+          "bytes": 2586,
+          "sha256": "f42bfddbe4dfb621e313bc512d4a65f7ee0f316da7c14d06d6d1ec441ea14772",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/continuity.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/continuity.json",
+          "bytes": 150620,
+          "sha256": "6b86c7a55bad0bb4b5a949461ec57724cb45d2a9f95db555f67eb86fbae689bb",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/delta-continuity.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/delta-continuity.log",
+          "bytes": 153,
+          "sha256": "49b53855f5c0a79eb6b57140398777efb575fc7e764c28d1e7a821f96cac3637",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/execution.json",
+          "bytes": 6857,
+          "sha256": "eb19b3acfb9bebb7ab373bc1455533eefac9d63b6dfd1c4be766e1101963deed",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/locked-workspace-resolution.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/locked-workspace-resolution.log",
+          "bytes": 68,
+          "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native.log",
+          "bytes": 1344,
+          "sha256": "2914bed4409722a3f94c555f582f1f3fb559597f41da745d004468e65dbae05d",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/analysis.log",
+          "bytes": 2629,
+          "sha256": "f6bf60645cd409d173efaef5cacb4503b449feb54a6853363195b8417dd30b6c",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/analysis.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/analysis.log.gz",
+          "bytes": 765,
+          "sha256": "60352fba4bd35a57dadfe81ac5bb9a0c8f82699f8c4cd7c62e910f83b022624e",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm-cases.json",
+          "bytes": 105537,
+          "sha256": "3b7f16673113d0008779e1f9014919b1ff9fb5b784f815675f28d83def772449",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm-errors.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm.jsonl",
+          "bytes": 139924,
+          "sha256": "245f77861a86648383043d5ccebab0fad942169edde608a7cd6941a4bff9b1cf",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm.jsonl.gz",
+          "bytes": 10752,
+          "sha256": "2c4533da26621f4d06ac04eac7779393266c7ef047c441a3b9f10a524e6e572e",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm-cases.json",
+          "bytes": 14001,
+          "sha256": "f2bf0147089755e139dda7bb8c05e6753ff342e0d291e690506707d23d296b48",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm-errors.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm.jsonl",
+          "bytes": 25566,
+          "sha256": "dbf8dc43658dc4c282315794a875bc6cf5f41133ba2c92c31025a7842d7f6a5e",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm.jsonl.gz",
+          "bytes": 3175,
+          "sha256": "7eb83cec0951b315e0d8c90454c8fef4bddd1afcea699d15106421c871dae762",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/format.log",
+          "bytes": 48,
+          "sha256": "b57a88df5ac31029d80665e290e123bd351315ae494be115b72a98187ccff030",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/format.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/format.log.gz",
+          "bytes": 68,
+          "sha256": "92c2fa2297aa252433fbc18524316254ec8ae5f82428cc5146f720105b3b298a",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/hunspell-native-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/hunspell-native-cases.json",
+          "bytes": 7930,
+          "sha256": "8180f15fd7f4b0ae6c8f442763f5f130f94c72e3606a8fa73016f871d983c900",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/hunspell-native-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/hunspell-native-errors.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/hunspell-native.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/hunspell-native.jsonl",
+          "bytes": 17783,
+          "sha256": "bf19fc25e9b4763acb8ea33ef5777c1faa1d582bfc23db1208985be78c5f0ad5",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/hunspell-native.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/hunspell-native.jsonl.gz",
+          "bytes": 2276,
+          "sha256": "e75f689aa4379344f9087fe5cd47c662f40bc7a074b0388b86317b4363831156",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm-cases.json",
+          "bytes": 33806,
+          "sha256": "fae9bd997b9f3cb4e05540d326598b167c937e4200bc246ef68c22bd40c775ee",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm-errors.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm.jsonl",
+          "bytes": 77371,
+          "sha256": "9ba1440d861c23a4e437511e29879f20c617853e4068b0fbf82910f218c01ad8",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm.jsonl.gz",
+          "bytes": 7089,
+          "sha256": "2ea3502d6463038fb44dea1e7d58c666f5b4b19d8694939372b53b08ac9ac654",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/whitespace.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/whitespace.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/whitespace.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/whitespace.log.gz",
+          "bytes": 20,
+          "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm-cases.json",
+          "bytes": 21190,
+          "sha256": "bc2c18ee6dae61d1210f16e0911c540e98b379296bc34c1355de6c9962d0ddd2",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm-errors.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm.jsonl",
+          "bytes": 36518,
+          "sha256": "82098a07f898dac4ea25524bbe5ae4ab4e36fc4147df064f7646e38a0084a8c2",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm.jsonl.gz",
+          "bytes": 3995,
+          "sha256": "d659a644e92ea86151881966d6ef70bc995b555b968d5ff71b9e0cb6434d9a85",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm-cases.json",
+          "bytes": 19718,
+          "sha256": "45251ad48aef654060789f58a4e60ce486cab0253df7aebfb63d832d72ea2801",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm-errors.json",
+          "bytes": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm.jsonl",
+          "bytes": 34257,
+          "sha256": "4ad08876b68506df1d1b0ff44f54a8ec1bdd5466f66f5d57b493a7a50bd59ee1",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm.jsonl.gz",
+          "bytes": 3533,
+          "sha256": "c311e56bef2549a8b9920865b683f1e169656c087d29dab8dcc11d0893aa9b3f",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/environment-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/environment-after.json",
+          "bytes": 1707105,
+          "sha256": "78862effd4cf32bf8697fe49bb89fde429959ddda3de1ced71a00121272cb549",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/environment-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/environment-before.json",
+          "bytes": 1707105,
+          "sha256": "78862effd4cf32bf8697fe49bb89fde429959ddda3de1ced71a00121272cb549",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/source-after.json",
+          "bytes": 1557185,
+          "sha256": "57973e2ae6f1c68252e855eb83fc616e411457b708054dc90c2c9e47c0a90205",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/source-before.json",
+          "bytes": 1557185,
+          "sha256": "57973e2ae6f1c68252e855eb83fc616e411457b708054dc90c2c9e47c0a90205",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/verification.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/verification.json",
+          "bytes": 56706,
+          "sha256": "07b1e37f2c6ebaaec26e041f6707c56587fed30892c1effb880ea4bcd168d273",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/package_config.json",
+          "bytes": 27856,
+          "sha256": "18f883d9af9b9d30da6aed9e870ba135afc0fe9a1757f6e9b9da4d92e1985423",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/package_graph.json",
+          "bytes": 24412,
+          "sha256": "50f03d7dd6bcc5a9a1f0b41ac21fdd19bd53f5b9081783995b3382ddd706eb90",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/packaging-controls.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/packaging-controls.log",
+          "bytes": 698,
+          "sha256": "bcf1d617eed6cb630234dff69c5d6f692984492c0ae9b53e9472d275076c1033",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-execution.json",
+          "bytes": 5176,
+          "sha256": "beee50ffbf587c41615d42e967e4f65bcb83c8945cc08b0436f1696c6562d6ea",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-independent-summary.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-independent-summary.json",
+          "bytes": 48821,
+          "sha256": "338f588f5c3ae08ff8fb84c3663911f3cda07f820573fc30f384323da192efea",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/.dart_tool/native_assets.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/.dart_tool/native_assets.yaml",
+          "bytes": 369,
+          "sha256": "515bb5d5825bd5e510b858bb9c237743cc94e64c4fdee19d5e2e86c53b15d5bd",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/.dart_tool/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/.dart_tool/package_config.json",
+          "bytes": 27688,
+          "sha256": "d5ea7285c68c37bfdd8a4339462d67f24470d815c6d87adae39ce2bf27980fb1",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/.dart_tool/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/.dart_tool/package_graph.json",
+          "bytes": 24007,
+          "sha256": "d3b0ace27d859b5a576a96693e5152e4d1634300fd796c25caea49acafbeca34",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/pubspec.lock",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/pubspec.lock",
+          "bytes": 26074,
+          "sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/pubspec.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/pubspec.yaml",
+          "bytes": 946,
+          "sha256": "e1a41dca16b70767fcdb747940b1a63de6598d6ee8d62cef3367088f48ccaa1a",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/receipt.json",
+          "bytes": 801,
+          "sha256": "92fa67b46096a437b109f5ed5593d3648c05e9dba2dda6b0c4a2783bf6a3ddae",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-runtime-before.json",
+          "bytes": 1706530,
+          "sha256": "a0a825ebad63dd9799b36a94293f153e60d2940a395d149bfbbffc3ce40f9629",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-source-before.json",
+          "bytes": 740049,
+          "sha256": "ef4f4a5fe3809c0afb9f3b565ee1a4e241bad3efe5f60f58862d0c8222e77ade",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/runtime-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/runtime-after.json",
+          "bytes": 1708027,
+          "sha256": "4041d1c93c885f0a205f4298e3e53a09a6f6e939bd070e6f39ae54911f8fc573",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/runtime-before.json",
+          "bytes": 1708027,
+          "sha256": "4041d1c93c885f0a205f4298e3e53a09a6f6e939bd070e6f39ae54911f8fc573",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/runtime-pre-resolution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/runtime-pre-resolution.json",
+          "bytes": 1707822,
+          "sha256": "93c12bfec5f5df462ca2b349d0ad2ead3e878d4326084d3c22f4bde155c48747",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/source-after.json",
+          "bytes": 749357,
+          "sha256": "157f83f62199594e584a5b7b32790409d0af0d25bae938a2b0c4d4349b785366",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/source-before.json",
+          "bytes": 749357,
+          "sha256": "157f83f62199594e584a5b7b32790409d0af0d25bae938a2b0c4d4349b785366",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        },
+        {
+          "path": "main-delta/v3-qualified-validation.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-validation.log",
+          "bytes": 201,
+          "sha256": "1c46d9867a6cdd2fe0e0fc2d5dd28fe325455366d1c39251f492fa54f5a32988",
+          "checks": {
+            "tar_size_matches_payload_and_index": true,
+            "payload_hash_matches_index": true,
+            "original_is_absolute_regular_file": true,
+            "original_bytes_equal_archived_payload": true
+          }
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "scope": {
+    "exact_member_sets_and_hashes": true,
+    "compared_to_original_files": true,
+    "published_git_blobs_checked": false,
+    "archive_members_extracted_to_disk": false,
+    "application_tests_executed": false,
+    "application_events_recounted": false,
+    "branch_inventories_captured": false,
+    "github_actions_accessed": false,
+    "counts": "Counts describe archives and evidence members only, never application tests."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+  "created_at_utc": "2026-11-19T10:01:46.360597+00:00",
+  "spec_sha256": "c6b52ecc7b7288346816d6451b1d617dfcab864fd571b522500096df25f4c513",
+  "packer_sha256": "546a0e6ed43b4258f060811e7d03ba5cfc46f447f556c61b331ecfe519ef87f5",
+  "archives": [
+    {
+      "name": "Accepted final v4 qualification",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v4/final/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta-v4/final/evidence.index.json",
+      "scope": "Original accepted raw application/Python events, outputs, immutable source/runtime envelopes, independent recounts, fixed-capture reconciliation and replay/audit tools. Earlier source and rejected attempt counts are excluded.",
+      "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+      "archive_bytes": 1006716,
+      "archive_sha256": "72b36a50b2096e0ff516983bbb90c342f36281a85d56eb893a3fc471671a98fc",
+      "index_bytes": 29916,
+      "index_sha256": "92c73534f64396a2a3ee682f71c610de9603b7509d7eb7bd5c13c4c599305e6f",
+      "member_count": 103
+    },
+    {
+      "name": "Preserved final integration reviews",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v4/reviews/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta-v4/reviews/evidence.index.json",
+      "scope": "Bounded historical development and merge reviews, export-order correction, guide review and static preflight for v4 publication. The frozen final gate supplies qualification totals separately. Every original historical/development/failure label remains unchanged; zero qualification contribution.",
+      "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+      "archive_bytes": 391548,
+      "archive_sha256": "3f990831408e7867153b4546d59c466fd8418cfa7c44a003ab2374ec65c1ffdb",
+      "index_bytes": 74870,
+      "index_sha256": "1792f0317c7966cfdca789f678c2a31894f7a8c3b9a15a208f30f59f3d1a18b9",
+      "member_count": 233
+    }
+  ],
+  "scope": "Byte-preserving evidence publication. Archive/member counts are not application test counts. Historical and development evidence retain their separate scopes."
+}

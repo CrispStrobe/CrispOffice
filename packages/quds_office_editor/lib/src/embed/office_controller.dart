@@ -9337,18 +9337,39 @@ class WordEditorController extends OfficeController {
         } else if (inline is WmlRun) {
           final end = offset + inline.text.length;
           if (selected && from < end && to > offset) {
-            languages.add(
-              normalizeProofingLanguage(
-                wordRunProofingLanguage(
-                      inline,
-                      paragraph,
-                      documentLanguage: document.proofingLanguage,
-                      documentComplexScriptLanguage:
-                          document.complexScriptLanguage,
-                    ) ??
-                    'de-DE',
-              ),
-            );
+            final fragment = from <= offset && to >= end
+                ? inline
+                : WmlRun(
+                    text: inline.text.substring(
+                      (from - offset).clamp(0, inline.text.length),
+                      (to - offset).clamp(0, inline.text.length),
+                    ),
+                    properties: inline.properties,
+                  );
+            if (wordRunUsesLatinScriptLanguage(fragment)) {
+              languages.add(
+                normalizeProofingLanguage(
+                  inline.properties.proofingLanguage ??
+                      paragraph.properties.proofingLanguage ??
+                      document.proofingLanguage ??
+                      'de-DE',
+                ),
+              );
+            }
+            if (wordRunUsesComplexScriptLanguage(fragment)) {
+              languages.add(
+                normalizeProofingLanguage(
+                  wordRunProofingLanguage(
+                        fragment,
+                        paragraph,
+                        documentLanguage: document.proofingLanguage,
+                        documentComplexScriptLanguage:
+                            document.complexScriptLanguage,
+                      ) ??
+                      'de-DE',
+                ),
+              );
+            }
             enabledValues.add(inline.properties.noProof != true);
             if (inline.isAtomic || fieldDepth > 0) {
               unavailable ??=
@@ -9594,13 +9615,17 @@ class WordEditorController extends OfficeController {
       ],
   ]);
 
-  /// Changes the language of exactly [target]. Null removes run overrides so
-  /// the text inherits its character/paragraph styles and paragraph/document
-  /// defaults. Returns false if the
-  /// displayed target became stale or cannot be changed safely.
+  /// Changes the active language slots of exactly [target], preserving inactive
+  /// language metadata and other formatting. Unmarked mixed-script fragments
+  /// use both slots. Null removes those overrides so the text inherits its
+  /// character/paragraph styles and paragraph/document defaults. Set
+  /// [activeLanguageOnly] to false to explicitly change or clear both slots.
+  /// Returns false if the displayed target became stale or cannot be changed
+  /// safely.
   bool setTextProofingLanguage(
     String? language, {
     required WordTextProofingTarget target,
+    bool activeLanguageOnly = true,
   }) {
     final normalized = language == null
         ? null
@@ -9618,22 +9643,25 @@ class WordEditorController extends OfficeController {
               start,
               end,
               includeComplexScript: true,
+              activeLanguageOnly: activeLanguageOnly,
             ),
       );
     }
     return _setTextProofingOption(
       target,
-      prepare: (source, preview, start, end) => _prepareTextProofingRuns(
-        preview,
-        start,
-        end,
-        needsChange: (properties) =>
-            properties.proofingLanguage != normalized ||
-            properties.complexScriptLanguage != normalized,
-        update: (properties) => properties
-          ..proofingLanguage = normalized
-          ..complexScriptLanguage = normalized,
-      ),
+      prepare: (source, preview, start, end) => activeLanguageOnly
+          ? _prepareTextProofingLanguage(preview, start, end, normalized)
+          : _prepareTextProofingRuns(
+              preview,
+              start,
+              end,
+              needsChange: (properties) =>
+                  properties.proofingLanguage != normalized ||
+                  properties.complexScriptLanguage != normalized,
+              update: (properties) => properties
+                ..proofingLanguage = normalized
+                ..complexScriptLanguage = normalized,
+            ),
     );
   }
 
@@ -9652,6 +9680,49 @@ class WordEditorController extends OfficeController {
       update: (properties) => properties.noProof = !enabled,
     ),
   );
+
+  static bool _prepareTextProofingLanguage(
+    WmlParagraph preview,
+    int start,
+    int end,
+    String language,
+  ) {
+    final range = WmlRunEdit.normalizeRange(preview, start, end);
+    final routingChanged = WmlRunEdit.splitProofingRange(
+      preview,
+      range.start,
+      range.end,
+    );
+    // Choose the slots from each selected fragment after splitting. Unselected
+    // letters must not choose its slots, and a mixed fragment can use both.
+    final latinProperties = {
+      for (final run in preview.inlines.whereType<WmlRun>())
+        if (wordRunUsesLatinScriptLanguage(run)) run.properties,
+    };
+    final complexProperties = {
+      for (final run in preview.inlines.whereType<WmlRun>())
+        if (wordRunUsesComplexScriptLanguage(run)) run.properties,
+    };
+    final propertiesChanged = _prepareTextProofingRuns(
+      preview,
+      range.start,
+      range.end,
+      needsChange: (properties) =>
+          latinProperties.contains(properties) &&
+              properties.proofingLanguage != language ||
+          complexProperties.contains(properties) &&
+              properties.complexScriptLanguage != language,
+      update: (properties) {
+        if (latinProperties.contains(properties)) {
+          properties.proofingLanguage = language;
+        }
+        if (complexProperties.contains(properties)) {
+          properties.complexScriptLanguage = language;
+        }
+      },
+    );
+    return propertiesChanged || routingChanged;
+  }
 
   static bool _prepareTextProofingRuns(
     WmlParagraph preview,

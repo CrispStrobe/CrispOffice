@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/workspace/scratch/e63c6a1344bc/runtime/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart"
+  ],
+  "exit_code": 0,
+  "source_hashes": {
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "b347506375abce38502d0d2f9b08a4a375d8cba7ab19248b2d1b7a1fc465fce1",
+    "packages/quds_office_editor/example/lib/studio_mail_strings.dart": "499f4cd476cf9cbc775c290fdde51cfb4c85033729653964321399cd5a152f14",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart": "8e7cc630ae0fecf139c687670e65c271f687c3544b6789e3a10cdfd6d99923b4"
+  }
+}

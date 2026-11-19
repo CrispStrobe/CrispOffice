@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "source_review_passed": true,
+  "reviewed_at_utc": "2026-11-19T12:15:42.154477+00:00",
+  "source_commit": "08336f71b273eb81a4f2652328ad1c91c08e048c",
+  "source_tree": "9c9f580c193bab32594697f44f141d5f1269c622",
+  "qualified_base": "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9",
+  "incoming_main": "76fe761f1c97c31ca8d8add405aa54c436a336aa",
+  "issues": [],
+  "mail_package_scopes": [
+    {
+      "package": "quds_mail_core",
+      "records": 24,
+      "identical_to_base_and_incoming": true
+    },
+    {
+      "package": "quds_mail_store",
+      "records": 32,
+      "identical_to_base_and_incoming": true
+    },
+    {
+      "package": "quds_mail_transport",
+      "records": 29,
+      "identical_to_base_and_incoming": true
+    },
+    {
+      "package": "quds_mail_mime",
+      "records": 17,
+      "identical_to_base_and_incoming": true
+    },
+    {
+      "package": "quds_mail_ui",
+      "records": 24,
+      "identical_to_base_and_incoming": true
+    }
+  ],
+  "vendored_fork_records": 271,
+  "vendored_fork_exactly_preserves_incoming": true,
+  "vendored_delta_from_qualified_base": [
+    "third_party/enough_mail/lib/src/mail/mail_client.dart",
+    "third_party/enough_mail/lib/src/mail/mail_exception.dart",
+    "third_party/enough_mail/lib/src/private/mail/send_message_transaction.dart",
+    "third_party/enough_mail/test/mail/mail_send_transaction_test.dart"
+  ],
+  "studio_mail_records": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "301caeb8051eff327efc0b54c3a383d637a409b6"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "e5893820cf5949c605dcfaf2c89d42f066f53181"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_file.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "a80cf7c8806c62aebe6d8dfd9bb178ec5122c1d8"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "45d50b75a7074c7817707dfc38555e2ad01e0357"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_file_web.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "68d81f704a29c73a5bf72f8eaf5460afd6a333e3"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "ba8af7eea91403bd58a38f82343e1f7a4f236785"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "review": "reviewed correction; formatter whitespace and two optional expect-call trailing commas separately inspected",
+      "git_blob": "f1256f033cbc19a84e780e6b9f71456d7d4d5fc3",
+      "content_sha256": "15385516b2af03ebcf4913ca9d09df8a8521c6f6afffdb6ec3f6af4584dad369",
+      "actual_token_sha256": "73c491913834c63d521771c4926ffbd8dd6284361e5a59a5ff005494d8286919",
+      "expected_token_sha256": "73c491913834c63d521771c4926ffbd8dd6284361e5a59a5ff005494d8286919"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_operation.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "152bdd30133c07acdc1da20b04745bc72363be59"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "300267a4da17a769eb7f0eba9deecc4e7d409aba"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "8147ac9482d88fe158f465edb7df806c0cdcaddb"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_web.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "95d5d60db804ba19130684ed8944e6c4367388d8"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_saved_mail.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "0d5599816b8ed6f4fe636fe333b9cfa23824f422"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "346244ca5559f16481a92cc4d58c08ee615ccd53"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "356e3d6a0ea37f91a01981845a1a05fdca599c38"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "69d79c0863480f90941361da2eced5d6d26e1e60"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "97110a5d47525e28438d53a2107e36167ddcaf91"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "fcc27953ac384fb216f9100bcfe9148b658cca25"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "review": "reviewed correction; formatter whitespace and two optional expect-call trailing commas separately inspected",
+      "git_blob": "2da81208cd88dca7635d1bb8986fceb7e23baa3d",
+      "content_sha256": "91b48570175a123d8b8b8ab4806d33a2fcdd2fbf96887db02356ae9764de2f05",
+      "actual_token_sha256": "038f9fbc75cff0a48b7e1fa9a380dffc4e6c0baa2a4735f2e6af4621f9d7b812",
+      "expected_token_sha256": "038f9fbc75cff0a48b7e1fa9a380dffc4e6c0baa2a4735f2e6af4621f9d7b812"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "bad863cdec61e8fa97b0d51899df84f2a17b0706"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "d0fd3c435f2e72ea8eec9d83630ddace5b564b19"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/studio_mail_fixture.dart",
+      "review": "exact incoming mode/type/blob preserved",
+      "git_blob": "3335fbfcde5168948fe51744580590475ac9b812"
+    }
+  ],
+  "studio_strings_preserved_except_formatting": true,
+  "formatter_review": "Full token diff checked: two optional trailing commas added to expect calls, two removed from localized _t calls; no other changed tokens beyond the reviewed correction. Frozen formatted hashes are pinned, not a general comma-normalization rule.",
+  "root_lock_and_manifest_preserved": true,
+  "studio_direct_transport_dependency_preserved": true,
+  "committed_plans": {
+    "native": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json",
+    "node": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json",
+    "total_native_suites": 25,
+    "total_node_suites": 4,
+    "required_mail_native_suites": 11,
+    "required_mail_node_suites": 3,
+    "analysis_paths": 45,
+    "format_paths": 45
+  },
+  "scope": "Source/selection review only. The earlier accepted 0bd execution results and its 395-record historical Mail continuity remain bound to 0bd. This incoming Mail fork has changed; no historical test cases are added to the fresh run.",
+  "confirmed_submission": "The committed typed catch clears the accepted draft/uncertain state with current-session guard; the new regression checks one send, bounded accepted feedback, and a blank next composer without retry acknowledgement.",
+  "runtime_tests_executed": 0,
+  "qualification_status": "Await completed fresh native/Node receipts and independent event audit.",
+  "review_script_sha256": "736d9de9abb5fcdf8d0948ffdbaa1b250f8c3007c6f9bf76d54ab2fd455a20ab"
+}

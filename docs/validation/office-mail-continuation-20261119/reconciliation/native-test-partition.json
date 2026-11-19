@@ -1,0 +1,10 @@
+{
+  "original_test_body_preserved_exactly": true,
+  "body_sha256": "236dc8e0fb331cdac268ec1e0926db8fd920f016cff0b78ddef75eb22df542a7",
+  "original_suite": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+  "native_suite": "packages/quds_office_editor/example/test/studio_arabic_morph_native_test.dart",
+  "additional_setup": "TestWidgetsFlutterBinding.ensureInitialized();",
+  "assertions_and_skip_conditions_changed": false,
+  "comparison": "Entire original block from environment declarations through test registration; trailing blank separator between tests excluded. Assertions, body, skip condition and timeout are byte-identical.",
+  "original_source_commit": "b070e228a749e22cc8ce2098029a76ab5fb8eccb"
+}

@@ -1,0 +1,4943 @@
+{
+  "schema": 2,
+  "audited_at_utc": "2026-11-19T11:50:48.549591+00:00",
+  "script_sha256": "9c84ecc2a8da4a26afcfd6a1111cff9c8d31cea11b844abac3cbb8de6a62dfb2",
+  "targets": [
+    "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9"
+  ],
+  "mode": "actual_commit",
+  "captured_refs_sha256": "5819a5199869f64d80c9b479da889c5586c047ed966f5a3cfd8fd04f193d3b16",
+  "reference_count": 436,
+  "reference_kinds": {
+    "branch": 229,
+    "pull_request": 190,
+    "tag": 17
+  },
+  "reference_dispositions": {
+    "ancestor": 408,
+    "historical_equivalent": 28
+  },
+  "excluded_advertisements": [
+    {
+      "ref": "HEAD",
+      "oid": "b070e228a749e22cc8ce2098029a76ab5fb8eccb"
+    },
+    {
+      "ref": "refs/tags/crispcloud-build28-office^{}",
+      "oid": "216e5ba38110349d6a002a5a58e0ae27825c8bef"
+    },
+    {
+      "ref": "refs/tags/studio-v1.0.0^{}",
+      "oid": "509e0cfa621775b4bbdb9bf456e8dbe218351226"
+    },
+    {
+      "ref": "refs/tags/v0.1.0^{}",
+      "oid": "23969a9ec23cb37fc3aa5276a46612d8873e518f"
+    },
+    {
+      "ref": "refs/tags/v1.0.0^{}",
+      "oid": "d101a3308fb046f96e7db6054a1b2b60f1724289"
+    }
+  ],
+  "upstream_capture": {
+    "namespace": "upstream",
+    "file": "initial-upstream-refs.tsv",
+    "sha256": "ff18c5e1bae03ba5acb473c259bfdd1eb7d2ed78a814578c30fc3a0531e2ed88",
+    "reference_count": 24,
+    "reference_kinds": {
+      "branch": 4,
+      "pull_request": 4,
+      "tag": 16
+    },
+    "reference_dispositions": {
+      "ancestor": 24
+    },
+    "excluded_advertisements": [
+      {
+        "ref": "HEAD",
+        "oid": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+      },
+      {
+        "ref": "refs/tags/studio-v1.0.0^{}",
+        "oid": "509e0cfa621775b4bbdb9bf456e8dbe218351226"
+      },
+      {
+        "ref": "refs/tags/v0.1.0^{}",
+        "oid": "23969a9ec23cb37fc3aa5276a46612d8873e518f"
+      },
+      {
+        "ref": "refs/tags/v1.0.0^{}",
+        "oid": "d101a3308fb046f96e7db6054a1b2b60f1724289"
+      }
+    ],
+    "refs": [
+      {
+        "ref": "refs/heads/ci/flutter-workspace",
+        "object": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "commit": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "kind": "branch",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/heads/cursor/class-certificates-2db8",
+        "object": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "kind": "branch",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+        "object": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "commit": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "kind": "branch",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/heads/main",
+        "object": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "kind": "branch",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/pull/1/head",
+        "object": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+        "commit": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+        "kind": "pull_request",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/pull/5/head",
+        "object": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "commit": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "kind": "pull_request",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/pull/6/head",
+        "object": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "commit": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "kind": "pull_request",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/pull/7/head",
+        "object": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "kind": "pull_request",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/editor-v0.5.1",
+        "object": "6ac50c12f99ced6456897dec390111797cfe2157",
+        "commit": "6ac50c12f99ced6456897dec390111797cfe2157",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/engine-v0.5.3",
+        "object": "6ac50c12f99ced6456897dec390111797cfe2157",
+        "commit": "6ac50c12f99ced6456897dec390111797cfe2157",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/studio-v1.0.0",
+        "object": "2f3e1373779a102d68629d09baba83bff80a33ac",
+        "commit": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/studio-v1.1.0",
+        "object": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+        "commit": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/studio-v1.2.0",
+        "object": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/studio-v1.4.0",
+        "object": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+        "commit": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/studio-v1.5.0",
+        "object": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/v0.1.0",
+        "object": "ffab8a719349a3184f1461b61d55411c51949ba2",
+        "commit": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/v0.2.0",
+        "object": "ec2c7dce10a0fc8b155985259152b0b0c9696c90",
+        "commit": "ec2c7dce10a0fc8b155985259152b0b0c9696c90",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/v0.5.0",
+        "object": "1f0ed0e94fe6e46d94e9d811627c476974080003",
+        "commit": "1f0ed0e94fe6e46d94e9d811627c476974080003",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/v1.0.0",
+        "object": "1d8b21b840ebf664768d490ee098225344887c4a",
+        "commit": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/v1.1.0",
+        "object": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+        "commit": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/v1.2.0",
+        "object": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/v1.3.0",
+        "object": "2188d055fde9d4647bf5995eb96161e3e4cbd365",
+        "commit": "2188d055fde9d4647bf5995eb96161e3e4cbd365",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/v1.4.0",
+        "object": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+        "commit": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+        "kind": "tag",
+        "disposition": "ancestor"
+      },
+      {
+        "ref": "refs/tags/v1.5.0",
+        "object": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "kind": "tag",
+        "disposition": "ancestor"
+      }
+    ],
+    "prior_capture_comparison": {
+      "prior_source_commit": "004b2ad6342cae7b2fe2750dbba5a9fdcebd3413",
+      "prior_capture_sha256": "3d5a57caa42f4a0af2bc4c77d1a1052dbc6c95fa1ca44def3cfe39d6a99180be",
+      "actual_refs_identical": true,
+      "added": [],
+      "removed": [],
+      "changed": []
+    }
+  },
+  "combined_reference_count": 460,
+  "combined_reference_dispositions": {
+    "ancestor": 432,
+    "historical_equivalent": 28
+  },
+  "unmerged_recent_at_captured_main": [
+    {
+      "ref": "refs/heads/codex/office-continuation-20261119",
+      "object": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "commit": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-main-integration-20261119",
+      "object": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+      "commit": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-main-sync-20261119",
+      "object": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+      "commit": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-resume-main-20261119",
+      "object": "004b2ad6342cae7b2fe2750dbba5a9fdcebd3413",
+      "commit": "004b2ad6342cae7b2fe2750dbba5a9fdcebd3413",
+      "kind": "branch",
+      "disposition": "ancestor"
+    }
+  ],
+  "historical_equivalences": [
+    {
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "branch": "codex/odt-field-continuation-20261117",
+      "equivalent": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "comparison": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "files": [
+        {
+          "path": "docs/odf-export-fidelity.md",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "e0ec6e28f094f9be3101a165bb2f8aba52f10ce7"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "e0ec6e28f094f9be3101a165bb2f8aba52f10ce7"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/german-proofing-recovery-20261117/README.md",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "c645d21a4fecd134bf6a24cd13fa703579846e1c"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "c645d21a4fecd134bf6a24cd13fa703579846e1c"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/README.md",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "8146c83246daf3599e662b1dd683cb97300803d6"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "8146c83246daf3599e662b1dd683cb97300803d6"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "ef170d72cf34c4b3687b5c1e419edb6fc38224c8"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "ef170d72cf34c4b3687b5c1e419edb6fc38224c8"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "a94f21fd4168af21c1fa98032f8de3e22a69fcc6"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "a94f21fd4168af21c1fa98032f8de3e22a69fcc6"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "acb5422a76561ecf87b900c2b6b5e544d2eb75ca"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "acb5422a76561ecf87b900c2b6b5e544d2eb75ca"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "33fbc0410ec5a7337be6caa033f949b1cd9267aa"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "33fbc0410ec5a7337be6caa033f949b1cd9267aa"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "689f4d104e14eaf48b8e2db6b8168a5966e8e3a5"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "689f4d104e14eaf48b8e2db6b8168a5966e8e3a5"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "d3ebc28122aea1ac61bf9583af637de490436639"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "d3ebc28122aea1ac61bf9583af637de490436639"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "7e230ee642d2775c8fedc35ebfacee2007174b8e"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "7e230ee642d2775c8fedc35ebfacee2007174b8e"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "532fe3f24fec0cdee150019cd8f9797ecc623b95"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "532fe3f24fec0cdee150019cd8f9797ecc623b95"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "8cc251232eada488fff92cd62468bb351f459a7a"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "8cc251232eada488fff92cd62468bb351f459a7a"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "f121265eeb266c2305a6be1262071259a3091049"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "f121265eeb266c2305a6be1262071259a3091049"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "f4280f38fe5539ca4d1696b199be3e000a000bea"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "f4280f38fe5539ca4d1696b199be3e000a000bea"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "bbf6b28978a480d2503ce1b9262a1df67a7f6366"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "bbf6b28978a480d2503ce1b9262a1df67a7f6366"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "e9d41011c0f51400af3bb805c770bddb81593627"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "e9d41011c0f51400af3bb805c770bddb81593627"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "9094d230bd90d63ae770fff1879b6a6396691a19"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "9094d230bd90d63ae770fff1879b6a6396691a19"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/package-config.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "01acc165985da7b712c2698679483a74c1f1fd73"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "01acc165985da7b712c2698679483a74c1f1fd73"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "416b76ae102bf364ac37e7dca4361e09f5ff008c"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "416b76ae102bf364ac37e7dca4361e09f5ff008c"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "e3b618b38616277085a71ba3ff11c787f2d1028c"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "e3b618b38616277085a71ba3ff11c787f2d1028c"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/run_logged.py",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "b762a1f0cd19c2dac856ec1a8736354492b7d12e"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "b762a1f0cd19c2dac856ec1a8736354492b7d12e"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/runtime.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "745160d6bad6db04ee2dc13a8808e5109d0cde18"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "745160d6bad6db04ee2dc13a8808e5109d0cde18"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "b3237978f2f20b516ea19d47d418c2d9b8c39322"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "b3237978f2f20b516ea19d47d418c2d9b8c39322"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/verification.json",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "b2bed5a868f78d74bfb2ed171afc94da88e880ea"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "b2bed5a868f78d74bfb2ed171afc94da88e880ea"
+          },
+          "identical": true
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "041838e2cf114134d270d427ae3bc2f7f34bcb5e"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "041838e2cf114134d270d427ae3bc2f7f34bcb5e"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "06e7d40ce0758a7df17700b94a31e0d184534f18"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "06e7d40ce0758a7df17700b94a31e0d184534f18"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "c1082c3340f375425d11a6b5944a46b8f1751484"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "c1082c3340f375425d11a6b5944a46b8f1751484"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "0a4331683f037aa8a23e70b043bc6a7b8af2de62"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "0a4331683f037aa8a23e70b043bc6a7b8af2de62"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "128a187d69555db80890c2a1945a442b951f9c74",
+      "branch": "docs/aot-removal",
+      "equivalent": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "fdec8c24fde94fbffee212a7541b0cb236f682e4",
+      "comparison": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "files": [
+        {
+          "path": "docs/PROOFING.md",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "51bb547e7870aa51709235de215fcdd0a034cc58"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "51bb547e7870aa51709235de215fcdd0a034cc58"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "branch": "docs/ods-color-scale",
+      "equivalent": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "comparison": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "dbafc47462ac99b08c7bd131596cb256cd6a0990"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "dbafc47462ac99b08c7bd131596cb256cd6a0990"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "branch": "docs/ods-data-bar",
+      "equivalent": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "comparison": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "d526389ec58bfb570c52837f584faf98861ebdd0"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "d526389ec58bfb570c52837f584faf98861ebdd0"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "b8ddaaeb581e010467de304c828764d353149102",
+      "branch": "docs/ods-dynamic-validation",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "comparison": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "ad4a1b67603945bf36ef34c1b255da26609953b0"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "ad4a1b67603945bf36ef34c1b255da26609953b0"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "branch": "docs/ods-icon-sets",
+      "equivalent": "c08fdc703acd986850ce6d1c079a0576fd438046",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "comparison": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "c19a2b3772c48f8f635446b4a5869c4290fb98b9"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "c19a2b3772c48f8f635446b4a5869c4290fb98b9"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "branch": "feat/ods-color-scale",
+      "equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "comparison": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "019a0725c7dade30e931552c9c358cf069450ea3"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "019a0725c7dade30e931552c9c358cf069450ea3"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "191ef08de153cef3e34781eeb3843e9500e38613"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "191ef08de153cef3e34781eeb3843e9500e38613"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "252ab90aa44830525b06991e6b6ac80f8368211a"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "252ab90aa44830525b06991e6b6ac80f8368211a"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "5726956c489ebe2b56e48f51dfd6bce508756dde"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "5726956c489ebe2b56e48f51dfd6bce508756dde"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "8d23d5bba2fdeed6200368b6986d21e32c830077"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "8d23d5bba2fdeed6200368b6986d21e32c830077"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "d4cdd585511803862a06da55d841dacf4f289f3d"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "d4cdd585511803862a06da55d841dacf4f289f3d"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "46418e32ebd882230bea0d8e873f4a1f064bcb25"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "46418e32ebd882230bea0d8e873f4a1f064bcb25"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "branch": "feat/ods-data-bar",
+      "equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "comparison": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "ad4a1b67603945bf36ef34c1b255da26609953b0"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "ad4a1b67603945bf36ef34c1b255da26609953b0"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "5d3067c72874ce7221e1f8515bc804d35d20be4e"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "5d3067c72874ce7221e1f8515bc804d35d20be4e"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "708349c0c69597f403d1314050aa7802f84e3cf1"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "708349c0c69597f403d1314050aa7802f84e3cf1"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "bce622298cf4b2c72b8942e9b07f9f800b4e7ce8"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "bce622298cf4b2c72b8942e9b07f9f800b4e7ce8"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "dc0582747fd1947857093ba54ebd044b514180e0"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "dc0582747fd1947857093ba54ebd044b514180e0"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "03e657937c1016d2a0e01c806816bb104202df19"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "03e657937c1016d2a0e01c806816bb104202df19"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "ef53503e93013c705465b931bc9024de278b8d75"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "ef53503e93013c705465b931bc9024de278b8d75"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "60ac7e76fca22c81a551cf1e10ae5a86f68e3a80"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "60ac7e76fca22c81a551cf1e10ae5a86f68e3a80"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "branch": "feat/ods-dynamic-validation-links",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "comparison": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "7606b72bf25de8daa32160f455a37edc870ddf4e"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "7606b72bf25de8daa32160f455a37edc870ddf4e"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "e7ddfa84a2cb7aaeacadf71fcc3e02dd7296c048"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "e7ddfa84a2cb7aaeacadf71fcc3e02dd7296c048"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "f8c6333d8b396f6a55e06bddfede6d5f5b72c01d"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "f8c6333d8b396f6a55e06bddfede6d5f5b72c01d"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "ba7d2c55c7a4d609d93c9144c83083cf135740ee"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "ba7d2c55c7a4d609d93c9144c83083cf135740ee"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "branch": "feat/ods-icon-sets",
+      "equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "comparison": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "a8776101800a07f40e5b39212c2ea4269153a1b6"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "a8776101800a07f40e5b39212c2ea4269153a1b6"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "3a01379b3324e77e8d5615a6bf35b4dd163643a3"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "3a01379b3324e77e8d5615a6bf35b4dd163643a3"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "5213bc3fe9b52284dd127ae29a95b3ce57cef33b"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "5213bc3fe9b52284dd127ae29a95b3ce57cef33b"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "a26f94e14f0b518660d9cdf621f839606c6b9a22"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "a26f94e14f0b518660d9cdf621f839606c6b9a22"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "219bb436aaf19e30b0276116860a22bd101c3859"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "219bb436aaf19e30b0276116860a22bd101c3859"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "6ead072a14a52fbec71b9622a299ae078e2bddc2"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "6ead072a14a52fbec71b9622a299ae078e2bddc2"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "33520d18a063db7b8ef82ded06e8b2bdbf93a9d2"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "33520d18a063db7b8ef82ded06e8b2bdbf93a9d2"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "branch": "feat/ods-time-period-conditions",
+      "equivalent": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_delta_mode_type_blob_identity",
+      "merge_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "comparison": "0e84dc951e7a9e923107d7895fa457cf29a7af71",
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "019cc333487c12aaf34a8fcee06c5857db97441c"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "019cc333487c12aaf34a8fcee06c5857db97441c"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "f1c97290e74dbb54fc0efc7f6ee3c29e348d7e90"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "f1c97290e74dbb54fc0efc7f6ee3c29e348d7e90"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "bf5f17cc589d8c19b5c15d3e96513493b06d8cdb"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "bf5f17cc589d8c19b5c15d3e96513493b06d8cdb"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "a725814571c03303984d9c6241d24318d087199a"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "a725814571c03303984d9c6241d24318d087199a"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "1aec1b4938b8aa03d2a610abff879df5cb109c01"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "1aec1b4938b8aa03d2a610abff879df5cb109c01"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "9ba647755646044369cf784aaf7009f50005fd3b"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "9ba647755646044369cf784aaf7009f50005fd3b"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "old": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "9879de90a84693e06f6dce4cede4df60f7e14b87"
+          },
+          "equivalent": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "9879de90a84693e06f6dce4cede4df60f7e14b87"
+          },
+          "identical": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "head": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "branch": "integrate/odt-column-boundary-144",
+      "equivalent": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_tree_identity",
+      "original_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "equivalent_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "passed": true
+    },
+    {
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "branch": "integrate/office-union-148",
+      "equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_tree_identity",
+      "original_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "equivalent_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "passed": true
+    },
+    {
+      "head": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "branch": "integrate/office-union-150",
+      "equivalent": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "equivalent_reachable": true,
+      "original_reachable": false,
+      "method": "complete_tree_identity",
+      "original_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "equivalent_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "passed": true
+    }
+  ],
+  "refs": [
+    {
+      "ref": "refs/heads/codex/aot-daemon-free-20261117",
+      "object": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "commit": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/aot-proofing-analysis-20261117",
+      "object": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "commit": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/document-review-20261118",
+      "object": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "commit": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/document-review-notes-20261118",
+      "object": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "commit": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/gector-office-resume-20261117",
+      "object": "205e913ec1525b5e5157a6f6d7ff84c883217e48",
+      "commit": "205e913ec1525b5e5157a6f6d7ff84c883217e48",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/german-morphology-20261117",
+      "object": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "commit": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/mail-reader-20261118",
+      "object": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+      "commit": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/mail-uid-pagination-20261119",
+      "object": "f2b0769cf5533fd4e7ee335adab532c98c677857",
+      "commit": "f2b0769cf5533fd4e7ee335adab532c98c677857",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/native-spelling-20261118",
+      "object": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "commit": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/native-spelling-continuation-20261118",
+      "object": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "commit": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/native-spelling-quality-20261118",
+      "object": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "commit": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/native-spelling-resume-20261118",
+      "object": "1cdedeebcae9c4fd1a50a7bfea6f487af5bb688c",
+      "commit": "1cdedeebcae9c4fd1a50a7bfea6f487af5bb688c",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/odf-annotation-visibility-20261117",
+      "object": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "commit": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/odt-column-boundary-followup-20261117",
+      "object": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "commit": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/odt-field-continuation-20261117",
+      "object": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "commit": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/codex/office-consolidation-20261117",
+      "object": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "commit": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-continuation-20261117",
+      "object": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "commit": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-continuation-20261119",
+      "object": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "commit": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-continue-20261118",
+      "object": "e397671e815232847d7223314ba946d1d6740f44",
+      "commit": "e397671e815232847d7223314ba946d1d6740f44",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-current-reconciliation-20261119",
+      "object": "a4b73fe40387d62c27477bb640f14a2694d031d8",
+      "commit": "a4b73fe40387d62c27477bb640f14a2694d031d8",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-fidelity-20261117",
+      "object": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "commit": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-fidelity-improvements-20261117-e1978379",
+      "object": "814f165cb24a5b719dde65495f64d85f86563328",
+      "commit": "814f165cb24a5b719dde65495f64d85f86563328",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-local-qualification-20261118",
+      "object": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "commit": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-main-integration-20261119",
+      "object": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+      "commit": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-main-sync-20261119",
+      "object": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+      "commit": "1b6d280b6ed41a1e01736a88f6d02431057c8611",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-qualified-resume-20261117",
+      "object": "07926acb46f0d451491046066a35dd6c1227b5a1",
+      "commit": "07926acb46f0d451491046066a35dd6c1227b5a1",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-reconciled-20261117",
+      "object": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "commit": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-resume-20261118",
+      "object": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af",
+      "commit": "8ad80eb29a3984d58d5564c6759e853c0a8ab4af",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-resume-main-20261119",
+      "object": "004b2ad6342cae7b2fe2750dbba5a9fdcebd3413",
+      "commit": "004b2ad6342cae7b2fe2750dbba5a9fdcebd3413",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-union-qualification-20261117",
+      "object": "16c7b0fb48c72527645678b76e25b5c5cb7b9c22",
+      "commit": "16c7b0fb48c72527645678b76e25b5c5cb7b9c22",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/office-union-resume-20261118",
+      "object": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "commit": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/offline-thesaurus-20261118",
+      "object": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "commit": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/proofing-20261116",
+      "object": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "commit": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/proofing-20261116-resume",
+      "object": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "commit": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/proofing-en-de-20261116",
+      "object": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "commit": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/proofing-en-de-20261117",
+      "object": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "commit": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/proofing-en-hyphenation-20261116",
+      "object": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "commit": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/proofing-german-quality-20261116",
+      "object": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "commit": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/proofing-harper-source-20261116",
+      "object": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "commit": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/terminal-integration-ods-20261116",
+      "object": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "commit": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/terminal-recovery-office-20261116",
+      "object": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "commit": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/terminal-sharing-office-20261116",
+      "object": "4235e690602195cc504438a6b937972c71f1ad39",
+      "commit": "4235e690602195cc504438a6b937972c71f1ad39",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/text-rendering-20261116",
+      "object": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "commit": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/text-rendering-20261116-continuation",
+      "object": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "commit": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-capabilities-20261116",
+      "object": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "commit": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-capabilities-20261118",
+      "object": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "commit": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-citation-workflow-20261118",
+      "object": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "commit": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-continuation-20261118",
+      "object": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "commit": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-note-workflow-20261118",
+      "object": "c93fc23b388a053f0b4742b771adb511aaf3578a",
+      "commit": "c93fc23b388a053f0b4742b771adb511aaf3578a",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-offline-workflow-20261118",
+      "object": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "commit": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-optimization-20261116",
+      "object": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "commit": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-recovery-20261116",
+      "object": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "commit": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-support-20261115",
+      "object": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "commit": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-support-20261116",
+      "object": "428679a33381f943a8ae63117d4207f01dd15462",
+      "commit": "428679a33381f943a8ae63117d4207f01dd15462",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-tags-20261118",
+      "object": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "commit": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-word-parity-20261118",
+      "object": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+      "commit": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-wordlike-20261118",
+      "object": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "commit": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-workspace-20261118",
+      "object": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "commit": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/aot-removal",
+      "object": "128a187d69555db80890c2a1945a442b951f9c74",
+      "commit": "128a187d69555db80890c2a1945a442b951f9c74",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/docs/arabic-rule-spec-20261119",
+      "object": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+      "commit": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/build30-validation-20261117",
+      "object": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "commit": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/conditional-top-bottom",
+      "object": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "commit": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/current-office-capabilities",
+      "object": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/filter-operators",
+      "object": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "commit": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/filters-closed",
+      "object": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "commit": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/metadata-closed",
+      "object": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "commit": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/metadata-complete",
+      "object": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "commit": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/native-spacy-handoff-20261117",
+      "object": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "commit": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/odp-presentation-writer",
+      "object": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "commit": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/odp-transitions",
+      "object": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "commit": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/ods-color-scale",
+      "object": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "commit": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/docs/ods-data-bar",
+      "object": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "commit": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/docs/ods-dynamic-validation",
+      "object": "b8ddaaeb581e010467de304c828764d353149102",
+      "commit": "b8ddaaeb581e010467de304c828764d353149102",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/docs/ods-filter-predicates",
+      "object": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/ods-header-footer",
+      "object": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "commit": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/ods-icon-sets",
+      "object": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "commit": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/docs/ods-row-groups",
+      "object": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/ods-writer-images",
+      "object": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "commit": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/odt-frame-size",
+      "object": "6da74faa9160275df9c10a864c758033c92f114d",
+      "commit": "6da74faa9160275df9c10a864c758033c92f114d",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/odt-image-registry",
+      "object": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/odt-odp-rows",
+      "object": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "commit": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/page-setup-fix",
+      "object": "4497c737623c1339d2422487d53941c20472bac9",
+      "commit": "4497c737623c1339d2422487d53941c20472bac9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/readme-remaining-gaps",
+      "object": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "commit": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/remaining-gaps",
+      "object": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "commit": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/sheet-page-setup",
+      "object": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "commit": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/validation-complete",
+      "object": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "commit": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/docs/validation-operators",
+      "object": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "commit": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/arabic-host-wiring-20261119",
+      "object": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "commit": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/arabic-lists-20261119",
+      "object": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "commit": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/arabic-morph-integration-20261119",
+      "object": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "commit": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/arabic-morph-interface-20261119",
+      "object": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "commit": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/arabic-proofing-20261119",
+      "object": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "commit": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/arabic-rules-20261119",
+      "object": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "commit": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/arabic-rules-t1-20261119",
+      "object": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "commit": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/arabic-rules-t2-20261119",
+      "object": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "commit": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/conditional-affix",
+      "object": "20681b8658392212c128f51b4c91f0b638942448",
+      "commit": "20681b8658392212c128f51b4c91f0b638942448",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/conditional-between",
+      "object": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "commit": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/conditional-dxf",
+      "object": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "commit": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/conditional-dxf-styles",
+      "object": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "commit": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/conditional-operators",
+      "object": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "commit": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/conditional-text",
+      "object": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "commit": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/conditional-top-bottom",
+      "object": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "commit": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/german-context-20261117",
+      "object": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "commit": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/german-gector-proofing",
+      "object": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+      "commit": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/german-morphology-completion-20261117",
+      "object": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "commit": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/grammar-release-20261117",
+      "object": "96e65705ad69f969710d3ff6d2897bd4aa38fbf9",
+      "commit": "96e65705ad69f969710d3ff6d2897bd4aa38fbf9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/hunspell-engine-20261119",
+      "object": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "commit": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/native-spacy-reference-20261117",
+      "object": "6df76a0dff0051312faa04317af41d479dd94162",
+      "commit": "6df76a0dff0051312faa04317af41d479dd94162",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/native-spacy-w7-20261118",
+      "object": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "commit": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odf-metadata",
+      "object": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "commit": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odf-story-fidelity",
+      "object": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "commit": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odp-chart-data",
+      "object": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "commit": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odp-presentation-writer",
+      "object": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "commit": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odp-preset-shapes",
+      "object": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "commit": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odp-shape-links",
+      "object": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "commit": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odp-transitions",
+      "object": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "commit": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-color-scale",
+      "object": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "commit": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/feat/ods-conditional",
+      "object": "e59751246a200e7477657d0e4835bf77b153422c",
+      "commit": "e59751246a200e7477657d0e4835bf77b153422c",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-custom-validation",
+      "object": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "commit": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-data-bar",
+      "object": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "commit": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/feat/ods-default-geometry",
+      "object": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "commit": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-default-style",
+      "object": "49b447324159595c59e64d8425b54a09f79ec736",
+      "commit": "49b447324159595c59e64d8425b54a09f79ec736",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-dynamic-validation-links",
+      "object": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "commit": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/feat/ods-filter-conditions",
+      "object": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "commit": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-filter-operators",
+      "object": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "commit": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-filter-predicates",
+      "object": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "commit": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-header-footer",
+      "object": "331be9688e2de1feb52635490b534042dea10c27",
+      "commit": "331be9688e2de1feb52635490b534042dea10c27",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-hyperlinks",
+      "object": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "commit": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-icon-sets",
+      "object": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "commit": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/feat/ods-images",
+      "object": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "commit": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-metadata",
+      "object": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "commit": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-named-expressions",
+      "object": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "commit": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-outline",
+      "object": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "commit": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-row-groups",
+      "object": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-tab-color",
+      "object": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "commit": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-time-period-conditions",
+      "object": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "commit": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/feat/ods-validation-messages",
+      "object": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "commit": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-validation-operators",
+      "object": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "commit": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-validations",
+      "object": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "commit": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-writer",
+      "object": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "commit": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-writer-conditional",
+      "object": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "commit": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-writer-images",
+      "object": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "commit": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/ods-writer-metadata",
+      "object": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "commit": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-columns",
+      "object": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "commit": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-comments",
+      "object": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "commit": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-document-writer",
+      "object": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "commit": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-fields",
+      "object": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "commit": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-first-even-headers",
+      "object": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "commit": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-footnotes",
+      "object": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "commit": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-links-bookmarks",
+      "object": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "commit": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-lists",
+      "object": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "commit": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-nested-lists",
+      "object": "7686ec52876288e6799023fd686af79228236826",
+      "commit": "7686ec52876288e6799023fd686af79228236826",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-ordered-lists",
+      "object": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "commit": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-page-fields",
+      "object": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "commit": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-paragraph-breaks",
+      "object": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "commit": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-paragraph-shading",
+      "object": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "commit": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-sections2",
+      "object": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "commit": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-tab-stops",
+      "object": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "commit": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-table-borders",
+      "object": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "commit": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/odt-toc",
+      "object": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "commit": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/office-proofing-followup-20261117",
+      "object": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "commit": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/sheet-hidden-sheets",
+      "object": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "commit": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/sheet-hidden-state",
+      "object": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "commit": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/feat/sheet-page-setup",
+      "object": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "commit": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/fix/ods-global-validations-20261116",
+      "object": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "commit": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/fix/ods-writer-page-layout",
+      "object": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "commit": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/fix/odt-inline-fields",
+      "object": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "commit": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/fix/sdt-multi-section-control",
+      "object": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "commit": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/fix/sdt-trailing-section-break",
+      "object": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "commit": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/fix/studio-example-tests-20261119",
+      "object": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "commit": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/fix/utf16-custom-xml",
+      "object": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "commit": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/fix/word-dialog-focus-rendering-20261116",
+      "object": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "commit": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/integrate/aot-then-remove-20261117",
+      "object": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "commit": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/integrate/codex-office-continuation-20261117",
+      "object": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "commit": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/integrate/macbook-current-20261118",
+      "object": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "commit": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/integrate/native-spacy-distribution-20261118",
+      "object": "8f93545eb46c1f1f4c653c7beaf23d28c3307940",
+      "commit": "8f93545eb46c1f1f4c653c7beaf23d28c3307940",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/integrate/odt-column-boundary-144",
+      "object": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "commit": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/integrate/office-union-148",
+      "object": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "commit": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/integrate/office-union-150",
+      "object": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "commit": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "kind": "branch",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/heads/integrate/spacy-en-fr-20261118",
+      "object": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "commit": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/integrate/spacy-ner-macos-followup-20261118",
+      "object": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "commit": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/main",
+      "object": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "commit": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/conditional-dxf-styles",
+      "object": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "commit": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/conditional-top-bottom",
+      "object": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "commit": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odf-metadata",
+      "object": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+      "commit": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odp-chart-data",
+      "object": "66273aa2f743ed33f20944a6e1251c1a396af0eb",
+      "commit": "66273aa2f743ed33f20944a6e1251c1a396af0eb",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odp-presentation-writer",
+      "object": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "commit": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odp-preset-shapes",
+      "object": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "commit": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odp-shape-links",
+      "object": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "commit": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odp-transitions",
+      "object": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "commit": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-custom-validation",
+      "object": "90acedb9835cb5bdef30606301e74482f5977448",
+      "commit": "90acedb9835cb5bdef30606301e74482f5977448",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-filter-conditions",
+      "object": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "commit": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-filter-conditions-correct",
+      "object": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "commit": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-filter-operators",
+      "object": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "commit": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-filter-predicates",
+      "object": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "commit": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-header-footer",
+      "object": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "commit": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-hyperlinks",
+      "object": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "commit": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-hyperlinks-current",
+      "object": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "commit": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-metadata",
+      "object": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "commit": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-metadata-zotero",
+      "object": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "commit": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-named-expressions",
+      "object": "388a1c76339507d493bab577424affd80732446c",
+      "commit": "388a1c76339507d493bab577424affd80732446c",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-outline",
+      "object": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "commit": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-row-groups",
+      "object": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "commit": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-tab-color",
+      "object": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "commit": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-validation",
+      "object": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "commit": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-validation-current",
+      "object": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "commit": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-validation-messages",
+      "object": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "commit": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-writer",
+      "object": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "commit": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-writer-conditional",
+      "object": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "commit": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-writer-images",
+      "object": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "commit": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-writer-metadata",
+      "object": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "commit": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/ods-writer-page-layout",
+      "object": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "commit": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-columns",
+      "object": "1f417ad7a61dfb69034704a67f85243eff89830a",
+      "commit": "1f417ad7a61dfb69034704a67f85243eff89830a",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-comments",
+      "object": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "commit": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-document-writer",
+      "object": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "commit": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-fields",
+      "object": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+      "commit": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-footnotes",
+      "object": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "commit": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-links-bookmarks",
+      "object": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "commit": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-lists",
+      "object": "94532021b720e3035022a2fed08ec88f48340892",
+      "commit": "94532021b720e3035022a2fed08ec88f48340892",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-nested-lists",
+      "object": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "commit": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-ordered-lists",
+      "object": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "commit": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-ordered-lists2",
+      "object": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "commit": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-page-fields",
+      "object": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+      "commit": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-paragraph-breaks",
+      "object": "b990f9041cce78e3768c2ee0190413bf26962431",
+      "commit": "b990f9041cce78e3768c2ee0190413bf26962431",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-paragraph-shading",
+      "object": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "commit": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-sections",
+      "object": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "commit": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-tab-stops",
+      "object": "156cc755df74dcbafec0ebd882945349c40a5005",
+      "commit": "156cc755df74dcbafec0ebd882945349c40a5005",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/odt-table-borders",
+      "object": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+      "commit": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/heads/vendor/sheet-page-setup",
+      "object": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "commit": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "kind": "branch",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/1/head",
+      "object": "54f0f8de01416640560519aa9d732f668f603709",
+      "commit": "54f0f8de01416640560519aa9d732f668f603709",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/10/head",
+      "object": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "commit": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/100/head",
+      "object": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "commit": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/101/head",
+      "object": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/102/head",
+      "object": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "commit": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/103/head",
+      "object": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "commit": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/104/head",
+      "object": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "commit": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/105/head",
+      "object": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "commit": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/106/head",
+      "object": "7686ec52876288e6799023fd686af79228236826",
+      "commit": "7686ec52876288e6799023fd686af79228236826",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/107/head",
+      "object": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "commit": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/108/head",
+      "object": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "commit": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/109/head",
+      "object": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "commit": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/11/head",
+      "object": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "commit": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/110/head",
+      "object": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "commit": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/111/head",
+      "object": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "commit": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/112/head",
+      "object": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "commit": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/113/head",
+      "object": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "commit": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/114/head",
+      "object": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "commit": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/115/head",
+      "object": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "commit": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/116/head",
+      "object": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "commit": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/117/head",
+      "object": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "commit": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/118/head",
+      "object": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "commit": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/119/head",
+      "object": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "commit": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/12/head",
+      "object": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "commit": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/120/head",
+      "object": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "commit": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/121/head",
+      "object": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "commit": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/122/head",
+      "object": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "commit": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/123/head",
+      "object": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "commit": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/124/head",
+      "object": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "commit": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/125/head",
+      "object": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "commit": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/126/head",
+      "object": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "commit": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/127/head",
+      "object": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "commit": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/128/head",
+      "object": "814f165cb24a5b719dde65495f64d85f86563328",
+      "commit": "814f165cb24a5b719dde65495f64d85f86563328",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/129/head",
+      "object": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "commit": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/13/head",
+      "object": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "commit": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/130/head",
+      "object": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "commit": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/131/head",
+      "object": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "commit": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/132/head",
+      "object": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "commit": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/133/head",
+      "object": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "commit": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/134/head",
+      "object": "128a187d69555db80890c2a1945a442b951f9c74",
+      "commit": "128a187d69555db80890c2a1945a442b951f9c74",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/135/head",
+      "object": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "commit": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/136/head",
+      "object": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "commit": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/137/head",
+      "object": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "commit": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/138/head",
+      "object": "b8ddaaeb581e010467de304c828764d353149102",
+      "commit": "b8ddaaeb581e010467de304c828764d353149102",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/139/head",
+      "object": "6df76a0dff0051312faa04317af41d479dd94162",
+      "commit": "6df76a0dff0051312faa04317af41d479dd94162",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/14/head",
+      "object": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "commit": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/140/head",
+      "object": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "commit": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/141/head",
+      "object": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "commit": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/142/head",
+      "object": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "commit": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/143/head",
+      "object": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "commit": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/144/head",
+      "object": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "commit": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/145/head",
+      "object": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "commit": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/146/head",
+      "object": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "commit": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/147/head",
+      "object": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "commit": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/148/head",
+      "object": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "commit": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/149/head",
+      "object": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "commit": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/15/head",
+      "object": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "commit": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/150/head",
+      "object": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "commit": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/151/head",
+      "object": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "commit": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/152/head",
+      "object": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "commit": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "kind": "pull_request",
+      "disposition": "historical_equivalent"
+    },
+    {
+      "ref": "refs/pull/153/head",
+      "object": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "commit": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/154/head",
+      "object": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "commit": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/155/head",
+      "object": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "commit": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/156/head",
+      "object": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "commit": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/157/head",
+      "object": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "commit": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/158/head",
+      "object": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "commit": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/159/head",
+      "object": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "commit": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/16/head",
+      "object": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "commit": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/160/head",
+      "object": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "commit": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/161/head",
+      "object": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "commit": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/162/head",
+      "object": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "commit": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/163/head",
+      "object": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "commit": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/164/head",
+      "object": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "commit": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/165/head",
+      "object": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "commit": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/166/head",
+      "object": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "commit": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/167/head",
+      "object": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "commit": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/168/head",
+      "object": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "commit": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/169/head",
+      "object": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "commit": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/17/head",
+      "object": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "commit": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/170/head",
+      "object": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "commit": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/171/head",
+      "object": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "commit": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/172/head",
+      "object": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+      "commit": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/173/head",
+      "object": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+      "commit": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/174/head",
+      "object": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "commit": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/175/head",
+      "object": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "commit": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/176/head",
+      "object": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "commit": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/177/head",
+      "object": "3f0277c8c4d317c3607e3bd6a2bf0e9aaf73bd3d",
+      "commit": "3f0277c8c4d317c3607e3bd6a2bf0e9aaf73bd3d",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/178/head",
+      "object": "2122066f0eccf06a6f2c3c523c5715a7233bb95d",
+      "commit": "2122066f0eccf06a6f2c3c523c5715a7233bb95d",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/179/head",
+      "object": "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+      "commit": "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/18/head",
+      "object": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "commit": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/180/head",
+      "object": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "commit": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/181/head",
+      "object": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "commit": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/182/head",
+      "object": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+      "commit": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/183/head",
+      "object": "f2b0769cf5533fd4e7ee335adab532c98c677857",
+      "commit": "f2b0769cf5533fd4e7ee335adab532c98c677857",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/184/head",
+      "object": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "commit": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/185/head",
+      "object": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "commit": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/186/head",
+      "object": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "commit": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/187/head",
+      "object": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "commit": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/188/head",
+      "object": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "commit": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/189/head",
+      "object": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "commit": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/19/head",
+      "object": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "commit": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/190/head",
+      "object": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "commit": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/2/head",
+      "object": "08b09485588d2b6270f594a07c983689c087587d",
+      "commit": "08b09485588d2b6270f594a07c983689c087587d",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/20/head",
+      "object": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "commit": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/21/head",
+      "object": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "commit": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/22/head",
+      "object": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "commit": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/23/head",
+      "object": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "commit": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/24/head",
+      "object": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "commit": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/25/head",
+      "object": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "commit": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/26/head",
+      "object": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "commit": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/27/head",
+      "object": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "commit": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/28/head",
+      "object": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "commit": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/29/head",
+      "object": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "commit": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/3/head",
+      "object": "e550723b0f2a7cd849970f58820d260c36857502",
+      "commit": "e550723b0f2a7cd849970f58820d260c36857502",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/30/head",
+      "object": "49b447324159595c59e64d8425b54a09f79ec736",
+      "commit": "49b447324159595c59e64d8425b54a09f79ec736",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/31/head",
+      "object": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "commit": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/32/head",
+      "object": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "commit": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/33/head",
+      "object": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "commit": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/34/head",
+      "object": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "commit": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/35/head",
+      "object": "e59751246a200e7477657d0e4835bf77b153422c",
+      "commit": "e59751246a200e7477657d0e4835bf77b153422c",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/36/head",
+      "object": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "commit": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/37/head",
+      "object": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "commit": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/38/head",
+      "object": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "commit": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/39/head",
+      "object": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "commit": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/4/head",
+      "object": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "commit": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/40/head",
+      "object": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "commit": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/41/head",
+      "object": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "commit": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/42/head",
+      "object": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "commit": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/43/head",
+      "object": "20681b8658392212c128f51b4c91f0b638942448",
+      "commit": "20681b8658392212c128f51b4c91f0b638942448",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/44/head",
+      "object": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "commit": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/45/head",
+      "object": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "commit": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/46/head",
+      "object": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "commit": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/47/head",
+      "object": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "commit": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/48/head",
+      "object": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "commit": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/49/head",
+      "object": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "commit": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/5/head",
+      "object": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "commit": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/50/head",
+      "object": "428679a33381f943a8ae63117d4207f01dd15462",
+      "commit": "428679a33381f943a8ae63117d4207f01dd15462",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/51/head",
+      "object": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "commit": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/52/head",
+      "object": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "commit": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/53/head",
+      "object": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "commit": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/54/head",
+      "object": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "commit": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/55/head",
+      "object": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "commit": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/56/head",
+      "object": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "commit": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/57/head",
+      "object": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "commit": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/58/head",
+      "object": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "commit": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/59/head",
+      "object": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "commit": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/6/head",
+      "object": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "commit": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/60/head",
+      "object": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "commit": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/61/head",
+      "object": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "commit": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/62/head",
+      "object": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "commit": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/63/head",
+      "object": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "commit": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/64/head",
+      "object": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "commit": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/65/head",
+      "object": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "commit": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/66/head",
+      "object": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "commit": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/67/head",
+      "object": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "commit": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/68/head",
+      "object": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "commit": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/69/head",
+      "object": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "commit": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/7/head",
+      "object": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "commit": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/70/head",
+      "object": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "commit": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/71/head",
+      "object": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "commit": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/72/head",
+      "object": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "commit": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/73/head",
+      "object": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "commit": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/74/head",
+      "object": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/75/head",
+      "object": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/76/head",
+      "object": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "commit": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/77/head",
+      "object": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/78/head",
+      "object": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/79/head",
+      "object": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/8/head",
+      "object": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "commit": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/80/head",
+      "object": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "commit": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/81/head",
+      "object": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "commit": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/82/head",
+      "object": "4497c737623c1339d2422487d53941c20472bac9",
+      "commit": "4497c737623c1339d2422487d53941c20472bac9",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/83/head",
+      "object": "331be9688e2de1feb52635490b534042dea10c27",
+      "commit": "331be9688e2de1feb52635490b534042dea10c27",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/84/head",
+      "object": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "commit": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/85/head",
+      "object": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "commit": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/86/head",
+      "object": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "commit": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/87/head",
+      "object": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "commit": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/88/head",
+      "object": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "commit": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/89/head",
+      "object": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "commit": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/9/head",
+      "object": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "commit": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/90/head",
+      "object": "6da74faa9160275df9c10a864c758033c92f114d",
+      "commit": "6da74faa9160275df9c10a864c758033c92f114d",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/91/head",
+      "object": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "commit": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/92/head",
+      "object": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "commit": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/93/head",
+      "object": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "commit": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/94/head",
+      "object": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "commit": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/95/head",
+      "object": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "commit": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/96/head",
+      "object": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "commit": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/97/head",
+      "object": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "commit": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/98/head",
+      "object": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "commit": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/pull/99/head",
+      "object": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "commit": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "kind": "pull_request",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/crispcloud-build28-office",
+      "object": "b629a97afb8559c1b0ca98bd36eae22cf923e561",
+      "commit": "216e5ba38110349d6a002a5a58e0ae27825c8bef",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/editor-v0.5.1",
+      "object": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "commit": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/engine-v0.5.3",
+      "object": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "commit": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/studio-v1.0.0",
+      "object": "2f3e1373779a102d68629d09baba83bff80a33ac",
+      "commit": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/studio-v1.1.0",
+      "object": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "commit": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/studio-v1.2.0",
+      "object": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/studio-v1.4.0",
+      "object": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "commit": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/studio-v1.5.0",
+      "object": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/v0.1.0",
+      "object": "ffab8a719349a3184f1461b61d55411c51949ba2",
+      "commit": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/v0.2.0",
+      "object": "ec2c7dce10a0fc8b155985259152b0b0c9696c90",
+      "commit": "ec2c7dce10a0fc8b155985259152b0b0c9696c90",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/v0.5.0",
+      "object": "1f0ed0e94fe6e46d94e9d811627c476974080003",
+      "commit": "1f0ed0e94fe6e46d94e9d811627c476974080003",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/v1.0.0",
+      "object": "1d8b21b840ebf664768d490ee098225344887c4a",
+      "commit": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/v1.1.0",
+      "object": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "commit": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/v1.2.0",
+      "object": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/v1.3.0",
+      "object": "2188d055fde9d4647bf5995eb96161e3e4cbd365",
+      "commit": "2188d055fde9d4647bf5995eb96161e3e4cbd365",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/v1.4.0",
+      "object": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "commit": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "kind": "tag",
+      "disposition": "ancestor"
+    },
+    {
+      "ref": "refs/tags/v1.5.0",
+      "object": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "kind": "tag",
+      "disposition": "ancestor"
+    }
+  ],
+  "historical_archives": [
+    {
+      "name": "first-attempt",
+      "path": "docs/validation/office-main-integration-20261119/host-final/first-attempt-evidence.tar.xz",
+      "publication_commit": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+      "bytes": 851508,
+      "sha256": "2ab660cc80fcb9a709323f731f57bc45bf8a3e9aefb84f7a95851ea67cd7adbf",
+      "member_count": 62,
+      "mismatches": [],
+      "source_commit": "4681760c542eb2a3473b72605ebb7606e0e7b4a3"
+    },
+    {
+      "name": "qualification",
+      "path": "docs/validation/office-main-integration-20261119/host-final/qualification-evidence.tar.xz",
+      "publication_commit": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+      "bytes": 848808,
+      "sha256": "fcf4a44cf7f3a971d5e59f9dc287a0bc5578ab560ff904c877a10f97187887a4",
+      "member_count": 72,
+      "mismatches": [],
+      "source_commit": "9833831a013c98a8ce5c3f5e6f45de36593cb7df"
+    },
+    {
+      "name": "review",
+      "path": "docs/validation/office-main-integration-20261119/host-final/review-evidence.tar.xz",
+      "publication_commit": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+      "bytes": 824468,
+      "sha256": "996c09f358adf0a667ba93b6eb1a3fe2a5c49545267bb556cd878c1114e996bd",
+      "member_count": 48,
+      "mismatches": [],
+      "source_commit": "293f45449b496e3024ff100968d78f37983faadd"
+    },
+    {
+      "name": "studio-mail",
+      "path": "docs/validation/office-main-integration-20261119/host-final/studio-mail-evidence.tar.xz",
+      "publication_commit": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+      "bytes": 20608,
+      "sha256": "59f2809619317e0bdd6a30a717ecbb43ffe684afaf7a6fac206a6ad0553c501d",
+      "member_count": 35,
+      "mismatches": [],
+      "source_commit": null
+    },
+    {
+      "name": "sync/main-delta-v2/attempt-c0c71a26/evidence.tar.xz",
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/attempt-c0c71a26/evidence.tar.xz",
+      "publication_commit": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "bytes": 848768,
+      "sha256": "ea7127a5b644c2a325b458076be01e8431814ab09cae8cacf84a347d757740cb",
+      "member_count": 57,
+      "mismatches": [],
+      "source_commit": "c0c71a26e014cadda7a1f42244e710509dea5f6c"
+    },
+    {
+      "name": "sync/main-delta-v2/reviews/evidence.tar.xz",
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v2/reviews/evidence.tar.xz",
+      "publication_commit": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "bytes": 1413432,
+      "sha256": "2ef5f8f78d9999210c03a904f5752db8ec7446de6ef55885466387e3a3e5f01e",
+      "member_count": 132,
+      "mismatches": [],
+      "source_commit": null
+    },
+    {
+      "name": "sync/main-delta-v3/attempt-26df7873/evidence.tar.xz",
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.tar.xz",
+      "publication_commit": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "bytes": 875528,
+      "sha256": "e865a927ac0c5fbcf72af4beef2f3e2512a2691ad90caa15c75c5b6d03c5ee51",
+      "member_count": 62,
+      "mismatches": [],
+      "source_commit": "26df787326f58a002b62241b7feb52acff089f2f"
+    },
+    {
+      "name": "sync/main-delta-v3/attempt-fce543de/evidence.tar.xz",
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-fce543de/evidence.tar.xz",
+      "publication_commit": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "bytes": 646816,
+      "sha256": "ebdc93549823de17d878a19439925a500590021cccbace16274804535482f821",
+      "member_count": 24,
+      "mismatches": [],
+      "source_commit": "fce543dedb1217804f67de088ef9c287e8a2edca"
+    },
+    {
+      "name": "sync/main-delta-v4/final/evidence.tar.xz",
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v4/final/evidence.tar.xz",
+      "publication_commit": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "bytes": 1006716,
+      "sha256": "72b36a50b2096e0ff516983bbb90c342f36281a85d56eb893a3fc471671a98fc",
+      "member_count": 103,
+      "mismatches": [],
+      "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4"
+    },
+    {
+      "name": "sync/main-delta-v4/reviews/evidence.tar.xz",
+      "path": "docs/validation/office-main-sync-20261119/main-delta-v4/reviews/evidence.tar.xz",
+      "publication_commit": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "bytes": 391548,
+      "sha256": "3f990831408e7867153b4546d59c466fd8418cfa7c44a003ab2374ec65c1ffdb",
+      "member_count": 233,
+      "mismatches": [],
+      "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4"
+    }
+  ],
+  "recovered_host_qualification": {
+    "source": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+    "counts": {
+      "main": 979,
+      "node": 306,
+      "executions": 1285,
+      "distinct_cases": 979,
+      "distinct_suites": 56
+    },
+    "phases": [
+      {
+        "name": "main",
+        "executions": 979,
+        "distinct_suites": 56,
+        "source_records": 5092,
+        "runtime_records": 11166,
+        "analysis_paths": 51,
+        "format_paths": 51,
+        "receipt_sha256": "1ca51b235a6de91f7cb399b26a9da8e22463c91436fe02f3faf8be1e56f350ed",
+        "groups": [
+          {
+            "name": "office-proofing-engine-vm",
+            "cases": 442,
+            "suites": 14,
+            "log_sha256": "531c59a75bff3c8a115ab223314450496fb806ce0ee16d6f77903d226ba35c9f"
+          },
+          {
+            "name": "english-proofing-contracts-vm",
+            "cases": 29,
+            "suites": 3,
+            "log_sha256": "9a88e57e46f72a860d12fad7ffd02049e3d79fec161da2c99a6b18c6552b266d"
+          },
+          {
+            "name": "office-proofing-editor",
+            "cases": 321,
+            "suites": 19,
+            "log_sha256": "9d473119977c2a77cb8b5915b8fc30820901d627f2ff76fc1eb136ecc270904b"
+          },
+          {
+            "name": "studio-functional-host-integration",
+            "cases": 171,
+            "suites": 18,
+            "log_sha256": "5aa2d614311304926c8ab73dc753202c7ec98e301d5bb0f7e004a94627bbeff5"
+          },
+          {
+            "name": "hunspell-provider-vm",
+            "cases": 10,
+            "suites": 1,
+            "log_sha256": "3276e7e918675814cc59309825406954ea8f8840e6be8dd9ec3794b01e2368a1"
+          },
+          {
+            "name": "hunspell-native-lifecycle-vm",
+            "cases": 6,
+            "suites": 1,
+            "log_sha256": "7d40daa1f5a93f5ab0d07df8404f6909b73d60535908842277b7bcfbdfaa793b"
+          }
+        ]
+      },
+      {
+        "name": "node",
+        "executions": 306,
+        "distinct_suites": 5,
+        "source_records": 5092,
+        "runtime_records": 11163,
+        "analysis_paths": 0,
+        "format_paths": 0,
+        "receipt_sha256": "5c84b6e9a95bf1cfbac33a2e6e14529d417a6b72e202c039f11b3e34bc67856c",
+        "groups": [
+          {
+            "name": "arabic-writing-node",
+            "cases": 78,
+            "suites": 1,
+            "log_sha256": "dffd80639821bebd362b59f6880d77d787e857b6760ea73a8617eb70c2270c9e"
+          },
+          {
+            "name": "arabic-extended-node",
+            "cases": 200,
+            "suites": 1,
+            "log_sha256": "76ff3c9cab66af5ee9b3e95d88758561b1d16ac6694484b9130e6ac585e36053"
+          },
+          {
+            "name": "proofing-merge-node",
+            "cases": 5,
+            "suites": 1,
+            "log_sha256": "fe30db1988677aecdd59210a41af5987a4787ff77352018ebc25f74ba38f51ae"
+          },
+          {
+            "name": "complex-script-routing-node",
+            "cases": 13,
+            "suites": 1,
+            "log_sha256": "539c9457fdf770d14fccc446747d61d968bc8020c428c0b8a091e780481467e2"
+          },
+          {
+            "name": "hunspell-provider-node",
+            "cases": 10,
+            "suites": 1,
+            "log_sha256": "2474c935096b28086410e14bf0e115422ccdba6a48171afecdfdf22788046ed1"
+          }
+        ]
+      }
+    ],
+    "source_verification": {
+      "source": "9833831a013c98a8ce5c3f5e6f45de36593cb7df",
+      "records": 5092,
+      "distinct_blob_sha256_checks": 4767,
+      "mismatches": []
+    },
+    "runtime_scope": "Recorded before/after inventory identity; old absolute runtime is not present or executed here.",
+    "fresh_test_execution": false
+  },
+  "recovered_sync_qualification": {
+    "source": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+    "counts": {
+      "native": 634,
+      "node": 392,
+      "executions": 1026,
+      "distinct_cases": 634,
+      "distinct_suites": 38
+    },
+    "phases": [
+      {
+        "name": "native",
+        "executions": 634,
+        "distinct_suites": 38,
+        "source_records": 5123,
+        "runtime_records": 11164,
+        "analysis_paths": 89,
+        "format_paths": 89,
+        "receipt_sha256": "9ba616285dfb1994f69870288ede117995f2ab39f6754d1c858ad9434d544b66",
+        "groups": [
+          {
+            "name": "hunspell-native",
+            "cases": 28,
+            "suites": 4,
+            "log_sha256": "cbbe969fdfbf961b5b673ca6d7236f68de4b158f058dd75271c6c3b27b26d68f"
+          },
+          {
+            "name": "cursor-main-merge-vm",
+            "cases": 50,
+            "suites": 4,
+            "log_sha256": "9632e6bf7c965ef06c073f74d9a4b6ee66aa181ca9b7de9b13f1b918d0c560f4"
+          },
+          {
+            "name": "arabic-main-merge-vm",
+            "cases": 294,
+            "suites": 3,
+            "log_sha256": "e466a543ff7073cc2e03fd6e9aa2bde9b4eb09f69a66a72a768311358fb5dcf5"
+          },
+          {
+            "name": "word-language-and-findings-vm",
+            "cases": 70,
+            "suites": 5,
+            "log_sha256": "3f8ba913de3e009de5204e2ec48d3e95fe80eb834c0c21cdd82df17005b0cdf3"
+          },
+          {
+            "name": "word-arabic-main-merge-vm",
+            "cases": 73,
+            "suites": 4,
+            "log_sha256": "d3f65e2f47deb250af4e408f3c144d95e311a1e1285c583b5abf3c2261e0d44a"
+          },
+          {
+            "name": "studio-main-merge-vm",
+            "cases": 119,
+            "suites": 18,
+            "log_sha256": "06c3fe9e41cfbcd96e9e1f2c5d237456993279389f67fb2536bc50a46209220a"
+          }
+        ]
+      },
+      {
+        "name": "node",
+        "executions": 392,
+        "distinct_suites": 11,
+        "source_records": 5123,
+        "runtime_records": 11162,
+        "analysis_paths": 0,
+        "format_paths": 0,
+        "receipt_sha256": "2f8204698059bb8e9a121ea357e4d19cde89bf16551e8d307400f06a6e6a7e00",
+        "groups": [
+          {
+            "name": "hunspell-provider-node",
+            "cases": 11,
+            "suites": 1,
+            "log_sha256": "e829174b85517cbbe7e284b684ea6b6bf6beea205fca1defbfa57215d1cf06b8"
+          },
+          {
+            "name": "cursor-main-merge-node",
+            "cases": 17,
+            "suites": 2,
+            "log_sha256": "d762625e15f478af0cd7ecf2bce1431dfa6a4dc20cf8ff194d9c3f504584b894"
+          },
+          {
+            "name": "arabic-main-merge-node",
+            "cases": 294,
+            "suites": 3,
+            "log_sha256": "883af24eb4db5061c8f2050bb500957b0eb6615003fb8bc69d03bc162c814542"
+          },
+          {
+            "name": "word-language-and-findings-node",
+            "cases": 70,
+            "suites": 5,
+            "log_sha256": "de8611759af5417e8a57e7fc1c518af6d6100ac48c5754ce95f5c4aad36e58f2"
+          }
+        ]
+      }
+    ],
+    "source_verification": {
+      "source": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+      "records": 5123,
+      "distinct_blob_sha256_checks": 4795,
+      "mismatches": []
+    },
+    "runtime_scope": "Recorded before/after inventory identity; old absolute runtime is not present or executed here.",
+    "fresh_test_execution": false,
+    "outer_receipt": {
+      "source_records": 5125,
+      "runtime_records": 11171,
+      "inner_source_records": 5123,
+      "extra_source_paths": [
+        ".fvmrc",
+        "tools/mail/test_check_store.py"
+      ],
+      "extra_source_verification": {
+        "source": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+        "records": 2,
+        "distinct_blob_sha256_checks": 2,
+        "mismatches": []
+      },
+      "separate_python_controls": {
+        "bundle-controls": 17,
+        "packaging-controls": 4
+      },
+      "compiled_outputs": [
+        {
+          "path": "hunspell-browser.js.deps",
+          "bytes": 102208,
+          "sha256": "d44e256017bed74d5fec5fc4b34c5f74f56a8f9a8c4511f2c774cd8cd8b1d5a4"
+        },
+        {
+          "path": "hunspell-browser.js",
+          "bytes": 101661,
+          "sha256": "4365223b62ddf6c1f280116bae814d05dc8e31ae65dc03fa119767fd28f95fd7"
+        },
+        {
+          "path": "hunspell-browser.js.map",
+          "bytes": 87231,
+          "sha256": "4bb0fcedd5a4615dec073ef1b013da9d8c438f51974756a6da39554fab8f9539"
+        }
+      ],
+      "scope": "Preserved historical Python controls and browser compilation; no browser session or fresh execution."
+    }
+  },
+  "evidence_preservation": [
+    {
+      "source": "c63558c0b3bc713361771cc29b0d89ecf2fa09a7",
+      "directory": "docs/validation/office-main-integration-20261119/host-final/",
+      "files": 20,
+      "changed_or_missing": []
+    },
+    {
+      "source": "10bd0cc4aa720acda4f52d0da882c57b05446435",
+      "directory": "docs/validation/office-main-sync-20261119/",
+      "files": 112,
+      "changed_or_missing": []
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "repository_mutations_by_auditor": 0,
+  "github_actions_calls": 0,
+  "fresh_product_test_executions": 0,
+  "git_commands": 390,
+  "scope": "Immutable captured fork references, optional separately named upstream capture, and recovered historical qualification; no current runtime, platform or product acceptance is implied."
+}

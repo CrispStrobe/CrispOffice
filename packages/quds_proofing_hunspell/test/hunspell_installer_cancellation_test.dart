@@ -80,6 +80,17 @@ void main() {
   }
 
   test(
+    'an uncancelled small pinned bundle installs, verifies and removes',
+    () async {
+      await installer.install(_bundle);
+      expect(fixture.requests, _bundle.files.length);
+      expect(await installer.installed(_bundle), isNotNull);
+      await installer.remove(_bundle);
+      expect(await installer.installed(_bundle), isNull);
+    },
+  );
+
+  test(
     'already-cancelled install performs no network or staging work',
     () async {
       final cancellation = HunspellInstallCancellation()..cancel();
@@ -131,16 +142,21 @@ void main() {
     'cancellation at the final progress callback prevents publication',
     () async {
       final cancellation = HunspellInstallCancellation();
+      var reachedFinalProgress = false;
       await expectLater(
         installer.install(
           _bundle,
           cancellation: cancellation,
           onProgress: (received, total) {
-            if (received == total) cancellation.cancel();
+            if (received == total) {
+              reachedFinalProgress = true;
+              cancellation.cancel();
+            }
           },
         ),
         throwsA(_cancelled),
       );
+      expect(reachedFinalProgress, isTrue);
       await expectAbsent();
       await retry();
     },

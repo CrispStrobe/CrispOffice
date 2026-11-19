@@ -1,0 +1,75 @@
+{
+  "audit_checks_passed": true,
+  "issues": [],
+  "recorded_failure_confirmed": true,
+  "accepted_qualification": false,
+  "source_commit": "fce543dedb1217804f67de088ef9c287e8a2edca",
+  "source_tree": "2c3fe2fad3d692731dc454086d840b0ece747f10",
+  "audited_at_utc": "2026-11-19T09:23:19.225189+00:00",
+  "attempt_status": "FAIL",
+  "failure": "The continuity expectation omitted the already-resolved url_launcher dependency explicitly added by incoming main. The guard rejected the attempt before any tests.",
+  "application_cases_executed": 0,
+  "python_controls_executed": 0,
+  "application_cases_added_to_final_totals": 0,
+  "python_controls_added_to_final_totals": 0,
+  "source_inputs_bound_to_immutable_commit": 5115,
+  "source_snapshots_equal": true,
+  "runtime_snapshots_equal": true,
+  "runtime_inputs_in_stable_envelope": 11171,
+  "studio_graph_before": {
+    "name": "quds_office_studio",
+    "version": "1.0.0+1",
+    "dependencies": [
+      "file_picker",
+      "flutter",
+      "http",
+      "quds_office_editor",
+      "quds_office_engine",
+      "quds_proofing_harper",
+      "quds_proofing_spacy",
+      "window_manager"
+    ],
+    "devDependencies": [
+      "flutter_lints",
+      "flutter_test"
+    ]
+  },
+  "studio_graph_after": {
+    "name": "quds_office_studio",
+    "version": "1.0.0+1",
+    "dependencies": [
+      "file_picker",
+      "flutter",
+      "http",
+      "quds_mail_core",
+      "quds_mail_mime",
+      "quds_mail_ui",
+      "quds_office_editor",
+      "quds_office_engine",
+      "quds_proofing_harper",
+      "quds_proofing_hunspell",
+      "quds_proofing_spacy",
+      "url_launcher",
+      "window_manager"
+    ],
+    "devDependencies": [
+      "flutter_lints",
+      "flutter_test"
+    ]
+  },
+  "exact_added_existing_dependencies": [
+    "quds_mail_core",
+    "quds_mail_mime",
+    "quds_mail_ui",
+    "quds_proofing_hunspell",
+    "url_launcher"
+  ],
+  "workspace_before_count": 131,
+  "workspace_after_count": 132,
+  "incoming_manifest_source": "00014577265d1f95d4c016159029510d3a10804b",
+  "incoming_manifest_sha256": "90157d4fe8016cdff5da96540cf3175d894e528a05772748df3373cee79dc36b",
+  "outer_execution_sha256": "7af3156d28a3bfa13eb6e14479b67c806b217a4a97fad3a620a9a42b9ed12115",
+  "continuity_receipt_sha256": "77060efd3e2c8039f41627ad1ed54fe722734267719d3ee34daa059e71e4b7bc",
+  "audit_script_sha256": "25615d49e239ab37c9a2c34d6f5531b63a9cafc7b80e0138ca4e7498c7bac33c",
+  "method": "Read-only original receipt/log/manifest binding, immutable Git source recount and exact original/current dependency graph comparison. No application or Python test executed by this audit."
+}

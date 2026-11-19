@@ -11,7 +11,8 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 /// each map shares its key list with every analysis of the same feature
 /// layout and stores only a value list; repeated values are interned. String
 /// values are kept as is, numbers (the `*_logprob` placeholders) become their
-/// Dart decimal text (`-99.0`), and `null` features are omitted.
+/// double text (`-99.0`, including JavaScript targets), and `null` features
+/// are omitted.
 final class ArabicAnalysisDecoder {
   final Map<String, _Schema> _schemas = {};
   final Map<String, String> _values = {};
@@ -47,7 +48,15 @@ final class ArabicAnalysisDecoder {
       } else if (value is String) {
         text = value;
       } else if (value is num) {
-        text = value.toDouble().toString();
+        final number = value.toDouble();
+        final decimal = number.toString();
+        // JavaScript shares the int/double representation and omits `.0`.
+        // Restore that suffix only for finite plain-integer text, preserving
+        // fractional precision, exponent notation, and negative zero.
+        text =
+            number.isFinite && !decimal.contains('.') && !decimal.contains('e')
+            ? '$decimal.0'
+            : decimal;
       } else {
         throw FormatException('Unexpected value for ${entry.key}.');
       }

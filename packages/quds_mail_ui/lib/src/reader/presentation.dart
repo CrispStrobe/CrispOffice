@@ -37,6 +37,7 @@ final class MailReaderPresentation {
     required List<MailTextRun> runs,
     required List<MailInlineImage> images,
     required List<MailDiagnostic> diagnostics,
+    this.bodyText = '',
     this.rejected = false,
     this.usedHtml = false,
     this.blockedResourceCount = 0,
@@ -44,6 +45,12 @@ final class MailReaderPresentation {
        images = List.unmodifiable(images),
        diagnostics = List.unmodifiable(diagnostics);
   final String text;
+
+  /// The bounded body projection, without envelope or attachment summaries.
+  ///
+  /// HTML uses the same inert projection as [text]. Rejected presentations and
+  /// presentations constructed without a body projection leave this empty.
+  final String bodyText;
   final List<MailTextRun> runs;
   final List<MailInlineImage> images;
   final List<MailDiagnostic> diagnostics;
@@ -236,11 +243,13 @@ MailReaderPresentation buildMailPresentation(
     final date = message.envelope.sentAt;
     if (date != null) builder.add('Date: ${date.toIso8601String()}\n');
     builder.add('\n');
+    final bodyStart = builder.text.length;
     if (useHtml) {
       builder.html(body.html!);
     } else {
       builder.add(body.plainText ?? '(No supported decoded body)');
     }
+    final bodyEnd = builder.text.length;
     if (message.attachments.isNotEmpty) {
       builder.add('\nAttachments:\n', bold: true);
       for (final attachment in message.attachments) {
@@ -260,8 +269,10 @@ MailReaderPresentation buildMailPresentation(
       );
     }
     diagnostics.addAll(builder.diagnostics);
+    final text = builder.text.toString();
     return MailReaderPresentation(
-      text: builder.text.toString(),
+      text: text,
+      bodyText: text.substring(bodyStart, bodyEnd),
       runs: builder.runs,
       images: builder.images,
       diagnostics: diagnostics,
