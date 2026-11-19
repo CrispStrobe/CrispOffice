@@ -6,6 +6,7 @@ import 'package:drift/drift.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'archive_database.dart';
+import 'archive_export_models.dart';
 import 'archive_models.dart';
 import 'archive_query.dart';
 import 'archive_text.dart';
@@ -13,6 +14,7 @@ import 'codec.dart';
 import 'errors.dart';
 
 part 'archive_maintenance.dart';
+part 'archive_export_plan.dart';
 part 'archive_settings.dart';
 
 /// Durable, profile-scoped original messages, independent of live mail caches.
@@ -599,18 +601,34 @@ final class SqliteMailArchive {
     return (conditions.map((value) => '($value)').join(' AND '), values);
   }
 
+  /// Freeze every match of the selected filters in one read transaction.
+  /// Search pagination is ignored. The bounded plan contains IDs, sizes and
+  /// provenance, never message bodies or a copy of the user's search query.
+  /// Later imports cannot change this plan; original bytes are hash-checked
+  /// again when the native exporter reads each message.
+  Future<MailResult<MailArchiveExportPlan>> planExport(
+    MailArchiveSearchRequest request, {
+    MailArchiveExportLimits exportLimits = const MailArchiveExportLimits(),
+    MailCancellationToken? cancellation,
+  }) => _run(
+    MailArchiveOperation.planExport,
+    (trace) => _createExportPlan(request, exportLimits, cancellation, trace),
+  );
+
+  String _searchOrder(MailArchiveSort sort) => switch (sort) {
+    MailArchiveSort.archivedNewest => 'a.archived_at DESC,a.id',
+    MailArchiveSort.sentNewest => 'a.sent_at IS NULL,a.sent_at DESC,a.id',
+    MailArchiveSort.sentOldest => 'a.sent_at IS NULL,a.sent_at,a.id',
+    MailArchiveSort.subject => 'a.subject COLLATE NOCASE,a.id',
+  };
+
   Future<MailResult<MailArchiveSearchPage>> search(
     MailArchiveSearchRequest request,
   ) => _run(
     MailArchiveOperation.search,
     (trace) => _db.transaction(() async {
       final (where, values) = _where(request);
-      final order = switch (request.sort) {
-        MailArchiveSort.archivedNewest => 'a.archived_at DESC,a.id',
-        MailArchiveSort.sentNewest => 'a.sent_at IS NULL,a.sent_at DESC,a.id',
-        MailArchiveSort.sentOldest => 'a.sent_at IS NULL,a.sent_at,a.id',
-        MailArchiveSort.subject => 'a.subject COLLATE NOCASE,a.id',
-      };
+      final order = _searchOrder(request.sort);
       final total = (await _rows(
         'SELECT count(*) AS n FROM archive_items a WHERE $where',
         values,
