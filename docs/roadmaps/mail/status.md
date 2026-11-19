@@ -1,5 +1,16 @@
 # Mail implementation status — 19 November 2026
 
+The current applicable Mail evidence is **608 executions / 508 distinct scenarios
+across 33 suites**, executed at
+`29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e`. The
+[qualified UID checkpoint](../../validation/office-main-integration-20261119/latest-final/README.md)
+retains that run; exact Mail source and dependency continuity supports retaining
+its Mail results through the subsequent host integration. They remain executions
+at that checkpoint. The CrispOffice saved-message dialog and later host changes
+have their own [host qualification report](../../validation/office-main-integration-20261119/host-final/README.md).
+Historical totals below retain their original sources and are not added to this
+Mail count.
+
 The inherited main source and qualification are recorded in the
 [19 November completion report](../../validation/office-main-completion-20261119/README.md).
 Subsequent incoming-ref reconciliation and direct TLS-rejection cleanup are
@@ -20,9 +31,13 @@ remains [implementation-plan.md](implementation-plan.md).
 | M01 fork | Pinned enough_mail 3.0.0 source, retained MPL/provenance, supported public `mime_core.dart`, content-redacted diagnostics, strict charset admission, RFC2231 and date corrections, selected dependency/source inventory | Actual browser execution and per-product shipped dependency/notice clearance remain open |
 | M02 core | Pure-Dart immutable DTOs, exact-byte ownership, profile/account/IMAP identity, nullable standard flag snapshots, budgets/capabilities, typed host/provider/store ports, cancellation leases, cursor compare-and-set and tested outbox state machine | M05 implements persistence; the initial M06 IMAP adapter passed combined local qualification; SMTP remains subsequent work |
 | M03 codec | Bounded byte-range scanning, public upstream header parsing, strict transfer/charset decoding, exact raw export and attachment snapshots, deterministic multipart alternatives/CID metadata | Synchronous bounded work; no streaming claim or low-memory-device qualification |
-| M04 reader | Account-free full/compact reader, custom RenderBox selection, decoded search/copy, static HTML projection, local bounded CID PNG/JPEG, immutable source/attachment callbacks, policy-approved links, actual MIME example | Browser runtime no-fetch gate remains unqualified; host parity is a separate task |
+| M04 reader | Account-free full/compact reader, custom RenderBox selection, decoded search/copy, static HTML projection, local bounded CID PNG/JPEG, immutable source/attachment callbacks, policy-approved links, actual MIME example and CrispOffice saved-message dialog | Browser runtime no-fetch gate remains unqualified; host parity is a separate task |
 | M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema v3 with nullable durable flags | Schema v3 and the integrated flags/transport source passed local qualification; browser storage and power-loss durability are unqualified; the database is unencrypted |
-| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, finite UID-window synchronization, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated qualification and real Linux TLS loopback checks passed; external-provider/other-OS interoperability, OAuth authorization hosts, large or sparse mailbox pagination, SMTP and the account-aware UI remain open |
+| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, bounded discovered-UID synchronization with typed range reconciliation, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated qualification and real Linux TLS loopback checks passed; external-provider/other-OS interoperability, OAuth authorization hosts, discovery beyond bounded simple SEARCH, SMTP and the account-aware UI remain open |
+
+The CrispOffice Mail dialog is an account-free, read-only host for saved `.eml`
+messages, with full and compact reader modes. Account-aware mailbox navigation,
+composition and SMTP submission remain M04W/M07 work.
 
 M06 is partially implemented, not complete. M04W and M07–M13 still require the
 mailbox workspace, composition/SMTP sending, Office attachment editing,
@@ -43,7 +58,10 @@ together. The transaction compares the cursor read before provider work and
 checks its account lease before commit. Conflicting concurrent pages fail
 without overwriting a newer mailbox state. Repository streams publish after a
 successful commit. Local pending operations survive resets and tombstones in an
-explicit reconciliation state.
+explicit reconciliation state. An authoritative IMAP range page removes only
+stored mailbox memberships absent from its closed UID interval and matching UIDVALIDITY;
+it does not create tombstones for numeric gaps. Those removals, pending-operation
+reconciliation and cursor advancement share the same transaction.
 
 Drafts use revision comparison. Outbox entries retain their frozen wire bytes,
 envelope and draft revision, with validated state transitions and durable attempt
@@ -99,17 +117,28 @@ Separate real Linux loopback tests exercise successful TLS, stalled-handshake
 cancellation/deadlines, trust and hostname refusal, credential sequencing and
 write lifecycle. These do not establish external-provider or other-OS acceptance.
 
-Synchronization fetches bounded header projections and flags by numeric UID
-window. Scoped cursors include UIDVALIDITY and a fixed sweep ceiling; records,
-absent-UID tombstones and the next cursor commit atomically through the existing
-coordinator/store. Completed sweeps restart to observe old flag changes and
-expunges without claiming IDLE, CONDSTORE or QRESYNC. The default `maxUidScan`
-is **10,000**, configurable up to **100,000**. It limits the highest UID, not
-message count. A mailbox whose `UIDNEXT - 1` exceeds it returns `unsupported`
-before fetching or committing a page, including sparse mailboxes with few
-messages and high UIDs. Discovered-UID pagination remains open. Direct retrieval
-of a specified high UID is supported and retains the exact full-message literal
-before bounded MIME parsing; partial projections fail explicitly.
+Synchronization first discovers existing UIDs with a complete, bounded
+`UID SEARCH UID first:last` response, then fetches bounded header projections
+and flags for the selected page. Page size counts discovered messages rather
+than numeric gaps, so sparse mailboxes with high UIDs are supported within the
+configured discovery budgets. Typed closed UID ranges let the store reconcile
+actual stored absences atomically with records and the next cursor; missing,
+malformed, duplicate or out-of-range discovery responses cannot authorize a page.
+
+Scoped cursors retain UIDVALIDITY and a fixed sweep ceiling. Saved v1 numeric-
+window cursors can resume through the discovery adapter; new cursors use its v2
+format. Arrivals above the frozen ceiling enter the next sweep, and completed
+sweeps restart to observe old flag changes and expunges. This bounded fallback
+does not implement IDLE, CONDSTORE or QRESYNC or establish a server snapshot.
+
+`maxDiscoveredUids` defaults to **10,000**, configurable up to **100,000**. It
+bounds the complete remaining-range SEARCH result; protocol byte budgets can
+bind sooner. Exceeding either bound returns `quotaExceeded` before FETCH or
+commit. The optional legacy `maxUidScan` is unset by default; when explicitly
+supplied, it retains the old numeric ceiling and `unsupported` outcome. Discovery
+beyond bounded simple SEARCH, including ESEARCH/PARTIAL optimization, remains
+future work. Direct retrieval of a specified high UID retains the exact full-
+message literal before bounded MIME parsing; partial projections fail explicitly.
 
 Flag mutations use UID STORE and verify the resulting observation. Delete
 sets `\Deleted` only; it does not expunge mail or issue mailbox-wide CLOSE.
@@ -129,7 +158,25 @@ persistence remain separate gates.
 
 ## Local verification
 
-### Final reconciled source — PASS
+### Discovered-UID Mail checkpoint — PASS
+
+The [29dd23a6 qualification](../../validation/office-main-integration-20261119/latest-final/README.md)
+contains the current applicable Mail subset: **608 executions / 508 distinct
+scenarios / 33 suites**. A fresh complete core/store gate contributes 250
+executions and 162 distinct scenarios; the focused Mail selection contributes
+346 distinct cases, with the 12 configuration cases also repeated on Node.
+The resulting 100 repeated platform executions are not additional scenarios.
+
+The Mail subset includes strict UID discovery, sparse/high-UID pagination,
+authoritative range transactions, durable flags, retained real Linux TLS cases
+and existing reader consumers. Exact executable/dependency closure continuity
+supports retaining these results after the host changes; it does not relabel
+them as a new execution on the later source. All 394 Mail package records,
+including the original Mail UI analyzer configuration, remain unchanged.
+The new Studio consumer and proofing/host changes have a separate
+[host report](../../validation/office-main-integration-20261119/host-final/README.md).
+
+### Earlier reconciled source — PASS
 
 The [completion report](../../validation/office-main-completion-20261119/README.md)
 binds all final execution to `5569c055a021c893e941fc54d40499ad9d96a5db`:
@@ -147,7 +194,7 @@ platforms retain their separate acceptance requirements.
 
 ### Earlier integrated flags and native IMAP qualification — PASS
 
-The [Office integration report](../../validation/office-main-integration-20261119/README.md)
+The [preserved pre-TLS integration report](../../validation/office-main-integration-20261119/pre-tls-report.md)
 binds the final **32-suite / 389-case** focused pass to source
 `7d279e084bae438d383630726ad7b0514da77d35`. It covers 80 native transport cases,
 three Node unsupported-entry cases, 244 shared IMAP/POP/SMTP and byte-reader
@@ -369,8 +416,8 @@ harness, not the standalone Office application.
 1. Preserve the completed integrated qualification and its source/runtime
    identities. Rerun affected checks for subsequent source changes and retain
    their raw logs and remote checkpoints separately from earlier evidence.
-2. Continue the remaining M06 work: discovered-UID pagination for large/sparse
-   mailboxes, host OAuth/refresh and lifecycle scheduling, other-OS TLS coverage
+2. Continue the remaining M06 work: discovery beyond bounded simple SEARCH,
+   host OAuth/refresh and lifecycle scheduling, other-OS TLS coverage
    and authorized disposable-account interoperability. Generic browser
    socket transport remains explicitly unsupported; no automatic retry is added
    without its own bounded policy and reconciliation checks.

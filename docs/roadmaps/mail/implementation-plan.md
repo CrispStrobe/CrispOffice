@@ -208,6 +208,7 @@ inspection receipt, not a complete dependency or runtime certification.
 - [x] Keep Raw Source/Hex and attachment-open callbacks available to host routing.
 - [x] Render RTL/mixed-direction addresses safely; preserve accessible labels and keyboard traversal.
 - [x] Provide an in-memory preview harness that needs no account, credentials, database or network.
+- [x] Host the same full/compact reader in CrispOffice for saved `.eml` messages. This account-free, read-only dialog does not complete the account-aware mailbox workspace, composer or SMTP submission. Its later integration evidence belongs to the [host report](../../validation/office-main-integration-20261119/host-final/README.md).
 
 **Acceptance:** the injected resource/network port observes zero requests, and native/browser harnesses also monitor or deny outbound traffic at the runtime boundary after app bootstrap. Exercise ordinary remote images, CSS resources, srcset, protocol-relative/encoded URLs and redirects. Test explicit user-approved loading separately. Exact attachment bytes reach the read-only callback; no writable source path is fabricated; full/preview modes use their proper budgets. This enables CC-01 through CC-04, but migration waits for host parity tests.
 
@@ -233,6 +234,7 @@ inspection receipt, not a complete dependency or runtime certification.
 - [x] Implement Drift/SQLite schema and transactional repository streams using independently resolved approved dependencies.
 - [x] Native app-container store and separately configured browser store; explicit quota/storage-unavailable results. The browser opener compiles; actual browser persistence remains unqualified.
 - [x] Durable drafts and immutable outbox/blob references, atomic page+cursor commits with expected-cursor comparison, tombstones and transactional migration versioning.
+- [x] Reconcile authoritative closed IMAP UID ranges within the same transaction: remove absent stored memberships, preserve mailbox/UIDVALIDITY isolation and pending-edit evidence, and create no tombstones for numeric gaps.
 - [x] Add nullable durable standard flag snapshots and additive schema v3 migration from v1/v2. Omitted observations preserve known flags; observed empty snapshots clear them. Flags/migration tests passed in the integrated local qualification linked below.
 - [x] FTS indexing of supported plain text and metadata; cap indexing work, avoid remote fetch as a side effect of local search. HTML-only bodies are not interpreted by search.
 - [x] Account deletion, cache eviction, logout and pending-operation policies, including durable host-vault cleanup and retired local identities.
@@ -249,12 +251,22 @@ checks. Its 72-suite Office/reader gate also passed with 1,230 cases. The earlie
 [failed store attempt](../../validation/mail-store-20261118/README.md) remains
 historical evidence; its runner/formatting blockage is resolved for the fresh
 baseline. Those results predate schema v3 and native transport. The
-[Office integration report](../../validation/office-main-integration-20261119/README.md)
-records the current 632-execution / 562-distinct-case qualification at
+[preserved pre-Arabic integration report](../../validation/office-main-integration-20261119/pre-arabic-report.md)
+records the earlier 632-execution / 562-distinct-case qualification at
 `ac1e4c8c`, including a fresh 199-execution core/store gate. The
 [retained completion report](../../validation/office-main-completion-20261119/README.md)
 records its separate full 199-execution core/store gate at `5569c055`,
 within its 836 application executions and 78 separate Python controls.
+
+The discovered-UID source at `29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e` has a
+fresh **250-execution / 162-distinct-scenario** core/store gate. It belongs to
+the **608-execution / 508-distinct-scenario / 33-suite** Mail subset in the
+[qualified UID checkpoint](../../validation/office-main-integration-20261119/latest-final/README.md).
+Exact Mail source/dependency continuity supports retaining that result during
+the subsequent host integration; execution remains attributed to `29dd23a6`.
+The [later host report](../../validation/office-main-integration-20261119/host-final/README.md)
+records its separate selection and source. None of these runs is added to an
+older source-qualified total.
 
 Browser entry/worker compilation and Node error-policy tests do not close actual
 browser storage, Web Locks, reload or quota acceptance. Chromium previously
@@ -271,8 +283,8 @@ distinct from encryption. M06 is partially implemented; M07 and M04W remain open
 - [ ] Add SMTP configuration and optional bounded account discovery after validation; qualify external-provider and other-OS TLS interoperability.
 - [x] Load current host-owned password/token bytes for each operation using account/profile/host-scoped vault references. Negotiate XOAUTH2/OAUTHBEARER protocol capability and keep credential material out of ordinary account rows and public diagnostics.
 - [ ] Implement native system-browser OAuth/PKCE, registered redirect handling, token refresh and platform credential-vault hosts. No embedded confidential secret.
-- [x] Discover selectable folders, fetch bounded header/flag UID windows, retrieve exact full-message literals on demand, and apply observed UID flag changes and capability-gated MOVE. Delete marks only `\Deleted`, without mailbox-wide EXPUNGE or CLOSE.
-- [x] Page by strictly discovered existing UIDs across sparse/high numeric UID spaces; reconcile actual stored absences through typed closed UID ranges and preserve v1 cursor continuation. Qualification is tracked in the [discovery continuation](../../validation/mail-uid-pagination-20261119/README.md).
+- [x] Discover selectable folders, fetch bounded header/flag projections of discovered existing UIDs, retrieve exact full-message literals on demand, and apply observed UID flag changes and capability-gated MOVE. Delete marks only `\Deleted`, without mailbox-wide EXPUNGE or CLOSE.
+- [x] Page by strictly discovered existing UIDs across sparse/high numeric UID spaces; reconcile actual stored absences through typed closed UID ranges and preserve v1 cursor continuation. The [discovery continuation](../../validation/mail-uid-pagination-20261119/README.md) retains the implementation record; executed qualification is in the [29dd23a6 checkpoint](../../validation/office-main-integration-20261119/latest-final/README.md).
 - [ ] Add discovery beyond bounded simple SEARCH, archive/destination workflows and individual body-part retrieval beyond the initial full-message fetch boundary.
 - [x] Use stable account/mailbox/UIDVALIDITY/UID identities and scoped transactional cursors. Request mailbox reset when UIDVALIDITY changes; never persist sequence-number identities.
 - [x] Implement an explicitly bounded full-sweep fallback that revisits old flags and expunges. Advertise no IDLE/CONDSTORE/QRESYNC behavior that is not implemented.
@@ -301,11 +313,16 @@ at `7d279e084bae438d383630726ad7b0514da77d35`, with 389 focused cases. The
 [retained qualification](../../validation/office-main-completion-20261119/README.md)
 at `5569c055a021c893e941fc54d40499ad9d96a5db` adds broader protocol coverage and
 real Linux TLS tests within its separate 836 application executions. The
-[current combined qualification](../../validation/office-main-integration-20261119/README.md)
-at `ac1e4c8c788ea608402c2260488235c0189efcba` passes 433 focused cases across
+[earlier combined qualification](../../validation/office-main-integration-20261119/pre-arabic-report.md)
+at `ac1e4c8c788ea608402c2260488235c0189efcba` passed 433 focused cases across
 35 suites, including 26 TLS/ownership cases and the rejected-upgrade cleanup,
 plus the fresh 199-execution core/store gate. External-provider, other-OS and
 disposable-account interoperability remain open.
+The applicable discovered-UID Mail result is the separately recorded **608
+executions / 508 distinct scenarios / 33 suites** at `29dd23a6`, including the
+fresh 250-execution store/core gate, 346 focused Mail cases and 12 repeated Node
+configuration cases. The later CrispOffice saved-message dialog has its own host qualification
+report and does not complete M04W or M07.
 The 186-execution Mail and 1,230-case Office passes above retain their separate
 baseline `479e1e03` identity.
 
