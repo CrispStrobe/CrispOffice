@@ -169,7 +169,7 @@ void applyWordStructureStep(WmlDocument doc, Map<String, Object?> values) {
     return WmlComment(
       id: WordComment.nextId(doc),
       text: s.string('text'),
-      author: s.string('author', fallback: 'Quds Office'),
+      author: s.string('author', fallback: 'CrispOffice'),
       initials: s.string('initials', fallback: 'QO'),
       dateIso: date,
       parentId: parentId,

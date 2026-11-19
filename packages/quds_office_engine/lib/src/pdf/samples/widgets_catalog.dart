@@ -22,7 +22,7 @@ import '../widgets/pw_types.dart';
 Uint8List buildWidgetsCatalog({SfntFont? font, SfntFont? fontBold}) {
   final Document doc = Document(
     title: 'Quds pdf_widgets — Full Catalog',
-    author: 'Quds Office',
+    author: 'CrispOffice',
     font: font,
     fontBold: fontBold,
     theme: const ThemeData(
@@ -244,7 +244,7 @@ List<Widget> _chDocument() => <Widget>[
         arBlurb: 'تذييل بثلاث خانات لصفحات متعددة',
         demo: const Footer(
           leading: Text('Confidential', style: TextStyle(fontSize: 8, color: '78909C')),
-          title: Text('Quds Office', style: TextStyle(fontSize: 8)),
+          title: Text('CrispOffice', style: TextStyle(fontSize: 8)),
           trailing: Text('v1', style: TextStyle(fontSize: 8, color: '78909C')),
         ),
       ),

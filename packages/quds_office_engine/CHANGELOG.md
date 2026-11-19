@@ -4,6 +4,10 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Use CrispOffice for new revision/comment authors, document producer metadata,
+  PDF titles, Zotero processor identification and built-in samples. Preserve
+  explicit authors and attribution already stored in imported documents.
+
 - Add the `vba-excel` language compiler for an explicitly invoked Excel VBA
   subset. Lower supported scalar expressions, variables, worksheet/range
   bindings, conditions, and bounded loops into the existing native macro plan,

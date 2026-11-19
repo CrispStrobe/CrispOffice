@@ -149,9 +149,9 @@ void main() {
       await tester.pump();
       expect(tester.widget<StudioCmd>(checkAsYouType).selected, isFalse);
 
-      await tester.tap(find.text('Spreadsheets').first);
+      await tester.tap(find.byTooltip('Spreadsheets').first);
       await tester.pump();
-      await tester.tap(find.text('Documents').first);
+      await tester.tap(find.byTooltip('Documents').first);
       await tester.pump();
       expect(controller.proofing.enabled, isFalse);
       await _review(tester);
@@ -166,7 +166,7 @@ void main() {
   ) async {
     final controller = await _studio(tester);
     controller.proofing.configure(OfficeProofingService(providers: []));
-    await tester.tap(find.text('File').first);
+    await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
     await tester.pump();
     await _tap(tester, _command('View'));
     await _review(tester);
