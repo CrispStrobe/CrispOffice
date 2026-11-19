@@ -182,13 +182,16 @@ class _StyleCascade {
     // prepared inline list only after every selected run has been resolved.
     final prepared = WmlClone.paragraph(preview);
     final range = WmlRunEdit.normalizeRange(prepared, start, end);
-    WmlRunEdit.splitAt(prepared, range.end);
-    WmlRunEdit.splitAt(prepared, range.start);
+    final routingChanged = WmlRunEdit.splitProofingRange(
+      prepared,
+      range.start,
+      range.end,
+    );
     final complexProperties = {
       for (final run in prepared.inlines.whereType<WmlRun>())
         if (wordRunUsesComplexScriptLanguage(run)) run.properties,
     };
-    var changed = false;
+    var changed = activeLanguageOnly && routingChanged;
     WmlRunEdit.applyRange(prepared, range.start, range.end, (props) {
       final attributes = activeLanguageOnly
           ? [complexProperties.contains(props) ? 'bidi' : 'val']

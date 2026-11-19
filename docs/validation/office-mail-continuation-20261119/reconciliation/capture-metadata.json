@@ -1,0 +1,7 @@
+{
+  "scope": "All advertised fork and upstream references, excluding aliases and peeled tag advertisements in audited counts. No GitHub Actions queried.",
+  "observed_at_utc": "2026-11-19T11:09:42.823719+00:00",
+  "fork_url": "https://github.com/CrispStrobe/quds_office_suite.git",
+  "upstream_url": "https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+  "fork_initial_mtime_utc": "2026-11-19T11:08:06.502890+00:00"
+}

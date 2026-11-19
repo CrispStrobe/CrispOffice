@@ -1,0 +1,56 @@
+{
+  "description": "Complementary supported JavaScript boundaries for modular Mail: unsupported native transport and the two public portable MIME entrypoints. Studio Flutter widget suites and the dart:io SMTP transaction suite cannot execute in Node. These checks do not establish a real browser-rendering/file-picker or live-provider acceptance.",
+  "groups": [
+    {
+      "name": "mail-transport-boundary-node",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/unsupported_test.dart"
+      ]
+    },
+    {
+      "name": "mail-mime-entry-node",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "mail-fork-mime-entry-node",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/quds_portable_mime_test.dart"
+      ]
+    },
+    {
+      "name": "morphology-portable-contract-node",
+      "cwd": "packages/quds_arabic_morph",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/arabic_morph_unit_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "packages/quds_proofing_hunspell/tool/test_build.py",
+    "packages/quds_proofing_hunspell/tool/build.py",
+    "docs/validation/office-resume-main-20261119/final/plan.json",
+    "docs/validation/office-resume-main-20261119/final/node-plan.json",
+    "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json",
+    "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  ],
+  "whitespace_preserved_inputs": []
+}

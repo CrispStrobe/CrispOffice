@@ -1,0 +1,18 @@
+{
+  "observed_at_utc": "2026-11-19T11:17:29.369094+00:00",
+  "scope": "Late concurrent PR observation, separate from initial 436-ref bounded capture. Review only; no source changes or CI queries.",
+  "initial_main": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+  "local_head": "2e6bc30a87125f3209ce4c58208b3f7bf1d84dd8",
+  "pull_requests": [
+    {
+      "number": 191,
+      "branch": "codex/office-mail-continuation-20261119",
+      "head": "3119a4598e61f061e7b7633ea4a352d841332b9e"
+    },
+    {
+      "number": 192,
+      "branch": "codex/office-resume-main-20261119",
+      "head": "409258f91484039d771d1fe56f097bef6f2d27ea"
+    }
+  ]
+}

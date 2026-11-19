@@ -120,9 +120,9 @@ names). Details in [step 3c](roadmaps/arabic-proofing.md).
 
 [`quds_proofing_hunspell`](../packages/quds_proofing_hunspell/README.md) adds a
 Hunspell spelling provider and dictionary installer for host apps, first
-Arabic (AyaSpell, `cstr/ayaspell-ar-hunspell` at `e9ace7cc…`). Studio provides
-explicit dictionary download/setup and registers spelling providers for
-installed dictionaries; see **Studio wiring** below. The engine
+Arabic (AyaSpell, `cstr/ayaspell-ar-hunspell` at `e9ace7cc…`). Studio implements
+native/web host registration and an explicit dictionary setup dialog, described
+below. The engine
 is the MIT adapter plus unmodified Hunspell 1.7.2 library files under their
 MPL 1.1 option, as a native library in a persistent isolate or a bundled
 WebAssembly module in a Web Worker; only dictionary data is downloaded, pinned
@@ -171,9 +171,8 @@ from the Dictionaries dialog. It is pinned to `cstr/camel-morph-msa-v1.0` at
 `noprob` drops only the Penn-Treebank-derived probabilities, so analyses are
 unordered. Rules must reason over every analysis, and a top-1 analysis must
 not be used (see [step 3c](roadmaps/arabic-proofing.md)). The Studio passes
-one long-lived analyzer to the Arabic rules through the `morphology:`
-parameter. Morphology-based rules use the available analyses; without an
-installed analyzer they remain silent.
+one long-lived analyzer to the Arabic rules through their `morphology:`
+parameter. Without installed data, morphology-dependent rules remain silent.
 
 Local evidence on UD Arabic-PUD (7,419 distinct words), macOS arm64:
 

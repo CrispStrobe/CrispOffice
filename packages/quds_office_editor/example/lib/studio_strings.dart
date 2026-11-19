@@ -74,6 +74,17 @@ final class StudioStrings {
   );
   String get mailTitle =>
       _t('CrispOffice Mail', 'CrispOffice Mail', 'بريد CrispOffice');
+  String get savedMessages =>
+      _t('Saved messages', 'Gespeicherte Nachrichten', 'الرسائل المحفوظة');
+  String get mailAccounts =>
+      _t('Mail accounts', 'E-Mail-Konten', 'حسابات البريد');
+  String get mailAccountsUnavailable => _t(
+    'Mail accounts require the desktop app. You can open saved messages here.',
+    'Für E-Mail-Konten benötigen Sie die Desktop-App. Gespeicherte Nachrichten können Sie hier öffnen.',
+    'تتطلب حسابات البريد تطبيق سطح المكتب. يمكنك فتح الرسائل المحفوظة هنا.',
+  );
+  String get backToMessages =>
+      _t('Back to messages', 'Zurück zu Nachrichten', 'العودة إلى الرسائل');
   String get openMessage => _t('Open message', 'Nachricht öffnen', 'فتح رسالة');
   String get openMessageFailed => _t(
     'The message could not be opened.',
@@ -154,5 +165,15 @@ final class StudioStrings {
   String get sending => _t('Sending…', 'Wird gesendet …', 'جارٍ الإرسال…');
   String get messageSent =>
       _t('Message sent', 'Nachricht gesendet', 'تم إرسال الرسالة');
+  String get sentCopyWarning => _t(
+    'A copy could not be saved to Sent.',
+    'Eine Kopie konnte nicht im Ordner „Gesendet“ gespeichert werden.',
+    'تعذّر حفظ نسخة في مجلد «المرسلة».',
+  );
+  String get sentCleanupWarning => _t(
+    'The outgoing connection could not close cleanly.',
+    'Die ausgehende Verbindung konnte nicht sauber geschlossen werden.',
+    'تعذّر إغلاق اتصال الإرسال بشكل سليم.',
+  );
   String get cancel => _t('Cancel', 'Abbrechen', 'إلغاء');
 }

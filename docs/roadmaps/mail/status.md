@@ -1,5 +1,20 @@
 # Mail implementation status — 19 November 2026
 
+## Current reconciliation
+
+The [Office continuation](../../validation/office-continuation-20261119/README.md)
+reconciles the current main, UID/Word/Studio fixes and both later remote
+qualification histories. Their results retain their original source identities;
+the combined source is undergoing fresh local qualification. The
+[host checkpoint](../../validation/office-main-integration-20261119/host-final/README.md)
+preserves its separate 1,285-execution run.
+
+Studio now includes a session-only IMAP/SMTP example with manual/discovered
+account setup, folders, message retrieval and composition, alongside the saved
+`.eml` reader. It does not implement the durable repository-driven workspace,
+persistent credential-vault hosts or queued/reconciled SMTP submission planned
+below. Live account and platform acceptance remain separate.
+
 The current [UID discovery continuation](../../validation/mail-uid-pagination-20261119/README.md)
 adds bounded discovery, atomic stored-range reconciliation and monotonic v3
 cursor revisions. Combined qualification follows the fully retained first

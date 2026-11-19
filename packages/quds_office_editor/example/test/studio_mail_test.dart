@@ -1,13 +1,16 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
-import 'package:quds_office_studio/main.dart';
-import 'package:quds_office_studio/studio_chrome.dart';
-import 'package:quds_office_studio/studio_mail.dart';
+import 'package:quds_office_studio/studio_mail_message_loader.dart';
+import 'package:quds_office_studio/studio_mail_compose.dart';
+import 'package:quds_office_studio/studio_mail_strings.dart';
+import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
@@ -47,6 +50,12 @@ final class _Client extends Fake implements mail.MailClient {
   int fetches = 0;
   int selections = 0;
   final sent = <mail.MimeMessage>[];
+  final appendRequests = <bool>[];
+  final recipientLists = <List<mail.MailAddress>?>[];
+  mail.Mailbox? _selectedMailbox;
+
+  @override
+  mail.Mailbox? get selectedMailbox => _selectedMailbox ?? boxes.first;
 
   @override
   Future<void> connect({Duration timeout = const Duration(seconds: 20)}) async {
@@ -77,6 +86,7 @@ final class _Client extends Fake implements mail.MailClient {
         mail.FetchPreference.fullWhenWithinSize,
   }) async {
     fetches++;
+    _selectedMailbox = mailbox ?? _selectedMailbox;
     expect(count, 50);
     expect(fetchPreference, mail.FetchPreference.envelope);
     return await onFetch?.call() ?? messages;
@@ -112,8 +122,26 @@ final class _Client extends Fake implements mail.MailClient {
     List<mail.MailAddress>? recipients,
   }) async {
     sent.add(message);
+    appendRequests.add(appendToSent);
+    recipientLists.add(recipients);
     await onSend?.call(message);
   }
+}
+
+final class _Loader implements StudioMailMessageLoader {
+  _Loader(this.client);
+  final mail.MailClient client;
+  @override
+  Future<Uint8List> fetch(mail.Mailbox mailbox, mail.MimeMessage header) async {
+    final full = await client.fetchMessageContents(header);
+    // Controlled test fixture bytes; production uses the bounded raw provider.
+    return Uint8List.fromList(utf8.encode(full.renderMessage()));
+  }
+
+  @override
+  void cancel() {}
+  @override
+  void dispose() {}
 }
 
 Finder _field(String label) => find.byWidgetPredicate(
@@ -133,6 +161,7 @@ Future<void> _open(
 }) async {
   await tester.binding.setSurfaceSize(const Size(1440, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
+  mail.MailClient? createdClient;
   await tester.pumpWidget(
     MaterialApp(
       home: Builder(
@@ -142,7 +171,9 @@ Future<void> _open(
               context: context,
               builder: (_) => StudioMailDialog(
                 strings: strings,
-                clientFactory: clientFactory,
+                clientFactory: (account) =>
+                    createdClient = clientFactory(account),
+                messageLoaderFactory: (_) => _Loader(createdClient!),
               ),
             ),
             child: const Text('Launch Mail'),
@@ -187,7 +218,11 @@ Future<void> _compose(WidgetTester tester) async {
   await _pump(tester);
   await tester.enterText(_field(_strings.to), 'recipient@example.invalid');
   await tester.enterText(_field(_strings.subject), 'Controlled draft');
-  await tester.enterText(_field(_strings.messageBody), 'A <safe> body.');
+  tester
+      .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+      .controller
+      .insertText('A <safe> body.');
+  await tester.pump();
   await tester.tap(find.widgetWithText(FilledButton, _strings.send));
   await _pump(tester);
 }
@@ -279,7 +314,8 @@ void main() {
         }
         await _open(tester, (_) => clients.removeAt(0));
         await _connect(tester);
-        expect(find.textContaining('$phase failed'), findsOneWidget);
+        expect(find.text(_strings.mailConnectionFailed), findsOneWidget);
+        expect(find.textContaining('$phase failed'), findsNothing);
         expect(first.disconnects, 1);
         await _connect(tester);
         expect(second.connects, 1);
@@ -297,7 +333,7 @@ void main() {
       final client = _Client()..boxes.clear();
       await _open(tester, (_) => client);
       await _connect(tester);
-      expect(find.textContaining('no selectable mailbox'), findsOneWidget);
+      expect(find.text(_strings.mailConnectionFailed), findsOneWidget);
       expect(client.disconnects, 1);
       expect(client.fetches, 0);
       await _close(tester);
@@ -324,7 +360,7 @@ void main() {
       await _pump(tester);
       expect(_reader(tester), same(second));
       expect(second.isDisposed, isFalse);
-      expect(find.textContaining('message read failed'), findsOneWidget);
+      expect(find.text(_strings.mailMessageFailed), findsOneWidget);
       await _close(tester);
       expect(second.isDisposed, isTrue);
     },
@@ -416,7 +452,8 @@ void main() {
       client.onFetch = () async => throw StateError('mailbox load failed');
       await tester.tap(find.text('Archive'));
       await _pump(tester);
-      expect(find.textContaining('mailbox load failed'), findsOneWidget);
+      expect(find.text(_strings.mailMailboxFailed), findsOneWidget);
+      expect(find.textContaining('mailbox load failed'), findsNothing);
       expect(find.text('First message'), findsNothing);
       await _close(tester);
     },
@@ -432,13 +469,97 @@ void main() {
     expect(client.sent.single.decodeSubject(), 'Controlled draft');
     expect(client.sent.single.to!.single.email, 'recipient@example.invalid');
     expect(client.sent.single.decodeTextPlainPart(), 'A <safe> body.');
-    expect(find.text(_strings.messageSent), findsOneWidget);
+    expect(find.text(_strings.mailSubmissionAccepted), findsOneWidget);
     client.onSend = (_) async => throw StateError('send failed');
     await _compose(tester);
-    expect(find.textContaining('send failed'), findsOneWidget);
-    expect(find.text(_strings.messageSent), findsNothing);
+    expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+    expect(find.textContaining('send failed'), findsNothing);
+    expect(client.appendRequests, <bool>[false, false]);
+    expect(
+      client.recipientLists.every(
+        (items) => items?.single.email == 'recipient@example.invalid',
+      ),
+      isTrue,
+    );
+    await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+    await _pump(tester);
+    expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+    expect(
+      tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+      'Controlled draft',
+    );
+    expect(
+      tester
+          .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+          .controller
+          .document
+          .paragraphs
+          .single
+          .text,
+      'A <safe> body.',
+    );
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, _strings.send),
+          )
+          .onPressed,
+      isNull,
+    );
+    await tester.tap(find.text(_strings.cancel));
+    await _pump(tester);
+    expect(find.text(_strings.mailSubmissionAccepted), findsNothing);
     await _close(tester);
   });
+
+  testWidgets(
+    'confirmed submission clears the draft when outgoing cleanup fails',
+    (tester) async {
+      final client = _Client();
+      client.onSend = (_) async => throw mail.MailSendPostSubmissionException(
+        client,
+        cleanupError: StateError('private outgoing cleanup details'),
+      );
+      await _open(tester, (_) => client);
+      await _connect(tester);
+      await _compose(tester);
+      expect(client.sent, hasLength(1));
+      expect(client.appendRequests, <bool>[false]);
+      expect(find.text(_strings.mailSubmissionAccepted), findsOneWidget);
+      expect(find.text(_strings.mailSubmissionUncertain), findsNothing);
+      expect(
+        find.textContaining('private outgoing cleanup details'),
+        findsNothing,
+      );
+
+      await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+      await _pump(tester);
+      expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+      expect(
+        tester.widget<TextField>(_field(_strings.to)).controller!.text,
+        isEmpty,
+      );
+      expect(
+        tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+        isEmpty,
+      );
+      expect(
+        tester
+            .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+            .controller
+            .document
+            .paragraphs
+            .single
+            .text,
+        isEmpty,
+      );
+      expect(find.text(_strings.mailRetryAcknowledgement), findsNothing);
+      expect(client.sent, hasLength(1));
+      await tester.tap(find.text(_strings.cancel));
+      await _pump(tester);
+      await _close(tester);
+    },
+  );
 
   for (final fail in [false, true]) {
     testWidgets(
@@ -463,7 +584,7 @@ void main() {
           find.widgetWithText(FilledButton, _strings.connect),
           findsOneWidget,
         );
-        expect(find.text(_strings.messageSent), findsNothing);
+        expect(find.text(_strings.mailSubmissionAccepted), findsNothing);
         expect(find.textContaining('late send failure'), findsNothing);
         expect(tester.takeException(), isNull);
         await _close(tester);
@@ -524,83 +645,59 @@ void main() {
     },
   );
 
-  testWidgets('Studio cycles languages and Mail preserves its active sheet', (
+  testWidgets('narrow inbox supports folders, reading and back navigation', (
     tester,
   ) async {
-    await tester.binding.setSurfaceSize(const Size(1440, 900));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    await tester.pumpWidget(const QudsOfficeStudioApp());
-    await tester.pump();
-    final word = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
-    word.controller.proofing.enabled = false;
-    word.controller.proofing.configure(OfficeProofingService(providers: []));
+    final client = _Client();
+    await _open(tester, (_) => client);
+    await _connect(tester);
+    await tester.binding.setSurfaceSize(const Size(390, 844));
+    tester.platformDispatcher.textScaleFactorTestValue = 1.5;
+    addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
     await _pump(tester);
-
-    void expectModules(List<String> labels) {
-      expect(
-        tester
-            .widgetList<StudioAppSwitcher>(find.byType(StudioAppSwitcher))
-            .map((widget) => widget.label),
-        labels,
-      );
-    }
-
-    expectModules(<String>[
-      'Documents',
-      'Spreadsheets',
-      'Presentations',
-      'PDF',
-      'Mail',
-    ]);
-    await tester.tap(find.byTooltip('Language'));
-    await _pump(tester);
-    expectModules(<String>[
-      'Dokumente',
-      'Tabellen',
-      'Präsentationen',
-      'PDF',
-      'E-Mail',
-    ]);
-    await tester.tap(find.text('Tabellen'));
-    await _pump(tester);
-    final sheet = tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor));
-    await tester.tap(find.text('E-Mail'));
-    await _pump(tester);
-    expect(find.byType(StudioMailDialog), findsOneWidget);
-    const german = StudioStrings(StudioLanguage.de);
-    expect(find.text(german.mailSetupHelp), findsOneWidget);
-    expect(_field(german.emailAddress), findsOneWidget);
-    expect(_field(german.password), findsOneWidget);
-    expect(find.widgetWithText(FilledButton, german.connect), findsOneWidget);
-    expect(find.text(german.mailSessionNotice), findsOneWidget);
-    await tester.tap(find.byTooltip('Schließen').last);
-    await _pump(tester);
-    expect(find.byType(StudioMailDialog), findsNothing);
-    expect(
-      tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor)).controller,
-      same(sheet.controller),
-    );
-    await tester.tap(find.byTooltip('Sprache'));
-    await _pump(tester);
-    expectModules(<String>[
-      'المستندات',
-      'جداول البيانات',
-      'العروض التقديمية',
-      'PDF',
-      'البريد',
-    ]);
-    await tester.tap(find.byTooltip('اللغة'));
-    await _pump(tester);
-    expectModules(<String>[
-      'Documents',
-      'Spreadsheets',
-      'Presentations',
-      'PDF',
-      'Mail',
-    ]);
+    expect(find.byType(DropdownButton<String>), findsOneWidget);
+    expect(find.text('First message'), findsOneWidget);
     expect(tester.takeException(), isNull);
-    await tester.pumpWidget(const SizedBox.shrink());
-    await tester.pump();
+
+    await tester.tap(find.text('First message'));
+    await _pump(tester);
+    final reader = _reader(tester);
+    expect(reader.decodedText, contains('Body of First message.'));
+    expect(find.byTooltip(_strings.backToMessages), findsOneWidget);
     expect(tester.takeException(), isNull);
+    await tester.tap(find.byTooltip(_strings.backToMessages));
+    await _pump(tester);
+    expect(find.byType(MailMessageView), findsNothing);
+    expect(reader.isDisposed, isFalse);
+    await tester.tap(find.byType(DropdownButton<String>));
+    await _pump(tester);
+    await tester.tap(find.text('Archive').last);
+    await _pump(tester);
+    expect(client.selections, 1);
+    expect(reader.isDisposed, isTrue);
+    expect(find.text('First message'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await _close(tester);
+  });
+
+  testWidgets('saved-message navigation retains the connected account', (
+    tester,
+  ) async {
+    final client = _Client();
+    await _open(tester, (_) => client);
+    await _connect(tester);
+    await tester.tap(find.byTooltip(_strings.savedMessages));
+    await _pump(tester);
+    final saved = _reader(tester);
+    expect(saved.decodedText, contains('local, read-only message'));
+    await tester.tap(find.byTooltip(_strings.mailAccounts));
+    await _pump(tester);
+    expect(find.text('First message'), findsOneWidget);
+    expect(client.connects, 1);
+    expect(client.disconnects, 0);
+    expect(saved.isDisposed, isFalse);
+    await _close(tester);
+    expect(saved.isDisposed, isTrue);
+    expect(client.disconnects, 1);
   });
 }

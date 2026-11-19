@@ -69,3 +69,39 @@ class MailException implements Exception {
     return buffer.toString();
   }
 }
+
+/// SMTP accepted the message, but filing its sent copy or cleanup failed.
+///
+/// Callers must not retry SMTP submission because of this exception. Inspect
+/// [sentCopyError] and [cleanupError] to report or recover the remaining work.
+class MailSendPostSubmissionException extends MailException {
+  /// Creates an outcome for a confirmed submission with unfinished follow-up.
+  MailSendPostSubmissionException(
+    MailClient mailClient, {
+    this.sentCopyError,
+    this.sentCopyStackTrace,
+    this.cleanupError,
+    this.cleanupStackTrace,
+  }) : assert(
+         sentCopyError != null || cleanupError != null,
+         'A post-submission failure is required.',
+       ),
+       super(
+         mailClient,
+         'Message was submitted, but saving its sent copy or closing the '
+         'connection failed.',
+         stackTrace: sentCopyStackTrace ?? cleanupStackTrace,
+       );
+
+  /// The original failure to find or append to the Sent mailbox, if any.
+  final Object? sentCopyError;
+
+  /// The original stack trace for [sentCopyError], if any.
+  final StackTrace? sentCopyStackTrace;
+
+  /// The original outgoing-connection cleanup failure, if any.
+  final Object? cleanupError;
+
+  /// The original stack trace for [cleanupError], if any.
+  final StackTrace? cleanupStackTrace;
+}

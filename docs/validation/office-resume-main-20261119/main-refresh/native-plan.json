@@ -1,0 +1,193 @@
+{
+  "description": "Fresh bounded qualification after reconciling main 76fe761f with accepted 0bd53e3e. Preserve modular Mail, selected-fragment Word language routing, both footer coverage sets and callback cancellation; fix confirmed-send cleanup handling. Earlier 1,898-execution qualification retains its original source and contributes zero cases here. Actual browser, live services and real morphology backend are separate acceptance.",
+  "groups": [
+    {
+      "name": "studio-mail-modular",
+      "cwd": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_mail_compose_test.dart",
+        "test/studio_mail_discovery_test.dart",
+        "test/studio_mail_lifecycle_test.dart",
+        "test/studio_mail_message_loader_test.dart",
+        "test/studio_mail_operation_test.dart",
+        "test/studio_mail_test.dart",
+        "test/studio_mail_web_test.dart",
+        "test/studio_saved_mail_test.dart"
+      ]
+    },
+    {
+      "name": "mail-send-transaction-vm",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/mail/mail_client_send_test.dart",
+        "test/mail/mail_send_transaction_test.dart"
+      ]
+    },
+    {
+      "name": "mail-bounded-reader-vm",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/native_provider_test.dart"
+      ]
+    },
+    {
+      "name": "word-routing-engine-delta",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/wml_run_edit_test.dart",
+        "test/proofing/word_proofing_language_test.dart",
+        "test/word_proofing_inheritance_test.dart"
+      ]
+    },
+    {
+      "name": "word-language-editor-delta",
+      "cwd": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/word_complex_script_proofing_controls_test.dart",
+        "test/word_text_proofing_controls_test.dart"
+      ]
+    },
+    {
+      "name": "studio-settings-footer-delta",
+      "cwd": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_review_status_test.dart",
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_comment_review_test.dart",
+        "test/studio_comment_keyboard_review_test.dart",
+        "test/studio_zotero_shortcuts_test.dart",
+        "test/studio_arabic_morph_setup_test.dart"
+      ]
+    },
+    {
+      "name": "hunspell-cancellation-delta",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "tests": [
+        "test/hunspell_installer_cancellation_test.dart",
+        "test/hunspell_installer_cancellation_incoming_test.dart"
+      ]
+    },
+    {
+      "name": "morphology-portable-contract-vm",
+      "cwd": "packages/quds_arabic_morph",
+      "runner": "dart",
+      "tests": [
+        "test/arabic_morph_unit_test.dart"
+      ]
+    }
+  ],
+  "analysis": [
+    "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "packages/quds_office_editor/example/lib/studio_mail.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_file.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_file_web.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_operation.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_web.dart",
+    "packages/quds_office_editor/example/lib/studio_saved_mail.dart",
+    "packages/quds_office_editor/example/lib/studio_strings.dart",
+    "packages/quds_office_editor/example/test/studio_arabic_morph_native_test.dart",
+    "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+    "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "packages/quds_office_editor/example/test/support/studio_mail_fixture.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+    "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+    "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "packages/quds_office_engine/test/wml_run_edit_test.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+    "third_party/enough_mail/lib/src/mail/mail_client.dart",
+    "third_party/enough_mail/lib/src/mail/mail_exception.dart",
+    "third_party/enough_mail/lib/src/private/mail/send_message_transaction.dart",
+    "third_party/enough_mail/test/mail/mail_send_transaction_test.dart"
+  ],
+  "format": [
+    "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "packages/quds_office_editor/example/lib/studio_mail.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_file.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_file_web.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_operation.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_web.dart",
+    "packages/quds_office_editor/example/lib/studio_saved_mail.dart",
+    "packages/quds_office_editor/example/lib/studio_strings.dart",
+    "packages/quds_office_editor/example/test/studio_arabic_morph_native_test.dart",
+    "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+    "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "packages/quds_office_editor/example/test/support/studio_mail_fixture.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+    "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+    "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "packages/quds_office_engine/test/wml_run_edit_test.dart",
+    "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+    "third_party/enough_mail/lib/src/mail/mail_client.dart",
+    "third_party/enough_mail/lib/src/mail/mail_exception.dart",
+    "third_party/enough_mail/lib/src/private/mail/send_message_transaction.dart",
+    "third_party/enough_mail/test/mail/mail_send_transaction_test.dart"
+  ],
+  "extra_inputs": [
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "packages/quds_proofing_hunspell/tool/test_build.py",
+    "packages/quds_proofing_hunspell/tool/build.py",
+    "docs/validation/office-resume-main-20261119/final/plan.json",
+    "docs/validation/office-resume-main-20261119/final/node-plan.json",
+    "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json",
+    "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  ],
+  "whitespace_preserved_inputs": []
+}

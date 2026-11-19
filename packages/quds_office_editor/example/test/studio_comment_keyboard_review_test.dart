@@ -7,7 +7,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 
-import 'support/studio_test_settings.dart';
+import 'support/studio_settings.dart';
 
 class _Proofing extends OfficeProofingProvider {
   _Proofing({this.overlapping = false});
@@ -79,12 +79,12 @@ Future<WordEditorController> _studio(WidgetTester tester) async {
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await _pump(tester);
+  expect(find.byTooltip('Language'), findsOneWidget);
+  await _pump(tester);
   final controller = _editor(tester).controller;
   controller.proofing.enabled = false;
   controller.proofing.configure(OfficeProofingService(providers: []));
-  // Settings advances animations beyond the initial proofing debounce.
-  await configureStudioForTest(tester, showComments: true);
-  await _pump(tester);
+  await enableStudioSetting(tester, 'Show comments');
   controller.document = _document();
   controller.refresh();
   controller.beginCommentEdit(1);
