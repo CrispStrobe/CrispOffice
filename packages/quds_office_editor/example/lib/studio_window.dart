@@ -99,6 +99,14 @@ class StudioWindow {
     } catch (_) {}
   }
 
+  static Future<void> show() async {
+    if (!supported) return;
+    try {
+      await windowManager.show();
+      await windowManager.focus();
+    } catch (_) {}
+  }
+
   static Future<void> toggleMaximize() async {
     if (!supported) {
       return;

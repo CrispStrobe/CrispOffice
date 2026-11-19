@@ -137,7 +137,7 @@ GestureDetector _action(WidgetTester tester, String label) =>
     );
 
 Future<void> _mode(WidgetTester tester, String label) async {
-  await tester.tap(find.text('File').first);
+  await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
   await _pump(tester);
   final command = find.byWidgetPredicate(
     (widget) => widget is StudioCmd && widget.label == label,

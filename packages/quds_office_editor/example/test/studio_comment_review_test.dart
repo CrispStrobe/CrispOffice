@@ -364,7 +364,7 @@ void main() {
     (tester) async {
       final controller = await _studio(tester);
       await _enter(tester, 1, 'Kept while viewing');
-      await tester.tap(find.text('File').first);
+      await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
       await _pump(tester);
       await _tapCommand(tester, 'View');
       expect(_field(1), findsNothing);
@@ -693,7 +693,7 @@ void main() {
         ..useSystem = useSystem
         ..clear();
     });
-    await tester.tap(find.text('File').first);
+    await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
     await _pump(tester);
     await _tapCommand(tester, 'Select');
     final finder = find.byKey(const ValueKey('studio-comment-canvas-1'));
@@ -809,7 +809,7 @@ void main() {
           ..useSystem = useSystem
           ..clear();
       });
-      await tester.tap(find.text('File').first);
+      await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
       await _pump(tester);
       await _tapCommand(tester, 'Select');
       expect(controller.config.allowsMutation, isFalse);
@@ -864,7 +864,7 @@ void main() {
     final controller = await _studio(tester);
     final canvas = _commentCanvas(tester, 1);
     final hit = _commentHit(tester, controller, 1);
-    await tester.tap(find.text('File').first);
+    await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
     await _pump(tester);
     await _tapCommand(tester, 'Select');
     final comment = controller.document.comments.first;
@@ -1280,7 +1280,7 @@ void main() {
     final apply = _menuAction(tester, 'Comment').onTap!;
     final resolve = _menuAction(tester, 'Resolve').onTap!;
     final delete = _menuAction(tester, 'Delete comment').onTap!;
-    await tester.tap(find.text('File').first);
+    await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
     await _pump(tester);
     await _tapCommand(tester, 'View');
     expect(controller.config.allowsMutation, isFalse);

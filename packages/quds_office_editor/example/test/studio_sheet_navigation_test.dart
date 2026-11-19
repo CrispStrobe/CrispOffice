@@ -79,7 +79,7 @@ Future<SheetEditorController> _studio(WidgetTester tester) async {
   await tester.pump();
   expect(find.byTooltip('Language'), findsOneWidget);
   await tester.pump();
-  await tester.tap(find.text('Spreadsheets').first);
+  await tester.tap(find.byTooltip('Spreadsheets').first);
   await tester.pump();
   final editor = tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor));
   // Embedded input rejects synthetic updates until its editor owns focus.
@@ -215,7 +215,7 @@ void main() {
       controller.beginCellEdit();
       _type(controller, 'draft to discard');
       controller.viewport.origin = const Offset(70, 80);
-      await tester.tap(find.text('File').first);
+      await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
       await tester.pump();
       await tester.tap(find.text(command));
       await tester.pump();

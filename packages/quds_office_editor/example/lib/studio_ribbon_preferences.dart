@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -109,8 +108,13 @@ class StudioRibbonPreferences extends ChangeNotifier {
 
   void setOrder(String scope, List<String> ids) {
     final unique = ids.toSet().toList();
-    if (listEquals(_orders[scope], unique)) return;
-    _orders[scope] = unique;
+    final ordered = <String>[
+      ...unique,
+      for (final id in _orders[scope] ?? const <String>[])
+        if (!unique.contains(id)) id,
+    ];
+    if (listEquals(_orders[scope], ordered)) return;
+    _orders[scope] = ordered;
     _changed();
   }
 
