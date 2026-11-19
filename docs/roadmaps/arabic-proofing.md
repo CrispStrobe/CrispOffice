@@ -104,7 +104,10 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
      the dictionary), `المدرسه`→`المدرسة` (merged), `هاذا` (dictionary only),
      German run silent. Web release build contains the worker, module and
      wasm under `proofing/`. Android arm64-v8a library cross-built (NDK 28,
-     static libc++, only libc/libm/libdl needed) and installed into `jniLibs`.
+     static libc++, only libc/libm/libdl needed) and installed into `jniLibs`;
+     `flutter build apk --release --target-platform android-arm64` packages it
+     as `lib/arm64-v8a/libquds_proofing_hunspell.so` (1.6 MB, stripped) in a
+     69.8 MB release APK. Not yet run on a device.
    - Open: Linux/Windows builds, iOS packaging (the example has no iOS
      runner), running on real devices, persisting the web download across
      sessions, signing with a release identity.
