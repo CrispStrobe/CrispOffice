@@ -11,7 +11,9 @@ enum StudioSpacySource {
   none,
 
   /// A verified package installed by the user from the immutable Hub
-  /// revision into the app's private data directory.
+  /// revision into the app's private data directory, or, when the app ships
+  /// its own signed native library ([StudioSpacyStatus.bundledLibrary]), the
+  /// verified model files alone.
   installed,
 
   /// Developer environment variables (`QUDS_SPACY_BUNDLE`, ...).
@@ -37,6 +39,7 @@ class StudioSpacyStatus {
     this.nerInstalled = false,
     this.nerProblem,
     this.languages = const [],
+    this.bundledLibrary = false,
   });
 
   /// e.g. `macos-arm64`.
@@ -72,6 +75,20 @@ class StudioSpacyStatus {
   /// Additional analysis languages (English, French) on this platform.
   final List<StudioSpacyLanguageStatus> languages;
 
+  /// The app ships the native library inside its own signed bundle; setup
+  /// downloads only model files (no executable code). [librarySha256] is
+  /// the bundled library's digest.
+  final bool bundledLibrary;
+
+  /// Bytes the German setup downloads now: the model files alone when the
+  /// library is bundled, otherwise the complete platform package.
+  int get downloadBytes => bundledLibrary
+      ? spacyBundleDownload.totalBytes
+      : (package?.archiveBytes ?? 0);
+
+  /// German setup can be offered on this host.
+  bool get installOffered => bundledLibrary || package != null;
+
   StudioSpacyLanguageStatus? language(SpacyLanguage language) {
     for (final item in languages) {
       if (item.language == language) return item;
@@ -96,6 +113,7 @@ class StudioSpacyStatus {
     analysisEnabled,
     grammarEnabled,
     nerEnabled,
+    bundledLibrary,
     for (final item in languages) item.configurationKey,
   ].join('|');
 }
@@ -113,6 +131,7 @@ class StudioSpacyLanguageStatus {
     this.installed = false,
     this.runtimeInstalled = false,
     this.problem,
+    this.bundledRuntime = false,
   });
 
   final SpacyLanguage language;
@@ -127,17 +146,22 @@ class StudioSpacyLanguageStatus {
   final bool runtimeInstalled;
   final String? problem;
 
-  bool get offered => download != null && runtime != null;
+  /// The app's bundled library opens this bundle; only the five model files
+  /// are downloaded.
+  final bool bundledRuntime;
+
+  bool get offered => download != null && (runtime != null || bundledRuntime);
 
   /// Bytes an install would download now (bundle, plus the runtime package
   /// when it is not installed yet).
   int get downloadBytes =>
       (download?.totalBytes ?? 0) +
-      (runtimeInstalled ? 0 : (runtime?.archiveBytes ?? 0));
+      (runtimeInstalled || bundledRuntime ? 0 : (runtime?.archiveBytes ?? 0));
 
   String get configurationKey => [
     language.code,
     installed,
+    bundledRuntime,
     runtime?.librarySha256 ?? '',
     download?.revision ?? '',
   ].join(':');
