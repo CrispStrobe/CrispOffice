@@ -68,4 +68,8 @@ extension StudioMailFeedback on StudioStrings {
     'Die vollständige Nachricht konnte nicht sicher geöffnet werden. Das Postfach aktualisieren und erneut versuchen.',
     'تعذر فتح الرسالة كاملة بأمان. حدّث صندوق البريد وحاول مجددًا.',
   );
+  String get reply => _mailText('Reply', 'Antworten', 'رد');
+  String get forward => _mailText('Forward', 'Weiterleiten', 'إعادة توجيه');
+  String get markRead =>
+      _mailText('Mark as read', 'Als gelesen markieren', 'وضع علامة كمقروء');
 }
