@@ -135,6 +135,9 @@ Future<void> _open(
     'reader@example.invalid',
   );
   await tester.enterText(_field(_strings.password), 'private-fixture-password');
+  await tester.ensureVisible(
+    find.widgetWithText(FilledButton, _strings.connect),
+  );
   await tester.tap(find.widgetWithText(FilledButton, _strings.connect));
   await _pump(tester);
 }
@@ -189,7 +192,11 @@ void main() {
         isTrue,
       );
       expect(
-        tester.widget<SwitchListTile>(find.byType(SwitchListTile)).value,
+        tester
+            .widget<SwitchListTile>(
+              find.widgetWithText(SwitchListTile, _strings.manualServers),
+            )
+            .value,
         isTrue,
       );
       expect(_field(_strings.imapHost), findsOneWidget);

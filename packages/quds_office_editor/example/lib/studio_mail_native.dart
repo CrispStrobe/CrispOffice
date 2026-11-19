@@ -369,7 +369,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       final previous = _reader;
       setState(() {
         _client = client;
+        _pendingClient = null;
         _messageLoader = loader;
+        _pendingLoader = null;
         _messageMailbox = (client.selectedMailbox ?? inbox).copyWith();
         _account = account;
         _mailboxes = boxes;
@@ -934,6 +936,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                     onChanged: _connecting
                         ? null
                         : (value) => setState(() {
+                            _settingsEdited();
                             _preset = StudioMailImapPreset.values
                                 .where((entry) => entry.name == value)
                                 .firstOrNull;
@@ -1002,9 +1005,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                     title: Text(widget.strings.mailIcloudFullLogin),
                     onChanged: _connecting
                         ? null
-                        : (value) => setState(
-                            () => _icloudFullAddressLogin = value ?? false,
-                          ),
+                        : (value) => setState(() {
+                            _settingsEdited();
+                            _icloudFullAddressLogin = value ?? false;
+                          }),
                   ),
                 const SizedBox(height: 8),
                 if (_preset == null)

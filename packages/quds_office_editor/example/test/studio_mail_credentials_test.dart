@@ -103,8 +103,9 @@ final class _Store extends Fake implements StudioMailCredentialStore {
 }
 
 final class _Loader extends Fake implements StudioMailMessageLoader {
+  int disposes = 0;
   @override
-  void dispose() {}
+  void dispose() => disposes++;
   @override
   void cancel() {}
 }
@@ -164,6 +165,7 @@ Future<void> _show(
   WidgetTester tester,
   _Store store, {
   mail.MailClient Function(mail.MailAccount)? client,
+  StudioMailMessageLoader? loader,
   Future<mail.ClientConfig?> Function(String)? discovery,
 }) async {
   await tester.binding.setSurfaceSize(const Size(1280, 1200));
@@ -175,7 +177,7 @@ Future<void> _show(
         credentialStore: store,
         clientFactory: client ?? (_) => _Client(),
         accountDiscovery: discovery,
-        messageLoaderFactory: (_) => _Loader(),
+        messageLoaderFactory: (_) => loader ?? _Loader(),
       ),
     ),
   );
@@ -405,6 +407,31 @@ void main() {
     },
   );
 
+  for (final clearsSucceed in [true, false]) {
+    testWidgets(
+      'Remember opt-out clears the old account and reports ${clearsSucceed ? 'success' : 'failure'} accurately',
+      (tester) async {
+        final store = _Store()
+          ..initial = _saved
+          ..clearsSucceed = clearsSucceed;
+        await _show(tester, store);
+        await tester.ensureVisible(_key('studio-mail-remember'));
+        await tester.tap(_key('studio-mail-remember'));
+        await _pump(tester);
+        expect(store.clears, 0);
+        await _connectPreset(tester);
+        expect(store.saved, isEmpty);
+        expect(store.clears, 1);
+        expect(find.byTooltip(_strings.disconnect), findsOneWidget);
+        expect(
+          find.text(_strings.mailKeychainClearFailed),
+          clearsSucceed ? findsNothing : findsOneWidget,
+        );
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   testWidgets(
     'failed Forget preserves filled credentials and remains retryable',
     (tester) async {
@@ -497,11 +524,15 @@ void main() {
     tester,
   ) async {
     final store = _Store()..saveGate = Completer<bool>();
-    await _show(tester, store);
+    final client = _Client();
+    final loader = _Loader();
+    await _show(tester, store, client: (_) => client, loader: loader);
     await _connectPreset(tester);
     await tester.pumpWidget(const SizedBox.shrink());
     store.saveGate!.complete(false);
     await _pump(tester);
+    expect(client.disconnects, 1);
+    expect(loader.disposes, 1);
     expect(tester.takeException(), isNull);
   });
 

@@ -206,13 +206,14 @@ Future<void> _show(
 }
 
 Future<void> _manual(WidgetTester tester) async {
-  await tester.tap(find.byType(SwitchListTile));
+  await tester.tap(find.widgetWithText(SwitchListTile, _strings.manualServers));
   await tester.pump();
   await tester.enterText(_field(_strings.imapHost), 'imap.example.invalid');
   await tester.enterText(_field(_strings.smtpHost), 'smtp.example.invalid');
 }
 
 Future<void> _connect(WidgetTester tester) async {
+  await tester.ensureVisible(find.text(_strings.connect));
   await tester.tap(find.text(_strings.connect));
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 100));

@@ -218,6 +218,9 @@ Future<void> _connect(
   WidgetTester tester, {
   StudioStrings strings = _strings,
 }) async {
+  await tester.ensureVisible(
+    find.widgetWithText(FilledButton, strings.connect),
+  );
   await tester.tap(find.widgetWithText(FilledButton, strings.connect));
   await _pump(tester);
 }
