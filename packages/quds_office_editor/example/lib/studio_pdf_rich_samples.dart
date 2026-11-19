@@ -8,7 +8,7 @@ import 'studio_pdf_faces.dart';
 Uint8List studioWidgetAtlasPdf() {
   final pw.Document doc = pw.Document(
     title: 'pdf_widgets atlas',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: StudioPdfFaces.tajawal(),
     fontBold: StudioPdfFaces.tajawalBold(),
   );
@@ -43,7 +43,11 @@ Uint8List studioWidgetAtlasPdf() {
         pw.Text(
           'A multi-page layout that exercises the constraint widgets: '
           'charts, tables, grids, checklists, links, and an RTL page.',
-          style: const pw.TextStyle(fontSize: 11, color: '44403C', height: 1.45),
+          style: const pw.TextStyle(
+            fontSize: 11,
+            color: '44403C',
+            height: 1.45,
+          ),
         ),
         pw.SizedBox(height: 14),
         _kpiRow(
@@ -106,7 +110,10 @@ Uint8List studioWidgetAtlasPdf() {
         _sectionLabel('Checklist', '3730A3'),
         pw.SizedBox(height: 8),
         _check('Identity-H subset embeds Cairo and Tajawal', done: true),
-        _check('MultiPage carries leftover widgets to the next sheet', done: true),
+        _check(
+          'MultiPage carries leftover widgets to the next sheet',
+          done: true,
+        ),
         _check('RTL lines start at the right edge', done: true),
         _check('Certified PDF/A — not claimed by this sample', done: false),
         pw.SizedBox(height: 14),
@@ -124,7 +131,11 @@ Uint8List studioWidgetAtlasPdf() {
             color: 'FFFFFF',
           ),
           data: const <List<String>>[
-            <String>['Text', 'Text, Header, Bullet, Paragraph', 'titles and notes'],
+            <String>[
+              'Text',
+              'Text, Header, Bullet, Paragraph',
+              'titles and notes',
+            ],
             <String>['Layout', 'Row, Column, Grid, Wrap', 'KPI row and chips'],
             <String>['Data', 'Table, Chart', 'access and case mix'],
             <String>['Chrome', 'Footer, Watermark, UrlLink', 'every page'],
@@ -150,10 +161,12 @@ Uint8List studioWidgetAtlasPdf() {
         ),
         pw.SizedBox(height: 12),
         const pw.Bullet(
-          text: 'Charts are vector boxes, not images. Labels stay in the file font.',
+          text:
+              'Charts are vector boxes, not images. Labels stay in the file font.',
         ),
         const pw.Bullet(
-          text: 'A single Column that overflows a Page is clipped. These samples flow.',
+          text:
+              'A single Column that overflows a Page is clipped. These samples flow.',
         ),
         pw.UrlLink(
           destination: 'https://quds.office/samples/widgets',
@@ -194,7 +207,11 @@ Uint8List studioWidgetAtlasPdf() {
             'هذه الصفحة تكمل الأطلس بالعربية. المؤشرات والجدول ينزلان '
             'من اليمين، والنص القصير لا يبقى على الحافة اليسرى.',
             textAlign: pw.TextAlign.start,
-            style: const pw.TextStyle(fontSize: 12, color: '44403C', height: 1.5),
+            style: const pw.TextStyle(
+              fontSize: 12,
+              color: '44403C',
+              height: 1.5,
+            ),
           ),
         ),
         pw.Directionality(
@@ -234,7 +251,11 @@ Uint8List studioWidgetAtlasPdf() {
           child: pw.Text(
             'يبقى التحقق الميداني في منتصف أيلول قبل إغلاق الملفات المفتوحة.',
             textAlign: pw.TextAlign.start,
-            style: const pw.TextStyle(fontSize: 11, color: '57534E', height: 1.45),
+            style: const pw.TextStyle(
+              fontSize: 11,
+              color: '57534E',
+              height: 1.45,
+            ),
           ),
         ),
       ],
@@ -247,7 +268,7 @@ Uint8List studioWidgetAtlasPdf() {
 Uint8List studioFieldClinicPdf() {
   final pw.Document doc = pw.Document(
     title: 'كشف عيادة ميدانية — القاهرة',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: StudioPdfFaces.cairo(),
   );
   doc.addPage(
@@ -322,10 +343,34 @@ Uint8List studioFieldClinicPdf() {
         pw.SizedBox(height: 14),
         _sectionLabel('صرف الصيدلية', '0F6E56'),
         pw.SizedBox(height: 8),
-        _check('محلول وريدي — الكمية تغطي يومين', done: true, accent: '0F6E56', yes: 'تم', no: 'ناقص'),
-        _check('مضاد حيوي أطفال — تحت الحد الأدنى', done: false, accent: '0F6E56', yes: 'تم', no: 'ناقص'),
-        _check('ضمادات معقمة — تم الجرد صباحا', done: true, accent: '0F6E56', yes: 'تم', no: 'ناقص'),
-        _check('أنسولين — طلب تعزيز قبل المغرب', done: false, accent: '0F6E56', yes: 'تم', no: 'ناقص'),
+        _check(
+          'محلول وريدي — الكمية تغطي يومين',
+          done: true,
+          accent: '0F6E56',
+          yes: 'تم',
+          no: 'ناقص',
+        ),
+        _check(
+          'مضاد حيوي أطفال — تحت الحد الأدنى',
+          done: false,
+          accent: '0F6E56',
+          yes: 'تم',
+          no: 'ناقص',
+        ),
+        _check(
+          'ضمادات معقمة — تم الجرد صباحا',
+          done: true,
+          accent: '0F6E56',
+          yes: 'تم',
+          no: 'ناقص',
+        ),
+        _check(
+          'أنسولين — طلب تعزيز قبل المغرب',
+          done: false,
+          accent: '0F6E56',
+          yes: 'تم',
+          no: 'ناقص',
+        ),
         pw.SizedBox(height: 10),
         pw.Text(
           'يُغلق الكشف عند الرابعة. التحويلات العاجلة تُسجَّل في دفتر المناوبة '
@@ -362,8 +407,12 @@ Uint8List studioFieldClinicPdf() {
                 ),
               ),
               pw.SizedBox(height: 10),
-              const pw.Bullet(text: 'Keep the referral log with the duty nurse.'),
-              const pw.Bullet(text: 'Do not close insulin cases without a dose note.'),
+              const pw.Bullet(
+                text: 'Keep the referral log with the duty nurse.',
+              ),
+              const pw.Bullet(
+                text: 'Do not close insulin cases without a dose note.',
+              ),
             ],
           ),
         ),
@@ -377,7 +426,7 @@ Uint8List studioFieldClinicPdf() {
 Uint8List studioBoardPacketPdf() {
   final pw.Document doc = pw.Document(
     title: 'Board packet — 13 September 2026',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: StudioPdfFaces.tajawal(),
     fontBold: StudioPdfFaces.tajawalBold(),
   );
@@ -451,10 +500,26 @@ Uint8List studioBoardPacketPdf() {
                 children: <pw.Widget>[
                   _sectionLabel('Decisions', '9A3412'),
                   pw.SizedBox(height: 8),
-                  _check('D1  Keep the water target at 73%', done: true, accent: '9A3412'),
-                  _check('D2  Release shelter top-up', done: true, accent: '9A3412'),
-                  _check('D3  Hold new hires until October', done: false, accent: '9A3412'),
-                  _check('D4  Publish the public brief Friday', done: false, accent: '9A3412'),
+                  _check(
+                    'D1  Keep the water target at 73%',
+                    done: true,
+                    accent: '9A3412',
+                  ),
+                  _check(
+                    'D2  Release shelter top-up',
+                    done: true,
+                    accent: '9A3412',
+                  ),
+                  _check(
+                    'D3  Hold new hires until October',
+                    done: false,
+                    accent: '9A3412',
+                  ),
+                  _check(
+                    'D4  Publish the public brief Friday',
+                    done: false,
+                    accent: '9A3412',
+                  ),
                 ],
               ),
             ),
@@ -505,7 +570,9 @@ Uint8List studioBoardPacketPdf() {
           ],
         ),
         pw.SizedBox(height: 12),
-        const pw.Bullet(text: 'Figures are thousands of local units, not dollars.'),
+        const pw.Bullet(
+          text: 'Figures are thousands of local units, not dollars.',
+        ),
         const pw.Bullet(text: 'Unspent shelter funds stay ring-fenced.'),
         pw.NewPage(),
         pw.Directionality(
@@ -536,7 +603,11 @@ Uint8List studioBoardPacketPdf() {
             'دفعة المأوى، وأجّل التوظيف الجديد إلى تشرين الأول. يُنشر '
             'الموجز العام يوم الجمعة.',
             textAlign: pw.TextAlign.start,
-            style: const pw.TextStyle(fontSize: 12, color: '44403C', height: 1.55),
+            style: const pw.TextStyle(
+              fontSize: 12,
+              color: '44403C',
+              height: 1.55,
+            ),
           ),
         ),
         pw.Directionality(
@@ -568,8 +639,8 @@ Uint8List studioBoardPacketPdf() {
 /// Neighbourhood recovery brief: cards, chart, table, Arabic notes.
 Uint8List studioRecoveryBriefPdf() {
   final pw.Document doc = pw.Document(
-    title: 'Recovery corridor — Al Tahreer',
-    author: 'Quds Studio',
+    title: 'Recovery corridor — Harbour District',
+    author: 'CrispOffice Studio',
     font: StudioPdfFaces.cairo(),
   );
   doc.addPage(
@@ -607,7 +678,13 @@ Uint8List studioRecoveryBriefPdf() {
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
           children: <pw.Widget>[
-            _placeCard('Al Tahreer', '73%', 'Water lead', '0F6E56', 'ECFDF5'),
+            _placeCard(
+              'Harbour District',
+              '73%',
+              'Water lead',
+              '0F6E56',
+              'ECFDF5',
+            ),
             _placeCard('Al Rimal', '61%', 'Shelter hold', '0F766E', 'F0FDFA'),
             _placeCard('Shuja\'iyya', '48%', 'Priority', 'B45309', 'FFF7ED'),
           ],
@@ -640,14 +717,16 @@ Uint8List studioRecoveryBriefPdf() {
           cellStyle: const pw.TextStyle(fontSize: 9, color: '292524'),
           headerStyle: const pw.TextStyle(fontSize: 9, color: 'FFFFFF'),
           data: const <List<String>>[
-            <String>['Al Tahreer', '1,240', '73%', '6'],
+            <String>['Harbour District', '1,240', '73%', '6'],
             <String>['Al Rimal', '980', '61%', '8'],
             <String>['Shuja\'iyya', '1,510', '48%', '11'],
           ],
         ),
         pw.SizedBox(height: 10),
         const pw.Bullet(text: 'Shuja\'iyya stays first in the tanker roster.'),
-        const pw.Bullet(text: 'Shelter kits already staged in Al Rimal are not moved.'),
+        const pw.Bullet(
+          text: 'Shelter kits already staged in Al Rimal are not moved.',
+        ),
         pw.NewPage(),
         pw.Directionality(
           textDirection: pw.TextDirection.rtl,
@@ -673,7 +752,11 @@ Uint8List studioRecoveryBriefPdf() {
             'جزئيا. الشجاعية ما زالت الأولوية: ثمانية وأربعون بالمئة، وأحد '
             'عشر ملفا مفتوحا.',
             textAlign: pw.TextAlign.start,
-            style: const pw.TextStyle(fontSize: 12, color: '44403C', height: 1.55),
+            style: const pw.TextStyle(
+              fontSize: 12,
+              color: '44403C',
+              height: 1.55,
+            ),
           ),
         ),
         pw.Directionality(
@@ -694,7 +777,11 @@ Uint8List studioRecoveryBriefPdf() {
             'لا تُنقل أطقم المأوى الموجودة في الرمال. صهريج الشجاعية يبقى '
             'أول الرحلة حتى إغلاق الأسبوع.',
             textAlign: pw.TextAlign.start,
-            style: const pw.TextStyle(fontSize: 11, color: '57534E', height: 1.5),
+            style: const pw.TextStyle(
+              fontSize: 11,
+              color: '57534E',
+              height: 1.5,
+            ),
           ),
         ),
       ],
@@ -717,17 +804,10 @@ pw.Widget _band({
         pw.Expanded(
           child: pw.Text(
             kicker,
-            style: pw.TextStyle(
-              color: ink,
-              fontSize: 10,
-              letterSpacing: 0.6,
-            ),
+            style: pw.TextStyle(color: ink, fontSize: 10, letterSpacing: 0.6),
           ),
         ),
-        pw.Text(
-          face,
-          style: const pw.TextStyle(color: 'FFFFFF', fontSize: 12),
-        ),
+        pw.Text(face, style: const pw.TextStyle(color: 'FFFFFF', fontSize: 12)),
       ],
     ),
   );
@@ -820,10 +900,7 @@ pw.Widget _chip(String label, String wash, String ink) {
   return pw.Container(
     padding: const pw.EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     decoration: pw.BoxDecoration(color: wash, borderRadius: 10),
-    child: pw.Text(
-      label,
-      style: pw.TextStyle(fontSize: 8, color: ink),
-    ),
+    child: pw.Text(label, style: pw.TextStyle(fontSize: 8, color: ink)),
   );
 }
 

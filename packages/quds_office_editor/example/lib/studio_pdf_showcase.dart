@@ -8,7 +8,7 @@ import 'studio_pdf_faces.dart';
 Uint8List studioHarbourClosePdf() {
   final pw.Document doc = pw.Document(
     title: 'Harbour close — west quay',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: StudioPdfFaces.tajawal(),
     fontBold: StudioPdfFaces.tajawalBold(),
   );
@@ -135,7 +135,9 @@ Uint8List studioHarbourClosePdf() {
         ),
         pw.SizedBox(height: 10),
         const pw.Bullet(text: 'A2 stays open until the 06:40 pilot.'),
-        const pw.Bullet(text: 'C3 crane three is down; do not assign a new lift.'),
+        const pw.Bullet(
+          text: 'C3 crane three is down; do not assign a new lift.',
+        ),
         pw.UrlLink(
           destination: 'https://quds.office/samples/harbour',
           child: pw.Text(
@@ -157,7 +159,7 @@ Uint8List studioHarbourClosePdf() {
 Uint8List studioLaylAlQamarPdf() {
   final pw.Document doc = pw.Document(
     title: 'ليل القمر — دفتر الحي',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: StudioPdfFaces.tajawal(),
     fontBold: StudioPdfFaces.tajawalBold(),
   );
@@ -206,7 +208,11 @@ Uint8List studioLaylAlQamarPdf() {
           'الرسم يحمل القيم على الأعمدة، والدفتر جدول واحد. عندما تمتلئ '
           'الصفحة يُعاد صف العناوين في الصفحة التالية ولا يُقص الصف.',
           textAlign: pw.TextAlign.start,
-          style: const pw.TextStyle(fontSize: 11, color: '3F3F46', height: 1.45),
+          style: const pw.TextStyle(
+            fontSize: 11,
+            color: '3F3F46',
+            height: 1.45,
+          ),
         ),
         pw.SizedBox(height: 10),
         pw.Chart(
@@ -300,7 +306,7 @@ Uint8List studioLaylAlQamarPdf() {
 Uint8List studioTwoShoresPdf() {
   final pw.Document doc = pw.Document(
     title: 'Two shores',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: StudioPdfFaces.tajawal(),
     fontBold: StudioPdfFaces.tajawalBold(),
   );
@@ -337,7 +343,7 @@ Uint8List studioTwoShoresPdf() {
 Uint8List studioCairoNightPdf() {
   final pw.Document doc = pw.Document(
     title: 'ليل القاهرة — إغلاق العيادة',
-    author: 'Quds Studio',
+    author: 'CrispOffice Studio',
     font: StudioPdfFaces.cairo(),
   );
   doc.addPage(
