@@ -142,13 +142,21 @@ class RawFetchParser extends ResponseParser<RawImapFetchResult> {
       throw const FormatException('Invalid raw FETCH sequence prefix');
     }
     final values = imapResponse.iterate(strict: true).values;
-    ImapValue? fetch;
-    for (final value in values) {
-      if (value.value?.toUpperCase() == 'FETCH') {
-        fetch = value;
-      }
+    // One response has exactly one sequence and one FETCH field list. Ignoring
+    // trailing siblings can lose a UID and turn malformed input into a sync
+    // tombstone, so reject the complete operation instead of taking a prefix.
+    if (values.length != 3 ||
+        values[0].value != '*' ||
+        values[0].children != null ||
+        values[0].data != null ||
+        values[1].value != sequence.toString() ||
+        values[1].children != null ||
+        values[1].data != null ||
+        values[2].value?.toUpperCase() != 'FETCH' ||
+        values[2].data != null) {
+      throw const FormatException('Invalid raw FETCH response shape');
     }
-    final fields = fetch?.children;
+    final fields = values[2].children;
     if (fields == null) {
       throw const FormatException('Invalid raw FETCH');
     }

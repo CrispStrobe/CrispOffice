@@ -1,0 +1,50 @@
+{
+  "scope": "Intentional pre-fix regression reproductions; these failures are not acceptance results. Each command records focused input hashes before and after execution. Subsequent fixes require a fresh passing qualification.",
+  "archive": {
+    "path": "transport-regression-red-evidence.tar.xz",
+    "bytes": 4080,
+    "sha256": "79e471da82a283f9ed8586c380c0b50448e32080517774961396cf5d94b996f1"
+  },
+  "files": [
+    {
+      "path": "raw_fetch_parser_test.dart",
+      "bytes": 5368,
+      "sha256": "631b361c751d445685be73988375922037c3bd13ee7daa67ef5ae40d96792dc9"
+    },
+    {
+      "path": "transport-regression-red-summary.json",
+      "bytes": 2054,
+      "sha256": "58ba4ddae6df805e1a84d575b3b6a7a417cddc91850f0e20a31e7f42be8851b6"
+    },
+    {
+      "path": "raw-fetch-before/receipt.json",
+      "bytes": 4020,
+      "sha256": "df86541d64ee58ebb5426da05f6d55a82bb72fd8e1d04a9c1f824dfbd2e8a229"
+    },
+    {
+      "path": "raw-fetch-before/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw-fetch-before/stdout.jsonl",
+      "bytes": 4224,
+      "sha256": "99b616cd77a1d557a22339e0a92b1bc678d98f9aaa6bf07039ff3e25c49d7e5b"
+    },
+    {
+      "path": "oversize-format-before/receipt.json",
+      "bytes": 3007,
+      "sha256": "e22f85e4ebf42e06ba5ed4375d2c5588c804b4700e98a8538835399b2600e44a"
+    },
+    {
+      "path": "oversize-format-before/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "oversize-format-before/stdout.jsonl",
+      "bytes": 2456,
+      "sha256": "06bf5ef08fcfacba4d260559c54dd8671293b1a1af886764ad543320d1af702f"
+    }
+  ]
+}

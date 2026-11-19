@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-19T06:05:52.204461+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "review_kind": "Independent static source/test review only",
+  "base": "eafcd80fdfbd7ff678a7a04fb9a9a98b5330ad00",
+  "source": "231a5c5139c2c2d03cbf9739fd074e5a9e59f61b",
+  "source_tree": "2d7a89b67336058168a69fc9d394ab736347e4f2",
+  "changed_paths": [
+    "packages/quds_mail_core/CHANGELOG.md",
+    "packages/quds_mail_core/README.md",
+    "packages/quds_mail_core/lib/src/model/message.dart",
+    "packages/quds_mail_core/lib/src/ports/provider.dart",
+    "packages/quds_mail_core/test/models_test.dart",
+    "packages/quds_mail_store/CHANGELOG.md",
+    "packages/quds_mail_store/README.md",
+    "packages/quds_mail_store/lib/src/codec.dart",
+    "packages/quds_mail_store/lib/src/repository.dart",
+    "packages/quds_mail_store/lib/src/schema/database.dart",
+    "packages/quds_mail_store/test/codec_test.dart",
+    "packages/quds_mail_store/test/migration_test.dart",
+    "packages/quds_mail_store/test/repository_test.dart"
+  ],
+  "findings": [],
+  "conclusion": "No concrete correctness defect identified in authored durable nullable flags increment. Runtime qualification remains required.",
+  "reviewed_invariants": [
+    {
+      "area": "Unknown versus empty",
+      "result": "Optional header flags default null. Codec preserves null distinctly from mask zero; SQL COALESCE retains prior flags when omitted, while zero clears all observed standard bits."
+    },
+    {
+      "area": "Identity and isolation",
+      "result": "Existing exact account/id/remote collision checks precede upsert. Remote identity encoding includes mailbox and UIDVALIDITY; MailSyncPage validates IMAP mailbox ownership. Reset with new identity does not inherit old flag bits."
+    },
+    {
+      "area": "Transactions",
+      "result": "Flag mutation shares sync transaction with records, memberships, tombstones and cursor CAS. Fault/cancel prevents commit. Existing successful-commit stream publication is unchanged."
+    },
+    {
+      "area": "Migration",
+      "result": "Immutable v1/v2 definitions retained. v1 runs v2 then v3; v2 runs v3 only. ALTER and user_version=3 occur in one explicit transaction; existing rows get NULL. Existing v2 FTS/index_state not recreated. Unknown source versions rejected."
+    },
+    {
+      "area": "Persistence validation",
+      "result": "Database CHECK permits only NULL or integer 0..31. Codec independently rejects out-of-range masks with fixed redacted error. Flags included in logical quota accounting."
+    },
+    {
+      "area": "Consumers",
+      "result": "All _header callers select message .* or SELECT *; search/watch/reindex/cache source projection can read flags. No Dart IO/Flutter dependency added to core."
+    },
+    {
+      "area": "Tests",
+      "result": "Cases distinguish unknown/empty and exercise individual/all masks, identity conflict, reset isolation, rollback before cursor, search/watch, file reopen, preservation of drafts/outbox and existing FTS, failed v2 upgrade rollback, future-version rejection."
+    }
+  ],
+  "not_executed": [
+    "Dart formatter",
+    "Dart analysis",
+    "Dart/Flutter tests",
+    "Database runtime probes"
+  ],
+  "author_notified": true,
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

@@ -1,0 +1,159 @@
+{
+  "accepted": true,
+  "audit_kind": "Independent preserved-evidence verification and source-continuity audit; no fresh application test execution",
+  "qualified_source": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "integrated_source": "ebe0498a8ddd118dd579698cab3ddc281a630b11",
+  "archive": {
+    "path": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-final.tar.xz",
+    "bytes": 885396,
+    "sha256": "f35b1a2cda7efb23aa86532f20d5580fc2a75c43edddf1def77a9e650c7fa6c6",
+    "member_count": 33,
+    "all_member_names_sizes_hashes_verified": true,
+    "compressed_and_raw_log_bytes_identical": true
+  },
+  "qualification": {
+    "suite_count": 129,
+    "distinct_cases": 2018,
+    "cohorts": [
+      {
+        "name": "engine-review-and-incoming-zotero",
+        "suites": 42,
+        "passed": 717,
+        "excluded_loading_or_lifecycle_cases": 42,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_ends": true,
+        "exact_planned_suites_and_command": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0
+      },
+      {
+        "name": "editor-review-notes-headers-and-zotero",
+        "suites": 73,
+        "passed": 1154,
+        "excluded_loading_or_lifecycle_cases": 103,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_ends": true,
+        "exact_planned_suites_and_command": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0
+      },
+      {
+        "name": "studio-review-and-incoming-navigation",
+        "suites": 10,
+        "passed": 117,
+        "excluded_loading_or_lifecycle_cases": 10,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_ends": true,
+        "exact_planned_suites_and_command": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0
+      },
+      {
+        "name": "incoming-mail-reader",
+        "suites": 4,
+        "passed": 30,
+        "excluded_loading_or_lifecycle_cases": 4,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "complete_starts_and_ends": true,
+        "exact_planned_suites_and_command": true,
+        "terminal_success": true,
+        "layout_or_tap_diagnostics": 0
+      }
+    ],
+    "analysis_targets": 30,
+    "format_targets": 30,
+    "strict_analysis_and_format_commands_verified": true,
+    "ordinary_source_blobs_verified_against_qualified_git": 4992,
+    "source_records": 4995,
+    "environment_records": 11948,
+    "historical_source_environment_and_harness_unchanged": true,
+    "source_and_environment_before_after_identical": true,
+    "workspace_lock_matches_committed_lock": true,
+    "harness_inputs_bound_to_qualified_git": 6
+  },
+  "continuity": {
+    "all_changes_outside_docs_exactly_match_reviewed_mail_delta": true,
+    "changed_paths_outside_docs": [
+      "packages/quds_mail_core/CHANGELOG.md",
+      "packages/quds_mail_core/README.md",
+      "packages/quds_mail_core/lib/src/model/message.dart",
+      "packages/quds_mail_core/lib/src/ports/provider.dart",
+      "packages/quds_mail_core/test/models_test.dart",
+      "packages/quds_mail_store/CHANGELOG.md",
+      "packages/quds_mail_store/README.md",
+      "packages/quds_mail_store/lib/src/codec.dart",
+      "packages/quds_mail_store/lib/src/repository.dart",
+      "packages/quds_mail_store/lib/src/schema/database.dart",
+      "packages/quds_mail_store/test/codec_test.dart",
+      "packages/quds_mail_store/test/migration_test.dart",
+      "packages/quds_mail_store/test/repository_test.dart",
+      "tools/mail/check_store.py",
+      "tools/mail/test_check_store.py"
+    ],
+    "changed_inventory_paths": [
+      "packages/quds_mail_core/CHANGELOG.md",
+      "packages/quds_mail_core/README.md",
+      "packages/quds_mail_core/lib/src/model/message.dart",
+      "packages/quds_mail_core/lib/src/ports/provider.dart",
+      "packages/quds_mail_core/test/models_test.dart",
+      "packages/quds_mail_store/CHANGELOG.md",
+      "packages/quds_mail_store/README.md",
+      "packages/quds_mail_store/lib/src/codec.dart",
+      "packages/quds_mail_store/lib/src/repository.dart",
+      "packages/quds_mail_store/lib/src/schema/database.dart",
+      "packages/quds_mail_store/test/codec_test.dart",
+      "packages/quds_mail_store/test/migration_test.dart",
+      "packages/quds_mail_store/test/repository_test.dart"
+    ],
+    "unchanged_product_groups": {
+      "packages/quds_office_engine/": {
+        "tracked_paths": 913,
+        "exact_git_mode_kind_and_blob_identity": true
+      },
+      "packages/quds_office_editor/": {
+        "tracked_paths": 1573,
+        "exact_git_mode_kind_and_blob_identity": true
+      },
+      "apps/": {
+        "tracked_paths": 136,
+        "exact_git_mode_kind_and_blob_identity": true
+      },
+      "packages/quds_mail_ui/": {
+        "tracked_paths": 24,
+        "exact_git_mode_kind_and_blob_identity": true
+      },
+      "packages/quds_mail_mime/": {
+        "tracked_paths": 17,
+        "exact_git_mode_kind_and_blob_identity": true
+      },
+      "third_party/": {
+        "tracked_paths": 261,
+        "exact_git_mode_kind_and_blob_identity": true
+      }
+    },
+    "analysis_format_and_129_suite_plan_unchanged": true,
+    "changed_historical_harness_inputs": [
+      "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py",
+      "tools/mail/check_store.py"
+    ],
+    "current_lock_and_manifests_unchanged": true
+  },
+  "scope": {
+    "historical_2018_cases_were_not_rerun": true,
+    "full_integrated_source_is_not_identical_to_qualified_source": true,
+    "new_mail_flags_and_migration_require_fresh_validation": true,
+    "mail_ui_tests_overlap_historical_30_cases": true,
+    "fresh_counts_must_be_reported_separately": true,
+    "recommended_fresh_scope": "Full Mail core/store VM and portable Node qualification, four Mail UI suites and MIME consumer tests; preserve the unchanged Office qualification with this explicit source continuity.",
+    "external_acceptance_gates": "Actual offline browser, installed Studio/OS/IME/live Zotero interoperability and independent human linguistic review remain unverified."
+  },
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

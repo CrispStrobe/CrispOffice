@@ -1,0 +1,87 @@
+{
+  "initial_capture_directory": "/workspace/scratch/5c6c66fd3cc3/incoming-audit",
+  "final_capture_directory": "/workspace/scratch/5c6c66fd3cc3/final-incoming-audit",
+  "repositories": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "changes": [
+        {
+          "ref": "refs/heads/codex/document-review-notes-20261118",
+          "before": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6",
+          "after": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+          "excluded_own_ref": false
+        },
+        {
+          "ref": "refs/heads/codex/mail-reader-20261118",
+          "before": "eafcd80fdfbd7ff678a7a04fb9a9a98b5330ad00",
+          "after": "fdf4b1ed5fdd252ffd5519d7b8a52c19ebd0c68f",
+          "excluded_own_ref": true
+        },
+        {
+          "ref": "refs/heads/codex/offline-thesaurus-20261118",
+          "before": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+          "after": "df62b58975bab1f650879fc88f850550a3df5c13",
+          "excluded_own_ref": false
+        },
+        {
+          "ref": "refs/pull/172/head",
+          "before": "eafcd80fdfbd7ff678a7a04fb9a9a98b5330ad00",
+          "after": "fdf4b1ed5fdd252ffd5519d7b8a52c19ebd0c68f",
+          "excluded_own_ref": true
+        },
+        {
+          "ref": "refs/pull/174/head",
+          "before": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+          "after": "df62b58975bab1f650879fc88f850550a3df5c13",
+          "excluded_own_ref": false
+        },
+        {
+          "ref": "refs/pull/175/head",
+          "before": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6",
+          "after": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+          "excluded_own_ref": false
+        }
+      ],
+      "external_ref_count": 385,
+      "capture_finished_utc": "2026-11-19T06:20:51.624395+00:00"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "changes": [],
+      "external_ref_count": 4,
+      "capture_finished_utc": "2026-11-19T06:20:52.823093+00:00"
+    }
+  ],
+  "external_changed_refs": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/document-review-notes-20261118",
+      "before": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6",
+      "after": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "excluded_own_ref": false
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/offline-thesaurus-20261118",
+      "before": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+      "after": "df62b58975bab1f650879fc88f850550a3df5c13",
+      "excluded_own_ref": false
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/174/head",
+      "before": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+      "after": "df62b58975bab1f650879fc88f850550a3df5c13",
+      "excluded_own_ref": false
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/175/head",
+      "before": "8a5dd9baa1884beae3ae69cfe77946adab9d07a6",
+      "after": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "excluded_own_ref": false
+    }
+  ],
+  "cutoff_is_final": true,
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

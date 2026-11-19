@@ -25,10 +25,24 @@ four test files are formatted without changing their behavior.
 
 ## Qualification scope at this checkpoint
 
-New Mail behavior is **pending execution**. The complete `check_store.py` gate
-will run core/store VM and Node tests, strict analysis, formatting, launcher
-controls and browser-entry/worker compilation. The committed consumer plan
-adds all six MIME suites and four Mail UI suites on the final integrated source.
+The flags increment passed at `ebe0498a`: **261 test executions / 191 distinct
+scenarios**, including 199 core/store executions and 62 MIME/UI cases. Strict
+analysis, formatting, 42 Mail runner controls and browser-entry/worker compilation
+passed. Raw logs, receipts and the independent audit are saved in [flags/](flags/)
+and [review/fresh_mail_review.json](review/fresh_mail_review.json).
+
+A later bounded refresh captured Mail `fa284f22` and Zotero `5107eff6`, including
+new native IMAP transport and shared protocol lifecycle changes. Checkpoint
+`3c66d76b` integrates these without changing the earlier qualified flags or Office
+source. Additional transport qualification is **pending execution**. The new
+[32-suite plan](transport-plan.json) covers transport VM/Node, IMAP/POP/SMTP
+regressions, MIME and Mail UI. The full core/store gate will also run again.
+
+Three narrow parser repairs preserve the FormatException subtype contract,
+require one canonical FETCH root, and reject repeated field lists in strict mode.
+The new regression suite preserves exact literal bytes and failure latching.
+Legacy non-strict iteration is unchanged; failed reproductions are retained in
+[diagnostics/](diagnostics/).
 Runtime recovery uses the verified Flutter 3.47.8 / Dart 3.13.7 release, locked
 dependencies and a genuine SQLite native-assets smoke run.
 

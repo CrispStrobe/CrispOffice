@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-19T06:36:02.504813+00:00",
+  "plans": [
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/native-test-plan.json",
+      "sha256": "aa3701b3b61f78ded058d0fb03943a33a597f7fbc6969822846f1250f66867ba",
+      "groups": [
+        {
+          "name": "transport-native",
+          "cwd": "packages/quds_mail_transport",
+          "runner": "dart",
+          "platform": "vm",
+          "tests": [
+            "test/configuration_test.dart",
+            "test/native_provider_test.dart",
+            "test/host_store_integration_test.dart"
+          ]
+        },
+        {
+          "name": "fork-protocol-regressions",
+          "cwd": "third_party/enough_mail",
+          "runner": "dart",
+          "platform": "vm",
+          "tests": [
+            "test/connection_robustness_test.dart",
+            "test/reconnect_state_test.dart",
+            "test/write_failure_test.dart",
+            "test/pop/pop_client_test.dart",
+            "test/pop/pop_framing_test.dart",
+            "test/smtp/smtp_client_test.dart",
+            "test/smtp/smtp_framing_test.dart",
+            "test/smtp/smtp_auth_encoding_test.dart",
+            "test/mime_bare_lf_test.dart",
+            "test/imap/imap_client_test.dart",
+            "test/imap/imap_robustness_test.dart",
+            "test/imap/imap_quoting_test.dart",
+            "test/src/imap/imap_response_test.dart",
+            "test/src/imap/imap_response_reader_test.dart",
+            "test/src/imap/imap_response_line_test.dart",
+            "test/src/imap/fetch_parser_test.dart",
+            "test/src/util/uint8_list_reader_test.dart",
+            "test/mail/mail_client_oauth_test.dart",
+            "test/mail/mail_client_starttls_test.dart",
+            "test/mail/redaction_test.dart",
+            "test/quds_portable_mime_test.dart"
+          ]
+        },
+        {
+          "name": "mime-vm",
+          "cwd": "packages/quds_mail_mime",
+          "runner": "dart",
+          "platform": "vm",
+          "tests": [
+            "test/eml_bytes_test.dart",
+            "test/mime_encodings_test.dart",
+            "test/mime_limits_test.dart",
+            "test/mime_parts_test.dart",
+            "test/mime_review_regressions_test.dart",
+            "test/portable_import_test.dart"
+          ]
+        },
+        {
+          "name": "reader-vm",
+          "cwd": "packages/quds_mail_ui",
+          "runner": "flutter",
+          "platform": "vm",
+          "tests": [
+            "test/controller_test.dart",
+            "test/example_test.dart",
+            "test/message_view_test.dart",
+            "test/presentation_test.dart"
+          ]
+        }
+      ],
+      "test_file_count": 34,
+      "missing_test_paths": []
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/node-test-plan.json",
+      "sha256": "742e24efef60b50cd51ee1f2c810f83941bf7e32f5cd2cb9e6fab11157981c94",
+      "groups": [
+        {
+          "name": "transport-node",
+          "cwd": "packages/quds_mail_transport",
+          "runner": "dart",
+          "platform": "node",
+          "tests": [
+            "test/configuration_test.dart",
+            "test/unsupported_test.dart"
+          ]
+        },
+        {
+          "name": "mime-node",
+          "cwd": "packages/quds_mail_mime",
+          "runner": "dart",
+          "platform": "node",
+          "tests": [
+            "test/eml_bytes_test.dart",
+            "test/mime_encodings_test.dart",
+            "test/mime_limits_test.dart",
+            "test/mime_parts_test.dart",
+            "test/mime_review_regressions_test.dart",
+            "test/portable_import_test.dart"
+          ]
+        },
+        {
+          "name": "fork-portable-node",
+          "cwd": "third_party/enough_mail",
+          "runner": "dart",
+          "platform": "node",
+          "tests": [
+            "test/quds_portable_mime_test.dart"
+          ]
+        }
+      ],
+      "test_file_count": 9,
+      "missing_test_paths": []
+    }
+  ],
+  "assessment": "The expanded native plan covers 34 files including 21 shared-fork suites; the Node plan covers 9 files. All named files exist. Core/store acceptance is explicitly separate.",
+  "actionable_gap": "T12 requires a real stalled-handshake regression. No listed inherited STARTTLS test covers that ownership transfer; they test missing STARTTLS or controlled TLS sequencing. Add the regression to an included transport suite or add its new file to the plan before freezing.",
+  "no_other_actionable_plan_gap_found": true,
+  "runtime_executed_by_reviewer": false
+}

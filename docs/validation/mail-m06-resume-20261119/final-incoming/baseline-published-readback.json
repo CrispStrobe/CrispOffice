@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "source": "GitHub connected API immutable git/commits readback",
+  "commit": "fdf4b1ed5fdd252ffd5519d7b8a52c19ebd0c68f",
+  "tree": "b07269953548a39fa8bb7bfad4c1901351b4c701",
+  "parents": [
+    "c2db80d4caacb4818c06d596566e50f25811d28a"
+  ],
+  "message": "Preserve passing 1230-case Office baseline and exact raw evidence [skip ci]",
+  "expected_tree": "b07269953548a39fa8bb7bfad4c1901351b4c701",
+  "remote_tree_matches_expected": true
+}

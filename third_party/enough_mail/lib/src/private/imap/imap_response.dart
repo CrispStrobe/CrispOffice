@@ -154,6 +154,9 @@ class ImapResponse {
                 _knownParenthesesDataItems.contains(
                   lastSibling.value?.toUpperCase(),
                 )) {
+              if (strict && lastSibling.children != null) {
+                throw const FormatException('Repeated IMAP field list');
+              }
               lastSibling.children ??= <ImapValue>[];
               next = lastSibling;
               parentheses.put(ParenthesizedListType.sibling);
