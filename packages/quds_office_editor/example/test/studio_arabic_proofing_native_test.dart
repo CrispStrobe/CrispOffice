@@ -76,12 +76,23 @@ void main() {
       expect(items, [
         // Rule and dictionary agree on الى → إلى: one item, the rule's.
         ('arabic-writing', 'ar.hamza.initial', 'الى', 'إلى', 'ar-SA'),
-        ('arabic-writing', 'ar.ta-marbuta.final', 'المدرسه', 'المدرسة', 'ar-SA'),
-        ('hunspell-ayaspell-ar', 'hunspell.spelling', 'هاذا', 'هادا', 'ar-SA'),
+        (
+          'arabic-writing',
+          'ar.ta-marbuta.final',
+          'المدرسه',
+          'المدرسة',
+          'ar-SA',
+        ),
+        // The common-misspelling rule and the dictionary agree on هذا.
+        ('arabic-writing', 'ar.spelling.common', 'هاذا', 'هذا', 'ar-SA'),
       ]);
       final merged = summary.issues.first.finding;
       expect(merged.replacements.first, 'إلى');
       expect(merged.replacements.length, greaterThan(1));
+      // Every item merged the dictionary's suggestions behind the rule's.
+      for (final issue in summary.issues) {
+        expect(issue.finding.replacements.length, greaterThan(1));
+      }
     },
     skip: skip,
   );

@@ -104,8 +104,8 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
      (`codesign --verify --deep --strict` passes); the end-to-end test loads
      that bundled dylib with the AyaSpell bundle and checks a Word document
      with `w:bidi`: findings `الى`→`إلى` (one merged item from the rule and
-     the dictionary), `المدرسه`→`المدرسة` (merged), `هاذا` (dictionary only),
-     German run silent. Web release build contains the worker, module and
+     the dictionary), `المدرسه`→`المدرسة` (merged), `هاذا`→`هذا` (merged with
+     the `ar.spelling.common` rule from #184), German run silent. Web release build contains the worker, module and
      wasm under `proofing/`. Android arm64-v8a library cross-built (NDK 28,
      static libc++, only libc/libm/libdl needed) and installed into `jniLibs`;
      `flutter build apk --release --target-platform android-arm64` packages it
