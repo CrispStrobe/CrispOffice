@@ -1,0 +1,52 @@
+{
+  "component": {
+    "commit": "8e40ad88945ca2e0b5e22f311835664c67501fee",
+    "files": {
+      "LICENSE": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+      "src/arabic_morph.cpp": "6173cd83d8e420674fd4218e13f4006621823c978ead7a10f62fdd388616c38b",
+      "src/arabic_morph.h": "03e801985a06b08ef29141c26518e26b185c24c415044fb0554ca039d11a5619",
+      "src/arabic_morph_tables.h": "72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174",
+      "src/core/env_gate.h": "2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e",
+      "src/core/json.h": "7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589",
+      "src/core/json_value.h": "f6af418a13cc5285f977fd29c5644d7fc2cf957f5c4b6d31a3bf0c33243dacf4",
+      "src/core/py_str.h": "1936161cfea194de155ec58601a0ca7f36577f3c8973231e704a6dc0fcd315e7",
+      "src/core/py_str_tables.h": "c66cdf3e8b2dc40ee2e09e8dc2411af0ad7a43dedc107ce867d939aa7d55c8e8",
+      "src/core/sha256.h": "409ab494061b042d4a84698b7bf2caf6dd68f6639cbeb532cb47a2f2337d9a6f",
+      "src/core/shortest_double.c": "9d4e8d9d2be344ba17d141378274f9a19192b49e6995a9edb1e80f589c1e71c2",
+      "src/core/shortest_double.h": "51f642d86c72d730426338ede6f603697dde1da556d96b53dffec9781416c60c",
+      "src/core/third_party/ryu/LICENSE-Apache2": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "src/core/third_party/ryu/README.md": "8ecc8a0aec4481a424349da8267c2cf76733a9b4187a981e8154ea648cd40e5b",
+      "src/core/third_party/ryu/common.h": "0bbd71d26da6193e678d0776cf418f43f287c73d6fd6725353df0aadf70f2a19",
+      "src/core/third_party/ryu/d2s.c": "d24323c7eb77d63f1e52c415212b50060b776f0883525d907d04954fcd48cf64",
+      "src/core/third_party/ryu/d2s_full_table.h": "2618f6e5fae6c4443899b184efe3d08295dd267dc9f1a994c983c7caca59ebe6",
+      "src/core/third_party/ryu/d2s_intrinsics.h": "1d05702f2edacce428223d4b43dd3095c1bd1f3ad30128ce1761d84356dddc7d",
+      "src/core/third_party/ryu/d2s_small_table.h": "54fec51f1c5eed786a8ce6de881b81582dd71f0812dcd4324b37396617bb0fa9",
+      "src/core/third_party/ryu/digit_table.h": "8b782573abc0b8554d74163ae6c02f0beb5c30d1e63eaebdb0ddf2c98d817e01",
+      "src/core/third_party/ryu/ryu.h": "b7feab0ba1df5e9ef3d602f386592ad152491405e49b408fb21c0e0e9e6bfb16",
+      "tools/arabic_morph/THIRD_PARTY_NOTICES": "6e74d4648626177a13a8b41d45f62af1a6c97b7062e55c38c52c74c28e136e21",
+      "tools/arabic_morph/notices/CPython-LICENSE": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+      "tools/arabic_morph/notices/Ryu-LICENSE-Apache2": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "tools/arabic_morph/notices/Unicode-LICENSE.txt": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+      "tools/arabic_morph/notices/camel_tools-LICENSE": "7a3ef160e8957145490ff66591aa9cb8cb08601a2e9fb1673c5fb7af74c727f2"
+    },
+    "includes": [
+      "camel_tools 1.6.0 (v1.6.0, be79ca9fc493f0df795375a7255bafef246a802d), MIT, ported in arabic_morph.cpp",
+      "Ryu (ulfjack/ryu 4c0618b0e44f7ef027ebae05d2cc7812048f7c8f), Apache-2.0 option, unmodified",
+      "Unicode 15.0.0 general categories and CPython 3.12 str.isspace tables (generated data)"
+    ],
+    "license": "MIT",
+    "name": "crispembed-ar-morph",
+    "pull_request": 254,
+    "source": "https://github.com/CrispStrobe/CrispEmbed"
+  },
+  "notices": {
+    "CPython-LICENSE": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+    "CrispEmbed-LICENSE": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+    "Ryu-LICENSE-Apache2": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "THIRD_PARTY_NOTICES": "6e74d4648626177a13a8b41d45f62af1a6c97b7062e55c38c52c74c28e136e21",
+    "Unicode-LICENSE.txt": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+    "camel_tools-LICENSE": "7a3ef160e8957145490ff66591aa9cb8cb08601a2e9fb1673c5fb7af74c727f2"
+  },
+  "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) is user-downloaded data, never part of the binary.",
+  "schema_version": 1
+}
