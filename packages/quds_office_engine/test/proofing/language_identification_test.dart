@@ -71,16 +71,16 @@ void main() {
 
   test('Latin detection needs letters, confidence and a matching script', () {
     const policy = LanguageDetectionPolicy();
-    const long = ScriptSegment(0, 12, TextScript.latin, 12);
-    const short = ScriptSegment(0, 11, TextScript.latin, 11);
+    const long = ScriptSegment(0, 20, TextScript.latin, 20);
+    const short = ScriptSegment(0, 19, TextScript.latin, 19);
     expect(policy.needsClassifier(short), isFalse);
     expect(policy.needsClassifier(long), isTrue);
     expect(
-      policy.decide(long, const [LanguageGuess('fr', 0.9)]).language,
+      policy.decide(long, const [LanguageGuess('fr', 0.95)]).language,
       'fr',
     );
     expect(
-      policy.decide(long, const [LanguageGuess('fr', 0.899)]).language,
+      policy.decide(long, const [LanguageGuess('fr', 0.949)]).language,
       isNull,
     );
     expect(
@@ -114,13 +114,13 @@ void main() {
 
   test('complex-script alternatives require a long confident matching run', () {
     const policy = LanguageDetectionPolicy();
-    const arabic = ScriptSegment(0, 12, TextScript.arabic, 12);
-    const hebrew = ScriptSegment(0, 12, TextScript.hebrew, 12);
-    final persian = policy.decide(arabic, const [LanguageGuess('fa', 0.9)]);
+    const arabic = ScriptSegment(0, 20, TextScript.arabic, 20);
+    const hebrew = ScriptSegment(0, 20, TextScript.hebrew, 20);
+    final persian = policy.decide(arabic, const [LanguageGuess('fa', 0.95)]);
     expect(persian.language, 'fa');
     expect(persian.byScript, isFalse);
     expect(
-      policy.decide(arabic, const [LanguageGuess('fa', 0.899)]).language,
+      policy.decide(arabic, const [LanguageGuess('fa', 0.949)]).language,
       'ar',
     );
     expect(
@@ -128,7 +128,7 @@ void main() {
       'ar',
     );
     expect(
-      policy.decide(hebrew, const [LanguageGuess('yi', 0.9)]).language,
+      policy.decide(hebrew, const [LanguageGuess('yi', 0.95)]).language,
       'yi',
     );
     expect(
@@ -312,7 +312,16 @@ void main() {
           resolveDetectedLanguage(
             current: current,
             currentIsDefault: isDefault,
-            detected: detected,
+            detection: detected == null
+                ? null
+                : DetectedSegment(
+                    start: 0,
+                    end: 20,
+                    script: languageScript(detected),
+                    language: detected,
+                    confidence: 1,
+                    byScript: false,
+                  ),
           ),
           expected,
         );

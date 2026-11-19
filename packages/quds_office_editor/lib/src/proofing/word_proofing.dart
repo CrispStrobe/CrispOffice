@@ -191,6 +191,15 @@ final class WordProofingSession extends ChangeNotifier {
   final Duration debounce;
   late OfficeProofingService _service;
   OfficeProofingService? _manualService;
+  ParagraphLanguageDetector? _languageDetector;
+  bool _automaticLanguageDetection = true;
+
+  /// Detected languages of the paragraph texts seen by the latest captures.
+  /// Pruned to the current document's texts at the start of each check, so
+  /// a long pass never loses results halfway through.
+  final Map<String, ParagraphLanguages> _detections = {};
+  final Set<String> _missingDetections = {};
+  final Set<String> _capturedTexts = {};
   final Set<String> _ignoredRules = {};
   final Set<String> _ignoredOnce = {};
   final Expando<String> _ids = Expando<String>('proofing paragraph id');
@@ -369,7 +378,89 @@ final class WordProofingSession extends ChangeNotifier {
   String get _configurationKey =>
       '$_configuration|${_service.configurationKey}|'
       '${_manualService?.configurationKey ?? ''}|${vocabulary.revision}|'
-      '$language|${_ignoredRules.join(',')}';
+      '$language|${_ignoredRules.join(',')}|'
+      '${_detectionActive ? 'lid' : ''}';
+
+  bool get _detectionActive =>
+      _automaticLanguageDetection && _languageDetector != null;
+
+  /// The paragraph language detector used for proofing routing, if any.
+  ParagraphLanguageDetector? get languageDetector => _languageDetector;
+
+  /// Installs (or removes) automatic language detection. Detection only
+  /// steers which providers check a range: a confidently detected language
+  /// replaces a *default* language (none set, or the document default), an
+  /// explicit language always wins, and the document is never changed
+  /// (see [resolveDetectedLanguage]). The session does not own [detector].
+  void configureLanguageDetection(ParagraphLanguageDetector? detector) {
+    if (_disposed) throw StateError('The proofing session is disposed.');
+    if (identical(_languageDetector, detector)) return;
+    _languageDetector = detector;
+    _detections.clear();
+    _configuration++;
+    _cache.clear();
+    refresh();
+  }
+
+  /// Whether automatic language detection steers proofing (on by default;
+  /// it has no effect until a detector is configured).
+  bool get automaticLanguageDetection => _automaticLanguageDetection;
+
+  set automaticLanguageDetection(bool value) {
+    if (_disposed || _automaticLanguageDetection == value) return;
+    _automaticLanguageDetection = value;
+    _configuration++;
+    _cache.clear();
+    refresh();
+  }
+
+  /// The detection already available for [text] (no classifier call), or
+  /// null when detection is off or has not run for it yet.
+  ParagraphLanguages? detectedLanguages(String text) {
+    if (!_detectionActive) return null;
+    return _detections[text] ?? _languageDetector!.cached(text);
+  }
+
+  /// Detects [texts] now (cached), regardless of whether automatic
+  /// detection steers proofing. Returns null without a detector.
+  Future<List<ParagraphLanguages>?> detectLanguages(List<String> texts) async {
+    final detector = _languageDetector;
+    if (_disposed || detector == null) return null;
+    final results = await detector.detectAll(texts);
+    for (final result in results) {
+      if (_detectionActive) _detections[result.text] = result;
+    }
+    return results;
+  }
+
+  ParagraphLanguages? _detectionForCapture(String text) {
+    if (!_detectionActive) return null;
+    _capturedTexts.add(text);
+    final hit = _detections[text];
+    if (hit != null) return hit;
+    final cached = _languageDetector!.cached(text);
+    if (cached != null) return _detections[text] = cached;
+    if (scriptSegments(text).isNotEmpty) _missingDetections.add(text);
+    return null;
+  }
+
+  /// Runs detection for the paragraphs the last capture could not resolve.
+  /// Returns whether anything new was detected.
+  Future<bool> _detectMissing() async {
+    final detector = _languageDetector;
+    if (!_detectionActive || detector == null || _missingDetections.isEmpty) {
+      _missingDetections.clear();
+      return false;
+    }
+    final texts = _missingDetections.toList();
+    _missingDetections.clear();
+    final results = await detector.detectAll(texts);
+    if (!identical(detector, _languageDetector)) return false;
+    for (final result in results) {
+      _detections[result.text] = result;
+    }
+    return true;
+  }
 
   /// Replacing a provider configuration invalidates pending checks immediately.
   void configure(OfficeProofingService service) {
@@ -993,7 +1084,23 @@ final class WordProofingSession extends ChangeNotifier {
     _observedRevision = revision;
     _observedConfiguration = configuration;
     final documentId = _documentIds[document] ??= 'document-${++_nextId}';
-    final captured = _capture(document);
+    _capturedTexts.clear();
+    var captured = _capture(document);
+    if (_missingDetections.isNotEmpty) {
+      // Paragraph detection is fast (well under a millisecond each); route
+      // the whole pass with it rather than checking twice.
+      if (await _detectMissing()) {
+        if (_disposed ||
+            generation != _generation ||
+            !identical(document, _document()) ||
+            revision != _revision() ||
+            configuration != _configurationKey) {
+          return _summary;
+        }
+        captured = _capture(document);
+      }
+    }
+    _detections.removeWhere((text, _) => !_capturedTexts.contains(text));
     _publishCached(
       captured,
       documentId: documentId,
@@ -1316,7 +1423,18 @@ final class WordProofingSession extends ChangeNotifier {
         final barriers = <int>{};
         final insertionBarriers = <int>{};
         final structure = <Object?>[];
-        final languageRuns = <({int start, int end, String language})>[];
+        final languageRuns =
+            <
+              ({
+                int start,
+                int end,
+                String language,
+                WmlRun run,
+                ({String? language, bool isDefault}) latin,
+                ({String? language, bool isDefault}) complex,
+              })
+            >[];
+        final detection = _detectionForCapture(text);
         var hasField = fieldDepth > 0;
         var offset = 0;
         var locked =
@@ -1372,6 +1490,19 @@ final class WordProofingSession extends ChangeNotifier {
                     ) ??
                     language,
               ),
+              run: inline,
+              latin: wordRunLanguageSlot(
+                inline,
+                paragraph,
+                complexScript: false,
+                documentLanguage: document.proofingLanguage,
+              ),
+              complex: wordRunLanguageSlot(
+                inline,
+                paragraph,
+                complexScript: true,
+                documentComplexScriptLanguage: document.complexScriptLanguage,
+              ),
             ));
             offset = end;
           } else {
@@ -1424,6 +1555,7 @@ final class WordProofingSession extends ChangeNotifier {
           [
             for (final run in languageRuns) [run.start, run.end, run.language],
           ],
+          detection?.key,
         ]);
         final previous = _snapshotCache[paragraph];
         if (previous != null &&
@@ -1452,7 +1584,11 @@ final class WordProofingSession extends ChangeNotifier {
             languageIndex++;
           }
           final tag = languageIndex < languageRuns.length
-              ? languageRuns[languageIndex].language
+              ? _routedLanguage(
+                  languageRuns[languageIndex],
+                  detection?.segmentAt(start),
+                  document,
+                )
               : language;
           if (!barriers.contains(start) &&
               ranges.isNotEmpty &&
@@ -1644,6 +1780,43 @@ final class WordProofingSession extends ChangeNotifier {
         ),
     ],
   );
+
+  /// The proofing language of text at one position: the run's own Word
+  /// language, unless detection found a language for the script segment
+  /// and the run's slot for that script only holds a default.
+  String _routedLanguage(
+    ({
+      int start,
+      int end,
+      String language,
+      WmlRun run,
+      ({String? language, bool isDefault}) latin,
+      ({String? language, bool isDefault}) complex,
+    })
+    run,
+    DetectedSegment? segment,
+    WmlDocument document,
+  ) {
+    if (segment == null || segment.language == null) return run.language;
+    final complex =
+        run.run.properties.complexScript == true || segment.script.isComplex;
+    final latinLanguage =
+        run.latin.language ?? document.proofingLanguage ?? language;
+    final slot = complex ? run.complex : run.latin;
+    final current = complex
+        ? run.complex.language ??
+              document.complexScriptLanguage ??
+              latinLanguage
+        : latinLanguage;
+    final routed = resolveDetectedLanguage(
+      current: current,
+      currentIsDefault: slot.isDefault,
+      detection: segment,
+      keepDefaultConfidence:
+          _languageDetector?.policy.keepDefaultConfidence ?? 0.01,
+    );
+    return routed == null ? run.language : normalizeProofingLanguage(routed);
+  }
 
   @override
   void dispose() {

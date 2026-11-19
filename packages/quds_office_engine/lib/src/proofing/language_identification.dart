@@ -235,6 +235,7 @@ final class DetectedSegment {
     required this.language,
     required this.confidence,
     required this.byScript,
+    this.guesses = const [],
   });
 
   final int start;
@@ -252,6 +253,22 @@ final class DetectedSegment {
   /// a confident classifier answer.
   final bool byScript;
 
+  /// The classifier's candidates for this run, best first (empty when it
+  /// was not asked).
+  final List<LanguageGuess> guesses;
+
+  /// The classifier's probability for [language] (primary subtag match),
+  /// or 0 when it is not among [guesses].
+  double probabilityOf(String language) {
+    final primary = primaryLanguageSubtag(language);
+    for (final guess in guesses) {
+      if (primaryLanguageSubtag(guess.language) == primary) {
+        return guess.confidence;
+      }
+    }
+    return 0;
+  }
+
   @override
   String toString() =>
       '$script[$start,$end) ${language ?? '-'}'
@@ -263,10 +280,11 @@ final class DetectedSegment {
 /// detection").
 final class LanguageDetectionPolicy {
   const LanguageDetectionPolicy({
-    this.minLetters = 12,
-    this.minConfidence = 0.90,
-    this.complexScriptMinLetters = 12,
-    this.complexScriptMinConfidence = 0.90,
+    this.minLetters = 20,
+    this.minConfidence = 0.95,
+    this.complexScriptMinLetters = 20,
+    this.complexScriptMinConfidence = 0.95,
+    this.keepDefaultConfidence = 0.01,
     this.arabicScriptAlternatives = const {'fa', 'ur', 'ps', 'ku', 'sd', 'ug'},
     this.hebrewScriptAlternatives = const {'yi'},
   });
@@ -282,6 +300,11 @@ final class LanguageDetectionPolicy {
   /// is given a language other than `ar` / `he`.
   final int complexScriptMinLetters;
   final double complexScriptMinConfidence;
+
+  /// A default language is kept when the classifier still gives it at
+  /// least this probability among its candidates (see
+  /// [resolveDetectedLanguage]).
+  final double keepDefaultConfidence;
 
   final Set<String> arabicScriptAlternatives;
   final Set<String> hebrewScriptAlternatives;
@@ -306,6 +329,7 @@ final class LanguageDetectionPolicy {
           language: language,
           confidence: confidence,
           byScript: script,
+          guesses: guesses,
         );
     switch (segment.script) {
       case TextScript.arabic || TextScript.hebrew:
@@ -521,20 +545,32 @@ String primaryLanguageSubtag(String tag) =>
 /// [currentIsDefault] says whether [current] is only a default: no language
 /// set on the text, or one equal to the document default (Word writes the
 /// document default onto ordinary text, so it says nothing about the text).
-/// An explicit language always wins. A default yields to a [detected]
-/// language with a different primary subtag; with the same primary subtag
-/// the current tag is kept, so its region (de-CH, en-GB) still applies.
+///
+/// * An explicit language always wins.
+/// * A default yields to the [detection]'s language when that has a
+///   different primary subtag, unless the classifier still gives the
+///   default at least [keepDefaultConfidence] (CLD3 confuses close
+///   languages; a default that is still a candidate is kept).
+/// * With the same primary subtag the current tag is kept, so its region
+///   (de-CH, en-GB) still applies.
 String? resolveDetectedLanguage({
   required String? current,
   required bool currentIsDefault,
-  required String? detected,
+  required DetectedSegment? detection,
+  double keepDefaultConfidence = 0.01,
 }) {
+  final detected = detection?.language;
   if (detected == null || (current != null && !currentIsDefault)) {
     return current;
   }
-  if (current != null &&
-      primaryLanguageSubtag(current) == primaryLanguageSubtag(detected)) {
-    return current;
+  if (current != null) {
+    if (primaryLanguageSubtag(current) == primaryLanguageSubtag(detected)) {
+      return current;
+    }
+    if (detection!.guesses.isNotEmpty &&
+        detection.probabilityOf(current) >= keepDefaultConfidence) {
+      return current;
+    }
   }
   return normalizeProofingLanguage(detected);
 }

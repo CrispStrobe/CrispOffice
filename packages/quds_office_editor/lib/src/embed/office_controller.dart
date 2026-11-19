@@ -48,12 +48,41 @@ final class WordTextProofingTarget {
     required this.language,
     required this.checkingEnabled,
     required this.unavailableReason,
+    this.scriptLanguages = const {},
+    this.detectedLanguages = const {},
+    this.detectionPending = false,
   });
 
   final bool isSelection;
 
   /// Effective language, or null when the target contains several languages.
   final String? language;
+
+  /// The Word language of the target's text per script, in text order:
+  /// `w:lang/@w:val` for Latin (and other non-complex) scripts,
+  /// `w:lang/@w:bidi` for Arabic and Hebrew. A null value means the text of
+  /// that script has several languages.
+  final Map<TextScript, String?> scriptLanguages;
+
+  /// Languages automatic detection found per script (null: several). Empty
+  /// when detection is off, has not run yet ([detectionPending]) or found
+  /// nothing certain.
+  final Map<TextScript, String?> detectedLanguages;
+
+  /// Detection is configured but has not run for this text yet; hosts may
+  /// call [WordEditorController.detectTextProofingLanguages].
+  final bool detectionPending;
+
+  /// Whether "Apply detected language" would change a script's language.
+  bool get canApplyDetectedLanguages =>
+      canEdit &&
+      detectedLanguages.entries.any((entry) {
+        final detected = entry.value;
+        if (detected == null) return true;
+        final current = scriptLanguages[entry.key];
+        return current == null ||
+            primaryLanguageSubtag(current) != primaryLanguageSubtag(detected);
+      });
 
   /// Whether this text permits proofing; null denotes a mixed selection.
   /// This is independent of the session's Check as you type preference.
@@ -9239,6 +9268,9 @@ class WordEditorController extends OfficeController {
     }
     final ranges = <_WordTextProofingRange>[];
     final languages = <String>{};
+    final scriptLanguages = <TextScript, Set<String>>{};
+    final detectedLanguages = <TextScript, Set<String>>{};
+    var detectionPending = false;
     final enabledValues = <bool>{};
     String? unavailable;
     if (!config.allowsMutation ||
@@ -9322,6 +9354,27 @@ class WordEditorController extends OfficeController {
             ),
           ),
         );
+        if (proofing.automaticLanguageDetection &&
+            proofing.languageDetector != null) {
+          final detection = proofing.detectedLanguages(text);
+          if (detection == null) {
+            detectionPending |= scriptSegments(
+              text.substring(from, to),
+            ).isNotEmpty;
+          } else {
+            for (final segment in detection.segments) {
+              final language = segment.language;
+              if (language == null ||
+                  segment.end <= from ||
+                  segment.start >= to) {
+                continue;
+              }
+              detectedLanguages
+                  .putIfAbsent(segment.script, () => <String>{})
+                  .add(language);
+            }
+          }
+        }
       }
       var offset = 0;
       for (final inline in paragraph.inlines) {
@@ -9346,6 +9399,28 @@ class WordEditorController extends OfficeController {
                     ),
                     properties: inline.properties,
                   );
+            final latinLanguage = normalizeProofingLanguage(
+              inline.properties.proofingLanguage ??
+                  paragraph.properties.proofingLanguage ??
+                  document.proofingLanguage ??
+                  'de-DE',
+            );
+            for (final segment in scriptSegments(fragment.text)) {
+              final complex =
+                  inline.properties.complexScript == true ||
+                  segment.script.isComplex;
+              scriptLanguages
+                  .putIfAbsent(segment.script, () => <String>{})
+                  .add(
+                    complex
+                        ? normalizeProofingLanguage(
+                            inline.properties.complexScriptLanguage ??
+                                document.complexScriptLanguage ??
+                                latinLanguage,
+                          )
+                        : latinLanguage,
+                  );
+            }
             if (wordRunUsesLatinScriptLanguage(fragment)) {
               languages.add(
                 normalizeProofingLanguage(
@@ -9420,6 +9495,15 @@ class WordEditorController extends OfficeController {
       language: languages.length == 1 ? languages.single : null,
       checkingEnabled: enabledValues.length == 1 ? enabledValues.single : null,
       unavailableReason: unavailable,
+      scriptLanguages: Map.unmodifiable({
+        for (final entry in scriptLanguages.entries)
+          entry.key: entry.value.length == 1 ? entry.value.single : null,
+      }),
+      detectedLanguages: Map.unmodifiable({
+        for (final entry in detectedLanguages.entries)
+          entry.key: entry.value.length == 1 ? entry.value.single : null,
+      }),
+      detectionPending: detectionPending,
     );
   }
 
@@ -9662,6 +9746,99 @@ class WordEditorController extends OfficeController {
                 ..proofingLanguage = normalized
                 ..complexScriptLanguage = normalized,
             ),
+    );
+  }
+
+  /// Runs automatic language detection for the paragraphs of [target] (when
+  /// a detector is configured), so a fresh [textProofingTarget] shows the
+  /// detected languages. Never changes the document.
+  Future<void> detectTextProofingLanguages(
+    WordTextProofingTarget target,
+  ) async {
+    final texts = {for (final range in target._ranges) range.paragraph.text};
+    if (texts.isEmpty || proofing.languageDetector == null) return;
+    await proofing.detectLanguages(texts.toList());
+    if (!isDisposed) notifyListeners();
+  }
+
+  /// "Apply detected language": writes the detected language of each script
+  /// segment of [target] into the document, `w:lang/@w:val` for Latin (and
+  /// other non-complex) text and `w:lang/@w:bidi` for Arabic- and
+  /// Hebrew-script text (or any run marked complex script). A slot whose
+  /// language already has the detected primary subtag keeps its tag (so
+  /// de-CH stays de-CH). One undoable history command covers the selection.
+  /// Returns false when the target is stale, not editable or has no
+  /// detection; true (possibly without changes) otherwise.
+  bool applyDetectedTextProofingLanguages({
+    required WordTextProofingTarget target,
+  }) {
+    if (target.detectedLanguages.isEmpty) return false;
+    final documentLanguage = document.proofingLanguage;
+    final documentComplex = document.complexScriptLanguage;
+    return _setTextProofingOption(
+      target,
+      prepare: (source, preview, start, end) {
+        final detection = proofing.detectedLanguages(source.text);
+        if (detection == null) return false;
+        var changed = false;
+        for (final segment in detection.segments) {
+          final detected = segment.language;
+          if (detected == null) continue;
+          final from = segment.start < start ? start : segment.start;
+          final to = segment.end > end ? end : segment.end;
+          if (from >= to) continue;
+          final tag = normalizeProofingLanguage(
+            wordLanguageTagForDetected(detected),
+          );
+          final range = WmlRunEdit.normalizeRange(preview, from, to);
+          if (range.start == range.end) continue;
+          WmlRunEdit.splitProofingRange(preview, range.start, range.end);
+          final latin = <WmlRunProps>{};
+          final complex = <WmlRunProps>{};
+          var offset = 0;
+          for (final run in preview.inlines.whereType<WmlRun>()) {
+            final runEnd = offset + run.text.length;
+            if (offset >= range.start &&
+                runEnd <= range.end &&
+                runEnd > offset) {
+              final useComplex =
+                  run.properties.complexScript == true ||
+                  segment.script.isComplex;
+              final uses = useComplex
+                  ? wordRunUsesComplexScriptLanguage(run)
+                  : wordRunUsesLatinScriptLanguage(run);
+              final current = useComplex
+                  ? run.properties.complexScriptLanguage ?? documentComplex
+                  : run.properties.proofingLanguage ??
+                        preview.properties.proofingLanguage ??
+                        documentLanguage;
+              if (uses &&
+                  (current == null ||
+                      primaryLanguageSubtag(current) !=
+                          primaryLanguageSubtag(tag))) {
+                (useComplex ? complex : latin).add(run.properties);
+              }
+            }
+            offset = runEnd;
+          }
+          if (latin.isEmpty && complex.isEmpty) continue;
+          changed |= _prepareTextProofingRuns(
+            preview,
+            range.start,
+            range.end,
+            needsChange: (properties) =>
+                latin.contains(properties) || complex.contains(properties),
+            update: (properties) {
+              if (complex.contains(properties)) {
+                properties.complexScriptLanguage = tag;
+              } else {
+                properties.proofingLanguage = tag;
+              }
+            },
+          );
+        }
+        return changed;
+      },
     );
   }
 
