@@ -8,6 +8,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 
+import 'support/studio_document_mode.dart';
 import 'support/studio_test_settings.dart';
 
 class _CommentProofing extends OfficeProofingProvider {
@@ -366,7 +367,7 @@ void main() {
       await _enter(tester, 1, 'Kept while viewing');
       await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
       await _pump(tester);
-      await _tapCommand(tester, 'View');
+      await selectStudioDocumentMode(tester, OfficeInteractionMode.viewing);
       expect(_field(1), findsNothing);
       expect(find.byKey(const ValueKey('studio-comment-1')), findsOneWidget);
       expect(controller.document.comments, hasLength(2));
@@ -695,7 +696,7 @@ void main() {
     });
     await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
     await _pump(tester);
-    await _tapCommand(tester, 'Select');
+    await selectStudioDocumentMode(tester, OfficeInteractionMode.selecting);
     final finder = find.byKey(const ValueKey('studio-comment-canvas-1'));
     expect(finder, findsOneWidget);
     final canvas = tester.widget<WordCanvas>(finder);
@@ -774,7 +775,7 @@ void main() {
     expect(controller.document.paragraphs.single.text, 'Alpha beta gamma.');
     expect(controller.contentRevision, revision);
     expect(controller.canUndo, isFalse);
-    await _tapCommand(tester, 'View');
+    await selectStudioDocumentMode(tester, OfficeInteractionMode.viewing);
     expect(finder, findsNothing);
     final card = find.byKey(const ValueKey('studio-comment-1'));
     expect(card, findsOneWidget);
@@ -787,7 +788,7 @@ void main() {
     await _pump(tester);
     expect(find.byKey(const Key('office-context-menu')), findsNothing);
     expect(controller.contentRevision, revision);
-    await _tapCommand(tester, 'Select');
+    await selectStudioDocumentMode(tester, OfficeInteractionMode.selecting);
     expect(finder, findsOneWidget);
     expect(tester.widget<WordCanvas>(finder).config.allowsMutation, isFalse);
     await _close(tester);
@@ -811,7 +812,7 @@ void main() {
       });
       await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
       await _pump(tester);
-      await _tapCommand(tester, 'Select');
+      await selectStudioDocumentMode(tester, OfficeInteractionMode.selecting);
       expect(controller.config.allowsMutation, isFalse);
       expect(controller.config.allowsSelection, isTrue);
       controller.documentCaret
@@ -849,7 +850,7 @@ void main() {
       expect(controller.document.paragraphs.single.text, 'Alpha beta gamma.');
       expect(controller.contentRevision, revision);
       expect(controller.canUndo, isFalse);
-      await _tapCommand(tester, 'View');
+      await selectStudioDocumentMode(tester, OfficeInteractionMode.viewing);
       expect(controller.config.allowsSelection, isFalse);
       canvas.onContextMenu!(hit);
       await _pump(tester);
@@ -866,7 +867,7 @@ void main() {
     final hit = _commentHit(tester, controller, 1);
     await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
     await _pump(tester);
-    await _tapCommand(tester, 'Select');
+    await selectStudioDocumentMode(tester, OfficeInteractionMode.selecting);
     final comment = controller.document.comments.first;
     comment.paragraphs.clear();
     controller.selectComment(1);
@@ -1282,7 +1283,7 @@ void main() {
     final delete = _menuAction(tester, 'Delete comment').onTap!;
     await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
     await _pump(tester);
-    await _tapCommand(tester, 'View');
+    await selectStudioDocumentMode(tester, OfficeInteractionMode.viewing);
     expect(controller.config.allowsMutation, isFalse);
     apply();
     resolve();

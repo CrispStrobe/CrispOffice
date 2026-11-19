@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add a Page Layout dialog for numeric paper, margins, header/footer distances,
+  equal columns and section options. Apply validated drafts as one undo step,
+  preserve imported section properties, and reject stale document targets.
+
 - Make Insert commands compact and configurable, save ribbon layout preferences,
   simplify the title bar, and provide desktop File menus and native macOS window
   controls. Use CrispOffice for the default reviewer and newly created comments.
@@ -13,6 +17,8 @@ All notable changes to `quds_office_editor` are documented here.
 - Add PDF save-state revisions and repeatable snapshot encoding so a successful
   save can mark the document clean without clearing undo or mutating live PDF
   object identifiers while writing.
+- Make dark document ink, rulers and measurement readouts readable while
+  respecting filled cells and highlights and preserving authored export colors.
 
 - Add native Studio bulk export for all matching archive results and explicit
   resume of an existing export directory. Freeze the selection and provenance,

@@ -5,6 +5,8 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 
+import 'support/studio_document_mode.dart';
+
 final class _ReviewProbe extends OfficeProofingProvider {
   _ReviewProbe(this.id);
 
@@ -168,7 +170,7 @@ void main() {
     controller.proofing.configure(OfficeProofingService(providers: []));
     await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
     await tester.pump();
-    await _tap(tester, _command('View'));
+    await selectStudioDocumentMode(tester, OfficeInteractionMode.viewing);
     await _review(tester);
     final document = controller.document;
     final text = document.paragraphs.single.text;

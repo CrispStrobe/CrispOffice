@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
-import 'package:quds_office_studio/studio_chrome.dart';
 
+import 'support/studio_document_mode.dart';
 import 'support/studio_test_settings.dart';
 
 class _Proofing extends OfficeProofingProvider {
@@ -136,18 +136,6 @@ GestureDetector _action(WidgetTester tester, String label) =>
           .first,
     );
 
-Future<void> _mode(WidgetTester tester, String label) async {
-  await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
-  await _pump(tester);
-  final command = find.byWidgetPredicate(
-    (widget) => widget is StudioCmd && widget.label == label,
-  );
-  await tester.ensureVisible(command);
-  await tester.pump();
-  await tester.tap(command);
-  await _pump(tester);
-}
-
 Future<void> _close(WidgetTester tester) async {
   await tester.pumpWidget(const SizedBox.shrink());
   await tester.pump(const Duration(milliseconds: 1));
@@ -269,7 +257,7 @@ void main() {
           ..useSystem = useSystem
           ..clear();
       });
-      await _mode(tester, 'Select');
+      await selectStudioDocumentMode(tester, OfficeInteractionMode.selecting);
       controller.beginCommentEdit(1);
       controller.commentCaret
         ..logicalIndex = 6
@@ -295,7 +283,7 @@ void main() {
       expect(controller.document.comments.first.text, 'Commet one.');
       expect(controller.contentRevision, revision);
       expect(controller.canUndo, isFalse);
-      await _mode(tester, 'View');
+      await selectStudioDocumentMode(tester, OfficeInteractionMode.viewing);
       _editor(tester).onCommentContextMenuRequested!();
       await _pump(tester);
       expect(_menu, findsNothing);

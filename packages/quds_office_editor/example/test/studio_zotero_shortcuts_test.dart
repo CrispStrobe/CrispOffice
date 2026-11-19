@@ -10,6 +10,7 @@ import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_zotero.dart';
 import 'package:quds_office_studio/suite_workspace.dart';
 
+import 'support/studio_document_mode.dart';
 import 'support/studio_test_settings.dart';
 
 final class _Transport extends StudioZoteroTransport {
@@ -417,7 +418,7 @@ void main() {
       final refresh = _binding(tester, LogicalKeyboardKey.keyR);
       await tester.tap(find.byKey(const ValueKey('ribbon-tab-file')));
       await _frames(tester);
-      await _tapCommand(tester, 'View');
+      await selectStudioDocumentMode(tester, OfficeInteractionMode.viewing);
       expect(controller.config.allowsMutation, isFalse);
       final editor = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
       editor.focusNode!.requestFocus();

@@ -147,6 +147,7 @@ class StudioCommandMenu extends StatelessWidget {
     required this.accent,
     required this.foreground,
     required this.commands,
+    this.currentValue,
   });
 
   final IconData icon;
@@ -154,30 +155,44 @@ class StudioCommandMenu extends StatelessWidget {
   final Color accent;
   final Color foreground;
   final List<StudioCmd> commands;
+  final String? currentValue;
 
   @override
   Widget build(BuildContext context) {
-    final firstEnabled = commands.indexWhere(
-      (command) => command.onPressed != null,
+    final selectedIndex = commands.indexWhere(
+      (command) => command.selected && command.onPressed != null,
     );
+    final firstEnabled = selectedIndex >= 0
+        ? selectedIndex
+        : commands.indexWhere((command) => command.onPressed != null);
     return MenuAnchor(
       // Switching ribbon controls should dismiss this menu and perform the
       // clicked action in the same gesture.
       consumeOutsideTap: false,
       menuChildren: <Widget>[
         for (var index = 0; index < commands.length; index++)
-          MenuItemButton(
-            // Move keyboard focus into the submenu so its Escape and arrow-key
-            // shortcuts take precedence over document/workspace shortcuts.
-            autofocus: index == firstEnabled,
-            leadingIcon: Icon(commands[index].icon, size: 19),
-            onPressed: commands[index].onPressed,
-            child: Text(commands[index].label),
+          Tooltip(
+            message: commands[index].tooltip ?? commands[index].label,
+            child: Semantics(
+              selected: commands[index].selected,
+              child: MenuItemButton(
+                // Move keyboard focus into the submenu so its Escape and arrow-key
+                // shortcuts take precedence over document/workspace shortcuts.
+                autofocus: index == firstEnabled,
+                leadingIcon: Icon(commands[index].icon, size: 19),
+                trailingIcon: commands[index].selected
+                    ? const Icon(Icons.check, size: 18)
+                    : null,
+                onPressed: commands[index].onPressed,
+                child: Text(commands[index].label),
+              ),
+            ),
           ),
       ],
       builder: (context, controller, child) => StudioCmd(
         icon: icon,
         label: label,
+        tooltip: currentValue == null ? label : '$label: $currentValue',
         accent: accent,
         foreground: foreground,
         isMenu: true,
@@ -381,6 +396,7 @@ class StudioCombo<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Tooltip(
       message: tooltip ?? labelOf(value),
       child: PopupMenuButton<T>(
@@ -403,12 +419,14 @@ class StudioCombo<T> extends StatelessWidget {
         ],
         child: Container(
           width: width,
-          height: 24,
+          height: (studioChromeLineHeight(context, 11) + 8)
+              .clamp(28.0, double.infinity)
+              .toDouble(),
           padding: const EdgeInsets.symmetric(horizontal: 6),
           decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xFFC6C6C6)),
+            border: Border.all(color: scheme.outlineVariant),
             borderRadius: BorderRadius.circular(3),
-            color: enabled ? const Color(0xFFFFFFFF) : const Color(0xFFF3F3F3),
+            color: enabled ? scheme.surface : scheme.surfaceContainerHighest,
           ),
           child: Row(
             children: <Widget>[
@@ -419,8 +437,8 @@ class StudioCombo<T> extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 11,
                     color: enabled
-                        ? const Color(0xFF333333)
-                        : const Color(0xFF9E9E9E),
+                        ? scheme.onSurface
+                        : scheme.onSurface.withValues(alpha: 0.45),
                     fontFamily: previewFamily?.call(value),
                   ),
                 ),
@@ -429,8 +447,8 @@ class StudioCombo<T> extends StatelessWidget {
                 Icons.arrow_drop_down,
                 size: 16,
                 color: enabled
-                    ? const Color(0xFF555555)
-                    : const Color(0xFFBDBDBD),
+                    ? scheme.onSurfaceVariant
+                    : scheme.onSurface.withValues(alpha: 0.45),
               ),
             ],
           ),
