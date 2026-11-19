@@ -1,0 +1,30 @@
+{
+  "recorded_utc": "2026-11-19T18:14:32.330881+00:00",
+  "previous_macro_head": "c3eaf57c85d363b1453f2a3407ba62768b0e2c08",
+  "incoming_gui_head": "4fd010fcae209b6ea033828d76908508b7327b9f",
+  "incoming_mail_head": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+  "gui_three_way_merge_tree": "d3b16f31a4fcb73115acbab3a0933afc088b7891",
+  "mail_prior_head": "358544a48466c942873a4718a87fa9d1c2be11f7",
+  "mail_prior_paths_unchanged_before_integration": true,
+  "changed_files": [
+    "docs/IMAGE_EDITOR_INTEGRATION.md",
+    "docs/validation/mail-archive-restore-20261119/attempts.md",
+    "docs/validation/mail-archive-restore-20261119/incoming/run_incoming.py",
+    "docs/validation/mail-archive-restore-20261119/run-mail-validation.py",
+    "packages/quds_mail_store/CHANGELOG.md",
+    "packages/quds_mail_store/README.md",
+    "packages/quds_office_editor/lib/quds_office_editor.dart",
+    "packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart",
+    "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/office_theme.dart",
+    "packages/quds_office_editor/lib/src/embed/word_page_layout.dart",
+    "packages/quds_office_editor/lib/src/ui_components/office_chrome.dart",
+    "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+    "packages/quds_office_editor/test/office_dark_document_test.dart",
+    "packages/quds_office_editor/test/word_page_layout_test.dart"
+  ],
+  "engine_and_macro_source_changed": false,
+  "github_actions_queried_or_awaited": false
+}
