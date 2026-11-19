@@ -350,7 +350,11 @@ expressions are checked even in inactive branches and unused procedures.
 
 Each array is limited to **4,096 elements**. The total across simultaneously
 active procedure frames is limited to **16,384 array slots**; slots are released
-when a procedure returns. Allocation, bound evaluation, indexing, and iteration
+when a procedure returns. Strings stored in all active array slots together
+are limited to **1,048,576 UTF-16 code units**. Each occupied slot counts its
+string length, including slots sharing equal or identical strings; replacing a
+slot or returning from a procedure releases its contribution. Allocation, bound
+evaluation, indexing, and iteration
 consume the shared compilation work budget. Large range collections are checked
 against the remaining work budget before iteration, including loops with empty
 bodies. Arrays do not increase the existing operation or encoded-plan limits.
@@ -470,6 +474,7 @@ The compiler has its own limits before the native runtime receives a plan:
 | Visible variables per procedure, including constants, parameters, and function return slot | 256 |
 | Array elements per fixed local array | 4,096 |
 | Array slots across active procedure frames | 16,384 |
+| String code units stored across active array slots | 1,048,576 |
 | Parameters / arguments per procedure call | 16 |
 | Procedure frames, including the selected entry | 32 |
 | String literal / concatenation length | 32,767 UTF-16 code units |

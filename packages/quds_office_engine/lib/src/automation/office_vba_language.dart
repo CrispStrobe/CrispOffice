@@ -74,6 +74,7 @@ const _maxArguments = 16;
 const _maxCalls = 32;
 const _maxArrayElements = 4096;
 const _maxActiveArrayElements = 16384;
+const _maxActiveArrayStringUnits = 1048576;
 const _maxExactInteger = 9007199254740991;
 const _comparisonOperators = <String>{'=', '<>', '<', '>', '<=', '>='};
 
@@ -2196,6 +2197,7 @@ class _Evaluator {
   Map<String, Object> globalValues = <String, Object>{};
   int activeCalls = 0;
   int activeArrayElements = 0;
+  int activeArrayStringUnits = 0;
   int work = 0;
   int encodedBytes = 0;
 
@@ -2252,6 +2254,7 @@ class _Evaluator {
     final callerSymbols = symbols;
     final callerWithValues = withValues;
     final callerArrayElements = activeArrayElements;
+    final callerArrayStringUnits = activeArrayStringUnits;
     activeCalls++;
     symbols = checker.locals[procedure.name.lower]!;
     values = <String, Object>{...globalValues};
@@ -2288,6 +2291,7 @@ class _Evaluator {
       symbols = callerSymbols;
       withValues = callerWithValues;
       activeArrayElements = callerArrayElements;
+      activeArrayStringUnits = callerArrayStringUnits;
       activeCalls--;
     }
   }
@@ -2430,7 +2434,7 @@ class _Evaluator {
               final array = values[target.token.lower]! as _Array;
               final index = _arrayOffset(array, target.arguments.single);
               final value = _evaluate(statement.value);
-              array.elements[index] = _convert(array.type, value, target.token);
+              _writeArrayElement(array, index, value, target.token);
               break;
             }
             final value = _evaluate(statement.value);
@@ -2777,6 +2781,24 @@ class _Evaluator {
       );
     }
     return index - array.bounds.lower;
+  }
+
+  void _writeArrayElement(_Array array, int index, Object value, _Token token) {
+    final converted = _convert(array.type, value, token);
+    final previous = array.elements[index];
+    final previousUnits = previous is String ? previous.length : 0;
+    final nextUnits = converted is String ? converted.length : 0;
+    if (nextUnits >
+        _maxActiveArrayStringUnits - activeArrayStringUnits + previousUnits) {
+      context.limit(
+        token,
+        'Strings in active array elements exceed $_maxActiveArrayStringUnits UTF-16 code units.',
+      );
+    }
+    // Count occupied string units per slot, even when Dart shares a String
+    // object. This portable bound is independent of host allocation details.
+    activeArrayStringUnits += nextUnits - previousUnits;
+    array.elements[index] = converted;
   }
 
   Object _convert(_Declared type, Object value, _Token token) {

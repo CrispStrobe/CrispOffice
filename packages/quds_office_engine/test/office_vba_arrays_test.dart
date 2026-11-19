@@ -244,6 +244,44 @@ End Sub
         expect(macro.steps, isEmpty);
       },
     );
+
+    test(
+      'replacing strings or Variant slots releases occupied string units',
+      () {
+        final chunk = List<String>.filled(32767, 'x').join();
+        final macro = _body('''
+Dim data(32), i As Long, chunk As String
+chunk = "$chunk"
+For i = 0 To 31
+  data(i) = chunk
+Next
+data(0) = False
+data(32) = chunk
+data(1) = ""
+data(0) = chunk
+Worksheets(1).Range("A1").Value2 = "replaced"
+''');
+        expect(_values(macro), <Object?>['replaced']);
+      },
+    );
+
+    test('procedure returns release occupied array string units', () {
+      final chunk = List<String>.filled(32767, 'x').join();
+      final macro = _compile('''
+Sub Main()
+  Call Fill
+  Call Fill
+  Worksheets(1).Range("A1").Value2 = "released"
+End Sub
+Sub Fill()
+  Dim data(31) As String, i As Long
+  For i = 0 To 31
+    data(i) = "$chunk"
+  Next
+End Sub
+''');
+      expect(_values(macro), <Object?>['released']);
+    });
   });
 
   group('For Each arrays', () {
