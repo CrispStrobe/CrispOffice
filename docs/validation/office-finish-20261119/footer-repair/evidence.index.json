@@ -1,0 +1,40 @@
+{
+  "archive": "evidence.tar.xz",
+  "bytes": 6200,
+  "sha256": "8b2e6ac813b60da164bf21a5956a8548b0de4b2e93841395ae168edda5c07796",
+  "members": {
+    "analyze.log": {
+      "bytes": 61,
+      "sha256": "8aa14f2072b80da5a4bc66cbbc84f7036e8f45dfb1915d914a2a13eaeeda1ba9"
+    },
+    "diagnostic.jsonl": {
+      "bytes": 3965,
+      "sha256": "9f0c2114484352592d009c0d19b302f5cad9884dc270071696530aacaf4a09fe"
+    },
+    "diagnostic.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "focused.jsonl": {
+      "bytes": 14715,
+      "sha256": "588738d9966afad95a920bdd745a500cc283993139055ff24766cb33b094246e"
+    },
+    "focused.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "original-status-test.dart.txt": {
+      "bytes": 7875,
+      "sha256": "0399a11aa9e2c6c9ac3aacec7004d4f015c9aee3c7c764c698ee5a0dace8cad7"
+    },
+    "review.json": {
+      "bytes": 8351,
+      "sha256": "1f80481e48ba85e6285b62aa9067aa04dee558e4f6b7dce826d22937c68c153b"
+    },
+    "studio_review_status_diagnostic_test.dart": {
+      "bytes": 8659,
+      "sha256": "c3839ed9ab2a2057631b6a86b548c8928064528563513448df3064ef34955d71"
+    }
+  },
+  "verified_original_members": true
+}

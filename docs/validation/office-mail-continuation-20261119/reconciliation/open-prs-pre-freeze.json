@@ -1,0 +1,53 @@
+{
+  "capture_time_utc": "2026-11-19T11:39:03.148Z",
+  "endpoint": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=open&per_page=100",
+  "all_open_pull_requests": [
+    {
+      "number": 194,
+      "state": "open",
+      "title": "Complete Office reconciliation and preserve Mail and Word workflows",
+      "head": "4b8b9e2ecec349542bd34bc7f983e1cf500e8cbf",
+      "base": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "head_ref": "codex/office-finish-20261119",
+      "base_ref": "main",
+      "updated_at": "2026-11-19T11:23:51Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/194"
+    },
+    {
+      "number": 193,
+      "state": "open",
+      "title": "Finish Office continuation and qualify merged Mail, Word and Arabic work [skip ci]",
+      "head": "4cf5831d01ace0ae804a176ec82ff2d27ce7fac3",
+      "base": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "head_ref": "codex/office-continuation-20261119",
+      "base_ref": "main",
+      "updated_at": "2026-11-19T11:30:21Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/193"
+    },
+    {
+      "number": 192,
+      "state": "open",
+      "title": "Reconcile remaining Office fixes with current Mail and Arabic proofing",
+      "head": "79e77725925d937bae944b03aac795ffb3fd967d",
+      "base": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "head_ref": "codex/office-resume-main-20261119",
+      "base_ref": "main",
+      "updated_at": "2026-11-19T11:34:20Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/192"
+    },
+    {
+      "number": 191,
+      "state": "open",
+      "title": "Reconcile Office continuations and repair Studio Mail integration [skip ci]",
+      "head": "ec8bd9cf4cf6e0874c74d2d065f607c6a8e4f83f",
+      "base": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "head_ref": "codex/office-mail-continuation-20261119",
+      "base_ref": "main",
+      "updated_at": "2026-11-19T11:37:09Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/191"
+    }
+  ],
+  "returned_count": 4,
+  "page_size": 100,
+  "actions_queried_or_awaited": false
+}

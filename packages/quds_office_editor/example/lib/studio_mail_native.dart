@@ -8,6 +8,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_message_loader.dart';
 import 'studio_mail_operation.dart';
+import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_submission.dart';
 import 'studio_saved_mail.dart';
@@ -68,6 +69,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   StudioMailDraft? _draft;
   bool _submissionUncertain = false;
   bool _busy = false;
+  bool _dialogOpen = false;
   bool _manual = false;
   bool _connecting = false;
   bool _showSavedMessages = false;
@@ -102,12 +104,22 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     mail.MailClient? client,
   ) => runStudioMailOperation(() async {
     if (client == null) return;
-    try {
-      await client.disconnect();
-    } on Object {
-      // Cleanup must not create an unhandled asynchronous error, especially
-      // after the dialog has gone away. Operation failures retain their own UI.
+    Future<void> settle(Future<void> Function() close) async {
+      try {
+        await close();
+      } on Object {
+        // Each owned transport must still close if another shutdown fails.
+        // Cleanup must not replace the operation's fixed, localized feedback.
+      }
     }
+
+    await Future.wait<void>(<Future<void>>[
+      // Disconnect can queue behind an in-flight command. Abort both owned
+      // transports independently, including while initial connection is pending.
+      settle(() => client.lowLevelIncomingMailClient.abort()),
+      settle(() => client.lowLevelOutgoingMailClient.abort()),
+      settle(client.disconnect),
+    ]);
   });
 
   void _retireReader(MailReaderController? reader) {
@@ -116,7 +128,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   }
 
   Future<void> _connect() => runStudioMailOperation(() async {
-    if (_connecting) return;
+    if (_connecting || _client != null) return;
     final generation = ++_sessionGeneration;
     setState(() {
       _connecting = true;
@@ -180,7 +192,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       final boxes = await client.listMailboxes();
       if (!_currentAttempt(generation)) return;
       final inbox =
-          boxes.where((b) => b.isInbox).firstOrNull ??
+          boxes.where((b) => b.isInbox && !b.isNotSelectable).firstOrNull ??
           boxes.where((b) => !b.isNotSelectable).firstOrNull;
       if (inbox == null) {
         throw const FormatException('The account has no selectable mailbox.');
@@ -231,7 +243,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   Future<void> _selectMailbox(mail.Mailbox mailbox) =>
       runStudioMailOperation(() async {
         final client = _client;
-        if (client == null || _busy) return;
+        if (client == null || _busy || _dialogOpen) return;
         final generation = _sessionGeneration;
         final previous = _reader;
         setState(() {
@@ -271,43 +283,48 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         }
       });
 
-  Future<void> _openMessage(mail.MimeMessage message) => runStudioMailOperation(
-    () async {
-      final client = _client;
-      final loader = _messageLoader;
-      final mailbox = _messageMailbox;
-      if (client == null || loader == null || mailbox == null || _busy) return;
-      final generation = _sessionGeneration;
-      setState(() {
-        _busy = true;
-        _error = null;
-        _notice = null;
-      });
-      try {
-        final raw = await loader.fetch(mailbox, message);
-        if (!_currentSession(client, generation)) return;
-        final reader = MailReaderController.fromBytes(
-          raw,
-          codec: const QudsMimeCodec(),
-        );
-        final previous = _reader;
-        setState(() {
-          _selected = message;
-          _reader = reader;
-          _busy = false;
-          _showCompactMessage = true;
-        });
-        _retireReader(previous);
-      } on Object {
-        if (_currentSession(client, generation)) {
-          setState(() {
-            _busy = false;
-            _error = widget.strings.mailMessageFailed;
-          });
+  Future<void> _openMessage(mail.MimeMessage message) =>
+      runStudioMailOperation(() async {
+        final client = _client;
+        final loader = _messageLoader;
+        final mailbox = _messageMailbox;
+        if (client == null ||
+            loader == null ||
+            mailbox == null ||
+            _busy ||
+            _dialogOpen) {
+          return;
         }
-      }
-    },
-  );
+        final generation = _sessionGeneration;
+        setState(() {
+          _busy = true;
+          _error = null;
+          _notice = null;
+        });
+        try {
+          final raw = await loader.fetch(mailbox, message);
+          if (!_currentSession(client, generation)) return;
+          final reader = MailReaderController.fromBytes(
+            raw,
+            codec: const QudsMimeCodec(),
+          );
+          final previous = _reader;
+          setState(() {
+            _selected = message;
+            _reader = reader;
+            _busy = false;
+            _showCompactMessage = true;
+          });
+          _retireReader(previous);
+        } on Object {
+          if (_currentSession(client, generation)) {
+            setState(() {
+              _busy = false;
+              _error = widget.strings.mailMessageFailed;
+            });
+          }
+        }
+      });
 
   Future<void> _compose() => _openComposer(null);
 
@@ -316,21 +333,36 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   ) => runStudioMailOperation(() async {
     final client = _client;
     final account = _account;
-    if (client == null || account == null || _busy) return;
+    if (client == null || account == null || _busy || _dialogOpen) return;
+    if (initial != null && _draft != null) {
+      setState(() {
+        _error = widget.strings.mailRetainedDraft;
+        _notice = null;
+      });
+      return;
+    }
     if (!StudioMailDraft.isSupportedAddress(account.email)) {
       setState(() => _error = widget.strings.mailInvalidSender);
       return;
     }
     final generation = _sessionGeneration;
-    final draft = await showDialog<StudioMailDraft>(
-      context: context,
-      builder: (context) => StudioMailComposeDialog(
-        strings: widget.strings,
-        from: account.email,
-        initialDraft: initial ?? _draft,
-        previousSubmissionUncertain: _submissionUncertain,
-      ),
-    );
+    StudioMailDraft? draft;
+    setState(() => _dialogOpen = true);
+    try {
+      draft = await showDialog<StudioMailDraft>(
+        context: context,
+        builder: (context) => StudioMailComposeDialog(
+          strings: widget.strings,
+          from: account.email,
+          initialDraft: initial ?? _draft,
+          previousSubmissionUncertain: _submissionUncertain,
+        ),
+      );
+    } finally {
+      if (_currentSession(client, generation)) {
+        setState(() => _dialogOpen = false);
+      }
+    }
     if (draft == null || !_currentSession(client, generation)) return;
     // Preserve the immutable draft before handing anything to the transport.
     // An uncertain attempt is never automatically retried.
@@ -357,15 +389,23 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           _notice = widget.strings.mailSubmissionAccepted;
         });
       }
-    } on mail.MailSendPostSubmissionException {
-      // SMTP already accepted this message. A later cleanup failure must not
-      // retain the submitted draft or offer it for another submission.
+    } on mail.MailSendPostSubmissionException catch (error) {
       if (_currentSession(client, generation)) {
         setState(() {
           _busy = false;
-          _draft = null;
-          _submissionUncertain = false;
-          _notice = widget.strings.mailSubmissionAccepted;
+          if (identical(error.mailClient, client)) {
+            // SMTP acceptance is final for this draft even when subsequent
+            // connection cleanup fails. Retrying would duplicate submission.
+            _draft = null;
+            _submissionUncertain = false;
+            _error = null;
+            _notice = widget.strings.mailSubmissionFollowUpFailed;
+          } else {
+            // An outcome from another client cannot confirm this submission.
+            _notice = null;
+            _submissionUncertain = attempted;
+            _error = widget.strings.mailSubmissionUncertain;
+          }
         });
       }
     } on Object {
@@ -382,73 +422,129 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     }
   });
 
-  StudioMailDraft? _replyDraft({required bool forward}) {
-    final message = _reader?.result.message;
-    if (_selected == null || message == null) return null;
-    // The selected list item contains only an envelope. Quote the full message
-    // already decoded by the bounded reader, without reparsing native MIME.
-    final envelope = message.envelope;
-    final subject = envelope.subject;
-    final prefix = forward ? 'Fwd: ' : 'Re: ';
-    final replyTo = forward
-        ? ''
-        : (envelope.replyTo.firstOrNull?.address ??
-              envelope.from.firstOrNull?.address ??
-              '');
-    final quoted = (message.body.plainText ?? '').trim();
-    final clipped = quoted.length > 8000
-        ? '${quoted.substring(0, 8000)}\n…'
-        : quoted;
-    final header = forward
-        ? '---------- Forwarded message ----------\n'
-              'From: ${envelope.from.firstOrNull?.address ?? ''}\n'
-              'Date: ${envelope.sentAt?.toLocal() ?? ''}\n'
-              'Subject: $subject\n\n'
-        : 'On ${envelope.sentAt?.toLocal() ?? ''}, '
-              '${envelope.from.firstOrNull?.address ?? ''} wrote:\n';
-    return StudioMailDraft(
-      to: replyTo,
-      subject: subject.toLowerCase().startsWith(prefix.trim().toLowerCase())
-          ? subject
-          : '$prefix$subject',
-      body:
-          '\n\n$header${clipped.split('\n').map((line) => '> $line').join('\n')}',
-    );
-  }
+  Future<void> _reply() => _composeFromMessage(forward: false);
 
-  Future<void> _reply() async {
-    final draft = _replyDraft(forward: false);
-    if (draft != null) await _openComposer(draft);
-  }
+  Future<void> _forward() => _composeFromMessage(forward: true);
 
-  Future<void> _forward() async {
-    final draft = _replyDraft(forward: true);
-    if (draft != null) await _openComposer(draft);
+  Future<void> _composeFromMessage({required bool forward}) =>
+      runStudioMailOperation(() async {
+        if (_busy || _dialogOpen || _client == null) return;
+        if (_draft != null) {
+          setState(() {
+            _error = widget.strings.mailRetainedDraft;
+            _notice = null;
+          });
+          return;
+        }
+        // The list item contains only an envelope. Quote the authoritative
+        // bounded raw-message parse, never the reader's header presentation.
+        final message = _reader?.result.message;
+        if (message == null) return;
+        try {
+          final draft = buildStudioMailReplyDraft(
+            message,
+            forward: forward,
+            truncationNotice: widget.strings.mailQuotedTextTruncated,
+            forwardNotice: widget.strings.mailTextOnlyForward,
+          );
+          await _openComposer(draft);
+        } on StudioMailReplyUnavailable {
+          setState(() {
+            _error = widget.strings.mailPlainTextUnavailable;
+            _notice = null;
+          });
+        }
+      });
+
+  Future<void> _discardDraft() async {
+    final client = _client;
+    final retained = _draft;
+    if (client == null || retained == null || _busy || _dialogOpen) return;
+    final generation = _sessionGeneration;
+    bool? discard;
+    setState(() => _dialogOpen = true);
+    try {
+      discard = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(widget.strings.mailDiscardDraft),
+          content: Text(widget.strings.mailDiscardDraftExplanation),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: Text(widget.strings.cancel),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: Text(widget.strings.mailDiscardDraft),
+            ),
+          ],
+        ),
+      );
+    } finally {
+      if (_currentSession(client, generation)) {
+        setState(() => _dialogOpen = false);
+      }
+    }
+    if (discard != true ||
+        !_currentSession(client, generation) ||
+        !identical(_draft, retained)) {
+      return;
+    }
+    setState(() {
+      _draft = null;
+      _submissionUncertain = false;
+      _error = null;
+      _notice = null;
+    });
   }
 
   Future<void> _markRead() => runStudioMailOperation(() async {
     final client = _client;
+    final loader = _messageLoader;
+    final mailbox = _messageMailbox;
     final message = _selected;
-    if (client == null || message == null || _busy) return;
+    if (client == null ||
+        loader == null ||
+        mailbox == null ||
+        message == null ||
+        message.isSeen ||
+        _busy ||
+        _dialogOpen) {
+      return;
+    }
     final generation = _sessionGeneration;
+    final uid = message.uid;
+    final uidValidity = mailbox.uidValidity;
+    final mailboxPath = mailbox.path;
     setState(() {
       _busy = true;
       _error = null;
       _notice = null;
     });
     try {
-      await client.markSeen(mail.MessageSequence.fromMessage(message));
-      if (!_currentSession(client, generation)) return;
-      setState(() {
-        message.setFlag(mail.MessageFlags.seen, true);
-        _busy = false;
-        _error = null;
-      });
+      await loader.markRead(mailbox, message);
+      if (_currentSession(client, generation)) {
+        setState(() {
+          if (identical(_selected, message) &&
+              identical(_messageLoader, loader) &&
+              identical(_messageMailbox, mailbox) &&
+              message.uid == uid &&
+              mailbox.uidValidity == uidValidity &&
+              mailbox.path == mailboxPath) {
+            message.setFlag(mail.MessageFlags.seen, true);
+            _error = null;
+          } else {
+            _error = widget.strings.mailMarkReadFailed;
+          }
+          _busy = false;
+        });
+      }
     } on Object {
       if (_currentSession(client, generation)) {
         setState(() {
           _busy = false;
-          _error = widget.strings.mailMessageFailed;
+          _error = widget.strings.mailMarkReadFailed;
         });
       }
     }
@@ -469,6 +565,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _messageMailbox = null;
       _reader = null;
       _busy = false;
+      _dialogOpen = false;
       _connecting = false;
       _account = null;
       _draft = null;
@@ -546,6 +643,12 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                 tooltip: widget.strings.refresh,
                 icon: const Icon(Icons.refresh),
               ),
+              if (_draft != null)
+                IconButton(
+                  onPressed: _busy || _dialogOpen ? null : _discardDraft,
+                  tooltip: widget.strings.mailDiscardDraft,
+                  icon: const Icon(Icons.delete_outline),
+                ),
               IconButton(
                 onPressed: _disconnect,
                 tooltip: widget.strings.disconnect,

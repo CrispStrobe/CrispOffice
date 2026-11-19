@@ -77,7 +77,8 @@
     "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
     "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
     "tools/mail/test_check_store.py",
-    "docs/validation/office-mail-continuation-20261119/native-plan.json"
+    "docs/validation/office-mail-continuation-20261119/native-plan.json",
+    "docs/validation/office-mail-continuation-20261119/audit_results.py"
   ],
   "whitespace_preserved_inputs": []
 }

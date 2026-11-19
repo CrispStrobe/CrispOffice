@@ -10,7 +10,7 @@ cohort failed to load `studio_zotero_shortcuts_test.dart`: its remaining
 `enableStudioSetting` call did not match the reconciled helper import. The strict
 analyzer independently reported that undefined function. The gate correctly
 rejected the attempt despite zero visible failed or skipped cases. The archived
-raw events retain the hidden loading failure, stderr and nonzero process exit.
+raw events retain the excluded loading failure, stderr and nonzero process exit.
 
 The subsequent repair uses `configureStudioForTest(showNotes: true)` consistently.
 Later reconciliation also includes the bounded PR #191 checkpoint, current Mail

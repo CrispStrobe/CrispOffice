@@ -125,6 +125,24 @@ void main() {
     expect(wordRunProofingLanguage(run, WmlParagraph()), 'ar-SA');
   });
 
+  for (final entry in [
+    (text: 'Latin عربي', marker: null, latin: true, complex: true),
+    (text: 'عربي', marker: null, latin: false, complex: true),
+    (text: 'עברית', marker: null, latin: false, complex: true),
+    (text: '١٢٣؟', marker: null, latin: true, complex: false),
+    (text: 'Latin عربي', marker: true, latin: false, complex: true),
+    (text: 'Latin عربي', marker: false, latin: true, complex: true),
+  ]) {
+    test('language slots for ${entry.text} with marker ${entry.marker}', () {
+      final run = WmlRun(
+        text: entry.text,
+        properties: WmlRunProps(complexScript: entry.marker),
+      );
+      expect(wordRunUsesLatinScriptLanguage(run), entry.latin);
+      expect(wordRunUsesComplexScriptLanguage(run), entry.complex);
+    });
+  }
+
   test('document complex-script default stays live after import and clone', () {
     final document = _imported();
     final inherited = document.paragraphs.single.inlines

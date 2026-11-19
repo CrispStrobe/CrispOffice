@@ -1,5 +1,10 @@
 # Current Office reference reconciliation
 
+The latest bounded capture is documented in
+[final-cutoff-review.md](final-cutoff-review.md): **468 references accounted for
+at published integration `1c415fef`, including 440 ancestors and 28 verified
+historical equivalents**. Earlier captures below retain their original scope.
+
 The initial capture was made on 19 November 2026, with fork `main` at
 `b070e228a749e22cc8ce2098029a76ab5fb8eccb`. The exact captured advertisements are
 `remote-refs-initial.tsv` and `upstream-refs-initial.tsv`; capture metadata is in
@@ -40,16 +45,22 @@ The test conflict juxtaposes saved-message/file-picker tests and a workspace
 language-cycle test with the newer functional IMAP/SMTP dialog tests. The latter
 use the current client abstraction. The integrated checkpoint keeps the current
 lifecycle and German-localization tests in `studio_mail_test.dart` and preserves
-the saved-message tests separately in `studio_saved_mail_test.dart`. The next
-product step restores an explicit saved-message view and adapts those regressions
-to that view, retaining account-free EML use alongside the current account client.
+the saved-message tests separately in `studio_saved_mail_test.dart`. Subsequent
+source restores an explicit saved-message view and adapts those regressions to
+that view, retaining account-free EML use alongside the current account client.
 Historical evidence is not relabelled as fresh qualification of the resulting
 merge. This audit establishes source-history inclusion only.
 
 ## Replay
 
-`audit_refs.py` is copied unchanged from commit `004b2ad6`, where it was already
-published. It performs only immutable Git reads and writes its JSON report.
+`audit_refs.py` originated in commit `004b2ad6`, where it was already published.
+Its final capture support additionally classifies GitHub's provisional
+`refs/pull/<number>/merge` advertisements separately from actual PR heads. These
+generated test merges are retained verbatim in the raw advertisement and listed
+in the audit's exclusions; every corresponding `refs/pull/<number>/head` remains
+in the required graph coverage. The initial receipts retain the script hash
+under which they were produced. The script performs only immutable Git reads
+and writes its JSON report.
 It does not fetch, query GitHub Actions, mutate the index, or execute product
 code. `initial-audit.json` is expected to report `passed: false`, because the
 four branch tips were not yet integrated into the captured main.
@@ -69,3 +80,43 @@ A passing reference audit establishes captured-history coverage, not application
 runtime correctness. Fresh targeted validation belongs in the continuation's
 separate execution record. No GitHub Actions runs, jobs, statuses or queues were
 queried or awaited for this audit.
+
+## Bounded pre-freeze capture
+
+The second advertisement capture ran from **11:38:37 to 11:38:45 UTC on
+19 November 2026**. Its original bytes are `remote-refs-pre-freeze.tsv` and
+`upstream-refs-pre-freeze.tsv`; `pre-freeze-capture.json` binds their acquisition
+times and SHA-256 values. `open-prs-pre-freeze.json` records the four open PRs
+at that cutoff. This is a bounded capture, not a claim about later concurrent
+remote pushes.
+
+It contains **467 actual references**: 232 fork branches, 194 fork PR heads,
+17 fork tags, four upstream branches, four upstream PR heads, and 16 upstream
+tags. The raw advertisements also preserve two HEAD aliases, seven peeled-tag
+rows, and four GitHub provisional PR merge rows. The latter are generated
+previews against the base branch; all four corresponding actual PR heads are
+included in the required graph coverage.
+
+The cutoff required retaining these newer tips beyond the first integration:
+
+| Source | Captured head |
+| --- | --- |
+| PR #194, `codex/office-finish-20261119` | `4b8b9e2ecec349542bd34bc7f983e1cf500e8cbf` |
+| PR #193, `codex/office-continuation-20261119` | `4cf5831d01ace0ae804a176ec82ff2d27ce7fac3` |
+| PR #192, `codex/office-resume-main-20261119` | `79e77725925d937bae944b03aac795ffb3fd967d` |
+| `codex/office-final-union-20261119` | `47ce5f726f1a0b1f213b926162528533dc0a3aab` |
+
+`pre-freeze-audit.json` binds the fetched, published integration commit
+`b434cf1ec084020dadeb90459e03a9251857d2ee`, tree
+`a172821dae92d83b7b19d898701cd1f8607ec5c2`. It passes with **439 ancestor
+references, 28 historical equivalents, zero unaccounted references, and all
+14 historical proofs recomputed successfully**. The earlier local merge preview
+used commit `062150ac1c0c47a7c2c63581f899140c2c9a3059` with the same tree; the
+accepted graph receipt uses the published commit identity.
+
+Replay that bounded capture with the same script, using
+`--refs remote-refs-pre-freeze.tsv`,
+`--upstream-refs upstream-refs-pre-freeze.tsv`, `--expected-total 467`, and an
+actual integrated `--head`. Incoming evidence remains tied to its original
+execution source; graph inclusion does not convert it into fresh application
+qualification.

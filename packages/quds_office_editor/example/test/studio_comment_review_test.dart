@@ -8,7 +8,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 
-import 'support/studio_settings.dart';
+import 'support/studio_test_settings.dart';
 
 class _CommentProofing extends OfficeProofingProvider {
   _CommentProofing({this.gates = const {}});
@@ -76,14 +76,14 @@ Future<WordEditorController> _studio(WidgetTester tester) async {
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await _pump(tester);
-  expect(find.byTooltip('Language'), findsOneWidget);
-  await _pump(tester);
   final controller = tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
       .controller;
   controller.proofing.enabled = false;
   controller.proofing.configure(OfficeProofingService(providers: []));
-  await enableStudioSetting(tester, 'Show comments');
+  // Settings advances animations beyond the initial proofing debounce.
+  await configureStudioForTest(tester, showComments: true);
+  await _pump(tester);
   controller.document = _document();
   controller.refresh();
   controller.selectComment(1);
@@ -1247,7 +1247,7 @@ void main() {
         await tester.binding.setSurfaceSize(const Size(900, 1000));
         await _pump(tester);
         if (arabic) {
-          await switchStudioToArabic(tester);
+          await configureStudioForTest(tester, language: StudioLanguage.ar);
           await _pump(tester);
         }
         final pane = tester.getRect(

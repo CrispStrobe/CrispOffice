@@ -12,7 +12,9 @@
         "test/proofing/office_proofing_merge_test.dart",
         "test/wml_run_edit_test.dart",
         "test/word_complex_script_language_test.dart",
-        "test/word_proofing_language_test.dart"
+        "test/word_proofing_language_test.dart",
+        "test/proofing/word_proofing_language_test.dart",
+        "test/word_proofing_inheritance_test.dart"
       ],
       "platform": "node"
     }
@@ -25,6 +27,9 @@
     "tools/proofing/ayaspell/build_bundle.py",
     "tools/proofing/ayaspell/test_build_bundle.py",
     "tools/proofing/ayaspell/test_build_bundle_incoming.py",
-    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py"
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py",
+    "docs/validation/office-resume-main-20261119/run_python_controls.py",
+    "packages/quds_proofing_hunspell/tool/build.py",
+    "packages/quds_proofing_hunspell/tool/test_build.py"
   ]
 }

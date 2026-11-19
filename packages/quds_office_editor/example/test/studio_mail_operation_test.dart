@@ -1,4 +1,4 @@
-// These print probes verify that protocol output stays inside the private zone.
+// These tests deliberately exercise the protocol library's print side effect.
 // ignore_for_file: avoid_print
 
 import 'dart:async';

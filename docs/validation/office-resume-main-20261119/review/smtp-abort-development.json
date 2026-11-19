@@ -1,0 +1,19 @@
+{
+  "red_description": "Baseline SMTP implementation from 79e7772 plus the newly added, uncommitted regression harness; not an unchanged-tree gate.",
+  "green_description": "Patched SMTP abort implementation plus the byte-identical newly added regression harness.",
+  "baseline_implementation_sha256": "1cdaee788670f32eccec95a7f3728b777cd1a6d39f5f7c9750321375c4f7b269",
+  "patched_implementation_sha256": "bb2a03f102ba346a4ea8960db7d9120df7024c2c4c51990ec3513fd169d067d4",
+  "final_implementation_sha256": "bb2a03f102ba346a4ea8960db7d9120df7024c2c4c51990ec3513fd169d067d4",
+  "red_green_harness_sha256": "ce59ae1e67e502a11a59304d7a72c3b9e32ebfc33ffc509935d7185f0eac1e80",
+  "final_formatted_harness_sha256": "fc920483557a4fde94045b359b88ff9e3ab2e5d9156e9a1a631198dba2c4bf20",
+  "red_exit_code": 1,
+  "green_exit_code": 0,
+  "cohort_exit_code": 0,
+  "cohort_passes": 46,
+  "formatting_only_after_development_tests": true,
+  "formatted_final_test_qualification": "Parent final frozen gate will test the formatted file.",
+  "staged_paths": [
+    "third_party/enough_mail/lib/src/smtp/smtp_client.dart",
+    "third_party/enough_mail/test/mail/mail_send_transaction_test.dart"
+  ]
+}

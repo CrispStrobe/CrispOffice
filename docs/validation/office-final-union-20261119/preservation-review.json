@@ -1,0 +1,324 @@
+{
+  "schema": 1,
+  "status": "bounded_preservation_review_complete",
+  "review_scope": "Independent read-only Git/GitHub review by continuation_review, transcribed and condensed by root. No writes, product tests, Actions or mutations.",
+  "publication_plan": {
+    "base_main": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+    "base_tree": "15e1d979abdcacaf316b849e58dac4249e643424",
+    "product_source": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+    "other_parent": "f824865001913e48b4b2551eb9f359476e6cbd56",
+    "required_product_delta": 0,
+    "ae5_evidence_entries": 24,
+    "f824_evidence_entries": 10,
+    "f824_product_files_to_substitute": []
+  },
+  "ancestry": {
+    "de24_contains": [
+      "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+      "0f16754c278aa83cc79d5777e5b45d3f739e5469",
+      "0bd53e3e2b0d75ae48a4d7807dcddd123ab477f9",
+      "fb402a5d18e588753744e533c2c96609afd73d94"
+    ],
+    "de24_does_not_contain": [
+      "ae5bb49cd9167c73086cc45428a8d52b18b96412",
+      "f824865001913e48b4b2551eb9f359476e6cbd56"
+    ],
+    "f824_contains_ae5": true,
+    "evidence": "Exact GitHub compare relationships in lineage.json; local immutable Git confirms0bd/fb402 ancestry of0f.",
+    "fresh_all_refs_inventory": false
+  },
+  "finite_product_delta_from_0f_to_de24": {
+    "total_paths": 44,
+    "code_test_tool_paths": 38,
+    "component_documentation_paths": 6,
+    "files": [
+      {
+        "path": "packages/quds_mail_ui/CHANGELOG.md",
+        "sha": "61e6216ddabceda0f9e987b51eae08da8c723604",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+        "sha": "cd43ad431eca0e766f7d21f514fb0c7cb90e24cf",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_mail_ui/test/presentation_test.dart",
+        "sha": "ad25d86372e45965869c4c1f75fecee21cd75135",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/CHANGELOG.md",
+        "sha": "b2faa9b494d50a9694e5b1e05283f4d3453abae1",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+        "sha": "1c66e3c92b93c9fe969c742f99f30c40ff26fe22",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "sha": "1f5cb526e1bf788c7f177cedec6c0c8d1c546638",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+        "sha": "fceb2a3962a66f07b856e3b45d0dfc1ee1a0a381",
+        "status": "added"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+        "sha": "ed70bd50f80616482793c234f9d3c5de2c539f78",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "sha": "6c49ada8cb8a403094281be6df8d25054b163311",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "sha": "10a3a204f5896082f6f9edb40ab2fd41eb439afe",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "sha": "42468d3d1f0ed6e8ca2210d9d9e58b129c64a9c8",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+        "sha": "b61fc24626828888e67f2b955db4b1b8b51dd792",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "sha": "f04c0af7f01eb4dd684a4cffa8a1a623ee51c48d",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "sha": "27f06d9c31254a151621e4e1fc62b9a9ded8b115",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+        "sha": "b2504b53be1a613d8c5be874349c4b16494099a6",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "sha": "c4762ac6b63988a4ae82be80ecbbc945bd07e8ba",
+        "status": "added"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+        "sha": "cd6f30af1aa0fdfef7b191eb467066eabc365a02",
+        "status": "added"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "sha": "2fa1e529ca9d22535df1e6118dc0a08860b5f8ce",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+        "sha": "a0a38e1612c5ab3ed26708da64bd0d59044bad69",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+        "sha": "9607a37b3480f79da0bda5787f066507e03586e3",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "sha": "3b58f2fa416f071c959f7c0986dd168aec49d9db",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/support/studio_mail_fixture.dart",
+        "sha": "57a90f28c0758f5946452af79a944ed7be78315d",
+        "status": "removed"
+      },
+      {
+        "path": "packages/quds_office_editor/example/tool/mail_web_entry.dart",
+        "sha": "ed8a39cf8b9087dcaf3577f4f9ef7baf45be97ac",
+        "status": "added"
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "sha": "a700709ff6c2acd3d7fedbbc1a1bb85b7d9dde1d",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+        "sha": "ff9f4359a61dbae7c5d60b7c4962c7cb86174d58",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+        "sha": "9ad3687562deb4b191098c4fd6d8f0e4c76d544c",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_engine/CHANGELOG.md",
+        "sha": "897b8a9ab34b5aa09918240c676890059cf236ed",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+        "sha": "8079bed6dc2d8cf4c150ed25aba1ef88383426da",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+        "sha": "5505cbd039ffa2a10816337010dae6aa845084af",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "sha": "d2612473b532b61790e74ee57772dc8adeaf8f41",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "sha": "708b504a94e5680046d8b75da5aa98c822f4f41e",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+        "sha": "d0d49f8fa344e009a92e93abc1adbe6ad3d4e995",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+        "sha": "78a77c34fcf5dbe8aca6dd2228af29b86a9df5d9",
+        "status": "modified"
+      },
+      {
+        "path": "packages/quds_proofing_hunspell/CHANGELOG.md",
+        "sha": "2982f89cd8e85877753e4af6219d9e4762699133",
+        "status": "modified"
+      },
+      {
+        "path": "third_party/enough_mail/CHANGELOG.md",
+        "sha": "124eff5208b23a6dbab1bd179cb894c91585599f",
+        "status": "modified"
+      },
+      {
+        "path": "third_party/enough_mail/QUDS_PATCHES.md",
+        "sha": "539eb8bec6b2d8db81931b6413b7f98ab664a773",
+        "status": "modified"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/mail/mail_client.dart",
+        "sha": "46113996c4b26c03507566d0eef3af1afe793589",
+        "status": "modified"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/mail/send_message_transaction.dart",
+        "sha": "74e4151dcd2f844fa750e95f107c1f3e242f136b",
+        "status": "modified"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/smtp/smtp_client.dart",
+        "sha": "dad79ae980a6a669c1bcb7288c8f63a9f29cf685",
+        "status": "modified"
+      },
+      {
+        "path": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+        "sha": "bb27ea8aae02311298ea56e372ef205cfd627850",
+        "status": "modified"
+      },
+      {
+        "path": "third_party/enough_mail/test/mail/mail_submission_acceptance_test.dart",
+        "sha": "78d4e0f3d4d896379189a44945896c10f9add809",
+        "status": "added"
+      },
+      {
+        "path": "tools/proofing/ayaspell/build_bundle.py",
+        "sha": "7bfdc58ac0f49d36ff9ebca55d553c3dbdb59abe",
+        "status": "modified"
+      },
+      {
+        "path": "tools/proofing/ayaspell/test_build_bundle.py",
+        "sha": "ae342b10ff56916cd0cb6aa8b93d1da6edebc52e",
+        "status": "modified"
+      },
+      {
+        "path": "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+        "sha": "b43d0f8f6d8d22151e7bf47dee2916b199540e94",
+        "status": "modified"
+      }
+    ],
+    "interpretation": "Incoming successor differences only; final publication retains them exactly."
+  },
+  "arabic": {
+    "rules_blob": "8079bed6dc2d8cf4c150ed25aba1ef88383426da",
+    "same_as_qualified0bd": true,
+    "source_bytes": 140460,
+    "source_sha256": "8b1bd8db8d21bf06bd695bf699ca515cd76cb212285d2639dab5634bd6bdeefd",
+    "preexisting_constants": 28,
+    "all_preserved": true,
+    "current_constants": 29,
+    "current_constants_equal0f": true,
+    "lexical_section_bytes": 65848,
+    "lexical_section_sha256": "0b0869da01cf66ab2e614ff96a7af8d8e2ebfa76926a8612db54d20a2f3136dc",
+    "lexical_section_exact_initial_b070": true,
+    "noncomment_tokens_exact0f": true,
+    "semantic_marks_utf16_boundaries_unchanged": true,
+    "regression_blob": "3b1fbeeabcb583a82427d28d99effbcbb60183fb",
+    "tests_exact0f": true,
+    "only_rules_delta0f": "One documentation sentence on optional harakat/tatweel removal.",
+    "morphology_decoder_and_tests_delta0f": 0
+  },
+  "word": {
+    "controller_blob": "a700709ff6c2acd3d7fedbbc1a1bb85b7d9dde1d",
+    "language_helper_blob": "5505cbd039ffa2a10816337010dae6aa845084af",
+    "style_cascade_blob": "708b504a94e5680046d8b75da5aa98c822f4f41e",
+    "deserializer_blob": "d2612473b532b61790e74ee57772dc8adeaf8f41",
+    "editor_default_activeLanguageOnly": true,
+    "inactive_metadata_preserved_by_default": true,
+    "explicit_false": "Changes or clears both language slots.",
+    "extension": "An unmarked selected fragment with Latin and complex-script letters can use both active slots.",
+    "explicit_complex_script": "Routes whole selected fragment via bidi; inactive Latin metadata preserved.",
+    "selection": "Clip to selected fragment before slot inspection.",
+    "split_coalescing": "WmlRunEdit unchanged from0f; routingChanged retained.",
+    "low_level_defaults": {
+      "includeComplexScript": false,
+      "activeLanguageOnly": false
+    },
+    "not_byte_identical0f": true
+  },
+  "mail": {
+    "native_blob": "1f5cb526e1bf788c7f177cedec6c0c8d1c546638",
+    "strings_blob": "ed70bd50f80616482793c234f9d3c5de2c539f78",
+    "test_blob": "2fa1e529ca9d22535df1e6118dc0a08860b5f8ce",
+    "reply_helper_blob": "fceb2a3962a66f07b856e3b45d0dfc1ee1a0a381",
+    "loader_blob": "1c66e3c92b93c9fe969c742f99f30c40ff26fe22",
+    "supersedes_f824_product": true,
+    "coverage_mapping": "See test-dispositions.json. Historical five cases are not claimed verbatim-equivalent."
+  },
+  "evidence": {
+    "ae5_paths": 24,
+    "ae5_product_paths": 0,
+    "f824_total_paths": 13,
+    "f824_documentation_paths": 10,
+    "f824_product_paths": 3,
+    "overviews": [
+      "docs/validation/office-resume-main-20261119/README.md",
+      "docs/validation/office-resume-main-20261119/main-refresh/README.md"
+    ],
+    "policy": "Restore accepted ae5 evidence, save exact old overview copies, add accurate latest pointer. Keep original source attributions."
+  },
+  "limits": {
+    "de24_aggregate_pass": false,
+    "exact_store_failure_inspected": false,
+    "f824_executed_runtime_cases": 0,
+    "meaningful_red_green": false,
+    "prior_counts_added_to_new_source": false,
+    "final_publication_observed_by_this_review": false
+  }
+}
