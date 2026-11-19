@@ -1,0 +1,167 @@
+{
+  "scope": "Independent read-only mail audit during unrelated reconciliation; not a whole-repository merge approval",
+  "baseline": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "audit_head": "9f4219317e80f6202772bf0895e27643b04545ea",
+  "result": "no_concrete_mail_blocker_found",
+  "tests_executed_by_this_audit": 0,
+  "network_used": false,
+  "source_evidence": {
+    "provenance_path": "/workspace/scratch/32e3793609d8/validation/mail-source-harness/provenance.json",
+    "provenance_sha256": "0781c36bc0debdf6446bcf179efa0e1a442d0399dcb5c2cfefa78bdc2fa90170",
+    "seven_hashes_match": true,
+    "checks": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_recipients.dart",
+        "expected_sha256": "85ecd03657a99369f2eafc75af0dfb34981d18da9b4f4b7212004283b1ef68e8",
+        "actual_sha256": "85ecd03657a99369f2eafc75af0dfb34981d18da9b4f4b7212004283b1ef68e8",
+        "match": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_draft.dart",
+        "expected_sha256": "1d20d8e1f3e1610553d4c93e6de1079024fb7dde8cdad7a0c1aea82bbd33635a",
+        "actual_sha256": "1d20d8e1f3e1610553d4c93e6de1079024fb7dde8cdad7a0c1aea82bbd33635a",
+        "match": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+        "expected_sha256": "c77ee48fc2eb6bc4bbe72bbbbd206e88e32781e975da2e9f7aae9f4a91dc46f3",
+        "actual_sha256": "c77ee48fc2eb6bc4bbe72bbbbd206e88e32781e975da2e9f7aae9f4a91dc46f3",
+        "match": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_threading.dart",
+        "expected_sha256": "84c7d63381b0176f5571e4da03487c67958223ad7aabcb651015fe6401dd4525",
+        "actual_sha256": "84c7d63381b0176f5571e4da03487c67958223ad7aabcb651015fe6401dd4525",
+        "match": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+        "expected_sha256": "18f910b27715aa29dea609fc4d7eae38870e0d99d4465f1a1e831cbd981748eb",
+        "actual_sha256": "18f910b27715aa29dea609fc4d7eae38870e0d99d4465f1a1e831cbd981748eb",
+        "match": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "expected_sha256": "86ffa7d44b1b25c28b5346b04d8562dc90989b62233f64255b154f407ad8a5b0",
+        "actual_sha256": "86ffa7d44b1b25c28b5346b04d8562dc90989b62233f64255b154f407ad8a5b0",
+        "match": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_threading_test.dart",
+        "expected_sha256": "a61717d696a17606d6bec61e895d8397d655ab925eee3e9d5b2e87b13e9bf788",
+        "actual_sha256": "a61717d696a17606d6bec61e895d8397d655ab925eee3e9d5b2e87b13e9bf788",
+        "match": true
+      }
+    ],
+    "previous_execution": {
+      "passed": 57,
+      "retained_declarations": 46,
+      "omitted_mime_declarations": 18,
+      "scope": "Pure mail subset under documented cached graph; not complete Flutter/MIME/provider qualification"
+    }
+  },
+  "core_subtree": {
+    "expected": "2860c22f05dacc4cdeb18552e419c01e9d9b6862",
+    "baseline": "2860c22f05dacc4cdeb18552e419c01e9d9b6862",
+    "head": "2860c22f05dacc4cdeb18552e419c01e9d9b6862",
+    "matches_expected": true
+  },
+  "protected_paths": {
+    "paths": [
+      "packages/quds_mail_core",
+      "packages/quds_mail_mime",
+      "packages/quds_mail_store",
+      "packages/quds_mail_transport",
+      "packages/quds_mail_ui",
+      "third_party"
+    ],
+    "diff_from_baseline": [],
+    "untracked_files": []
+  },
+  "prior_threading_evidence": {
+    "path": "docs/validation/mail-reply-threading-20261119",
+    "baseline_tree": "754dcc9092f2c75955c982b9e810f4662db8ea42",
+    "head_tree": "754dcc9092f2c75955c982b9e810f4662db8ea42",
+    "diff_from_baseline": [],
+    "untracked_files": [],
+    "untouched": true
+  },
+  "mail_diff_check": {
+    "exit_code": 0,
+    "output": "",
+    "conflict_markers": {}
+  },
+  "repository_evidence_copy": {
+    "provenance.json": {
+      "present": true,
+      "matches_scratch": true
+    },
+    "receipt.json": {
+      "present": true,
+      "matches_scratch": true
+    },
+    "test.log": {
+      "present": true,
+      "matches_scratch": true
+    }
+  },
+  "findings": [
+    {
+      "area": "recipient model",
+      "assessment": "No concrete blocker found. ASCII bare-mailbox parsing rejects controls/unsupported syntax, bounds 100 entries and 25,600 characters before deduplication, preserves local-part case, folds domain case for identity, prioritizes To then Cc then Bcc, and exposes immutable group/envelope snapshots."
+    },
+    {
+      "area": "reply all",
+      "assessment": "No concrete blocker found. Authoritative Reply-To takes precedence over From; connected sender is excluded by supported identity; original To/Cc roles are preserved with To precedence. Bcc source metadata is not read. Source scan is bounded at 1,024 entries; at most 100 distinct outgoing recipients are admitted; unsupported participants fail explicitly. Empty/self-only targets remain editable. Plain quote and thread metadata use the original shared builder."
+    },
+    {
+      "area": "canonical MIME",
+      "assessment": "Source review confirms builder assigns From/To/Cc/Subject and validated reply headers, never Bcc. Empty visible groups remain absent. The prepared canonical MIME excludes Bcc addresses; maximum-length header folding and MIME round trips remain unexecuted."
+    },
+    {
+      "area": "SMTP envelope",
+      "assessment": "Native host passes every deduplicated To/Cc/Bcc address via explicit recipients. Vendor sendMessage forwards that list to both DATA and BDAT SMTP implementations; message header recipients are not substituted. appendToSent remains false."
+    },
+    {
+      "area": "EWS envelope",
+      "assessment": "Shared host supplies complete MailTransportEnvelope recipients. Existing EWS adapter rejects Bcc in canonical MIME, checks visible recipients against intended envelope, derives hidden recipients, and supplies separate SOAP BccRecipients with canonical MIME unchanged."
+    },
+    {
+      "area": "Gmail and Microsoft365",
+      "assessment": "Both services use the shared EWS/cloud host. Existing cloud adapter validates canonical MIME, derives hidden recipients from explicit envelope minus visible To/Cc, and adds Bcc only to a private provider request copy; immutable prepared bytes remain unchanged. API/recipient-facing behavior has not been live-tested."
+    },
+    {
+      "area": "composer and retry",
+      "assessment": "To/Cc/Bcc and thread are immutable draft fields. Composer initializes all fields from retained draft and preserves thread in every submitted snapshot. Hosts retain the full draft before submission. Uncertain-send acknowledgement and no-automatic-retry gates remain; confirmed acceptance clears draft and uncertainty."
+    }
+  ],
+  "pending_execution": [
+    "Full Flutter composer and host widget suites",
+    "Full MIME serialization/round-trip suites, including 100 maximum-length recipients",
+    "SMTP/EWS/Gmail/Microsoft365 provider integration and live send behavior",
+    "Full repository locked dependency resolution and workspace analyzer",
+    "Previously pending layout-theme and downloads-manager widget suites"
+  ],
+  "reviewed_source_sha256": {
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart": "85fe0c4f307875b7a699b188adb95ec00ce6563c1c9dd177b3fff686e59dbe4b",
+    "packages/quds_office_editor/example/lib/studio_mail_draft.dart": "1d20d8e1f3e1610553d4c93e6de1079024fb7dde8cdad7a0c1aea82bbd33635a",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "8ac2a6a4a92fdddec25952ac5a81e894f3af8745aa7b0d3fa730f3171101a5ed",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "0ff602c78c6aa0344152409026a5aef57ee1221f4000d416f005aa2c56678cec",
+    "packages/quds_office_editor/example/lib/studio_mail_recipients.dart": "85ecd03657a99369f2eafc75af0dfb34981d18da9b4f4b7212004283b1ef68e8",
+    "packages/quds_office_editor/example/lib/studio_mail_reply.dart": "c77ee48fc2eb6bc4bbe72bbbbd206e88e32781e975da2e9f7aae9f4a91dc46f3",
+    "packages/quds_office_editor/example/lib/studio_mail_strings.dart": "8c88eedb61d45f5df8d597d4d79853a88b2f3fc3ebae795cc951fe1720a6fb51",
+    "packages/quds_office_editor/example/lib/studio_mail_submission.dart": "87b7849ad8e9c99d0f092ad285a73fa7f695f8411272335fa22434f14480cda7",
+    "packages/quds_office_editor/example/lib/studio_mail_threading.dart": "84c7d63381b0176f5571e4da03487c67958223ad7aabcb651015fe6401dd4525",
+    "packages/quds_office_editor/example/lib/studio_mail_cloud.dart": "5c14cd2b5ca70bf47e11d035c0339c4f455fdd0198460a1b55bad3238b6d94a3",
+    "packages/quds_mail_transport/lib/src/cloud/provider.dart": "bc90d3c93c232beda8e620d405685441b35dd9bb8d18624d115d310bcaa1a450",
+    "packages/quds_mail_transport/lib/src/ews/native/provider.dart": "0c479a7723369324683179e1789f88b9a02950d7f64a25929922bf7ffda795ed",
+    "packages/quds_mail_transport/lib/src/ews/soap.dart": "d6c43bccd26f4747633a2aead150d4a656904215f5df240da35882b06153feb9",
+    "packages/quds_mail_core/lib/src/sync/outbox.dart": "d4afa54e8f50623942cbd4bc1776377471fc05aaf6778d0478b95976961ab695",
+    "third_party/enough_mail/lib/src/message_builder.dart": "30f0c775e459a2eb055c8a539edf3a0de4a7af96ef6d9e7a258755b284ecb6c9",
+    "third_party/enough_mail/lib/src/mime_message.dart": "0a687232552e031d6265e6bb14a0d26d90a7cbf07b0843a808caaa3f5d03fdf3",
+    "third_party/enough_mail/lib/src/mail/mail_client.dart": "c509f3485f4a2119ca46a81760d6ebd06967f9068a3afd5d0d41d741010ea47f",
+    "third_party/enough_mail/lib/src/smtp/smtp_client.dart": "2337b3531f923027c6f425d5bfe6d8cbd66188bae4aa19930509617ee43fbf76",
+    "third_party/enough_mail/lib/src/private/smtp/commands/smtp_sendmail_command.dart": "5a620bf527ebf95970c0ca75cd5d4cad47a2b1c416ee8683b1b61c417e06910f"
+  },
+  "automated_audit_checks_pass": true
+}

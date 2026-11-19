@@ -7,9 +7,15 @@ const String _ns =
     'xmlns:p="${OfficeNamespaces.p}" xmlns:a="${OfficeNamespaces.a}" '
     'xmlns:r="${OfficeNamespaces.r}"';
 
-String _sld(String shapes, {String root = 'sld', String name = ''}) =>
+String _sld(
+  String shapes, {
+  String root = 'sld',
+  String name = '',
+  String background = '',
+}) =>
     '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-    '<p:$root $_ns><p:cSld${name.isEmpty ? '' : ' name="$name"'}><p:spTree>'
+    '<p:$root $_ns><p:cSld${name.isEmpty ? '' : ' name="$name"'}>$background'
+    '<p:spTree>'
     '<p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/>'
     '</p:nvGrpSpPr><p:grpSpPr/>$shapes</p:spTree></p:cSld>'
     '${root == 'sldMaster' ? '<p:clrMap bg1="lt1" tx1="dk1" bg2="lt2" '
@@ -57,8 +63,14 @@ const String _theme =
     '<a:accent2><a:srgbClr val="ED7D31"/></a:accent2>'
     '</a:clrScheme></a:themeElements></a:theme>';
 
-/// A deck with one master, one "Title Slide" layout and the given slides.
-PmlPresentation _deck(List<String> slides, {List<int>? order}) {
+/// A deck with a primary master/layout and an optional second-slide master.
+PmlPresentation _deck(
+  List<String> slides, {
+  List<int>? order,
+  String masterBackground = '',
+  String layoutBackground = '',
+  String? secondaryMasterBackground,
+}) {
   final OpcPackage package = OpcPackage.create(OpcPackageKind.slide);
   final RelationshipCollection presRels = package.relationshipsFor(
     '/ppt/presentation.xml',
@@ -92,6 +104,7 @@ PmlPresentation _deck(List<String> slides, {List<int>? order}) {
               text: 'Click to edit Master text styles',
             ),
         root: 'sldMaster',
+        background: masterBackground,
       ),
     ),
   );
@@ -115,6 +128,7 @@ PmlPresentation _deck(List<String> slides, {List<int>? order}) {
             _placeholder(3, 'subTitle', idx: 1, text: 'Click to add subtitle'),
         root: 'sldLayout',
         name: 'Title Slide',
+        background: layoutBackground,
       ),
     ),
   );
@@ -124,6 +138,39 @@ PmlPresentation _deck(List<String> slides, {List<int>? order}) {
         type: RelationshipTypes.slideMaster,
         target: '../slideMasters/slideMaster1.xml',
       );
+  String? secondaryMasterId;
+  if (secondaryMasterBackground != null) {
+    secondaryMasterId = presRels
+        .add(
+          type: RelationshipTypes.slideMaster,
+          target: 'slideMasters/slideMaster2.xml',
+        )
+        .id;
+    package.createPart(
+      '/ppt/slideMasters/slideMaster2.xml',
+      OfficeContentTypes.slideMaster,
+      utf8.encode(
+        _sld('', root: 'sldMaster', background: secondaryMasterBackground),
+      ),
+    );
+    package.relationshipsFor('/ppt/slideMasters/slideMaster2.xml')
+      ..add(type: RelationshipTypes.theme, target: '../theme/theme1.xml')
+      ..add(
+        type: RelationshipTypes.slideLayout,
+        target: '../slideLayouts/slideLayout2.xml',
+      );
+    package.createPart(
+      '/ppt/slideLayouts/slideLayout2.xml',
+      OfficeContentTypes.slideLayout,
+      utf8.encode(_sld('', root: 'sldLayout', name: 'Secondary')),
+    );
+    package
+        .relationshipsFor('/ppt/slideLayouts/slideLayout2.xml')
+        .add(
+          type: RelationshipTypes.slideMaster,
+          target: '../slideMasters/slideMaster2.xml',
+        );
+  }
   final List<String> ids = <String>[];
   for (int i = 0; i < slides.length; i++) {
     final String uri = '/ppt/slides/slide${i + 1}.xml';
@@ -135,7 +182,9 @@ PmlPresentation _deck(List<String> slides, {List<int>? order}) {
         .relationshipsFor(uri)
         .add(
           type: RelationshipTypes.slideLayout,
-          target: '../slideLayouts/slideLayout1.xml',
+          target: secondaryMasterBackground != null && i == 1
+              ? '../slideLayouts/slideLayout2.xml'
+              : '../slideLayouts/slideLayout1.xml',
         );
     ids.add(
       presRels
@@ -152,7 +201,9 @@ PmlPresentation _deck(List<String> slides, {List<int>? order}) {
       .getPart('/ppt/presentation.xml')!
       .writeText(
         '<p:presentation $_ns><p:sldMasterIdLst><p:sldMasterId '
-        'id="2147483648" r:id="rId1"/></p:sldMasterIdLst><p:sldIdLst>'
+        'id="2147483648" r:id="rId1"/>'
+        '${secondaryMasterId == null ? '' : '<p:sldMasterId id="2147483649" r:id="$secondaryMasterId"/>'}'
+        '</p:sldMasterIdLst><p:sldIdLst>'
         '${sequence.map((int i) => '<p:sldId r:id="${ids[i]}" id="${256 + i}"/>').join()}'
         '</p:sldIdLst><p:sldSz cx="9144000" cy="6858000"/></p:presentation>',
       );
@@ -204,9 +255,205 @@ void main() {
       ]);
       final PmlShape picture = deck.slides.single.shapes.single;
       expect(picture.visual?.kind, OfficeVisualKind.picture);
+      expect(picture.fillColor, isEmpty);
+      expect(picture.strokeColor, isEmpty);
       expect(picture.transform.x, 914400);
       expect(picture.transform.cx, 1828800);
       expect(picture.transform.cy, 1371600);
+    });
+
+    test('picture srcRect keeps deep crops and edge expansion', () {
+      final PmlPresentation deck = _deck(<String>[
+        _sld(
+          '<p:pic><p:nvPicPr><p:cNvPr id="2" name="Cropped"/>'
+          '<p:cNvPicPr/><p:nvPr/></p:nvPicPr><p:blipFill>'
+          '<a:blip r:embed="rId9"/><a:srcRect l="10000" t="2739" '
+          'r="67691" b="-1896"/><a:stretch/></p:blipFill><p:spPr>'
+          '${_xfrm(0, 0, 914400, 914400)}</p:spPr></p:pic>',
+        ),
+      ]);
+      final PictureAdjust crop =
+          deck.slides.single.shapes.single.visual!.picture;
+      expect(crop.cropLeft, closeTo(0.1, 0.00001));
+      expect(crop.cropTop, closeTo(0.02739, 0.00001));
+      expect(crop.cropRight, closeTo(0.67691, 0.00001));
+      expect(crop.cropBottom, closeTo(-0.01896, 0.00001));
+    });
+
+    test('rich text keeps run styles, paragraph defaults, and anchor', () {
+      final PmlPresentation deck = _deck(<String>[
+        _sld(
+          '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Rich"/>'
+          '<p:cNvSpPr txBox="1"/><p:nvPr/></p:nvSpPr><p:spPr>'
+          '${_xfrm(0, 0, 9144000, 914400)}</p:spPr><p:txBody>'
+          '<a:bodyPr anchor="ctr"/><a:p><a:pPr algn="ctr"/><a:r>'
+          '<a:rPr sz="3300" b="1"><a:solidFill><a:prstClr val="white">'
+          '<a:lumMod val="65000"/></a:prstClr></a:solidFill>'
+          '<a:latin typeface="Microsoft Sans Serif"/></a:rPr>'
+          '<a:t>Title</a:t></a:r></a:p><a:p><a:r><a:rPr b="1" i="1"/>'
+          '<a:t>Date</a:t></a:r><a:endParaRPr sz="1100"/></a:p>'
+          '</p:txBody></p:sp>',
+        ),
+      ]);
+      final PmlShape shape = deck.slides.single.shapes.single;
+      expect(shape.textAnchor, PmlTextAnchor.center);
+      expect(shape.textAlign, PmlTextAlign.center);
+      expect(shape.richText, hasLength(2));
+      expect(shape.richText[0].runs.single.fontSizePt, 33);
+      expect(shape.richText[0].runs.single.bold, isTrue);
+      expect(shape.richText[0].runs.single.color, 'A6A6A6');
+      expect(shape.richText[1].runs.single.fontSizePt, 0);
+      expect(shape.richText[1].defaultFontSizePt, 11);
+    });
+
+    test('master background resolves theme lumMod', () {
+      final PmlPresentation deck = _deck(
+        <String>[_sld(_textBox(2, 'Slide'))],
+        masterBackground:
+            '<p:bg><p:bgPr><a:solidFill><a:schemeClr val="bg1">'
+            '<a:lumMod val="95000"/></a:schemeClr></a:solidFill>'
+            '<a:effectLst/></p:bgPr></p:bg>',
+      );
+      expect(deck.master.background, 'F2F2F2');
+      expect(deck.slides.single.background, 'F2F2F2');
+      expect(deck.slides.single.inheritsMasterBackground, isTrue);
+      expect(deck.slides.single.copy().inheritsMasterBackground, isTrue);
+    });
+
+    test(
+      'explicit slide and layout fills remain independent of the master',
+      () {
+        const String fill =
+            '<p:bg><p:bgPr><a:solidFill><a:srgbClr val="FFFFFF"/>'
+            '</a:solidFill></p:bgPr></p:bg>';
+        final PmlPresentation slideFill = _deck(<String>[
+          _sld(_textBox(2, 'Own paper'), background: fill),
+        ]);
+        final PmlPresentation layoutFill = _deck(<String>[
+          _sld(_textBox(2, 'Layout paper')),
+        ], layoutBackground: fill);
+        for (final PmlPresentation deck in <PmlPresentation>[
+          slideFill,
+          layoutFill,
+        ]) {
+          expect(deck.slides.single.background, 'FFFFFF');
+          expect(deck.slides.single.inheritsMasterBackground, isFalse);
+          expect(deck.slides.single.copy().inheritsMasterBackground, isFalse);
+        }
+      },
+    );
+
+    test(
+      'imported secondary master paper survives until the master changes',
+      () {
+        String fill(String rgb) =>
+            '<p:bg><p:bgPr><a:solidFill><a:srgbClr val="$rgb"/>'
+            '</a:solidFill></p:bgPr></p:bg>';
+        final PmlPresentation deck = _deck(
+          <String>[
+            _sld(_textBox(2, 'Primary master')),
+            _sld(_textBox(2, 'Secondary master')),
+            _sld(_textBox(2, 'Explicit white'), background: fill('FFFFFF')),
+          ],
+          masterBackground: fill('AABBCC'),
+          secondaryMasterBackground: fill('112233'),
+        );
+        expect(deck.master.background, 'AABBCC');
+        expect(deck.slides.map((slide) => slide.background), <String>[
+          'AABBCC',
+          '112233',
+          'FFFFFF',
+        ]);
+        expect(
+          deck.slides.map((slide) => slide.inheritsMasterBackground),
+          <bool>[true, true, false],
+        );
+        final PmlSlide copiedSecondary = deck.slides[1].copy(id: 999);
+        expect(copiedSecondary.inheritsMasterBackground, isTrue);
+        deck.master.background = 'aabbcc';
+        expect(
+          deck.slides[1].resolveBackground(deck.master.background),
+          '112233',
+        );
+        expect(
+          copiedSecondary.resolveBackground(deck.master.background),
+          '112233',
+        );
+        deck.master.background = 'FF0000';
+        expect(
+          deck.slides.map(
+            (slide) => slide.resolveBackground(deck.master.background),
+          ),
+          <String>['FF0000', 'FF0000', 'FFFFFF'],
+        );
+        expect(
+          copiedSecondary.resolveBackground(deck.master.background),
+          'FF0000',
+        );
+        expect(deck.slides[1].background, '112233');
+        deck.master.background = '00FF00';
+        expect(
+          copiedSecondary.resolveBackground(deck.master.background),
+          '00FF00',
+        );
+      },
+    );
+
+    test(
+      'direct background assignments and copies preserve authored paper',
+      () {
+        final PmlSlide slide = PmlSlide(id: 256)
+          ..setInheritedBackground('AABBCC', masterBackground: 'AABBCC');
+        expect(slide.resolveBackground('112233'), '112233');
+        slide.background = 'FFFFFF';
+        expect(slide.inheritsMasterBackground, isFalse);
+        expect(slide.resolveBackground('112233'), 'FFFFFF');
+        final PmlSlide copy = slide.copy();
+        expect(copy.inheritsMasterBackground, isFalse);
+        expect(copy.resolveBackground('112233'), 'FFFFFF');
+        slide.background = '';
+        expect(slide.inheritsMasterBackground, isTrue);
+        expect(slide.resolveBackground('445566'), '445566');
+        expect(slide.resolveBackground(''), 'FFFFFF');
+        expect(copy.resolveBackground('445566'), 'FFFFFF');
+      },
+    );
+
+    test('scalar edits preserve imported rich styles and restore on undo', () {
+      final PmlShape shape = _deck(<String>[
+        _sld(
+          '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Rich"/>'
+          '<p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr>'
+          '${_xfrm(0, 0, 9144000, 914400)}</p:spPr><p:txBody>'
+          '<a:bodyPr/><a:p><a:r><a:rPr sz="1800" b="1"/>'
+          '<a:t>Bold</a:t></a:r><a:r><a:rPr sz="2400" i="1"/>'
+          '<a:t> Italic</a:t></a:r></a:p></p:txBody></p:sp>',
+        ),
+      ]).slides.single.shapes.single;
+      final PmlTextSource source = shape.textSource!;
+      shape
+        ..fontSizePt = 32
+        ..textColor = 'FF0000'
+        ..textAlign = PmlTextAlign.right
+        ..rightToLeft = true;
+      final PmlTextParagraph edited = shape.resolvedRichText.single;
+      expect(edited.runs.map((run) => run.fontSizePt), <double>[32, 32]);
+      expect(edited.runs.map((run) => run.color), <String>['FF0000', 'FF0000']);
+      expect(edited.runs.first.bold, isTrue);
+      expect(edited.runs.last.italic, isTrue);
+      expect(edited.align, PmlTextAlign.right);
+      expect(edited.rightToLeft, isTrue);
+      expect(shape.richText.single.runs.first.fontSizePt, 18);
+      expect(shape.richText.single.runs.last.fontSizePt, 24);
+      expect(shape.textSource, same(source));
+      shape
+        ..fontSizePt = source.fontSizePt
+        ..textColor = source.textColor
+        ..textAlign = source.textAlign
+        ..rightToLeft = source.rightToLeft;
+      expect(shape.resolvedRichText, same(shape.richText));
+      shape.text = 'Replacement';
+      expect(shape.resolvedRichText, isEmpty);
     });
 
     test('scheme colors and p:style refs resolve through the theme', () {

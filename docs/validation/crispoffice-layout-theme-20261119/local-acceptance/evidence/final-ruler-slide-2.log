@@ -1,0 +1,40 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":6,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+{"count":2,"time":4,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3188}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":4,"line":null,"column":null,"url":null},"type":"group","time":3190}
+{"test":{"id":3,"name":"(setUpAll)","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":34,"column":3,"url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart"},"type":"testStart","time":3190}
+{"testID":3,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3262}
+{"test":{"id":4,"name":"dark rulers and drag readouts follow chrome colors","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":43,"column":5,"url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart"},"type":"testStart","time":3262}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3317}
+{"test":{"id":5,"name":"high contrast rulers and drag readouts follow chrome colors","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":43,"column":5,"url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart"},"type":"testStart","time":3318}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3325}
+{"test":{"id":6,"name":"dark chrome with white paper rulers and drag readouts follow chrome colors","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":43,"column":5,"url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart"},"type":"testStart","time":3325}
+{"testID":6,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3334}
+{"test":{"id":7,"name":"light ruler surfaces retain their established palette","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":83,"column":3,"url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart"},"type":"testStart","time":3334}
+{"testID":7,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3341}
+{"test":{"id":8,"name":"(tearDownAll)","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":3341}
+{"testID":8,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3346}
+{"suite":{"id":9,"platform":"vm","path":"/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart"},"type":"suite","time":3373}
+{"test":{"id":10,"name":"loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart","suiteID":9,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":3373}
+{"testID":10,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":4267}
+{"group":{"id":11,"suiteID":9,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":6,"line":null,"column":null,"url":null},"type":"group","time":4268}
+{"test":{"id":12,"name":"(setUpAll)","suiteID":9,"groupIDs":[11],"metadata":{"skip":false,"skipReason":null},"line":209,"column":3,"url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart"},"type":"testStart","time":4268}
+{"testID":12,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":4322}
+{"test":{"id":13,"name":"dark Slides adapt explicit ink and preserve automatic and exported colors","suiteID":9,"groupIDs":[11],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":211,"root_column":3,"root_url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart"},"type":"testStart","time":4323}
+{"testID":13,"messageType":"print","message":"Slide table coverage: light exact=3, contrast>=4.5=85; dark exact=16, contrast>=4.5=191; authored dark contrast>=4.5=0.","type":"print","time":4566}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4712}
+{"test":{"id":14,"name":"unfilled Slide text preserves authored ink over picture","suiteID":9,"groupIDs":[11],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":368,"root_column":5,"root_url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart"},"type":"testStart","time":4713}
+{"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4883}
+{"test":{"id":15,"name":"unfilled Slide text preserves authored ink over chart","suiteID":9,"groupIDs":[11],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":368,"root_column":5,"root_url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart"},"type":"testStart","time":4883}
+{"testID":15,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5010}
+{"test":{"id":16,"name":"unfilled Slide text preserves authored ink over partial fill","suiteID":9,"groupIDs":[11],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":368,"root_column":5,"root_url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart"},"type":"testStart","time":5010}
+{"testID":16,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5101}
+{"test":{"id":17,"name":"unfilled Slide text preserves authored ink over rotated fill","suiteID":9,"groupIDs":[11],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":368,"root_column":5,"root_url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart"},"type":"testStart","time":5102}
+{"testID":17,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5193}
+{"test":{"id":18,"name":"dark Morph ink uses the interpolated fill instead of target fill","suiteID":9,"groupIDs":[11],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":424,"root_column":3,"root_url":"file:///workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_slide_test.dart"},"type":"testStart","time":5196}
+{"testID":18,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":5220}
+{"test":{"id":19,"name":"(tearDownAll)","suiteID":9,"groupIDs":[11],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":5221}
+{"testID":19,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":5226}
+{"success":true,"type":"done","time":5242}

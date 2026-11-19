@@ -1,0 +1,5 @@
+Resolving dependencies...
+Because quds_mail_ui depends on flutter_lints any which doesn't exist (could not find package flutter_lints in cache), version solving failed.
+
+Try again without --offline!
+Failed to update packages.

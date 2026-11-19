@@ -1,0 +1,286 @@
+{
+  "observedAt": "2026-11-19T20:42:44.315Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "baselineMain": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+  "baselineBranch": "2638a2c96ea5e66ace5884896fe09de92a7ce380",
+  "branches": [
+    {
+      "name": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be"
+    },
+    {
+      "name": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "main",
+      "sha": "5715d56053e93dc11e8b5165bd13f8db2a1f3917"
+    },
+    {
+      "name": "work/mail-next-20261119",
+      "sha": "64613125ab139fcb5fe42cba9a5d7a896e646c0b"
+    }
+  ],
+  "openPullRequests": [
+    {
+      "number": 216,
+      "title": "Reconcile incoming work before next mail increment",
+      "draft": true,
+      "head": "2638a2c96ea5e66ace5884896fe09de92a7ce380",
+      "base": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+      "updatedAt": "2026-11-19T20:38:12Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/216"
+    },
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "draft": true,
+      "head": "cacae8569814e4cb81f58d358734d31431f102be",
+      "base": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "updatedAt": "2026-11-19T19:24:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211"
+    },
+    {
+      "number": 210,
+      "title": "Extend VBA macros with bounded arrays and For Each; reconcile fork work",
+      "draft": true,
+      "head": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "base": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "updatedAt": "2026-11-19T19:04:23Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/210"
+    }
+  ],
+  "qualification": "Remote read and ancestry review only; no fresh Dart/Flutter execution.",
+  "refreshedAt": "2026-11-19T20:49:08.850Z",
+  "candidateObserved": "64613125ab139fcb5fe42cba9a5d7a896e646c0b",
+  "recentPullRequests": [
+    {
+      "number": 216,
+      "state": "open",
+      "draft": true,
+      "head": "64613125ab139fcb5fe42cba9a5d7a896e646c0b",
+      "base": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+      "updatedAt": "2026-11-19T20:47:44Z",
+      "mergedAt": null
+    },
+    {
+      "number": 212,
+      "state": "closed",
+      "draft": false,
+      "head": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "base": "756885bc9cb1612f8d400889f8d3020cec9ad945",
+      "updatedAt": "2026-11-19T20:17:01Z",
+      "mergedAt": "2026-11-19T20:16:03Z"
+    },
+    {
+      "number": 215,
+      "state": "closed",
+      "draft": false,
+      "head": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "base": "9ceb994d8edce3989228f1244cda90ecc9884931",
+      "updatedAt": "2026-11-19T19:53:18Z",
+      "mergedAt": "2026-11-19T19:53:14Z"
+    },
+    {
+      "number": 214,
+      "state": "closed",
+      "draft": false,
+      "head": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "base": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+      "updatedAt": "2026-11-19T19:43:15Z",
+      "mergedAt": "2026-11-19T19:42:42Z"
+    },
+    {
+      "number": 213,
+      "state": "closed",
+      "draft": false,
+      "head": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "base": "d9bee6e507f6b631aee55bb8a89187119410847f",
+      "updatedAt": "2026-11-19T19:43:15Z",
+      "mergedAt": "2026-11-19T19:15:39Z"
+    },
+    {
+      "number": 209,
+      "state": "closed",
+      "draft": false,
+      "head": "6275d21246040e03f6264b27171992c88d1474a2",
+      "base": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "updatedAt": "2026-11-19T19:43:14Z",
+      "mergedAt": "2026-11-19T18:16:42Z"
+    },
+    {
+      "number": 207,
+      "state": "closed",
+      "draft": false,
+      "head": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "base": "0d87cebea232c3edf55c4f4a22f63684dbe5a3f5",
+      "updatedAt": "2026-11-19T19:43:14Z",
+      "mergedAt": "2026-11-19T17:49:23Z"
+    },
+    {
+      "number": 206,
+      "state": "closed",
+      "draft": false,
+      "head": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "base": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+      "updatedAt": "2026-11-19T19:43:14Z",
+      "mergedAt": "2026-11-19T17:40:16Z"
+    },
+    {
+      "number": 211,
+      "state": "open",
+      "draft": true,
+      "head": "cacae8569814e4cb81f58d358734d31431f102be",
+      "base": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "updatedAt": "2026-11-19T19:24:02Z",
+      "mergedAt": null
+    },
+    {
+      "number": 210,
+      "state": "open",
+      "draft": true,
+      "head": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "base": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "updatedAt": "2026-11-19T19:04:23Z",
+      "mergedAt": null
+    },
+    {
+      "number": 208,
+      "state": "closed",
+      "draft": false,
+      "head": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "base": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+      "updatedAt": "2026-11-19T17:40:45Z",
+      "mergedAt": "2026-11-19T17:39:56Z"
+    },
+    {
+      "number": 204,
+      "state": "closed",
+      "draft": false,
+      "head": "3db248be978b24d0693d1133505d9be200fd1256",
+      "base": "81ae98688860599f118748afca19bdb2ec45da37",
+      "updatedAt": "2026-11-19T17:40:22Z",
+      "mergedAt": "2026-11-19T16:48:52Z"
+    },
+    {
+      "number": 202,
+      "state": "closed",
+      "draft": true,
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "base": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "updatedAt": "2026-11-19T17:40:22Z",
+      "mergedAt": null
+    },
+    {
+      "number": 197,
+      "state": "closed",
+      "draft": false,
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "base": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+      "updatedAt": "2026-11-19T17:40:22Z",
+      "mergedAt": "2026-11-19T14:56:01Z"
+    },
+    {
+      "number": 196,
+      "state": "closed",
+      "draft": false,
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "base": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+      "updatedAt": "2026-11-19T17:40:22Z",
+      "mergedAt": "2026-11-19T14:04:12Z"
+    },
+    {
+      "number": 205,
+      "state": "closed",
+      "draft": false,
+      "head": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "base": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "updatedAt": "2026-11-19T17:40:21Z",
+      "mergedAt": "2026-11-19T17:27:22Z"
+    },
+    {
+      "number": 203,
+      "state": "closed",
+      "draft": false,
+      "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "base": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+      "updatedAt": "2026-11-19T17:40:21Z",
+      "mergedAt": "2026-11-19T16:26:50Z"
+    },
+    {
+      "number": 201,
+      "state": "closed",
+      "draft": true,
+      "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "base": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+      "updatedAt": "2026-11-19T17:40:21Z",
+      "mergedAt": "2026-11-19T16:26:52Z"
+    },
+    {
+      "number": 198,
+      "state": "closed",
+      "draft": true,
+      "head": "623057111a9179552eb02b21a753a1728de9905d",
+      "base": "07b815a79d011f88b048900e22aa6544f44f2758",
+      "updatedAt": "2026-11-19T17:40:21Z",
+      "mergedAt": "2026-11-19T16:26:53Z"
+    },
+    {
+      "number": 199,
+      "state": "closed",
+      "draft": false,
+      "head": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "base": "07b815a79d011f88b048900e22aa6544f44f2758",
+      "updatedAt": "2026-11-19T14:56:01Z",
+      "mergedAt": "2026-11-19T14:56:01Z"
+    }
+  ],
+  "recentPullRequestsInspected": 100,
+  "newExternalPullUpdatesAfterHandoff": 0,
+  "externalBranchesUnchanged": true,
+  "olderEquivalenceProofs": "Unchanged inputs retain earlier documented dispositions; proofs not rerun."
+}

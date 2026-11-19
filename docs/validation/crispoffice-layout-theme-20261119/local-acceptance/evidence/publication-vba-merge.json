@@ -1,0 +1,1126 @@
+{
+  "parent": "2dbd1c58dd724bb2208e06c43a835b220484b1e1",
+  "incoming": "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c",
+  "base_tree": "9528c8545229da7218c6c948777ad95709ba4fe0",
+  "tree": "9d5faf9db2c5b6e999180b286a06b51a8db0e8bf",
+  "merge_tree_exit_code": 0,
+  "resolutions": [],
+  "entries": [
+    {
+      "path": "docs/validation/mail-archive-restore-20261119/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de811c21c59a36ad5780a16a205d2b2ecb003624"
+    },
+    {
+      "path": "docs/validation/mail-archive-restore-20261119/publication-check.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b44983a34922445c943e2083ac323d4128743d4f"
+    },
+    {
+      "path": "docs/validation/mail-archive-restore-20261119/publication-frontier.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f11e1386bcbfcd75ffab10482e33861828b774c4"
+    },
+    {
+      "path": "docs/validation/mail-archive-restore-20261119/publication-remote-refs.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40536f0446d649a350202ffc683471339bfebfac"
+    },
+    {
+      "path": "docs/validation/mail-archive-restore-20261119/verify-publication.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c518bf2b6ea21e6dc5a0bda49257bdf31cc66448"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/artifact-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a274c70e6f953426fbb179809eb8a455810869b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/checks-progress.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7bfbb6ff647c3da72b4bf6ce4780bc5cd14df21e"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/dart-version.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e31842faf392002962dddd61d4f292277893236"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/dependencies-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb79f9ad19912ae0716eaa26673093b6dbedce5e"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/dependencies-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb79f9ad19912ae0716eaa26673093b6dbedce5e"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/engine-analysis.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e2e64eb583b1212fe7227a1898de67343cdce69"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/format.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9fa80b7a6343235dd6ffea87954f1537c9c170c3"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/inputs-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3275817847569f71c38770805c4c2b85bf503701"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/inputs-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3275817847569f71c38770805c4c2b85bf503701"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/dart-version.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/dart-version.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e19f53e747b4151824669d32a560dc4921fad45"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/engine-analysis.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/engine-analysis.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a78eb66b3a8527c4d96187983660555b7e7d582f"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/format.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/format.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "819fd4122945608d8a7426e44eb237fd3100a085"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/macro-tests.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/macro-tests.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b68f95115bdac1ce2b1d3bda5a9a6d4f20e7db34"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/node-version.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/node-version.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22fbfc060a4e628c604aabc07ac2f2a5fdc51fb6"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-compile.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-compile.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bce087831de5d151409a81ec1a1f6a9fe7ee920"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-run.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_smoke-run.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1babe1783229ca96c6e64303fe222ea18f0a73c5"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-compile.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-compile.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4ddb55379bc78be72df5c87e2524c61c97f1ed9"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-run.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_arrays_smoke-run.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c163a37da158adc7ad61a4c9d71b33868fc4466"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-compile.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-compile.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0264eeff76411eeecfb4f0e14c0e9933db699e98"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-run.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_control_flow_smoke-run.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc79d3e0c1c931ecc8ad145848a48f911a3d3ba3"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-compile.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-compile.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0470f290cd4fdce1809674ecaf861166f018cb20"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-run.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_procedures_smoke-run.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18e4395f6a4ea5740cbe40c1d45ce6e37a96de5b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-compile.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-compile.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b6521ef8c7f51a94f819c57bfedbabcb7f669c3"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-run.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/web_vba_smoke-run.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b229cb421cf91010850031418ba698d910644ac7"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/whitespace.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/logs/whitespace.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/macro-tests.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20697c68d0fac14a855d52cc99251e33f9537922"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/node-version.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53430058b9bc1663affe27979f61792b736fc013"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/package-config.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81d28a66c9c4cbdb44040c34df24b374cff929bc"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82a618b7c7d27348586e3975cc2831b21be3f492"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/resolved-pubspec.lock",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f33282d534ac17a79abd6a4547662820de49d07"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/test-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9195a85c6c5bd2b16ac88a228a51d03dd9f64403"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/validation-pubspec.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c57714573f42a6a8a20f962737d7b98123af89d"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-assertions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3b8f831fdbed511f4403c3c4b32493cad17a3d3"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-compile.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3402532dd1042cf813ac7a4e9c20762cc4486c1"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_smoke-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0bef8ee7f6f0cde846b4532c0aff83038ed4db2"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-assertions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62517b1c25798c74815eef35a85828ebf6c5aba8"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-compile.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "281b759679f51d683eb9975946fe26f0f4da0dc7"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_arrays_smoke-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d597e84a71f36002f7f065dd68b1265b357b42f"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-assertions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26d26ebb85bf2cc4ca7af78e61feffccf92324db"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-compile.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b93ae7de01bf00fd597643d8257832d0f52b938e"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_control_flow_smoke-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ae288c88913d108128919abd0bd0e81a3460411"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-assertions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e7997cab5fcedf132fedf61fa84f46f6aa81770"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-compile.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38cec2de18da6eea92012736df0d959d6f63f205"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_procedures_smoke-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e54c611406a4b4ab5557531e215ed12441f442a"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-assertions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13383da198ffe88aadc7e57e516c972af100606c"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-compile.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "532a6309e8dac48dc5440aa5dfbecb75c6d2752f"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/web_vba_smoke-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a257ba62e8427c563837224b962f61265bb817d"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/engine-final/whitespace.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ee028128f29a66e473ca054f769c82e23fe0b44"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/final-review/gui-layout-theme/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dedee0723d522a75abba600245bea072138d9460"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/final-review/gui-layout-theme/audit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3146de1158995ab5bc379a43a00d1a8276ce25a"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/final-review/latest-frontier/audit_mail_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0bf3ac551856aa6f3f45854df0ba79cd500a7e68"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/final-review/latest-frontier/frontier-audit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c669157ff3f5a1e393635ef72ad233a7631184ee"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/final-review/latest-frontier/mail-evidence-audit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29b2c3a9a6733cf9160d1de2f7a0ea539a394be1"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64df144df31964a6532adab29c7e02e6c4eaa976"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/artifacts-sha256.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ea0016c89b0aab506c5e4a2fc3f3be3afb5904d"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/analysis.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "afe03d06879865523cb25fe0f721656194b0fde1"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/analysis.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/analysis.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a517d52d24985eac66dc4d3251488ab86e4479a"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/correction.diff",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e535353047f6409bfb12b5eb4e44c3c75876868"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/format.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7906f57697ca642ea946c5cb4353ce71a19c769b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/format.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/format.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28010ab9543493ea30e95b1599dfdeb3656a4335"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/incoming-context.diff",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfc7c02ca2fcfca15b2638acd421be8f2547a284"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5eb388a8a3f0985a5906b48a0485e802abcb2c7"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/changed-analysis.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0b0680b4d17b3c53dac4aca83441827e56df5fc"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/changed-analysis.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/changed-analysis.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45d8f907b430cbda84c8d6b15e2c208350677436"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/editor-tests-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36fac02c409da799f6596f825e7f488348be08db"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/editor-tests.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "958607de83b1dc5d33451dfe121e193f1604f8be"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/editor-tests.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/editor-tests.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87ddb3cd8b0372290b33e8755bad9a2747e105fe"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/finalize.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b717da0f8bbff0f7331aae29e8f430328149cab"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/input-stability.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c8ead3acbdbe83371fb9935d50f28a62fd0f02c"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/inputs-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34c7774f73dcc1a53ba100a8b3c4a8839fec4920"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/inputs-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34c7774f73dcc1a53ba100a8b3c4a8839fec4920"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/qualify.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b4b963cae206bc272d7552b21978a071bf48431"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa7e7752cffad06b723c4e719438c8e36ff6cb7b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/repeated-studio-tests-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60428c3176a5931fb22f8507e9dc085140cd4b34"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/repeated-studio-tests.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9c408a6e78738e1d57929c870bbd1054d83d2cd"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/repeated-studio-tests.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/repeated-studio-tests.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7348cc03184352ada6a27565b51b3dc27c2bf29"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/source-frontier.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3d694ef84699be76eec557bfab9019f6902990c"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-analysis.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8dfc3bd66f999d28ca7fbf31cc58edee2fc488d2"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-analysis.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c7380eeb36c8b15331992eca779a2309e2df340"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-analysis.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1df7b8c8fe2c1cfda7509b65301577e4a66c86cf"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-theme-tests-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c9a4d59f9807b6de7c143d4d04c88259a6bb28a"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-theme-tests.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45121c5e00101e81e4d96fbc44d516d908ca5928"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-theme-tests.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/studio-theme-tests.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "832f2d4d2f972496c20edba693b168f31b336311"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c5ab23991424e7df42b2608b873d9ce03ec43b7"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/artifacts-sha256.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34b095050419ac3adbd4030a4ddc9783596d5ba4"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29723688a8b58cd5ac7ba8d8c790e2d84e7e1a67"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdb7909468a5c493ea1c19bdb373b2833f5717df"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/baseline-embed-tests.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1e2e8e2ed181e06ea5efa41199456d83b1e6948"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/inputs-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3bc98155be52675d2230eb8a0d1ceabd935aae61"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/inputs-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3bc98155be52675d2230eb8a0d1ceabd935aae61"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "106e608b23849c0db23178cf00219b401bd8d645"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/run_baseline.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d74bd8131c2d8c4f4052aa90ec8c37d21430a8a"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/baseline/source-frontier.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84543a281dd57c09373f975fe4afa1d199e86fef"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "126aed50426bf0c338028f9af4ffe85567363be1"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/changed-analysis.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db46622e02ef73c5d387ba5599dd1c7d7ea36dd5"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4983ea8ff66e5897e59c4eed3d25afea161dfd70"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "927a4af01edd2528403db6d345911b50abc74260"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/editor-tests.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13b9aa432b971af8ac654ecf5504f4d3c299eedb"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-change-proof.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7af28a657f66be7c2f21d7dcdada36da54d8838"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4736d046668b55e9f747a516d65594fb100ae276"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-final.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63a288c2353832afb0d1877b63ac3d6b3901c211"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd57731315540385a4f775f6c644f1043955e372"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-check.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25078a0948b84aa5a5f27a0fadb0e8aad3f436b7"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-runner-error.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67e39562e01bbbc56fb72f30337deeda6e86db75"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-runner-error.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a2f825e5c15fe1149b8daf931521093e9f0d7f3"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/fixture-teardown-late.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acc6edc45a58ab8a7c1dfa66aa382ca10d15fb25"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/input-stability.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76d8c9fb9cdc0fb5246dcf0dfc56162d973470b0"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/inputs-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17513973e71fd90cb522fd6c08a4de80994581c6"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/inputs-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17513973e71fd90cb522fd6c08a4de80994581c6"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/qualify.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93aa13bfc3c825b8e3feeddbaed426fff31018e6"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b538d68e2eab9b99d706d9d0aaf9d1710496b17"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8eb9974c5271695c061f841a3a4669733812e10"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66a6fa2c7cd339c07941a32080e345e97e572cf5"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/repeated-studio-tests.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2a7ea325d43ba5e8bc0d7241ed1cb820c532d8b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-layout-theme/source-frontier.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f671b7a31ab67f9b087a843dbf91906260c14695"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc32fcd1e4f0d0a4e44f7d160235d5828092d28c"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/artifacts-sha256.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70a1c94ee20b9cea820847af9ebd1b522c55e079"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/engine-snapshot.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5422f9543606be8833163c70018a94f511c8374d"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/input-stability.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e74700968a579238094bc8a483dbb7268ad04927"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/inputs-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0a32a5aed3c0dc22ccf2b0b76814ce278ef9345"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/inputs-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0a32a5aed3c0dc22ccf2b0b76814ce278ef9345"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/native-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f00120563ebf07cbb19a8e310ea215a7084ce17b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/qualify.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e800d2eeb14ae28fbd903b76a3d3b80605bec9c"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "931544542c043d85c355b844e3f1ba2030f2a5d9"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/runtime-metadata.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75c3a001e01f27df2d4e58ab0d732f53b2af0e07"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "508764b8cbd7964a2b0bc8598db33e4e22058f3f"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/source-frontier.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efe433a1b3fea2fc2916df986087ea488da27d02"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1a10d9a6dbd2ff9a40a698a52d8a441e286ee3b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/studio-tests.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25328f1625d389156f478ea2c05a7ef96494bf77"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/suite-counts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c201f0fb64bc15633ba23e0d8f5a14fcb02ac52b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/incoming-studio/test-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0da9b93463718bc7c11dbc738b9676bd7b6dc57"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2ad11afebb0339bc86e527545ff8840e2ed08c4"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0e9a8ee2db572b93694834d7b41cd31a6bfdbf8"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/after-stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1483322ed66369b790d402523c7e738f7a445d40"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/artifact-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abdafbcbf8122bc72975e36724e33bc5e1bba16f"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-probe.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66bd7d823260543030735b00b7373b32fed220f5"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2bef06360646c0a5c8f1b722dafaf89daae3d868"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/before-stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41d3650a549e7d221e42d2faf327d08b72601ead"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/core-after.jsonl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "477145e36dd79a413fa8c021b3c67f73a48bb37e"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/core-after.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/correction-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f5a9e2ea352737d2b712bd05be898380f83d0f6"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/independent-review/parser-compatibility/reproduce.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a26c53006075ed5791cc709f97eeefe36b8d8f3d"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-tools-offline.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de3dfccef958da26f2ef5f7e21a691b18b714d95"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-workspace-final-pub.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f24823c75a2caff3842122ac8f6288f898cea34b"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/runtime/flutter-workspace-offline.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acd3b16b139464fd59e9b702f765612ec16cb356"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/runtime/package-fetch-receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2dcb05954792eab522731f24b50e8f8df4e669a"
+    },
+    {
+      "path": "docs/validation/office-vba-arrays-20261119/runtime/setup.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00723bfcd49615d03f33732830ce45b8080e3108"
+    },
+    {
+      "path": "packages/quds_office_editor/test/embed_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3730dceab5e74df95198bfa3646c4661ae55297f"
+    }
+  ]
+}

@@ -1,0 +1,425 @@
+diff --cc packages/quds_office_editor/example/lib/suite_workspace.dart
+index a5175873,54e62782..00000000
+--- a/packages/quds_office_editor/example/lib/suite_workspace.dart
++++ b/packages/quds_office_editor/example/lib/suite_workspace.dart
+@@@ -1327,191 -1278,214 +1327,229 @@@ class _SuiteWorkspaceState extends Stat
+              setDialogState(() {});
+            }
+  
+++<<<<<<< HEAD
+ +          return Theme(
+ +            data: _materialTheme,
+ +            child: Directionality(
+ +              textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
+ +              child: AlertDialog(
+ +                title: Text(_strings.settings),
+ +                content: SizedBox(
+ +                  width: 460,
+ +                  child: SingleChildScrollView(
+ +                    child: Column(
+ +                      mainAxisSize: MainAxisSize.min,
+ +                      children: <Widget>[
+ +                        DropdownButtonFormField<SuiteLook>(
+ +                          isExpanded: true,
+ +                          initialValue: _look,
+ +                          decoration: InputDecoration(labelText: _strings.look),
+ +                          items: <DropdownMenuItem<SuiteLook>>[
+ +                            for (final value in SuiteLook.values)
+ +                              DropdownMenuItem(
+ +                                value: value,
+ +                                child: Text(switch (value) {
+ +                                  SuiteLook.light => _t(
+ +                                    'Light',
+ +                                    'Hell',
+ +                                    'فاتح',
+ +                                  ),
+ +                                  SuiteLook.dark => _t(
+ +                                    'Dark',
+ +                                    'Dunkel',
+ +                                    'داكن',
+ +                                  ),
+ +                                  SuiteLook.highContrast => _t(
+ +                                    'High contrast',
+ +                                    'Hoher Kontrast',
+ +                                    'تباين عالٍ',
+ +                                  ),
+ +                                }),
+++=======
++           return AlertDialog(
++             title: Text(_strings.settings),
++             content: SizedBox(
++               width: 460,
++               child: SingleChildScrollView(
++                 child: Column(
++                   mainAxisSize: MainAxisSize.min,
++                   children: <Widget>[
++                     ListTile(
++                       leading: const Icon(Icons.download_outlined),
++                       title: Text(
++                         _t(
++                           'Language downloads',
++                           'Sprachdownloads',
++                           'تنزيلات اللغة',
++                         ),
++                       ),
++                       onTap: () {
++                         Navigator.pop(dialogContext);
++                         unawaited(_showLanguageDownloads());
++                       },
++                     ),
++                     DropdownButtonFormField<OfficeInteractionMode>(
++                       isExpanded: true,
++                       initialValue: _mode,
++                       decoration: InputDecoration(labelText: _strings.mode),
++                       items: <DropdownMenuItem<OfficeInteractionMode>>[
++                         for (final value in OfficeInteractionMode.values)
++                           DropdownMenuItem(
++                             value: value,
++                             child: Text(switch (value) {
++                               OfficeInteractionMode.editing => _t(
++                                 'Editing',
++                                 'Bearbeiten',
++                                 'تحرير',
+++>>>>>>> origin/main
+                                ),
+ -                              OfficeInteractionMode.selecting => _t(
+ -                                'Selecting',
+ -                                'Auswählen',
+ -                                'تحديد',
+ -                              ),
+ -                              OfficeInteractionMode.viewing => _t(
+ -                                'Viewing',
+ -                                'Ansehen',
+ -                                'عرض',
+ -                              ),
+ -                            }),
+ -                          ),
+ -                      ],
+ -                      onChanged: (value) {
+ -                        if (value != null) changed(() => _mode = value);
+ -                      },
+ -                    ),
+ -                    const SizedBox(height: 12),
+ -                    DropdownButtonFormField<SuiteLook>(
+ -                      isExpanded: true,
+ -                      initialValue: _look,
+ -                      decoration: InputDecoration(labelText: _strings.look),
+ -                      items: <DropdownMenuItem<SuiteLook>>[
+ -                        for (final value in SuiteLook.values)
+ -                          DropdownMenuItem(
+ -                            value: value,
+ -                            child: Text(switch (value) {
+ -                              SuiteLook.light => _t('Light', 'Hell', 'فاتح'),
+ -                              SuiteLook.dark => _t('Dark', 'Dunkel', 'داكن'),
+ -                              SuiteLook.highContrast => _t(
+ -                                'High contrast',
+ -                                'Hoher Kontrast',
+ -                                'تباين عالٍ',
+ -                              ),
+ -                            }),
+ +                          ],
+ +                          onChanged: (value) {
+ +                            if (value != null) changed(() => _look = value);
+ +                          },
+ +                        ),
+ +                        const SizedBox(height: 12),
+ +                        DropdownButtonFormField<StudioLanguage>(
+ +                          isExpanded: true,
+ +                          initialValue: _language,
+ +                          decoration: InputDecoration(
+ +                            labelText: _strings.languageLabel,
+                            ),
+ -                      ],
+ -                      onChanged: (value) {
+ -                        if (value != null) changed(() => _look = value);
+ -                      },
+ -                    ),
+ -                    const SizedBox(height: 12),
+ -                    DropdownButtonFormField<StudioLanguage>(
+ -                      isExpanded: true,
+ -                      initialValue: _language,
+ -                      decoration: InputDecoration(
+ -                        labelText: _strings.languageLabel,
+ -                      ),
+ -                      items: const <DropdownMenuItem<StudioLanguage>>[
+ -                        DropdownMenuItem(
+ -                          value: StudioLanguage.en,
+ -                          child: Text('English'),
+ +                          items: const <DropdownMenuItem<StudioLanguage>>[
+ +                            DropdownMenuItem(
+ +                              value: StudioLanguage.en,
+ +                              child: Text('English'),
+ +                            ),
+ +                            DropdownMenuItem(
+ +                              value: StudioLanguage.de,
+ +                              child: Text('Deutsch'),
+ +                            ),
+ +                            DropdownMenuItem(
+ +                              value: StudioLanguage.ar,
+ +                              child: Text('العربية'),
+ +                            ),
+ +                          ],
+ +                          onChanged: (value) {
+ +                            if (value != null) changed(() => _language = value);
+ +                          },
+                          ),
+ -                        DropdownMenuItem(
+ -                          value: StudioLanguage.de,
+ -                          child: Text('Deutsch'),
+ +                        const SizedBox(height: 12),
+ +                        DropdownButtonFormField<OfficeLengthUnit>(
+ +                          isExpanded: true,
+ +                          initialValue: _lengthUnit,
+ +                          decoration: InputDecoration(
+ +                            labelText: _strings.measurement,
+ +                          ),
+ +                          items: <DropdownMenuItem<OfficeLengthUnit>>[
+ +                            DropdownMenuItem(
+ +                              value: OfficeLengthUnit.inches,
+ +                              child: Text(_t('Inches', 'Zoll', 'بوصة')),
+ +                            ),
+ +                            DropdownMenuItem(
+ +                              value: OfficeLengthUnit.millimeters,
+ +                              child: Text(_strings.millimetres),
+ +                            ),
+ +                            DropdownMenuItem(
+ +                              value: OfficeLengthUnit.centimeters,
+ +                              child: Text(_strings.centimetres),
+ +                            ),
+ +                          ],
+ +                          onChanged: (value) {
+ +                            if (value != null) {
+ +                              changed(() => _lengthUnit = value);
+ +                            }
+ +                          },
+                          ),
+ -                        DropdownMenuItem(
+ -                          value: StudioLanguage.ar,
+ -                          child: Text('العربية'),
+ +                        const SizedBox(height: 8),
+ +                        SwitchListTile(
+ +                          contentPadding: EdgeInsets.zero,
+ +                          title: Text(_strings.showOutline),
+ +                          value: _showOutline,
+ +                          onChanged: (value) =>
+ +                              changed(() => _showOutline = value),
+                          ),
+ -                      ],
+ -                      onChanged: (value) {
+ -                        if (value != null) changed(() => _language = value);
+ -                      },
+ -                    ),
+ -                    const SizedBox(height: 12),
+ -                    DropdownButtonFormField<OfficeLengthUnit>(
+ -                      isExpanded: true,
+ -                      initialValue: _lengthUnit,
+ -                      decoration: InputDecoration(
+ -                        labelText: _strings.measurement,
+ -                      ),
+ -                      items: <DropdownMenuItem<OfficeLengthUnit>>[
+ -                        DropdownMenuItem(
+ -                          value: OfficeLengthUnit.millimeters,
+ -                          child: Text(_strings.millimetres),
+ +                        SwitchListTile(
+ +                          contentPadding: EdgeInsets.zero,
+ +                          title: Text(_strings.showComments),
+ +                          value: _showComments,
+ +                          onChanged: (value) =>
+ +                              changed(() => _showComments = value),
+                          ),
+ -                        DropdownMenuItem(
+ -                          value: OfficeLengthUnit.centimeters,
+ -                          child: Text(_strings.centimetres),
+ +                        SwitchListTile(
+ +                          contentPadding: EdgeInsets.zero,
+ +                          title: Text(_strings.showNotes),
+ +                          value: _showNotes,
+ +                          onChanged: (value) =>
+ +                              changed(() => _showNotes = value),
+                          ),
+ -                      ],
+ -                      onChanged: (value) {
+ -                        if (value != null) changed(() => _lengthUnit = value);
+ -                      },
+ -                    ),
+ -                    const SizedBox(height: 8),
+ -                    SwitchListTile(
+ -                      contentPadding: EdgeInsets.zero,
+ -                      title: Text(_strings.showOutline),
+ -                      value: _showOutline,
+ -                      onChanged: (value) => changed(() => _showOutline = value),
+ -                    ),
+ -                    SwitchListTile(
+ -                      contentPadding: EdgeInsets.zero,
+ -                      title: Text(_strings.showComments),
+ -                      value: _showComments,
+ -                      onChanged: (value) =>
+ -                          changed(() => _showComments = value),
+ -                    ),
+ -                    SwitchListTile(
+ -                      contentPadding: EdgeInsets.zero,
+ -                      title: Text(_strings.showNotes),
+ -                      value: _showNotes,
+ -                      onChanged: (value) => changed(() => _showNotes = value),
+ -                    ),
+ -                    SwitchListTile(
+ -                      key: const ValueKey<String>(
+ -                        'studio-setting-detect-language',
+ -                      ),
+ -                      contentPadding: EdgeInsets.zero,
+ -                      title: Text(
+ -                        _t(
+ -                          'Detect language automatically',
+ -                          StudioStrings.de('Detect language automatically'),
+ -                          'اكتشاف اللغة تلقائياً',
+ +                        SwitchListTile(
+ +                          key: const ValueKey<String>(
+ +                            'studio-setting-detect-language',
+ +                          ),
+ +                          contentPadding: EdgeInsets.zero,
+ +                          title: Text(
+ +                            _t(
+ +                              'Detect language automatically',
+ +                              StudioStrings.de('Detect language automatically'),
+ +                              'اكتشاف اللغة تلقائياً',
+ +                            ),
+ +                          ),
+ +                          subtitle: Text(
+ +                            _t(
+ +                              'Check each paragraph with the spelling and grammar '
+ +                                  'tools for its detected language. The document '
+ +                                  'is not changed.',
+ +                              StudioStrings.de(
+ +                                'Check each paragraph with the spelling and '
+ +                                'grammar tools for its detected language. The '
+ +                                'document is not changed.',
+ +                              ),
+ +                              'تدقيق كل فقرة بأدوات اللغة المكتشفة لها دون تغيير '
+ +                                  'المستند.',
+ +                            ),
+ +                          ),
+ +                          value: _word.proofing.automaticLanguageDetection,
+ +                          onChanged: (value) => changed(
+ +                            () => _word.proofing.automaticLanguageDetection =
+ +                                value,
+ +                          ),
+                          ),
+ -                      ),
+ -                      subtitle: Text(
+ -                        _t(
+ -                          'Check each paragraph with the spelling and grammar '
+ -                              'tools for its detected language. The document '
+ -                              'is not changed.',
+ -                          StudioStrings.de(
+ -                            'Check each paragraph with the spelling and '
+ -                            'grammar tools for its detected language. The '
+ -                            'document is not changed.',
+ +                        SwitchListTile(
+ +                          contentPadding: EdgeInsets.zero,
+ +                          title: Text(_strings.showRibbonLabels),
+ +                          value: _ribbonPreferences.showGroupLabels,
+ +                          onChanged: (value) => changed(
+ +                            () => _ribbonPreferences.setShowGroupLabels(value),
+                            ),
+ -                          'تدقيق كل فقرة بأدوات اللغة المكتشفة لها دون تغيير '
+ -                              'المستند.',
+                          ),
+ -                      ),
+ -                      value: _word.proofing.automaticLanguageDetection,
+ -                      onChanged: (value) => changed(
+ -                        () => _word.proofing.automaticLanguageDetection = value,
+ -                      ),
+ -                    ),
+ -                    SwitchListTile(
+ -                      contentPadding: EdgeInsets.zero,
+ -                      title: Text(_strings.showRibbonLabels),
+ -                      value: _ribbonPreferences.showGroupLabels,
+ -                      onChanged: (value) => changed(
+ -                        () => _ribbonPreferences.setShowGroupLabels(value),
+ -                      ),
+ -                    ),
+ -                    ListTile(
+ -                      contentPadding: EdgeInsets.zero,
+ -                      leading: const Icon(Icons.tune),
+ -                      title: Text(
+ -                        _t(
+ -                          'Customize Ribbon',
+ -                          'Menüband anpassen',
+ -                          'تخصيص الشريط',
+ +                        ListTile(
+ +                          contentPadding: EdgeInsets.zero,
+ +                          leading: const Icon(Icons.tune),
+ +                          title: Text(
+ +                            _t(
+ +                              'Customize Ribbon',
+ +                              'Menüband anpassen',
+ +                              'تخصيص الشريط',
+ +                            ),
+ +                          ),
+ +                          trailing: const Icon(Icons.chevron_right),
+ +                          onTap: () {
+ +                            Navigator.pop(dialogContext);
+ +                            _customizeRibbon();
+ +                          },
+                          ),
+ -                      ),
+ -                      trailing: const Icon(Icons.chevron_right),
+ -                      onTap: () {
+ -                        Navigator.pop(dialogContext);
+ -                        _customizeRibbon();
+ -                      },
+ +                      ],
+                      ),
+ -                  ],
+ +                  ),
+                  ),
+ +                actions: <Widget>[
+ +                  TextButton(
+ +                    onPressed: () => Navigator.pop(dialogContext),
+ +                    child: Text(_strings.close),
+ +                  ),
+ +                ],
+                ),
+              ),
+ -            actions: <Widget>[
+ -              TextButton(
+ -                onPressed: () => Navigator.pop(dialogContext),
+ -                child: Text(_strings.close),
+ -              ),
+ -            ],
+            );
+          },
+        ),
+@@@ -6746,12 -6545,23 +6798,32 @@@
+      _word.proofing.configure(_wordProofingService(_word));
+    }
+  
+++<<<<<<< HEAD
+ +  Future<void> _showHunspellSetup() async {
+ +    await showStudioHunspellSetup(
+ +      _themedContext,
+ +      morphHost: studioArabicMorphHost,
+ +    );
+ +    if (mounted) _wordFocus.requestFocus();
+++=======
++   final Set<String> _pendingDownloadLanguages = <String>{};
++   bool _languageDownloadsScheduled = false;
++   Future<void> _showLanguageDownloads({
++     Set<String> languages = const <String>{},
++   }) async {
++     await showStudioDownloadsManager(context, languages: languages);
++     if (!mounted) return;
++     switch (_app) {
++       case SuiteApp.word:
++         _wordFocus.requestFocus();
++       case SuiteApp.excel:
++         _sheetFocus.requestFocus();
++       case SuiteApp.powerpoint:
++         _slideFocus.requestFocus();
++       case SuiteApp.pdf:
++         break;
++     }
+++>>>>>>> origin/main
+    }
+  
+    Future<void> _showSpacySetup() async {

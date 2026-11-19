@@ -1,0 +1,108 @@
+{
+  "parent": "ba51c40abc664758df3cfc846625bdeb81e3ac13",
+  "incoming": "9f41e0427734d815b19149eba5eabef202f78ba6",
+  "base_tree": "e3b0c194fc9b0ccbdcc16b052daffc6646d216cc",
+  "tree": "f0528dbcc61bda532ac22a051e164d607cee0658",
+  "entries": [
+    {
+      "path": "docs/validation/language-downloads-20261119/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49665bd0a72c6f9510eab8cba70214b40e1ce61e",
+      "size": 3432
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/crisp_office_sample.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79711bd22d851fe9cba38e5e5afcdd957036d458",
+      "size": 1877
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2086663977dc9e711af24554a2542c463e2cddc4",
+      "size": 10054
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01b35e855be9c9c812b797f034c33430133fa512",
+      "size": 7207
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c48b6937450ece3e98915de877c4f0e673ff3df",
+      "size": 15638
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e43501dc2a00f505abe9462803c29d37f33bdf4",
+      "size": 430503
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bd155c95253e92006992c284d4293908028c059",
+      "size": 8910
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46118c92ad9b6dadea0d946896ddec0fc111792d",
+      "size": 480070
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc95542a1b16a051698f5c5115c2516e3bcc5bdc",
+      "size": 66492
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c9ad57b48146def4da53e2841d631457f739b2f",
+      "size": 17358
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/installer_io.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "576528a56a639d6b846c6c400c09e981880ba863",
+      "size": 31050
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a11ad2bc23a17994570e5a505926bfdbe1a57f9a",
+      "size": 1945
+    }
+  ],
+  "new_blobs": [
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e43501dc2a00f505abe9462803c29d37f33bdf4",
+      "size": 430503
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46118c92ad9b6dadea0d946896ddec0fc111792d",
+      "size": 480070
+    }
+  ]
+}

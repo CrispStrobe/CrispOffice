@@ -299,27 +299,24 @@ Worksheets(1).Range("A4").Value2 = (-0.0 <> 0)
       }
     });
 
-    test(
-      'format, missing entry point, and duplicate procedure errors are explicit',
-      () {
-        expect(
-          () => _compile('Sub Main()\nEnd Sub', format: OfficeMacroFormat.docx),
-          throwsA(_error('vba_unsupported')),
-        );
-        expect(
-          () => _compile('Sub Other()\nEnd Sub'),
-          throwsA(_error('vba_entry_point')),
-        );
-        expect(
-          () => _compile('Sub Main()\nEnd Sub\nSub MAIN()\nEnd Sub'),
-          throwsA(_error('vba_syntax_error')),
-        );
-        expect(
-          () => _compile('Sub True()\nEnd Sub', entryPoint: 'True'),
-          throwsA(_error('vba_name_error')),
-        );
-      },
-    );
+    test('format, missing entry point, and duplicate procedure errors are explicit', () {
+      expect(
+        () => _compile('Sub Main()\nEnd Sub', format: OfficeMacroFormat.docx),
+        throwsA(_error('vba_unsupported')),
+      );
+      expect(
+        () => _compile('Sub Other()\nEnd Sub'),
+        throwsA(_error('vba_entry_point')),
+      );
+      expect(
+        () => _compile('Sub Main()\nEnd Sub\nSub MAIN()\nEnd Sub'),
+        throwsA(_error('vba_syntax_error')),
+      );
+      expect(
+        () => _compile('Sub True()\nEnd Sub', entryPoint: 'True'),
+        throwsA(_error('vba_name_error')),
+      );
+    });
 
     test('Option Explicit rejects undeclared writes and misspelled names', () {
       expect(
@@ -434,7 +431,7 @@ Worksheets(1).Range("A4").Value2 = (-0.0 <> 0)
         'Sub Main()\nx = 1 _',
         'Sub Main()\nDim x As Long = 1\nEnd Sub',
         'Sub Main()\nEnd Sub\nOption Explicit',
-        'Option Base 1\nSub Main()\nEnd Sub',
+        'Option Base 2\nSub Main()\nEnd Sub',
         'Sub Main()\nx = #1/1/2020#\nEnd Sub',
       ]) {
         expect(

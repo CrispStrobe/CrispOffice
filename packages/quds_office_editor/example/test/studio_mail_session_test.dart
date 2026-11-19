@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
+import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
@@ -71,6 +73,9 @@ class _Client extends Fake implements mail.MailClient {
   int fetches = 0;
   int sends = 0;
   int disconnects = 0;
+  final sentMessages = <mail.MimeMessage>[];
+  final sentRecipients = <List<String>>[];
+  final sentAppendToSent = <bool>[];
 
   @override
   mail.Mailbox get selectedMailbox => boxes.first;
@@ -128,6 +133,12 @@ class _Client extends Fake implements mail.MailClient {
     List<mail.MailAddress>? recipients,
   }) async {
     sends++;
+    sentMessages.add(mail.MimeMessage.parseFromText(message.renderMessage()));
+    sentRecipients.add([
+      for (final recipient in recipients ?? const <mail.MailAddress>[])
+        recipient.email,
+    ]);
+    sentAppendToSent.add(appendToSent);
     await sendGate?.future;
   }
 
@@ -139,6 +150,10 @@ class _Client extends Fake implements mail.MailClient {
 }
 
 final class _Loader implements StudioMailMessageLoader {
+  _Loader({this.raw});
+
+  final Uint8List? raw;
+
   @override
   Future<void> markRead(mail.Mailbox mailbox, mail.MimeMessage header) async {
     throw StateError('This session fixture must not write message flags.');
@@ -146,6 +161,7 @@ final class _Loader implements StudioMailMessageLoader {
 
   @override
   Future<Uint8List> fetch(mail.Mailbox mailbox, mail.MimeMessage header) async {
+    if (raw case final bytes?) return Uint8List.fromList(bytes);
     throw StateError('This session fixture must not fetch message bodies.');
   }
 
@@ -170,6 +186,7 @@ Future<void> _show(
   WidgetTester tester,
   mail.MailClient Function(mail.MailAccount) factory, {
   Future<mail.ClientConfig?> Function(String)? discover,
+  _Loader? loader,
 }) async {
   tester.view
     ..physicalSize = const Size(1300, 1000)
@@ -187,7 +204,7 @@ Future<void> _show(
                 strings: _strings,
                 clientFactory: factory,
                 accountDiscovery: discover,
-                messageLoaderFactory: (_) => _Loader(),
+                messageLoaderFactory: (_) => loader ?? _Loader(),
               ),
             ),
             child: const Text('Open session'),
@@ -219,8 +236,12 @@ Future<void> _connect(WidgetTester tester) async {
   await tester.pump(const Duration(milliseconds: 100));
 }
 
-Future<void> _connected(WidgetTester tester, _Client client) async {
-  await _show(tester, (_) => client);
+Future<void> _connected(
+  WidgetTester tester,
+  _Client client, {
+  _Loader? loader,
+}) async {
+  await _show(tester, (_) => client, loader: loader);
   await _manual(tester);
   await _connect(tester);
   await _pump(tester);
@@ -414,6 +435,156 @@ void main() {
     _expectClosed(oldClient);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets(
+    'native composition submits To Cc and Bcc only in the explicit envelope',
+    (tester) async {
+      final client = _Client();
+      await _connected(tester, client);
+      await _compose(tester);
+      await tester.enterText(
+        _field(_strings.to),
+        'first@example.invalid; second@example.invalid',
+      );
+      await tester.tap(find.text(_strings.mailCopyRecipients));
+      await _pump(tester);
+      await tester.enterText(_field(_strings.mailCc), 'copied@example.invalid');
+      await tester.enterText(
+        _field(_strings.mailBcc),
+        'hidden@example.invalid',
+      );
+      final send = find.widgetWithIcon(FilledButton, Icons.send);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(client.sends, 1);
+      expect(client.sentRecipients.single, [
+        'first@example.invalid',
+        'second@example.invalid',
+        'copied@example.invalid',
+        'hidden@example.invalid',
+      ]);
+      final message = client.sentMessages.single;
+      expect(message.to!.map((address) => address.email), [
+        'first@example.invalid',
+        'second@example.invalid',
+      ]);
+      expect(message.cc!.single.email, 'copied@example.invalid');
+      expect(message.getHeaderValue('bcc'), isNull);
+      expect(
+        message.renderMessage(),
+        isNot(contains('hidden@example.invalid')),
+      );
+      expect(client.sentAppendToSent.single, isFalse);
+      expect(find.text(_strings.mailSubmissionAccepted), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'native Reply all retains every recipient and thread through an uncertain retry',
+    (tester) async {
+      final client = _Client()..sendGate = Completer<void>();
+      final loader = _Loader(
+        raw: Uint8List.fromList(
+          utf8.encode(
+            'From: writer@example.invalid\r\n'
+            'Reply-To: author@example.invalid\r\n'
+            'To: reader@example.invalid, teammate@example.invalid\r\n'
+            'Cc: copied@example.invalid\r\n'
+            'Bcc: source-hidden@example.invalid\r\n'
+            'Message-ID: <parent@example.invalid>\r\n'
+            'References: <root@example.invalid>\r\n'
+            'Subject: First message\r\n'
+            'Content-Type: text/plain; charset=utf-8\r\n\r\nSource body.\r\n',
+          ),
+        ),
+      );
+      await _connected(tester, client, loader: loader);
+      await tester.tap(find.text('First message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.replyAll));
+      await _pump(tester);
+      expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+      expect(
+        tester.widget<TextField>(_field(_strings.to)).controller!.text,
+        'author@example.invalid, teammate@example.invalid',
+      );
+      expect(
+        tester.widget<TextField>(_field(_strings.mailCc)).controller!.text,
+        'copied@example.invalid',
+      );
+      expect(
+        tester.widget<TextField>(_field(_strings.mailBcc)).controller!.text,
+        isEmpty,
+      );
+      await tester.enterText(
+        _field(_strings.mailBcc),
+        'new-hidden@example.invalid',
+      );
+      final send = find.widgetWithIcon(FilledButton, Icons.send);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(client.sends, 1);
+      client.sendGate!.completeError(StateError('submission disconnected'));
+      await _pump(tester);
+      expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+      await tester.tap(find.widgetWithIcon(TextButton, Icons.edit_outlined));
+      await _pump(tester);
+      expect(
+        tester.widget<TextField>(_field(_strings.to)).controller!.text,
+        'author@example.invalid, teammate@example.invalid',
+      );
+      expect(
+        tester.widget<TextField>(_field(_strings.mailCc)).controller!.text,
+        'copied@example.invalid',
+      );
+      expect(
+        tester.widget<TextField>(_field(_strings.mailBcc)).controller!.text,
+        'new-hidden@example.invalid',
+      );
+      expect(tester.widget<FilledButton>(send).onPressed, isNull);
+      expect(client.sends, 1);
+      client.sendGate = null;
+      await tester.ensureVisible(find.byType(CheckboxListTile));
+      await tester.tap(find.byType(CheckboxListTile));
+      await _pump(tester);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(client.sends, 2);
+      for (final recipients in client.sentRecipients) {
+        expect(recipients, [
+          'author@example.invalid',
+          'teammate@example.invalid',
+          'copied@example.invalid',
+          'new-hidden@example.invalid',
+        ]);
+      }
+      for (final message in client.sentMessages) {
+        expect(
+          message.getHeaderValue('in-reply-to'),
+          '<parent@example.invalid>',
+        );
+        expect(
+          message.getHeaderValue('references'),
+          '<root@example.invalid> <parent@example.invalid>',
+        );
+        expect(message.getHeaderValue('bcc'), isNull);
+        expect(
+          message.renderMessage(),
+          isNot(contains('new-hidden@example.invalid')),
+        );
+        expect(
+          message.renderMessage(),
+          isNot(contains('source-hidden@example.invalid')),
+        );
+      }
+      expect(find.text(_strings.mailSubmissionAccepted), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   testWidgets('disconnect contains cleanup errors and aborts both transports', (
     tester,

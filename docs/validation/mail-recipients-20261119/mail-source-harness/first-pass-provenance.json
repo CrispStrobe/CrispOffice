@@ -1,0 +1,254 @@
+{
+  "runtime": "Flutter 3.47.8 bundled Dart 3.13.7",
+  "harness": "/workspace/scratch/32e3793609d8/runtime/core-validation",
+  "qualification": "Offline path dependency against actual production source. Separate cached graph, not repository locked workspace acceptance.",
+  "transformations": [
+    "Replace flutter_test import with package:test/test.dart.",
+    "Resolve Studio production package imports to original absolute file URIs.",
+    "Remove entire test declarations containing buildStudioMailMessage or QudsMimeCodec; no retained assertion body is altered.",
+    "Remove now-unavailable submission and MIME imports."
+  ],
+  "files": [
+    {
+      "source_path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+      "source_sha256": "3886f46ba02373c7c3c63f3f2b7dd421dfe7650c0038ec2fa082f7c8ac3168e3",
+      "source_git_blob_sha": "31bb6394351552256cd041687a8705251e5da089",
+      "transformed_path": "/workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_recipients_offline_test.dart",
+      "transformed_sha256": "db4e94487c1efb45bb7253541c0431faf0d393046c563a251037ef892c4bed64",
+      "retained_test_declarations": [
+        "'parses all recipient groups with commas, semicolons and spaces'",
+        "'deduplicates across groups with visible precedence and exact locals'",
+        "'all exposed recipient groups are immutable snapshots'",
+        "'admits exactly 100 entries across groups and rejects a 101st'",
+        "'duplicate entries still count toward the manual input bound'",
+        "'input character bound includes all groups before splitting'",
+        "'empty optional groups are allowed but an empty envelope is not'",
+        "'mailbox limits preserve the complete 254-character address'"
+      ],
+      "omitted_test_declarations": [
+        {
+          "name_expression": "'Cc-only and Bcc-only drafts need no fabricated visible recipient'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 42,
+          "source_end_line": 61
+        },
+        {
+          "name_expression": "'rejects unsupported input in every recipient group: ${invalid.codeUnits}'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 153,
+          "source_end_line": 173
+        },
+        {
+          "name_expression": "'canonical MIME contains visible groups and excludes hidden addresses'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 192,
+          "source_end_line": 221
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "source_sha256": "86ffa7d44b1b25c28b5346b04d8562dc90989b62233f64255b154f407ad8a5b0",
+      "source_git_blob_sha": "ed0d74921fc9416f7ded8aafde74d87ed21ffd9f",
+      "transformed_path": "/workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart",
+      "transformed_sha256": "0f1e76e7e9e792737583b9b61c57f03572a2fb2626ab5306198d6fca6035fecf",
+      "retained_test_declarations": [
+        "'reply uses authoritative Reply-To and quotes only decoded plain body'",
+        "'reply falls back to From when no Reply-To exists'",
+        "'missing source addresses require an explicit recipient before send'",
+        "'forward requires a recipient and declares the text-only boundary'",
+        "'existing ${forward ? 'forward' : 'reply'} prefix is not duplicated'",
+        "'an exact-boundary quote is preserved without a truncation notice'",
+        "'HTML-only bodies produce a fixed typed unavailable outcome'",
+        "'an explicitly empty plain body never falls back to HTML'",
+        "'reply all uses every From mailbox only when Reply-To is absent'",
+        "'reply all deduplicates with To precedence and exact local-part case'",
+        "'reply all from a sent message targets its original participants'",
+        "'empty and self-only reply-all targets leave an editable draft'",
+        "'reply all never examines or copies even malformed oversized Bcc'",
+        "'reply all refuses HTML-only quotation without a plain fallback'",
+        "'reply all accepts 100 recipients and rejects 101 without truncating'",
+        "'reply all bounds source scanning before deduplicating or removing self'",
+        "'reply rejects unsupported single source mailbox ${jsonEncode(address)}'",
+        "'reply all rejects an unsupported participant ${jsonEncode(address)}'",
+        "'invalid Reply-To never falls back to a valid From in reply all'",
+        "'reply all rejects an unsupported connected sender identity'",
+        "'reply all ignores From as a recipient when valid Reply-To is present'",
+        "'forward never turns a source address into an outgoing recipient'"
+      ],
+      "omitted_test_declarations": [
+        {
+          "name_expression": "'quote cutoff preserves an emoji and explicitly identifies truncation'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 128,
+          "source_end_line": 149
+        },
+        {
+          "name_expression": "'reply attaches only the authoritative decoded parent and ancestry'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 183,
+          "source_end_line": 205
+        },
+        {
+          "name_expression": "'forwarding starts a new thread even when the source has ancestry'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 207,
+          "source_end_line": 229
+        },
+        {
+          "name_expression": "'invalid parent metadata does not block an otherwise valid reply'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 231,
+          "source_end_line": 247
+        },
+        {
+          "name_expression": "'reply all keeps visible recipient roles and excludes the sender'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 249,
+          "source_end_line": 284
+        },
+        {
+          "name_expression": "'reply all preserves thread metadata and the bounded plain quote'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 386,
+          "source_end_line": 412
+        }
+      ]
+    },
+    {
+      "source_path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_threading_test.dart",
+      "source_sha256": "a61717d696a17606d6bec61e895d8397d655ab925eee3e9d5b2e87b13e9bf788",
+      "source_git_blob_sha": "fda2e0248960a802d4ec43f589e37c876e8eec5c",
+      "transformed_path": "/workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart",
+      "transformed_sha256": "8b6eb793dec76b3b13442f4ed52b834f4e794b2401084faaa7954bbb41df0ae3",
+      "retained_test_declarations": [
+        "'a canonical parent starts the references chain without repair'",
+        "'dot-atom identifiers preserve case and non-DNS atext punctuation'",
+        "'missing parent cannot infer a reply identity from its ancestors'",
+        "'identifier length admits 254 ASCII bytes and rejects 255'",
+        "'valid ancestors are retained in order and the parent is last once'",
+        "'message identifiers remain distinct when their case differs'",
+        "'an absent References chain falls back to one canonical In-Reply-To'",
+        "'nonempty malformed References never activate In-Reply-To fallback'",
+        "'a valid References chain takes precedence over In-Reply-To'",
+        "'ambiguous or injected In-Reply-To is never copied as fallback'",
+        "'a fallback equal to the parent does not duplicate the parent'",
+        "'long chains retain the root and newest fitting contiguous tail'",
+        "'exactly 900 reference bytes fit and an older overflow ID is dropped'",
+        "'a 1024-entry source keeps bounded root and tail ancestry'",
+        "'an oversized source chain preserves only the valid parent'",
+        "'a reply thread is a stable snapshot of source ancestry'"
+      ],
+      "omitted_test_declarations": [
+        {
+          "name_expression": "'empty thread and ordinary const drafts have no reply metadata'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 22,
+          "source_end_line": 36
+        },
+        {
+          "name_expression": "'malformed parents omit both headers even with valid ancestors'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 70,
+          "source_end_line": 124
+        },
+        {
+          "name_expression": "'one invalid ancestor discards the complete inherited chain'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 179,
+          "source_end_line": 200
+        },
+        {
+          "name_expression": "'comment fragments cannot donate message IDs to inherited ancestry'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 202,
+          "source_end_line": 229
+        },
+        {
+          "name_expression": "'adjacent IDs in one reference token cannot supply ancestry'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 231,
+          "source_end_line": 246
+        },
+        {
+          "name_expression": "'254-byte identifiers survive MIME without being split or rewritten'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 354,
+          "source_end_line": 387
+        },
+        {
+          "name_expression": "'thread headers survive MIME serialization with bounded ASCII lines'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 427,
+          "source_end_line": 460
+        },
+        {
+          "name_expression": "'folded source ancestry survives the decode-reply-encode boundary'",
+          "reason": "Requires unavailable MIME/submission dependencies",
+          "source_start_line": 462,
+          "source_end_line": 492
+        }
+      ]
+    }
+  ],
+  "production": [
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_recipients.dart",
+      "sha256": "85ecd03657a99369f2eafc75af0dfb34981d18da9b4f4b7212004283b1ef68e8"
+    },
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_draft.dart",
+      "sha256": "1d20d8e1f3e1610553d4c93e6de1079024fb7dde8cdad7a0c1aea82bbd33635a"
+    },
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+      "sha256": "c77ee48fc2eb6bc4bbe72bbbbd206e88e32781e975da2e9f7aae9f4a91dc46f3"
+    },
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_threading.dart",
+      "sha256": "84c7d63381b0176f5571e4da03487c67958223ad7aabcb651015fe6401dd4525"
+    }
+  ],
+  "post_run_source_verification": [
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_recipients.dart",
+      "sha256": "85ecd03657a99369f2eafc75af0dfb34981d18da9b4f4b7212004283b1ef68e8",
+      "matches_pre_run": true
+    },
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_draft.dart",
+      "sha256": "1d20d8e1f3e1610553d4c93e6de1079024fb7dde8cdad7a0c1aea82bbd33635a",
+      "matches_pre_run": true
+    },
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+      "sha256": "c77ee48fc2eb6bc4bbe72bbbbd206e88e32781e975da2e9f7aae9f4a91dc46f3",
+      "matches_pre_run": true
+    },
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_threading.dart",
+      "sha256": "84c7d63381b0176f5571e4da03487c67958223ad7aabcb651015fe6401dd4525",
+      "matches_pre_run": true
+    },
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+      "sha256": "a8aa547dbde1434c1dd44cb592e7dfb34c3b79c047d41cadeeab0bbc69538a47",
+      "matches_pre_run": false
+    },
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "sha256": "86ffa7d44b1b25c28b5346b04d8562dc90989b62233f64255b154f407ad8a5b0",
+      "matches_pre_run": true
+    },
+    {
+      "path": "/workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_threading_test.dart",
+      "sha256": "a61717d696a17606d6bec61e895d8397d655ab925eee3e9d5b2e87b13e9bf788",
+      "matches_pre_run": true
+    }
+  ],
+  "passed_test_cases": 57,
+  "exit_code": 0,
+  "retained_declarations": 46,
+  "omitted_declarations": 17,
+  "package_resolution_note": "Cached independent harness uses crypto3.0.7/analyzer10.1.0 vs repository lock3.0.8/13.3.0; test1.31.1/test_api0.7.12/test_core0.6.18 match."
+}

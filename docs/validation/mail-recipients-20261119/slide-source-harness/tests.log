@@ -1,0 +1,17 @@
+00:00 +0: loading /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_import_fidelity_test.dart
+00:00 +0: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_import_fidelity_test.dart: shape import text boxes stay text; only p:pic becomes a picture
+00:00 +1: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +2: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +3: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +4: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +5: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +6: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +7: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +8: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +9: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +10: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +11: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +12: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +13: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +14: /workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_import_fidelity_test.dart: slide order saving keeps the order and points sldId at real relationships
+00:00 +15: All tests passed!

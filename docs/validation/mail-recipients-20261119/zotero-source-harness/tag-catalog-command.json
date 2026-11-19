@@ -1,0 +1,8 @@
+[
+  "/workspace/scratch/32e3793609d8/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+  "--packages=/workspace/scratch/32e3793609d8/runtime/core-validation/.dart_tool/package_config.json",
+  "/workspace/scratch/32e3793609d8/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+  "/workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart",
+  "--reporter",
+  "json"
+]

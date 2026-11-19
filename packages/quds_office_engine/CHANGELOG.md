@@ -4,6 +4,35 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Resolve direct master-background edits while preserving imported secondary
+  master colors until the master changes. Keep explicit slide/layout fills
+  independent and carry inherited background provenance through slide copies.
+
+- Reconcile PPTX slide backgrounds, crop and rich-text fidelity. Distinguish
+  inherited and explicit slide paper, apply scalar rich-text edits in PDF
+  rendering without rewriting source runs, and retain the incoming interlaced
+  PNG support. Full PDF/widget qualification remains tracked separately.
+
+- Preserve imported slide rich-text formatting only while its scalar snapshot
+  still matches. Respect explicit plain runs and inherited backgrounds, restore
+  the established 16 pt fallback, and retain PDF text tab-stop alignment.
+
+- Add read-only paginated Zotero tag catalogs for libraries and collections,
+  with literal name preservation, containing/prefix searches, optional usage
+  metadata, validated requests and separate online/desktop routes. Keep manual
+  and automatic tag records distinct without combining their usage counts.
+
+- Integrate recent PPTX background, crop, rich-text and interlaced PNG work.
+  Preserve inherited master backgrounds and apply scalar text-format edits to
+  imported rich runs consistently in PDF export without changing source runs.
+
+- Extend `vba-excel` with local one-dimensional dynamic arrays, `ReDim`,
+  `ReDim Preserve`, `Erase`, and module `Option Base 0/1`. Preserve element
+  types, source evaluation order, enumeration locks, shared slot/string/work
+  bounds, and the existing native-plan transaction and policy boundary.
+- Add dynamic array report, lifecycle/boundary, CLI/MCP and JavaScript
+  regressions, and a staged Word/Excel/PowerPoint VBA parity roadmap.
+
 - Extend `vba-excel` with fixed one-dimensional scalar arrays, constant bounds,
   indexed reads/writes, typed defaults, `LBound`/`UBound`, and `For Each` over
   arrays and explicit rectangular ranges. Add read-only range row/column

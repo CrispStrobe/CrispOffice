@@ -1,0 +1,51 @@
+diff --git a/packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart b/packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart
+index 684ff7c6..91d1d7e7 100644
+--- a/packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart
++++ b/packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart
+@@ -1580,10 +1580,12 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
+ 
+   Color _slidePaper(PmlSlide target) {
+     final int? rgb = int.tryParse(target.background, radix: 16);
+-    // Inherited neutral paper follows the display theme. Explicit slide and
+-    // layout overrides, including white, retain their authored appearance.
++    // Inherited neutral paper follows the display theme when adaptation is
++    // enabled. Explicit slide/layout overrides retain their authored color.
+     return rgb == null ||
+-            (target.inheritsMasterBackground && (rgb & 0xFFFFFF) == 0xFFFFFF)
++            (_theme.adaptDocumentColors &&
++                target.inheritsMasterBackground &&
++                (rgb & 0xFFFFFF) == 0xFFFFFF)
+         ? _theme.slideBackground
+         : Color(0xFF000000 | (rgb & 0xFFFFFF));
+   }
+diff --git a/packages/quds_office_editor/test/office_dark_slide_test.dart b/packages/quds_office_editor/test/office_dark_slide_test.dart
+index 0cc4a225..892d7086 100644
+--- a/packages/quds_office_editor/test/office_dark_slide_test.dart
++++ b/packages/quds_office_editor/test/office_dark_slide_test.dart
+@@ -278,6 +278,10 @@ void main() {
+       expect(inherited.background, 'FFFFFF');
+       expect(explicit.background, 'FFFFFF');
+       expect(fresh.background, '778899');
++      inherited.background = '';
++      expect(inherited.inheritsMasterBackground, isTrue);
++      controller.applyMasterBackground('99AABB');
++      expect(inherited.background, '99AABB');
+     },
+   );
+ 
+@@ -317,6 +321,15 @@ void main() {
+           ),
+           greaterThan(25),
+         );
++        final unadapted = await _paint(
++          tester,
++          slide,
++          theme: theme.copyWith(adaptDocumentColors: false),
++        );
++        expect(
++          unadapted.count(const ui.Rect.fromLTWH(400, 150, 100, 100), 0xFFFFFF),
++          greaterThan(9000),
++        );
+       }
+       expect(slide.background, 'FFFFFF');
+       expect(shape.richText.single.runs.single.color, '000000');

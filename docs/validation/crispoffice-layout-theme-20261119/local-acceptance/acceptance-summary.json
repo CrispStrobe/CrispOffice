@@ -1,0 +1,1048 @@
+{
+  "schema_version": 1,
+  "scope": "Layout/theme/Paragraph continuation, integrated VBA/mail restoration gates and final main language/downloads qualification; excludes the earlier634-case GUI phase.",
+  "final_head": "fedabc7079db1c402cadcd9ef15296244979132e",
+  "published_final_source_commit": "fedabc7079db1c402cadcd9ef15296244979132e",
+  "published_final_source_tree": "ec7fe4262f93698f2a56b2ff334cde7574455fdb",
+  "all_selected_tests_passed": true,
+  "totals": {
+    "case_platform_executions_without_reruns": 921,
+    "distinct_source_cases": 921,
+    "test_files": 44,
+    "gui_continuation_cases": 144,
+    "prior_pre_language_cases": 848,
+    "additional_language_downloads_proofing_cases": 73,
+    "preview_tests_separate": 1,
+    "preview_images": 12,
+    "web_smoke_programs_separate": 2
+  },
+  "cohorts": [
+    {
+      "cohort": "core_theme_and_page_layout",
+      "case_platform_executions": 17,
+      "distinct_source_cases": 17,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/test/office_chrome_theme_test.dart",
+          "cases": 4,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "final-ruler-slide-2.log"
+          ],
+          "source_sha256": "9142c1ed6abce582676f4e0e1e0a1e042d7f711c76a72668fbb9513f2060ecab"
+        },
+        {
+          "file": "packages/quds_office_editor/test/office_dark_document_test.dart",
+          "cases": 3,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "core-focused.log"
+          ],
+          "source_sha256": "3a49a8f43038df86ed03d249205a3c2c5b5b6b4cac29afa447e521f808f7f8da"
+        },
+        {
+          "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+          "cases": 10,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "main-language-core.log"
+          ],
+          "source_sha256": "bd1d8c438b42318e3d51246824ef305d01f029c0a38ef6c35e8e2afcc21d9bc2"
+        }
+      ]
+    },
+    {
+      "cohort": "slide_theme",
+      "case_platform_executions": 6,
+      "distinct_source_cases": 6,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+          "cases": 6,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "final-ruler-slide-2.log"
+          ],
+          "source_sha256": "f376ddbeb95ada50e8af7d29b0ef51284d465f2ae0d5705c7979f94163dfabc8"
+        }
+      ]
+    },
+    {
+      "cohort": "paragraph_dialog",
+      "case_platform_executions": 18,
+      "distinct_source_cases": 18,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart",
+          "cases": 18,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "main-language-example.log"
+          ],
+          "source_sha256": "d8bf401002fc4fa6d4110243b11dd515a93dfb92e9216ecb518154c587e1bb32"
+        }
+      ]
+    },
+    {
+      "cohort": "page_layout_dialog",
+      "case_platform_executions": 9,
+      "distinct_source_cases": 9,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart",
+          "cases": 9,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "main-language-example.log"
+          ],
+          "source_sha256": "3a9c639b533aab6602f7450e9e7cd05531c6028dbb8ad130cc76b4edd64dc9b8"
+        }
+      ]
+    },
+    {
+      "cohort": "layout_workspace",
+      "case_platform_executions": 7,
+      "distinct_source_cases": 7,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+          "cases": 7,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "main-language-example.log"
+          ],
+          "source_sha256": "3942ffb7f37c6efb16c011f607267c98bd76f34e17d55e85d65b430f3e5316d5"
+        }
+      ]
+    },
+    {
+      "cohort": "sheet_slide_menus",
+      "case_platform_executions": 3,
+      "distinct_source_cases": 3,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
+          "cases": 3,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "dialogs-workspace-2.log"
+          ],
+          "source_sha256": "700089031cd508676553467cdbadb7dd1cc20442b35e34017580787c8593c075"
+        }
+      ]
+    },
+    {
+      "cohort": "existing_gui_regressions",
+      "case_platform_executions": 84,
+      "distinct_source_cases": 84,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+          "cases": 9,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "gui-regressions.log"
+          ],
+          "source_sha256": "d53c426ecf8dbbe7c51e7c386facc610b6208fab72f336ffe19a60d33d40bd13"
+        },
+        {
+          "file": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "cases": 38,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "gui-regressions.log"
+          ],
+          "source_sha256": "cc5031aa3141032bb1cdb847fb6b7b85061cb8d0dbeb284ed48d0e3f1d0a9fdd"
+        },
+        {
+          "file": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+          "cases": 3,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "gui-regressions.log"
+          ],
+          "source_sha256": "6598bfca96a83ecfaa847b8404439c5b58701edd8a9e534d3d7352088598b008"
+        },
+        {
+          "file": "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+          "cases": 6,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "main-language-example.log"
+          ],
+          "source_sha256": "be8a573808c481a1e0e5322d199b838ac353fbcf0937ef878c1e9d463800de36"
+        },
+        {
+          "file": "packages/quds_office_editor/example/test/studio_ribbon_preferences_test.dart",
+          "cases": 10,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "gui-regressions.log"
+          ],
+          "source_sha256": "8a9fb0f78c675e64d872727796b41bf43d87e1eede5376c5daf6e12c459bacb6"
+        },
+        {
+          "file": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "cases": 15,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "gui-regressions.log"
+          ],
+          "source_sha256": "2e81a000c349808e3fefe599d8bfc722a44f7b57afe3a632d3b1aacd6747a4e9"
+        },
+        {
+          "file": "packages/quds_office_editor/example/test/widget_test.dart",
+          "cases": 3,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "gui-regressions.log"
+          ],
+          "source_sha256": "41b897fc18348a849d1821f3963f167a80952e0766f46a694cfb0cb045ca9bef"
+        }
+      ]
+    },
+    {
+      "cohort": "language_downloads",
+      "case_platform_executions": 5,
+      "distinct_source_cases": 5,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+          "cases": 5,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "main-language-example.log"
+          ],
+          "source_sha256": "80fa0c0b618a436e8039758aaa56cc6b0cc97467b4fdd55f703fe54c076fe532"
+        }
+      ]
+    },
+    {
+      "cohort": "proofing_controls_and_review",
+      "case_platform_executions": 66,
+      "distinct_source_cases": 66,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+          "cases": 11,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "main-language-core.log"
+          ],
+          "source_sha256": "1dce8ef5c9a370e806efb8970d55e02271777d7c7d960914a0f9c9514d8c431e"
+        },
+        {
+          "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+          "cases": 40,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "main-language-core.log"
+          ],
+          "source_sha256": "7cf53ae55821bddef24a030484165c0b97277af021d8486ca8ac475a17b064df"
+        },
+        {
+          "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+          "cases": 15,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "main-language-core.log"
+          ],
+          "source_sha256": "1b04655ce9e02b8e912a35d0d7a23de3c5b46f7f650c8799d8b865c15b06ccb1"
+        }
+      ]
+    },
+    {
+      "cohort": "native_ner_removal",
+      "case_platform_executions": 2,
+      "distinct_source_cases": 2,
+      "files": [
+        {
+          "file": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+          "cases": 2,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "main-language-ner-removal.log"
+          ],
+          "source_sha256": "7090823d54e5552852fe6a2d5e08ec00b991a10de0d12ee1ba4d648e22d3e936"
+        }
+      ]
+    },
+    {
+      "cohort": "vba_vm",
+      "case_platform_executions": 395,
+      "distinct_source_cases": 395,
+      "files": [
+        {
+          "file": "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+          "cases": 144,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "3395b07781c6fea8d2b602e5b3ab05c303ca2f34fd7ca11c24052c09776fa706"
+        },
+        {
+          "file": "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart",
+          "cases": 11,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "3540195984eda2cd9067b9efaf9313662294f789d5886f47c0e9b499a9cf3ed3"
+        },
+        {
+          "file": "packages/quds_office_engine/test/office_vba_arrays_test.dart",
+          "cases": 32,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "cd98c732ef4b8d0c055906332cedfe7ee5798118b28068daf3d3b6a680acb95e"
+        },
+        {
+          "file": "packages/quds_office_engine/test/office_vba_control_flow_boundaries_test.dart",
+          "cases": 42,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "5bddaf779a6d6776e92c2a0fe88f7e90540ef6b8f4ba10fc3bad3a3972eb6da7"
+        },
+        {
+          "file": "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart",
+          "cases": 9,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "e52b56e5343c5c1f0e7a11a0087bf321890bc3a4fdd5767c0b4eb9c6225adf94"
+        },
+        {
+          "file": "packages/quds_office_engine/test/office_vba_control_flow_test.dart",
+          "cases": 35,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "8cde7af243d4bb7d7cab59d29318f8e8e48b71b71cf1b71ad673771b3e6325e2"
+        },
+        {
+          "file": "packages/quds_office_engine/test/office_vba_integration_test.dart",
+          "cases": 12,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "8c227d8f20ee48c15f032691d331266dd4fbb7fe6ca32e5540a8a38c1f50a4e9"
+        },
+        {
+          "file": "packages/quds_office_engine/test/office_vba_language_test.dart",
+          "cases": 55,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "cbfac7b9a4a7fe85b7ac48a5e7d77a3088d436d96a6edd68cd5e439d8b0a687d"
+        },
+        {
+          "file": "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart",
+          "cases": 19,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "cf44c3a30dc4c10aa7b8ae07b511b34dce8b8ecd529a7042c78387a335e8480e"
+        },
+        {
+          "file": "packages/quds_office_engine/test/office_vba_procedures_integration_test.dart",
+          "cases": 10,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "9f7b5f864e3203faed9d18f774580bc528354747e4a47b81ec71f39075bcf7f5"
+        },
+        {
+          "file": "packages/quds_office_engine/test/office_vba_procedures_test.dart",
+          "cases": 26,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-vba-vm.log"
+          ],
+          "source_sha256": "35f7b914ac211518b99c517ed77dbfd8d13e3156df50bcc82bee2653ba5ed18a"
+        }
+      ]
+    },
+    {
+      "cohort": "mail_vm",
+      "case_platform_executions": 181,
+      "distinct_source_cases": 181,
+      "files": [
+        {
+          "file": "packages/quds_mail_store/test/archive_multi_origin_test.dart",
+          "cases": 9,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-resume-native-2.log"
+          ],
+          "source_sha256": "c28d5209a5e78dec16fe56498bac189c06b10bf5822e66ea247fbcb3b5d7d41e"
+        },
+        {
+          "file": "packages/quds_mail_store/test/archive_native_test.dart",
+          "cases": 13,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-resume-native-2.log"
+          ],
+          "source_sha256": "c0da5ebe70401deadba4d89c23678b18a7108df9185a440be1a3a844e6501209"
+        },
+        {
+          "file": "packages/quds_mail_store/test/archive_repository_test.dart",
+          "cases": 81,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-resume-native-2.log"
+          ],
+          "source_sha256": "0734bfee2891b65d70f662ede6132e7f8374aae77a5e064d66b8655025a1d22d"
+        },
+        {
+          "file": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+          "cases": 15,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-resume-native-2.log"
+          ],
+          "source_sha256": "43d22351e0aa9a019018dc4af0e5d4c2aa8fa9ae559c280275df7cf072b71352"
+        },
+        {
+          "file": "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart",
+          "cases": 37,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-resume-native-2.log"
+          ],
+          "source_sha256": "bb9885626c8da3d91f3532bb98abcd4f7310fa15bb93e8bd948b2434466259a2"
+        },
+        {
+          "file": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+          "cases": 15,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-resume-native-2.log"
+          ],
+          "source_sha256": "406afdd45c7bb1fcba0b004c5c63bc1d125132667f63ea5fe5dab78b5574f8ad"
+        },
+        {
+          "file": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+          "cases": 11,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-resume-native-2.log"
+          ],
+          "source_sha256": "a4d85416abc4c6909df18454fcd2054ae5be117890e3e785f56fbc91e6c47c0f"
+        }
+      ]
+    },
+    {
+      "cohort": "mail_node",
+      "case_platform_executions": 9,
+      "distinct_source_cases": 9,
+      "files": [
+        {
+          "file": "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+          "cases": 6,
+          "platforms": [
+            "node"
+          ],
+          "accepted_logs": [
+            "incoming-resume-portable.log"
+          ],
+          "source_sha256": "bd7bc49ed1a7f87333445b2d3db10d650d08fadf1ac323f835623d8b6c6f5a3c"
+        },
+        {
+          "file": "packages/quds_mail_store/test/browser_problem_test.dart",
+          "cases": 3,
+          "platforms": [
+            "node"
+          ],
+          "accepted_logs": [
+            "incoming-resume-portable.log"
+          ],
+          "source_sha256": "4968b5407fe0c2f0322bdc96275a10ab29676ac489faacff3cc95c3b897b833c"
+        }
+      ]
+    },
+    {
+      "cohort": "mail_studio",
+      "case_platform_executions": 31,
+      "distinct_source_cases": 31,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+          "cases": 8,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-resume-studio.log"
+          ],
+          "source_sha256": "7dfb358f1ef615b78b1d53f6a91a9594d6e53c3222047f82fcc25ef2f3e30997"
+        },
+        {
+          "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart",
+          "cases": 1,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-resume-studio.log"
+          ],
+          "source_sha256": "42d0a522d0dc626b014d50e66758fe2e4c5e62e2c8c80451c08995ebe42958ea"
+        },
+        {
+          "file": "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart",
+          "cases": 22,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-resume-studio.log"
+          ],
+          "source_sha256": "34d72894b4c6df750e6d784297292e7f5e7b04be0f2f1abe616596847bd0dae2"
+        }
+      ]
+    },
+    {
+      "cohort": "embed_host",
+      "case_platform_executions": 88,
+      "distinct_source_cases": 88,
+      "files": [
+        {
+          "file": "packages/quds_office_editor/test/embed_test.dart",
+          "cases": 88,
+          "platforms": [
+            "vm"
+          ],
+          "accepted_logs": [
+            "incoming-embed-host-fixture.log"
+          ],
+          "source_sha256": "8274bed0a40708ad34f26324d8c05113024005f2ceddc8e566aa5f86f0a11a34"
+        }
+      ]
+    }
+  ],
+  "accepted_test_evidence": [
+    {
+      "run": "core-focused",
+      "log": {
+        "path": "core-focused.log",
+        "sha256": "dd80b603c65fc48e80b4f4f14bc33d83ef788ed72f07a8e48e3bf5d10b11e9d6"
+      },
+      "receipt": {
+        "path": "core-original-gate-comparison.json",
+        "sha256": "8d6255392287b46eaa8bb7269a29cc7a912cc6138d7d50afb7e4e4ffe1ac8a19"
+      },
+      "extracted_cases": {
+        "path": "core-focused.extracted.json",
+        "sha256": "c54dbcc726c7186f288a7b000a0c0fb55c55b65deb3e62ee2fd3b99bd887789e"
+      }
+    },
+    {
+      "run": "main-language-core",
+      "log": {
+        "path": "main-language-core.log",
+        "sha256": "ed6594a93756cead2664cbe78322db08f7c283ad4ae9ffc5663a92ee3631fe98"
+      },
+      "receipt": {
+        "path": "main-language-core.json",
+        "sha256": "b329d1223ad900ee53e341c1e847515dcc7d267a73e37e44137353023f0a99bb"
+      },
+      "extracted_cases": {
+        "path": "main-language-core.extracted.json",
+        "sha256": "a0f3acba5c29d7364806b511e92bc67fc2c4f1da781e848a03da8f08a4635b35"
+      }
+    },
+    {
+      "run": "final-ruler-slide-2",
+      "log": {
+        "path": "final-ruler-slide-2.log",
+        "sha256": "edb8d257328a5e6e36ee4d3495b17aa04bf7cd93fd794d598f44099652d43171"
+      },
+      "receipt": {
+        "path": "final-ruler-slide-2.json",
+        "sha256": "38db7339ba722083f44a077fe0a9f23b64fba7241716a3cd4a5c317e868afa26"
+      },
+      "extracted_cases": {
+        "path": "final-ruler-slide-2.extracted.json",
+        "sha256": "fa9303fa374448e683f3980b7a9e16a1bca05b9e9a06237901c82d55349e3f44"
+      }
+    },
+    {
+      "run": "main-language-example",
+      "log": {
+        "path": "main-language-example.log",
+        "sha256": "a4a58e9fa7c5be3eeb6c47b355974da1946bba779be84a05bbb182800abde6c1"
+      },
+      "receipt": {
+        "path": "main-language-example.json",
+        "sha256": "b6585134ee8054314943494389a4c0c824465d096e43904fb9ef55bf28f221c6"
+      },
+      "extracted_cases": {
+        "path": "main-language-example.extracted.json",
+        "sha256": "7dc4e2ff475ac52cba861eaf1214b581e32f25b111856c47127e919999327cc0"
+      }
+    },
+    {
+      "run": "dialogs-workspace-2",
+      "log": {
+        "path": "dialogs-workspace-2.log",
+        "sha256": "5eefa03d5e6281896fd2ba90078b189db1cf1ca2671bc0f41fabacc18a40ee53"
+      },
+      "receipt": {
+        "path": "dialogs-workspace-2.json",
+        "sha256": "57f73f786c246f835329443bb16dbdb37a10a53a6d14f4e1785bbda45e9e25b8"
+      },
+      "extracted_cases": {
+        "path": "dialogs-workspace-2.extracted.json",
+        "sha256": "80be97f1e236588bbe7f70147a345648ff316ebcc4aa93d4e627a08642810398"
+      }
+    },
+    {
+      "run": "gui-regressions",
+      "log": {
+        "path": "gui-regressions.log",
+        "sha256": "9b2dfb33c7281ab5a89254996705711fb895c595603e8eca8c6d61d2fed41bae"
+      },
+      "receipt": {
+        "path": "gui-regressions.json",
+        "sha256": "05f8bd2ee409006a3bfc4dbdcd579ceee109939c1f369b2ad6f9723c9b4cde99"
+      },
+      "extracted_cases": {
+        "path": "gui-regressions.extracted.json",
+        "sha256": "4026af02abe5c17caba386b3b3f807a9c327164aea0f3d49f1668b27877bd62e"
+      }
+    },
+    {
+      "run": "main-language-ner-removal",
+      "log": {
+        "path": "main-language-ner-removal.log",
+        "sha256": "f385b394b4b1686ede66ce5141662469d82c191a2903e71876541d1de4e54e89"
+      },
+      "receipt": {
+        "path": "main-language-ner-removal.json",
+        "sha256": "e442ef463e8ba2269090327cdf1c94be3cc6fea2e58134b47208ff0be3f1d0a9"
+      },
+      "extracted_cases": {
+        "path": "main-language-ner-removal.extracted.json",
+        "sha256": "4b9cf351a0ecb8138745df2bb117ff7327ffc38056079bfee85558dbb13dfa70"
+      }
+    },
+    {
+      "run": "incoming-vba-vm",
+      "log": {
+        "path": "incoming-vba-vm.log",
+        "sha256": "ec8dbecf69fee5937883a4b6ec8c28d08fdcf8bdd424a7a5809e68f26e1870f5"
+      },
+      "receipt": {
+        "path": "incoming-vba-vm.json",
+        "sha256": "3facc9a9c688a5eb51a3d86b12b0f1615ecb340921dc89f06517984d875ba773"
+      },
+      "extracted_cases": {
+        "path": "incoming-vba-vm.extracted.json",
+        "sha256": "e400ac90742f5a451d98a98c3584692aac30912cdc5756deca8eea8785f4375a"
+      }
+    },
+    {
+      "run": "incoming-resume-native-2",
+      "log": {
+        "path": "incoming-resume-native-2.log",
+        "sha256": "9c2c7f9cb58e213469279ae5e87ca1eef86d711469a1322956a6fc785b2a26b1"
+      },
+      "receipt": {
+        "path": "incoming-resume-native-2.json",
+        "sha256": "c520bae1df14edbbf8fded7c3495aa3e204f04df29df2cefbe30e3bdc2bdd389"
+      },
+      "extracted_cases": {
+        "path": "incoming-resume-native-2.extracted.json",
+        "sha256": "b98812837fb38b573f59e1ed696242a6572fe76c696679e36c6573bde846853a"
+      }
+    },
+    {
+      "run": "incoming-resume-portable",
+      "log": {
+        "path": "incoming-resume-portable.log",
+        "sha256": "c299d283b05a0b6328653a776151ef8c941b0c5d45045c620ed8eab031ab7d62"
+      },
+      "receipt": {
+        "path": "incoming-resume-portable.json",
+        "sha256": "b6d62d7ce60364a6b9df93d64dce4376b73169d1a8f458c6434b5e3b20bbe140"
+      },
+      "extracted_cases": {
+        "path": "incoming-resume-portable.extracted.json",
+        "sha256": "afc9a0e79b3c0e75b24b38498f9b714e19a0ea682123667c72ccd7c84c4d161f"
+      }
+    },
+    {
+      "run": "incoming-resume-studio",
+      "log": {
+        "path": "incoming-resume-studio.log",
+        "sha256": "8d9c90e7d92dfddffb701aa15fbf12032c15e85da515fc5ac57fec374df25a05"
+      },
+      "receipt": {
+        "path": "incoming-resume-studio.json",
+        "sha256": "f578b64d518bacb6b619505f043de27b6e2d74f85cd6aaddd8b2e930f6864343"
+      },
+      "extracted_cases": {
+        "path": "incoming-resume-studio.extracted.json",
+        "sha256": "187a623f5f196e36f494a2f04c11bfab43d6e6e26cf75ef01a6aac14bc7f6a02"
+      }
+    },
+    {
+      "run": "incoming-embed-host-fixture",
+      "log": {
+        "path": "incoming-embed-host-fixture.log",
+        "sha256": "262d4dd17fd0b5ce4b8e1a9d4df9ef0b91a38673391b68408bcf639d9a07bc5e"
+      },
+      "receipt": {
+        "path": "incoming-embed-host-fixture.json",
+        "sha256": "371b7b22f56cd7010558b979b35083babca60b3f4542fcafd436fa903757aaa0"
+      },
+      "extracted_cases": {
+        "path": "incoming-embed-host-fixture.extracted.json",
+        "sha256": "a25040ad221b4fe92bd16364a690fea8e7241cfbcf23f38a888c042a9bf45ac4"
+      }
+    }
+  ],
+  "accepted_analysis_receipts": [
+    {
+      "path": "example-analysis-2.json",
+      "sha256": "dcfeee700cabdf3f67e6858c66ed17f6af4cb8bf3d89a29906545b7577c249f2"
+    },
+    {
+      "path": "tabs-analysis.json",
+      "sha256": "4baab244039d4ade50e3430d31ec07fe306b83b088f0eb9115a4d6a6bd24ccc4"
+    },
+    {
+      "path": "final-ruler-slide-analysis.json",
+      "sha256": "9171392e46a29a702abac392dcdff08657d2824457db38cfed4c187cabb01812"
+    },
+    {
+      "path": "final-slide-test-analysis.json",
+      "sha256": "d691fdfb54582b1b500cb82ed2180d1247f3875aaf6580a0af36015b8c6b1f4a"
+    },
+    {
+      "path": "incoming-vba-scoped-analysis.json",
+      "sha256": "bb6fa98310e58e543ec7b014cc99db97605a2fe47bf2a026e42d93252581b8db"
+    },
+    {
+      "path": "incoming-resume-scoped-analysis-2.json",
+      "sha256": "37d12ff0ed424666a41f6a88a54d9f49883e1d91b769a68aec388762a7222013"
+    },
+    {
+      "path": "main-language-analysis.json",
+      "sha256": "6f9566792708967f6d64dc5ef387f553a353f953d184166db65e1e3e1caf448e"
+    }
+  ],
+  "original_core_analysis": {
+    "path": "core-analysis.log",
+    "sha256": "39903cc2976962ce8e56979d64629aed54e06e1995c08067ca9dbba4ffc1a9e6"
+  },
+  "source_comparison_qualifications": {
+    "details": {
+      "path": "accepted-source-comparisons.json",
+      "sha256": "ad9878ac428f310f4de94735f36f8346fab2c71ad3d05f2b26b48cbbf1935399"
+    },
+    "original_core_checkpoint_to_final": {
+      "path": "core-checkpoint-vs-final.json",
+      "sha256": "2ddc28b6da4edd95caba7d58080fe1223a4d68f57897ad63b2e7289749794347"
+    },
+    "early_core17": "Earlier core gate had no at-run manifest. Source checkpoint4fd010fc comparison is retained. Its3 unchanged Word/Sheet rendering cases remain accepted;4 ruler cases were rerun after explicit theme-font selection, and10 Page Layout cases were rerun after the final controller/proofing merge.",
+    "early_gui84": "Six customization cases are replaced by the final main-integration rerun. Other78 behavior cases remain accepted. Later tab ink/height, ruler font, Settings/downloads and proofing hooks are covered by focused workspace/customization/dialog/proofing tests and final screenshots.",
+    "older_dialog_and_menu_runs": "Paragraph18, Page Layout9, workspace7 and customization6 are replaced by main-language-example. Sheet/Slide3 retains unchanged source; later shared host changes have concrete workspace/customization/downloads coverage. VBA parser changes have separate incoming gates.",
+    "final_mail_integration": "Final cutoff changes13 mail-specific product paths and their tests/embedding fixtures. GUI product sources and engine lib/test/tool are retained exactly. Fresh mail VM/Node/Studio/embedding gates cover the final source.",
+    "retained_vba_proof": {
+      "path": "vba-post-integration-retention.json",
+      "sha256": "bfb29be28abc68969813a3b77f675af2dde3e4b53438ad9bc50c8f53611c131d"
+    },
+    "final_main_language_integration": "Main9f was merged into accepted ba51 as a93. Changed proofing/controller callbacks, Settings/downloads routes and native NER deletion have dedicated analysis/tests. Existing848-case coverage is retained with latest rerun mappings, and genuinely new cases are added once. Mail and engine source trees are unchanged by this merge.",
+    "main_language_source_proof": {
+      "path": "main-language-source-retention.json",
+      "sha256": "170c4bb09b62ffe04ef64b7aef03eb37a6986a370b65041046366cd28d0018b1"
+    }
+  },
+  "source_manifest": {
+    "path": "source-hashes-final.json",
+    "sha256": "f36e05ecdb3f678db0ebbb5ef4014d4521ff98f46c7532a9d3740a1cfc6348f8"
+  },
+  "accepted_case_map": {
+    "path": "accepted-cases.json",
+    "sha256": "7f1aec48deddcc5677df37288e80f82dcdbd065306a0d661b4bf6b9410fc7ade"
+  },
+  "pubspec_lock": {
+    "sha256": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+    "unchanged": true
+  },
+  "nonmutating_gui_format": {
+    "path": "final-gui-format.json",
+    "sha256": "c067f425c84a079598c78c66e84ec3a22a7992fe8153ce1ab75089945506b23b"
+  },
+  "nonmutating_restore_repair_format": {
+    "path": "restore-repair-format.json",
+    "sha256": "2a176e35bdb37906a6e8585b3e61e4a06d33731516d48e4bc78a535fc7abccc7"
+  },
+  "main_language_format_no_files_changed": {
+    "path": "main-language-format.json",
+    "sha256": "b913eda2dfc34e192dd79bfcaa63740115736e85afdd30aaa47d253ef85bea67"
+  },
+  "restore_repair_source_proof": {
+    "path": "restore-repair-source-proof.json",
+    "sha256": "82dc11653fc4d6c03e035155216a3ec593ba43df7a4ebcbd10750fccc12d9c14"
+  },
+  "native_runtime": {
+    "path": "native-runtime-receipt.json",
+    "sha256": "e7387a54f42d290a3205545d98b834f801cdb7f693a314918d609c5851f60d0e"
+  },
+  "web_smoke_assertions": [
+    {
+      "path": "incoming-web_vba_arrays_smoke-node.assertions.json",
+      "sha256": "09187d9c7b38e90c0d799d5a70780fb363b8d454efa5d7861bee849ac3955101"
+    },
+    {
+      "path": "incoming-web_vba_control_flow_smoke-node.assertions.json",
+      "sha256": "e319bc25f9faaddf98ea4fd9531c22a25f4cb820c003c1a90ead253124515830"
+    }
+  ],
+  "preview": {
+    "receipt": {
+      "path": "previews-publication.json",
+      "sha256": "8bad902aadf30fa4fb1997fa639f77865754b5c0f99beb25b230f0e04f62d9a4"
+    },
+    "images": {
+      "path": "previews-publication-images.json",
+      "sha256": "640149b400c1bd1448fcf80f717b8857f4449b67123477e070debf6c36d7d5ee"
+    },
+    "preserved_earlier_capture": {
+      "receipt": {
+        "path": "previews-3.json",
+        "sha256": "a555c363f702ab626e0f8da6ef68a8e823d55da7c681df095e65b4efb5db1503"
+      },
+      "images": {
+        "path": "previews-images-final.json",
+        "sha256": "5a4042075c16e762a2ab400e67f750fee199a39004311a4d741d3369e5e6e47f"
+      }
+    }
+  },
+  "failed_or_superseded_attempts": [
+    {
+      "run": "example-analysis-1",
+      "reason": "Nullable generic inference and style diagnostics fixed before accepted strict analysis.",
+      "log": {
+        "path": "example-analysis-1.log",
+        "sha256": "59183ced8e468674a1f0fb3f548cbf7ba79a9a03ef643899897d9583b22a251b"
+      },
+      "receipt": {
+        "path": "example-analysis-1.json",
+        "sha256": "846168cf6fb59175197de7c0896400b4ec3ba6ed17a36fd41398bf2d350337f7"
+      }
+    },
+    {
+      "run": "dialogs-1",
+      "reason": "Paragraph18 was replaced after removal of unsupported Keep lines UI; both Paragraph18 and Page Layout9 now use the final main-language-example run.",
+      "log": {
+        "path": "dialogs-1.log",
+        "sha256": "817c0ce2d597591e32fc1bb3cf297e35dcbd1a201d785c0d6ebfcd571de92941"
+      },
+      "receipt": {
+        "path": "dialogs-1.json",
+        "sha256": "003bb5de53102eb536c33ef5d14f0b80b7cedd50dd8cc743550a9473bbcf7bc1"
+      }
+    },
+    {
+      "run": "dialogs-workspace-2",
+      "reason": "Sheet/Slide3 retained; Paragraph18 and expanded workspace7 now use the final main-language-example run.",
+      "log": {
+        "path": "dialogs-workspace-2.log",
+        "sha256": "5eefa03d5e6281896fd2ba90078b189db1cf1ca2671bc0f41fabacc18a40ee53"
+      },
+      "receipt": {
+        "path": "dialogs-workspace-2.json",
+        "sha256": "57f73f786c246f835329443bb16dbdb37a10a53a6d14f4e1785bbda45e9e25b8"
+      }
+    },
+    {
+      "run": "tabs-workspace-customization",
+      "reason": "All13 passed; workspace7 and customization6 now use the final main-language-example run after shared Settings/downloads integration.",
+      "log": {
+        "path": "tabs-workspace-customization.log",
+        "sha256": "a07a0b2028d5119d5e106c5c4beab2ef803dbf1ab1e436f8122196669a40f6e7"
+      },
+      "receipt": {
+        "path": "tabs-workspace-customization.json",
+        "sha256": "1ad30a1469807cfc6ae8d71676efca7027952560633a700a048ef71a5716c438"
+      }
+    },
+    {
+      "run": "slide-workspace-analysis",
+      "reason": "One new multiline-if brace diagnostic fixed; later scoped analysis clean.",
+      "log": {
+        "path": "slide-workspace-analysis.log",
+        "sha256": "392542a9160d3237e0f753974a085d35e4bea3e28067d242a9b0c4c6aa1ccf7b"
+      },
+      "receipt": {
+        "path": "slide-workspace-analysis.json",
+        "sha256": "d0086586101f722a9f67171e226217e3a557ee55dec366fbc7c78a61b73f5e81"
+      }
+    },
+    {
+      "run": "workspace-final",
+      "reason": "Seven passed, then rerun with final tab color/height assertions.",
+      "log": {
+        "path": "workspace-final.log",
+        "sha256": "e2cc099861021a0696e4c55542b02b4fc6a9cbaa90f4c65a24eb21839651b7e5"
+      },
+      "receipt": {
+        "path": "workspace-final.json",
+        "sha256": "652faf62b2b00bd26cae275e0c9545bb3007e12e876eacf54d31b774bd94c4a1"
+      }
+    },
+    {
+      "run": "slide-core",
+      "reason": "Exact-RGB pixel count underrepresented small anti-aliased table glyphs; meaningful contrast and unchanged-pixel assertions passed later.",
+      "log": {
+        "path": "slide-core.log",
+        "sha256": "0fa6293ee9f45b26a218d9db35c3c56ce34170d2b6a04dda91584f99ded72af9"
+      },
+      "receipt": {
+        "path": "slide-core.json",
+        "sha256": "92d77eed4dc14266c6aee67c38414299fdd3346362fe86d043396775b1655c2b"
+      }
+    },
+    {
+      "run": "final-ruler-slide",
+      "reason": "Nine passed; first Slide case assumed existing table reader round-tripped explicit black. Render-only test now checks source ink and actual serialized XML; all10 passed subsequently.",
+      "log": {
+        "path": "final-ruler-slide.log",
+        "sha256": "8368eb7ff84f5ca8ea654c052567d8cf3c01608784d1ab3b223a8d1c1de118a7"
+      },
+      "receipt": {
+        "path": "final-ruler-slide.json",
+        "sha256": "ff5c8419abe5e95f9a2c9e548ea357774ddd56d56a28660f01e1122fd37217c1"
+      }
+    },
+    {
+      "run": "previews",
+      "reason": "Generation passed but Paragraph image was captured before its route paint; dark-tab contrast/clipping found during visual review.",
+      "log": {
+        "path": "previews.log",
+        "sha256": "515872f7918b3b5323a5dda1efeb85857a5b795d2d7f436741d6e76d22a102a2"
+      },
+      "receipt": {
+        "path": "previews.json",
+        "sha256": "c3e14845b2b11a21e132329918b4dfd351c0413c87824830f882ef1ee9112d89"
+      }
+    },
+    {
+      "run": "previews-2",
+      "reason": "Preview-only font alias did not override raw default Ahem; rejected by explicit assertion and removed. Production ruler now selects registered theme font; final preview passed.",
+      "log": {
+        "path": "previews-2.log",
+        "sha256": "72a749ee4e3167803470f52685c4a127ef438757f0205693cdfb7c3254916f98"
+      },
+      "receipt": {
+        "path": "previews-2.json",
+        "sha256": "ce3be1555423790edf476f0d73958fce2622e4cac3f0572f08caf01968b613b1"
+      }
+    },
+    {
+      "run": "incoming-resume-native",
+      "reason": "178 passed and3 original adversarial cases failed. Two product files restored diagnostic operation compatibility and separated per-message codec failures from fatal destination-receipt corruption; original tests remained byte-identical and the full native gate was rerun.",
+      "log": {
+        "path": "incoming-resume-native.log",
+        "sha256": "eb2d8a998db98793c9548fe99d396e1888758bc0287203ab4f46963938b3b1a8"
+      },
+      "receipt": {
+        "path": "incoming-resume-native.json",
+        "sha256": "29b9b5bb631086d1eadd22ed3c3468d79e3bb294224a409586c0c410742d14b7"
+      }
+    }
+  ],
+  "limitations": [
+    "Local Linux Flutter/widget/native-VM/Node validation. Native macOS/Windows application packaging and GitHub Actions were not run for this continuation."
+  ]
+}

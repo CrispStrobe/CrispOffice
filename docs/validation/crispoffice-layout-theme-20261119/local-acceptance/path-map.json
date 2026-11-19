@@ -1,0 +1,867 @@
+{
+  "exact": {
+    "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example/test/_layout_theme_previews_test.dart": {
+      "encoding": "identity",
+      "note": "Byte-identical retained copy of the removed preview harness; applies to matching source hashes.",
+      "raw_sha256": "5852161c020da5c6e7e537370463075ebe651cb4fee630ae56fee77bc4c8e976",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/render_previews.dart"
+    },
+    "/workspace/scratch/9c3338a48b2c/toolchain/env.sh": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/runtime/env.sh"
+    },
+    "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/runtime/run_dart.sh"
+    },
+    "/workspace/scratch/9c3338a48b2c/toolchain/run_flutter.sh": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/runtime/run_flutter.sh"
+    },
+    "/workspace/scratch/9c3338a48b2c/toolchain/runtime.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/runtime/runtime.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/acceptance-summary.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/acceptance-summary.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/accepted-cases.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/accepted-cases.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/accepted-source-comparisons.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/accepted-source-comparisons.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/audit-for-final-run-2.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/audit-for-final-run-2.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/audit-for-final-run.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/audit-for-final-run.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/build_acceptance.py": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/build_acceptance.py"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/core-analysis.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-analysis.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/core-checkpoint-vs-final.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-checkpoint-vs-final.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/core-focused.extracted.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-focused.extracted.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/core-focused.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-focused.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/core-format.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-format.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/core-original-gate-comparison.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/core-original-gate-comparison.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/dialogs-1.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-1.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/dialogs-1.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-1.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/dialogs-source-checkpoint.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-source-checkpoint.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/dialogs-workspace-2.extracted.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-workspace-2.extracted.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/dialogs-workspace-2.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-workspace-2.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/dialogs-workspace-2.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-workspace-2.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/dialogs-workspace-2.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/dialogs-workspace-2.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/example-analysis-1.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/example-analysis-1.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/example-analysis-1.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/example-analysis-1.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/example-analysis-2.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/example-analysis-2.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/example-analysis-2.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/example-analysis-2.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/example-analysis-2.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/example-analysis-2.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/extract_cases.py": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/extract_cases.py"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-gui-format.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-gui-format.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-gui-format.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-gui-format.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-gui-format.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-gui-format.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-incoming-run-plan-2.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-incoming-run-plan-2.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-incoming-run-plan.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-incoming-run-plan.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide-2.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-2.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide-2.extracted.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-2.extracted.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide-2.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-2.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide-2.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-2.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide-2.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-2.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide-analysis.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-analysis.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide-analysis.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-analysis.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide-analysis.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide-analysis.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-ruler-slide.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-ruler-slide.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-slide-test-analysis.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-slide-test-analysis.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-slide-test-analysis.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-slide-test-analysis.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/final-slide-test-analysis.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/final-slide-test-analysis.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/gui-regressions.extracted.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/gui-regressions.extracted.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/gui-regressions.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/gui-regressions.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/gui-regressions.log": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/gui-regressions.log.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/gui-regressions.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/gui-regressions.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-embed-host-fixture.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-embed-host-fixture.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-embed-host-fixture.extracted.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-embed-host-fixture.extracted.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-embed-host-fixture.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-embed-host-fixture.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-embed-host-fixture.log": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-embed-host-fixture.log.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-embed-host-fixture.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-embed-host-fixture.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native-2.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native-2.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native-2.extracted.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native-2.extracted.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native-2.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native-2.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native-2.log": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native-2.log.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native-2.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native-2.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native.log": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native.log.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-native.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-native.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-portable.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-portable.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-portable.extracted.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-portable.extracted.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-portable.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-portable.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-portable.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-portable.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-portable.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-portable.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-scoped-analysis-2.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis-2.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-scoped-analysis-2.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis-2.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-scoped-analysis-2.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis-2.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-scoped-analysis.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-scoped-analysis.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-scoped-analysis.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-scoped-analysis.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-studio.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-studio.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-studio.extracted.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-studio.extracted.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-studio.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-studio.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-studio.log": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-studio.log.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-resume-studio.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-resume-studio.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-run-plan.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-run-plan.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-vba-scoped-analysis.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-scoped-analysis.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-vba-scoped-analysis.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-scoped-analysis.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-vba-scoped-analysis.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-scoped-analysis.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-vba-vm.cases.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-vm.cases.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-vba-vm.extracted.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-vm.extracted.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-vba-vm.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-vm.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-vba-vm.log": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-vm.log.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-vba-vm.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-vba-vm.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_arrays_smoke-compile.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-compile.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_arrays_smoke-compile.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-compile.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_arrays_smoke-compile.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-compile.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_arrays_smoke-node.assertions.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-node.assertions.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_arrays_smoke-node.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-node.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_arrays_smoke-node.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-node.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_arrays_smoke-node.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_arrays_smoke-node.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_control_flow_smoke-compile.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-compile.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_control_flow_smoke-compile.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-compile.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_control_flow_smoke-compile.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-compile.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_control_flow_smoke-node.assertions.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-node.assertions.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_control_flow_smoke-node.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-node.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_control_flow_smoke-node.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-node.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-web_vba_control_flow_smoke-node.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/incoming-web_vba_control_flow_smoke-node.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-9f-adoption.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-9f-adoption.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-analysis.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-analysis.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-analysis.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-analysis.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-analysis.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-analysis.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-case-counts.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-case-counts.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-core.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-core.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-core.extracted.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-core.extracted.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-core.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-core.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-core.log": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-core.log.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-core.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-core.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-example.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-example.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-example.extracted.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-example.extracted.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-example.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-example.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-example.log": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-example.log.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-example.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-example.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-format.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-format.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-format.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-format.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-format.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-format.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-ner-removal.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-ner-removal.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-ner-removal.extracted.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-ner-removal.extracted.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-ner-removal.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-ner-removal.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-ner-removal.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-ner-removal.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-ner-removal.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-ner-removal.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-source-retention.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/main-language-source-retention.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/merge-main-9f41/packages/quds_office_editor/example/lib/suite_workspace.dart": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/merge-main-9f41/packages/quds_office_editor/example/lib/suite_workspace.dart.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/merge-main-9f41/resolution.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/merge-main-9f41/resolution.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/merge-main-9f41/workspace-resolution.diff": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/merge-main-9f41/workspace-resolution.diff"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/native-hook-input.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/native-hook-input.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/native-hook-output.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/native-hook-output.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/native-runtime-receipt.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/native-runtime-receipt.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/pre-mail-integration-boundary.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/pre-mail-integration-boundary.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-2.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-2.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-2.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-2.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-2.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-2.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-3.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-3.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-3.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-3.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-3.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-3.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-images-final.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-images-final.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-images.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-images.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-publication-images.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-publication-images.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-publication.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-publication.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-publication.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-publication.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-publication.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews-publication.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/previews.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/publication-adoption.log": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-adoption.log.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/publication-audit-for-final-run-2.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-audit-for-final-run-2.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/publication-audit-for-final-run.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-audit-for-final-run.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/publication-mail-merge.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-mail-merge.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/publication-main-merge.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-main-merge.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/publication-vba-merge.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/publication-vba-merge.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/restore-repair-format.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/restore-repair-format.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/restore-repair-format.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/restore-repair-format.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/restore-repair-format.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/restore-repair-format.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/restore-repair-source-proof.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/restore-repair-source-proof.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/run_example_validation.py": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/run_example_validation.py"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/run_final_incoming.py": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/run_final_incoming.py"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/run_incoming.py": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/run_incoming.py"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/run_validation.py": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/run_validation.py"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/slide-core.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-core.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/slide-core.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-core.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/slide-core.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-core.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/slide-workspace-analysis-2.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis-2.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/slide-workspace-analysis-2.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis-2.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/slide-workspace-analysis-2.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis-2.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/slide-workspace-analysis.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/slide-workspace-analysis.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/slide-workspace-analysis.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/slide-workspace-analysis.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/source-hashes-final.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/source-hashes-final.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/tabs-analysis.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-analysis.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/tabs-analysis.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-analysis.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/tabs-analysis.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-analysis.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/tabs-workspace-customization.cases.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-workspace-customization.cases.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/tabs-workspace-customization.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-workspace-customization.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/tabs-workspace-customization.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-workspace-customization.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/tabs-workspace-customization.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tabs-workspace-customization.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/tool-and-macro-inputs.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/tool-and-macro-inputs.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/vba-post-integration-retention.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/vba-post-integration-retention.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/workspace-final.json": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/workspace-final.json"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/workspace-final.log": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/workspace-final.log"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/workspace-final.source-before.json": {
+      "encoding": "gzip",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/evidence/workspace-final.source-before.json.gz"
+    },
+    "/workspace/scratch/9c3338a48b2c/validation/package_layout_evidence.py": {
+      "encoding": "identity",
+      "repository_path": "docs/validation/crispoffice-layout-theme-20261119/local-acceptance/harness/package_layout_evidence.py"
+    }
+  },
+  "hash_only_runtime_references": {
+    "/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/native_assets.yaml": [
+      "13ae5c5672ba5fa9a1dd292119ea38cd89a0740600a502f015730324c5d410b1"
+    ],
+    "/workspace/scratch/9c3338a48b2c/crispoffice/.dart_tool/package_config.json": [
+      "65f5c9528f7da93cde8f3c2230bb955cb05a307fd48fd1dbefaa5ee32cb25831"
+    ],
+    "/workspace/scratch/9c3338a48b2c/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart": [
+      "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008"
+    ],
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js": [
+      "21c1efd24042bfb855cdbae50070a58cf0c1b6f967eeb80bee5f984df5ada3b2"
+    ],
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js.deps": [
+      "3cf7b600d79a676622a975955fc0f1f62ca249323d8daefd926f12621f89eb93"
+    ],
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js.map": [
+      "67fcd435abf7f55db98326054e17af183093ff806e238c0c3b0062bcdb706d42"
+    ],
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js": [
+      "b5dc54f4b8615f502389adc2c19858c69cf5b8f214c64dfe0bce88d1a8fb33d4"
+    ],
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js.deps": [
+      "149d38a043d039f5d7d851427e69bae96f71470b7ff5f02676465dbd36b08aed"
+    ],
+    "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js.map": [
+      "8ea648df2dbc27f5552fde1a08fa8ce104ba00f15e6c00f9a0706333e7562a42"
+    ]
+  },
+  "historical_harness_references": [
+    {
+      "current_sha256": "5852161c020da5c6e7e537370463075ebe651cb4fee630ae56fee77bc4c8e976",
+      "harness": "docs/validation/crispoffice-layout-theme-20261119/render_previews.dart",
+      "note": "Historical receipt retained unchanged; do not substitute current harness bytes for its recorded version.",
+      "receipt": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/previews-images.json",
+      "recorded_sha256": "95a780f7d86350da55d15b333907fe54c44b505569acf6d21cf0a74c900a95fb"
+    }
+  ],
+  "instructions": [
+    "Raw receipt contents retain their original paths and hashes.",
+    "Use exact first; gzip entries must be decompressed before checking raw hashes.",
+    "Then consult hash-only runtime/omitted references; these dependencies are not copied.",
+    "Remaining repository source paths resolve by the repository prefix mapping."
+  ],
+  "omitted_generated_or_out_of_scope": [
+    {
+      "original_path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js",
+      "raw_bytes": 2707577,
+      "raw_sha256": "21c1efd24042bfb855cdbae50070a58cf0c1b6f967eeb80bee5f984df5ada3b2",
+      "reason": "Generated incoming JS/maps and derivative bundles; hashes only."
+    },
+    {
+      "original_path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js.deps",
+      "raw_bytes": 78179,
+      "raw_sha256": "3cf7b600d79a676622a975955fc0f1f62ca249323d8daefd926f12621f89eb93",
+      "reason": "Generated incoming JS/maps and derivative bundles; hashes only."
+    },
+    {
+      "original_path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_arrays_smoke.js.map",
+      "raw_bytes": 953500,
+      "raw_sha256": "67fcd435abf7f55db98326054e17af183093ff806e238c0c3b0062bcdb706d42",
+      "reason": "Generated incoming JS/maps and derivative bundles; hashes only."
+    },
+    {
+      "original_path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js",
+      "raw_bytes": 2705464,
+      "raw_sha256": "b5dc54f4b8615f502389adc2c19858c69cf5b8f214c64dfe0bce88d1a8fb33d4",
+      "reason": "Generated incoming JS/maps and derivative bundles; hashes only."
+    },
+    {
+      "original_path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js.deps",
+      "raw_bytes": 78185,
+      "raw_sha256": "149d38a043d039f5d7d851427e69bae96f71470b7ff5f02676465dbd36b08aed",
+      "reason": "Generated incoming JS/maps and derivative bundles; hashes only."
+    },
+    {
+      "original_path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/incoming-runtime/web_vba_control_flow_smoke.js.map",
+      "raw_bytes": 952974,
+      "raw_sha256": "8ea648df2dbc27f5552fde1a08fa8ce104ba00f15e6c00f9a0706333e7562a42",
+      "reason": "Generated incoming JS/maps and derivative bundles; hashes only."
+    },
+    {
+      "original_path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/merge-main-9f41/candidate.index",
+      "raw_bytes": 2266403,
+      "raw_sha256": "8e52c571f54dcb50543050ce3258e352255dadce110619a71681ed81443cf58d",
+      "reason": "Temporary Git index; retain hash plus resolved tree/blob proof and candidate source."
+    },
+    {
+      "original_path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/pause-before-old-mail",
+      "raw_bytes": 72,
+      "raw_sha256": "51b7cdcc0188738196529178b55b0992a4b925d7c0b9a932411302e7de59b785",
+      "reason": "Outside receipt, log, source-manifest and runner-script scope."
+    }
+  ],
+  "prefixes": [
+    {
+      "original_prefix": "/workspace/scratch/9c3338a48b2c/crispoffice/",
+      "repository_prefix": ""
+    }
+  ],
+  "schema_version": 1
+}

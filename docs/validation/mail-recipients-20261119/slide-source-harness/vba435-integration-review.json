@@ -1,0 +1,42 @@
+{
+  "incomingCommit": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+  "reviewedBaseline": "2a920225633c782d2a941518ca2812e97ba40184",
+  "allThreeIncomingParentsAlreadyAncestorsOfBaseline": true,
+  "uniqueMergeResolutionBlobs": 11,
+  "uniqueMergeResolutionBlobsAlreadyIdenticalToBaseline": 2,
+  "retainedProductionDelta": "Preserve the public updateMasterBackground wrapper, delegating through setInheritedBackground to maintain snapshot semantics; controller delegates to it. Existing resolvedRichText and background contracts retained.",
+  "retainedTestDelta": [
+    "Explicit white paper remains readable with adaptation enabled and disabled.",
+    "Black rich-text ink remains authored when adaptation is disabled, for both existing dark and high-contrast loops.",
+    "Retain explicit white and explicit colored controller checks, reset-to-inheritance, then verify a direct engine master edit."
+  ],
+  "ownedSourceHashes": {
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "32540cbab475fee5f80145439b8b868ebd7f567a9727f92bb652fc1b9203880d",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "8df3b3d378a8d8d38c147270307ddc98ed861dbc41291ee803bb8b91aff62544",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": "fbb92da5415ff0999b88cf971a119bed4dd565067864ba20c7bda9a0c58d170f"
+  },
+  "sourceChangesSincePreviousRun": {
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": {
+      "beforeSha256": "465a0ceab3d2821232b11c5a4ff2131358c968b4b0617fc6619ead29ee11dfe4",
+      "afterSha256": "32540cbab475fee5f80145439b8b868ebd7f567a9727f92bb652fc1b9203880d"
+    }
+  },
+  "executedTestInputsRetained": [
+    {
+      "path": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "sha256": "306d5fd897f45af4a72a1c601890db538d06d32f125378ec727875fef5c34dd3",
+      "unchangedSincePreviousRun": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart",
+      "sha256": "f38b055d31f16dec1f7ad9e88d470b728c3c8e4b3339d11e1d2da99dc7a4a285",
+      "unchangedSincePreviousRun": true
+    }
+  ],
+  "preservedPreviousHarnessDirectory": "/workspace/scratch/32e3793609d8/validation/slide-source-harness-before-vba435",
+  "previousQualificationSha256": "18a74d7575cec0a63dd9f461672341efedb74c2d94152aceb3bb867561a5d196",
+  "previousSourceGraphSha256": "9a7ed4865e9037cfba3a3fa7e8d8ef965ccecd2d8ab841821c17d9f438ed26bf",
+  "unionDiffSha256": "93ac6f54b62506a3181b2905babee0dc795278d2ccc1634d0bc18fcba629ecdc",
+  "qualification": "Model wrapper is compiled in the 15-case source run. Controller and new dark/widget assertions remain source-reviewed and unexecuted; no MIME/PDF/widget acceptance claim.",
+  "createdAtUtc": "2026-11-19T21:38:40.668449+00:00"
+}

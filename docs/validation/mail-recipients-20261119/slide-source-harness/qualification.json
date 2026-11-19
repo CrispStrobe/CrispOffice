@@ -1,0 +1,112 @@
+{
+  "scope": "Fifteen existing repository test declarations; only the engine barrel import is replaced with direct file imports. Test assertions and all production sources are unchanged. No mocks or copied production implementation.",
+  "baselineCommit": "2a920225633c782d2a941518ca2812e97ba40184",
+  "incomingIntegrationCommit": "435bc212401db13efa56483ac852e4bc25bcc5d2",
+  "tests": [
+    {
+      "original": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "originalSha256": "306d5fd897f45af4a72a1c601890db538d06d32f125378ec727875fef5c34dd3",
+      "adapted": "adapted_tests/slide_import_fidelity_test.dart",
+      "adaptedSha256": "d41d1d96b720ad23151343cb63f056b601ff6aa85bf6211ec4f7ee0fa137d036",
+      "importDiff": "slide_import_fidelity_test.dart.imports.diff",
+      "importDiffSha256": "8d230d7a43d641ed9b0c2306a91029cd0817b6304467ebe37e7b78d976bc6917",
+      "testDeclarationCount": 14
+    },
+    {
+      "original": "packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart",
+      "originalSha256": "f38b055d31f16dec1f7ad9e88d470b728c3c8e4b3339d11e1d2da99dc7a4a285",
+      "adapted": "adapted_tests/slide_rich_text_explicit_style_test.dart",
+      "adaptedSha256": "35b89a142afcec29ffafd7ac1ad0d2f92b885acd94052cb6677e732a9445cb8b",
+      "importDiff": "slide_rich_text_explicit_style_test.dart.imports.diff",
+      "importDiffSha256": "d438f1390e345a18e5afb890363357eb08ce40652a526f3aa970ed91b9dd6d7a",
+      "testDeclarationCount": 1
+    }
+  ],
+  "sourceHashes": {
+    "packages/quds_office_engine/lib/src/builders/drawingml_charts.dart": "dcd333224d534f528bc218a56b9297375286b24ef92016307ad45035e257993d",
+    "packages/quds_office_engine/lib/src/builders/image_fit.dart": "1018b829fcc78d85b891f1c29e9287ef267ddea4d9befc76750fc31f161f53a8",
+    "packages/quds_office_engine/lib/src/builders/office_document_theme.dart": "fe9ce8d4ca691c429d37dde98a476f6561a5cd93a9520bd67fb18dad832ad020",
+    "packages/quds_office_engine/lib/src/builders/office_markup.dart": "3b11bbd6ec7fb2203a058cf9780358128f04459bf8c240bdce186d5f6c52384e",
+    "packages/quds_office_engine/lib/src/builders/pptx_builder.dart": "58771591344e8f06d66009971913d64809e4ff5609b50f6df32a683905367ba8",
+    "packages/quds_office_engine/lib/src/crypto/aes.dart": "638967fdf0683328de6c385221fedc7be6e08be3c3e948e6f634967f01007cdd",
+    "packages/quds_office_engine/lib/src/io/byte_source.dart": "bfd604c766efa0a4ab052f85f9a6da1efa5a0cfd801b25419f8f89bb842c48cf",
+    "packages/quds_office_engine/lib/src/office/office_document_properties.dart": "0213f647fa471eeb454bee7722a64104f5bae363822ab060a3b02e2cdd8af649",
+    "packages/quds_office_engine/lib/src/opc/content_types.dart": "9352bda521b43b980f9e9db26d2960363cdc10794cad2c66c8b385e36307d295",
+    "packages/quds_office_engine/lib/src/opc/crypto/office_crypto.dart": "b14a302282ddeeeb818cda9931858a1f556c1b57e31a29a0afc7cd11d2980107",
+    "packages/quds_office_engine/lib/src/opc/ole/cfbf_reader.dart": "3fd389a63fa0c735b872365ad82c8f9128eee51e8e4964dc654b1c3022580cbc",
+    "packages/quds_office_engine/lib/src/opc/ole/cfbf_writer.dart": "156b1bdb09829f4c20683ff4871cbc7dbe24ed8ce93e1a660b5336df051b5ec5",
+    "packages/quds_office_engine/lib/src/opc/opc_archive.dart": "038c553db1487ce5c879245189e50afa3934055f2962d783d213878530b942aa",
+    "packages/quds_office_engine/lib/src/opc/package_part.dart": "02e6338ba76cef47c8fc351590b55f6eccc3908f365a62e5dce291907a3b71ba",
+    "packages/quds_office_engine/lib/src/opc/relationships.dart": "e767ebdce03d7c08fe4c37503f88bd4bb9cb27130c700d1e3694f3fb7acabd0c",
+    "packages/quds_office_engine/lib/src/opc/zip/crc32.dart": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f",
+    "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+    "packages/quds_office_engine/lib/src/opc/zip/zip_reader.dart": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f",
+    "packages/quds_office_engine/lib/src/opc/zip/zip_writer.dart": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803",
+    "packages/quds_office_engine/lib/src/sheet/formula/dep_graph.dart": "5f3ee9dc9bbebe01a037f2a52362f3f61213b67012d27b0a13d94b94b1bdf2de",
+    "packages/quds_office_engine/lib/src/sheet/formula/formula_ast.dart": "766a72f98a95383007137824bdee899b67e2765ab612ae5ca19f22a782de1d0e",
+    "packages/quds_office_engine/lib/src/sheet/formula/formula_eval.dart": "657562b859ae08a39e042a6c8e60232b2bce70317a6f724bcf6960711394cdf7",
+    "packages/quds_office_engine/lib/src/sheet/formula/formula_functions.dart": "01899654404992e8d68cd2846136b690117d02db2dd6dab446b03762404bfd4e",
+    "packages/quds_office_engine/lib/src/sheet/formula/formula_refs.dart": "1c1eac769bd2657dd65a78351ce41ff69a6d6c3c52e31ad48696144a383daa22",
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart": "3da5aaf1068bf4b9d3a1cb4222929aa654403e17703ff43e25fbfc5367d3ef68",
+    "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart": "9cb1750572e55f8c99b379f4fc3de4fe7532a4447d6f631a7bd3c0998ca172bd",
+    "packages/quds_office_engine/lib/src/sheet/model/sml_sparkline.dart": "e60f743c048b6436033921da16068938b703083397ce3d38f103ecf9f4118a03",
+    "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart": "d82636f4adc11a975540aea49d71114ccbc8be67585d96759651838b64e83aef",
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_drawing_io.dart": "12bdcd3963ce4acb83bc6465f7d4343d9c4a0303d17d124ea76dbe5e83ac9f77",
+    "packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart": "0e67f3a761f6a97981d81bbc16b55b6954dbafd597c30a74022f062603394e6b",
+    "packages/quds_office_engine/lib/src/slide/anim/pml_motion.dart": "45f8fca83b6eb1a403d3d8f4387fc96af60b960034bf1232bc9bc41acb8063a1",
+    "packages/quds_office_engine/lib/src/slide/anim/pml_motion_io.dart": "c651ee0235ed5c96b47398ac86fa5ba8f414aad1bc2ae8066752de01af42e88c",
+    "packages/quds_office_engine/lib/src/slide/model/pml_arrange.dart": "55b511cf38d76de917fcbde0d80990a2e5eb99f7caf80d5c9c51da48a05948b7",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "32540cbab475fee5f80145439b8b868ebd7f567a9727f92bb652fc1b9203880d",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_section_io.dart": "c00aeed36b9a30c1d7a50b9b831d368c7cf07475c757e371b9bed10f424df7bd",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "29c08a253201a2af73717a20db5810fcdb2087608f46aa8cbe3203a1e0abf81b",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "db77f574e5534662c88d97b7bfcccb597b7bd72074f51826665213dd5947665e",
+    "packages/quds_office_engine/lib/src/slide/shapes/slide_rich_text.dart": "2fda59709745678db8707f2aa652c20eaf934cd0164ff82ca6a549a0a95297dc",
+    "packages/quds_office_engine/lib/src/visual/drawingml_visual_io.dart": "4f4104ebca29ec0e90a76ff21183189975da1ce4d1ecf347f1872bd9fabadc27",
+    "packages/quds_office_engine/lib/src/visual/office_visual.dart": "a3b8f8ece59b04275fba456803072de1aa84e602f6dedb6f69a51a4090daa949",
+    "packages/quds_office_engine/lib/src/visual/png_bytes.dart": "8407ce49c50be4267c68232ad6465eeadae754c5204c9497c7028ca4b5313b12",
+    "packages/quds_office_engine/lib/src/xml/namespaces.dart": "f043295589e663e0aa8b80403cc3ffd84e162d213a8b8d81dc90dd65031e9a48",
+    "packages/quds_office_engine/lib/src/xml/xml_node.dart": "911378e591f1092b51cce5cba72aeede115dceb06e1a3e5171687bad56a7408c",
+    "packages/quds_office_engine/lib/src/xml/xml_reader.dart": "1a41c5f8e7b9c90fc9bd1759ca86f729cb28a8398b7833eff92b8a68c96e98c3",
+    "packages/quds_office_engine/lib/src/xml/xml_writer.dart": "8bb95958c14001e6c7f51627a5c1f28f34c9a2ff3a337a64dcb9e79828bd478b"
+  },
+  "sourceGraphSha256": "06eb55af0188f6d494589ec89258bdf13a2d198a96e7953f00279961e2a49edf",
+  "sourceFileCount": 45,
+  "externalProductionImports": [
+    "package:crypto/crypto.dart"
+  ],
+  "testVersion": "1.31.1",
+  "cryptoVersion": "3.0.7 (cached harness; full workspace lock has 3.0.8)",
+  "runtime": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "packageConfigSha256": "92694bc8b7ee55d43eea40b21875e767cd559381a8a01bce080f423996ba4434",
+  "reproductionScriptSha256": "0ed5e46ec5f8b9a5133181c469fd3c601a46b820854d86772f35630320900526",
+  "command": [
+    "/workspace/scratch/32e3793609d8/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/32e3793609d8/runtime/core-validation/.dart_tool/package_config.json",
+    "/workspace/scratch/32e3793609d8/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "/workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_import_fidelity_test.dart",
+    "/workspace/scratch/32e3793609d8/validation/slide-source-harness/adapted_tests/slide_rich_text_explicit_style_test.dart",
+    "--reporter",
+    "expanded"
+  ],
+  "commandWorkingDirectory": "/workspace/scratch/32e3793609d8/runtime/core-validation",
+  "formatQualification": "Final model, controller and dark-slide test files pass Dart format with zero changes. Lint configuration remains unavailable because lints/flutter_lints cannot resolve.",
+  "limitations": [
+    "This executes the slide import/model and explicit-style serialization tests only. It does not execute MIME/mail, PDF, Flutter widgets, or the full engine barrel.",
+    "The cached crypto version differs from the workspace lock; this is not a full workspace dependency qualification.",
+    "Exact-import slide_text_fidelity_test.dart still reaches unavailable characters through OfficeIsolateSave and Word serialization/layout.",
+    "Exact-import slide_render_fidelity_test.dart reaches unavailable characters and image through OfficePdfExport and PDF/Word layout.",
+    "No GitHub Actions queried, awaited, or used as a gate."
+  ],
+  "result": "passed",
+  "exitCode": 0,
+  "passedTests": 15,
+  "completedAtUtc": "2026-11-19T21:38:52.293580+00:00",
+  "sourceHashVerificationAfterExecution": {
+    "verified": 45,
+    "changed": []
+  },
+  "testHashVerificationAfterExecution": {
+    "changed": []
+  },
+  "logSha256": "9c35d93e7d0f7e8fe8c09373da6ed2c8accb39ffa7dc3396e9bdc34e514eab02"
+}

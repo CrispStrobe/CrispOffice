@@ -1,0 +1,23 @@
+00:00 +0: loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart
+00:00 +0: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart: dark rulers and drag readouts follow chrome colors
+00:00 +1: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart: high contrast rulers and drag readouts follow chrome colors
+00:00 +2: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart: dark chrome with white paper rulers and drag readouts follow chrome colors
+00:00 +3: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_chrome_theme_test.dart: light ruler surfaces retain their established palette
+00:00 +4: loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_document_test.dart
+00:01 +4: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_document_test.dart: (setUpAll)
+00:01 +4: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_document_test.dart: dark ink policy preserves light backgrounds and readable colors
+00:01 +5: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_document_test.dart: Word dark paper respects fills, highlights and exported ink
+00:02 +6: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_document_test.dart: Sheet dark ink follows explicit and conditional cell backing
+00:02 +7: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/office_dark_document_test.dart: (tearDownAll)
+00:02 +7: loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart
+00:04 +7: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart: Page Layout applies every supported setting in one undo step
+00:04 +8: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart: page geometry follows continuous siblings but section options do not
+00:04 +9: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart: whole document applies values while preserving existing section starts
+00:04 +10: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart: invalid drafts are atomic and do not mark the document dirty
+00:04 +11: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart: shared geometry rejects a change that cannot fit a sibling column
+00:04 +12: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart: unchanged exact measurements produce no history or rounding
+00:04 +13: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart: stale document, section, revision and direct layout edits are rejected
+00:04 +14: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart: captured section survives caret movement while the dialog is open
+00:04 +15: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart: DOCX roundtrip keeps all applied modeled values
+00:04 +16: /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart: unrelated layout edits preserve imported section XML and custom columns
+00:05 +17: All tests passed!

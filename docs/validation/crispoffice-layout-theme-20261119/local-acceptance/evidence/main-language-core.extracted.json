@@ -1,0 +1,1007 @@
+{
+  "schema_version": 1,
+  "format": "dart-json",
+  "context": {
+    "platform": "vm",
+    "exit_code": 0,
+    "repo_root": "/workspace/scratch/9c3338a48b2c/crispoffice",
+    "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor"
+  },
+  "cases": [
+    {
+      "test_id": 3,
+      "name": "inspection and options chrome never create text or history",
+      "result": "passed",
+      "start_line": 7,
+      "result_source": "json-events",
+      "end_line": 8,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 4,
+      "name": "collapsed caret changes the whole paragraph and preserves rich runs",
+      "result": "passed",
+      "start_line": 9,
+      "result_source": "json-events",
+      "end_line": 10,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 5,
+      "name": "multiline reversed selection formats complete emoji and combining clusters only",
+      "result": "passed",
+      "start_line": 11,
+      "result_source": "json-events",
+      "end_line": 12,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 6,
+      "name": "effective mixed states, inherited languages and no-op history are distinct",
+      "result": "passed",
+      "start_line": 13,
+      "result_source": "json-events",
+      "end_line": 14,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 7,
+      "name": "live changes recheck language, suppress findings and reject late results without manual inference",
+      "result": "passed",
+      "start_line": 15,
+      "result_source": "json-events",
+      "end_line": 16,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 8,
+      "name": "a captured target refuses stale caret without history",
+      "result": "passed",
+      "start_line": 17,
+      "result_source": "json-events",
+      "end_line": 18,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 9,
+      "name": "a captured target refuses stale text without history",
+      "result": "passed",
+      "start_line": 19,
+      "result_source": "json-events",
+      "end_line": 20,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 10,
+      "name": "a captured target refuses stale language without history",
+      "result": "passed",
+      "start_line": 21,
+      "result_source": "json-events",
+      "end_line": 22,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 11,
+      "name": "a captured target refuses stale complex-script language without history",
+      "result": "passed",
+      "start_line": 23,
+      "result_source": "json-events",
+      "end_line": 24,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 12,
+      "name": "a captured target refuses stale run language without history",
+      "result": "passed",
+      "start_line": 25,
+      "result_source": "json-events",
+      "end_line": 26,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 13,
+      "name": "a captured target refuses stale run complex-script language without history",
+      "result": "passed",
+      "start_line": 27,
+      "result_source": "json-events",
+      "end_line": 28,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 14,
+      "name": "a captured target refuses stale suppression without history",
+      "result": "passed",
+      "start_line": 29,
+      "result_source": "json-events",
+      "end_line": 30,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 15,
+      "name": "a captured target refuses stale run replacement without history",
+      "result": "passed",
+      "start_line": 31,
+      "result_source": "json-events",
+      "end_line": 32,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 16,
+      "name": "a captured target refuses stale document without history",
+      "result": "passed",
+      "start_line": 33,
+      "result_source": "json-events",
+      "end_line": 34,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 17,
+      "name": "a captured target refuses stale paragraph order without history",
+      "result": "passed",
+      "start_line": 35,
+      "result_source": "json-events",
+      "end_line": 36,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 18,
+      "name": "a field in a multiline target refuses the entire change",
+      "result": "passed",
+      "start_line": 37,
+      "result_source": "json-events",
+      "end_line": 38,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 19,
+      "name": "a note in a multiline target refuses the entire change",
+      "result": "passed",
+      "start_line": 39,
+      "result_source": "json-events",
+      "end_line": 40,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 20,
+      "name": "a complex field in a multiline target refuses the entire change",
+      "result": "passed",
+      "start_line": 41,
+      "result_source": "json-events",
+      "end_line": 42,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 21,
+      "name": "a generated paragraph in a multiline target refuses the entire change",
+      "result": "passed",
+      "start_line": 43,
+      "result_source": "json-events",
+      "end_line": 44,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 22,
+      "name": "a complex field opened in a prior paragraph remains protected",
+      "result": "passed",
+      "start_line": 45,
+      "result_source": "json-events",
+      "end_line": 46,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 23,
+      "name": "protected block controls refuse both proofing operations",
+      "result": "passed",
+      "start_line": 47,
+      "result_source": "json-events",
+      "end_line": 48,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 24,
+      "name": "protected inline controls refuse both proofing operations",
+      "result": "passed",
+      "start_line": 49,
+      "result_source": "json-events",
+      "end_line": 50,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 25,
+      "name": "protected wrapper controls refuse both proofing operations",
+      "result": "passed",
+      "start_line": 51,
+      "result_source": "json-events",
+      "end_line": 52,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 26,
+      "name": "protected binding controls refuse both proofing operations",
+      "result": "passed",
+      "start_line": 53,
+      "result_source": "json-events",
+      "end_line": 54,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 27,
+      "name": "unlocked control boundaries survive selected formatting and Undo",
+      "result": "passed",
+      "start_line": 55,
+      "result_source": "json-events",
+      "end_line": 56,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 28,
+      "name": "formatting leaves tracked insertion/deletion ranges and authors intact",
+      "result": "passed",
+      "start_line": 57,
+      "result_source": "json-events",
+      "end_line": 58,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 29,
+      "name": "comment target follows exact ownership and history preserves other story selections",
+      "result": "passed",
+      "start_line": 59,
+      "result_source": "json-events",
+      "end_line": 60,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 30,
+      "name": "header target follows exact ownership and history preserves other story selections",
+      "result": "passed",
+      "start_line": 61,
+      "result_source": "json-events",
+      "end_line": 62,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 31,
+      "name": "viewing mode, late protection and IME never mutate displayed targets",
+      "result": "passed",
+      "start_line": 63,
+      "result_source": "json-events",
+      "end_line": 64,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 32,
+      "name": "explicit both-slot language editing replaces stale metadata and resets both overrides through history and save",
+      "result": "passed",
+      "start_line": 65,
+      "result_source": "json-events",
+      "end_line": 66,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 33,
+      "name": "default selection language he-IL preserves inactive slots through history and save",
+      "result": "passed",
+      "start_line": 67,
+      "result_source": "json-events",
+      "end_line": 68,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 34,
+      "name": "default selection language de-AT preserves inactive slots through history and save",
+      "result": "passed",
+      "start_line": 69,
+      "result_source": "json-events",
+      "end_line": 70,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 35,
+      "name": "default selection language en-US preserves inactive slots through history and save",
+      "result": "passed",
+      "start_line": 71,
+      "result_source": "json-events",
+      "end_line": 72,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 36,
+      "name": "partial Latin selection routes its own language slot and preserves the other",
+      "result": "passed",
+      "start_line": 73,
+      "result_source": "json-events",
+      "end_line": 74,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 37,
+      "name": "partial Arabic selection routes its own language slot and preserves the other",
+      "result": "passed",
+      "start_line": 75,
+      "result_source": "json-events",
+      "end_line": 76,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 38,
+      "name": "default whole mixed selection changes and resets both active slots through history and save",
+      "result": "passed",
+      "start_line": 77,
+      "result_source": "json-events",
+      "end_line": 78,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 39,
+      "name": "language inheritance and explicit checking permission survive DOCX save",
+      "result": "passed",
+      "start_line": 79,
+      "result_source": "json-events",
+      "end_line": 80,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 40,
+      "name": "resetting imported language preserves inactive metadata and style inheritance through history and save",
+      "result": "passed",
+      "start_line": 81,
+      "result_source": "json-events",
+      "end_line": 82,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 41,
+      "name": "a style part replacement makes an already displayed language target stale",
+      "result": "passed",
+      "start_line": 83,
+      "result_source": "json-events",
+      "end_line": 84,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 42,
+      "name": "aliased paragraph ownership cannot modify another story indirectly",
+      "result": "passed",
+      "start_line": 85,
+      "result_source": "json-events",
+      "end_line": 86,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 47,
+      "name": "unrelated language providers stay silent in English review",
+      "result": "passed",
+      "start_line": 93,
+      "result_source": "json-events",
+      "end_line": 94,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 48,
+      "name": "language support is requested only after successful changes, not stale edits or Undo",
+      "result": "passed",
+      "start_line": 95,
+      "result_source": "json-events",
+      "end_line": 96,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 49,
+      "name": "language status opens paragraph options without a dialog or document edit",
+      "result": "passed",
+      "start_line": 97,
+      "result_source": "json-events",
+      "end_line": 98,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 50,
+      "name": "selection language updates live checking and preserves the selection with Undo",
+      "result": "passed",
+      "start_line": 99,
+      "result_source": "json-events",
+      "end_line": 100,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 51,
+      "name": "text checking toggle excludes only the selected text and can restore it",
+      "result": "passed",
+      "start_line": 101,
+      "result_source": "json-events",
+      "end_line": 102,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 52,
+      "name": "mixed text settings display and enable the full selected range",
+      "result": "passed",
+      "start_line": 103,
+      "result_source": "json-events",
+      "end_line": 104,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 53,
+      "name": "inherited language follows paragraph defaults and supports Undo",
+      "result": "passed",
+      "start_line": 105,
+      "result_source": "json-events",
+      "end_line": 106,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 54,
+      "name": "unchanged inherited language does not promise an Undo entry",
+      "result": "passed",
+      "start_line": 107,
+      "result_source": "json-events",
+      "end_line": 108,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 55,
+      "name": "old dropdown action refuses a different selection",
+      "result": "passed",
+      "start_line": 109,
+      "result_source": "json-events",
+      "end_line": 110,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 56,
+      "name": "text options cannot mutate through a covering modal",
+      "result": "passed",
+      "start_line": 111,
+      "result_source": "json-events",
+      "end_line": 112,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 57,
+      "name": "viewing mode keeps inspection and disables text changes",
+      "result": "passed",
+      "start_line": 113,
+      "result_source": "json-events",
+      "end_line": 114,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 58,
+      "name": "pane follows caret context and keeps its open section across hiding",
+      "result": "passed",
+      "start_line": 115,
+      "result_source": "json-events",
+      "end_line": 116,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 59,
+      "name": "language status reveals expanded settings again after scrolling",
+      "result": "passed",
+      "start_line": 117,
+      "result_source": "json-events",
+      "end_line": 118,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 60,
+      "name": "narrow English text options remain usable with large text",
+      "result": "passed",
+      "start_line": 119,
+      "result_source": "json-events",
+      "end_line": 120,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 61,
+      "name": "narrow RTL text options remain usable with large text",
+      "result": "passed",
+      "start_line": 121,
+      "result_source": "json-events",
+      "end_line": 122,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 67,
+      "name": "editing stays available while live findings update in the pane",
+      "result": "passed",
+      "start_line": 131,
+      "result_source": "json-events",
+      "end_line": 132,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 68,
+      "name": "opening and correcting do not implicitly run manual providers",
+      "result": "passed",
+      "start_line": 133,
+      "result_source": "json-events",
+      "end_line": 134,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 69,
+      "name": "unavailable provider status is not presented as a clean document",
+      "result": "passed",
+      "start_line": 135,
+      "result_source": "json-events",
+      "end_line": 136,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 70,
+      "name": "a suggestion captured before an edit cannot change newer text",
+      "result": "passed",
+      "start_line": 137,
+      "result_source": "json-events",
+      "end_line": 138,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 71,
+      "name": "category filtering navigates only matching findings",
+      "result": "passed",
+      "start_line": 139,
+      "result_source": "json-events",
+      "end_line": 140,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 72,
+      "name": "tracked changes resolve in place and undo restores them",
+      "result": "passed",
+      "start_line": 141,
+      "result_source": "json-events",
+      "end_line": 142,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 73,
+      "name": "reviewer field affects future attribution and leaves document alone",
+      "result": "passed",
+      "start_line": 143,
+      "result_source": "json-events",
+      "end_line": 144,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 74,
+      "name": "viewing mode allows inspection while disabling document mutations",
+      "result": "passed",
+      "start_line": 145,
+      "result_source": "json-events",
+      "end_line": 146,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 75,
+      "name": "stale checks stay pending until a current provider result arrives",
+      "result": "passed",
+      "start_line": 147,
+      "result_source": "json-events",
+      "end_line": 148,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 76,
+      "name": "narrow English pane remains scrollable",
+      "result": "passed",
+      "start_line": 149,
+      "result_source": "json-events",
+      "end_line": 150,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 77,
+      "name": "narrow Arabic pane remains scrollable",
+      "result": "passed",
+      "start_line": 151,
+      "result_source": "json-events",
+      "end_line": 152,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 82,
+      "name": "Page Layout applies every supported setting in one undo step",
+      "result": "passed",
+      "start_line": 159,
+      "result_source": "json-events",
+      "end_line": 160,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 83,
+      "name": "page geometry follows continuous siblings but section options do not",
+      "result": "passed",
+      "start_line": 161,
+      "result_source": "json-events",
+      "end_line": 162,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 84,
+      "name": "whole document applies values while preserving existing section starts",
+      "result": "passed",
+      "start_line": 163,
+      "result_source": "json-events",
+      "end_line": 164,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 85,
+      "name": "invalid drafts are atomic and do not mark the document dirty",
+      "result": "passed",
+      "start_line": 165,
+      "result_source": "json-events",
+      "end_line": 166,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 86,
+      "name": "shared geometry rejects a change that cannot fit a sibling column",
+      "result": "passed",
+      "start_line": 167,
+      "result_source": "json-events",
+      "end_line": 168,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 87,
+      "name": "unchanged exact measurements produce no history or rounding",
+      "result": "passed",
+      "start_line": 169,
+      "result_source": "json-events",
+      "end_line": 170,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 88,
+      "name": "stale document, section, revision and direct layout edits are rejected",
+      "result": "passed",
+      "start_line": 171,
+      "result_source": "json-events",
+      "end_line": 172,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 89,
+      "name": "captured section survives caret movement while the dialog is open",
+      "result": "passed",
+      "start_line": 173,
+      "result_source": "json-events",
+      "end_line": 174,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 90,
+      "name": "DOCX roundtrip keeps all applied modeled values",
+      "result": "passed",
+      "start_line": 175,
+      "result_source": "json-events",
+      "end_line": 176,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    },
+    {
+      "test_id": 91,
+      "name": "unrelated layout edits preserve imported section XML and custom columns",
+      "result": "passed",
+      "start_line": 177,
+      "result_source": "json-events",
+      "end_line": 178,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter"
+    }
+  ],
+  "excluded_events": [
+    {
+      "test_id": 1,
+      "name": "loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "result": "passed",
+      "start_line": 3,
+      "result_source": "json-events",
+      "end_line": 5,
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter",
+      "excluded_reason": "loader"
+    },
+    {
+      "test_id": 44,
+      "name": "loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "result": "passed",
+      "start_line": 88,
+      "result_source": "json-events",
+      "end_line": 89,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter",
+      "excluded_reason": "loader"
+    },
+    {
+      "test_id": 46,
+      "name": "(setUpAll)",
+      "result": "passed",
+      "start_line": 91,
+      "result_source": "json-events",
+      "end_line": 92,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter",
+      "excluded_reason": "setup_or_teardown"
+    },
+    {
+      "test_id": 62,
+      "name": "(tearDownAll)",
+      "result": "passed",
+      "start_line": 123,
+      "result_source": "json-events",
+      "end_line": 124,
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter",
+      "excluded_reason": "setup_or_teardown"
+    },
+    {
+      "test_id": 64,
+      "name": "loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_review_pane_test.dart",
+      "result": "passed",
+      "start_line": 126,
+      "result_source": "json-events",
+      "end_line": 127,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter",
+      "excluded_reason": "loader"
+    },
+    {
+      "test_id": 66,
+      "name": "(setUpAll)",
+      "result": "passed",
+      "start_line": 129,
+      "result_source": "json-events",
+      "end_line": 130,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter",
+      "excluded_reason": "setup_or_teardown"
+    },
+    {
+      "test_id": 78,
+      "name": "(tearDownAll)",
+      "result": "passed",
+      "start_line": 153,
+      "result_source": "json-events",
+      "end_line": 154,
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter",
+      "excluded_reason": "setup_or_teardown"
+    },
+    {
+      "test_id": 80,
+      "name": "loading /workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/test/word_page_layout_test.dart",
+      "result": "passed",
+      "start_line": 156,
+      "result_source": "json-events",
+      "end_line": 157,
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "platform_source": "reporter",
+      "excluded_reason": "loader"
+    }
+  ],
+  "ambiguities": [],
+  "warnings": [],
+  "errors": [],
+  "terminal_success": true,
+  "terminal_count": 1,
+  "suite_count": 4,
+  "unfinished_hidden_events": 0,
+  "complete": true,
+  "status": "passed",
+  "process_success_confirmed": true,
+  "usable_pass_evidence": true,
+  "scope": "Log/process evidence only; source-revision acceptance must be supplied separately.",
+  "counts": {
+    "visible_case_occurrences": 76,
+    "results": {
+      "passed": 76
+    },
+    "excluded_event_occurrences": 8,
+    "confirmed_pass_occurrences": 76,
+    "distinct_file_name_platform": 76,
+    "distinct_file_name": 76
+  },
+  "per_file": [
+    {
+      "file": "packages/quds_office_editor/test/word_page_layout_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 10
+      },
+      "total": 10
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 11
+      },
+      "total": 11
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 40
+      },
+      "total": 40
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "platform": "vm",
+      "results": {
+        "passed": 15
+      },
+      "total": 15
+    }
+  ],
+  "log": {
+    "path": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/main-language-core.log",
+    "sha256": "ed6594a93756cead2664cbe78322db08f7c283ad4ae9ffc5663a92ee3631fe98",
+    "bytes": 40240
+  }
+}

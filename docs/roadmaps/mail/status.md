@@ -82,8 +82,8 @@ account discovery is required before credentials are used, public failures are
 redacted, and legacy protocol print output is scoped away from application logs.
 
 Its plain-text composer uses the shared Word RenderBox editing surface. It
-validates a single ASCII mailbox and headers, snapshots the body, generates
-quoted-printable MIME, and submits with an explicit recipient and no concurrent
+validates bounded ASCII To/Cc/Bcc mailbox lists and headers, snapshots the body,
+generates quoted-printable MIME, and submits with an explicit complete envelope and no concurrent
 Sent-folder append. Successful submission means the sending server accepted the
 message, not delivery to the recipient. A typed outcome confirms acceptance even
 when subsequent cleanup fails: the draft clears and the user is told not to
@@ -95,10 +95,29 @@ certify submission.
 
 Reply and text-only forwarding quote the fetched message's plain-text part,
 preserve complete Unicode characters at their explicit quote limit, and do not
-copy Bcc or attachments. HTML-only quotation and threading headers remain outside
-this increment. A retained uncertain draft cannot be silently replaced by a
-reply/forward; Compose resumes it, and an explicit confirmed discard removes
-only the session draft without cancelling a message already submitted.
+copy Bcc or attachments. Replies now retain bounded, validated `In-Reply-To`
+and `References` metadata through editing, explicit uncertain retries and the
+shared MIME builder; forwards start independent conversations. Unsupported
+parent IDs leave the reply unthreaded, and an unsupported ancestor token drops
+the inherited chain. [Reply threading](reply-threading.md) records the supported
+identifier subset, limits and original source qualification. The later
+recipient continuation exercised a pure threading subset, while MIME and
+Flutter checks remain open under the qualification boundary below.
+HTML-only quotation remains outside this increment. A retained uncertain draft
+cannot be silently replaced by a reply/forward; Compose resumes it, and an
+explicit confirmed discard removes only the session draft without cancelling
+a message already submitted.
+
+The [recipient-groups continuation](recipients-and-reply-all.md) adds multiple
+To recipients, Cc, Bcc and Reply all across the native SMTP and shared EWS/cloud
+hosts. Canonical MIME excludes Bcc while the explicit envelope includes hidden
+recipients. Reply all uses normalized visible participants, removes the connected
+sender, preserves To/Cc roles and rejects unsupported decoded mailboxes before
+joining them into editable fields. Its focused recipient/reply/thread subset
+ran on pinned Dart through a separate cached dependency graph; MIME/provider
+and Flutter widget qualification remains blocked by unavailable dependencies.
+The [current validation record](../../validation/mail-recipients-20261119/README.md)
+also records the incoming PPTX reconciliation and its compatibility corrections.
 
 This does **not** close M04W or M07: accounts/drafts remain session-only, there is
 no repository-driven mailbox or durable outbox, and no automatic resend is added.

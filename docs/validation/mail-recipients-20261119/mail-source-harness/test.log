@@ -1,0 +1,61 @@
+00:00 +0: loading /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_recipients_offline_test.dart
+00:00 +0: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_recipients_offline_test.dart: parses all recipient groups with commas, semicolons and spaces
+00:00 +1: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_recipients_offline_test.dart: deduplicates across groups with visible precedence and exact locals
+00:00 +2: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_recipients_offline_test.dart: all exposed recipient groups are immutable snapshots
+00:00 +3: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_recipients_offline_test.dart: admits exactly 100 entries across groups and rejects a 101st
+00:00 +4: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_recipients_offline_test.dart: duplicate entries still count toward the manual input bound
+00:00 +5: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_recipients_offline_test.dart: input character bound includes all groups before splitting
+00:00 +6: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_recipients_offline_test.dart: empty optional groups are allowed but an empty envelope is not
+00:00 +7: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_recipients_offline_test.dart: mailbox limits preserve the complete 254-character address
+00:00 +8: loading /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart
+00:00 +8: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply uses authoritative Reply-To and quotes only decoded plain body
+00:00 +9: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply falls back to From when no Reply-To exists
+00:00 +10: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: missing source addresses require an explicit recipient before send
+00:00 +11: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: forward requires a recipient and declares the text-only boundary
+00:00 +12: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: existing reply prefix is not duplicated
+00:00 +13: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: existing forward prefix is not duplicated
+00:00 +14: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: an exact-boundary quote is preserved without a truncation notice
+00:00 +15: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: HTML-only bodies produce a fixed typed unavailable outcome
+00:00 +16: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: an explicitly empty plain body never falls back to HTML
+00:00 +17: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all uses every From mailbox only when Reply-To is absent
+00:00 +18: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all deduplicates with To precedence and exact local-part case
+00:00 +19: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all from a sent message targets its original participants
+00:00 +20: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: empty and self-only reply-all targets leave an editable draft
+00:00 +21: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all never examines or copies even malformed oversized Bcc
+00:00 +22: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all refuses HTML-only quotation without a plain fallback
+00:00 +23: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all accepts 100 recipients and rejects 101 without truncating
+00:00 +24: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all bounds source scanning before deduplicating or removing self
+00:00 +25: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply rejects unsupported single source mailbox "one@example.invalid,two@example.invalid"
+00:00 +26: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all rejects an unsupported participant "one@example.invalid,two@example.invalid"
+00:00 +27: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply rejects unsupported single source mailbox "one@example.invalid;two@example.invalid"
+00:00 +28: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all rejects an unsupported participant "one@example.invalid;two@example.invalid"
+00:00 +29: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply rejects unsupported single source mailbox "one@example.invalid\r\nBcc: hidden@example.invalid"
+00:00 +30: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all rejects an unsupported participant "one@example.invalid\r\nBcc: hidden@example.invalid"
+00:00 +31: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply rejects unsupported single source mailbox "Name <one@example.invalid>"
+00:00 +32: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all rejects an unsupported participant "Name <one@example.invalid>"
+00:00 +33: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply rejects unsupported single source mailbox "مستخدم@example.invalid"
+00:00 +34: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all rejects an unsupported participant "مستخدم@example.invalid"
+00:00 +35: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply rejects unsupported single source mailbox "one@"
+00:00 +36: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all rejects an unsupported participant "one@"
+00:00 +37: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: invalid Reply-To never falls back to a valid From in reply all
+00:00 +38: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all rejects an unsupported connected sender identity
+00:00 +39: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: reply all ignores From as a recipient when valid Reply-To is present
+00:00 +40: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_reply_offline_test.dart: forward never turns a source address into an outgoing recipient
+00:00 +41: loading /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart
+00:00 +41: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: a canonical parent starts the references chain without repair
+00:00 +42: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: dot-atom identifiers preserve case and non-DNS atext punctuation
+00:00 +43: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: missing parent cannot infer a reply identity from its ancestors
+00:00 +44: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: identifier length admits 254 ASCII bytes and rejects 255
+00:00 +45: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: valid ancestors are retained in order and the parent is last once
+00:00 +46: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: message identifiers remain distinct when their case differs
+00:00 +47: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: an absent References chain falls back to one canonical In-Reply-To
+00:00 +48: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: nonempty malformed References never activate In-Reply-To fallback
+00:00 +49: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: a valid References chain takes precedence over In-Reply-To
+00:00 +50: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: ambiguous or injected In-Reply-To is never copied as fallback
+00:00 +51: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: a fallback equal to the parent does not duplicate the parent
+00:00 +52: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: long chains retain the root and newest fitting contiguous tail
+00:00 +53: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: exactly 900 reference bytes fit and an older overflow ID is dropped
+00:00 +54: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: a 1024-entry source keeps bounded root and tail ancestry
+00:00 +55: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: an oversized source chain preserves only the valid parent
+00:00 +56: /workspace/scratch/32e3793609d8/validation/mail-source-harness/studio_mail_threading_offline_test.dart: a reply thread is a stable snapshot of source ancestry
+00:00 +57: All tests passed!

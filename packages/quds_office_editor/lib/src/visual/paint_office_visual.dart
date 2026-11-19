@@ -7,8 +7,10 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 
 import '../editor_word/paint_run_text.dart';
 
-typedef VisualImageDecoder =
-    void Function(Uint8List bytes, void Function(ui.Image image) onDecoded);
+typedef VisualImageDecoder = void Function(
+  Uint8List bytes,
+  void Function(ui.Image image) onDecoded,
+);
 
 /// Owns decoded pictures for one Office canvas, including pending decodes.
 class VisualImageCache {
@@ -173,12 +175,18 @@ abstract final class PaintOfficeVisual {
         0,
       ]);
     }
-    final double sl = (image.width * adj.cropLeft).clamp(0, image.width / 2);
-    final double st = (image.height * adj.cropTop).clamp(0, image.height / 2);
-    final double sr = (image.width * adj.cropRight).clamp(0, image.width / 2);
+    final double sl = (image.width * adj.cropLeft).clamp(0, image.width * 0.99);
+    final double st = (image.height * adj.cropTop).clamp(
+      0,
+      image.height * 0.99,
+    );
+    final double sr = (image.width * adj.cropRight).clamp(
+      0,
+      image.width * 0.99,
+    );
     final double sb = (image.height * adj.cropBottom).clamp(
       0,
-      image.height / 2,
+      image.height * 0.99,
     );
     if (cropPreview) {
       final double keepW = (1 - adj.cropLeft - adj.cropRight).clamp(0.12, 1);

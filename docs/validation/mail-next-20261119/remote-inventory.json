@@ -1,0 +1,119 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "baseline_main": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+  "date": "2026-11-19",
+  "current_task_branch": "work/mail-next-20261119",
+  "branches": [
+    {
+      "name": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "protected": false
+    },
+    {
+      "name": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "protected": false
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "protected": false
+    },
+    {
+      "name": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "protected": false
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "protected": false
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "protected": false
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "protected": false
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "protected": false
+    },
+    {
+      "name": "main",
+      "sha": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+      "protected": false
+    },
+    {
+      "name": "work/mail-next-20261119",
+      "sha": "86f93a52a626d4be5bc09ac248067b743ee8ddf5",
+      "protected": false
+    }
+  ],
+  "open_pull_requests": [
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "draft": true,
+      "state": "open",
+      "head": {
+        "ref": "codex/crispoffice-layout-theme-20261119",
+        "sha": "cacae8569814e4cb81f58d358734d31431f102be",
+        "repository": "CrispStrobe/quds_office_suite"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "9f41e0427734d815b19149eba5eabef202f78ba6"
+      },
+      "updated_at": "2026-11-19T19:24:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211"
+    },
+    {
+      "number": 210,
+      "title": "Extend VBA macros with bounded arrays and For Each; reconcile fork work",
+      "draft": true,
+      "state": "open",
+      "head": {
+        "ref": "codex/vba-arrays-foreach-20261119",
+        "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+        "repository": "CrispStrobe/quds_office_suite"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "9f41e0427734d815b19149eba5eabef202f78ba6"
+      },
+      "updated_at": "2026-11-19T19:04:23Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/210"
+    }
+  ]
+}

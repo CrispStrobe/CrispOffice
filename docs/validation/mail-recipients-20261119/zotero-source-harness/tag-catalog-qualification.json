@@ -1,0 +1,54 @@
+{
+  "scope": "All incoming tag catalog test bodies and assertions unchanged; scratch copy changes only the client import to the actual source file. No production copies, mocks added, dependencies faked, pub resolution, network calls or live service requests.",
+  "gitHeadAtExecution": "86ffe580d9a897950664ae8c5d247bb251af7d44",
+  "sourceTreeQualification": "Current working-tree source files after parent formatting; hashes are the tested identity even if the reconciliation commit is pending.",
+  "originalTest": "packages/quds_office_engine/test/zotero_tag_catalog_test.dart",
+  "adaptedTestPath": "/workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart",
+  "sourceHashesBefore": {
+    "packages/quds_office_engine/test/zotero_tag_catalog_test.dart": "5d1290a0fedb7f76994ca4f53c9f220f71680cc80fc13ba0264b592d81c65e11",
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart": "1f4f31afab4cf073a24e03f91d1a4aff091c4ad1a14636e0be184261f696835f",
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart": "f92a016931ab04edb2d28d70a8a58c935060f45bd2855f21f98cf2eb9bd6ab2c"
+  },
+  "adaptedTestSha256": "e9d94d71102a2afb2e7d29249a17e4a6b7a3564dd07c0ab23ec0a8ff40a7ca50",
+  "importDiff": "--- packages/quds_office_engine/test/zotero_tag_catalog_test.dart\n+++ /workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart\n@@ -1,6 +1,6 @@\n import 'dart:convert';\n \n-import 'package:quds_office_engine/src/zotero/zotero_client.dart';\n+import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/zotero/zotero_client.dart';\n import 'package:test/test.dart';\n \n ZoteroHttpResponse _json(\n",
+  "packageConfigSha256": "92694bc8b7ee55d43eea40b21875e767cd559381a8a01bce080f423996ba4434",
+  "harnessPubspecLockSha256": "0007c08ef602cb75695efeb0f12b3e0d6ab85b8c014271f6018c40e8f2a0f0da",
+  "testRunnerSha256": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008",
+  "runtime": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "command": [
+    "/workspace/scratch/32e3793609d8/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/32e3793609d8/runtime/core-validation/.dart_tool/package_config.json",
+    "/workspace/scratch/32e3793609d8/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "/workspace/scratch/32e3793609d8/validation/zotero-source-harness/zotero_tag_catalog_test.dart",
+    "--reporter",
+    "json"
+  ],
+  "workingDirectory": "/workspace/scratch/32e3793609d8/runtime/core-validation",
+  "environmentSetup": "/workspace/scratch/32e3793609d8/runtime/env.sh",
+  "startedAtUtc": "2026-11-19T21:21:10.887581+00:00",
+  "limitations": [
+    "Test transport fixtures only; neither Zotero desktop nor remote API was contacted.",
+    "Full engine barrel, workspace dependency graph, Flutter UI and live integration were not qualified.",
+    "No GitHub Actions were queried or awaited."
+  ],
+  "exitCode": 0,
+  "passedTests": 27,
+  "failedTests": 0,
+  "skippedTests": 0,
+  "completedAtUtc": "2026-11-19T21:21:26.291412+00:00",
+  "sourceHashesAfter": {
+    "packages/quds_office_engine/test/zotero_tag_catalog_test.dart": "5d1290a0fedb7f76994ca4f53c9f220f71680cc80fc13ba0264b592d81c65e11",
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart": "1f4f31afab4cf073a24e03f91d1a4aff091c4ad1a14636e0be184261f696835f",
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart": "f92a016931ab04edb2d28d70a8a58c935060f45bd2855f21f98cf2eb9bd6ab2c"
+  },
+  "resultLogSha256": "2972e2d2bb46d13c4c7a974685050bb928b02acb3513a7bc6237d2fb325aefb5",
+  "stderrLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "doneEvents": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 1173
+    }
+  ],
+  "sourcesUnchangedDuringExecution": true
+}

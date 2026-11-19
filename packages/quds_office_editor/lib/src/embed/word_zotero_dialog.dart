@@ -14,6 +14,7 @@ import 'word_zotero_import.dart';
 import 'word_zotero_library.dart';
 import 'word_zotero_snapshot.dart';
 import 'word_zotero_sources.dart';
+import 'word_zotero_tags.dart';
 
 /// Connection preferences belong to the host session, never to a document.
 class ZoteroSession {
@@ -302,10 +303,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             UnsupportedError e =>
               e.message ?? 'This field cannot be changed safely.',
             StateError e => e.message,
-            ArgumentError _ =>
-              'Check the library ID, search text, selected sources, style, and locale.',
-            _ =>
-              'The operation could not finish. Existing document content was kept.',
+            ArgumentError _ => 'Check the library ID, search text, selected sources, style, and locale.',
+            _ => 'The operation could not finish. Existing document content was kept.',
           };
         });
       }
@@ -427,8 +426,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     await _loadLibrary();
     if (mounted) {
       setState(
-        () => _notice =
-            'Connected to Zotero desktop. Local library access is read-only; no API key is used.',
+        () => _notice = 'Connected to Zotero desktop. Local library access is read-only; no API key is used.',
       );
     }
   });
@@ -627,6 +625,43 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     await _applyTag(tag, clearDraft: false, requireExact: true);
   }
 
+  Future<void> _browseTags() async {
+    if (_busy || (_savedSearchMode && _savedSearchKey == null)) return;
+    final client = _client;
+    final library = _session.library;
+    final generation = _catalogGeneration;
+    if (client == null || library == null) return;
+    final collectionKey = _savedSearchMode ? null : _collectionKey;
+    final collectionNames = _collections
+        .where((collection) => collection.key == collectionKey)
+        .map((collection) => collection.name);
+    final tags = await showDialog<List<String>>(
+      context: context,
+      builder: (_) => ZoteroTagBrowserDialog(
+        client: client,
+        library: library,
+        collectionKey: collectionKey,
+        activeTags: _tags,
+        scopeLabel: collectionKey != null
+            ? 'Collection tags: ${collectionNames.firstOrNull ?? collectionKey}'
+            : _savedSearchMode
+            ? 'Library tags (not limited to the saved search)'
+            : 'Library tags',
+      ),
+    );
+    if (tags == null || !_catalogIsCurrent(client, library, generation)) return;
+    if (_tags.length == tags.length &&
+        Iterable<int>.generate(tags.length)
+            .every((index) => _tags[index] == tags[index])) {
+      return;
+    }
+    setState(() {
+      _tags = normalizeZoteroTags(tags);
+      _tagError = null;
+    });
+    await _run(() => _loadItems(useSubmittedQuery: true));
+  }
+
   Future<void> _reviewSelection() async {
     if (_busy || _selected.isEmpty) return;
     final selection = Map<String, ZoteroCitationItem>.of(_selected);
@@ -652,10 +687,24 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   Future<void> _showDocumentSources() => _run(() async {
     final target = _editTarget(_controller);
     final selection = Map<String, ZoteroCitationItem>.of(_selected);
-    final references = zoteroDocumentReferences(_documentItems);
+    final fields = _controller.zoteroFields;
+    final references = zoteroDocumentReferences([
+      for (final field in fields) ...?field.citation?.items,
+    ]);
+    final occurrences = zoteroDocumentCitationOccurrences(
+      _controller.document,
+      fields,
+    );
+    WmlZoteroField? destination;
     final keys = await _showReview<List<String>>(
       (_) => ZoteroDocumentSourcesDialog(
         references: references,
+        occurrences: occurrences,
+        canReveal: (field) =>
+            !_controller.isDisposed &&
+            target == _editTarget(_controller) &&
+            _controller.canRevealZoteroField(field),
+        onNavigate: (field) => destination = field,
         selectedKeys: {
           for (final reference in references)
             if (_selected.containsKey(reference.selectionKey))
@@ -666,8 +715,9 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             .length,
       ),
     );
-    if (!mounted || keys == null) return;
-    if (target != _editTarget(_controller) ||
+    if (!mounted || (keys == null && destination == null)) return;
+    if (_controller.isDisposed ||
+        target != _editTarget(_controller) ||
         _selected.length != selection.length ||
         selection.entries.any(
           (entry) => !identical(_selected[entry.key], entry.value),
@@ -676,6 +726,18 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
         'The document or source selection changed. Open cited references again to continue.',
       );
     }
+    final field = destination;
+    if (field != null) {
+      if (!_controller.canRevealZoteroField(field)) {
+        throw StateError(
+          'This citation can no longer be shown. Open cited references again.',
+        );
+      }
+      // Navigation does not apply the source picker's draft selection.
+      Navigator.of(context).pop(field);
+      return;
+    }
+    if (keys == null) return;
     final sources = {
       for (final reference in references)
         reference.selectionKey: reference.item,
@@ -804,8 +866,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             backoffState: _session._onlineBackoff,
           );
     setState(
-      () => _notice =
-          'Disconnected. The saved key was removed; citations remain in the document.',
+      () => _notice = 'Disconnected. The saved key was removed; citations remain in the document.',
     );
   });
 
@@ -890,8 +951,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     });
     if (uri == null) {
       setState(
-        () => _notice =
-            'This source will be embedded without a Zotero link because the desktop library did not provide a persistent item URI.',
+        () => _notice = 'This source will be embedded without a Zotero link because the desktop library did not provide a persistent item URI.',
       );
     }
   });
@@ -1135,8 +1195,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             ) ==
             null) {
           setState(
-            () => _notice =
-                'No document style was selected. The document and selected sources were kept.',
+            () => _notice = 'No document style was selected. The document and selected sources were kept.',
           );
           return;
         }
@@ -1159,8 +1218,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       result.prepareReview();
       if (seed != null && !result.hasAcceptedSeedCitation) {
         setState(
-          () => _notice =
-              'No citation was inserted. The document and selected sources were kept.',
+          () => _notice = 'No citation was inserted. The document and selected sources were kept.',
         );
         return;
       }
@@ -1230,8 +1288,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       _write(transaction.apply);
       if (items != null) _selected.clear();
       setState(
-        () => _notice =
-            'Zotero updated the document using its selected style. You can undo the complete operation.',
+        () => _notice = 'Zotero updated the document using its selected style. You can undo the complete operation.',
       );
     } finally {
       if (mounted) setState(() => _citingCancellation = null);
@@ -1275,8 +1332,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                 child: const Text('Add note from Zotero…'),
               ),
               Tooltip(
-                message:
-                    'Insert text annotations and comments with active citations. Requires Zotero 9 or later.',
+                message: 'Insert text annotations and comments with active citations. Requires Zotero 9 or later.',
                 child: OutlinedButton(
                   key: const ValueKey('zotero-add-annotation'),
                   onPressed: _busy || !_canEdit
@@ -1358,90 +1414,88 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     _session.locale = _locale.text.trim();
   }
 
-  Future<void> _bibliography({
-    required bool online,
-    WmlZoteroField? field,
-  }) => _run(() async {
-    _checkTarget();
-    if (field != null &&
-        const ['uncited', 'omitted', 'custom'].any((name) {
-          final value = field.metadata?[name];
-          return value != null && (value is! List || value.isNotEmpty);
-        })) {
-      throw UnsupportedError(
-        'This bibliography has Zotero additions, exclusions, or custom entries. Update it with Zotero to retain those choices.',
-      );
-    }
-    _saveFormat();
-    final items = _documentItems;
-    if (items.isEmpty) {
-      throw const FormatException(
-        'Insert a citation before creating its bibliography.',
-      );
-    }
-    String text;
-    ZoteroFormattedText? formattedText;
-    if (online) {
-      final resolver = ZoteroSourceResolver(
-        items,
-        local: _client?.isLocal ?? _useLocal,
-      );
-      final addresses = <String, ZoteroSourceAddress>{};
-      for (final item in items) {
-        final address = resolver.addressOf(item);
-        if (address == null) {
-          throw const FormatException(
-            'Some sources cannot be resolved through this library connection. Use the basic bibliography or copy embedded CSL JSON.',
+  Future<void> _bibliography({required bool online, WmlZoteroField? field}) =>
+      _run(() async {
+        _checkTarget();
+        if (field != null &&
+            const ['uncited', 'omitted', 'custom'].any((name) {
+              final value = field.metadata?[name];
+              return value != null && (value is! List || value.isNotEmpty);
+            })) {
+          throw UnsupportedError(
+            'This bibliography has Zotero additions, exclusions, or custom entries. Update it with Zotero to retain those choices.',
           );
         }
-        addresses[address.canonicalUri.toString()] = address;
-      }
-      final first = addresses.values.first;
-      if (addresses.values.any((item) => item.scope != first.scope) ||
-          addresses.length > 50) {
-        throw const FormatException(
-          'A Zotero-formatted bibliography needs at most 50 sources in one library. Use basic format or export CSL JSON.',
-        );
-      }
-      formattedText = ZoteroFormattedText.fromHtml(
-        await _connectedClient(first).bibliography(
-          first.library,
-          itemKeys: addresses.values.map((item) => item.key).toList(),
-          expectedItemUris: {
-            for (final address in addresses.values)
-              address.key: address.canonicalUri,
-          },
-          style: _session.style,
-          locale: _session.locale,
-        ),
-      );
-      text = formattedText.plainText;
-    } else {
-      text = zoteroBasicBibliography(items);
-    }
-    if (!mounted) return;
-    if (text.trim().isEmpty) {
-      throw const FormatException('No bibliography text was returned.');
-    }
-    final reviewed = await _reviewBibliography(
-      online ? 'Review Zotero bibliography' : 'Basic bibliography',
-      text,
-      formattedText: formattedText,
-    );
-    if (!mounted || reviewed == null) return;
-    _write(
-      () => field == null
-          ? _controller.insertZoteroBibliography(
-              text: reviewed.text,
-              formattedText: reviewed.formattedText,
-            )
-          : _controller.updateZoteroBibliography(
-              field,
-              text: reviewed.text,
-              formattedText: reviewed.formattedText,
+        _saveFormat();
+        final items = _documentItems;
+        if (items.isEmpty) {
+          throw const FormatException(
+            'Insert a citation before creating its bibliography.',
+          );
+        }
+        String text;
+        ZoteroFormattedText? formattedText;
+        if (online) {
+          final resolver = ZoteroSourceResolver(
+            items,
+            local: _client?.isLocal ?? _useLocal,
+          );
+          final addresses = <String, ZoteroSourceAddress>{};
+          for (final item in items) {
+            final address = resolver.addressOf(item);
+            if (address == null) {
+              throw const FormatException(
+                'Some sources cannot be resolved through this library connection. Use the basic bibliography or copy embedded CSL JSON.',
+              );
+            }
+            addresses[address.canonicalUri.toString()] = address;
+          }
+          final first = addresses.values.first;
+          if (addresses.values.any((item) => item.scope != first.scope) ||
+              addresses.length > 50) {
+            throw const FormatException(
+              'A Zotero-formatted bibliography needs at most 50 sources in one library. Use basic format or export CSL JSON.',
+            );
+          }
+          formattedText = ZoteroFormattedText.fromHtml(
+            await _connectedClient(first).bibliography(
+              first.library,
+              itemKeys: addresses.values.map((item) => item.key).toList(),
+              expectedItemUris: {
+                for (final address in addresses.values)
+                  address.key: address.canonicalUri,
+              },
+              style: _session.style,
+              locale: _session.locale,
             ),
-    );
-  });
+          );
+          text = formattedText.plainText;
+        } else {
+          text = zoteroBasicBibliography(items);
+        }
+        if (!mounted) return;
+        if (text.trim().isEmpty) {
+          throw const FormatException('No bibliography text was returned.');
+        }
+        final reviewed = await _reviewBibliography(
+          online ? 'Review Zotero bibliography' : 'Basic bibliography',
+          text,
+          formattedText: formattedText,
+        );
+        if (!mounted || reviewed == null) return;
+        _write(
+          () => field == null
+              ? _controller.insertZoteroBibliography(
+                  text: reviewed.text,
+                  formattedText: reviewed.formattedText,
+                )
+              : _controller.updateZoteroBibliography(
+                  field,
+                  text: reviewed.text,
+                  formattedText: reviewed.formattedText,
+                ),
+        );
+      });
 
   Future<void> _refresh() => _run(() async {
     _checkTarget();
@@ -1562,9 +1616,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   Future<void> _copySources({ZoteroExportFormat? format}) => _run(() async {
     String text;
     if (format == null) {
-      text = const JsonEncoder.withIndent(
-        '  ',
-      ).convert(WordZotero.embeddedItems(_controller.document));
+      text = const JsonEncoder.withIndent('  ')
+          .convert(WordZotero.embeddedItems(_controller.document));
     } else {
       final addresses = _selected.values.map(_addressOf).toList();
       if (addresses.isEmpty ||
@@ -1773,9 +1826,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                 const SizedBox(height: 16),
               ],
               Text(
-                _error ??
-                    _notice ??
-                    'Finish or cancel the open dialog in Zotero. You will return to your document when Zotero finishes.',
+                _error ?? _notice ?? 'Finish or cancel the open dialog in Zotero. You will return to your document when Zotero finishes.',
                 key: const ValueKey('zotero-command-status'),
               ),
               if (command == ZoteroCitingCommand.addAnnotation) ...[
@@ -1835,7 +1886,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     // while keeping the default catalog and its paging controls compact.
     return (base +
             (size.width < 380 ? 520 : (narrow ? 340 : 180)) +
-            140 +
+            188 +
             (_tags.isEmpty ? 0 : 220)) *
         textScale;
   }
@@ -2031,6 +2082,17 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                 icon: const Icon(Icons.add),
               ),
             ],
+          ),
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton.icon(
+              key: const ValueKey('zotero-browse-tags'),
+              onPressed: enabled && _client != null && _session.library != null
+                  ? _browseTags
+                  : null,
+              icon: const Icon(Icons.label_outline),
+              label: const Text('Browse tags…'),
+            ),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 6, bottom: 8),
@@ -2617,8 +2679,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                         items: _selected.values.toList(),
                       ),
                 child: const Tooltip(
-                  message:
-                      'Insert selected sources using the document style. Zotero asks for a style when none has been selected.',
+                  message: 'Insert selected sources using the document style. Zotero asks for a style when none has been selected.',
                   child: Text('Insert with Zotero…'),
                 ),
               ),
@@ -3149,8 +3210,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                                           } else if (_selected.length < 20) {
                                             _selected[key] = entry.item;
                                           } else {
-                                            _error =
-                                                'Select at most 20 sources per citation.';
+                                            _error = 'Select at most 20 sources per citation.';
                                           }
                                         }),
                                 ),

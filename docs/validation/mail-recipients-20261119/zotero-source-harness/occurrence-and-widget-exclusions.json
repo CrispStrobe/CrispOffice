@@ -1,0 +1,146 @@
+{
+  "recordedAtUtc": "2026-11-19T21:22:09.607124+00:00",
+  "result": "blocked without execution",
+  "candidatePureTest": {
+    "path": "packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+    "sha256": "9fa3d006a346c9e212e310d6e85d623ea74a4772b7d55bd9f92758929b637808",
+    "reason": "Pure occurrence assertions require the real engine Word model import graph; its actual characters dependency is absent from the existing offline package configuration and cache. No test execution attempted after this dependency finding.",
+    "testDeclarations": 5
+  },
+  "prospectiveImportOnlyAdaptations": [
+    "Replace test import flutter_test with package:test for plain test/expect functions.",
+    "Replace broad engine barrel in the test and two scratch copies of editor source helpers with direct original pure engine source imports. No such copies were made after the missing dependency was identified."
+  ],
+  "editorSourcesRequired": {
+    "packages/quds_office_editor/lib/src/embed/word_zotero_sources.dart": "0595193d0bde833def8717ae626b810e058ad0efda3aac6a38125a911ebdd480",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_format.dart": "eb8397174298d27e09da29ca9729236c418e3c064fe2971d82e90833240616a4"
+  },
+  "requiredOriginalEngineImportClosureSha256": {
+    "packages/quds_office_engine/lib/src/bidi/arabic_shaping.dart": "defaf787d5363c4da45b3524a0d4732ef15153987f93658b20fd615388de74b0",
+    "packages/quds_office_engine/lib/src/bidi/english_gb_hyphenation_data.dart": "12ec89a0bec6172d782821f75dd9f78a6ac62ec980cc6cab6a4928fb69041d9d",
+    "packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart": "3255a47de0b6b1d72bda5d2d22c6189509ce8d2ccf379b7ec775b04c3ca43cf6",
+    "packages/quds_office_engine/lib/src/bidi/english_us_hyphenation_data.dart": "809673b992606bbe3a249f99126ae14419e1969905954311e04125c34e231fea",
+    "packages/quds_office_engine/lib/src/bidi/german_hyphenation_data.dart": "fdd6a9520d9dc26a240d69f01c74eb879659b21ec2431784a4660fe6db87a3e4",
+    "packages/quds_office_engine/lib/src/bidi/german_hyphenator.dart": "a1b64b3afe443e80489192c5ba0aa47a748ffa07a272ca34878992fd7cf349e0",
+    "packages/quds_office_engine/lib/src/bidi/grapheme_clusters.dart": "f04618334611bb31abcf34a7388c45c0068b161f09a56303d3c39226f859ce60",
+    "packages/quds_office_engine/lib/src/bidi/hyphenation_words.dart": "e9c7960534cb0518275c3c0dc18bef0b169c6a946a8899743b508de0507aa894",
+    "packages/quds_office_engine/lib/src/bidi/line_breaker.dart": "326731d2e568a9c626b59814381731e7e0f1a9d6df7529dffdccadbca291ee48",
+    "packages/quds_office_engine/lib/src/bidi/office_hyphenator.dart": "ad99fe6b455423fe5a85fdc9b2dce518d04b1af4a8484dca1aef5fcc232cd4e7",
+    "packages/quds_office_engine/lib/src/bidi/uax9_bidi.dart": "708a616f9a28abb7d86fb9de1f975d5fa637c55cf29206b770f32113e5acb04a",
+    "packages/quds_office_engine/lib/src/builders/office_markup.dart": "3b11bbd6ec7fb2203a058cf9780358128f04459bf8c240bdce186d5f6c52384e",
+    "packages/quds_office_engine/lib/src/crypto/aes.dart": "638967fdf0683328de6c385221fedc7be6e08be3c3e948e6f634967f01007cdd",
+    "packages/quds_office_engine/lib/src/fonts/font_metrics.dart": "70251ec7a527fecf872e10ff038fe0cd5eb7a5e3b327319c98f0d0248680c9c1",
+    "packages/quds_office_engine/lib/src/fonts/gpos_mark_to_base.dart": "9e7f093e9e409d3a07d4df1470d29e1a42574d985933f6584f27a3ab8021e75b",
+    "packages/quds_office_engine/lib/src/fonts/office_font_set.dart": "aec925e9acbdfe07770461f1a956f3a53c1b3b91e5be08741291b9bcfdbf6b8a",
+    "packages/quds_office_engine/lib/src/fonts/office_typeface.dart": "2ac82a1d909a9e399764e25dda4ddad026c4d329272eb22bce736fc941cddc9b",
+    "packages/quds_office_engine/lib/src/fonts/sfnt_parser.dart": "18e71049408cfd6eb156201b7ed741bf70b6a99f6a3af283baae0c351df24505",
+    "packages/quds_office_engine/lib/src/io/byte_source.dart": "bfd604c766efa0a4ab052f85f9a6da1efa5a0cfd801b25419f8f89bb842c48cf",
+    "packages/quds_office_engine/lib/src/office/office_document_properties.dart": "0213f647fa471eeb454bee7722a64104f5bae363822ab060a3b02e2cdd8af649",
+    "packages/quds_office_engine/lib/src/opc/content_types.dart": "9352bda521b43b980f9e9db26d2960363cdc10794cad2c66c8b385e36307d295",
+    "packages/quds_office_engine/lib/src/opc/crypto/office_crypto.dart": "b14a302282ddeeeb818cda9931858a1f556c1b57e31a29a0afc7cd11d2980107",
+    "packages/quds_office_engine/lib/src/opc/ole/cfbf_reader.dart": "3fd389a63fa0c735b872365ad82c8f9128eee51e8e4964dc654b1c3022580cbc",
+    "packages/quds_office_engine/lib/src/opc/ole/cfbf_writer.dart": "156b1bdb09829f4c20683ff4871cbc7dbe24ed8ce93e1a660b5336df051b5ec5",
+    "packages/quds_office_engine/lib/src/opc/ole/embedded_part.dart": "2f964475b13d06aa268ba906d541e1c8b4d02cb6b10a992fcb7a02795c3f1ab0",
+    "packages/quds_office_engine/lib/src/opc/opc_archive.dart": "038c553db1487ce5c879245189e50afa3934055f2962d783d213878530b942aa",
+    "packages/quds_office_engine/lib/src/opc/package_part.dart": "02e6338ba76cef47c8fc351590b55f6eccc3908f365a62e5dce291907a3b71ba",
+    "packages/quds_office_engine/lib/src/opc/relationships.dart": "e767ebdce03d7c08fe4c37503f88bd4bb9cb27130c700d1e3694f3fb7acabd0c",
+    "packages/quds_office_engine/lib/src/opc/zip/crc32.dart": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f",
+    "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+    "packages/quds_office_engine/lib/src/opc/zip/zip_reader.dart": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f",
+    "packages/quds_office_engine/lib/src/opc/zip/zip_writer.dart": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "60a0044f72b2e831f1c20365c2ad0ec8fe468d7a83e11d75f1ecc3de4482243a",
+    "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17",
+    "packages/quds_office_engine/lib/src/visual/drawing_line_style.dart": "d4dbf492555193c51f9fe63e844c77b8834e9aed518f2199d59226b7bbd78384",
+    "packages/quds_office_engine/lib/src/visual/office_visual.dart": "a3b8f8ece59b04275fba456803072de1aa84e602f6dedb6f69a51a4090daa949",
+    "packages/quds_office_engine/lib/src/word/layout/word_contained_layout.dart": "23aef5888b747f1d36b1ce605809425ea119531988ff0177f35886f57f4facb9",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "2994b7326b8aad9d73f7eca07d0add5e7d6832f8ae46b3a61118a2c3db127ee6",
+    "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart": "110b39eabcb7d01d4d4dd7f6404e681dc7f7b827057a4b30b049f026266f4661",
+    "packages/quds_office_engine/lib/src/word/layout/word_run_measure.dart": "3aa42a3ffb3eef67bee936e68dcef3fd24b8498b4c4df9e8ea7dd8de553c5f29",
+    "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart": "fc4caedf39d71d8e6ea1221abbe9b73d98c8c0b5c6206a74dc0a955032427732",
+    "packages/quds_office_engine/lib/src/word/layout/word_wrap_layout.dart": "b4f1d789f93d4c8d37e44d0b9a9270f1282e29cad927e10594e77187b91a22af",
+    "packages/quds_office_engine/lib/src/word/math/omml_document.dart": "81be3a1ad74fa883b4774be7f96cb3883c7dfb2768a56eadaf8a5ca8c8d2c380",
+    "packages/quds_office_engine/lib/src/word/math/omml_edit.dart": "275e6c2c73c054ae21a56a3f2eee893f5857199b4be95d93ae2358c40dbedc75",
+    "packages/quds_office_engine/lib/src/word/math/omml_layout.dart": "ac4cb3f066c09c011142cfa3e0b6e4915aab68043025d4349d483fd374a38ee9",
+    "packages/quds_office_engine/lib/src/word/math/omml_linear.dart": "810de8e1bcbbae88b7641060563ed12c9e815a1d1571e4f8ce37c582b0fa0e9c",
+    "packages/quds_office_engine/lib/src/word/model/wml_clone.dart": "0d794fc9b620c8e8c2fce18c071a90891107925b7d09049b5e9e607e8bda1530",
+    "packages/quds_office_engine/lib/src/word/model/wml_document.dart": "3cad6062df82276645dc69f1aa4b9a7b4d157e2c883a05c0449da87894c33131",
+    "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart": "53e70fdef0157ad0acf092b222a10c68411cfd287f188d0df287b89c10f16908",
+    "packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart": "b1f92acec245ca4a237ef7411d1e6029824ca7b5f0169d944efecf2c586d42a5",
+    "packages/quds_office_engine/lib/src/word/model/word_comment.dart": "707febc7fb5e3a5fa4d98c44632d5320efb3cbb935f43e9c07b0bf101dac9161",
+    "packages/quds_office_engine/lib/src/word/model/word_content_controls.dart": "68734e7971c45c23da7309f4d0a7a1b83dea96df086dff0cef943c6936b695e5",
+    "packages/quds_office_engine/lib/src/word/model/word_field_spans.dart": "02c799161c6bbce89aff8844577723ab8c7e3d7f7cdc845bb3659fa1136b13c1",
+    "packages/quds_office_engine/lib/src/word/model/word_fields.dart": "1ae309cac6d8eef0ae71d852ebb9f444fb9276f0fc342dedd48c61c9b442dbba",
+    "packages/quds_office_engine/lib/src/word/model/word_link.dart": "04b7b12dd5ec4578e38445ac24b84c6437c8cab8e29e2a7dfc08436142b8fd61",
+    "packages/quds_office_engine/lib/src/word/model/word_mail_merge.dart": "17c93cdf1112441ec78d23909f7a003e894ddd932cd8aeb3b5d406e96a145cfb",
+    "packages/quds_office_engine/lib/src/word/model/word_note_numbering.dart": "10af8219998715ad54bb7ee0ef38ad4638df42d8c72620db7819fb0365984832",
+    "packages/quds_office_engine/lib/src/word/model/word_notes.dart": "20cbb79f1a96659d122636d0cf449adcf7986d14ab2cf84f3d49c2f74000df3f",
+    "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart": "e609d4521bc7345b931dc6811b1a91ef04bb1eedd7c9ba2636561836c7bc9ff0",
+    "packages/quds_office_engine/lib/src/word/model/word_revision.dart": "d90804c1f9152a5523a99e57ce602fce6509ff186f625d98a535c828b8f6727b",
+    "packages/quds_office_engine/lib/src/word/model/word_small_caps.dart": "4420d1d7cc2aa18f7e897fdb34debc581cf169d3fad04f910a613999609c437a",
+    "packages/quds_office_engine/lib/src/word/model/word_small_caps_case_data.dart": "dd05f3ae8bf4366f6609953d54d92952fbf1310c2b2e3a1251f88c198e70e2dc",
+    "packages/quds_office_engine/lib/src/word/model/word_styles.dart": "b862cc2edd6a1e8e1995d1eb95bd518463fae9e51d61b0ed02ce4bdc52e861d6",
+    "packages/quds_office_engine/lib/src/word/model/word_table.dart": "70832100a936de09391ff2b38a7151503a937653fbd55ca20d8a7c3beac71c2f",
+    "packages/quds_office_engine/lib/src/word/model/word_toc.dart": "3c7cd91f5c9051c7630b8c4dbc3e78ac2b843a428e615698b12625c112e7851e",
+    "packages/quds_office_engine/lib/src/word/model/word_tree.dart": "5c60de3bc9620e7f357d408ed7fd7821e6167e7b21d1b6dd7f874c76186a6008",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart": "e679eb2fbf1c752f159caaa0d7df0c2d217c54a556c8e5a3b73b7802cb470478",
+    "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart": "2b43064fa36abfbf7a32ef737fcdc6f99b821d36eeafb1b3f59c2d69146ecb43",
+    "packages/quds_office_engine/lib/src/xml/namespaces.dart": "f043295589e663e0aa8b80403cc3ffd84e162d213a8b8d81dc90dd65031e9a48",
+    "packages/quds_office_engine/lib/src/xml/xml_node.dart": "911378e591f1092b51cce5cba72aeede115dceb06e1a3e5171687bad56a7408c",
+    "packages/quds_office_engine/lib/src/xml/xml_reader.dart": "1a41c5f8e7b9c90fc9bd1759ca86f729cb28a8398b7833eff92b8a68c96e98c3",
+    "packages/quds_office_engine/lib/src/xml/xml_writer.dart": "8bb95958c14001e6c7f51627a5c1f28f34c9a2ff3a337a64dcb9e79828bd478b",
+    "packages/quds_office_engine/lib/src/zotero/zotero_formatted_text.dart": "c62c917ad10dd7f6f7996da070f04fd6c0a2d5a4809290f1498cb1fbdb216478",
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart": "f92a016931ab04edb2d28d70a8a58c935060f45bd2855f21f98cf2eb9bd6ab2c"
+  },
+  "externalImports": [
+    "dart:async",
+    "dart:collection",
+    "dart:convert",
+    "dart:math",
+    "dart:typed_data",
+    "package:characters/characters.dart",
+    "package:crypto/crypto.dart"
+  ],
+  "missingExternalImports": [
+    "package:characters/characters.dart"
+  ],
+  "shortestDirectSeedImportChains": {
+    "package:characters/characters.dart": [
+      "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+      "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+      "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+      "package:characters/characters.dart"
+    ]
+  },
+  "packageConfigSha256": "92694bc8b7ee55d43eea40b21875e767cd559381a8a01bce080f423996ba4434",
+  "requiredCharactersVersion": "1.4.1 (repository pubspec.lock)",
+  "cachedCharactersDirectories": [],
+  "availableCryptoVersion": "3.0.7 (harness); repository lock3.0.8. This prospective difference did not affect the tag-catalog tests, whose production graph uses only dart:convert and the two original Zotero files.",
+  "excludedTests": [
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+      "sha256": "9fa3d006a346c9e212e310d6e85d623ea74a4772b7d55bd9f92758929b637808",
+      "reason": "Pure occurrence assertions require the real engine Word model import graph; its actual characters dependency is absent from the existing offline package configuration and cache. No test execution attempted after this dependency finding.",
+      "testDeclarations": 5
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+      "sha256": "5c5b923dfe1b045eaf0a98e5de7eb8a77894ac88724744ee9e58ee2d02564cc3",
+      "reason": "Flutter widget test; workspace/Flutter test dependency graph unavailable.",
+      "testDeclarations": 12
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+      "sha256": "c9ec2815a6061b9f487536d9ee51da2c3d50f79fa02978f5dfee1a3ecc423fd0",
+      "reason": "Flutter widget test; workspace/Flutter test dependency graph unavailable.",
+      "testDeclarations": 6
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+      "sha256": "dfa60466c1b941132374dd94a7245476dcb9ff4f859ef940165b996199f4041c",
+      "reason": "Flutter widget/controller test; workspace/Flutter test dependency graph unavailable.",
+      "testDeclarations": 4
+    }
+  ],
+  "noBypass": "No production edits, test assertion removals, fake dependencies, network retries, or dependency-install attempts."
+}

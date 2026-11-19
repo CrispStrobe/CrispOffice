@@ -1,0 +1,728 @@
+{
+  "recordedAtUtc": "2026-11-19T21:39:58.617664+00:00",
+  "productCheckpoint": "7ac278d13f14ffed93f1685e42b4d2a8992d04f2",
+  "productTree": "7f89fef47a470399287f3f5bb62c785350847f2b",
+  "baselineMain": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "method": "SHA-256 source/evidence identity and Git subtree comparison; no new tests run",
+  "checks": [
+    {
+      "group": "mail subset production and original tests",
+      "verified": 7,
+      "files": [
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_recipients.dart",
+          "expectedSha256": "85ecd03657a99369f2eafc75af0dfb34981d18da9b4f4b7212004283b1ef68e8",
+          "actualSha256": "85ecd03657a99369f2eafc75af0dfb34981d18da9b4f4b7212004283b1ef68e8",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_draft.dart",
+          "expectedSha256": "1d20d8e1f3e1610553d4c93e6de1079024fb7dde8cdad7a0c1aea82bbd33635a",
+          "actualSha256": "1d20d8e1f3e1610553d4c93e6de1079024fb7dde8cdad7a0c1aea82bbd33635a",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+          "expectedSha256": "c77ee48fc2eb6bc4bbe72bbbbd206e88e32781e975da2e9f7aae9f4a91dc46f3",
+          "actualSha256": "c77ee48fc2eb6bc4bbe72bbbbd206e88e32781e975da2e9f7aae9f4a91dc46f3",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_threading.dart",
+          "expectedSha256": "84c7d63381b0176f5571e4da03487c67958223ad7aabcb651015fe6401dd4525",
+          "actualSha256": "84c7d63381b0176f5571e4da03487c67958223ad7aabcb651015fe6401dd4525",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+          "expectedSha256": "18f910b27715aa29dea609fc4d7eae38870e0d99d4465f1a1e831cbd981748eb",
+          "actualSha256": "18f910b27715aa29dea609fc4d7eae38870e0d99d4465f1a1e831cbd981748eb",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+          "expectedSha256": "86ffa7d44b1b25c28b5346b04d8562dc90989b62233f64255b154f407ad8a5b0",
+          "actualSha256": "86ffa7d44b1b25c28b5346b04d8562dc90989b62233f64255b154f407ad8a5b0",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_threading_test.dart",
+          "expectedSha256": "a61717d696a17606d6bec61e895d8397d655ab925eee3e9d5b2e87b13e9bf788",
+          "actualSha256": "a61717d696a17606d6bec61e895d8397d655ab925eee3e9d5b2e87b13e9bf788",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "group": "slide graph and original tests",
+      "verified": 47,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/builders/drawingml_charts.dart",
+          "expectedSha256": "dcd333224d534f528bc218a56b9297375286b24ef92016307ad45035e257993d",
+          "actualSha256": "dcd333224d534f528bc218a56b9297375286b24ef92016307ad45035e257993d",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/builders/image_fit.dart",
+          "expectedSha256": "1018b829fcc78d85b891f1c29e9287ef267ddea4d9befc76750fc31f161f53a8",
+          "actualSha256": "1018b829fcc78d85b891f1c29e9287ef267ddea4d9befc76750fc31f161f53a8",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/builders/office_document_theme.dart",
+          "expectedSha256": "fe9ce8d4ca691c429d37dde98a476f6561a5cd93a9520bd67fb18dad832ad020",
+          "actualSha256": "fe9ce8d4ca691c429d37dde98a476f6561a5cd93a9520bd67fb18dad832ad020",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/builders/office_markup.dart",
+          "expectedSha256": "3b11bbd6ec7fb2203a058cf9780358128f04459bf8c240bdce186d5f6c52384e",
+          "actualSha256": "3b11bbd6ec7fb2203a058cf9780358128f04459bf8c240bdce186d5f6c52384e",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/builders/pptx_builder.dart",
+          "expectedSha256": "58771591344e8f06d66009971913d64809e4ff5609b50f6df32a683905367ba8",
+          "actualSha256": "58771591344e8f06d66009971913d64809e4ff5609b50f6df32a683905367ba8",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/crypto/aes.dart",
+          "expectedSha256": "638967fdf0683328de6c385221fedc7be6e08be3c3e948e6f634967f01007cdd",
+          "actualSha256": "638967fdf0683328de6c385221fedc7be6e08be3c3e948e6f634967f01007cdd",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/io/byte_source.dart",
+          "expectedSha256": "bfd604c766efa0a4ab052f85f9a6da1efa5a0cfd801b25419f8f89bb842c48cf",
+          "actualSha256": "bfd604c766efa0a4ab052f85f9a6da1efa5a0cfd801b25419f8f89bb842c48cf",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/office/office_document_properties.dart",
+          "expectedSha256": "0213f647fa471eeb454bee7722a64104f5bae363822ab060a3b02e2cdd8af649",
+          "actualSha256": "0213f647fa471eeb454bee7722a64104f5bae363822ab060a3b02e2cdd8af649",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/content_types.dart",
+          "expectedSha256": "9352bda521b43b980f9e9db26d2960363cdc10794cad2c66c8b385e36307d295",
+          "actualSha256": "9352bda521b43b980f9e9db26d2960363cdc10794cad2c66c8b385e36307d295",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/crypto/office_crypto.dart",
+          "expectedSha256": "b14a302282ddeeeb818cda9931858a1f556c1b57e31a29a0afc7cd11d2980107",
+          "actualSha256": "b14a302282ddeeeb818cda9931858a1f556c1b57e31a29a0afc7cd11d2980107",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/ole/cfbf_reader.dart",
+          "expectedSha256": "3fd389a63fa0c735b872365ad82c8f9128eee51e8e4964dc654b1c3022580cbc",
+          "actualSha256": "3fd389a63fa0c735b872365ad82c8f9128eee51e8e4964dc654b1c3022580cbc",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/ole/cfbf_writer.dart",
+          "expectedSha256": "156b1bdb09829f4c20683ff4871cbc7dbe24ed8ce93e1a660b5336df051b5ec5",
+          "actualSha256": "156b1bdb09829f4c20683ff4871cbc7dbe24ed8ce93e1a660b5336df051b5ec5",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/opc_archive.dart",
+          "expectedSha256": "038c553db1487ce5c879245189e50afa3934055f2962d783d213878530b942aa",
+          "actualSha256": "038c553db1487ce5c879245189e50afa3934055f2962d783d213878530b942aa",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/package_part.dart",
+          "expectedSha256": "02e6338ba76cef47c8fc351590b55f6eccc3908f365a62e5dce291907a3b71ba",
+          "actualSha256": "02e6338ba76cef47c8fc351590b55f6eccc3908f365a62e5dce291907a3b71ba",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/relationships.dart",
+          "expectedSha256": "e767ebdce03d7c08fe4c37503f88bd4bb9cb27130c700d1e3694f3fb7acabd0c",
+          "actualSha256": "e767ebdce03d7c08fe4c37503f88bd4bb9cb27130c700d1e3694f3fb7acabd0c",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/zip/crc32.dart",
+          "expectedSha256": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f",
+          "actualSha256": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart",
+          "expectedSha256": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+          "actualSha256": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/zip/zip_reader.dart",
+          "expectedSha256": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f",
+          "actualSha256": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/opc/zip/zip_writer.dart",
+          "expectedSha256": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803",
+          "actualSha256": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/formula/dep_graph.dart",
+          "expectedSha256": "5f3ee9dc9bbebe01a037f2a52362f3f61213b67012d27b0a13d94b94b1bdf2de",
+          "actualSha256": "5f3ee9dc9bbebe01a037f2a52362f3f61213b67012d27b0a13d94b94b1bdf2de",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/formula/formula_ast.dart",
+          "expectedSha256": "766a72f98a95383007137824bdee899b67e2765ab612ae5ca19f22a782de1d0e",
+          "actualSha256": "766a72f98a95383007137824bdee899b67e2765ab612ae5ca19f22a782de1d0e",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/formula/formula_eval.dart",
+          "expectedSha256": "657562b859ae08a39e042a6c8e60232b2bce70317a6f724bcf6960711394cdf7",
+          "actualSha256": "657562b859ae08a39e042a6c8e60232b2bce70317a6f724bcf6960711394cdf7",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/formula/formula_functions.dart",
+          "expectedSha256": "01899654404992e8d68cd2846136b690117d02db2dd6dab446b03762404bfd4e",
+          "actualSha256": "01899654404992e8d68cd2846136b690117d02db2dd6dab446b03762404bfd4e",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/formula/formula_refs.dart",
+          "expectedSha256": "1c1eac769bd2657dd65a78351ce41ff69a6d6c3c52e31ad48696144a383daa22",
+          "actualSha256": "1c1eac769bd2657dd65a78351ce41ff69a6d6c3c52e31ad48696144a383daa22",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+          "expectedSha256": "3da5aaf1068bf4b9d3a1cb4222929aa654403e17703ff43e25fbfc5367d3ef68",
+          "actualSha256": "3da5aaf1068bf4b9d3a1cb4222929aa654403e17703ff43e25fbfc5367d3ef68",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+          "expectedSha256": "9cb1750572e55f8c99b379f4fc3de4fe7532a4447d6f631a7bd3c0998ca172bd",
+          "actualSha256": "9cb1750572e55f8c99b379f4fc3de4fe7532a4447d6f631a7bd3c0998ca172bd",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_sparkline.dart",
+          "expectedSha256": "e60f743c048b6436033921da16068938b703083397ce3d38f103ecf9f4118a03",
+          "actualSha256": "e60f743c048b6436033921da16068938b703083397ce3d38f103ecf9f4118a03",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+          "expectedSha256": "d82636f4adc11a975540aea49d71114ccbc8be67585d96759651838b64e83aef",
+          "actualSha256": "d82636f4adc11a975540aea49d71114ccbc8be67585d96759651838b64e83aef",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_drawing_io.dart",
+          "expectedSha256": "12bdcd3963ce4acb83bc6465f7d4343d9c4a0303d17d124ea76dbe5e83ac9f77",
+          "actualSha256": "12bdcd3963ce4acb83bc6465f7d4343d9c4a0303d17d124ea76dbe5e83ac9f77",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart",
+          "expectedSha256": "0e67f3a761f6a97981d81bbc16b55b6954dbafd597c30a74022f062603394e6b",
+          "actualSha256": "0e67f3a761f6a97981d81bbc16b55b6954dbafd597c30a74022f062603394e6b",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/anim/pml_motion.dart",
+          "expectedSha256": "45f8fca83b6eb1a403d3d8f4387fc96af60b960034bf1232bc9bc41acb8063a1",
+          "actualSha256": "45f8fca83b6eb1a403d3d8f4387fc96af60b960034bf1232bc9bc41acb8063a1",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/anim/pml_motion_io.dart",
+          "expectedSha256": "c651ee0235ed5c96b47398ac86fa5ba8f414aad1bc2ae8066752de01af42e88c",
+          "actualSha256": "c651ee0235ed5c96b47398ac86fa5ba8f414aad1bc2ae8066752de01af42e88c",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/model/pml_arrange.dart",
+          "expectedSha256": "55b511cf38d76de917fcbde0d80990a2e5eb99f7caf80d5c9c51da48a05948b7",
+          "actualSha256": "55b511cf38d76de917fcbde0d80990a2e5eb99f7caf80d5c9c51da48a05948b7",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "expectedSha256": "32540cbab475fee5f80145439b8b868ebd7f567a9727f92bb652fc1b9203880d",
+          "actualSha256": "32540cbab475fee5f80145439b8b868ebd7f567a9727f92bb652fc1b9203880d",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/serial/slide_section_io.dart",
+          "expectedSha256": "c00aeed36b9a30c1d7a50b9b831d368c7cf07475c757e371b9bed10f424df7bd",
+          "actualSha256": "c00aeed36b9a30c1d7a50b9b831d368c7cf07475c757e371b9bed10f424df7bd",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "expectedSha256": "29c08a253201a2af73717a20db5810fcdb2087608f46aa8cbe3203a1e0abf81b",
+          "actualSha256": "29c08a253201a2af73717a20db5810fcdb2087608f46aa8cbe3203a1e0abf81b",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+          "expectedSha256": "db77f574e5534662c88d97b7bfcccb597b7bd72074f51826665213dd5947665e",
+          "actualSha256": "db77f574e5534662c88d97b7bfcccb597b7bd72074f51826665213dd5947665e",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/shapes/slide_rich_text.dart",
+          "expectedSha256": "2fda59709745678db8707f2aa652c20eaf934cd0164ff82ca6a549a0a95297dc",
+          "actualSha256": "2fda59709745678db8707f2aa652c20eaf934cd0164ff82ca6a549a0a95297dc",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/visual/drawingml_visual_io.dart",
+          "expectedSha256": "4f4104ebca29ec0e90a76ff21183189975da1ce4d1ecf347f1872bd9fabadc27",
+          "actualSha256": "4f4104ebca29ec0e90a76ff21183189975da1ce4d1ecf347f1872bd9fabadc27",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/visual/office_visual.dart",
+          "expectedSha256": "a3b8f8ece59b04275fba456803072de1aa84e602f6dedb6f69a51a4090daa949",
+          "actualSha256": "a3b8f8ece59b04275fba456803072de1aa84e602f6dedb6f69a51a4090daa949",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/visual/png_bytes.dart",
+          "expectedSha256": "8407ce49c50be4267c68232ad6465eeadae754c5204c9497c7028ca4b5313b12",
+          "actualSha256": "8407ce49c50be4267c68232ad6465eeadae754c5204c9497c7028ca4b5313b12",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/xml/namespaces.dart",
+          "expectedSha256": "f043295589e663e0aa8b80403cc3ffd84e162d213a8b8d81dc90dd65031e9a48",
+          "actualSha256": "f043295589e663e0aa8b80403cc3ffd84e162d213a8b8d81dc90dd65031e9a48",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/xml/xml_node.dart",
+          "expectedSha256": "911378e591f1092b51cce5cba72aeede115dceb06e1a3e5171687bad56a7408c",
+          "actualSha256": "911378e591f1092b51cce5cba72aeede115dceb06e1a3e5171687bad56a7408c",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/xml/xml_reader.dart",
+          "expectedSha256": "1a41c5f8e7b9c90fc9bd1759ca86f729cb28a8398b7833eff92b8a68c96e98c3",
+          "actualSha256": "1a41c5f8e7b9c90fc9bd1759ca86f729cb28a8398b7833eff92b8a68c96e98c3",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/xml/xml_writer.dart",
+          "expectedSha256": "8bb95958c14001e6c7f51627a5c1f28f34c9a2ff3a337a64dcb9e79828bd478b",
+          "actualSha256": "8bb95958c14001e6c7f51627a5c1f28f34c9a2ff3a337a64dcb9e79828bd478b",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "expectedSha256": "306d5fd897f45af4a72a1c601890db538d06d32f125378ec727875fef5c34dd3",
+          "actualSha256": "306d5fd897f45af4a72a1c601890db538d06d32f125378ec727875fef5c34dd3",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart",
+          "expectedSha256": "f38b055d31f16dec1f7ad9e88d470b728c3c8e4b3339d11e1d2da99dc7a4a285",
+          "actualSha256": "f38b055d31f16dec1f7ad9e88d470b728c3c8e4b3339d11e1d2da99dc7a4a285",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "group": "Zotero catalog and original test",
+      "verified": 3,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/test/zotero_tag_catalog_test.dart",
+          "expectedSha256": "5d1290a0fedb7f76994ca4f53c9f220f71680cc80fc13ba0264b592d81c65e11",
+          "actualSha256": "5d1290a0fedb7f76994ca4f53c9f220f71680cc80fc13ba0264b592d81c65e11",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+          "expectedSha256": "1f4f31afab4cf073a24e03f91d1a4aff091c4ad1a14636e0be184261f696835f",
+          "actualSha256": "1f4f31afab4cf073a24e03f91d1a4aff091c4ad1a14636e0be184261f696835f",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+          "expectedSha256": "f92a016931ab04edb2d28d70a8a58c935060f45bd2855f21f98cf2eb9bd6ab2c",
+          "actualSha256": "f92a016931ab04edb2d28d70a8a58c935060f45bd2855f21f98cf2eb9bd6ab2c",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "group": "formatted changed package Dart files",
+      "verified": 52,
+      "files": [
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+          "expectedSha256": "85fe0c4f307875b7a699b188adb95ec00ce6563c1c9dd177b3fff686e59dbe4b",
+          "actualSha256": "85fe0c4f307875b7a699b188adb95ec00ce6563c1c9dd177b3fff686e59dbe4b",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_draft.dart",
+          "expectedSha256": "1d20d8e1f3e1610553d4c93e6de1079024fb7dde8cdad7a0c1aea82bbd33635a",
+          "actualSha256": "1d20d8e1f3e1610553d4c93e6de1079024fb7dde8cdad7a0c1aea82bbd33635a",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+          "expectedSha256": "8ac2a6a4a92fdddec25952ac5a81e894f3af8745aa7b0d3fa730f3171101a5ed",
+          "actualSha256": "8ac2a6a4a92fdddec25952ac5a81e894f3af8745aa7b0d3fa730f3171101a5ed",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "expectedSha256": "0ff602c78c6aa0344152409026a5aef57ee1221f4000d416f005aa2c56678cec",
+          "actualSha256": "0ff602c78c6aa0344152409026a5aef57ee1221f4000d416f005aa2c56678cec",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_recipients.dart",
+          "expectedSha256": "85ecd03657a99369f2eafc75af0dfb34981d18da9b4f4b7212004283b1ef68e8",
+          "actualSha256": "85ecd03657a99369f2eafc75af0dfb34981d18da9b4f4b7212004283b1ef68e8",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+          "expectedSha256": "c77ee48fc2eb6bc4bbe72bbbbd206e88e32781e975da2e9f7aae9f4a91dc46f3",
+          "actualSha256": "c77ee48fc2eb6bc4bbe72bbbbd206e88e32781e975da2e9f7aae9f4a91dc46f3",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+          "expectedSha256": "8c88eedb61d45f5df8d597d4d79853a88b2f3fc3ebae795cc951fe1720a6fb51",
+          "actualSha256": "8c88eedb61d45f5df8d597d4d79853a88b2f3fc3ebae795cc951fe1720a6fb51",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+          "expectedSha256": "87b7849ad8e9c99d0f092ad285a73fa7f695f8411272335fa22434f14480cda7",
+          "actualSha256": "87b7849ad8e9c99d0f092ad285a73fa7f695f8411272335fa22434f14480cda7",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+          "expectedSha256": "b006eb2a58bac48520e5e6fdbcd91a51a9d1fa383bf3e2892bf19af3bcc557c9",
+          "actualSha256": "b006eb2a58bac48520e5e6fdbcd91a51a9d1fa383bf3e2892bf19af3bcc557c9",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+          "expectedSha256": "d0ed99ca663b83a6daf6ebd86432b8b619c196e181aa2aa70def25195ec2d160",
+          "actualSha256": "d0ed99ca663b83a6daf6ebd86432b8b619c196e181aa2aa70def25195ec2d160",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+          "expectedSha256": "3639feda8510b4625a7c69b9396a4d032ee17e5fe1a9815abc1b8f009ecde7ee",
+          "actualSha256": "3639feda8510b4625a7c69b9396a4d032ee17e5fe1a9815abc1b8f009ecde7ee",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+          "expectedSha256": "18f910b27715aa29dea609fc4d7eae38870e0d99d4465f1a1e831cbd981748eb",
+          "actualSha256": "18f910b27715aa29dea609fc4d7eae38870e0d99d4465f1a1e831cbd981748eb",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+          "expectedSha256": "86ffa7d44b1b25c28b5346b04d8562dc90989b62233f64255b154f407ad8a5b0",
+          "actualSha256": "86ffa7d44b1b25c28b5346b04d8562dc90989b62233f64255b154f407ad8a5b0",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+          "expectedSha256": "0451e11bf138a39f4a8344d175836165f72909b851c39d6f25591ce0ad73d447",
+          "actualSha256": "0451e11bf138a39f4a8344d175836165f72909b851c39d6f25591ce0ad73d447",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+          "expectedSha256": "dabf42e44ad810bc62a78b187099d660652e6ecfcd018576f35ed6807427e10c",
+          "actualSha256": "dabf42e44ad810bc62a78b187099d660652e6ecfcd018576f35ed6807427e10c",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_threading_test.dart",
+          "expectedSha256": "a61717d696a17606d6bec61e895d8397d655ab925eee3e9d5b2e87b13e9bf788",
+          "actualSha256": "a61717d696a17606d6bec61e895d8397d655ab925eee3e9d5b2e87b13e9bf788",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+          "expectedSha256": "4441a34f577559cd4954396cb049041d4be1d547ab6939d4b9e1534961089192",
+          "actualSha256": "4441a34f577559cd4954396cb049041d4be1d547ab6939d4b9e1534961089192",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "expectedSha256": "8df3b3d378a8d8d38c147270307ddc98ed861dbc41291ee803bb8b91aff62544",
+          "actualSha256": "8df3b3d378a8d8d38c147270307ddc98ed861dbc41291ee803bb8b91aff62544",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+          "expectedSha256": "11540e9926971aecab9b9fc2e49409ecec6c55f92f422be3d47b0994dc2f0546",
+          "actualSha256": "11540e9926971aecab9b9fc2e49409ecec6c55f92f422be3d47b0994dc2f0546",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_document_sources.dart",
+          "expectedSha256": "609c4c12a35f38f62bbd611de20669a9c790ebf7a0187862e268be5ba9ffec1c",
+          "actualSha256": "609c4c12a35f38f62bbd611de20669a9c790ebf7a0187862e268be5ba9ffec1c",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_sources.dart",
+          "expectedSha256": "0595193d0bde833def8717ae626b810e058ad0efda3aac6a38125a911ebdd480",
+          "actualSha256": "0595193d0bde833def8717ae626b810e058ad0efda3aac6a38125a911ebdd480",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_tags.dart",
+          "expectedSha256": "775e05c6ffe7b2496b058879e7665407223c4ba527507cc69b48ae29cac47f58",
+          "actualSha256": "775e05c6ffe7b2496b058879e7665407223c4ba527507cc69b48ae29cac47f58",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart",
+          "expectedSha256": "846b68a7ec800211e65d4b034e86f44e068b91ca2eba6c7005d91acdd09f234b",
+          "actualSha256": "846b68a7ec800211e65d4b034e86f44e068b91ca2eba6c7005d91acdd09f234b",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+          "expectedSha256": "fbb92da5415ff0999b88cf971a119bed4dd565067864ba20c7bda9a0c58d170f",
+          "actualSha256": "fbb92da5415ff0999b88cf971a119bed4dd565067864ba20c7bda9a0c58d170f",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "expectedSha256": "5820054371b8b242c99fe1e612210153cd18e8af563f996c38fd4585c36944b7",
+          "actualSha256": "5820054371b8b242c99fe1e612210153cd18e8af563f996c38fd4585c36944b7",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+          "expectedSha256": "dfa60466c1b941132374dd94a7245476dcb9ff4f859ef940165b996199f4041c",
+          "actualSha256": "dfa60466c1b941132374dd94a7245476dcb9ff4f859ef940165b996199f4041c",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+          "expectedSha256": "c9ec2815a6061b9f487536d9ee51da2c3d50f79fa02978f5dfee1a3ecc423fd0",
+          "actualSha256": "c9ec2815a6061b9f487536d9ee51da2c3d50f79fa02978f5dfee1a3ecc423fd0",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+          "expectedSha256": "9fa3d006a346c9e212e310d6e85d623ea74a4772b7d55bd9f92758929b637808",
+          "actualSha256": "9fa3d006a346c9e212e310d6e85d623ea74a4772b7d55bd9f92758929b637808",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+          "expectedSha256": "5c5b923dfe1b045eaf0a98e5de7eb8a77894ac88724744ee9e58ee2d02564cc3",
+          "actualSha256": "5c5b923dfe1b045eaf0a98e5de7eb8a77894ac88724744ee9e58ee2d02564cc3",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "expectedSha256": "2382b1940b8322005bbc0e66a32aa5a7f06a6e9cefe386fec8075865be93adfa",
+          "actualSha256": "2382b1940b8322005bbc0e66a32aa5a7f06a6e9cefe386fec8075865be93adfa",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+          "expectedSha256": "6e0cd493ee65da8d2f5e66c29d674019ac4f6d0f24b907aa32ae89bd3010c3a7",
+          "actualSha256": "6e0cd493ee65da8d2f5e66c29d674019ac4f6d0f24b907aa32ae89bd3010c3a7",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart",
+          "expectedSha256": "cf5a5104691fb8e945edbfe112a7e1bd197fed33a3041c5a202561301a0a1577",
+          "actualSha256": "cf5a5104691fb8e945edbfe112a7e1bd197fed33a3041c5a202561301a0a1577",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/pdf_image.dart",
+          "expectedSha256": "d1fbd9b32b99858c72b64b640f67920790d525d763b81ab1bd80213225e8c281",
+          "actualSha256": "d1fbd9b32b99858c72b64b640f67920790d525d763b81ab1bd80213225e8c281",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "expectedSha256": "32540cbab475fee5f80145439b8b868ebd7f567a9727f92bb652fc1b9203880d",
+          "actualSha256": "32540cbab475fee5f80145439b8b868ebd7f567a9727f92bb652fc1b9203880d",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "expectedSha256": "29c08a253201a2af73717a20db5810fcdb2087608f46aa8cbe3203a1e0abf81b",
+          "actualSha256": "29c08a253201a2af73717a20db5810fcdb2087608f46aa8cbe3203a1e0abf81b",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+          "expectedSha256": "db77f574e5534662c88d97b7bfcccb597b7bd72074f51826665213dd5947665e",
+          "actualSha256": "db77f574e5534662c88d97b7bfcccb597b7bd72074f51826665213dd5947665e",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/shapes/slide_rich_text.dart",
+          "expectedSha256": "2fda59709745678db8707f2aa652c20eaf934cd0164ff82ca6a549a0a95297dc",
+          "actualSha256": "2fda59709745678db8707f2aa652c20eaf934cd0164ff82ca6a549a0a95297dc",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/visual/drawingml_visual_io.dart",
+          "expectedSha256": "4f4104ebca29ec0e90a76ff21183189975da1ce4d1ecf347f1872bd9fabadc27",
+          "actualSha256": "4f4104ebca29ec0e90a76ff21183189975da1ce4d1ecf347f1872bd9fabadc27",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+          "expectedSha256": "1f4f31afab4cf073a24e03f91d1a4aff091c4ad1a14636e0be184261f696835f",
+          "actualSha256": "1f4f31afab4cf073a24e03f91d1a4aff091c4ad1a14636e0be184261f696835f",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+          "expectedSha256": "f92a016931ab04edb2d28d70a8a58c935060f45bd2855f21f98cf2eb9bd6ab2c",
+          "actualSha256": "f92a016931ab04edb2d28d70a8a58c935060f45bd2855f21f98cf2eb9bd6ab2c",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "expectedSha256": "5a558f6a938424f6af4d623c57f0ea1e467a24528ccc4b91513f5b4db0b0c69c",
+          "actualSha256": "5a558f6a938424f6af4d623c57f0ea1e467a24528ccc4b91513f5b4db0b0c69c",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+          "expectedSha256": "4d884bf9d22dc416bebdda9f9e092e8d5ca45c098f52c3298334cb6d63555780",
+          "actualSha256": "4d884bf9d22dc416bebdda9f9e092e8d5ca45c098f52c3298334cb6d63555780",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart",
+          "expectedSha256": "241642921c13b9989ea970b468c10201b6398f100eb46bfa813a91ef2cdd6af5",
+          "actualSha256": "241642921c13b9989ea970b468c10201b6398f100eb46bfa813a91ef2cdd6af5",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart",
+          "expectedSha256": "a720c6435e8850461e052636f2973ea4324890037967015ce2122fe530b511d3",
+          "actualSha256": "a720c6435e8850461e052636f2973ea4324890037967015ce2122fe530b511d3",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_language_test.dart",
+          "expectedSha256": "6d444913e045a4d1c9637ce5705e3321096b85864eadfb966785ee0479066fdd",
+          "actualSha256": "6d444913e045a4d1c9637ce5705e3321096b85864eadfb966785ee0479066fdd",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/pdf_image_interlace_test.dart",
+          "expectedSha256": "f2b31c0e19bad7a69ca668d921f783ea67d3a27021175953f5ee35a2441469e7",
+          "actualSha256": "f2b31c0e19bad7a69ca668d921f783ea67d3a27021175953f5ee35a2441469e7",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "expectedSha256": "306d5fd897f45af4a72a1c601890db538d06d32f125378ec727875fef5c34dd3",
+          "actualSha256": "306d5fd897f45af4a72a1c601890db538d06d32f125378ec727875fef5c34dd3",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/slide_render_fidelity_test.dart",
+          "expectedSha256": "9313b2093489493058408ec42d21bd3485ead4bd108c006b0341441771f128a6",
+          "actualSha256": "9313b2093489493058408ec42d21bd3485ead4bd108c006b0341441771f128a6",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart",
+          "expectedSha256": "f38b055d31f16dec1f7ad9e88d470b728c3c8e4b3339d11e1d2da99dc7a4a285",
+          "actualSha256": "f38b055d31f16dec1f7ad9e88d470b728c3c8e4b3339d11e1d2da99dc7a4a285",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+          "expectedSha256": "7c016a260e023062cc9540319cde187cb13227dbfa193ee2d1cf604682e3f84d",
+          "actualSha256": "7c016a260e023062cc9540319cde187cb13227dbfa193ee2d1cf604682e3f84d",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_tag_catalog_test.dart",
+          "expectedSha256": "5d1290a0fedb7f76994ca4f53c9f220f71680cc80fc13ba0264b592d81c65e11",
+          "actualSha256": "5d1290a0fedb7f76994ca4f53c9f220f71680cc80fc13ba0264b592d81c65e11",
+          "matches": true
+        },
+        {
+          "path": "packages/quds_office_engine/tool/macros/web_vba_dynamic_arrays_smoke.dart",
+          "expectedSha256": "1af86cbd0ee8a3c911ac64a13ed492bb72b59712ef67a896dc096a1fb4514b12",
+          "actualSha256": "1af86cbd0ee8a3c911ac64a13ed492bb72b59712ef67a896dc096a1fb4514b12",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "evidenceChecks": [
+    {
+      "path": "mail-source-harness/test.log",
+      "sha256": "0318c4e9a5af8366b48fa084ec3d4c5125d422269581d4b9615eb260bef47595",
+      "matches": true
+    },
+    {
+      "path": "mail-source-harness/provenance.json",
+      "sha256": "0781c36bc0debdf6446bcf179efa0e1a442d0399dcb5c2cfefa78bdc2fa90170",
+      "matches": true
+    },
+    {
+      "path": "slide-source-harness/tests.log",
+      "sha256": "9c35d93e7d0f7e8fe8c09373da6ed2c8accb39ffa7dc3396e9bdc34e514eab02",
+      "matches": true
+    },
+    {
+      "path": "zotero-source-harness/tag-catalog-tests.jsonl",
+      "sha256": "2972e2d2bb46d13c4c7a974685050bb928b02acb3513a7bc6237d2fb325aefb5",
+      "matches": true
+    },
+    {
+      "path": "zotero-source-harness/tag-catalog-tests.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "matches": true
+    }
+  ],
+  "coreTree": "2860c22f05dacc4cdeb18552e419c01e9d9b6862",
+  "protectedPaths": [
+    "packages/quds_mail_core",
+    "packages/quds_mail_mime",
+    "packages/quds_mail_store",
+    "packages/quds_mail_transport",
+    "packages/quds_mail_ui",
+    "third_party",
+    "docs/validation/mail-reply-threading-20261119"
+  ],
+  "protectedDiff": "",
+  "allMatch": true,
+  "fullWorkspaceAcceptance": false,
+  "actionsQueriedOrAwaited": false
+}

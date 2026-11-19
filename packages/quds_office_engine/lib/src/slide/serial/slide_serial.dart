@@ -66,8 +66,7 @@ class SlideDeserializer {
             rel.targetMode == RelationshipTargetMode.external ||
             package.getPart(presentationRels.resolve(rel))?.contentType !=
                 OfficeContentTypes.slide) {
-          slideRelationshipIssue =
-              'Section membership requires modeled internal slide relationships.';
+          slideRelationshipIssue = 'Section membership requires modeled internal slide relationships.';
         }
         slideUris.add(
           rel != null && rel.type == RelationshipTypes.slide
@@ -89,11 +88,14 @@ class SlideDeserializer {
       source.root!,
       slideRelationshipIssue: slideRelationshipIssue,
     );
-    final String? masterBg = _masterBackground(package);
+    final _SlideTemplates templates = _SlideTemplates(package);
+    final String? masterBg = _masterBackground(
+      package,
+      templates.defaultColors,
+    );
     if (masterBg != null && masterBg.isNotEmpty) {
       pres.master.background = masterBg;
     }
-    final _SlideTemplates templates = _SlideTemplates(package);
     for (int i = 0; i < pres.slides.length; i++) {
       final String uri = slideUris[i];
       pres.slides[i].sourcePartUri = uri;
@@ -107,6 +109,21 @@ class SlideDeserializer {
           colors: layout?.colors ?? templates.defaultColors,
           positioned: positioned,
         );
+        final String? slideBackground = _backgroundOf(
+          slideXml,
+          layout?.colors ?? templates.defaultColors,
+        );
+        final String resolvedBackground =
+            slideBackground ?? layout?.background ?? pres.master.background;
+        if (slideBackground == null &&
+            (layout?.inheritsMasterBackground ?? true)) {
+          pres.slides[i].setInheritedBackground(
+            resolvedBackground,
+            masterBackground: pres.master.background,
+          );
+        } else {
+          pres.slides[i].background = resolvedBackground;
+        }
         if (layout != null) {
           pres.slides[i].layoutName = layout.name;
           _inheritPlaceholders(shapes, positioned, <List<PmlShape>>[
@@ -204,7 +221,42 @@ class SlideDeserializer {
     return RegExp(r'''\bshow\s*=\s*["'](?:0|false)["']''').hasMatch(attrs);
   }
 
-  static String? _masterBackground(OpcPackage package) {
+  /// Resolves a solid `p:bg` fill to `RRGGBB`, honoring theme variants.
+  static String? _backgroundOf(String xml, Map<String, String> colors) {
+    final XmlPullReader reader = XmlPullReader(xml);
+    var inBg = false;
+    var fillPending = false;
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.endElement) {
+        if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+          inBg = false;
+          fillPending = false;
+        }
+        continue;
+      }
+      if (reader.eventType != XmlEventType.startElement) continue;
+      if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+        inBg = true;
+      } else if (reader.localName == 'solidFill' && inBg) {
+        fillPending = true;
+      } else if (fillPending &&
+          const <String>{
+            'srgbClr',
+            'schemeClr',
+            'sysClr',
+            'prstClr',
+          }.contains(reader.localName)) {
+        final String? val = resolveDrawingmlColor(reader, colors);
+        if (val != null && val.isNotEmpty) return val;
+      }
+    }
+    return null;
+  }
+
+  static String? _masterBackground(
+    OpcPackage package,
+    Map<String, String> colors,
+  ) {
     for (final String uri in <String>[
       '/ppt/slideMasters/slideMaster1.xml',
       '/ppt/slideMasters/slideMaster2.xml',
@@ -231,11 +283,15 @@ class SlideDeserializer {
           inBg = true;
         } else if (reader.localName == 'solidFill' && inBg) {
           fillPending = true;
-        } else if (reader.localName == 'srgbClr' && fillPending) {
-          final String? val = reader.getAttribute('val');
-          if (val != null && val.isNotEmpty) {
-            return val;
-          }
+        } else if (fillPending &&
+            const <String>{
+              'srgbClr',
+              'schemeClr',
+              'sysClr',
+              'prstClr',
+            }.contains(reader.localName)) {
+          final String? val = resolveDrawingmlColor(reader, colors);
+          if (val != null && val.isNotEmpty) return val;
         }
       }
     }
@@ -291,12 +347,16 @@ class _SlideTemplate {
     required this.name,
     required this.colors,
     required this.placeholders,
+    this.background,
+    this.inheritsMasterBackground = false,
     this.master,
   });
 
   final String name;
   final Map<String, String> colors;
   final List<PmlShape> placeholders;
+  final String? background;
+  final bool inheritsMasterBackground;
   final _SlideTemplate? master;
 }
 
@@ -370,6 +430,7 @@ class _SlideTemplates {
         <List<PmlShape>>[master.placeholders],
       );
     }
+    final String? background = SlideDeserializer._backgroundOf(xml, colors);
     return _layouts[uri] = _SlideTemplate(
       name: _cSldName(xml) ?? 'Layout',
       colors: colors,
@@ -377,6 +438,8 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
+      background: background ?? master?.background,
+      inheritsMasterBackground: background == null,
       master: master,
     );
   }
@@ -408,6 +471,7 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
+      background: SlideDeserializer._backgroundOf(xml, colors),
     );
   }
 

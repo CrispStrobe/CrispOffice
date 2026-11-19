@@ -1,0 +1,41 @@
+{
+  "head": "4fd010fcae209b6ea033828d76908508b7327b9f",
+  "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example",
+  "command": [
+    "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "lib/studio_paragraph_dialog.dart",
+    "lib/studio_page_layout_dialog.dart",
+    "lib/studio_material_theme.dart",
+    "lib/studio_chrome.dart",
+    "lib/suite_workspace.dart",
+    "test/studio_paragraph_dialog_test.dart",
+    "test/studio_page_layout_dialog_test.dart",
+    "test/studio_comment_keyboard_review_test.dart",
+    "test/studio_comment_review_test.dart",
+    "test/studio_review_pane_test.dart",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/support/studio_document_mode.dart"
+  ],
+  "exit_code": 3,
+  "elapsed_seconds": 18.441,
+  "log": "/workspace/scratch/9c3338a48b2c/validation/layout-theme/example-analysis-1.log",
+  "log_sha256": "59183ced8e468674a1f0fb3f548cbf7ba79a9a03ef643899897d9583b22a251b",
+  "source_sha256": {
+    "lib/studio_chrome.dart": "c9da292d28f6bff1c42ff2fdc4771b8eb7afa8a35f091da404dbaaa4feb6b5a2",
+    "lib/studio_material_theme.dart": "46a094b55160f4ee302cdcba0630d6b69aabe489cd056d4a593fe4867da67cfd",
+    "lib/studio_page_layout_dialog.dart": "fba607de80fe949dd72ff136b689d8cb3aa9b581aee06330a654631eadb48e37",
+    "lib/studio_paragraph_dialog.dart": "f58a8eb095b5abd86c1bff5152478ac9cb7e09c43ed303c45d5b5f7ff692c16f",
+    "lib/suite_workspace.dart": "a49f4a0b9517a4330d450ccfee5b5e7bb5deea9c8a3118b8811f05b0ff0bed94",
+    "test/studio_comment_keyboard_review_test.dart": "d53c426ecf8dbbe7c51e7c386facc610b6208fab72f336ffe19a60d33d40bd13",
+    "test/studio_comment_review_test.dart": "cc5031aa3141032bb1cdb847fb6b7b85061cb8d0dbeb284ed48d0e3f1d0a9fdd",
+    "test/studio_page_layout_dialog_test.dart": "3a9c639b533aab6602f7450e9e7cd05531c6028dbb8ad130cc76b4edd64dc9b8",
+    "test/studio_paragraph_dialog_test.dart": "986d4f430d881291285f891422193c08415cb2edb692196596574c81ac35f409",
+    "test/studio_review_pane_test.dart": "6598bfca96a83ecfaa847b8404439c5b58701edd8a9e534d3d7352088598b008",
+    "test/studio_zotero_shortcuts_test.dart": "2e81a000c349808e3fefe599d8bfc722a44f7b57afe3a632d3b1aacd6747a4e9",
+    "test/support/studio_document_mode.dart": "4df84820a605c3ee0e6454005f6bb6e496021913f3280c45cd482d0f55da6c7d"
+  },
+  "source_changed_during_run": []
+}

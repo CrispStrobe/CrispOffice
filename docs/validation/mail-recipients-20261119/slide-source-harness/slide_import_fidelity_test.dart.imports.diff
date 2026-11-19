@@ -1,0 +1,16 @@
+--- packages/quds_office_engine/test/slide_import_fidelity_test.dart
++++ adapted_tests/slide_import_fidelity_test.dart
+@@ -1,6 +1,12 @@
+ import 'dart:convert';
+ 
+-import 'package:quds_office_engine/quds_office_engine.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/opc/opc_archive.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/opc/content_types.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/opc/relationships.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/visual/office_visual.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/xml/namespaces.dart';
+ import 'package:test/test.dart';
+ 
+ const String _ns =
