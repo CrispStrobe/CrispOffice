@@ -179,10 +179,12 @@ final class NativeMailArchiveRestorer {
           if (_cancelled(problem.code)) rethrow;
           run.fail(index + 1, problem);
           run.emit(MailArchiveRestorePhase.message);
+          // Destination corruption or loss stops resumption. A source/codec
+          // failure remains per-item even when sanitized to storageFailure.
           if (problem.code == MailProblemCode.quotaExceeded ||
-              problem.code == MailProblemCode.storageFailure ||
               (destinationFailure &&
-                  problem.code == MailProblemCode.unavailable) ||
+                  (problem.code == MailProblemCode.storageFailure ||
+                      problem.code == MailProblemCode.unavailable)) ||
               problem.code == MailProblemCode.permissionDenied) {
             rethrow;
           }

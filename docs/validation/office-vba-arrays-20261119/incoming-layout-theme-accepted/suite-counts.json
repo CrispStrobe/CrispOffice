@@ -1,0 +1,32 @@
+{
+  "editor-tests": {
+    "packages/quds_office_editor/test/editor_test.dart": 57,
+    "packages/quds_office_editor/test/embed_test.dart": 88,
+    "packages/quds_office_editor/test/office_chrome_theme_test.dart": 4,
+    "packages/quds_office_editor/test/office_dark_document_test.dart": 3,
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": 6,
+    "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart": 9,
+    "packages/quds_office_editor/test/word_header_footer_navigation_test.dart": 19,
+    "packages/quds_office_editor/test/word_page_layout_test.dart": 10,
+    "packages/quds_office_editor/test/word_selection_paint_test.dart": 10,
+    "packages/quds_office_editor/test/word_tab_stops_editor_test.dart": 7
+  },
+  "repeated-studio-tests": {
+    "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart": 5,
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart": 1,
+    "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart": 12
+  },
+  "studio-theme-tests": {
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart": 9,
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart": 38,
+    "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart": 4,
+    "packages/quds_office_editor/example/test/studio_file_menu_test.dart": 4,
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart": 7,
+    "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart": 9,
+    "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart": 18,
+    "packages/quds_office_editor/example/test/studio_review_pane_test.dart": 3,
+    "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart": 6,
+    "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart": 3,
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": 15
+  }
+}

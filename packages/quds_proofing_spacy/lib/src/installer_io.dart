@@ -248,6 +248,15 @@ final class SpacyPackageInstaller {
     );
   }
 
+  /// The verified directory of a language bundle installed on its own (for
+  /// hosts that ship a v2-capable library inside the app), or null when it
+  /// is absent. Throws when an existing tree fails verification.
+  Future<String?> installedLanguageBundle(
+    SpacyLanguageDownload download,
+  ) async => await hasLanguageBundle(download)
+      ? _bundleDirectory(download.bundle).path
+      : null;
+
   /// True when the language bundle files alone are installed and verified.
   Future<bool> hasLanguageBundle(SpacyLanguageDownload download) async {
     final directory = _bundleDirectory(download.bundle);
@@ -382,6 +391,33 @@ final class SpacyPackageInstaller {
     return file.path;
   }
 
+  /// Removes only this app-owned data model; the shared runtime stays.
+  Future<void> removeNer(SpacyNerDownload ner) async {
+    if (!RegExp(r'^[a-f0-9]{64}$').hasMatch(ner.sha256)) {
+      throw const SpacyInstallException('Invalid named-entity model identity.');
+    }
+    final parent = Directory('${root.path}/ner');
+    if (FileSystemEntity.typeSync(root.path, followLinks: false) ==
+            FileSystemEntityType.link ||
+        FileSystemEntity.typeSync(parent.path, followLinks: false) ==
+            FileSystemEntityType.link) {
+      throw const SpacyInstallException(
+        'Model storage cannot be a symbolic link.',
+      );
+    }
+    final directory = _nerFile(ner).parent;
+    final type = FileSystemEntity.typeSync(directory.path, followLinks: false);
+    if (type == FileSystemEntityType.notFound) return;
+    if (type != FileSystemEntityType.directory) {
+      throw const SpacyInstallException('Model storage is not a directory.');
+    }
+    final trash = Directory(
+      '${root.path}/.removing-ner-${ner.sha256}-${DateTime.now().microsecondsSinceEpoch}',
+    );
+    directory.renameSync(trash.path);
+    trash.deleteSync(recursive: true);
+  }
+
   /// Downloads the optional NER model (no executable code).
   Future<String> installNer(
     SpacyNerDownload ner, {
@@ -415,6 +451,22 @@ final class SpacyPackageInstaller {
     } finally {
       _removeStaging(staging);
     }
+  }
+
+  /// Removes the bundle-only German installation ([installBundle]).
+  /// Callers must dispose workers using it first.
+  Future<void> removeBundle() async {
+    final directory = _bundleDirectory();
+    if (FileSystemEntity.typeSync(directory.path, followLinks: false) ==
+        FileSystemEntityType.notFound) {
+      return;
+    }
+    final trash = Directory(
+      '${root.path}/.removing-$spacyBundleManifestSha256-'
+      '${DateTime.now().microsecondsSinceEpoch}',
+    );
+    directory.renameSync(trash.path);
+    trash.deleteSync(recursive: true);
   }
 
   /// Removes an installation. Callers must dispose workers using it first.

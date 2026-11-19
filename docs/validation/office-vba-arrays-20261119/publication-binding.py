@@ -492,6 +492,8 @@ def main() -> None:
         if git(repo, "rev-parse", "HEAD") != start_head:
             raise RuntimeError("HEAD changed during binding; rerun against the new publication")
         passed = sum(value["result"] == "success" and not value["skipped"] for value in accepted_tests.values())
+        artifact_count = sum(component["artifacts"]["verified_count"] for component in components.values())
+        published_artifact_count = sum(component["artifacts"]["published_blob_count"] for component in components.values())
         report = {
             "success": True, "audited_utc": datetime.now(timezone.utc).isoformat(),
             "publication_commit": head, "publication_tree": git(repo, "rev-parse", f"{head}^{{tree}}"),
@@ -500,6 +502,9 @@ def main() -> None:
             "method": "Read actual blobs through git ls-tree and git cat-file --batch; compare SHA-256 with retained acceptance inputs and current working bytes.",
             "accepted_repository_input_count": len(catalog),
             "all_accepted_inputs_match_working_files_and_published_git_blobs": True,
+            "verified_artifact_manifests": len(components),
+            "verified_artifact_files": artifact_count,
+            "artifact_files_matching_published_git_blobs": published_artifact_count,
             "accepted_distinct_tests": passed,
             "accepted_failed_distinct": sum(value["result"] != "success" for value in accepted_tests.values()),
             "accepted_skipped_distinct": sum(value["skipped"] for value in accepted_tests.values()),

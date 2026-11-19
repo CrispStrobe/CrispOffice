@@ -1,0 +1,23 @@
+{
+  "recorded_utc": "2026-11-19T18:44:22.850568+00:00",
+  "source_checkpoint": "61bb3ee42a385c5ffaffa44047693a6f378a8424",
+  "tree": "c812fb1f2d1156099f50313390346b98f8f3d56a",
+  "parents": [
+    "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c",
+    "8c6acd04637ef627959fe40f518254ed538ab087",
+    "9d6cd0504094632825d3a0990a37fffd5c1b2c05"
+  ],
+  "main_preserved": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+  "gui_preserved": "8c6acd04637ef627959fe40f518254ed538ab087",
+  "mail_planning_only_preserved": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+  "incoming_source_conflicts": false,
+  "engine_diff_from_earlier_c3eaf57c": [
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+    "packages/quds_office_engine/test/slide_test.dart"
+  ],
+  "macro_compiler_unchanged_from_c3eaf57c": true,
+  "fresh_macro_acceptance": "engine-publication/receipt.json",
+  "fixture_assertion_proof": "incoming-layout-theme/fixture-change-proof.json",
+  "slide_parser_before_after_proof": "independent-review/slide-table-color/README.md",
+  "ci_actions_queried_or_awaited": false
+}

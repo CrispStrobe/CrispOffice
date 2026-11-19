@@ -266,6 +266,60 @@ void main() {
     expect(source.data, contains('Native package already installed'));
   });
 
+  testWidgets('bundled library downloads only the model files', (tester) async {
+    const digest =
+        '66d54a6090ae65a8fd57d79115d1d1afcc4ab8d8dabcefb8c95bf38717224044';
+    final host = _FakeHost(
+      StudioSpacyStatus(
+        platformLabel: 'macos-arm64',
+        source: StudioSpacySource.none,
+        package: spacyMacosArm64Package,
+        bundledLibrary: true,
+        librarySha256: digest,
+        languages: [
+          StudioSpacyLanguageStatus(
+            language: SpacyLanguage.english,
+            download: spacyEnglishDownload,
+            runtimeInstalled: true,
+            bundledRuntime: true,
+          ),
+        ],
+      ),
+    );
+    await _pumpSetup(tester, host);
+    final source = tester.widget<SelectableText>(
+      find.byKey(const Key('spacy-setup-source')),
+    );
+    expect(source.data, contains('built into this app'));
+    expect(source.data, contains(spacyBundleDownload.revision));
+    expect(source.data, isNot(contains(spacyMacosArm64Package.archivePath)));
+    final install = find.byKey(const Key('spacy-setup-install'));
+    expect(install, findsOneWidget);
+    expect(
+      find.descendant(of: install, matching: find.textContaining('MB')),
+      findsOneWidget,
+    );
+    expect(host.status.downloadBytes, spacyBundleDownload.totalBytes);
+    expect(host.status.language(SpacyLanguage.english)!.offered, isTrue);
+    expect(
+      host.status.language(SpacyLanguage.english)!.downloadBytes,
+      spacyEnglishDownload.totalBytes,
+    );
+    await tester.ensureVisible(
+      find.byKey(const Key('spacy-language-en-details')),
+    );
+    await tester.tap(find.byKey(const Key('spacy-language-en-details')));
+    await tester.pumpAndSettle();
+    expect(
+      tester
+          .widget<SelectableText>(
+            find.byKey(const Key('spacy-language-en-source')),
+          )
+          .data,
+      contains('built into this app'),
+    );
+  });
+
   group('native host without downloads', () {
     late Directory root;
     setUp(() => root = Directory.systemTemp.createTempSync('studio-spacy-'));
@@ -363,6 +417,98 @@ void main() {
         throwsA(isA<Exception>()),
       );
       expect(Directory('${root.path}/bundles').existsSync(), isFalse);
+    });
+
+    test('bundled library: model-only setup on any platform', () async {
+      const digest =
+          '66d54a6090ae65a8fd57d79115d1d1afcc4ab8d8dabcefb8c95bf38717224044';
+      final host = NativeStudioSpacyHost(
+        root: root,
+        environment: const {},
+        platform: SpacyPlatform.windowsX64,
+        bundledLibrary: const StudioSpacyBundledLibrary(
+          path: '/app/Contents/Frameworks/libcrispembed-spacy.dylib',
+          sha256: digest,
+        ),
+      );
+      await host.refresh();
+      final status = host.status;
+      expect(status.bundledLibrary, isTrue);
+      expect(status.unavailableReason, isNull);
+      expect(status.installOffered, isTrue);
+      expect(status.downloadBytes, spacyBundleDownload.totalBytes);
+      expect(status.source, StudioSpacySource.none);
+      expect(status.librarySha256, digest);
+      expect(status.grammarOffered, isFalse);
+      final english = status.language(SpacyLanguage.english)!;
+      expect(english.offered, isTrue);
+      expect(english.bundledRuntime, isTrue);
+      expect(english.downloadBytes, spacyEnglishDownload.totalBytes);
+      await expectLater(
+        host.openTransport(),
+        throwsA(isA<SpacyUnavailableException>()),
+      );
+      await expectLater(
+        host.openLanguageTransport(SpacyLanguage.english),
+        throwsA(isA<SpacyUnavailableException>()),
+      );
+      expect(Directory('${root.path}/packages').existsSync(), isFalse);
+      expect(Directory('${root.path}/bundles').existsSync(), isFalse);
+      // A damaged model-only tree is reported, not used.
+      Directory(
+        '${root.path}/bundles/$spacyBundleManifestSha256',
+      ).createSync(recursive: true);
+      await host.refresh();
+      expect(host.status.problem, isNotNull);
+      expect(host.status.analysisEnabled, isFalse);
+    });
+
+    test('bundled library is found next to the executable', () {
+      final contents = Directory('${root.path}/Studio.app/Contents');
+      final executable = File('${contents.path}/MacOS/Studio')
+        ..createSync(recursive: true);
+      File(
+        '${contents.path}/Frameworks/libcrispembed-spacy.dylib',
+      ).createSync(recursive: true);
+      final description = File('${contents.path}/Resources/spacy-native.json')
+        ..createSync(recursive: true);
+      const digest =
+          '66d54a6090ae65a8fd57d79115d1d1afcc4ab8d8dabcefb8c95bf38717224044';
+      description.writeAsStringSync(
+        '{"library":"libcrispembed-spacy.dylib","sha256":"$digest"}',
+      );
+      final found = detectBundledSpacyLibrary(
+        const {},
+        executable: executable.path,
+      );
+      expect(found?.sha256, digest);
+      expect(found?.path, endsWith('Frameworks/libcrispembed-spacy.dylib'));
+      expect(
+        detectBundledSpacyLibrary(const {
+          'QUDS_SPACY_BUNDLED': '0',
+        }, executable: executable.path),
+        isNull,
+      );
+      expect(
+        detectBundledSpacyLibrary(const {
+          'QUDS_SPACY_BUNDLED': '1',
+        }, executable: executable.path)?.sha256,
+        digest,
+      );
+      description.writeAsStringSync(
+        '{"library":"../libcrispembed-spacy.dylib","sha256":"$digest"}',
+      );
+      expect(
+        detectBundledSpacyLibrary(const {}, executable: executable.path),
+        isNull,
+      );
+      description.writeAsStringSync(
+        '{"library":"libcrispembed-spacy.dylib","sha256":"short"}',
+      );
+      expect(
+        detectBundledSpacyLibrary(const {}, executable: executable.path),
+        isNull,
+      );
     });
 
     test('damaged installation is reported, not used', () async {

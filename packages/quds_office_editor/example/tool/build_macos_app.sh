@@ -4,19 +4,37 @@
 #   packages/quds_office_editor/example/tool/build_macos_app.sh
 #
 # 1. builds the pinned native libraries (Hunspell, Arabic morphology, CLD3
-#    language ID and, unless QUDS_SKIP_HARPER=1, Harper for English) with each
+#    language ID, unless QUDS_SKIP_HARPER=1 Harper for English, and unless
+#    QUDS_SKIP_SPACY=1 the CrispEmbed spaCy analysis runtime) with each
 #    package's tool/build.py;
 # 2. checks the bundled CLD3 model against its pin;
 # 3. runs `flutter build macos --release`;
 # 4. installs the receipt-verified libraries into Contents/Frameworks (where
 #    the Studio hosts look for them) and their notices into Contents/Resources;
-# 5. re-signs ad hoc (each library, then the app with Release.entitlements)
-#    and verifies the signature, the libraries' load commands and that each
+# 5. re-signs ad hoc (each library, then the app with Release.entitlements),
+#    records the signed spaCy library's digest in
+#    Contents/Resources/spacy-native.json (sealed by the app signature) and
+#    verifies the signature, the libraries' load commands and that each
 #    library opens from inside the bundle.
 #
 # Flutter 3.47.8 or newer must be on PATH. Rust/Cargo is needed only for
-# Harper; set CARGO_TARGET_DIR to share its build directory.
+# Harper, CMake and Git only for spaCy. Cargo's build directory defaults to
+# $HOME/.cache/shared-cargo-target (override with CARGO_TARGET_DIR).
 set -euo pipefail
+
+# Cargo must not depend on temporary state: a CARGO_HOME (or ~/.cargo link)
+# that is missing or lives under /tmp is replaced by a persistent cache for
+# this build. Toolchains are not touched; an explicit CARGO_HOME outside
+# /tmp is kept.
+export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$HOME/.cache/shared-cargo-target}"
+cargo_home="${CARGO_HOME:-$HOME/.cargo}"
+cargo_home_real="$(cd "$cargo_home" 2>/dev/null && pwd -P || true)"
+case "$cargo_home_real" in
+  ''|/tmp/*|/private/tmp/*|/var/folders/*|/private/var/folders/*)
+    export CARGO_HOME="$HOME/.cache/quds-cargo-home"
+    mkdir -p "$CARGO_HOME"
+    ;;
+esac
 
 EXAMPLE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PACKAGES="$(cd "$EXAMPLE/../.." && pwd)"
@@ -34,6 +52,9 @@ python3 "$PACKAGES/quds_language_id/tool/build.py" --native --jobs "$JOBS" >/dev
 python3 "$PACKAGES/quds_language_id/tool/build.py" --verify-model
 if [[ "${QUDS_SKIP_HARPER:-0}" != 1 ]]; then
   python3 "$PACKAGES/quds_proofing_harper/tool/build.py" --native >/dev/null
+fi
+if [[ "${QUDS_SKIP_SPACY:-0}" != 1 ]]; then
+  python3 "$PACKAGES/quds_proofing_spacy/tool/build.py" --native --jobs "$JOBS" >/dev/null
 fi
 
 log "flutter build macos --release"
@@ -71,11 +92,25 @@ if [[ "${QUDS_SKIP_HARPER:-0}" != 1 ]]; then
   rm -rf "$staging"
   LIBRARIES+=(libquds_proofing_harper.dylib)
 fi
+rm -f "$RESOURCES/spacy-native.json" "$FRAMEWORKS/libcrispembed-spacy.dylib"
+if [[ "${QUDS_SKIP_SPACY:-0}" != 1 ]]; then
+  # Only the library ships; the model files are verified in-app downloads.
+  python3 "$PACKAGES/quds_proofing_spacy/tool/build.py" --native --jobs "$JOBS" \
+    --install-native "$FRAMEWORKS" --install-licenses "$RESOURCES/spacy-licenses" >/dev/null
+  LIBRARIES+=(libcrispembed-spacy.dylib)
+fi
 
 log "Sign ad hoc"
 for library in "${LIBRARIES[@]}"; do
   codesign --force --sign - --timestamp=none "$FRAMEWORKS/$library"
 done
+if [[ "${QUDS_SKIP_SPACY:-0}" != 1 ]]; then
+  # Studio loads the bundled library only with this digest of the signed
+  # bytes; the app signature below seals this description.
+  printf '{"library":"libcrispembed-spacy.dylib","sha256":"%s"}\n' \
+    "$(shasum -a 256 "$FRAMEWORKS/libcrispembed-spacy.dylib" | awk '{print $1}')" \
+    >"$RESOURCES/spacy-native.json"
+fi
 codesign --force --sign - --timestamp=none \
   --entitlements "$EXAMPLE/macos/Runner/Release.entitlements" "$APP"
 
