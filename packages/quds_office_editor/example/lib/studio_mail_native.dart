@@ -6,6 +6,7 @@ import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 import 'studio_mail_compose.dart';
+import 'studio_mail_credentials.dart';
 import 'studio_mail_message_loader.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_strings.dart';
@@ -13,12 +14,12 @@ import 'studio_mail_submission.dart';
 import 'studio_saved_mail.dart';
 import 'studio_strings.dart';
 
-/// Session-only IMAP/SMTP client used by the Studio Mail module.
+/// IMAP/SMTP client used by the Studio Mail module.
 ///
-/// Credentials are never written to disk by this example. The account setup is
-/// explicit, auto-discovery is followed by an SSL-only account, and every
-/// network operation reports its own failure instead of presenting an empty
-/// inbox.
+/// The account record is kept in the platform keychain. Account setup is
+/// explicit; mailbox.org uses verified STARTTLS and other providers use
+/// discovery followed by TLS. Every network failure is reported instead of
+/// presenting an empty inbox.
 class StudioMailDialog extends StatefulWidget {
   const StudioMailDialog({
     super.key,
@@ -52,6 +53,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   final _imapHost = TextEditingController();
   final _smtpHost = TextEditingController();
   final _search = TextEditingController();
+  final _credentials = StudioMailCredentialStore();
+  bool _remember = true;
+  bool _startTls = false;
+  bool _hasSavedCredentials = false;
 
   mail.MailClient? _client;
   mail.MailClient? _pendingClient;
@@ -75,6 +80,26 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   bool _showCompactMessage = false;
   String? _error;
   String? _notice;
+
+  @override
+  void initState() {
+    super.initState();
+    unawaited(_loadCredentials());
+  }
+
+  Future<void> _loadCredentials() async {
+    final saved = await _credentials.load();
+    if (!mounted || saved == null) return;
+    setState(() {
+      _email.text = saved.email;
+      _password.text = saved.password;
+      _imapHost.text = saved.imapHost;
+      _smtpHost.text = saved.smtpHost;
+      _manual = saved.manual;
+      _startTls = saved.startTls;
+      _hasSavedCredentials = true;
+    });
+  }
 
   @override
   void dispose() {
@@ -132,6 +157,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     mail.MailClient? candidate;
     StudioMailMessageLoader? candidateLoader;
     bool adopted = false;
+    var effectiveStartTls = manual && _startTls;
     try {
       mail.MailAccount account;
       if (manual) {
@@ -141,11 +167,39 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           incomingHost: imapHost,
           outgoingHost: smtpHost,
           password: password,
+          incomingPort: _startTls ? 143 : 993,
+          incomingSocketType: _startTls
+              ? mail.SocketType.starttls
+              : mail.SocketType.ssl,
+          outgoingPort: _startTls ? 587 : 465,
+          outgoingSocketType: _startTls
+              ? mail.SocketType.starttls
+              : mail.SocketType.ssl,
         );
+      } else if (domain.toLowerCase() == 'mailbox.org') {
+        // mailbox.org resets Dart's implicit TLS 993 greeting but accepts
+        // STARTTLS on 143. Known settings avoid a flaky discovery round-trip.
+        account = mail.MailAccount.fromManualSettings(
+          name: email,
+          email: email,
+          incomingHost: 'imap.mailbox.org',
+          outgoingHost: 'smtp.mailbox.org',
+          password: password,
+          incomingPort: 143,
+          incomingSocketType: mail.SocketType.starttls,
+          outgoingPort: 587,
+          outgoingSocketType: mail.SocketType.starttls,
+        );
+        effectiveStartTls = true;
       } else {
-        final config =
-            await (widget.accountDiscovery?.call(email) ??
-                mail.Discover.discover(email, isLogEnabled: false));
+        mail.ClientConfig? config;
+        try {
+          config =
+              await (widget.accountDiscovery?.call(email) ??
+                  mail.Discover.discover(email, isLogEnabled: false));
+        } on Object {
+          config = null;
+        }
         if (!_currentAttempt(generation)) return;
         if (config == null ||
             config.isNotValid ||
@@ -165,17 +219,44 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           userName: email,
         );
       }
-      final client =
-          widget.clientFactory?.call(account) ??
-          mail.MailClient(account, isLogEnabled: false);
+      mail.MailClient makeClient(mail.MailAccount value) =>
+          widget.clientFactory?.call(value) ??
+          mail.MailClient(value, isLogEnabled: false);
+      var client = makeClient(account);
       candidate = client;
       _pendingClient = client;
+      try {
+        await client.connect();
+      } on Object {
+        // Some providers reset implicit TLS 993 but accept STARTTLS on 143.
+        final incoming = account.incoming.serverConfig;
+        final outgoing = account.outgoing.serverConfig;
+        await _disconnectQuietly(client);
+        candidate = null;
+        _pendingClient = null;
+        account = mail.MailAccount.fromManualSettings(
+          name: email,
+          email: email,
+          incomingHost: incoming.hostname,
+          outgoingHost: outgoing.hostname,
+          password: password,
+          incomingPort: 143,
+          incomingSocketType: mail.SocketType.starttls,
+          outgoingPort: 587,
+          outgoingSocketType: mail.SocketType.starttls,
+        );
+        effectiveStartTls = true;
+        client = makeClient(account);
+        candidate = client;
+        _pendingClient = client;
+        await client.connect();
+      }
+      if (!_currentAttempt(generation)) return;
       final loader =
           widget.messageLoaderFactory?.call(account) ??
           NativeStudioMailMessageLoader(account);
       candidateLoader = loader;
       _pendingLoader = loader;
-      await client.connect();
       if (!_currentAttempt(generation)) return;
       final boxes = await client.listMailboxes();
       if (!_currentAttempt(generation)) return;
@@ -206,6 +287,22 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         _notice = '${messages.length} messages';
       });
       adopted = true;
+      if (_remember) {
+        await _credentials.save(
+          StudioMailCredentials(
+            email: email,
+            password: password,
+            imapHost: account.incoming.serverConfig.hostname,
+            smtpHost: account.outgoing.serverConfig.hostname,
+            manual: manual,
+            startTls: effectiveStartTls,
+          ),
+        );
+        _hasSavedCredentials = true;
+      } else {
+        await _credentials.clear();
+        _hasSavedCredentials = false;
+      }
       _retireReader(previous);
     } on Object {
       if (!_currentAttempt(generation)) return;
@@ -618,8 +715,37 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                       hintText: 'smtp.example.com',
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(widget.strings.useStartTls),
+                    value: _startTls,
+                    onChanged: _connecting
+                        ? null
+                        : (value) => setState(() => _startTls = value),
+                  ),
+                  const SizedBox(height: 4),
                 ],
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(widget.strings.rememberAccount),
+                  value: _remember,
+                  onChanged: _connecting
+                      ? null
+                      : (value) => setState(() => _remember = value),
+                ),
+                if (_hasSavedCredentials)
+                  TextButton.icon(
+                    onPressed: _connecting
+                        ? null
+                        : () async {
+                            await _credentials.clear();
+                            if (mounted) {
+                              setState(() => _hasSavedCredentials = false);
+                            }
+                          },
+                    icon: const Icon(Icons.delete_outline, size: 18),
+                    label: Text(widget.strings.forgetAccount),
+                  ),
                 if (_error != null)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 12),

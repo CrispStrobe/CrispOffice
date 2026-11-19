@@ -723,7 +723,12 @@ void main() {
         expect(summary.complete, isFalse);
         expect(summary.checkedParagraphCount, 0);
         expect(summary.issues, isEmpty);
-        expect(summary.statusMessage, contains(status.name));
+        expect(
+          summary.statusMessage,
+          status == OfficeProofingStatus.unsupported
+              ? contains('No configured checker supports')
+              : contains(status.name),
+        );
         provider.status = OfficeProofingStatus.success;
         final retry = await h.session.checkNow();
         expect(provider.requests, hasLength(2));
@@ -742,7 +747,10 @@ void main() {
       final summary = await h.session.checkNow();
       expect(provider.requests, isEmpty);
       expect(summary.complete, isFalse);
-      expect(summary.statusMessage, contains('does not support en-GB'));
+      expect(
+        summary.statusMessage,
+        contains('No configured checker supports en-GB'),
+      );
     },
   );
 
