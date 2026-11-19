@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "analyze",
+    "--no-pub",
+    "--fatal-infos",
+    "test/office_dark_slide_test.dart"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor",
+  "exit_code": 0,
+  "source_sha256": "8a4bfdcf1a4fb913a2533ed523c05b6250427a49596a2051dc022dad5e262109"
+}

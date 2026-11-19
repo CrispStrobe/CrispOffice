@@ -1,0 +1,81 @@
+{
+  "main": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+  "gui_head": "8c6acd04637ef627959fe40f518254ed538ab087",
+  "mail_planning_head": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+  "previous_root": "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c",
+  "merge_conflicts": false,
+  "incoming_engine_changes": [],
+  "incoming_paths": [
+    "docs/IMAGE_EDITOR_INTEGRATION.md",
+    "docs/validation/crispoffice-layout-theme-20261119/README.md",
+    "docs/validation/crispoffice-layout-theme-20261119/incoming/README.md",
+    "docs/validation/crispoffice-layout-theme-20261119/incoming/audit-refresh.json",
+    "docs/validation/crispoffice-layout-theme-20261119/incoming/audit.json",
+    "docs/validation/crispoffice-layout-theme-20261119/incoming/audit_frontier.py",
+    "docs/validation/crispoffice-layout-theme-20261119/incoming/audit_refresh.py",
+    "docs/validation/crispoffice-layout-theme-20261119/reconciliation-initial.json",
+    "docs/validation/crispoffice-layout-theme-20261119/reconciliation-integrated.json",
+    "docs/validation/crispoffice-layout-theme-20261119/remote-capture.json",
+    "docs/validation/crispoffice-layout-theme-20261119/render_previews.dart",
+    "docs/validation/mail-archive-resume-20261119/README.md",
+    "docs/validation/mail-archive-resume-20261119/reconciliation-initial.json",
+    "packages/quds_office_editor/example/lib/studio_chrome.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart"
+  ],
+  "mail_planning_scope": "Two planning/reconciliation documents only; durable-resume implementation is not claimed.",
+  "source_freeze_policy": "These observed incoming heads form the combined acceptance frontier. Preserve any later remote main advancement before merge.",
+  "remote_refresh": {
+    "before": {
+      "refs/remotes/origin/HEAD": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "refs/remotes/origin/codex/crispoffice-gui-20261119": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "refs/remotes/origin/codex/crispoffice-layout-theme-20261119": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+      "refs/remotes/origin/codex/mail-archive-restore-20261119": "6275d21246040e03f6264b27171992c88d1474a2",
+      "refs/remotes/origin/codex/odt-field-continuation-20261117": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "refs/remotes/origin/codex/vba-arrays-foreach-20261119": "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c",
+      "refs/remotes/origin/codex/vba-control-flow-20261119": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "refs/remotes/origin/docs/ods-color-scale": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "refs/remotes/origin/docs/ods-data-bar": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "refs/remotes/origin/feat/ods-color-scale": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "refs/remotes/origin/feat/ods-data-bar": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "refs/remotes/origin/feat/ods-dynamic-validation-links": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "refs/remotes/origin/feat/ods-icon-sets": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "refs/remotes/origin/feat/ods-time-period-conditions": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "refs/remotes/origin/integrate/macbook-current-20261118": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "refs/remotes/origin/integrate/office-union-148": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "refs/remotes/origin/main": "caf378f40fd5bda50f504a6816404d01d8bbb8f8"
+    },
+    "after": {
+      "refs/remotes/origin/HEAD": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "refs/remotes/origin/codex/crispoffice-gui-20261119": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "refs/remotes/origin/codex/crispoffice-layout-theme-20261119": "8c6acd04637ef627959fe40f518254ed538ab087",
+      "refs/remotes/origin/codex/mail-archive-restore-20261119": "6275d21246040e03f6264b27171992c88d1474a2",
+      "refs/remotes/origin/codex/mail-archive-resume-20261119": "9d6cd0504094632825d3a0990a37fffd5c1b2c05",
+      "refs/remotes/origin/codex/odt-field-continuation-20261117": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "refs/remotes/origin/codex/vba-arrays-foreach-20261119": "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c",
+      "refs/remotes/origin/codex/vba-control-flow-20261119": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "refs/remotes/origin/docs/ods-color-scale": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "refs/remotes/origin/docs/ods-data-bar": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "refs/remotes/origin/feat/ods-color-scale": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "refs/remotes/origin/feat/ods-data-bar": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "refs/remotes/origin/feat/ods-dynamic-validation-links": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "refs/remotes/origin/feat/ods-icon-sets": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "refs/remotes/origin/feat/ods-time-period-conditions": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "refs/remotes/origin/integrate/macbook-current-20261118": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "refs/remotes/origin/integrate/office-union-148": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "refs/remotes/origin/main": "caf378f40fd5bda50f504a6816404d01d8bbb8f8"
+    },
+    "changed": [
+      {
+        "ref": "refs/remotes/origin/codex/crispoffice-layout-theme-20261119",
+        "before": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+        "after": "8c6acd04637ef627959fe40f518254ed538ab087"
+      },
+      {
+        "ref": "refs/remotes/origin/codex/mail-archive-resume-20261119",
+        "before": null,
+        "after": "9d6cd0504094632825d3a0990a37fffd5c1b2c05"
+      }
+    ]
+  }
+}

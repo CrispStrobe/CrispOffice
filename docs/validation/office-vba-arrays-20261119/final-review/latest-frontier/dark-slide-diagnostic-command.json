@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "/workspace/scratch/652d74384990/quds_office_suite/docs/validation/office-vba-arrays-20261119/final-review/latest-frontier/dark_slide_raster_diagnostic_test.dart",
+    "--plain-name",
+    "dark Slides adapt explicit ink and preserve automatic and exported colors"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor",
+  "environment_overrides": {
+    "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "CI": "true",
+    "QUDS_REVIEW_RASTER_DIR": "/workspace/scratch/652d74384990/quds_office_suite/docs/validation/office-vba-arrays-20261119/final-review/latest-frontier"
+  },
+  "started_at_utc": "2026-11-19T18:31:10.301757+00:00",
+  "qualification_cases_added": 0,
+  "exit_code": 1,
+  "elapsed_seconds": 3.947,
+  "finished_at_utc": "2026-11-19T18:31:14.248599+00:00",
+  "stdout_sha256": "331d92fb35423c2ada58deca165873d76d9834210dc8c393a079c919f4a62d5a",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_file": "dark-slide-diagnostic.stdout",
+  "stderr_file": "dark-slide-diagnostic.stderr"
+}

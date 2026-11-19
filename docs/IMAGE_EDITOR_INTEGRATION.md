@@ -133,8 +133,8 @@ reason to make the pure Dart Office engine depend on it.
 The reference versions above come from [CrispCloud's lockfile][cc-lock] and the
 inspected local `pubspec.lock`. This was a source comparison, not a dependency
 solve. Do not transplant CrispCloud's application lockfile or its unrelated
-dependency overrides. Review and commit the minimal new resolution when the
-implementation is authorized. Declare any other package directly if the new
+dependency overrides. Review and commit the minimal new resolution when adding the runtime
+integration. Declare any other package directly if the new
 host imports it, even if it is already present transitively.
 
 ## Independent CrispOffice adapter

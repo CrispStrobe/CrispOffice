@@ -1,0 +1,95 @@
+{
+  "original_exact_black_count": 3,
+  "original_required_exact_black_count": "> 15",
+  "original_rgb_tolerance": 3,
+  "white_cell_nonwhite_pixels": 255,
+  "white_cell_raster_changes_when_disabling_adaptation": 0,
+  "dark_cell_raster_changes_when_disabling_adaptation": 258,
+  "foreground_coverage": {
+    "dark-adapted": 109.15686274509804,
+    "dark-unadapted": 109.15686274509804,
+    "wrong-light-ink": 9.482352941176446,
+    "blank-cell": 0.0
+  },
+  "coverage_threshold": "> 15",
+  "correct_ink_passes": true,
+  "wrong_light_ink_fails": true,
+  "blank_fails": true,
+  "new_rendering_assertions_passed_before_export_assertion": true,
+  "remaining_original_assertion_failure": "Table cell text colors round-trip as empty strings instead of authored 000000; engine parser owner investigating.",
+  "artifact_hashes": [
+    {
+      "path": "color-control/capture-0.png",
+      "sha256": "57db9ab27af32dd552a1c4a6ea31604505bc8c7e24c45fc1e157177f33571b2a",
+      "width": 720,
+      "height": 405
+    },
+    {
+      "path": "color-control/capture-0-white-cell.png",
+      "sha256": "23e5d090e178470b65e64c83e27ec873d345b60632640180a1d7bd93295897e4",
+      "width": 290,
+      "height": 25
+    },
+    {
+      "path": "color-control/capture-0-table.png",
+      "sha256": "e93630ae8d4697fa5243a59150f9838ae5021e74d3b568ccbd0adee0bbdd5ff6",
+      "width": 300,
+      "height": 120
+    },
+    {
+      "path": "color-control/capture-1.png",
+      "sha256": "b3ff46e3f33f789e9a56d47b08666f80a57c1f70a24c454aaf6af1f8b93570e7",
+      "width": 720,
+      "height": 405
+    },
+    {
+      "path": "color-control/capture-1-white-cell.png",
+      "sha256": "23e5d090e178470b65e64c83e27ec873d345b60632640180a1d7bd93295897e4",
+      "width": 290,
+      "height": 25
+    },
+    {
+      "path": "color-control/capture-1-table.png",
+      "sha256": "231f2f1170e75000628b04538b8139c137b25337a653835347b9bb216fb50c89",
+      "width": 300,
+      "height": 120
+    },
+    {
+      "path": "color-control/capture-2.png",
+      "sha256": "ee8e31ab20e15ba65a320b2182976e72e17f81a56e1068c0d01ecf5b854bd8e6",
+      "width": 720,
+      "height": 405
+    },
+    {
+      "path": "color-control/capture-2-white-cell.png",
+      "sha256": "1136c8eb7e205fbbad49a26e0d905e238a4fa3a5de6244ac546cc3bed2e4bf10",
+      "width": 290,
+      "height": 25
+    },
+    {
+      "path": "color-control/capture-2-table.png",
+      "sha256": "f88a3a7fb28597ca3be581a730e70061d875678ee86fc73da9e7a5d5a52ac922",
+      "width": 300,
+      "height": 120
+    },
+    {
+      "path": "color-control/capture-3.png",
+      "sha256": "6b63806e348363c799a170ef0e1ddde56c24ce2c90f8617ac526451e88784c95",
+      "width": 720,
+      "height": 405
+    },
+    {
+      "path": "color-control/capture-3-white-cell.png",
+      "sha256": "f296ecee7b39d17d7a585b06c7d21f6a4c348327b0fc766fbf48110a3fbc9e02",
+      "width": 290,
+      "height": 25
+    },
+    {
+      "path": "color-control/capture-3-table.png",
+      "sha256": "0994ba02d04dab8bb5a19d9f44c76a20f0ec8e3498ad1ca53272a375167b8721",
+      "width": 300,
+      "height": 120
+    }
+  ],
+  "qualification_cases_added": 0
+}

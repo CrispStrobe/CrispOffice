@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
@@ -200,6 +201,49 @@ void main() {
   );
 
   testWidgets(
+    'Paragraph menu reflects the active first-page header and preserves body formatting',
+    (tester) async {
+      final word = await _studio(tester);
+      final section = word.document.sections.first;
+      section.differentFirstPage = true;
+      section.header.add(
+        WmlParagraph(
+          properties: WmlParagraphProps(lineSpacing: 1.5),
+          inlines: [WmlRun(text: 'Standard header')],
+        ),
+      );
+      section.firstHeader.add(
+        WmlParagraph(
+          properties: WmlParagraphProps(lineSpacing: 2),
+          inlines: [WmlRun(text: 'First header')],
+        ),
+      );
+      word.document.paragraphs.single.properties.lineSpacing = 1;
+      word.relayout();
+      word.beginHeaderFooterEdit(0, footer: false);
+      await _frames(tester);
+      expect(
+        word.editingHeaderFooterVariant,
+        WordHeaderFooterVariant.firstPage,
+      );
+      await _tab(tester, 'layout');
+      await _openMenu(tester, 'paragraph');
+      final selected = find.widgetWithText(MenuItemButton, '2.0');
+      expect(tester.widget<MenuItemButton>(selected).trailingIcon, isA<Icon>());
+      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+      await _frames(tester);
+      await _menu(tester, 'paragraph', '1.15');
+      expect(section.firstHeader.single.properties.lineSpacing, 1.15);
+      expect(section.header.single.properties.lineSpacing, 1.5);
+      expect(word.document.paragraphs.single.properties.lineSpacing, 1);
+      await _undo(tester);
+      expect(section.firstHeader.single.properties.lineSpacing, 2);
+      expect(tester.takeException(), isNull);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.linux),
+  );
+
+  testWidgets(
     'Page Layout and Paragraph dialogs are reachable from the ribbon',
     (tester) async {
       final word = await _studio(tester);
@@ -300,6 +344,13 @@ void main() {
       _expectDark(tester, find.byType(AlertDialog));
       expect(word.config.theme.adaptDocumentColors, isTrue);
       await _closeSettings(tester);
+      final inactiveTab = tester.widget<Text>(
+        find.descendant(
+          of: _key('ribbon-tab-file'),
+          matching: find.byType(Text),
+        ),
+      );
+      expect(inactiveTab.style!.color!.computeLuminance(), greaterThan(0.4));
 
       await _tab(tester, 'layout');
       await _pageLayout(tester);
@@ -362,6 +413,24 @@ void main() {
       await _frames(tester);
       await _tab(tester, 'layout');
       await _menu(tester, 'margins', 'ضيق');
+      final tabText = tester.renderObject<RenderParagraph>(
+        find.descendant(
+          of: _key('ribbon-tab-layout'),
+          matching: find.byType(RichText),
+        ),
+      );
+      final label = tabText.text.toPlainText();
+      final boxes = tabText.getBoxesForSelection(
+        TextSelection(baseOffset: 0, extentOffset: label.length),
+      );
+      expect(boxes, isNotEmpty);
+      for (final box in boxes) {
+        expect(
+          box.bottom,
+          lessThanOrEqualTo(tabText.size.height + 0.1),
+          reason: 'Arabic tab glyphs and descenders must fit without clipping.',
+        );
+      }
       expect(word.pageMargins.matches(WmlPageMargins.narrow), isTrue);
       await _pageLayout(tester, label: 'تخطيط الصفحة…');
       expect(

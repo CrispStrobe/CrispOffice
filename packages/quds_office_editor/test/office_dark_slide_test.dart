@@ -35,6 +35,53 @@ class _Raster {
     }
     return found;
   }
+
+  double blackCoverageOnWhite(ui.Rect area) {
+    var coverage = 0.0;
+    for (
+      var y = area.top.floor().clamp(0, height);
+      y < area.bottom.ceil().clamp(0, height);
+      y++
+    ) {
+      for (
+        var x = area.left.floor().clamp(0, width);
+        x < area.right.ceil().clamp(0, width);
+        x++
+      ) {
+        final offset = (y * width + x) * 4;
+        final brightest = <int>[
+          bytes[offset],
+          bytes[offset + 1],
+          bytes[offset + 2],
+        ].reduce((a, b) => a > b ? a : b);
+        coverage += (255 - brightest) / 255;
+      }
+    }
+    return coverage;
+  }
+
+  bool samePixelsIn(ui.Rect area, _Raster other) {
+    if (width != other.width || height != other.height) return false;
+    for (
+      var y = area.top.floor().clamp(0, height);
+      y < area.bottom.ceil().clamp(0, height);
+      y++
+    ) {
+      for (
+        var x = area.left.floor().clamp(0, width);
+        x < area.right.ceil().clamp(0, width);
+        x++
+      ) {
+        final offset = (y * width + x) * 4;
+        for (var channel = 0; channel < 4; channel++) {
+          if (bytes[offset + channel] != other.bytes[offset + channel]) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  }
 }
 
 PmlShape _shape(
@@ -212,10 +259,10 @@ void main() {
           reason: 'Automatic colors retain their prior behavior.',
         );
       }
-      expect(
-        dark.count(const ui.Rect.fromLTWH(384, 33, 290, 25), 0x000000),
-        greaterThan(15),
-      );
+      const whiteCell = ui.Rect.fromLTWH(384, 33, 290, 25);
+      // At 13 px most glyph pixels have fractional coverage. Measure that
+      // coverage instead of requiring many completely opaque black pixels.
+      expect(dark.blackCoverageOnWhite(whiteCell), greaterThan(15));
       expect(
         dark.count(const ui.Rect.fromLTWH(384, 93, 290, 25), 0xF2F2F2),
         greaterThan(15),
@@ -228,6 +275,52 @@ void main() {
         dark.count(const ui.Rect.fromLTWH(408, 323, 240, 28), 0xF2F2F2),
         greaterThan(25),
       );
+
+      final unadapted = await _paint(
+        tester,
+        slide,
+        theme: OfficeTheme.dark.copyWith(adaptDocumentColors: false),
+      );
+      expect(
+        dark.samePixelsIn(whiteCell, unadapted),
+        isTrue,
+        reason: 'Light cell backgrounds must preserve authored black ink.',
+      );
+      expect(
+        unadapted.count(const ui.Rect.fromLTWH(384, 93, 290, 25), 0xF2F2F2),
+        0,
+        reason: 'The dark-cell assertion must distinguish adapted ink.',
+      );
+
+      final wrongLightInk = slide.copy();
+      wrongLightInk.shapes
+              .singleWhere((shape) => shape.id == 7)
+              .table!
+              .rows
+              .first
+              .first
+              .textColor =
+          'F2F2F2';
+      final wrongLightRaster = await _paint(tester, wrongLightInk);
+      expect(
+        wrongLightRaster.blackCoverageOnWhite(whiteCell),
+        lessThanOrEqualTo(15),
+        reason: 'Incorrect light ink on white must fail the coverage gate.',
+      );
+      expect(dark.samePixelsIn(whiteCell, wrongLightRaster), isFalse);
+
+      final blank = slide.copy();
+      blank.shapes
+              .singleWhere((shape) => shape.id == 7)
+              .table!
+              .rows
+              .first
+              .first
+              .text =
+          '';
+      final blankRaster = await _paint(tester, blank);
+      expect(blankRaster.blackCoverageOnWhite(whiteCell), 0);
+      expect(dark.samePixelsIn(whiteCell, blankRaster), isFalse);
 
       final light = await _paint(tester, slide, theme: OfficeTheme.light);
       expect(

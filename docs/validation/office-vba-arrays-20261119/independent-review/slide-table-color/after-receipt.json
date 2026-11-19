@@ -1,0 +1,81 @@
+{
+  "phase": "after",
+  "source_head": "f6b8638d5c78a2d17e5e1c2fb43620c63a23b90c",
+  "production_path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+  "production_sha256": "7d77b680b43bf2a02bd3ea24642c8f9faf3f19f814c3dba61398c1d01ca34c12",
+  "production_git_blob": "7c5c13518a28ae53a0cb267745d86ef7e548dab5",
+  "production_git_sha256": "db979f21e10238a4c87731f35e29c267bda82891b0809c8c27ed206a83c8da37",
+  "production_matches_recorded_git_blob": false,
+  "commands": [
+    {
+      "name": "tests",
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "4",
+        "test/slide_test.dart",
+        "test/slide_import_fidelity_test.dart",
+        "test/slide_text_fidelity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/validation-workspace/packages/quds_office_engine",
+      "started_utc": "2026-11-19T18:37:14.910739+00:00",
+      "elapsed_seconds": 4.888,
+      "exit_code": 0,
+      "stdout": "after-tests.stdout.log",
+      "stdout_sha256": "2888739eb33aa2e3e0feef4a2489266245944e858bda934fd487b016d4bde120",
+      "stderr": "after-tests.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "analysis",
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/src/slide/shapes/drawingml.dart",
+        "test/slide_test.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/validation-workspace/packages/quds_office_engine",
+      "started_utc": "2026-11-19T18:37:19.799140+00:00",
+      "elapsed_seconds": 5.143,
+      "exit_code": 0,
+      "stdout": "after-analysis.stdout.log",
+      "stdout_sha256": "5823a9db06ac0bec390de07e3b87618bc0686ebf8036d44d015d8cdcf6a6674e",
+      "stderr": "after-analysis.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "format",
+      "command": [
+        "/workspace/scratch/652d74384990/runtime/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib/src/slide/shapes/drawingml.dart",
+        "test/slide_test.dart"
+      ],
+      "cwd": "/workspace/scratch/652d74384990/validation-workspace/packages/quds_office_engine",
+      "started_utc": "2026-11-19T18:37:24.942652+00:00",
+      "elapsed_seconds": 0.099,
+      "exit_code": 0,
+      "stdout": "after-format.stdout.log",
+      "stdout_sha256": "34b1a81a6635805e7b82c15d0a132700c07cc78c5e5ce1948a25a32f613e4bfa",
+      "stderr": "after-format.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "environment_overrides": {
+    "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "CI": "true"
+  },
+  "recorded_inputs": 352,
+  "inputs_stable": true,
+  "dependency_config_sha256": "65f6fcee3ec76e1a8fdd99206b6fdc07c9f867df177f0e8b26a24816e9e970c4",
+  "dependency_lock_sha256": "0050bd9b30c963b5a59e1b48efb52e9a67ac697e52e56101c47dd6b463067884",
+  "success": true
+}

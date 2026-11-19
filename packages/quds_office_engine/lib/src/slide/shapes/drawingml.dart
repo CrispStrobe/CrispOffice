@@ -302,7 +302,11 @@ List<PmlShape> parseSlideShapes(
         } else if (fillPending) {
           current.fillColor = val;
         } else if (textFillPending) {
-          current.textColor = val;
+          if (currentCell != null) {
+            if (currentCell.textColor.isEmpty) currentCell.textColor = val;
+          } else {
+            current.textColor = val;
+          }
         } else if (styleRef == 'fill') {
           current.fillColor = val;
         } else if (styleRef == 'line') {

@@ -1,0 +1,8 @@
+{
+  "source_commit": "596430dcb816dd418204d62e78f4dc518afdc0e1",
+  "source_path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+  "original_sha256": "b2a7bf8db5192abadf526f94df06909c9bfe17ed04b9ba1f38854e4d584339f0",
+  "instrumented_sha256": "6f7811e6e504f2fe45f39c3525a95ba27c75e4e1d6ad1a9744510e34c36dd781",
+  "method": "Copy exact committed test; add PNG/JSON captures and a disabled-adaptation control before the original unchanged assertions. Original test source is never changed.",
+  "qualification_counts_added": 0
+}

@@ -206,6 +206,13 @@
     "packages/quds_office_editor/example/test/studio_slide_sheet_menus_test.dart",
     "packages/quds_office_editor/test/office_dark_slide_test.dart"
   ],
+  "qualification_followup": {
+    "diagnostic_report": "DARK_SLIDE_DIAGNOSIS.md",
+    "exposed_export_issue": "Unchanged table text-color round-trip assertion fails; engine parser textFillPending routes cell color to shape before currentCell fallback. Engine owner handles fix.",
+    "focused_flutter_analysis_exit": 0,
+    "raster_issue": "White-cell exact-black pixel threshold fails because most 13 px font pixels have fractional coverage; independent raster and controls retained.",
+    "test_correction": "Black coverage on white, exact adaptation-disabled equality, wrong-light/blank controls; other thresholds and export assertions retained."
+  },
   "repository": "CrispStrobe/quds_office_suite",
   "review_root": "2aff66a8540beb2015e606e67e46d228d7bf695e",
   "schema": 1,
