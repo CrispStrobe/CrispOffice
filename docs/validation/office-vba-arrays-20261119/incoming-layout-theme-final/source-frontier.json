@@ -1,0 +1,60 @@
+{
+  "additional_studio_tests": [
+    "test/studio_layout_theme_test.dart",
+    "test/studio_page_layout_dialog_test.dart",
+    "test/studio_paragraph_dialog_test.dart",
+    "test/studio_slide_sheet_menus_test.dart",
+    "test/studio_comment_keyboard_review_test.dart",
+    "test/studio_comment_review_test.dart",
+    "test/studio_review_pane_test.dart",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_file_menu_test.dart",
+    "test/studio_desktop_menu_test.dart",
+    "test/studio_ribbon_customization_test.dart"
+  ],
+  "checkout_head_at_start": "596430dcb816dd418204d62e78f4dc518afdc0e1",
+  "copied_manifests_match_repository": {
+    "apps/quds_report_studio/pubspec.yaml": true,
+    "packages/legacy_doc_parser/pubspec.yaml": true,
+    "packages/quds_arabic_morph/pubspec.yaml": true,
+    "packages/quds_language_id/pubspec.yaml": true,
+    "packages/quds_mail_core/pubspec.yaml": true,
+    "packages/quds_mail_mime/pubspec.yaml": true,
+    "packages/quds_mail_store/pubspec.yaml": true,
+    "packages/quds_mail_transport/pubspec.yaml": true,
+    "packages/quds_mail_ui/example/pubspec.yaml": true,
+    "packages/quds_mail_ui/pubspec.yaml": true,
+    "packages/quds_office_editor/example/pubspec.yaml": true,
+    "packages/quds_office_editor/pubspec.yaml": true,
+    "packages/quds_office_engine/example/pubspec.yaml": true,
+    "packages/quds_office_engine/pubspec.yaml": true,
+    "packages/quds_proofing_gector/pubspec.yaml": true,
+    "packages/quds_proofing_harper/pubspec.yaml": true,
+    "packages/quds_proofing_hunspell/pubspec.yaml": true,
+    "packages/quds_proofing_spacy/pubspec.yaml": true,
+    "packages/quds_reports/pubspec.yaml": true,
+    "pubspec.yaml": true
+  },
+  "engine_sources": "Current live repository source",
+  "existing_editor_tests": [
+    "test/embed_test.dart",
+    "test/word_tab_stops_editor_test.dart",
+    "test/sheet_conditional_rendering_test.dart",
+    "test/word_selection_paint_test.dart",
+    "test/word_header_footer_navigation_test.dart",
+    "test/editor_test.dart"
+  ],
+  "incoming_head": "2d7360a217b51c34ccf72eb5ed78c82ccd20bae5",
+  "new_editor_tests": [
+    "test/office_chrome_theme_test.dart",
+    "test/office_dark_document_test.dart",
+    "test/office_dark_slide_test.dart",
+    "test/word_page_layout_test.dart"
+  ],
+  "repeated_studio_tests": [
+    "test/studio_mail_archive_restore_test.dart",
+    "test/studio_mail_archive_restore_native_test.dart",
+    "test/studio_mail_archive_portability_visual_test.dart"
+  ],
+  "source_inputs": 2495
+}
