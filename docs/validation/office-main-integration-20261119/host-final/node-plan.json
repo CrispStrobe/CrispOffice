@@ -71,6 +71,7 @@
     "tools/proofing/ayaspell/build_bundle.py",
     "tools/proofing/ayaspell/test_build_bundle.py",
     "tools/proofing/ayaspell/test_build_bundle_incoming.py",
-    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py"
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py",
+    "packages/quds_office_editor/example/test/support/studio_test_settings.dart"
   ]
 }

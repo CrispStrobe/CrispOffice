@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 
+import 'support/studio_test_settings.dart';
+
 class _DraftProvider extends OfficeProofingProvider {
   _DraftProvider({
     this.gates = const {},
@@ -119,7 +121,7 @@ Future<WordEditorController> _studio(
         : RepaintBoundary(key: captureKey, child: const QudsOfficeStudioApp()),
   );
   await _pump(tester);
-  await tester.tap(find.byTooltip('English'));
+  await configureStudioForTest(tester, showComments: true);
   await _pump(tester);
   final controller = tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
@@ -512,7 +514,7 @@ void main() {
       });
     }
     await _studio(tester, provider, captureKey: captureKey);
-    await tester.tap(find.byTooltip('العربية'));
+    await configureStudioForTest(tester, language: StudioLanguage.ar);
     await _pump(tester);
     await tester.binding.setSurfaceSize(const Size(390, 1000));
     tester.platformDispatcher.textScaleFactorTestValue = 1.4;
