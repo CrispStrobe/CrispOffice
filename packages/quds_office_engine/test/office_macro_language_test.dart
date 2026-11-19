@@ -209,32 +209,29 @@ void main() {
   });
 
   group('language extensions', () {
-    test(
-      'native JSON is installed and VBA is explicitly unavailable by default',
-      () {
-        final languages = OfficeMacroLanguages();
-        expect(languages.ids, <String>['quds-json']);
-        final plan = languages.compile(
+    test('native JSON and the Excel subset are installed without full VBA', () {
+      final languages = OfficeMacroLanguages();
+      expect(languages.ids, <String>['quds-json', 'vba-excel']);
+      final plan = languages.compile(
+        OfficeMacroSource(
+          language: 'quds-json',
+          source: jsonEncode(_json()),
+          format: OfficeMacroFormat.xlsx,
+        ),
+      );
+      expect(plan.steps.single.tool, 'xlsx.cellValue');
+      expect(
+        () => languages.compile(
           OfficeMacroSource(
-            language: 'quds-json',
-            source: jsonEncode(_json()),
+            language: 'vba',
+            source: 'Sub Main()\nEnd Sub',
             format: OfficeMacroFormat.xlsx,
           ),
-        );
-        expect(plan.steps.single.tool, 'xlsx.cellValue');
-        expect(
-          () => languages.compile(
-            OfficeMacroSource(
-              language: 'vba',
-              source: 'Sub Main()\nEnd Sub',
-              format: OfficeMacroFormat.xlsx,
-            ),
-          ),
-          throwsA(_error('unsupported_language')),
-        );
-        expect(languages.ids, <String>['quds-json']);
-      },
-    );
+        ),
+        throwsA(_error('unsupported_language')),
+      );
+      expect(languages.ids, <String>['quds-json', 'vba-excel']);
+    });
 
     test(
       'registered compiler emits real operations through the transactional runtime',

@@ -687,7 +687,9 @@ const _credentials = StudioMailCredentials(
 
 void _registerPlatformCredentialTests() {
   group('platform keychain boundary', () {
-    const channel = MethodChannel('plugins.it_nomads.com/flutter_secure_storage');
+    const channel = MethodChannel(
+      'plugins.it_nomads.com/flutter_secure_storage',
+    );
     final messenger =
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
     late StudioMailCredentialStore store;
@@ -723,7 +725,10 @@ void _registerPlatformCredentialTests() {
             return null;
           case 'delete':
             if (failDelete) {
-              throw PlatformException(code: 'locked', message: 'private delete');
+              throw PlatformException(
+                code: 'locked',
+                message: 'private delete',
+              );
             }
             records.remove(key);
             return null;

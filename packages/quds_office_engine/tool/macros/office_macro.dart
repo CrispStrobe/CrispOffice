@@ -19,9 +19,13 @@ Future<void> main(List<String> args) async {
       });
       return;
     }
-    if (args.length == 3 && args.first == 'compile') {
+    final compileVba = args.isNotEmpty && args.first == 'compile-vba';
+    if ((args.length == 3 && args.first == 'compile') ||
+        (compileVba && (args.length == 3 || args.length == 4))) {
       final languages = OfficeMacroLanguages();
-      final source = OfficeMacroSource.fromJson(_readObject(args[1]));
+      final source = compileVba
+          ? _vbaSource(args[1], args.length == 4 ? args[3] : 'Main')
+          : OfficeMacroSource.fromJson(_readObject(args[1]));
       final macro = languages.compile(source);
       _write(args[2], Uint8List.fromList(utf8.encode(macro.encode())));
       _print(<String, Object?>{
@@ -35,8 +39,14 @@ Future<void> main(List<String> args) async {
       _print(_session(args[1]).inspect());
       return;
     }
-    final run = args.isNotEmpty && args.first == 'run';
-    final validate = args.isNotEmpty && args.first == 'validate';
+    final vba =
+        args.isNotEmpty &&
+        (args.first == 'run-vba' || args.first == 'validate-vba');
+    final run =
+        args.isNotEmpty && (args.first == 'run' || args.first == 'run-vba');
+    final validate =
+        args.isNotEmpty &&
+        (args.first == 'validate' || args.first == 'validate-vba');
     if ((!run && !validate) ||
         (run && (args.length < 4 || args.length > 5)) ||
         (validate && (args.length < 3 || args.length > 4))) {
@@ -47,6 +57,10 @@ Future<void> main(List<String> args) async {
         '  run INPUT MACRO.json OUTPUT [PARAMETERS.json]\n'
         '  validate INPUT MACRO.json [PARAMETERS.json]\n'
         '  compile SOURCE.json OUTPUT.json\n'
+        '  compile-vba SOURCE.bas OUTPUT.json [ENTRYPOINT]\n'
+        '  run-vba INPUT SOURCE.bas OUTPUT [ENTRYPOINT]\n'
+        '  validate-vba INPUT SOURCE.bas [ENTRYPOINT]\n'
+        'VBA commands use the bounded vba-excel dialect (default entry: Main).\n'
         'Office input/output must have the same extension. Image assets require '
         'a host resolver through the Dart API.',
       );
@@ -59,16 +73,27 @@ Future<void> main(List<String> args) async {
       );
     }
     final session = _session(args[1]);
-    final macro = OfficeMacro.parse(_readText(args[2]));
     final parameterIndex = run ? 4 : 3;
-    final parameters = args.length > parameterIndex
+    final macro = vba
+        ? OfficeMacroLanguages().compile(
+            _vbaSource(
+              args[2],
+              args.length > parameterIndex ? args[parameterIndex] : 'Main',
+            ),
+          )
+        : OfficeMacro.parse(_readText(args[2]));
+    final parameters = !vba && args.length > parameterIndex
         ? _readObject(args[parameterIndex])
         : const <String, Object?>{};
     final result = validate
         ? await session.validate(macro, parameters: parameters)
         : await session.run(macro, parameters: parameters);
     if (run) _write(args[3], session.bytes);
-    _print(<String, Object?>{...result.toJson(), if (run) 'output': args[3]});
+    _print(<String, Object?>{
+      ...result.toJson(),
+      if (vba) 'language': 'vba-excel',
+      if (run) 'output': args[3],
+    });
   } on OfficeMacroException catch (error) {
     stderr.writeln(jsonEncode(<String, Object?>{'error': error.toJson()}));
     exitCode = 1;
@@ -105,6 +130,18 @@ OfficeMacroSession _session(String path) {
 }
 
 String _extension(String path) => path.split('.').last.toLowerCase();
+
+OfficeMacroSource _vbaSource(String path, String entryPoint) {
+  final filename = File(path).uri.pathSegments.last;
+  final dot = filename.lastIndexOf('.');
+  return OfficeMacroSource(
+    language: 'vba-excel',
+    source: _readText(path),
+    format: OfficeMacroFormat.xlsx,
+    moduleName: dot > 0 ? filename.substring(0, dot) : filename,
+    entryPoint: entryPoint,
+  );
+}
 
 String _readText(String path) {
   final file = File(path);

@@ -1,4 +1,5 @@
 import 'package:quds_office_engine/quds_office_engine.dart';
+
 import 'step_input.dart';
 
 const sheetOperations = <String, List<String>>{
@@ -31,13 +32,35 @@ SmlRange _range(String value) {
   return SmlRange(_cell(parts.first), _cell(parts.last));
 }
 
+// Names are resolved by the shared handler at execution time, including after
+// a prior rename or reorder. Native integer selectors remain zero-based.
+SmlWorksheet _sheet(SmlWorkbook book, StepInput input) {
+  final selector = input.values['sheet'];
+  if (selector is! String) {
+    return input.item('sheet', book.sheets, fallback: 0);
+  }
+  final name = selector.toLowerCase();
+  final matches = book.sheets.where(
+    (sheet) => sheet.name.toLowerCase() == name,
+  );
+  final iterator = matches.iterator;
+  if (!iterator.moveNext()) {
+    throw ArgumentError('No worksheet named: $selector');
+  }
+  final sheet = iterator.current;
+  if (iterator.moveNext()) {
+    throw ArgumentError('Ambiguous worksheet name: $selector');
+  }
+  return sheet;
+}
+
 void applySheetStep(SmlWorkbook book, Map<String, Object?> values) {
   final s = StepInput(values);
   final op = s.string('op');
   final fields = sheetOperations[op];
   if (fields == null) throw ArgumentError('Unknown XLSX operation: $op');
   s.fields(fields);
-  final sheet = s.item('sheet', book.sheets, fallback: 0);
+  final sheet = _sheet(book, s);
   SmlCell cell() => sheet.cell(_cell(s.string('cell')));
   switch (op) {
     case 'cellValue':

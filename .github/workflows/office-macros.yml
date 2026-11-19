@@ -9,7 +9,7 @@ on:
       - '.fvmrc'
       - 'pubspec.yaml'
   push:
-    branches: [main, 'codex/mcp-aligned-macros']
+    branches: [main, 'codex/mcp-aligned-macros', 'codex/vba-excel-macros']
     paths:
       - 'packages/quds_office_engine/**'
       - 'packages/legacy_doc_parser/**'
@@ -46,6 +46,8 @@ jobs:
           test/office_operations_test.dart
           test/office_macro_runtime_test.dart
           test/office_macro_language_test.dart
+          test/office_vba_language_test.dart
+          test/office_vba_integration_test.dart
           test/office_macro_expansion_test.dart
           test/office_macro_mcp_test.dart
           test/office_macro_cli_test.dart
@@ -62,3 +64,5 @@ jobs:
           mkdir -p build/macros
           dart compile js -O1 tool/macros/web_smoke.dart -o build/macros/web_smoke.js
           node -e 'globalThis.self = globalThis; require("./build/macros/web_smoke.js")'
+          dart compile js -O1 tool/macros/web_vba_smoke.dart -o build/macros/web_vba_smoke.js
+          node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_smoke.js")'

@@ -414,6 +414,73 @@ void main() {
     expect(book.firstSheet.allCells, isEmpty);
   });
 
+  test('named worksheet selectors follow renames and reordering', () {
+    final book = SmlWorkbook(
+      sheets: <SmlWorksheet>[
+        SmlWorksheet(name: 'Data', sheetId: 1),
+        SmlWorksheet(name: 'Summary', sheetId: 2),
+      ],
+    );
+    OfficeOperationCatalog.apply(book, 'xlsx.cellValue', {
+      'sheet': 'sUmMaRy',
+      'cell': 'A1',
+      'value': 9,
+    });
+    OfficeOperationCatalog.apply(book, 'xlsx.renameSheet', {
+      'sheet': 'summary',
+      'name': 'Results',
+    });
+    OfficeOperationCatalog.apply(book, 'xlsx.sheetOrder', {
+      'sheet': 'RESULTS',
+      'to': 0,
+    });
+    legacy.applySheetStep(book, {
+      'op': 'cellFormat',
+      'sheet': 'results',
+      'cell': 'A1',
+      'bold': true,
+    });
+    expect(book.firstSheet.name, 'Results');
+    expect(book.firstSheet.cellA1('A1').value, 9);
+    expect(book.firstSheet.cellA1('A1').fontBold, isTrue);
+    OfficeOperationCatalog.apply(book, 'xlsx.cellValue', {
+      'sheet': 1,
+      'cell': 'B1',
+      'value': 12,
+    });
+    expect(book.sheets[1].name, 'Data');
+    expect(book.sheets[1].cellA1('B1').value, 12);
+    expect(
+      () => OfficeOperationCatalog.apply(book, 'xlsx.cellValue', {
+        'sheet': 'Summary',
+        'cell': 'A1',
+        'value': 99,
+      }),
+      throwsArgumentError,
+    );
+  });
+
+  test('worksheet selectors reject missing ambiguous and invalid targets', () {
+    final book = SmlWorkbook(
+      sheets: <SmlWorksheet>[
+        SmlWorksheet(name: 'Data', sheetId: 1),
+        SmlWorksheet(name: 'DATA', sheetId: 2),
+      ],
+    );
+    for (final selector in <Object?>['data', 'missing', '', null, 0.0, -1, 2]) {
+      expect(
+        () => OfficeOperationCatalog.apply(book, 'xlsx.cellValue', {
+          'sheet': selector,
+          'cell': 'A1',
+          'value': 9,
+        }),
+        throwsArgumentError,
+        reason: 'selector: $selector',
+      );
+    }
+    expect(book.sheets.every((sheet) => sheet.allCells.isEmpty), isTrue);
+  });
+
   test('image arguments are host keys and deny implicit file access', () {
     final document = WmlDocument();
     const arguments = <String, Object?>{

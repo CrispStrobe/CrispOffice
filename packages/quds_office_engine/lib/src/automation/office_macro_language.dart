@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'office_macro_model.dart';
 import 'office_operations.dart';
+import 'office_vba_language.dart';
 
 /// Explicit source for a trusted host-installed compiler, never embedded code.
 class OfficeMacroSource {
@@ -63,8 +64,9 @@ class OfficeMacroSource {
 /// Compilers receive no session or document mutation authority. Their returned
 /// plans undergo the same validation, permissions, and limits at execution.
 /// Registering Dart code is a host extension, not a sandbox for untrusted code.
-/// A future `vba` adapter must explicitly define its supported language and
-/// object model; this interface does not load or execute `vbaProject.bin`.
+/// Each dialect explicitly defines its supported language and object model.
+/// The bundled `vba-excel` compiler lowers a bounded, document-independent
+/// subset; this interface does not load or execute `vbaProject.bin`.
 abstract interface class OfficeMacroLanguage {
   String get id;
   OfficeMacro compile(OfficeMacroSource source);
@@ -81,10 +83,11 @@ class OfficeJsonMacroLanguage implements OfficeMacroLanguage {
       OfficeMacro.parse(source.source);
 }
 
-/// Explicit dialect registry. VBA is unavailable until a real adapter is added.
+/// Explicit dialect registry with native JSON and a bounded Excel VBA subset.
 class OfficeMacroLanguages {
   OfficeMacroLanguages() {
     register(const OfficeJsonMacroLanguage());
+    register(const OfficeVbaMacroLanguage());
   }
 
   final Map<String, OfficeMacroLanguage> _languages =

@@ -7,9 +7,11 @@ The portable entry point is
 `package:quds_office_engine/quds_office_automation.dart`.
 
 This is a headless engine capability with a command-line runner and an MCP
-stdio bridge. It does not add a ribbon editor, a VBA interpreter, document-open
-events, or editor undo integration. Existing opaque VBA project bytes remain
-inert and are preserved by the Office serializers.
+stdio bridge. The bundled [`vba-excel` dialect](VBA_MACROS.md) compiles a bounded
+Excel VBA subset from explicitly selected source into the same native plans.
+It does not add a ribbon editor, a full VBA interpreter, document-open events,
+or editor undo integration. Existing opaque VBA project bytes remain inert and
+are preserved by the Office serializers.
 
 ## Execution model
 
@@ -92,12 +94,16 @@ Parameter values containing quotes, dollar signs, or JSON-looking text remain
 literal values. Use `{ "$literal": value }` to include a parameter-looking
 object literally. Parameter values themselves are never interpreted again.
 
-Document indexes follow the existing command runner: sheets, paragraphs,
+Numeric document indexes follow the existing command runner: sheets, paragraphs,
 slides, runs, rows, and columns are **zero-based**. Spreadsheet cell and range
-addresses use A1 notation. Use the inspection tool to obtain valid targets.
+addresses use A1 notation. Spreadsheet `sheet` arguments also accept a worksheet
+name, matched case-insensitively against the document at the time of each step.
+Missing or ambiguous names fail; they never fall back to the first sheet.
+Use the inspection tool to obtain valid targets.
 Each macro targets one document and contains an ordered list of calls; branching,
 loops, recursive macro calls, timers, and application events are not part of
-version 1.
+the native version 1 plan. The Excel VBA compiler expands supported loops and
+evaluates supported conditions before returning that finite plan.
 
 ## Command line
 
@@ -120,7 +126,22 @@ heading, adds a net formula, and freezes the first row. Other examples cover a
 Word heading and presentation notes. The runner prints a JSON receipt on success
 and a JSON diagnostic to stderr on failure. `compile SOURCE.json OUTPUT.json`
 compiles a source envelope without running it; the default registry accepts
-`quds-json`.
+`quds-json` and `vba-excel`.
+
+For an explicitly selected VBA source file:
+
+```bash
+dart run tool/macros/office_macro.dart compile-vba \
+  example/macros/monthly_totals.bas monthly.qudsmacro.json
+dart run tool/macros/office_macro.dart validate-vba \
+  input.xlsx example/macros/monthly_totals.bas
+dart run tool/macros/office_macro.dart run-vba \
+  input.xlsx example/macros/monthly_totals.bas output.xlsx
+```
+
+These commands default to the parameterless `Main` procedure and accept a final
+optional entry-point name. The [VBA dialect guide](VBA_MACROS.md) specifies the
+supported syntax, object members, compiler limits, and deliberate exclusions.
 
 ## Dart embedding and recording
 
@@ -280,7 +301,7 @@ resolver should be a pure lookup, because its external side effects cannot be
 rolled back. Legacy fidelity CLI wrappers retain their existing trusted local
 file behavior for test scenarios.
 
-## Extending to VBA
+## Language compilers and the Excel VBA subset
 
 `OfficeMacroLanguage` is the implemented extension interface:
 
@@ -297,38 +318,40 @@ A host registers a concrete compiler with
 immutable native plan, and execution applies the same operation allowlist,
 document admission, parameter checks, and transaction rules. Tests register an
 independent small compiler and execute its result through the real dispatcher.
-The default registry includes native JSON; VBA requires a separate compiler
-implementation.
+The default registry includes native JSON and `OfficeVbaMacroLanguage`, exposed
+as the deliberately scoped `vba-excel` dialect. The generic language name `vba`
+remains unregistered so clients cannot infer full VBA support.
 
-A future VBA adapter can lower supported source statements into these canonical
-operations. It must separately define language semantics and the Office object
-model: for example `Application`, `Workbook`, `Worksheet`, and `Range`. Native
-zero-based indexes must not be silently presented as VBA collection indexes;
-`Empty`, `Null`, `Nothing`, `ByRef`, arrays, and default members need explicit
-semantics. Even Excel `Value` and `Value2` have a documented Date/Currency
-distinction ([Microsoft reference](https://learn.microsoft.com/en-us/office/vba/api/excel.range.value2)).
+The Excel adapter compiles supported statements with values known from source.
+It converts one-based worksheet and cell indexes, expands bounded rectangles
+and loops, and emits the existing `xlsx.cellValue`, `xlsx.cellFormula`, and
+`xlsx.cellFormat` operations. Named worksheets are resolved by the shared
+handler during validation or execution. The compiler receives no workbook and
+cannot read document values; [the complete dialect contract](VBA_MACROS.md)
+documents supported types, syntax, members, and limits.
 
-The initial compiler boundary supports lowering into a finite command plan.
-An interactive or data-dependent full VBA interpreter would need an additional
-constrained execution model, not merely registration under the name `vba`.
-Parsing an embedded `vbaProject.bin`, project references, forms, COM/ActiveX,
-and event dispatch are separate work. Neither opening an XLSM nor registering
-a compiler authorizes automatic execution. Host-installed Dart compilers are
-trusted extensions, not sandboxed untrusted plugins.
+An interactive or document-dependent VBA interpreter needs an additional
+constrained execution model. Parsing an embedded `vbaProject.bin`, project
+references, forms, COM/ActiveX, and event dispatch are separate work. Neither
+opening an XLSM nor registering a compiler authorizes automatic execution.
+Host-installed Dart compilers are trusted extensions, not sandboxed untrusted
+plugins.
 
 ## Verification
 
 Focused tests live in `office_operations_test.dart`,
 `office_macro_runtime_test.dart`, `office_macro_language_test.dart`,
 `office_macro_expansion_test.dart`,
-`office_macro_mcp_test.dart`, and `office_macro_cli_test.dart`. They cover shared
+`office_macro_mcp_test.dart`, `office_macro_cli_test.dart`,
+`office_vba_language_test.dart`, and `office_vba_integration_test.dart`. They cover shared
 handler parity, package admission, immutable/parameterized plans, publish-on-
 success, recording, bounded extension compilation, protocol/domain errors,
 and real subprocess persistence. Existing fidelity step tests continue to use
 their original paths and exercise the same promoted handlers. The dedicated
 Office macros workflow uses the repository's `.fvmrc` pin. It also compiles
-`tool/macros/web_smoke.dart` to JavaScript and executes the real macro/MCP path
-under Node, checking calculation and late-failure byte preservation. This is
+`tool/macros/web_smoke.dart` and `tool/macros/web_vba_smoke.dart` to JavaScript
+and executes the real macro/MCP paths under Node, checking VBA compilation,
+calculation, formatting, and late-failure byte preservation. This is
 portable-runtime qualification, not a test of a Flutter browser UI.
 
 The XLSM test compares opaque VBA payload bytes and verifies native content
