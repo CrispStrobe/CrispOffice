@@ -115,4 +115,39 @@ final class StudioStrings {
     'الشفرة المصدرية (GitHub)',
   );
   String get website => _t('Website', 'Webseite', 'الموقع الإلكتروني');
+  String get compose => _t('Compose', 'Verfassen', 'إنشاء');
+  String get refresh => _t('Refresh', 'Aktualisieren', 'تحديث');
+  String get disconnect => _t('Disconnect', 'Trennen', 'قطع الاتصال');
+  String get connect => _t('Connect', 'Verbinden', 'اتصال');
+  String get emailAddress =>
+      _t('Email address', 'E-Mail-Adresse', 'عنوان البريد');
+  String get password => _t('Password', 'Passwort', 'كلمة المرور');
+  String get manualServers => _t(
+    'Manual server settings',
+    'Manuelle Servereinstellungen',
+    'إعدادات الخادم اليدوية',
+  );
+  String get imapHost => _t('IMAP host', 'IMAP-Server', 'خادم IMAP');
+  String get smtpHost => _t('SMTP host', 'SMTP-Server', 'خادم SMTP');
+  String get mailSetupHelp => _t(
+    'Connect an IMAP/SMTP account. Automatic discovery is used unless manual server settings are enabled.',
+    'Verbinden Sie ein IMAP-/SMTP-Konto. Die automatische Erkennung wird verwendet, sofern keine manuellen Servereinstellungen aktiviert sind.',
+    'اتصل بحساب IMAP/SMTP. يُستخدم الاكتشاف التلقائي ما لم يتم تفعيل إعدادات الخادم اليدوية.',
+  );
+  String get mailSessionNotice => _t(
+    'Session only: the password is not stored by this example.',
+    'Nur für diese Sitzung: Das Passwort wird von diesem Beispiel nicht gespeichert.',
+    'للجلسة فقط: لا يحفظ هذا المثال كلمة المرور.',
+  );
+  String get searchMail => _t('Search mail', 'E-Mail suchen', 'بحث في البريد');
+  String get noMessages =>
+      _t('No messages', 'Keine Nachrichten', 'لا توجد رسائل');
+  String get to => _t('To', 'An', 'إلى');
+  String get subject => _t('Subject', 'Betreff', 'الموضوع');
+  String get messageBody => _t('Message', 'Nachricht', 'الرسالة');
+  String get send => _t('Send', 'Senden', 'إرسال');
+  String get sending => _t('Sending…', 'Wird gesendet …', 'جارٍ الإرسال…');
+  String get messageSent =>
+      _t('Message sent', 'Nachricht gesendet', 'تم إرسال الرسالة');
+  String get cancel => _t('Cancel', 'Abbrechen', 'إلغاء');
 }
