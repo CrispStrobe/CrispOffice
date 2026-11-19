@@ -37,6 +37,13 @@ changes fail safely instead of producing false tombstones or write success.
 The focused regression records include a reproduced false-success case before
 the correction. These development runs remain separate from final totals.
 
+The first full protocol run also exposed a legacy exception-contract regression.
+The distinct budget error now extends `FormatException`, preserving both the
+existing parser contract and native Quds quota classification. Ordinary status
+text containing the word FETCH is kept separate from message data. The runtime
+replay helper now validates exact locked/workspace package names instead of a
+historical fixed package count, including the newly added transport member.
+
 The committed native plan selects 56 suites: three native transport suites, all
 six MIME consumer suites, all four reader UI suites, and 43 shared protocol and
 lifecycle suites. The separate Node plan selects seven suites: the transport's
