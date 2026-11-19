@@ -1,0 +1,2666 @@
+diff --git a/packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart b/packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart
+index b9df7a60..8668fabb 100644
+--- a/packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart
++++ b/packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart
+@@ -4641,7 +4641,11 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
+       final end = line.paragraphIndex == selection.endPara
+           ? selection.endIdx
+           : (line.sourceParagraph?.text.length ?? 0);
+-      for (final range in WordProofingGeometry.displayRanges(line, start, end)) {
++      for (final range in WordProofingGeometry.displayRanges(
++        line,
++        start,
++        end,
++      )) {
+         for (final box in painter.getBoxesForSelection(
+           TextSelection(baseOffset: range.start, extentOffset: range.end),
+         )) {
+diff --git a/packages/quds_office_editor/lib/src/embed/office_controller.dart b/packages/quds_office_editor/lib/src/embed/office_controller.dart
+index 721df0cf..651083eb 100644
+--- a/packages/quds_office_editor/lib/src/embed/office_controller.dart
++++ b/packages/quds_office_editor/lib/src/embed/office_controller.dart
+@@ -8608,9 +8608,9 @@ class WordEditorController extends OfficeController {
+     if (_disposed || !_ownsNote(note)) return null;
+     final current = _currentProofingIssue(issue);
+     if (current == null) return null;
+-    return proofingIssuesForNote(note).any(
+-          (entry) => identical(entry.issue, current),
+-        )
++    return proofingIssuesForNote(
++          note,
++        ).any((entry) => identical(entry.issue, current))
+         ? current
+         : null;
+   }
+@@ -10114,10 +10114,11 @@ class WordEditorController extends OfficeController {
+     final activeCaret = caret;
+     final activeParagraphs = _paragraphs;
+     final activeNote = noteEditingTarget;
+-    final activeNoteAffected = activeNote != null &&
+-        _noteTextSegments(activeNote.note).any(
+-          (segment) => identical(segment.paragraph, paragraph),
+-        );
++    final activeNoteAffected =
++        activeNote != null &&
++        _noteTextSegments(
++          activeNote.note,
++        ).any((segment) => identical(segment.paragraph, paragraph));
+     final activeComment = isEditingComment ? selectedComment : null;
+     final activeHeaderFooter = isEditingHeaderFooter ? activeParagraphs : null;
+     bool sameCaretStory() =>
+@@ -10141,7 +10142,7 @@ class WordEditorController extends OfficeController {
+       anchor: activeCaret.selectionAnchor,
+     );
+     void correctedCaret() {
+-      if (activeNoteAffected && activeNote != null) {
++      if (activeNoteAffected) {
+         if (identical(noteEditingTarget?.note, activeNote.note)) {
+           _restoreNoteEditingTarget(
+             _noteTargetAt(
+@@ -10168,7 +10169,7 @@ class WordEditorController extends OfficeController {
+     }
+ 
+     void originalCaret() {
+-      if (activeNoteAffected && activeNote != null) {
++      if (activeNoteAffected) {
+         if (identical(noteEditingTarget?.note, activeNote.note)) {
+           _restoreNoteEditingTarget(_clampNoteEditingTarget(activeNote));
+         }
+@@ -10375,9 +10376,7 @@ class WordEditorController extends OfficeController {
+   /// that do not occur on a laid-out page remain available in the review pane.
+   bool revealProofingIssue(WordProofingIssue issue) {
+     var current = _currentProofingIssue(issue);
+-    if (!config.allowsSelection ||
+-        current == null ||
+-        _hasProofingComposition) {
++    if (!config.allowsSelection || current == null || _hasProofingComposition) {
+       return false;
+     }
+     commitPendingEdits();
+@@ -10422,9 +10421,10 @@ class WordEditorController extends OfficeController {
+     ) {
+       final section = document.sections[sectionIndex];
+       for (final footer in [false, true]) {
+-        for (final paragraphs in footer
+-            ? [section.footer, section.firstFooter, section.evenFooter]
+-            : [section.header, section.firstHeader, section.evenHeader]) {
++        for (final paragraphs
++            in footer
++                ? [section.footer, section.firstFooter, section.evenFooter]
++                : [section.header, section.firstHeader, section.evenHeader]) {
+           final index = paragraphs.indexOf(paragraph);
+           if (index < 0) continue;
+           // Navigate only to a page that renders this exact source story.
+@@ -10499,9 +10499,10 @@ class WordEditorController extends OfficeController {
+     if (paragraph == null) {
+       return const <WordProofingIssue>[];
+     }
+-    return proofing.issuesAt(paragraph, position.offset).where(
+-      proofing.isCurrent,
+-    ).toList();
++    return proofing
++        .issuesAt(paragraph, position.offset)
++        .where(proofing.isCurrent)
++        .toList();
+   }
+ 
+   /// Legacy caller-supplied spelling callback. New hosts should use
+diff --git a/packages/quds_office_editor/lib/src/embed/word_notes_pane.dart b/packages/quds_office_editor/lib/src/embed/word_notes_pane.dart
+index cba07b79..e82bfdf1 100644
+--- a/packages/quds_office_editor/lib/src/embed/word_notes_pane.dart
++++ b/packages/quds_office_editor/lib/src/embed/word_notes_pane.dart
+@@ -183,7 +183,6 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+     return edit;
+   }
+ 
+-
+   String _s(String english, String arabic) => widget.arabic ? arabic : english;
+ 
+   bool get _canInspect =>
+@@ -218,7 +217,9 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+     final issues = _c.proofingIssuesForNote(note);
+     if (issues.isEmpty) return;
+     final selected = _c.selectedProofingIssue;
+-    final current = issues.indexWhere((entry) => identical(entry.issue, selected));
++    final current = issues.indexWhere(
++      (entry) => identical(entry.issue, selected),
++    );
+     final next = current < 0
+         ? (delta > 0 ? 0 : issues.length - 1)
+         : (current + delta) % issues.length;
+@@ -231,8 +232,10 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+     // this button. A retained callback cannot edit a replacement document.
+     final current = _c.currentNoteProofingIssue(note, issue);
+     if (current == null || !_c.canApplyProofingIssue(current)) return;
+-    final range = _c.proofingIssuesForNote(note)
+-        .firstWhere((entry) => identical(entry.issue, current)).range;
++    final range = _c
++        .proofingIssuesForNote(note)
++        .firstWhere((entry) => identical(entry.issue, current))
++        .range;
+     _c.setNoteEditingTarget(
+       note,
+       TextSelection(baseOffset: range.start, extentOffset: range.end),
+@@ -240,7 +243,10 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+     final applied = _c.applyProofingSuggestion(current, replacement);
+     setState(() {
+       _notice = applied
+-          ? _s('Correction applied. Undo is available.', 'تم التصحيح. يمكنك التراجع.')
++          ? _s(
++              'Correction applied. Undo is available.',
++              'تم التصحيح. يمكنك التراجع.',
++            )
+           : _s(
+               'The text changed or is protected. Check it again before correcting.',
+               'تغير النص أو أنه محمي. أعد تدقيقه قبل التصحيح.',
+@@ -270,9 +276,15 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+     final status = summary.checking
+         ? _s('Checking document…', 'جارٍ تدقيق المستند…')
+         : summary.scheduled
+-        ? _s('Waiting for a pause in typing…', 'في انتظار توقف قصير عن الكتابة…')
++        ? _s(
++            'Waiting for a pause in typing…',
++            'في انتظار توقف قصير عن الكتابة…',
++          )
+         : !session.enabled
+-        ? _s('Check as you type is paused.', 'التدقيق أثناء الكتابة متوقف مؤقتًا.')
++        ? _s(
++            'Check as you type is paused.',
++            'التدقيق أثناء الكتابة متوقف مؤقتًا.',
++          )
+         : summary.statusMessage;
+     return Column(
+       crossAxisAlignment: CrossAxisAlignment.stretch,
+@@ -329,7 +341,8 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+     OfficeTheme theme,
+   ) {
+     final selected = _c.selectedProofingIssue;
+-    final entry = issues.where((entry) => identical(entry.issue, selected)).firstOrNull ??
++    final entry =
++        issues.where((entry) => identical(entry.issue, selected)).firstOrNull ??
+         issues.first;
+     final issue = entry.issue;
+     final finding = issue.finding;
+@@ -344,7 +357,10 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+           children: [
+             Expanded(
+               child: Text(
+-                _s('${issues.length} writing suggestions', '${issues.length} اقتراحات للكتابة'),
++                _s(
++                  '${issues.length} writing suggestions',
++                  '${issues.length} اقتراحات للكتابة',
++                ),
+                 style: TextStyle(color: theme.headerText, fontSize: 11),
+               ),
+             ),
+@@ -385,7 +401,11 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+             TextButton(
+               key: ValueKey<String>('notes-ignore-$identity'),
+               onPressed: canInspect
+-                  ? () => _ignore(note, issue, (current) => _c.proofing.ignoreOnce(current))
++                  ? () => _ignore(
++                      note,
++                      issue,
++                      (current) => _c.proofing.ignoreOnce(current),
++                    )
+                   : null,
+               child: Text(_s('Ignore once', 'تجاهل مرة واحدة')),
+             ),
+@@ -393,7 +413,11 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+               TextButton(
+                 key: ValueKey<String>('notes-add-word-$identity'),
+                 onPressed: canInspect
+-                    ? () => _ignore(note, issue, (current) => _c.proofing.addWord(current))
++                    ? () => _ignore(
++                        note,
++                        issue,
++                        (current) => _c.proofing.addWord(current),
++                      )
+                     : null,
+                 child: Text(_s('Add to dictionary', 'إضافة إلى القاموس')),
+               ),
+@@ -402,8 +426,14 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+         if (composing || (!canApply && finding.replacements.isNotEmpty))
+           Text(
+             composing
+-                ? _s('Finish composing before correcting.', 'أكمل إدخال النص قبل التصحيح.')
+-                : _s('Corrections are unavailable for this text.', 'التصحيحات غير متاحة لهذا النص.'),
++                ? _s(
++                    'Finish composing before correcting.',
++                    'أكمل إدخال النص قبل التصحيح.',
++                  )
++                : _s(
++                    'Corrections are unavailable for this text.',
++                    'التصحيحات غير متاحة لهذا النص.',
++                  ),
+             style: TextStyle(color: theme.headerText, fontSize: 11),
+           ),
+       ],
+@@ -436,257 +466,274 @@ class _WordNotesPaneState extends State<WordNotesPane> {
+           final target = _c.noteEditingTarget;
+           if (target != null) _stepFinding(target.note, 1);
+         },
+-        const SingleActivator(LogicalKeyboardKey.f7, alt: true, shift: true): () {
++        const SingleActivator(
++          LogicalKeyboardKey.f7,
++          alt: true,
++          shift: true,
++        ): () {
+           final target = _c.noteEditingTarget;
+           if (target != null) _stepFinding(target.note, -1);
+         },
+       },
+       child: TextFieldTapRegion(
+-      child: ColoredBox(
+-      color: theme.chromeFill,
+-      child: Padding(
+-        padding: const EdgeInsets.all(8),
+-        child: SingleChildScrollView(
+-          child: Column(
+-            crossAxisAlignment: CrossAxisAlignment.stretch,
+-            children: <Widget>[
+-              Text(
+-                widget.arabic ? 'ملاحظات' : 'Notes',
+-                style: TextStyle(
+-                  color: theme.chromeText,
+-                  fontWeight: FontWeight.w600,
+-                  fontSize: 12,
+-                ),
+-              ),
+-              _writingStatus(theme),
+-              if (editable) ...<Widget>[
+-                const SizedBox(height: 6),
+-                Wrap(
+-                  spacing: 12,
+-                  children: <Widget>[
+-                    GestureDetector(
+-                      key: const ValueKey<String>('notes-add-footnote'),
+-                      onTap: () => _c.insertFootnote(),
+-                      child: Text(
+-                        widget.arabic ? '+ حاشية سفلية' : '+ Footnote',
+-                        style: TextStyle(color: theme.focusRing, fontSize: 11),
+-                      ),
++        child: ColoredBox(
++          color: theme.chromeFill,
++          child: Padding(
++            padding: const EdgeInsets.all(8),
++            child: SingleChildScrollView(
++              child: Column(
++                crossAxisAlignment: CrossAxisAlignment.stretch,
++                children: <Widget>[
++                  Text(
++                    widget.arabic ? 'ملاحظات' : 'Notes',
++                    style: TextStyle(
++                      color: theme.chromeText,
++                      fontWeight: FontWeight.w600,
++                      fontSize: 12,
+                     ),
+-                    GestureDetector(
+-                      key: const ValueKey<String>('notes-add-endnote'),
+-                      onTap: () => _c.insertFootnote(endnote: true),
+-                      child: Text(
+-                        widget.arabic ? '+ حاشية ختامية' : '+ Endnote',
+-                        style: TextStyle(color: theme.focusRing, fontSize: 11),
+-                      ),
+-                    ),
+-                  ],
+-                ),
+-              ],
+-              const SizedBox(height: 8),
+-              if (notes.isEmpty)
+-                Text(
+-                  widget.arabic ? 'لا توجد حواشٍ' : 'No notes',
+-                  style: TextStyle(color: theme.headerText, fontSize: 11),
+-                )
+-              else
+-                ...notes.map((WmlNote note) {
+-                  final String label = numbering.labelFor(note);
+-                  final String mark = label.isEmpty
+-                      ? (widget.arabic ? 'مخصصة' : 'custom')
+-                      : (note.endnote ? 'E$label' : label);
+-                  // Widget identity follows the native link, not its changing
+-                  // visible number, so edits and focus survive renumbering.
+-                  final String identity = note.endnote
+-                      ? 'E${note.id}'
+-                      : '${note.id}';
+-                  final String title = numbering.hasExactLabel(note)
+-                      ? (widget.arabic ? 'حاشية $mark' : 'Note $mark')
+-                      : (widget.arabic
+-                            ? 'حاشية (معرّف المصدر $identity)'
+-                            : 'Note (source ID $identity)');
+-                  final issues = _c.proofingIssuesForNote(note);
+-                  final edit = _editFor(note)
+-                    ..checkedText = _c.noteEditText(note)
+-                    ..issues = issues;
+-                  return Padding(
+-                    key: ValueKey<WmlNote>(note),
+-                    padding: const EdgeInsets.only(bottom: 8),
+-                    child: Column(
+-                      key: _noteLocations.putIfAbsent(note, GlobalKey.new),
+-                      crossAxisAlignment: CrossAxisAlignment.stretch,
++                  ),
++                  _writingStatus(theme),
++                  if (editable) ...<Widget>[
++                    const SizedBox(height: 6),
++                    Wrap(
++                      spacing: 12,
+                       children: <Widget>[
+-                        Row(
+-                          children: <Widget>[
+-                            Expanded(
+-                              child: GestureDetector(
+-                                onTap: () => _c.jumpToNote(note),
+-                                child: Text(
+-                                  title,
+-                                  style: TextStyle(
+-                                    color: theme.focusRing,
+-                                    fontSize: 11,
+-                                    fontWeight: FontWeight.w600,
+-                                  ),
+-                                ),
+-                              ),
++                        GestureDetector(
++                          key: const ValueKey<String>('notes-add-footnote'),
++                          onTap: () => _c.insertFootnote(),
++                          child: Text(
++                            widget.arabic ? '+ حاشية سفلية' : '+ Footnote',
++                            style: TextStyle(
++                              color: theme.focusRing,
++                              fontSize: 11,
+                             ),
+-                            if (editable)
+-                              GestureDetector(
+-                                key: ValueKey<String>('notes-delete-$identity'),
+-                                onTap: () => _c.deleteNote(note),
+-                                child: Text(
+-                                  widget.arabic ? 'حذف' : 'Delete',
+-                                  style: TextStyle(
+-                                    color: theme.headerText,
+-                                    fontSize: 10,
+-                                  ),
+-                                ),
+-                              ),
+-                          ],
+-                        ),
+-                        const SizedBox(height: 4),
+-                        TextField(
+-                          key: ValueKey<String>('notes-edit-$identity'),
+-                          controller: edit,
+-                          focusNode: _focusFor(note),
+-                          minLines: 1,
+-                          maxLines: null,
+-                          keyboardType: TextInputType.multiline,
+-                          enabled: _c.config.allowsSelection,
+-                          readOnly: !editable,
+-                          enableInteractiveSelection: _c.config.allowsSelection,
+-                          style: TextStyle(
+-                            color: theme.chromeText,
+-                            fontSize: 11,
+                           ),
+-                          decoration: const InputDecoration(
+-                            isDense: true,
+-                            border: InputBorder.none,
++                        ),
++                        GestureDetector(
++                          key: const ValueKey<String>('notes-add-endnote'),
++                          onTap: () => _c.insertFootnote(endnote: true),
++                          child: Text(
++                            widget.arabic ? '+ حاشية ختامية' : '+ Endnote',
++                            style: TextStyle(
++                              color: theme.focusRing,
++                              fontSize: 11,
++                            ),
+                           ),
+-                          onChanged: editable
+-                              ? (String value) {
+-                                  _notice = null;
+-                                  _c.setNoteText(note, value);
+-                                  _publishSelection(note);
+-                                }
+-                              : null,
+-                          onTapOutside: (_) => _focusFor(note).unfocus(),
+                         ),
+-                        if (issues.isNotEmpty)
+-                          _findingControls(note, identity, issues, theme),
+                       ],
+                     ),
+-                  );
+-                }),
+-              const SizedBox(height: 12),
+-              Align(
+-                alignment: AlignmentDirectional.centerStart,
+-                child: TextButton(
+-                  key: const ValueKey<String>('notes-review-changes'),
+-                  onPressed: () => _c.openReviewPane(
+-                    tab: WordReviewPaneTab.changes,
+-                  ),
+-                  child: Text(
+-                    widget.arabic ? 'مراجعة التغييرات' : 'Review changes',
+-                  ),
+-                ),
+-              ),
+-              Text(
+-                widget.arabic ? 'التغييرات' : 'Revisions',
+-                style: TextStyle(
+-                  color: theme.chromeText,
+-                  fontWeight: FontWeight.w600,
+-                  fontSize: 12,
+-                ),
+-              ),
+-              const SizedBox(height: 8),
+-              if (_c.document.revisions.isEmpty)
+-                Text(
+-                  widget.arabic ? 'لا توجد تغييرات' : 'No revisions',
+-                  style: TextStyle(color: theme.headerText, fontSize: 11),
+-                )
+-              else
+-                ..._c.document.revisions.map((WmlRevision revision) {
+-                  final bool on = identical(revision, _c.selectedRevision);
+-                  final String kind = revision.kind == WmlRevisionKind.insert
+-                      ? (widget.arabic ? 'إدراج' : 'Insert')
+-                      : (widget.arabic ? 'حذف' : 'Delete');
+-                  return GestureDetector(
+-                    onTap: () => _c.revealRevision(revision),
+-                    child: Padding(
+-                      padding: const EdgeInsets.only(bottom: 6),
+-                      child: ColoredBox(
+-                        color: on
+-                            ? theme.focusRing.withValues(alpha: 0.12)
+-                            : const Color(0x00000000),
+-                        child: Padding(
+-                          padding: const EdgeInsets.symmetric(
+-                            horizontal: 4,
+-                            vertical: 4,
+-                          ),
+-                          child: Column(
+-                            crossAxisAlignment: CrossAxisAlignment.stretch,
+-                            children: <Widget>[
+-                              Text(
+-                                '$kind · ${revision.author}',
+-                                style: TextStyle(
+-                                  color: theme.chromeText,
+-                                  fontSize: 11,
+-                                  fontWeight: FontWeight.w600,
+-                                ),
+-                              ),
+-                              Text(
+-                                revision.text,
+-                                maxLines: 2,
+-                                overflow: TextOverflow.ellipsis,
+-                                style: TextStyle(
+-                                  color: theme.headerText,
+-                                  fontSize: 11,
+-                                ),
+-                              ),
+-                              Row(
+-                                children: <Widget>[
+-                                  GestureDetector(
+-                                    onTap: editable && revision.conflict == null
+-                                        ? () => _c.acceptRevision(revision)
+-                                        : null,
++                  ],
++                  const SizedBox(height: 8),
++                  if (notes.isEmpty)
++                    Text(
++                      widget.arabic ? 'لا توجد حواشٍ' : 'No notes',
++                      style: TextStyle(color: theme.headerText, fontSize: 11),
++                    )
++                  else
++                    ...notes.map((WmlNote note) {
++                      final String label = numbering.labelFor(note);
++                      final String mark = label.isEmpty
++                          ? (widget.arabic ? 'مخصصة' : 'custom')
++                          : (note.endnote ? 'E$label' : label);
++                      // Widget identity follows the native link, not its changing
++                      // visible number, so edits and focus survive renumbering.
++                      final String identity = note.endnote
++                          ? 'E${note.id}'
++                          : '${note.id}';
++                      final String title = numbering.hasExactLabel(note)
++                          ? (widget.arabic ? 'حاشية $mark' : 'Note $mark')
++                          : (widget.arabic
++                                ? 'حاشية (معرّف المصدر $identity)'
++                                : 'Note (source ID $identity)');
++                      final issues = _c.proofingIssuesForNote(note);
++                      final edit = _editFor(note)
++                        ..checkedText = _c.noteEditText(note)
++                        ..issues = issues;
++                      return Padding(
++                        key: ValueKey<WmlNote>(note),
++                        padding: const EdgeInsets.only(bottom: 8),
++                        child: Column(
++                          key: _noteLocations.putIfAbsent(note, GlobalKey.new),
++                          crossAxisAlignment: CrossAxisAlignment.stretch,
++                          children: <Widget>[
++                            Row(
++                              children: <Widget>[
++                                Expanded(
++                                  child: GestureDetector(
++                                    onTap: () => _c.jumpToNote(note),
+                                     child: Text(
+-                                      widget.arabic ? 'قبول' : 'Accept',
++                                      title,
+                                       style: TextStyle(
+                                         color: theme.focusRing,
+-                                        fontSize: 10,
++                                        fontSize: 11,
++                                        fontWeight: FontWeight.w600,
+                                       ),
+                                     ),
+                                   ),
+-                                  const SizedBox(width: 12),
++                                ),
++                                if (editable)
+                                   GestureDetector(
+-                                    onTap: editable && revision.conflict == null
+-                                        ? () => _c.rejectRevision(revision)
+-                                        : null,
++                                    key: ValueKey<String>(
++                                      'notes-delete-$identity',
++                                    ),
++                                    onTap: () => _c.deleteNote(note),
+                                     child: Text(
+-                                      widget.arabic ? 'رفض' : 'Reject',
++                                      widget.arabic ? 'حذف' : 'Delete',
+                                       style: TextStyle(
+-                                        color: theme.focusRing,
++                                        color: theme.headerText,
+                                         fontSize: 10,
+                                       ),
+                                     ),
+                                   ),
+-                                ],
++                              ],
++                            ),
++                            const SizedBox(height: 4),
++                            TextField(
++                              key: ValueKey<String>('notes-edit-$identity'),
++                              controller: edit,
++                              focusNode: _focusFor(note),
++                              minLines: 1,
++                              maxLines: null,
++                              keyboardType: TextInputType.multiline,
++                              enabled: _c.config.allowsSelection,
++                              readOnly: !editable,
++                              enableInteractiveSelection:
++                                  _c.config.allowsSelection,
++                              style: TextStyle(
++                                color: theme.chromeText,
++                                fontSize: 11,
+                               ),
+-                            ],
+-                          ),
++                              decoration: const InputDecoration(
++                                isDense: true,
++                                border: InputBorder.none,
++                              ),
++                              onChanged: editable
++                                  ? (String value) {
++                                      _notice = null;
++                                      _c.setNoteText(note, value);
++                                      _publishSelection(note);
++                                    }
++                                  : null,
++                              onTapOutside: (_) => _focusFor(note).unfocus(),
++                            ),
++                            if (issues.isNotEmpty)
++                              _findingControls(note, identity, issues, theme),
++                          ],
+                         ),
++                      );
++                    }),
++                  const SizedBox(height: 12),
++                  Align(
++                    alignment: AlignmentDirectional.centerStart,
++                    child: TextButton(
++                      key: const ValueKey<String>('notes-review-changes'),
++                      onPressed: () =>
++                          _c.openReviewPane(tab: WordReviewPaneTab.changes),
++                      child: Text(
++                        widget.arabic ? 'مراجعة التغييرات' : 'Review changes',
+                       ),
+                     ),
+-                  );
+-                }),
+-            ],
++                  ),
++                  Text(
++                    widget.arabic ? 'التغييرات' : 'Revisions',
++                    style: TextStyle(
++                      color: theme.chromeText,
++                      fontWeight: FontWeight.w600,
++                      fontSize: 12,
++                    ),
++                  ),
++                  const SizedBox(height: 8),
++                  if (_c.document.revisions.isEmpty)
++                    Text(
++                      widget.arabic ? 'لا توجد تغييرات' : 'No revisions',
++                      style: TextStyle(color: theme.headerText, fontSize: 11),
++                    )
++                  else
++                    ..._c.document.revisions.map((WmlRevision revision) {
++                      final bool on = identical(revision, _c.selectedRevision);
++                      final String kind =
++                          revision.kind == WmlRevisionKind.insert
++                          ? (widget.arabic ? 'إدراج' : 'Insert')
++                          : (widget.arabic ? 'حذف' : 'Delete');
++                      return GestureDetector(
++                        onTap: () => _c.revealRevision(revision),
++                        child: Padding(
++                          padding: const EdgeInsets.only(bottom: 6),
++                          child: ColoredBox(
++                            color: on
++                                ? theme.focusRing.withValues(alpha: 0.12)
++                                : const Color(0x00000000),
++                            child: Padding(
++                              padding: const EdgeInsets.symmetric(
++                                horizontal: 4,
++                                vertical: 4,
++                              ),
++                              child: Column(
++                                crossAxisAlignment: CrossAxisAlignment.stretch,
++                                children: <Widget>[
++                                  Text(
++                                    '$kind · ${revision.author}',
++                                    style: TextStyle(
++                                      color: theme.chromeText,
++                                      fontSize: 11,
++                                      fontWeight: FontWeight.w600,
++                                    ),
++                                  ),
++                                  Text(
++                                    revision.text,
++                                    maxLines: 2,
++                                    overflow: TextOverflow.ellipsis,
++                                    style: TextStyle(
++                                      color: theme.headerText,
++                                      fontSize: 11,
++                                    ),
++                                  ),
++                                  Row(
++                                    children: <Widget>[
++                                      GestureDetector(
++                                        onTap:
++                                            editable &&
++                                                revision.conflict == null
++                                            ? () => _c.acceptRevision(revision)
++                                            : null,
++                                        child: Text(
++                                          widget.arabic ? 'قبول' : 'Accept',
++                                          style: TextStyle(
++                                            color: theme.focusRing,
++                                            fontSize: 10,
++                                          ),
++                                        ),
++                                      ),
++                                      const SizedBox(width: 12),
++                                      GestureDetector(
++                                        onTap:
++                                            editable &&
++                                                revision.conflict == null
++                                            ? () => _c.rejectRevision(revision)
++                                            : null,
++                                        child: Text(
++                                          widget.arabic ? 'رفض' : 'Reject',
++                                          style: TextStyle(
++                                            color: theme.focusRing,
++                                            fontSize: 10,
++                                          ),
++                                        ),
++                                      ),
++                                    ],
++                                  ),
++                                ],
++                              ),
++                            ),
++                          ),
++                        ),
++                      );
++                    }),
++                ],
++              ),
++            ),
+           ),
+         ),
+       ),
+-      ),
+-      ),
+     );
+   }
+ }
+@@ -719,7 +766,8 @@ class _NoteProofingTextController extends TextEditingController {
+       return range.isValid &&
+           !range.isCollapsed &&
+           range.end <= text.length &&
+-          text.substring(range.start, range.end) == entry.issue.finding.originalText;
++          text.substring(range.start, range.end) ==
++              entry.issue.finding.originalText;
+     }).toList();
+     final boundaries = <int>{0, text.length};
+     for (final entry in valid) {
+@@ -733,10 +781,16 @@ class _NoteProofingTextController extends TextEditingController {
+           TextSpan(
+             text: text.substring(sorted[index], sorted[index + 1]),
+             style: _findingStyle(
+-              valid.where((entry) =>
+-                entry.range.start <= sorted[index] &&
+-                entry.range.end >= sorted[index + 1],
+-              ).firstOrNull?.issue.finding.category,
++              valid
++                  .where(
++                    (entry) =>
++                        entry.range.start <= sorted[index] &&
++                        entry.range.end >= sorted[index + 1],
++                  )
++                  .firstOrNull
++                  ?.issue
++                  .finding
++                  .category,
+             ),
+           ),
+       ],
+diff --git a/packages/quds_office_editor/test/word_header_footer_navigation_test.dart b/packages/quds_office_editor/test/word_header_footer_navigation_test.dart
+index 727086d3..4a612001 100644
+--- a/packages/quds_office_editor/test/word_header_footer_navigation_test.dart
++++ b/packages/quds_office_editor/test/word_header_footer_navigation_test.dart
+@@ -4,7 +4,6 @@ import 'dart:ui' as ui;
+ import 'package:flutter/gestures.dart';
+ import 'package:flutter/material.dart';
+ import 'package:flutter/rendering.dart';
+-import 'package:flutter/services.dart';
+ import 'package:flutter_test/flutter_test.dart';
+ import 'package:quds_office_editor/quds_office_editor.dart';
+ 
+@@ -92,7 +91,9 @@ WordEditorController _controller(WmlDocument document, {_Provider? provider}) {
+   final controller = WordEditorController(
+     document: document,
+     config: const OfficeSurfaceConfig(showRulers: false),
+-    proofingService: OfficeProofingService(providers: [provider ?? _Provider()]),
++    proofingService: OfficeProofingService(
++      providers: [provider ?? _Provider()],
++    ),
+   );
+   addTearDown(controller.dispose);
+   return controller;
+@@ -139,10 +140,11 @@ void main() {
+ 
+           expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+           expect(paragraph.text, original.replaceFirst('Feler', 'Fehler'));
+-          expect(
+-            document.paragraphs.map((paragraph) => paragraph.text),
+-            ['Body one', 'Body two', 'Body three'],
+-          );
++          expect(document.paragraphs.map((paragraph) => paragraph.text), [
++            'Body one',
++            'Body two',
++            'Body three',
++          ]);
+           for (final other in WordHeaderFooterVariant.values) {
+             if (other == variant) continue;
+             expect(
+@@ -184,12 +186,19 @@ void main() {
+           isTrue,
+         );
+         expect(
+-          paragraphs[1].inlines.whereType<WmlRun>().first.properties.proofingLanguage,
++          paragraphs[1].inlines
++              .whereType<WmlRun>()
++              .first
++              .properties
++              .proofingLanguage,
+           'en-US',
+         );
+         expect(
+-          document.sections.single.header[1]
+-              .inlines.whereType<WmlRun>().first.properties.proofingLanguage,
++          document.sections.single.header[1].inlines
++              .whereType<WmlRun>()
++              .first
++              .properties
++              .proofingLanguage,
+           isNull,
+         );
+         controller.undo();
+@@ -312,13 +321,19 @@ void main() {
+         isFalse,
+       );
+       expect(
+-        document.sections.single.firstHeader.first
+-            .inlines.whereType<WmlRun>().first.properties.proofingLanguage,
++        document.sections.single.firstHeader.first.inlines
++            .whereType<WmlRun>()
++            .first
++            .properties
++            .proofingLanguage,
+         isNull,
+       );
+       expect(
+-        document.sections.single.evenHeader.first
+-            .inlines.whereType<WmlRun>().first.properties.proofingLanguage,
++        document.sections.single.evenHeader.first.inlines
++            .whereType<WmlRun>()
++            .first
++            .properties
++            .proofingLanguage,
+         isNull,
+       );
+       expect(controller.canUndo, isFalse);
+@@ -348,11 +363,11 @@ void main() {
+       expect(controller.caret.selectionAnchor, 2);
+       expect(controller.caret.logicalIndex, 6);
+       final reopened = WordDeserializer().readBytes(controller.saveBytes());
+-      expect(reopened.sections.single.evenFooter[1].text, contains('New Feler'));
+       expect(
+-        reopened.sections.single.footer[1].text,
+-        isNot(contains('New ')),
++        reopened.sections.single.evenFooter[1].text,
++        contains('New Feler'),
+       );
++      expect(reopened.sections.single.footer[1].text, isNot(contains('New ')));
+     },
+   );
+ 
+diff --git a/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart b/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart
+index e8a88122..73e9b7c2 100644
+--- a/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart
++++ b/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart
+@@ -102,8 +102,8 @@ void _bodyAt(WordEditorController controller, int offset, {int? anchor}) {
+   controller.caret
+     ..paragraphIndex = 0
+     ..logicalIndex = offset
+-    ..selectionAnchor = anchor
+-    ..selectionAnchorParagraph = anchor == null ? null : 0;
++    ..selectionAnchor = anchor ?? offset
++    ..selectionAnchorParagraph = 0;
+ }
+ 
+ void main() {
+@@ -111,395 +111,371 @@ void main() {
+ 
+   for (final endnote in [false, true]) {
+     for (final hidden in [false, true]) {
+-      test(
+-        '${endnote ? 'endnote' : 'footnote'} maps UTF-16 multiline findings '
+-        'with hidden reference space $hidden',
+-        () async {
+-          const text = '😀 Feler\nline Feler';
+-          final fixture = _fixture(
+-            endnote: endnote,
+-            hiddenReferenceSpace: hidden,
+-            text: text,
+-          );
+-          final controller = fixture.controller;
+-          final note = fixture.note;
+-          await controller.checkDocumentProofing();
+-
+-          expect(controller.noteEditText(note), text);
+-          final entries = controller.proofingIssuesForNote(note);
+-          expect(entries.map((entry) => entry.range), [
+-            const TextRange(start: 3, end: 8),
+-            const TextRange(start: 14, end: 19),
+-          ]);
+-          expect(entries.first.issue.paragraph, same(note.paragraphs.first));
+-          expect(entries.last.issue.paragraph, same(note.paragraphs.last));
+-          expect(entries.first.issue.finding.start, hidden ? 4 : 3);
+-          for (final entry in entries) {
+-            expect(entry.range.textInside(text), 'Feler');
+-            expect(
+-              controller.currentNoteProofingIssue(note, entry.issue),
+-              same(entry.issue),
+-            );
+-          }
+-          final foreign = WmlNote(
+-            id: note.id,
+-            endnote: endnote,
+-            paragraphs: [_paragraph(text)],
+-          );
+-          expect(controller.proofingIssuesForNote(foreign), isEmpty);
+-          expect(
+-            controller.currentNoteProofingIssue(foreign, entries.first.issue),
+-            isNull,
+-          );
+-          expect(controller.isDirty, isFalse);
+-          expect(controller.canUndo, isFalse);
+-        },
+-      );
+-    }
+-
+-    test(
+-      '${endnote ? 'endnote' : 'footnote'} reveal focuses the editable note '
+-      'without changing body selection or history',
+-      () async {
++      test('${endnote ? 'endnote' : 'footnote'} maps UTF-16 multiline findings '
++          'with hidden reference space $hidden', () async {
++        const text = '😀 Feler\nline Feler';
+         final fixture = _fixture(
+           endnote: endnote,
+-          text: 'First line\n😀 Feler',
++          hiddenReferenceSpace: hidden,
++          text: text,
+         );
+         final controller = fixture.controller;
+         final note = fixture.note;
+-        _bodyAt(controller, 4, anchor: 1);
+-        final issue = await _issue(controller, note);
+-        var bodyFocusRequests = 0;
+-        controller.onRequestFocus = () => bodyFocusRequests++;
+-        final revision = controller.contentRevision;
+-        final focusRequest = controller.noteFocusRequest;
++        await controller.checkDocumentProofing();
+ 
+-        expect(controller.revealProofingIssue(issue), isTrue);
+-        expect(controller.noteEditingTarget?.note, same(note));
++        expect(controller.noteEditText(note), text);
++        final entries = controller.proofingIssuesForNote(note);
++        expect(entries.map((entry) => entry.range), [
++          const TextRange(start: 3, end: 8),
++          const TextRange(start: 14, end: 19),
++        ]);
++        expect(entries.first.issue.paragraph, same(note.paragraphs.first));
++        expect(entries.last.issue.paragraph, same(note.paragraphs.last));
++        expect(entries.first.issue.finding.start, hidden ? 4 : 3);
++        for (final entry in entries) {
++          expect(entry.range.textInside(text), 'Feler');
++          expect(
++            controller.currentNoteProofingIssue(note, entry.issue),
++            same(entry.issue),
++          );
++        }
++        final foreign = WmlNote(
++          id: note.id,
++          endnote: endnote,
++          paragraphs: [_paragraph(text)],
++        );
++        expect(controller.proofingIssuesForNote(foreign), isEmpty);
+         expect(
+-          controller.noteEditingTarget?.selection,
+-          const TextSelection(baseOffset: 14, extentOffset: 19),
++          controller.currentNoteProofingIssue(foreign, entries.first.issue),
++          isNull,
+         );
+-        expect(controller.config.showNotesPane, isTrue);
+-        expect(controller.noteFocusRequest, focusRequest + 1);
+-        expect(bodyFocusRequests, 0);
+-        expect(controller.caret.logicalIndex, 4);
+-        expect(controller.caret.selectionAnchor, 1);
+-        expect(controller.selectedProofingIssue, same(issue));
+-        expect(controller.contentRevision, revision);
+-        expect(controller.canUndo, isFalse);
+         expect(controller.isDirty, isFalse);
++        expect(controller.canUndo, isFalse);
++      });
++    }
+ 
+-        controller.setNoteEditingTarget(
+-          note,
+-          const TextSelection.collapsed(offset: 15),
+-        );
+-        expect(controller.proofingIssuesAtCaret, [same(issue)]);
+-        controller.openReviewPane();
+-        controller.closeReviewPane();
+-        expect(controller.noteFocusRequest, focusRequest + 2);
+-        expect(bodyFocusRequests, 0);
+-      },
+-    );
++    test('${endnote ? 'endnote' : 'footnote'} reveal focuses the editable note '
++        'without changing body selection or history', () async {
++      final fixture = _fixture(endnote: endnote, text: 'First line\n😀 Feler');
++      final controller = fixture.controller;
++      final note = fixture.note;
++      _bodyAt(controller, 4, anchor: 1);
++      final issue = await _issue(controller, note);
++      var bodyFocusRequests = 0;
++      controller.onRequestFocus = () => bodyFocusRequests++;
++      final revision = controller.contentRevision;
++      final focusRequest = controller.noteFocusRequest;
+ 
+-    test(
+-      '${endnote ? 'endnote' : 'footnote'} correction restores actual note '
+-      'selection through undo and redo',
+-      () async {
+-        final fixture = _fixture(endnote: endnote, text: 'aFelerz');
+-        final controller = fixture.controller;
+-        final note = fixture.note;
+-        _bodyAt(controller, 3, anchor: 1);
+-        const before = TextSelection(baseOffset: 6, extentOffset: 1);
+-        controller.setNoteEditingTarget(note, before);
+-        final issue = await _issue(controller, note);
++      expect(controller.revealProofingIssue(issue), isTrue);
++      expect(controller.noteEditingTarget?.note, same(note));
++      expect(
++        controller.noteEditingTarget?.selection,
++        const TextSelection(baseOffset: 14, extentOffset: 19),
++      );
++      expect(controller.config.showNotesPane, isTrue);
++      expect(controller.noteFocusRequest, focusRequest + 1);
++      expect(bodyFocusRequests, 0);
++      expect(controller.caret.logicalIndex, 4);
++      expect(controller.caret.selectionAnchor, 1);
++      expect(controller.selectedProofingIssue, same(issue));
++      expect(controller.contentRevision, revision);
++      expect(controller.canUndo, isFalse);
++      expect(controller.isDirty, isFalse);
+ 
+-        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+-        expect(controller.noteEditText(note), 'aFehlerz');
+-        expect(
+-          controller.noteEditingTarget?.selection,
+-          const TextSelection.collapsed(offset: 7),
+-        );
+-        expect(controller.caret.logicalIndex, 3);
+-        expect(controller.caret.selectionAnchor, 1);
+-        controller.undo();
+-        expect(controller.noteEditText(note), 'aFelerz');
+-        expect(controller.noteEditingTarget?.selection, before);
+-        expect(controller.canUndo, isFalse);
+-        controller.redo();
+-        expect(controller.noteEditText(note), 'aFehlerz');
+-        expect(
+-          controller.noteEditingTarget?.selection,
+-          const TextSelection.collapsed(offset: 7),
+-        );
+-        expect(controller.caret.logicalIndex, 3);
+-        expect(controller.caret.selectionAnchor, 1);
+-      },
+-    );
++      controller.setNoteEditingTarget(
++        note,
++        const TextSelection.collapsed(offset: 15),
++      );
++      expect(controller.proofingIssuesAtCaret, [same(issue)]);
++      controller.openReviewPane();
++      controller.closeReviewPane();
++      expect(controller.noteFocusRequest, focusRequest + 2);
++      expect(bodyFocusRequests, 0);
++    });
+ 
+-    test(
+-      '${endnote ? 'endnote' : 'footnote'} tracked corrections and change '
+-      'navigation use note ranges',
+-      () async {
+-        final fixture = _fixture(endnote: endnote, text: 'a Feler.');
+-        final controller = fixture.controller;
+-        final note = fixture.note;
+-        controller.document.trackRevisions = true;
+-        controller.setNoteEditingTarget(
+-          note,
+-          const TextSelection(baseOffset: 2, extentOffset: 7),
+-        );
+-        final issue = await _issue(controller, note);
++    test('${endnote ? 'endnote' : 'footnote'} correction restores actual note '
++        'selection through undo and redo', () async {
++      final fixture = _fixture(endnote: endnote, text: 'aFelerz');
++      final controller = fixture.controller;
++      final note = fixture.note;
++      _bodyAt(controller, 3, anchor: 1);
++      const before = TextSelection(baseOffset: 6, extentOffset: 1);
++      controller.setNoteEditingTarget(note, before);
++      final issue = await _issue(controller, note);
+ 
+-        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+-        expect(controller.noteEditText(note), 'a FelerFehler.');
+-        final revisions = List<WmlRevision>.of(controller.document.revisions);
+-        expect(revisions.map((revision) => revision.kind), [
+-          WmlRevisionKind.delete,
+-          WmlRevisionKind.insert,
+-        ]);
+-        expect(revisions.map((revision) => revision.author), [
+-          'Notes reviewer',
+-          'Notes reviewer',
+-        ]);
+-        expect(
+-          controller.noteEditingTarget?.selection,
+-          const TextSelection.collapsed(offset: 13),
+-        );
+-        controller.clearNoteEditingTarget();
+-        expect(controller.revealRevision(revisions.last), isTrue);
+-        expect(controller.noteEditingTarget?.note, same(note));
+-        expect(
+-          controller.noteEditingTarget?.selection,
+-          const TextSelection(baseOffset: 7, extentOffset: 13),
+-        );
+-        controller.undo();
+-        expect(controller.noteEditText(note), 'a Feler.');
+-        expect(controller.document.revisions, isEmpty);
+-        expect(
+-          controller.noteEditingTarget?.selection,
+-          const TextSelection(baseOffset: 2, extentOffset: 7),
+-        );
+-        controller.redo();
+-        expect(controller.noteEditText(note), 'a FelerFehler.');
+-        expect(controller.document.revisions, orderedEquals(revisions));
+-      },
+-    );
++      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
++      expect(controller.noteEditText(note), 'aFehlerz');
++      expect(
++        controller.noteEditingTarget?.selection,
++        const TextSelection.collapsed(offset: 7),
++      );
++      expect(controller.caret.logicalIndex, 3);
++      expect(controller.caret.selectionAnchor, 1);
++      controller.undo();
++      expect(controller.noteEditText(note), 'aFelerz');
++      expect(controller.noteEditingTarget?.selection, before);
++      expect(controller.canUndo, isFalse);
++      controller.redo();
++      expect(controller.noteEditText(note), 'aFehlerz');
++      expect(
++        controller.noteEditingTarget?.selection,
++        const TextSelection.collapsed(offset: 7),
++      );
++      expect(controller.caret.logicalIndex, 3);
++      expect(controller.caret.selectionAnchor, 1);
++    });
++
++    test('${endnote ? 'endnote' : 'footnote'} tracked corrections and change '
++        'navigation use note ranges', () async {
++      final fixture = _fixture(endnote: endnote, text: 'a Feler.');
++      final controller = fixture.controller;
++      final note = fixture.note;
++      controller.document.trackRevisions = true;
++      controller.setNoteEditingTarget(
++        note,
++        const TextSelection(baseOffset: 2, extentOffset: 7),
++      );
++      final issue = await _issue(controller, note);
++
++      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
++      expect(controller.noteEditText(note), 'a FelerFehler.');
++      final revisions = List<WmlRevision>.of(controller.document.revisions);
++      expect(revisions.map((revision) => revision.kind), [
++        WmlRevisionKind.delete,
++        WmlRevisionKind.insert,
++      ]);
++      expect(revisions.map((revision) => revision.author), [
++        'Notes reviewer',
++        'Notes reviewer',
++      ]);
++      expect(
++        controller.noteEditingTarget?.selection,
++        const TextSelection.collapsed(offset: 13),
++      );
++      controller.clearNoteEditingTarget();
++      expect(controller.revealRevision(revisions.last), isTrue);
++      expect(controller.noteEditingTarget?.note, same(note));
++      expect(
++        controller.noteEditingTarget?.selection,
++        const TextSelection(baseOffset: 7, extentOffset: 13),
++      );
++      controller.undo();
++      expect(controller.noteEditText(note), 'a Feler.');
++      expect(controller.document.revisions, isEmpty);
++      expect(
++        controller.noteEditingTarget?.selection,
++        const TextSelection(baseOffset: 2, extentOffset: 7),
++      );
++      controller.redo();
++      expect(controller.noteEditText(note), 'a FelerFehler.');
++      expect(controller.document.revisions, orderedEquals(revisions));
++    });
+   }
+ 
+-  test('note tables remain checked but are not mapped to the plain editor', () async {
+-    final fixture = _fixture(text: 'Feler');
+-    final controller = fixture.controller;
+-    final note = fixture.note;
+-    final tableParagraph = _paragraph('Feler in a table');
+-    note.blocks.add(
+-      WmlTable(
+-        rows: [
+-          WmlTableRow(
+-            cells: [
+-              WmlTableCell(blocks: [tableParagraph]),
+-            ],
+-          ),
+-        ],
+-      ),
+-    );
+-    final summary = await controller.checkDocumentProofing();
+-    final tableIssue = summary.issues.singleWhere(
+-      (issue) => identical(issue.paragraph, tableParagraph),
+-    );
+-    expect(controller.proofingIssuesForNote(note), hasLength(1));
+-    expect(controller.noteEditText(note), 'Feler');
+-    expect(controller.currentNoteProofingIssue(note, tableIssue), isNull);
+-    expect(controller.revealProofingIssue(tableIssue), isFalse);
+-    expect(controller.noteEditingTarget, isNull);
+-    expect(controller.canUndo, isFalse);
+-  });
++  test(
++    'note tables remain checked but are not mapped to the plain editor',
++    () async {
++      final fixture = _fixture(text: 'Feler');
++      final controller = fixture.controller;
++      final note = fixture.note;
++      final tableParagraph = _paragraph('Feler in a table');
++      note.blocks.add(
++        WmlTable(
++          rows: [
++            WmlTableRow(
++              cells: [
++                WmlTableCell(blocks: [tableParagraph]),
++              ],
++            ),
++          ],
++        ),
++      );
++      final summary = await controller.checkDocumentProofing();
++      final tableIssue = summary.issues.singleWhere(
++        (issue) => identical(issue.paragraph, tableParagraph),
++      );
++      expect(controller.proofingIssuesForNote(note), hasLength(1));
++      expect(controller.noteEditText(note), 'Feler');
++      expect(controller.currentNoteProofingIssue(note, tableIssue), isNull);
++      expect(controller.revealProofingIssue(tableIssue), isFalse);
++      expect(controller.noteEditingTarget, isNull);
++      expect(controller.canUndo, isFalse);
++    },
++  );
+ 
+-  test('explicit note selection survives an adjacent finding endpoint', () async {
+-    final fixture = _fixture(text: 'FelerFeler');
+-    final controller = fixture.controller;
+-    final note = fixture.note;
+-    await controller.checkDocumentProofing();
+-    final entries = controller.proofingIssuesForNote(note);
+-    final first = entries.first.issue;
+-    final second = entries.last.issue;
+-
+-    expect(controller.selectProofingIssue(first), isTrue);
+-    expect(controller.proofingIssuesAtCaret, [same(second)]);
+-    expect(controller.selectedProofingIssue, same(first));
+-    controller.refreshView();
+-    expect(controller.selectedProofingIssue, same(first));
+-    controller.stepProofingIssue(1);
+-    expect(controller.selectedProofingIssue, same(second));
+-    expect(
+-      controller.noteEditingTarget?.selection,
+-      const TextSelection(baseOffset: 5, extentOffset: 10),
+-    );
+-  });
++  test(
++    'explicit note selection survives an adjacent finding endpoint',
++    () async {
++      final fixture = _fixture(text: 'FelerFeler');
++      final controller = fixture.controller;
++      final note = fixture.note;
++      await controller.checkDocumentProofing();
++      final entries = controller.proofingIssuesForNote(note);
++      final first = entries.first.issue;
++      final second = entries.last.issue;
++
++      expect(controller.selectProofingIssue(first), isTrue);
++      expect(controller.proofingIssuesAtCaret, [same(second)]);
++      expect(controller.selectedProofingIssue, same(first));
++      controller.refreshView();
++      expect(controller.selectedProofingIssue, same(first));
++      controller.stepProofingIssue(1);
++      expect(controller.selectedProofingIssue, same(second));
++      expect(
++        controller.noteEditingTarget?.selection,
++        const TextSelection(baseOffset: 5, extentOffset: 10),
++      );
++    },
++  );
+ 
+   for (final focusLossFirst in [false, true]) {
+-    test(
+-      'typed note correction survives an unchanged history boundary '
+-      '(focus loss first: $focusLossFirst)',
+-      () async {
+-        final fixture = _fixture(text: 'Before');
+-        final controller = fixture.controller;
+-        final note = fixture.note;
+-        controller.setNoteText(note, 'Feler typed');
+-        controller.setNoteEditingTarget(
+-          note,
+-          const TextSelection(baseOffset: 5, extentOffset: 0),
+-        );
+-        final captured = await _issue(controller, note);
+-        expect(controller.canUndo, isFalse);
+-        if (focusLossFirst) {
+-          controller.commitNoteEdit(note);
+-          final current = controller.currentNoteProofingIssue(note, captured);
+-          expect(current, isNotNull);
+-          expect(current, isNot(same(captured)));
+-          expect(controller.proofing.isCurrent(captured), isFalse);
+-          expect(controller.proofing.isCurrent(current!), isTrue);
+-        }
+-        expect(
+-          controller.applyProofingSuggestion(captured, 'Fehler'),
+-          isTrue,
+-        );
+-        expect(controller.noteEditText(note), 'Fehler typed');
+-        controller.undo();
+-        expect(controller.noteEditText(note), 'Feler typed');
+-        expect(
+-          controller.noteEditingTarget?.selection,
+-          const TextSelection(baseOffset: 5, extentOffset: 0),
+-        );
+-        controller.undo();
+-        expect(controller.noteEditText(note), 'Before');
+-        expect(controller.canUndo, isFalse);
+-        controller.redo();
+-        expect(controller.noteEditText(note), 'Feler typed');
+-        controller.redo();
+-        expect(controller.noteEditText(note), 'Fehler typed');
+-      },
+-    );
++    test('typed note correction survives an unchanged history boundary '
++        '(focus loss first: $focusLossFirst)', () async {
++      final fixture = _fixture(text: 'Before');
++      final controller = fixture.controller;
++      final note = fixture.note;
++      controller.setNoteText(note, 'Feler typed');
++      controller.setNoteEditingTarget(
++        note,
++        const TextSelection(baseOffset: 5, extentOffset: 0),
++      );
++      final captured = await _issue(controller, note);
++      expect(controller.canUndo, isFalse);
++      if (focusLossFirst) {
++        controller.commitNoteEdit(note);
++        final current = controller.currentNoteProofingIssue(note, captured);
++        expect(current, isNotNull);
++        expect(current, isNot(same(captured)));
++        expect(controller.proofing.isCurrent(captured), isFalse);
++        expect(controller.proofing.isCurrent(current!), isTrue);
++      }
++      expect(controller.applyProofingSuggestion(captured, 'Fehler'), isTrue);
++      expect(controller.noteEditText(note), 'Fehler typed');
++      controller.undo();
++      expect(controller.noteEditText(note), 'Feler typed');
++      expect(
++        controller.noteEditingTarget?.selection,
++        const TextSelection(baseOffset: 5, extentOffset: 0),
++      );
++      controller.undo();
++      expect(controller.noteEditText(note), 'Before');
++      expect(controller.canUndo, isFalse);
++      controller.redo();
++      expect(controller.noteEditText(note), 'Feler typed');
++      controller.redo();
++      expect(controller.noteEditText(note), 'Fehler typed');
++    });
+ 
+-    test(
+-      'manual findings survive only the unchanged note history boundary '
+-      'without provider calls (focus loss first: $focusLossFirst)',
+-      () async {
+-        final ordinary = _NotesProvider('ordinary', findErrors: false);
+-        final manual = _NotesProvider(
+-          'manual',
+-          category: OfficeProofingCategory.grammar,
+-        );
+-        final fixture = _fixture(
+-          text: 'Before',
+-          ordinary: ordinary,
+-          manual: manual,
+-        );
+-        final controller = fixture.controller;
+-        final note = fixture.note;
+-        controller.setNoteText(note, 'Feler typed');
+-        controller.setNoteEditingTarget(
+-          note,
+-          const TextSelection.collapsed(offset: 3),
+-        );
+-        final captured = await _issue(controller, note);
+-        expect(captured.finding.providerId, 'manual');
++    test('manual findings survive only the unchanged note history boundary '
++        'without provider calls (focus loss first: $focusLossFirst)', () async {
++      final ordinary = _NotesProvider('ordinary', findErrors: false);
++      final manual = _NotesProvider(
++        'manual',
++        category: OfficeProofingCategory.grammar,
++      );
++      final fixture = _fixture(
++        text: 'Before',
++        ordinary: ordinary,
++        manual: manual,
++      );
++      final controller = fixture.controller;
++      final note = fixture.note;
++      controller.setNoteText(note, 'Feler typed');
++      controller.setNoteEditingTarget(
++        note,
++        const TextSelection.collapsed(offset: 3),
++      );
++      final captured = await _issue(controller, note);
++      expect(captured.finding.providerId, 'manual');
++      expect(controller.proofing.summary.complete, isTrue);
++      final manualCalls = manual.requests.length;
++      final ordinaryCalls = ordinary.requests.length;
++      if (focusLossFirst) {
++        controller.commitNoteEdit(note);
++        expect(controller.currentNoteProofingIssue(note, captured), isNotNull);
+         expect(controller.proofing.summary.complete, isTrue);
+-        final manualCalls = manual.requests.length;
+-        final ordinaryCalls = ordinary.requests.length;
+-        if (focusLossFirst) {
+-          controller.commitNoteEdit(note);
+-          expect(
+-            controller.currentNoteProofingIssue(note, captured),
+-            isNotNull,
+-          );
+-          expect(controller.proofing.summary.complete, isTrue);
+-          expect(controller.proofing.summary.manualProvidersSkipped, isFalse);
+-        }
+-        expect(controller.applyProofingSuggestion(captured, 'Fehler'), isTrue);
+-        expect(controller.noteEditText(note), 'Fehler typed');
+-        expect(manual.requests, hasLength(manualCalls));
+-        expect(ordinary.requests, hasLength(ordinaryCalls));
+-        expect(controller.currentNoteProofingIssue(note, captured), isNull);
+-        controller.undo();
+-        expect(controller.noteEditText(note), 'Feler typed');
+-        expect(controller.currentNoteProofingIssue(note, captured), isNull);
+-        expect(manual.requests, hasLength(manualCalls));
+-      },
+-    );
++        expect(controller.proofing.summary.manualProvidersSkipped, isFalse);
++      }
++      expect(controller.applyProofingSuggestion(captured, 'Fehler'), isTrue);
++      expect(controller.noteEditText(note), 'Fehler typed');
++      expect(manual.requests, hasLength(manualCalls));
++      expect(ordinary.requests, hasLength(ordinaryCalls));
++      expect(controller.currentNoteProofingIssue(note, captured), isNull);
++      controller.undo();
++      expect(controller.noteEditText(note), 'Feler typed');
++      expect(controller.currentNoteProofingIssue(note, captured), isNull);
++      expect(manual.requests, hasLength(manualCalls));
++    });
+   }
+ 
+-
+   for (final correctedProvider in ['ordinary', 'manual']) {
+-    test(
+-      'mixed provider history commit retains the ordinary issue identity '
+-      'before correcting the $correctedProvider finding',
+-      () async {
+-        final ordinary = _NotesProvider('ordinary');
+-        final manual = _NotesProvider(
+-          'manual',
+-          category: OfficeProofingCategory.grammar,
+-        );
+-        final fixture = _fixture(
+-          text: 'Before',
+-          ordinary: ordinary,
+-          manual: manual,
+-        );
+-        final controller = fixture.controller;
+-        final note = fixture.note;
+-        controller.setNoteText(note, 'Feler typed');
+-        controller.setNoteEditingTarget(
+-          note,
+-          const TextSelection.collapsed(offset: 3),
+-        );
+-        await controller.checkDocumentProofing();
+-        final captured = controller.proofingIssuesForNote(note)
+-            .map((entry) => entry.issue)
+-            .toList();
+-        // Exercise the ordinary-first order: its alias is collected before
+-        // the manual finding causes cached manual reports to be republished.
+-        expect(captured.map((issue) => issue.finding.providerId), [
+-          'ordinary',
+-          'manual',
+-        ]);
+-        final ordinaryCalls = ordinary.requests.length;
+-        final manualCalls = manual.requests.length;
+-        final beforeCommit = controller.contentRevision;
+-        WordProofingIssue? ordinaryBeforeManual;
+-        controller.addListener(() {
+-          if (controller.contentRevision == beforeCommit + 1 &&
+-              controller.proofing.summary.manualProvidersSkipped) {
+-            ordinaryBeforeManual ??= controller.proofing.summary.issues
+-                .where((issue) => issue.finding.providerId == 'ordinary')
+-                .firstOrNull;
+-          }
+-        });
+-
+-        controller.commitNoteEdit(note);
+-        expect(ordinaryBeforeManual, isNotNull);
+-        final rebound = [
+-          for (final issue in captured)
+-            controller.currentNoteProofingIssue(note, issue),
+-        ];
+-        expect(rebound, everyElement(isNotNull));
+-        expect(rebound.first, same(ordinaryBeforeManual));
+-        for (final issue in rebound) {
+-          expect(controller.proofing.isCurrent(issue!), isTrue);
++    test('mixed provider history commit retains the ordinary issue identity '
++        'before correcting the $correctedProvider finding', () async {
++      final ordinary = _NotesProvider('ordinary');
++      final manual = _NotesProvider(
++        'manual',
++        category: OfficeProofingCategory.grammar,
++      );
++      final fixture = _fixture(
++        text: 'Before',
++        ordinary: ordinary,
++        manual: manual,
++      );
++      final controller = fixture.controller;
++      final note = fixture.note;
++      controller.setNoteText(note, 'Feler typed');
++      controller.setNoteEditingTarget(
++        note,
++        const TextSelection.collapsed(offset: 3),
++      );
++      await controller.checkDocumentProofing();
++      final captured = controller
++          .proofingIssuesForNote(note)
++          .map((entry) => entry.issue)
++          .toList();
++      // Exercise the ordinary-first order: its alias is collected before
++      // the manual finding causes cached manual reports to be republished.
++      expect(captured.map((issue) => issue.finding.providerId), [
++        'ordinary',
++        'manual',
++      ]);
++      final ordinaryCalls = ordinary.requests.length;
++      final manualCalls = manual.requests.length;
++      final beforeCommit = controller.contentRevision;
++      WordProofingIssue? ordinaryBeforeManual;
++      controller.addListener(() {
++        if (controller.contentRevision == beforeCommit + 1 &&
++            controller.proofing.summary.manualProvidersSkipped) {
++          ordinaryBeforeManual ??= controller.proofing.summary.issues
++              .where((issue) => issue.finding.providerId == 'ordinary')
++              .firstOrNull;
+         }
+-        expect(controller.proofing.summary.complete, isTrue);
+-        expect(ordinary.requests, hasLength(ordinaryCalls));
+-        expect(manual.requests, hasLength(manualCalls));
++      });
+ 
+-        final chosen = captured.singleWhere(
+-          (issue) => issue.finding.providerId == correctedProvider,
+-        );
+-        expect(controller.applyProofingSuggestion(chosen, 'Fehler'), isTrue);
+-        expect(controller.noteEditText(note), 'Fehler typed');
+-        expect(ordinary.requests, hasLength(ordinaryCalls));
+-        expect(manual.requests, hasLength(manualCalls));
+-        expect(controller.currentNoteProofingIssue(note, chosen), isNull);
+-      },
+-    );
++      controller.commitNoteEdit(note);
++      expect(ordinaryBeforeManual, isNotNull);
++      final rebound = [
++        for (final issue in captured)
++          controller.currentNoteProofingIssue(note, issue),
++      ];
++      expect(rebound, everyElement(isNotNull));
++      expect(rebound.first, same(ordinaryBeforeManual));
++      for (final issue in rebound) {
++        expect(controller.proofing.isCurrent(issue!), isTrue);
++      }
++      expect(controller.proofing.summary.complete, isTrue);
++      expect(ordinary.requests, hasLength(ordinaryCalls));
++      expect(manual.requests, hasLength(manualCalls));
++
++      final chosen = captured.singleWhere(
++        (issue) => issue.finding.providerId == correctedProvider,
++      );
++      expect(controller.applyProofingSuggestion(chosen, 'Fehler'), isTrue);
++      expect(controller.noteEditText(note), 'Fehler typed');
++      expect(ordinary.requests, hasLength(ordinaryCalls));
++      expect(manual.requests, hasLength(manualCalls));
++      expect(controller.currentNoteProofingIssue(note, chosen), isNull);
++    });
+   }
+ 
+   for (final mutation in ['note', 'body', 'history', 'provider', 'detach']) {
+@@ -534,25 +510,28 @@ void main() {
+     });
+   }
+ 
+-  test('unobserved note source changes cannot move focus or apply stale text', () async {
+-    final fixture = _fixture(text: 'Feler');
+-    final controller = fixture.controller;
+-    final note = fixture.note;
+-    final captured = await _issue(controller, note);
+-    note.paragraphs.single.inlines
+-      ..clear()
+-      ..add(WmlRun(text: ' Changed source'));
+-    final revision = controller.contentRevision;
+-    final focus = controller.noteFocusRequest;
+-    expect(controller.proofingIssuesForNote(note), isEmpty);
+-    expect(controller.currentNoteProofingIssue(note, captured), isNull);
+-    expect(controller.revealProofingIssue(captured), isFalse);
+-    expect(controller.applyProofingSuggestion(captured, 'Fehler'), isFalse);
+-    expect(controller.noteFocusRequest, focus);
+-    expect(controller.noteEditingTarget, isNull);
+-    expect(controller.contentRevision, revision);
+-    expect(controller.canUndo, isFalse);
+-  });
++  test(
++    'unobserved note source changes cannot move focus or apply stale text',
++    () async {
++      final fixture = _fixture(text: 'Feler');
++      final controller = fixture.controller;
++      final note = fixture.note;
++      final captured = await _issue(controller, note);
++      note.paragraphs.single.inlines
++        ..clear()
++        ..add(WmlRun(text: ' Changed source'));
++      final revision = controller.contentRevision;
++      final focus = controller.noteFocusRequest;
++      expect(controller.proofingIssuesForNote(note), isEmpty);
++      expect(controller.currentNoteProofingIssue(note, captured), isNull);
++      expect(controller.revealProofingIssue(captured), isFalse);
++      expect(controller.applyProofingSuggestion(captured, 'Fehler'), isFalse);
++      expect(controller.noteFocusRequest, focus);
++      expect(controller.noteEditingTarget, isNull);
++      expect(controller.contentRevision, revision);
++      expect(controller.canUndo, isFalse);
++    },
++  );
+ 
+   for (final mode in [
+     OfficeInteractionMode.selecting,
+@@ -590,47 +569,50 @@ void main() {
+     expect(controller.canUndo, isFalse);
+   });
+ 
+-  test('note IME blocks correction and reveals before committing pending text', () async {
+-    final fixture = _fixture(text: 'Before');
+-    final controller = fixture.controller;
+-    final note = fixture.note;
+-    final body = controller.document.paragraphs.single;
+-    final revision = WordRevisions.record(
+-      controller.document,
+-      kind: WmlRevisionKind.insert,
+-      paragraph: body,
+-      paragraphIndex: 0,
+-      start: 0,
+-      end: 4,
+-      text: 'Body',
+-      author: 'Reviewer',
+-    );
+-    controller.setNoteText(note, 'Feler typed');
+-    final issue = await _issue(controller, note);
+-    controller.setNoteEditingTarget(
+-      note,
+-      const TextSelection.collapsed(offset: 5),
+-      composing: const TextRange(start: 0, end: 5),
+-    );
+-    final contentRevision = controller.contentRevision;
+-    final target = controller.noteEditingTarget;
+-    final focus = controller.noteFocusRequest;
+-    expect(controller.canApplyProofingSuggestions, isFalse);
+-    expect(controller.applyProofingSuggestion(issue, 'Fehler'), isFalse);
+-    expect(controller.revealProofingIssue(issue), isFalse);
+-    expect(controller.revealRevision(revision), isFalse);
+-    expect(controller.noteEditingTarget, target);
+-    expect(controller.noteFocusRequest, focus);
+-    expect(controller.contentRevision, contentRevision);
+-    expect(controller.canUndo, isFalse);
++  test(
++    'note IME blocks correction and reveals before committing pending text',
++    () async {
++      final fixture = _fixture(text: 'Before');
++      final controller = fixture.controller;
++      final note = fixture.note;
++      final body = controller.document.paragraphs.single;
++      final revision = WordRevisions.record(
++        controller.document,
++        kind: WmlRevisionKind.insert,
++        paragraph: body,
++        paragraphIndex: 0,
++        start: 0,
++        end: 4,
++        text: 'Body',
++        author: 'Reviewer',
++      );
++      controller.setNoteText(note, 'Feler typed');
++      final issue = await _issue(controller, note);
++      controller.setNoteEditingTarget(
++        note,
++        const TextSelection.collapsed(offset: 5),
++        composing: const TextRange(start: 0, end: 5),
++      );
++      final contentRevision = controller.contentRevision;
++      final target = controller.noteEditingTarget;
++      final focus = controller.noteFocusRequest;
++      expect(controller.canApplyProofingSuggestions, isFalse);
++      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isFalse);
++      expect(controller.revealProofingIssue(issue), isFalse);
++      expect(controller.revealRevision(revision), isFalse);
++      expect(controller.noteEditingTarget, target);
++      expect(controller.noteFocusRequest, focus);
++      expect(controller.contentRevision, contentRevision);
++      expect(controller.canUndo, isFalse);
+ 
+-    controller.setNoteEditingTarget(
+-      note,
+-      const TextSelection.collapsed(offset: 5),
+-    );
+-    expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+-    expect(controller.noteEditText(note), 'Fehler typed');
+-  });
++      controller.setNoteEditingTarget(
++        note,
++        const TextSelection.collapsed(offset: 5),
++      );
++      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
++      expect(controller.noteEditText(note), 'Fehler typed');
++    },
++  );
+ 
+   test('canvas IME also prevents retargeting review into a note', () async {
+     final fixture = _fixture();
+@@ -651,71 +633,77 @@ void main() {
+   });
+ 
+   for (final otherStory in ['body', 'other note']) {
+-    test('note correction history preserves a later $otherStory selection', () async {
+-      final fixture = _fixture(text: 'Feler');
++    test(
++      'note correction history preserves a later $otherStory selection',
++      () async {
++        final fixture = _fixture(text: 'Feler');
++        final controller = fixture.controller;
++        final note = fixture.note;
++        final other = WmlNote(
++          id: 2,
++          endnote: true,
++          addReference: false,
++          paragraphs: [_paragraph('Another note')],
++        );
++        controller.document.endnotes.add(other);
++        controller.setNoteEditingTarget(
++          note,
++          const TextSelection.collapsed(offset: 2),
++        );
++        final issue = await _issue(controller, note);
++        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
++        const otherSelection = TextSelection(baseOffset: 7, extentOffset: 2);
++        if (otherStory == 'body') {
++          controller.clearNoteEditingTarget();
++          _bodyAt(controller, 4, anchor: 1);
++        } else {
++          controller.setNoteEditingTarget(other, otherSelection);
++        }
++        controller.undo();
++        expect(controller.noteEditText(note), 'Feler');
++        if (otherStory == 'body') {
++          expect(controller.noteEditingTarget, isNull);
++          expect(controller.caret.logicalIndex, 4);
++          expect(controller.caret.selectionAnchor, 1);
++        } else {
++          expect(controller.noteEditingTarget?.note, same(other));
++          expect(controller.noteEditingTarget?.selection, otherSelection);
++        }
++        controller.redo();
++        expect(controller.noteEditText(note), 'Fehler');
++        if (otherStory == 'body') {
++          expect(controller.noteEditingTarget, isNull);
++          expect(controller.caret.logicalIndex, 4);
++          expect(controller.caret.selectionAnchor, 1);
++        } else {
++          expect(controller.noteEditingTarget?.note, same(other));
++          expect(controller.noteEditingTarget?.selection, otherSelection);
++        }
++      },
++    );
++  }
++
++  test(
++    'body corrections preserve a retained Notes selection through history',
++    () async {
++      final fixture = _fixture(text: 'A note', body: 'Body Feler');
+       final controller = fixture.controller;
+       final note = fixture.note;
+-      final other = WmlNote(
+-        id: 2,
+-        endnote: true,
+-        addReference: false,
+-        paragraphs: [_paragraph('Another note')],
+-      );
+-      controller.document.endnotes.add(other);
+-      controller.setNoteEditingTarget(
+-        note,
+-        const TextSelection.collapsed(offset: 2),
+-      );
+-      final issue = await _issue(controller, note);
++      final summary = await controller.checkDocumentProofing();
++      final issue = summary.issues.single;
++      const selection = TextSelection(baseOffset: 5, extentOffset: 1);
++      controller.setNoteEditingTarget(note, selection);
+       expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+-      const otherSelection = TextSelection(baseOffset: 7, extentOffset: 2);
+-      if (otherStory == 'body') {
+-        controller.clearNoteEditingTarget();
+-        _bodyAt(controller, 4, anchor: 1);
+-      } else {
+-        controller.setNoteEditingTarget(other, otherSelection);
+-      }
++      expect(controller.document.paragraphs.single.text, 'Body Fehler');
++      expect(controller.noteEditingTarget?.selection, selection);
+       controller.undo();
+-      expect(controller.noteEditText(note), 'Feler');
+-      if (otherStory == 'body') {
+-        expect(controller.noteEditingTarget, isNull);
+-        expect(controller.caret.logicalIndex, 4);
+-        expect(controller.caret.selectionAnchor, 1);
+-      } else {
+-        expect(controller.noteEditingTarget?.note, same(other));
+-        expect(controller.noteEditingTarget?.selection, otherSelection);
+-      }
++      expect(controller.document.paragraphs.single.text, 'Body Feler');
++      expect(controller.noteEditingTarget?.selection, selection);
+       controller.redo();
+-      expect(controller.noteEditText(note), 'Fehler');
+-      if (otherStory == 'body') {
+-        expect(controller.noteEditingTarget, isNull);
+-        expect(controller.caret.logicalIndex, 4);
+-        expect(controller.caret.selectionAnchor, 1);
+-      } else {
+-        expect(controller.noteEditingTarget?.note, same(other));
+-        expect(controller.noteEditingTarget?.selection, otherSelection);
+-      }
+-    });
+-  }
+-
+-  test('body corrections preserve a retained Notes selection through history', () async {
+-    final fixture = _fixture(text: 'A note', body: 'Body Feler');
+-    final controller = fixture.controller;
+-    final note = fixture.note;
+-    final summary = await controller.checkDocumentProofing();
+-    final issue = summary.issues.single;
+-    const selection = TextSelection(baseOffset: 5, extentOffset: 1);
+-    controller.setNoteEditingTarget(note, selection);
+-    expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+-    expect(controller.document.paragraphs.single.text, 'Body Fehler');
+-    expect(controller.noteEditingTarget?.selection, selection);
+-    controller.undo();
+-    expect(controller.document.paragraphs.single.text, 'Body Feler');
+-    expect(controller.noteEditingTarget?.selection, selection);
+-    controller.redo();
+-    expect(controller.document.paragraphs.single.text, 'Body Fehler');
+-    expect(controller.noteEditingTarget?.selection, selection);
+-  });
++      expect(controller.document.paragraphs.single.text, 'Body Fehler');
++      expect(controller.noteEditingTarget?.selection, selection);
++    },
++  );
+ 
+   test('Notes proofing does not manufacture a body thesaurus target', () async {
+     final fixture = _fixture(text: 'Feler', body: 'A useful word');
+diff --git a/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart b/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart
+index d0807af9..d93b3011 100644
+--- a/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart
++++ b/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart
+@@ -33,15 +33,17 @@ class _NotesProvider extends OfficeProofingProvider {
+         ('are is', OfficeProofingCategory.grammar, 'is'),
+         ('very very', OfficeProofingCategory.style, 'very'),
+       ]) {
+-        for (final match in RegExp(RegExp.escape(needle)).allMatches(request.text)) {
++        for (final match in RegExp(
++          RegExp.escape(needle),
++        ).allMatches(request.text)) {
+           findings.add(
+             OfficeProofingFinding.forRequest(
+               request,
+               providerId: id,
+               start: match.start,
+               end: match.end,
+-              ruleId: 'notes.' + category.name,
+-              message: 'Review ' + needle + '.',
++              ruleId: 'notes.${category.name}',
++              message: 'Review $needle.',
+               category: category,
+               replacements: [replacement],
+             ),
+@@ -67,11 +69,11 @@ typedef _Fixture = ({
+   _NotesProvider provider,
+ });
+ 
+-String _id(WmlNote note) => (note.endnote ? 'E' : '') + note.id.toString();
++String _id(WmlNote note) => '${note.endnote ? 'E' : ''}${note.id}';
+ Finder _field(WmlNote note) =>
+-    find.byKey(ValueKey<String>('notes-edit-' + _id(note)));
++    find.byKey(ValueKey<String>('notes-edit-${_id(note)}'));
+ Finder _replacement(WmlNote note) =>
+-    find.byKey(ValueKey<String>('notes-replacement-' + _id(note) + '-0'));
++    find.byKey(ValueKey<String>('notes-replacement-${_id(note)}-0'));
+ 
+ Future<void> _pump(WidgetTester tester, {int frames = 6}) async {
+   for (var index = 0; index < frames; index++) {
+@@ -79,7 +81,10 @@ Future<void> _pump(WidgetTester tester, {int frames = 6}) async {
+   }
+ }
+ 
+-Future<void> _check(WidgetTester tester, WordEditorController controller) async {
++Future<void> _check(
++  WidgetTester tester,
++  WordEditorController controller,
++) async {
+   await tester.runAsync(controller.checkDocumentProofing);
+   await _pump(tester);
+ }
+@@ -98,7 +103,9 @@ Future<_Fixture> _mount(
+   await tester.binding.setSurfaceSize(size);
+   addTearDown(() => tester.binding.setSurfaceSize(null));
+   final document = WmlDocument.empty(
+-    text: arabic ? 'نص المستند مع حاشية للمراجعة' : 'Document body with a note.',
++    text: arabic
++        ? 'نص المستند مع حاشية للمراجعة'
++        : 'Document body with a note.',
+   )..proofingLanguage = 'en-US';
+   final note = WordNotes.insert(
+     document,
+@@ -124,7 +131,10 @@ Future<_Fixture> _mount(
+   await tester.pumpWidget(
+     MaterialApp(
+       home: MediaQuery(
+-        data: MediaQueryData(size: size, textScaler: TextScaler.linear(textScale)),
++        data: MediaQueryData(
++          size: size,
++          textScaler: TextScaler.linear(textScale),
++        ),
+         child: Scaffold(
+           body: RepaintBoundary(
+             key: const ValueKey<String>('notes-review-capture'),
+@@ -159,6 +169,7 @@ Map<String, Color?> _underlines(WidgetTester tester, WmlNote note) {
+       if (child is TextSpan) visit(child);
+     }
+   }
++
+   visit(span);
+   return result;
+ }
+@@ -175,7 +186,7 @@ Future<void> _capture(WidgetTester tester, String name) async {
+       final data = await image.toByteData(format: ui.ImageByteFormat.png);
+       expect(data, isNotNull);
+       await Directory(directory).create(recursive: true);
+-      await File(directory + '/' + name + '.png').writeAsBytes(
++      await File('$directory/$name.png').writeAsBytes(
+         data!.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
+       );
+     } finally {
+@@ -184,7 +195,10 @@ Future<void> _capture(WidgetTester tester, String name) async {
+   });
+ }
+ 
+-Future<void> _finish(WidgetTester tester, WordEditorController controller) async {
++Future<void> _finish(
++  WidgetTester tester,
++  WordEditorController controller,
++) async {
+   await tester.pumpWidget(const SizedBox.shrink());
+   controller.dispose();
+   await tester.pump();
+@@ -192,7 +206,9 @@ Future<void> _finish(WidgetTester tester, WordEditorController controller) async
+ }
+ 
+ void main() {
+-  testWidgets('Notes paints all finding categories without changing source', (tester) async {
++  testWidgets('Notes paints all finding categories without changing source', (
++    tester,
++  ) async {
+     final (:controller, :note, :provider) = await _mount(tester);
+     final before = controller.noteEditText(note);
+     expect(_underlines(tester, note), {
+@@ -209,18 +225,23 @@ void main() {
+   });
+ 
+   for (final endnote in [false, true]) {
+-    testWidgets('live note correction retains focus and separates typing Undo: ' +
+-        (endnote ? 'endnote' : 'footnote'), (tester) async {
++    testWidgets('live note correction retains focus and separates typing Undo: '
++        '${endnote ? 'endnote' : 'footnote'}', (tester) async {
+       final (:controller, :note, :provider) = await _mount(
+         tester,
+         endnote: endnote,
+         text: 'Original note',
+       );
+       final manual = _NotesProvider(providerId: 'manual-notes');
+-      controller.proofing.configureManual(OfficeProofingService(providers: [manual]));
++      controller.proofing.configureManual(
++        OfficeProofingService(providers: [manual]),
++      );
+       await tester.enterText(_field(note), 'Lead\nFeler note');
+       await _pump(tester, frames: 10);
+-      expect(provider.requests.any((request) => request.text.contains('Feler')), isTrue);
++      expect(
++        provider.requests.any((request) => request.text.contains('Feler')),
++        isTrue,
++      );
+       expect(manual.requests, isEmpty);
+       expect(_underlines(tester, note)['Feler'], const Color(0xFFC62828));
+ 
+@@ -230,8 +251,10 @@ void main() {
+       expect(controller.noteEditText(note), 'Lead\nFehler note');
+       final field = tester.widget<TextField>(_field(note));
+       expect(field.focusNode!.hasFocus, isTrue);
+-      expect(field.controller!.selection,
+-          const TextSelection.collapsed(offset: 11));
++      expect(
++        field.controller!.selection,
++        const TextSelection.collapsed(offset: 11),
++      );
+ 
+       controller.undo();
+       await _pump(tester);
+@@ -243,7 +266,9 @@ void main() {
+     });
+   }
+ 
+-  testWidgets('keyboard finding navigation selects the actual Notes ranges', (tester) async {
++  testWidgets('keyboard finding navigation selects the actual Notes ranges', (
++    tester,
++  ) async {
+     final (:controller, :note, :provider) = await _mount(tester);
+     final first = controller.proofingIssuesForNote(note).first.issue;
+     expect(controller.selectProofingIssue(first), isTrue);
+@@ -252,8 +277,10 @@ void main() {
+     await tester.sendKeyEvent(LogicalKeyboardKey.f7);
+     await tester.sendKeyUpEvent(LogicalKeyboardKey.altLeft);
+     await _pump(tester);
+-    expect(tester.widget<TextField>(_field(note)).controller!.selection,
+-        const TextSelection(baseOffset: 6, extentOffset: 12));
++    expect(
++      tester.widget<TextField>(_field(note)).controller!.selection,
++      const TextSelection(baseOffset: 6, extentOffset: 12),
++    );
+     expect(controller.selectedProofingIssue!.finding.originalText, 'are is');
+ 
+     await tester.sendKeyDownEvent(LogicalKeyboardKey.altLeft);
+@@ -265,7 +292,9 @@ void main() {
+     expect(controller.selectedProofingIssue!.finding.originalText, 'Feler');
+ 
+     final manual = _NotesProvider(providerId: 'manual-keyboard-notes');
+-    controller.proofing.configureManual(OfficeProofingService(providers: [manual]));
++    controller.proofing.configureManual(
++      OfficeProofingService(providers: [manual]),
++    );
+     await tester.sendKeyEvent(LogicalKeyboardKey.f7);
+     await _pump(tester, frames: 10);
+     expect(manual.requests, isNotEmpty);
+@@ -273,37 +302,56 @@ void main() {
+     await _finish(tester, controller);
+   });
+ 
+-  testWidgets('composition suppresses underlines and correction until finished', (tester) async {
+-    final (:controller, :note, :provider) = await _mount(tester, text: 'Feler note');
+-    await tester.tap(_field(note));
+-    await _pump(tester);
+-    final edit = tester.widget<TextField>(_field(note)).controller!;
+-    edit.value = const TextEditingValue(
+-      text: 'Feler note',
+-      selection: TextSelection.collapsed(offset: 5),
+-      composing: TextRange(start: 0, end: 5),
+-    );
+-    await _pump(tester);
+-    expect(controller.noteEditingTarget!.composing, const TextRange(start: 0, end: 5));
+-    expect(_underlines(tester, note), isEmpty);
+-    expect(tester.widget<TextButton>(_replacement(note)).onPressed, isNull);
++  testWidgets(
++    'composition suppresses underlines and correction until finished',
++    (tester) async {
++      final (:controller, :note, :provider) = await _mount(
++        tester,
++        text: 'Feler note',
++      );
++      await tester.tap(_field(note));
++      await _pump(tester);
++      final edit = tester.widget<TextField>(_field(note)).controller!;
++      edit.value = const TextEditingValue(
++        text: 'Feler note',
++        selection: TextSelection.collapsed(offset: 5),
++        composing: TextRange(start: 0, end: 5),
++      );
++      await _pump(tester);
++      expect(
++        controller.noteEditingTarget!.composing,
++        const TextRange(start: 0, end: 5),
++      );
++      expect(_underlines(tester, note), isEmpty);
++      expect(tester.widget<TextButton>(_replacement(note)).onPressed, isNull);
+ 
+-    edit.value = edit.value.copyWith(composing: TextRange.empty);
+-    await _pump(tester);
+-    expect(_underlines(tester, note)['Feler'], const Color(0xFFC62828));
+-    expect(tester.widget<TextButton>(_replacement(note)).onPressed, isNotNull);
+-    expect(provider.requests, isNotEmpty);
+-    await _finish(tester, controller);
+-  });
++      edit.value = edit.value.copyWith(composing: TextRange.empty);
++      await _pump(tester);
++      expect(_underlines(tester, note)['Feler'], const Color(0xFFC62828));
++      expect(
++        tester.widget<TextButton>(_replacement(note)).onPressed,
++        isNotNull,
++      );
++      expect(provider.requests, isNotEmpty);
++      await _finish(tester, controller);
++    },
++  );
+ 
+-  testWidgets('retained correction rejects changed source and new documents', (tester) async {
+-    final (:controller, :note, :provider) = await _mount(tester, text: 'Feler note');
++  testWidgets('retained correction rejects changed source and new documents', (
++    tester,
++  ) async {
++    final (:controller, :note, :provider) = await _mount(
++      tester,
++      text: 'Feler note',
++    );
+     final action = tester.widget<TextButton>(_replacement(note)).onPressed!;
+     controller.setNoteText(note, 'New correct note');
+     action();
+     expect(controller.noteEditText(note), 'New correct note');
+     controller.loadBytes(
+-      WordSerializer().writeBytes(WmlDocument.empty(text: 'Replacement document')),
++      WordSerializer().writeBytes(
++        WmlDocument.empty(text: 'Replacement document'),
++      ),
+     );
+     action();
+     expect(controller.document.paragraphs.single.text, 'Replacement document');
+@@ -312,48 +360,66 @@ void main() {
+     await _finish(tester, controller);
+   });
+ 
+-  testWidgets('select-only and protected Notes remain inspectable without correction', (tester) async {
++  testWidgets(
++    'select-only and protected Notes remain inspectable without correction',
++    (tester) async {
++      final (:controller, :note, :provider) = await _mount(
++        tester,
++        text: 'Feler note',
++        mode: OfficeInteractionMode.selecting,
++      );
++      expect(tester.widget<TextField>(_field(note)).readOnly, isTrue);
++      expect(_underlines(tester, note), isNotEmpty);
++      expect(tester.widget<TextButton>(_replacement(note)).onPressed, isNull);
++      controller.setMode(OfficeInteractionMode.editing);
++      controller.document
++        ..restrictEditing = true
++        ..restrictMode = WmlRestrictMode.readOnly;
++      controller.refreshView();
++      await _pump(tester);
++      expect(tester.widget<TextButton>(_replacement(note)).onPressed, isNull);
++      expect(controller.noteEditText(note), 'Feler note');
++      expect(provider.requests, isNotEmpty);
++      await _finish(tester, controller);
++    },
++  );
++
++  testWidgets('Notes review action opens persistent Changes without a dialog', (
++    tester,
++  ) async {
+     final (:controller, :note, :provider) = await _mount(
+       tester,
+-      text: 'Feler note',
+-      mode: OfficeInteractionMode.selecting,
++      text: 'A clean note',
+     );
+-    expect(tester.widget<TextField>(_field(note)).readOnly, isTrue);
+-    expect(_underlines(tester, note), isNotEmpty);
+-    expect(tester.widget<TextButton>(_replacement(note)).onPressed, isNull);
+-    controller.setMode(OfficeInteractionMode.editing);
+-    controller.document
+-      ..restrictEditing = true
+-      ..restrictMode = WmlRestrictMode.readOnly;
+-    controller.refreshView();
+-    await _pump(tester);
+-    expect(tester.widget<TextButton>(_replacement(note)).onPressed, isNull);
+-    expect(controller.noteEditText(note), 'Feler note');
+-    expect(provider.requests, isNotEmpty);
+-    await _finish(tester, controller);
+-  });
+-
+-  testWidgets('Notes review action opens persistent Changes without a dialog', (tester) async {
+-    final (:controller, :note, :provider) = await _mount(tester, text: 'A clean note');
+     final button = find.byKey(const ValueKey<String>('notes-review-changes'));
+     await tester.ensureVisible(button);
+     await tester.tap(button);
+     await _pump(tester);
+     expect(controller.reviewPaneVisible, isTrue);
+     expect(controller.reviewPaneTab, WordReviewPaneTab.changes);
+-    expect(find.byKey(const ValueKey<String>('word-review-pane')), findsOneWidget);
++    expect(
++      find.byKey(const ValueKey<String>('word-review-pane')),
++      findsOneWidget,
++    );
+     expect(find.byType(AlertDialog), findsNothing);
+     expect(controller.noteEditText(note), 'A clean note');
+     expect(provider.requests, isNotEmpty);
+     await _finish(tester, controller);
+   });
+ 
+-  testWidgets('unavailable checks are not reported as a clean Notes result', (tester) async {
++  testWidgets('unavailable checks are not reported as a clean Notes result', (
++    tester,
++  ) async {
+     final checker = _NotesProvider(status: OfficeProofingStatus.unavailable);
+-    final (:controller, :note, :provider) = await _mount(tester, provider: checker);
+-    final status = tester.widget<Text>(
+-      find.byKey(const ValueKey<String>('notes-proofing-status')),
+-    ).data!;
++    final (:controller, :note, :provider) = await _mount(
++      tester,
++      provider: checker,
++    );
++    final status = tester
++        .widget<Text>(
++          find.byKey(const ValueKey<String>('notes-proofing-status')),
++        )
++        .data!;
+     expect(status, contains('unavailable'));
+     expect(status, isNot(contains('No issues found')));
+     expect(_underlines(tester, note), isEmpty);
+@@ -361,7 +427,9 @@ void main() {
+     await _finish(tester, controller);
+   });
+ 
+-  testWidgets('narrow Arabic scaled Notes controls stay reachable', (tester) async {
++  testWidgets('narrow Arabic scaled Notes controls stay reachable', (
++    tester,
++  ) async {
+     final (:controller, :note, :provider) = await _mount(
+       tester,
+       text: 'ملاحظة Feler للمراجعة',
+diff --git a/packages/quds_office_editor/test/word_zotero_direct_command_test.dart b/packages/quds_office_editor/test/word_zotero_direct_command_test.dart
+index d92d64c9..56dd09ed 100644
+--- a/packages/quds_office_editor/test/word_zotero_direct_command_test.dart
++++ b/packages/quds_office_editor/test/word_zotero_direct_command_test.dart
+@@ -276,14 +276,20 @@ void main() {
+       desktop.firstResponse!.complete();
+       await _pump(tester);
+       expect(find.byKey(_directKey), findsOneWidget);
+-      expect(find.textContaining('could not be applied safely'), findsOneWidget);
++      expect(
++        find.textContaining('could not be applied safely'),
++        findsOneWidget,
++      );
+       expect(fixture.controller.canUndo, isFalse);
+       await _tap(tester, 'Return to document');
+       expect(
+         fixture.controller.input.composing,
+         const TextRange(start: 0, end: 6),
+       );
+-      expect(fixture.controller.document.paragraphs.single.text, 'Before after');
++      expect(
++        fixture.controller.document.paragraphs.single.text,
++        'Before after',
++      );
+       expect(fixture.controller.canUndo, isFalse);
+     },
+   );
+diff --git a/packages/quds_office_editor/test/word_zotero_navigation_test.dart b/packages/quds_office_editor/test/word_zotero_navigation_test.dart
+index 13decbda..b3cc8d0e 100644
+--- a/packages/quds_office_editor/test/word_zotero_navigation_test.dart
++++ b/packages/quds_office_editor/test/word_zotero_navigation_test.dart
+@@ -633,155 +633,175 @@ void main() {
+     },
+   );
+ 
+-  test('body composition rejects every native command before pending edits commit', () {
+-    final document = WmlDocument.empty(text: 'Body');
+-    final note = WordNotes.insert(
+-      document,
+-      document.paragraphs.single,
+-      endnote: false,
+-      text: 'Note',
+-    );
+-    final controller = _controller(document);
+-    controller.setNoteText(note, 'Pending note text');
+-    controller.caret.logicalIndex = 2;
+-    controller.caret.collapseSelection();
+-    final value = TextEditingValue(
+-      text: document.paragraphs.single.text,
+-      selection: const TextSelection.collapsed(offset: 2),
+-      composing: const TextRange(start: 0, end: 2),
+-    );
+-    controller.input.setValue(value);
+-    final before = _selection(controller);
+-    final revision = controller.contentRevision;
+-    expect(controller.canUndo, isFalse);
+-    for (final command in <ZoteroCitingCommand?>[
+-      null,
+-      ...ZoteroCitingCommand.values,
+-    ]) {
+-      expect(
+-        () => controller.beginZoteroTransaction(
+-          documentId: 'body-composition',
+-          command: command,
+-        ),
+-        throwsA(isA<UnsupportedError>().having(
+-          (error) => error.message,
+-          'message',
+-          contains('composition'),
+-        )),
++  test(
++    'body composition rejects every native command before pending edits commit',
++    () {
++      final document = WmlDocument.empty(text: 'Body');
++      final note = WordNotes.insert(
++        document,
++        document.paragraphs.single,
++        endnote: false,
++        text: 'Note',
++      );
++      final controller = _controller(document);
++      controller.setNoteText(note, 'Pending note text');
++      controller.caret.logicalIndex = 2;
++      controller.caret.collapseSelection();
++      final value = TextEditingValue(
++        text: document.paragraphs.single.text,
++        selection: const TextSelection.collapsed(offset: 2),
++        composing: const TextRange(start: 0, end: 2),
+       );
++      controller.input.setValue(value);
++      final before = _selection(controller);
++      final revision = controller.contentRevision;
++      expect(controller.canUndo, isFalse);
++      for (final command in <ZoteroCitingCommand?>[
++        null,
++        ...ZoteroCitingCommand.values,
++      ]) {
++        expect(
++          () => controller.beginZoteroTransaction(
++            documentId: 'body-composition',
++            command: command,
++          ),
++          throwsA(
++            isA<UnsupportedError>().having(
++              (error) => error.message,
++              'message',
++              contains('composition'),
++            ),
++          ),
++        );
++        expect(controller.input.value, value);
++        expect(controller.input.composing, value.composing);
++        expect(_selection(controller), before);
++        expect(controller.contentRevision, revision);
++        expect(controller.canUndo, isFalse);
++        expect(note.text, 'Pending note text');
++      }
++      controller.input.setValue(value.copyWith(composing: TextRange.empty));
++      controller.beginZoteroTransaction(documentId: 'composition-finished');
++      expect(controller.canUndo, isTrue);
++      controller.undo();
++      expect(note.text, 'Note');
++    },
++  );
++
++  test(
++    'body composition beginning during native work rejects completed changes',
++    () {
++      final document = WmlDocument.empty(text: 'Body');
++      final controller = _controller(document);
++      controller.caret.logicalIndex = 2;
++      controller.caret.collapseSelection();
++      final transaction = controller.beginZoteroTransaction(
++        documentId: 'composition-started',
++        command: ZoteroCitingCommand.addNote,
++      );
++      transaction.session.handle('Document.insertText', [
++        'composition-started',
++        '<p>Research note</p>',
++      ]);
++      transaction.session.handle('Document.complete', ['composition-started']);
++      final value = TextEditingValue(
++        text: document.paragraphs.single.text,
++        selection: const TextSelection.collapsed(offset: 2),
++        composing: const TextRange(start: 0, end: 2),
++      );
++      controller.input.setValue(value);
++      final before = _selection(controller);
++      expect(transaction.assertCurrent, throwsStateError);
++      expect(transaction.apply, throwsStateError);
++      expect(document.paragraphs.single.text, 'Body');
+       expect(controller.input.value, value);
+       expect(controller.input.composing, value.composing);
+       expect(_selection(controller), before);
+-      expect(controller.contentRevision, revision);
+-      expect(controller.canUndo, isFalse);
+-      expect(note.text, 'Pending note text');
+-    }
+-    controller.input.setValue(value.copyWith(composing: TextRange.empty));
+-    controller.beginZoteroTransaction(documentId: 'composition-finished');
+-    expect(controller.canUndo, isTrue);
+-    controller.undo();
+-    expect(note.text, 'Note');
+-  });
+-
+-  test('body composition beginning during native work rejects completed changes', () {
+-    final document = WmlDocument.empty(text: 'Body');
+-    final controller = _controller(document);
+-    controller.caret.logicalIndex = 2;
+-    controller.caret.collapseSelection();
+-    final transaction = controller.beginZoteroTransaction(
+-      documentId: 'composition-started',
+-      command: ZoteroCitingCommand.addNote,
+-    );
+-    transaction.session.handle('Document.insertText', [
+-      'composition-started',
+-      '<p>Research note</p>',
+-    ]);
+-    transaction.session.handle('Document.complete', ['composition-started']);
+-    final value = TextEditingValue(
+-      text: document.paragraphs.single.text,
+-      selection: const TextSelection.collapsed(offset: 2),
+-      composing: const TextRange(start: 0, end: 2),
+-    );
+-    controller.input.setValue(value);
+-    final before = _selection(controller);
+-    expect(transaction.assertCurrent, throwsStateError);
+-    expect(transaction.apply, throwsStateError);
+-    expect(document.paragraphs.single.text, 'Body');
+-    expect(controller.input.value, value);
+-    expect(controller.input.composing, value.composing);
+-    expect(_selection(controller), before);
+-    _clean(controller);
+-  });
++      _clean(controller);
++    },
++  );
+ 
+-  test('body focus return does not clear active composition or change selection', () {
+-    final controller = _controller(WmlDocument.empty(text: 'Body'));
+-    controller.caret.logicalIndex = 2;
+-    controller.caret.collapseSelection();
+-    const value = TextEditingValue(
+-      text: 'Body',
+-      selection: TextSelection.collapsed(offset: 2),
+-      composing: TextRange(start: 0, end: 2),
+-    );
+-    controller.input.setValue(value);
+-    final before = _selection(controller);
+-    var calls = 0;
+-    controller.onRequestFocus = () {
+-      calls++;
+-      controller.input.setValue(value.copyWith(composing: TextRange.empty));
+-    };
+-    controller.requestEditingFocus();
+-    expect(calls, 0);
+-    expect(controller.input.value, value);
+-    expect(controller.input.composing, value.composing);
+-    expect(_selection(controller), before);
+-    _clean(controller);
+-  });
++  test(
++    'body focus return does not clear active composition or change selection',
++    () {
++      final controller = _controller(WmlDocument.empty(text: 'Body'));
++      controller.caret.logicalIndex = 2;
++      controller.caret.collapseSelection();
++      const value = TextEditingValue(
++        text: 'Body',
++        selection: TextSelection.collapsed(offset: 2),
++        composing: TextRange(start: 0, end: 2),
++      );
++      controller.input.setValue(value);
++      final before = _selection(controller);
++      var calls = 0;
++      controller.onRequestFocus = () {
++        calls++;
++        controller.input.setValue(value.copyWith(composing: TextRange.empty));
++      };
++      controller.requestEditingFocus();
++      expect(calls, 0);
++      expect(controller.input.value, value);
++      expect(controller.input.composing, value.composing);
++      expect(_selection(controller), before);
++      _clean(controller);
++    },
++  );
+ 
+-  test('Notes focus return does not reveal or interrupt active composition', () {
+-    final document = WmlDocument.empty(text: 'Body');
+-    final note = WordNotes.insert(
+-      document,
+-      document.paragraphs.single,
+-      endnote: false,
+-      text: 'Note',
+-    );
+-    final controller = _controller(document);
+-    controller.syncConfig(controller.config.copyWith(showNotesPane: false));
+-    controller.setNoteEditingTarget(
+-      note,
+-      const TextSelection.collapsed(offset: 2),
+-      composing: const TextRange(start: 0, end: 2),
+-    );
+-    final before = _selection(controller);
+-    controller.requestEditingFocus();
+-    expect(controller.noteFocusRequest, 0);
+-    expect(controller.config.showNotesPane, isFalse);
+-    expect(_selection(controller), before);
+-    expect(controller.noteEditingTarget?.composing, const TextRange(start: 0, end: 2));
+-    _clean(controller);
+-  });
++  test(
++    'Notes focus return does not reveal or interrupt active composition',
++    () {
++      final document = WmlDocument.empty(text: 'Body');
++      final note = WordNotes.insert(
++        document,
++        document.paragraphs.single,
++        endnote: false,
++        text: 'Note',
++      );
++      final controller = _controller(document);
++      controller.syncConfig(controller.config.copyWith(showNotesPane: false));
++      controller.setNoteEditingTarget(
++        note,
++        const TextSelection.collapsed(offset: 2),
++        composing: const TextRange(start: 0, end: 2),
++      );
++      final before = _selection(controller);
++      controller.requestEditingFocus();
++      expect(controller.noteFocusRequest, 0);
++      expect(controller.config.showNotesPane, isFalse);
++      expect(_selection(controller), before);
++      expect(
++        controller.noteEditingTarget?.composing,
++        const TextRange(start: 0, end: 2),
++      );
++      _clean(controller);
++    },
++  );
+ 
+-  test('reattaching an unchanged body target preserves the complete IME draft', () {
+-    final controller = _controller(WmlDocument.empty(text: 'Body text'));
+-    controller.caret.logicalIndex = 2;
+-    controller.caret.collapseSelection();
+-    controller.attachInput();
+-    const value = TextEditingValue(
+-      text: 'Body text',
+-      selection: TextSelection.collapsed(offset: 3),
+-      composing: TextRange(start: 0, end: 4),
+-    );
+-    controller.input.setValue(value);
+-    controller.detachInput();
+-    final before = _selection(controller);
+-    controller.attachInput();
+-    expect(controller.input.isAttached, isTrue);
+-    expect(controller.input.value, value);
+-    expect(controller.input.composing, value.composing);
+-    expect(_selection(controller), before);
+-    expect(controller.document.paragraphs.single.text, 'Body text');
+-    _clean(controller);
+-  });
++  test(
++    'reattaching an unchanged body target preserves the complete IME draft',
++    () {
++      final controller = _controller(WmlDocument.empty(text: 'Body text'));
++      controller.caret.logicalIndex = 2;
++      controller.caret.collapseSelection();
++      controller.attachInput();
++      const value = TextEditingValue(
++        text: 'Body text',
++        selection: TextSelection.collapsed(offset: 3),
++        composing: TextRange(start: 0, end: 4),
++      );
++      controller.input.setValue(value);
++      controller.detachInput();
++      final before = _selection(controller);
++      controller.attachInput();
++      expect(controller.input.isAttached, isTrue);
++      expect(controller.input.value, value);
++      expect(controller.input.composing, value.composing);
++      expect(_selection(controller), before);
++      expect(controller.document.paragraphs.single.text, 'Body text');
++      _clean(controller);
++    },
++  );
+ 
+   test('accepted IME text retains its composition through reattachment', () {
+     final controller = _controller(WmlDocument.empty(text: 'Body'));
+@@ -814,17 +834,23 @@ void main() {
+     test('reattachment does not reuse composition after changing $changed', () {
+       final first = _paragraph('Body text');
+       final second = _paragraph('Body text');
+-      final controller = _controller(WmlDocument(
+-        sections: [WmlSection(blocks: [first, second])],
+-      ));
++      final controller = _controller(
++        WmlDocument(
++          sections: [
++            WmlSection(blocks: [first, second]),
++          ],
++        ),
++      );
+       controller.caret.logicalIndex = 2;
+       controller.caret.collapseSelection();
+       controller.attachInput();
+-      controller.input.setValue(const TextEditingValue(
+-        text: 'Body text',
+-        selection: TextSelection.collapsed(offset: 2),
+-        composing: TextRange(start: 0, end: 4),
+-      ));
++      controller.input.setValue(
++        const TextEditingValue(
++          text: 'Body text',
++          selection: TextSelection.collapsed(offset: 2),
++          composing: TextRange(start: 0, end: 4),
++        ),
++      );
+       controller.detachInput();
+       switch (changed) {
+         case 'paragraph':
+@@ -841,10 +867,14 @@ void main() {
+       expect(controller.input.isAttached, isTrue);
+       expect(controller.input.composing, TextRange.empty);
+       expect(controller.input.value.composing, TextRange.empty);
+-      expect(controller.input.value.text,
+-          changed == 'text' ? 'Changed text' : 'Body text');
+-      expect(controller.input.value.selection.extentOffset,
+-          controller.caret.logicalIndex);
++      expect(
++        controller.input.value.text,
++        changed == 'text' ? 'Changed text' : 'Body text',
++      );
++      expect(
++        controller.input.value.selection.extentOffset,
++        controller.caret.logicalIndex,
++      );
+       expect(_selection(controller), before);
+       _clean(controller);
+     });

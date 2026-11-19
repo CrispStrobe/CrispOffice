@@ -42,12 +42,18 @@ def test_summary(log: Path) -> dict[str, object]:
     terminals = 0
     terminal = None
     for number, line in enumerate(log.read_text(errors='replace').splitlines(), 1):
-        # Dart build-hook progress may precede the first JSON event on a line.
-        brace = line.find('{')
-        if brace < 0:
+        # Native-assets progress may precede an event without a newline. Strip
+        # only those known prefixes; searching for an opening brace can discard
+        # malformed records, scalar/array JSON, or unexpected runner output.
+        record = line.strip()
+        progress = ('Running build hooks...', 'Running link hooks...')
+        while record.startswith(progress):
+            prefix = next(item for item in progress if record.startswith(item))
+            record = record[len(prefix):].lstrip()
+        if not record:
             continue
         try:
-            event = json.loads(line[brace:])
+            event = json.loads(record)
         except json.JSONDecodeError:
             protocol_issues.append(f'Line {number}: malformed JSON event')
             continue
@@ -103,18 +109,33 @@ def test_summary(log: Path) -> dict[str, object]:
             terminal = event.get('success')
             if type(terminal) is not bool:
                 protocol_issues.append(f'Line {number}: invalid terminal result')
-    substantive = [case for case in cases.values()
-                   if not case.get('hidden') and not str(case.get('name', '')).startswith('loading ')]
+    substantive = []
+    excluded = []
+    for case in cases.values():
+        target = (excluded if case.get('hidden') or str(case.get('name', '')).startswith('loading ')
+                  else substantive)
+        target.append(case)
     passed = sum(case.get('result') == 'success' and not case.get('skipped') for case in substantive)
     skipped = sum(bool(case.get('skipped')) for case in substantive)
     failed = [case for case in substantive if case.get('result') != 'success' and not case.get('skipped')]
+    # Loaders and hidden lifecycle cases do not add substantive passes, but
+    # every reported failure/error or skip must still invalidate the run.
+    all_failed = sum(case.get('result') in ('failure', 'error') for case in cases.values())
+    all_skipped = sum(case.get('skipped') is True for case in cases.values())
+    excluded_failed = sum(case.get('result') != 'success' and not case.get('skipped')
+                          for case in excluded)
+    excluded_skipped = sum(bool(case.get('skipped')) for case in excluded)
     incomplete = len(set(cases) - completed)
     return dict(passed=passed, skipped=skipped, failed=len(failed), errors=len(errors),
+                all_failed=all_failed, all_skipped=all_skipped,
+                excluded_failed=excluded_failed, excluded_skipped=excluded_skipped,
                 terminal_success=terminal, start_events=starts, terminal_events=terminals,
                 incomplete=incomplete, protocol_errors=len(protocol_issues),
                 protocol_issues=protocol_issues, cases=substantive,
                 valid=(terminal is True and starts == 1 and terminals == 1
                        and passed > 0 and skipped == 0 and not failed and not errors
+                       and all_failed == 0 and all_skipped == 0
+                       and excluded_failed == 0 and excluded_skipped == 0
                        and not incomplete and not protocol_issues))
 
 
@@ -122,6 +143,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--flutter-sdk', required=True, type=Path)
     parser.add_argument('--output', type=Path, default=Path('build/mail-store-qualification'))
+    parser.add_argument('--offline', action='store_true',
+                        help='Resolve the enforced lock using only the existing Pub cache.')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
     output = args.output.resolve()
@@ -194,7 +217,8 @@ def main() -> int:
         ok &= run('runner-regressions', [sys.executable, '-m', 'unittest',
                                          'discover', '-s', 'tools/mail',
                                          '-p', 'test_check_store.py', '-v'])
-        ok &= run('locked-resolution', cmd + ['pub', 'get', '--enforce-lockfile'])
+        ok &= run('locked-resolution', cmd + ['pub', 'get', '--enforce-lockfile']
+                  + (['--offline'] if args.offline else []))
         if ok:
             core = root / 'packages/quds_mail_core'
             store = root / 'packages/quds_mail_store'

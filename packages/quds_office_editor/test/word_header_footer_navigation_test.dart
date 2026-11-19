@@ -7,6 +7,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
+import 'support/review_fonts.dart';
+
 WmlParagraph _paragraph(String text, {bool newPage = false}) => WmlParagraph(
   properties: WmlParagraphProps(pageBreakBefore: newPage),
   inlines: [WmlRun(text: text)],
@@ -107,6 +109,7 @@ int _pageFor(WordHeaderFooterVariant variant) => switch (variant) {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(loadReviewFonts);
   setUpAll(OfficeHostFonts.ensureRegistered);
 
   for (final footer in [false, true]) {
@@ -386,6 +389,10 @@ void main() {
       });
       await tester.pumpWidget(
         MaterialApp(
+          theme: ThemeData(
+            fontFamily: 'Liberation Sans',
+            fontFamilyFallback: const ['Noto Naskh Arabic'],
+          ),
           home: Scaffold(
             body: QudsWordEditor(controller: controller, focusNode: focus),
           ),
@@ -445,6 +452,123 @@ void main() {
     },
   );
 
+  for (final footer in [false, true]) {
+    testWidgets(
+      'selecting ${footer ? 'footer' : 'header'} paragraphs leaves body table cells unselected',
+      (tester) async {
+        final section = WmlSection(
+          pageSize: const WmlPageSize(width: 420, height: 360),
+          margins: const WmlPageMargins(
+            top: 90,
+            bottom: 80,
+            left: 48,
+            right: 48,
+            header: 24,
+            footer: 24,
+          ),
+          header: [_paragraph('First header'), _paragraph('Second header')],
+          footer: [_paragraph('First footer'), _paragraph('Second footer')],
+          blocks: [
+            WmlTable(
+              grid: [140, 140],
+              rows: [
+                WmlTableRow(
+                  cells: [
+                    WmlTableCell(blocks: [_paragraph('Left body cell')]),
+                    WmlTableCell(blocks: [_paragraph('Right body cell')]),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        );
+        final controller = _controller(WmlDocument(sections: [section]));
+        controller.proofing.enabled = false;
+        tester.view.devicePixelRatio = 1;
+        tester.view.physicalSize = const Size(900, 700);
+        addTearDown(() {
+          tester.view.resetPhysicalSize();
+          tester.view.resetDevicePixelRatio();
+        });
+        const pictureKey = Key('header-body-table-picture');
+        await tester.pumpWidget(
+          RepaintBoundary(
+            key: pictureKey,
+            child: MaterialApp(
+              theme: ThemeData(
+                fontFamily: 'Liberation Sans',
+                fontFamilyFallback: const ['Noto Naskh Arabic'],
+              ),
+              home: Scaffold(body: QudsWordEditor(controller: controller)),
+            ),
+          ),
+        );
+        controller.beginHeaderFooterEdit(0, footer: footer);
+        await tester.pump();
+        final canvas = tester.renderObject<RenderWordCanvas>(
+          find.byType(WordCanvas),
+        );
+        final boundary = tester.renderObject<RenderRepaintBoundary>(
+          find.byKey(pictureKey),
+        );
+        final cells = controller.documentLaidOut.pages.single.frames
+            .where((box) => box.kind == LaidOutBoxKind.tableCell)
+            .toList();
+        expect(cells, hasLength(2));
+
+        Future<List<int>> bodyTablePixels() async {
+          final image = (await tester.runAsync(() => boundary.toImage()))!;
+          final data = (await tester.runAsync(
+            () => image.toByteData(format: ui.ImageByteFormat.rawRgba),
+          ))!;
+          final pixels = data.buffer.asUint8List();
+          final sampled = <int>[];
+          for (final cell in cells) {
+            final start = boundary.globalToLocal(
+              canvas.localToGlobal(
+                canvas.windowForPagePoint(0, Offset(cell.x + 2, cell.y + 2)),
+              ),
+            );
+            final end = boundary.globalToLocal(
+              canvas.localToGlobal(
+                canvas.windowForPagePoint(
+                  0,
+                  Offset(cell.x + cell.width - 2, cell.y + cell.height - 2),
+                ),
+              ),
+            );
+            expect(start.dx.ceil(), greaterThanOrEqualTo(0));
+            expect(start.dy.ceil(), greaterThanOrEqualTo(0));
+            expect(end.dx.floor(), lessThanOrEqualTo(image.width));
+            expect(end.dy.floor(), lessThanOrEqualTo(image.height));
+            for (var y = start.dy.ceil(); y < end.dy.floor(); y++) {
+              for (var x = start.dx.ceil(); x < end.dx.floor(); x++) {
+                final index = (y * image.width + x) * 4;
+                sampled.addAll(pixels.sublist(index, index + 4));
+              }
+            }
+          }
+          image.dispose();
+          expect(sampled, isNotEmpty);
+          return sampled;
+        }
+
+        final before = await bodyTablePixels();
+        controller.headerFooterCaret
+          ..paragraphIndex = 1
+          ..logicalIndex = 6
+          ..selectionAnchorParagraph = 0
+          ..selectionAnchor = 0;
+        controller.refreshView();
+        await tester.pump();
+        expect(controller.headerFooterCaret.isCollapsed, isFalse);
+        expect(await bodyTablePixels(), before);
+        expect(tester.takeException(), isNull);
+        await tester.pumpWidget(const SizedBox.shrink());
+      },
+    );
+  }
+
   testWidgets('alternate header selection remains visible below its text', (
     tester,
   ) async {
@@ -469,6 +593,10 @@ void main() {
       RepaintBoundary(
         key: pictureKey,
         child: MaterialApp(
+          theme: ThemeData(
+            fontFamily: 'Liberation Sans',
+            fontFamilyFallback: const ['Noto Naskh Arabic'],
+          ),
           home: Scaffold(body: QudsWordEditor(controller: controller)),
         ),
       ),

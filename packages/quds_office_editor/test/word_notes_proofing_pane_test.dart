@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
+import 'support/review_fonts.dart';
+
 class _NotesProvider extends OfficeProofingProvider {
   _NotesProvider({
     this.providerId = 'notes-widget',
@@ -89,6 +91,23 @@ Future<void> _check(
   await _pump(tester);
 }
 
+Future<void> _historyKey(
+  WidgetTester tester, {
+  bool redo = false,
+  bool useY = false,
+}) async {
+  await tester.sendKeyDownEvent(LogicalKeyboardKey.controlLeft);
+  if (redo && !useY) {
+    await tester.sendKeyDownEvent(LogicalKeyboardKey.shiftLeft);
+  }
+  await tester.sendKeyEvent(
+    useY ? LogicalKeyboardKey.keyY : LogicalKeyboardKey.keyZ,
+  );
+  if (redo && !useY) await tester.sendKeyUpEvent(LogicalKeyboardKey.shiftLeft);
+  await tester.sendKeyUpEvent(LogicalKeyboardKey.controlLeft);
+  await _pump(tester);
+}
+
 Future<_Fixture> _mount(
   WidgetTester tester, {
   String text = 'Feler are is very very useful.',
@@ -130,6 +149,10 @@ Future<_Fixture> _mount(
   });
   await tester.pumpWidget(
     MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Liberation Sans',
+        fontFamilyFallback: const ['Noto Naskh Arabic'],
+      ),
       home: MediaQuery(
         data: MediaQueryData(
           size: size,
@@ -206,6 +229,9 @@ Future<void> _finish(
 }
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(loadReviewFonts);
+
   testWidgets('Notes paints all finding categories without changing source', (
     tester,
   ) async {
@@ -256,12 +282,219 @@ void main() {
         const TextSelection.collapsed(offset: 11),
       );
 
-      controller.undo();
-      await _pump(tester);
+      await _historyKey(tester);
       expect(controller.noteEditText(note), 'Lead\nFeler note');
-      controller.undo();
-      await _pump(tester);
+      await _historyKey(tester);
       expect(controller.noteEditText(note), 'Original note');
+      expect(controller.canUndo, isFalse);
+      await _historyKey(tester, redo: true);
+      expect(controller.noteEditText(note), 'Lead\nFeler note');
+      await _historyKey(tester, redo: true, useY: true);
+      expect(controller.noteEditText(note), 'Lead\nFehler note');
+      expect(
+        tester.widget<TextField>(_field(note)).focusNode!.hasFocus,
+        isTrue,
+      );
+      await _finish(tester, controller);
+    });
+  }
+
+  testWidgets('Notes keyboard undo restores tracked correction revisions', (
+    tester,
+  ) async {
+    final (:controller, :note, :provider) = await _mount(
+      tester,
+      text: 'Feler note',
+    );
+    controller.document.trackRevisions = true;
+    await _check(tester, controller);
+    await tester.ensureVisible(_replacement(note));
+    await tester.tap(_replacement(note));
+    await _pump(tester);
+    expect(controller.noteEditText(note), 'FelerFehler note');
+    final revisions = List<WmlRevision>.of(controller.document.revisions);
+    expect(revisions.map((revision) => revision.kind), [
+      WmlRevisionKind.delete,
+      WmlRevisionKind.insert,
+    ]);
+    await _historyKey(tester);
+    expect(controller.noteEditText(note), 'Feler note');
+    expect(controller.document.revisions, isEmpty);
+    expect(controller.canUndo, isFalse);
+    await _historyKey(tester, redo: true);
+    expect(controller.noteEditText(note), 'FelerFehler note');
+    expect(controller.document.revisions, orderedEquals(revisions));
+    expect(provider.requests, isNotEmpty);
+    await _finish(tester, controller);
+  });
+
+  testWidgets('redo never overwrites a new Notes draft after undo', (
+    tester,
+  ) async {
+    final (:controller, :note, :provider) = await _mount(
+      tester,
+      text: 'Original note',
+    );
+    await tester.enterText(_field(note), 'First draft');
+    await _pump(tester);
+    await _historyKey(tester);
+    expect(controller.noteEditText(note), 'Original note');
+    expect(controller.canRedo, isTrue);
+    await tester.enterText(_field(note), 'A new draft to keep');
+    await _pump(tester);
+    await _historyKey(tester, redo: true, useY: true);
+    expect(controller.noteEditText(note), 'A new draft to keep');
+    expect(controller.canRedo, isFalse);
+    await _historyKey(tester);
+    expect(controller.noteEditText(note), 'Original note');
+    await _historyKey(tester, redo: true);
+    expect(controller.noteEditText(note), 'A new draft to keep');
+    expect(provider.requests, isNotEmpty);
+    await _finish(tester, controller);
+  });
+
+  testWidgets('Notes keyboard history leaves an active composition untouched', (
+    tester,
+  ) async {
+    final (:controller, :note, :provider) = await _mount(
+      tester,
+      text: 'Original note',
+    );
+    await tester.enterText(_field(note), 'Composing note');
+    await _pump(tester);
+    final edit = tester.widget<TextField>(_field(note)).controller!;
+    edit.value = edit.value.copyWith(
+      selection: const TextSelection.collapsed(offset: 9),
+      composing: const TextRange(start: 0, end: 9),
+    );
+    await _pump(tester);
+    final before = edit.value;
+    final revision = controller.contentRevision;
+    await _historyKey(tester);
+    await _historyKey(tester, redo: true, useY: true);
+    expect(edit.value, before);
+    expect(controller.noteEditText(note), 'Composing note');
+    expect(controller.contentRevision, revision);
+    expect(controller.canUndo, isFalse);
+    edit.value = edit.value.copyWith(composing: TextRange.empty);
+    await _pump(tester);
+    await _historyKey(tester);
+    expect(controller.noteEditText(note), 'Original note');
+    expect(provider.requests, isNotEmpty);
+    await _finish(tester, controller);
+  });
+
+  for (final endnote in [false, true]) {
+    testWidgets('language and checking controls follow the focused '
+        '${endnote ? 'endnote' : 'footnote'}', (tester) async {
+      final (:controller, :note, :provider) = await _mount(
+        tester,
+        endnote: endnote,
+        text: 'Feler note',
+      );
+      final body = controller.document.paragraphs.single;
+      final bodyText = body.text;
+      final field = _field(note);
+      await tester.ensureVisible(field);
+      await tester.pump();
+      expect(field.hitTestable(), findsOneWidget);
+      await tester.tap(field);
+      await tester.pump();
+      final edit = tester.widget<TextField>(field).controller!;
+      final focus = tester.widget<TextField>(field).focusNode!;
+      expect(focus.hasFocus, isTrue);
+      const selection = TextSelection(baseOffset: 0, extentOffset: 5);
+      edit.selection = selection;
+      await _pump(tester);
+      expect(controller.noteEditingTarget?.note, same(note));
+      expect(controller.noteEditingTarget?.selection, selection);
+      await tester.tap(
+        find.byKey(const ValueKey<String>('word-review-language-status')),
+      );
+      await _pump(tester);
+      expect(find.byType(AlertDialog), findsNothing);
+      expect(tester.widget<TextField>(_field(note)).controller, same(edit));
+      // Review changes from a side pane to a lower pane at this breakpoint.
+      // Reparenting must preserve the actual Notes field and its source range.
+      for (final width in [720.0, 1100.0]) {
+        await tester.binding.setSurfaceSize(Size(width, 820));
+        await _pump(tester);
+        expect(tester.widget<TextField>(_field(note)).controller, same(edit));
+        expect(controller.noteEditingTarget?.note, same(note));
+        expect(
+          controller.noteEditingTarget?.selection,
+          const TextSelection(baseOffset: 0, extentOffset: 5),
+        );
+      }
+      expect(tester.widget<TextField>(field).controller, same(edit));
+      expect(tester.widget<TextField>(field).focusNode, same(focus));
+      expect(controller.noteEditingTarget?.note, same(note));
+      expect(controller.noteEditingTarget?.selection, selection);
+      final language = find.byKey(
+        const ValueKey<String>('live-proofing-text-language'),
+      );
+      await tester.ensureVisible(language);
+      await tester.pump();
+      expect(language.hitTestable(), findsOneWidget);
+      expect(
+        tester.widget<DropdownButton<String>>(language).onChanged,
+        isNotNull,
+      );
+      await tester.tap(language);
+      await _pump(tester);
+      await tester.tap(find.text('Deutsch (Deutschland)').last);
+      await _pump(tester);
+      final runs = note.paragraphs.single.inlines.whereType<WmlRun>().toList();
+      expect(runs.map((run) => run.text), ['Feler', ' note']);
+      expect(runs.map((run) => run.properties.proofingLanguage), [
+        'de-DE',
+        null,
+      ]);
+      final checking = find.byKey(
+        const ValueKey<String>('live-proofing-text-enabled'),
+      );
+      await tester.ensureVisible(checking);
+      await tester.tap(checking);
+      await _pump(tester);
+      expect(
+        note.paragraphs.single.inlines
+            .whereType<WmlRun>()
+            .first
+            .properties
+            .noProof,
+        isTrue,
+      );
+      expect(controller.noteEditingTarget?.note, same(note));
+      expect(
+        controller.noteEditingTarget?.selection,
+        const TextSelection(baseOffset: 0, extentOffset: 5),
+      );
+      expect(body.text, bodyText);
+      expect(
+        body.inlines.whereType<WmlRun>().every(
+          (run) =>
+              run.properties.proofingLanguage == null &&
+              run.properties.noProof == null,
+        ),
+        isTrue,
+      );
+      expect(provider.requests, isNotEmpty);
+      for (final size in [const Size(650, 820), const Size(1100, 820)]) {
+        await tester.binding.setSurfaceSize(size);
+        await _pump(tester);
+        expect(tester.widget<TextField>(field).controller, same(edit));
+        expect(tester.widget<TextField>(field).focusNode, same(focus));
+        expect(controller.noteEditingTarget?.note, same(note));
+        expect(controller.noteEditingTarget?.selection, selection);
+      }
+      await tester.tap(find.byKey(const ValueKey<String>('live-review-close')));
+      await _pump(tester);
+      expect(controller.reviewPaneVisible, isFalse);
+      expect(tester.widget<TextField>(field).controller, same(edit));
+      expect(tester.widget<TextField>(field).focusNode, same(focus));
+      expect(focus.hasFocus, isTrue);
+      expect(controller.noteEditingTarget?.note, same(note));
+      expect(controller.noteEditingTarget?.selection, selection);
       await _finish(tester, controller);
     });
   }

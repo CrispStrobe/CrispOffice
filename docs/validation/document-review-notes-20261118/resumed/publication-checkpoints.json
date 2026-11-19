@@ -1,0 +1,70 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/document-review-notes-20261118",
+  "previous_saved_source": "c9f8cd8e213b0d5ed3edc31546dd19db553048f2",
+  "frozen_test_source": "a7512e94da8208123aa2df5f5c2c0354d079ddc7",
+  "method": "GitHub Git-object API, exact local blob/tree identity verification, non-forced expected-head ref updates, then fetched exact remote tree.",
+  "github_actions_queried_or_awaited": false,
+  "checkpoints": [
+    {
+      "commit": "842e419ca03ac9da8423f49913a182d20751f671",
+      "tree": "2ad7d3b44e9039ab4c753bd9c16c6a3d281f6c91",
+      "parents": [
+        "c9f8cd8e213b0d5ed3edc31546dd19db553048f2",
+        "514c341d985e01bbc38f8ec4a1f5708e2b7fc8f3",
+        "2d31df46d9aa684c60b75053671b0f45016388d2",
+        "5535d2eb8ed153b937f372912d3279c7794090ed"
+      ],
+      "subject": "Integrate current Mail, Zotero and thesaurus before document review continuation [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/842e419ca03ac9da8423f49913a182d20751f671"
+    },
+    {
+      "commit": "e92f875e5a30147770680829dfe1e9bf7bc1262a",
+      "tree": "4c1c643fef1411bb18ce07dbd4fb7e6bac5611d2",
+      "parents": [
+        "842e419ca03ac9da8423f49913a182d20751f671"
+      ],
+      "subject": "Keep header review selection out of body tables and preserve incoming audit [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/e92f875e5a30147770680829dfe1e9bf7bc1262a"
+    },
+    {
+      "commit": "c098f7567caced8a84632690ddede57446893f7c",
+      "tree": "36bedb87ad45fc2666345347d28d5c1c97f8ec90",
+      "parents": [
+        "e92f875e5a30147770680829dfe1e9bf7bc1262a"
+      ],
+      "subject": "Keep Notes language, keyboard history and manual checks bound to edited text [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/c098f7567caced8a84632690ddede57446893f7c"
+    },
+    {
+      "commit": "56e21b897ab6c6d273e09652a574389ec2f21999",
+      "tree": "3098b97f56bda1d4747f16f0953559785e5a2a8f",
+      "parents": [
+        "c098f7567caced8a84632690ddede57446893f7c",
+        "086e15b7c059edd09cc77dea721f489b5ef97fa9",
+        "8fa115e8358e305872fd14e757f9133fa9c1540d",
+        "0ea205e0ee35bb43635960a0edafd42dc4c16e8d"
+      ],
+      "subject": "Record final bounded incoming refresh and merge resolution [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/56e21b897ab6c6d273e09652a574389ec2f21999"
+    },
+    {
+      "commit": "1aa37e564d615807b74c5f9c2d662488c669ad17",
+      "tree": "c4cf67bdbbba242d86548758461005d3c937dee6",
+      "parents": [
+        "56e21b897ab6c6d273e09652a574389ec2f21999"
+      ],
+      "subject": "Preserve Notes selection across Review layouts and bind local qualification [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/1aa37e564d615807b74c5f9c2d662488c669ad17"
+    },
+    {
+      "commit": "a7512e94da8208123aa2df5f5c2c0354d079ddc7",
+      "tree": "0817e6573070fe1e30f63615956e801b1605f992",
+      "parents": [
+        "1aa37e564d615807b74c5f9c2d662488c669ad17"
+      ],
+      "subject": "Qualify visible Notes selection and bind preserved local evidence [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/a7512e94da8208123aa2df5f5c2c0354d079ddc7"
+    }
+  ]
+}

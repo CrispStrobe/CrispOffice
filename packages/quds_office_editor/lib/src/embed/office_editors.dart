@@ -281,6 +281,11 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   late final bool _ownsFocus;
   late final Ticker _ticker;
   final GlobalKey _canvasKey = GlobalKey(debugLabel: 'word-document-canvas');
+  // Opening or repositioning Review reparents this whole area. Keep Notes'
+  // TextField state and source selection alive along with the document canvas.
+  final GlobalKey _documentPaneKey = GlobalKey(
+    debugLabel: 'word-document-pane',
+  );
   OverlayEntry? _contextMenu;
   bool _contextKeyboard = false;
   bool _proofingOpen = false;
@@ -1225,6 +1230,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final canvas = Row(
+                  key: _documentPaneKey,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     if (widget.navigationBuilder != null &&
@@ -1450,31 +1456,31 @@ class _QudsWordEditorState extends State<QudsWordEditor>
                       ),
                   ],
                 );
-                if (!_c.reviewPaneVisible) return canvas;
-                final pane = WordReviewPane(
-                  controller: _c,
-                  initialTab: _c.reviewPaneTab,
-                  onTabChanged: _c.setReviewPaneTab,
-                  onClose: _c.closeReviewPane,
-                  onMoreOptions: _openReviewOptions,
-                );
-                if (constraints.maxWidth >= 760) {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Expanded(child: canvas),
-                      SizedBox(width: 344, child: pane),
-                    ],
-                  );
-                }
-                return Column(
+                final pane = !_c.reviewPaneVisible
+                    ? null
+                    : WordReviewPane(
+                        controller: _c,
+                        initialTab: _c.reviewPaneTab,
+                        onTabChanged: _c.setReviewPaneTab,
+                        onClose: _c.closeReviewPane,
+                        onMoreOptions: _openReviewOptions,
+                      );
+                final wide = constraints.maxWidth >= 760;
+                // Keep both editing surfaces at a stable element location.
+                // Opening or resizing Review must not dispose Notes and its IME.
+                return Flex(
+                  direction: wide ? Axis.horizontal : Axis.vertical,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Expanded(child: canvas),
-                    SizedBox(
-                      height: math.min(320, constraints.maxHeight * 0.52),
-                      child: pane,
-                    ),
+                    if (pane != null)
+                      SizedBox(
+                        width: wide ? 344 : null,
+                        height: wide
+                            ? null
+                            : math.min(320, constraints.maxHeight * 0.52),
+                        child: pane,
+                      ),
                   ],
                 );
               },

@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "recorded_at_utc": "2026-11-18T21:24:00.311398+00:00",
+  "purpose": "Runtime preparation only; not included in product regression totals",
+  "source": "/workspace/scratch/be1908103559/runtime/sqlite-smoke/bin/smoke.dart",
+  "source_sha256": "058416ddd8d85336b957a29cab65fd7b5d95d4c049d6110ecad946f163b38fac",
+  "pub_get_exit_code": 0,
+  "run_exit_code": 0,
+  "logs": [
+    {
+      "path": "/workspace/scratch/be1908103559/runtime/logs/sqlite-smoke-pub.log",
+      "sha256": "d115417ba0864bf944e07b2727a6823144c2fd17de40318d9be2c1d21da94187"
+    },
+    {
+      "path": "/workspace/scratch/be1908103559/runtime/logs/sqlite-smoke-attempt-1.log",
+      "sha256": "8fc8d01dc5a9f49491a6531bcbccdc7365bc2ebb0b494caa184f375030734312"
+    },
+    {
+      "path": "/workspace/scratch/be1908103559/runtime/logs/sqlite-smoke.log",
+      "sha256": "a3312aff86922de0b52eddfb3120d2dc5c5dbf559abc540525213f7f121472f8"
+    }
+  ],
+  "sqlite_version": "3.54.1",
+  "fts5_rows": 1,
+  "default_native_assets_hook": true,
+  "binary": "/workspace/scratch/be1908103559/runtime/sqlite-smoke/.dart_tool/lib/libsqlite3.so",
+  "binary_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+  "smoke_lock_sha256": "d6dac6ec110ddc7ec52ca34cd7eddea0db9ce72cccbabab3af825b903d3da6d1",
+  "workspace_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "dependency_identities_match_workspace": true,
+  "dependency_identity_fields": [
+    "source",
+    "version",
+    "description"
+  ],
+  "smoke_dependency_count": 23,
+  "attempts": [
+    {
+      "exit_code": 255,
+      "reason": "Scratch smoke rendered a Version object directly in jsonEncode after FTS5 succeeded; corrected toString() output only.",
+      "log": "logs/sqlite-smoke-attempt-1.log"
+    },
+    {
+      "exit_code": 0,
+      "log": "logs/sqlite-smoke.log"
+    }
+  ]
+}

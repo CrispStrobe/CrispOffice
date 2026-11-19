@@ -1,0 +1,41 @@
+{
+  "status": "native_passed_web_compiled_install_verified_browser_not_run",
+  "selected_attempt": "run-3",
+  "source_commit": "3847d5f4237fe0069ba0a8399ddbf4dc13d7194b",
+  "native_passed": 208,
+  "native_suites": 14,
+  "native_failed": 0,
+  "native_skipped": 0,
+  "source_entries": 5006,
+  "locked_vendor_files": 261,
+  "source_unchanged_during_tests": true,
+  "source_unchanged_during_build": true,
+  "compiled_files": 1155,
+  "compiled_bytes": 87446594,
+  "installed_inventory_files": 1156,
+  "installed_inventory_bytes": 87447185,
+  "installed_cache_identity": "373056621da0b69786410e8d9519b3e784b7932e73523fc0fca6288ee813b4d0",
+  "native_queries": 15,
+  "distinct_observed_sense_records": 109,
+  "notice_files": 10,
+  "native_process_exit": 0,
+  "compile_process_exit": 0,
+  "installer_process_exit": 0,
+  "browser_launch_attempted": false,
+  "prior_attempts": [
+    {
+      "directory": "run-1",
+      "source_commit": "e12d57893d783857959912a574e5b309f2ed024b",
+      "status": "failed",
+      "reason": "Missing official SDK Roboto font; predates final source/binding.",
+      "accepted_final_cases": 0
+    },
+    {
+      "directory": "run-2",
+      "source_commit": "a6c165d397587bf0606e40ecdfcbcec565e8896c",
+      "status": "passed_for_its_bounded_source",
+      "reason": "Superseded after stable-Flex product fix required a new final fixture build.",
+      "accepted_final_cases": 0
+    }
+  ]
+}
