@@ -83,9 +83,9 @@ final class StudioStrings {
   String get fullView => _t('Full', 'Vollständig', 'كامل');
   String get compactView => _t('Compact', 'Kompakt', 'مختصر');
   String get noMessage => _t(
-    'Open an .eml message to read it here.',
-    'Öffnen Sie eine .eml-Nachricht, um sie hier zu lesen.',
-    'افتح رسالة .eml لقراءتها هنا.',
+    'Select a message to read it here.',
+    'Wählen Sie eine Nachricht aus, um sie hier zu lesen.',
+    'اختر رسالة لقراءتها هنا.',
   );
   String get viewLicences =>
       _t('View licences', 'Lizenzen anzeigen', 'عرض التراخيص');
