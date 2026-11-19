@@ -25,94 +25,185 @@ Map<String, Object?> _field(String id) => <String, Object?>{
 };
 
 void main() {
+  for (final operation in [
+    ZoteroCitingCommand.addNote,
+    ZoteroCitingCommand.addAnnotation,
+  ]) {
+    test(
+      '${operation.name} uses Zotero text insertion and returns fields in request order',
+      () async {
+        final document = WmlDocument.empty(text: 'Body');
+        final session = WordZoteroCitingSession(
+          document: document,
+          documentId: _id,
+          insertionParagraph: document.paragraphs.first,
+          insertionOffset: 4,
+        );
+        final citation = ZoteroCitation(
+          citationId: 'source',
+          plainCitation: '(Source)',
+          items: [
+            ZoteroCitationItem.fromCsl(
+              itemData: <String, Object?>{
+                'id': 'source',
+                'type': 'book',
+                'title': 'Source',
+              },
+              uris: ['http://zotero.org/users/42/items/ABCD1234'],
+            ),
+          ],
+        );
+        final commands = <(String, List<Object?>)>[
+          ('Application.getActiveDocument', []),
+          ('Document.canInsertField', [_id, 'Http']),
+          ('Document.insertField', [_id, 'Http', 0]),
+          ('Field.delete', [_id, 'f0']),
+          (
+            'Document.insertText',
+            [
+              _id,
+              '<p>A quote <a href="https://www.zotero.org/?ABC123">(Citation)</a></p>',
+            ],
+          ),
+          (
+            'Document.convertPlaceholdersToFields',
+            [
+              _id,
+              ['ABC123'],
+              0,
+              'Http',
+            ],
+          ),
+          (
+            'Field.setCode',
+            [_id, 'f1', 'ITEM CSL_CITATION ${jsonEncode(citation.toJson())}'],
+          ),
+          ('Field.setText', [_id, 'f1', '<i>Source</i> (2026)', true]),
+          ('Document.complete', [_id]),
+        ];
+        final requests = <ZoteroHttpRequest>[];
+        await ZoteroCitingClient(
+          transport: (request) async {
+            requests.add(request);
+            if (requests.length == 1) {
+              expect(jsonDecode(request.body!), {
+                'command': operation.name,
+                'docId': _id,
+              });
+            }
+            if (requests.length == 2) {
+              expect(
+                (jsonDecode(request.body!)
+                    as Map<String, Object?>)['supportsTextInsertion'],
+                isTrue,
+              );
+            }
+            if (requests.length == 7) {
+              final fields = (jsonDecode(request.body!) as List<Object?>)
+                  .cast<Map<String, Object?>>();
+              expect(fields.single['id'], 'f1');
+              expect(fields.single['text'], '(Citation)');
+            }
+            final command = commands[requests.length - 1];
+            return _command(command.$1, command.$2);
+          },
+        ).execute(command: operation, documentId: _id, handler: session.handle);
+        expect(requests.length, commands.length);
+        expect(document.paragraphs.single.text, 'Body');
+        session.apply();
+        expect(document.paragraphs.single.text, 'BodyA quote Source (2026)');
+        expect(
+          WordZotero.fields(document).single.citation!.citationId,
+          'source',
+        );
+      },
+    );
+  }
+
   test(
-    'actual pinned Zotero note command sequence returns fields in request order',
+    'Add Annotation error alert drains and refuses staged preferences',
     () async {
-      final document = WmlDocument.empty(text: 'Body');
+      final document = WmlDocument.empty(text: 'Unchanged');
+      final beforeData = WordZoteroDocumentData.read(document);
       final session = WordZoteroCitingSession(
         document: document,
         documentId: _id,
-        insertionParagraph: document.paragraphs.first,
-        insertionOffset: 4,
+        insertionParagraph: document.paragraphs.single,
+        insertionOffset: 0,
       );
-      final citation = ZoteroCitation(
-        citationId: 'source',
-        plainCitation: '(Source)',
-        items: [
-          ZoteroCitationItem.fromCsl(
-            itemData: <String, Object?>{
-              'id': 'source',
-              'type': 'book',
-              'title': 'Source',
-            },
-            uris: ['http://zotero.org/users/42/items/ABCD1234'],
-          ),
-        ],
-      );
+      final stagedData = jsonEncode({
+        'dataVersion': 4,
+        'sessionID': 'annotation-error',
+        'zoteroVersion': '8.0',
+        'style': {
+          'styleID': 'http://www.zotero.org/styles/apa',
+          'locale': 'de-DE',
+        },
+        'prefs': {'fieldType': 'Http', 'noteType': 0},
+      });
+      // Zotero's unknown-command dispatch reaches its STOP/YES_NO error path.
+      // Stage preferences first to prove that cleanup cannot apply pending data.
       final commands = <(String, List<Object?>)>[
         ('Application.getActiveDocument', []),
-        ('Document.canInsertField', [_id, 'Http']),
-        ('Document.insertField', [_id, 'Http', 0]),
-        ('Field.delete', [_id, 'f0']),
-        (
-          'Document.insertText',
-          [
-            _id,
-            '<p>A quote <a href="https://www.zotero.org/?ABC123">(Citation)</a></p>',
-          ],
-        ),
-        (
-          'Document.convertPlaceholdersToFields',
-          [
-            _id,
-            ['ABC123'],
-            0,
-            'Http',
-          ],
-        ),
-        (
-          'Field.setCode',
-          [_id, 'f1', 'ITEM CSL_CITATION ${jsonEncode(citation.toJson())}'],
-        ),
-        ('Field.setText', [_id, 'f1', '<i>Source</i> (2026)', true]),
+        ('Document.setDocumentData', [_id, stagedData]),
+        ('Document.displayAlert', [_id, 'Native operation unavailable', 0, 2]),
+        ('Document.setDocumentData', [_id, stagedData]),
         ('Document.complete', [_id]),
       ];
       final requests = <ZoteroHttpRequest>[];
-      await ZoteroCitingClient(
-        transport: (request) async {
-          requests.add(request);
-          if (requests.length == 1) {
-            expect(jsonDecode(request.body!), {
-              'command': 'addNote',
-              'docId': _id,
-            });
-          }
-          if (requests.length == 2) {
-            expect(
-              (jsonDecode(request.body!)
-                  as Map<String, Object?>)['supportsTextInsertion'],
-              isTrue,
-            );
-          }
-          if (requests.length == 7) {
-            final fields = (jsonDecode(request.body!) as List<Object?>)
-                .cast<Map<String, Object?>>();
-            expect(fields.single['id'], 'f1');
-            expect(fields.single['text'], '(Citation)');
-          }
-          final command = commands[requests.length - 1];
-          return _command(command.$1, command.$2);
-        },
-      ).execute(
-        command: ZoteroCitingCommand.addNote,
-        documentId: _id,
-        handler: session.handle,
+      final handled = <String>[];
+      await expectLater(
+        ZoteroCitingClient(
+          transport: (request) async {
+            requests.add(request);
+            final command = commands[requests.length - 1];
+            return _command(command.$1, command.$2);
+          },
+        ).execute(
+          command: ZoteroCitingCommand.addAnnotation,
+          documentId: _id,
+          handler: (name, arguments) {
+            handled.add(name);
+            if (name == 'Document.displayAlert') return 0;
+            return session.handle(name, arguments);
+          },
+        ),
+        throwsA(
+          isA<ZoteroCitingException>()
+              .having(
+                (error) => error.kind,
+                'kind',
+                ZoteroCitingErrorKind.document,
+              )
+              .having(
+                (error) => error.desktopMayNeedRestart,
+                'desktopMayNeedRestart',
+                isFalse,
+              ),
+        ),
       );
-      expect(requests.length, commands.length);
-      expect(document.paragraphs.single.text, 'Body');
-      session.apply();
-      expect(document.paragraphs.single.text, 'BodyA quote Source (2026)');
-      expect(WordZotero.fields(document).single.citation!.citationId, 'source');
+      expect(handled, [
+        'Application.getActiveDocument',
+        'Document.setDocumentData',
+        'Document.displayAlert',
+      ]);
+      expect(requests, hasLength(commands.length));
+      expect(jsonDecode(requests.first.body!), {
+        'command': 'addAnnotation',
+        'docId': _id,
+      });
+      expect(
+        requests.where((request) => request.uri.path.endsWith('/execCommand')),
+        hasLength(1),
+      );
+      expect(jsonDecode(requests[3].body!), 0);
+      expect(jsonDecode(requests[4].body!), containsPair('error', 'Alert'));
+      expect(session.documentData, contains('annotation-error'));
+      expect(session.isComplete, isFalse);
+      expect(session.apply, throwsStateError);
+      expect(document.paragraphs.single.text, 'Unchanged');
+      expect(WordZoteroDocumentData.read(document), beforeData);
+      expect(WordZotero.fields(document), isEmpty);
     },
   );
 

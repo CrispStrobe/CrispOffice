@@ -2213,6 +2213,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               ZoteroCitingCommand.addNote,
             ),
             _zoteroCommand(
+              Icons.format_quote_outlined,
+              _arabic ? 'تعليق توضيحي من Zotero' : 'Add Zotero annotation',
+              ZoteroCitingCommand.addAnnotation,
+            ),
+            _zoteroCommand(
               Icons.refresh,
               _arabic ? 'تحديث الاستشهادات' : 'Refresh citations',
               ZoteroCitingCommand.refresh,

@@ -15,9 +15,10 @@ They need the local transport and a running Zotero application, without an API
 key. Zotero's own windows may open behind the office application.
 
 In Quds Studio, **Insert → References** also offers **Add/Edit citation**,
-**Bibliography**, **Refresh citations**, and **Citation style** on native desktop
-platforms. These open the Document workspace and immediately start the selected
-Zotero command. **Add/Edit citation** edits the citation at the active body or
+**Bibliography**, **Add Zotero note**, **Add Zotero annotation**, **Refresh
+citations**, and **Citation style** on native desktop platforms. These show a
+compact progress dialog and immediately start the selected Zotero command.
+**Add/Edit citation** edits the citation at the active body or
 Notes-pane caret, or one enclosing the selection within a paragraph; otherwise
 it uses that insertion point. Opening **Zotero** normally also selects Document when a citation or
 bibliography is at the caret, with a direct **Edit current citation…** action
@@ -47,6 +48,38 @@ Finish active input-method composition before opening Zotero. Body and Notes
 composition prevent direct commands from starting; composition beginning during
 native work invalidates its result. Returning to the document preserves an
 unchanged composing draft.
+
+### Insert text annotations directly from Zotero
+
+With **Zotero 9 or later** running, place a collapsed caret in the document body,
+outside existing fields, and choose **Insert → References → Add Zotero
+annotation**, or **Document → Add annotation from Zotero…** in the references
+workspace. Zotero opens its annotation picker, where you can browse or search
+and select one or more text annotations. An intermediate Zotero library note is
+not required. This follows Zotero's native
+[Add Annotation workflow](https://www.zotero.org/blog/zotero-9/#add-annotation),
+introduced in [Zotero 9](https://www.zotero.org/support/9.0_changelog).
+
+Quds retains the selected annotation text, comments, supported formatting and
+links supplied by Zotero. Citation placeholders become active fields, with the
+source identity and locators supplied by Zotero. Their inline, footnote or
+endnote placement follows the document's Zotero preferences; subsequent
+**Refresh citations** and **Bibliography** commands include them in the complete
+document sequence. The text, citation fields, any new notes and style preferences
+apply together as one undo step and survive Quds DOCX saving and reopening.
+
+Cancelling the picker before it supplies content also discards staged
+preferences and temporary fields. Direct ribbon commands return focus to the
+document after completion or cancellation. A changed insertion point, active
+text composition, unsupported content or incomplete citation conversion keeps
+the result from being applied.
+
+This command supports **text annotations** and uses the same content limits and
+body-caret requirements as Add Note below. Image and ink annotations are refused
+atomically; they are not silently omitted. Older Zotero versions do not provide
+the annotation command: use **Add Zotero note** to insert supported annotation
+notes, or update Zotero. The command dialog and workspace tooltip identify the
+version requirement.
 
 ### Insert a Zotero research note
 
@@ -136,6 +169,7 @@ results instead of applying them at another location.
 | **Refresh all with Zotero** | Lets Zotero process the document's complete supported citation sequence and bibliography together |
 | **Bibliography in Zotero…** | Adds or edits a bibliography through the same document processor |
 | **Add note from Zotero…** | Inserts a supported research note with its active citation fields at the body caret |
+| **Add annotation from Zotero…** | Opens Zotero 9+'s annotation picker and inserts selected text annotations and comments with active citations |
 | Existing citation menu → **Edit in Zotero…** | Opens that citation in Zotero's native picker |
 | Library selection → **Insert with Zotero…** | Seeds the native picker with selected linked catalog sources, then applies Zotero's result |
 
@@ -877,7 +911,7 @@ completed transaction once. `WordZoteroDocumentData` handles native preference
 ownership, translation and serialization. Raw session `apply` belongs inside
 the controller's rollback boundary, not directly in a host widget.
 
-### Direct commands, reference navigation and research notes
+### Direct commands, reference navigation, research notes and annotations
 
 Pass `initialCommand` and `closeAfterCommand: true` to
 `showWordZoteroDialog` for the compact command flow. The default remains the
@@ -892,14 +926,18 @@ own chrome closes. `noteFocusRequest` lets a custom Notes host observe requests
 to reveal and focus the retained note target. These operations require selection
 permission but not mutation permission.
 
-`ZoteroCitingCommand.addNote` uses `Document.insertText` and
+`ZoteroCitingCommand.addNote` and `ZoteroCitingCommand.addAnnotation` use
+`Document.insertText` and
 `Document.convertPlaceholdersToFields`. The session advertises
 `supportsTextInsertion` only at a supported insertion point. When constructing a
-controller transaction directly, pass `command: ZoteroCitingCommand.addNote` for
-the same early eligibility checks used by the shared dialog. The native session
-also checks insertion and conversion before staging and applying data. If an
-Add Note command completes with `hasInsertedNoteText == false`, discard the
-transaction, including staged preferences: this is the cancelled-picker path.
+controller transaction directly, pass the actual `command` for the same early
+eligibility checks used by the shared dialog. `command.insertsNoteText` identifies
+both research-content commands. The native session also checks insertion and
+conversion before staging and applying data. If either command completes with
+`hasInsertedNoteText == false`, discard the transaction, including staged
+preferences: this is the cancelled-picker path. Add Annotation requires Zotero
+9 or later and uses the native `addAnnotation` command, without an automatic
+fallback to a different picker.
 
 ### Native bibliography layout contract
 

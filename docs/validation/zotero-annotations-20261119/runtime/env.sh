@@ -1,0 +1,11 @@
+export FLUTTER_ROOT=/workspace/scratch/0a420ffd2846/runtime/flutter
+export PUB_CACHE=/workspace/scratch/0a420ffd2846/runtime/pub-cache
+export PATH=/workspace/scratch/0a420ffd2846/runtime/flutter/bin/cache/dart-sdk/bin:/workspace/scratch/0a420ffd2846/runtime/flutter/bin:$PATH
+export TMPDIR=/workspace/scratch/0a420ffd2846/runtime/tmp
+export XDG_CONFIG_HOME=/workspace/scratch/0a420ffd2846/runtime/config
+export XDG_DATA_HOME=/workspace/scratch/0a420ffd2846/runtime/data
+export XDG_CACHE_HOME=/workspace/scratch/0a420ffd2846/runtime/cache
+export DASH__SUPPRESS_ANALYTICS=true
+export DART_SUPPRESS_ANALYTICS=true
+export FLUTTER_SUPPRESS_ANALYTICS=true
+export CI=true
