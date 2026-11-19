@@ -10,6 +10,8 @@ import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_zotero.dart';
 import 'package:quds_office_studio/suite_workspace.dart';
 
+import 'support/studio_settings.dart';
+
 final class _Transport extends StudioZoteroTransport {
   _Transport(this.handle, this.onDispose);
 
@@ -125,7 +127,7 @@ Future<WordEditorController> _studio(
   controller.proofing.configure(OfficeProofingService(providers: []));
   controller.document = WmlDocument.empty(text: 'A citation belongs here.');
   controller.refresh();
-  await tester.tap(find.byTooltip('English'));
+  expect(find.byTooltip('Language'), findsOneWidget);
   await _frames(tester);
   editor.focusNode!.requestFocus();
   await _frames(tester);
@@ -351,6 +353,7 @@ void main() {
   ) async {
     final desktop = _Desktop(inspectCurrentField: true);
     final controller = await _studio(tester, desktop);
+    await enableStudioSetting(tester, 'Show notes');
     final note = WordNotes.insert(
       controller.document,
       controller.document.paragraphs.single,
@@ -451,7 +454,7 @@ void main() {
     final controller = await _studio(tester, desktop);
     final citation = _binding(tester, LogicalKeyboardKey.keyC);
     final refresh = _binding(tester, LogicalKeyboardKey.keyR);
-    for (final app in ['Excel', 'PowerPoint', 'PDF']) {
+    for (final app in ['Spreadsheets', 'Presentations', 'PDF']) {
       await tester.tap(find.text(app).first);
       await _frames(tester);
       await _shortcut(tester, LogicalKeyboardKey.keyR);
