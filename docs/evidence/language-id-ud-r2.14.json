@@ -769,5 +769,24 @@
     "single_p50_ms": 0.241,
     "single_p95_ms": 0.826,
     "batched_per_paragraph_ms": 0.316
+  },
+  "browser_smoke": {
+    "runtime": "HeadlessChrome 157, dart2js transport + module worker (tool/browser_smoke.py)",
+    "load_ms": 376.6,
+    "paragraphs": 8068,
+    "single_mean_ms": 0.368,
+    "single_p50_ms": 0.4,
+    "single_p95_ms": 0.7,
+    "batched_per_paragraph_ms": 0.331,
+    "smoke": [
+      "fr",
+      "he",
+      "de"
+    ],
+    "mixed": [
+      "de",
+      "ar"
+    ],
+    "status": "passed"
   }
 }

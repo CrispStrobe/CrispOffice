@@ -193,6 +193,152 @@ previous and the new backend (673 findings).
 The package has 22 tests and the Studio 10, all with the real library and
 database and none skipped.
 
+## Automatic language detection (CLD3) — 19 November 2026
+
+[`quds_language_id`](../packages/quds_language_id/README.md) bundles Google's
+CLD3 model (Apache-2.0, 439,712 bytes, `cstr/cld3-GGUF` at `56e8a57d…`,
+pinned by SHA-256) with CrispASR's MIT CLD3 runtime
+(`crisp_lid/src/lid_cld3.cpp` at `19d86f9b`, compiled unchanged). The model
+ships with the app; nothing is downloaded. CLD3's forward pass is plain C++,
+so ggml is not built: a 300-line bounded GGUF reader provides the few loading
+calls `lid_cld3.cpp` makes. Natively it runs in a persistent FFI isolate, on
+the web in a module Web Worker (Emscripten). GlotLID is out of scope.
+
+### Policy
+
+Detection only steers which proofing providers check a range. It never edits
+the document; writing the detected languages is the explicit, undoable
+**Apply detected language** action.
+
+1. **Script first.** Each paragraph is split into Unicode script runs; spaces,
+   digits and punctuation join the preceding run. Each run gets its own
+   language, so a German sentence followed by an Arabic one is routed `de` and
+   `ar`.
+2. **Arabic script** is `ar` unless CLD3 says `fa`, `ur`, `ps`, `ku`, `sd`
+   or `ug` with p ≥ 0.95 on a run of at least 20 letters. **Hebrew script**
+   is `he` unless CLD3 says `yi` with the same bounds. Short Arabic/Hebrew
+   runs still get `ar`/`he` from the script alone.
+3. **Latin, Cyrillic, Greek and other scripts** get CLD3's top language only
+   when the run has at least **20 letters**, the top probability is at least
+   **0.95**, and the language is written in that script. Otherwise the run
+   has no detected language.
+4. **Precedence.** An explicit language on the text wins. A *default*
+   language yields to the detection. A slot is default when it is **missing**
+   (no `w:lang/@w:val` reaches a Latin run through run or paragraph
+   properties, no `w:lang/@w:bidi` on a complex-script run) or **equal to
+   the document default** in `w:docDefaults` (compared after normalization).
+   Word writes the document default onto ordinary text, so for example
+   `en-US` on clearly German text says nothing about the text. Two
+   refinements keep defaults where CLD3 is unsure:
+   - a detection with the default's primary subtag keeps the default tag
+     (de-CH stays de-CH);
+   - the default is kept when CLD3 still gives it p ≥ 0.01 among its top 5
+     candidates (lb/de, it/la, pt/es confusions).
+
+The engine API is `LanguageIdentifier` (fake-able, like `ArabicMorphology`),
+`scriptSegments`, `LanguageDetectionPolicy`, `ParagraphLanguageDetector` and
+`resolveDetectedLanguage`. `wordRunLanguageSlot` defines "default".
+`WordProofingSession.configureLanguageDetection` installs a detector, and
+`automaticLanguageDetection` turns routing off. The Studio's setting
+**Detect language automatically** is on by default. The text options of the
+review pane show the selection's languages per script, for example "Latin
+text: English · Arabic text: English", then "Detected: Latin text: German ·
+Arabic text: Arabic" and the **Apply detected language** button. The button
+writes `w:val` for Latin segments and `w:bidi` for Arabic/Hebrew segments in
+one undo step.
+
+### Evaluation
+
+The thresholds were calibrated on UD r2.14 test `# text` sentences (used for
+evaluation only), CLD3 on each sentence's main script run. The receipt is in
+[`evidence/language-id-ud-r2.14.json`](evidence/language-id-ud-r2.14.json)
+(`tool/ud_evaluation.dart`).
+
+- **Policy detects:** the share of sentences for which the policy names the
+  right language.
+- **Wrong overrides:** sentences whose own language was the document default
+  but which detection would have routed elsewhere. This is the harmful case.
+
+| Language (UD r2.14 test) | Sentences | CLD3 top-1 | <20 chars | 20–50 | >50 | Policy detects | Wrong overrides |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| English (EWT) | 2036 | 70.6% | 22.4% (468) | 73.5% (668) | 93.6% (900) | 56.1% | 13 (0.64%) |
+| German (GSD) | 977 | 93.4% | 48.4% (31) | 79.1% (206) | 99.3% (740) | 87.2% | 5 (0.51%) |
+| French (GSD) | 416 | 97.4% | 33.3% (6) | 88.0% (50) | 99.7% (360) | 93.8% | 0 |
+| Arabic (PUD) | 1000 | 99.6% | 85.7% (7) | 97.4% (114) | 100.0% (879) | 100.0% | 0 |
+| Hebrew (HTB) | 491 | 100.0% | 100.0% (6) | 100.0% (108) | 100.0% (377) | 100.0% | 0 |
+| Latin (Perseus + PROIEL) | 2199 | 84.2% | 43.1% (188) | 75.2% (838) | 97.3% (1173) | 67.8% | 21 (0.95%) |
+| Spanish (GSD) | 426 | 96.9% | 100.0% (2) | 84.8% (46) | 98.4% (378) | 91.1% | 1 (0.23%) |
+| Italian (ISDT) | 482 | 93.4% | 40.0% (5) | 81.5% (124) | 98.3% (353) | 87.6% | 6 (1.24%) |
+
+The bucket columns give CLD3 top-1 accuracy, with the sentence count in
+brackets.
+
+- **Overall:** with the chosen thresholds, 46 of 8,027 sentences (0.57%)
+  would be wrongly overridden, 37 of them in the 20–50 character bucket.
+  72.7% of sentences switch correctly when another language of the same
+  script is the document default.
+- **Threshold sweep:**
+  - 12 letters / 0.90 gives 139 wrong overrides (1.7%) for 77.5% switching;
+  - 20 / 0.99 gives 25 (0.31%) for 67.4%;
+  - 30 / 0.95 gives 19 for 66.7%.
+
+  The default-keeping guard removes 14 of the 60 wrong overrides at 20 / 0.95
+  and costs 0.2 points of switching.
+- **Confusion pairs (CLD3 top-1):**
+  - Latin: la→fr 60, la→it 45, la→pt 22, la→ca 19, la→es 18, la→eo 17.
+  - English, mostly signatures, URLs and names in EWT's web and e-mail text:
+    en→el-Latn 34, en→fr 30, en→zu 27, en→lb 24, en→da 23.
+  - German and Italian: de→lb 13, it→co 11.
+
+  Below 20 characters CLD3 is unreliable for every Latin-script language;
+  the policy never classifies such runs.
+- **Mixed-script paragraphs:** these are a Latin sentence followed by an
+  Arabic or Hebrew one, 200 each. The Arabic/Hebrew segment is right in
+  1,000 of 1,000. The Latin segment is right, wrong and abstained as
+  follows:
+  - de+ar: 176 / 2 / 22;
+  - en+ar: 150 / 3 / 47;
+  - fr+he: 187 / 0 / 13;
+  - en+he: 150 / 3 / 47;
+  - la+ar: 119 / 0 / 81.
+
+### Cost
+
+These figures were measured on an Apple M1 shared with other agents (load
+15–40).
+
+- **Latency per paragraph:**
+  - Native (AOT Dart, through the policy and the FFI isolate, one request
+    per paragraph, 8,027 sentences): mean 0.17–0.32 ms, p50 0.15–0.24 ms,
+    p95 0.38–0.74 ms.
+  - Web: in headless Chrome 157, through the dart2js transport and the
+    module worker (`tool/browser_smoke.{dart,py}`), the mean is 0.37 ms and
+    p95 0.7 ms (the browser timer has 0.1 ms resolution). The worker starts
+    and the model opens in 0.38 s. In-process in Node 26: mean 0.35 ms, p95
+    0.83 ms.
+  - A proofing pass detects all uncached paragraphs in one batch before it
+    routes them.
+- **Size added:**
+  - the model, 439,712 bytes;
+  - the macOS arm64 library, 103,272 bytes (MinSizeRel);
+  - the web build, a 49,233-byte `.wasm`, a 9,604-byte `.mjs` and a
+    3,775-byte worker.
+- **Memory:**
+  - Native: 3.3 MB of process RSS growth after loading (isolate, F32
+    weights of about 0.9 MB, and the GGUF copy).
+  - Web: a 16 MB initial Wasm heap and 6 MB of process growth in Node.
+
+### Licence
+
+- CLD3 model: Apache-2.0, Copyright 2016 Google Inc. The licence text is on
+  the licence page (`CLD3-LICENSE`).
+- CrispASR runtime: MIT.
+- Adapter and GGUF shim: MIT.
+
+There is no GPL or LGPL code and no ggml. `quds_language_id/tool/build.py`
+admits only the pinned CrispASR files, by length and SHA-256, and writes a
+receipt for every output.
+
 ## Native spelling continuation — 18 November 2026
 
 PR #159 is merged, including the spelling shortlist changes from #157,
