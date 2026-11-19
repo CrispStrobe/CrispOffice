@@ -65,7 +65,7 @@ from a completed clean check. Studio Settings/Notes and review fixtures use the
 current UI. The AyaSpell builder's executable AST and pinned constants are
 unchanged; only its generated card and corresponding wording assertions differ.
 
-The [native plan](native-plan.json) selects 43 affected test files; the
+The [native plan](native-plan.json) selects 47 affected test files; the
 [Node plan](node-plan.json) repeats nine portable engine files. Strict analysis
 and formatting cover every changed application/test/vendor Dart path. Three separately
 compiled C ABI libraries expose native lifecycle counters; they contain no real
@@ -135,3 +135,20 @@ resolution, SQLite smoke log and three compiled synthetic lifecycle fixtures.
 The independent preparation audit verifies both the 68-member incoming archive
 and the 24-member current archive. Preparation integrity is distinct from test
 acceptance.
+
+## SMTP shutdown review follow-up
+
+The frozen source `79e77725925d937bae944b03aac795ffb3fd967d` passed its
+43-suite native gate (928 cases), strict analysis/format/whitespace and 21 separate
+Python controls, with unchanged source and runtime inventories. Independent
+review then found a missing SMTP abort override: the socket could close while
+the current SMTP command remained pending, retaining the high-level outgoing
+lock. This source is superseded for final acceptance. Its preserved results
+remain attributed to that exact commit and contribute zero to the later gate.
+
+The bounded repair settles the pending SMTP command before the existing socket
+abort. A loopback regression withholds a MAIL FROM reply, queues high-level
+disconnect, aborts twice and requires both send and disconnect to settle without
+SMTP acceptance or a Sent copy. The final native plan additionally includes the
+existing connection-robustness, SMTP state, framing and client suites. All final
+qualification is repeated on the repaired, remotely saved source.

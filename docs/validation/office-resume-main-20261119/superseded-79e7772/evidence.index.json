@@ -1,0 +1,294 @@
+{
+  "archive": "evidence.tar.xz",
+  "bytes": 850108,
+  "sha256": "50d554ff3d826313a7ad77c73a50474b59f8d00665c31de5c94abf5248def648",
+  "members": [
+    {
+      "path": "native/checks/analysis.log",
+      "bytes": 1489,
+      "sha256": "0c1c44eb2a89bb8d48e5916fa0ee2ddfbf4920bc3c0840e5373257f95a7ee46c"
+    },
+    {
+      "path": "native/checks/analysis.log.gz",
+      "bytes": 442,
+      "sha256": "96d96f71819e4711f9ef67a4bdacab5daaa388dbb963f371054361174526a349"
+    },
+    {
+      "path": "native/checks/editor-language-controls-cases.json",
+      "bytes": 16213,
+      "sha256": "d7fbf7c4e1fc15d2051586f9cfc6d8bf75945aae348d94d682bf77eeeb65948c"
+    },
+    {
+      "path": "native/checks/editor-language-controls-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "native/checks/editor-language-controls.jsonl",
+      "bytes": 27702,
+      "sha256": "e93e22f76e9945b0b0135ec89160a8c7c5cd53c4cc682a74a9a96e579c4fd44e"
+    },
+    {
+      "path": "native/checks/editor-language-controls.jsonl.gz",
+      "bytes": 2819,
+      "sha256": "11df9a5ddb07fcdbaa2e25667188c0f57e0d743aba9f956c2f61b10fbecd6d0f"
+    },
+    {
+      "path": "native/checks/editor-language-controls.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/checks/editor-language-controls.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions-cases.json",
+      "bytes": 222679,
+      "sha256": "8263c556e6c0b23d6ccb7a24e4c37199bb869436227791f01c4ca734d6744d32"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions.jsonl",
+      "bytes": 312026,
+      "sha256": "7d80dccb4fe875dfcc7cabcc3dfac4253909a58459d5b766349e61bfce273048"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions.jsonl.gz",
+      "bytes": 23467,
+      "sha256": "47eb6c98d575699ed63d1cd6a95509f7756fe0bcf3c1a1ec1c74f26484872da2"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "native/checks/format.log",
+      "bytes": 48,
+      "sha256": "2ab73df0697ada445dd36e752b6287b2fe95beff8b7dd455b278def9fe20fbd0"
+    },
+    {
+      "path": "native/checks/format.log.gz",
+      "bytes": 68,
+      "sha256": "d7bee8eedd128a776aee3d0a35865f9f26ddacdb457b53c2b6cb9c48db6145a6"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle-cases.json",
+      "bytes": 10843,
+      "sha256": "6903ecd0ae059a0f88c9400dbcf3518df1436152aede2fc7bc916e5b16573bef"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle.jsonl",
+      "bytes": 24024,
+      "sha256": "f7b2d2ec6099670188d2e8b9575c8787afbe19fd0fafeddf8f0a36cfa17b75f3"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle.jsonl.gz",
+      "bytes": 2746,
+      "sha256": "f567b7b25ba4615d17cebc34dcb3a91981b60b397b2ac6902cedefc20ecae864"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "native/checks/mail-submission-outcomes-cases.json",
+      "bytes": 4192,
+      "sha256": "8bcacf270643d2b94e22cdf76e72f8edc7e3355ccb105a452b77dab20013d01c"
+    },
+    {
+      "path": "native/checks/mail-submission-outcomes-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "native/checks/mail-submission-outcomes.jsonl",
+      "bytes": 8463,
+      "sha256": "efe8f31acdeae483f3e20d370b592ee20376bf6b3f19911a6b921076d1e9f291"
+    },
+    {
+      "path": "native/checks/mail-submission-outcomes.jsonl.gz",
+      "bytes": 1251,
+      "sha256": "6df5d034cabf4824ed2a72c130d0d4c36236cbac20dcfaf7f5a719fbb3d1d66d"
+    },
+    {
+      "path": "native/checks/mail-submission-outcomes.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/checks/mail-submission-outcomes.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "native/checks/studio-current-host-cases.json",
+      "bytes": 49757,
+      "sha256": "f3b3fd0822ddeb802071905bee7703e6aa7dbe6fc7028363af0ffa21708a80b0"
+    },
+    {
+      "path": "native/checks/studio-current-host-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "native/checks/studio-current-host.jsonl",
+      "bytes": 109196,
+      "sha256": "ee08f701c332091677cbb4a46df48bfaa64a427d8c9d6bd1d2199170d73e91ab"
+    },
+    {
+      "path": "native/checks/studio-current-host.jsonl.gz",
+      "bytes": 9142,
+      "sha256": "d7a1c47003a36ceaa9f5f073881fb04947bd994bf2a7bf225a98a833f2ecb1a4"
+    },
+    {
+      "path": "native/checks/studio-current-host.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/checks/studio-current-host.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "native/checks/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/checks/whitespace.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "native/environment-after.json",
+      "bytes": 1707994,
+      "sha256": "72d740d4f11d310ca5b4e201f609a99ec75003ad49378e76cc3973081ff1363c"
+    },
+    {
+      "path": "native/environment-before.json",
+      "bytes": 1707994,
+      "sha256": "72d740d4f11d310ca5b4e201f609a99ec75003ad49378e76cc3973081ff1363c"
+    },
+    {
+      "path": "native/source-after.json",
+      "bytes": 1575797,
+      "sha256": "2b1639b8daf86e76abd8ec530dfc06b1fdbab4e1f569d8820572434c5640d2e4"
+    },
+    {
+      "path": "native/source-before.json",
+      "bytes": 1575797,
+      "sha256": "2b1639b8daf86e76abd8ec530dfc06b1fdbab4e1f569d8820572434c5640d2e4"
+    },
+    {
+      "path": "native/verification.json",
+      "bytes": 47272,
+      "sha256": "d4646cb8353c260de1eb919079a518757c7cea1a737437d025eac1de31624c76"
+    },
+    {
+      "path": "python/bundle-controls.log",
+      "bytes": 2586,
+      "sha256": "fb75588ffbcafd381408ad0c1ca04ca51fd41dc7f0bf6ff6478612a1a8fa464c"
+    },
+    {
+      "path": "python/packaging-controls.log",
+      "bytes": 698,
+      "sha256": "bcf1d617eed6cb630234dff69c5d6f692984492c0ae9b53e9472d275076c1033"
+    },
+    {
+      "path": "python/verification.json",
+      "bytes": 10875,
+      "sha256": "b6de7dd4f397b506c0e04ddf0dd220cad7c50d37ddab34163a81a0de221ba7f9"
+    },
+    {
+      "path": "audit/audit_fresh_gate.py",
+      "bytes": 24399,
+      "sha256": "1945a7f66f2f03df5315bb168985980abe8c5cc2987042c1fb29ae78b05a011c"
+    },
+    {
+      "path": "audit/audit_python_controls.py",
+      "bytes": 9100,
+      "sha256": "2658c96a87fd0c4e4a593f4b246e2205d766e594355720e88e7160eab71d9e69"
+    },
+    {
+      "path": "audit/audit_refs_final.py",
+      "bytes": 17243,
+      "sha256": "f7bbc7f28446dda27c9fc5b8f7461f84ccdafcf8eedce4b5a151d84bfb769ef0"
+    },
+    {
+      "path": "audit/final-evidence-preservation.json",
+      "bytes": 2583,
+      "sha256": "96309ebe128d14e59ca7745dfd8649c1eb5024a761d331996c8d48dcf4117b1b"
+    },
+    {
+      "path": "audit/final-python-independent-audit.json",
+      "bytes": 8887,
+      "sha256": "adf71f1803f63c603ef7a1451be2e46a56f6a2865c4d011e751e506498248969"
+    },
+    {
+      "path": "audit/qualification-final-native-driver.log",
+      "bytes": 1205,
+      "sha256": "75ebcbf98c91a3268a623882d76067d1442d7fe0e2a55a2d9adc514ba44dc363"
+    },
+    {
+      "path": "audit/reference-audit-final-integrated.json",
+      "bytes": 258406,
+      "sha256": "864af10c5f7f8c80c67a8a1850cedc55509415b527d9949a73817abe88dd46c1"
+    },
+    {
+      "path": "audit/superseded-79e7772-evidence-preservation.json",
+      "bytes": 2583,
+      "sha256": "96309ebe128d14e59ca7745dfd8649c1eb5024a761d331996c8d48dcf4117b1b"
+    },
+    {
+      "path": "audit/superseded-79e7772-independent-audit.json",
+      "bytes": 1748,
+      "sha256": "ceed84a5402be0df2b93fe6d3082e0fc5d252eec3fea835f7b1a41125493f9bc"
+    },
+    {
+      "path": "audit/superseded-79e7772-native-independent-audit-cases.json",
+      "bytes": 191161,
+      "sha256": "632709f5f1bdc14e47f223c47244b7d69d9f98e4eb5981387f64da87bcfd6540"
+    },
+    {
+      "path": "audit/superseded-79e7772-native-independent-audit.json",
+      "bytes": 6866,
+      "sha256": "b97806386fe78ddfee105086c0512d7be9f06930886410c148d846a7aa75c72b"
+    },
+    {
+      "path": "audit/superseded-79e7772-python-independent-audit.json",
+      "bytes": 8887,
+      "sha256": "adf71f1803f63c603ef7a1451be2e46a56f6a2865c4d011e751e506498248969"
+    },
+    {
+      "path": "audit/superseded-79e7772-reference-audit.json",
+      "bytes": 258406,
+      "sha256": "864af10c5f7f8c80c67a8a1850cedc55509415b527d9949a73817abe88dd46c1"
+    }
+  ],
+  "member_count": 57,
+  "all_members_reopened_and_verified": true
+}

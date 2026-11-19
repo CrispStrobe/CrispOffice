@@ -1,5 +1,8 @@
 # Unreleased (Quds fork)
 
+- Settle a pending SMTP command when aborting its connection, allowing a queued
+  high-level send/disconnect transaction to finish even if the server stays silent.
+
 - Append the Sent copy only after confirmed SMTP submission. Preserve the
   original submission error when cleanup also fails, and expose
   `MailSendPostSubmissionException` when a submitted message's Sent filing or

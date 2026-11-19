@@ -164,6 +164,13 @@ class SmtpClient extends ClientBase {
   }
 
   @override
+  Future<void> abort() {
+    _failCurrentCommand('client aborted');
+
+    return super.abort();
+  }
+
+  @override
   Future<void> disconnect() {
     _failCurrentCommand('client disconnected');
 
