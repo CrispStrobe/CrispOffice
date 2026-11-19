@@ -1,0 +1,15 @@
+diff --git a/packages/quds_office_editor/example/lib/suite_workspace.dart b/packages/quds_office_editor/example/lib/suite_workspace.dart
+index fd45a583..6b561fa7 100644
+--- a/packages/quds_office_editor/example/lib/suite_workspace.dart
++++ b/packages/quds_office_editor/example/lib/suite_workspace.dart
+@@ -1417,8 +1417,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
+                             ),
+                           ],
+                           onChanged: (value) {
+-                            if (value != null)
++                            if (value != null) {
+                               changed(() => _lengthUnit = value);
++                            }
+                           },
+                         ),
+                         const SizedBox(height: 8),

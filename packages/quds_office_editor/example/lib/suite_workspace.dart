@@ -1417,8 +1417,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                             ),
                           ],
                           onChanged: (value) {
-                            if (value != null)
+                            if (value != null) {
                               changed(() => _lengthUnit = value);
+                            }
                           },
                         ),
                         const SizedBox(height: 8),

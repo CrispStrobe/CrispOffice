@@ -1,0 +1,49 @@
+{
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "analyze",
+    "--no-pub",
+    "--fatal-infos",
+    "lib/studio_chrome.dart",
+    "lib/studio_material_theme.dart",
+    "lib/studio_page_layout_dialog.dart",
+    "lib/studio_paragraph_dialog.dart",
+    "lib/suite_workspace.dart",
+    "lib/studio_hunspell_setup.dart",
+    "lib/studio_pdf_flutter_samples.dart",
+    "lib/studio_pdf_toc_samples.dart",
+    "test/studio_layout_theme_test.dart",
+    "test/studio_page_layout_dialog_test.dart",
+    "test/studio_paragraph_dialog_test.dart",
+    "test/studio_slide_sheet_menus_test.dart",
+    "test/studio_comment_keyboard_review_test.dart",
+    "test/studio_comment_review_test.dart",
+    "test/studio_review_pane_test.dart",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_file_menu_test.dart",
+    "test/studio_desktop_menu_test.dart",
+    "test/studio_ribbon_customization_test.dart",
+    "test/support/studio_document_mode.dart"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor/example",
+  "elapsed_seconds": 13.239549398422241,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+  },
+  "exit_code": 1,
+  "name": "studio-analysis",
+  "removed_optional_environment": [
+    "QUDS_MAIL_PORTABILITY_SHOTS"
+  ],
+  "started_at_utc": "2026-11-19T18:30:34Z",
+  "stderr": "studio-analysis.stderr.log",
+  "stderr_sha256": "3790572a94c662ad0356636612134ee217854d41047e8d4ee66c8c54098e8c37",
+  "stdout": "studio-analysis.stdout.log",
+  "stdout_sha256": "0ffe806c3ea16e468b85d6cf8ffcfffbd69725eaca0ec4838ae2dd996a9c9ecd"
+}

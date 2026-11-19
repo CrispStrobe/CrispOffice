@@ -1,0 +1,450 @@
+{
+  "accepted_source": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+  "accepted_to_published_changed_paths": 419,
+  "accepted_to_published_only_validation": true,
+  "audited_at_utc": "2026-11-19T18:27:25.678413+00:00",
+  "author_executions_verified": {
+    "failed": 0,
+    "passed": 1640,
+    "skipped": 0
+  },
+  "author_unique_files_verified": 90,
+  "cohorts": [
+    {
+      "case_artifact_matches_raw_events": true,
+      "counts": {
+        "failed": 0,
+        "passed": 54,
+        "skipped": 0
+      },
+      "files": 6,
+      "name": "quds_mail_core-vm",
+      "non_json_lines": [],
+      "path": "final/quds_mail_core-vm"
+    },
+    {
+      "case_artifact_matches_raw_events": true,
+      "counts": {
+        "failed": 0,
+        "passed": 84,
+        "skipped": 0
+      },
+      "files": 7,
+      "name": "quds_mail_mime-vm",
+      "non_json_lines": [],
+      "path": "final/quds_mail_mime-vm"
+    },
+    {
+      "case_artifact_matches_raw_events": true,
+      "counts": {
+        "failed": 0,
+        "passed": 508,
+        "skipped": 0
+      },
+      "files": 20,
+      "name": "quds_mail_store-vm",
+      "non_json_lines": [],
+      "path": "final/quds_mail_store-vm"
+    },
+    {
+      "case_artifact_matches_raw_events": true,
+      "counts": {
+        "failed": 0,
+        "passed": 9,
+        "skipped": 0
+      },
+      "files": 2,
+      "name": "quds_mail_store-node",
+      "non_json_lines": [],
+      "path": "final/quds_mail_store-node"
+    },
+    {
+      "case_artifact_matches_raw_events": true,
+      "counts": {
+        "failed": 0,
+        "passed": 33,
+        "skipped": 0
+      },
+      "files": 4,
+      "name": "mail-ui",
+      "non_json_lines": [],
+      "path": "final/mail-ui"
+    },
+    {
+      "case_artifact_matches_raw_events": true,
+      "counts": {
+        "failed": 0,
+        "passed": 388,
+        "skipped": 0
+      },
+      "files": 22,
+      "name": "studio-mail",
+      "non_json_lines": [],
+      "path": "final/studio-mail"
+    },
+    {
+      "case_artifact_matches_raw_events": true,
+      "counts": {
+        "failed": 0,
+        "passed": 269,
+        "skipped": 0
+      },
+      "files": 13,
+      "name": "macros-vba",
+      "non_json_lines": [],
+      "path": "incoming/engine/macros-vba"
+    },
+    {
+      "case_artifact_matches_raw_events": true,
+      "counts": {
+        "failed": 0,
+        "passed": 216,
+        "skipped": 0
+      },
+      "files": 8,
+      "name": "branding-and-structure",
+      "non_json_lines": [],
+      "path": "incoming/engine/branding-and-structure"
+    },
+    {
+      "case_artifact_matches_raw_events": true,
+      "counts": {
+        "failed": 0,
+        "passed": 52,
+        "skipped": 0
+      },
+      "files": 4,
+      "name": "pdf-and-review",
+      "non_json_lines": [],
+      "path": "incoming/editor/pdf-and-review"
+    },
+    {
+      "case_artifact_matches_raw_events": true,
+      "counts": {
+        "failed": 0,
+        "passed": 27,
+        "skipped": 0
+      },
+      "files": 5,
+      "name": "desktop-ribbon-lifecycle",
+      "non_json_lines": [],
+      "path": "incoming/studio/desktop-ribbon-lifecycle"
+    }
+  ],
+  "commands": [
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "e998a4c3e82820a0a9d155b5e1d78aad2bed1fe75e63b31a17155f1e37515b97"
+      },
+      "path": "final/format"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "cfb6574a183d5884cfbead447dcaff75acca5f33030f96a8ae4d3d9616d69088"
+      },
+      "path": "final/analysis"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "path": "final/whitespace"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "98e6a37e67f8ce8d91ab7532fafcbe5f1ee484efdf080f10fd2e1aeaaf42f426"
+      },
+      "path": "final/quds_mail_core-vm"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "246918befd74497ffe74c8870d31b8fe8a4b810a54e90cab9f857014174ac192"
+      },
+      "path": "final/quds_mail_mime-vm"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "b8d910a6e6c412a904ccdf9713bf108f01f8da977ffadc3f8808a729a288805b"
+      },
+      "path": "final/quds_mail_store-vm"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "46f63e6a347b6ba414bc8dfe1c6e3769ac7e8a095b6d3272a588ae365a9af5e8"
+      },
+      "path": "final/quds_mail_store-node"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "3e29a77ba97e9f96787a11990ab25f3e63bc4499b586e349391439966f15b282"
+      },
+      "path": "final/mail-ui"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "a50e29f2cbf89befdfe8795b04b27505042c83664983e20a0486b24bd42f5cb1"
+      },
+      "path": "final/studio-mail"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "7f497e00a1aa9d22a764a796c7d511d4cdb9ab22f5272dfc3a76ed5eac5d8ec1"
+      },
+      "path": "incoming/engine/macros-vba"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "aa46e90412dd72fd70e7ff46e0633c3bb48bee15d7a35df58c9877b6aa480f18"
+      },
+      "path": "incoming/engine/branding-and-structure"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "136db76bee27bae3c39024bc93e9803e7be221d9ef0d094750bcd2442d648476"
+      },
+      "path": "incoming/engine/web_smoke-compile"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "733f79b8c8c236f674a733d3c205f6f46c6a52d4a6da005729755db94d853971"
+      },
+      "path": "incoming/engine/web_smoke-node"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "78fbe88a3f273f03f5c7d1651761f43b171baff210c01ac2b6e7a97ce628fd58"
+      },
+      "path": "incoming/engine/web_vba_smoke-compile"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8"
+      },
+      "path": "incoming/engine/web_vba_smoke-node"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "56295ca89386040db8dd1323f5c69709a903fff8fb784ea2a061e5a9cfc12f60"
+      },
+      "path": "incoming/engine/web_vba_procedures_smoke-compile"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "b97b85b585bbc40e339293fec350fa8cd8f916aa6861fabf8fb3326d7235a3d4"
+      },
+      "path": "incoming/engine/web_vba_procedures_smoke-node"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "b0be7a1a84a1074813e3c9b7e868ec663bb8a234777b60b2b797ed7e84a06039"
+      },
+      "path": "incoming/engine/web_vba_control_flow_smoke-compile"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "4cbea514876f652fac9ad4cb832d003ebc99ecc02015a62686e495a6afc731fb"
+      },
+      "path": "incoming/engine/web_vba_control_flow_smoke-node"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "path": "incoming/engine/macos-build-script-syntax"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "7e8941d54f6354f89779ebc2a7b9a7e1dad35f41eb011a040c5bf06f7574e743"
+      },
+      "path": "incoming/editor/pdf-and-review"
+    },
+    {
+      "exit_code": 0,
+      "hashes": {
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "fb236d8080895f6b9152b94ab004c9efc18f2b080231e54057ee65219e476e7a"
+      },
+      "path": "incoming/studio/desktop-ribbon-lifecycle"
+    }
+  ],
+  "counting": "Author runs only. Adds zero to our local macro/GUI test counts. VM and Node executions have separate platform identities.",
+  "failures": [],
+  "inventories": {
+    "dependency": {
+      "before_after_equal": true,
+      "external_bytes_rehashed_here": false,
+      "recorded_inputs": 9298
+    },
+    "runtime": {
+      "before_after_equal": true,
+      "external_bytes_rehashed_here": false,
+      "recorded_inputs": 1108
+    },
+    "source": {
+      "before_after_equal": true,
+      "external_bytes_rehashed_here": false,
+      "inputs": 4441,
+      "mismatches": [],
+      "recorded_inputs": 4441,
+      "repository_blobs_rehashed_here": true,
+      "unique_blobs_hashed": 4150
+    }
+  },
+  "limitations": [
+    "Verifies recorded output and source binding, not authenticity of execution or installed-platform behavior.",
+    "The author's external dependency and runtime files are unavailable here; only inventory before/after equality was rechecked.",
+    "Screenshot bytes and dimensions were checked; this audit does not claim an additional visual or native-app review.",
+    "Source inventory is checked against accepted mail source, published mail head and merge snapshot, not against later integrated macro/GUI source.",
+    "No product tests, GitHub Actions or status checks were run by this audit.",
+    "Linux native SQLite, synthetic/loopback mail fixtures and Flutter widgets only; no real-account interoperability",
+    "No installed macOS, Windows, mobile, AppKit or signing qualification; bash -n checks shell syntax only",
+    "No full-repository qualification and no newly rerun provider-transport cohort",
+    "Unsigned manifests detect corruption, not authenticity; portable filesystem checks do not prevent all hostile concurrent path replacement",
+    "Restores exported originals and recorded provenance, not a full database/profile/provider mailbox; reruns deduplicate without a durable cursor",
+    "All passed assertions are from these focused runs; previous milestone counts are not reused"
+  ],
+  "method": "Independent parser/hash audit of immutable Git artifacts; no imported acceptance helpers and no product tests rerun.",
+  "published_and_merge_tree": "b80e63de4a71f6857c44e96cee33fc0bcbba1ae5",
+  "published_mail_head": "6275d21246040e03f6264b27171992c88d1474a2",
+  "receipt_hashes": {
+    "final/receipt.json": {
+      "expected_sha256": "43ccfff8afae97aa4170459fc10c3ea05991698778f8e065fe1145bc3ff5d990",
+      "observed_sha256": "43ccfff8afae97aa4170459fc10c3ea05991698778f8e065fe1145bc3ff5d990"
+    },
+    "incoming/editor/receipt.json": {
+      "expected_sha256": "af86a38956916a0030724bb18c956a4a5947473f299befe1ae15623fd131ae5f",
+      "observed_sha256": "af86a38956916a0030724bb18c956a4a5947473f299befe1ae15623fd131ae5f"
+    },
+    "incoming/engine/receipt.json": {
+      "expected_sha256": "842590ad175697b9399a9f68eb6562427097be15069fb371dbde33da84125200",
+      "observed_sha256": "842590ad175697b9399a9f68eb6562427097be15069fb371dbde33da84125200"
+    },
+    "incoming/studio/receipt.json": {
+      "expected_sha256": "105c2f7c63ac4e961217a15b5f5c13560af258ef1fbe0f4d6d293dade04795c2",
+      "observed_sha256": "105c2f7c63ac4e961217a15b5f5c13560af258ef1fbe0f4d6d293dade04795c2"
+    },
+    "incoming/summary.json": {
+      "expected_sha256": "3ff257882e407694fd4a39d34c98b164af4740ab9caa6be70c530d351acb3d1d",
+      "observed_sha256": "3ff257882e407694fd4a39d34c98b164af4740ab9caa6be70c530d351acb3d1d"
+    }
+  },
+  "remote_main_snapshot": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+  "schema": 1,
+  "screenshot_artifact_hashes_verified": [
+    {
+      "file": "archive-export-confirmation-ar.png",
+      "height": 844,
+      "sha256": "dfb6fc7f821f0725fbbad667dbe8d2fc790c420fa67ecf684f4b592a5ad1edf4",
+      "width": 390
+    },
+    {
+      "file": "archive-export-confirmation-en.png",
+      "height": 900,
+      "sha256": "65d7aceddddb2dcf6679aa57158c3488a200aae85843f601007fa401f74ee43d",
+      "width": 1280
+    },
+    {
+      "file": "archive-export-report-ar.png",
+      "height": 844,
+      "sha256": "c8d39fadb8c0655480f7715e7b7ddec6fc5c5faf28b8d193ec3bb2596673ebc8",
+      "width": 390
+    },
+    {
+      "file": "archive-export-report-en.png",
+      "height": 900,
+      "sha256": "591c920c6b8bef10cff77e7c188492ec567d0cfe9f23389f783bdaa4debde906",
+      "width": 1280
+    },
+    {
+      "file": "archive-portability-desktop-en.png",
+      "height": 900,
+      "sha256": "01998400b40bdadbdd7270fe4fe9dc1dd9b853b157f00acd084a011b0918ba2b",
+      "width": 1280
+    },
+    {
+      "file": "archive-portability-mobile-ar.png",
+      "height": 844,
+      "sha256": "cb15cc1802d1c8b34f204ccacd5c4640a8bbd89eadcda788ba1d7739b6592c73",
+      "width": 390
+    },
+    {
+      "file": "archive-restore-preview-ar.png",
+      "height": 844,
+      "sha256": "b72e63cb4853125cc9d226eeea7feaf1a25fab42d7683cdb14beccd123d2f96a",
+      "width": 390
+    },
+    {
+      "file": "archive-restore-preview-de.png",
+      "height": 900,
+      "sha256": "70f69adc3c114b13525b243864fbb7cc6dab9991d8e4eed574df18fbfb9e7257",
+      "width": 1280
+    },
+    {
+      "file": "archive-restore-preview-en.png",
+      "height": 900,
+      "sha256": "d6f84e99cef04770197ca0701e85003ac484cb7c0d38ca4c8248267050ec4305",
+      "width": 1280
+    },
+    {
+      "file": "archive-restore-result-ar.png",
+      "height": 844,
+      "sha256": "fa88a17c4764ee771baf677fe7efd6faaa100c5fe4aa93efb03073642cd3cbe5",
+      "width": 390
+    },
+    {
+      "file": "archive-restore-result-de.png",
+      "height": 900,
+      "sha256": "40631d2bdbc42668e85f76267be638e774dfa6068359965f349ec414618f37cb",
+      "width": 1280
+    },
+    {
+      "file": "archive-restore-result-en.png",
+      "height": 900,
+      "sha256": "c66830d933eae6672296cf0ff0ebb0c99825d3565ca8dbb94f87aac76fb815f3",
+      "width": 1280
+    }
+  ],
+  "status": "passed"
+}

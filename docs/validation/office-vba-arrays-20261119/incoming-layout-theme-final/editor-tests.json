@@ -1,0 +1,40 @@
+{
+  "command": [
+    "/workspace/scratch/652d74384990/runtime/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/office_chrome_theme_test.dart",
+    "test/office_dark_document_test.dart",
+    "test/office_dark_slide_test.dart",
+    "test/word_page_layout_test.dart",
+    "test/embed_test.dart",
+    "test/word_tab_stops_editor_test.dart",
+    "test/sheet_conditional_rendering_test.dart",
+    "test/word_selection_paint_test.dart",
+    "test/word_header_footer_navigation_test.dart",
+    "test/editor_test.dart"
+  ],
+  "cwd": "/workspace/scratch/652d74384990/flutter-validation-workspace/packages/quds_office_editor",
+  "elapsed_seconds": 23.13432002067566,
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "PUB_CACHE": "/workspace/scratch/652d74384990/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/652d74384990/runtime/tmp"
+  },
+  "exit_code": 1,
+  "name": "editor-tests",
+  "removed_optional_environment": [
+    "QUDS_MAIL_PORTABILITY_SHOTS"
+  ],
+  "started_at_utc": "2026-11-19T18:27:04Z",
+  "stderr": "editor-tests.stderr.log",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout": "editor-tests.stdout.log",
+  "stdout_sha256": "42fe8b2e66b55274ba936c93cf8b1b4a58ae3b0a850bd1c6f1a9f5a260fbfd1c"
+}
