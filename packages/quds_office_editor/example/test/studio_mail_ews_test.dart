@@ -40,6 +40,8 @@ final class _Provider extends Fake implements MailEwsProvider {
   int lists = 0;
   int reads = 0;
   String firstMessageId = 'one';
+  bool replyParticipants = false;
+  MailEnvelope? envelopeOverride;
   final List<MailCursor?> cursors = [];
   final List<MailOperation> commands = [];
   final List<MailPreparedMessage> submissions = [];
@@ -68,7 +70,9 @@ final class _Provider extends Fake implements MailEwsProvider {
   MailMessage message() {
     final bytes = utf8.encode(
       'From: Writer <writer@example.test>\r\n'
-      'To: Reader <reader@example.test>\r\nSubject: First Exchange message\r\n'
+      'To: Reader <reader@example.test>${replyParticipants ? ', teammate@example.test' : ''}\r\n'
+      '${replyParticipants ? 'Reply-To: author@example.test\r\nCc: copied@example.test\r\nMessage-ID: <parent@example.test>\r\nReferences: <root@example.test>\r\n' : ''}'
+      'Subject: First Exchange message\r\n'
       'Bcc: hidden@example.test\r\nX-Preserved:  original\r\n\tfolding\r\n'
       'MIME-Version: 1.0\r\nContent-Type: multipart/mixed; boundary=fixture\r\n'
       '\r\n--fixture\r\nContent-Type: text/plain; charset=utf-8\r\n'
@@ -81,7 +85,7 @@ final class _Provider extends Fake implements MailEwsProvider {
     final parsed = const QudsMimeCodec().parse(bytes).message!;
     return MailMessage(
       raw: parsed.raw,
-      envelope: parsed.envelope,
+      envelope: envelopeOverride ?? parsed.envelope,
       body: parsed.body,
       attachments: parsed.attachments,
       remoteIdentity: identity(firstMessageId),
@@ -253,10 +257,21 @@ Finder _composerField(String label) => find.byWidgetPredicate(
   (widget) => widget is TextField && widget.decoration?.labelText == label,
 );
 
-Future<void> _compose(WidgetTester tester) async {
+Future<void> _compose(
+  WidgetTester tester, {
+  String to = 'recipient@example.test',
+  String cc = '',
+  String bcc = '',
+}) async {
   await tester.tap(find.byTooltip(_strings.compose));
   await _pump(tester);
-  await tester.enterText(_composerField(_strings.to), 'recipient@example.test');
+  await tester.enterText(_composerField(_strings.to), to);
+  if (cc.isNotEmpty || bcc.isNotEmpty) {
+    await tester.tap(find.text(_strings.mailCopyRecipients));
+    await _pump(tester);
+    await tester.enterText(_composerField(_strings.mailCc), cc);
+    await tester.enterText(_composerField(_strings.mailBcc), bcc);
+  }
   await tester.enterText(_composerField(_strings.subject), 'EWS send');
   tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
@@ -461,6 +476,10 @@ void main() {
         isNull,
       );
       expect(
+        tester.widget<IconButton>(_iconButton(_strings.replyAll)).onPressed,
+        isNull,
+      );
+      expect(
         tester.widget<IconButton>(_iconButton(_strings.forward)).onPressed,
         isNull,
       );
@@ -622,7 +641,7 @@ void main() {
   );
 
   testWidgets(
-    'composer sends canonical MIME with one explicit envelope through EWS',
+    'composer supplies every To Cc and Bcc recipient to EWS without leaking Bcc',
     (tester) async {
       late _Provider provider;
       await _show(
@@ -631,14 +650,37 @@ void main() {
             provider = _Provider(configuration, credentials),
       );
       await _connect(tester);
-      await _compose(tester);
+      await _compose(
+        tester,
+        to: 'first@example.test; second@example.test',
+        cc: 'copied@example.test',
+        bcc: 'hidden@example.test',
+      );
       expect(provider.submissions, hasLength(1));
       final submitted = provider.submissions.single;
       expect(submitted.envelope.sender, 'reader@example.test');
-      expect(submitted.envelope.recipients, ['recipient@example.test']);
+      expect(submitted.envelope.recipients, [
+        'first@example.test',
+        'second@example.test',
+        'copied@example.test',
+        'hidden@example.test',
+      ]);
       final decoded = const QudsMimeCodec().parse(submitted.wire.bytes);
       expect(decoded.status, MailParseStatus.complete);
       expect(decoded.message!.envelope.subject, 'EWS send');
+      expect(decoded.message!.envelope.to.map((address) => address.address), [
+        'first@example.test',
+        'second@example.test',
+      ]);
+      expect(
+        decoded.message!.envelope.cc.single.address,
+        'copied@example.test',
+      );
+      expect(decoded.message!.envelope.bcc, isEmpty);
+      expect(
+        utf8.decode(submitted.wire.bytes),
+        isNot(contains('hidden@example.test')),
+      );
       expect(
         decoded.message!.body.plainText,
         contains('Composed in the existing Word editor.'),
@@ -720,7 +762,12 @@ void main() {
               ..outcome = MailSubmissionOutcome.uncertain,
       );
       await _connect(tester);
-      await _compose(tester);
+      await _compose(
+        tester,
+        to: 'first@example.test, second@example.test',
+        cc: 'copied@example.test',
+        bcc: 'hidden@example.test',
+      );
       expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
       expect(provider.submissions, hasLength(1));
       await tester.tap(find.byTooltip(_strings.compose));
@@ -733,6 +780,24 @@ void main() {
             .text,
         'EWS send',
       );
+      expect(
+        tester.widget<TextField>(_composerField(_strings.to)).controller!.text,
+        'first@example.test, second@example.test',
+      );
+      expect(
+        tester
+            .widget<TextField>(_composerField(_strings.mailCc))
+            .controller!
+            .text,
+        'copied@example.test',
+      );
+      expect(
+        tester
+            .widget<TextField>(_composerField(_strings.mailBcc))
+            .controller!
+            .text,
+        'hidden@example.test',
+      );
       final send = find.widgetWithText(FilledButton, _strings.send);
       expect(tester.widget<FilledButton>(send).onPressed, isNull);
       expect(provider.submissions, hasLength(1));
@@ -744,8 +809,114 @@ void main() {
       await tester.tap(send);
       await _pump(tester);
       expect(provider.submissions, hasLength(2));
+      for (final submission in provider.submissions) {
+        expect(submission.envelope.recipients, [
+          'first@example.test',
+          'second@example.test',
+          'copied@example.test',
+          'hidden@example.test',
+        ]);
+        expect(
+          utf8.decode(submission.wire.bytes),
+          isNot(contains('hidden@example.test')),
+        );
+      }
       expect(provider.attempts.toSet(), hasLength(2));
       expect(find.text(_strings.ewsSubmissionAccepted), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'EWS Reply all opens visible participants and preserves threading',
+    (tester) async {
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials)
+              ..replyParticipants = true,
+      );
+      await _connect(tester);
+      await tester.tap(find.text('First Exchange message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.replyAll));
+      await _pump(tester);
+      expect(
+        tester.widget<TextField>(_composerField(_strings.to)).controller!.text,
+        'author@example.test, teammate@example.test',
+      );
+      expect(
+        tester
+            .widget<TextField>(_composerField(_strings.mailCc))
+            .controller!
+            .text,
+        'copied@example.test',
+      );
+      expect(
+        tester
+            .widget<TextField>(_composerField(_strings.mailBcc))
+            .controller!
+            .text,
+        isEmpty,
+      );
+      final send = find.widgetWithText(FilledButton, _strings.send);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      final submission = provider.submissions.single;
+      expect(submission.envelope.recipients, [
+        'author@example.test',
+        'teammate@example.test',
+        'copied@example.test',
+      ]);
+      final message = const QudsMimeCodec()
+          .parse(submission.wire.bytes)
+          .message!;
+      expect(message.envelope.inReplyTo, '<parent@example.test>');
+      expect(message.envelope.references, [
+        '<root@example.test>',
+        '<parent@example.test>',
+      ]);
+      expect(message.envelope.bcc, isEmpty);
+      expect(message.body.plainText, contains('A message from Exchange.'));
+      expect(
+        utf8.decode(submission.wire.bytes),
+        isNot(contains('hidden@example.test')),
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'EWS reply actions reject ambiguous source recipients before composition',
+    (tester) async {
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials)
+              ..envelopeOverride = MailEnvelope(
+                subject: 'First Exchange message',
+                from: const [MailAddress('writer@example.test')],
+                replyTo: const [
+                  MailAddress('first@example.test,second@example.test'),
+                ],
+              ),
+      );
+      await _connect(tester);
+      await tester.tap(find.text('First Exchange message'));
+      await _pump(tester);
+      for (final action in [_strings.reply, _strings.replyAll]) {
+        await tester.tap(find.byTooltip(action));
+        await _pump(tester);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+        expect(
+          find.text(_strings.mailReplyRecipientsUnavailable),
+          findsOneWidget,
+        );
+        expect(provider.submissions, isEmpty);
+      }
       expect(tester.takeException(), isNull);
     },
   );

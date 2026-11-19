@@ -548,6 +548,9 @@ class PmlSlide {
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
   }) : _background = background,
+       _primaryMasterBackground = background.isEmpty
+           ? null
+           : background.toUpperCase(),
        inheritsMasterBackground =
            inheritsMasterBackground ?? background.isEmpty,
        shapes = shapes ?? <PmlShape>[],
@@ -565,26 +568,55 @@ class PmlSlide {
   /// masterName API.
   String masterName;
 
-  /// Resolved solid slide background (`RRGGBB`), inherited from layout/master.
-  /// An empty value inherits the master for export and the display theme.
+  String _background;
+  String? _primaryMasterBackground;
+
+  /// Resolved solid background (`RRGGBB`); empty uses the current master.
+  /// Assigning a nonempty color records an explicit slide override.
   String get background => _background;
 
-  /// Assigning a nonempty color makes it an explicit slide fill. Clearing it
-  /// restores inheritance; master refreshes use [updateMasterBackground].
   set background(String value) {
     _background = value;
     inheritsMasterBackground = value.isEmpty;
+    _primaryMasterBackground = null;
   }
-
-  String _background;
 
   /// Whether a master-background edit should update this slide's paper.
   /// Explicit slide/layout fills remain independent of master edits.
   bool inheritsMasterBackground;
 
+  /// Retains an inherited color and the primary master at resolution time.
+  /// The resolved color can come from a secondary imported slide master.
+  void setInheritedBackground(
+    String value, {
+    required String masterBackground,
+  }) {
+    _background = value;
+    inheritsMasterBackground = true;
+    _primaryMasterBackground = masterBackground.isEmpty
+        ? 'FFFFFF'
+        : masterBackground.toUpperCase();
+  }
+
+  /// Resolves direct master edits without losing imported secondary colors.
+  String resolveBackground(String masterBackground) {
+    final String current = masterBackground.isEmpty
+        ? 'FFFFFF'
+        : masterBackground;
+    if (inheritsMasterBackground &&
+        (_background.isEmpty ||
+            (_primaryMasterBackground != null &&
+                _primaryMasterBackground != current.toUpperCase()))) {
+      return current;
+    }
+    return _background.isEmpty ? current : _background;
+  }
+
   /// Refreshes inherited paper without detaching it from future master edits.
   void updateMasterBackground(String value) {
-    if (inheritsMasterBackground) _background = value;
+    if (inheritsMasterBackground) {
+      setInheritedBackground(value, masterBackground: value);
+    }
   }
 
   /// Original owning part, retained when slides are reordered.
@@ -618,7 +650,7 @@ class PmlSlide {
         for (final PmlShapeAnimation anim in animations) anim.copyWith(),
       ],
       shapes: <PmlShape>[for (final PmlShape shape in shapes) shape.copy()],
-    );
+    ).._primaryMasterBackground = _primaryMasterBackground;
   }
 }
 

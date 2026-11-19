@@ -114,11 +114,17 @@ class SlideDeserializer {
           slideXml,
           layout?.colors ?? templates.defaultColors,
         );
-        pres.slides[i].background =
+        final String resolvedBackground =
             slideBackground ?? layout?.background ?? pres.master.background;
-        pres.slides[i].inheritsMasterBackground =
-            slideBackground == null &&
-            (layout?.inheritsMasterBackground ?? true);
+        if (slideBackground == null &&
+            (layout?.inheritsMasterBackground ?? true)) {
+          pres.slides[i].setInheritedBackground(
+            resolvedBackground,
+            masterBackground: pres.master.background,
+          );
+        } else {
+          pres.slides[i].background = resolvedBackground;
+        }
         if (layout != null) {
           pres.slides[i].layoutName = layout.name;
           _inheritPlaceholders(shapes, positioned, <List<PmlShape>>[

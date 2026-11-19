@@ -345,6 +345,8 @@ void main() {
         slides: <PmlSlide>[
           PmlSlide(id: 256),
           PmlSlide(id: 257, background: '0000FF'),
+          PmlSlide(id: 258)
+            ..setInheritedBackground('00FFFF', masterBackground: 'FF0000'),
         ],
       );
       for (final int perPage in <int>[1, 2]) {
@@ -354,6 +356,7 @@ void main() {
         ).join();
         expect(red, contains('1 0 0 rg'));
         expect(red, contains('0 0 1 rg'));
+        expect(red, contains('0 1 1 rg'));
         deck.master.background = '00FF00';
         final String green = _inflated(
           OfficePdfExport.presentation(deck, slidesPerPage: perPage),
@@ -361,6 +364,7 @@ void main() {
         expect(green, contains('0 1 0 rg'));
         expect(green, contains('0 0 1 rg'));
         expect(green, isNot(contains('1 0 0 rg')));
+        expect(green, isNot(contains('0 1 1 rg')));
       }
     },
   );

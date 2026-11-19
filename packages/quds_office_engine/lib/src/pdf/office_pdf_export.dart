@@ -1824,8 +1824,7 @@ abstract final class OfficePdfExport {
   }
 
   static String _slideBackground(PmlPresentation deck, PmlSlide slide) {
-    if (slide.background.isNotEmpty) return slide.background;
-    return deck.master.background.isEmpty ? 'FFFFFF' : deck.master.background;
+    return slide.resolveBackground(deck.master.background);
   }
 
   static void _paintRichText(
