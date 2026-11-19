@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 
-import 'support/studio_test_settings.dart';
+import 'support/studio_settings.dart';
 
 class _DraftProvider extends OfficeProofingProvider {
   _DraftProvider({
@@ -121,14 +121,14 @@ Future<WordEditorController> _studio(
         : RepaintBoundary(key: captureKey, child: const QudsOfficeStudioApp()),
   );
   await _pump(tester);
+  expect(find.byTooltip('Language'), findsOneWidget);
+  await _pump(tester);
   final controller = tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
       .controller;
   controller.proofing.enabled = false;
   controller.proofing.configure(OfficeProofingService(providers: [provider]));
-  // Settings advances animations beyond the initial proofing debounce.
-  await configureStudioForTest(tester, showComments: true);
-  await _pump(tester);
+  await enableStudioSetting(tester, 'Show comments');
   controller.document = _document();
   controller.refresh();
   controller.selectComment(1);
@@ -515,7 +515,7 @@ void main() {
       });
     }
     await _studio(tester, provider, captureKey: captureKey);
-    await configureStudioForTest(tester, language: StudioLanguage.ar);
+    await switchStudioToArabic(tester);
     await _pump(tester);
     await tester.binding.setSurfaceSize(const Size(390, 1000));
     tester.platformDispatcher.textScaleFactorTestValue = 1.4;
