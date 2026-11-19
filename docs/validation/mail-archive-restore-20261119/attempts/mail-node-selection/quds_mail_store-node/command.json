@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "/workspace/scratch/f815a4ae580f/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/f815a4ae580f/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/f815a4ae580f/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=node",
+    "--compiler=dart2js",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/archive_export_manifest_test.dart",
+    "test/archive_query_test.dart",
+    "test/browser_problem_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_mail_store",
+  "environment_overrides": {},
+  "expected_test_files": [
+    "packages/quds_mail_store/test/archive_export_manifest_test.dart",
+    "packages/quds_mail_store/test/archive_query_test.dart",
+    "packages/quds_mail_store/test/browser_problem_test.dart"
+  ],
+  "name": "quds_mail_store-node",
+  "started_at_utc": "2026-11-19T17:57:07.762752+00:00"
+}

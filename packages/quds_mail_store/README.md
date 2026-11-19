@@ -33,8 +33,10 @@ for syntax, defaults, host examples and remaining gaps. The
 [archive/search validation report](../../docs/validation/mail-archive-search-20261119/README.md)
 records the original durable-archive milestone. The
 [portability validation report](../../docs/validation/mail-archive-portability-20261119/README.md)
-records the extended scope and its qualification status; historical cache
-qualifications remain separate below.
+records that increment's scope and qualification. The
+[restoration validation report](../../docs/validation/mail-archive-restore-20261119/README.md)
+covers provenance-aware export restoration; historical cache qualifications
+remain separate below.
 
 ### Bulk export and directory import
 
@@ -70,6 +72,49 @@ message outcomes to 100,000 by default and reports partial, limited and
 cancelled work separately. Source files are unchanged. Generic reimport of an
 exported EML directory does not restore manifest provenance, archive profiles
 or saved searches.
+
+### Restore an exported archive
+
+`NativeMailArchiveRestorer` accepts an existing destination archive and an
+injected `MailCodec`. `inspect` reads a bounded export manifest without writing
+anything. Show its message/byte/origin counts, source profile, creation time and
+directory to the user before calling `restore`. The manifest is unsigned, so
+its source labels require the user's trust. Inspection does not read the EMLs;
+their exact sizes and hashes are verified during restoration.
+
+```dart
+final restorer = NativeMailArchiveRestorer(
+  archive: destinationArchive,
+  codec: messageCodec,
+);
+final inspected = await restorer.inspect(exportDirectory);
+if (inspected case MailSuccess(value: final plan)) {
+  // Present the plan and obtain the user's deliberate restore action first.
+  final report = await restorer.restore(
+    plan,
+    indexAttachmentText: false,
+    cancellation: cancellation,
+    onProgress: onProgress,
+  );
+  // Report saved, duplicates, failed, originsAdded and any indexing warnings.
+}
+```
+
+The source profile can differ from the destination. Each original, searchable
+projection and all recorded origins commit together. Identical originals are
+verified and deduplicated; missing origins are added atomically. The existing
+`archiveMessage` single-origin API remains compatible, and the new
+`archiveMessageWithOrigins` API exposes this atomic operation directly.
+
+Rerunning checks the source again and merges missing originals/provenance.
+Confirmed earlier work remains counted after cancellation or a later error;
+`bytes` includes verified successful duplicates. Changed manifests, observed
+links/ancestors and conflicting files are reported. Source exports are read
+only. Limits reuse `MailArchiveExportLimits` and destination archive quotas.
+This is message/provenance restoration: archive dates for new records are set
+locally, existing projections remain intact, and archive settings, saved
+searches, credentials and provider mailboxes are outside the export format.
+The archive guide documents filesystem race boundaries and failure semantics.
 
 ## Live account cache
 

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "-e",
+    "globalThis.self = globalThis; require(process.argv[1])",
+    "/workspace/scratch/f815a4ae580f/runtime/incoming-javascript/web_vba_control_flow_smoke.js"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_engine",
+  "head_before": "ba9ac010189215b92f518e44dde7ea2e2fdc47e1",
+  "name": "web_vba_control_flow_smoke-node",
+  "source_before_sha256": "358401a9536f0673c4468ab0e71d5d1cce4246f902c855e3241a0f28a79645c2",
+  "started_at_utc": "2026-11-19T17:52:49.891011+00:00",
+  "timeout_seconds": 600
+}

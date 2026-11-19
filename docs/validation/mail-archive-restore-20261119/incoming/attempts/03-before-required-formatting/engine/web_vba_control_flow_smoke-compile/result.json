@@ -1,0 +1,27 @@
+{
+  "accepted": true,
+  "changed_source_paths": [],
+  "command": [
+    "/workspace/scratch/f815a4ae580f/runtime/bin/dart",
+    "compile",
+    "js",
+    "--packages=/workspace/scratch/f815a4ae580f/quds_office_suite/.dart_tool/package_config.json",
+    "-O1",
+    "tool/macros/web_vba_control_flow_smoke.dart",
+    "-o",
+    "/workspace/scratch/f815a4ae580f/runtime/incoming-javascript/web_vba_control_flow_smoke.js"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_engine",
+  "elapsed_seconds": 9.381,
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T17:52:49.728904+00:00",
+  "head_after": "ba9ac010189215b92f518e44dde7ea2e2fdc47e1",
+  "head_before": "ba9ac010189215b92f518e44dde7ea2e2fdc47e1",
+  "name": "web_vba_control_flow_smoke-compile",
+  "source_after_sha256": "358401a9536f0673c4468ab0e71d5d1cce4246f902c855e3241a0f28a79645c2",
+  "source_before_sha256": "358401a9536f0673c4468ab0e71d5d1cce4246f902c855e3241a0f28a79645c2",
+  "started_at_utc": "2026-11-19T17:52:40.344857+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "cce5b4bb7522be855ab11e85db51b276d56ded56fa874179724143dbc53a4399",
+  "timeout_seconds": 600
+}

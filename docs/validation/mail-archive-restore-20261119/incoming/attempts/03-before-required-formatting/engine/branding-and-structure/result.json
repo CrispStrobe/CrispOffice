@@ -1,0 +1,51 @@
+{
+  "accepted": true,
+  "changed_source_paths": [],
+  "command": [
+    "/workspace/scratch/f815a4ae580f/runtime/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/f815a4ae580f/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/f815a4ae580f/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/ods_sheet_reader_test.dart",
+    "test/word_comment_test.dart",
+    "test/word_revision_validation_test.dart",
+    "test/word_revision_story_test.dart",
+    "test/comment_thread_fidelity_test.dart",
+    "test/odt_comment_fidelity_test.dart",
+    "test/word_step_atomicity_test.dart",
+    "test/word_structure_steps_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_engine",
+  "elapsed_seconds": 17.348,
+  "exit_code": 0,
+  "expected_test_files": [
+    "packages/quds_office_engine/test/comment_thread_fidelity_test.dart",
+    "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+    "packages/quds_office_engine/test/odt_comment_fidelity_test.dart",
+    "packages/quds_office_engine/test/word_comment_test.dart",
+    "packages/quds_office_engine/test/word_revision_story_test.dart",
+    "packages/quds_office_engine/test/word_revision_validation_test.dart",
+    "packages/quds_office_engine/test/word_step_atomicity_test.dart",
+    "packages/quds_office_engine/test/word_structure_steps_test.dart"
+  ],
+  "finished_at_utc": "2026-11-19T17:52:10.808972+00:00",
+  "head_after": "ba9ac010189215b92f518e44dde7ea2e2fdc47e1",
+  "head_before": "ba9ac010189215b92f518e44dde7ea2e2fdc47e1",
+  "name": "branding-and-structure",
+  "source_after_sha256": "358401a9536f0673c4468ab0e71d5d1cce4246f902c855e3241a0f28a79645c2",
+  "source_before_sha256": "358401a9536f0673c4468ab0e71d5d1cce4246f902c855e3241a0f28a79645c2",
+  "started_at_utc": "2026-11-19T17:51:53.458200+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "2630fc37f888d4e064f6ac817175d4c7f6a49e1d3cfb33619a900ed44577b4d7",
+  "test_cases_sha256": "a7dc650407eb604401703c2281aef6f2ce9525ea5795ca9f439797aff0c63ed0",
+  "test_counts": {
+    "failed": 0,
+    "passed": 216,
+    "skipped": 0
+  },
+  "timeout_seconds": 600
+}

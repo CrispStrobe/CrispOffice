@@ -333,10 +333,8 @@ class _StudioHunspellSetupDialogState extends State<StudioHunspellSetupDialog> {
       ),
       actions: [
         TextButton(
-          onPressed: () => showLicensePage(
-            context: context,
-            applicationName: 'CrispOffice',
-          ),
+          onPressed: () =>
+              showLicensePage(context: context, applicationName: 'CrispOffice'),
           child: const Text('Licences'),
         ),
         TextButton(

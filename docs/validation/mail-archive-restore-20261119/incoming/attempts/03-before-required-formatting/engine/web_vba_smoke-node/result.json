@@ -1,0 +1,45 @@
+{
+  "accepted": true,
+  "changed_source_paths": [],
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "-e",
+    "globalThis.self = globalThis; require(process.argv[1])",
+    "/workspace/scratch/f815a4ae580f/runtime/incoming-javascript/web_vba_smoke.js"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_engine",
+  "elapsed_seconds": 0.398,
+  "exit_code": 0,
+  "expected": {
+    "A3": 42,
+    "B1": 84,
+    "fill": "0A141E",
+    "language": "vba-excel",
+    "lateFailurePreservedBytes": true,
+    "mcpCompileAndRun": true,
+    "numericBoundsAndPrecedence": true,
+    "revision": 2,
+    "validationPreservedBytes": true
+  },
+  "finished_at_utc": "2026-11-19T17:52:30.685371+00:00",
+  "head_after": "ba9ac010189215b92f518e44dde7ea2e2fdc47e1",
+  "head_before": "ba9ac010189215b92f518e44dde7ea2e2fdc47e1",
+  "name": "web_vba_smoke-node",
+  "observed": {
+    "A3": 42,
+    "B1": 84,
+    "fill": "0A141E",
+    "language": "vba-excel",
+    "lateFailurePreservedBytes": true,
+    "mcpCompileAndRun": true,
+    "numericBoundsAndPrecedence": true,
+    "revision": 2,
+    "validationPreservedBytes": true
+  },
+  "source_after_sha256": "358401a9536f0673c4468ab0e71d5d1cce4246f902c855e3241a0f28a79645c2",
+  "source_before_sha256": "358401a9536f0673c4468ab0e71d5d1cce4246f902c855e3241a0f28a79645c2",
+  "started_at_utc": "2026-11-19T17:52:30.284244+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8",
+  "timeout_seconds": 600
+}
