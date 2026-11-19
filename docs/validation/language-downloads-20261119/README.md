@@ -83,5 +83,5 @@ installation: real German and English models, lemmas, POS and named entities
 through the worker isolate. It asserted no executable package download directory
 was created. The separate arm64 Runtime Preview passed deep signature validation
 and a 20-second startup. See [bundled-runtime-acceptance.json](bundled-runtime-acceptance.json)
-and [native gate output](bundled-runtime-native-gate.log). Existing open previews
+and [native gate output](bundled-runtime-native-gate.txt). Existing open previews
 and user documents were not replaced.
