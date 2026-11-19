@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B2A4A"/>
+      <stop offset="0.55" stop-color="#0F6B78"/>
+      <stop offset="1" stop-color="#1EB39F"/>
+    </linearGradient>
+    <linearGradient id="sheet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E8F7F4"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#001827" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect x="40" y="40" width="944" height="944" rx="210" fill="url(#bg)"/>
+  <circle cx="820" cy="205" r="74" fill="#FFC857" opacity="0.95"/>
+  <g filter="url(#shadow)">
+    <rect x="245" y="225" width="430" height="540" rx="52" fill="#FFFFFF" opacity="0.28" transform="rotate(-12 460 495)"/>
+    <rect x="305" y="205" width="430" height="540" rx="52" fill="#FFFFFF" opacity="0.50" transform="rotate(-5 520 475)"/>
+    <rect x="350" y="190" width="430" height="540" rx="52" fill="url(#sheet)"/>
+    <path d="M660 190h66a54 54 0 0 1 54 54v66z" fill="#B9EAE1"/>
+    <rect x="410" y="315" width="210" height="26" rx="13" fill="#0F6B78" opacity="0.22"/>
+    <rect x="410" y="370" width="300" height="26" rx="13" fill="#0F6B78" opacity="0.18"/>
+    <rect x="410" y="425" width="260" height="26" rx="13" fill="#0F6B78" opacity="0.18"/>
+  </g>
+  <g>
+    <circle cx="565" cy="585" r="172" fill="#0B2A4A"/>
+    <circle cx="565" cy="585" r="158" fill="url(#bg)"/>
+    <text x="565" y="648" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="238" font-weight="800" fill="#FFFFFF">C</text>
+  </g>
+  <rect x="250" y="810" width="524" height="18" rx="9" fill="#FFC857" opacity="0.9"/>
+</svg>

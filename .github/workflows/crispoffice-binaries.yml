@@ -1,0 +1,154 @@
+name: CrispOffice binaries
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['crispoffice-v*']
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_VERSION: 3.47.8
+
+jobs:
+  macos:
+    name: macOS
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Resolve workspace
+        run: flutter pub get
+      - name: Build macOS
+        run: flutter build macos --release
+      - name: Package
+        run: |
+          cd packages/quds_office_editor/example
+          ditto -c -k --sequesterRsrc --keepParent \
+            build/macos/Build/Products/Release/quds_office_studio.app \
+            "$GITHUB_WORKSPACE/crispoffice-macos.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crispoffice-macos
+          path: crispoffice-macos.zip
+          if-no-files-found: error
+          retention-days: 14
+
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Resolve workspace
+        run: flutter pub get
+      - name: Build Windows
+        working-directory: packages/quds_office_editor/example
+        run: flutter build windows --release
+      - name: Package
+        working-directory: packages/quds_office_editor/example
+        run: Compress-Archive -Path build\windows\x64\runner\Release\* -DestinationPath "$env:GITHUB_WORKSPACE\crispoffice-windows-x64.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crispoffice-windows-x64
+          path: crispoffice-windows-x64.zip
+          if-no-files-found: error
+          retention-days: 14
+
+  linux:
+    name: Linux
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install Linux dependencies
+        run: sudo apt-get update && sudo apt-get install -y ninja-build libgtk-3-dev clang cmake pkg-config
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Resolve workspace
+        run: flutter pub get
+      - name: Build Linux
+        working-directory: packages/quds_office_editor/example
+        run: flutter build linux --release
+      - name: Package
+        working-directory: packages/quds_office_editor/example
+        run: tar czf "$GITHUB_WORKSPACE/crispoffice-linux-x64.tar.gz" -C build/linux/x64/release/bundle .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crispoffice-linux-x64
+          path: crispoffice-linux-x64.tar.gz
+          if-no-files-found: error
+          retention-days: 14
+
+  android:
+    name: Android
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Resolve workspace
+        run: flutter pub get
+      - name: Build Android
+        working-directory: packages/quds_office_editor/example
+        run: flutter build apk --release
+      - name: Package
+        working-directory: packages/quds_office_editor/example
+        run: cp build/app/outputs/flutter-apk/app-release.apk "$GITHUB_WORKSPACE/crispoffice-android.apk"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crispoffice-android
+          path: crispoffice-android.apk
+          if-no-files-found: error
+          retention-days: 14
+
+  web:
+    name: Web
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Resolve workspace
+        run: flutter pub get
+      - name: Build web
+        working-directory: packages/quds_office_editor/example
+        run: flutter build web --release --no-wasm-dry-run
+      - name: Package
+        working-directory: packages/quds_office_editor/example
+        run: tar czf "$GITHUB_WORKSPACE/crispoffice-web.tar.gz" -C build/web .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crispoffice-web
+          path: crispoffice-web.tar.gz
+          if-no-files-found: error
+          retention-days: 14
