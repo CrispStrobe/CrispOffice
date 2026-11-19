@@ -812,8 +812,7 @@ final class WordProofingSession extends ChangeNotifier {
             wordRunProofingLanguage(
                   run,
                   paragraph,
-                  documentComplexScriptLanguage:
-                      document.complexScriptLanguage,
+                  documentComplexScriptLanguage: document.complexScriptLanguage,
                 ) ??
                 language,
           ),

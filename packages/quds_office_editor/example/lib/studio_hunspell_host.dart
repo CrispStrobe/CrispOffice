@@ -47,12 +47,22 @@ class StudioHunspellCancellation {
   void cancel() {
     if (_cancelled) return;
     _cancelled = true;
-    for (final listener in List.of(_listeners)) {
+    final listeners = List<VoidCallback>.of(_listeners);
+    _listeners.clear();
+    for (final listener in listeners) {
       listener();
     }
   }
 
-  void addListener(VoidCallback listener) => _listeners.add(listener);
+  void addListener(VoidCallback listener) {
+    if (_cancelled) {
+      listener();
+    } else {
+      _listeners.add(listener);
+    }
+  }
+
+  void removeListener(VoidCallback listener) => _listeners.remove(listener);
 }
 
 /// Owns the optional, user-downloaded Hunspell dictionaries (first Arabic).

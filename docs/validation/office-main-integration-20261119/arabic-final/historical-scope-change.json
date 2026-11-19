@@ -1,0 +1,130 @@
+{
+  "status": "Pre-freeze impact review; final combined-source audit pending exact frozen head",
+  "incoming_main": "f7117a493055008a72e6e16713dd67a4f7c2ad39",
+  "prior_qualified_phase": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "historical_qualification_source": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "runtime_change_paths": [
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart"
+  ],
+  "preview_scope": {
+    "original_suite_files_unchanged": 129,
+    "original_suite_files_changed": 0,
+    "original_tracked_closures_unchanged": 10,
+    "original_tracked_closures_changed": 119,
+    "native_tracked_closures_unchanged": 0,
+    "native_tracked_closures_changed": 14,
+    "web_tracked_closure_unchanged": false,
+    "notes_file_bytes_unchanged": true,
+    "fixture_helper_file_bytes_unchanged": true,
+    "prior_ac1_continuity_is_a_separate_phase": "ac1e4c8c788ea608402c2260488235c0189efcba",
+    "static_closure_change_is_not_a_test_failure": true
+  },
+  "cohort_preview": [
+    {
+      "name": "engine-review-and-incoming-zotero",
+      "suites": 42,
+      "historical_cases": 717,
+      "suite_sources_identical": true,
+      "suites_with_changed_tracked_closure": 33,
+      "changed_closure_paths": [
+        "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart"
+      ],
+      "vendor_overlap": []
+    },
+    {
+      "name": "editor-review-notes-headers-and-zotero",
+      "suites": 73,
+      "historical_cases": 1154,
+      "suite_sources_identical": true,
+      "suites_with_changed_tracked_closure": 72,
+      "changed_closure_paths": [
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart"
+      ],
+      "vendor_overlap": []
+    },
+    {
+      "name": "studio-review-and-incoming-navigation",
+      "suites": 10,
+      "historical_cases": 117,
+      "suite_sources_identical": true,
+      "suites_with_changed_tracked_closure": 10,
+      "changed_closure_paths": [
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart"
+      ],
+      "vendor_overlap": []
+    },
+    {
+      "name": "incoming-mail-reader",
+      "suites": 4,
+      "historical_cases": 30,
+      "suite_sources_identical": true,
+      "suites_with_changed_tracked_closure": 4,
+      "changed_closure_paths": [
+        "packages/quds_mail_core/lib/src/model/message.dart",
+        "packages/quds_mail_core/lib/src/ports/provider.dart"
+      ],
+      "vendor_overlap": []
+    }
+  ],
+  "scope_changes": [
+    "The 125-suite/1,988-case tracked-closure continuity finding applies only to the ac1 integration phase.",
+    "At incoming f711, all129 original suite files remain unchanged but119 tracked closures differ;10 remain identical.",
+    "All five original Notes file bytes remain identical; this does not imply unchanged transitive proofing behavior.",
+    "All14 native fixture closures and the web fixture closure differ, although the original fixture/helper file bytes remain identical.",
+    "The 2,018-case historical qualification, overlapping208-case native fixture and web compile stay bound to39843ed4 and are not reruns on the Arabic source.",
+    "Conservative export/import closure changes do not imply119 regressions or automatically require a complete129-suite rerun."
+  ],
+  "focused_validation_priorities": [
+    {
+      "scope": "New Arabic provider",
+      "tests": [
+        "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+      ],
+      "runtimes": [
+        "Dart VM",
+        "Node"
+      ],
+      "purpose": "Locale/script gating, protected spans, Unicode property/lookbehind behavior, UTF-16/grapheme offsets, ignored rules and provider disposal"
+    },
+    {
+      "scope": "Default editor integration",
+      "tests": [
+        "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+        "packages/quds_office_editor/test/word_proofing_session_test.dart",
+        "packages/quds_office_editor/test/word_proofing_correction_test.dart",
+        "packages/quds_office_editor/test/word_german_grammar_integration_test.dart"
+      ],
+      "purpose": "Default provider registration, language isolation, correction mapping and existing German integration"
+    },
+    {
+      "scope": "Preserved Notes behavior",
+      "tests": [
+        "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+        "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart"
+      ],
+      "purpose": "Exercise unchanged Notes source through the changed default proofing session"
+    },
+    {
+      "scope": "Studio provider registration",
+      "tests": [
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart"
+      ],
+      "purpose": "Concrete example/lib/suite_workspace.dart provider-list change; cover the separately assembled Studio proofing engine"
+    }
+  ],
+  "fresh_historical_replay": "arabic_historical_continuity_audit.py",
+  "replay_change": "New scratch-only copy generates source/closure scope wording dynamically and reports changed suite files if any, avoiding prior Office-unchanged assumptions. Preserved ac1 reports/scripts were not edited.",
+  "preview_evidence": "arabic_incoming_main_historical_preview.json",
+  "no_runtime_or_source_edits": true,
+  "no_application_test_execution": true,
+  "no_remote_or_actions_queries": true
+}

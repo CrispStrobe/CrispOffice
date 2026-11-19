@@ -1,0 +1,1091 @@
+{
+  "audited_at_utc": "2026-11-19T08:15:03.486495+00:00",
+  "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "source_tree": "c68f4ea4fdb7f3795cfb94138e6185e5a8208033",
+  "method": "Independent raw reporter and Python AST/log recounts, full immutable/current source and runtime inventories, exact scope/command checks. Every cohort uses the same final source. No tests executed by this audit.",
+  "audit_script_sha256": "f9c248b15753a8735d8466e1b0c4e873dc365829ac2649b4fe4bc3e6b668922b",
+  "helper_sha256": {
+    "audit_current_gate.py": "2728e805ab3175bdf3ab22b9fe12e589773d840a47d6f78128c066b748462801",
+    "audit_store_current.py": "d44a62a2a1c0e97e754a3214180720d274eddedf55f3569b72106735a67a1528",
+    "audit_outer_python_controls.py": "caa776d62cf114f59d3298a9c6fb83032c21030c1e752e64244d3407b6a65217"
+  },
+  "runs": [
+    {
+      "name": "native",
+      "exit_code": 0,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/79e6ad9e4046/audit-review/audit_current_gate.py",
+        "--repo",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+        "--gate",
+        "/workspace/scratch/79e6ad9e4046/final-integration-checks/native",
+        "--runtime",
+        "/workspace/scratch/79e6ad9e4046/quds-runtime",
+        "--source",
+        "0669ac119da05f5eb777c8cfdbce32e0261df647",
+        "--plan",
+        "docs/validation/office-main-sync-20261119/final-native-plan.json",
+        "--expected-suites",
+        "78",
+        "--output",
+        "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/native-audit.json"
+      ],
+      "audit_file": "native-audit.json",
+      "audit_sha256": "58d3d6b7c04dd409f60c0d084e1a1c653549af8099a42cf65b01e7c31f94687e",
+      "log_sha256": "58d3d6b7c04dd409f60c0d084e1a1c653549af8099a42cf65b01e7c31f94687e"
+    },
+    {
+      "name": "node",
+      "exit_code": 0,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/79e6ad9e4046/audit-review/audit_current_gate.py",
+        "--repo",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+        "--gate",
+        "/workspace/scratch/79e6ad9e4046/final-integration-checks/node",
+        "--runtime",
+        "/workspace/scratch/79e6ad9e4046/quds-runtime",
+        "--source",
+        "0669ac119da05f5eb777c8cfdbce32e0261df647",
+        "--plan",
+        "docs/validation/office-main-sync-20261119/final-node-plan.json",
+        "--expected-suites",
+        "12",
+        "--output",
+        "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/node-audit.json"
+      ],
+      "audit_file": "node-audit.json",
+      "audit_sha256": "33afa8595c9fd8ef8916d5906bba993ed41266097c503f52753ff94fec969cc4",
+      "log_sha256": "33afa8595c9fd8ef8916d5906bba993ed41266097c503f52753ff94fec969cc4"
+    },
+    {
+      "name": "store",
+      "exit_code": 0,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/79e6ad9e4046/audit-review/audit_store_current.py",
+        "--repo",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+        "--gate",
+        "/workspace/scratch/79e6ad9e4046/final-integration-checks/core-store",
+        "--outer",
+        "/workspace/scratch/79e6ad9e4046/final-integration-checks",
+        "--runtime",
+        "/workspace/scratch/79e6ad9e4046/quds-runtime",
+        "--source",
+        "0669ac119da05f5eb777c8cfdbce32e0261df647",
+        "--driver",
+        "docs/validation/office-main-sync-20261119/final-run-validation.py",
+        "--native-plan",
+        "docs/validation/office-main-sync-20261119/final-native-plan.json",
+        "--node-plan",
+        "docs/validation/office-main-sync-20261119/final-node-plan.json",
+        "--output",
+        "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/store-audit.json"
+      ],
+      "audit_file": "store-audit.json",
+      "audit_sha256": "940f5c4e9127450ba11183b5c12e3fb80f087752feaa42c71ebbccbd59e4c934",
+      "log_sha256": "2d4b813a21dedc3199fc6a8dc8ec5ee7869e67998d3ae86618468560a1e175cf"
+    },
+    {
+      "name": "python",
+      "exit_code": 0,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/79e6ad9e4046/audit-review/audit_outer_python_controls.py",
+        "--repo",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+        "--outer",
+        "/workspace/scratch/79e6ad9e4046/final-integration-checks",
+        "--source",
+        "0669ac119da05f5eb777c8cfdbce32e0261df647",
+        "--store-audit",
+        "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/store-audit.json",
+        "--output",
+        "/workspace/scratch/79e6ad9e4046/audit-review/final-0669ac11-accepted/python-audit.json"
+      ],
+      "audit_file": "python-audit.json",
+      "audit_sha256": "0847fc4f1f7815680d0f9e56d77d535c9894e74ead24eddc544e7000dec403ea",
+      "log_sha256": "86ab954f125386fc9a6f10be2b4cdb1aeaa0053df74d2db6255e3bf42cc38b89"
+    }
+  ],
+  "groups": [
+    {
+      "gate": "native",
+      "name": "transport-native",
+      "suites": 5,
+      "passed": 119,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 5,
+      "raw_log_sha256": "ef442d91a9b58b9dbc68b13b3d391bed0e21bfd90aec11890af9474742f55470",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "transport-tls-loopback-vm",
+      "suites": 3,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 3,
+      "raw_log_sha256": "179fd99fe882df575106439afa9dfd9c3984f04562ad78e3c2ebba75e47d1c65",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "enough-mail-protocol-regressions",
+      "suites": 46,
+      "passed": 496,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 46,
+      "raw_log_sha256": "0d458d2adc850e3f247d429254cf43c18aa418d76a9954e08a80e6d4c55d1588",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "mime-consumer-vm",
+      "suites": 6,
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 6,
+      "raw_log_sha256": "cc1c1bdd6d4b677524d8e4dfe9cff132fdb10c418c80a2b957eb7ff00c2ce0a8",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "mail-ui-consumers",
+      "suites": 4,
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 4,
+      "raw_log_sha256": "f587d15f8fecbe20ae000444a3935018703c6efe3a4f80992481751b65a0e959",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "office-engine-proofing",
+      "suites": 6,
+      "passed": 137,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 6,
+      "raw_log_sha256": "fe64c7d8d8cfbbcae5bdbce6e8c645b0ef229886159ff895f58954b738ed25f3",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "word-arabic-proofing",
+      "suites": 8,
+      "passed": 137,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 8,
+      "raw_log_sha256": "d7ad88831def547b4a5b40402d9f4673000655ead73a5855cd63feb9f3ec0d08",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "transport-node",
+      "suites": 3,
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 3,
+      "raw_log_sha256": "762b89060c0dc9414a1bc9934ea1625416e0c9a1d926862922090cea14228c5b",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "mime-consumer-node",
+      "suites": 6,
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 6,
+      "raw_log_sha256": "bebcae072cc6449c1c50e811bcf9005a8709a076ddff6e0199d6efa5927e1b4f",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "fork-portable-node",
+      "suites": 1,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 1,
+      "raw_log_sha256": "1980cb444181d6a2fa60356c2c4a8f0ae3720784a4e317e734c561003e69b96b",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "arabic-unicode-node",
+      "suites": 2,
+      "passed": 84,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 2,
+      "raw_log_sha256": "261b6ecbaea6af778b9ddafc71616cdc54c22cae17bd6cb024cf9a08587a52fb",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "store",
+      "name": "core-vm",
+      "suites": 5,
+      "passed": 49,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "store",
+      "name": "core-node",
+      "suites": 5,
+      "passed": 49,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "store",
+      "name": "store-vm",
+      "suites": 8,
+      "passed": 110,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "store",
+      "name": "portable-node",
+      "suites": 3,
+      "passed": 42,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "application_case_executions": 1372,
+  "suite_platform_executions": 111,
+  "distinct_test_files": 94,
+  "suite_platform_inventory": [
+    {
+      "path": "packages/quds_mail_transport/test/configuration_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/cursor_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/connection_robustness_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/imap/imap_client_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/imap/imap_quoting_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/imap/imap_robustness_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/imap/mailbox_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/imap/message_sequence_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/imap/qresync_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/imap/response_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/mail/mail_account_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/mail/mail_client_delete_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/mail/mail_client_oauth_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/mail/mail_client_pop_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/mail/mail_client_reconnect_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/mail/mail_client_send_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/mail/mail_client_starttls_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/mail/redaction_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/mail/results_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/pop/pop_client_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/pop/pop_framing_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/reconnect_state_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/smtp/remove_bcc_header_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/smtp/smtp_auth_encoding_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/smtp/smtp_client_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/smtp/smtp_framing_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/smtp/smtp_sendmail_command_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/smtp/smtp_transparency_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/id_parser_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/imap_response_line_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/imap_response_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/list_parser_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/namespace_parser_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/parser_helper_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/search_parser_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/sort_parser_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/status_parser_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/thread_parser_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/smtp/commands/smtp_auth_cram_md5_command_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/smtp/smtp_response_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "third_party/enough_mail/test/write_failure_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/mime_parts_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/portable_import_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_ui/test/controller_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_ui/test/example_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_ui/test/message_view_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_ui/test/presentation_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/office_proofing_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/proofing_locale_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_german_grammar_integration_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_proofing_context_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_proofing_correction_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+      "platform": "vm",
+      "gate": "native"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/configuration_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/unsupported_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/cursor_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/eml_bytes_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/mime_encodings_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/mime_limits_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/mime_parts_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/mime_review_regressions_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_mail_mime/test/portable_import_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart",
+      "platform": "node",
+      "gate": "node"
+    },
+    {
+      "path": "packages/quds_mail_core/test/cancellation_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_core/test/models_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_core/test/outbox_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_core/test/cancellation_test.dart",
+      "platform": "node",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_core/test/imap_sync_range_test.dart",
+      "platform": "node",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_core/test/models_test.dart",
+      "platform": "node",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_core/test/outbox_test.dart",
+      "platform": "node",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_core/test/sync_coordinator_test.dart",
+      "platform": "node",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/codec_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/imap_sync_range_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/platform_configuration_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/repository_test.dart",
+      "platform": "vm",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/browser_problem_test.dart",
+      "platform": "node",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/codec_test.dart",
+      "platform": "node",
+      "gate": "store"
+    },
+    {
+      "path": "packages/quds_mail_store/test/platform_configuration_test.dart",
+      "platform": "node",
+      "gate": "store"
+    }
+  ],
+  "duplicate_suite_platform_executions": [],
+  "failed": 0,
+  "skipped": 0,
+  "separate_python_controls": 90,
+  "python_groups": [
+    {
+      "name": "store-launcher-controls",
+      "passed_cases": 42,
+      "raw_log_sha256": "a8e694a32a79637ddab5b215d9f439ef2cff5effd849b84b4826bde025042152",
+      "raw_case_ids": [
+        "test_check_store.TestCommandBounds.test_process_timeout_preserves_output_and_reaps_launcher",
+        "test_check_store.TestCommandBounds.test_timeout_terminates_a_spawned_child_even_if_parent_exits",
+        "test_check_store.TestDirectLauncher.test_rejects_absent_sqlite_mapping_and_missing_or_relative_assets",
+        "test_check_store.TestDirectLauncher.test_rejects_ambiguous_or_nonlocal_test_package",
+        "test_check_store.TestDirectLauncher.test_rejects_package_local_native_mapping",
+        "test_check_store.TestDirectLauncher.test_resolves_local_entry_and_binds_native_mapping_and_asset",
+        "test_check_store.TestStoreEventAccounting.test_build_and_link_progress_can_share_a_line_with_an_event",
+        "test_check_store.TestStoreEventAccounting.test_duplicate_runner_start_is_rejected",
+        "test_check_store.TestStoreEventAccounting.test_duplicate_terminal_is_rejected",
+        "test_check_store.TestStoreEventAccounting.test_duplicate_test_completion_id_is_rejected",
+        "test_check_store.TestStoreEventAccounting.test_duplicate_test_start_id_is_rejected",
+        "test_check_store.TestStoreEventAccounting.test_error_event_prevents_acceptance_even_with_successful_case_results",
+        "test_check_store.TestStoreEventAccounting.test_failed_loader_prevents_qualification_without_inflating_case_counts",
+        "test_check_store.TestStoreEventAccounting.test_failure_terminal_is_rejected_even_if_cases_pass",
+        "test_check_store.TestStoreEventAccounting.test_hidden_and_loading_failures_cannot_hide_behind_terminal_success",
+        "test_check_store.TestStoreEventAccounting.test_hidden_and_loading_skips_prevent_qualification",
+        "test_check_store.TestStoreEventAccounting.test_hidden_non_loader_failure_also_prevents_qualification",
+        "test_check_store.TestStoreEventAccounting.test_incomplete_lifecycle_events_prevent_qualification",
+        "test_check_store.TestStoreEventAccounting.test_incomplete_loader_is_rejected",
+        "test_check_store.TestStoreEventAccounting.test_incomplete_visible_case_is_rejected",
+        "test_check_store.TestStoreEventAccounting.test_malformed_completion_result_is_rejected_without_raising",
+        "test_check_store.TestStoreEventAccounting.test_malformed_event_after_hook_progress_is_not_ignored",
+        "test_check_store.TestStoreEventAccounting.test_malformed_event_cannot_disappear_from_otherwise_passing_stream",
+        "test_check_store.TestStoreEventAccounting.test_missing_opening_brace_is_rejected_with_or_without_hook_progress",
+        "test_check_store.TestStoreEventAccounting.test_missing_runner_start_is_rejected",
+        "test_check_store.TestStoreEventAccounting.test_missing_terminal_is_rejected",
+        "test_check_store.TestStoreEventAccounting.test_no_substantive_cases_cannot_qualify",
+        "test_check_store.TestStoreEventAccounting.test_non_object_json_records_are_rejected",
+        "test_check_store.TestStoreEventAccounting.test_orphan_test_completion_is_rejected",
+        "test_check_store.TestStoreEventAccounting.test_skipped_case_is_counted_and_prevents_qualification",
+        "test_check_store.TestStoreEventAccounting.test_skipped_loader_prevents_qualification_without_inflating_case_counts",
+        "test_check_store.TestStoreEventAccounting.test_successful_hidden_and_loading_events_do_not_inflate_passes",
+        "test_check_store.TestStoreEventAccounting.test_test_events_after_terminal_are_rejected",
+        "test_check_store.TestStoreEventAccounting.test_truncated_event_is_rejected_even_when_terminal_success_is_present",
+        "test_check_store.TestStoreEventAccounting.test_unrecognized_prefix_cannot_hide_event_data",
+        "test_check_store.TestStoreEventAccounting.test_unstructured_output_after_terminal_prevents_qualification",
+        "test_check_store.TestStoreEventAccounting.test_valid_stream_tolerates_native_hook_progress_and_excludes_loader",
+        "test_check_store.TestStoreRunnerExitAccounting.test_exit_zero_cannot_override_invalid_events",
+        "test_check_store.TestStoreRunnerExitAccounting.test_new_native_mapping_invalidates_a_passing_direct_run",
+        "test_check_store.TestStoreRunnerExitAccounting.test_successful_events_and_exit_zero_allow_the_aggregate_gate",
+        "test_check_store.TestStoreRunnerExitAccounting.test_successful_events_cannot_override_nonzero_or_signal_exit",
+        "test_check_store.TestStoreRunnerExitAccounting.test_timeout_cannot_accept_even_a_complete_success_stream"
+      ],
+      "case_identities": [
+        "tools/mail/test_check_store.py::TestCommandBounds.test_process_timeout_preserves_output_and_reaps_launcher",
+        "tools/mail/test_check_store.py::TestCommandBounds.test_timeout_terminates_a_spawned_child_even_if_parent_exits",
+        "tools/mail/test_check_store.py::TestDirectLauncher.test_rejects_absent_sqlite_mapping_and_missing_or_relative_assets",
+        "tools/mail/test_check_store.py::TestDirectLauncher.test_rejects_ambiguous_or_nonlocal_test_package",
+        "tools/mail/test_check_store.py::TestDirectLauncher.test_rejects_package_local_native_mapping",
+        "tools/mail/test_check_store.py::TestDirectLauncher.test_resolves_local_entry_and_binds_native_mapping_and_asset",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_build_and_link_progress_can_share_a_line_with_an_event",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_duplicate_runner_start_is_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_duplicate_terminal_is_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_duplicate_test_completion_id_is_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_duplicate_test_start_id_is_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_error_event_prevents_acceptance_even_with_successful_case_results",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_failed_loader_prevents_qualification_without_inflating_case_counts",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_failure_terminal_is_rejected_even_if_cases_pass",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_hidden_and_loading_failures_cannot_hide_behind_terminal_success",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_hidden_and_loading_skips_prevent_qualification",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_hidden_non_loader_failure_also_prevents_qualification",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_incomplete_lifecycle_events_prevent_qualification",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_incomplete_loader_is_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_incomplete_visible_case_is_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_malformed_completion_result_is_rejected_without_raising",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_malformed_event_after_hook_progress_is_not_ignored",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_malformed_event_cannot_disappear_from_otherwise_passing_stream",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_missing_opening_brace_is_rejected_with_or_without_hook_progress",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_missing_runner_start_is_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_missing_terminal_is_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_no_substantive_cases_cannot_qualify",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_non_object_json_records_are_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_orphan_test_completion_is_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_skipped_case_is_counted_and_prevents_qualification",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_skipped_loader_prevents_qualification_without_inflating_case_counts",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_successful_hidden_and_loading_events_do_not_inflate_passes",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_test_events_after_terminal_are_rejected",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_truncated_event_is_rejected_even_when_terminal_success_is_present",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_unrecognized_prefix_cannot_hide_event_data",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_unstructured_output_after_terminal_prevents_qualification",
+        "tools/mail/test_check_store.py::TestStoreEventAccounting.test_valid_stream_tolerates_native_hook_progress_and_excludes_loader",
+        "tools/mail/test_check_store.py::TestStoreRunnerExitAccounting.test_exit_zero_cannot_override_invalid_events",
+        "tools/mail/test_check_store.py::TestStoreRunnerExitAccounting.test_new_native_mapping_invalidates_a_passing_direct_run",
+        "tools/mail/test_check_store.py::TestStoreRunnerExitAccounting.test_successful_events_and_exit_zero_allow_the_aggregate_gate",
+        "tools/mail/test_check_store.py::TestStoreRunnerExitAccounting.test_successful_events_cannot_override_nonzero_or_signal_exit",
+        "tools/mail/test_check_store.py::TestStoreRunnerExitAccounting.test_timeout_cannot_accept_even_a_complete_success_stream"
+      ],
+      "frozen_sources": [
+        "tools/mail/test_check_store.py"
+      ]
+    },
+    {
+      "name": "shared-runner-controls",
+      "passed_cases": 20,
+      "raw_log_sha256": "c7490d52975c91ad2b51416ebda8b6c6e7743a7520d3a7b0f1dbb362c73fc07b",
+      "raw_case_ids": [
+        "__main__.CommandTests.test_flutter_keeps_offline_dependency_resolution",
+        "__main__.CommandTests.test_node_is_requested_explicitly",
+        "__main__.CommandTests.test_unsupported_runners_and_platforms_are_rejected",
+        "__main__.CommandTests.test_vm_is_the_default",
+        "__main__.ReporterTests.test_build_hook_prefix_preserves_reporter_start",
+        "__main__.ReporterTests.test_count_only_completed_user_cases",
+        "__main__.ReporterTests.test_duplicate_completion_blocks_acceptance",
+        "__main__.ReporterTests.test_empty_or_unfinished_suites_block_acceptance",
+        "__main__.ReporterTests.test_invalid_case_flags_and_payloads_are_rejected",
+        "__main__.ReporterTests.test_malformed_and_truncated_events_never_disappear",
+        "__main__.ReporterTests.test_skips_and_error_events_block_acceptance",
+        "__main__.ReporterTests.test_start_and_terminal_order_is_required",
+        "__main__.RuntimeInputTests.test_absent_optional_maps_are_bound_and_nearer_maps_rejected",
+        "__main__.RuntimeInputTests.test_absolute_and_relative_encoded_file_uris_resolve",
+        "__main__.RuntimeInputTests.test_ambiguous_remote_or_unverified_roots_are_rejected",
+        "__main__.RuntimeInputTests.test_launcher_requires_retained_content_binding",
+        "__main__.RuntimeInputTests.test_node_and_native_assets_require_recorded_hashes",
+        "__main__.WhitespaceInputTests.test_changed_blob_path_duplicate_or_missing_reason_is_rejected",
+        "__main__.WhitespaceInputTests.test_exact_frozen_evidence_becomes_an_exact_path_exclusion",
+        "__main__.WhitespaceInputTests.test_product_paths_globs_and_traversal_cannot_be_excluded"
+      ],
+      "case_identities": [
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::CommandTests.test_flutter_keeps_offline_dependency_resolution",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::CommandTests.test_node_is_requested_explicitly",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::CommandTests.test_unsupported_runners_and_platforms_are_rejected",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::CommandTests.test_vm_is_the_default",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::ReporterTests.test_build_hook_prefix_preserves_reporter_start",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::ReporterTests.test_count_only_completed_user_cases",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::ReporterTests.test_duplicate_completion_blocks_acceptance",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::ReporterTests.test_empty_or_unfinished_suites_block_acceptance",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::ReporterTests.test_invalid_case_flags_and_payloads_are_rejected",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::ReporterTests.test_malformed_and_truncated_events_never_disappear",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::ReporterTests.test_skips_and_error_events_block_acceptance",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::ReporterTests.test_start_and_terminal_order_is_required",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::RuntimeInputTests.test_absent_optional_maps_are_bound_and_nearer_maps_rejected",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::RuntimeInputTests.test_absolute_and_relative_encoded_file_uris_resolve",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::RuntimeInputTests.test_ambiguous_remote_or_unverified_roots_are_rejected",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::RuntimeInputTests.test_launcher_requires_retained_content_binding",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::RuntimeInputTests.test_node_and_native_assets_require_recorded_hashes",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::WhitespaceInputTests.test_changed_blob_path_duplicate_or_missing_reason_is_rejected",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::WhitespaceInputTests.test_exact_frozen_evidence_becomes_an_exact_path_exclusion",
+        "docs/validation/document-review-notes-20261118/test_run_checks.py::WhitespaceInputTests.test_product_paths_globs_and_traversal_cannot_be_excluded"
+      ],
+      "frozen_sources": [
+        "docs/validation/document-review-notes-20261118/test_run_checks.py"
+      ],
+      "supplemental_case_identity_evidence": {
+        "receipt": "shared-runner-controls-verbose/receipt.json",
+        "receipt_sha256": "00a16dac3884f5f46d792b89fbe537cbc70a080ba9540faf291e02bade696640",
+        "original_compact_log_sha256": "5ac41b80404f9634a6da1d6b103faac48bb877a803d0adcbfef78dc27262d504",
+        "original_compact_run_status": "successful; retained unchanged",
+        "original_compact_run_added_to_total": 0,
+        "accepted_case_identity_source": "supplemental same-source verbose rerun",
+        "source_and_runtime_match_original_envelope": true
+      }
+    },
+    {
+      "name": "runtime-controls",
+      "passed_cases": 16,
+      "raw_log_sha256": "f117ea40f6266d4add822e5f4dbd8f2542612a2e97578e95c7bf617823c92d1c",
+      "raw_case_ids": [
+        "__main__.NativeSmokeEntrypointTests.test_entrypoint_uses_sqlite_member_and_preserves_other_inputs",
+        "__main__.NativeSmokeEntrypointTests.test_failed_probe_removes_only_its_temporary_directory",
+        "__main__.NativeSmokeEntrypointTests.test_missing_source_leaves_no_generated_probe",
+        "__main__.NativeSmokeEntrypointTests.test_wrong_sqlite_pin_refuses_to_stage",
+        "__main__.WorkspacePackageVerificationTests.test_duplicate_manifest_name_is_rejected",
+        "__main__.WorkspacePackageVerificationTests.test_duplicate_normalized_workspace_directory_is_rejected",
+        "__main__.WorkspacePackageVerificationTests.test_duplicate_resolved_name_is_rejected_even_with_exact_name_set",
+        "__main__.WorkspacePackageVerificationTests.test_locked_name_cannot_hide_a_workspace_name_collision",
+        "__main__.WorkspacePackageVerificationTests.test_malformed_resolved_entries_are_rejected",
+        "__main__.WorkspacePackageVerificationTests.test_matches_names_from_all_authoritative_inputs_without_mutating_them",
+        "__main__.WorkspacePackageVerificationTests.test_member_outside_repository_is_rejected_before_reading",
+        "__main__.WorkspacePackageVerificationTests.test_missing_locked_or_workspace_package_is_rejected",
+        "__main__.WorkspacePackageVerificationTests.test_missing_or_invalid_manifest_name_is_rejected",
+        "__main__.WorkspacePackageVerificationTests.test_new_workspace_member_needs_no_hardcoded_count_change",
+        "__main__.WorkspacePackageVerificationTests.test_same_count_substitution_does_not_pass",
+        "__main__.WorkspacePackageVerificationTests.test_unexpected_package_is_rejected"
+      ],
+      "case_identities": [
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::NativeSmokeEntrypointTests.test_entrypoint_uses_sqlite_member_and_preserves_other_inputs",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::NativeSmokeEntrypointTests.test_failed_probe_removes_only_its_temporary_directory",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::NativeSmokeEntrypointTests.test_missing_source_leaves_no_generated_probe",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::NativeSmokeEntrypointTests.test_wrong_sqlite_pin_refuses_to_stage",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_duplicate_manifest_name_is_rejected",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_duplicate_normalized_workspace_directory_is_rejected",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_duplicate_resolved_name_is_rejected_even_with_exact_name_set",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_locked_name_cannot_hide_a_workspace_name_collision",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_malformed_resolved_entries_are_rejected",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_matches_names_from_all_authoritative_inputs_without_mutating_them",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_member_outside_repository_is_rejected_before_reading",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_missing_locked_or_workspace_package_is_rejected",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_missing_or_invalid_manifest_name_is_rejected",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_new_workspace_member_needs_no_hardcoded_count_change",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_same_count_substitution_does_not_pass",
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py::WorkspacePackageVerificationTests.test_unexpected_package_is_rejected"
+      ],
+      "frozen_sources": [
+        "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py"
+      ],
+      "supplemental_case_identity_evidence": null
+    },
+    {
+      "name": "bundle-controls",
+      "passed_cases": 12,
+      "raw_log_sha256": "827e8491d4c59bee2808abbe1107dd21f7c1cd4b8f05e811e5c34cfd316918b3",
+      "raw_case_ids": [
+        "test_build_bundle.BundleTest.test_build_is_deterministic_and_does_not_publish",
+        "test_build_bundle.BundleTest.test_changed_file_readback_fails",
+        "test_build_bundle.BundleTest.test_changed_manifest_readback_fails",
+        "test_build_bundle.BundleTest.test_changed_source_or_licence_cannot_publish",
+        "test_build_bundle.BundleTest.test_publish_excludes_unrelated_files_and_includes_manifest",
+        "test_build_bundle_incoming.BundleBuilderTest.test_bad_dictionary_digest_stops_before_remote_mutation",
+        "test_build_bundle_incoming.BundleBuilderTest.test_bad_dictionary_size_stops_before_remote_mutation",
+        "test_build_bundle_incoming.BundleBuilderTest.test_bad_licence_stops_before_remote_mutation",
+        "test_build_bundle_incoming.BundleBuilderTest.test_content_readback_mismatch_is_rejected",
+        "test_build_bundle_incoming.BundleBuilderTest.test_local_build_does_not_publish",
+        "test_build_bundle_incoming.BundleBuilderTest.test_manifest_readback_mismatch_is_rejected",
+        "test_build_bundle_incoming.BundleBuilderTest.test_publish_excludes_unrelated_existing_output_files"
+      ],
+      "case_identities": [
+        "tools/proofing/ayaspell/test_build_bundle.py::BundleTest.test_build_is_deterministic_and_does_not_publish",
+        "tools/proofing/ayaspell/test_build_bundle.py::BundleTest.test_changed_file_readback_fails",
+        "tools/proofing/ayaspell/test_build_bundle.py::BundleTest.test_changed_manifest_readback_fails",
+        "tools/proofing/ayaspell/test_build_bundle.py::BundleTest.test_changed_source_or_licence_cannot_publish",
+        "tools/proofing/ayaspell/test_build_bundle.py::BundleTest.test_publish_excludes_unrelated_files_and_includes_manifest",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py::BundleBuilderTest.test_bad_dictionary_digest_stops_before_remote_mutation",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py::BundleBuilderTest.test_bad_dictionary_size_stops_before_remote_mutation",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py::BundleBuilderTest.test_bad_licence_stops_before_remote_mutation",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py::BundleBuilderTest.test_content_readback_mismatch_is_rejected",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py::BundleBuilderTest.test_local_build_does_not_publish",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py::BundleBuilderTest.test_manifest_readback_mismatch_is_rejected",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py::BundleBuilderTest.test_publish_excludes_unrelated_existing_output_files"
+      ],
+      "frozen_sources": [
+        "tools/proofing/ayaspell/test_build_bundle.py",
+        "tools/proofing/ayaspell/test_build_bundle_incoming.py"
+      ],
+      "supplemental_case_identity_evidence": null
+    }
+  ],
+  "runtime_receipt_sha256": "94b3e458524c84d6f4f9bbdbec107a9d55ba3e6e38f54b76529d6c11aacd229f",
+  "native_source_inputs_reverified": 5049,
+  "node_source_inputs_reverified": 5049,
+  "native_runtime_inputs_reverified": 11166,
+  "node_runtime_inputs_reverified": 11164,
+  "outer_source_inputs_reverified": 5051,
+  "outer_runtime_inputs_reverified": 11157,
+  "store_source_inputs_reverified": 55,
+  "store_launcher_inputs_reverified": 7,
+  "historical_application_cases_added": 0,
+  "development_application_cases_added": 0,
+  "intermediate_237_application_cases_added": 0,
+  "intermediate_90_python_controls_added": 0,
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "issues": [],
+  "passed": true
+}

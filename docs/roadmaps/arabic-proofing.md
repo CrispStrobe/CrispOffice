@@ -1,9 +1,11 @@
 # Arabic proofing roadmap
 
-Accepted: 19 November 2026. Scope: Arabic spelling first, then grammar rules,
-then optional model-backed analysis. Built-in Arabic writing rules now run for
-Arabic-script Arabic paragraphs. Downloadable dictionary integration and
-model-backed analysis remain planned; no Arabic resource is downloaded by default.
+Accepted: 19 November 2026. Scope: Arabic spelling, independently authored
+writing rules, then optional model-backed analysis. The initial writing rules
+are registered for Arabic-language text. The optional Hunspell adapter,
+Studio registration and explicit dictionary download/setup workflow are
+implemented. Platform packaging and qualification boundaries are recorded
+below. No Arabic resource is downloaded by default.
 
 ## Constraints
 
@@ -47,8 +49,8 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to
    Hugging Face. Publishing includes only the manifest-listed files and
    `manifest.json`; unrelated files in a reused output directory are excluded.
-   The Hunspell adapter package is implemented (step 2); host registration and
-   the in-app Arabic download workflow remain open.
+   The Hunspell adapter package and Studio dictionary workflow are implemented
+   (step 2); packaging and installed-platform acceptance remain target-specific.
    The upstream GitHub copy (`linuxscout/ayaspell`
    `36a90abb`) is not used: its `.dic` contains file-concatenation separators
    and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as
@@ -71,7 +73,7 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    file hashed in `licenses/manifest.json`, exact sources shipped as
    `licenses/hunspell-1.7.2-library-sources.tar.gz`); native isolate transport
    and bundled WebAssembly worker; pinned installer with atomic publish and
-   removal. Evidence: identical flagged multiset to the Hunspell CLI on UD
+   removal. Incoming implementation evidence reports an identical flagged multiset to the Hunspell CLI on UD
    Arabic-PUD (795 of 15,676 words) for both native and Wasm; 18 Dart tests
    with the real library and dictionary; iOS/Android arm64 compile and link.
    **Host wiring (19 November 2026, branch `feat/arabic-host-wiring-20261119`):**
@@ -111,44 +113,49 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
      `flutter build apk --release --target-platform android-arm64` packages it
      as `lib/arm64-v8a/libquds_proofing_hunspell.so` (1.6 MB, stripped) in a
      69.8 MB release APK. Not yet run on a device.
-   - Open: Linux/Windows builds, iOS packaging (the example has no iOS
+   - Open: installed Linux/Windows application builds, iOS packaging (the example has no iOS
      runner), running on real devices, persisting the web download across
      sessions, signing with a release identity.
-3. **Arabic grammar rules (first set implemented, 19 November 2026).**
+3. **Arabic writing rules (first set implemented, 19 November 2026).**
    `ArabicWritingRulesProvider` (`arabic-writing`) in `quds_office_engine`
    is independently authored, MIT-licensed and part of the app. It was
    written from general MSA orthography without reading any LanguageTool or
    Fareh rule content. It is active only for Arabic-script Arabic paragraphs
    (`ar`, `ar-SA`, `ar-Arab-…`) and is registered in the default Word
    proofing service and the Studio example. Eleven rule ids:
-   - spelling: hamzat al-qat' on 36 listed words, with several suggestions
+   - spelling: hamzat al-qat' on a closed list, with several suggestions
      where the form depends on syntax (`ان` → `أن`/`إن`);
-   - spelling: ta marbuta, only for definite forms of 43 listed stems (after
+   - spelling: ta marbuta, only for definite forms of 44 listed stems (after
      the article a final ه cannot be the possessive pronoun);
    - spelling: alif maqsura on 6 listed words;
    - spelling: detached conjunction waw (`و هو` → `وهو`);
    - style: final ya written as ى (`فى` → `في`), a regional convention;
-   - style: Latin `, ; ?` after Arabic script, a space before or a missing
-     space after `، ؛ ؟`;
+   - style: Latin `, ; ?` after Arabic script, a space before `، ؛ ؟`, or a
+     missing space after `، ؛`;
    - style: tatweel;
    - style: immediate repetition of 26 closed-class words;
    - style: numbers that mix Western and Arabic-Indic digits.
 
-   Matching ignores harakat and tatweel while preserving combining maddah and
-   hamza (U+0653–U+0655) as spelling content. Correct decomposed spellings are
-   left unchanged. Suggestions keep the writer's harakat. Findings use original
-   UTF-16 offsets, and links, email and code
-   spans are excluded. Ambiguous words are left out on purpose: `علي` (the
-   name Ali), `فان` ("perishing"), indefinite `مدرسه` ("his teacher").
+   Matching ignores harakat and tatweel while preserving combining hamza
+   and maddah. Suggestions keep the writer's harakat. Whole-word matching
+   respects mixed-script letters, digits, connector punctuation and joiners.
+   Findings use original UTF-16 offsets, and links, email and code spans are
+   excluded. Ambiguous words are left out on purpose: `علي` (the name Ali),
+   `فان` ("perishing"), `لان` ("became soft"), indefinite `مدرسه`
+   ("his teacher"). Suggestions are advisory; broader linguistic acceptance
+   remains separate work. These rules need no dictionary download or model.
 
-   Tests:
-   - 73 engine tests: 39 positive cases covering every rule, 23 zero-finding
-     controls (hamzat al-wasl words, names, emphatic repetition, consistent
-     digits, Latin text, protected spans), plus ambiguity, offset, ignore,
-     language and dispose checks, three decomposed hamza/maddah controls and a
-     correction-offset regression that preserves those spellings;
+   Test coverage includes:
+   - engine cases covering every rule and zero-finding controls (hamzat al-wasl
+     words, names, emphatic repetition, consistent digits, Latin text and
+     protected spans), plus ambiguity, offset, ignore, language and dispose
+     checks; three decomposed hamza/maddah controls and a correction-offset
+     regression preserve those spellings exactly;
    - 2 editor integration tests: default session on an `ar-SA` run with an
      applied suggestion, and silence on German text.
+
+   The subsequent Office sync adds controls for decomposed spelling, mixed
+   scripts, numeric and identifier boundaries, and the valid verb `لان`.
 
    **Complex-script language (closed 19 November 2026):** Word stores the
    language of right-to-left text in `w:lang/@w:bidi`. Runs marked
@@ -156,10 +163,13 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    or the document default's complex-script language
    (`wordRunProofingLanguage`), so Arabic in Word documents with
    `w:val="en-US" w:bidi="ar-SA"` reaches the Arabic providers; Latin runs
-   keep `w:val`. Both attributes stay read-only for routing and round-trip
-   unchanged (tested). Setting a language from the selection still writes
-   `w:val` only; for an Arabic run the complex-script language keeps
-   precedence.
+   keep `w:val`. Digits, punctuation and combining marks alone do not select
+   the complex-script language. Unmodified attributes round-trip unchanged.
+   Setting the selection language updates both `w:val` and `w:bidi`, so the
+   choice also takes effect for Arabic/RTL runs; resetting to inherit clears
+   those two direct overrides while retaining East Asian language and other
+   native formatting. Document defaults remain live, and a changed default
+   invalidates an already captured selection target.
 
    Interpreting LanguageTool's Arabic rules is assessed
    [below](#languagetool-arabic-assessment-v68).
@@ -229,11 +239,18 @@ model-backed analysis remain planned; no Arabic resource is downloaded by defaul
    Tests: 195 new engine tests (81 positive cases, 68 default and 16 opt-in
    zero-finding controls, 21 "off by default" checks, plus RTL offset tests
    with an emoji and harakat, a phrase found on the harakat-free text, an
-   Arabic-Indic date, protected spans, ignore and opt-in filtering). The 69
-   step-3 tests are unchanged; the engine proofing suite passes 1,384 tests
-   (1,189 before) and the two editor integration tests pass.
+   Arabic-Indic date, protected spans, ignore and opt-in filtering). The incoming
+   T1 checkpoint reported 1,384 engine proofing tests
+   (1,189 before) and two editor integration tests passing. These are historical
+   incoming results, separate from this reconciliation. The merged step-3
+   file retains all 82 tests from both continuations; the final source-bound
+   gate reports their acceptance together with the extension.
 
-   **False-positive check on UD Arabic-PUD** (r2.14 test, 1,000 `# text =`
+   This reconciliation adds 11 controls for phrase/date checks inside mixed-script
+   identifiers and for combining hamza at phrase-token boundaries. The extension
+   file now contains 206 cases; all 195 incoming T1 cases remain.
+
+   **Incoming T1 false-positive check on UD Arabic-PUD** (r2.14 test, 1,000 `# text =`
    news sentences, CC BY-SA, evaluation only, not committed), every rule
    enabled:
    - **default-on extension: 1 finding in total** —

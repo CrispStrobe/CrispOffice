@@ -1,0 +1,95 @@
+{
+  "frozen_source": "e41679f85c511bc8cf42447d3d1af0931884dee2",
+  "frozen_tree": "9cdc66213dc329265057a8511357ce53f4583604",
+  "scope": "Final read-only historical continuity, saved-reference ancestry and explicit known-head addendum audit. Fresh qualification audit outputs and pre-freeze preview files are deliberately excluded.",
+  "saved_input_copies": [
+    {
+      "original": "socket_fork_refs.txt",
+      "copy": "arabic_saved_fork_refs.txt",
+      "identical": true
+    },
+    {
+      "original": "socket_upstream_refs.txt",
+      "copy": "arabic_saved_upstream_refs.txt",
+      "identical": true
+    },
+    {
+      "original": "socket_capture_provenance.json",
+      "copy": "arabic_saved_capture_provenance.json",
+      "identical": true
+    },
+    {
+      "original": "audit_capture_ancestry.py",
+      "copy": "arabic_saved_ref_ancestry_audit.py",
+      "identical": true
+    }
+  ],
+  "files": [
+    {
+      "path": "arabic_historical_continuity_audit.py",
+      "bytes": 16023,
+      "sha256": "71f7d41561d40fd96170bef97ad373808532bb6e1659cc8f9e8247d5ab2c7995"
+    },
+    {
+      "path": "arabic_historical_continuity.json",
+      "bytes": 157269,
+      "sha256": "ef8e96f2eaa296c0be234f91c9da39c763526f495ce31a40874b821dbbf885ed"
+    },
+    {
+      "path": "arabic_historical_continuity.log",
+      "bytes": 15031,
+      "sha256": "1f42a289ada555a021d2530a3904ecc9b0a509796256ae2b982d4266aafe2c09"
+    },
+    {
+      "path": "arabic_saved_ref_ancestry_audit.py",
+      "bytes": 10055,
+      "sha256": "4b7566a4fe6182dea7544bea442449c32e1eb169b1b4aed4b0c8d874363a79ab"
+    },
+    {
+      "path": "arabic_ancestry_review.json",
+      "bytes": 173685,
+      "sha256": "d4bbc4577cf5423df38b99cbad5cbd00f6d54884900871f051efa40075cfa58c"
+    },
+    {
+      "path": "arabic_known_heads_audit.py",
+      "bytes": 2914,
+      "sha256": "f4326a2463d707be61f75f226c280b18d0906be8293cd7aa7b2bec0dd78d4229"
+    },
+    {
+      "path": "arabic_known_heads_review.json",
+      "bytes": 2509,
+      "sha256": "27fae1e44196b1fc75e3acf443852cf23dc83bdb62be255fcea9bee19b88d36c"
+    },
+    {
+      "path": "arabic_prior_phase_preservation.json",
+      "bytes": 1723,
+      "sha256": "31ca25c5d99e9d8aa642fa1b7eb2115d8e5a0b3508ae066f1ae0ee9e72d0d8c3"
+    },
+    {
+      "path": "arabic_final_historical_scope.md",
+      "bytes": 4363,
+      "sha256": "230a894322ba9e240eb95f039db0150a39cf3658430142376792d209045a3f47"
+    },
+    {
+      "path": "arabic_saved_fork_refs.txt",
+      "bytes": 28403,
+      "sha256": "4333ba447043356a3851541f606d96dfa7ace0fb5a3d4dfc514ac167c1c93c0a"
+    },
+    {
+      "path": "arabic_saved_upstream_refs.txt",
+      "bytes": 304,
+      "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6"
+    },
+    {
+      "path": "arabic_saved_capture_provenance.json",
+      "bytes": 98391,
+      "sha256": "f8517ffb929ca3acd262260335ab577185ee3424e9c2611fccc2809b94b0bde4"
+    }
+  ],
+  "replay_commands": [
+    "python arabic_historical_continuity_audit.py --repo \"$QUDS_REPO\" --head e41679f85c511bc8cf42447d3d1af0931884dee2 --output historical-replay.json",
+    "python arabic_saved_ref_ancestry_audit.py --repo \"$QUDS_REPO\" --head e41679f85c511bc8cf42447d3d1af0931884dee2 --refs arabic_saved_fork_refs.txt --upstream-refs arabic_saved_upstream_refs.txt --output ancestry-replay.json",
+    "python arabic_known_heads_audit.py --repo \"$QUDS_REPO\" --head e41679f85c511bc8cf42447d3d1af0931884dee2 --output known-heads-replay.json"
+  ],
+  "replay_note": "Run from a directory containing the listed scripts/capture copies; set QUDS_REPO to a local repository containing the immutable objects. Replay emits fresh timestamps and does not query remotes. Ancestry provenance and prior-phase preservation are separately archived records."
+}

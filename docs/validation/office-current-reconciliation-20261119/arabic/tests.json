@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "test_methods": 5,
+  "passed_methods": 5,
+  "passed_subtests": 3,
+  "failure_count": 0,
+  "error_count": 0,
+  "skipped_count": 0,
+  "events": [
+    {
+      "kind": "subtest",
+      "id": "test_build_bundle.BundleBuilderTest.test_bad_source_or_licence_stops_before_remote_mutation (name='ar.aff', mode='length')",
+      "passed": true
+    },
+    {
+      "kind": "subtest",
+      "id": "test_build_bundle.BundleBuilderTest.test_bad_source_or_licence_stops_before_remote_mutation (name='ar.dic', mode='hash')",
+      "passed": true
+    },
+    {
+      "kind": "subtest",
+      "id": "test_build_bundle.BundleBuilderTest.test_bad_source_or_licence_stops_before_remote_mutation (name='MPL-1.1.txt', mode='hash')",
+      "passed": true
+    },
+    {
+      "kind": "method",
+      "id": "test_build_bundle.BundleBuilderTest.test_bad_source_or_licence_stops_before_remote_mutation",
+      "passed": true
+    },
+    {
+      "kind": "method",
+      "id": "test_build_bundle.BundleBuilderTest.test_content_readback_mismatch_is_rejected",
+      "passed": true
+    },
+    {
+      "kind": "method",
+      "id": "test_build_bundle.BundleBuilderTest.test_local_build_is_deterministic_without_publication",
+      "passed": true
+    },
+    {
+      "kind": "method",
+      "id": "test_build_bundle.BundleBuilderTest.test_manifest_readback_mismatch_is_rejected",
+      "passed": true
+    },
+    {
+      "kind": "method",
+      "id": "test_build_bundle.BundleBuilderTest.test_publish_excludes_unrelated_existing_output_files",
+      "passed": true
+    }
+  ],
+  "real_hugging_face_publication": false,
+  "source": {
+    "build_bundle.py": {
+      "bytes": 6840,
+      "sha256": "d34d326ff41709fd740f2324487487aaca2c6056381de0fb26c4b973bec12ec0"
+    },
+    "test_build_bundle.py": {
+      "bytes": 7934,
+      "sha256": "ace3e8d193360145c873291863be876533e4ea8ff2c9ad7fc63c44ce1e5646ef"
+    }
+  },
+  "log_sha256": "5d1b9886004f6dd8ea61c770aa3983d6e8d53d7079d8ee4cbb0b0f423b5a39d2"
+}

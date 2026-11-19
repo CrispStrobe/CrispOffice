@@ -169,6 +169,18 @@ void main() {
     'الحياة جميلة والصلاة عماد الدين.',
     'الله أكبر.',
     'التوجيه والتنبيه مهمان.',
+    // Combining hamza is part of the spelling, not an optional vowel mark.
+    'ذهب ا\u0655لى البيت.',
+    'ا\u0654نا في البيت.',
+    // Arabic substrings in mixed-script identifiers are not prose words.
+    'المعرف xالى واسم الىbar.',
+    'المعرف 123الى وآخر الى123.',
+    'القيمة _الى أو الى_.',
+    'القيمة x\u200Dالى.',
+    'fooو هو',
+    'و المدرسهX',
+    // لان is also the valid verb "became soft", not necessarily لأن.
+    'لان الحديد بالحرارة.',
   ];
   for (final String text in controls) {
     test('control has no finding: $text', () async {
@@ -274,6 +286,50 @@ void main() {
       for (final (_, String rule, _, _) in positives) rule,
     };
     expect(seen, ArabicWritingRulesProvider.ruleIds);
+  });
+
+  // These marks form letters; erasing them can invent a missing-hamza error
+  // and then preserve the original mark alongside a second, precomposed hamza.
+  for (final (String mark, String text) in <(String, String)>[
+    ('U+0653 madda', 'ا\u0653نا'),
+    ('U+0654 hamza above', 'ا\u0654ن'),
+    ('U+0655 hamza below', 'ا\u0655لى'),
+  ]) {
+    test('lexical matching preserves $mark', () async {
+      final List<OfficeProofingFinding> findings = await check(text);
+      expect(
+        findings.map((f) => '${f.ruleId}:${f.replacements}').toList(),
+        isEmpty,
+      );
+    });
+  }
+
+  test(
+    'decomposed letters preserve adjacent correction UTF-16 offsets',
+    () async {
+      const String text = '😀 ا\u0655لى، الَى';
+      final List<OfficeProofingFinding> findings = await check(
+        text,
+        startOffset: 100,
+      );
+      expect(findings, hasLength(1));
+      final OfficeProofingFinding finding = findings.single;
+      expect(finding.ruleId, 'ar.hamza.initial');
+      expect(finding.originalText, 'الَى');
+      expect(finding.start, 100 + text.indexOf('الَى'));
+      expect(finding.end, 100 + text.length);
+      expect(finding.replacements, <String>['إلَى']);
+    },
+  );
+
+  test('semantic combining marks still allow punctuation checks', () async {
+    final List<OfficeProofingFinding> findings = await check(
+      'جاء النبا\u0654?',
+    );
+    expect(findings, hasLength(1));
+    expect(findings.single.ruleId, 'ar.punctuation.arabic-mark');
+    expect(findings.single.originalText, '?');
+    expect(findings.single.replacements, <String>['؟']);
   });
 
   test('disposed provider is unavailable', () async {

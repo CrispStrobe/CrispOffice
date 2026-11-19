@@ -9,11 +9,14 @@ published unmodified.
 
     python3 tools/proofing/ayaspell/build_bundle.py --output /tmp/ayaspell-ar
     HF_TOKEN=... python3 tools/proofing/ayaspell/build_bundle.py \\
-        --output /tmp/ayaspell-ar --publish cstr/ayaspell-ar-hunspell
+        --output /tmp/ayaspell-ar-publish --publish cstr/ayaspell-ar-hunspell
 
-The bundle is intended for an optional in-app download once the Arabic
-adapter is implemented; it is not part of the application binary
-(docs/roadmaps/arabic-proofing.md).
+Existing output directories are supported. Publication includes only the
+verified bundle filenames and generated manifest; unrelated files stay local.
+
+The optional Hunspell adapter and Studio dictionary download workflow are
+implemented. Dictionary data is not part of the application binary and nothing
+is downloaded by default (docs/roadmaps/arabic-proofing.md).
 """
 from __future__ import annotations
 
@@ -83,15 +86,18 @@ are unmodified; their source form is this repository.
 ## Use
 
 Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office
-plans to offer this bundle as an optional download; the Arabic adapter and
-in-app download are not implemented yet. The bundle is not part of the
-application. `manifest.json` lists the SHA-256 of each bundled content file.
+provides an optional dictionary download workflow in Studio. Compatible native
+or web engine assets must be packaged with each host target. Nothing is
+downloaded by default.
+The dictionary is not bundled into the application. `manifest.json` lists the
+SHA-256 of each bundled content file.
 """
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True,
+                        help="Output directory; verified bundle files are replaced, unrelated files are retained")
     parser.add_argument("--publish", metavar="REPO_ID", help="Hugging Face model repo to upload to (needs HF_TOKEN)")
     args = parser.parse_args()
     out = args.output

@@ -72,7 +72,9 @@ void wordAuthoredArabicTests() {
   test('Word complex-script language (w:bidi) routes Arabic runs', () async {
     final document = _wordAuthoredArabic();
     expect(document.complexScriptLanguage, 'ar-SA');
-    final runs = document.paragraphs.single.inlines.whereType<WmlRun>().toList();
+    final runs = document.paragraphs.single.inlines
+        .whereType<WmlRun>()
+        .toList();
     expect(runs.first.properties.complexScript, isTrue);
     expect(
       runs

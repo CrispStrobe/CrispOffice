@@ -10562,28 +10562,42 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       final changes = pending == 1
           ? _t('1 change', '1 Änderung', 'تغيير واحد')
           : _t('$pending changes', '$pending Änderungen', '$pending تغييرات');
+      final compact = MediaQuery.sizeOf(context).width < 820;
       Widget action(
         IconData icon,
         String label,
-        Tooltip? tooltip,
+        String tooltip,
         VoidCallback? onTap,
       ) {
-        final button = TextButton.icon(
-          onPressed: onTap,
-          icon: Icon(icon, size: 14, color: Colors.white),
-          label: Text(
-            label,
-            style: const TextStyle(color: Colors.white, fontSize: 10),
-          ),
-          style: TextButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 0),
-            minimumSize: const Size(0, 24),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
-        );
-        return tooltip == null
-            ? button
-            : Tooltip(message: tooltip.message, child: button);
+        final button = compact
+            ? IconButton(
+                onPressed: onTap,
+                tooltip: tooltip,
+                visualDensity: VisualDensity.compact,
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints.tightFor(
+                  width: 24,
+                  height: 24,
+                ),
+                icon: Icon(icon, size: 14, color: Colors.white),
+              )
+            : TextButton.icon(
+                onPressed: onTap,
+                icon: Icon(icon, size: 14, color: Colors.white),
+                label: Text(
+                  label,
+                  style: const TextStyle(color: Colors.white, fontSize: 10),
+                ),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 0,
+                  ),
+                  minimumSize: const Size(0, 24),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+              );
+        return compact ? button : Tooltip(message: tooltip, child: button);
       }
 
       return Row(
@@ -10594,31 +10608,27 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                 ? Icons.check_circle_outline
                 : Icons.spellcheck,
             issues,
-            Tooltip(message: summary.statusMessage),
+            summary.statusMessage,
             _word.openReviewPane,
           ),
           if (language.isNotEmpty)
             action(
               Icons.language,
               language,
-              Tooltip(
-                message: _t(
-                  'Language and checking',
-                  'Sprache und Prüfung',
-                  'اللغة والتدقيق',
-                ),
+              _t(
+                'Language and checking',
+                'Sprache und Prüfung',
+                'اللغة والتدقيق',
               ),
               _word.showTextProofingOptions,
             ),
           action(
             Icons.track_changes,
             changes,
-            Tooltip(
-              message: _t(
-                'Review tracked changes',
-                'Nachverfolgte Änderungen prüfen',
-                'مراجعة التغييرات المتعقبة',
-              ),
+            _t(
+              'Review tracked changes',
+              'Nachverfolgte Änderungen prüfen',
+              'مراجعة التغييرات المتعقبة',
             ),
             () => _word.openReviewPane(tab: WordReviewPaneTab.changes),
           ),

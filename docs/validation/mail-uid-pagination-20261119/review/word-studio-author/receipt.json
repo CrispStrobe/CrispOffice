@@ -1,0 +1,222 @@
+{
+  "kind": "Focused author checks; separate from final combined qualification",
+  "local_checkpoints": [
+    "9b123dde85dd5679aa4ab11d44a77a76dbf43042",
+    "d420c1474d859e51abf22ebf88c55f9d255633b1",
+    "f308fa13501182613a3786ece0bdfabb5982b6a0"
+  ],
+  "consolidated_source": "21d979590ea902ad0593c38c816808cbb7134f6b",
+  "final_reviewed_paths": {
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": "b528679c5ddca0705a288ac3e3e022353bbf4b23abb20f0bad69a7f49faf9da6",
+    "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart": "fe86df43f6840e95003de56b1336e201f44a7e5ff47cfbb8ae832260b117f9dc",
+    "packages/quds_office_editor/example/test/studio_comment_review_test.dart": "e862d3dfc2cc5b53029718e2746aa9fad48f3fb367bccb6badd1157a7fb73a85",
+    "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart": "a16c1d95398778d296da0d0ea00ac751b2ee6fadbc52bcec7f6e9a8ac5506be4",
+    "packages/quds_office_editor/example/test/studio_review_pane_test.dart": "94dfa2b82f8177cd81d22a3fd83246a3fe7d703b6738a11df64be457682247cd",
+    "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart": "0d7aacb898cc813dd1d6ea61d81ae1f0cfc726593e5a2b94211b6a6ee14de0c3",
+    "packages/quds_office_editor/example/test/studio_shots_test.dart": "66d182f653e18b540d9655f5592b5f84e9108b1352fcc58f6e404fc835d7b617",
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": "3983306478aeef33bb8a99f022e86edb9a4cce050deb449af2d8fc99548f0cca",
+    "packages/quds_office_editor/example/test/widget_test.dart": "9ccdbeda9fe8eef265eafdcfc6a8fe84cda3c236d6e19e901ded852ee39924e7",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "e2cbe6411ea7b3c06480f9eace9af8ccbf2896d8f569b9d5d6394283fb63ddca",
+    "packages/quds_office_editor/test/word_text_proofing_controls_test.dart": "75192a259587a6304fad4540a70bab5b3cbb8defef66df45e84bde18720622c8",
+    "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart": "a3a5727dd3db23baf186c4d83963982d47261532eb5512eb2539774ab00d10a0",
+    "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart": "2b43064fa36abfbf7a32ef737fcdc6f99b821d36eeafb1b3f59c2d69146ecb43",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "8a4046231f9ae23167936d2c375a7bac1b3f1e00dec8e42afd031c2c62ff909d",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": "e2f4698b0e837ce455c3935d10be87a6a02276278efad9bf1bc01760ef634f7b",
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "fc6be4341183f9e7a9d27708f293ba4ab7f67d330aff25863fbbafe7408c0db8",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": "f51f466e6247aeb184a65e75642a1ee87a25ebd012ac325f408ab904c9636b70",
+    "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart": "26c078780cc05e565e13728857dedce774a4863e02893b0de524da2cb0300863"
+  },
+  "all18_final_paths_equal_consolidated_source": true,
+  "runs": {
+    "engine-vm": {
+      "exit_code": 0,
+      "scope": "Initial9b123dde; engine language20 plus preexisting inheritance13; source-before.json",
+      "named_executions": 33,
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0,
+      "terminal_done": {
+        "success": true,
+        "type": "done",
+        "time": 7273
+      },
+      "jsonl_sha256": "3de887ad9106f476ae54bd9600932e5ceaa8688b9ee1cbb5ffd417f731cf8d07",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "editor": {
+      "exit_code": 0,
+      "scope": "Initial9b123dde; editor selection controls plus Word-authored Arabic routing; source-before.json",
+      "named_executions": 37,
+      "passed": 37,
+      "failed": 0,
+      "skipped": 0,
+      "terminal_done": {
+        "success": true,
+        "type": "done",
+        "time": 22843
+      },
+      "jsonl_sha256": "e15c417038c3c92309f36a4ed888ac07c4bdee3a54178f4eaac657ab30557ab4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "engine-node": {
+      "exit_code": 0,
+      "scope": "Initial9b123dde portable language20; source-before.json",
+      "named_executions": 20,
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "terminal_done": {
+        "success": true,
+        "type": "done",
+        "time": 14004
+      },
+      "jsonl_sha256": "f908b8387fd63634e83d50da5fc28f23b4b74cd39f95fe0d36968c70ab5d1e80",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "studio": {
+      "exit_code": 1,
+      "scope": "Initial9b123dde; eight Studio suites. New hidden-comments default exposed stale test setup.",
+      "named_executions": 91,
+      "passed": 31,
+      "failed": 60,
+      "skipped": 0,
+      "terminal_done": {
+        "success": false,
+        "type": "done",
+        "time": 168264
+      },
+      "jsonl_sha256": "b04ab38aefa7a295a7e09fd4592a6613235ac5d3a1fc7d6daeee09a4e0202160",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "studio-comments": {
+      "exit_code": 1,
+      "scope": "Offscreen-pane helper attempt; comment-source-before.json. Lazy ribbon finder was unavailable.",
+      "named_executions": 62,
+      "passed": 0,
+      "failed": 62,
+      "skipped": 0,
+      "terminal_done": {
+        "success": false,
+        "type": "done",
+        "time": 82770
+      },
+      "jsonl_sha256": "a36c206297e15c452d1205f371fce92aab98d47dc06bacb9562f7501c6107efb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "comment-helper-probe": {
+      "exit_code": 0,
+      "scope": "One draft case with Settings helper before default proofing was disabled.",
+      "named_executions": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "terminal_done": {
+        "success": true,
+        "type": "done",
+        "time": 12219
+      },
+      "jsonl_sha256": "fc3c4897d37e9b2c5b85b63dd775957c123e80f814c66b3007aad88eb3396bea",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "marker-red": {
+      "exit_code": 1,
+      "scope": "New eight marker regressions against pre-fix9b cascade; two expected failures, six controls pass; marker-red-source.json.",
+      "named_executions": 8,
+      "passed": 6,
+      "failed": 2,
+      "skipped": 0,
+      "terminal_done": {
+        "success": false,
+        "type": "done",
+        "time": 2282
+      },
+      "jsonl_sha256": "8ba95c6747ad1e450e0f38f7a565c0ae5f9c777db42450dfec79deb02a8d7443",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "engine-final-vm": {
+      "exit_code": 0,
+      "scope": "Finald420c147 cascade/source;28 new routing/cascade plus13 existing inheritance cases; followup-source-before.json engine paths.",
+      "named_executions": 41,
+      "passed": 41,
+      "failed": 0,
+      "skipped": 0,
+      "terminal_done": {
+        "success": true,
+        "type": "done",
+        "time": 4666
+      },
+      "jsonl_sha256": "dece0b8ed0ed8e024802a85e6f7359fd89bbb404fb5ac76cd3dc741e218f260f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "studio-comments-final": {
+      "exit_code": 130,
+      "scope": "Interrupted Settings-helper attempt after pending default-provider timers were identified; not accepted. No terminal success record.",
+      "named_executions": 43,
+      "passed": 3,
+      "failed": 40,
+      "skipped": 0,
+      "terminal_done": null,
+      "jsonl_sha256": "ae3126c68e7aaf934f2d68d21552fdcda6cb14c7a2ef26d6763555336d987dae",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "comment-helper-final-probe": {
+      "exit_code": 0,
+      "scope": "Final Settings helper disables live proofing before animations; timer-regression case passes.",
+      "named_executions": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "terminal_done": {
+        "success": true,
+        "type": "done",
+        "time": 9466
+      },
+      "jsonl_sha256": "67159d81f8e5da6c0fa1861eb93d17c1583a98b5531a44a87ffd7b82903f86f1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "studio-comments-qualified-author": {
+      "exit_code": 0,
+      "scope": "Finalf308fa13 helper/source; all three62-case comment suites. comment-final-source-before.json.",
+      "named_executions": 62,
+      "passed": 62,
+      "failed": 0,
+      "skipped": 0,
+      "terminal_done": {
+        "success": true,
+        "type": "done",
+        "time": 104243
+      },
+      "jsonl_sha256": "c5c91911bce7dfa0cf2935134ff11e2bc5144381b7ed9847abaa7b2b54bdc947",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "engine-final-node": {
+      "exit_code": 0,
+      "scope": "Finald420c147 portable28-case routing/cascade suite.",
+      "named_executions": 28,
+      "passed": 28,
+      "failed": 0,
+      "skipped": 0,
+      "terminal_done": {
+        "success": true,
+        "type": "done",
+        "time": 15651
+      },
+      "jsonl_sha256": "449077fe11b39fb402055ccfcbf9c55aa679a9765c9a48f1c56e8b86f768c8ad",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "snapshot_integrity": "All reconstructed helper snapshots matched the SHA-256 manifests captured before their runs; original and final snapshots match immutable local commits. They are retained under snapshots/.",
+  "reasoning": [
+    "The language detector uses Unicode Letter category intersected with Arabic/Hebrew scripts, excluding numeric/punctuation/mark-only controls while retaining supplementary letters.",
+    "Selection language owns both w:val and w:bidi; reset clears both selected overrides through an optional engine flag preserving the preexisting Latin-only API default. East Asian and unrelated XML are preserved.",
+    "Document complex-script defaults stay live and are bound by selection snapshots. Explicit default-on rtl/cs now overrides inherited off values; eight marker cases establish red/green plus round-trip behavior.",
+    "Studio tests explicitly use English defaults and enable comments through Settings. Live default proofing is disabled before settings animations so each suite can install its intended deterministic provider."
+  ],
+  "boundaries": [
+    "Executions across runs overlap and must not be summed as distinct scenarios.",
+    "An author pass is scoped to its source state and listed suites; final combined acceptance is recorded separately by the frozen qualification driver.",
+    "The entire workspace/runtime closure was not snapshotted for every author command; these receipts bind reviewed paths and raw outputs. The final driver performs complete pre/post source/runtime verification.",
+    "Node execution validates portable Dart/JavaScript, not an actual browser, Worker or Wasm engine.",
+    "No GitHub Actions endpoints were accessed."
+  ]
+}

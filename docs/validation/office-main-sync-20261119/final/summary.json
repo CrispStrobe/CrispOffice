@@ -1,0 +1,172 @@
+{
+  "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "source_tree": "c68f4ea4fdb7f3795cfb94138e6185e5a8208033",
+  "application_case_executions": 1372,
+  "suite_platform_executions": 111,
+  "distinct_test_files": 94,
+  "failed": 0,
+  "skipped": 0,
+  "separate_python_controls": 90,
+  "groups": [
+    {
+      "gate": "native",
+      "name": "transport-native",
+      "suites": 5,
+      "passed": 119,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 5,
+      "raw_log_sha256": "ef442d91a9b58b9dbc68b13b3d391bed0e21bfd90aec11890af9474742f55470",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "transport-tls-loopback-vm",
+      "suites": 3,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 3,
+      "raw_log_sha256": "179fd99fe882df575106439afa9dfd9c3984f04562ad78e3c2ebba75e47d1c65",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "enough-mail-protocol-regressions",
+      "suites": 46,
+      "passed": 496,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 46,
+      "raw_log_sha256": "0d458d2adc850e3f247d429254cf43c18aa418d76a9954e08a80e6d4c55d1588",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "mime-consumer-vm",
+      "suites": 6,
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 6,
+      "raw_log_sha256": "cc1c1bdd6d4b677524d8e4dfe9cff132fdb10c418c80a2b957eb7ff00c2ce0a8",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "mail-ui-consumers",
+      "suites": 4,
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 4,
+      "raw_log_sha256": "f587d15f8fecbe20ae000444a3935018703c6efe3a4f80992481751b65a0e959",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "office-engine-proofing",
+      "suites": 6,
+      "passed": 137,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 6,
+      "raw_log_sha256": "fe64c7d8d8cfbbcae5bdbce6e8c645b0ef229886159ff895f58954b738ed25f3",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "native",
+      "name": "word-arabic-proofing",
+      "suites": 8,
+      "passed": 137,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 8,
+      "raw_log_sha256": "d7ad88831def547b4a5b40402d9f4673000655ead73a5855cd63feb9f3ec0d08",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "transport-node",
+      "suites": 3,
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 3,
+      "raw_log_sha256": "762b89060c0dc9414a1bc9934ea1625416e0c9a1d926862922090cea14228c5b",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "mime-consumer-node",
+      "suites": 6,
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 6,
+      "raw_log_sha256": "bebcae072cc6449c1c50e811bcf9005a8709a076ddff6e0199d6efa5927e1b4f",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "fork-portable-node",
+      "suites": 1,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 1,
+      "raw_log_sha256": "1980cb444181d6a2fa60356c2c4a8f0ae3720784a4e317e734c561003e69b96b",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "node",
+      "name": "arabic-unicode-node",
+      "suites": 2,
+      "passed": 84,
+      "failed": 0,
+      "skipped": 0,
+      "excluded_hidden_success_events": 2,
+      "raw_log_sha256": "261b6ecbaea6af778b9ddafc71616cdc54c22cae17bd6cb024cf9a08587a52fb",
+      "exact_case_inventory_match": true
+    },
+    {
+      "gate": "store",
+      "name": "core-vm",
+      "suites": 5,
+      "passed": 49,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "store",
+      "name": "core-node",
+      "suites": 5,
+      "passed": 49,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "store",
+      "name": "store-vm",
+      "suites": 8,
+      "passed": 110,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "store",
+      "name": "portable-node",
+      "suites": 3,
+      "passed": 42,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "passed": true,
+  "issues": [],
+  "analysis_targets": 83,
+  "formatting_targets": 83,
+  "changed_dart_paths_covered": 27,
+  "github_actions_queried_or_awaited": false,
+  "historical_or_development_executions_included": 0
+}

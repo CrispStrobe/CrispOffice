@@ -1,0 +1,27 @@
+{
+  "kind": "independent read-only review of late-main compatibility repairs",
+  "reviewed_base": "f57185f5258040180489f842c6c1fd032a4db031",
+  "source_hashes": {
+    "packages/quds_office_editor/example/lib/studio_mail.dart": "f1dae49946a6ebeef254dcf51a059b1f76c668d0812ccbdf85ca2418aed56e36",
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": "0545e9f7c8660ae6d4ee0151913c6555e12eb8ac819b06f24ee9cfd32e10495a",
+    "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart": "90de115acbdd5b39d4e51ca49697aa4249cd0ed79ef58dac2ca336ffe6eb1980",
+    "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart": "9be26513631a41c411cf93d66ecbbcfb4019d083651f2fed0e0151e62e269e7d"
+  },
+  "mail": {
+    "mounted_checks": "After picker completion and optional asynchronous file read, before controller access or setState",
+    "regression": "Deferred picker result completes after dialog disposal; original controller is disposed, no dialog returns and no exception is accepted",
+    "pinned_picker_signature_verified": "file_picker10.3.10",
+    "boundary": "One deferred-picker widget case; optional file-read guard verified by inspection, no executed result claimed"
+  },
+  "arabic": {
+    "helper_reuse": "_comparisonMark preserves U+0653-U+0655; Unicode _wordContinuation guards raw lexical phrase/date/future matches",
+    "preserved": "All incoming default/optional rule sets and positive test lists; original base provider comparison/boundary helpers unchanged",
+    "new_control_cases": 17,
+    "coverage": "13 mixed-token negatives including astral letters, digits, connector punctuation, combining marks and joiners;3 combining-spelling controls;1 exact UTF-16 offset/source replacement regression"
+  },
+  "blocking_findings": [],
+  "execution_status": "Not executed yet; primary/runtime remained frozen during review",
+  "passed": true,
+  "reviewed_commit": "5293c14162087de1044a2341967d74190a9c9b92",
+  "committed_bytes_match_review": true
+}

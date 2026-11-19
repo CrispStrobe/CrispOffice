@@ -59,6 +59,7 @@ final class HunspellProofingProvider extends OfficeProofingProvider {
   final int maxReplacements;
   final HunspellTransport _transport;
   Future<void>? _opened;
+  Future<void>? _disposing;
   bool _disposed = false;
 
   @override
@@ -258,7 +259,9 @@ final class HunspellProofingProvider extends OfficeProofingProvider {
   );
 
   @override
-  Future<void> dispose() async {
+  Future<void> dispose() => _disposing ??= _dispose();
+
+  Future<void> _dispose() async {
     if (_disposed) return;
     _disposed = true;
     await _transport.dispose();

@@ -1,0 +1,69 @@
+{
+  "incoming_main": "f7117a493055008a72e6e16713dd67a4f7c2ad39",
+  "prior_qualified_source": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "main_plan_suites": 68,
+  "main_plan_groups": 11,
+  "additional_unique_suites": 33,
+  "node_plan_suites": 1,
+  "combined_unique_focused_suites": 68,
+  "combined_focused_suite_platform_executions": 69,
+  "strict_analysis_format_targets": 32,
+  "original_35_suite_groups_preserved_exactly": true,
+  "symmetric_plan_binding": true,
+  "existing_runner_unchanged_and_no_duplicate_suite_within_either_plan": true,
+  "selection": {
+    "engine_vm": [
+      "test/proofing/arabic_writing_rules_test.dart",
+      "test/proofing/office_proofing_test.dart",
+      "test/proofing/proofing_locale_test.dart",
+      "test/proofing/proofing_text_ranges_test.dart",
+      "test/proofing/proofing_report_merge_test.dart",
+      "test/proofing/german_writing_rules_test.dart",
+      "test/proofing/german_spelling_test.dart",
+      "test/word_proofing_inheritance_test.dart",
+      "test/word_comment_proofing_styles_test.dart"
+    ],
+    "english_contract_vm": [
+      "test/harper_provider_test.dart",
+      "test/harper_source_contract_test.dart",
+      "test/harper_source_text_test.dart"
+    ],
+    "editor_flutter": [
+      "test/word_arabic_writing_integration_test.dart",
+      "test/word_draft_proofing_test.dart",
+      "test/word_german_grammar_integration_test.dart",
+      "test/word_incremental_proofing_menu_test.dart",
+      "test/word_incremental_proofing_test.dart",
+      "test/word_live_proofing_session_test.dart",
+      "test/word_manual_proofing_test.dart",
+      "test/word_notes_proofing_controller_test.dart",
+      "test/word_notes_proofing_pane_test.dart",
+      "test/word_proofing_capture_cache_test.dart",
+      "test/word_proofing_context_test.dart",
+      "test/word_proofing_correction_test.dart",
+      "test/word_proofing_dialog_test.dart",
+      "test/word_proofing_geometry_test.dart",
+      "test/word_proofing_navigation_test.dart",
+      "test/word_proofing_priority_test.dart",
+      "test/word_proofing_session_test.dart",
+      "test/word_text_proofing_controls_test.dart",
+      "test/word_text_proofing_pane_test.dart"
+    ],
+    "studio_flutter": [
+      "test/studio_review_pane_test.dart",
+      "test/studio_comment_draft_proofing_test.dart"
+    ],
+    "arabic_node": [
+      "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart"
+    ]
+  },
+  "rationale": {
+    "engine": "New provider and default-provider registration require direct rule vectors, shared service validation and merging, locale/protected-range contracts, inherited language/no-proof semantics and existing German writing/spelling behavior. Unchanged German morphology/lexicon subcomponents are not separately requalified because their implementation and inputs are unchanged; their default-provider integration is covered.",
+    "editor": "The changed WordProofingSession default provider list is exercised through the complete dedicated editor proofing family, including the new Arabic integration, German integration, correction/undo/stale-result boundaries, live/incremental/manual checks, review layout/navigation and Notes/draft routes.",
+    "english": "The Studio default registration contains Harper; its provider, source-contract and text-projection suites cover English behavior and non-English dispatch without requiring an unavailable native library. The optional native-library suite is not included or claimed.",
+    "studio": "SuiteWorkspace has its own Arabic provider registration. Existing Studio review and comment-draft proofing suites exercise that startup/service path and retain the nonmodal/UI/input behavior.",
+    "node": "Arabic rules contain Unicode matching, lookbehind and UTF-16/grapheme offset logic. Repeating the direct suite on Node tests the other supported Dart backend. A separate plan avoids changing the runner guard against duplicate suite paths.",
+    "scope": "The full 129-suite historical Office run is not rerun. The exported engine barrel changes a broad syntactic import closure, but production behavioral changes are confined to the new Arabic provider and its two registrations. Remaining Office behavior retains historical source attribution, with the affected proofing surface freshly qualified; no claim is made that every historical transitive import closure is byte-identical."
+  },
+  "count_policy": "Retain prior 433 focused Mail case expectation. Compute all added case counts from final raw events after the pending Arabic fix. Overall repeated executions equal the existing 70 core/store VM-Node repeats plus the Arabic Node case count, provided VM and Node case identities match exactly. Do not add 2018 historical cases."
+}

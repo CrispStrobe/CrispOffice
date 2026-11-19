@@ -40,15 +40,17 @@ resources are published separately and downloaded by the user inside the app
 as data, never as executable code) and the resource assessment. First step:
 the AyaSpell Hunspell dictionary under its MPL 1.1 option, built reproducibly by
 `tools/proofing/ayaspell/build_bundle.py` from a pinned LibreOffice packaging,
-with the Hunspell adapter package now implemented. Host registration and the
-in-app Arabic download workflow remain open. The independently authored Arabic
-writing rules below are built in and registered by default; the downloadable
-Arabic dictionary is not enabled or downloaded by default.
+with an optional MIT adapter around the MPL Hunspell library now implemented
+in `packages/quds_proofing_hunspell`. Studio now offers explicit dictionary
+download/setup, provider registration and licence display; platform packaging
+and qualification boundaries are recorded in the roadmap. Independently
+authored Arabic writing rules are built in and registered in the default Word
+proofing service and Studio. No Arabic dictionary is downloaded automatically.
 
 `ArabicWritingRulesProvider` (`arabic-writing`) implements the first
 independently authored Arabic rule set. It is part of the app (MIT) and needs
-no download. It runs only for Arabic-script Arabic paragraphs, and its eleven
-rule ids are all reviewable suggestions, never automatic rewrites. Spelling
+no download. It runs only for Arabic-script Arabic paragraphs, and its original
+eleven rule ids are reviewable suggestions, never automatic rewrites. Spelling
 rules:
 - hamzat al-qat' on listed words;
 - definite ta marbuta;
@@ -79,9 +81,10 @@ and implausible-year checks, `هل` incompatibilities, redundancy, fixed
 expressions, colloquial words and content-word repetition. 13 are opt-in via
 `enabledOptionalRuleIds`: prescriptive usage and sentence-position particles,
 wordiness, loanwords, long sentences, tanwin placement, vowelling and ض/ظ
-hints. 195 new tests (81 positive, 84 controls); on the 1,000 UD Arabic-PUD
-sentences the default-on extension produces 1 finding (an unclosed quotation
-continued in the next sentence). Per-rule counts and the deferred T2/T3
+hints. The incoming T1 checkpoint reports 195 new tests (81 positive,
+84 controls); in its 1,000-sentence UD Arabic-PUD evaluation the default-on
+extension produced 1 finding (an unclosed quotation continued in the next
+sentence). Per-rule counts and the deferred T2/T3
 categories are in [step 3b](roadmaps/arabic-proofing.md).
 
 The list expansion of 19 November 2026 (same clean-room process, authored
@@ -116,8 +119,9 @@ names). Details in [step 3c](roadmaps/arabic-proofing.md).
 ## Optional Hunspell spelling (Arabic) — 19 November 2026
 
 [`quds_proofing_hunspell`](../packages/quds_proofing_hunspell/README.md) adds a
-Hunspell spelling provider for dictionaries the user downloads inside the app,
-first Arabic (AyaSpell, `cstr/ayaspell-ar-hunspell` at `e9ace7cc…`). The engine
+Hunspell spelling provider and dictionary installer for host apps, first
+Arabic (AyaSpell, `cstr/ayaspell-ar-hunspell` at `e9ace7cc…`). Host registration
+and the download UI remain open. The engine
 is the MIT adapter plus unmodified Hunspell 1.7.2 library files under their
 MPL 1.1 option, as a native library in a persistent isolate or a bundled
 WebAssembly module in a Web Worker; only dictionary data is downloaded, pinned
@@ -127,7 +131,7 @@ disregards them); only Arabic-script words are checked; links/e-mail/code
 spans, personal and ignored words are skipped; suggestions are bounded to the
 first 24 distinct misspellings per request.
 
-Local evidence (macOS arm64, Dart 3.13.7): on UD Arabic-PUD test (1,000
+Incoming implementation evidence reports (macOS arm64, Dart 3.13.7): on UD Arabic-PUD test (1,000
 sentences, 15,676 Arabic-script words) the native provider and the WebAssembly
 worker each flag 795 words (5.07%), the identical word multiset to the Hunspell
 1.7.2 CLI `-l`; 0.57 s native without suggestions, 0.10 s for the Wasm batch,
@@ -136,7 +140,12 @@ dictionary (no skips), including first suggestions `الى`→`إلى`,
 `المدرسه`→`المدرسة`, `هاذا`→`هذا`, harakat/tatweel offsets, vocabulary,
 installer tamper/changed-download rejection and a live download from the
 pinned revision. iOS arm64 and Android arm64 libraries compile and link;
-Linux, Windows and on-device runs are not yet built or tested.
+Windows and on-device runs remain open. The Office integration review also
+built the Linux native adapter offline and repaired a dictionary-handle leak
+on isolate disposal. Six lifecycle regressions passed against an instrumented
+real Hunspell library and a synthetic dictionary. That review does not repeat
+the incoming AyaSpell corpus, installer or Wasm observations, or establish an
+installed Linux application build.
 
 **Studio wiring (19 November 2026):** Review › Proofing › Dictionaries offers
 the AyaSpell download (source revision, MPL 1.1, size, pinned digests,
@@ -898,8 +907,10 @@ The dialog offers `de-DE`, `de-AT`, `de-CH`, `en-US`, `en-GB`, `en-CA`, `en-AU`
 and `en-IN`, and preserves other imported language tags. Proofing and
 hyphenation share canonicalization for modern EN/DE Latin-script tags, German
 `1996`, and Unicode locale preferences, while retaining the region's available
-coverage. Unknown variants, non-Latin scripts, historical `1901` German and
-unprovided regions remain unsupported. Changing the document default does not overwrite
+coverage. For EN/DE checking, unknown variants, non-Latin script tags,
+historical `1901` German and unprovided regions remain unsupported. Arabic writing
+rules use the separate Arabic provider described above. Changing the document
+default does not overwrite
 explicit paragraph/run languages. Interface translation is independent of
 proofing language. Imported comment paragraphs now participate in the same
 document style cascade, including inherited language/`noProof` and explicit
@@ -1036,8 +1047,9 @@ source files. A custom `workerUrl` supports a host mounted under a path prefix.
 For native hosts, use `nativeLibraryPath` or the `QUDS_HARPER_LIBRARY` Dart define
 if the platform loader does not search the packaged library directory.
 
-The base editor's default checking providers are German spelling and writing
-rules. English checking remains an optional provider; automatic English
+The base editor's default checking providers are German spelling, German writing
+rules and Arabic writing rules. Each provider runs only for its supported
+language tags. English checking remains an optional provider; automatic English
 hyphenation is part of the engine. A host can opt into English checking after
 adding the package dependency:
 
@@ -1048,6 +1060,7 @@ controller.proofing.configure(
   OfficeProofingService(providers: [
     GermanSpellingProvider(vocabulary: controller.proofing.vocabulary),
     GermanWritingRulesProvider(),
+    ArabicWritingRulesProvider(),
     HarperProofingProvider(
       vocabulary: controller.proofing.vocabulary,
       workerUrl: Uri.base.resolve('proofing/harper_worker.mjs'),

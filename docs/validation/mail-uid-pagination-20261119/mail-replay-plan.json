@@ -1,0 +1,176 @@
+{
+  "description": "Fresh replay of the five unchanged Mail native cohorts, to be combined with a fresh tools/mail/check_store.py core/store gate and the 37-native/14-Node tail plans. This path does not rely on replaying the rejected historical attempt.",
+  "groups": [
+    {
+      "name": "transport-native",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/configuration_test.dart",
+        "test/native_provider_test.dart",
+        "test/host_store_integration_test.dart",
+        "test/uid_discovery_test.dart",
+        "test/cursor_test.dart"
+      ]
+    },
+    {
+      "name": "transport-tls-loopback-vm",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/native_tls_test.dart",
+        "test/native_tls_cancellation_test.dart",
+        "test/native_tls_round_trip_test.dart"
+      ]
+    },
+    {
+      "name": "enough-mail-protocol-regressions",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/connection_robustness_test.dart",
+        "test/imap/imap_client_test.dart",
+        "test/imap/imap_quoting_test.dart",
+        "test/imap/imap_robustness_test.dart",
+        "test/imap/mailbox_test.dart",
+        "test/imap/message_sequence_test.dart",
+        "test/imap/qresync_test.dart",
+        "test/imap/raw_uid_search_test.dart",
+        "test/imap/response_test.dart",
+        "test/mail/mail_account_test.dart",
+        "test/mail/mail_client_delete_test.dart",
+        "test/mail/mail_client_oauth_test.dart",
+        "test/mail/mail_client_pop_test.dart",
+        "test/mail/mail_client_reconnect_test.dart",
+        "test/mail/mail_client_send_test.dart",
+        "test/mail/mail_client_starttls_test.dart",
+        "test/mail/redaction_test.dart",
+        "test/mail/results_test.dart",
+        "test/pop/pop_client_test.dart",
+        "test/pop/pop_framing_test.dart",
+        "test/reconnect_state_test.dart",
+        "test/smtp/remove_bcc_header_test.dart",
+        "test/smtp/smtp_auth_encoding_test.dart",
+        "test/smtp/smtp_client_test.dart",
+        "test/smtp/smtp_framing_test.dart",
+        "test/smtp/smtp_send_state_test.dart",
+        "test/smtp/smtp_sendmail_command_test.dart",
+        "test/smtp/smtp_transparency_test.dart",
+        "test/src/imap/fetch_parser_test.dart",
+        "test/src/imap/id_parser_test.dart",
+        "test/src/imap/imap_response_line_test.dart",
+        "test/src/imap/imap_response_reader_test.dart",
+        "test/src/imap/imap_response_test.dart",
+        "test/src/imap/list_parser_test.dart",
+        "test/src/imap/namespace_parser_test.dart",
+        "test/src/imap/parser_helper_test.dart",
+        "test/src/imap/raw_fetch_parser_test.dart",
+        "test/src/imap/raw_uid_search_parser_test.dart",
+        "test/src/imap/search_parser_test.dart",
+        "test/src/imap/sort_parser_test.dart",
+        "test/src/imap/status_parser_test.dart",
+        "test/src/imap/thread_parser_test.dart",
+        "test/src/smtp/commands/smtp_auth_cram_md5_command_test.dart",
+        "test/src/smtp/smtp_response_test.dart",
+        "test/src/util/uint8_list_reader_test.dart",
+        "test/write_failure_test.dart"
+      ]
+    },
+    {
+      "name": "mime-consumer-vm",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "mail-ui-consumers",
+      "cwd": "packages/quds_mail_ui",
+      "runner": "flutter",
+      "tests": [
+        "test/controller_test.dart",
+        "test/example_test.dart",
+        "test/message_view_test.dart",
+        "test/presentation_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/mail-uid-pagination-20261119/run_validation.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/combined-runtime.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/refresh_runtime.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/runtime.json",
+    "packages/quds_mail_transport/test/fixtures/tls/README.md",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+    "packages/quds_mail_transport/test/support/tls/README.md",
+    "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+    "tools/mail/check_reader.py",
+    "tools/mail/check_store.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/upstream-notice-preservation.json",
+    "docs/validation/mail-uid-pagination-20261119/run_tail_validation.py",
+    "docs/validation/mail-uid-pagination-20261119/tail-native-plan.json",
+    "docs/validation/mail-uid-pagination-20261119/tail-node-plan.json",
+    "docs/validation/mail-uid-pagination-20261119/mail-replay-plan.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/tail-runtime.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/tail-poppler.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/refresh_tail_runtime.py",
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/accepted-mail-audit.json",
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/accepted-mail-cases.json.gz",
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/evidence-files.json",
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/attempt-162f53c0.tar.xz",
+    "docs/validation/mail-uid-pagination-20261119/attempt-162f53c0/attempt-162f53c0.tar.index.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/host-notice-preservation.json",
+    ".github/workflows/crispoffice-binaries.yml",
+    "docs/validation/mail-uid-pagination-20261119/runtime/refresh_final_runtime.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/final-runtime.json",
+    "docs/validation/mail-uid-pagination-20261119/runtime/refresh_about_runtime.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/about-runtime.json"
+  ],
+  "whitespace_preserved_inputs": [
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
+      "reason": "Preserve the exact Hunspell 1.7.2 upstream license notice bytes, verified against the pinned release archive and licenses/manifest.json; see runtime/upstream-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/COPYING.MPL",
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7",
+      "reason": "Preserve the exact upstream Hunspell 1.7.2 notice copied into Studio assets; byte identity verified against the pinned archive, original package notice and license manifest. See runtime/host-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/license.hunspell",
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+      "reason": "Preserve the exact upstream Hunspell 1.7.2 notice copied into Studio assets; byte identity verified against the pinned archive, original package notice and license manifest. See runtime/host-notice-preservation.json."
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/license.myspell",
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
+      "reason": "Preserve the exact upstream Hunspell 1.7.2 notice copied into Studio assets; byte identity verified against the pinned archive, original package notice and license manifest. See runtime/host-notice-preservation.json."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "sha": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+    "ref": "refs/heads/codex/mail-reader-20261118",
+    "old": "05582479e1249a8cf4d526740a0d43149c3cf5ae",
+    "is_ancestor_of_remote_checkpoint": true
+  },
+  {
+    "sha": "79998b32e54d74077c66fb9b8f2f306f276e94aa",
+    "ref": "refs/heads/codex/mail-uid-pagination-20261119",
+    "old": "960fb72fe904da92c41126b44fa65257931c6d65",
+    "is_ancestor_of_remote_checkpoint": true
+  },
+  {
+    "sha": "293f45449b496e3024ff100968d78f37983faadd",
+    "ref": "refs/heads/codex/office-main-integration-20261119",
+    "old": "84aa6f96e95c1eda39ad8c548c93b167be21dd1f",
+    "is_ancestor_of_remote_checkpoint": false
+  },
+  {
+    "sha": "c0c71a26e014cadda7a1f42244e710509dea5f6c",
+    "ref": "refs/heads/codex/office-main-sync-20261119",
+    "old": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+    "is_ancestor_of_remote_checkpoint": false
+  },
+  {
+    "sha": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+    "ref": "refs/heads/docs/arabic-rule-spec-20261119",
+    "old": null,
+    "is_ancestor_of_remote_checkpoint": true
+  },
+  {
+    "sha": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+    "ref": "refs/heads/feat/arabic-host-wiring-20261119",
+    "old": null,
+    "is_ancestor_of_remote_checkpoint": true
+  },
+  {
+    "sha": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+    "ref": "refs/heads/feat/arabic-rules-t1-20261119",
+    "old": null,
+    "is_ancestor_of_remote_checkpoint": true
+  },
+  {
+    "sha": "baf3dbd086d1688c5110335b6a6cc6d5a5feb4eb",
+    "ref": "refs/heads/main",
+    "old": "dc267fb4957d5a6499ce8174fd4a2acc39a4acf8",
+    "is_ancestor_of_remote_checkpoint": true
+  },
+  {
+    "sha": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+    "ref": "refs/pull/172/head",
+    "old": "751d7eb647ea2fa25f763859b4c6e6783d64dddc",
+    "is_ancestor_of_remote_checkpoint": true
+  },
+  {
+    "sha": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+    "ref": "refs/pull/182/head",
+    "old": null,
+    "is_ancestor_of_remote_checkpoint": true
+  },
+  {
+    "sha": "79998b32e54d74077c66fb9b8f2f306f276e94aa",
+    "ref": "refs/pull/183/head",
+    "old": null,
+    "is_ancestor_of_remote_checkpoint": true
+  },
+  {
+    "sha": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+    "ref": "refs/pull/184/head",
+    "old": null,
+    "is_ancestor_of_remote_checkpoint": true
+  },
+  {
+    "sha": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+    "ref": "refs/pull/185/head",
+    "old": null,
+    "is_ancestor_of_remote_checkpoint": true
+  }
+]

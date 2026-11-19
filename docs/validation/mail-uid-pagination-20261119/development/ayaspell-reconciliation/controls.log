@@ -1,0 +1,22 @@
+test_bad_source_or_licence_stops_before_remote_mutation (test_build_bundle.BundleBuilderTest.test_bad_source_or_licence_stops_before_remote_mutation) ... ok
+test_content_readback_mismatch_is_rejected (test_build_bundle.BundleBuilderTest.test_content_readback_mismatch_is_rejected) ... ok
+test_local_build_is_deterministic_without_publication (test_build_bundle.BundleBuilderTest.test_local_build_is_deterministic_without_publication) ... ok
+test_manifest_readback_mismatch_is_rejected (test_build_bundle.BundleBuilderTest.test_manifest_readback_mismatch_is_rejected) ... ok
+test_publish_excludes_unrelated_existing_output_files (test_build_bundle.BundleBuilderTest.test_publish_excludes_unrelated_existing_output_files) ... ok
+test_bad_dictionary_digest_stops_before_remote_mutation (test_build_bundle_incoming.BundleBuilderTest.test_bad_dictionary_digest_stops_before_remote_mutation) ... ok
+test_bad_dictionary_size_stops_before_remote_mutation (test_build_bundle_incoming.BundleBuilderTest.test_bad_dictionary_size_stops_before_remote_mutation) ... ok
+test_bad_licence_stops_before_remote_mutation (test_build_bundle_incoming.BundleBuilderTest.test_bad_licence_stops_before_remote_mutation) ... ok
+test_content_readback_mismatch_is_rejected (test_build_bundle_incoming.BundleBuilderTest.test_content_readback_mismatch_is_rejected) ... ok
+test_local_build_does_not_publish (test_build_bundle_incoming.BundleBuilderTest.test_local_build_does_not_publish) ... ok
+test_manifest_readback_mismatch_is_rejected (test_build_bundle_incoming.BundleBuilderTest.test_manifest_readback_mismatch_is_rejected) ... ok
+test_publish_excludes_unrelated_existing_output_files (test_build_bundle_incoming.BundleBuilderTest.test_publish_excludes_unrelated_existing_output_files) ... ok
+test_build_is_deterministic_and_does_not_publish (test_build_bundle_reproducibility.BundleTest.test_build_is_deterministic_and_does_not_publish) ... ok
+test_changed_file_readback_fails (test_build_bundle_reproducibility.BundleTest.test_changed_file_readback_fails) ... ok
+test_changed_manifest_readback_fails (test_build_bundle_reproducibility.BundleTest.test_changed_manifest_readback_fails) ... ok
+test_changed_source_or_licence_cannot_publish (test_build_bundle_reproducibility.BundleTest.test_changed_source_or_licence_cannot_publish) ... ok
+test_publish_excludes_unrelated_files_and_includes_manifest (test_build_bundle_reproducibility.BundleTest.test_publish_excludes_unrelated_files_and_includes_manifest) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.044s
+
+OK

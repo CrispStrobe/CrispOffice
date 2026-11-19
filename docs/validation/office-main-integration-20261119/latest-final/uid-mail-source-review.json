@@ -1,0 +1,299 @@
+{
+  "old": "86dc8b62d9f99ffc58f2391ef719002c523dca86",
+  "incoming": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+  "review_scope": "Read-only static source and incoming evidence review; no new product tests executed.",
+  "product_changed_paths": [
+    "packages/quds_mail_core/README.md",
+    "packages/quds_mail_core/lib/src/ports/provider.dart",
+    "packages/quds_mail_core/lib/src/ports/repository.dart",
+    "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "packages/quds_mail_store/README.md",
+    "packages/quds_mail_store/lib/src/repository.dart",
+    "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "packages/quds_mail_transport/CHANGELOG.md",
+    "packages/quds_mail_transport/README.md",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "third_party/enough_mail/QUDS_PATCHES.md",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_uid_search_parser.dart",
+    "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart"
+  ],
+  "dart_changed_paths": [
+    "packages/quds_mail_core/lib/src/ports/provider.dart",
+    "packages/quds_mail_core/lib/src/ports/repository.dart",
+    "packages/quds_mail_core/test/imap_sync_range_test.dart",
+    "packages/quds_mail_store/lib/src/repository.dart",
+    "packages/quds_mail_store/test/imap_sync_range_test.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_uid_search_parser.dart",
+    "third_party/enough_mail/test/imap/raw_uid_search_test.dart",
+    "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart"
+  ],
+  "tls_runner_lock_continuity": {
+    "files_unchanged": 31,
+    "files": [
+      {
+        "path": "packages/quds_mail_core/pubspec.yaml",
+        "bytes": 268,
+        "sha256": "9ecb33312a62c29481def03efd177e8da0186b9627fe2d804d38c9d5db05fb21"
+      },
+      {
+        "path": "packages/quds_mail_store/pubspec.yaml",
+        "bytes": 387,
+        "sha256": "c19f88e29dc3f530505d992e9f79c287336f9ee0310b081c6cfa0017a5c626b6"
+      },
+      {
+        "path": "packages/quds_mail_transport/pubspec.yaml",
+        "bytes": 475,
+        "sha256": "f09215e82fd42ed1d4d7d42659d789f633cd4e9992a880ce47a5b21ca1679207"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/fixtures/tls/README.md",
+        "bytes": 740,
+        "sha256": "85fb609005362517696252725cbddf062b412a3cfcca248f6dd526035bfe0579"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+        "bytes": 1180,
+        "sha256": "543a871246369fd7a102d4141a1bf87dbfbb331c087613efaf6ea64d13b4d586"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+        "bytes": 1704,
+        "sha256": "5b4612de534322c88b096f656e2035c88d559206ddef97720e9f352775551074"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+        "bytes": 7225,
+        "sha256": "95f834e0d0927f2e6fc13efdceaee4d8ac00f9174a95ed4b982b46764f13dc17"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+        "bytes": 11605,
+        "sha256": "160629605c10a07e28e24317794231c389634aae8d23fd53bd5df350551b4b21"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/native_tls_test.dart",
+        "bytes": 18928,
+        "sha256": "7f14585950394c1f326b8653e842f78da6078dfdecf1d3c0a41cca5fb817e9b3"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/support/tls/README.md",
+        "bytes": 845,
+        "sha256": "9a64bcd08459e9e779d597c406d4a3826bc4305ff90f299ce6029bcbc45cd259"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+        "bytes": 1127,
+        "sha256": "5eebead5c4c193eeace0a635398a305ab768b9fff1257235ec8b063cde55f94f"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+        "bytes": 1700,
+        "sha256": "a1513697cebd55d6823c836a2a4a50d605572ba413e73ad3df5b3f6d5d9dc787"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+        "bytes": 1188,
+        "sha256": "d698b3fdfd9bbf19c328dbe5edea880ba50cf547837b7dc188a95828421f260d"
+      },
+      {
+        "path": "packages/quds_mail_transport/test/support/tls_server.dart",
+        "bytes": 6161,
+        "sha256": "7478e9366b7d41a1ea7b2261e9a59f7fb09490af1575d39a3e92757bed3dc3a3"
+      },
+      {
+        "path": "pubspec.lock",
+        "bytes": 26074,
+        "sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/ascii_runes.dart",
+        "bytes": 1497,
+        "sha256": "c33343ccf8ebc9b9560ba99567093f25db60a9a073b8c4acb689e3bb083cab9e"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/byte_utils.dart",
+        "bytes": 763,
+        "sha256": "0567286bb985963a3d5779c212a0ca7591e1e09f8269747963d818a942f62afc"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart",
+        "bytes": 9183,
+        "sha256": "8d444dfb5af02330051839938b8477f1c01b3455418d9b910881a8d41e357fa8"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/client_base.dart",
+        "bytes": 20717,
+        "sha256": "660c7780730a1621934fa529840c6158cfbe8dea8d86ba1fc9aa9412e5baf286"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/discover_helper.dart",
+        "bytes": 18465,
+        "sha256": "4c258aaa907b6bc75ebcc15acd9eca9467063872410eae0cc9b60668c1a33b80"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/http_helper.dart",
+        "bytes": 3507,
+        "sha256": "0f53583f4c06f4296ea6271e703b681884b836e464d90025545f5ebfee60f179"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/mail_address_parser.dart",
+        "bytes": 7157,
+        "sha256": "91b9db98ff30967b635a69d99dd01ca69ce5dda1ce05bfbceaa6f8b785bd5e64"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/mail_signature.dart",
+        "bytes": 4041,
+        "sha256": "6311814e2d989c29e24ae0a0add49716cf4495312f6aae63d4f7928c464afa03"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/non_nullable.dart",
+        "bytes": 522,
+        "sha256": "a53657bf0f1a79fe72de4651f33f13086ca6f2efcfd845988b5f5474574879cd"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+        "bytes": 480,
+        "sha256": "b1570fdb1c0cc7bfb58507cafccbc2c8cc60a44fedc9a20a96a047089687339c"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/stack_list.dart",
+        "bytes": 760,
+        "sha256": "70241a53065aa86b30c9592a64f6005b7efe807925a088a2e174d678e0aaae56"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+        "bytes": 9773,
+        "sha256": "f56b2399361666a0842dc7ead69f5c5d70296e868acd87ed0610c3482ef3a9a2"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/word.dart",
+        "bytes": 293,
+        "sha256": "4f468dcee5b196f9c744a60eae8d720050da7f268faa36f57de4c71d2df7be63"
+      },
+      {
+        "path": "tools/mail/check_reader.py",
+        "bytes": 10166,
+        "sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826"
+      },
+      {
+        "path": "tools/mail/check_store.py",
+        "bytes": 19938,
+        "sha256": "bab338972e08c1377657becdcc15e3f9472a361475fc137a839eca56ea4cc7bb"
+      },
+      {
+        "path": "tools/mail/test_check_store.py",
+        "bytes": 24023,
+        "sha256": "1221bc4fd22d50346dea60ef2e4c6fec8640af39a232459671a8a21a66a64d94"
+      }
+    ]
+  },
+  "core_store_continuity": "Not preserved: ports/provider.dart, ports/repository.dart and store repository.dart change; new core/store range tests. Fresh full check_store required.",
+  "incoming_evidence": {
+    "runtime_archive": {
+      "archive_sha256": "b990972a0f80ee203f2ed5d4267b704ab590993031ef9c2ac83677a4ec95604e",
+      "archive_bytes": 906396,
+      "file_members": 12,
+      "all_member_hashes_match": true,
+      "outer_runtime_json_matches": true,
+      "runtime_json_keys": [
+        "started_at_utc",
+        "source",
+        "sdk",
+        "status",
+        "runs",
+        "recovery_implementation",
+        "selection",
+        "workspace_lock_sha256",
+        "archive",
+        "executables_sha256",
+        "hosted_archives_verified",
+        "native_smoke",
+        "additional_inputs",
+        "native_assets",
+        "node_runtime",
+        "test_input_binding",
+        "runtime",
+        "workspace_packages",
+        "workspace_package_count",
+        "environment_script",
+        "retained_runtime_input_count",
+        "finished_at_utc"
+      ],
+      "controls_last_lines": [
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 16 tests in 0.032s",
+        "",
+        "OK"
+      ],
+      "recorded_binding": {
+        "status": "ready",
+        "selection": "VM Flutter tests and AOT analysis and Dart-to-JavaScript Node tests; no complete web/native build toolchain",
+        "workspace_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+        "test_input_binding": {
+          "at_utc": "2026-11-19T07:42:05.106477+00:00",
+          "implementation_sha256": "218b3b8342e213ba95fc31e4930a6a10c95865aac8e38e45c85d6df5d500eb05",
+          "scope": "Native/Node binding; original restore runs and archive unchanged"
+        },
+        "retained_runtime_input_count": 11142
+      }
+    },
+    "final_product_gate_status": "README explicitly says final product gates have not run yet. Native/Node plans and a static range transaction review are present; no fresh passing UID product receipt is established.",
+    "review_source": "5fcdf726694b5356d8fb85fb8e01a715e0fadc0c",
+    "static_review_independence": "Incoming range transaction reviewer explicitly authored the raw UID parser; this is not independent parser review."
+  },
+  "findings": [],
+  "static_expected_new_cases": {
+    "core_range": 18,
+    "store_range": 15,
+    "transport_uid_discovery": 24,
+    "raw_uid_parser": 51,
+    "raw_uid_wire": 17
+  },
+  "projected_store_executions": {
+    "core_vm": 49,
+    "core_node": 49,
+    "store_vm": 110,
+    "portable_node": 42,
+    "total": 250,
+    "distinct_scenarios": 162,
+    "platform_repeat_executions": 88,
+    "qualification": "Static expected count, must reconstruct from final raw events."
+  },
+  "plan": {
+    "path": "/workspace/scratch/a7846890f2e1/uid-mail-plan.json",
+    "groups": 6,
+    "suites": 19,
+    "static_targets": 17,
+    "excluded_stress": "third_party/enough_mail/test/imap/imap_robustness_test.dart unchanged 100000-iteration literal test",
+    "why_exclusions": "No changes to socket adapters, response reader, POP/SMTP/MIME implementation; selected IMAP client/strict parsers and existing native/TLS/UI consumers cover changed behavior. Historical broader runs remain separately attributed."
+  },
+  "projected_focused_executions": {
+    "transport_uid_native": 110,
+    "transport_tls_loopback_vm": 26,
+    "transport_node_boundary": 3,
+    "uid_search_parser_and_wire": 68,
+    "imap_response_dispatch_and_lifecycle": 109,
+    "mail_ui_store_consumers": 30,
+    "total": 346,
+    "qualification": "Static forecast, not executed. Old unchanged suite counts plus exact new loop expansion. Must reconstruct from final raw events."
+  }
+}

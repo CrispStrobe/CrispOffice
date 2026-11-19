@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "archive": "evidence.tar.xz",
+  "archive_bytes": 35064,
+  "archive_sha256": "01fb57587c4903e0c247eeb52fc48a846f05ec80edf3d6895e07ed98f52f753e",
+  "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "publication_source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "scope": "Source reviews, inherited archive integrity and failing-before/passing-after Arabic/publisher development evidence; all development executions excluded from acceptance counts.",
+  "members": [
+    {
+      "path": "arabic-rules/arabic_writing_rules.dart",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/arabic_writing_rules.dart",
+      "bytes": 16855,
+      "sha256": "c1f0f25bf46647ac9ea4673714482224e18631d717ce8cf86f13c2f17fa36fc3"
+    },
+    {
+      "path": "arabic-rules/findings-before.jsonl",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/findings-before.jsonl",
+      "bytes": 804,
+      "sha256": "10654701812e6894c3fee8b98a29d1fae7fae69557c48392539da101b574152b"
+    },
+    {
+      "path": "arabic-rules/probe.dart",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/probe.dart",
+      "bytes": 689,
+      "sha256": "4b679a9e6b66cd76b1fd9ee4d55238b32643ff2921bdc7d2dcfa1ab7071fc25e"
+    },
+    {
+      "path": "arabic-rules/regressions-after-receipt.json",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/regressions-after-receipt.json",
+      "bytes": 791,
+      "sha256": "2c36a9e40bdd6d94ee6c7cc32ad6d9160aa7ac06c1ced4e9886d76784ceaa4ac"
+    },
+    {
+      "path": "arabic-rules/regressions-after.jsonl",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/regressions-after.jsonl",
+      "bytes": 35121,
+      "sha256": "b3ec0437275a9dcc5d6625337949c3e6a02fe8affbfc835c3b07cd974f030161"
+    },
+    {
+      "path": "arabic-rules/regressions-before-receipt.json",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/regressions-before-receipt.json",
+      "bytes": 479,
+      "sha256": "bd7d89849f814771ce232d3ffd69a3cb5133748bcbc042e70147675b385b0a86"
+    },
+    {
+      "path": "arabic-rules/regressions-before.jsonl",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/rules-probes/regressions-before.jsonl",
+      "bytes": 38298,
+      "sha256": "5d624e629a54a822db1cdd88fe240fa6073db7497a3e73d05a0dce69d4642888"
+    },
+    {
+      "path": "bundle/after-fix.log",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/after-fix.log",
+      "bytes": 738,
+      "sha256": "71190af3274af2269621e88aa231212c47e934c70537208523286918fbab2e3c"
+    },
+    {
+      "path": "bundle/baseline/build_bundle.py",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/baseline/build_bundle.py",
+      "bytes": 6349,
+      "sha256": "5331facbd25c3f5888dabae1a7cbdb5a9b37451a1e83d927bb5ba69aba962467"
+    },
+    {
+      "path": "bundle/baseline/test_build_bundle.py",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/baseline/test_build_bundle.py",
+      "bytes": 5984,
+      "sha256": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096"
+    },
+    {
+      "path": "bundle/before-fix.log",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/before-fix.log",
+      "bytes": 1388,
+      "sha256": "b8c27f1dd576b4b0802104d7efccbee7f96d60b569f1992d92f75ae1dd50f782"
+    },
+    {
+      "path": "bundle/receipt.json",
+      "original": "/workspace/scratch/79e6ad9e4046/arabic-review/receipt.json",
+      "bytes": 1357,
+      "sha256": "1d0aa40b815782e7d572a2152bab98c1c1823603ffcb1e387ca3b8abe522299d"
+    },
+    {
+      "path": "imports/0669-newimports/newimports-audit.json",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/0669-newimports/newimports-audit.json",
+      "bytes": 24947,
+      "sha256": "dfa23544f8cef73872495b7741995d4fc8ac22a794ea0a5d064c59d80ca9b0d5"
+    },
+    {
+      "path": "imports/0669-newimports/source-review.json",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/0669-newimports/source-review.json",
+      "bytes": 5280,
+      "sha256": "d4ff955884ec6f499fc47cd0bc8f9bdfae9c6593f080b3c626ddf3cad238da81"
+    },
+    {
+      "path": "imports/audit_imports.py",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/audit_imports.py",
+      "bytes": 8919,
+      "sha256": "5524b119e7134eb52cf0fca887da9ba787cc132bd65388c08f2e34dd222c2fe6"
+    },
+    {
+      "path": "imports/audit_newimports.py",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/audit_newimports.py",
+      "bytes": 11117,
+      "sha256": "7da524db5098667f181cc61fbf754956e3a3179b94a0a9d58b09eece3f1b6600"
+    },
+    {
+      "path": "imports/b806/archive-audit.json",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/b806/archive-audit.json",
+      "bytes": 66030,
+      "sha256": "3adf7df8771c37bc9c0acce95f5c7fe2a537dbd0326974d2821bbede085046e5"
+    },
+    {
+      "path": "imports/pr177-direct-tree-comparison.json",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/pr177-direct-tree-comparison.json",
+      "bytes": 771,
+      "sha256": "3954abb63db29d6827d12475af34c2059533f3b4e5a775d671ed9d09150b253c"
+    },
+    {
+      "path": "imports/pr179-direct-tree-comparison.json",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/pr179-direct-tree-comparison.json",
+      "bytes": 8707,
+      "sha256": "3058e00fcd0a0cef2456cc3eb04f291f62eed2f1cfde395ed6a8b77d9c8fffbd"
+    },
+    {
+      "path": "imports/remote-review.json",
+      "original": "/workspace/scratch/79e6ad9e4046/import-review/remote-review.json",
+      "bytes": 2596,
+      "sha256": "a925ffacc06197f03e493621d93d2c460a609acd1b122f5374d08603207246d8"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "created_at_utc": "2026-11-19T08:23:35.088571+00:00",
+  "source_directory": "/workspace/scratch/ab196f483cec/hunspell-lifecycle-development",
+  "archive": "hunspell-lifecycle.tar.xz",
+  "archive_bytes": 4212,
+  "archive_sha256": "096d4e291cc86bfe7a1cfde1b36dfc2be75c7e38572624d9bb02db519d4746dd",
+  "member_count": 13,
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 1618,
+      "sha256": "8e57a218b4b4139869b830d2eb4bcb67545f09da4a7f39de5da8fb45d9e580ee"
+    },
+    {
+      "path": "analysis-final.log",
+      "bytes": 89,
+      "sha256": "0f0d6161752cdf7bb9d977ca1e6addf834893d2f1789abb60c922650c625c958"
+    },
+    {
+      "path": "analysis.log",
+      "bytes": 89,
+      "sha256": "0f0d6161752cdf7bb9d977ca1e6addf834893d2f1789abb60c922650c625c958"
+    },
+    {
+      "path": "final-input-sha256.txt",
+      "bytes": 510,
+      "sha256": "186dba765b0384559ec6e06b67deaf6f58db42d4304ea70c27f2264ff9fa9e28"
+    },
+    {
+      "path": "green-final-native-lifecycle.jsonl",
+      "bytes": 4144,
+      "sha256": "da07e199798c445acf6a7771c5cb4097543d4316edb7f2cc27593f446ae7ac2b"
+    },
+    {
+      "path": "green-input-sha256.txt",
+      "bytes": 402,
+      "sha256": "74e2f219330f2ceb47db52436c98eb820c15b247797968a97df359e93b5214a1"
+    },
+    {
+      "path": "green-native-lifecycle.jsonl",
+      "bytes": 4127,
+      "sha256": "0e2767d4f4455e17fc2afbed10c97e8e0f1ff5c8b116751deb01ebf91c3d99c2"
+    },
+    {
+      "path": "green-real-library.jsonl",
+      "bytes": 3370,
+      "sha256": "546d6f321147e969b8014d6eecee346d654b3f2f032ca59db68008039010d547"
+    },
+    {
+      "path": "green-reviewed-native-lifecycle.jsonl",
+      "bytes": 4125,
+      "sha256": "b096870d1614b3d8ac297af7f539368df064cef297148f8111b2cad554801dbd"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 3162,
+      "sha256": "7076b34689ac87ef4110ca384219544280edbc65d079704c90171deb2f275be6"
+    },
+    {
+      "path": "red-failed-reopen.jsonl",
+      "bytes": 1531,
+      "sha256": "654443f35d4025bd3b5d99845c6a595b5555bcf9b59d78ae9375a8a85a7aabcd"
+    },
+    {
+      "path": "red-input-sha256.txt",
+      "bytes": 402,
+      "sha256": "889dbcc8c9808d2fa9bff0b3435436bdc0c4d9bcbd8d4b68fff1c036814de82a"
+    },
+    {
+      "path": "red-native-dispose.jsonl",
+      "bytes": 1374,
+      "sha256": "f9033c8f148b91b098308e8b7b10c4599ddf82c63fe3d6b091ddf54430bda8ba"
+    }
+  ]
+}

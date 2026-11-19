@@ -125,7 +125,8 @@ class BundleBuilderTest(unittest.TestCase):
             "---\nlicense: other\nlicense_name: mpl-1.1\n"
             "license_link: https://www.mozilla.org/en-US/MPL/1.1/\n"
         ))
-        self.assertIn("in-app download are not implemented yet", card)
+        self.assertIn("optional dictionary download workflow in Studio", " ".join(card.split()))
+        self.assertIn("Nothing is downloaded by default", " ".join(card.split()))
 
     def test_publish_excludes_unrelated_existing_output_files(self) -> None:
         # These must stay local even when the caller reuses a populated directory.

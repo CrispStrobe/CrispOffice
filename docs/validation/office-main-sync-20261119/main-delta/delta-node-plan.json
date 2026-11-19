@@ -1,0 +1,59 @@
+{
+  "description": "Exact-source newer-main delta only. Prior 1372 application executions remain attributed to 0669ac11 and contribute zero to this delta. Native Hunspell uses verified library, eight pinned dictionary files, lifecycle fixture, and enabled live download; no name filters or skipped acceptance. No macOS build or real WASM execution is claimed.",
+  "groups": [
+    {
+      "name": "hunspell-provider-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ]
+    },
+    {
+      "name": "cursor-main-merge-node",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/cursor_test.dart",
+        "test/configuration_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-main-merge-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "docs/PROOFING.md",
+    "docs/roadmaps/arabic-proofing.md",
+    "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/mail-uid-pagination-20261119/run_validation.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/runtime.json",
+    "docs/validation/office-main-sync-20261119/final-native-plan.json",
+    "docs/validation/office-main-sync-20261119/final-node-plan.json",
+    "docs/validation/office-main-sync-20261119/final-run-validation.py",
+    "docs/validation/office-main-sync-20261119/main-delta/delta-native-plan.json",
+    "docs/validation/office-main-sync-20261119/main-delta/delta-node-plan.json",
+    "docs/validation/office-main-sync-20261119/main-delta/fixture-plan.json",
+    "docs/validation/office-main-sync-20261119/main-delta/run-delta-validation.py",
+    "docs/validation/office-main-sync-20261119/main-delta/verify-delta-continuity.py",
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py"
+  ],
+  "whitespace_preserved_inputs": []
+}

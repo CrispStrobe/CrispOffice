@@ -1,0 +1,50 @@
+{
+  "created_at_utc": "2026-11-19T08:28:48.663779+00:00",
+  "source_directory": "/workspace/scratch/ab196f483cec/mail-uid-final-2",
+  "archive": "attempt-8dc76f0c.tar.xz",
+  "archive_bytes": 607128,
+  "archive_sha256": "fb896ac6425eb0853a69744faf5a564e13d7df225c0ac40a534927ce50c69ae6",
+  "member_count": 8,
+  "members": [
+    {
+      "path": "ayaspell-offline-controls.log",
+      "bytes": 23030,
+      "sha256": "4483a095fcc9e0ddbbdbf55f6f0ded46c335369b069beaa5e7d1744aae687c2e"
+    },
+    {
+      "path": "execution.json",
+      "bytes": 2656,
+      "sha256": "7f0a913db35bcc0e16d08116e837327228ea02c493f41e145cfe27ea06626ef2"
+    },
+    {
+      "path": "runtime-after.json",
+      "bytes": 1709994,
+      "sha256": "05aa214cb4c2efa5675bf3f994c390c3eaf629ea6bee2ac39c73595fb0f8effe"
+    },
+    {
+      "path": "runtime-before.json",
+      "bytes": 1709994,
+      "sha256": "05aa214cb4c2efa5675bf3f994c390c3eaf629ea6bee2ac39c73595fb0f8effe"
+    },
+    {
+      "path": "runtime-controls.log",
+      "bytes": 2577,
+      "sha256": "c0de0e1c65beb99d8f631ef08233ca33ce0f5e8b41265cbfd60b9b64c7bc9f81"
+    },
+    {
+      "path": "shared-runner-controls.log",
+      "bytes": 122,
+      "sha256": "c3f6f1f573a8d0949f3c3f43d386b1fb2510bfc9f78d6440123f38c85644e876"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 749029,
+      "sha256": "71d6be0e2f2cc60cbc12a0e8221cbf59dc30879f7d661cff2d2e1c83a422623a"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 749029,
+      "sha256": "71d6be0e2f2cc60cbc12a0e8221cbf59dc30879f7d661cff2d2e1c83a422623a"
+    }
+  ]
+}

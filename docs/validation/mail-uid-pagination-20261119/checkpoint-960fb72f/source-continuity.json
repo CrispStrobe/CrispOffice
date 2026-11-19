@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "source_commit": "960fb72fe904da92c41126b44fa65257931c6d65",
+  "source_tree": "2effd3b4cb816ef29d485d90099364219a22005d",
+  "expected_tree": "2effd3b4cb816ef29d485d90099364219a22005d",
+  "source_tree_matches": true,
+  "parents": [
+    "5fcdf726694b5356d8fb85fb8e01a715e0fadc0c",
+    "f059065fa622da8cee7824d66d29a2aff414d529",
+    "199690563b206948871ea0279f5e59f686265f8b",
+    "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+    "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+    "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c"
+  ],
+  "frontier_parent_checks": [
+    {
+      "sha": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+      "direct_parent": true,
+      "ancestor": true
+    },
+    {
+      "sha": "199690563b206948871ea0279f5e59f686265f8b",
+      "direct_parent": true,
+      "ancestor": true
+    },
+    {
+      "sha": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+      "direct_parent": true,
+      "ancestor": true
+    },
+    {
+      "sha": "cd430b2229ff81e3d486c9ed95c80e92a41fe8af",
+      "direct_parent": true,
+      "ancestor": true
+    },
+    {
+      "sha": "f059065fa622da8cee7824d66d29a2aff414d529",
+      "direct_parent": true,
+      "ancestor": true
+    }
+  ],
+  "initial_baseline": "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+  "initial_baseline_is_ancestor": true,
+  "implementation_checkpoint": "5fcdf726694b5356d8fb85fb8e01a715e0fadc0c",
+  "implementation_checkpoint_is_direct_parent": true,
+  "office": {
+    "selection": "All tracked entries under apps/ and packages/, except packages/quds_mail_*",
+    "baseline_entries": 4632,
+    "published_entries": 4632,
+    "baseline_manifest_sha256": "b22db23c8a2140632d7420e5d481d86b33bd5420297c3a89a6393b9b485c441f",
+    "published_manifest_sha256": "b22db23c8a2140632d7420e5d481d86b33bd5420297c3a89a6393b9b485c441f",
+    "changes": [],
+    "unchanged": true
+  },
+  "mail": {
+    "selection": "All packages/quds_mail_* and third_party/enough_mail entries; Dart code separately checked",
+    "baseline_entries": 394,
+    "published_entries": 394,
+    "all_changed_entries": [
+      {
+        "path": "packages/quds_mail_store/README.md",
+        "before": "100644 blob 058e4c759cb32efe779325a912e96d612ca91eec",
+        "after": "100644 blob 019e4738d2542ff7514c82ff6ff55214d3572776"
+      },
+      {
+        "path": "packages/quds_mail_transport/lib/src/configuration.dart",
+        "before": "100644 blob ed5493d72d1964d455004efb0b0e0508d55f45fa",
+        "after": "100644 blob e2a4cc67ec3064d8fdf31bf7120ccea393a07f77"
+      }
+    ],
+    "changed_dart_entries": [
+      {
+        "path": "packages/quds_mail_transport/lib/src/configuration.dart",
+        "before": "100644 blob ed5493d72d1964d455004efb0b0e0508d55f45fa",
+        "after": "100644 blob e2a4cc67ec3064d8fdf31bf7120ccea393a07f77"
+      }
+    ],
+    "only_dart_change_is_configuration": true,
+    "configuration_noncomment_lines_unchanged": true,
+    "configuration_diff": "diff --git a/packages/quds_mail_transport/lib/src/configuration.dart b/packages/quds_mail_transport/lib/src/configuration.dart\nindex ed5493d7..e2a4cc67 100644\n--- a/packages/quds_mail_transport/lib/src/configuration.dart\n+++ b/packages/quds_mail_transport/lib/src/configuration.dart\n@@ -106,8 +106,8 @@ final class MailTransportLimits {\n   /// Numeric gaps do not consume this budget. Protocol byte limits also apply.\n   final int maxDiscoveredUids;\n \n-  /// Optional legacy numeric UID ceiling. Null (the default) admits the full\n-  /// protocol UID space. An explicitly supplied old setting retains its numeric\n+  /// Optional legacy numeric UID ceiling. Null (the default) imposes no extra\n+  /// numeric ceiling beyond SELECT's UIDNEXT. An old setting retains its numeric\n   /// meaning; use [maxDiscoveredUids] to bound discovery by message count.\n   final int? maxUidScan;\n   final int maxHeaderBytes;"
+  },
+  "scope": "Immutable local Git objects only, no fetch or remote capture. Existing preflight capture audit is separate. This verifies source continuity, not runtime acceptance.",
+  "repository_mutations": 0,
+  "github_actions_calls": 0,
+  "passed": true,
+  "captured_reference_audit": {
+    "path": "/workspace/scratch/ab196f483cec/uid-published-audit.json",
+    "sha256": "048993314312fa850e5ee848283175b85db148d748caf5cfa694b64b624bf415",
+    "actual_refs": 417,
+    "classification": {
+      "ancestor": 389,
+      "historical_equivalent": 28
+    },
+    "historical_proofs_recomputed": 14,
+    "all_historical_proofs_pass": true,
+    "unaccounted_refs": 0,
+    "working_copy_observation_unchanged": true,
+    "passed": true
+  }
+}

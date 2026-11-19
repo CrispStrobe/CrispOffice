@@ -122,6 +122,8 @@ class NativeStudioHunspellHost extends StudioHunspellHost {
     } on Object catch (error) {
       _set(StudioHunspellStatus(bundle: bundle, problem: '$error'));
       rethrow;
+    } finally {
+      cancellation?.removeListener(cancel.cancel);
     }
   }
 

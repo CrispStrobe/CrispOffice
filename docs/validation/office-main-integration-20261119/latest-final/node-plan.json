@@ -1,0 +1,53 @@
+{
+  "description": "Same-source Node repeats of changed Mail configuration, Hunspell provider contracts and Arabic writing rules. These three suite identities also execute in the main plan; their executions add no distinct scenarios. Both plans bind the same full source selection through identical extra_inputs, including both plans and native lifecycle fixture source. Static analysis and formatting run in the main plan. This does not establish browser rendering, worker lifecycle, native dictionary accuracy or actual AyaSpell downloads.",
+  "groups": [
+    {
+      "name": "mail-configuration-node",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/configuration_test.dart"
+      ]
+    },
+    {
+      "name": "hunspell-provider-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-writing-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "packages/quds_mail_transport/test/fixtures/tls/README.md",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+    "packages/quds_mail_transport/test/support/tls/README.md",
+    "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+    "packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp",
+    "docs/validation/office-main-integration-20261119/latest-final/plan.json",
+    "docs/validation/office-main-integration-20261119/latest-final/node-plan.json",
+    "docs/validation/office-main-integration-20261119/latest-final/native-runtime-inputs.json"
+  ]
+}

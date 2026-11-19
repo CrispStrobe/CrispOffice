@@ -1,0 +1,75 @@
+{
+  "description": "Final captured-source portable Mail boundary/MIME, cursor freshness and Arabic Unicode/offset rules on Node. Core/store Node runs separately once. Cross-platform executions are reported separately from distinct source files. This does not establish browser rendering or persistence.",
+  "groups": [
+    {
+      "name": "transport-node",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/configuration_test.dart",
+        "test/unsupported_test.dart",
+        "test/cursor_test.dart"
+      ]
+    },
+    {
+      "name": "mime-consumer-node",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "fork-portable-node",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/quds_portable_mime_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-unicode-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "docs/PROOFING.md",
+    "docs/roadmaps/arabic-proofing.md",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/mail-uid-pagination-20261119/run_validation.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/runtime.json",
+    "docs/validation/office-main-sync-20261119/final-run-validation.py",
+    "packages/quds_mail_transport/test/fixtures/tls/README.md",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+    "packages/quds_mail_transport/test/support/tls/README.md",
+    "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+    "tools/mail/check_reader.py",
+    "tools/mail/check_store.py",
+    "tools/mail/test_check_store.py",
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py"
+  ],
+  "whitespace_preserved_inputs": []
+}
