@@ -1,0 +1,74 @@
+[
+  {
+    "phase": "red",
+    "kind": "focused development reproduction; not frozen qualification",
+    "base_main": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+    "command": [
+      "/workspace/scratch/e63c6a1344bc/runtime/bin/flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=1",
+      "--reporter=json",
+      "test/studio_mail_test.dart",
+      "--name",
+      "reply quotes the loaded body|forward quotes the loaded body|mark read owns the pending action|late mark-read"
+    ],
+    "exit_code": 1,
+    "source_sha256": "45ea05d198c952eeac68f8e9bcc5ffff54d6742670116f6a8a8bfcae66db4a78",
+    "test_sha256": "8e7cc630ae0fecf139c687670e65c271f687c3544b6789e3a10cdfd6d99923b4",
+    "log_sha256": "521f8e3569ee427fb21933c843e62e00a726e68792ebf42c5b8868208cda2ed9",
+    "summary": {
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {},
+      "excluded_events": {
+        "setup_loading_teardown": 1
+      },
+      "reporter_success": false,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [
+        "/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart"
+      ],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 1,
+      "protocol_anomalies": [
+        {
+          "line": 6,
+          "failed_hidden_event": "loading /workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart"
+        }
+      ],
+      "strict_event_accounting": {
+        "passed": 0,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 1,
+        "all_failed": 1,
+        "all_skipped": 0,
+        "excluded_failed": 1,
+        "excluded_skipped": 0,
+        "terminal_success": false,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": false
+      },
+      "cases": [],
+      "errors": [
+        {
+          "testID": 1,
+          "error": "Failed to load \"/workspace/scratch/e63c6a1344bc/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_fonts.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/e63c6a1344bc/runtime/tmp/flutter_tools.STWPVR/flutter_test_fonts.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+          "stackTrace": "package:flutter_tools/src/base/common.dart 34:3                   throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3      _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3      _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5      _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7      _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12      ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/font_config_manager.dart 24:56     FontConfigManager.fontConfigFile.<fn>\npackage:flutter_tools/src/test/font_config_manager.dart 32:4      FontConfigManager.fontConfigFile\npackage:flutter_tools/src/test/font_config_manager.dart           FontConfigManager.fontConfigFile\npackage:flutter_tools/src/test/flutter_tester_device.dart 137:44  FlutterTesterTestDevice.start\n===== asynchronous gap ===========================\npackage:flutter_tools/src/test/flutter_platform.dart 679:51       FlutterPlatform._startTest.<fn>\n===== asynchronous gap ===========================\npackage:flutter_tools/src/base/async_guard.dart 108:24            asyncGuard.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 3900
+        }
+      ]
+    }
+  }
+]

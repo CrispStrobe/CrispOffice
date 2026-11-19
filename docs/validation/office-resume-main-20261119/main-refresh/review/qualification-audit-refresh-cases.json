@@ -1,0 +1,4042 @@
+[
+  {
+    "id": 3,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 4,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"a@example.invalid,b@example.invalid\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 5,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"Name <a@example.invalid>\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 6,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"a@\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 7,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"@example.invalid\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 8,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"a..b@example.invalid\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 9,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \".a@example.invalid\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 10,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"a.@example.invalid\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 11,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"a@-example.invalid\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 12,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"a@exam ple.invalid\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 13,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"a@example.invalid\\r\\nBcc: hidden@example.invalid\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 14,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "rejects unsupported recipient \"مستخدم@example.invalid\"",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 15,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "accepts supported mailbox punctuation and rejects header injection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 16,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "bounds encoded body size and rejects null characters",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 17,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "Arabic subject and body produce ASCII-safe MIME with exact decoded content",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 18,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "body uses the Word editor and snapshots undoable text before disposal",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 19,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "invalid recipient keeps the draft open with bounded feedback",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 20,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "uncertain draft is retained and requires explicit resend acknowledgement",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 21,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "composer fits a narrow window without substituting a body text field",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 22,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "uncertain composer scrolls in a short landscape window",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 23,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "name": "uncertain composer scrolls in a short keyboard window",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 27,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "name": "HTTP discovery is rejected before credentials reach a client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 28,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "name": "POP-only discovery is rejected before credentials reach a client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 29,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "name": "non-SMTP outgoing discovery is rejected before credentials reach a client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 30,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "name": "missing server discovery is rejected before credentials reach a client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 31,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "name": "no discovery result is rejected before credentials reach a client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 32,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "name": "trusted IMAP discovery creates SSL-only account endpoints",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 33,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "name": "closing during discovery ignores its late success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 34,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "name": "closing during discovery ignores its late failure",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 38,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+    "name": "closing Mail ignores a pending file picker result",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 42,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "returns exact original non-UTF8 octets in an independent copy",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 43,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "freezes exact mailbox generation and UID, never sequence ID",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 44,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "uses the decoded full path for international nested mailboxes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 45,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "passes every read budget and TLS transport bound unchanged",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 46,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "full-message budget is the default",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 47,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "rejects invalid UID and UIDVALIDITY before provider creation",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 48,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "rejects invalid or unselectable mailbox before provider access",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 49,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "rejects inconsistent envelope GUID before provider access",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 50,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "accepts a matching high-level GUID with full identity",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 51,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "rejects unsupported accounts and insecure modes without a provider",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 52,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "rejects invalid credentials, endpoint and budgets before networking",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 53,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "rejects wrong account, mailbox, UIDVALIDITY, UID or absent identity",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 54,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "rejects excess raw bytes even when an injected provider returns success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 55,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "cancel settles a stalled request and prevents a late completion",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 56,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "starting another read cancels the first lease and ignores its late error",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 57,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "dispose cancels in-flight work, clears credentials and refuses reuse",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 58,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "credentials are account-scoped and cannot be overwritten",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 59,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "distinct account sessions never share identity or credentials",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 60,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "name": "provider failures are fixed typed errors without server details",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 64,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+    "name": "contains synchronous protocol prints and preserves the return value",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 65,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+    "name": "contains asynchronous prints before and after an await",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 66,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+    "name": "registered future and timer callbacks retain the private zone",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 67,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+    "name": "stream listeners registered during client construction stay contained",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 68,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+    "name": "a pending Mail operation does not suppress unrelated output",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 69,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+    "name": "does not swallow or replace a synchronous failure",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 70,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
+    "name": "does not swallow or replace an asynchronous failure",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 74,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "manual setup connects with secure settings and disconnects",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 75,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "closing during connect ignores its late success and closes the client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 76,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "closing during connect ignores its late error and closes the client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 77,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "connect failure releases the candidate and allows a fresh connection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 78,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "closing during list ignores its late success and closes the client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 79,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "closing during list ignores its late error and closes the client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 80,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "list failure releases the candidate and allows a fresh connection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 81,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "closing during fetch ignores its late success and closes the client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 82,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "closing during fetch ignores its late error and closes the client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 83,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "fetch failure releases the candidate and allows a fresh connection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 84,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "an account without a selectable mailbox is closed and reports its error",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 85,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "opening messages replaces and disposes readers; a failed read preserves the current message",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 86,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "a message read success cannot alter a reconnected session",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 87,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "a message read error cannot alter a reconnected session",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 88,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "disconnect during mailbox select ignores a late success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 89,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "disconnect during mailbox select ignores a late error",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 90,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "disconnect during mailbox fetch ignores a late success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 91,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "disconnect during mailbox fetch ignores a late error",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 92,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "mailbox failure does not leave another folder’s messages visible",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 93,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "composing sends the draft and reports success or failure",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 94,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "confirmed submission clears the draft when outgoing cleanup fails",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 95,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "disconnect during send ignores its late success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 96,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "disconnect during send ignores its late error",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 97,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "search tolerates messages with an empty sender list",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 98,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "disconnecting catches asynchronous cleanup errors",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 99,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "closing catches asynchronous cleanup errors",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 100,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "German Mail retains localized account controls and reading prompt",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 101,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "narrow inbox supports folders, reading and back navigation",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 102,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "name": "saved-message navigation retains the connected account",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 106,
+    "suite": "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+    "name": "browser Mail explains account availability and opens saved bytes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 110,
+    "suite": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "name": "Mail opens saved bytes and disposes replaced controllers",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 111,
+    "suite": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "name": "saved EML keeps exact octets across modes and account navigation",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 112,
+    "suite": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "name": "saved message picker failures retain the current reader",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 113,
+    "suite": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "name": "saved reader toolbar fits a narrow enlarged-text window",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 114,
+    "suite": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "name": "cancelling the picker preserves the current Mail message",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 115,
+    "suite": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "name": "an empty picker result preserves the current Mail message",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 116,
+    "suite": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "name": "a picker result after closing Mail is discarded",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 117,
+    "suite": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "name": "a file read finishing after closing Mail is discarded",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 118,
+    "suite": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "name": "Studio cycles languages and Mail preserves its active sheet",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-mail-modular",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 3,
+    "suite": "third_party/enough_mail/test/mail/mail_client_send_test.dart",
+    "name": "an invalid envelope is reported as MailException",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 8,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "submission transaction waits for SMTP acceptance before filing and then cleans up",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 9,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "submission transaction failed submission never files a Sent copy",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 10,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "submission transaction cleanup cannot replace the original submission error or stack",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 11,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "submission transaction a failed Sent append reports confirmed submission and cleans up",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 12,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "submission transaction cleanup failure does not turn a submitted message into unsent",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 13,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "submission transaction both post-submission failures remain separately available",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 14,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "submission transaction copy opt-out still cleans up after confirmed submission",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 15,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "submission transaction copy opt-out still exposes a post-submission cleanup failure",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 17,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "MailClient with a local SMTP server successful submission appends only after final SMTP acceptance",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 18,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "MailClient with a local SMTP server rejected SMTP payload creates no Sent copy or submitted warning",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 19,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "MailClient with a local SMTP server append failure preserves confirmed submission at the public API",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 20,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "MailClient with a local SMTP server missing Sent mailbox is a warning after confirmed submission",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 21,
+    "suite": "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+    "name": "MailClient with a local SMTP server append opt-out does not require a Sent mailbox",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-send-transaction-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 3,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "actual command parser discovers selectable folders over required TLS",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 4,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "late socket completion after cancellation is destroyed before greeting/auth",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 5,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "required STARTTLS completes before authentication and refreshes capabilities",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 6,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "late TLS upgrade cannot revive an aborted account generation",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 7,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "capabilities do not promise SMTP, calendar or missing MOVE extension",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 8,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "missing STARTTLS refuses credentials instead of downgrading",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 9,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "missing and rejected credentials are typed and never reused from cache",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 10,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "fragmented greeting is framed before any command executes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 11,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "discovered UID pages retain flags and reconcile gaps with scoped ranges",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 12,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "omitted FLAGS remains unknown instead of clearing durable observations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 13,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "ordinary multipart source synchronizes only requested envelope headers",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 14,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "mixed-case IMAP FETCH atoms preserve messages instead of inventing tombstones",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 15,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "UIDVALIDITY rollover restarts the cursor and explicitly requests reset",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 16,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "same UID flag notification before literal does not consume the page limit",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 17,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unrelated UID flag notification before literal does not consume the page limit",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 18,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "rev1 without UID flag notification before literal does not consume the page limit",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 19,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "same UID flag notification after literal does not consume the page limit",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 20,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unrelated UID flag notification after literal does not consume the page limit",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 21,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "rev1 without UID flag notification after literal does not consume the page limit",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 22,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "sequence-correlated rev1 notifications allow a sparse completed response",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 23,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unrelated rev1 updates stay bounded when a full UID interval is returned",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 24,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "in-range UID with no complete literal cannot fabricate a successful tombstone page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 25,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unknown rev1 sequence in a sparse response cannot fabricate a successful tombstone page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 26,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "rev1 sequence identity changed by EXPUNGE cannot fabricate a successful tombstone page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 27,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed notification with invalid UID fails atomically",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 28,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed notification with duplicate UID fails atomically",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 29,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed notification with duplicate flags fails atomically",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 30,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed notification with nested flag fails atomically",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 31,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed notification with missing BODY literal fails atomically",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 32,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "flags alone never turn an omitted requested literal into an empty success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 33,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "late sequence flag update prevents false STORE confirmation",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 34,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "late UID flag update prevents false STORE confirmation",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 35,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "EXPUNGE followed by an uncorrelated rev1 update cannot confirm STORE",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 36,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "status text containing FETCH: OK before literal",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 37,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "status text containing FETCH: mixed-case OK after literal",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 38,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "status text containing FETCH: NO after literal",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 39,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "status text containing FETCH: BAD before literal",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 40,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "forged cross-mailbox cursor is rejected before vault or connection work",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 41,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "sparse high UIDNEXT synchronizes without enumerating numeric holes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 42,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "on-demand literal retains bare LF and non-UTF8 octets without reserialization",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 43,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "stale full-message UIDVALIDITY fails before body fetch",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 44,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "out-of-range UID cannot turn a tagged OK into a partial success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 45,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "duplicate FETCH cannot turn a tagged OK into a partial success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 46,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "unbalanced response cannot turn a tagged OK into a partial success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 47,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "partial BODY literal cannot turn a tagged OK into a partial success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 48,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed FETCH prefix cannot create an empty successful sync/tombstone page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 49,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with missing list separator cannot fabricate a successful tombstone page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 50,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with tab list separator cannot fabricate a successful tombstone page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 51,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with tab sequence separator cannot fabricate a successful tombstone page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 52,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with attached quoted prefix cannot fabricate a successful tombstone page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 53,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with attached closing list cannot fabricate a successful tombstone page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 54,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "FETCH with attached literal cannot fabricate a tombstone page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 55,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "rejected duplicate sync record never advances a successful partial page",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 56,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "malformed raw response never logs private literal text",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 57,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "announced oversized literal is quota failure before payload reception",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 58,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "oversized greeting is a non-retryable quota failure before authentication",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 59,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "protocol line budget remains quota failure even before login",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 60,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "aggregate response bytes are bounded across authentication commands",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 61,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "header literal limit fails the entire sync page without tombstones",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 62,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "dropped connection fails and the next operation uses a fresh authenticated client",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 63,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "timeout destroys the connection and rejects a delayed completion",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 64,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "vault completion after cancellation cannot open a connection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 65,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "STORE proves requested UID flags with a fresh observation; delete never expunges",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 66,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "acknowledged STORE without changed flags requires reconciliation",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 67,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "connection drop after remote mutation is conflict, never retryable success",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 68,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "MOVE requires capability and verifies source absence without global EXPUNGE",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 69,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "OAuthBearer GS2 identity uses a= and secrets stay inside auth command",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 70,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "OAuthBearer error challenge is drained once and returns authenticationRequired",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 71,
+    "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+    "name": "token auth without SASL-IR is explicitly unsupported before sending a token",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-bounded-reader-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 3,
+    "suite": "packages/quds_office_engine/test/wml_run_edit_test.dart",
+    "name": "applyRange bolds only the selected characters",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 4,
+    "suite": "packages/quds_office_engine/test/wml_run_edit_test.dart",
+    "name": "coalescing preserves equal-property language-routing boundaries",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 5,
+    "suite": "packages/quds_office_engine/test/wml_run_edit_test.dart",
+    "name": "explicit complex-script runs can coalesce across scripts",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 6,
+    "suite": "packages/quds_office_engine/test/wml_run_edit_test.dart",
+    "name": "unchanged range formatting cannot rejoin different script routes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 10,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "rtl direct false overrides inherited false",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 11,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "rtl direct true overrides inherited false",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 12,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "rtl direct false overrides inherited true",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 13,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "rtl direct true overrides inherited true",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 14,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "cs direct false overrides inherited false",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 15,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "cs direct true overrides inherited false",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 16,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "cs direct false overrides inherited true",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 17,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "cs direct true overrides inherited true",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 18,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Arabic letter selects the complex-script language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 19,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Hebrew letter selects the complex-script language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 20,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Arabic presentation letter selects the complex-script language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 21,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Hebrew presentation letter selects the complex-script language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 22,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "supplementary Arabic letter selects the complex-script language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 23,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Latin letters keeps the Latin language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 24,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Arabic-Indic digit keeps the Latin language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 25,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Persian digit keeps the Latin language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 26,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Arabic comma keeps the Latin language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 27,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Arabic question mark keeps the Latin language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 28,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Arabic combining mark keeps the Latin language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 29,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Hebrew combining mark keeps the Latin language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 30,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "Hebrew punctuation keeps the Latin language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 31,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "byte-order mark keeps the Latin language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 32,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "supplementary non-Arabic letter keeps the Latin language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 33,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "explicit complex-script formatting still selects its language",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 34,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "document complex-script default stays live after import and clone",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 35,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "reset both languages restores document inheritance",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 36,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "reset both languages restores style inheritance",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 37,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "new and imported run language attributes serialize independently",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 38,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "run formatting retains distinct complex-script languages",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 39,
+    "suite": "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+    "name": "run formatting retains distinct complex-script markers",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 43,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "clearing a direct override restores paragraph style live and after save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 44,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "clearing a direct override restores character style live and after save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 45,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "partial reset preserves other runs, pending formatting, unknown XML and explicit noProof",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 46,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "already inherited text is a no-op but equal direct overrides are removed",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 47,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "a pending unsaved override is removed without changing inherited formatting",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 48,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "document and explicit paragraph defaults remain live after reset",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 49,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "newly authored language resets after an earlier save without sparse import metadata",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 50,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "table condition en-US is restored with source tblLook",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 51,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "table condition de-CH is restored with source tblLook",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 52,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "table condition de-AT is restored with source tblLook",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 53,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "comment inheritance uses its exact story without touching body text",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 54,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "shallow detached previews cannot mutate live source properties",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 55,
+    "suite": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+    "name": "live, detached-source and invalid-range requests leave source unchanged",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-routing-engine-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 3,
+    "suite": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "name": "choosing ar-DZ updates the routed language and survives history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 4,
+    "suite": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "name": "choosing en-GB updates the routed language and survives history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 5,
+    "suite": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "name": "reset inherits character style through undo and DOCX without a direct bidi tag",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 6,
+    "suite": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "name": "reset inherits paragraph style through undo and DOCX without a direct bidi tag",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 7,
+    "suite": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "name": "reset inherits document default through undo and DOCX without a direct bidi tag",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 8,
+    "suite": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "name": "partial Arabic selection keeps its chosen language separate",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 9,
+    "suite": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "name": "a Latin-only selection changes val without changing the Arabic tail",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 10,
+    "suite": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "name": "a changed document bidi default makes a displayed target stale",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 11,
+    "suite": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "name": "choosing existing Latin metadata retains the selected script boundary through history and save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 12,
+    "suite": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "name": "resetting an already inherited Latin slot retains its selected script boundary",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 16,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "inspection and options chrome never create text or history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 17,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "collapsed caret changes the whole paragraph and preserves rich runs",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 18,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "multiline reversed selection formats complete emoji and combining clusters only",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 19,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "effective mixed states, inherited languages and no-op history are distinct",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 20,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "live changes recheck language, suppress findings and reject late results without manual inference",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 21,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale caret without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 22,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale text without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 23,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale language without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 24,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale complex-script language without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 25,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale run language without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 26,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale run complex-script language without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 27,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale suppression without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 28,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale run replacement without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 29,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale document without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 30,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a captured target refuses stale paragraph order without history",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 31,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a field in a multiline target refuses the entire change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 32,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a note in a multiline target refuses the entire change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 33,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a complex field in a multiline target refuses the entire change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 34,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a generated paragraph in a multiline target refuses the entire change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 35,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a complex field opened in a prior paragraph remains protected",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 36,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "protected block controls refuse both proofing operations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 37,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "protected inline controls refuse both proofing operations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 38,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "protected wrapper controls refuse both proofing operations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 39,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "protected binding controls refuse both proofing operations",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 40,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "unlocked control boundaries survive selected formatting and Undo",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 41,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "formatting leaves tracked insertion/deletion ranges and authors intact",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 42,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "comment target follows exact ownership and history preserves other story selections",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 43,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "header target follows exact ownership and history preserves other story selections",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 44,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "viewing mode, late protection and IME never mutate displayed targets",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 45,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "selection language preserves inactive slots through history and save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 46,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "language inheritance and explicit checking permission survive DOCX save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 47,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "resetting imported language preserves inactive metadata and style inheritance through history and save",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 48,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "a style part replacement makes an already displayed language target stale",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 49,
+    "suite": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "name": "aliased paragraph ownership cannot modify another story indirectly",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "word-language-editor-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 3,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "English footer keeps unavailable proofing visibly partial",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 4,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "German footer keeps unavailable proofing visibly partial",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 5,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "Arabic footer keeps unavailable proofing visibly partial",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 6,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "footer keeps skipped manual coverage partial until checked",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 7,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "footer labels paused checking after a complete clean result",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 8,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "footer labels a pending typing debounce as waiting",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 9,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "footer stays checking while a real provider request is pending",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 10,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "compact footer exposes partial status and opens Review",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 11,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "compact footer replaces a clean result with paused status",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 12,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "compact footer exposes waiting until the pending check finishes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 13,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "English compact footer keeps truthful status and reachable review actions",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 14,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "German compact footer keeps truthful status and reachable review actions",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 15,
+    "suite": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+    "name": "Arabic compact footer keeps truthful status and reachable review actions",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 19,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "draft checks after the pause and corrects without posting",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 20,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "grammar and style marks stay distinct and suggestions navigate",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 21,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "typing invalidates underlines and captured correction handlers",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 22,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "slow requests coalesce and never publish obsolete draft text",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 23,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "composition pauses checks and resumes without a text change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 24,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "disabled checking stays paused and never invokes manual providers",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 25,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "language changes invalidate existing draft suggestions",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 26,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "thread switches preserve draft text and reject old actions",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 27,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "replacement documents cannot receive late draft results",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 28,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "covering dialogs block captured draft correction and posting",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 29,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "OfficeProofingStatus.unavailable is shown as incomplete rather than a clean reply",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 30,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "OfficeProofingStatus.unsupported is shown as incomplete rather than a clean reply",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 31,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "over-limit drafts explain the limit without provider work",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 32,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "corrected draft posts explicitly as one undoable reply",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 33,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "name": "narrow Arabic reply suggestions remain usable with larger text",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 37,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "Reply focuses the inline draft without posting or a dialog",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 38,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "thread drafts survive switching and explicit posts are undoable",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 39,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "hiding comments preserves drafts and Reply restores inline focus",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 40,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "a replaced thread cannot inherit a draft through its reused ID",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 41,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "a stale post callback cannot send into another document",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 42,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "posting waits until IME composition is complete",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 43,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "viewing mode keeps comments inspectable without reply controls",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 44,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment writing marks offer focused inline corrections",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 45,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment marks follow the existing Writing pane",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 46,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment context menus combine corrections and thread actions",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 47,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment context Cut owns the comment rather than a body selection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 48,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment context Cut leaves a previously selected body table intact",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 49,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment context Paste leaves a previously selected body table intact",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 50,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment context Cut leaves a previously selected body frame intact",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 51,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment context Paste leaves a previously selected body frame intact",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 52,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "Select mode exposes real pointer comment selection and Copy",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 53,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "read-only comment Copy and Select all own the comment selection",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 54,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "read-only empty comments never materialize stored paragraphs",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 55,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "delayed comment Cut validates its context after none change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 56,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "delayed comment Cut validates its context after source change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 57,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "delayed comment Cut validates its context after caret change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 58,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "delayed comment Cut validates its context after document change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 59,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "delayed comment Paste validates its context after none change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 60,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "delayed comment Paste validates its context after source change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 61,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "delayed comment Paste validates its context after caret change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 62,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "delayed comment Paste validates its context after document change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 63,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "invalid clipboard guards stop before system clipboard access",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 64,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment menu Ignore once respects the current finding",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 65,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment menu Ignore this word respects the current finding",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 66,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment menu Add to personal words respects the current finding",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 67,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment suggestions survive unrelated in-flight check progress",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 68,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "stale comment menus cannot act on another document or reused ID",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 69,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment menus dismiss on changed source or selected thread",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 70,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment menus preserve IME and cannot act through a modal",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 71,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "resolved reply context offers Reopen for its whole thread",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 72,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "narrow English comments stay below the editor",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 73,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "narrow Arabic comments stay below the editor",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 74,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+    "name": "comment menu mutations respect a later viewing-mode change",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 78,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "name": "comment Shift+F10 opens in place and Escape restores focus",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 79,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "name": "comment Shift+F10 opens in place and Tab restores focus",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 80,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "name": "Menu key keeps the explicitly selected overlapping comment finding",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 81,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "name": "keyboard context uses the selected comment paragraph",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 82,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "name": "Select mode offers keyboard Copy without enabling comment edits",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 83,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "name": "IME composition blocks keyboard comment menus without changing composition",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 84,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "name": "covered modal blocks a captured keyboard comment correction",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 85,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "name": "stale keyboard comment menu cannot mutate a replaced document with reused ids",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 86,
+    "suite": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+    "name": "comment keyboard context rejects a canvas from the prior thread before rebuild",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 90,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Ctrl Alt C dispatches addEditCitation from the Word caret",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 91,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Ctrl Alt R dispatches refresh from the Word caret",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 92,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Cmd Alt C dispatches addEditCitation from the Word caret",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 93,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Cmd Alt R dispatches refresh from the Word caret",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 94,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "body composition blocks shortcuts and saved ribbon callbacks",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 95,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "successive shortcuts return directly to the writing caret",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 96,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Add Zotero note ribbon invokes its native picker",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 97,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Add Zotero annotation ribbon invokes its native picker",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 98,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Ctrl Alt C finds the citation in the focused Notes editor",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 99,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation shortcuts and saved ribbon callbacks respect viewing mode",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 100,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation commands stay inactive in other Studio applications",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 101,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "a covering modal blocks Zotero even when Word retains focus",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 102,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "rapid ribbon and shortcut activation opens one Zotero workspace",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 103,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation ribbon shows shortcuts for linux",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 104,
+    "suite": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation ribbon shows shortcuts for macOS",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 108,
+    "suite": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+    "name": "morphology download is explicit and shows source, size and CC BY",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 109,
+    "suite": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+    "name": "cancelling the morphology download installs nothing",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 110,
+    "suite": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+    "name": "without a morphology host the dialog keeps its old title",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 111,
+    "suite": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+    "name": "native host without an installation offers no analyzer",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 112,
+    "suite": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+    "name": "the licence page lists the analyzer code and the CC BY data",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "studio-settings-footer-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 3,
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+    "name": "an uncancelled small pinned bundle installs, verifies and removes",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "hunspell-cancellation-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 4,
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+    "name": "already-cancelled install performs no network or staging work",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "hunspell-cancellation-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 5,
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+    "name": "cancelling stalledHeaders aborts and permits a fresh install",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "hunspell-cancellation-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 6,
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+    "name": "cancelling stalledBody aborts and permits a fresh install",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "hunspell-cancellation-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 7,
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+    "name": "cancellation at the final progress callback prevents publication",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "hunspell-cancellation-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 11,
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart",
+    "name": "an uncancelled small pinned bundle still installs and verifies",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "hunspell-cancellation-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 12,
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart",
+    "name": "pre-cancelled install makes no HTTP request or staging directory",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "hunspell-cancellation-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 13,
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart",
+    "name": "cancellation at the final progress callback cannot publish",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "hunspell-cancellation-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 14,
+    "suite": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_incoming_test.dart",
+    "name": "cancellation aborts a stalled HTTP response and cleans staging",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "hunspell-cancellation-delta",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 4,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "ArabicAnalysisDecoder keeps strings, formats numbers, omits nulls, shares layouts",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 5,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "ArabicAnalysisDecoder numeric feature text preserves fractions, signs and exponents",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 6,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "ArabicAnalysisDecoder rejects malformed input",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 8,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "catalog noprob bundle is pinned to the immutable revision",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 9,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "catalog web bytes are admitted only when every file matches",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 11,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "CamelArabicMorphology is unavailable until loaded, then batches distinct words",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 12,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "CamelArabicMorphology the cache is bounded, oldest first",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 13,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "CamelArabicMorphology a failed load or a stopped worker means unavailable",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 14,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "CamelArabicMorphology implements the engine interface",
+    "platform": "vm",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-vm",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/native-plan.json"
+  },
+  {
+    "id": 3,
+    "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+    "name": "public JavaScript entry returns typed unsupported for every provider method",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-transport-boundary-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 4,
+    "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+    "name": "default public factory remains unsupported without requiring a codec",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-transport-boundary-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 5,
+    "suite": "packages/quds_mail_transport/test/unsupported_test.dart",
+    "name": "unsupported factory still validates bounds without accessing host services",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-transport-boundary-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 3,
+    "suite": "packages/quds_mail_mime/test/portable_import_test.dart",
+    "name": "both supported public MIME imports work without native libraries",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-mime-entry-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 3,
+    "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+    "name": "public portable entry parses an original RFC fixture",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-fork-mime-entry-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 4,
+    "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+    "name": "malformed input emits redacted codes with no console output",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-fork-mime-entry-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 5,
+    "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+    "name": "diagnostics stay isolated across concurrent async operations",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-fork-mime-entry-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 6,
+    "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+    "name": "strict charset decoding does not silently replace malformed bytes",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-fork-mime-entry-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 7,
+    "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+    "name": "excluded CJK codecs report unsupported without decoded fallback",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-fork-mime-entry-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 8,
+    "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+    "name": "undefined single-byte charset slots never become question marks",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-fork-mime-entry-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 9,
+    "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+    "name": "dates reject calendar, clock, zone and weekday normalization",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-fork-mime-entry-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 10,
+    "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+    "name": "RFC 2231 preserves characters split across encoded sections",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-fork-mime-entry-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 11,
+    "suite": "third_party/enough_mail/test/quds_portable_mime_test.dart",
+    "name": "RFC 2231 reports unknown charsets and malformed parameter bytes",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "mail-fork-mime-entry-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 4,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "ArabicAnalysisDecoder keeps strings, formats numbers, omits nulls, shares layouts",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 5,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "ArabicAnalysisDecoder numeric feature text preserves fractions, signs and exponents",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 6,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "ArabicAnalysisDecoder rejects malformed input",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 8,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "catalog noprob bundle is pinned to the immutable revision",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 9,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "catalog web bytes are admitted only when every file matches",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 11,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "CamelArabicMorphology is unavailable until loaded, then batches distinct words",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 12,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "CamelArabicMorphology the cache is bounded, oldest first",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 13,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "CamelArabicMorphology a failed load or a stopped worker means unavailable",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  },
+  {
+    "id": 14,
+    "suite": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "name": "CamelArabicMorphology implements the engine interface",
+    "platform": "node",
+    "result": "success",
+    "skipped": false,
+    "group": "morphology-portable-contract-node",
+    "phase": "docs/validation/office-resume-main-20261119/main-refresh/node-plan.json"
+  }
+]

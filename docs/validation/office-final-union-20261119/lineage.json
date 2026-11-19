@@ -1,0 +1,95 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "main_at_reconciliation": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+  "selected_successor": {
+    "pr": 191,
+    "head": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+    "tree": "af6b6cb49b7ab1fd01aabe2acdc66c7fe72c8b84"
+  },
+  "preserved_peer": {
+    "pr": 192,
+    "head": "0601d2790c7636bc02d53430f6e99f471e8ac83e"
+  },
+  "comparisons": [
+    {
+      "base": "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+      "head": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+      "status": "ahead",
+      "ahead_by": 21,
+      "behind_by": 0,
+      "merge_base": "0601d2790c7636bc02d53430f6e99f471e8ac83e"
+    },
+    {
+      "base": "ae5bb49cd9167c73086cc45428a8d52b18b96412",
+      "head": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+      "status": "diverged",
+      "ahead_by": 22,
+      "behind_by": 1,
+      "merge_base": "0f16754c278aa83cc79d5777e5b45d3f739e5469"
+    },
+    {
+      "base": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+      "head": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+      "status": "ahead",
+      "ahead_by": 26,
+      "behind_by": 0,
+      "merge_base": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd"
+    }
+  ],
+  "local_incremental_checkpoint": {
+    "commit": "f824865001913e48b4b2551eb9f359476e6cbd56",
+    "tree": "bee95cc983849b5ca3442051980183e4d2e1e8bd",
+    "parents": [
+      "ae5bb49cd9167c73086cc45428a8d52b18b96412",
+      "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd"
+    ],
+    "application_role": "Superseded by the reviewed PR191 implementation; preserve original source and five prepared tests through ancestry and the archived proposal.",
+    "runtime_status": "Zero product cases executed; host ENOSPC at Flutter suite startup."
+  },
+  "final_union_rule": "Use current main4c25 as the base tree; overlay documentation/evidence only. Keep actual parents f824 and4c25. All implementation, tests, plans and runners remain identical to4c25 (and product identical tode24). No fresh runtime qualification is inferred.",
+  "ci": "No GitHub Actions run, job, queue or status queried, dispatched or awaited.",
+  "main_at_evidence_union": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+  "main_tree_at_evidence_union": "15e1d979abdcacaf316b849e58dac4249e643424",
+  "peer191_closeout": {
+    "head": "1d762d4c369795175b55a4ecb9c44efd29f041b1",
+    "parent": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+    "changed_files": [
+      {
+        "path": "README.md",
+        "sha": "b0f143fd35199e9b06b6afc11af2b702e0682f2b",
+        "status": "modified"
+      },
+      {
+        "path": "docs/roadmaps/mail/status.md",
+        "sha": "0a1e2375e55ecd3b557a27e82bcdce7ec1d55bcf",
+        "status": "modified"
+      },
+      {
+        "path": "docs/validation/office-mail-continuation-20261119/README.md",
+        "sha": "7fe9217c8a9689956c48cf8cfa5b0a475597887a",
+        "status": "modified"
+      },
+      {
+        "path": "docs/validation/office-mail-continuation-20261119/attempt-de24bdfc/environment-failure-notice.json",
+        "sha": "1fa2c47f8ee926c4aab166b04ae76c7a85cb29f4",
+        "status": "added"
+      },
+      {
+        "path": "docs/validation/office-mail-continuation-20261119/remote-source-preservation.json",
+        "sha": "eba3245eae69f5a244b6d40f509d90faa00e59e1",
+        "status": "added"
+      },
+      {
+        "path": "docs/validation/office-mail-continuation-20261119/remote-source-review.md",
+        "sha": "1156b3e542d0da33a919b627226c66248a05da78",
+        "status": "added"
+      }
+    ],
+    "non_documentation_changes": 0,
+    "merge": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+    "merge_parents": [
+      "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+      "1d762d4c369795175b55a4ecb9c44efd29f041b1"
+    ]
+  }
+}

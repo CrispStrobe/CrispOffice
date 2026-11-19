@@ -1,0 +1,390 @@
+{
+  "schema": 1,
+  "kind": "Documentation/evidence union; Git data object construction",
+  "base_commit": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+  "base_tree": "15e1d979abdcacaf316b849e58dac4249e643424",
+  "parents": [
+    "f824865001913e48b4b2551eb9f359476e6cbd56",
+    "4c25c0455cee867db4cfad0f737cb886f01c1936"
+  ],
+  "implementation_source": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+  "non_documentation_changes": 0,
+  "unchanged_root_entries": [
+    {
+      "path": ".cursorrules",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a33e732cc093fa85ec14afcf9e8d7ee78f2253d"
+    },
+    {
+      "path": ".fvmrc",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e46fba09bb9c1d654a226b7285b55b6949b3767"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d7bb912b6ac7034adab3310a664c904b1583ba64"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c2bfda1f3938a75ea529cc25a8cdb7c6195d6c6"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ac0d583dda68079b97b6c79a57a4803ecf13e40"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b172a8eef21770142d5ba2b276c9a2ae812f66e"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0f143fd35199e9b06b6afc11af2b702e0682f2b"
+    },
+    {
+      "path": "analysis_options.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e40c961c5eda58a8470527fb768f093aa7dbbfff"
+    },
+    {
+      "path": "apps",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e97767581d70416a246cd149cdcd5e0a8d3f2352"
+    },
+    {
+      "path": "packages",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "99dbe5e40e53831a81ea25ce97a250b2caee43b7"
+    },
+    {
+      "path": "pubspec.lock",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13f6b3ddf846de813c4d19893c05919b67c8cd12"
+    },
+    {
+      "path": "pubspec.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17310477afd25866164346b32313e3854ed09696"
+    },
+    {
+      "path": "third_party",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4ca1ad22af2e0a0bf6a47f7b1ccc6b4733011022"
+    },
+    {
+      "path": "tmp",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e22b873ec74ec2705f70fec6a09fa0787d4832c9"
+    },
+    {
+      "path": "tool",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a3d02a1de63b803d6d6e02e3e0deda8a5eb872f6"
+    },
+    {
+      "path": "tools",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0a8eee7641bed0db07f445966ccb6e61130a461a"
+    }
+  ],
+  "preservation": {
+    "accepted_ae5_entries": 24,
+    "mail_action_f824_entries": 10,
+    "ae5_overview_retained_at": "docs/validation/office-final-union-20261119/overview-ae5bb49c.md",
+    "incoming_overviews_retained": [
+      "docs/validation/office-final-union-20261119/incoming-overview-4c25c045.md",
+      "docs/validation/office-resume-main-20261119/main-refresh/pre-publication-overview-0f16754c.md"
+    ]
+  },
+  "validation": {
+    "new_runtime_cases": 0,
+    "new_final_runtime_qualification": false,
+    "git_tree_hash": "Independently computed before creation and matched against GitHub response; actual value is bound by the containing commit."
+  },
+  "overlay_entries_excluding_manifest": [
+    {
+      "path": "docs/validation/office-final-union-20261119/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50127c97b76f89cc23b6032e2ba32a2bd32cdc20"
+    },
+    {
+      "path": "docs/validation/office-final-union-20261119/incoming-overview-4c25c045.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d84c342290173c9859d4c2f12846c57fefcf899"
+    },
+    {
+      "path": "docs/validation/office-final-union-20261119/lineage.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "308787e801c52a44fb720ff918ece7cb67677aae"
+    },
+    {
+      "path": "docs/validation/office-final-union-20261119/mail-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1150d0bd0a51e90165ce44c409b2402e143217cd"
+    },
+    {
+      "path": "docs/validation/office-final-union-20261119/overview-ae5bb49c.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9029bcd40f9cf6249bb4a2ee408f0be87586c599"
+    },
+    {
+      "path": "docs/validation/office-final-union-20261119/peer-observations.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc53e02f0aa8c9731740296a8ef7f5a5a1e8557e"
+    },
+    {
+      "path": "docs/validation/office-final-union-20261119/preservation-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af74152bd46a8ff7cdc5e056f2447e1eaff00b7e"
+    },
+    {
+      "path": "docs/validation/office-final-union-20261119/test-dispositions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5575b9747274dc0aab6cfaba93b994182b18910"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0009373e39406a707ac6919e4796d3f674c6375"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/mail-actions/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d65788bb5a9aae74278d87a5fc40a0ba539d470e"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/mail-actions/action-receipts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef8de0011e93b57d67f6361d574c515f1eecb7cb"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/mail-actions/actions-red.jsonl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "404f1479e2fbe0c897ec3521ae5dad8dcb438287"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/mail-actions/actions-red.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/mail-actions/analysis-receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44e9d54aff3459ab7d96664e7a3d96cfecb30965"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/mail-actions/analysis.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "651c0a3bf04931198c76cceaf4ca05a22a7dc17a"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/mail-actions/pending-native-plan.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5209dc46a1c288923becd9a1f4dd01a5e116795c"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/mail-actions/preservation-audit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84ca7c85c75c63bd942c791963e3689c8ac90a0e"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/mail-actions/review-and-startup-evidence.index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d3ae5126ffcdf727d896743dff8646b16b2a804"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/mail-actions/review-and-startup-evidence.tar.xz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4251737a0ef44c4670232ca53ebd9274a1234aa6"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9576bc0b07e37c7171db8352fb483b5922035fcf"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/native-verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "185ff491be9dac8acb672b7322f6c44dde5f30e4"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/node-verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8575fda255901e862eefe221b1ec4adcd6eea281"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/pre-publication-overview-0f16754c.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be748f9b559864c69f22020df4c1225e28914ad4"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/qualification-evidence.index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e432e9c4b3d4f63b38f62b1f1bb722503a4782c"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/qualification-evidence.tar.xz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdae3f0bb6f675de4b7044a1678fc7a4705674d1"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review-evidence.index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9cdcafecffc63694986a44b2f76504d8d9d6248e"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review-evidence.tar.xz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b654be853718a4bed13d32c15583d3052578db2f"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/audit_main_refresh_preservation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d3d7a3e9dc8ff52a6da16d6da9cba488ef58b5a"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/audit_qualification.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3e091191337591748819ac34944692025aee362"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/audit_recovery.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e1334110c526ab4782351d5e5d06aaa49644754"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/audit_static_fixture_repair.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80e9a8656bd70ffebb2a9f4fa2ea6423b0a4a133"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/auditor-readiness-08336f71.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77bda8f52e5c0317d343283566c4d9ef2f19b5b6"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/captured-fork-refs.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42fc076e82d97a56fc9c52f60c068e0ca2fc4b7d"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/captured-upstream-refs.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "866658d42194ab0d1218c9a10b66ac36aee4b6c9"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/mail-delta-08336f71.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aaa986526cc293f9ebe864c13e55259343092953"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/main-refresh-preservation-08336f71.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8aed7b4fb9412162d4037e73625a69e5e27ce60e"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/qualification-audit-refresh-cases.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fbda0137e8ff9cbb15f5758ff34eb95090bb38c"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/qualification-audit-refresh.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "391685785ec9777d274de5c019d9c19ba212ea6a"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/recovery-audit-08336f71.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a9e38f4b1379ff7d30738ee5fc48ef2dd17baf6"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/recovery-audit-0f16754c.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2778ee9a150d0f6fb486a279bf2d81ef8143baa3"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/review_mail_refresh.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b34e503fade885d32c37bf942b78be3e6090fee6"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/reviewed-format-differences.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d14bdeed6acd2d70b36a02c8aba0d04208b7923"
+    },
+    {
+      "path": "docs/validation/office-resume-main-20261119/main-refresh/review/static-fixture-repair-0f16754c.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e7e3c85dd6c3ba6a68a46c7b77790fe34c5edf6"
+    }
+  ]
+}

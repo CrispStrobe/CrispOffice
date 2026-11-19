@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "review_scope": "Independent read-only GitHub API review by mail_reconcile, summarized without changing findings; no product tests, mutations, filesystem writes or Actions calls.",
+  "sources": {
+    "pr192": "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+    "pr192_tree": "6b9f83ea730cc8e1982d3744a3fa7685468a4395",
+    "pr191_product": "de24bdfc2b2a1c6691d53d963c993fc236d1ffe5",
+    "closeout": "1d762d4c369795175b55a4ecb9c44efd29f041b1",
+    "current_main": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+    "main_tree": "15e1d979abdcacaf316b849e58dac4249e643424"
+  },
+  "ancestry": {
+    "pr192_ancestor_of_pr191": true,
+    "compare": {
+      "ahead": 21,
+      "behind": 0,
+      "merge_base": "0601d2790c7636bc02d53430f6e99f471e8ac83e"
+    },
+    "pr192_merged_at": "1c415fef97a9552191e83a6e5f8a071a6fe06710",
+    "pr191_merged_at": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+    "separate_pr192_merge_needed": false,
+    "ancestry_not_identical_implementation": true
+  },
+  "source_bindings": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "pr192": "12b0ab688709842ab9a8dc4b32c60937a89f6d11",
+      "pr191": "1f5cb526e1bf788c7f177cedec6c0c8d1c546638",
+      "decision": "Retain191 bounded markRead, retained draft protections, decoded-body reply and client-bound confirmed submission."
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+      "pr192": "cd43ad431eca0e766f7d21f514fb0c7cb90e24cf",
+      "pr191": "cd43ad431eca0e766f7d21f514fb0c7cb90e24cf",
+      "decision": "Exact bodyText projection preserved; generated envelope/attachment summaries excluded, rejected presentation empty."
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/smtp/smtp_client.dart",
+      "pr192": "133b4eb862e771f68914d10fab714f07d38ddf6d",
+      "pr191": "dad79ae980a6a669c1bcb7288c8f63a9f29cf685",
+      "decision": "Retains abort settling pending command plus stronger command-failure and final-acceptance checks."
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/mail/mail_client.dart",
+      "pr191": "46113996c4b26c03507566d0eef3af1afe793589",
+      "relevance": "Independent transport disconnect locks, outgoing send serialization and final SMTP acceptance."
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "pr191": "302aacaf249d66a2da6b3c633bef20cd2adbd9df",
+      "relevance": "Connection generations cancel pending connects, destroy late sockets and invalidate abort generation."
+    }
+  ],
+  "ownership_review": {
+    "product_patch_required": false,
+    "conclusion": "No concrete ordinary asynchronous ownership regression found. Keep191 unchanged.",
+    "retained": [
+      "Independent incoming abort, outgoing abort and high-level disconnect.",
+      "Generation/current-client guards, connection candidate-finally cleanup, selectable-INBOX fallback.",
+      "Deferred reader retirement and loader disposal.",
+      "Confirmed acceptance does not become retryable after cleanup failure."
+    ],
+    "nonidentical_defenses": [
+      "PR192 pending-client helper and immediate factory guards.",
+      "Explicit field nulling at disposal/adoption.",
+      "Repeated stale-operation shutdown finally blocks."
+    ],
+    "rationale": [
+      "Ordinary pending-client changes invalidate generation; concurrent connection attempts are blocked.",
+      "Default factories do not await; adoption finally clears pending refs before another asynchronous event.",
+      "Backend disconnects queue under locks; ClientBase generations cancel pending/late sockets.",
+      "SMTP abort settles pending command; send-transaction cleanup closes outgoing transport.",
+      "The omitted guards add synchronous injected-factory reentrancy/repeated-teardown defense; no missing normal-path fix was established."
+    ],
+    "limit": "Source-level judgment agreed with studio_review, not byte-exact equivalence or runtime qualification."
+  },
+  "policy": {
+    "reply_forward": "Authoritative plain text, Unicode-safe limits, deliberate HTML-only exclusion. BodyText API retained.",
+    "old_patch": "Do not apply f824 native/test files over191; that would remove bounded markRead/draft behavior.",
+    "coverage": "Failure→successful retry and old completion during replacement pending request remain additive sequence coverage gaps; historical prepared cases were not executed after ENOSPC."
+  },
+  "qualification": {
+    "pr192_claimed1642": {
+      "accepted_here": false,
+      "missing_publication_commit": "3cb2431b003cd6ae5af1a30376e1898dd1e1cd61",
+      "lookup": "404 Not Found",
+      "claimed_archive_sha256": "031a63eed992c8cb2ead6e1dfce649538b7facca1ddaf03ccd2ad8260baf1f4c",
+      "uploaded_development_not_substitute": true
+    },
+    "accepted0f": {
+      "source": "0f16754c278aa83cc79d5777e5b45d3f739e5469",
+      "passed": 404,
+      "failed": 0,
+      "skipped": 0,
+      "distinct_cases": 395,
+      "distinct_suites": 28,
+      "suite_platform_runs": 29,
+      "applies_to_later_source": false
+    },
+    "de24": {
+      "accepted": false,
+      "status": "Observed FAIL/exit1 during core-store; original raw Store failure/fingerprints uninspected after environment block.",
+      "notice": "docs/validation/office-mail-continuation-20261119/attempt-de24bdfc/environment-failure-notice.json"
+    }
+  }
+}
