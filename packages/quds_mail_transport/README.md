@@ -68,6 +68,15 @@ is retained before MIME processing; no line ending or charset reserialization
 is used. A partial/malformed/duplicate/out-of-range literal fails the entire
 operation. It cannot become a successful prefix or false sync tombstones.
 
+Well-formed unsolicited FLAGS-only updates may arrive before or after requested
+literals without consuming the page's message limit. An update for an in-range
+UID still requires that UID's complete literal. When an update lacks a UID and
+cannot be correlated safely with a returned message, a sparse response is
+rejected; it is never converted into an unverified deletion.
+Later safely identified flag updates replace the earlier observed snapshot.
+An expunge followed by an uncorrelated UID-less update is rejected even when
+all requested literals arrived, so stale flags cannot falsely confirm a write.
+
 `MailProvider.fetchMessage` cannot carry parse diagnostics. It therefore returns
 a message only for a complete codec result, with typed failures for rejected,
 unsupported, or partial projections. The account-free MIME API remains the
