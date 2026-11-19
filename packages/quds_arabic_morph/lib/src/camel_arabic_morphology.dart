@@ -24,7 +24,7 @@ final class CamelArabicMorphology implements ArabicMorphology {
     String? nativeLibraryPath,
     Uri? workerUrl,
     ArabicMorphTransport? transport,
-    this.cacheWords = 20000,
+    this.cacheWords = 4096,
     this.batchWords = 512,
   }) : _transport =
            transport ??
@@ -36,7 +36,10 @@ final class CamelArabicMorphology implements ArabicMorphology {
   final MorphDatabase database;
   final ArabicMorphTransport _transport;
 
-  /// Distinct words kept in the session cache (oldest dropped first).
+  /// Distinct words kept in the session cache (least recently used dropped
+  /// first). Each word holds about 30 analyses of about 45 features; 7,419
+  /// UD Arabic-PUD words take about 165 MB, so the default keeps a long
+  /// document's vocabulary without growing without bound.
   final int cacheWords;
 
   /// Words sent to the worker per request, so a long document never blocks

@@ -229,7 +229,7 @@ void _workerMain(List<Object?> arguments) {
         final results = <List<ArabicAnalysis>?>[];
         for (final word in words) {
           final json = bindings.analyze(handle, word! as String);
-          results.add(json == null ? null : decoder.decode(jsonDecode(json)));
+          results.add(json == null ? null : decoder.decode(json));
         }
         host.send(['result', id, results]);
       }
@@ -319,8 +319,8 @@ final class _Bindings {
     }
     _word = _allocate(_maxWordBytes + 1);
     _error = _allocate(_errorCapacity);
-    _json = _allocate(sizeOf<Pointer<Uint8>>()).cast();
-    _jsonLength = _allocate(sizeOf<Size>()).cast();
+    _out = _allocate(sizeOf<Pointer<Uint8>>()).cast();
+    _outLength = _allocate(sizeOf<Size>()).cast();
   }
 
   final Pointer<Void> Function(
@@ -350,8 +350,8 @@ final class _Bindings {
   // Buffers owned for the isolate's lifetime (one analyzer per isolate).
   late final Pointer<Uint8> _word;
   late final Pointer<Uint8> _error;
-  late final Pointer<Pointer<Uint8>> _json;
-  late final Pointer<Size> _jsonLength;
+  late final Pointer<Pointer<Uint8>> _out;
+  late final Pointer<Size> _outLength;
 
   Pointer<Uint8> _allocate(int bytes) {
     final pointer = _malloc(bytes);
@@ -394,9 +394,12 @@ final class _Bindings {
 
   String info(Pointer<Void> handle) => _cString(_info(handle));
 
-  /// The JSON analyses of [word], or null when the analyzer rejects it as
-  /// input. Other failures throw.
-  String? analyze(Pointer<Void> handle, String word) {
+  static final _json = utf8.decoder.fuse(json.decoder);
+
+  /// The decoded JSON analyses of [word] (parsed straight from the native
+  /// buffer), or null when the analyzer rejects it as input. Other failures
+  /// throw.
+  Object? analyze(Pointer<Void> handle, String word) {
     final bytes = utf8.encode(word);
     if (bytes.length > _maxWordBytes) return null;
     _word.asTypedList(bytes.length).setAll(0, bytes);
@@ -405,8 +408,8 @@ final class _Bindings {
       handle,
       _word,
       bytes.length,
-      _json,
-      _jsonLength,
+      _out,
+      _outLength,
       _error,
       _errorCapacity,
     );
@@ -416,11 +419,11 @@ final class _Bindings {
         'analysis failed ($status): ${_cString(_error, _errorCapacity)}',
       );
     }
-    final json = _json.value;
+    final output = _out.value;
     try {
-      return utf8.decode(json.asTypedList(_jsonLength.value));
+      return _json.convert(output.asTypedList(_outLength.value));
     } finally {
-      _stringFree(json);
+      _stringFree(output);
     }
   }
 }
