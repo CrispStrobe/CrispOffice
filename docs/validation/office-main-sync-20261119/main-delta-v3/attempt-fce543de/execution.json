@@ -1,0 +1,88 @@
+{
+  "status": "FAIL",
+  "source_commit": "fce543dedb1217804f67de088ef9c287e8a2edca",
+  "source_tree": "2c3fe2fad3d692731dc454086d840b0ece747f10",
+  "source_base": "00014577265d1f95d4c016159029510d3a10804b",
+  "prior_qualified_source": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "runs": [
+    {
+      "name": "locked-workspace-resolution",
+      "command": [
+        "/workspace/scratch/79e6ad9e4046/quds-runtime/bin/dart",
+        "pub",
+        "get",
+        "--offline",
+        "--enforce-lockfile"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "locked-workspace-resolution.log",
+      "exit_code": 0,
+      "log_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "accepted": true
+    },
+    {
+      "name": "delta-continuity",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite/docs/validation/office-main-sync-20261119/main-delta-v3/verify-delta-continuity.py",
+        "--repo",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+        "--runtime",
+        "/workspace/scratch/79e6ad9e4046/quds-runtime",
+        "--source",
+        "fce543dedb1217804f67de088ef9c287e8a2edca",
+        "--evidence",
+        "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks",
+        "--output",
+        "/workspace/scratch/79e6ad9e4046/main-delta/v3-final-checks/continuity.json"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "delta-continuity.log",
+      "exit_code": 1,
+      "log_sha256": "edf3ffa79b9e7547f27526390a5c1282e7b9bcda638062ba2bb045e6b0debe24",
+      "accepted": false,
+      "receipt": "continuity.json",
+      "receipt_sha256": "77060efd3e2c8039f41627ad1ed54fe722734267719d3ee34daa059e71e4b7bc"
+    }
+  ],
+  "started_at_utc": "2026-11-19T09:21:20.586984+00:00",
+  "fixture_root": "/workspace/scratch/79e6ad9e4046/hunspell-review",
+  "runtime_receipt_sha256": "94b3e458524c84d6f4f9bbdbec107a9d55ba3e6e38f54b76529d6c11aacd229f",
+  "python_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "native_environment": {
+    "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/79e6ad9e4046/hunspell-review/native/libhunspell_lifecycle_shim.so",
+    "QUDS_HUNSPELL_LIVE_DOWNLOAD": "1",
+    "QUDS_HUNSPELL_TEST_DICTIONARY": "/workspace/scratch/79e6ad9e4046/hunspell-review/dictionary",
+    "QUDS_HUNSPELL_TEST_LIBRARY": "/workspace/scratch/79e6ad9e4046/hunspell-review/native/libquds_proofing_hunspell.so"
+  },
+  "github_actions_queried_or_awaited": false,
+  "prior_application_cases_added_to_delta": 0,
+  "prior_python_controls_added_to_delta": 0,
+  "rejected_attempts_added_to_delta": 0,
+  "rejected_attempt_sources": [
+    "aea5d91af0083bc088d599ed767188f0bb071195",
+    "c0c71a26e014cadda7a1f42244e710509dea5f6c"
+  ],
+  "preserved_pre_resolution_receipt_sha256": "92fa67b46096a437b109f5ed5593d3648c05e9dba2dda6b0c4a2783bf6a3ddae",
+  "error": "RuntimeError('delta-continuity failed; preserve its raw evidence')",
+  "source_unchanged": true,
+  "runtime_unchanged": true,
+  "source_head_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "finished_at_utc": "2026-11-19T09:21:53.351223+00:00",
+  "manifest_sha256": {
+    "runtime-before.json": "4041d1c93c885f0a205f4298e3e53a09a6f6e939bd070e6f39ae54911f8fc573",
+    "package_config.json": "18f883d9af9b9d30da6aed9e870ba135afc0fe9a1757f6e9b9da4d92e1985423",
+    "prior-execution.json": "beee50ffbf587c41615d42e967e4f65bcb83c8945cc08b0436f1696c6562d6ea",
+    "prior-runtime-before.json": "a0a825ebad63dd9799b36a94293f153e60d2940a395d149bfbbffc3ce40f9629",
+    "prior-independent-summary.json": "338f588f5c3ae08ff8fb84c3663911f3cda07f820573fc30f384323da192efea",
+    "runtime-after.json": "4041d1c93c885f0a205f4298e3e53a09a6f6e939bd070e6f39ae54911f8fc573",
+    "source-before.json": "9ba6b5f8c370bf01beeb6980bca62daf4dc9c617d09d8af32a590041257a8981",
+    "runtime-pre-resolution.json": "93c12bfec5f5df462ca2b349d0ad2ead3e878d4326084d3c22f4bde155c48747",
+    "package_graph.json": "50f03d7dd6bcc5a9a1f0b41ac21fdd19bd53f5b9081783995b3382ddd706eb90",
+    "source-after.json": "9ba6b5f8c370bf01beeb6980bca62daf4dc9c617d09d8af32a590041257a8981",
+    "prior-source-before.json": "ef4f4a5fe3809c0afb9f3b565ee1a4e241bad3efe5f60f58862d0c8222e77ade"
+  }
+}

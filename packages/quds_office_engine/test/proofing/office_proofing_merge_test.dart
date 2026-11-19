@@ -108,6 +108,32 @@ void main() {
     expect(report.findings, hasLength(2));
   });
 
+  test('another provider cannot bridge two findings of the same provider', () {
+    final report = OfficeProofingReport(
+      request: _request,
+      results: [
+        _result('a', [
+          (4, 7, 'first-provider', spelling, ['إلى']),
+        ]),
+        _result('b', [
+          (4, 7, 'one', spelling, ['إلى', 'إلي']),
+          (4, 7, 'two', spelling, ['إلى', 'ألي']),
+        ]),
+      ],
+    );
+    expect(report.findings.map((finding) => finding.ruleId), [
+      'first-provider',
+      'two',
+    ]);
+    expect(report.findings.first.providerId, 'a');
+    expect(report.findings.first.message, 'a message');
+    expect(report.findings.first.replacements, ['إلى', 'إلي']);
+    expect(report.findings.last.providerId, 'b');
+    expect(report.findings.last.message, 'b message');
+    expect(report.findings.last.replacements, ['إلى', 'ألي']);
+    expect(report.results.last.findings, hasLength(2));
+  });
+
   test('agreeing findings of different categories stay separate', () {
     final report = OfficeProofingReport(
       request: _request,
