@@ -1,9 +1,11 @@
 import 'package:characters/characters.dart';
 
+import 'arabic_morphology.dart';
 import 'office_proofing.dart';
 import 'proofing_text_ranges.dart';
 
 part 'arabic_extended_rules.dart';
+part 'arabic_grammar_rules.dart';
 
 /// Independently authored Modern Standard Arabic writing checks.
 ///
@@ -23,14 +25,28 @@ part 'arabic_extended_rules.dart';
 class ArabicWritingRulesProvider extends OfficeProofingProvider {
   /// [enabledOptionalRuleIds] opts in to rules from
   /// [arabicExtendedOptionalRuleIds] (prescriptive usage, vowelling hints and
-  /// other convention-dependent checks); all other rules run by default.
+  /// other convention-dependent checks) and [arabicGrammarOptionalRuleIds];
+  /// all other rules run by default.
+  ///
+  /// [morphology] feeds the morphology-based grammar rules
+  /// (`arabic_grammar_rules.dart`); with the default
+  /// [UnavailableArabicMorphology] those rules stay silent.
   ArabicWritingRulesProvider({
     Set<String> enabledOptionalRuleIds = const <String>{},
+    this.morphology = const UnavailableArabicMorphology(),
   }) : enabledOptionalRuleIds = Set<String>.unmodifiable(
-         enabledOptionalRuleIds.intersection(arabicExtendedOptionalRuleIds),
+         enabledOptionalRuleIds.intersection(_optionalRuleIds),
        );
 
   final Set<String> enabledOptionalRuleIds;
+
+  /// Morphological analyzer for the grammar rules.
+  final ArabicMorphology morphology;
+
+  static const Set<String> _optionalRuleIds = <String>{
+    ...arabicExtendedOptionalRuleIds,
+    ...arabicGrammarOptionalRuleIds,
+  };
   bool _disposed = false;
 
   @override
@@ -64,6 +80,8 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
     ...ruleIds,
     ...arabicExtendedDefaultRuleIds,
     ...arabicExtendedOptionalRuleIds,
+    ...arabicGrammarDefaultRuleIds,
+    ...arabicGrammarOptionalRuleIds,
   };
 
   /// Words that begin with hamzat al-qat' (bare spelling -> corrected
@@ -1022,16 +1040,34 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
       );
     }
 
-    _ArabicExtendedRules(
-      text,
-      words,
-      protected,
-      add,
-      (String ruleId) =>
-          !request.ignoredRuleIds.contains(ruleId) &&
-          (!arabicExtendedOptionalRuleIds.contains(ruleId) ||
-              enabledOptionalRuleIds.contains(ruleId)),
-    ).run();
+    bool enabled(String ruleId) =>
+        !request.ignoredRuleIds.contains(ruleId) &&
+        (!_optionalRuleIds.contains(ruleId) ||
+            enabledOptionalRuleIds.contains(ruleId));
+    _ArabicExtendedRules(text, words, protected, add, enabled).run();
+
+    if (morphology.isAvailable) {
+      await _ArabicGrammarRules(
+        text,
+        words,
+        morphology,
+        add,
+        enabled,
+        (int start, int end) => findings.any(
+          (OfficeProofingFinding f) =>
+              f.start - request.startOffset < end &&
+              start < f.end - request.startOffset,
+        ),
+      ).run();
+      if (_disposed) {
+        return OfficeProofingResult(
+          request: request,
+          providerId: id,
+          status: OfficeProofingStatus.unavailable,
+          message: 'Arabic writing provider is disposed.',
+        );
+      }
+    }
 
     findings.sort((a, b) => a.start.compareTo(b.start));
     return OfficeProofingResult(
