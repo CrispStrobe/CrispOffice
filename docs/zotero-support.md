@@ -451,6 +451,28 @@ copying add no document history; applying a citation is one undoable change.
 If the document or caret changes while the review is open, the staged result
 is rejected and the workspace explains how to reopen it.
 
+#### Show where a source is cited
+
+In **Document → Cited references…**, choose **Show citations** beside a source.
+The list shows each citation's stored text and location, including the body
+section and paragraph or the displayed footnote/endnote number. Choose
+**Go to citation** to close the references workspace and select that citation
+in the document or Notes pane. This works offline and in **Read and copy** mode;
+it does not change the document, its saved state or its undo history.
+
+Each distinct citation field appears once, including when the source occurs
+more than once within the same citation. The list uses the same declared URI
+aliases and embedded-source identities as Cited references, so equal item keys
+in unrelated libraries are not combined. Headers, footers, comments and other
+locations that the editor cannot reveal remain inspectable with navigation
+unavailable. Note labels use the document's numbering settings; unsupported or
+orphaned note numbering is identified by source ID.
+
+**Back to cited references** retains the source picker's search and staged
+selection. **Go to citation** leaves those draft selection changes unapplied.
+If the document, caret or selected field changes while the list is open, the
+old destination is refused; reopen Cited references to use the current document.
+
 ### Change the sources in a citation
 
 Choose an existing field's **Reference actions → Edit citation**, or review a
@@ -606,6 +628,40 @@ in total. Empty names, control characters and malformed Unicode are rejected.
 Long labels are shortened visually, with the full tag available in their
 tooltip, and the chip list scrolls within narrow windows. Filtering is read-only
 and does not add, remove or rename tags in Zotero.
+
+#### Browse available tags
+
+Choose **Search options → Browse tags…** to find actual tag names in the
+connected library or selected collection. In a desktop saved search, the picker
+explicitly browses **Library tags**; it does not claim to list tags or counts
+limited to that saved search. This is separate from the reference search:
+**Search tag names** supports containing or starting with a phrase, and the
+arrow buttons move through pages of 50 API records. Typing does not submit a
+search; paging and changing the match mode keep the last submitted phrase.
+
+Choose tags across pages and searches. Selected tags remain visible as chips,
+including tags outside the current results, and can be removed individually or
+cleared. **Apply tags** updates the complete filter selection and returns the
+reference results to the first page of the last submitted reference search.
+Selected references and unfinished search/tag text remain intact. **Cancel**
+discards all draft filter changes; applying an unchanged selection makes no
+new reference request.
+
+Zotero can report manual and automatic records for the same tag. The picker
+shows one choice for each exact name on a page and never adds their counts
+together. Usage counts are displayed only when supplied and unambiguous on that
+page. They may cover the whole library, including notes and attachments, even
+while browsing a collection; they are not counts of the current reference
+search. API pagination still advances by records, so the same name can occur on
+another page without being selected twice.
+
+Names that cannot be represented by the existing literal-tag filter remain
+visible with an explanation and cannot be selected. The same 20-tag and text
+limits apply. The picker preserves exact capitalization and Unicode; it never
+silently trims a returned name. Requests use the existing online credentials
+or isolated local desktop connection. Errors are displayed without an automatic
+retry; closing during a request ignores its later result. A changed catalog
+connection or library prevents an old picker result from being applied.
 
 ### Connection and credentials
 
@@ -1041,6 +1097,7 @@ source identity.
 - [Zotero local API](https://www.zotero.org/support/dev/web_api/v3/local_api)
 - [Zotero 10 developer notes](https://www.zotero.org/support/dev/zotero_10_for_developers)
 - [Local API implementation](https://github.com/zotero/zotero/blob/045d5204410f1abfd80910e1cd0aa92dceec741b/chrome/content/zotero/xpcom/server/server_localAPI.js)
+- [Tag catalog desktop routes](https://github.com/zotero/zotero/blob/b589b7ff2f9fa5f1fea2a69b61a9e583e50d8cb8/chrome/content/zotero/xpcom/server/server_localAPI.js)
 - [CSL JSON translator](https://github.com/zotero/translators/blob/master/CSL%20JSON.js)
 - [HTTP citing protocol](https://www.zotero.org/support/dev/client_coding/http_integration_protocol)
 - [Bibliography wire-protocol parameters](https://www.zotero.org/support/dev/client_coding/libreoffice_plugin_wire_protocol#document_setbibliographystyle)

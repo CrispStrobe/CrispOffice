@@ -1034,7 +1034,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     )..layout(maxWidth: r.width - 16);
     return PaintRunText.hitIndex(
       painter,
-      Offset(local.dx - r.left - 8, local.dy - r.top - 8),
+      local - _shapeTextOrigin(shape, r, painter),
       shape.text.length,
     );
   }
@@ -1049,7 +1049,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     }
     final int? fill = int.tryParse(shape.fillColor, radix: 16);
     final int rgb =
-        fill ?? ((background ?? _theme.slideBackground).toARGB32() & 0xFFFFFF);
+        fill ?? ((background ?? _slidePaper(slide)).toARGB32() & 0xFFFFFF);
     final int r = (rgb >> 16) & 0xFF;
     final int g = (rgb >> 8) & 0xFF;
     final int b = rgb & 0xFF;
@@ -1156,8 +1156,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     Color color, {
     Color? background,
   }) {
-    final double autoSize = (r.height * 0.22).clamp(10.0, 18.0);
-    final double baseSize = shape.fontSizePt > 0 ? shape.fontSizePt : autoSize;
+    final double baseSize = shape.fontSizePt > 0 ? shape.fontSizePt : 16;
     final int lines = _growsWithText(r)
         ? 32
         : (r.height / (baseSize * 1.2)).ceil().clamp(1, 32);
@@ -1184,9 +1183,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     }
     return PaintRunText.plain(
       text: text,
-      fontSize: shape.fontSizePt > 0
-          ? shape.fontSizePt
-          : (r.height * 0.22).clamp(10.0, 18.0),
+      fontSize: baseSize,
       color: color,
       themeFamily: _theme.fontFamily,
       maxLines: lines,
@@ -1213,7 +1210,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         if (runText.isEmpty) continue;
         final double size = run.fontSizePt > 0
             ? run.fontSizePt
-            : (r.height * 0.22).clamp(10.0, 18.0);
+            : (paragraph.defaultFontSizePt > 0
+                  ? paragraph.defaultFontSizePt
+                  : (shape.fontSizePt > 0 ? shape.fontSizePt : 16));
         final Color authored = run.color.isEmpty
             ? color
             : _hexColor(run.color, color);
@@ -1421,13 +1420,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       color,
       background: background,
     )..layout(maxWidth: r.width - 16);
-    final double oy = switch (shape.textAnchor) {
-      PmlTextAnchor.center =>
-        r.top + math.max(4, (r.height - painter.height) / 2),
-      PmlTextAnchor.bottom => r.bottom - painter.height - 8,
-      PmlTextAnchor.top => r.top + 8,
-    };
-    final Offset origin = Offset(r.left + 8, oy);
+    final Offset origin = _shapeTextOrigin(shape, r, painter);
     if (isEdit && editBase != editCaret) {
       final int start = editBase < editCaret ? editBase : editCaret;
       final int end = editBase > editCaret ? editBase : editCaret;
@@ -1463,6 +1456,14 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     }
     canvas.restore();
   }
+
+  Offset _shapeTextOrigin(PmlShape shape, Rect r, TextPainter painter) =>
+      Offset(r.left + 8, switch (shape.textAnchor) {
+        PmlTextAnchor.center =>
+          r.top + math.max(4, (r.height - painter.height) / 2),
+        PmlTextAnchor.bottom => r.bottom - painter.height - 8,
+        PmlTextAnchor.top => r.top + 8,
+      });
 
   void _paintMorph(
     Canvas canvas,
