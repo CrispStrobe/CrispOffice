@@ -112,6 +112,8 @@ final class ImapFixture {
   bool closeAfterMutation = false;
   final List<String> beforeFetchResponses = [];
   final List<String> afterFetchResponses = [];
+  List<String>? searchResponses;
+  String searchStatus = 'OK';
   final List<String> commands = [];
   final List<FixtureImapClient> clients = [];
   Future<void> Function(String command)? beforeReply;
@@ -242,6 +244,18 @@ final class ImapFixture {
         '* OK [PERMANENTFLAGS (\\Seen \\Flagged \\Answered \\Draft \\Deleted)] flags\r\n'
         '$tag OK [${readOnly ? 'READ-ONLY' : 'READ-WRITE'}] selected\r\n',
       );
+    } else if (command.startsWith('UID SEARCH UID ')) {
+      final range = RegExp(r'^UID SEARCH UID (\d+):(\d+)$').firstMatch(command);
+      if (range == null) throw StateError('Expected a bounded UID search');
+      final first = int.parse(range[1]!);
+      final last = int.parse(range[2]!);
+      final uids = messages.keys.where((uid) => uid >= first && uid <= last);
+      final responses =
+          searchResponses ?? ['* SEARCH${uids.map((uid) => ' $uid').join()}'];
+      for (final response in responses) {
+        socket.text('$response\r\n');
+      }
+      socket.text('$tag $searchStatus searched\r\n');
     } else if (command.startsWith('UID FETCH ')) {
       if (dropFetch) {
         await socket.drop();

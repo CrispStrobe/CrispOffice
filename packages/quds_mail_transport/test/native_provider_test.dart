@@ -194,7 +194,7 @@ void main() {
   });
 
   test(
-    'bounded UID sweep returns durable flags, holes and a scoped next cursor',
+    'discovered UID pages retain flags and reconcile gaps with scoped ranges',
     () async {
       final fixture = ImapFixture(
         uidNext: 5,
@@ -207,7 +207,7 @@ void main() {
       final first =
           (await provider.pullChanges(
                     fixture.mailbox,
-                    limit: 2,
+                    limit: 1,
                     lease: _lease(fixture),
                   )
                   as MailSuccess<MailSyncPage>)
@@ -216,21 +216,25 @@ void main() {
         first.upserts.single.flags,
         const MailMessageFlags(isRead: true, isFlagged: true),
       );
-      expect((first.tombstones.single as MailImapIdentity).uid, 2);
+      expect(first.tombstones, isEmpty);
+      expect(first.imapRange!.firstUid, 1);
+      expect(first.imapRange!.lastUid, 1);
       expect(first.hasMore, isTrue);
       expect(first.resetRequired, isFalse);
       final second =
           (await provider.pullChanges(
                     fixture.mailbox,
                     cursor: first.next,
-                    limit: 2,
+                    limit: 1,
                     lease: _lease(fixture),
                   )
                   as MailSuccess<MailSyncPage>)
               .value;
       expect((second.upserts.single.remote as MailImapIdentity).uid, 3);
       expect(second.upserts.single.flags, const MailMessageFlags());
-      expect((second.tombstones.single as MailImapIdentity).uid, 4);
+      expect(second.tombstones, isEmpty);
+      expect(second.imapRange!.firstUid, 2);
+      expect(second.imapRange!.lastUid, 4);
       expect(second.hasMore, isFalse);
       expect(
         fixture.commands.where((command) => command.startsWith('UID FETCH ')),
@@ -393,7 +397,8 @@ void main() {
       );
       final page = (result as MailSuccess<MailSyncPage>).value;
       expect(page.upserts, hasLength(1));
-      expect((page.tombstones.single as MailImapIdentity).uid, 2);
+      expect(page.tombstones, isEmpty);
+      expect(page.imapRange!.lastUid, 2);
     },
   );
 
@@ -466,6 +471,7 @@ void main() {
     'flags alone never turn an omitted requested literal into an empty success',
     () async {
       final fixture = ImapFixture(uidNext: 2)
+        ..searchResponses = ['* SEARCH 1']
         ..beforeFetchResponses.add(r'* 1 FETCH (UID 1 FLAGS (\Seen))');
       final result = await fixture.provider().pullChanges(
         fixture.mailbox,
@@ -581,7 +587,7 @@ void main() {
   );
 
   test(
-    'sparse high UIDNEXT reports the whole-sweep limitation before any FETCH',
+    'sparse high UIDNEXT synchronizes without enumerating numeric holes',
     () async {
       final fixture = ImapFixture(
         uidNext: 1000001,
@@ -592,10 +598,15 @@ void main() {
         limit: 100,
         lease: _lease(fixture),
       );
-      expect(_code(result), MailProblemCode.unsupported);
+      final page = (result as MailSuccess<MailSyncPage>).value;
+      expect((page.upserts.single.remote as MailImapIdentity).uid, 1000000);
+      expect(page.tombstones, isEmpty);
+      expect(page.imapRange!.firstUid, 1);
+      expect(page.imapRange!.lastUid, 1000000);
+      expect(page.hasMore, isFalse);
       expect(
         fixture.commands.any((command) => command.startsWith('UID FETCH ')),
-        isFalse,
+        isTrue,
       );
     },
   );

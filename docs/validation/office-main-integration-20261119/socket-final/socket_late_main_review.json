@@ -1,0 +1,220 @@
+{
+  "frozen_source_left_unchanged": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "late_main": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+  "late_pr_head": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+  "late_main_and_pr_tree": "fa3818ce5202cc8fbeb0a1a0555589edbcef9c96",
+  "late_main_and_pr_tree_identical": true,
+  "prior_known_incoming": "022a974a96db23e22bc161f7d465e4b972e8c2a9",
+  "new_publication_changes_confined_to_readme_and_docs": true,
+  "publication_paths_since_prior_known_incoming": [
+    "README.md",
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/roadmaps/mail/status.md",
+    "docs/validation/mail-m06-resume-20261119/README.md",
+    "docs/validation/office-main-completion-20261119/README.md",
+    "docs/validation/office-main-completion-20261119/release/audit_publication_inputs.py",
+    "docs/validation/office-main-completion-20261119/release/coverage-summary.json",
+    "docs/validation/office-main-completion-20261119/release/independent-archive-audit.json",
+    "docs/validation/office-main-completion-20261119/release/independent-summary.json",
+    "docs/validation/office-main-completion-20261119/release/local-qualification.index.json",
+    "docs/validation/office-main-completion-20261119/release/local-qualification.tar.xz",
+    "docs/validation/office-main-completion-20261119/release/manifest.json",
+    "docs/validation/office-main-completion-20261119/release/post-cutoff-main-review.json",
+    "docs/validation/office-main-completion-20261119/release/post-cutoff-reconciliation-audit.json",
+    "docs/validation/office-main-completion-20261119/release/publication-continuity.json",
+    "docs/validation/office-main-completion-20261119/release/publication-receipt.json",
+    "docs/validation/office-main-completion-20261119/release/reconciliation-summary.json",
+    "docs/validation/office-main-integration-20261119/README.md",
+    "docs/validation/office-main-integration-20261119/pre-tls-report.md",
+    "docs/validation/office-main-integration-20261119/tls/audit_tls_qualification.py",
+    "docs/validation/office-main-integration-20261119/tls/captured-fork-refs.txt",
+    "docs/validation/office-main-integration-20261119/tls/captured-upstream-refs.txt",
+    "docs/validation/office-main-integration-20261119/tls/development-evidence.index.json",
+    "docs/validation/office-main-integration-20261119/tls/development-evidence.tar.xz",
+    "docs/validation/office-main-integration-20261119/tls/publication-continuity.json",
+    "docs/validation/office-main-integration-20261119/tls/qualification-evidence.index.json",
+    "docs/validation/office-main-integration-20261119/tls/qualification-evidence.tar.xz",
+    "docs/validation/office-main-integration-20261119/tls/store-receipt.json",
+    "docs/validation/office-main-integration-20261119/tls/tls-suite-review.json",
+    "docs/validation/office-main-integration-20261119/tls/tls_ancestry_review.json",
+    "docs/validation/office-main-integration-20261119/tls/tls_final_review-cases.json",
+    "docs/validation/office-main-integration-20261119/tls/tls_final_review.json",
+    "docs/validation/office-main-integration-20261119/tls/tls_historical_continuity.json",
+    "docs/validation/office-main-integration-20261119/tls/verification.json"
+  ],
+  "qualified_source": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "qualified_tree": "9d2c815eda61378fbc4b234124e8e7c9cfeacb5b",
+  "archive": {
+    "path": "docs/validation/office-main-completion-20261119/release/local-qualification.tar.xz",
+    "bytes": 1308664,
+    "sha256": "be1818b9a47f8e0aab39f0e54f00731ae83b161630aaab80bab987ce3633d77e",
+    "member_count": 114,
+    "uncompressed_bytes": 19054098,
+    "member_set_sizes_and_sha256_verified": true,
+    "summary_and_internal_audit_member_hashes_verified": true
+  },
+  "source_binding": {
+    "native_records": 5031,
+    "node_records": 5031,
+    "unique_git_blobs_independently_sha256_hashed": 4724,
+    "all_modes_and_blobs_match_qualified_and_late_main_trees": true,
+    "all_archived_source_sha256_values_match_qualified_git_bytes": true,
+    "native_node_source_and_environment_before_after_equal": true,
+    "source_qualified_plan_hashes_verified": true,
+    "store_bound_input_hashes_verified": 53,
+    "current_runtime_environment_reverified": false
+  },
+  "reported_counts_reconciled_from_retained_receipts_and_summaries": {
+    "native_executions": 602,
+    "node_executions": 35,
+    "core_store_executions": 199,
+    "total_application_executions": 836,
+    "suite_platform_executions": 85,
+    "distinct_test_files": 73,
+    "separate_python_controls": 78,
+    "count_is_not_a_distinct_case_claim": true,
+    "new_raw_event_recount_performed_by_this_review": false
+  },
+  "bound_paths_differing_between_5569_and_frozen_ac1": [
+    {
+      "path": "packages/quds_mail_core/test/models_test.dart",
+      "qualified_and_late_main": {
+        "mode": "100644",
+        "git_blob": "dd08deb81d4f005ae31edc68cb56d66fa97a2a36",
+        "materialized": true,
+        "sha256": "9d3a3d41de089613ee62c1927ca5d88756e8632333fabbcb078cab4fd067cf5e",
+        "sparse_omission": false
+      },
+      "frozen_ac1_entry": {
+        "mode": "100644",
+        "type": "blob",
+        "git_blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02"
+      }
+    },
+    {
+      "path": "packages/quds_mail_store/README.md",
+      "qualified_and_late_main": {
+        "mode": "100644",
+        "git_blob": "8e61c309be36dfd18261cf592b3cd99a457817f4",
+        "materialized": true,
+        "sha256": "79fe4a0e8979249a2ec6d152e301373f88e842be43d78cc1e7dd12a063ebfb14",
+        "sparse_omission": false
+      },
+      "frozen_ac1_entry": {
+        "mode": "100644",
+        "type": "blob",
+        "git_blob": "529b56802d11b36aaaa8a276ddef570b44782739"
+      }
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "qualified_and_late_main": {
+        "mode": "100644",
+        "git_blob": "d091fc1ebfdd2895b86cbdf510057c758ebd8de4",
+        "materialized": true,
+        "sha256": "2cea38334656ca5de18a768496611d67c7a1913789293c4dc59e34d784377507",
+        "sparse_omission": false
+      },
+      "frozen_ac1_entry": {
+        "mode": "100644",
+        "type": "blob",
+        "git_blob": "9bd37e825627d4b2b13d48ab2ab8dda8d7c7beff"
+      }
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "qualified_and_late_main": {
+        "mode": "100644",
+        "git_blob": "5210195461fe4c74c21a32dbf3e9cd3442ba8480",
+        "materialized": true,
+        "sha256": "d9c739f9e85643368ea1e192625991d28e8a04b75e76e21e59b51eb80769f290",
+        "sparse_omission": false
+      },
+      "frozen_ac1_entry": {
+        "mode": "100644",
+        "type": "blob",
+        "git_blob": "302aacaf249d66a2da6b3c633bef20cd2adbd9df"
+      }
+    }
+  ],
+  "runtime_reference_bytes": [
+    {
+      "index_repository_path": "docs/validation/office-main-completion-20261119/evidence/runtime-evidence.index.json",
+      "index_sha256": "87428b2d6c1f480d07704e95c4f8be81aebe2e2b1dd53da608e776d17e8d5b5f",
+      "archive_repository_path": "docs/validation/office-main-completion-20261119/evidence/runtime-evidence.tar.xz",
+      "archive_sha256": "8635c4551aff3ee35a5b07113bd59b157ec234660efdc16b6da80552c826953d",
+      "archive_bytes": 917740,
+      "archive_and_index_bytes_verified": true
+    },
+    {
+      "index_repository_path": "docs/validation/office-main-completion-20261119/evidence/runtime-replay-fix.index.json",
+      "index_sha256": "3b2fc321a7f9be37c2987cae40c007a459d8fbd5ced118ded0dc3285a5783ee2",
+      "archive_repository_path": "docs/validation/office-main-completion-20261119/evidence/runtime-replay-fix.tar.xz",
+      "archive_sha256": "f3fe9a95f2e640a2b39e7cfb78af9ea0f84e82f904de308283b1092ad9fe41f8",
+      "archive_bytes": 13196,
+      "archive_and_index_bytes_verified": true
+    }
+  ],
+  "incoming_release_paths_to_preserve": [
+    "docs/validation/office-main-completion-20261119/release/audit_publication_inputs.py",
+    "docs/validation/office-main-completion-20261119/release/coverage-summary.json",
+    "docs/validation/office-main-completion-20261119/release/independent-archive-audit.json",
+    "docs/validation/office-main-completion-20261119/release/independent-summary.json",
+    "docs/validation/office-main-completion-20261119/release/local-qualification.index.json",
+    "docs/validation/office-main-completion-20261119/release/local-qualification.tar.xz",
+    "docs/validation/office-main-completion-20261119/release/manifest.json",
+    "docs/validation/office-main-completion-20261119/release/post-cutoff-main-review.json",
+    "docs/validation/office-main-completion-20261119/release/post-cutoff-reconciliation-audit.json",
+    "docs/validation/office-main-completion-20261119/release/publication-continuity.json",
+    "docs/validation/office-main-completion-20261119/release/publication-receipt.json",
+    "docs/validation/office-main-completion-20261119/release/reconciliation-summary.json"
+  ],
+  "frozen_mail_evidence_missing_from_late_main_to_preserve": [
+    "docs/validation/mail-m06-resume-20261119/final/archive-audit.json",
+    "docs/validation/mail-m06-resume-20261119/final/audit_final_archives.py",
+    "docs/validation/mail-m06-resume-20261119/final/development.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/development.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/evidence-audit.json",
+    "docs/validation/mail-m06-resume-20261119/final/execution.json",
+    "docs/validation/mail-m06-resume-20261119/final/first-attempt-mail-receipt.json",
+    "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/mail-final-receipt.json",
+    "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/native-final-verification.json",
+    "docs/validation/mail-m06-resume-20261119/final/native-final.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/native-final.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/node-final-verification.json",
+    "docs/validation/mail-m06-resume-20261119/final/node-final.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/node-final.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/preparation.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/preparation.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/publication-scope.json",
+    "docs/validation/mail-m06-resume-20261119/final/published-readback.json",
+    "docs/validation/mail-m06-resume-20261119/final/runner-test-review.json",
+    "docs/validation/mail-m06-resume-20261119/final/second-attempt-mail-receipt.json",
+    "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/source-continuity.json",
+    "docs/validation/mail-m06-resume-20261119/final/source-review.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/source-review.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/transport-review-binding.json",
+    "docs/validation/mail-m06-resume-20261119/final/workspace-and-plan-binding.json",
+    "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-native.log",
+    "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-reviewed.log",
+    "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-final-format.log",
+    "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-inherited-connections.log",
+    "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-reviewed-analyze.log"
+  ],
+  "recommended_merge_scope": [
+    "Merge late-main ancestry and preserve all newly added release evidence, indexes and complete completion report.",
+    "Retain every frozen ac1 bound input; the 836 execution evidence is a separate 5569c055 checkpoint and does not qualify ac1-specific cleanup/tests or prove ac1 inventory identity.",
+    "Retain all 36 Mail publication artifacts already present in ac1; their absence from the other tip is not a reason to remove them.",
+    "Preserve the Historical PR #174 receipt header and original 611 execution body. Contextualize the linked 836 execution report as the later PR #173 checkpoint; publish ac1 qualification separately after its own audit.",
+    "Keep frozen socket ref/continuity audits unchanged. Record this late main and its final merge/readback as a separate addendum."
+  ],
+  "scope": "Archive integrity, immutable Git source continuity and retained receipt arithmetic only. No fresh application tests, current runtime revalidation, raw-event recount, remote query or GitHub Actions query.",
+  "tracked_checkout_or_runtime_mutations_performed": false,
+  "passed": true
+}

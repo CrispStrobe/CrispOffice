@@ -35,12 +35,13 @@ release gates. No contextual model or general reinflection is introduced.
 ## Arabic proofing roadmap — 19 November 2026
 
 The [Arabic proofing roadmap](roadmaps/arabic-proofing.md) records the
-constraints (only MIT/MPL-compatible code in the app; language resources are
-published separately and downloaded by the user inside the app as data, never
-as executable code) and the resource assessment. First step: the AyaSpell
-Hunspell dictionary under its MPL 1.1 option, built reproducibly by
+constraints (only MIT/MPL-compatible code in the app; the planned language
+resources are published separately and downloaded by the user inside the app
+as data, never as executable code) and the resource assessment. First step:
+the AyaSpell Hunspell dictionary under its MPL 1.1 option, built reproducibly by
 `tools/proofing/ayaspell/build_bundle.py` from a pinned LibreOffice packaging,
 then an MPL Hunspell engine adapter, then independently authored Arabic rules.
+The Hunspell adapter and in-app Arabic download workflow remain planned.
 Nothing Arabic is enabled or downloaded by default.
 
 `ArabicWritingRulesProvider` (`arabic-writing`) implements the first

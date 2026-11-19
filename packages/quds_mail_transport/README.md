@@ -36,29 +36,53 @@ codec. It does not advertise generic browser IMAP or a hosted relay.
 
 ## Synchronization and resource limits
 
-Synchronization scans finite numeric UID intervals using
+Synchronization discovers existing UIDs with a strict, bounded
+`UID SEARCH UID first:last`, then fetches at most the requested number using
 `BODY.PEEK[HEADER.FIELDS (DATE FROM TO CC BCC REPLY-TO SUBJECT MESSAGE-ID
 IN-REPLY-TO REFERENCES)]`. MIME content headers and message bodies are not
-downloaded or fabricated to project an envelope. Each page has at most the
-requested number of upserts plus absent-UID tombstones. Standard flags include
+downloaded or fabricated to project an envelope. Numeric gaps do not consume
+the page limit. A typed `MailImapSyncRange` identifies the fully observed closed
+interval: the store removes only previously stored memberships absent from the
+page, in that exact mailbox and UIDVALIDITY. It never creates a tombstone for an
+unused UID. This reconciliation, pending-edit state, upserts and cursor commit
+in one transaction. A range may remove more cached records than the fetch page
+size; its work is bounded by the store's configured account message limit.
+Standard flags include
 read, flagged, answered, draft, and deleted; an absent FLAGS item stays unknown.
 The session-only IMAP `Recent` flag is not persisted.
 
 Cursors contain a hash of host/profile/account/mailbox scope, UIDVALIDITY, the
-next numeric UID and the current sweep ceiling. The repository advances a cursor
+next UID and the current sweep ceiling. The v2 discovery cursor also accepts
+saved v1 numeric-window cursors, preserving their continuation position. The repository advances a cursor
 only by atomically committing its page. UIDVALIDITY changes request a reset.
 Completed sweeps start again from UID 1 so old flags and expunges are eventually
 observed without pretending CONDSTORE or QRESYNC is implemented. Arrivals beyond
 the frozen ceiling enter the next sweep. A server change during a sweep can
 require another sweep; this fallback is not a snapshot protocol.
 
-**This initial fallback has an explicit whole-sweep ceiling:** `maxUidScan`
-defaults to 10,000 and can be configured up to 100,000. It bounds the highest UID
-to scan, **not the number of messages**. A mailbox with `UIDNEXT - 1` above that
-ceiling returns `unsupported` before fetching or committing any page. A sparse
-mailbox with high UIDs therefore needs the future discovered-UID pagination
-adapter. This bound prevents unbounded connection counts and invented-hole
-tombstone growth. Direct retrieval of a specified high UID is still supported.
+**Discovery remains explicitly bounded:** `maxDiscoveredUids` defaults to 10,000
+and can be configured up to 100,000. It limits the number of existing UIDs in one
+remaining-sweep SEARCH result, independently of their numeric values. Exceeding
+that count or the protocol byte budgets returns `quotaExceeded` without FETCH or
+page commit. The fallback searches the remaining range again for each page;
+it does not implement server-side ESEARCH/PARTIAL pagination and can repeat
+substantial discovery work for large mailboxes. The default 64 KiB protocol-line
+limit can bind before the UID count limit. Larger configured count budgets may
+also require an explicitly larger line/response budget.
+
+There is no default numeric UID ceiling. The optional legacy `maxUidScan`
+setting retains its original numeric meaning when explicitly supplied; an
+exceeded legacy ceiling reports `unsupported`. It has not been silently
+redefined as a message-count limit. Direct retrieval of specified high UIDs
+continues to work.
+
+Exactly one complete simple SEARCH result is required, including an explicit
+empty result. Missing, repeated, duplicate, malformed, overflowing, out-of-range
+or unrequested extended results fail the whole operation. UIDs are sorted before
+selecting the page. A UID disappearing between SEARCH and FETCH is reconciled as
+absent; an unexpected fetched UID that was not discovered rejects the page.
+Arrivals above the frozen ceiling wait for the next sweep. These rules retain
+the existing eventual-refresh semantics rather than claiming a server snapshot.
 
 The default page limit is 100. Header literals are limited to 256 KiB, protocol
 lines to 64 KiB, and aggregate control/header responses to 16 MiB per operation.
@@ -133,8 +157,8 @@ certificate checks or changes global trust.
 These local checks do not establish external-provider interoperability,
 all certificate-chain or platform trust-store scenarios, other operating
 systems, OAuth redirect/refresh integration, or disposable-account acceptance.
-Other remaining gates include discovered-UID pagination for large/sparse
-mailboxes, IDLE/CONDSTORE/QRESYNC, SMTP/composition, the account-aware mailbox
+Other remaining gates include discovery beyond the bounded simple SEARCH
+fallback, IDLE/CONDSTORE/QRESYNC, SMTP/composition, the account-aware mailbox
 workspace, actual browser persistence, and platform credential hosts.
 
 Original package code is MIT. The native adapter uses the reviewed MPL-2.0

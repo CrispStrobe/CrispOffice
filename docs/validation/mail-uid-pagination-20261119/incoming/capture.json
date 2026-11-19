@@ -1,0 +1,31 @@
+{
+  "scope": "Bounded branch, PR and tag advertisements; no CI queried or awaited.",
+  "captures": [
+    {
+      "name": "origin",
+      "url": "https://github.com/CrispStrobe/quds_office_suite.git",
+      "patterns": [
+        "refs/heads/*",
+        "refs/pull/*/head",
+        "refs/tags/*"
+      ],
+      "capture_started_utc": "2026-11-19T07:39:57.324272+00:00",
+      "capture_finished_utc": "2026-11-19T07:40:04.370690+00:00",
+      "filename": "origin-refs.txt",
+      "sha256": "ad3d1aa540c2372632accdcf753633c31bb9d6a9c48f15a50d687ee9dfa92f29",
+      "rows": 411
+    },
+    {
+      "name": "upstream",
+      "url": "https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+      "patterns": [
+        "refs/heads/*"
+      ],
+      "capture_started_utc": "2026-11-19T07:40:04.373609+00:00",
+      "capture_finished_utc": "2026-11-19T07:40:08.675307+00:00",
+      "filename": "upstream-refs.txt",
+      "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6",
+      "rows": 4
+    }
+  ]
+}

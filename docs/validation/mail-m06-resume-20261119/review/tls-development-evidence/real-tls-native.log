@@ -1,0 +1,56 @@
+00:00 +0: [VM, Kernel] loading test/native_tls_test.dart
+00:00 +0: [VM, Kernel] test/native_tls_test.dart: implicitTls: real stalled handshake closes on cancellation and retries
+00:00 +1: [VM, Kernel] test/native_tls_test.dart: implicitTls: operation deadline closes a real stalled handshake
+00:00 +2: [VM, Kernel] test/native_tls_test.dart: implicitTls: trusted local TLS authenticates and exchanges IMAP bytes
+00:00 +3: [VM, Kernel] test/native_tls_test.dart: implicitTls: default trust rejects the local certificate before login
+00:00 +4: [VM, Kernel] test/native_tls_test.dart: implicitTls: trusted certificate still rejects a mismatched hostname
+00:00 +5: [VM, Kernel] test/native_tls_test.dart: startTls: real stalled handshake closes on cancellation and retries
+00:01 +6: [VM, Kernel] test/native_tls_test.dart: startTls: operation deadline closes a real stalled handshake
+00:01 +7: [VM, Kernel] test/native_tls_test.dart: startTls: trusted local TLS authenticates and exchanges IMAP bytes
+00:01 +8: [VM, Kernel] test/native_tls_test.dart: startTls: default trust rejects the local certificate before login
+00:01 +9: [VM, Kernel] test/native_tls_test.dart: startTls: trusted certificate still rejects a mismatched hostname
+00:01 +10: [VM, Kernel] test/native_tls_test.dart: manual socket TLS upgrade rejects before handshake or credentials
+00:01 +11: [VM, Kernel] test/native_tls_test.dart: already secure manual sockets retain IMAP read and write behavior
+00:01 +12: [VM, Kernel] test/native_tls_test.dart: queued partial writes and final readiness complete before write close
+00:01 +13: [VM, Kernel] test/native_tls_test.dart: aborting a blocked partial write rejects its pending flush
+00:01 +14: [VM, Kernel] loading test/native_provider_test.dart
+00:02 +14: [VM, Kernel] test/native_provider_test.dart: actual command parser discovers selectable folders over required TLS
+00:02 +15: [VM, Kernel] test/native_provider_test.dart: late socket completion after cancellation is destroyed before greeting/auth
+00:02 +16: [VM, Kernel] test/native_provider_test.dart: required STARTTLS completes before authentication and refreshes capabilities
+00:02 +17: [VM, Kernel] test/native_provider_test.dart: late TLS upgrade cannot revive an aborted account generation
+00:02 +18: [VM, Kernel] test/native_provider_test.dart: capabilities do not promise SMTP, calendar or missing MOVE extension
+00:02 +19: [VM, Kernel] test/native_provider_test.dart: missing STARTTLS refuses credentials instead of downgrading
+00:02 +20: [VM, Kernel] test/native_provider_test.dart: missing and rejected credentials are typed and never reused from cache
+00:02 +21: [VM, Kernel] test/native_provider_test.dart: fragmented greeting is framed before any command executes
+00:02 +22: [VM, Kernel] test/native_provider_test.dart: bounded UID sweep returns durable flags, holes and a scoped next cursor
+00:02 +23: [VM, Kernel] test/native_provider_test.dart: omitted FLAGS remains unknown instead of clearing durable observations
+00:02 +24: [VM, Kernel] test/native_provider_test.dart: ordinary multipart source synchronizes only requested envelope headers
+00:02 +25: [VM, Kernel] test/native_provider_test.dart: mixed-case IMAP FETCH atoms preserve messages instead of inventing tombstones
+00:02 +26: [VM, Kernel] test/native_provider_test.dart: UIDVALIDITY rollover restarts the cursor and explicitly requests reset
+00:02 +27: [VM, Kernel] test/native_provider_test.dart: forged cross-mailbox cursor is rejected before vault or connection work
+00:02 +28: [VM, Kernel] test/native_provider_test.dart: sparse high UIDNEXT reports the whole-sweep limitation before any FETCH
+00:02 +29: [VM, Kernel] test/native_provider_test.dart: on-demand literal retains bare LF and non-UTF8 octets without reserialization
+00:02 +30: [VM, Kernel] test/native_provider_test.dart: stale full-message UIDVALIDITY fails before body fetch
+00:02 +31: [VM, Kernel] test/native_provider_test.dart: out-of-range UID cannot turn a tagged OK into a partial success
+00:02 +32: [VM, Kernel] test/native_provider_test.dart: duplicate FETCH cannot turn a tagged OK into a partial success
+00:02 +33: [VM, Kernel] test/native_provider_test.dart: unbalanced response cannot turn a tagged OK into a partial success
+00:02 +34: [VM, Kernel] test/native_provider_test.dart: partial BODY literal cannot turn a tagged OK into a partial success
+00:02 +35: [VM, Kernel] test/native_provider_test.dart: malformed FETCH prefix cannot create an empty successful sync/tombstone page
+00:02 +36: [VM, Kernel] test/native_provider_test.dart: rejected duplicate sync record never advances a successful partial page
+00:02 +37: [VM, Kernel] test/native_provider_test.dart: malformed raw response never logs private literal text
+00:02 +38: [VM, Kernel] test/native_provider_test.dart: announced oversized literal is quota failure before payload reception
+00:02 +39: [VM, Kernel] test/native_provider_test.dart: oversized greeting is a non-retryable quota failure before authentication
+00:02 +40: [VM, Kernel] test/native_provider_test.dart: protocol line budget remains quota failure even before login
+00:02 +41: [VM, Kernel] test/native_provider_test.dart: aggregate response bytes are bounded across authentication commands
+00:02 +42: [VM, Kernel] test/native_provider_test.dart: header literal limit fails the entire sync page without tombstones
+00:02 +43: [VM, Kernel] test/native_provider_test.dart: dropped connection fails and the next operation uses a fresh authenticated client
+00:02 +44: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:02 +45: [VM, Kernel] test/native_provider_test.dart: vault completion after cancellation cannot open a connection
+00:02 +46: [VM, Kernel] test/native_provider_test.dart: STORE proves requested UID flags with a fresh observation; delete never expunges
+00:02 +47: [VM, Kernel] test/native_provider_test.dart: acknowledged STORE without changed flags requires reconciliation
+00:02 +48: [VM, Kernel] test/native_provider_test.dart: connection drop after remote mutation is conflict, never retryable success
+00:02 +49: [VM, Kernel] test/native_provider_test.dart: MOVE requires capability and verifies source absence without global EXPUNGE
+00:02 +50: [VM, Kernel] test/native_provider_test.dart: OAuthBearer GS2 identity uses a= and secrets stay inside auth command
+00:02 +51: [VM, Kernel] test/native_provider_test.dart: OAuthBearer error challenge is drained once and returns authenticationRequired
+00:02 +52: [VM, Kernel] test/native_provider_test.dart: token auth without SASL-IR is explicitly unsupported before sending a token
+00:02 +53: All tests passed!

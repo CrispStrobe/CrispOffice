@@ -1,0 +1,92 @@
+{
+  "reviewed_base": "4624218f9468eeeac07f1f100ac0e4bb6b050a17",
+  "reviewed_incoming": "022a974a96db23e22bc161f7d465e4b972e8c2a9",
+  "plan_file": "/workspace/scratch/a7846890f2e1/socket-tls-review/plan.json",
+  "groups": 7,
+  "suites": 35,
+  "analysis_targets": 26,
+  "format_targets": 26,
+  "fixture_records": [
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/README.md",
+      "unchanged": true,
+      "sha256": "85fb609005362517696252725cbddf062b412a3cfcca248f6dd526035bfe0579"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+      "unchanged": true,
+      "sha256": "543a871246369fd7a102d4141a1bf87dbfbb331c087613efaf6ea64d13b4d586"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+      "unchanged": true,
+      "sha256": "5b4612de534322c88b096f656e2035c88d559206ddef97720e9f352775551074"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/README.md",
+      "unchanged": true,
+      "sha256": "9a64bcd08459e9e779d597c406d4a3826bc4305ff90f299ce6029bcbc45cd259"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+      "unchanged": true,
+      "sha256": "5eebead5c4c193eeace0a635398a305ab768b9fff1257235ec8b063cde55f94f"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+      "unchanged": true,
+      "sha256": "d698b3fdfd9bbf19c328dbe5edea880ba50cf547837b7dc188a95828421f260d"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+      "unchanged": true,
+      "sha256": "a1513697cebd55d6823c836a2a4a50d605572ba413e73ad3df5b3f6d5d9dc787"
+    }
+  ],
+  "unchanged_cancellation_suite": true,
+  "source_review_expected_cases": {
+    "transport-native": 86,
+    "transport-tls-loopback-vm": 26,
+    "transport-node-boundary": 3,
+    "vendor-imap-and-byte-reader": 193,
+    "vendor-connection-and-protocols": 63,
+    "mime-consumer-vm": 32,
+    "mail-ui-consumers": 30
+  },
+  "focused_expected": 433,
+  "core_store_expected_executions": 199,
+  "core_store_expected_distinct": 129,
+  "overall_expected_executions": 632,
+  "overall_expected_distinct": 562,
+  "overall_expected_distinct_suites": 47,
+  "counts_status": "Predictions from reviewed source; a fresh raw-event audit must verify execution counts after final integration.",
+  "new_case_counts": {
+    "native_provider_malformed_fetch_guards": 6,
+    "raw_fetch_parser_framing_guards": 12,
+    "direct_tls_abort_completion_two_modes": 2,
+    "hard_abort_tcp_before_stalled_tls_close": 1,
+    "total_new_scenarios": 21
+  },
+  "tls_suite_expected": {
+    "native_tls_test.dart": 17,
+    "native_tls_cancellation_test.dart": 4,
+    "native_tls_round_trip_test.dart": 5
+  },
+  "preservation_review": {
+    "prior_default_owned_transport_tls_cases": "Retained; successful trusted tests additionally assert secure ConnectionInfo metadata. Partial writer tests now construct the Socket-compatible owner through createOwnedRawSocket.",
+    "manual_tls_case_change": "The former manual plain-Socket TLS rejection case is intentionally replaced by trusted manual STARTTLS success, metadata, secure LOGIN and NOOP assertions. Incoming review documents the narrower physical cancellation guarantee for externally supplied Socket handoff.",
+    "zotero_roundtrip_cases": "All five behavior cases retained; only capture field/factory types return to Socket. Local-capabilities agent will add isConnected=false after direct trust rejection to prove cleanup before finally/abort.",
+    "cancellation_cases": "All four original real-network cases remain byte-identical.",
+    "fixture_strengthening": "Mail TLS fixture supports package/root working directory, validates actual TLS ClientHello type/version and caps stalled handshake accumulation at 64 KiB.",
+    "certificates": "All seven existing certificate/key/README inputs are byte-identical to the audited checkpoint."
+  },
+  "identified_blockers": [
+    {
+      "finding": "Direct failed TLS upgrade can leave isConnected=true after HandshakeException because earlier catch/abort cleanup was removed.",
+      "status": "Independently reproduced by local_capabilities; root/local agent preparing narrow client_base cleanup plus assertion in existing refusal tests.",
+      "count_impact": "None expected."
+    }
+  ],
+  "new_fetch_coverage": "Five malformed separator forms each cover parser body/header paths (10); attached literal poisoning (1); FETCHX and unrelated status/data remain unhandled (1). Six provider cases prove malformed responses return MailFailure and close the fixture socket rather than fabricate successful tombstone pages.",
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

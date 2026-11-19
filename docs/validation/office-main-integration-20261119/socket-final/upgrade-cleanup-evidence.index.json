@@ -1,0 +1,92 @@
+{
+  "archive": "upgrade-cleanup-evidence.tar.xz",
+  "bytes": 12900,
+  "sha256": "999f09ef354f6e6a1b70ad24bdb3477d53069c7a5c3fc6a5c1a81f880020a1a0",
+  "members": [
+    {
+      "path": "after/packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "bytes": 11605,
+      "sha256": "160629605c10a07e28e24317794231c389634aae8d23fd53bd5df350551b4b21"
+    },
+    {
+      "path": "after/third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "bytes": 20717,
+      "sha256": "660c7780730a1621934fa529840c6158cfbe8dea8d86ba1fc9aa9412e5baf286"
+    },
+    {
+      "path": "before/packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "bytes": 11440,
+      "sha256": "2cea38334656ca5de18a768496611d67c7a1913789293c4dc59e34d784377507"
+    },
+    {
+      "path": "before/third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "bytes": 20516,
+      "sha256": "d9c739f9e85643368ea1e192625991d28e8a04b75e76e21e59b51eb80769f290"
+    },
+    {
+      "path": "cancellable_socket.dart",
+      "bytes": 9183,
+      "sha256": "8d444dfb5af02330051839938b8477f1c01b3455418d9b910881a8d41e357fa8"
+    },
+    {
+      "path": "client_base.dart",
+      "bytes": 20516,
+      "sha256": "d9c739f9e85643368ea1e192625991d28e8a04b75e76e21e59b51eb80769f290"
+    },
+    {
+      "path": "failed-upgrade-cleanup.patch",
+      "bytes": 3685,
+      "sha256": "a8a6009ccf1b6e4178fcdc5ec3a6672346a1c3d6ab373b4930b8d641309aee10"
+    },
+    {
+      "path": "failed-upgrade-green-probe.dart",
+      "bytes": 1840,
+      "sha256": "48cbe53403e5b2f374decd5b504f39dbc30d6be48b9cf49cbddabac34715b31f"
+    },
+    {
+      "path": "failed-upgrade-green-receipt.json",
+      "bytes": 2164,
+      "sha256": "f5ddef97381d4c50f7277f3ee3b9793f8487a6aae5327aeefe719fab71bcba58"
+    },
+    {
+      "path": "failed-upgrade-green.log",
+      "bytes": 62,
+      "sha256": "df66e25c669e630298f47bf319dc3e4a17b0855588a3345028048a39d7ffaa9f"
+    },
+    {
+      "path": "failed-upgrade-probe.dart",
+      "bytes": 1827,
+      "sha256": "f4d117123b689e718d582d9c453e15912afdf4c7522bdfe5bfad4921f8c54a3e"
+    },
+    {
+      "path": "failed-upgrade-red-receipt.json",
+      "bytes": 1027,
+      "sha256": "328e49a45c02aa97201acca1431937a8a2ff20d1799f351969df602648a6f178"
+    },
+    {
+      "path": "failed-upgrade-red.log",
+      "bytes": 62,
+      "sha256": "a93b12aa2b571fd02e518d738753f8bbd0dafc04e60c069ccfa894d7751febd4"
+    },
+    {
+      "path": "green-source/cancellable_socket.dart",
+      "bytes": 9183,
+      "sha256": "8d444dfb5af02330051839938b8477f1c01b3455418d9b910881a8d41e357fa8"
+    },
+    {
+      "path": "green-source/client_base.dart",
+      "bytes": 20717,
+      "sha256": "660c7780730a1621934fa529840c6158cfbe8dea8d86ba1fc9aa9412e5baf286"
+    },
+    {
+      "path": "patch-manifest.json",
+      "bytes": 717,
+      "sha256": "6ff56aa0120f0a845b83f1e05ba75b266bb6252c9357e6d13ca5187df55dbb58"
+    },
+    {
+      "path": "review.md",
+      "bytes": 1874,
+      "sha256": "d6a1e18ac518c5a5aa9e0bf2601779e2860fef6bc7352fb9da16e37f5e83540d"
+    }
+  ]
+}

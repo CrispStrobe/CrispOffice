@@ -43,7 +43,10 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
    pins LibreOffice `dictionaries` commit
    `951bb429a4d846699b02e7adb4fc6fca128c6bae` (`ar/`), verifies every byte,
    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to
-   Hugging Face. The upstream GitHub copy (`linuxscout/ayaspell`
+   Hugging Face. Publishing includes only the manifest-listed files and
+   `manifest.json`; unrelated files in a reused output directory are excluded.
+   The Hunspell adapter and in-app Arabic download workflow remain planned.
+   The upstream GitHub copy (`linuxscout/ayaspell`
    `36a90abb`) is not used: its `.dic` contains file-concatenation separators
    and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as
    `الولد` and `المدرسة` with it.

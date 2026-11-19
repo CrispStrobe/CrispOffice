@@ -1,0 +1,84 @@
+{
+  "reviewed_at_utc": "2026-11-19T07:40:19.478411+00:00",
+  "reviewed_commit": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "incoming_commit": "022a974a96db23e22bc161f7d465e4b972e8c2a9",
+  "prior_qualified_source": "4624218f9468eeeac07f1f100ac0e4bb6b050a17",
+  "review_scope": "Read-only Git-object source and documentation selection review; no test execution and no tracked/runtime mutation.",
+  "status": "source_selection_consistent",
+  "checks": {
+    "facade_matches_incoming_exactly": true,
+    "client_base_matches_reviewed_cleanup_patch": true,
+    "round_trip_matches_reviewed_assertion_patch": true,
+    "model_fixture_matches_qualified_4624_exactly": true,
+    "migration_fixture_matches_qualified_4624_exactly": true,
+    "unused_client_connection_absent": true,
+    "unchanged_incoming:packages/quds_mail_transport/test/native_tls_test.dart": true,
+    "unchanged_incoming:packages/quds_mail_transport/test/native_tls_cancellation_test.dart": true,
+    "unchanged_incoming:packages/quds_mail_transport/test/support/imap_fixture.dart": true,
+    "unchanged_incoming:packages/quds_mail_transport/test/support/tls_server.dart": true,
+    "unchanged_incoming:packages/quds_mail_transport/test/native_provider_test.dart": true,
+    "unchanged_incoming:third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart": true,
+    "unchanged_incoming:third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart": true,
+    "preserved_application_scopes_equal_4624": true,
+    "same_35_suite_paths_as_previous_gate": true,
+    "analysis_and_format_target_sets_equal": true,
+    "seven_tls_fixture_inputs_unchanged": true,
+    "only_expected_source_deltas_from_022a": true,
+    "manual_socket_physical_cancel_boundary_explicit": true
+  },
+  "source_deltas_from_incoming": [
+    "packages/quds_mail_core/test/models_test.dart",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart"
+  ],
+  "plan": {
+    "suite_paths": 35,
+    "analysis_paths": 26,
+    "format_paths": 26,
+    "unchanged_tls_fixture_inputs": 7
+  },
+  "findings": [],
+  "publication_followup": {
+    "path": "docs/validation/office-main-integration-20261119/README.md",
+    "observation": "Still explicitly binds to historical 4624218f and says manual Socket TLS upgrade is rejected, describing that earlier implementation. Archive or clearly label that prior checkpoint when publishing the new final report, so its statements are not read as ac1 behavior. The socket-final/merge-review.md boundary is accurate."
+  },
+  "error_cleanup_review": "The generation-guarded catch aborts only the still-current rejected upgrade and rethrows; an older completion cannot abort a newer generation. Existing trust-rejection cases assert disconnected and logged-out state before their finally cleanup. Controlled RED/GREEN evidence remains separate from the current actual TLS gate.",
+  "manual_socket_boundary": "Owned raw transport can force-close pending/established TLS. Manual SDK Socket upgrade preserves compatibility and settles abort, but detached pending TCP cannot be physically closed until the secure result becomes available; late results are destroyed.",
+  "files": [
+    {
+      "path": "third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "git_blob": "302aacaf249d66a2da6b3c633bef20cd2adbd9df",
+      "sha256": "660c7780730a1621934fa529840c6158cfbe8dea8d86ba1fc9aa9412e5baf286"
+    },
+    {
+      "path": "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart",
+      "git_blob": "249bbbd8c8f78fbb303af10d687215e7c3ea8ac7",
+      "sha256": "8d444dfb5af02330051839938b8477f1c01b3455418d9b910881a8d41e357fa8"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "git_blob": "9bd37e825627d4b2b13d48ab2ab8dda8d7c7beff",
+      "sha256": "160629605c10a07e28e24317794231c389634aae8d23fd53bd5df350551b4b21"
+    },
+    {
+      "path": "packages/quds_mail_core/test/models_test.dart",
+      "git_blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02",
+      "sha256": "5e75bad48d82ac454af5d48cccb2350054a5a8a58ce0746cdeb077f5db9a9834"
+    },
+    {
+      "path": "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+      "git_blob": "eb241d780d756f8bb775bb68409c9ed4f8d48244",
+      "sha256": "0457830a1302de146027335ecdfd07de37e8b53c7eb1d8e3cc13655136735b85"
+    },
+    {
+      "path": "docs/validation/office-main-integration-20261119/socket-final/plan.json",
+      "git_blob": "f9dab65e06811ed1ce1631ea1b9be2aff15c6ad6",
+      "sha256": "c746e44833e9bfa6c8c125fccbb747de19e1d05eaa88f4e903816a29b7f4787f"
+    },
+    {
+      "path": "docs/validation/office-main-integration-20261119/socket-final/merge-review.md",
+      "git_blob": "b427ae1b9676c088315d709685a8a53486b54ba9",
+      "sha256": "27e4fb0930a00e127fe7bd38e3bb04f4e0279c30d67c30320ecc044ea8b907ea"
+    }
+  ]
+}

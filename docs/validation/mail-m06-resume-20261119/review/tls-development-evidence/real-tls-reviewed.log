@@ -1,0 +1,16 @@
+00:00 +0: [VM, Kernel] loading test/native_tls_test.dart
+00:00 +0: [VM, Kernel] implicitTls: real stalled handshake closes on cancellation and retries
+00:00 +1: [VM, Kernel] implicitTls: operation deadline closes a real stalled handshake
+00:00 +2: [VM, Kernel] implicitTls: trusted local TLS authenticates and exchanges IMAP bytes
+00:00 +3: [VM, Kernel] implicitTls: default trust rejects the local certificate before login
+00:00 +4: [VM, Kernel] implicitTls: trusted certificate still rejects a mismatched hostname
+00:00 +5: [VM, Kernel] startTls: real stalled handshake closes on cancellation and retries
+00:00 +6: [VM, Kernel] startTls: operation deadline closes a real stalled handshake
+00:01 +7: [VM, Kernel] startTls: trusted local TLS authenticates and exchanges IMAP bytes
+00:01 +8: [VM, Kernel] startTls: default trust rejects the local certificate before login
+00:01 +9: [VM, Kernel] startTls: trusted certificate still rejects a mismatched hostname
+00:01 +10: [VM, Kernel] manual socket TLS upgrade rejects before handshake or credentials
+00:01 +11: [VM, Kernel] already secure manual sockets retain IMAP read and write behavior
+00:01 +12: [VM, Kernel] queued partial writes and final readiness complete before write close
+00:01 +13: [VM, Kernel] aborting a blocked partial write rejects its pending flush
+00:01 +14: All tests passed!

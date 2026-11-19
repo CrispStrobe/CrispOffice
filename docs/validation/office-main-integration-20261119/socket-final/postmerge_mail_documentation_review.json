@@ -1,0 +1,289 @@
+{
+  "main": "d41000336c84b6ebfe6b35f7f8335140b5d46038",
+  "incoming_mail": "700e5a35ce5f96e7abd1dc92d1a00d2110d40649",
+  "incoming_zotero": "022a974a96db23e22bc161f7d465e4b972e8c2a9",
+  "incoming_mail_qualified_source": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "status": "PASS; merge decisions identified; no application execution performed",
+  "incoming_mail_changed_paths": [
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/roadmaps/mail/status.md",
+    "docs/validation/mail-m06-resume-20261119/README.md",
+    "docs/validation/mail-m06-resume-20261119/final/archive-audit.json",
+    "docs/validation/mail-m06-resume-20261119/final/audit_final_archives.py",
+    "docs/validation/mail-m06-resume-20261119/final/development.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/development.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/evidence-audit.json",
+    "docs/validation/mail-m06-resume-20261119/final/execution.json",
+    "docs/validation/mail-m06-resume-20261119/final/first-attempt-mail-receipt.json",
+    "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/mail-final-receipt.json",
+    "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/native-final-verification.json",
+    "docs/validation/mail-m06-resume-20261119/final/native-final.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/native-final.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/node-final-verification.json",
+    "docs/validation/mail-m06-resume-20261119/final/node-final.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/node-final.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/preparation.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/preparation.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/publication-scope.json",
+    "docs/validation/mail-m06-resume-20261119/final/published-readback.json",
+    "docs/validation/mail-m06-resume-20261119/final/runner-test-review.json",
+    "docs/validation/mail-m06-resume-20261119/final/second-attempt-mail-receipt.json",
+    "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/source-continuity.json",
+    "docs/validation/mail-m06-resume-20261119/final/source-review.tar.index.json",
+    "docs/validation/mail-m06-resume-20261119/final/source-review.tar.xz",
+    "docs/validation/mail-m06-resume-20261119/final/transport-review-binding.json",
+    "docs/validation/mail-m06-resume-20261119/final/workspace-and-plan-binding.json",
+    "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-native.log",
+    "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-reviewed.log",
+    "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-final-format.log",
+    "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-inherited-connections.log",
+    "docs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-reviewed-analyze.log",
+    "packages/quds_mail_store/README.md"
+  ],
+  "incoming_mail_changes_confined_to_declared_docs_and_evidence": true,
+  "simulated_merge": {
+    "main": "d41000336c84b6ebfe6b35f7f8335140b5d46038",
+    "mail": "700e5a35ce5f96e7abd1dc92d1a00d2110d40649",
+    "merge_bases": [
+      "71edec2de364805113d18e0f1d7edbb1f00467e5"
+    ],
+    "merge_exit_code": 1,
+    "provisional_merge_tree": "5f1ab625ac7ec1ad0ebdfa44b579c4361dbd3f45",
+    "merge_messages": [
+      "100644 debc9b4012ae67f7adceaa9eef1ef95d6ed811e1 1\tdocs/roadmaps/mail/implementation-plan.md",
+      "100644 92b71bac52a6b376712f7b4cee21325d80345fa7 2\tdocs/roadmaps/mail/implementation-plan.md",
+      "100644 f81c6a36ae13c982abf26499156bee8e3b5ad20f 3\tdocs/roadmaps/mail/implementation-plan.md",
+      "100644 7a1d003177a364819feee32d1f3c64089dc14690 1\tdocs/roadmaps/mail/status.md",
+      "100644 43a64aac70f15cb9148c520ff3df27981ab72fde 2\tdocs/roadmaps/mail/status.md",
+      "100644 90f3cb2dc97a7a8dd40efd21c32f8aa8450655c9 3\tdocs/roadmaps/mail/status.md",
+      "",
+      "Auto-merging docs/roadmaps/mail/implementation-plan.md",
+      "CONFLICT (content): Merge conflict in docs/roadmaps/mail/implementation-plan.md",
+      "Auto-merging docs/roadmaps/mail/status.md",
+      "CONFLICT (content): Merge conflict in docs/roadmaps/mail/status.md"
+    ],
+    "merge_stderr": "",
+    "changed_paths": [
+      "M\tdocs/roadmaps/mail/implementation-plan.md",
+      "M\tdocs/roadmaps/mail/status.md",
+      "M\tdocs/validation/mail-m06-resume-20261119/README.md",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/archive-audit.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/audit_final_archives.py",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/development.tar.index.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/development.tar.xz",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/evidence-audit.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/execution.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/first-attempt-mail-receipt.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/first-attempt.tar.index.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/first-attempt.tar.xz",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/mail-final-receipt.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/mail-final.tar.index.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/mail-final.tar.xz",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/native-final-verification.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/native-final.tar.index.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/native-final.tar.xz",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/node-final-verification.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/node-final.tar.index.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/node-final.tar.xz",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/preparation.tar.index.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/preparation.tar.xz",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/publication-scope.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/published-readback.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/runner-test-review.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/second-attempt-mail-receipt.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/second-attempt.tar.index.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/second-attempt.tar.xz",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/source-continuity.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/source-review.tar.index.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/source-review.tar.xz",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/transport-review-binding.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/final/workspace-and-plan-binding.json",
+      "A\tdocs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-native.log",
+      "A\tdocs/validation/mail-m06-resume-20261119/review/tls-development-evidence/real-tls-reviewed.log",
+      "A\tdocs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-final-format.log",
+      "A\tdocs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-inherited-connections.log",
+      "A\tdocs/validation/mail-m06-resume-20261119/review/tls-development-evidence/tls-reviewed-analyze.log",
+      "M\tpackages/quds_mail_store/README.md"
+    ]
+  },
+  "archives": [
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/development.tar.xz",
+      "archive_bytes": 10484,
+      "archive_sha256": "10290d92a601ddeff32bcf7e20952c8e11542e5a372b022c488f64f354b3b082",
+      "member_count": 48,
+      "uncompressed_bytes": 82267,
+      "source_commit": null,
+      "member_set_sizes_and_hashes_verified": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/first-attempt.tar.xz",
+      "archive_bytes": 16748,
+      "archive_sha256": "812322666eb8802ba72624320816cd5176e3784971f0b53304cbb5aef4286068",
+      "member_count": 22,
+      "uncompressed_bytes": 180290,
+      "source_commit": "da78c0bb7bd9e119cc6697a5a476be3b388514c4",
+      "member_set_sizes_and_hashes_verified": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/mail-final.tar.xz",
+      "archive_bytes": 15948,
+      "archive_sha256": "0fb354141a95df2fb6ecfef86c898c55e67f5afaef6f09c27accb236b0ca3ba7",
+      "member_count": 19,
+      "uncompressed_bytes": 180015,
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "member_set_sizes_and_hashes_verified": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/native-final.tar.xz",
+      "archive_bytes": 756012,
+      "archive_sha256": "e879e64884850d2e3935745f12e4cdb96bc649127d22afce87eb6133b7bd54b8",
+      "member_count": 28,
+      "uncompressed_bytes": 6815951,
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "member_set_sizes_and_hashes_verified": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/node-final.tar.xz",
+      "archive_bytes": 726916,
+      "archive_sha256": "0721b33e2c05c9f65d86d363123eba27e26855a0573a64aaaf82643b87dc0fbf",
+      "member_count": 20,
+      "uncompressed_bytes": 6547401,
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "member_set_sizes_and_hashes_verified": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/preparation.tar.xz",
+      "archive_bytes": 20444,
+      "archive_sha256": "c29b4678f948a3811f6223a5ae0b713ca5a9255c1ca4eb0f456c1e4dba3aebd6",
+      "member_count": 24,
+      "uncompressed_bytes": 95265,
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "member_set_sizes_and_hashes_verified": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/second-attempt.tar.xz",
+      "archive_bytes": 5512,
+      "archive_sha256": "0e7571bd6a4912a75b1c1cd34ad5eea98d166a60a3c9f615fc6efe1497fee05a",
+      "member_count": 8,
+      "uncompressed_bytes": 25515,
+      "source_commit": "e734e3bd14f6c802a1da1c05969bd51108890ded",
+      "member_set_sizes_and_hashes_verified": true
+    },
+    {
+      "path": "docs/validation/mail-m06-resume-20261119/final/source-review.tar.xz",
+      "archive_bytes": 335832,
+      "archive_sha256": "51e669538061d4912bafd34c911536dd07a952377a95c8bda9e18e87053862ba",
+      "member_count": 49,
+      "uncompressed_bytes": 7517445,
+      "source_commit": null,
+      "member_set_sizes_and_hashes_verified": true
+    }
+  ],
+  "archive_member_total": 218,
+  "archive_uncompressed_bytes": 21444149,
+  "source_bindings": [
+    {
+      "gate": "native",
+      "source_records": 5027,
+      "all_record_modes_and_git_blobs_match_source_tree": true,
+      "source_before_after_equal": true,
+      "plan_hash_matches_qualified_source": true,
+      "receipt_passed": 376,
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5"
+    },
+    {
+      "gate": "node",
+      "source_records": 5027,
+      "all_record_modes_and_git_blobs_match_source_tree": true,
+      "source_before_after_equal": true,
+      "plan_hash_matches_qualified_source": true,
+      "receipt_passed": 56,
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5"
+    }
+  ],
+  "core_store_input_hashes_verified_at_71e": 53,
+  "incoming_counts_from_retained_evidence_audit": {
+    "raw_successful_test_executions": 631,
+    "unique_platform_suite_case_executions": 631,
+    "repeated_same_platform_executions": 0,
+    "unique_suite_case_scenarios_across_platforms": 508,
+    "scenarios_exercised_on_multiple_platforms": 123,
+    "raw_by_cohort": {
+      "mail": 199,
+      "native": 376,
+      "node": 56
+    },
+    "raw_by_platform": {
+      "node": 129,
+      "vm": 502
+    },
+    "unique_by_platform": {
+      "node": 129,
+      "vm": 502
+    },
+    "unique_suites_across_platforms": 48,
+    "repeated_same_platform_cases": [],
+    "definition": "Raw counts retain runtime executions. Coverage uses repository-relative suite and full test name; platform is retained only for execution coverage. Hidden/loading/setup/teardown events are excluded by the strict gate parser. Compiler probes and Python controls are not Dart test cases."
+  },
+  "count_scope": "Retain 631 executions / 508 distinct scenarios / 48 suites as the separate 71edec2d Mail-branch result. Do not replace or add to the main 4624218f result of 611 executions / 541 distinct cases / 47 suites. These retained count records were not freshly re-executed or independently recounted from raw events by this review.",
+  "store_readme_source_binding": {
+    "path": "packages/quds_mail_store/README.md",
+    "main_focused_source_records": 5031,
+    "main_bound_record": {
+      "mode": "100644",
+      "git_blob": "8e61c309be36dfd18261cf592b3cd99a457817f4",
+      "materialized": true,
+      "sha256": "79fe4a0e8979249a2ec6d152e301373f88e842be43d78cc1e7dd12a063ebfb14",
+      "sparse_omission": false
+    },
+    "main_sha256": "79fe4a0e8979249a2ec6d152e301373f88e842be43d78cc1e7dd12a063ebfb14",
+    "incoming_sha256": "ecc9341289459073ec6bbf22b3553c905cc9cb19d754e30ed4624275674a033f",
+    "incoming_git_blob": "a32df31001525c20caf41163e739ffbf6ad1adc0",
+    "included_in_main_core_store_binding": false,
+    "included_in_mail_core_store_binding": false,
+    "main_core_store_bound_inputs": 53,
+    "mail_core_store_bound_inputs": 53,
+    "decision": "Accept useful documentation with an explicit publication-documentation exception. The complete prior focused inventory is no longer identical. Do not rewrite its archived manifest or represent the old run as executed on a newer tree."
+  },
+  "models_test_preservation": {
+    "main": {
+      "git_blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02",
+      "nonconstant_equivalent": true,
+      "nonidentity_assertion": true,
+      "equality_assertion": true,
+      "equal_hash_assertion": true,
+      "cascade_set_add": true
+    },
+    "incoming_zotero": {
+      "git_blob": "dd08deb81d4f005ae31edc68cb56d66fa97a2a36",
+      "nonconstant_equivalent": true,
+      "nonidentity_assertion": true,
+      "equality_assertion": true,
+      "equal_hash_assertion": true,
+      "cascade_set_add": false
+    },
+    "diff": "diff --git a/packages/quds_mail_core/test/models_test.dart b/packages/quds_mail_core/test/models_test.dart\nindex dd9172e8..dd08deb8 100644\n--- a/packages/quds_mail_core/test/models_test.dart\n+++ b/packages/quds_mail_core/test/models_test.dart\n@@ -20,7 +20,7 @@ void main() {\n     expect(observed, equivalent);\n     expect(observed.hashCode, equivalent.hashCode);\n     expect(observed, isNot(empty));\n-    expect({observed}..add(equivalent), hasLength(1));\n+    expect({observed, equivalent}, hasLength(1));\n     for (final different in const [\n       MailMessageFlags(isRead: true),\n       MailMessageFlags(isFlagged: true),\n",
+    "decision": "Keep exact main blob dd9172e8aed55f976baf698ce9e5ed52d8cc0c02, preserving explicit nonidentity, equality, hash and runtime Set.add coverage."
+  },
+  "merge_guidance": {
+    "docs/roadmaps/mail/status.md": "Keep main integrated status/counts and add a separate historical 71edec2d Mail-branch evidence link if useful. Do not restore branch-only continuation instructions or substitute incoming 631 counts.",
+    "docs/roadmaps/mail/implementation-plan.md": "Keep main current qualification text and existing Linux loopback ownership coverage. Link incoming 71edec2d evidence as a separate checkpoint, preserving current 4624218f counts until next qualification.",
+    "docs/validation/mail-m06-resume-20261119/README.md": "Accept incoming complete historical report, retain all 71edec2d identities and links; add a brief contextual link to the current Office integration report so its Final heading cannot imply qualification of a later merged source.",
+    "packages/quds_mail_store/README.md": "Accept incoming evidence detail while identifying 71edec2d as the Mail-branch checkpoint and linking current Office integration separately. Record the changed bound documentation input; preserve archive manifests exactly.",
+    "all_added_evidence_and_logs": "Retain every added original artifact without rewriting source identities, failed receipts, counts, indexes or archives."
+  },
+  "limitations": [
+    "No fresh test execution",
+    "No source/runtime continuity claim to the yet-unresolved Zotero merge",
+    "No runtime filesystem or raw-event recount in this review",
+    "No remote queries or GitHub Actions queries",
+    "No tracked checkout edits; merge simulation object writes isolated to scratch"
+  ]
+}

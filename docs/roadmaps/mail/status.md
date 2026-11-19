@@ -1,7 +1,9 @@
 # Mail implementation status — 19 November 2026
 
-The current integrated source and qualification are recorded in the
-[19 November completion report](../../validation/office-main-completion-20261119/README.md).
+The current Mail discovery continuation and its separate qualification are
+recorded in the [UID pagination report](../../validation/mail-uid-pagination-20261119/README.md).
+Earlier Office/TLS qualifications and concurrent reconciliation records retain
+their source identities in the historical sections below.
 Fetch the canonical repository's current refs before resuming.
 The source of product scope remains [README.md](README.md) and the ordered work
 remains [implementation-plan.md](implementation-plan.md).
@@ -16,7 +18,7 @@ remains [implementation-plan.md](implementation-plan.md).
 | M03 codec | Bounded byte-range scanning, public upstream header parsing, strict transfer/charset decoding, exact raw export and attachment snapshots, deterministic multipart alternatives/CID metadata | Synchronous bounded work; no streaming claim or low-memory-device qualification |
 | M04 reader | Account-free full/compact reader, custom RenderBox selection, decoded search/copy, static HTML projection, local bounded CID PNG/JPEG, immutable source/attachment callbacks, policy-approved links, actual MIME example | Browser runtime no-fetch gate remains unqualified; host parity is a separate task |
 | M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema v3 with nullable durable flags | Schema v3 and the integrated flags/transport source passed local qualification; browser storage and power-loss durability are unqualified; the database is unencrypted |
-| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, finite UID-window synchronization, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated qualification and real Linux TLS loopback checks passed; external-provider/other-OS interoperability, OAuth authorization hosts, large or sparse mailbox pagination, SMTP and the account-aware UI remain open |
+| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, bounded discovered-UID pages and atomic range reconciliation, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Earlier integrated qualification and real Linux TLS loopback checks passed; the new discovery increment has its own qualification below. External-provider/other-OS interoperability, OAuth authorization hosts, discovery beyond bounded simple SEARCH, SMTP and the account-aware UI remain open |
 
 M06 is partially implemented, not complete. M04W and M07–M13 still require the
 mailbox workspace, composition/SMTP sending, Office attachment editing,
@@ -93,17 +95,27 @@ Separate real Linux loopback tests exercise successful TLS, stalled-handshake
 cancellation/deadlines, trust and hostname refusal, credential sequencing and
 write lifecycle. These do not establish external-provider or other-OS acceptance.
 
-Synchronization fetches bounded header projections and flags by numeric UID
-window. Scoped cursors include UIDVALIDITY and a fixed sweep ceiling; records,
-absent-UID tombstones and the next cursor commit atomically through the existing
-coordinator/store. Completed sweeps restart to observe old flag changes and
-expunges without claiming IDLE, CONDSTORE or QRESYNC. The default `maxUidScan`
-is **10,000**, configurable up to **100,000**. It limits the highest UID, not
-message count. A mailbox whose `UIDNEXT - 1` exceeds it returns `unsupported`
-before fetching or committing a page, including sparse mailboxes with few
-messages and high UIDs. Discovered-UID pagination remains open. Direct retrieval
-of a specified high UID is supported and retains the exact full-message literal
-before bounded MIME parsing; partial projections fail explicitly.
+Synchronization discovers existing UIDs with strict bounded simple SEARCH, then
+fetches at most the requested number of header/flag records. Scoped v2 cursors
+retain UIDVALIDITY and a fixed sweep ceiling and can resume persisted v1 numeric
+window cursors. An authoritative `MailImapSyncRange`, upserts, actual stored
+absence tombstones and the next cursor commit atomically through the coordinator
+and store. Numeric gaps create no synthetic tombstone rows. Pending local edits
+for expunged messages retain their reconciliation state.
+
+The default `maxDiscoveredUids` is **10,000**, configurable up to **100,000**;
+it limits the existing UIDs admitted by each remaining-sweep SEARCH response,
+independently of their numeric values. Line/response budgets also apply and can
+bind first. An oversized response fails with `quotaExceeded` before FETCH or
+commit. There is no default numeric UID ceiling; an explicitly supplied legacy
+`maxUidScan` retains its numeric meaning and `unsupported` outcome. This fallback
+repeats remaining-range discovery per page; scalable ESEARCH/PARTIAL is separate.
+
+Completed sweeps restart to observe old flag changes and expunges without
+claiming IDLE, CONDSTORE, QRESYNC or snapshot semantics. New arrivals above the
+frozen ceiling wait for the next sweep. Direct retrieval of a specified high UID
+retains the exact full-message literal before bounded MIME parsing; partial
+projections fail explicitly.
 
 Flag mutations use UID STORE and verify the resulting observation. Delete
 sets `\Deleted` only; it does not expunge mail or issue mailbox-wide CLOSE.
@@ -123,7 +135,35 @@ persistence remain separate gates.
 
 ## Local verification
 
-### Final reconciled source — PASS
+### Discovered-UID continuation — qualification in progress
+
+The [new continuation report](../../validation/mail-uid-pagination-20261119/README.md)
+records incoming reconciliation, the discovery/range implementation, fresh
+runtime provenance and committed local gate plans. Earlier counts below retain
+their original source identities and are not evidence for this new increment.
+
+### Prior integrated TLS cleanup — PASS
+
+The [Office integration report](../../validation/office-main-integration-20261119/README.md)
+binds both fresh gates to `ac1e4c8c788ea608402c2260488235c0189efcba`: **632
+executions / 562 distinct cases / 47 distinct suites**. The focused gate passed
+433 cases across 35 suites: 86 native transport, 26 TLS/ownership, three Node
+boundary, 256 shared IMAP/POP/SMTP/byte-reader, 32 MIME and 30 Mail UI cases.
+The fresh full core/store gate passed 199 executions representing 129 distinct
+cases, including 70 VM/Node repeats. Strict analysis/formatting of 26 changed
+Dart paths, 42 launcher controls, offline dependency resolution and browser
+entry/worker compilation passed.
+
+The final Socket-compatible facade retains its owned TCP transport, and rejected
+TLS upgrades now abort and clear connection/authentication state. Immediate
+physical stalled-handshake cancellation applies to the default owned transport;
+a manual SDK Socket has the documented narrower handoff boundary. All 5,031
+source and 11,164 focused runtime records remained unchanged. Later main evidence
+is reconciled without modifying any qualified input. Earlier checkpoint counts
+remain separate; browser, installed Studio/IME, live Zotero, external-provider
+and human linguistic acceptance remain open.
+
+### Retained Socket-compatible checkpoint — PASS
 
 The [completion report](../../validation/office-main-completion-20261119/README.md)
 binds all final execution to `5569c055a021c893e941fc54d40499ad9d96a5db`:
@@ -141,7 +181,7 @@ platforms retain their separate acceptance requirements.
 
 ### Earlier integrated flags and native IMAP qualification — PASS
 
-The [Office integration report](../../validation/office-main-integration-20261119/README.md)
+The [earlier Office integration report](../../validation/office-main-integration-20261119/pre-tls-report.md)
 binds the final **32-suite / 389-case** focused pass to source
 `7d279e084bae438d383630726ad7b0514da77d35`. It covers 80 native transport cases,
 three Node unsupported-entry cases, 244 shared IMAP/POP/SMTP and byte-reader
@@ -363,8 +403,8 @@ harness, not the standalone Office application.
 1. Preserve the completed integrated qualification and its source/runtime
    identities. Rerun affected checks for subsequent source changes and retain
    their raw logs and remote checkpoints separately from earlier evidence.
-2. Continue the remaining M06 work: discovered-UID pagination for large/sparse
-   mailboxes, host OAuth/refresh and lifecycle scheduling, other-OS TLS coverage
+2. Continue the remaining M06 work: discovery beyond bounded simple SEARCH,
+   host OAuth/refresh and lifecycle scheduling, other-OS TLS coverage
    and authorized disposable-account interoperability. Generic browser
    socket transport remains explicitly unsupported; no automatic retry is added
    without its own bounded policy and reconciliation checks.

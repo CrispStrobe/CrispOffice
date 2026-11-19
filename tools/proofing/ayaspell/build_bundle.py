@@ -11,8 +11,8 @@ published unmodified.
     HF_TOKEN=... python3 tools/proofing/ayaspell/build_bundle.py \\
         --output /tmp/ayaspell-ar --publish cstr/ayaspell-ar-hunspell
 
-The bundle is downloaded by the user from inside the app; it is never part
-of the application binary (docs/roadmaps/arabic-proofing.md).
+The planned app integration downloads the bundle only at the user's request;
+it is not part of the application binary (docs/roadmaps/arabic-proofing.md).
 """
 from __future__ import annotations
 
@@ -81,9 +81,10 @@ are unmodified; their source form is this repository.
 
 ## Use
 
-Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office
-downloads this bundle on the user's request; it is not part of the
-application. `manifest.json` lists the SHA-256 of every file.
+Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office's
+Hunspell adapter and in-app download integration are planned; this bundle is
+not part of the application. `manifest.json` lists the SHA-256 of every
+bundled file.
 """
 
 
@@ -122,7 +123,11 @@ def main() -> int:
         from huggingface_hub import HfApi
         api = HfApi()
         api.create_repo(args.publish, repo_type="model", exist_ok=True)
+        # Reusing an output directory must not publish unrelated local files.
+        # Exact relative names also exclude similarly named nested files.
+        upload_names = sorted([*manifest["files"], "manifest.json"])
         commit = api.upload_folder(repo_id=args.publish, folder_path=str(out), repo_type="model",
+                                   allow_patterns=upload_names,
                                    commit_message=f"AyaSpell Arabic from LibreOffice dictionaries {COMMIT[:10]}")
         print(f"published {args.publish} at {commit.oid}")
         # Read back every file at the new immutable revision.
