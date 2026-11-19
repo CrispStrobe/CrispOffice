@@ -169,6 +169,7 @@ Future<void> _select(
   WmlNote note,
   TextSelection selection,
 ) async {
+  // Large text can place the Notes editor below the shared scroll viewport.
   final field = _field(note);
   await tester.ensureVisible(field);
   await tester.pump();

@@ -12,6 +12,16 @@ All notable changes to `quds_office_editor` are documented here.
   the same undo step as the note and its citations. Restore existing numbering
   on undo while preserving unrelated package parts and relationships.
 
+- Keep Notes keyboard Undo/Redo in document history, preserve tracked correction
+  records, and prevent Redo from overwriting newly typed Notes drafts.
+- Apply language and checking controls to the exact Notes selection or current
+  editable paragraph, including multiline and UTF-16 ranges. Retain the actual
+  Notes field and selection when opening or repositioning the Writing pane.
+- Retain completed manual proofing coverage, including clean results, across
+  recording unchanged Notes typing into history without rerunning providers.
+- Keep header/footer selections out of unrelated body table highlighting and
+  ruler bounds.
+
 - Add inline Notes spelling, grammar and style underlines with nearby
   correction, ignore/dictionary and finding-navigation controls. Keep live-check
   status and explicit checking in the pane; F7 checks and Alt+F7 /

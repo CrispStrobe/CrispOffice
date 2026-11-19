@@ -133,8 +133,87 @@
     "docs/validation/document-review-notes-20261118/test_run_checks.py",
     "tools/mail/check_store.py",
     "tools/mail/check_reader.py",
-    "tools/mail/test_check_store.py"
+    "tools/mail/test_check_store.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart"
   ],
   "analysis": "changed",
-  "format": "changed"
+  "format": "changed",
+  "whitespace_preserved_inputs": [
+    {
+      "path": "docs/validation/document-review-notes-20261118/recovery/header-controller.patch",
+      "git_blob": "dad6ac252a80a297b1eb1022128cc11fd1aaa4ee",
+      "reason": "Raw preserved recovery or validation patch; retain exact diff context bytes."
+    },
+    {
+      "path": "docs/validation/document-review-notes-20261118/recovery/notes-controller.patch",
+      "git_blob": "de6d842f42117e211337d09cc8833756b0ff97d0",
+      "reason": "Raw preserved recovery or validation patch; retain exact diff context bytes."
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/integration-flutter-tools-bootstrap.log",
+      "git_blob": "aa6ea1aa5026683015aa526bead02a2b024a316f",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/late-engine-editor-editor-tests.txt",
+      "git_blob": "6faffdbccd2711c3ffbb224399a914623257a9da",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/ui/web-build-final.txt",
+      "git_blob": "afbf0a0519124c71618dbc96582e3a70e6d49df7",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/ui/web-build.txt",
+      "git_blob": "610c5347d6e388d94940049465a84fd7ceadbe97",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-resume-20261118/incoming/preflight/analysis-attempt-3.log",
+      "git_blob": "cfc237f3300b7581afbb4dcfb9742aabd797b5c7",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-resume-20261118/incoming/preflight/analysis-final.log",
+      "git_blob": "8f0f59950218e1ab7dfc4f1fa057ee0dac2e96d0",
+      "reason": "Raw captured tool log; preserve the recorded output bytes."
+    },
+    {
+      "path": "docs/validation/mail-resume-20261118/incoming/preflight/final-diff.patch",
+      "git_blob": "6ff8cdaaa2d1d1fccfbe2212c5c03347c7c1a1e5",
+      "reason": "Raw preserved recovery or validation patch; retain exact diff context bytes."
+    },
+    {
+      "path": "docs/validation/mail-resume-20261118/incoming/preflight/format-diff.patch",
+      "git_blob": "10fe16e480bde4f2a335954d74fb30f462607a00",
+      "reason": "Raw preserved recovery or validation patch; retain exact diff context bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/CC_BY_SA_4.0.txt",
+      "git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+      "git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/CC_BY_4.0.txt",
+      "git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/OEWN_LICENSE.md",
+      "git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/WNDB_License.txt",
+      "git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "reason": "Verbatim upstream license notice; preserve the imported bytes."
+    }
+  ]
 }

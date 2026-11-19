@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-18T21:38:13.980130+00:00",
+  "reviewer": "reconcile_refs independent static review",
+  "base_commit": "56e21b897ab6c6d273e09652a574389ec2f21999",
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/embed/office_editors.dart": "21fad8b4481d87f3b156397eef55e9c58ab749098fae202e980066c3f96d5b3e",
+    "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart": "af346657b0e709d88e65e842ba50db63ec26a76c0de7836a8fb108bc5913fd39"
+  },
+  "scope": "Working-tree stable outer document-and-Notes GlobalKey fix and its source-selection regression assertions; no test execution by this reviewer.",
+  "outcome": "No blocking issue found.",
+  "findings": [],
+  "checks": [
+    "GlobalKey is final and owned by one editor State; it is not recreated per build or shared between editor instances.",
+    "Key is attached once to the outer Row containing both document canvas and Notes, covering direct layout, side Review pane, and lower Review pane branches.",
+    "Review layout branches are mutually exclusive, so this build never mounts two widgets carrying the same GlobalKey.",
+    "Existing nested canvas key remains valid; outer subtree identity now also retains Notes state, TextEditingController, FocusNode and selection handling.",
+    "720 and 1100 widths straddle actual 760-pixel constraints breakpoint; both footnote and endnote tests assert TextEditingController identity and the exact retained note/selection before applying language and noProof.",
+    "Tests check body text and run properties remain unchanged after Notes formatting."
+  ],
+  "validation_observed_by_root_only": {
+    "notes_cases_passed": 60,
+    "headers_cases_passed_earlier": 19
+  },
+  "github_actions_or_status_calls": 0
+}

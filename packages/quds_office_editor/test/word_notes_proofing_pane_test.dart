@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
+import 'support/review_fonts.dart';
+
 class _NotesProvider extends OfficeProofingProvider {
   _NotesProvider({
     this.providerId = 'notes-widget',
@@ -147,6 +149,10 @@ Future<_Fixture> _mount(
   });
   await tester.pumpWidget(
     MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Liberation Sans',
+        fontFamilyFallback: const ['Noto Naskh Arabic'],
+      ),
       home: MediaQuery(
         data: MediaQueryData(
           size: size,
@@ -223,6 +229,9 @@ Future<void> _finish(
 }
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(loadReviewFonts);
+
   testWidgets('Notes paints all finding categories without changing source', (
     tester,
   ) async {
@@ -408,6 +417,15 @@ void main() {
       expect(tester.widget<TextField>(field).focusNode, same(focus));
       expect(controller.noteEditingTarget?.note, same(note));
       expect(controller.noteEditingTarget?.selection, selection);
+      // Check the source range before controls run at either Review position.
+      for (final width in [720.0, 1100.0]) {
+        await tester.binding.setSurfaceSize(Size(width, 820));
+        await _pump(tester);
+        expect(tester.widget<TextField>(field).controller, same(edit));
+        expect(tester.widget<TextField>(field).focusNode, same(focus));
+        expect(controller.noteEditingTarget?.note, same(note));
+        expect(controller.noteEditingTarget?.selection, selection);
+      }
       final language = find.byKey(
         const ValueKey<String>('live-proofing-text-language'),
       );

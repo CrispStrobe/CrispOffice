@@ -219,6 +219,39 @@ def validate_plan(plan, repo, tracked):
     return requested, inputs
 
 
+def verified_whitespace_exceptions(entries, tracked, head_blob):
+    """Preserve exact evidence/notice blobs without excluding later edits.
+
+    The file need not be materialized in a sparse worktree: its tracked path
+    and committed Git blob are the authority. Callers still require a clean
+    tracked worktree and verify the current HEAD before running the check.
+    """
+    if not isinstance(entries, list):
+        raise ValueError('Whitespace exceptions must be a list')
+    verified, seen = [], set()
+    for entry in entries:
+        if not isinstance(entry, dict):
+            raise ValueError('Whitespace exception must be an object')
+        path, blob, reason = (entry.get(name) for name in ('path', 'git_blob', 'reason'))
+        if (not isinstance(path, str) or not path or path.startswith('/')
+                or '\\' in path or any(part in ('', '.', '..') for part in path.split('/'))):
+            raise ValueError('Whitespace exception requires one canonical relative path')
+        if path in seen:
+            raise ValueError('Duplicate whitespace exception: ' + path)
+        seen.add(path)
+        if path not in tracked:
+            raise ValueError('Whitespace exception is not a tracked file: ' + path)
+        if not isinstance(blob, str) or re.fullmatch(r'[0-9a-f]{40}', blob) is None:
+            raise ValueError('Whitespace exception requires a pinned Git blob')
+        if not isinstance(reason, str) or not reason.strip():
+            raise ValueError('Whitespace exception requires a reason')
+        actual = head_blob(path)
+        if actual != blob:
+            raise ValueError('Excepted blob changed; review whitespace normally: ' + path)
+        verified.append({'path': path, 'git_blob': actual, 'reason': reason})
+    return verified
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repo', required=True, type=Path)
@@ -255,6 +288,13 @@ def main():
     clean()
     tracked = set(git('ls-files').splitlines())
     requested, extra_inputs = validate_plan(plan, repo, tracked)
+
+    def whitespace_exceptions():
+        return verified_whitespace_exceptions(
+            plan.get('whitespace_exceptions', []), tracked,
+            lambda path: git('rev-parse', 'HEAD:' + path))
+
+    preserved_whitespace = whitespace_exceptions()
     for source in (plan_path, Path(__file__).resolve()):
         name = source.relative_to(repo).as_posix()
         if name not in tracked:
@@ -275,6 +315,7 @@ def main():
             'files': {p: digest(repo / p) for p in sorted(sources)},
             'plan_sha256': digest(plan_path),
             'runner_sha256': digest(Path(__file__).resolve()),
+            'whitespace_exceptions': whitespace_exceptions(),
             'lock_sha256': digest(repo / 'pubspec.lock'),
             'package_config_sha256': digest(repo / '.dart_tool/package_config.json'),
             'dart_sha256': digest(dart),
@@ -290,6 +331,7 @@ def main():
         'plan': plan_path.relative_to(repo).as_posix(), 'plan_sha256': digest(plan_path),
         'runner_sha256': digest(Path(__file__).resolve()),
         'distinct_test_files': len(requested), 'requested_test_files': requested,
+        'whitespace_exceptions': preserved_whitespace,
         'github_actions_queried_or_awaited': False, 'gates': {},
     }
 
@@ -348,7 +390,12 @@ def main():
         targets = plan['analysis_targets']
         run('analysis', [dart, 'analyze', '--fatal-infos', *targets], repo)
         run('format', [dart, 'format', '--output=none', '--set-exit-if-changed', *targets], repo)
-        run('whitespace', ['git', 'diff', '--check', plan['baseline'], 'HEAD'], repo)
+        # Recheck every pin immediately before constructing literal exclusions.
+        # All other paths retain the original pre-Zotero baseline coverage.
+        preserved_whitespace = whitespace_exceptions()
+        run('whitespace', ['git', 'diff', '--check', plan['baseline'], 'HEAD', '--', '.',
+                           *[':(exclude,literal)' + entry['path']
+                             for entry in preserved_whitespace]], repo)
         for name, gate in plan['test_gates'].items():
             command = ([dart, 'test'] if gate.get('runner', 'flutter') == 'dart' else
                        [dart, flutter, '--no-version-check', 'test', '--no-pub'])

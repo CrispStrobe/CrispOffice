@@ -1,0 +1,265 @@
+{
+  "reviewed_at_utc": "2026-11-18T21:58:59.765810+00:00",
+  "reviewer": "reconcile_refs independent read-only peer review",
+  "scope": "Runtime binding and original 11 exact log/license whitespace exceptions; no tests or Dart processes executed by reviewer",
+  "helper": {
+    "path": "/workspace/scratch/b36b44c3b219/quds_office_suite/docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "sha256": "922fcb9fd528c359c3a8e862002736c4a2ecf1d36ef6a562e5d9079ffac5a9a7",
+    "receipt_implementation_matches": true
+  },
+  "runtime_receipt": {
+    "path": "/workspace/scratch/b36b44c3b219/toolchains/runtime.json",
+    "sha256": "2630a549eba0c78feec1c5a89c15c871c2c9b95d967dc90b9d55836e2b54cc17"
+  },
+  "runtime_inputs": [
+    {
+      "path": "/workspace/scratch/b36b44c3b219/quds_office_suite/.dart_tool/native_assets.yaml",
+      "expected_sha256": "7038b6019fac4fdaa62a83271b96890803c518b60aa0d549cd00e2f826b3c9a8",
+      "actual_sha256": "7038b6019fac4fdaa62a83271b96890803c518b60aa0d549cd00e2f826b3c9a8",
+      "matches": true,
+      "size": 369
+    },
+    {
+      "path": "/workspace/scratch/b36b44c3b219/quds_office_suite/.dart_tool/lib/libsqlite3.so",
+      "expected_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+      "actual_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+      "matches": true,
+      "size": 1823736
+    },
+    {
+      "path": "/workspace/scratch/b36b44c3b219/quds_office_suite/.dart_tool/hooks_runner/shared/sqlite3/build/download-0a658527/libsqlite3.so",
+      "expected_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+      "actual_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+      "matches": true,
+      "size": 1823736
+    },
+    {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "expected_sha256": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa",
+      "actual_sha256": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa",
+      "matches": true,
+      "size": 126951512
+    }
+  ],
+  "runtime_result": "ready",
+  "child_fixture_binding": {
+    "sources": [
+      "packages/quds_mail_store/test/native_platform_test.dart",
+      "packages/quds_mail_store/test/crash_recovery_test.dart"
+    ],
+    "finding": "Both spawn the adjacent official dart CLI with run, using normal native-asset hook setup.",
+    "resolution": "Helper explicitly verifies and binds the original pinned SQLite hook download as well as the current mapping and copied library."
+  },
+  "execution_vs_recipe": {
+    "observed_by_read_only_review": "Current runtime receipt binds four matching files and the actual helper implementation. native_asset_smoke.dart opens real SQLite, creates FTS5 table, inserts, selects and checks a row before closing.",
+    "parent_execution_report": "The current native smoke and bind_test_inputs helper were executed successfully against the existing runtime.",
+    "documentation": "README distinguishes the executed VM-only restore and separately verified Node compiler supplement from the combined --node-tests/native-smoke full-restorer recipe.",
+    "not_claimed": "This reviewer did not execute the smoke or a full fresh restore; the new combined full-restorer recipe is not presented as previously executed."
+  },
+  "original_preserved_log_license_inputs": [
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/integration-flutter-tools-bootstrap.log",
+      "expected_git_blob": "aa6ea1aa5026683015aa526bead02a2b024a316f",
+      "actual_git_blob": "aa6ea1aa5026683015aa526bead02a2b024a316f",
+      "matches": true,
+      "index_flag": "H"
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/checks/late-engine-editor-editor-tests.txt",
+      "expected_git_blob": "6faffdbccd2711c3ffbb224399a914623257a9da",
+      "actual_git_blob": "6faffdbccd2711c3ffbb224399a914623257a9da",
+      "matches": true,
+      "index_flag": "H"
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/ui/web-build-final.txt",
+      "expected_git_blob": "afbf0a0519124c71618dbc96582e3a70e6d49df7",
+      "actual_git_blob": "afbf0a0519124c71618dbc96582e3a70e6d49df7",
+      "matches": true,
+      "index_flag": "H"
+    },
+    {
+      "path": "docs/validation/mail-reader-20261118/ui/web-build.txt",
+      "expected_git_blob": "610c5347d6e388d94940049465a84fd7ceadbe97",
+      "actual_git_blob": "610c5347d6e388d94940049465a84fd7ceadbe97",
+      "matches": true,
+      "index_flag": "H"
+    },
+    {
+      "path": "docs/validation/mail-resume-20261118/incoming/preflight/analysis-attempt-3.log",
+      "expected_git_blob": "cfc237f3300b7581afbb4dcfb9742aabd797b5c7",
+      "actual_git_blob": "cfc237f3300b7581afbb4dcfb9742aabd797b5c7",
+      "matches": true,
+      "index_flag": "H"
+    },
+    {
+      "path": "docs/validation/mail-resume-20261118/incoming/preflight/analysis-final.log",
+      "expected_git_blob": "8f0f59950218e1ab7dfc4f1fa057ee0dac2e96d0",
+      "actual_git_blob": "8f0f59950218e1ab7dfc4f1fa057ee0dac2e96d0",
+      "matches": true,
+      "index_flag": "H"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/CC_BY_SA_4.0.txt",
+      "expected_git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "actual_git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+      "matches": true,
+      "index_flag": "H"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+      "expected_git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "actual_git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+      "matches": true,
+      "index_flag": "H"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/CC_BY_4.0.txt",
+      "expected_git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "actual_git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "matches": true,
+      "index_flag": "H"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/OEWN_LICENSE.md",
+      "expected_git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "actual_git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+      "matches": true,
+      "index_flag": "H"
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/WNDB_License.txt",
+      "expected_git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "actual_git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+      "matches": true,
+      "index_flag": "H"
+    }
+  ],
+  "whitespace_final_status": "ready after independent read-only reread of exact patch exclusions and authored-source rejection",
+  "github_actions_queried_or_awaited": false,
+  "whitespace_final_review": {
+    "reviewed_at_utc": "2026-11-18T22:00:01.138152+00:00",
+    "source_sha256": {
+      "docs/validation/document-review-notes-20261118/run_checks.py": "604d3630100882b2b1f8cdddc72dcd4c20fcf59eb530123251fd54fddbefc6a0",
+      "docs/validation/document-review-notes-20261118/test-plan.json": "c483c15624c92033286b23f19374df9a565061c5f198ae6e9f6d01d2c4fd0d67",
+      "docs/validation/document-review-notes-20261118/test_run_checks.py": "7ba840a3f740a45c5b4248ce08d5864f7fc252d5cf50f7a5d6c131e8e07fa266"
+    },
+    "result": "ready; no concrete remaining blocker found",
+    "observations": [
+      "No blanket patch or other wildcard exclusion remains; all exclusions are explicit canonical tracked validation file paths.",
+      "Product paths, traversal, wildcard pathspecs, duplicates, absent reasons, changed recorded blobs and authored code/config extensions are rejected.",
+      "Allowed extensions are log/txt/patch, plus md within a notices directory; reviewed actual entries are six logs, five upstream license notices and four original raw patches.",
+      "All 15 entries match both index blobs and currently materialized file contents.",
+      "Every preserved file enters the source before/after manifest and the accepted run requires a frozen clean tracked source.",
+      "Runtime restore source and native smoke source are explicit extra_inputs.",
+      "Unit test changes were read, not executed by this reviewer; tests cover exact commands, no default exclusions and rejection paths."
+    ],
+    "checked_inputs": [
+      {
+        "path": "docs/validation/document-review-notes-20261118/recovery/header-controller.patch",
+        "recorded_git_blob": "dad6ac252a80a297b1eb1022128cc11fd1aaa4ee",
+        "index_git_blob": "dad6ac252a80a297b1eb1022128cc11fd1aaa4ee",
+        "materialized_git_blob": "dad6ac252a80a297b1eb1022128cc11fd1aaa4ee",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/document-review-notes-20261118/recovery/notes-controller.patch",
+        "recorded_git_blob": "de6d842f42117e211337d09cc8833756b0ff97d0",
+        "index_git_blob": "de6d842f42117e211337d09cc8833756b0ff97d0",
+        "materialized_git_blob": "de6d842f42117e211337d09cc8833756b0ff97d0",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/mail-reader-20261118/checks/integration-flutter-tools-bootstrap.log",
+        "recorded_git_blob": "aa6ea1aa5026683015aa526bead02a2b024a316f",
+        "index_git_blob": "aa6ea1aa5026683015aa526bead02a2b024a316f",
+        "materialized_git_blob": "aa6ea1aa5026683015aa526bead02a2b024a316f",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/mail-reader-20261118/checks/late-engine-editor-editor-tests.txt",
+        "recorded_git_blob": "6faffdbccd2711c3ffbb224399a914623257a9da",
+        "index_git_blob": "6faffdbccd2711c3ffbb224399a914623257a9da",
+        "materialized_git_blob": "6faffdbccd2711c3ffbb224399a914623257a9da",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/mail-reader-20261118/ui/web-build-final.txt",
+        "recorded_git_blob": "afbf0a0519124c71618dbc96582e3a70e6d49df7",
+        "index_git_blob": "afbf0a0519124c71618dbc96582e3a70e6d49df7",
+        "materialized_git_blob": "afbf0a0519124c71618dbc96582e3a70e6d49df7",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/mail-reader-20261118/ui/web-build.txt",
+        "recorded_git_blob": "610c5347d6e388d94940049465a84fd7ceadbe97",
+        "index_git_blob": "610c5347d6e388d94940049465a84fd7ceadbe97",
+        "materialized_git_blob": "610c5347d6e388d94940049465a84fd7ceadbe97",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/mail-resume-20261118/incoming/preflight/analysis-attempt-3.log",
+        "recorded_git_blob": "cfc237f3300b7581afbb4dcfb9742aabd797b5c7",
+        "index_git_blob": "cfc237f3300b7581afbb4dcfb9742aabd797b5c7",
+        "materialized_git_blob": "cfc237f3300b7581afbb4dcfb9742aabd797b5c7",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/mail-resume-20261118/incoming/preflight/analysis-final.log",
+        "recorded_git_blob": "8f0f59950218e1ab7dfc4f1fa057ee0dac2e96d0",
+        "index_git_blob": "8f0f59950218e1ab7dfc4f1fa057ee0dac2e96d0",
+        "materialized_git_blob": "8f0f59950218e1ab7dfc4f1fa057ee0dac2e96d0",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/mail-resume-20261118/incoming/preflight/final-diff.patch",
+        "recorded_git_blob": "6ff8cdaaa2d1d1fccfbe2212c5c03347c7c1a1e5",
+        "index_git_blob": "6ff8cdaaa2d1d1fccfbe2212c5c03347c7c1a1e5",
+        "materialized_git_blob": "6ff8cdaaa2d1d1fccfbe2212c5c03347c7c1a1e5",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/mail-resume-20261118/incoming/preflight/format-diff.patch",
+        "recorded_git_blob": "10fe16e480bde4f2a335954d74fb30f462607a00",
+        "index_git_blob": "10fe16e480bde4f2a335954d74fb30f462607a00",
+        "materialized_git_blob": "10fe16e480bde4f2a335954d74fb30f462607a00",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/CC_BY_SA_4.0.txt",
+        "recorded_git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+        "index_git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+        "materialized_git_blob": "2d58298e6eda10e7204abb52722efbc840db2390",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/de/notices/OPENTHESAURUS_COPYING.txt",
+        "recorded_git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+        "index_git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+        "materialized_git_blob": "e9a5cbe37f5fa0726cc9283ecfdc099b764e1a46",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/CC_BY_4.0.txt",
+        "recorded_git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+        "index_git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+        "materialized_git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/OEWN_LICENSE.md",
+        "recorded_git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+        "index_git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+        "materialized_git_blob": "fe4d1dce8109caa7016fca97f48e49a9ced36ad4",
+        "matches": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/acceptance/linguistic/en/notices/WNDB_License.txt",
+        "recorded_git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+        "index_git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+        "materialized_git_blob": "cecbc6cf2dcb20ffbcba84319affc1ed0c6dca6f",
+        "matches": true
+      }
+    ]
+  }
+}

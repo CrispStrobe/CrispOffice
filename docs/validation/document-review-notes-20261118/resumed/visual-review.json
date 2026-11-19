@@ -1,0 +1,38 @@
+{
+  "source_commit": "a7512e94da8208123aa2df5f5c2c0354d079ddc7",
+  "reviewed_at_utc": "2026-11-18T22:04:39.107140+00:00",
+  "method": "Assistant visual inspection of original Flutter widget-test PNGs via view_image",
+  "scope": "Rendered fixtures only; not a full application or physical-device interaction test",
+  "screenshots": [
+    {
+      "path": "screenshots/notes-inline-desktop.png",
+      "sha256": "a0243f8dc7e25a9bbc35ee07299cd3b27c1482e6f7e49d804ccd4ca3ac5c85a9",
+      "bytes": 47315,
+      "observations": [
+        "Readable real text/icon fonts",
+        "Spelling, grammar and style ranges marked inside editable Notes",
+        "Status and correction/ignore/dictionary controls visible"
+      ]
+    },
+    {
+      "path": "screenshots/notes-inline-arabic-narrow.png",
+      "sha256": "8d15b22be5b51e1bed652d5ef86182a53b5a4e58e33a46875ffa9d35dec54ed8",
+      "bytes": 59455,
+      "observations": [
+        "RTL Notes pane at enlarged text scale",
+        "Suggestion, ignore, dictionary and Review changes controls remain visible without horizontal overflow",
+        "Arabic chrome and mixed-direction note text render"
+      ]
+    },
+    {
+      "path": "screenshots/header-even-review.png",
+      "sha256": "82bcce7e08a74ab7a28341649e775473a873e9feb63aece9881b39aed0a61b8e",
+      "bytes": 42342,
+      "observations": [
+        "Even-page header text remains readable above editing background",
+        "Selected source word highlighted in actual even-page header",
+        "Adjacent default header/footer stories are not given the active selection highlight"
+      ]
+    }
+  ]
+}
