@@ -1,0 +1,162 @@
+{
+  "archive": "arabic-unicode-evidence.tar.xz",
+  "bytes": 24652,
+  "sha256": "7fa5d6768e1dee97ebfc76d79044909731f53369a2768c2e0c03459b2dd3741f",
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 3674,
+      "sha256": "0b5eac94cf18a342b214ef75478f38a5a236674ccea788e6bf2a2cb58c2216db"
+    },
+    {
+      "path": "after-probe-receipt.json",
+      "bytes": 4225,
+      "sha256": "d920c4dc0142446e2e09b0208abe5d066256cd4c6cf8483bf6d91938a26bfac8"
+    },
+    {
+      "path": "after-probe.log",
+      "bytes": 203,
+      "sha256": "eb0092e9b2555a4270ccae1f9caacaf74daccc9968f12b19997d24a6c8f4027d"
+    },
+    {
+      "path": "after-tests-receipt.json",
+      "bytes": 4665,
+      "sha256": "d6167903fa94dfb8c5fdb36c2610307897c584b3a443cc49559a257299d94615"
+    },
+    {
+      "path": "after-tests.log",
+      "bytes": 33897,
+      "sha256": "6e37635faa774a57083eeb40da913bb3c63e3926f988ec21e78c015f23988f7e"
+    },
+    {
+      "path": "after/engine/.dart_tool/package_config.json",
+      "bytes": 30392,
+      "sha256": "bdff11881826b3d03c39c485209bc895453db93983b8bd6338bfa79c4eed3831"
+    },
+    {
+      "path": "after/engine/lib/src/proofing/arabic_writing_rules.dart",
+      "bytes": 17102,
+      "sha256": "ccc34b659fa0aee9aeac6a9bd11a40dec4f59a9b9b19e6624c99e193c6bb57d5"
+    },
+    {
+      "path": "after/engine/lib/src/proofing/office_proofing.dart",
+      "bytes": 17649,
+      "sha256": "5a2711e5102948b88524aa6933c447791bf0839e83429c7e861d7a51cd23518e"
+    },
+    {
+      "path": "after/engine/lib/src/proofing/proofing_text_ranges.dart",
+      "bytes": 3906,
+      "sha256": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17"
+    },
+    {
+      "path": "after/engine/pubspec.yaml",
+      "bytes": 2496,
+      "sha256": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408"
+    },
+    {
+      "path": "after/engine/test/proofing/arabic_writing_rules_test.dart",
+      "bytes": 12201,
+      "sha256": "c82c7e4aaebbc91af4d8eb26d283980307720379fcaa8be3c18fb4a8d3b06bab"
+    },
+    {
+      "path": "arabic_rule_review.json",
+      "bytes": 2981,
+      "sha256": "6d34e295783a7129c003db2fcf93eeb90f7c15f22d1eca1e60f6c9d58d0fb5d1"
+    },
+    {
+      "path": "before-probe-receipt.json",
+      "bytes": 4240,
+      "sha256": "061545556ba0b58043b03f5f0af225b6d7cadd3f0547336e3021dc89e96056a8"
+    },
+    {
+      "path": "before-probe.log",
+      "bytes": 685,
+      "sha256": "eb8f24df9024ab18bcd37f24d5e48deda569898babf3d3299b98e24ea2412282"
+    },
+    {
+      "path": "before-tests-receipt.json",
+      "bytes": 4680,
+      "sha256": "0e342d251d61527f785d4b5690204d83c6d918d7c709aaf4b63ce89288e84b76"
+    },
+    {
+      "path": "before-tests.log",
+      "bytes": 35154,
+      "sha256": "f5a624bff60b1895d4f3641b317679344ccd2c6811ff4b95729a18423361fde9"
+    },
+    {
+      "path": "before/engine/.dart_tool/package_config.json",
+      "bytes": 30393,
+      "sha256": "780475c637801a477f4c769fdeaa9966762d2b727a0ff405dbee3fc62e53423d"
+    },
+    {
+      "path": "before/engine/lib/src/proofing/arabic_writing_rules.dart",
+      "bytes": 16775,
+      "sha256": "1f4187ab0ab6d0e3cc596d93bab857bd136ddb6884e3353a4c7e200cdb2f5676"
+    },
+    {
+      "path": "before/engine/lib/src/proofing/office_proofing.dart",
+      "bytes": 17649,
+      "sha256": "5a2711e5102948b88524aa6933c447791bf0839e83429c7e861d7a51cd23518e"
+    },
+    {
+      "path": "before/engine/lib/src/proofing/proofing_text_ranges.dart",
+      "bytes": 3906,
+      "sha256": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17"
+    },
+    {
+      "path": "before/engine/pubspec.yaml",
+      "bytes": 2496,
+      "sha256": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408"
+    },
+    {
+      "path": "before/engine/test/proofing/arabic_writing_rules_test.dart",
+      "bytes": 12201,
+      "sha256": "c82c7e4aaebbc91af4d8eb26d283980307720379fcaa8be3c18fb4a8d3b06bab"
+    },
+    {
+      "path": "environment-attempt-after-tests-receipt.json",
+      "bytes": 4371,
+      "sha256": "499eb3b129c0f884ee635735d55bcaae49ab6798737afffdba11bffb804fc022"
+    },
+    {
+      "path": "environment-attempt-after-tests.log",
+      "bytes": 3220,
+      "sha256": "a2261008e79bdd0298531444733f3ed04e58fdd7c0fbebb174a9683c0be9e421"
+    },
+    {
+      "path": "environment-attempt-before-tests-receipt.json",
+      "bytes": 4386,
+      "sha256": "58dd749508b6664694dca1165c7dfa008ddb59a2d615d02324fee30a95653dcd"
+    },
+    {
+      "path": "environment-attempt-before-tests.log",
+      "bytes": 3220,
+      "sha256": "9f3edd9bc50da88a2b73736b2b24e23eeda8c70fef4f284d569704e47cf656b5"
+    },
+    {
+      "path": "original_arabic_writing_rules_test.dart",
+      "bytes": 10567,
+      "sha256": "41bcfd2ad2181c5ef257e6bd7257ef6d1964c6b4897560060d17dc8942d1ee99"
+    },
+    {
+      "path": "patch-manifest.json",
+      "bytes": 1000,
+      "sha256": "19a39b9ab0eb9ab2af78f5565ce41d11aff84a8642a9733f9a2e49cbe3651642"
+    },
+    {
+      "path": "semantic-marks.patch",
+      "bytes": 4040,
+      "sha256": "58ea9899f7923d53bcc736d9beca11955846e3f7f1376a6148273ce610e846ce"
+    },
+    {
+      "path": "test-count-summary.json",
+      "bytes": 631,
+      "sha256": "d4131c5cc20bd6b30439d8223f6095c88944722afd8f548559d3a9a5d166e432"
+    },
+    {
+      "path": "unicode_probe.dart",
+      "bytes": 890,
+      "sha256": "5137ecac9e9e6bc810d78d3ad97fdfcf36a95ac0d67f118baa8c124405dd29f0"
+    }
+  ]
+}
