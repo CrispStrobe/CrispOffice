@@ -114,6 +114,7 @@ class _StyleCascade {
     int start,
     int end, {
     bool includeComplexScript = false,
+    bool activeLanguageOnly = false,
   }) {
     if (identical(source, preview) || source.text != preview.text) {
       throw ArgumentError('Use a detached preview with the source text.');
@@ -180,15 +181,30 @@ class _StyleCascade {
     // Also isolate callers that supplied a shallow preview. Publish the
     // prepared inline list only after every selected run has been resolved.
     final prepared = WmlClone.paragraph(preview);
+    final range = WmlRunEdit.normalizeRange(prepared, start, end);
+    WmlRunEdit.splitAt(prepared, range.end);
+    WmlRunEdit.splitAt(prepared, range.start);
+    final latinProperties = {
+      for (final run in prepared.inlines.whereType<WmlRun>())
+        if (wordRunUsesLatinScriptLanguage(run)) run.properties,
+    };
+    final complexProperties = {
+      for (final run in prepared.inlines.whereType<WmlRun>())
+        if (wordRunUsesComplexScriptLanguage(run)) run.properties,
+    };
     var changed = false;
-    WmlRunEdit.applyRange(prepared, start, end, (props) {
+    WmlRunEdit.applyRange(prepared, range.start, range.end, (props) {
+      final attributes = activeLanguageOnly
+          ? [
+              if (latinProperties.contains(props)) 'val',
+              if (complexProperties.contains(props)) 'bidi',
+            ]
+          : ['val', if (includeComplexScript) 'bidi'];
       final inheritedLanguage = merged('rPr', [
         for (final layer in tableLayers!) layer.firstChild('rPr'),
         for (final style in paragraphStyles) style.firstChild('rPr'),
         for (final style in chain(props.styleId)) style.firstChild('rPr'),
       ]).firstChild('lang');
-      final inherited = inheritedLanguage?.getAttribute('val');
-      final inheritedComplex = inheritedLanguage?.getAttribute('bidi');
       final imported = props.importedValues;
       final hasSparseSource =
           imported != null && props.sourcePropertiesXml != null;
@@ -197,47 +213,37 @@ class _StyleCascade {
             ? props.sourcePropertiesXml!
             : WordSerializer().runPropertiesXml(props),
       );
-      final directLanguage = direct.firstChild(
-        'lang',
-        namespaceUri: OfficeNamespaces.w,
-      );
-      final directLatin = directLanguage?.getAttribute(
-        'val',
-        namespaceUri: OfficeNamespaces.w,
-      );
-      final directComplex = directLanguage?.getAttribute(
-        'bidi',
-        namespaceUri: OfficeNamespaces.w,
-      );
-      final pendingOverride =
-          hasSparseSource && imported['lang'] != '${props.proofingLanguage}';
-      final complexChanged =
-          includeComplexScript &&
-          (directComplex != null ||
-              hasSparseSource &&
-                  imported['lang:bidi'] != '${props.complexScriptLanguage}' ||
-              props.complexScriptLanguage != inheritedComplex);
-      if (directLatin == null &&
-          !pendingOverride &&
-          props.proofingLanguage == inherited &&
-          !complexChanged) {
-        return;
+      final updated = <String, String>{};
+      for (final attribute in attributes) {
+        final complex = attribute == 'bidi';
+        final key = complex ? 'lang:bidi' : 'lang';
+        final current = complex
+            ? props.complexScriptLanguage
+            : props.proofingLanguage;
+        final inherited = inheritedLanguage?.getAttribute(attribute);
+        final directLanguage = direct
+            .firstChild('lang', namespaceUri: OfficeNamespaces.w)
+            ?.getAttribute(attribute, namespaceUri: OfficeNamespaces.w);
+        final pendingOverride = hasSparseSource && imported[key] != '$current';
+        if (directLanguage == null &&
+            !pendingOverride &&
+            current == inherited) {
+          continue;
+        }
+        WordPropertyIo.mergeLanguage(direct, null, attribute: attribute);
+        if (complex) {
+          props.complexScriptLanguage = inherited;
+        } else {
+          props.proofingLanguage = inherited;
+        }
+        updated[key] = '$inherited';
       }
-      WordPropertyIo.mergeLanguage(direct, null);
-      props.proofingLanguage = inherited;
-      if (includeComplexScript) {
-        WordPropertyIo.mergeLanguage(direct, null, attribute: 'bidi');
-        props.complexScriptLanguage = inheritedComplex;
-      }
+      if (updated.isEmpty) return;
       props.sourcePropertiesXml = XmlDocument(
         root: direct,
       ).toXmlString(declaration: false);
       props.importedValues = hasSparseSource
-          ? {
-              ...imported,
-              'lang': '$inherited',
-              if (includeComplexScript) 'lang:bidi': '$inheritedComplex',
-            }
+          ? {...imported, ...updated}
           : WordPropertyIo.runValues(props);
       if (direct.firstChild('lang', namespaceUri: OfficeNamespaces.w) == null) {
         props.explicitProperties.remove('lang');

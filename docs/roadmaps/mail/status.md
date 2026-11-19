@@ -1,5 +1,20 @@
 # Mail implementation status — 19 November 2026
 
+## Current reconciliation
+
+The [Office continuation](../../validation/office-resume-main-20261119/README.md)
+combines the current IMAP/SMTP Studio client, saved-message reader, UID/Word/Studio
+fixes and captured qualification histories. Historical results retain their
+original source identities; the combined source receives fresh local qualification.
+
+Studio provides session-only manual/discovered account setup, folders, message
+retrieval and composition, alongside a saved `.eml` reader. A confirmed SMTP
+submission remains successful when saving the Sent copy or cleaning up the
+connection fails, with a separate warning for that later failure. The durable
+repository-driven workspace, persistent credential-vault hosts and queued,
+reconciled submission planned below remain separate work. Live account and
+installed-platform acceptance are not established by the local controls.
+
 The current [UID discovery continuation](../../validation/mail-uid-pagination-20261119/README.md)
 adds bounded discovery, atomic stored-range reconciliation and monotonic v3
 cursor revisions. Combined qualification follows the fully retained first

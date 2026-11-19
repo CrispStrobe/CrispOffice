@@ -24,7 +24,21 @@ mail.MimeMessage mailMessageFixture(String subject) =>
       'Body of $subject.\r\n',
     );
 
+final class _IncomingFixture extends mail.ImapClient {
+  @override
+  Future<void> abort() async {}
+}
+
+final class _OutgoingFixture extends mail.SmtpClient {
+  _OutgoingFixture() : super('example.invalid');
+
+  @override
+  Future<void> abort() async {}
+}
+
 final class MailClientFixture extends Fake implements mail.MailClient {
+  final _incoming = _IncomingFixture();
+  final _outgoing = _OutgoingFixture();
   final boxes = <mail.Mailbox>[
     mailboxFixture('INBOX'),
     mailboxFixture('Archive'),
@@ -46,6 +60,12 @@ final class MailClientFixture extends Fake implements mail.MailClient {
   int fetches = 0;
   int selections = 0;
   final sent = <mail.MimeMessage>[];
+
+  @override
+  mail.ImapClient get lowLevelIncomingMailClient => _incoming;
+
+  @override
+  mail.SmtpClient get lowLevelOutgoingMailClient => _outgoing;
 
   @override
   Future<void> connect({Duration timeout = const Duration(seconds: 20)}) async {

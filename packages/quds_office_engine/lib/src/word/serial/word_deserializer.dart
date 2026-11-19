@@ -20,6 +20,7 @@ import '../model/word_content_controls.dart';
 import '../model/word_fields.dart';
 import '../model/word_link.dart';
 import '../model/word_notes.dart';
+import '../model/word_proofing_language.dart';
 import '../model/word_revision.dart';
 import '../model/word_styles.dart';
 import '../model/word_toc.dart';
@@ -3605,7 +3606,7 @@ class WordDeserializer {
     }
   }
 
-  /// Removes direct Latin-language overrides from a detached paragraph preview.
+  /// Removes direct language overrides from a detached paragraph preview.
   ///
   /// The source identifies the current table/paragraph/character style context.
   /// Effective inherited run languages remain available for live proofing,
@@ -3615,6 +3616,9 @@ class WordDeserializer {
   /// inherits its language. The preview must be detached and have source text.
   /// Set [includeComplexScript] to also remove direct `w:lang/@w:bidi`
   /// overrides. Otherwise complex-script metadata is preserved.
+  /// Set [activeLanguageOnly] to clear only the language slots used by each
+  /// selected fragment, preserving inactive slots. A mixed-script fragment
+  /// can use both slots. This takes precedence over [includeComplexScript].
   bool clearRunProofingLanguage(
     WmlDocument document,
     WmlParagraph sourceParagraph,
@@ -3622,12 +3626,14 @@ class WordDeserializer {
     int start,
     int end, {
     bool includeComplexScript = false,
+    bool activeLanguageOnly = false,
   }) => _StyleCascade(this, document).clearRunProofingLanguage(
     sourceParagraph,
     previewParagraph,
     start,
     end,
     includeComplexScript: includeComplexScript,
+    activeLanguageOnly: activeLanguageOnly,
   );
 
   /// Recompute effective formatting after editing a source style definition.

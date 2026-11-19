@@ -125,6 +125,24 @@ void main() {
     expect(wordRunProofingLanguage(run, WmlParagraph()), 'ar-SA');
   });
 
+  for (final entry in [
+    (text: 'Latin عربي', marker: null, latin: true, complex: true),
+    (text: 'عربي', marker: null, latin: false, complex: true),
+    (text: 'עברית', marker: null, latin: false, complex: true),
+    (text: '١٢٣؟', marker: null, latin: true, complex: false),
+    (text: 'Latin عربي', marker: true, latin: false, complex: true),
+    (text: 'Latin عربي', marker: false, latin: true, complex: true),
+  ]) {
+    test('language slots for ${entry.text} with marker ${entry.marker}', () {
+      final run = WmlRun(
+        text: entry.text,
+        properties: WmlRunProps(complexScript: entry.marker),
+      );
+      expect(wordRunUsesLatinScriptLanguage(run), entry.latin);
+      expect(wordRunUsesComplexScriptLanguage(run), entry.complex);
+    });
+  }
+
   test('document complex-script default stays live after import and clone', () {
     final document = _imported();
     final inherited = document.paragraphs.single.inlines
@@ -208,4 +226,49 @@ void main() {
     expect(runs.last.properties.proofingLanguage, isNull);
     expect(runs.last.properties.complexScriptLanguage, 'he-IL');
   });
+
+  for (final differentMarker in [false, true]) {
+    test(
+      'run formatting retains distinct complex-script ${differentMarker ? 'markers' : 'languages'}',
+      () {
+        final paragraph = WmlParagraph(
+          inlines: [
+            WmlRun(
+              text: 'one',
+              properties: WmlRunProps(
+                proofingLanguage: 'en-US',
+                complexScriptLanguage: 'ar-SA',
+                complexScript: differentMarker ? true : null,
+              ),
+            ),
+            WmlRun(
+              text: 'two',
+              properties: WmlRunProps(
+                proofingLanguage: 'en-US',
+                complexScriptLanguage: differentMarker ? 'ar-SA' : 'he-IL',
+                complexScript: differentMarker ? false : null,
+              ),
+            ),
+          ],
+        );
+        WmlRunEdit.applyRange(paragraph, 0, 6, (props) => props.bold = true);
+        final runs = paragraph.inlines.whereType<WmlRun>().toList();
+        expect(runs.map((run) => run.text), ['one', 'two']);
+        expect(runs.every((run) => run.properties.bold == true), isTrue);
+        expect(runs.first.properties.complexScriptLanguage, 'ar-SA');
+        expect(
+          runs.last.properties.complexScriptLanguage,
+          differentMarker ? 'ar-SA' : 'he-IL',
+        );
+        expect(
+          runs.first.properties.complexScript,
+          differentMarker ? true : null,
+        );
+        expect(
+          runs.last.properties.complexScript,
+          differentMarker ? false : null,
+        );
+      },
+    );
+  }
 }

@@ -1,3 +1,8 @@
+## Unreleased
+
+- Honor cancellation requested by the final download-progress callback before
+  committing a dictionary installation on native and web hosts.
+
 ## 0.1.0
 
 - Initial optional Hunspell spelling backend: MIT adapter over unmodified

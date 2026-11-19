@@ -36,11 +36,10 @@ qualification will be recorded before completion.
 
 ## Reviewed integration decisions
 
-- Keep main's functional IMAP/SMTP client. Adapt lifecycle and dismissal checks
-  to that client; obsolete saved-message UI tests are not valid acceptance for
-  the current dialog.
+- Keep main's functional IMAP/SMTP client and restore the captured saved-message
+  reader beside it. Apply lifecycle and dismissal checks to both workflows.
 - Preserve newer Arabic T1/T2 tables, native morphology wiring, Unicode script
-  detection and established two-slot Word language controls.
+  detection and established two-slot Word language controls, with explicit active-slot opt-in.
 - Retain incoming semantic-mark regressions and prevent phrase matching from
   deleting combining maddah and hamza spelling content.
 - Preserve both branches' complete historical qualification records and failed
@@ -66,9 +65,9 @@ from a completed clean check. Studio Settings/Notes and review fixtures use the
 current UI. The AyaSpell builder's executable AST and pinned constants are
 unchanged; only its generated card and corresponding wording assertions differ.
 
-The [native plan](native-plan.json) selects 33 affected test files; the
-[Node plan](node-plan.json) repeats seven portable engine files. Strict analysis
-and formatting cover every changed application/test Dart path. Three separately
+The [native plan](native-plan.json) selects 43 affected test files; the
+[Node plan](node-plan.json) repeats nine portable engine files. Strict analysis
+and formatting cover every changed application/test/vendor Dart path. Three separately
 compiled C ABI libraries expose native lifecycle counters; they contain no real
 Hunspell dictionary. The native web-host tests use controlled HTTP clients and
 do not claim actual browser execution. Offline publisher and packaging controls
@@ -96,7 +95,7 @@ It adds three concurrent continuation heads to the prior capture:
 | Branch | Exact captured head | Current disposition |
 | --- | --- | --- |
 | `codex/office-mail-continuation-20261119` | `3119a4598e61f061e7b7633ea4a352d841332b9e` | Reconciled in this checkpoint |
-| `codex/office-continuation-20261119` | `e80beb2ed2fe70397a5a8fff5c9e908b04862f78` | Reviewed integration follows |
+| `codex/office-continuation-20261119` | `e80beb2ed2fe70397a5a8fff5c9e908b04862f78` | Reconciled in this checkpoint |
 | `codex/office-finish-20261119` | `2abf5d264e5065772fc4ca05c7cab6d34256ab9d` | Reviewed integration follows |
 
 The first of these is a reconciliation/planning checkpoint; its advertised
@@ -113,3 +112,10 @@ copy. A typed post-submission outcome preserves confirmation separately from
 Sent-copy and connection-cleanup failures; Studio reports Message sent with the
 applicable warning instead of inviting a duplicate submission. Actual submission
 failures preserve their original error/stack and never file a Sent copy.
+
+The saved-message integration uses one production reader with a compatibility
+name for both captured host APIs. Both incoming suites and the restored legacy
+reader controls remain live. The Word option preserves the default two-slot
+command; explicit active-only changes classify the selected fragment, including
+fragments that use both Latin and complex-script slots. Local focused runs are
+development checks until the complete frozen-source gate is accepted.

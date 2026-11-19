@@ -4,6 +4,15 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Restore the saved `.eml` reader beside Studio's session-only IMAP/SMTP client.
+  Preserve reader ownership and ignore stale account/mailbox/message completions
+  after dismissal or reconnect; close stalled transports independently.
+- Report confirmed SMTP submission separately from Sent-copy or cleanup failures.
+- Preserve the default two-slot Word language command and add an explicit
+  `activeLanguageOnly` option based on the selected text, including mixed runs.
+- Keep localized partial, paused and unchecked Review status and language/change
+  actions reachable at narrow widths and increased text scaling.
+
 - Add **Add Zotero annotation** to the native Word ribbon and **Add annotation
   from Zotero…** to the references workspace. Text annotations and their active
   citations insert as one undoable operation and return focus to writing.
