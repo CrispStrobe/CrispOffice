@@ -158,13 +158,14 @@ def main():
 
     steps = [step("format", [dart, "format", "--output=none", "--set-exit-if-changed", *changed_dart], repo),
              step("analysis", [dart, "analyze", "--fatal-infos", "--fatal-warnings", *analysis], repo),
-             # These three incoming raw patch captures contain a literal space
-             # for a diff context blank line. Preserve their evidence bytes;
-             # check every other changed path, including all product sources.
+             # Preserve exact bytes of three incoming raw patch captures and
+             # one imported license-source notice with blank EOF lines.
+             # Their bytes remain hashed; check every other changed path.
              step("whitespace", ["git", "diff", "--check", BASE, "--", ".",
                  ":(exclude)docs/validation/office-vba-arrays-20261119/independent-review/slide-table-color/before-source.diff",
                  ":(exclude)docs/validation/office-vba-arrays-20261119/independent-review/slide-table-color/after-source.diff",
-                 ":(exclude)docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/incoming-context.diff"], repo)]
+                 ":(exclude)docs/validation/office-vba-arrays-20261119/incoming-layout-theme-final/braces-correction/incoming-context.diff",
+                 ":(exclude)packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSES_SOURCES"], repo)]
     if all(s["accepted"] for s in steps):
         def execute(cohort):
             name, package, files, kind = cohort

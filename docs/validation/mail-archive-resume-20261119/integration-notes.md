@@ -97,3 +97,7 @@ after formatting and analysis passed; no behavioral tests ran in that attempt.
 The corrected whitespace command explicitly excludes only those three raw captures;
 all product files and all other changed paths remain checked. This exception
 does not alter formatting, analysis or behavioral test selection.
+
+### Preserved licence-source whitespace
+
+The imported `packages/quds_proofing_spacy/licenses/notices/de_core_news_sm-LICENSES_SOURCES` retains its source bytes, including final blank lines. Its SHA-256 is `0c3ab78745569d848b7c83a486183bce42b9643561084d6d6f67eb0229c79869`, identical to app-gaps commit `0e03878b028ec25ed3d84a790633433eafc3bede`. It is the fourth exact whitespace exception, alongside the three raw patch captures above. The source inventory and static licence verification still bind its complete bytes. No production Dart file is excluded. The pinned Dart formatter also normalized the incoming macOS-only native gate; that gate is analyzed but not executed on Linux.
