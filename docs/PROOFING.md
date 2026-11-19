@@ -170,8 +170,9 @@ from the Dictionaries dialog. It is pinned to `cstr/camel-morph-msa-v1.0` at
 `noprob` drops only the Penn-Treebank-derived probabilities, so analyses are
 unordered. Rules must reason over every analysis, and a top-1 analysis must
 not be used (see [step 3c](roadmaps/arabic-proofing.md)). The Studio passes
-one long-lived analyzer to the Arabic rules' construction site (the
-`morphology:` parameter is pending in the rules work).
+one long-lived analyzer to the Arabic rules through the `morphology:`
+parameter. Morphology-based rules use the available analyses; without an
+installed analyzer they remain silent.
 
 Local evidence on UD Arabic-PUD (7,419 distinct words), macOS arm64:
 

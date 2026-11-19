@@ -208,4 +208,49 @@ void main() {
     expect(runs.last.properties.proofingLanguage, isNull);
     expect(runs.last.properties.complexScriptLanguage, 'he-IL');
   });
+
+  for (final differentMarker in [false, true]) {
+    test(
+      'run formatting retains distinct complex-script ${differentMarker ? 'markers' : 'languages'}',
+      () {
+        final paragraph = WmlParagraph(
+          inlines: [
+            WmlRun(
+              text: 'one',
+              properties: WmlRunProps(
+                proofingLanguage: 'en-US',
+                complexScriptLanguage: 'ar-SA',
+                complexScript: differentMarker ? true : null,
+              ),
+            ),
+            WmlRun(
+              text: 'two',
+              properties: WmlRunProps(
+                proofingLanguage: 'en-US',
+                complexScriptLanguage: differentMarker ? 'ar-SA' : 'he-IL',
+                complexScript: differentMarker ? false : null,
+              ),
+            ),
+          ],
+        );
+        WmlRunEdit.applyRange(paragraph, 0, 6, (props) => props.bold = true);
+        final runs = paragraph.inlines.whereType<WmlRun>().toList();
+        expect(runs.map((run) => run.text), ['one', 'two']);
+        expect(runs.every((run) => run.properties.bold == true), isTrue);
+        expect(runs.first.properties.complexScriptLanguage, 'ar-SA');
+        expect(
+          runs.last.properties.complexScriptLanguage,
+          differentMarker ? 'ar-SA' : 'he-IL',
+        );
+        expect(
+          runs.first.properties.complexScript,
+          differentMarker ? true : null,
+        );
+        expect(
+          runs.last.properties.complexScript,
+          differentMarker ? false : null,
+        );
+      },
+    );
+  }
 }

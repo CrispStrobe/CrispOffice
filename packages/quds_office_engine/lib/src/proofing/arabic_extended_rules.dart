@@ -151,12 +151,15 @@ typedef _ArabicAdd =
       List<String> replacements,
     });
 
-/// The text with harakat and tatweel removed, plus a map back to the source.
+/// The text with optional harakat and tatweel removed, mapped to the source.
+/// Combining maddah and hamza retain their spelling identity, as in `_bare`.
 final class _ArabicBareText {
   _ArabicBareText(String text) : _sourceLength = text.length {
     final StringBuffer buffer = StringBuffer();
     for (int i = 0; i < text.length; i++) {
-      if (ArabicWritingRulesProvider._mark.hasMatch(text[i])) continue;
+      if (ArabicWritingRulesProvider._comparisonMark.hasMatch(text[i])) {
+        continue;
+      }
       buffer.write(text[i]);
       _map.add(i);
     }

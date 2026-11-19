@@ -1,0 +1,77 @@
+{
+  "description": "Node repeats of Arabic writing/T1, agreeing-finding merge, complex-script language routing and Hunspell provider contracts. Repeat identities remain separate executions, not additional distinct scenarios.",
+  "groups": [
+    {
+      "name": "arabic-writing-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-extended-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_extended_rules_test.dart"
+      ]
+    },
+    {
+      "name": "proofing-merge-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/office_proofing_merge_test.dart"
+      ]
+    },
+    {
+      "name": "complex-script-routing-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/word_proofing_language_test.dart"
+      ]
+    },
+    {
+      "name": "hunspell-provider-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "packages/quds_mail_transport/test/fixtures/tls/README.md",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+    "packages/quds_mail_transport/test/support/tls/README.md",
+    "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+    "packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp",
+    "docs/validation/office-main-integration-20261119/latest-final/native-runtime-inputs.json",
+    "docs/validation/office-main-integration-20261119/host-final/plan.json",
+    "docs/validation/office-main-integration-20261119/host-final/node-plan.json",
+    "packages/quds_proofing_hunspell/tool/build.py",
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py",
+    "packages/quds_office_editor/example/test/support/studio_test_settings.dart"
+  ]
+}

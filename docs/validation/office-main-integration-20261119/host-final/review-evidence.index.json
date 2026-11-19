@@ -1,0 +1,248 @@
+{
+  "source_commit": "293f45449b496e3024ff100968d78f37983faadd",
+  "archive_sha256": "996c09f358adf0a667ba93b6eb1a3fe2a5c49545267bb556cd878c1114e996bd",
+  "archive_bytes": 824468,
+  "members": [
+    {
+      "path": "reviews/audit_latest_ancestry.py",
+      "bytes": 11682,
+      "sha256": "39dc84cf7b1aed0182f66097f8e41f7b6336e8024bae84ae4f1e1da6573dae63"
+    },
+    {
+      "path": "reviews/audit_latest_proofing_continuity.py",
+      "bytes": 23332,
+      "sha256": "16369161b0881cbfe20a71700c041c11f188a96af84b391f79d6e5afebb5c552"
+    },
+    {
+      "path": "reviews/host-plan-review.json",
+      "bytes": 1805,
+      "sha256": "2d324ccdb9309c096a719672b9e51152faaead7810243c606db3bee091ab9aad"
+    },
+    {
+      "path": "reviews/index.json",
+      "bytes": 1534,
+      "sha256": "16ade4ce44d77896339b0427fbe2638309ce568511055fcdd3676ea86066daec"
+    },
+    {
+      "path": "reviews/latest_ancestry_review.json",
+      "bytes": 4671532,
+      "sha256": "b80dffcdd2d41aa16f4980e89ccaed04a1a853313ed8d892e75121adb352c1c3"
+    },
+    {
+      "path": "reviews/latest_host_delta_plan.json",
+      "bytes": 4101,
+      "sha256": "6e43ee63e325aea9d482c4ee4c01c0162cb817066b1cf8d4b8506e20c47439f4"
+    },
+    {
+      "path": "reviews/latest_host_delta_review.json",
+      "bytes": 16460,
+      "sha256": "6d05a5c0d1e4861081e6bbb12c7f5e05a8f61f39d4daca699b0aa5a307f0d610"
+    },
+    {
+      "path": "reviews/latest_proofing_continuity_review.json",
+      "bytes": 1252777,
+      "sha256": "ac84178316de30fee796956da1aeb7602a5c47a169979fe3542f558ef042ce07"
+    },
+    {
+      "path": "reviews/post_29dd_mail_continuity.json",
+      "bytes": 116773,
+      "sha256": "e5f350650c9a0786481f1a07d9002daba675912810808dcf203a4838cf82aef1"
+    },
+    {
+      "path": "extended-semantic/after/arabic_extended_rules.dart",
+      "bytes": 57552,
+      "sha256": "5c0e55222f51e45a51e6480395e546251f4ea5af97b0599a01fcc0561403a784"
+    },
+    {
+      "path": "extended-semantic/after/arabic_extended_rules_test.dart",
+      "bytes": 23492,
+      "sha256": "3f95add2f103583b2d2bea7dfc848a2472b394b2c824ca9dac679f5ef8aaf623"
+    },
+    {
+      "path": "extended-semantic/after/arabic_writing_rules.dart",
+      "bytes": 18171,
+      "sha256": "137ab2f071ca60a7512612dcf05f09bb84721610b784c52a79cf94ac5bed955e"
+    },
+    {
+      "path": "extended-semantic/after/office_proofing.dart",
+      "bytes": 19881,
+      "sha256": "a6984f9d372479d63b02d1ce8d680d11ac8f4ec89f4e555931701b1ef3ab88a9"
+    },
+    {
+      "path": "extended-semantic/after/proofing_text_ranges.dart",
+      "bytes": 3906,
+      "sha256": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17"
+    },
+    {
+      "path": "extended-semantic/after/reproduce.dart",
+      "bytes": 972,
+      "sha256": "1577e563fec2ca568a9e13c0c0fdcd531a3d6085d35c0ba063759e7721691d1a"
+    },
+    {
+      "path": "extended-semantic/after-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "extended-semantic/after-stdout.json",
+      "bytes": 574,
+      "sha256": "a7f02e3a99ca389c96480e8af2f804aca28bf9a9de74161e7b41bdef3c36d5b5"
+    },
+    {
+      "path": "extended-semantic/before/arabic_extended_rules.dart",
+      "bytes": 57382,
+      "sha256": "8f92ca7e8400c828d4f6245a7a51f5802b8cad04f74ea25bd67462feaacdc207"
+    },
+    {
+      "path": "extended-semantic/before/arabic_extended_rules_test.dart",
+      "bytes": 21318,
+      "sha256": "61a9335eef69a39fa2562aabc7523e4d0ffefe6f65427d9fe9d9ded9aaa3f751"
+    },
+    {
+      "path": "extended-semantic/before/arabic_writing_rules.dart",
+      "bytes": 18171,
+      "sha256": "137ab2f071ca60a7512612dcf05f09bb84721610b784c52a79cf94ac5bed955e"
+    },
+    {
+      "path": "extended-semantic/before/office_proofing.dart",
+      "bytes": 19881,
+      "sha256": "a6984f9d372479d63b02d1ce8d680d11ac8f4ec89f4e555931701b1ef3ab88a9"
+    },
+    {
+      "path": "extended-semantic/before/proofing_text_ranges.dart",
+      "bytes": 3906,
+      "sha256": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17"
+    },
+    {
+      "path": "extended-semantic/before/reproduce.dart",
+      "bytes": 972,
+      "sha256": "1577e563fec2ca568a9e13c0c0fdcd531a3d6085d35c0ba063759e7721691d1a"
+    },
+    {
+      "path": "extended-semantic/before-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "extended-semantic/before-stdout.json",
+      "bytes": 1083,
+      "sha256": "4fb27987a3db6955394ce5396a2ea8225ae09b91842bbf3dc7971f1d76dfc886"
+    },
+    {
+      "path": "extended-semantic/extended_semantic_marks.patch",
+      "bytes": 3542,
+      "sha256": "7f7c9bcc311bb264757f75f3b020f0b8475d54e81e6796bfb3dfda775db77c35"
+    },
+    {
+      "path": "extended-semantic/review.json",
+      "bytes": 6332,
+      "sha256": "69447b5612b01756ccf486e55b26ecf4905d54c65d2a4205e3921d935744fa45"
+    },
+    {
+      "path": "complex-script/after/word_proofing_language.dart",
+      "bytes": 1524,
+      "sha256": "1d30d6b4a64016fb8e70b05c274ffaf68c77207cbbe8b0e0d4802b3e2efac6a4"
+    },
+    {
+      "path": "complex-script/before/word_proofing_language.dart",
+      "bytes": 1677,
+      "sha256": "4d6d90909c913760978a83dd144e7a36d7dfade6baf1f28ad59fefc50a09c5a0"
+    },
+    {
+      "path": "complex-script/complex_script_letters.patch",
+      "bytes": 4361,
+      "sha256": "d4aa880b03297259a979fa6f785d974479f46bdd74391248ffeb2d731c796e72"
+    },
+    {
+      "path": "complex-script/production-after.dart",
+      "bytes": 1482,
+      "sha256": "7b0b96e524b619c41bc268b95d1edfaf75e50862d1faf2c62178060587f5b3b3"
+    },
+    {
+      "path": "complex-script/production-before.dart",
+      "bytes": 1635,
+      "sha256": "729870b4c0c99ea5b92545cedc5254a1acb5d58ddd423021ff01cd6c420ee083"
+    },
+    {
+      "path": "complex-script/reproduce.dart",
+      "bytes": 935,
+      "sha256": "5db325b04bcbf09dad32d90b47888944c60b0261b85bbb91affe76da842441eb"
+    },
+    {
+      "path": "complex-script/reproduction-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "complex-script/reproduction.json",
+      "bytes": 1201,
+      "sha256": "d84589cdf4c4dab817d6ab4c17c0d1164477340ac9e687e81bad710a2524a2e2"
+    },
+    {
+      "path": "complex-script/review.json",
+      "bytes": 4071,
+      "sha256": "4c5e16ad2b64e3bbb42834e28c2792a3245f37e3dbd51bdfad08565bfff55ffa"
+    },
+    {
+      "path": "complex-script/word_proofing_language_test.dart",
+      "bytes": 3058,
+      "sha256": "4af8ac18f0720836d8f9be7b5c8d15302b5238d33590589b06ebe83600dde66a"
+    },
+    {
+      "path": "packaging/build-inputs.json",
+      "bytes": 1433,
+      "sha256": "fb0427e20d1c251aeeb3ccd479e9008c26c85db0a20d6dcda2d0700b0e00bdb7"
+    },
+    {
+      "path": "packaging/incoming/packages/quds_proofing_hunspell/LICENSE",
+      "bytes": 1056,
+      "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685"
+    },
+    {
+      "path": "packaging/incoming/packages/quds_proofing_hunspell/licenses/hunspell-1.7.2-library-sources.tar.gz",
+      "bytes": 619231,
+      "sha256": "7efc4a85839455eaaeeb5dae8c6aa48a4d85acddb2ac0d1723822a70e2f46723"
+    },
+    {
+      "path": "packaging/incoming/packages/quds_proofing_hunspell/licenses/manifest.json",
+      "bytes": 4131,
+      "sha256": "fff74108f96b8d1358f2ed0ba8261d5a91d219f865bfab6e4550f2c58701f629"
+    },
+    {
+      "path": "packaging/incoming/packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "bytes": 25755,
+      "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f"
+    },
+    {
+      "path": "packaging/incoming/packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "bytes": 1973,
+      "sha256": "3f7ddd07c296edbfe0a47c7bcc82038ad347a2c4f672345b24f95c624db68513"
+    },
+    {
+      "path": "packaging/incoming/packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "bytes": 2912,
+      "sha256": "dcda061adeed22b26f276c01ec374f930789ae0d684e5aa8f8be309dd680ff20"
+    },
+    {
+      "path": "packaging/incoming/packages/quds_proofing_hunspell/tool/build.py",
+      "bytes": 14133,
+      "sha256": "37a6555ad48ba5e905cf5d84f97a96051a1c7ab32a4fa4f27d55fdc16fbdb9bd"
+    },
+    {
+      "path": "packaging/packaging-controls-receipt.json",
+      "bytes": 3594,
+      "sha256": "e2aee9ed7207318ce80bea9cf36e1b48001495623f10e7c50a8ab719c779bfd3"
+    },
+    {
+      "path": "packaging/packaging-controls.log",
+      "bytes": 674,
+      "sha256": "5d9deaba6f8d976e3c120e7eb53e6a5b28abf1e0e4ba1401898bb40259bea82e"
+    },
+    {
+      "path": "packaging/verify_packaging.py",
+      "bytes": 6540,
+      "sha256": "d645db282a3097a51c88104f3e26d211a1b2a022be9d52f54152f601609e9285"
+    }
+  ],
+  "generated_outputs_preserved_as_hashes_only": []
+}

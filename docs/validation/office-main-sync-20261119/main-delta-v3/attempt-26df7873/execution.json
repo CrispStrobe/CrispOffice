@@ -1,0 +1,156 @@
+{
+  "status": "FAIL",
+  "source_commit": "26df787326f58a002b62241b7feb52acff089f2f",
+  "source_tree": "29516c01bee48ee2a940fb36682da70db1dc1eec",
+  "source_base": "d8b7f1c4a576f727a0901c555dc327562dfff2b2",
+  "prior_qualified_source": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "runs": [
+    {
+      "name": "locked-workspace-resolution",
+      "command": [
+        "/workspace/scratch/79e6ad9e4046/quds-runtime/bin/dart",
+        "pub",
+        "get",
+        "--offline",
+        "--enforce-lockfile"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "locked-workspace-resolution.log",
+      "exit_code": 0,
+      "log_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "accepted": true
+    },
+    {
+      "name": "delta-continuity",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite/docs/validation/office-main-sync-20261119/main-delta-v3/verify-delta-continuity.py",
+        "--repo",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+        "--runtime",
+        "/workspace/scratch/79e6ad9e4046/quds-runtime",
+        "--source",
+        "26df787326f58a002b62241b7feb52acff089f2f",
+        "--evidence",
+        "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks",
+        "--output",
+        "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/continuity.json"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "delta-continuity.log",
+      "exit_code": 0,
+      "log_sha256": "49b53855f5c0a79eb6b57140398777efb575fc7e764c28d1e7a821f96cac3637",
+      "accepted": true,
+      "receipt": "continuity.json",
+      "receipt_sha256": "6b86c7a55bad0bb4b5a949461ec57724cb45d2a9f95db555f67eb86fbae689bb"
+    },
+    {
+      "name": "bundle-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/proofing/ayaspell",
+        "-p",
+        "test_build_bundle*.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "bundle-controls.log",
+      "exit_code": 0,
+      "log_sha256": "f42bfddbe4dfb621e313bc512d4a65f7ee0f316da7c14d06d6d1ec441ea14772",
+      "accepted": true
+    },
+    {
+      "name": "packaging-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "packages/quds_proofing_hunspell/tool",
+        "-p",
+        "test_build.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "packaging-controls.log",
+      "exit_code": 0,
+      "log_sha256": "bcf1d617eed6cb630234dff69c5d6f692984492c0ae9b53e9472d275076c1033",
+      "accepted": true
+    },
+    {
+      "name": "native",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite/docs/validation/document-review-notes-20261118/run_checks.py",
+        "--head",
+        "26df787326f58a002b62241b7feb52acff089f2f",
+        "--base",
+        "d8b7f1c4a576f727a0901c555dc327562dfff2b2",
+        "--runtime",
+        "/workspace/scratch/79e6ad9e4046/quds-runtime",
+        "--plan",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite/docs/validation/office-main-sync-20261119/main-delta-v3/delta-native-plan.json",
+        "--output",
+        "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native",
+        "--command-timeout",
+        "600"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "native.log",
+      "exit_code": 1,
+      "log_sha256": "2914bed4409722a3f94c555f582f1f3fb559597f41da745d004468e65dbae05d",
+      "accepted": false,
+      "receipt": "native/verification.json",
+      "receipt_sha256": "07b1e37f2c6ebaaec26e041f6707c56587fed30892c1effb880ea4bcd168d273"
+    }
+  ],
+  "started_at_utc": "2026-11-19T09:33:54.875606+00:00",
+  "fixture_root": "/workspace/scratch/79e6ad9e4046/hunspell-review",
+  "runtime_receipt_sha256": "94b3e458524c84d6f4f9bbdbec107a9d55ba3e6e38f54b76529d6c11aacd229f",
+  "python_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "native_environment": {
+    "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/79e6ad9e4046/hunspell-review/native/libhunspell_lifecycle_shim.so",
+    "QUDS_HUNSPELL_LIVE_DOWNLOAD": "1",
+    "QUDS_HUNSPELL_TEST_DICTIONARY": "/workspace/scratch/79e6ad9e4046/hunspell-review/dictionary",
+    "QUDS_HUNSPELL_TEST_LIBRARY": "/workspace/scratch/79e6ad9e4046/hunspell-review/native/libquds_proofing_hunspell.so"
+  },
+  "github_actions_queried_or_awaited": false,
+  "prior_application_cases_added_to_delta": 0,
+  "prior_python_controls_added_to_delta": 0,
+  "rejected_attempts_added_to_delta": 0,
+  "rejected_attempt_sources": [
+    "aea5d91af0083bc088d599ed767188f0bb071195",
+    "c0c71a26e014cadda7a1f42244e710509dea5f6c",
+    "fce543dedb1217804f67de088ef9c287e8a2edca"
+  ],
+  "preserved_pre_resolution_receipt_sha256": "92fa67b46096a437b109f5ed5593d3648c05e9dba2dda6b0c4a2783bf6a3ddae",
+  "error": "RuntimeError('native failed; preserve its raw evidence')",
+  "source_unchanged": true,
+  "runtime_unchanged": true,
+  "source_head_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "finished_at_utc": "2026-11-19T09:41:35.623719+00:00",
+  "manifest_sha256": {
+    "runtime-before.json": "4041d1c93c885f0a205f4298e3e53a09a6f6e939bd070e6f39ae54911f8fc573",
+    "package_config.json": "18f883d9af9b9d30da6aed9e870ba135afc0fe9a1757f6e9b9da4d92e1985423",
+    "prior-execution.json": "beee50ffbf587c41615d42e967e4f65bcb83c8945cc08b0436f1696c6562d6ea",
+    "prior-runtime-before.json": "a0a825ebad63dd9799b36a94293f153e60d2940a395d149bfbbffc3ce40f9629",
+    "prior-independent-summary.json": "338f588f5c3ae08ff8fb84c3663911f3cda07f820573fc30f384323da192efea",
+    "runtime-after.json": "4041d1c93c885f0a205f4298e3e53a09a6f6e939bd070e6f39ae54911f8fc573",
+    "source-before.json": "157f83f62199594e584a5b7b32790409d0af0d25bae938a2b0c4d4349b785366",
+    "runtime-pre-resolution.json": "93c12bfec5f5df462ca2b349d0ad2ead3e878d4326084d3c22f4bde155c48747",
+    "package_graph.json": "50f03d7dd6bcc5a9a1f0b41ac21fdd19bd53f5b9081783995b3382ddd706eb90",
+    "source-after.json": "157f83f62199594e584a5b7b32790409d0af0d25bae938a2b0c4d4349b785366",
+    "prior-source-before.json": "ef4f4a5fe3809c0afb9f3b565ee1a4e241bad3efe5f60f58862d0c8222e77ade"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "status": "FAIL",
+  "source_commit": "c0c71a26e014cadda7a1f42244e710509dea5f6c",
+  "source_tree": "badc3902088b45fb8100f4921e591ed3582a886c",
+  "source_base": "b559f6c764fbfac143f593e89ddc1096ad8b5c4e",
+  "prior_qualified_source": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "runs": [
+    {
+      "name": "locked-workspace-resolution",
+      "command": [
+        "/workspace/scratch/79e6ad9e4046/quds-runtime/bin/dart",
+        "pub",
+        "get",
+        "--offline",
+        "--enforce-lockfile"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "locked-workspace-resolution.log",
+      "exit_code": 0,
+      "log_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "accepted": true
+    },
+    {
+      "name": "delta-continuity",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite/docs/validation/office-main-sync-20261119/main-delta-v2/verify-delta-continuity.py",
+        "--repo",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+        "--runtime",
+        "/workspace/scratch/79e6ad9e4046/quds-runtime",
+        "--source",
+        "c0c71a26e014cadda7a1f42244e710509dea5f6c",
+        "--evidence",
+        "/workspace/scratch/79e6ad9e4046/main-delta/v2-final-checks",
+        "--output",
+        "/workspace/scratch/79e6ad9e4046/main-delta/v2-final-checks/continuity.json"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "delta-continuity.log",
+      "exit_code": 0,
+      "log_sha256": "31664231585736f56e0b3c7f59bbb541a85796c0f60d556cac6de2987ccf4b41",
+      "accepted": true,
+      "receipt": "continuity.json",
+      "receipt_sha256": "1e22502f7b40ca7f6ebedf29fa0ac096ec83880f37d8cc13ec71498b50cc67ac"
+    },
+    {
+      "name": "bundle-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/proofing/ayaspell",
+        "-p",
+        "test_build_bundle*.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "bundle-controls.log",
+      "exit_code": 0,
+      "log_sha256": "15456f83485f88be2183053f67dba2e53fa8b891940214921c2402bb6fc3122b",
+      "accepted": true
+    },
+    {
+      "name": "native",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite/docs/validation/document-review-notes-20261118/run_checks.py",
+        "--head",
+        "c0c71a26e014cadda7a1f42244e710509dea5f6c",
+        "--base",
+        "b559f6c764fbfac143f593e89ddc1096ad8b5c4e",
+        "--runtime",
+        "/workspace/scratch/79e6ad9e4046/quds-runtime",
+        "--plan",
+        "/workspace/scratch/79e6ad9e4046/quds_office_suite/docs/validation/office-main-sync-20261119/main-delta-v2/delta-native-plan.json",
+        "--output",
+        "/workspace/scratch/79e6ad9e4046/main-delta/v2-final-checks/native",
+        "--command-timeout",
+        "600"
+      ],
+      "cwd": "/workspace/scratch/79e6ad9e4046/quds_office_suite",
+      "log": "native.log",
+      "exit_code": 1,
+      "log_sha256": "7497512ee50f1355488a86ae1017edf1987f1d1532fa1c4b5b1aa1e22396a712",
+      "accepted": false,
+      "receipt": "native/verification.json",
+      "receipt_sha256": "d3cb31865a1be37ae11722a69600f645e08743ebda18733ae8029c799f882da6"
+    }
+  ],
+  "started_at_utc": "2026-11-19T08:52:36.986261+00:00",
+  "fixture_root": "/workspace/scratch/79e6ad9e4046/hunspell-review",
+  "runtime_receipt_sha256": "94b3e458524c84d6f4f9bbdbec107a9d55ba3e6e38f54b76529d6c11aacd229f",
+  "python_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "native_environment": {
+    "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/79e6ad9e4046/hunspell-review/native/libhunspell_lifecycle_shim.so",
+    "QUDS_HUNSPELL_LIVE_DOWNLOAD": "1",
+    "QUDS_HUNSPELL_TEST_DICTIONARY": "/workspace/scratch/79e6ad9e4046/hunspell-review/dictionary",
+    "QUDS_HUNSPELL_TEST_LIBRARY": "/workspace/scratch/79e6ad9e4046/hunspell-review/native/libquds_proofing_hunspell.so"
+  },
+  "github_actions_queried_or_awaited": false,
+  "prior_application_cases_added_to_delta": 0,
+  "prior_python_controls_added_to_delta": 0,
+  "preserved_pre_resolution_receipt_sha256": "92fa67b46096a437b109f5ed5593d3648c05e9dba2dda6b0c4a2783bf6a3ddae",
+  "error": "RuntimeError('native failed; preserve its raw evidence')",
+  "source_unchanged": true,
+  "runtime_unchanged": true,
+  "source_head_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "finished_at_utc": "2026-11-19T08:59:19.421760+00:00",
+  "manifest_sha256": {
+    "runtime-before.json": "764263ff5dda116281a5d34b474c72c2a146392f5c8018472ca123015fe2fa52",
+    "package_config.json": "18f883d9af9b9d30da6aed9e870ba135afc0fe9a1757f6e9b9da4d92e1985423",
+    "prior-execution.json": "beee50ffbf587c41615d42e967e4f65bcb83c8945cc08b0436f1696c6562d6ea",
+    "prior-runtime-before.json": "a0a825ebad63dd9799b36a94293f153e60d2940a395d149bfbbffc3ce40f9629",
+    "prior-independent-summary.json": "338f588f5c3ae08ff8fb84c3663911f3cda07f820573fc30f384323da192efea",
+    "runtime-after.json": "764263ff5dda116281a5d34b474c72c2a146392f5c8018472ca123015fe2fa52",
+    "source-before.json": "97881687dac5b8a3f7d7ac132665c905055013941abde8d4d13924d3f2bf4cae",
+    "runtime-pre-resolution.json": "93c12bfec5f5df462ca2b349d0ad2ead3e878d4326084d3c22f4bde155c48747",
+    "package_graph.json": "ddbbaebd729d00cead3d07de0425a8bdf1e2b830cf3ca9d7b8b4b972f8c2a457",
+    "source-after.json": "97881687dac5b8a3f7d7ac132665c905055013941abde8d4d13924d3f2bf4cae",
+    "prior-source-before.json": "ef4f4a5fe3809c0afb9f3b565ee1a4e241bad3efe5f60f58862d0c8222e77ade"
+  }
+}

@@ -16,7 +16,12 @@ Future<void> enableStudioSetting(WidgetTester tester, String title) async {
   await tester.tap(tile);
   await tester.pump();
   expect(tester.widget<SwitchListTile>(tile).value, isTrue);
-  await tester.tap(find.widgetWithText(TextButton, 'Close'));
+  await tester.tap(
+    find.descendant(
+      of: find.byType(AlertDialog),
+      matching: find.widgetWithText(TextButton, 'Close'),
+    ),
+  );
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 300));
   expect(find.byType(AlertDialog), findsNothing);

@@ -1,0 +1,1368 @@
+{
+  "schema": 1,
+  "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+  "archives": [
+    {
+      "name": "Accepted final v4 qualification",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v4/final/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta-v4/final/evidence.index.json",
+      "scope": "Original accepted raw application/Python events, outputs, immutable source/runtime envelopes, independent recounts, fixed-capture reconciliation and replay/audit tools. Earlier source and rejected attempt counts are excluded.",
+      "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+      "members": [
+        {
+          "path": "raw/bundle-controls.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/bundle-controls.log"
+        },
+        {
+          "path": "raw/continuity.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/continuity.json"
+        },
+        {
+          "path": "raw/delta-continuity.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/delta-continuity.log"
+        },
+        {
+          "path": "raw/execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/execution.json"
+        },
+        {
+          "path": "raw/hunspell-browser-compile.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/hunspell-browser-compile.log"
+        },
+        {
+          "path": "raw/hunspell-browser.js",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/hunspell-browser.js"
+        },
+        {
+          "path": "raw/hunspell-browser.js.deps",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/hunspell-browser.js.deps"
+        },
+        {
+          "path": "raw/hunspell-browser.js.map",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/hunspell-browser.js.map"
+        },
+        {
+          "path": "raw/locked-workspace-resolution.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/locked-workspace-resolution.log"
+        },
+        {
+          "path": "raw/native/checks/analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/analysis.log"
+        },
+        {
+          "path": "raw/native/checks/analysis.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/analysis.log.gz"
+        },
+        {
+          "path": "raw/native/checks/arabic-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/arabic-main-merge-vm-cases.json"
+        },
+        {
+          "path": "raw/native/checks/arabic-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/arabic-main-merge-vm-errors.json"
+        },
+        {
+          "path": "raw/native/checks/arabic-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/arabic-main-merge-vm.jsonl"
+        },
+        {
+          "path": "raw/native/checks/arabic-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/arabic-main-merge-vm.jsonl.gz"
+        },
+        {
+          "path": "raw/native/checks/cursor-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/cursor-main-merge-vm-cases.json"
+        },
+        {
+          "path": "raw/native/checks/cursor-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/cursor-main-merge-vm-errors.json"
+        },
+        {
+          "path": "raw/native/checks/cursor-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/cursor-main-merge-vm.jsonl"
+        },
+        {
+          "path": "raw/native/checks/cursor-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/cursor-main-merge-vm.jsonl.gz"
+        },
+        {
+          "path": "raw/native/checks/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/format.log"
+        },
+        {
+          "path": "raw/native/checks/format.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/format.log.gz"
+        },
+        {
+          "path": "raw/native/checks/hunspell-native-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/hunspell-native-cases.json"
+        },
+        {
+          "path": "raw/native/checks/hunspell-native-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/hunspell-native-errors.json"
+        },
+        {
+          "path": "raw/native/checks/hunspell-native.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/hunspell-native.jsonl"
+        },
+        {
+          "path": "raw/native/checks/hunspell-native.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/hunspell-native.jsonl.gz"
+        },
+        {
+          "path": "raw/native/checks/studio-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/studio-main-merge-vm-cases.json"
+        },
+        {
+          "path": "raw/native/checks/studio-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/studio-main-merge-vm-errors.json"
+        },
+        {
+          "path": "raw/native/checks/studio-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/studio-main-merge-vm.jsonl"
+        },
+        {
+          "path": "raw/native/checks/studio-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/studio-main-merge-vm.jsonl.gz"
+        },
+        {
+          "path": "raw/native/checks/whitespace.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/whitespace.log"
+        },
+        {
+          "path": "raw/native/checks/whitespace.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/whitespace.log.gz"
+        },
+        {
+          "path": "raw/native/checks/word-arabic-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/word-arabic-main-merge-vm-cases.json"
+        },
+        {
+          "path": "raw/native/checks/word-arabic-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/word-arabic-main-merge-vm-errors.json"
+        },
+        {
+          "path": "raw/native/checks/word-arabic-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/word-arabic-main-merge-vm.jsonl"
+        },
+        {
+          "path": "raw/native/checks/word-arabic-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/word-arabic-main-merge-vm.jsonl.gz"
+        },
+        {
+          "path": "raw/native/checks/word-language-and-findings-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/word-language-and-findings-vm-cases.json"
+        },
+        {
+          "path": "raw/native/checks/word-language-and-findings-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/word-language-and-findings-vm-errors.json"
+        },
+        {
+          "path": "raw/native/checks/word-language-and-findings-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/word-language-and-findings-vm.jsonl"
+        },
+        {
+          "path": "raw/native/checks/word-language-and-findings-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/checks/word-language-and-findings-vm.jsonl.gz"
+        },
+        {
+          "path": "raw/native/environment-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/environment-after.json"
+        },
+        {
+          "path": "raw/native/environment-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/environment-before.json"
+        },
+        {
+          "path": "raw/native/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/source-after.json"
+        },
+        {
+          "path": "raw/native/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/source-before.json"
+        },
+        {
+          "path": "raw/native/verification.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native/verification.json"
+        },
+        {
+          "path": "raw/native.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/native.log"
+        },
+        {
+          "path": "raw/node/checks/arabic-main-merge-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/arabic-main-merge-node-cases.json"
+        },
+        {
+          "path": "raw/node/checks/arabic-main-merge-node-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/arabic-main-merge-node-errors.json"
+        },
+        {
+          "path": "raw/node/checks/arabic-main-merge-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/arabic-main-merge-node.jsonl"
+        },
+        {
+          "path": "raw/node/checks/arabic-main-merge-node.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/arabic-main-merge-node.jsonl.gz"
+        },
+        {
+          "path": "raw/node/checks/cursor-main-merge-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/cursor-main-merge-node-cases.json"
+        },
+        {
+          "path": "raw/node/checks/cursor-main-merge-node-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/cursor-main-merge-node-errors.json"
+        },
+        {
+          "path": "raw/node/checks/cursor-main-merge-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/cursor-main-merge-node.jsonl"
+        },
+        {
+          "path": "raw/node/checks/cursor-main-merge-node.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/cursor-main-merge-node.jsonl.gz"
+        },
+        {
+          "path": "raw/node/checks/hunspell-provider-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/hunspell-provider-node-cases.json"
+        },
+        {
+          "path": "raw/node/checks/hunspell-provider-node-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/hunspell-provider-node-errors.json"
+        },
+        {
+          "path": "raw/node/checks/hunspell-provider-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/hunspell-provider-node.jsonl"
+        },
+        {
+          "path": "raw/node/checks/hunspell-provider-node.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/hunspell-provider-node.jsonl.gz"
+        },
+        {
+          "path": "raw/node/checks/whitespace.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/whitespace.log"
+        },
+        {
+          "path": "raw/node/checks/whitespace.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/whitespace.log.gz"
+        },
+        {
+          "path": "raw/node/checks/word-language-and-findings-node-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/word-language-and-findings-node-cases.json"
+        },
+        {
+          "path": "raw/node/checks/word-language-and-findings-node-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/word-language-and-findings-node-errors.json"
+        },
+        {
+          "path": "raw/node/checks/word-language-and-findings-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/word-language-and-findings-node.jsonl"
+        },
+        {
+          "path": "raw/node/checks/word-language-and-findings-node.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/checks/word-language-and-findings-node.jsonl.gz"
+        },
+        {
+          "path": "raw/node/environment-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/environment-after.json"
+        },
+        {
+          "path": "raw/node/environment-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/environment-before.json"
+        },
+        {
+          "path": "raw/node/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/source-after.json"
+        },
+        {
+          "path": "raw/node/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/source-before.json"
+        },
+        {
+          "path": "raw/node/verification.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node/verification.json"
+        },
+        {
+          "path": "raw/node.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/node.log"
+        },
+        {
+          "path": "raw/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/package_config.json"
+        },
+        {
+          "path": "raw/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/package_graph.json"
+        },
+        {
+          "path": "raw/packaging-controls.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/packaging-controls.log"
+        },
+        {
+          "path": "raw/prior-execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/prior-execution.json"
+        },
+        {
+          "path": "raw/prior-independent-summary.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/prior-independent-summary.json"
+        },
+        {
+          "path": "raw/prior-resolution/.dart_tool/native_assets.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/prior-resolution/.dart_tool/native_assets.yaml"
+        },
+        {
+          "path": "raw/prior-resolution/.dart_tool/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/prior-resolution/.dart_tool/package_config.json"
+        },
+        {
+          "path": "raw/prior-resolution/.dart_tool/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/prior-resolution/.dart_tool/package_graph.json"
+        },
+        {
+          "path": "raw/prior-resolution/pubspec.lock",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/prior-resolution/pubspec.lock"
+        },
+        {
+          "path": "raw/prior-resolution/pubspec.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/prior-resolution/pubspec.yaml"
+        },
+        {
+          "path": "raw/prior-resolution/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/prior-resolution/receipt.json"
+        },
+        {
+          "path": "raw/prior-runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/prior-runtime-before.json"
+        },
+        {
+          "path": "raw/prior-source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/prior-source-before.json"
+        },
+        {
+          "path": "raw/runtime-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/runtime-after.json"
+        },
+        {
+          "path": "raw/runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/runtime-before.json"
+        },
+        {
+          "path": "raw/runtime-pre-resolution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/runtime-pre-resolution.json"
+        },
+        {
+          "path": "raw/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/source-after.json"
+        },
+        {
+          "path": "raw/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-checks/source-before.json"
+        },
+        {
+          "path": "audit/independent-summary.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-5c18db77-v4/independent-summary.json"
+        },
+        {
+          "path": "audit/native-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-5c18db77-v4/native-audit.json"
+        },
+        {
+          "path": "audit/native-audit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-5c18db77-v4/native-audit.log"
+        },
+        {
+          "path": "audit/node-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-5c18db77-v4/node-audit.json"
+        },
+        {
+          "path": "audit/node-audit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/final-5c18db77-v4/node-audit.log"
+        },
+        {
+          "path": "raw/outer-validation.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v4-final-validation.log"
+        },
+        {
+          "path": "audit/audit_delta_v4_integration.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_delta_v4_integration.py"
+        },
+        {
+          "path": "audit/audit_delta_gate.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_delta_gate.py"
+        },
+        {
+          "path": "audit/verify_delta_publication.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/verify_delta_publication.py"
+        },
+        {
+          "path": "reconciliation/final-source-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/ref-audit-5c18db77.json"
+        },
+        {
+          "path": "publication/prepare_v4_publication.py",
+          "original": "/workspace/scratch/79e6ad9e4046/publish-work/prepare_v4_publication.py"
+        },
+        {
+          "path": "publication/package_publication_evidence.py",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/package_publication_evidence.py"
+        },
+        {
+          "path": "publication/verify_publication_archives.py",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/verify_publication_archives.py"
+        },
+        {
+          "path": "publication/report-proposal-manifest.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/report-v4-review/proposal-manifest.json"
+        },
+        {
+          "path": "publication/report-corrections.patch",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/report-v4-review/report-corrections.patch"
+        },
+        {
+          "path": "publication/report-review.md",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/report-v4-review/REVIEW.md"
+        }
+      ]
+    },
+    {
+      "name": "Preserved final integration reviews",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v4/reviews/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta-v4/reviews/evidence.index.json",
+      "scope": "Bounded historical development and merge reviews, export-order correction, guide review and static preflight for v4 publication. The frozen final gate supplies qualification totals separately. Every original historical/development/failure label remains unchanged; zero qualification contribution.",
+      "source_commit": "5c18db77505f876bf70bf7e89c49e8c3b617e0d4",
+      "members": [
+        {
+          "path": "arabic-review/studio-v3-cross-review.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/studio-v3-cross-review.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis-summary.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis-summary.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_editor/lib/src/embed/office_controller.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_editor/lib/src/embed/office_controller.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_editor/test/word_complex_script_proofing_controls_test.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_editor/test/word_complex_script_proofing_controls_test.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/proofing/office_proofing.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/proofing/office_proofing.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/model/wml_run_edit.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/model/wml_run_edit.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/model/word_proofing_language.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/model/word_proofing_language.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/properties/wml_properties.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/properties/wml_properties.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/serial/word_deserializer.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/serial/word_deserializer.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/serial/word_property_io.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/serial/word_property_io.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/serial/word_serializer.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/serial/word_serializer.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_engine/test/proofing/office_proofing_merge_test.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_engine/test/proofing/office_proofing_merge_test.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analysis/packages/quds_office_engine/test/word_complex_script_language_test.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analysis/packages/quds_office_engine/test/word_complex_script_language_test.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/analyze_candidate.py",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/analyze_candidate.py"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/base.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/base.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/candidate-files.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/candidate-files.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/editor-green.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/editor-green.jsonl"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/editor-red.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/editor-red.jsonl"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/engine-green-node.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/engine-green-node.jsonl"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/engine-green-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/engine-green-vm.jsonl"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/engine-red.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/engine-red.jsonl"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/format.log"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/prepare_evidence.py",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/prepare_evidence.py"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/receipt.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/red-inputs.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/red-inputs.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/replay-mapping.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/replay-mapping.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_editor/.dart_tool/native_assets.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_editor/.dart_tool/native_assets.yaml"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_editor/.dart_tool/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_editor/.dart_tool/package_config.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_editor/.dart_tool/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_editor/.dart_tool/package_graph.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_editor/lib/src/embed/office_controller.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/.dart_tool/native_assets.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/.dart_tool/native_assets.yaml"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/.dart_tool/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/.dart_tool/package_config.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/.dart_tool/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/.dart_tool/package_graph.json"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/proofing/office_proofing.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/properties/wml_properties.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/serial/word_property_io.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/serial/word_serializer.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/source/packages/quds_office_engine/test/word_complex_script_language_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/source/packages/quds_office_engine/test/word_complex_script_language_test.dart"
+        },
+        {
+          "path": "arabic-review/word-routing-v3/word-routing-and-merge.patch",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/word-routing-v3/word-routing-and-merge.patch"
+        },
+        {
+          "path": "host-cancellation/cancellation-fixes.patch",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/cancellation-fixes.patch"
+        },
+        {
+          "path": "host-cancellation/cross-review.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/host-cancellation-cross-review.json"
+        },
+        {
+          "path": "host-cancellation/development-receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/development-receipt.json"
+        },
+        {
+          "path": "host-cancellation/files.json",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/files.json"
+        },
+        {
+          "path": "host-cancellation/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/format.log"
+        },
+        {
+          "path": "host-cancellation/hunspell/.dart_tool/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/hunspell/.dart_tool/package_config.json"
+        },
+        {
+          "path": "host-cancellation/hunspell/lib/src/hunspell_installer_io.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/hunspell/lib/src/hunspell_installer_io.dart"
+        },
+        {
+          "path": "host-cancellation/hunspell/test/hunspell_installer_cancellation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/hunspell/test/hunspell_installer_cancellation_test.dart"
+        },
+        {
+          "path": "host-cancellation/native-analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/native-analysis.log"
+        },
+        {
+          "path": "host-cancellation/native-green.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/native-green.jsonl"
+        },
+        {
+          "path": "host-cancellation/native-red.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/native-red.jsonl"
+        },
+        {
+          "path": "host-cancellation/red-manifest.json",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/red-manifest.json"
+        },
+        {
+          "path": "host-cancellation/red-source/hunspell/lib/src/hunspell_installer_io.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/red-source/hunspell/lib/src/hunspell_installer_io.dart"
+        },
+        {
+          "path": "host-cancellation/red-source/hunspell/test/hunspell_installer_cancellation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/red-source/hunspell/test/hunspell_installer_cancellation_test.dart"
+        },
+        {
+          "path": "host-cancellation/red-source/studio/lib/studio_hunspell_host.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/red-source/studio/lib/studio_hunspell_host.dart"
+        },
+        {
+          "path": "host-cancellation/red-source/studio/lib/studio_hunspell_host_web.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/red-source/studio/lib/studio_hunspell_host_web.dart"
+        },
+        {
+          "path": "host-cancellation/red-source/studio/test/studio_hunspell_web_cancellation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/red-source/studio/test/studio_hunspell_web_cancellation_test.dart"
+        },
+        {
+          "path": "host-cancellation/studio/.dart_tool/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/studio/.dart_tool/package_config.json"
+        },
+        {
+          "path": "host-cancellation/studio/.dart_tool/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/studio/.dart_tool/package_graph.json"
+        },
+        {
+          "path": "host-cancellation/studio/lib/studio_hunspell_host.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/studio/lib/studio_hunspell_host.dart"
+        },
+        {
+          "path": "host-cancellation/studio/lib/studio_hunspell_host_web.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/studio/lib/studio_hunspell_host_web.dart"
+        },
+        {
+          "path": "host-cancellation/studio/pubspec.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/studio/pubspec.yaml"
+        },
+        {
+          "path": "host-cancellation/studio/test/studio_hunspell_web_cancellation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/studio/test/studio_hunspell_web_cancellation_test.dart"
+        },
+        {
+          "path": "host-cancellation/web-analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/web-analysis.log"
+        },
+        {
+          "path": "host-cancellation/web-green-three-controls.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/web-green-three-controls.jsonl"
+        },
+        {
+          "path": "host-cancellation/web-green.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/web-green.jsonl"
+        },
+        {
+          "path": "host-cancellation/web-positive-format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/web-positive-format.log"
+        },
+        {
+          "path": "host-cancellation/web-red-bootstrap.log",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/web-red-bootstrap.log"
+        },
+        {
+          "path": "host-cancellation/web-red.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/web-red.jsonl"
+        },
+        {
+          "path": "main-9160-merge-review/candidate-files.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate-files.json"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/.github/workflows/crispoffice-binaries.yml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/.github/workflows/crispoffice-binaries.yml"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/packages/quds_office_editor/example/lib/suite_workspace.dart"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/packages/quds_office_editor/example/test/studio_comment_review_test.dart"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/packages/quds_office_editor/example/test/studio_compact_navigation_test.dart"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/packages/quds_office_editor/example/test/studio_review_pane_test.dart"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/packages/quds_office_editor/example/test/support/studio_settings.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/packages/quds_office_editor/example/test/support/studio_settings.dart"
+        },
+        {
+          "path": "main-9160-merge-review/candidate/packages/quds_office_editor/example/test/widget_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/candidate/packages/quds_office_editor/example/test/widget_test.dart"
+        },
+        {
+          "path": "main-9160-merge-review/incoming-paths.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/incoming-paths.json"
+        },
+        {
+          "path": "main-9160-merge-review/merge-from-26df.patch",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/merge-from-26df.patch"
+        },
+        {
+          "path": "main-9160-merge-review/merge-receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/merge-receipt.json"
+        },
+        {
+          "path": "main-9160-merge-review/merge-tree-command.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/merge-tree-command.json"
+        },
+        {
+          "path": "main-9160-merge-review/merge-tree-output.txt",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/merge-tree-output.txt"
+        },
+        {
+          "path": "main-9160-merge-review/merge-tree-stderr.txt",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/merge-tree-stderr.txt"
+        },
+        {
+          "path": "main-9160-merge-review/patch-check-receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/patch-check-receipt.json"
+        },
+        {
+          "path": "main-9160-merge-review/resolve_candidate.py",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/resolve_candidate.py"
+        },
+        {
+          "path": "packaging-controls-development/candidate/packages/quds_proofing_hunspell/tool/test_build.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/packaging-controls-proposal/packages/quds_proofing_hunspell/tool/test_build.py"
+        },
+        {
+          "path": "packaging-controls-development/development-receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/packaging-controls-development.json"
+        },
+        {
+          "path": "packaging-controls-development/development.log",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/packaging-controls-development.log"
+        },
+        {
+          "path": "packaging-controls-development/files.json",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/packaging-controls-files.json"
+        },
+        {
+          "path": "proofing-guide-original-review/correction.patch",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/proofing-doc-correction.patch"
+        },
+        {
+          "path": "proofing-guide-original-review/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/proofing-doc-correction-review.json"
+        },
+        {
+          "path": "reviews/main-9160-cross-review.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/main-9160-cross-review.json"
+        },
+        {
+          "path": "reviews/studio-d8-cross-review.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/studio-d8-cross-review.json"
+        },
+        {
+          "path": "root-v3-format-review/after/packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-format-review/after/packages/quds_office_editor/lib/src/proofing/word_proofing.dart"
+        },
+        {
+          "path": "root-v3-format-review/after/packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-format-review/after/packages/quds_office_editor/test/word_arabic_writing_integration_test.dart"
+        },
+        {
+          "path": "root-v3-format-review/before/packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-format-review/before/packages/quds_office_editor/lib/src/proofing/word_proofing.dart"
+        },
+        {
+          "path": "root-v3-format-review/before/packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-format-review/before/packages/quds_office_editor/test/word_arabic_writing_integration_test.dart"
+        },
+        {
+          "path": "root-v3-format-review/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-format-review/format.log"
+        },
+        {
+          "path": "root-v3-format-review/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-format-review/receipt.json"
+        },
+        {
+          "path": "root-v4-export-order/after.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/export-order/after.dart"
+        },
+        {
+          "path": "root-v4-export-order/before.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/export-order/before.dart"
+        },
+        {
+          "path": "root-v4-export-order/export-order.patch",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/export-order/export-order.patch"
+        },
+        {
+          "path": "root-v4-export-order/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/export-order/receipt.json"
+        },
+        {
+          "path": "root-v4-static-preflight/analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/preflight/analysis.log"
+        },
+        {
+          "path": "root-v4-static-preflight/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/preflight/format.log"
+        },
+        {
+          "path": "root-v4-static-preflight/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/preflight/receipt.json"
+        },
+        {
+          "path": "single-main-read-26df/compare-response.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/main-read-26df/compare-response.json"
+        },
+        {
+          "path": "single-main-read-26df/head-commit-response.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/main-read-26df/head-commit-response.json"
+        },
+        {
+          "path": "single-main-read-26df/main-ref-response.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/main-read-26df/main-ref-response.json"
+        },
+        {
+          "path": "single-main-read-26df/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/main-read-26df/receipt.json"
+        },
+        {
+          "path": "source-inventories/arabic-review/v3-word-evidence-members.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/v3-word-evidence-members.json"
+        },
+        {
+          "path": "source-inventories/host-cancellation-review/evidence-members.json",
+          "original": "/workspace/scratch/79e6ad9e4046/host-cancellation-review/evidence-members.json"
+        },
+        {
+          "path": "source-inventories/import-review/final-v3-d8-review-evidence-members.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/final-v3-d8-review-evidence-members.json"
+        },
+        {
+          "path": "source-inventories/import-review/final-v3-review-evidence-members.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/final-v3-review-evidence-members.json"
+        },
+        {
+          "path": "source-inventories/import-review/main-read-26df/evidence-inventory.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/main-read-26df/evidence-inventory.json"
+        },
+        {
+          "path": "source-inventories/main-9160-review/evidence-inventory.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-9160-review/evidence-inventory.json"
+        },
+        {
+          "path": "source-inventories/studio-d8-review/evidence-inventory.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/evidence-inventory.json"
+        },
+        {
+          "path": "source-inventories/studio-main-tail-review/evidence-inventory.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/evidence-inventory.json"
+        },
+        {
+          "path": "source-inventories/studio-review-v3/evidence-inventory.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/evidence-inventory.json"
+        },
+        {
+          "path": "studio-d8-footer-development/analysis-summary.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/analysis-summary.json"
+        },
+        {
+          "path": "studio-d8-footer-development/context/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/context/package_config.json"
+        },
+        {
+          "path": "studio-d8-footer-development/context/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/context/package_graph.json"
+        },
+        {
+          "path": "studio-d8-footer-development/context/pubspec.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/context/pubspec.yaml"
+        },
+        {
+          "path": "studio-d8-footer-development/context/studio_comment_draft_proofing_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/context/studio_comment_draft_proofing_test.dart"
+        },
+        {
+          "path": "studio-d8-footer-development/context/studio_compact_navigation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/context/studio_compact_navigation_test.dart"
+        },
+        {
+          "path": "studio-d8-footer-development/development-receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/development-receipt.json"
+        },
+        {
+          "path": "studio-d8-footer-development/final-files.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/final-files.json"
+        },
+        {
+          "path": "studio-d8-footer-development/final-format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/final-format.log"
+        },
+        {
+          "path": "studio-d8-footer-development/final-source/lib/suite_workspace.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/final-source/lib/suite_workspace.dart"
+        },
+        {
+          "path": "studio-d8-footer-development/final-source/test/studio_review_status_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/final-source/test/studio_review_status_test.dart"
+        },
+        {
+          "path": "studio-d8-footer-development/footer-status-fix.patch",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/footer-status-fix.patch"
+        },
+        {
+          "path": "studio-d8-footer-development/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/format.log"
+        },
+        {
+          "path": "studio-d8-footer-development/green-accounting.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/green-accounting.json"
+        },
+        {
+          "path": "studio-d8-footer-development/green.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/green.jsonl"
+        },
+        {
+          "path": "studio-d8-footer-development/isolated-inputs.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/isolated-inputs.json"
+        },
+        {
+          "path": "studio-d8-footer-development/narrow-red-accounting.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/narrow-red-accounting.json"
+        },
+        {
+          "path": "studio-d8-footer-development/narrow-red.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/narrow-red.jsonl"
+        },
+        {
+          "path": "studio-d8-footer-development/patch-check.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/patch-check.log"
+        },
+        {
+          "path": "studio-d8-footer-development/prepare_evidence.py",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/prepare_evidence.py"
+        },
+        {
+          "path": "studio-d8-footer-development/prepare_isolated.py",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/prepare_isolated.py"
+        },
+        {
+          "path": "studio-d8-footer-development/red-source/lib/studio_chrome.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/red-source/lib/studio_chrome.dart"
+        },
+        {
+          "path": "studio-d8-footer-development/red-source/lib/suite_workspace.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/red-source/lib/suite_workspace.dart"
+        },
+        {
+          "path": "studio-d8-footer-development/red-source/test/studio_review_status_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/red-source/test/studio_review_status_test.dart"
+        },
+        {
+          "path": "studio-d8-footer-development/status-red-accounting.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/status-red-accounting.json"
+        },
+        {
+          "path": "studio-d8-footer-development/status-red.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/status-red.jsonl"
+        },
+        {
+          "path": "studio-d8-footer-development/status-test-format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/status-test-format.log"
+        },
+        {
+          "path": "studio-d8-footer-development/studio_review_status_test-analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/studio_review_status_test-analysis.log"
+        },
+        {
+          "path": "studio-d8-footer-development/suite_workspace-analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-d8-review/suite_workspace-analysis.log"
+        },
+        {
+          "path": "studio-latest-main-static/baseline-format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/baseline-format.log"
+        },
+        {
+          "path": "studio-latest-main-static/finalize_overlay.py",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/finalize_overlay.py"
+        },
+        {
+          "path": "studio-latest-main-static/label-and-workflow-review.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/label-and-workflow-review.json"
+        },
+        {
+          "path": "studio-latest-main-static/latest-main-overlay.patch",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/latest-main-overlay.patch"
+        },
+        {
+          "path": "studio-latest-main-static/originals/.github/workflows/crispoffice-binaries.yml",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/originals/.github/workflows/crispoffice-binaries.yml"
+        },
+        {
+          "path": "studio-latest-main-static/originals/packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/originals/packages/quds_office_editor/example/lib/suite_workspace.dart"
+        },
+        {
+          "path": "studio-latest-main-static/other-incoming-format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/other-incoming-format.log"
+        },
+        {
+          "path": "studio-latest-main-static/patch-check.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/patch-check.log"
+        },
+        {
+          "path": "studio-latest-main-static/review_labels_and_scope.py",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/review_labels_and_scope.py"
+        },
+        {
+          "path": "studio-latest-main-static/source/.dart_tool/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/source/.dart_tool/package_config.json"
+        },
+        {
+          "path": "studio-latest-main-static/source/.github/workflows/crispoffice-binaries.yml",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/source/.github/workflows/crispoffice-binaries.yml"
+        },
+        {
+          "path": "studio-latest-main-static/source/baseline/suite_workspace.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/source/baseline/suite_workspace.dart"
+        },
+        {
+          "path": "studio-latest-main-static/source/lib/suite_workspace.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/source/lib/suite_workspace.dart"
+        },
+        {
+          "path": "studio-latest-main-static/source/pubspec.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/source/pubspec.yaml"
+        },
+        {
+          "path": "studio-latest-main-static/static-overlay-receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/static-overlay-receipt.json"
+        },
+        {
+          "path": "studio-latest-main-static/studio_about-format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/studio_about-format.log"
+        },
+        {
+          "path": "studio-latest-main-static/studio_de_strings-format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/studio_de_strings-format.log"
+        },
+        {
+          "path": "studio-latest-main-static/workspace-files.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/workspace-files.json"
+        },
+        {
+          "path": "studio-latest-main-static/workspace-format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-main-tail-review/workspace-format.log"
+        },
+        {
+          "path": "studio-v3-development/analysis-context/analysis_options.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/analysis-context/analysis_options.yaml"
+        },
+        {
+          "path": "studio-v3-development/analysis-context/packages/quds_office_editor/analysis_options.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/analysis-context/packages/quds_office_editor/analysis_options.yaml"
+        },
+        {
+          "path": "studio-v3-development/analysis-context/packages/quds_office_editor/example/analysis_options.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/analysis-context/packages/quds_office_editor/example/analysis_options.yaml"
+        },
+        {
+          "path": "studio-v3-development/analysis-context/packages/quds_office_engine/analysis_options.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/analysis-context/packages/quds_office_engine/analysis_options.yaml"
+        },
+        {
+          "path": "studio-v3-development/development-receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/development-receipt.json"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/lib/suite_workspace.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/pdf_showcase_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/pdf_showcase_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/studio_comment_review_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/studio_compact_navigation_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/studio_mail_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/studio_mail_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/studio_review_pane_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/studio_settings_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/studio_settings_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/studio_shots_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/studio_shots_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+        },
+        {
+          "path": "studio-v3-development/final-source/packages/quds_office_editor/example/test/widget_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/final-source/packages/quds_office_editor/example/test/widget_test.dart"
+        },
+        {
+          "path": "studio-v3-development/incoming-main-review.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/incoming-main-review.json"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/lib/suite_workspace.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/lib/suite_workspace.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/pdf_gallery_smoke_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/pdf_gallery_smoke_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/pdf_showcase_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/pdf_showcase_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/studio_comment_draft_proofing_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/studio_comment_draft_proofing_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/studio_comment_keyboard_review_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/studio_comment_keyboard_review_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/studio_comment_review_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/studio_comment_review_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/studio_compact_navigation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/studio_compact_navigation_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/studio_mail_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/studio_mail_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/studio_review_pane_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/studio_review_pane_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/studio_settings_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/studio_settings_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/studio_sheet_navigation_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/studio_sheet_navigation_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/studio_shots_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/studio_shots_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/studio_zotero_shortcuts_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/studio_zotero_shortcuts_test.dart"
+        },
+        {
+          "path": "studio-v3-development/initial-setup-source/test/widget_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/initial-setup-source/test/widget_test.dart"
+        },
+        {
+          "path": "studio-v3-development/notes-setting-compile-probe.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/notes-setting-compile-probe.jsonl"
+        },
+        {
+          "path": "studio-v3-development/notes-setting-launcher-probe.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/notes-setting-launcher-probe.log"
+        },
+        {
+          "path": "studio-v3-development/notes-setting-red-accounting.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/notes-setting-red-accounting.json"
+        },
+        {
+          "path": "studio-v3-development/notes-setting-red-source/lib/suite_workspace.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/notes-setting-red-source/lib/suite_workspace.dart"
+        },
+        {
+          "path": "studio-v3-development/notes-setting-red-source/test/studio_settings_test.dart",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/notes-setting-red-source/test/studio_settings_test.dart"
+        },
+        {
+          "path": "studio-v3-development/notes-setting-red.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/notes-setting-red.jsonl"
+        },
+        {
+          "path": "studio-v3-development/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/package_config.json"
+        },
+        {
+          "path": "studio-v3-development/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/package_graph.json"
+        },
+        {
+          "path": "studio-v3-development/preview-source-inputs.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/preview-source-inputs.json"
+        },
+        {
+          "path": "studio-v3-development/reviews/host-cancellation-cross-review.json",
+          "original": "/workspace/scratch/79e6ad9e4046/import-review/host-cancellation-cross-review.json"
+        },
+        {
+          "path": "studio-v3-development/reviews/studio-v3-cross-review.json",
+          "original": "/workspace/scratch/79e6ad9e4046/arabic-review/studio-v3-cross-review.json"
+        },
+        {
+          "path": "studio-v3-development/second-setup-format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/second-setup-format.log"
+        },
+        {
+          "path": "studio-v3-development/studio-analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/studio-analysis.log"
+        },
+        {
+          "path": "studio-v3-development/studio-defaults-and-notes.patch",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/studio-defaults-and-notes.patch"
+        },
+        {
+          "path": "studio-v3-development/studio-files.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/studio-files.json"
+        },
+        {
+          "path": "studio-v3-development/studio-focused-green-accounting.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/studio-focused-green-accounting.json"
+        },
+        {
+          "path": "studio-v3-development/studio-focused-green.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/studio-focused-green.jsonl"
+        },
+        {
+          "path": "studio-v3-development/studio-format-development.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/studio-format-development.log"
+        },
+        {
+          "path": "studio-v3-development/studio-format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/studio-format.log"
+        },
+        {
+          "path": "studio-v3-development/studio-initial-analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/studio-initial-analysis.log"
+        },
+        {
+          "path": "studio-v3-development/studio-initial-setup-accounting.json",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/studio-initial-setup-accounting.json"
+        },
+        {
+          "path": "studio-v3-development/studio-initial-setup.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/studio-review-v3/studio-initial-setup.jsonl"
+        }
+      ]
+    }
+  ]
+}

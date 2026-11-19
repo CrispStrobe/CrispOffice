@@ -1,0 +1,263 @@
+{
+  "schema": 1,
+  "source_commit": "26df787326f58a002b62241b7feb52acff089f2f",
+  "archives": [
+    {
+      "name": "rejected-26df7873-strict-analysis-attempt",
+      "archive": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.tar.xz",
+      "index": "docs/validation/office-main-sync-20261119/main-delta-v3/attempt-26df7873/evidence.index.json",
+      "source_commit": "26df787326f58a002b62241b7feb52acff089f2f",
+      "scope": "Rejected 26df7873 strict-analysis attempt: the single incoming engine directives_ordering diagnostic prevents acceptance despite 634 native application successes and 21 separately counted Python control successes. accepted_qualification=false; no Node or browser stage started; zero results contribute to accepted totals. Original raw evidence and the completed independent rejection audit are preserved without reruns.",
+      "members": [
+        {
+          "path": "audit-review/audit_failed_26df_attempt.py",
+          "original": "/workspace/scratch/79e6ad9e4046/audit-review/audit_failed_26df_attempt.py"
+        },
+        {
+          "path": "main-delta/v3-26df-failed-attempt-audit.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-26df-failed-attempt-audit.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/bundle-controls.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/bundle-controls.log"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/continuity.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/continuity.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/delta-continuity.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/delta-continuity.log"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/execution.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/locked-workspace-resolution.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/locked-workspace-resolution.log"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/analysis.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/analysis.log"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/analysis.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/analysis.log.gz"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm-cases.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm-errors.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm.jsonl"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/arabic-main-merge-vm.jsonl.gz"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm-cases.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm-errors.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm.jsonl"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/cursor-main-merge-vm.jsonl.gz"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/format.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/format.log"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/format.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/format.log.gz"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/hunspell-native-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/hunspell-native-cases.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/hunspell-native-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/hunspell-native-errors.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/hunspell-native.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/hunspell-native.jsonl"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/hunspell-native.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/hunspell-native.jsonl.gz"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm-cases.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm-errors.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm.jsonl"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/studio-main-merge-vm.jsonl.gz"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/whitespace.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/whitespace.log"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/whitespace.log.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/whitespace.log.gz"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm-cases.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm-errors.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm.jsonl"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-arabic-main-merge-vm.jsonl.gz"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm-cases.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm-cases.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm-errors.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm-errors.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm.jsonl",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm.jsonl"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm.jsonl.gz",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/checks/word-language-and-findings-vm.jsonl.gz"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/environment-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/environment-after.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/environment-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/environment-before.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/source-after.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/source-before.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native/verification.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native/verification.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/native.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/native.log"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/package_config.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/package_graph.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/packaging-controls.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/packaging-controls.log"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-execution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-execution.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-independent-summary.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-independent-summary.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/.dart_tool/native_assets.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/.dart_tool/native_assets.yaml"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/.dart_tool/package_config.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/.dart_tool/package_config.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/.dart_tool/package_graph.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/.dart_tool/package_graph.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/pubspec.lock",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/pubspec.lock"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/pubspec.yaml",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/pubspec.yaml"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-resolution/receipt.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-resolution/receipt.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-runtime-before.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/prior-source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/prior-source-before.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/runtime-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/runtime-after.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/runtime-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/runtime-before.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/runtime-pre-resolution.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/runtime-pre-resolution.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/source-after.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/source-after.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-checks/source-before.json",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-checks/source-before.json"
+        },
+        {
+          "path": "main-delta/v3-qualified-validation.log",
+          "original": "/workspace/scratch/79e6ad9e4046/main-delta/v3-qualified-validation.log"
+        }
+      ]
+    }
+  ]
+}
