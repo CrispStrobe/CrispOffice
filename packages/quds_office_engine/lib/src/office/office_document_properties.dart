@@ -116,11 +116,7 @@ class OfficeDocumentProperties {
     }
     package.getPart('/docProps/core.xml')!.writeText(_coreXml());
     package.getPart('/docProps/app.xml')!.writeText(_appXml());
-    _ensureRel(
-      package,
-      RelationshipTypes.coreProperties,
-      'docProps/core.xml',
-    );
+    _ensureRel(package, RelationshipTypes.coreProperties, 'docProps/core.xml');
     _ensureRel(
       package,
       RelationshipTypes.extendedProperties,

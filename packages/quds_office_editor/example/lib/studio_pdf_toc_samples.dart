@@ -41,7 +41,11 @@ Uint8List studioContentsGuidePdf() {
         pw.Paragraph(
           text:
               'Hover a contents row. The card shows the page the link opens, cropped to the heading.',
-          style: const pw.TextStyle(fontSize: 11, color: '334155', lineSpacing: 3),
+          style: const pw.TextStyle(
+            fontSize: 11,
+            color: '334155',
+            lineSpacing: 3,
+          ),
         ),
         pw.SizedBox(height: 8),
         const pw.TableOfContent(title: 'Contents'),
@@ -121,7 +125,11 @@ Uint8List studioArabicContentsPdf() {
           text:
               'مرّر المؤشر فوق بند في الفهرس لترى الصفحة التي يفتحها الرابط، عند العنوان نفسه.',
           textAlign: pw.TextAlign.right,
-          style: const pw.TextStyle(fontSize: 11, color: '334155', lineSpacing: 3),
+          style: const pw.TextStyle(
+            fontSize: 11,
+            color: '334155',
+            lineSpacing: 3,
+          ),
         ),
         pw.SizedBox(height: 8),
         const pw.TableOfContent(title: 'المحتويات'),
@@ -166,10 +174,7 @@ Uint8List studioArabicContentsPdf() {
 pw.Widget _kicker(String label, String ink, String wash) {
   return pw.Container(
     padding: const pw.EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-    decoration: pw.BoxDecoration(
-      color: wash,
-      borderRadius: 4,
-    ),
+    decoration: pw.BoxDecoration(color: wash, borderRadius: 4),
     child: pw.Text(
       label,
       style: pw.TextStyle(fontSize: 9, color: ink, letterSpacing: 0.6),
@@ -228,7 +233,11 @@ pw.Widget _section({
       pw.Paragraph(
         text: body,
         textAlign: rtl ? pw.TextAlign.right : pw.TextAlign.left,
-        style: const pw.TextStyle(fontSize: 12, color: '1E293B', lineSpacing: 4),
+        style: const pw.TextStyle(
+          fontSize: 12,
+          color: '1E293B',
+          lineSpacing: 4,
+        ),
       ),
       if (see != null && seeLabel != null) ...<pw.Widget>[
         pw.SizedBox(height: 10),
