@@ -1,0 +1,139 @@
+{
+  "file": "complete-results.tar.gz",
+  "bytes": 306407,
+  "sha256": "fdc4314e462cbc7a07f9de3c708d80167b0cb980b5aaf6c14cbbdc65bc59a0a9",
+  "members": [
+    {
+      "path": "analysis.log",
+      "bytes": 1046,
+      "sha256": "1b67e08f01c8a8b29f0377a272e8ce0de10820982b0849633e3a83b62ee9f7e8"
+    },
+    {
+      "path": "editor-cases.json",
+      "bytes": 220857,
+      "sha256": "acf25fd8fb9bac635044b4867c34032d19b594f4996e3809358b460a1a81e02e"
+    },
+    {
+      "path": "editor-error_events.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "editor.jsonl.gz",
+      "bytes": 37319,
+      "sha256": "7bc45c9f70275106d107935d6a6da42d80109608821fec08793e0af9293a9d0a"
+    },
+    {
+      "path": "engine-cases.json",
+      "bytes": 181916,
+      "sha256": "9c8e02b5a2bf4672d1aa7fb0466778f33a4b598fd30d583b3b92e7574c72283c"
+    },
+    {
+      "path": "engine-error_events.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "engine.jsonl.gz",
+      "bytes": 28882,
+      "sha256": "71439a44dbf76ed8b171294c78082573dcbd6740ebb0b11e9d9fd865ab58a4c4"
+    },
+    {
+      "path": "format.log",
+      "bytes": 48,
+      "sha256": "d53fbf2642baf32aa4d2aa9ef63b315f0a9b5d6afb82107c25ca7edc6017e7e3"
+    },
+    {
+      "path": "mail-core-cases.json",
+      "bytes": 2437,
+      "sha256": "7c3257882aa8289f4cdcbdbbf38f17bddfe4ca38d7fcb69cd771c587d3b99910"
+    },
+    {
+      "path": "mail-core-error_events.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "mail-core.jsonl.gz",
+      "bytes": 926,
+      "sha256": "8b470a2e5ce8b162b398a9eeb4da7d551819d2fa33d1702132cb44367d61a213"
+    },
+    {
+      "path": "mail-runner-accounting.log",
+      "bytes": 5524,
+      "sha256": "1b487a9ad4a9454e3d4b6c331b0b48b6bd2056e30af27c7c5459e01d8f0c3914"
+    },
+    {
+      "path": "mail-store-cases.json",
+      "bytes": 20207,
+      "sha256": "748049e5e09316c3deba2945bb2ef0b3e5af72517d2676fdb79c3b1e1af7cb5d"
+    },
+    {
+      "path": "mail-store-error_events.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "mail-store.jsonl.gz",
+      "bytes": 5083,
+      "sha256": "4e40fd23f2d5c21a569e1ede51c6a1e0b9e8a3e633afd1a814ea4ffc873268c5"
+    },
+    {
+      "path": "mail-ui-cases.json",
+      "bytes": 2922,
+      "sha256": "bc96cf6a3a0461ee8e9bbde6321750108200e2980fe071f560ee5d78ece95a7d"
+    },
+    {
+      "path": "mail-ui-error_events.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "mail-ui.jsonl.gz",
+      "bytes": 1143,
+      "sha256": "46f9badeb833a1f5adbc667f09f2f68b405670ed1d2aa17e51724f23ee0ac959"
+    },
+    {
+      "path": "runner-accounting.log",
+      "bytes": 4995,
+      "sha256": "7014b95d409d50df2f9e3775242f1b61d3703ecab76afc511d4ecd4f61e6e843"
+    },
+    {
+      "path": "source-after.json.gz",
+      "bytes": 85852,
+      "sha256": "2f1db5d0510f97a5d295e3a0c5f8553121ed328ed3d223fdea09ce747accdc25"
+    },
+    {
+      "path": "source-before.json.gz",
+      "bytes": 85852,
+      "sha256": "2f1db5d0510f97a5d295e3a0c5f8553121ed328ed3d223fdea09ce747accdc25"
+    },
+    {
+      "path": "studio-cases.json",
+      "bytes": 28549,
+      "sha256": "bb0ea2b9574b4b65d678f52f10667bbb4c92a8c4c933e10e5415992327bacc27"
+    },
+    {
+      "path": "studio-error_events.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "studio.jsonl.gz",
+      "bytes": 5420,
+      "sha256": "88d5bdff4f2077a6e8c24e2c8ce351862aad52ddb539203d938f5361f2e2e4ff"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 50657,
+      "sha256": "aad9ed86c837fb2793f2602825ae4453ab93a40f54b8d942adabcb435ad7dcdf"
+    },
+    {
+      "path": "whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "qualified_commit": "ff06e5544673ce7f70be983299241bcdcef780d3",
+  "scope": "Complete frozen run; development diagnostics are separate and contribute no cases."
+}

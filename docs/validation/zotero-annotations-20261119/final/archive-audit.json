@@ -1,0 +1,49 @@
+{
+  "accepted": true,
+  "checked_at_utc": "2026-11-19T05:45:52.960773+00:00",
+  "qualified_commit": "ff06e5544673ce7f70be983299241bcdcef780d3",
+  "final_results": {
+    "file": "complete-results.tar.gz",
+    "archive_sha256": "fdc4314e462cbc7a07f9de3c708d80167b0cb980b5aaf6c14cbbdc65bc59a0a9",
+    "archive_bytes": 306407,
+    "manifest_sha256": "cffeffdc4bdde450488e3ecd65b54296b2c49b85b1c08a154e52112e4f736be3",
+    "members": 26,
+    "exact_original_file_set": true,
+    "no_unsafe_extra_missing_duplicate_entries": true,
+    "regular_files_only": true,
+    "member_bytes_and_hashes_match_manifest": true,
+    "member_bytes_equal_original_files": true,
+    "trailing_tar_data_is_only_valid_zero_padding": true
+  },
+  "development_diagnostics": {
+    "file": "ui-development.tar.gz",
+    "archive_sha256": "4555ca249bc179be2f3abdf0699efad2dd22fb57593afbc8d3018684f694ecf1",
+    "archive_bytes": 12892,
+    "manifest_sha256": "09c6b51cadc3c2582fba7f8fc7d58667646cde21b7ce3e02caf443c93fa41d5d",
+    "members": 11,
+    "exact_original_file_set": true,
+    "no_unsafe_extra_missing_duplicate_entries": true,
+    "regular_files_only": true,
+    "member_bytes_and_hashes_match_manifest": true,
+    "member_bytes_equal_original_files": true,
+    "trailing_tar_data_is_only_valid_zero_padding": true
+  },
+  "gzip_original_raw_hashes_verified": {
+    "engine.jsonl.gz": "071d8370f0d1f770a4c46f0bb03adfbcc38a49b764b41e4fea99d11dc1b8fbe2",
+    "editor.jsonl.gz": "8d5f42799bad79766bd83a8a90935ecd23cd8f06ed0c45f42f539a8d0bf50142",
+    "studio.jsonl.gz": "17e06b10a21cd24c1c7e46ff1ebef046820c006ac7836f4a07d4cc33bfff356b",
+    "mail-core.jsonl.gz": "f5815ee71c4aae29b40d29f087720b8a126f643ad3a98a46942b9cf5fffb3223",
+    "mail-store.jsonl.gz": "503d11b0d83f201e8de2ecd73741ac7f7ba227eef229d0b99f8d696aa804e58c",
+    "mail-ui.jsonl.gz": "986d93f9486dcc9367ab460f3b427018e9d35f7249faecbe9b3bab07c9c0848b",
+    "source-before.json.gz": "922d78d4a9638d04a4599416c59adcf21aa4dd104b1b18cdfb8284849fba765c",
+    "source-after.json.gz": "922d78d4a9638d04a4599416c59adcf21aa4dd104b1b18cdfb8284849fba765c"
+  },
+  "copied_summary_audit_script_match_originals": {
+    "summary.json": "aad9ed86c837fb2793f2602825ae4453ab93a40f54b8d942adabcb435ad7dcdf",
+    "independent-audit.json": "9e71eb4abcfaec0d76837f2d829ec34928b752de4c3318e87912ba19dbc1e0dd",
+    "independent_gate_audit.py": "f67676ea0b470341f7cd3f9ca6fa5404b86b2d6c4efca9cdbf408c03f8ce2325"
+  },
+  "qualification_and_diagnostic_archives_remain_separate": true,
+  "tracked_source_modified_by_audit": false,
+  "tests_run_by_audit": 0
+}

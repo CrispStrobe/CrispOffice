@@ -1,0 +1,33 @@
+{
+  "qualified_application_commit": "ff06e5544673ce7f70be983299241bcdcef780d3",
+  "qualified_tree": "ee23dc2179d4b3e26eabf3b35e7aa13f95a7963d",
+  "publication_kind": "documentation and evidence only",
+  "source_inputs_compared": 1748,
+  "source_input_mismatches": [],
+  "application_tests_plan_and_runner_unchanged": true,
+  "changed_paths": [
+    "docs/validation/zotero-annotations-20261119/README.md",
+    "docs/validation/zotero-annotations-20261119/diagnostics/archive.json",
+    "docs/validation/zotero-annotations-20261119/diagnostics/ui-development.tar.gz",
+    "docs/validation/zotero-annotations-20261119/final/archive-audit.json",
+    "docs/validation/zotero-annotations-20261119/final/archive.json",
+    "docs/validation/zotero-annotations-20261119/final/archive_audit.py",
+    "docs/validation/zotero-annotations-20261119/final/complete-results.tar.gz",
+    "docs/validation/zotero-annotations-20261119/final/independent-audit.json",
+    "docs/validation/zotero-annotations-20261119/final/independent_gate_audit.py",
+    "docs/validation/zotero-annotations-20261119/final/summary.json",
+    "docs/validation/zotero-annotations-20261119/publication-checkpoints.json",
+    "docs/validation/zotero-annotations-20261119/publication-scope.json",
+    "docs/validation/zotero-annotations-20261119/reconciliation/final-feature-safety-review.json",
+    "docs/validation/zotero-annotations-20261119/reconciliation/final-source-audit.json",
+    "docs/validation/zotero-annotations-20261119/review/documentation-resolution.json",
+    "docs/validation/zotero-annotations-20261119/review/final-docs-review.json",
+    "docs/validation/zotero-annotations-20261119/review/final-review.json",
+    "docs/validation/zotero-annotations-20261119/review/final-review.md",
+    "docs/zotero-support.md"
+  ],
+  "all_changes_within_docs": true,
+  "qualification_summary_sha256": "aad9ed86c837fb2793f2602825ae4453ab93a40f54b8d942adabcb435ad7dcdf",
+  "plan_sha256": "ab014cf444eea57664c759422385deb4aece8431d7bac32e43f619aed8dea08d",
+  "final_archive_sha256": "fdc4314e462cbc7a07f9de3c708d80167b0cb980b5aaf6c14cbbdc65bc59a0a9"
+}

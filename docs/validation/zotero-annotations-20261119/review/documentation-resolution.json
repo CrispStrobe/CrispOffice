@@ -1,0 +1,14 @@
+{
+  "finding": "annotation-export-boundary",
+  "status": "resolved in documentation-only publication follow-up",
+  "qualified_application_commit": "ff06e5544673ce7f70be983299241bcdcef780d3",
+  "product_code_change_required": false,
+  "guide_path": "docs/zotero-support.md",
+  "guide_sha256": "b70bc2ae4d1e3fb62f5febb2de1895d6720b5d11a60bfa026486db69ae11fbcd",
+  "resolution": "Only text annotations are supported. Unsupported returned images/structures are refused atomically; Zotero may substitute or omit unavailable content before Quds receives it. No claim of validating annotation types absent from exported content.",
+  "source_reference": {
+    "repository": "zotero/zotero",
+    "path": "chrome/content/zotero/xpcom/editorInstance.js",
+    "blob_sha": "3c769e6ca8e20d4aad449024e406f5d749cffca8"
+  }
+}
