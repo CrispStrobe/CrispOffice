@@ -1,5 +1,14 @@
 # Mail implementation status — 19 November 2026
 
+The [current continuation](../../validation/office-finish-20261119/README.md)
+reconciles the saved Office heads and current main. Studio now retains both
+the session-only IMAP/SMTP mailbox and an account-free saved `.eml` reader.
+**Open message** is available before and after connecting. The session screen
+uses the Mail client directly; durable M05/M06 account/store synchronization,
+outbox recovery and platform credential-vault integration remain separate work.
+The frozen local qualification and its exact source are recorded in that report;
+historical execution totals below retain their own source identities.
+
 The current [UID discovery continuation](../../validation/mail-uid-pagination-20261119/README.md)
 adds bounded discovery, atomic stored-range reconciliation and monotonic v3
 cursor revisions. Combined qualification follows the fully retained first
@@ -148,7 +157,7 @@ persistence remain separate gates.
 
 ## Local verification
 
-### Discovered-UID and cursor-freshness continuation — qualification in progress
+### Discovered-UID and cursor-freshness qualification at `0669ac11`
 
 The [discovery source report](../../validation/mail-uid-pagination-20261119/README.md)
 records the incoming discovery/range implementation. The
