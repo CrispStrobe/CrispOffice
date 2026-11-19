@@ -24,8 +24,11 @@ if(EMSCRIPTEN)
     -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createArabicMorphModule
     -sENVIRONMENT=worker,node -sALLOW_MEMORY_GROWTH=1 -sMAXIMUM_MEMORY=4GB
     -sINITIAL_MEMORY=64MB -sFORCE_FILESYSTEM=1
+    # Plain (non-resizable) heap views: current Chrome's TextDecoder rejects
+    # views of resizable buffers, which emscripten's runtime decodes paths with.
+    -sGROWABLE_ARRAYBUFFERS=0
     -sEXPORTED_FUNCTIONS=_quds_arabic_morph_adapter_version,_crispembed_ar_morph_abi_version,_crispembed_ar_morph_open,_crispembed_ar_morph_analyze,_crispembed_ar_morph_string_free,_crispembed_ar_morph_info,_crispembed_ar_morph_free,_malloc,_free
-    -sEXPORTED_RUNTIME_METHODS=FS,UTF8ToString,stringToNewUTF8,lengthBytesUTF8,HEAPU32
+    -sEXPORTED_RUNTIME_METHODS=FS,stringToNewUTF8,lengthBytesUTF8,HEAPU8,HEAPU32
     -sINCOMING_MODULE_JS_API=locateFile,print,printErr)
   # The analyzer reports errors through C++ exceptions caught at the ABI;
   # native Wasm exception handling (all current browsers) keeps them cheap.

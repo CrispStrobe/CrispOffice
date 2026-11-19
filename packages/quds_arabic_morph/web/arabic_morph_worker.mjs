@@ -16,8 +16,20 @@ async function load() {
   return api;
 }
 
-function withString(api, text, body) {
-  const pointer = api.stringToNewUTF8(text);
+// Text out of the Wasm heap. Copies first, so decoding never depends on the
+// kind of buffer behind the heap (current Chrome's TextDecoder rejects views
+// of resizable buffers; the build also disables those).
+const decoder = new TextDecoder();
+function text(api, pointer, length) {
+  if (length === undefined) {
+    const end = api.HEAPU8.indexOf(0, pointer);
+    length = (end < 0 ? api.HEAPU8.length : end) - pointer;
+  }
+  return decoder.decode(api.HEAPU8.slice(pointer, pointer + length));
+}
+
+function withString(api, value, body) {
+  const pointer = api.stringToNewUTF8(value);
   try { return body(pointer); } finally { api._free(pointer); }
 }
 
@@ -37,13 +49,13 @@ function open(api, files, manifestSha256) {
     }
     handle = withString(api, `${BUNDLE}/manifest.json`, m => withString(api, manifestSha256,
       s => api._crispembed_ar_morph_open(m, s, 0, error, 512)));
-    if (!handle) throw new Error(`The morphology database could not be opened: ${api.UTF8ToString(error)}`);
+    if (!handle) throw new Error(`The morphology database could not be opened: ${text(api, error)}`);
   } finally {
     api._free(error);
     // The analyzer keeps its own parsed copy; drop the in-memory files.
     for (const path of written) { try { api.FS.unlink(path); } catch (_) { /* gone */ } }
   }
-  return api.UTF8ToString(api._crispembed_ar_morph_info(handle));
+  return text(api, api._crispembed_ar_morph_info(handle));
 }
 
 // One JSON document: {"status":"success","results":[<analyses array>|null, ...]}
@@ -59,12 +71,12 @@ function analyze(api, words) {
       if (status === 0) {
         const json = api.HEAPU32[out >> 2];
         const length = api.HEAPU32[(out + 4) >> 2];
-        parts.push(api.UTF8ToString(json, length));
+        parts.push(text(api, json, length));
         api._crispembed_ar_morph_string_free(json);
       } else if (status === 5) {
         parts.push('null');
       } else {
-        throw new Error(`analysis failed (${status}): ${api.UTF8ToString(error)}`);
+        throw new Error(`analysis failed (${status}): ${text(api, error)}`);
       }
     }
   } finally {
