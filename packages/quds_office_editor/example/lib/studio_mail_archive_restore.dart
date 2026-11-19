@@ -37,6 +37,12 @@ class _StudioMailArchiveRestoreDialogState
   Widget build(BuildContext context) {
     final s = widget.strings;
     final plan = widget.plan;
+    final createdAt = plan.createdAt
+        .toUtc()
+        .toIso8601String()
+        .split('.')
+        .first
+        .replaceFirst('T', ' ');
     return Directionality(
       textDirection: s.language == StudioLanguage.ar
           ? TextDirection.rtl
@@ -67,11 +73,7 @@ class _StudioMailArchiveRestoreDialogState
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
               ),
-              Text(
-                s.archiveRestoreCreatedAt(
-                  plan.createdAt.toUtc().toIso8601String(),
-                ),
-              ),
+              Text(s.archiveRestoreCreatedAt('\u2066$createdAt UTC\u2069')),
               const SizedBox(height: 8),
               SelectableText(
                 plan.directoryPath,
