@@ -11,6 +11,14 @@ All notable changes to `quds_office_editor` are documented here.
   annotation insertion. Cancelling the picker discards staged preferences and
   temporary fields; image/ink annotations remain explicitly unsupported.
 
+- Preserve the active Notes editor, selection and composition when opening,
+  closing or resizing the Review pane so language and checking actions keep
+  targeting the selected footnote or endnote text.
+
+- Keep imported Zotero research-note lists and their numbering definitions in
+  the same undo step as the note and its citations. Restore existing numbering
+  on undo while preserving unrelated package parts and relationships.
+
 - Keep Notes keyboard Undo/Redo in document history, preserve tracked correction
   records, and prevent Redo from overwriting newly typed Notes drafts.
 - Apply language and checking controls to the exact Notes selection or current
@@ -20,14 +28,6 @@ All notable changes to `quds_office_editor` are documented here.
   recording unchanged Notes typing into history without rerunning providers.
 - Keep header/footer selections out of unrelated body table highlighting and
   ruler bounds.
-
-- Preserve the active Notes editor, selection and composition when opening,
-  closing or resizing the Review pane so language and checking actions keep
-  targeting the selected footnote or endnote text.
-
-- Keep imported Zotero research-note lists and their numbering definitions in
-  the same undo step as the note and its citations. Restore existing numbering
-  on undo while preserving unrelated package parts and relationships.
 
 - Add inline Notes spelling, grammar and style underlines with nearby
   correction, ignore/dictionary and finding-navigation controls. Keep live-check

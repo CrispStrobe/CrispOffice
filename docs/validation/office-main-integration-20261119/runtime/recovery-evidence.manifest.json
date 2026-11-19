@@ -1,0 +1,130 @@
+{
+  "scope": "Fresh verified SDK, dependency, native-hook restoration; transparent integrated rebinding and targeted-runner receipt schema adapter. No generated executable bytes or product acceptance assertions included.",
+  "archive": {
+    "path": "recovery-evidence.tar.xz",
+    "bytes": 914692,
+    "sha256": "e37f828d03788c4617989fdab9d9a2094c798fcaf5692b5ddd23fb9be2e22431"
+  },
+  "files": [
+    {
+      "path": "helper-source.json",
+      "bytes": 240,
+      "sha256": "06be0294d107a8a183a39312e19dbf9ea19a8d208bc40cda56d42658546b8468"
+    },
+    {
+      "path": "restore_runtime.py",
+      "bytes": 21144,
+      "sha256": "d4d5e937239957b8a5db0dcfa2630d1d30b96a714eeadc02e4ae3cb3f1e567a9"
+    },
+    {
+      "path": "restore.log",
+      "bytes": 318,
+      "sha256": "92eeaf028fe2634563ab34a3194905001004a598f0728dcff91727e57e5c83f0"
+    },
+    {
+      "path": "prepare_integrated_runtime.py",
+      "bytes": 5860,
+      "sha256": "d3e0cdad02db0648c7e52da2ed2602e6ac11ee94248975c506c39ae61effe65f"
+    },
+    {
+      "path": "adapt_targeted_receipts.py",
+      "bytes": 2645,
+      "sha256": "5177383053057a95d4fd799ac91610241ab6c7138dd41166cebf07c55ec6f6e9"
+    },
+    {
+      "path": "integrated-setup.json",
+      "bytes": 2997,
+      "sha256": "c093fbe4dc734f2de6e14a21ffe7554fe5dc537cba9d0929dd9a16678c12507e"
+    },
+    {
+      "path": "integrated-setup.log",
+      "bytes": 72,
+      "sha256": "68473346dba44bbc5c4d80a92f1af5cc8bbb64f346e91ca79d044d8b322dd923"
+    },
+    {
+      "path": "toolchains/runtime.json",
+      "bytes": 10869,
+      "sha256": "cb974fa0ddc22b50cf4ccc861a73a70574bca2d8a2215f6e89cecbf3e1c6da17"
+    },
+    {
+      "path": "toolchains/isolated-restore-runtime.json",
+      "bytes": 7113,
+      "sha256": "500f1530395a31986e03cef335e858d25e2592b30e2cdf74e5abd1ca6e8c60b0"
+    },
+    {
+      "path": "toolchains/runtime-before-targeted-adapter.json",
+      "bytes": 10052,
+      "sha256": "d082280881f374168680086c155d7c4a6b38b14df0d4355e7810ba1d98f96a6c"
+    },
+    {
+      "path": "toolchains/sdk-receipt.json",
+      "bytes": 1714,
+      "sha256": "1bef380d410260a7d05380694ee3747e15266c5b93fe907a6866f4f8dbc96fd0"
+    },
+    {
+      "path": "toolchains/pub-cache-receipt.json",
+      "bytes": 44348,
+      "sha256": "78c33990120aa8ffdffc52cc7e9f34b09ce31cb7092b9c46887bb4e7944ec591"
+    },
+    {
+      "path": "toolchains/archive-members.json",
+      "bytes": 357030,
+      "sha256": "c30c0738a094f3b0bfc3ee4696204540798d4a4fbaf943a5abb0ce8833635f8f"
+    },
+    {
+      "path": "toolchains/cache-omissions.json",
+      "bytes": 2335744,
+      "sha256": "c16bf623008daa6c01cfeb16a2895d1048f42cda2274c084d9b8a58840e2d615"
+    },
+    {
+      "path": "toolchains/retained-inputs.json",
+      "bytes": 2049933,
+      "sha256": "8a14b584c2e9416dc73f79e556f3680feba49bdbb279e8f42cd47054c5b01a91"
+    },
+    {
+      "path": "toolchains/env.sh",
+      "bytes": 728,
+      "sha256": "7dcc3dadab262b14de10575d640e42b1d3470a4e429094dded31e065187fe808"
+    },
+    {
+      "path": "toolchains/bin/dart",
+      "bytes": 118,
+      "sha256": "a43f95d0aa6d6650f3713c522f51a0becc1113b62892ece387035b446ef28238"
+    },
+    {
+      "path": "toolchains/bin/flutter",
+      "bytes": 240,
+      "sha256": "9cf61b2bf04b391d15092915c390d44f224ec161a02ff87f637ac479a69eaef5"
+    },
+    {
+      "path": "toolchains/logs/flutter-tools-pub-get.log",
+      "bytes": 1192,
+      "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+    },
+    {
+      "path": "toolchains/logs/flutter-version.log",
+      "bytes": 648,
+      "sha256": "eb27246926dbc2c5f1db9945cda72986ef3fa875f6b4b6e75456b8c8b7e111b9"
+    },
+    {
+      "path": "toolchains/logs/native-assets-smoke.log",
+      "bytes": 81,
+      "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2"
+    },
+    {
+      "path": "toolchains/logs/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "integrated-setup-logs/integrated-native-assets-smoke.log",
+      "bytes": 81,
+      "sha256": "97ebf61764ed1a73a1e6d42d708f151bb1d494b06c6731f608863f221a41aef2"
+    },
+    {
+      "path": "integrated-setup-logs/integrated-workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ]
+}

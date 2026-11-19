@@ -6,7 +6,7 @@
 
 ## 1. Start here
 
-A fresh agent can start M00, M01 and M02 without reopening product decisions. Read the current repository instructions first; this plan does not authorize changing existing license headers, deleting unrelated work, publishing a package, submitting an app or using real user mail as fixtures.
+A fresh agent should use [status.md](status.md) to resume the remaining work without reopening product decisions. Read the current repository instructions first; this plan does not authorize changing existing license headers, deleting unrelated work, publishing a package, submitting an app or using real user mail as fixtures.
 
 1. Work in CrispStrobe/quds_office_suite. Record current commit, working-tree changes and toolchain. The inspected planning baseline was 556c55c0ef312eda2cca11600021d293a81ab44b.
 2. Read .cursorrules, CONTRIBUTING.md, docs/MISSION.md and relevant existing editor APIs. Follow the root workspace, not published upstream package examples.
@@ -164,7 +164,7 @@ private/util/word.dart. Paths are relative to upstream lib/src. External imports
 in this closure are collection, json_annotation and enough_convert. This is a static
 inspection receipt, not a complete dependency or runtime certification.
 
-**Open qualification:** actual browser execution remains unqualified; the earlier executor attempt was blocked (see [status.md](status.md)). Native/Node checks do not close that gate. M03 additionally requires the intended low-memory-device measurement.
+**Open qualification:** actual browser execution is blocked in this executor; see [status.md](status.md). Native/Node checks do not close that gate. M03 additionally requires the intended low-memory-device measurement.
 
 ### M02 — portable domain and host contracts
 
@@ -172,7 +172,7 @@ inspection receipt, not a complete dependency or runtime certification.
 
 - [x] Implement the minimal typed models and ports from section 3, with explicit parse/provider error variants.
 - [x] Define raw-message ownership, immutable attachment references, profile/account scoping and cancellation.
-- [x] Define portable capability negotiation and typed unsupported results. Initial native/web transport dispatch passed the integrated VM/Node qualification at `71edec2d`; actual browser runtime remains separate.
+- [x] Define portable capability negotiation and typed unsupported results. The initial native/web transport dispatch is implemented under M06; its integrated local qualification is recorded in [status.md](status.md).
 - [x] Add provider-independent state-machine tests for account disposal, stale operations and recipient-level outcomes.
 - [x] Keep mail, calendar and contact capabilities separate; do not imply IMAP implements all three.
 
@@ -195,7 +195,7 @@ inspection receipt, not a complete dependency or runtime certification.
 
 **Acceptance:** non-UTF-8/line-ending/signed-message original export has identical hash; malformed nesting/count/decode cases stop within limits; unknown header/body charsets, malformed UTF-8 and invalid encoded words produce explicit diagnostics without leaking source headers/body to console or logs; equivalent native/browser projection for supported fixtures; measured low-memory-target peak usage is retained. No streaming-parser claim.
 
-**Open qualification:** actual browser execution remains unqualified; the earlier executor attempt was blocked (see [status.md](status.md)). Native/Node checks do not close that gate. M03 additionally requires the intended low-memory-device measurement.
+**Open qualification:** actual browser execution is blocked in this executor; see [status.md](status.md). Native/Node checks do not close that gate. M03 additionally requires the intended low-memory-device measurement.
 
 ### M04 — shared account-free message reader
 
@@ -211,7 +211,7 @@ inspection receipt, not a complete dependency or runtime certification.
 
 **Acceptance:** the injected resource/network port observes zero requests, and native/browser harnesses also monitor or deny outbound traffic at the runtime boundary after app bootstrap. Exercise ordinary remote images, CSS resources, srcset, protocol-relative/encoded URLs and redirects. Test explicit user-approved loading separately. Exact attachment bytes reach the read-only callback; no writable source path is fabricated; full/preview modes use their proper budgets. This enables CC-01 through CC-04, but migration waits for host parity tests.
 
-**Open qualification:** actual browser execution remains unqualified; the earlier executor attempt was blocked (see [status.md](status.md)). Native/Node checks do not close that gate. M03 additionally requires the intended low-memory-device measurement.
+**Open qualification:** actual browser execution is blocked in this executor; see [status.md](status.md). Native/Node checks do not close that gate. M03 additionally requires the intended low-memory-device measurement.
 
 ### M04W — reusable account-aware mailbox workspace
 
@@ -233,7 +233,7 @@ inspection receipt, not a complete dependency or runtime certification.
 - [x] Implement Drift/SQLite schema and transactional repository streams using independently resolved approved dependencies.
 - [x] Native app-container store and separately configured browser store; explicit quota/storage-unavailable results. The browser opener compiles; actual browser persistence remains unqualified.
 - [x] Durable drafts and immutable outbox/blob references, atomic page+cursor commits with expected-cursor comparison, tombstones and transactional migration versioning.
-- [x] Add nullable durable standard flag snapshots and additive schema v3 migration from v1/v2. Omitted observations preserve known flags; observed empty snapshots clear them. Migration/reopen and flag transactions passed the integrated gate at `71edec2d`.
+- [x] Add nullable durable standard flag snapshots and additive schema v3 migration from v1/v2. Omitted observations preserve known flags; observed empty snapshots clear them. Flags/migration tests passed in the integrated local qualification linked below.
 - [x] FTS indexing of supported plain text and metadata; cap indexing work, avoid remote fetch as a side effect of local search. HTML-only bodies are not interpreted by search.
 - [x] Account deletion, cache eviction, logout and pending-operation policies, including durable host-vault cleanup and retired local identities.
 - [x] Simulate crash/restart at transaction boundaries and preserve unsent work. Native process-kill and file-backed migration/recovery evidence is retained separately from injected rollback cases.
@@ -242,26 +242,19 @@ inspection receipt, not a complete dependency or runtime certification.
 
 **Implementation/evidence:** [quds_mail_store](../../../packages/quds_mail_store/README.md)
 and the [19 November continuation](../../validation/mail-m06-resume-20261119/README.md).
-The final integrated source `71edec2de364805113d18e0f1d7edbb1f00467e5`
-(tree `8b7443bd15be09276764f62934b9d8ce32a6be68`) passed the
-[core/store gate](../../validation/mail-m06-resume-20261119/final/mail-final-receipt.json)
-with **199 executions**: 31 core VM, 31 core Node, 95 native store VM and
-42 portable store Node. The native and additional Node gates passed 376 and
-56 executions respectively, for **631 total executions with zero failures or
-skips**. Separately, 66 Python controls passed (42 launcher, 20 plan-runner,
-four runtime-restorer), as did strict analysis, formatting, offline lock
-enforcement, browser entry/worker compilation and whitespace checks. The
-[evidence audit](../../validation/mail-m06-resume-20261119/final/evidence-audit.json)
-checks the common source, raw events, cases and hashes; cross-platform executions
-are not presented as distinct scenarios.
-
-The earlier baseline at `479e1e038af0467b7f07b35d80bac9e4cc60a198` passed
-186 core/store executions and its separate 72-suite Office/reader gate passed
-1,230 cases. Those results predate schema v3 and native transport. The
-[failed store attempt](../../validation/mail-store-20261118/README.md) and
-the later failed `da78c0bb`/`e734e3bd` integrated attempts remain historical
-evidence in the continuation record; their results are not added to the final
-passing totals.
+The fresh baseline at `479e1e038af0467b7f07b35d80bac9e4cc60a198` passed its
+complete Mail gate: 186 test executions across core/store VM and Node cohorts,
+42 Python launcher regressions, strict analysis, formatting and compilation
+checks. Its 72-suite Office/reader gate also passed with 1,230 cases. The earlier
+[failed store attempt](../../validation/mail-store-20261118/README.md) remains
+historical evidence; its runner/formatting blockage is resolved for the fresh
+baseline. Those results predate schema v3 and native transport. The
+[Office integration report](../../validation/office-main-integration-20261119/README.md)
+records the subsequent passing flags/transport qualification, including the
+retained 199-execution core/store gate and its source-continuity checks. The
+[final completion report](../../validation/office-main-completion-20261119/README.md)
+records a fresh full 199-execution core/store gate on the final reconciled source,
+within its 836 application executions and 78 separate Python controls.
 
 Browser entry/worker compilation and Node error-policy tests do not close actual
 browser storage, Web Locks, reload or quota acceptance. Chromium previously
@@ -274,8 +267,8 @@ distinct from encryption. M06 is partially implemented; M07 and M04W remain open
 **Depends on:** M01, M02, M05. **Files:** quds_mail_transport native adapter and core sync.
 
 - [x] Manual IMAP endpoint/account configuration with validated host/port, required STARTTLS or implicit TLS, and no cleartext fallback or certificate bypass. SMTP configuration and bounded discovery are not included.
-- [x] Qualify the production connector's implicit TLS and required STARTTLS on real Linux loopback sockets, including certificate/hostname rejection and stalled-handshake cancellation/deadline cleanup.
-- [ ] Add SMTP configuration and optional bounded account discovery after validation. Socket behavior on other target platforms remains a separate gate.
+- [x] Qualify real Linux loopback TLS success, trust/hostname refusal, cancellation/deadlines and write lifecycle on the default owned connector, preserving certificate validation.
+- [ ] Add SMTP configuration and optional bounded account discovery after validation; qualify external-provider and other-OS TLS interoperability.
 - [x] Load current host-owned password/token bytes for each operation using account/profile/host-scoped vault references. Negotiate XOAUTH2/OAUTHBEARER protocol capability and keep credential material out of ordinary account rows and public diagnostics.
 - [ ] Implement native system-browser OAuth/PKCE, registered redirect handling, token refresh and platform credential-vault hosts. No embedded confidential secret.
 - [x] Discover selectable folders, fetch bounded header/flag UID windows, retrieve exact full-message literals on demand, and apply observed UID flag changes and capability-gated MOVE. Delete marks only `\Deleted`, without mailbox-wide EXPUNGE or CLOSE.
@@ -285,7 +278,7 @@ distinct from encryption. M06 is partially implemented; M07 and M04W remain open
 - [ ] Add IDLE/CONDSTORE/QRESYNC only with genuine adapter/server support and independent qualification; retain a correct fallback.
 - [x] Enforce finite operation timeouts, account-lease cancellation and typed credential-revocation/ambiguous-mutation outcomes. Do not automatically retry operations.
 - [ ] Add host foreground/resume scheduling and bounded provider rate/backoff policy with recovery controls.
-- [x] Provide a conditional browser entry returning typed unsupported for generic socket transport without accessing the vault/codec or importing the native socket implementation. Its public entry and throwing vault/codec controls passed actual Node execution.
+- [x] Provide a conditional browser entry returning typed unsupported for generic socket transport without accessing the vault/codec or importing the native socket implementation. The unsupported entry passed three Node cases in the integrated gate; this does not qualify browser socket transport.
 
 **Implemented foundation and limits:**
 [quds_mail_transport](../../../packages/quds_mail_transport/README.md) is present,
@@ -295,23 +288,16 @@ Mailboxes with `UIDNEXT - 1` above the bound return `unsupported` before any
 page fetch or commit. Direct on-demand retrieval of a specified high UID remains
 available. Cursors freeze each sweep ceiling, and arrivals beyond it enter the
 next sweep; the fallback is not a server snapshot protocol. MOVE confirms source
-absence but does not expose COPYUID destination identities.
-
-**Qualified foundation:** the final
-[native gate](../../validation/mail-m06-resume-20261119/final/native-final-verification.json)
-passed **376 executions**: 70 transport (12 configuration, 39 protocol,
-five SQLite/coordinator and 14 socket controls), 244 fork, 32 MIME and 30 reader.
-The [Node gate](../../validation/mail-m06-resume-20261119/final/node-final-verification.json)
-passed **56 executions**: 15 transport, 32 MIME and nine fork. They ran on the
-same `71edec2d` source as the 199-execution core/store gate. Real Linux loopback
-tests establish TLS success, trust/hostname rejection and stalled-handshake
-cleanup. The deterministic partial-write fixtures do not qualify Windows socket
-behavior or operating-system backpressure.
-
-Remaining M06 work includes discovered-UID pagination, OAuth/PKCE/refresh and
-platform vault hosts, lifecycle scheduling, archive/destination workflows,
-individual body-part retrieval and authorized live-account interoperability.
-SMTP/composition and the account-aware mailbox workspace remain M07/M04W work.
+absence but does not expose COPYUID destination identities. Controlled parser,
+SQLite/coordinator, lifecycle and conditional-entry tests passed in the
+[32-suite integrated qualification](../../validation/office-main-integration-20261119/README.md)
+at `7d279e084bae438d383630726ad7b0514da77d35`, with 389 focused cases. The
+[final reconciled qualification](../../validation/office-main-completion-20261119/README.md)
+at `5569c055a021c893e941fc54d40499ad9d96a5db` adds broader protocol coverage and
+real Linux TLS tests within 836 fresh application executions. External-provider,
+other-OS and disposable-account interoperability remain open.
+The 186-execution Mail and 1,230-case Office passes above retain their separate
+baseline `479e1e03` identity.
 
 **Acceptance:** controlled IMAP transcripts/local test server cover UIDVALIDITY reset, missing extensions, expunge/move, dropped connections, stale credentials and bounded fetch. Real interoperability uses explicit disposable test accounts and retains no private mail/credentials in fixtures.
 

@@ -2,8 +2,11 @@
 
 Profile-scoped Drift/SQLite persistence for the shared Mail contracts. Original
 source is MIT. Schema v3 flags and the bounded native IMAP integration passed
-combined local qualification at `71edec2d`, including **199 core/store test
-executions** and five transport/coordinator tests using actual SQLite.
+combined local qualification at `5569c055`, including **199 fresh core/store test
+executions** and five transport/coordinator tests using actual SQLite. The
+[Office completion report](../../docs/validation/office-main-completion-20261119/README.md)
+records the full 836-application / 78-Python result; the earlier `71edec2d`
+Mail-branch receipt is retained below under its own identity.
 The account-aware UI and SMTP remain subsequent work. Exact dependencies and
 retained notices are in
 [DEPENDENCIES.json](DEPENDENCIES.json) and
@@ -137,7 +140,20 @@ A failed migration rolls back, and an unknown future version returns
 
 ## Qualification boundary
 
-### Integrated schema v3 and transport qualification — PASS
+### Final reconciled application — PASS
+
+All final application execution is bound to
+`5569c055a021c893e941fc54d40499ad9d96a5db`: 836 application executions across
+85 suite/platform executions and 73 distinct files, with 78 separate Python
+controls. This includes a fresh full 199-case core/store run, 602 native
+transport/MIME/UI/protocol cases and 35 Node transport/MIME cases. The
+[independent audit](../../docs/validation/office-main-completion-20261119/release/independent-summary.json)
+verifies the exact source/runtime identity and raw counts. This README was
+updated afterward to publish the incoming Mail results and this current pointer;
+application code, tests, plans, dependency declarations and runtime inputs did
+not change.
+
+### Earlier Mail-branch schema v3 and transport qualification — PASS
 
 The final gates bind published source
 `71edec2de364805113d18e0f1d7edbb1f00467e5`, tree

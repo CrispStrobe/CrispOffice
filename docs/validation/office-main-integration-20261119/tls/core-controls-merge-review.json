@@ -1,0 +1,66 @@
+{
+  "qualified_test_base": "7d279e084bae438d383630726ad7b0514da77d35",
+  "historical_199_case_gate_source": "1655db9ff8a5fb9eb140ef236fa0cca74c472107",
+  "mail_head": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "zotero_head": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+  "deterministic_resolution": {
+    "packages/quds_mail_core/test/models_test.dart": {
+      "action": "Retain qualified distinct-object fixture and cascade set insertion; add explicit hashCode equality assertion from Mail.",
+      "expected_git_blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02",
+      "expected_sha256": "5e75bad48d82ac454af5d48cccb2350054a5a8a58ce0746cdeb077f5db9a9834",
+      "scratch_expected_file": "/workspace/scratch/a7846890f2e1/tls_models_merged_expected.dart"
+    },
+    "packages/quds_mail_store/test/migration_test.dart": {
+      "action": "Keep identical hide-isNull migration source from all branches.",
+      "expected_git_blob": "9c389a99fd24a64d2e4a5a892dd84aafa5c7e4f1",
+      "expected_sha256": "bc02b376969a42b57871acb55f75ad44546f6ed65070b6386d6c440839228063"
+    },
+    "tools/mail/test_check_store.py": {
+      "action": "Adopt Mail read/reap-race handling; preserve timeout deadline, zombie termination check and failure if child remains running.",
+      "expected_git_blob": "2efd2dd6f32e0a887c7097d5efbf1935d1fb42e6",
+      "expected_sha256": "1221bc4fd22d50346dea60ef2e4c6fec8640af39a232459671a8a21a66a64d94",
+      "scratch_expected_file": "/workspace/scratch/a7846890f2e1/tls_test_check_store_expected.py"
+    }
+  },
+  "incoming_changed_bound_gate_inputs": {
+    "71edec2de364805113d18e0f1d7edbb1f00467e5": [
+      {
+        "path": "packages/quds_mail_core/test/models_test.dart",
+        "historical_sha256": "1ec4d8baa61bd5692bcd4ccad765b2b081e4e94eeb1ab71cf99e9c2e5e66185f",
+        "incoming_sha256": "9d3a3d41de089613ee62c1927ca5d88756e8632333fabbcb078cab4fd067cf5e"
+      },
+      {
+        "path": "tools/mail/test_check_store.py",
+        "historical_sha256": "deb41515a77c1300a4db281c8f0114eb05709fb1b0f28c662d8f0de4512a7512",
+        "incoming_sha256": "1221bc4fd22d50346dea60ef2e4c6fec8640af39a232459671a8a21a66a64d94"
+      }
+    ],
+    "54c36e40daa7b17d73801dac1fd12f110b24017f": []
+  },
+  "bound_input_count": 53,
+  "production_core_store_and_actual_runner_unchanged": true,
+  "historical_case_groups": {
+    "core_vm": 31,
+    "core_node": 31,
+    "store_vm": 95,
+    "portable_node": 42,
+    "total": 199
+  },
+  "affected_dart_suite": "packages/quds_mail_core/test/models_test.dart",
+  "affected_historical_executions": {
+    "vm_cases": 9,
+    "node_cases": 9,
+    "total": 18
+  },
+  "unchanged_other_historical_executions": 181,
+  "validation_recommendation": [
+    "Run models_test.dart on both VM and Node after the chosen assertion merge; keep platform-specific identities distinct.",
+    "Run all 42 Python Mail runner controls after the fixture-race change.",
+    "No additional production core/store change necessitates repeating their unchanged cases solely because TLS vendor internals changed. Use a full existing gate if required for a single fresh receipt."
+  ],
+  "scope_wording": "Old 199-case execution remains source-attributed historical evidence. With the added model assertion and changed Python control, the old complete input manifest is not identical. Fresh focused tests supplement it; do not report the original 199 as rerun or add overlapping repeats.",
+  "patch_file": "/workspace/scratch/a7846890f2e1/tls_core_controls_merge.patch",
+  "repository_mutations": 0,
+  "new_tests_executed": false,
+  "github_actions_calls": 0
+}

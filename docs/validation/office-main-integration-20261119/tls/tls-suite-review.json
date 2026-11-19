@@ -1,0 +1,195 @@
+{
+  "reviewed_mail_head": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "reviewed_zotero_head": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+  "proposed_suites": 35,
+  "proposed_analysis_targets": 26,
+  "proposed_format_targets": 26,
+  "new_declared_scenarios": {
+    "native_tls_test.dart": 14,
+    "native_tls_cancellation_test.dart": 4,
+    "native_tls_round_trip_test.dart": 5,
+    "total": 23
+  },
+  "predicted_focused_scenarios": 412,
+  "predicted_total_with_199_store_executions": 611,
+  "predicted_distinct_scenarios_including_store": 541,
+  "prediction_note": "Counts are source review expectations, not execution results; additional integration regressions may increase them. Final raw-event audit must reconstruct actual counts.",
+  "roundtrip_patch_preserves_behavior_assertions": true,
+  "all_fixture_inputs_automatically_bound_by_runner_source_prefix": true,
+  "fixture_inputs_explicitly_added_to_plan": true,
+  "loopback_probe": {
+    "status": "PASS",
+    "scope": "Python AF_INET IPv4 TCP bind/connect/accept/bidirectional loopback bytes; Dart TLS evidence must come from the fresh suites"
+  },
+  "fixture_records": [
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/README.md",
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "sha256": "85fb609005362517696252725cbddf062b412a3cfcca248f6dd526035bfe0579",
+      "bytes": 740
+    },
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "sha256": "543a871246369fd7a102d4141a1bf87dbfbb331c087613efaf6ea64d13b4d586",
+      "bytes": 1180,
+      "openssl_exit_code": 0,
+      "certificate_metadata": "notBefore=Nov 19 06:42:57 2026 GMT\nnotAfter=Nov 16 06:42:57 2036 GMT\nsubject=CN=Quds loopback TLS fixture\nissuer=CN=Quds loopback TLS fixture\nX509v3 Subject Alternative Name: \n    IP Address:127.0.0.1\nX509v3 Basic Constraints: critical\n    CA:TRUE\n",
+      "openssl_diagnostic": ""
+    },
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "sha256": "5b4612de534322c88b096f656e2035c88d559206ddef97720e9f352775551074",
+      "bytes": 1704
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/README.md",
+      "source_commit": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+      "sha256": "9a64bcd08459e9e779d597c406d4a3826bc4305ff90f299ce6029bcbc45cd259",
+      "bytes": 845
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+      "source_commit": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+      "sha256": "5eebead5c4c193eeace0a635398a305ab768b9fff1257235ec8b063cde55f94f",
+      "bytes": 1127,
+      "openssl_exit_code": 0,
+      "certificate_metadata": "notBefore=Jan  1 00:00:00 2020 GMT\nnotAfter=Jan  1 00:00:00 2045 GMT\nsubject=CN=Quds PUBLIC TEST ONLY TLS CA\nissuer=CN=Quds PUBLIC TEST ONLY TLS CA\nX509v3 Basic Constraints: critical\n    CA:TRUE, pathlen:0\n",
+      "openssl_diagnostic": ""
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+      "source_commit": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+      "sha256": "d698b3fdfd9bbf19c328dbe5edea880ba50cf547837b7dc188a95828421f260d",
+      "bytes": 1188,
+      "openssl_exit_code": 0,
+      "certificate_metadata": "notBefore=Jan  1 00:00:00 2020 GMT\nnotAfter=Jan  1 00:00:00 2045 GMT\nsubject=CN=localhost\nissuer=CN=Quds PUBLIC TEST ONLY TLS CA\nX509v3 Basic Constraints: critical\n    CA:FALSE\nX509v3 Extended Key Usage: \n    TLS Web Server Authentication\nX509v3 Subject Alternative Name: \n    DNS:localhost, IP Address:127.0.0.1, IP Address:0:0:0:0:0:0:0:1\n",
+      "openssl_diagnostic": ""
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+      "source_commit": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+      "sha256": "a1513697cebd55d6823c836a2a4a50d605572ba413e73ad3df5b3f6d5d9dc787",
+      "bytes": 1700
+    }
+  ],
+  "fixture_verification_utc": "2026-11-19T07:12:47.100357+00:00",
+  "fixture_verifications": {
+    "mail_trusted_ip": {
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "passed": true,
+      "diagnostic": "$SCRATCH_FIXTURES/loopback-cert.pem: OK\n"
+    },
+    "mail_wrong_hostname": {
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "passed": true,
+      "diagnostic": "CN=Quds loopback TLS fixture\nerror 62 at 0 depth lookup: hostname mismatch\nerror $SCRATCH_FIXTURES/loopback-cert.pem: verification failed\n"
+    },
+    "zotero_trusted_ip": {
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "passed": true,
+      "diagnostic": "$SCRATCH_FIXTURES/public-test-server.pem: OK\n"
+    },
+    "zotero_trusted_localhost": {
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "passed": true,
+      "diagnostic": "$SCRATCH_FIXTURES/public-test-server.pem: OK\n"
+    },
+    "mail_key_matches_certificate": {
+      "passed": true,
+      "public_key_sha256": "7e301cf3cf9a44fb9bf1cd355bdc03e9d951ed93c0e5a33b3736f314e06d91ca"
+    },
+    "zotero_key_matches_certificate": {
+      "passed": true,
+      "public_key_sha256": "8f3fc40373f5f1d71d08067b106d9d06854942fa094d2bbd86d0f032a5ee3820"
+    }
+  },
+  "integrated_frozen_source": "4624218f9468eeeac07f1f100ac0e4bb6b050a17",
+  "source_continuity_checks": [
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/README.md",
+      "unchanged_from_reviewed_head": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+      "unchanged_from_reviewed_head": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+      "unchanged_from_reviewed_head": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/README.md",
+      "unchanged_from_reviewed_head": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+      "unchanged_from_reviewed_head": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+      "unchanged_from_reviewed_head": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+      "unchanged_from_reviewed_head": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_test.dart",
+      "unchanged_from_reviewed_head": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/support/tls_server.dart",
+      "unchanged_from_reviewed_head": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+      "unchanged_from_reviewed_head": true
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "matches_reviewed_adapter_type_patch_only": true
+    }
+  ],
+  "coverage_review": [
+    {
+      "suite": "native_tls_test.dart",
+      "cases": 14,
+      "coverage": "Both implicit TLS and STARTTLS: stalled-handshake cancellation plus provider retry; operation deadline closure; trusted login/mailbox round-trip; default-trust rejection before credentials; hostname rejection before credentials. Additional manual plain-socket upgrade rejection, manually attached existing SecureSocket round-trip, deterministic partial-write/readiness/flush-close order, and blocked-write abort."
+    },
+    {
+      "suite": "native_tls_cancellation_test.dart",
+      "cases": 4,
+      "coverage": "Both modes and cancellation/deadline paths: real ClientHello observation, physical peer closure before test teardown without releasing the handshake, two attempts through the same provider, distinct sockets, and no plaintext LOGIN/AUTHENTICATE or credential bytes."
+    },
+    {
+      "suite": "native_tls_round_trip_test.dart",
+      "cases": 5,
+      "coverage": "Both modes: isolated trusted CA, 1 MiB payload with delayed server reads and exact SHA-256, subsequent capability reply, default-trust rejection of the same certificate. Additional abort of an open idle addStream producer must reject and cancel that producer."
+    }
+  ],
+  "review_findings": [
+    {
+      "severity": "resolved integration binding",
+      "finding": "Incoming Mail test fixtures require ClientConnection factory APIs while incoming Zotero capturing test used Socket APIs. Final source uses the Mail adapter and type-only round-trip capture patch, retaining all assertions."
+    },
+    {
+      "severity": "control gate",
+      "finding": "Updated process-reaping race control catches FileNotFoundError/ProcessLookupError between observation and read while retaining bounded termination checks. Fresh complete core/store gate is required for the new model hash assertion and changed control input; prior receipts are preserved separately."
+    },
+    {
+      "severity": "scope",
+      "finding": "Delayed 1 MiB real TLS writes prove exact payload and usable replies but do not by themselves guarantee operating-system partial writes. The independent fake RawSocket test forces 3-byte writes and readiness ordering."
+    },
+    {
+      "severity": "scope",
+      "finding": "All TLS certificate trust uses isolated test contexts, fixed intentionally public fixture keys, and local loopback endpoints. Passing these tests does not establish live-account, external-server, vault/OAuth, installed Studio/OS IME, actual browser offline lifecycle, or linguistic acceptance."
+    }
+  ],
+  "source_review_recommendation": "No remaining test/fixture blocker found; final merge qualification still requires successful fresh raw-event and source/runtime audit."
+}

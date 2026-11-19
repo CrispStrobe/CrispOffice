@@ -346,6 +346,214 @@ void main() {
     },
   );
 
+  for (final afterLiteral in [false, true]) {
+    final position = afterLiteral ? 'after' : 'before';
+    for (final entry in <String, String>{
+      'same UID': r'* 1 FETCH (UID 1 FLAGS (\Seen))',
+      'unrelated UID': r'* 7 FETCH (UID 99 FLAGS (\Seen))',
+      'rev1 without UID': r'* 7 FETCH (FLAGS (\Seen))',
+    }.entries) {
+      test(
+        '${entry.key} flag notification $position literal does not consume the page limit',
+        () async {
+          final fixture = ImapFixture(uidNext: 2, messages: {1: _message()});
+          (afterLiteral
+                  ? fixture.afterFetchResponses
+                  : fixture.beforeFetchResponses)
+              .add(entry.value);
+          final result = await fixture.provider().pullChanges(
+            fixture.mailbox,
+            limit: 1,
+            lease: _lease(fixture),
+          );
+          final page = (result as MailSuccess<MailSyncPage>).value;
+          expect(page.upserts, hasLength(1));
+          expect((page.upserts.single.remote as MailImapIdentity).uid, 1);
+          expect(
+            page.upserts.single.flags?.isRead,
+            afterLiteral && entry.key == 'same UID',
+          );
+          expect(page.tombstones, isEmpty);
+          expect(fixture.clients.single.socket.errors, isEmpty);
+        },
+      );
+    }
+  }
+
+  test(
+    'sequence-correlated rev1 notifications allow a sparse completed response',
+    () async {
+      final fixture = ImapFixture(uidNext: 3, messages: {1: _message()})
+        ..beforeFetchResponses.add(r'* 1 FETCH (FLAGS (\Seen))')
+        ..afterFetchResponses.add('* 1 FETCH (FLAGS ())');
+      final result = await fixture.provider().pullChanges(
+        fixture.mailbox,
+        limit: 2,
+        lease: _lease(fixture),
+      );
+      final page = (result as MailSuccess<MailSyncPage>).value;
+      expect(page.upserts, hasLength(1));
+      expect((page.tombstones.single as MailImapIdentity).uid, 2);
+    },
+  );
+
+  test(
+    'unrelated rev1 updates stay bounded when a full UID interval is returned',
+    () async {
+      final fixture = ImapFixture(uidNext: 2, messages: {1: _message()})
+        ..beforeFetchResponses.addAll([
+          '* 7 FETCH (FLAGS ())',
+          '* 8 FETCH (FLAGS ())',
+          '* 9 FETCH (FLAGS ())',
+        ]);
+      final result = await fixture.provider().pullChanges(
+        fixture.mailbox,
+        limit: 1,
+        lease: _lease(fixture),
+      );
+      final page = (result as MailSuccess<MailSyncPage>).value;
+      expect(page.upserts, hasLength(1));
+      expect(page.tombstones, isEmpty);
+    },
+  );
+
+  for (final entry in <String, List<String>>{
+    'in-range UID with no complete literal': [
+      r'* 2 FETCH (UID 2 FLAGS (\Seen))',
+    ],
+    'unknown rev1 sequence in a sparse response': [
+      r'* 7 FETCH (FLAGS (\Seen))',
+    ],
+    'rev1 sequence identity changed by EXPUNGE': [
+      r'* 1 FETCH (FLAGS (\Seen))',
+      '* 1 EXPUNGE',
+    ],
+  }.entries) {
+    test('${entry.key} cannot fabricate a successful tombstone page', () async {
+      final fixture = ImapFixture(uidNext: 3, messages: {1: _message()})
+        ..beforeFetchResponses.addAll(entry.value);
+      final result = await fixture.provider().pullChanges(
+        fixture.mailbox,
+        limit: 2,
+        lease: _lease(fixture),
+      );
+      expect(result, isA<MailFailure<MailSyncPage>>());
+      expect(fixture.clients.single.socket.closed, isTrue);
+    });
+  }
+
+  for (final entry in <String, String>{
+    'invalid UID': r'* 1 FETCH (UID invalid FLAGS (\Seen))',
+    'duplicate UID': r'* 1 FETCH (UID 1 UID 1 FLAGS (\Seen))',
+    'duplicate flags': r'* 1 FETCH (UID 1 FLAGS () FLAGS (\Seen))',
+    'nested flag': r'* 1 FETCH (UID 1 FLAGS (\Seen (nested)))',
+    'missing BODY literal': r'* 1 FETCH (UID 1 FLAGS (\Seen) BODY[] NIL)',
+  }.entries) {
+    test('malformed notification with ${entry.key} fails atomically', () async {
+      final fixture = ImapFixture(uidNext: 2, messages: {1: _message()})
+        ..beforeFetchResponses.add(entry.value);
+      final result = await fixture.provider().pullChanges(
+        fixture.mailbox,
+        limit: 1,
+        lease: _lease(fixture),
+      );
+      expect(result, isA<MailFailure<MailSyncPage>>());
+      expect(fixture.clients.single.socket.closed, isTrue);
+    });
+  }
+
+  test(
+    'flags alone never turn an omitted requested literal into an empty success',
+    () async {
+      final fixture = ImapFixture(uidNext: 2)
+        ..beforeFetchResponses.add(r'* 1 FETCH (UID 1 FLAGS (\Seen))');
+      final result = await fixture.provider().pullChanges(
+        fixture.mailbox,
+        limit: 1,
+        lease: _lease(fixture),
+      );
+      expect(result, isA<MailFailure<MailSyncPage>>());
+    },
+  );
+
+  for (final withUid in [false, true]) {
+    test(
+      'late ${withUid ? 'UID' : 'sequence'} flag update prevents false STORE confirmation',
+      () async {
+        final fixture = ImapFixture(uidNext: 2, messages: {1: _message()})
+          ..afterFetchResponses.add(
+            '* 1 FETCH (${withUid ? 'UID 1 ' : ''}FLAGS ())',
+          );
+        final result = await fixture.provider().apply(
+          MailSetRead(
+            id: 'read-with-concurrent-change',
+            message: _identity(fixture),
+            read: true,
+          ),
+          _lease(fixture),
+        );
+        expect(_code(result), MailProblemCode.conflict);
+        expect(fixture.messages[1]!.flags, contains(r'\Seen'));
+        expect(
+          fixture.commands.where((command) => command.startsWith('UID STORE ')),
+          hasLength(1),
+        );
+      },
+    );
+  }
+
+  test(
+    'EXPUNGE followed by an uncorrelated rev1 update cannot confirm STORE',
+    () async {
+      final fixture = ImapFixture(uidNext: 2, messages: {1: _message()});
+      fixture.beforeReply = (command) async {
+        if (command.startsWith('UID STORE ')) {
+          fixture.afterFetchResponses.addAll([
+            '* 1 EXPUNGE',
+            '* 1 FETCH (FLAGS ())',
+          ]);
+        }
+      };
+      final result = await fixture.provider().apply(
+        MailSetRead(
+          id: 'read-with-expunge-renumbering',
+          message: _identity(fixture),
+          read: true,
+        ),
+        _lease(fixture),
+      );
+      expect(_code(result), MailProblemCode.conflict);
+      expect(fixture.messages[1]!.flags, contains(r'\Seen'));
+      expect(
+        fixture.commands.where((command) => command.startsWith('UID STORE ')),
+        hasLength(1),
+      );
+    },
+  );
+
+  for (final entry in <(String, String, bool)>[
+    ('OK before literal', '* OK [ALERT] FETCH cache is refreshing', false),
+    ('mixed-case OK after literal', '* oK FETCH response is complete', true),
+    ('NO after literal', '* NO [ALERT] FETCH cache is unavailable', true),
+    ('BAD before literal', '* BAD FETCH warning has no command tag', false),
+  ]) {
+    test('status text containing FETCH: ${entry.$1}', () async {
+      final fixture = ImapFixture(uidNext: 2, messages: {1: _message()});
+      (entry.$3 ? fixture.afterFetchResponses : fixture.beforeFetchResponses)
+          .add(entry.$2);
+      final result = await fixture.provider().pullChanges(
+        fixture.mailbox,
+        limit: 1,
+        lease: _lease(fixture),
+      );
+      final page = (result as MailSuccess<MailSyncPage>).value;
+      expect(page.upserts, hasLength(1));
+      expect((page.upserts.single.remote as MailImapIdentity).uid, 1);
+      expect(page.tombstones, isEmpty);
+      expect(fixture.clients.single.socket.errors, isEmpty);
+    });
+  }
+
   test(
     'forged cross-mailbox cursor is rejected before vault or connection work',
     () async {
@@ -466,6 +674,45 @@ void main() {
     () async {
       final fixture = ImapFixture(uidNext: 2, messages: {1: _message()})
         ..malformedFetchPrefix = true;
+      final result = await fixture.provider().pullChanges(
+        fixture.mailbox,
+        limit: 1,
+        lease: _lease(fixture),
+      );
+      expect(result, isA<MailFailure<MailSyncPage>>());
+      expect(fixture.clients.single.socket.closed, isTrue);
+    },
+  );
+
+  for (final delimiters in [
+    ('missing list separator', ' ', ''),
+    ('tab list separator', ' ', '\t'),
+    ('tab sequence separator', '\t', ' '),
+    ('attached quoted prefix', ' ', '"bad" '),
+    ('attached closing list', ' ', ')'),
+  ]) {
+    test(
+      'FETCH with ${delimiters.$1} cannot fabricate a successful tombstone page',
+      () async {
+        final fixture = ImapFixture(uidNext: 2, messages: {1: _message()})
+          ..fetchSequenceSeparator = delimiters.$2
+          ..fetchListSeparator = delimiters.$3;
+        final result = await fixture.provider().pullChanges(
+          fixture.mailbox,
+          limit: 1,
+          lease: _lease(fixture),
+        );
+        expect(result, isA<MailFailure<MailSyncPage>>());
+        expect(fixture.clients.single.socket.closed, isTrue);
+      },
+    );
+  }
+
+  test(
+    'FETCH with attached literal cannot fabricate a tombstone page',
+    () async {
+      final fixture = ImapFixture(uidNext: 2, messages: {1: _message()})
+        ..bareFetchLiteral = true;
       final result = await fixture.provider().pullChanges(
         fixture.mailbox,
         limit: 1,

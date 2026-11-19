@@ -7,7 +7,7 @@ final class _NotesProvider extends OfficeProofingProvider {
     this.id, {
     this.findErrors = true,
     this.category = OfficeProofingCategory.spelling,
-    this.token = 'Feler',
+    this.originalText = 'Feler',
     this.replacement = 'Fehler',
   });
 
@@ -15,7 +15,7 @@ final class _NotesProvider extends OfficeProofingProvider {
   final String id;
   final bool findErrors;
   final OfficeProofingCategory category;
-  final String token;
+  final String originalText;
   final String replacement;
   final requests = <OfficeProofingRequest>[];
 
@@ -32,7 +32,7 @@ final class _NotesProvider extends OfficeProofingProvider {
       findings: [
         if (findErrors)
           for (final match in RegExp(
-            RegExp.escape(token),
+            RegExp.escape(originalText),
           ).allMatches(request.text))
             OfficeProofingFinding.forRequest(
               request,
@@ -421,8 +421,8 @@ void main() {
       final manual = _NotesProvider(
         'manual',
         category: OfficeProofingCategory.grammar,
-        token: 'are is',
-        replacement: 'is',
+        originalText: 'Gramatik',
+        replacement: 'Grammatik',
       );
       final fixture = _fixture(
         text: 'Before',
@@ -431,8 +431,9 @@ void main() {
       );
       final controller = fixture.controller;
       final note = fixture.note;
-      // Distinct ranges survive the service's intentional overlap merging.
-      controller.setNoteText(note, 'Feler are is typed');
+      // Manual findings must be disjoint from ordinary findings: report
+      // merging intentionally suppresses overlapping secondary proposals.
+      controller.setNoteText(note, 'Feler Gramatik typed');
       controller.setNoteEditingTarget(
         note,
         const TextSelection.collapsed(offset: 3),
@@ -450,7 +451,7 @@ void main() {
       ]);
       expect(captured.map((issue) => issue.finding.originalText), [
         'Feler',
-        'are is',
+        'Gramatik',
       ]);
       final ordinaryCalls = ordinary.requests.length;
       final manualCalls = manual.requests.length;
@@ -483,13 +484,15 @@ void main() {
       final chosen = captured.singleWhere(
         (issue) => issue.finding.providerId == correctedProvider,
       );
-      final replacement = correctedProvider == 'ordinary' ? 'Fehler' : 'is';
+      final replacement = correctedProvider == 'ordinary'
+          ? 'Fehler'
+          : 'Grammatik';
       expect(controller.applyProofingSuggestion(chosen, replacement), isTrue);
       expect(
         controller.noteEditText(note),
         correctedProvider == 'ordinary'
-            ? 'Fehler are is typed'
-            : 'Feler is typed',
+            ? 'Fehler Gramatik typed'
+            : 'Feler Grammatik typed',
       );
       expect(ordinary.requests, hasLength(ordinaryCalls));
       expect(manual.requests, hasLength(manualCalls));

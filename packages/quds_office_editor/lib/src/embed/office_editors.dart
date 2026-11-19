@@ -281,11 +281,6 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   late final bool _ownsFocus;
   late final Ticker _ticker;
   final GlobalKey _canvasKey = GlobalKey(debugLabel: 'word-document-canvas');
-  // Opening or repositioning Review reparents this whole area. Keep Notes'
-  // TextField state and source selection alive along with the document canvas.
-  final GlobalKey _documentPaneKey = GlobalKey(
-    debugLabel: 'word-document-pane',
-  );
   OverlayEntry? _contextMenu;
   bool _contextKeyboard = false;
   bool _proofingOpen = false;
@@ -1230,7 +1225,6 @@ class _QudsWordEditorState extends State<QudsWordEditor>
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final canvas = Row(
-                  key: _documentPaneKey,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     if (widget.navigationBuilder != null &&

@@ -1,0 +1,172 @@
+{
+  "qualified_source": "7d279e084bae438d383630726ad7b0514da77d35",
+  "publication_head": "99dd7307e749854f00266bd5b8bae4dcdf66df20",
+  "changed_path_count": 20,
+  "changed_paths": [
+    "docs/validation/office-main-completion-20261119/baseline/baseline-manifest.json",
+    "docs/validation/office-main-completion-20261119/baseline/diagnostics-manifest.json",
+    "docs/validation/office-main-completion-20261119/baseline/diagnostics.index.json",
+    "docs/validation/office-main-completion-20261119/baseline/diagnostics.tar.xz",
+    "docs/validation/office-main-completion-20261119/baseline/native-node-support.index.json",
+    "docs/validation/office-main-completion-20261119/baseline/native-node-support.tar.xz",
+    "docs/validation/office-main-completion-20261119/baseline/publication-receipt.json",
+    "docs/validation/office-main-integration-20261119/diagnostics/uid-grammar-evidence.manifest.json",
+    "docs/validation/office-main-integration-20261119/diagnostics/uid-grammar-evidence.tar.xz",
+    "docs/validation/office-main-integration-20261119/incoming/final-fork-refs.txt",
+    "docs/validation/office-main-integration-20261119/incoming/final-open-prs.json",
+    "docs/validation/office-main-integration-20261119/incoming/final-upstream-refs.txt",
+    "docs/validation/office-main-integration-20261119/review/audit_transport_qualification.py",
+    "docs/validation/office-main-integration-20261119/review/final_historical_continuity.json",
+    "docs/validation/office-main-integration-20261119/review/final_incoming_merge_review.json",
+    "docs/validation/office-main-integration-20261119/review/final_transport_review-cases.json",
+    "docs/validation/office-main-integration-20261119/review/final_transport_review.json",
+    "docs/validation/office-main-integration-20261119/transport-final/evidence.index.json",
+    "docs/validation/office-main-integration-20261119/transport-final/evidence.tar.xz",
+    "docs/validation/office-main-integration-20261119/transport-final/verification.json"
+  ],
+  "all_changes_under_docs_validation": true,
+  "non_validation_changes": [],
+  "bound_harness_fixture_and_notes_checks": [
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/run_targeted.py",
+      "qualified_blob": "1dd33dfb4559e712bbfe2cd5873ba6fddc516abb",
+      "publication_blob": "1dd33dfb4559e712bbfe2cd5873ba6fddc516abb",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py",
+      "qualified_blob": "29863bffe71943e43b01636683ea4bc7327c78a5",
+      "publication_blob": "29863bffe71943e43b01636683ea4bc7327c78a5",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/reconciled/plan.json",
+      "qualified_blob": "d3e058eb0059aefbf865f5af5ddbb2cac8b26fec",
+      "publication_blob": "d3e058eb0059aefbf865f5af5ddbb2cac8b26fec",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py",
+      "qualified_blob": "ed0d5a585726681c003817a2a14c76bdba6b114e",
+      "publication_blob": "ed0d5a585726681c003817a2a14c76bdba6b114e",
+      "identical": true
+    },
+    {
+      "path": "tools/mail/check_store.py",
+      "qualified_blob": "022a1bd00c1708b336f20763f850e9fd94e8f202",
+      "publication_blob": "022a1bd00c1708b336f20763f850e9fd94e8f202",
+      "identical": true
+    },
+    {
+      "path": "tools/mail/check_reader.py",
+      "qualified_blob": "197bc15fd173e06730798abe4a382b97269ccd55",
+      "publication_blob": "197bc15fd173e06730798abe4a382b97269ccd55",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/build_binding.py",
+      "qualified_blob": "d2940dbc98bbf4139b3ecf58974703a24d09fe67",
+      "publication_blob": "d2940dbc98bbf4139b3ecf58974703a24d09fe67",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py",
+      "qualified_blob": "b221fe59103d248fa21bd2ab7c87d542648fddf7",
+      "publication_blob": "b221fe59103d248fa21bd2ab7c87d542648fddf7",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+      "qualified_blob": "2e5e2105d4bbb37cdd95ca55bbcd6e6bea776dfa",
+      "publication_blob": "2e5e2105d4bbb37cdd95ca55bbcd6e6bea776dfa",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart",
+      "qualified_blob": "f17af5afa2e23e1659239e9533bbfe31efce1d44",
+      "publication_blob": "f17af5afa2e23e1659239e9533bbfe31efce1d44",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart",
+      "qualified_blob": "a4c23d1c459edbb3a843f81c0f6c813bfa478a4c",
+      "publication_blob": "a4c23d1c459edbb3a843f81c0f6c813bfa478a4c",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py",
+      "qualified_blob": "220157572d9fbd99048e1c946eab7504a2dbe300",
+      "publication_blob": "220157572d9fbd99048e1c946eab7504a2dbe300",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_final_validation.py",
+      "qualified_blob": "1a66162b6bff5688512fd6c1625a837449567f49",
+      "publication_blob": "1a66162b6bff5688512fd6c1625a837449567f49",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py",
+      "qualified_blob": "8ab15bd5c5fee9537c6cdbfbd9878b0850799730",
+      "publication_blob": "8ab15bd5c5fee9537c6cdbfbd9878b0850799730",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_workspace_binding.py",
+      "qualified_blob": "70af7cde57c5cb5d04b59355fa510edfbccd8267",
+      "publication_blob": "70af7cde57c5cb5d04b59355fa510edfbccd8267",
+      "identical": true
+    },
+    {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py",
+      "qualified_blob": "ed0d5a585726681c003817a2a14c76bdba6b114e",
+      "publication_blob": "ed0d5a585726681c003817a2a14c76bdba6b114e",
+      "identical": true
+    },
+    {
+      "path": "tools/thesaurus/build_packs.py",
+      "qualified_blob": "ae1f030c87ca4a8b78fc6ba55280cea7fcbf8bf2",
+      "publication_blob": "ae1f030c87ca4a8b78fc6ba55280cea7fcbf8bf2",
+      "identical": true
+    },
+    {
+      "path": "tools/thesaurus/export_review_packet.py",
+      "qualified_blob": "3453dc9626ef8d0b52d20bc802558a95deedf6f5",
+      "publication_blob": "3453dc9626ef8d0b52d20bc802558a95deedf6f5",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "qualified_blob": "8c0f6e830387e5658a04a61df3b385f2f89f6ba7",
+      "publication_blob": "8c0f6e830387e5658a04a61df3b385f2f89f6ba7",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "qualified_blob": "f8ac8e363a19bc143880b4b0a4b2292d98162641",
+      "publication_blob": "f8ac8e363a19bc143880b4b0a4b2292d98162641",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "qualified_blob": "c18e02fcec76b639ad84c9f1da5fffff23a8bfc6",
+      "publication_blob": "c18e02fcec76b639ad84c9f1da5fffff23a8bfc6",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "qualified_blob": "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3",
+      "publication_blob": "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "qualified_blob": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4",
+      "publication_blob": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4",
+      "identical": true
+    }
+  ],
+  "all_checked_inputs_unchanged": true,
+  "prior_historical_continuity_report_sha256": "3d0c3f20f76fcb24ea7ef88515dd447cff1f6d6d4085e33dfb25b0eb9c8bf409",
+  "scope": "Publication adds validation evidence only; 7d279e08 remains the executed final qualification source. This check does not claim a repeated runtime execution."
+}

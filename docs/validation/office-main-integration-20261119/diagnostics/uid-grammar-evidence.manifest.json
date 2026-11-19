@@ -1,0 +1,1405 @@
+{
+  "scope": "Focused red/green UID grammar regression on an explicitly derived isolated vendor source overlay; shared checkout and runtime were not mutated. Full integrated qualification remains separate.",
+  "archive": {
+    "path": "uid-grammar-evidence.tar.xz",
+    "bytes": 1181424,
+    "sha256": "8622ee131a3983ad55e672a05ceaac14506c22dcef3aec5f9f7b051ab775f271"
+  },
+  "files": [
+    {
+      "path": "source.json",
+      "bytes": 525,
+      "sha256": "dfa689df9f67d13bb68da2c3a85245d182b2d0efe3e1cb8d476cc2a2e3f6e319"
+    },
+    {
+      "path": "uid-decimal.patch",
+      "bytes": 2456,
+      "sha256": "9a39eca92d277bea512596a48fcac51852fe2fc49db71f74fcdb72ad89f9a6ab"
+    },
+    {
+      "path": "raw_fetch_parser.dart",
+      "bytes": 10357,
+      "sha256": "d59335ccf9f6a39f1fa5f4dd5239af3a17fbecd57ef772d344499c38d85ddedc"
+    },
+    {
+      "path": "raw_fetch_parser_test.dart",
+      "bytes": 6876,
+      "sha256": "25189ed5fe8c5354ac08e725714adb25451e1a010f635039ee2e3afd2242c2e9"
+    },
+    {
+      "path": "before-package-config.json",
+      "bytes": 30444,
+      "sha256": "6d9a17cc2b73cb68866f9bffda65175b5085b8ca0cc0ac8cf792b461b6ea6f56"
+    },
+    {
+      "path": "after-package-config.json",
+      "bytes": 30443,
+      "sha256": "e540e7dcc6456feb8b4c416c5bdd0d926b3cd8606f0b27cf7b8d8b972247a74c"
+    },
+    {
+      "path": "review.md",
+      "bytes": 3007,
+      "sha256": "0f1faf5c40005c459d1d0f0cb08267b22c193db0481f0ef97d7f17c0a4171a1a"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 5576,
+      "sha256": "76a8c30e5dde49188f87d9c4d378a868f0f2df1fec843b439e7871cf3028a907"
+    },
+    {
+      "path": "before/receipt.json",
+      "bytes": 112611,
+      "sha256": "7c14e589dcb76dc1479ac67865b9305addb7c7012404a129f850225c2d52789b"
+    },
+    {
+      "path": "before/stdout.jsonl",
+      "bytes": 8331,
+      "sha256": "58b1616f77c0dee0efc7e1ea745509e459ef5fba8ecc8a6e022e76a65d0f016e"
+    },
+    {
+      "path": "before/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after/receipt.json",
+      "bytes": 112163,
+      "sha256": "c92fed69b1b85778d7c8e9e8ea788c0d895080f7feaf9163cc127c4ad39ba96d"
+    },
+    {
+      "path": "after/stdout.jsonl",
+      "bytes": 6531,
+      "sha256": "aca8cb7a8774459f899780d861165a18c2a8ad242b37033ae1ff5658ceb92709"
+    },
+    {
+      "path": "after/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/.github/workflows/dart.yml",
+      "bytes": 1395,
+      "sha256": "107770de2373021c050443afcdb358172744a4fc3a37a290f190f5e79ead93e5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/.gitignore",
+      "bytes": 273,
+      "sha256": "d7a68747c51cc8a80cd88863a080030931adc91c065dfe51a19a41bb875deb0f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/CHANGELOG.md",
+      "bytes": 45321,
+      "sha256": "77a7ebab8a23de06d159b641bc47a7db9a2409a2b3f7687258721c77d82ef06e"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/DEPENDENCIES.json",
+      "bytes": 22141,
+      "sha256": "285d067c0cb99e64d7a9bbe772468b555c65d07382384ed4eaa17789f8a7385c"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/LICENSE",
+      "bytes": 16725,
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/PORTABLE_CLOSURE.json",
+      "bytes": 16075,
+      "sha256": "7df9cc38e2089fd7787c06dd0adeb607ecfbdc6583d78d1b0d967ad6675c1232"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/QUDS_PATCHES.md",
+      "bytes": 11131,
+      "sha256": "450245f6024cfe7fc0953fe5ce57018b0f71174f408f9a7f73d28c3cabcc8226"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/README.md",
+      "bytes": 13017,
+      "sha256": "524e3d1f28e9d1fd8912effae2262fb7b5eb0ab0b596291153946678982d1e0f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/UPSTREAM.json",
+      "bytes": 31987,
+      "sha256": "aa4746123855b09d129cc1884c83de36f0bcc941b1c0412672c90d40cbdcc355"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/analysis_options.yaml",
+      "bytes": 4878,
+      "sha256": "cbcd99e298d94b53dd500283ea7eb3a7957da04c586b5283914e0125b6c426d8"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/build.yaml",
+      "bytes": 684,
+      "sha256": "0f89c475ed5c9f35e0da0acf57fb80c5da45070e5067f1771215906e501fc02b"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/example/discover.dart",
+      "bytes": 2209,
+      "sha256": "31461bccf500c12284201cd5cf9053d9ae03cfe9b4310aafde2410c64b3e2937"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/example/enough_mail_example.dart",
+      "bytes": 7652,
+      "sha256": "219e16cade754bb6cb5b4548871663a145a60ae8daf5976b6033e075094558e0"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/example/example.dart",
+      "bytes": 1787,
+      "sha256": "c7ddcb9d033fef41e95e64755fa6d98d1929f08bfbf5810feeb38d20533a5d40"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/codecs.dart",
+      "bytes": 241,
+      "sha256": "76dc937ce12229dc09f10352117dca1cdc2c1e3b2889da6ea4f5d49be008eff9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/discover.dart",
+      "bytes": 159,
+      "sha256": "9cab3c5239a35f84c4010854212f83c9d76562782e79a010ac8e862a48bd2c8e"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/enough_mail.dart",
+      "bytes": 543,
+      "sha256": "70dcdf4a9d6a0757fca3440044ab36dd6f840af1a9f774faa6684f535c4cca89"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/highlevel.dart",
+      "bytes": 568,
+      "sha256": "3ecd0a3754a50c7883b70faf87b2893c86a5ccf82d1013a34d6cd9e2195c3cbb"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/imap.dart",
+      "bytes": 715,
+      "sha256": "293f6c4bb5a2feaff9c03faaf3d61071d24d52c20432a55a41cf66320d413eb3"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/mime.dart",
+      "bytes": 347,
+      "sha256": "2d168d95f525b227fe413b2267f84901169098658bfdf94697eacf1b593da6ff"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/mime_core.dart",
+      "bytes": 995,
+      "sha256": "60148aceb2f472a268eb5798365c8c68d9bd5fd013d169c4d5128ddd7360a332"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/pop.dart",
+      "bytes": 301,
+      "sha256": "a73fb01ac816c89143c70433035bddd372f659730236f4b12346ab265f8c61da"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/smtp.dart",
+      "bytes": 327,
+      "sha256": "509bd3a86ed9a0a84034da636ca06ebe8b1ad4e79e7c264219557998c1bb63a9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/codecs/base64_mail_codec.dart",
+      "bytes": 6881,
+      "sha256": "00735e26d11d9d898a9a75fc432c9055e9ede091f48347ac84da7c2da3959bf2"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/codecs/date_codec.dart",
+      "bytes": 23517,
+      "sha256": "3ad1929ee49f3f6aee7d895ace39a50d205b669d728df3d3c264b5c3a792e2a9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/codecs/mail_codec.dart",
+      "bytes": 20792,
+      "sha256": "35f0ed3646441a54613729207af58f45c2ad2172a31601a33ccf0ffbec82b635"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/codecs/modified_utf7_codec.dart",
+      "bytes": 4451,
+      "sha256": "4cf223a8668a58036ab9dce30fa08cc209ed645cf7eceda466fd5ac542eba556"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/codecs/quoted_printable_mail_codec.dart",
+      "bytes": 11854,
+      "sha256": "d6edd941345b2a51500182b06b80013f3337662c1d5f5259983fc58f41c6a130"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/discover/client_config.dart",
+      "bytes": 13120,
+      "sha256": "0d4267385bd02caf04cf6561c723ec9554f4a38b150f513e25a20c7ffb324303"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/discover/client_config.g.dart",
+      "bytes": 2441,
+      "sha256": "059c4be6e04215848638bd76d861ecba9906d1bb74facf273ca8bf9fd9aeee64"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/discover/discover.dart",
+      "bytes": 5960,
+      "sha256": "802d0b157eded22db8123c77040adbb588898f3b7f358144ef2be2cab96b765d"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/exception.dart",
+      "bytes": 510,
+      "sha256": "9d302e1a61fe9e067543f5c457d7b479cf2903eacd0a930af3f985e57765d27d"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/extended_data.dart",
+      "bytes": 195,
+      "sha256": "19f87095d7b09855739479ecd0c1e78f79f09fd7f98eca19cba5f8800103aab4"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/id.dart",
+      "bytes": 3994,
+      "sha256": "a5d54bde0a84865e7a0906b2b0bfc8fa63fc6f22fd4f18beca00cef6c7e7c6c7"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/imap_client.dart",
+      "bytes": 111313,
+      "sha256": "8dbed96103e23bea2e8859dde649d5c66927f927a3a462a2158ff639e8f522a4"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/imap_client.g.dart",
+      "bytes": 471,
+      "sha256": "01290247fa20ea23b3b35d3f0466ac5f07d61afb225db7c7e72db70503f27b5e"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/imap_events.dart",
+      "bytes": 3740,
+      "sha256": "4246c419037f6463e668f31527a8dbb37eb0ef03eb34c7ffe822414f40ccfff9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/imap_exception.dart",
+      "bytes": 799,
+      "sha256": "e0502b925aeb64667b457a0fe52daedc07690d3ab4970be48ce77bd15b582e77"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/imap_search.dart",
+      "bytes": 13800,
+      "sha256": "a76978f9f7461b67920fd9fb9efabb8d81cb395fb754153f7a61700480be0a0b"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/mailbox.dart",
+      "bytes": 11142,
+      "sha256": "491e346ee0efec763ce221954115f41ce6b883fce5ad69b8ec37cbfa43ec07e6"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/message_sequence.dart",
+      "bytes": 23589,
+      "sha256": "d31880648a67a60a42b0b7d19f83f836416dfacf9109611dc4f03ea4d843a0ac"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/message_sequence.g.dart",
+      "bytes": 551,
+      "sha256": "814907c12dd8ba1d22bb8dfa62e97c4e697fc6e4cd77f04dd3ee0274368c5043"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/metadata.dart",
+      "bytes": 2301,
+      "sha256": "8ca22accf28ea88807180c5cf62e2d4932881bbab07e83df3d2c4ae4597e479e"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/namespace.dart",
+      "bytes": 2571,
+      "sha256": "e53c5e23d0e13762a308d62a5501028ff3e924528a5108f1ea8ab5aa77ac51af"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/qresync.dart",
+      "bytes": 2279,
+      "sha256": "9303ce63defe2f544a9fbd5cc3b23a1bc84fb9614b7c86837236d876b43f7495"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+      "bytes": 1529,
+      "sha256": "e9a5621ed125bfdf95483a04eef6fcc6b050e9a1f138ef8dffdaf47b5346b58c"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/resource_limit.dart",
+      "bytes": 346,
+      "sha256": "42a29fce75898d7261b70d49f2c702d44c793e80c21028e3f0267bba7c58b446"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/response.dart",
+      "bytes": 7671,
+      "sha256": "b4151b105acd2b25f64da025a251d9576ddde8920090e8f7d917d9ceffc2ceaa"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/return_option.dart",
+      "bytes": 3115,
+      "sha256": "5daebc26b6eaecda26000ea4cf75b6ea4777e42f7fdab452be11a69ba38fb3a6"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/imap/selection_options.dart",
+      "bytes": 1043,
+      "sha256": "dda0524a4c4ff23e0fb0de1a114bc5fa3e17eb94c1b0a1ba7b37f730f71eb57f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail/mail_account.dart",
+      "bytes": 14889,
+      "sha256": "7e859c12649d6557ea8daea549c888351026120fbd227af3799bc73508d10aa5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail/mail_account.g.dart",
+      "bytes": 2483,
+      "sha256": "e15c532e061ab19bbdc04d25778418c78d570f75871aed363b716cc41dd2992f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail/mail_authentication.dart",
+      "bytes": 11754,
+      "sha256": "6ed62dc8761e099e7f8cdc3f4e9c7a06c464cac1355062d516cde1fc9f40bd5f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail/mail_authentication.g.dart",
+      "bytes": 1777,
+      "sha256": "a473cac9c6f4a3d91b6f80a3dc3917045ca41eb31def59a2ed875366521a407b"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail/mail_client.dart",
+      "bytes": 117452,
+      "sha256": "816bda3430bcafc4a41e72ab52c8a6d1029b69c543c31bb9d526d51e00287ba7"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail/mail_events.dart",
+      "bytes": 2769,
+      "sha256": "53e807031c82e93eba1a143b7f905f5c3eb40c4d6ba8ec17025a318eb82c408d"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail/mail_exception.dart",
+      "bytes": 1734,
+      "sha256": "a893d32f28683902319c5defd15efef68623a0ebc6dc3e0e24da125ca2af3919"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail/mail_search.dart",
+      "bytes": 5482,
+      "sha256": "ba0e715bc268131f5d4540f9c22d6534bf9af8a6bd49ac52f078b3252d39e304"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail/results.dart",
+      "bytes": 20694,
+      "sha256": "5bd0fe02d1a3d67a8125dc390c19a4a60d134916f940693744c93a33aabb0a9b"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail/tree.dart",
+      "bytes": 3985,
+      "sha256": "1369bebae288e59a35a5486f5238e8f8db195d56be60c07b1b2b2a4ec5a8bb5c"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail_address.dart",
+      "bytes": 7854,
+      "sha256": "ac60bef5c178c025b0ff2356545f686190fea582b9e9f4f4e13b7c2c07d78ee9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail_address.g.dart",
+      "bytes": 571,
+      "sha256": "9c0d571bbf85b971c8a9d7f904dfe29055ea478b1f96f41185d15811b7b12eeb"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mail_conventions.dart",
+      "bytes": 5148,
+      "sha256": "e17abbd1654e650aaae89c4729dcb9da7de74b123eab61b29582ff08942574b5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/media_type.dart",
+      "bytes": 16895,
+      "sha256": "a3217f742fa8a658617bbf070d9037f8f477dcf37bf41df85ed414c500d403bf"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/message_builder.dart",
+      "bytes": 59293,
+      "sha256": "30f0c775e459a2eb055c8a539edf3a0de4a7af96ef6d9e7a258755b284ecb6c9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/message_flags.dart",
+      "bytes": 1072,
+      "sha256": "ed84ab72ec823cb23be9ea2df363a1848d6a3186e149d5984d5b8a34737066d0"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mime_data.dart",
+      "bytes": 14522,
+      "sha256": "99f8b076ae93ce692f1319e542b8ddd86d2dedccc935842e1dbd9159fd05d42f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mime_diagnostics.dart",
+      "bytes": 2156,
+      "sha256": "a16072b7a242a1c338e89a33f8f900419968685c09f34c6ce808c71c547b06ca"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/mime_message.dart",
+      "bytes": 71753,
+      "sha256": "0a687232552e031d6265e6bb14a0d26d90a7cbf07b0843a808caaa3f5d03fdf3"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/pop/pop_client.dart",
+      "bytes": 9467,
+      "sha256": "4004c947a847418aa5b9867c8597b152f715931ca40f414c0c7d5fd451fb89b2"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/pop/pop_events.dart",
+      "bytes": 663,
+      "sha256": "35967ec466a541e08fa1fe546237529e4eeace2e8f270ea9986c80181bd64eae"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/pop/pop_exception.dart",
+      "bytes": 1154,
+      "sha256": "51bd37243df7b5d9e9e63fa3610317c36bb0c29d98793dc2da359fe48a4018a7"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/pop/pop_response.dart",
+      "bytes": 1142,
+      "sha256": "11614e01ffd46ee8597a50560c0bc23490cca5c3aa15d6039dc7e63b7a319b5f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/all_parsers.dart",
+      "bytes": 464,
+      "sha256": "4d71fd95165eda86063f5fbd1d2e3d59bc029209230083372a0de26ef294b5f8"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/capability_parser.dart",
+      "bytes": 1945,
+      "sha256": "fe2fbf4dc374de340ece42e8c7088197eee99e26cae4eb8ea121c312857248b3"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/command.dart",
+      "bytes": 4682,
+      "sha256": "bf959f76cf79e9abd5f7ef4eb0b438a404cfae8a0b1537e741b774ec173997a3"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/enable_parser.dart",
+      "bytes": 1229,
+      "sha256": "b6583d94c8bd6d168414739ec6f98fd090627cae2a8296df6f69aea559e24873"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/fetch_parser.dart",
+      "bytes": 26572,
+      "sha256": "7f0dba37e191cbd2f01e4495c1d0bb3786af73e180f3571d3bd5c49074ecddb0"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/generic_parser.dart",
+      "bytes": 3214,
+      "sha256": "ba4ab0e4e17ce3e369def1f41a92b09bfef39ce0e7da95ffdc03e24944f5f29a"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/id_parser.dart",
+      "bytes": 787,
+      "sha256": "40c3110ccbbc5d2b7db48b716d138a7153dea54b70cc2bcf00930692b8f4d399"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+      "bytes": 9703,
+      "sha256": "c1827d2455240dbdad01e6be1735901256a73af8001deb6cc0e08d9b10f0ad1e"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/imap_response_line.dart",
+      "bytes": 2293,
+      "sha256": "24827b5075922c3d7a26c7b9525142b704c9ae0117713ab41102ea87df6af00a"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+      "bytes": 4004,
+      "sha256": "f355e1e5788d58b5c877f0916b2d07af74efcc88137b96af9a558a5c6feb005d"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/list_parser.dart",
+      "bytes": 8745,
+      "sha256": "a3cc56246750ff4413d21819812a51407c88d180870df56d4386a7b4b8d5f323"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/logout_parser.dart",
+      "bytes": 577,
+      "sha256": "8689c2f01294528dc4742b499381411601a4393d79fcb085af72e0690034a699"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/meta_data_parser.dart",
+      "bytes": 1666,
+      "sha256": "1f8b89142adbf048f0683f66f7385d09cee68ab8548c83d857bbc3bc3b14491c"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/namespace_parser.dart",
+      "bytes": 6973,
+      "sha256": "84a30f00519f03339ce5c63c1cc817898f055f272301c7fa6710c363f5e5748a"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/no_response_parser.dart",
+      "bytes": 474,
+      "sha256": "14870825aff0b09c1d72fca9ae15a9f41fff9d02105b440de3089e22980f7a14"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/noop_parser.dart",
+      "bytes": 4072,
+      "sha256": "e0c6c2c4af6c0f07b17f07cfd75564d6e90362cac8215d3501352699e36e953e"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/parser_helper.dart",
+      "bytes": 6946,
+      "sha256": "2de130370bd0f53c9bdabd8f549a32292e34de39be3f105f476a09f84185d5e8"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/quota_parser.dart",
+      "bytes": 3775,
+      "sha256": "dfd3808fa8683548fab7e0e04844e0d98b9c73cc42f47a258c6d27a71d959d4c"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+      "bytes": 10032,
+      "sha256": "640b0b2cc417809c600e8d317a19f16167f0e82ddbe2d3ce42dd98ca52a89dce"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/response_parser.dart",
+      "bytes": 1293,
+      "sha256": "ceca6d26a798b60d2e2167eb948b963c6304767dad2b5279f544b6f76a543f38"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/search_parser.dart",
+      "bytes": 4095,
+      "sha256": "c76289dfcc3d7078bc160b941ea5523ab3b4a1e5cd89aedb5155aa57da3de04f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/select_parser.dart",
+      "bytes": 3856,
+      "sha256": "83d2b0c74a17c6d50ee61658f6fe9d96df8a221f2c28cc4e015e870fb4b3b5d9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/sort_parser.dart",
+      "bytes": 4005,
+      "sha256": "d04525acfcb21cf6e9196f753d7a22febe84fb5d6940930764f60d398a8f09e9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/status_parser.dart",
+      "bytes": 2260,
+      "sha256": "a9f55babfb83a42194d987303580ec4d9595d8838c1ba0e827fb4d8ef02d1a50"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/imap/thread_parser.dart",
+      "bytes": 1561,
+      "sha256": "b2a1210349f65fae113d251f3d5a97c1900302d933305cf5228caa93296767d9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/all_commands.dart",
+      "bytes": 468,
+      "sha256": "3688053d7bd25cd180dfd73b99ce1532b56b6837eb69234f36e7997eb4e4dc76"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_apop_command.dart",
+      "bytes": 659,
+      "sha256": "62ca086e758e1fb6b96cfb4e612610ee4d0d6a4109cafa1a7c6a354adb3693a6"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_auth_xoauth2_command.dart",
+      "bytes": 1176,
+      "sha256": "386747feaf29acc95368451b0984b8c73daa855913428598b2698ea1b0ebf777"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_delete_command.dart",
+      "bytes": 227,
+      "sha256": "ab89c4cd3bafdcccd4043161042f1836dd275964084fd3be783e5d98055eb144"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_list_command.dart",
+      "bytes": 478,
+      "sha256": "0ada1e34996d36aac71e37be20a5c998e05312e6d92fb9c61d16208359528bda"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_noop_command.dart",
+      "bytes": 210,
+      "sha256": "687aada72b2dde806c8f39ab9bfd8fd6989a00294b7a246ec08fbda6a395294b"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_pass_command.dart",
+      "bytes": 279,
+      "sha256": "1dd48fb1c148ca93aa0254911f892547512de1cbaf3be70c782b68362dcd2740"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_quit_command.dart",
+      "bytes": 591,
+      "sha256": "13122a16cf3b24cb8228cce2c87fb0cd072878ab4dac7b2f55f00378fc587490"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_reset_command.dart",
+      "bytes": 235,
+      "sha256": "2e9e6f82a84b8be16cfed07d5de12d156b27a1f4c33a743511517555a325cb69"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_retrieve_command.dart",
+      "bytes": 361,
+      "sha256": "08c3f85d775d17f4f4292f80c2740906a12516953b8679f4e4a7a0a5a22827db"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_starttls_command.dart",
+      "bytes": 254,
+      "sha256": "29108ad67bbaf66b51ae5153ab901afd63a67aa5e6cb9d0ac245a36f3bee4016"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_status_command.dart",
+      "bytes": 337,
+      "sha256": "91cfde56221aac701c995910628492089d3f4571459b2f69970dc5468b8260ec"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_top_command.dart",
+      "bytes": 393,
+      "sha256": "aa4050b0786b9e06638977058df50aa8f0e9c20682a8b2e5599d414325c3438a"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_uidl_command.dart",
+      "bytes": 488,
+      "sha256": "5b46708bf6e8dddb0d20a85a0c7900403479d7ab2f0e2b8456d3d1c3c500e5ed"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/commands/pop_user_command.dart",
+      "bytes": 198,
+      "sha256": "733edb27507a10a9dc07157a0289f2bd4aa1c5f4f3a380c07e106298dc7bcb83"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/parsers/all_parsers.dart",
+      "bytes": 165,
+      "sha256": "ebcb95e0e437a6b4b36606d04e488b816fa34cd18a14c49dd7770fc7f19a1457"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/parsers/pop_list_parser.dart",
+      "bytes": 1405,
+      "sha256": "5d8a947a5f6067392bb0a5e15eb42713bc8a1e367d0bdd38c47bdc9ce9f548bb"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/parsers/pop_retrieve_parser.dart",
+      "bytes": 1027,
+      "sha256": "0d6184a85a5c0ce5f714c78d17085b135fe6073f856e3530610e63af3b38728d"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/parsers/pop_standard_parser.dart",
+      "bytes": 423,
+      "sha256": "5807a834837e63b25792243bf05f9323bdcf1619bc121a5b073d19218883ecd3"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/parsers/pop_status_parser.dart",
+      "bytes": 832,
+      "sha256": "be558371c3295432bd28eb8ab8e139122004341d875844c38ec5faa308df3be0"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/parsers/pop_uidl_parser.dart",
+      "bytes": 1443,
+      "sha256": "0903b9f249ed1c297853d78a33a044237b53e1433ef38355f7159ed8117a27f8"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/pop_command.dart",
+      "bytes": 895,
+      "sha256": "da342e7c9419c3664c7e3e2263d046a627db03a6693a9d2c20917af8dbf3d3c7"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/pop/pop_response_parser.dart",
+      "bytes": 434,
+      "sha256": "0bd2114ee11a59dce7700470c5abf15f6ed9eb4a3956bd41b478cfb6aa5cce90"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/commands/all_commands.dart",
+      "bytes": 339,
+      "sha256": "71918b9cfa8db5ba8469e43852ca84335d216bb57a81bddded9451b62c509ed1"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_cram_md5_command.dart",
+      "bytes": 2099,
+      "sha256": "655cfed6d581760a7f60ed185127b76fa2a9b6123f5b6138d64405c6732b1b74"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_login_command.dart",
+      "bytes": 1364,
+      "sha256": "35ef57965da264a96f23794440360e0f50bb30a22ade411d0fe851ef9afe01cb"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_plain_command.dart",
+      "bytes": 663,
+      "sha256": "3f2bd3f7f912e37112ada068cfc9fb7d7bcc50b396cb874307a4af8a26de194f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_xoauth2_command.dart",
+      "bytes": 1542,
+      "sha256": "f12124603561637221e667a85054a6b608b7cb2446b4cbe59c4d58382fa5482a"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/commands/smtp_ehlo_command.dart",
+      "bytes": 382,
+      "sha256": "ce2d48a67838ca66fcc4a16bb40edd488a498c449928069569c3786ae4f5b950"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/commands/smtp_quit_command.dart",
+      "bytes": 574,
+      "sha256": "c877093b8f411b079fa00bab901149c173860fcbe28c960a12e1b109d6cd7275"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/commands/smtp_send_bdat_command.dart",
+      "bytes": 6178,
+      "sha256": "050d2c08bfa6eb6e2349ad5abc2bcc608720ad2600ca7a796d7a7dbeba11cc05"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/commands/smtp_sendmail_command.dart",
+      "bytes": 4470,
+      "sha256": "5a620bf527ebf95970c0ca75cd5d4cad47a2b1c416ee8683b1b61c417e06910f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/commands/smtp_starttls_command.dart",
+      "bytes": 211,
+      "sha256": "37812683b8415fe9b4afa683b5a524113f1a57c780f5a128e04198546f602239"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/smtp/smtp_command.dart",
+      "bytes": 4739,
+      "sha256": "03ba0c37dae726c0a1a3ca1dae1198ad569377ca65e489494e3400ee5d23e060"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/ascii_runes.dart",
+      "bytes": 1497,
+      "sha256": "c33343ccf8ebc9b9560ba99567093f25db60a9a073b8c4acb689e3bb083cab9e"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/byte_utils.dart",
+      "bytes": 763,
+      "sha256": "0567286bb985963a3d5779c212a0ca7591e1e09f8269747963d818a942f62afc"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/client_base.dart",
+      "bytes": 16515,
+      "sha256": "950018c4440b97a93cfc99e4cd4061916162a2b6726b5e1b4218ef7f5fe66a43"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/discover_helper.dart",
+      "bytes": 18465,
+      "sha256": "4c258aaa907b6bc75ebcc15acd9eca9467063872410eae0cc9b60668c1a33b80"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/http_helper.dart",
+      "bytes": 3507,
+      "sha256": "0f53583f4c06f4296ea6271e703b681884b836e464d90025545f5ebfee60f179"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/mail_address_parser.dart",
+      "bytes": 7157,
+      "sha256": "91b9db98ff30967b635a69d99dd01ca69ce5dda1ce05bfbceaa6f8b785bd5e64"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/mail_signature.dart",
+      "bytes": 4041,
+      "sha256": "6311814e2d989c29e24ae0a0add49716cf4495312f6aae63d4f7928c464afa03"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/non_nullable.dart",
+      "bytes": 522,
+      "sha256": "a53657bf0f1a79fe72de4651f33f13086ca6f2efcfd845988b5f5474574879cd"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+      "bytes": 480,
+      "sha256": "b1570fdb1c0cc7bfb58507cafccbc2c8cc60a44fedc9a20a96a047089687339c"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/stack_list.dart",
+      "bytes": 760,
+      "sha256": "70241a53065aa86b30c9592a64f6005b7efe807925a088a2e174d678e0aaae56"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+      "bytes": 9773,
+      "sha256": "f56b2399361666a0842dc7ead69f5c5d70296e868acd87ed0610c3482ef3a9a2"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/private/util/word.dart",
+      "bytes": 293,
+      "sha256": "4f468dcee5b196f9c744a60eae8d720050da7f268faa36f57de4c71d2df7be63"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/smtp/smtp_client.dart",
+      "bytes": 18646,
+      "sha256": "1cdaee788670f32eccec95a7f3728b777cd1a6d39f5f7c9750321375c4f7b269"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/smtp/smtp_events.dart",
+      "bytes": 673,
+      "sha256": "4735697ec7140e05da97e5ea57d99a8f190d9a5d54a111b336e862b927d85bca"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/smtp/smtp_exception.dart",
+      "bytes": 1230,
+      "sha256": "2c9bf8e1f5106377156c2449d7bad0dc2c0342da5c014da55d20a51c0702c968"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/lib/src/smtp/smtp_response.dart",
+      "bytes": 3259,
+      "sha256": "6a1275f82993a64ed85cf56f9bdeba7d06abb36c8bf8affd9f830b62d3a2b8c5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/migration.md",
+      "bytes": 2076,
+      "sha256": "90ac4010b37f52566c6a8138aeb0828139e9f403edf4ab59d947ac0d03bd9166"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/archive/LICENSE",
+      "bytes": 1101,
+      "sha256": "32f97d332eae7453ec4079858e6f1d74be85beeb6d3881068b47d02a379cccea"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/archive/LICENSE-other.md",
+      "bytes": 6176,
+      "sha256": "b8861b258b8eedd1605f5203b0f51e8022c5c156cb97da1c465e4e355672738b"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/args/LICENSE",
+      "bytes": 1504,
+      "sha256": "dfb09c74e29386cd3e2719f32d4995d59526179753931d31840757c77fbf2791"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/asn1lib/LICENSE",
+      "bytes": 1347,
+      "sha256": "8d2c61936a79c1561a92c0c4813411f10279b81e0c1bd49bd2f86a90f7538f9b"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/async/LICENSE",
+      "bytes": 1504,
+      "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/basic_utils/LICENSE",
+      "bytes": 1067,
+      "sha256": "d5d127e78b906bb0f77820bc1f01f8804075ecfcbc6954fbf2ed011f51e112a1"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/clock/LICENSE",
+      "bytes": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/collection/LICENSE",
+      "bytes": 1504,
+      "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/convert/LICENSE",
+      "bytes": 1503,
+      "sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/crypto/LICENSE",
+      "bytes": 1503,
+      "sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/crypto/third_party/wycheproof/LICENSE",
+      "bytes": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/encrypter_plus/LICENSE",
+      "bytes": 1540,
+      "sha256": "1e315d9d3fa23e3730ef31eedeed503f6731208f2624a53ae85eeaa703ae2f34"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/enough_convert/LICENSE",
+      "bytes": 16725,
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/enough_mail/LICENSE",
+      "bytes": 16725,
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/ffi/LICENSE",
+      "bytes": 1504,
+      "sha256": "0371d1da6a57fb791db29d29b95333429205f51f3cb2eb3a0c12d91838a38744"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/http/LICENSE",
+      "bytes": 1504,
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/http_parser/LICENSE",
+      "bytes": 1504,
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/intl/LICENSE",
+      "bytes": 1503,
+      "sha256": "7e124af6a556f045cb3a20cafbdaa31602ac2c82cbcb3c3b15faaaf514b06028"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/json_annotation/LICENSE",
+      "bytes": 1524,
+      "sha256": "143839f62c9b7f88143ea9f688361c27050888acde7696b34e04414bd254fafc"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/logging/LICENSE",
+      "bytes": 1504,
+      "sha256": "dfb09c74e29386cd3e2719f32d4995d59526179753931d31840757c77fbf2791"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/meta/LICENSE",
+      "bytes": 1503,
+      "sha256": "b71519245009a3b8f126196a5408ec031e216e8e0d985085958c6543f82a8a2a"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/path/LICENSE",
+      "bytes": 1504,
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/petitparser/LICENSE",
+      "bytes": 1101,
+      "sha256": "0be767174b97278f17da4923a74169e8645631f03ea3d8482ec3523c9b1a0dd3"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/pointycastle/LICENSE",
+      "bytes": 1120,
+      "sha256": "3a7bb295473da049a1c6edd2f8c41b9e526a4e80f200c0200cc5600b2634df3f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/pointycastle/licenses/LICENSE-BouncyCastle.html",
+      "bytes": 1363,
+      "sha256": "157c06d78dfb0eabe54164f569bb6af94d298852198c29c6dd61fd51c98a79e6"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/pointycastle/licenses/LICENSE-scrypt.txt",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/posix/LICENSE",
+      "bytes": 1069,
+      "sha256": "aaf6271abd048deb3125828613f1797b7556472de6c7acd7103bd43e9cb6a84b"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/source_span/LICENSE",
+      "bytes": 1504,
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/string_scanner/LICENSE",
+      "bytes": 1504,
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/synchronized/LICENSE",
+      "bytes": 1081,
+      "sha256": "6d07c6bb60afb906049d507e19fcc4c6b59e35c0dd0f8a7302e87b3fb0576900"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/term_glyph/LICENSE",
+      "bytes": 1504,
+      "sha256": "ea97a7558a7bd7cee4e2355f7529e3cbebb0dcbb546ddb9a90f10c9eb6b08da5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/typed_data/LICENSE",
+      "bytes": 1504,
+      "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/web/LICENSE",
+      "bytes": 1502,
+      "sha256": "aa913ff50d7542eb8cc35b9f48a80928ac6819ba9057f85d424655e3e8dc271c"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/notices/xml/LICENSE",
+      "bytes": 1101,
+      "sha256": "0be767174b97278f17da4923a74169e8645631f03ea3d8482ec3523c9b1a0dd3"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/pubspec.yaml",
+      "bytes": 807,
+      "sha256": "d38d11b0aaf151286c8abec5f83b434aad91339a90113c46065f464ac48ee27e"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/codecs/base64_mail_codec_test.dart",
+      "bytes": 1808,
+      "sha256": "05a68637c762862a0f18ba40a12288619c21ef01ddd4ed62cbaeb40485710eb5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/codecs/date_codec_test.dart",
+      "bytes": 3861,
+      "sha256": "cfe8088eee699a44eb0badbf3d5f2ebf380807b3a19c23d3264b2a88d83404c5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/codecs/encoding_correctness_test.dart",
+      "bytes": 4137,
+      "sha256": "2f651dba1dacc29d4a8217372e5fbb9a09f3c9a813c874e6cd6d065d01c5d35d"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/codecs/folding_test.dart",
+      "bytes": 3393,
+      "sha256": "de9727503e52dbf8eb5d7a8f8b470ae80c08d94363f312b941a52d36b09441f7"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/codecs/mail_codec_test.dart",
+      "bytes": 5090,
+      "sha256": "d17386c051b129fc3cbc1808e2e9ef1b30a1f0a836c39147e0e28b1041ef97d7"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/codecs/modified_utf7_codec_test.dart",
+      "bytes": 1858,
+      "sha256": "dee4c43355179d4dca3ccb2c1d35c021fc7b7f992aa6af887912b79c644f0a39"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/codecs/quoted_printable_mail_codec_test.dart",
+      "bytes": 9523,
+      "sha256": "6afc8cb7234d0f13f4f53ffe64bdb594b30d02b9b38f4898577a91c125200d34"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/connection_robustness_test.dart",
+      "bytes": 6171,
+      "sha256": "6e2f328bd6d35b9ea4fdcbaaba4600fe2ba1617115f2d026b574f410ff15aac8"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/folding_test.dart",
+      "bytes": 555,
+      "sha256": "e62a1a8cf5e16884f48a80e75c0048dc95e148ef39cb13d75cdba1d997c92893"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/header_injection_test.dart",
+      "bytes": 5695,
+      "sha256": "516fe914c9f4cf8b32ce5568aeb3cc2ee2ea0c193aee8da0020b6962a558a7db"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/imap/imap_client_test.dart",
+      "bytes": 65780,
+      "sha256": "e37a45f577cc666a8ab9ed7faad90ca7dba135412d621356137a4853c2129788"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/imap/imap_quoting_test.dart",
+      "bytes": 5865,
+      "sha256": "c9ab536a51f9625c1eecd2d84be83add402e604f73879920972cb58d7de704b6"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/imap/imap_robustness_test.dart",
+      "bytes": 8434,
+      "sha256": "eb2bc62f1975d18ba825ff98075f8e57ec6c5f818544db4a3707acf18696a8c7"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/imap/mailbox_test.dart",
+      "bytes": 1576,
+      "sha256": "6fe4b1ea846137620ec45a2b94f9915aa7a0ba4e6e8660d3e2b66a92f98dddb3"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/imap/message_sequence_test.dart",
+      "bytes": 13556,
+      "sha256": "30523bd851ca06ab7c3335e59b3f0a699d5d85bf97f0f2cc09ccc44d6ff79eb7"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/imap/mock_imap_server.dart",
+      "bytes": 1776,
+      "sha256": "ca9d4caecdfda7193d68726c7e54e89d01ae53fe7e5f0107410539fa98f1f198"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/imap/qresync_test.dart",
+      "bytes": 980,
+      "sha256": "b5f4864e411dce4c30a1d685e27508ffe0c2924d4771bdd08cc44806f05aadd7"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/imap/response_test.dart",
+      "bytes": 1335,
+      "sha256": "6362c6f210907de7bc33d4e19d45de3311d82d53fb698e4c2c319b7fdde1416f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail/imap_loopback_server.dart",
+      "bytes": 2921,
+      "sha256": "85366ad536b6a053c8db04b769ccaabee4158d3075bc7058bdb27211e2b989ab"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail/mail_account_test.dart",
+      "bytes": 8377,
+      "sha256": "ff1ddf05752ff6f1fd94d23afa597bd9fc0fddd3f2b0af9da777a6a105470ae5"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail/mail_client_delete_test.dart",
+      "bytes": 2190,
+      "sha256": "2314a4862261239a1c5984ce22ff7b1d09cb813c941c01ed400a59ea2c5322b3"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail/mail_client_oauth_test.dart",
+      "bytes": 2753,
+      "sha256": "39877eaada6b354a53423b318d5a746b61a3828cb6eb644d07741b0489019438"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail/mail_client_pop_test.dart",
+      "bytes": 5998,
+      "sha256": "1447c08acfe9e18c1eb43b85d2e4ff43bc8af7c79acff5b816e177ee879ac50a"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail/mail_client_reconnect_test.dart",
+      "bytes": 1840,
+      "sha256": "dfa71c78fe374276093990de6fad6321767f88971810d73d5f654e10d4138468"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail/mail_client_send_test.dart",
+      "bytes": 2282,
+      "sha256": "56091640deb44621bf621ee635ea3d0a1f4d8812d1d2e6e951c9e91bb9c57270"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail/mail_client_starttls_test.dart",
+      "bytes": 3925,
+      "sha256": "ff2a741bf1eb1e01ccc54202c4e913358f4e90dbd9d952a7ab2dec23281ff312"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail/redaction_test.dart",
+      "bytes": 1717,
+      "sha256": "b455654e6b65d5a45d8d2daae404c4751ed230b607d1c4b6544175dab3e20b98"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail/results_test.dart",
+      "bytes": 2237,
+      "sha256": "04cfe8032cdd478095f7803cda984a982285ebd02cbd2beecff4125a5b1eb043"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail_address_parser_test.dart",
+      "bytes": 1237,
+      "sha256": "fa14a6585f6af330b38cbc8e0686a164a954ddd93ad760b5afe9c0ca58beb7c2"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mail_signature_test.dart",
+      "bytes": 3681,
+      "sha256": "fbaeece54d17ee7d8fbf4f8a23c55ec28fed680b07cbdedcf8cee765d4485a99"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/message_builder_test.dart",
+      "bytes": 72508,
+      "sha256": "4f9751409e6a33b338d99cf63688fb22ae16444df929cca17586e917396c42cc"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mime_bare_lf_test.dart",
+      "bytes": 3730,
+      "sha256": "a79787fb0e63d5b3f6830964742be099cf12b7f5868ae7dbc13f61de76e869eb"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mime_boundary_test.dart",
+      "bytes": 4392,
+      "sha256": "23d6ad61e10bbbd92761a21cc8906334e48b288446b35eec875b026090127ab9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mime_message_test.dart",
+      "bytes": 76363,
+      "sha256": "ab250bd17370668998a5057263657bc7adb84fce88bec53576057944c5837204"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mime_robustness_test.dart",
+      "bytes": 5285,
+      "sha256": "fc6ee10f83f1c4ea6d2ca296123b20154e61b90009013ea77158b13e6ce11137"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/mock_socket.dart",
+      "bytes": 8198,
+      "sha256": "3072ada0a030cf52cacc3644e49277bc893285ce0d390cc108a1e188bc22fe46"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/pop/mock_pop_server.dart",
+      "bytes": 800,
+      "sha256": "f161bb5f37916002b34ac71ab65f1683b96be97b6e5927ad8d1d70ee60981a0e"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/pop/pop_client_test.dart",
+      "bytes": 5958,
+      "sha256": "55868e940311318d345047703e88473f2482384f15dd05e3cae03b2b6a432f0f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/pop/pop_framing_test.dart",
+      "bytes": 3133,
+      "sha256": "e1e31d4d341acaec3cf88a3b5c473fc9d110eb53533dc1dcecd555ae00f2ad78"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/quds_portable_mime_test.dart",
+      "bytes": 7354,
+      "sha256": "0476d349a3a5acf5be8c6d59ab910e7e083463bb2927a59f167e46c500710ccf"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/reconnect_state_test.dart",
+      "bytes": 3179,
+      "sha256": "11392a014c028f63ee3b6a6d0a2b1eb11dd1812db0a8d017b0daddc78661e7f3"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/remove_header_test.dart",
+      "bytes": 644,
+      "sha256": "c4bb3ffa44c8efefd9be3a18a48fa4df5a2ab01fb978c63a23c285f6364cb865"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/smtp/mock_smtp_server.dart",
+      "bytes": 2767,
+      "sha256": "37a48c9dd2196db4e77e710038af55fff33113c006cb6fc8c8f54b6c343688e6"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/smtp/remove_bcc_header_test.dart",
+      "bytes": 2405,
+      "sha256": "c403aa779fe09c7037d75536678ebb08fb8bc64f4119074f0bc73dd1988afb8d"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/smtp/smtp_auth_encoding_test.dart",
+      "bytes": 1082,
+      "sha256": "d2429decc322a7706f42473145d276ca2a74241a8385ba0fd6292cc3b099a9e9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/smtp/smtp_client_test.dart",
+      "bytes": 5496,
+      "sha256": "d6dd330675edde3f9dc51d071e2d814f3296b776faa7acda58d564ca7a8c2a42"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/smtp/smtp_framing_test.dart",
+      "bytes": 2479,
+      "sha256": "81ab6bc8163704452dddf78199418681a80a7cfd91cf46b6fbd2fe0fad9e3740"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/smtp/smtp_send_state_test.dart",
+      "bytes": 7522,
+      "sha256": "efd82908b1c166664e544559ccc6423ac1756cc204c9af0eda7f19daa250dba1"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/smtp/smtp_sendmail_command_test.dart",
+      "bytes": 2229,
+      "sha256": "76b2e791fac7c926faf95d41ad0ea8edddb2373655fb46419dc6af10147d225e"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/smtp/smtp_transparency_test.dart",
+      "bytes": 2424,
+      "sha256": "74dd272291c1be4109ec2d795dda5e2b18a13c35b3dfcd6cf2a79596f7216f83"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/smtp/testimage-large.jpg",
+      "bytes": 872619,
+      "sha256": "b11bbef5b4c15f0b970f05a929800a1f3e57420c71c4fef27bf7b5e0fec63c7c"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/smtp/testimage.jpg",
+      "bytes": 13390,
+      "sha256": "9c0493eb8d5079ecb53501c45227bdb32ad74b1e30fbc8274371ff400c8aec48"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/fetch_parser_test.dart",
+      "bytes": 79405,
+      "sha256": "7957ba8b0b2538b7cc136195009caa761453457cf984e41088004141119fc5c8"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/id_parser_test.dart",
+      "bytes": 2454,
+      "sha256": "6fad1d05a21f877192f7c73e93f85bafc11ff2a938450672e580a3f718d13ba6"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/imap_response_line_test.dart",
+      "bytes": 1295,
+      "sha256": "7d8d07b98ffaedea87af1438451a83fdf424e57e85c43c03535ac41e65dfc764"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/imap_response_reader_test.dart",
+      "bytes": 11950,
+      "sha256": "d2e76b54c30bfeba4622fc862b5d3144723ab4f12f07cb1606c9b97fffe27541"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/imap_response_test.dart",
+      "bytes": 22477,
+      "sha256": "f98f5ade08eeab9dac33401ac4f20cf25726cb174da801de7bec4c57821dee2b"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/list_parser_test.dart",
+      "bytes": 6153,
+      "sha256": "15fbfb3c06e43226c1719184352cdc8d23cd9b0631604161204a1c9eef2bd29f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/namespace_parser_test.dart",
+      "bytes": 6954,
+      "sha256": "f172fcb5e309f358aea7cd18bdc05da9d7ff1b28dddca2f0ad9ca567af73e72f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/parser_helper_test.dart",
+      "bytes": 5888,
+      "sha256": "ca56602d45e553b5e2c27c2455c46a081d53378a172bf522d1dd8a4d2a1b9d66"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+      "bytes": 5807,
+      "sha256": "3d0675836cbac0ce08d58143f239b09baa735c4a76395c538abf2c237bb473b9"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/search_parser_test.dart",
+      "bytes": 4978,
+      "sha256": "6d8ed316a18737d41855e143df510ec912b5f058f7126159e97a0b4367b80818"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/sort_parser_test.dart",
+      "bytes": 4972,
+      "sha256": "b7abad12cf53e5f314e64c56a1f38ec64d67390d18acbd9261d6dbbd25c68c16"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/status_parser_test.dart",
+      "bytes": 3219,
+      "sha256": "81d11fdc899f8705b921aab155105f1414eef35a2e84e77ac8ed5657cace144d"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/imap/thread_parser_test.dart",
+      "bytes": 9567,
+      "sha256": "7bae514ac7f84c13fa91ce27cc4f8b9026b9a0ef8fefb5bad1b02390bbfa49e4"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/smtp/commands/smtp_auth_cram_md5_command_test.dart",
+      "bytes": 2111,
+      "sha256": "3ddeb6792a13df3ad44710b99e0c1a9a182095f03fcc18bf2a2be782a8bbdf13"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/smtp/smtp_response_test.dart",
+      "bytes": 1776,
+      "sha256": "ad870f2c370a936e7675a03326c4f9106ccba816c48f7bb33d0f0c414ac73322"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/util/client_config_test.dart",
+      "bytes": 1983,
+      "sha256": "69dec8c0661371ecf0a2ab0b2248544fe67a3169f22fcfd88c361eb5dcc715ad"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/util/discover_helper_test.dart",
+      "bytes": 19887,
+      "sha256": "029121e838a304b9e1d0d297ca8d2f3b464a16ab0933cb20e79eb5fa4b68cec4"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/util/http_helper_test.dart",
+      "bytes": 2061,
+      "sha256": "d9f09e79145b9451a643f0658ce28bb634d7689c12f022c7fa945ed87eaa4e9f"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/src/util/uint8_list_reader_test.dart",
+      "bytes": 6900,
+      "sha256": "ea6725ac6972b37969273407774e6d4be2d8ac506a951b99c264127e9740a257"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/test/write_failure_test.dart",
+      "bytes": 1351,
+      "sha256": "d66187add5969ac3180911b2d578fadeaf2126eb909dfeaeae7b95487cc87361"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/tool/portable_smoke.dart",
+      "bytes": 1383,
+      "sha256": "3771ebebf410a1214cd52f94469d408d4b5282f7611792ba859c1ed40e4d2b75"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/verification/README.md",
+      "bytes": 3235,
+      "sha256": "f7cb12f5f93f5ec68f9c615cea90197fb732b9711c9ed3bd91bc6f1345d2b010"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/verification/browser_attempt.txt",
+      "bytes": 1124,
+      "sha256": "39f575b6f7aacd1b5151cf3614aec75b34d096a84c6ab3457cd8bfce9fde9cd6"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/verification/native_analysis.txt",
+      "bytes": 34,
+      "sha256": "6b7a8871da280b2b7725a31509a42d0e66de8a6281e319414cfeb7d46b48d2ed"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/verification/native_tests.txt",
+      "bytes": 16393,
+      "sha256": "219215b6f328f8e81fc50c23c63a67006c470f008bf0213435c8d27036e22f41"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/verification/portable_js_compile.txt",
+      "bytes": 111,
+      "sha256": "345434ffb6125198b7d1b9cbbb48ad3d64e0a58ee77d106215ee3cdeabc013c4"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/verification/portable_native.json",
+      "bytes": 164,
+      "sha256": "9c2b06c6b38d5028e610831fc186c3d2f8db6dccaf8d0d21c5f3c5c73607bfcc"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/verification/portable_node.json",
+      "bytes": 164,
+      "sha256": "9c2b06c6b38d5028e610831fc186c3d2f8db6dccaf8d0d21c5f3c5c73607bfcc"
+    },
+    {
+      "path": "before-source/third_party/enough_mail/verification/receipt.json",
+      "bytes": 1828,
+      "sha256": "c2293735fc5f9674e4cc6f7c05f4ede156b3ce9a8abc547e9ed4d9271187768d"
+    }
+  ]
+}

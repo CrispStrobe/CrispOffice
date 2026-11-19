@@ -1,0 +1,3217 @@
+{
+  "schema": 1,
+  "audited_at_utc": "2026-11-19T07:14:18.426040+00:00",
+  "qualified_source": "39843ed4874c7b56572c7aa8195716e5892aeca2",
+  "frozen_integrated_source": "4624218f9468eeeac07f1f100ac0e4bb6b050a17",
+  "archives": [
+    {
+      "archive": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/combined-final.tar.xz",
+      "bytes": 885396,
+      "sha256": "f35b1a2cda7efb23aa86532f20d5580fc2a75c43edddf1def77a9e650c7fa6c6",
+      "members": 33,
+      "all_members_verified": true
+    },
+    {
+      "archive": "docs/validation/thesaurus-20261118/resumed-20261119/evidence/native-final-evidence.tar.xz",
+      "bytes": 1206668,
+      "sha256": "0a5979281c90ce245d4ab979ed22dde8ecaca38190ee309891500fb9c236f891",
+      "members": 48,
+      "all_members_verified": true
+    }
+  ],
+  "historical_evidence": {
+    "union_cases": 2018,
+    "union_suites": 129,
+    "native_cases": 208,
+    "native_suites": 14,
+    "native_cases_overlap_union": true,
+    "native_cases_not_added_to_union": true,
+    "union_source_before_after_equal": true,
+    "union_environment_before_after_equal": true,
+    "native_runtime_before_after_equal": true,
+    "historical_source_records_git_blob_verified": 4992,
+    "current_source_records_identical": 4971,
+    "current_source_records_changed": 21,
+    "changed_records": [
+      {
+        "path": "packages/quds_mail_core/CHANGELOG.md",
+        "qualified_blob": "0e9a482138c7b2aa7f4bf45cabd098be47104de0",
+        "current_blob": "c76007ec2a3a8dcb3d3a6b150b6d6cd41193943b"
+      },
+      {
+        "path": "packages/quds_mail_core/README.md",
+        "qualified_blob": "c87a066b996d3b1fce5d9f167d9d554df8ab966b",
+        "current_blob": "44d8462e762de2d04203717b21dcfbea10d63af0"
+      },
+      {
+        "path": "packages/quds_mail_core/lib/src/model/message.dart",
+        "qualified_blob": "6f6fffb4a08e85b210a36b0deef900b0f570875f",
+        "current_blob": "31aa37df663c14ee068e124520f5c59477bd3532"
+      },
+      {
+        "path": "packages/quds_mail_core/lib/src/ports/provider.dart",
+        "qualified_blob": "07b127921b7fe3716063ad8733680fb46b915d00",
+        "current_blob": "47a3acfeb10e7f86cd5a2b7f79f469625d8671d7"
+      },
+      {
+        "path": "packages/quds_mail_core/test/models_test.dart",
+        "qualified_blob": "8d5a493b1682cfb7ce425a75971fc3dcdf61d6cb",
+        "current_blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02"
+      },
+      {
+        "path": "packages/quds_mail_store/CHANGELOG.md",
+        "qualified_blob": "785b7b7edc6cf4f67e0289c55388b82628282ade",
+        "current_blob": "bb994c0ac85a85a6172996e53c338cce0ddef118"
+      },
+      {
+        "path": "packages/quds_mail_store/README.md",
+        "qualified_blob": "3be64c9512e91f13e212793852d1f3df89770514",
+        "current_blob": "8e61c309be36dfd18261cf592b3cd99a457817f4"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/codec.dart",
+        "qualified_blob": "f98d318a77fd0047c347ae5ce96d205c70107d54",
+        "current_blob": "811a0b779323ddf90bbfe4d5dd0f0bfc6244454c"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/repository.dart",
+        "qualified_blob": "ca335b03fa708cd1f9363fb602b7ab453b93a584",
+        "current_blob": "289ac70a72c35f1e59c3776c947156b643216f6b"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+        "qualified_blob": "6d58a906a60bef66048dded3adfa8a07ba859e9f",
+        "current_blob": "a7ca98c4cb4fc2525ac637f7939f56ad57b86c62"
+      },
+      {
+        "path": "packages/quds_mail_store/test/codec_test.dart",
+        "qualified_blob": "72bc8c7d12a4bd643ed5710a2378dab8b7c6688a",
+        "current_blob": "0a810d49252e81ec4aee244e43e17c1721a487be"
+      },
+      {
+        "path": "packages/quds_mail_store/test/migration_test.dart",
+        "qualified_blob": "aef040ae1af918ec822962823f656cda741779a3",
+        "current_blob": "9c389a99fd24a64d2e4a5a892dd84aafa5c7e4f1"
+      },
+      {
+        "path": "packages/quds_mail_store/test/repository_test.dart",
+        "qualified_blob": "872935b7944340fae9c4c30b99dec1334710c476",
+        "current_blob": "b12ba07cfb29df826929b155f3488c459386bf7f"
+      },
+      {
+        "path": "pubspec.yaml",
+        "qualified_blob": "cb6f8b349ca6c00625f3e3c176eee352c12a6e5e",
+        "current_blob": "80a898679ac54995b3df012117db47c21784894b"
+      },
+      {
+        "path": "third_party/enough_mail/QUDS_PATCHES.md",
+        "qualified_blob": "e0bf8a74414b427fd3531267b22dab37ea8fd81c",
+        "current_blob": "dc6e1f83e7e87c5aae34427f1836520765fecfb7"
+      },
+      {
+        "path": "third_party/enough_mail/lib/imap.dart",
+        "qualified_blob": "215c236539eed578cdf5ae0c4df56abfbc47d9a1",
+        "current_blob": "98e7acf7cb2671aa9427985d2046e41b05ce7582"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/imap/imap_client.dart",
+        "qualified_blob": "1fb458d21ca3db1ab9b195c198c05ecf1db92f03",
+        "current_blob": "adbccd3aa6dacd0e02753078292e4b6fa67ff610"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+        "qualified_blob": "103c2336caf7b8bb34e7b7700baa055db529afc7",
+        "current_blob": "531c23f1ebaccafb76fffbe90b950f66c211eadc"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+        "qualified_blob": "566ce29c3d3708730e58b94da3d16fef3afc453d",
+        "current_blob": "f283fb7fa73cc9a890b41de512dc869bfc745c67"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/client_base.dart",
+        "qualified_blob": "c0b23c748ac7f5b0dfb3b5b9da7be96807e406c1",
+        "current_blob": "213445cd3f0b3491f1ee7ab5b8ce8c99e26968c7"
+      },
+      {
+        "path": "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+        "qualified_blob": "485500fa01cdd25e0a01d3e660530db8393d6e2e",
+        "current_blob": "e844f12c35f8b33129f12f40d54b366263bb146c"
+      }
+    ],
+    "new_product_paths_outside_old_inventory": [
+      "packages/quds_mail_transport/CHANGELOG.md",
+      "packages/quds_mail_transport/LICENSE",
+      "packages/quds_mail_transport/README.md",
+      "packages/quds_mail_transport/analysis_options.yaml",
+      "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+      "packages/quds_mail_transport/lib/src/configuration.dart",
+      "packages/quds_mail_transport/lib/src/cursor.dart",
+      "packages/quds_mail_transport/lib/src/native/factory.dart",
+      "packages/quds_mail_transport/lib/src/native/provider.dart",
+      "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+      "packages/quds_mail_transport/pubspec.yaml",
+      "packages/quds_mail_transport/test/configuration_test.dart",
+      "packages/quds_mail_transport/test/fixtures/tls/README.md",
+      "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+      "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+      "packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "packages/quds_mail_transport/test/native_provider_test.dart",
+      "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+      "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "packages/quds_mail_transport/test/native_tls_test.dart",
+      "packages/quds_mail_transport/test/support/imap_fixture.dart",
+      "packages/quds_mail_transport/test/support/tls/README.md",
+      "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+      "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem",
+      "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+      "packages/quds_mail_transport/test/support/tls_server.dart",
+      "packages/quds_mail_transport/test/unsupported_test.dart",
+      "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+      "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+      "third_party/enough_mail/lib/src/private/util/client_connection.dart",
+      "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+      "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart"
+    ]
+  },
+  "union_plan_and_harness": {
+    "129_suite_plan_unchanged": true,
+    "all129_suite_source_files_unchanged": true,
+    "bound_harness_inputs": [
+      {
+        "path": "docs/validation/thesaurus-20261118/reconciled/run_targeted.py",
+        "unchanged": true,
+        "qualified_sha256": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d",
+        "current_sha256": "974601579530bee323e2912c05c2cf1302a788bf5da67d9d6e2d8e26d925d49d"
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/reconciled/test_run_targeted.py",
+        "unchanged": false,
+        "qualified_sha256": "a8b082f111d8d6a0629680a04ab54e09d1173ac06a4da253e02d3c0d89d367a2",
+        "current_sha256": "0a05114c35d96d1102bedefcf31bd672a52c1addae2d8a609c2a9bf2f974cdb4"
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/reconciled/plan.json",
+        "unchanged": true,
+        "qualified_sha256": "7bd8837025617f848721cb5ad9a332706b0ea58f7af1bc68bcd224840d06f266",
+        "current_sha256": "7bd8837025617f848721cb5ad9a332706b0ea58f7af1bc68bcd224840d06f266"
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py",
+        "unchanged": true,
+        "qualified_sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7",
+        "current_sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7"
+      },
+      {
+        "path": "tools/mail/check_store.py",
+        "unchanged": false,
+        "qualified_sha256": "c0f76f38a7fcae6c112fa432cb3d2530a3967ab20d51cf5b6cd05a101a982155",
+        "current_sha256": "bab338972e08c1377657becdcc15e3f9472a361475fc137a839eca56ea4cc7bb"
+      },
+      {
+        "path": "tools/mail/check_reader.py",
+        "unchanged": true,
+        "qualified_sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826",
+        "current_sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826"
+      }
+    ],
+    "cohorts": [
+      {
+        "name": "engine-review-and-incoming-zotero",
+        "suites": 42,
+        "historical_cases": 717,
+        "suite_sources_identical": true,
+        "suites_with_changed_tracked_closure": 0,
+        "changed_closure_paths": [],
+        "vendor_overlap": []
+      },
+      {
+        "name": "editor-review-notes-headers-and-zotero",
+        "suites": 73,
+        "historical_cases": 1154,
+        "suite_sources_identical": true,
+        "suites_with_changed_tracked_closure": 0,
+        "changed_closure_paths": [],
+        "vendor_overlap": []
+      },
+      {
+        "name": "studio-review-and-incoming-navigation",
+        "suites": 10,
+        "historical_cases": 117,
+        "suite_sources_identical": true,
+        "suites_with_changed_tracked_closure": 0,
+        "changed_closure_paths": [],
+        "vendor_overlap": []
+      },
+      {
+        "name": "incoming-mail-reader",
+        "suites": 4,
+        "historical_cases": 30,
+        "suite_sources_identical": true,
+        "suites_with_changed_tracked_closure": 4,
+        "changed_closure_paths": [
+          "packages/quds_mail_core/lib/src/model/message.dart",
+          "packages/quds_mail_core/lib/src/ports/provider.dart"
+        ],
+        "vendor_overlap": []
+      }
+    ],
+    "suite_closure_checks": [
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_thesaurus_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 42,
+        "current_tracked_closure_files": 42,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_proofing_inheritance_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_style_introduction_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_citing_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 4,
+        "current_tracked_closure_files": 4,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 3,
+        "current_tracked_closure_files": 3,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_client_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 3,
+        "current_tracked_closure_files": 3,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 3,
+        "current_tracked_closure_files": 3,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 3,
+        "current_tracked_closure_files": 3,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 3,
+        "current_tracked_closure_files": 3,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 3,
+        "current_tracked_closure_files": 3,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 3,
+        "current_tracked_closure_files": 3,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/note_edit_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 368,
+        "current_tracked_closure_files": 368,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/rich_note_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 368,
+        "current_tracked_closure_files": 368,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_footnote_reference_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_field_span_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_list_numbering_snapshot_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/numbering_collision_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/list_restart_fidelity_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/scripted_transitions_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 374,
+        "current_tracked_closure_files": 374,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_features_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 367,
+        "current_tracked_closure_files": 367,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "engine-review-and-incoming-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_draft_proofing_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_proofing_priority_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 462,
+        "current_tracked_closure_files": 462,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 462,
+        "current_tracked_closure_files": 462,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 462,
+        "current_tracked_closure_files": 462,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_composer_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 373,
+        "current_tracked_closure_files": 373,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_note_numbering_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_notes_editing_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_keyboard_review_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_live_review_surface_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_review_pane_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_proofing_session_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_manual_proofing_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_proofing_context_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_review_dialog_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_revision_story_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_review_controller_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_input_focus_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/office_input_ownership_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 2,
+        "current_tracked_closure_files": 2,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "flutter",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/office_direction_chord_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 368,
+        "current_tracked_closure_files": 368,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/editor_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/report_designer_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 462,
+        "current_tracked_closure_files": 462,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 462,
+        "current_tracked_closure_files": 462,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_navigation_pane_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_document_reuse_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 373,
+        "current_tracked_closure_files": 373,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_document_sources_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 369,
+        "current_tracked_closure_files": 369,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_format_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 368,
+        "current_tracked_closure_files": 368,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_import_search_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_library_details_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 369,
+        "current_tracked_closure_files": 369,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 368,
+        "current_tracked_closure_files": 368,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 369,
+        "current_tracked_closure_files": 369,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 369,
+        "current_tracked_closure_files": 369,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_split_identity_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "editor-review-notes-headers-and-zotero"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 535,
+        "current_tracked_closure_files": 535,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "ffi",
+          "file_picker",
+          "flutter",
+          "flutter_test",
+          "http",
+          "url_launcher",
+          "web",
+          "window_manager"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "studio-review-and-incoming-navigation"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 535,
+        "current_tracked_closure_files": 535,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "ffi",
+          "file_picker",
+          "flutter",
+          "flutter_test",
+          "http",
+          "url_launcher",
+          "web",
+          "window_manager"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "studio-review-and-incoming-navigation"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 533,
+        "current_tracked_closure_files": 533,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "ffi",
+          "file_picker",
+          "flutter",
+          "flutter_test",
+          "http",
+          "url_launcher",
+          "web",
+          "window_manager"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "studio-review-and-incoming-navigation"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 535,
+        "current_tracked_closure_files": 535,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "ffi",
+          "file_picker",
+          "flutter",
+          "flutter_test",
+          "http",
+          "url_launcher",
+          "web",
+          "window_manager"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "studio-review-and-incoming-navigation"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 535,
+        "current_tracked_closure_files": 535,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "ffi",
+          "file_picker",
+          "flutter",
+          "flutter_test",
+          "http",
+          "url_launcher",
+          "web",
+          "window_manager"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "studio-review-and-incoming-navigation"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_document_comparison_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 463,
+        "current_tracked_closure_files": 463,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "file_picker",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "studio-review-and-incoming-navigation"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/widget_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 535,
+        "current_tracked_closure_files": 535,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "ffi",
+          "file_picker",
+          "flutter",
+          "flutter_test",
+          "http",
+          "url_launcher",
+          "web",
+          "window_manager"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "studio-review-and-incoming-navigation"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 535,
+        "current_tracked_closure_files": 535,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "ffi",
+          "file_picker",
+          "flutter",
+          "flutter_test",
+          "http",
+          "url_launcher",
+          "web",
+          "window_manager"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "studio-review-and-incoming-navigation"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 535,
+        "current_tracked_closure_files": 535,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "ffi",
+          "file_picker",
+          "flutter",
+          "flutter_test",
+          "http",
+          "url_launcher",
+          "web",
+          "window_manager"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "studio-review-and-incoming-navigation"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 370,
+        "current_tracked_closure_files": 370,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter_test",
+          "http"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "studio-review-and-incoming-navigation"
+      },
+      {
+        "path": "packages/quds_mail_ui/test/controller_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 21,
+        "current_tracked_closure_files": 21,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [
+          "packages/quds_mail_core/lib/src/model/message.dart",
+          "packages/quds_mail_core/lib/src/ports/provider.dart"
+        ],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "incoming-mail-reader"
+      },
+      {
+        "path": "packages/quds_mail_ui/test/example_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 46,
+        "current_tracked_closure_files": 46,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [
+          "packages/quds_mail_core/lib/src/model/message.dart",
+          "packages/quds_mail_core/lib/src/ports/provider.dart"
+        ],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "characters",
+          "collection",
+          "crypto",
+          "enough_convert",
+          "flutter",
+          "flutter_test",
+          "json_annotation"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "incoming-mail-reader"
+      },
+      {
+        "path": "packages/quds_mail_ui/test/message_view_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 24,
+        "current_tracked_closure_files": 24,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [
+          "packages/quds_mail_core/lib/src/model/message.dart",
+          "packages/quds_mail_core/lib/src/ports/provider.dart"
+        ],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "incoming-mail-reader"
+      },
+      {
+        "path": "packages/quds_mail_ui/test/presentation_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 21,
+        "current_tracked_closure_files": 21,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [
+          "packages/quds_mail_core/lib/src/model/message.dart",
+          "packages/quds_mail_core/lib/src/ports/provider.dart"
+        ],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test"
+        ],
+        "unresolved_tracked_directives": [],
+        "cohort": "incoming-mail-reader"
+      }
+    ]
+  },
+  "native_and_web": {
+    "fixture_helper_checks": [
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/build_binding.py",
+        "qualified_sha256": "4dd56dd08f3228afec52172e396bd49504ce183dceb5fd8837f0a03fb0740d26",
+        "current_sha256": "4dd56dd08f3228afec52172e396bd49504ce183dceb5fd8837f0a03fb0740d26",
+        "unchanged": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/install_offline.py",
+        "qualified_sha256": "174329331c5e363afcb4dd58d8182aa14b4f86b405e0ec84be5179414fc968aa",
+        "current_sha256": "174329331c5e363afcb4dd58d8182aa14b4f86b405e0ec84be5179414fc968aa",
+        "unchanged": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+        "qualified_sha256": "9caff2312188c3fd1b668055495bc1e6b37b897ddebfe85b2c32b9e8d75485a4",
+        "current_sha256": "9caff2312188c3fd1b668055495bc1e6b37b897ddebfe85b2c32b9e8d75485a4",
+        "unchanged": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart",
+        "qualified_sha256": "2c12b51deabbc6fc407d390b51570538e12f1aa61d113afafd698aab17054891",
+        "current_sha256": "2c12b51deabbc6fc407d390b51570538e12f1aa61d113afafd698aab17054891",
+        "unchanged": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart",
+        "qualified_sha256": "99e41ba060c8f35f2677b968dbaad0679868190a50f2e4debe57bc296ea34c7c",
+        "current_sha256": "99e41ba060c8f35f2677b968dbaad0679868190a50f2e4debe57bc296ea34c7c",
+        "unchanged": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_browser.py",
+        "qualified_sha256": "62f1b712957c7fe360014799f7178db019ec1a5fd7ea347d3563c9cb909b72d3",
+        "current_sha256": "62f1b712957c7fe360014799f7178db019ec1a5fd7ea347d3563c9cb909b72d3",
+        "unchanged": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/run_final_validation.py",
+        "qualified_sha256": "382a3e7e1688df926a7fd9a2bfe57b526735607fecc2ec2e024633d850581582",
+        "current_sha256": "382a3e7e1688df926a7fd9a2bfe57b526735607fecc2ec2e024633d850581582",
+        "unchanged": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py",
+        "qualified_sha256": "7516f54f7e91332c92fc234ba7d973b7c299340269f846465a3f8d9bfebe306c",
+        "current_sha256": "7516f54f7e91332c92fc234ba7d973b7c299340269f846465a3f8d9bfebe306c",
+        "unchanged": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/test_workspace_binding.py",
+        "qualified_sha256": "ba84d9cce6f031c4d920b8f2465af120d82a427e855c697535b0f12aa5a632e5",
+        "current_sha256": "ba84d9cce6f031c4d920b8f2465af120d82a427e855c697535b0f12aa5a632e5",
+        "unchanged": true
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/workspace_binding.py",
+        "qualified_sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7",
+        "current_sha256": "886e6073554da1fd88cc62e9796e2ced1db541ee2f2891a7e6959b4f37d5a3b7",
+        "unchanged": true
+      },
+      {
+        "path": "tools/thesaurus/build_packs.py",
+        "qualified_sha256": "52c87f52f7c85ed2ec9d58b91e5afeb5bb658e7b99fe167cc4a26e6fb5608e4c",
+        "current_sha256": "52c87f52f7c85ed2ec9d58b91e5afeb5bb658e7b99fe167cc4a26e6fb5608e4c",
+        "unchanged": true
+      },
+      {
+        "path": "tools/thesaurus/export_review_packet.py",
+        "qualified_sha256": "1d14bd72961bad937d2eaf624ea179bafce8cc61fc6534c8b893deed1f33945f",
+        "current_sha256": "1d14bd72961bad937d2eaf624ea179bafce8cc61fc6534c8b893deed1f33945f",
+        "unchanged": true
+      }
+    ],
+    "native_suite_closure_checks": [
+      {
+        "path": "packages/quds_office_editor/test/word_thesaurus_dialog_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 462,
+        "current_tracked_closure_files": 462,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_thesaurus_controller_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 462,
+        "current_tracked_closure_files": 462,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_proofing_correction_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_proofing_context_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_review_pane_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 462,
+        "current_tracked_closure_files": 462,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_keyboard_review_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_pack_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      },
+      {
+        "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/native_visual_test.dart",
+        "test_or_entrypoint_unchanged": true,
+        "qualified_tracked_closure_files": 461,
+        "current_tracked_closure_files": 461,
+        "closure_added": [],
+        "closure_removed": [],
+        "changed_tracked_closure_inputs": [],
+        "changed_vendor_inputs": [],
+        "external_package_names": [
+          "archive",
+          "characters",
+          "crypto",
+          "flutter",
+          "flutter_test",
+          "url_launcher"
+        ],
+        "unresolved_tracked_directives": []
+      }
+    ],
+    "web_entrypoint_closure_check": {
+      "path": "docs/validation/thesaurus-20261118/continuation/local/fixtures/lib/main.dart",
+      "test_or_entrypoint_unchanged": true,
+      "qualified_tracked_closure_files": 461,
+      "current_tracked_closure_files": 461,
+      "closure_added": [],
+      "closure_removed": [],
+      "changed_tracked_closure_inputs": [],
+      "changed_vendor_inputs": [],
+      "external_package_names": [
+        "archive",
+        "characters",
+        "crypto",
+        "flutter",
+        "url_launcher"
+      ],
+      "unresolved_tracked_directives": []
+    },
+    "archived_successful_run_log_hashes_verified": true,
+    "compiled_inventory_files": 1155,
+    "compiled_inventory_bytes": 87446576,
+    "installed_inventory_files": 1156,
+    "installed_inventory_bytes": 87447167,
+    "exact_inventory_overlays": [
+      "index.html",
+      "offline-install.js"
+    ],
+    "compiled_application_bytes_present": false,
+    "new_build_performed": false,
+    "full_historical_build_binding_matches_current_tree": false
+  },
+  "original_notes_preservation": [
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "qualified_blob": "8c0f6e830387e5658a04a61df3b385f2f89f6ba7",
+      "current_blob": "8c0f6e830387e5658a04a61df3b385f2f89f6ba7",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "qualified_blob": "f8ac8e363a19bc143880b4b0a4b2292d98162641",
+      "current_blob": "f8ac8e363a19bc143880b4b0a4b2292d98162641",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+      "qualified_blob": "c18e02fcec76b639ad84c9f1da5fffff23a8bfc6",
+      "current_blob": "c18e02fcec76b639ad84c9f1da5fffff23a8bfc6",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+      "qualified_blob": "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3",
+      "current_blob": "8caf7516ce6de2ddb2f479ef60c3664b9ded57a3",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "qualified_blob": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4",
+      "current_blob": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4",
+      "unchanged": true
+    }
+  ],
+  "product_group_continuity": {
+    "packages/quds_office_engine/": {
+      "tracked_paths": 913,
+      "changed_or_added_paths": []
+    },
+    "packages/quds_office_editor/": {
+      "tracked_paths": 1573,
+      "changed_or_added_paths": []
+    },
+    "apps/": {
+      "tracked_paths": 136,
+      "changed_or_added_paths": []
+    },
+    "packages/quds_mail_ui/": {
+      "tracked_paths": 24,
+      "changed_or_added_paths": []
+    },
+    "packages/quds_mail_mime/": {
+      "tracked_paths": 17,
+      "changed_or_added_paths": []
+    },
+    "third_party/": {
+      "tracked_paths": 261,
+      "changed_or_added_paths": [
+        "third_party/enough_mail/QUDS_PATCHES.md",
+        "third_party/enough_mail/lib/imap.dart",
+        "third_party/enough_mail/lib/src/imap/imap_client.dart",
+        "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+        "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+        "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+        "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+        "third_party/enough_mail/lib/src/private/util/client_base.dart",
+        "third_party/enough_mail/lib/src/private/util/client_connection.dart",
+        "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+        "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+        "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart"
+      ]
+    }
+  },
+  "workspace_and_runtime": {
+    "root_workspace_manifest_unchanged": false,
+    "locked_dependency_bytes_unchanged": true,
+    "effective_package_configuration_not_claimed_identical": true,
+    "current_runtime_not_verified_by_this_audit": true
+  },
+  "method": "Immutable Git mode/blob comparisons; all archived member sizes/hashes verified; conservative Dart import/export/part closure walks include all conditional local targets. External SDK/hosted imports and dynamic/native/asset runtime behavior are outside the source closure check; source identity is not a new runtime pass.",
+  "qualification_wording": "The preserved 129-suite/2,018-case and separate 14-suite/208-case native results and successful web compilation remain attributed to source 39843ed4. All 129 original suite files and Office/Notes product paths retain those bytes, while 4 Mail UI suites reach changed Mail core inputs. Full current workspace/source/configuration equality is not claimed. New Mail/transport/vendor and consumer qualification must be reported separately without adding overlapping historical counts. The historical web build is not a build of the final integrated source.",
+  "no_github_actions": true,
+  "application_tests_executed": false,
+  "repository_mutations": 0
+}

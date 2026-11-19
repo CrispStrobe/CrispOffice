@@ -82,33 +82,55 @@ implemented Quds packages outside this directory keep their own MIT license.
     validates requested UID intervals and unique records, and does not normalize
     newlines or eagerly parse MIME. Header mode requests only envelope
     HEADER.FIELDS. Its parser rejects partial bodies, malformed prefixes,
-    duplicate/out-of-range UIDs and unbalanced response grammar; a tagged OK
-    cannot accept an earlier valid prefix. Protocol atoms remain case-insensitive.
+    duplicate/out-of-range or non-decimal UIDs, repeated field lists and trailing
+    response fields; a tagged OK
+    cannot accept an earlier valid prefix. Valid unsolicited FLAGS-only updates
+    are handled separately and do not consume the requested literal count.
+    Bounded notification tracking rejects missing in-range literals and ambiguous
+    sparse responses instead of turning them into false deletion tombstones.
+    Later identified flags supersede earlier snapshots; an uncorrelated UID-less
+    update after EXPUNGE cannot confirm a write through a stale sequence map.
+    Strict iteration rejects repeated attached lists, while the raw parser
+    requires one canonical `* sequence FETCH (...)` root with no trailing
+    atom/list or sibling FETCH body. Legacy non-strict iteration is retained.
+    FETCH recognition uses its untagged response position and IMAP atom
+    delimiters, so malformed tabs, attached lists, quotes or literals are
+    rejected instead of being ignored as absent messages. Unrelated status
+    text, FLAGS data and a distinct FETCHX atom remain separate.
+    Protocol atoms remain case-insensitive.
 13. Add configurable literal, protocol-line/greeting and aggregate response-byte
     bounds. Deterministic budget failures are latched separately from provider
-    or authentication errors; their typed exception retains `FormatException`
-    compatibility. Strict response iteration suppresses the historical raw-literal
-    warning output; malformed raw responses fail and abort the client.
+    or authentication errors. Strict response iteration suppresses the historical
+    raw-literal warning output; malformed raw responses fail and abort the client.
+    The distinct resource-limit error retains the legacy `FormatException`
+    relationship, so existing parser callers and Quds quota classification agree.
 14. Frame IMAP greetings across TCP fragmentation/coalescing. Add hard abort,
     connection-generation guards, and late socket/TLS result destruction.
-    Native connections own the original TCP `RawSocket` throughout implicit TLS
-    and STARTTLS, including stalled handshakes and established TLS output.
-    `RawSecureSocket.secure` retains that hard-abort handle; an explicit abort
-    signal settles the operation even if the SDK's handshake future stays pending.
-    A small internal byte-stream adapter orders partial/final writes before flush
-    and close. Production keeps the existing certificate and hostname trust policy.
-    Real loopback tests cover successful TLS, stalled ClientHello cancellation and
-    deadlines, trust/hostname rejection, and credential sequencing in both modes.
-    Controlled socket seams continue to cover parser and late-result races.
-    SMTP/POP greeting framing retains its existing mode.
-    **Manual connection boundary:** `connect(Socket)` still supports ordinary and
-    already-secure socket I/O. Its default TLS upgrade now rejects explicitly;
-    use `connectToServer` for an owned, cancellable native upgrade. An externally
-    supplied SDK Socket cannot expose its TCP owner after the SDK detaches it.
+    Production keeps the existing certificate and hostname trust policy.
+    Controlled socket seams cover parser and late-result races. SMTP/POP
+    greeting framing retains its existing mode; their shared connection and
+    abort behavior is regression tested.
 15. Correct OAUTHBEARER's GS2 authorization identity from `u=` to `a=` and send
     the required `AQ==` error-challenge terminator. Quds enables initial-response
     token mechanisms only with the corresponding AUTH capability and SASL-IR.
     OAuth browser authorization, PKCE, redirect and refresh remain host work.
+16. Retain the default transport's public `RawSocket` owner through implicit TLS
+    and STARTTLS, together with the pending TCP `ConnectionTask`. The original
+    TCP owner remains available after TLS succeeds, so a hard abort can close
+    buffered encrypted output without waiting for a graceful TLS shutdown.
+    Cancellation, disconnect and connect timeout can close a stalled handshake
+    before a secure socket is returned. A per-connection abort signal also
+    settles the abandoned operation if the SDK handshake future stays pending.
+    The Socket-compatible facade preserves
+    ordered writes, partial-write readiness, input pause semantics and TLS
+    subscription transfer; abort also cancels an open write producer. Hostname,
+    `SecurityContext` and certificate callback policy are forwarded unchanged.
+    Caller-injected arbitrary sockets keep the existing upgrade seam and own
+    their pending-handshake lifecycle. Real Linux loopback regressions prove
+    peer-observed closure, fresh retries, encrypted data continuity, default
+    trust refusal and hostname checks, without claiming external-service or
+    other-OS acceptance. Ordinary and already-secure manual `connect(Socket)`
+    use and existing Socket-returning override signatures remain compatible.
 
 These native additions are covered by MPL-2.0. `UPSTREAM.json` remains the
 unchanged original-source inventory; local additions and modifications are

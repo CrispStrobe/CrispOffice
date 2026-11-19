@@ -1,0 +1,161 @@
+{
+  "description": "Fresh focused qualification of the fully integrated bounded native IMAP transport and owned TLS connection: transport VM and Node boundary; actual loopback implicit TLS and STARTTLS cancellation, certificate trust, hostname verification, partial/large writes and stream abort; shared vendored IMAP/POP/SMTP lifecycle and parser regressions; MIME and Mail UI consumers. Actual live-account, OS/vault/OAuth and external interoperability acceptance remain separate. The full Mail core/store gate runs separately on the same frozen source. No historical results are added to this gate.",
+  "groups": [
+    {
+      "name": "transport-native",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/configuration_test.dart",
+        "test/native_provider_test.dart",
+        "test/host_store_integration_test.dart"
+      ]
+    },
+    {
+      "name": "transport-tls-loopback-vm",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/native_tls_test.dart",
+        "test/native_tls_cancellation_test.dart",
+        "test/native_tls_round_trip_test.dart"
+      ]
+    },
+    {
+      "name": "transport-node-boundary",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/unsupported_test.dart"
+      ]
+    },
+    {
+      "name": "vendor-imap-and-byte-reader",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/imap/imap_client_test.dart",
+        "test/imap/imap_robustness_test.dart",
+        "test/imap/imap_quoting_test.dart",
+        "test/src/imap/imap_response_reader_test.dart",
+        "test/src/imap/imap_response_test.dart",
+        "test/src/imap/fetch_parser_test.dart",
+        "test/src/util/uint8_list_reader_test.dart",
+        "test/src/imap/raw_fetch_parser_test.dart"
+      ]
+    },
+    {
+      "name": "vendor-connection-and-protocols",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/connection_robustness_test.dart",
+        "test/reconnect_state_test.dart",
+        "test/write_failure_test.dart",
+        "test/pop/pop_client_test.dart",
+        "test/pop/pop_framing_test.dart",
+        "test/smtp/smtp_client_test.dart",
+        "test/smtp/smtp_framing_test.dart",
+        "test/smtp/smtp_send_state_test.dart",
+        "test/mail/mail_client_starttls_test.dart",
+        "test/mail/mail_client_oauth_test.dart"
+      ]
+    },
+    {
+      "name": "mime-consumer-vm",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "mail-ui-consumers",
+      "cwd": "packages/quds_mail_ui",
+      "runner": "flutter",
+      "tests": [
+        "test/controller_test.dart",
+        "test/example_test.dart",
+        "test/message_view_test.dart",
+        "test/presentation_test.dart"
+      ]
+    }
+  ],
+  "analysis": [
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/unsupported_test.dart",
+    "third_party/enough_mail/lib/imap.dart",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "packages/quds_mail_transport/test/native_tls_test.dart",
+    "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "packages/quds_mail_transport/test/support/tls_server.dart",
+    "third_party/enough_mail/lib/src/private/util/client_connection.dart"
+  ],
+  "format": [
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/unsupported_test.dart",
+    "third_party/enough_mail/lib/imap.dart",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart",
+    "packages/quds_mail_transport/test/native_tls_test.dart",
+    "packages/quds_mail_transport/test/native_tls_cancellation_test.dart",
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+    "packages/quds_mail_transport/test/support/tls_server.dart",
+    "third_party/enough_mail/lib/src/private/util/client_connection.dart"
+  ],
+  "extra_inputs": [
+    "tools/mail/check_store.py",
+    "tools/mail/check_reader.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "packages/quds_mail_transport/test/fixtures/tls/README.md",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem",
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem",
+    "packages/quds_mail_transport/test/support/tls/README.md",
+    "packages/quds_mail_transport/test/support/tls/public-test-ca.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server.pem",
+    "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem"
+  ]
+}

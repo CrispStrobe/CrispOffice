@@ -417,8 +417,7 @@ void main() {
       expect(tester.widget<TextField>(field).focusNode, same(focus));
       expect(controller.noteEditingTarget?.note, same(note));
       expect(controller.noteEditingTarget?.selection, selection);
-      // Review changes from a side pane to a lower pane at this breakpoint.
-      // Reparenting must preserve the actual Notes field and its source range.
+      // Check the source range before controls run at either Review position.
       for (final width in [720.0, 1100.0]) {
         await tester.binding.setSurfaceSize(Size(width, 820));
         await _pump(tester);
