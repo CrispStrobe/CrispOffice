@@ -1,0 +1,309 @@
+{
+  "base": "b559f6c764fbfac143f593e89ddc1096ad8b5c4e",
+  "incoming_main": "baf3dbd086d1688c5110335b6a6cc6d5a5feb4eb",
+  "ours_staged_tree": "699d6d5053aa0f735e6272ec5228db8d2e2698c3",
+  "change_count": 56,
+  "status_counts": {
+    "A": 17,
+    "M": 39
+  },
+  "changes": [
+    {
+      "status": "A",
+      "path": ".github/workflows/crispoffice-binaries.yml"
+    },
+    {
+      "status": "M",
+      "path": "docs/PROOFING.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/roadmaps/arabic-proofing.md"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/.gitignore"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/assets/branding/crispoffice_icon.svg"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/assets/branding/crispoffice_icon_1024.png"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/assets/branding/crispoffice_icon_512.png"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/COPYING.MPL"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/license.hunspell"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/license.myspell"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/manifest.json"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/main.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_chrome.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host_native.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/lib/studio_licenses.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_strings.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_window.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_128.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_16.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_32.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_512.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_64.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/macos/Runner/DebugProfile.entitlements"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/macos/Runner/Info.plist"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/macos/Runner/Release.entitlements"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/pubspec.yaml"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/test/studio_arabic_proofing_native_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/web/icons/Icon-192.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/web/icons/Icon-512.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/web/icons/Icon-maskable-192.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/web/icons/Icon-maskable-512.png"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/windows/runner/resources/app_icon.ico"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/quds_office_engine.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/proofing/office_proofing.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_document.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_proofing_hunspell/README.md"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_proofing_hunspell/tool/build.py"
+    }
+  ],
+  "changed_dart": [
+    "packages/quds_office_editor/example/lib/main.dart",
+    "packages/quds_office_editor/example/lib/studio_chrome.dart",
+    "packages/quds_office_editor/example/lib/studio_hunspell_host.dart",
+    "packages/quds_office_editor/example/lib/studio_hunspell_host_native.dart",
+    "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+    "packages/quds_office_editor/example/lib/studio_licenses.dart",
+    "packages/quds_office_editor/example/lib/studio_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_window.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_arabic_proofing_native_test.dart",
+    "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+    "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+    "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart"
+  ],
+  "new_tests": [
+    "packages/quds_office_editor/example/test/studio_arabic_proofing_native_test.dart",
+    "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart",
+    "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart"
+  ],
+  "modified_tests": [
+    "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart"
+  ],
+  "new_notice_assets": [
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/COPYING.MPL",
+      "bytes": 25755,
+      "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f",
+      "git_blob": "7714141d154290f53e9e60c615a8edc9b51a8df7",
+      "matches_existing_pinned_notice": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/license.hunspell",
+      "bytes": 1973,
+      "sha256": "3f7ddd07c296edbfe0a47c7bcc82038ad347a2c4f672345b24f95c624db68513",
+      "git_blob": "fad5a162300e7d1719ff6b7ba3713aaaa501a4bc",
+      "matches_existing_pinned_notice": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/hunspell/license.myspell",
+      "bytes": 2912,
+      "sha256": "dcda061adeed22b26f276c01ec374f930789ae0d684e5aa8f8be309dd680ff20",
+      "git_blob": "2da533075026777f93882fdeb11ff02a711d4b81",
+      "matches_existing_pinned_notice": true
+    }
+  ],
+  "predicted_content_conflicts": [
+    "docs/roadmaps/arabic-proofing.md"
+  ],
+  "auto_merge_overlap_paths": [
+    "docs/PROOFING.md",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_proofing_hunspell/README.md"
+  ],
+  "qualification_requirements": [
+    "Retain accepted Mail application closure only if exact input hashes remain unchanged",
+    "Run existing19 Studio suites plus2 new Studio suites, including real Hunspell native test with pinned library/dictionary",
+    "Run all shared proofing suites including new office_proofing_merge_test on VM and Node",
+    "Run expanded word_arabic_writing_integration_test and existing Word proofing/session/roundtrip cases affected by language routing",
+    "Strict analysis/format includes all changed Dart paths; audit new build.py modes and preserve source pinning",
+    "New asset notices need exact-path/blob whitespace pins and matching controls/proof; no broad exclusion",
+    "Current Studio defaults change from Arabic to English; review existing5 label fixes and other default-language expectations",
+    "New binary workflow/platform packaging is retained source; no Actions query/run/wait and no platform execution claim"
+  ]
+}

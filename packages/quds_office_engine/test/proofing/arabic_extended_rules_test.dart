@@ -289,6 +289,65 @@ const List<String> optionalControls = <String>[
 ];
 
 void main() {
+  group('semantic combining marks in phrase matching', () {
+    for (final (String name, String mark) in <(String, String)>[
+      ('maddah above', '\u0653'),
+      ('hamza above', '\u0654'),
+      ('hamza below', '\u0655'),
+    ]) {
+      test('phrase matching retains $name', () async {
+        final String text = 'ا${mark}ختار بين كتابين.';
+        expect(
+          await check(text, optional: <String>{'ar.usage.expression'}),
+          isEmpty,
+        );
+      });
+    }
+
+    test(
+      'precomposed phrase controls still produce the intended suggestion',
+      () async {
+        for (final String text in <String>[
+          'أختار بين كتابين.',
+          'أَختارُ بينَ كتابين.',
+        ]) {
+          final List<OfficeProofingFinding> findings = await check(
+            text,
+            optional: <String>{'ar.usage.expression'},
+          );
+          expect(findings, hasLength(1));
+          expect(findings.single.ruleId, 'ar.usage.expression');
+          expect(findings.single.replacements, <String>['أختار من بين']);
+        }
+      },
+    );
+
+    test('adjacent phrase keeps UTF-16 offsets after semantic marks', () async {
+      const String text = '😀 ا\u0654ختار بين كتابين؛ درس كل حالة على حدى.';
+      const int startOffset = 100;
+      final List<OfficeProofingFinding> findings = await check(
+        text,
+        startOffset: startOffset,
+        optional: <String>{'ar.usage.expression'},
+      );
+      expect(findings, hasLength(1));
+      final OfficeProofingFinding finding = findings.single;
+      expect(finding.ruleId, 'ar.expression.error');
+      expect(finding.originalText, 'على حدى');
+      expect(finding.start, startOffset + text.indexOf('على حدى'));
+      expect(finding.end, finding.start + 'على حدى'.length);
+      expect(finding.replacements, <String>['على حدة']);
+      expect(
+        text.replaceRange(
+          finding.start - startOffset,
+          finding.end - startOffset,
+          finding.replacements.single,
+        ),
+        '😀 ا\u0654ختار بين كتابين؛ درس كل حالة على حدة.',
+      );
+    });
+  });
+
   void positives(List<Positive> cases, {required bool optional}) {
     for (final (String text, String rule, String original, String? first)
         in cases) {
@@ -377,6 +436,73 @@ void main() {
   });
 
   group('conventions', () {
+    for (final (String name, String text) in <(String, String)>[
+      ('Latin phrase prefix and suffix', 'xعلى حدىy'),
+      ('numeric phrase prefix and suffix', '1على حدى2'),
+      ('connector punctuation', '_على حدى_'),
+      ('zero-width joiners', '\u200Dعلى حدى\u200C'),
+      ('combining prefix', 'a\u0301على حدى'),
+      ('supplementary letters', '\u{10400}على حدى\u{10400}'),
+      ('optional phrase suffix', 'عبارة عنx'),
+      ('future phrase prefix', 'xسوف سيذهب'),
+      ('future phrase suffix', 'سوف سيذهبx'),
+      ('weekday prefix', 'xالجمعة 5 مارس 2020'),
+      ('date year suffix', 'الجمعة 5 مارس 2020x'),
+      ('year context prefix', 'xعام 19995'),
+      ('implausible year suffix', 'عام 19995x'),
+    ]) {
+      test('raw T1 checks respect $name boundaries', () async {
+        expect(
+          await check(text, optional: <String>{'ar.style.wordiness'}),
+          isEmpty,
+        );
+      });
+    }
+
+    for (final (String name, String mark) in <(String, String)>[
+      ('maddah', '\u0653'),
+      ('hamza above', '\u0654'),
+      ('hamza below', '\u0655'),
+    ]) {
+      test('raw phrase comparison does not erase combining $name', () async {
+        // This exercises exact spelling, without treating the marked token
+        // as an unmarked phrase or making a linguistic claim about it.
+        expect(
+          await check(
+            'عبارة عن$mark',
+            optional: <String>{'ar.style.wordiness'},
+          ),
+          isEmpty,
+        );
+      });
+    }
+
+    test('phrase offsets preserve preceding decomposed spellings', () async {
+      const String text =
+          '😀 ا\u0653ن الأوان؛ ا\u0654ين الكتاب؟ ذهب ا\u0655لى البيت؛ '
+          'درس كل حالة على حدى.';
+      const int startOffset = 100;
+      final List<OfficeProofingFinding> findings = await check(
+        text,
+        startOffset: startOffset,
+      );
+      final OfficeProofingFinding finding = findings.single;
+      expect(finding.ruleId, 'ar.expression.error');
+      expect(finding.originalText, 'على حدى');
+      expect(finding.start, startOffset + text.indexOf('على حدى'));
+      expect(finding.end, finding.start + 'على حدى'.length);
+      expect(finding.replacements, <String>['على حدة']);
+      expect(
+        text.replaceRange(
+          finding.start - startOffset,
+          finding.end - startOffset,
+          finding.replacements.single,
+        ),
+        '😀 ا\u0653ن الأوان؛ ا\u0654ين الكتاب؟ ذهب ا\u0655لى البيت؛ '
+        'درس كل حالة على حدة.',
+      );
+    });
+
     test('every extended rule id has a positive case', () {
       final Set<String> seen = <String>{
         for (final (_, String rule, _, _) in defaultPositives) rule,
@@ -469,5 +595,29 @@ void main() {
         'ar.style.tanwin-placement',
       });
     });
+  });
+
+  group('integration token boundaries', () {
+    for (final String text in <String>[
+      'المعرف xسيما محفوظ.',
+      'المعرف سيماbar محفوظ.',
+      'المعرف _سيما محفوظ.',
+      'المعرف x\u200Dسيما محفوظ.',
+      'المعرف سيما\u0654 محفوظ.',
+      'المعرف xسوف سيذهب.',
+      'المعرف سوف سيذهبX.',
+      'المعرف xالأحد 5 مارس 2020.',
+      'المعرف الأحد 5 مارس 2020x.',
+      'المعرف xعام 20244.',
+      'المعرف عام 20244x.',
+    ]) {
+      test('does not rewrite part of a token: $text', () async {
+        final List<OfficeProofingFinding> findings = await check(text);
+        expect(
+          findings.map((f) => '${f.ruleId}:${f.originalText}').toList(),
+          isEmpty,
+        );
+      });
+    }
   });
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
@@ -41,21 +42,39 @@ class WebStudioHunspellHost extends StudioHunspellHost {
     void Function(int received, int total)? onProgress,
     StudioHunspellCancellation? cancellation,
   }) async {
+    void checkCancellation() {
+      if (cancellation?.isCancelled ?? false) {
+        throw StateError('Download cancelled.');
+      }
+    }
+
+    checkCancellation();
     final client = _client();
+    final aborted = Completer<void>();
+    void abort() {
+      if (!aborted.isCompleted) aborted.complete();
+      client.close();
+    }
+
+    cancellation?.addListener(abort);
     final total = bundle.aff.bytes + bundle.dic.bytes;
     var received = 0;
     Future<Uint8List> fetch(HunspellArtifact artifact) async {
+      checkCancellation();
       final response = await client.send(
-        http.Request('GET', bundle.url(artifact)),
+        http.AbortableRequest(
+          'GET',
+          bundle.url(artifact),
+          abortTrigger: aborted.future,
+        ),
       );
+      checkCancellation();
       if (response.statusCode != 200) {
         throw StateError('Download failed (${response.statusCode}).');
       }
       final builder = BytesBuilder(copy: false);
       await for (final chunk in response.stream) {
-        if (cancellation?.isCancelled ?? false) {
-          throw StateError('Download cancelled.');
-        }
+        checkCancellation();
         builder.add(chunk);
         received += chunk.length;
         if (builder.length > artifact.bytes) {
@@ -63,6 +82,7 @@ class WebStudioHunspellHost extends StudioHunspellHost {
         }
         onProgress?.call(received, total);
       }
+      checkCancellation();
       return builder.takeBytes();
     }
 
@@ -72,6 +92,7 @@ class WebStudioHunspellHost extends StudioHunspellHost {
         aff: await fetch(bundle.aff),
         dic: await fetch(bundle.dic),
       );
+      checkCancellation();
       _bytes[bundle.id] = dictionary;
       _set(
         StudioHunspellStatus(
@@ -80,10 +101,14 @@ class WebStudioHunspellHost extends StudioHunspellHost {
           location: 'memory',
         ),
       );
-    } on Object catch (error) {
-      _set(StudioHunspellStatus(bundle: bundle, problem: '$error'));
-      rethrow;
+    } on Object catch (error, stack) {
+      final problem = (cancellation?.isCancelled ?? false)
+          ? StateError('Download cancelled.')
+          : error;
+      _set(StudioHunspellStatus(bundle: bundle, problem: '$problem'));
+      Error.throwWithStackTrace(problem, stack);
     } finally {
+      cancellation?.removeListener(abort);
       client.close();
     }
   }

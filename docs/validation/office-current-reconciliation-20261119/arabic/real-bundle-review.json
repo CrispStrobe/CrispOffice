@@ -1,0 +1,67 @@
+{
+  "success": true,
+  "source_commit": "2cdcd267506a1acd51c3c098da729322b4a88919",
+  "source_files": {
+    "build_bundle.py": {
+      "bytes": 6840,
+      "sha256": "d34d326ff41709fd740f2324487487aaca2c6056381de0fb26c4b973bec12ec0"
+    },
+    "test_build_bundle.py": {
+      "bytes": 7934,
+      "sha256": "ace3e8d193360145c873291863be876533e4ea8ff2c9ad7fc63c44ce1e5646ef"
+    }
+  },
+  "real_download_local_build_exit_code": 0,
+  "real_hugging_face_publication": false,
+  "output_file_count": 9,
+  "content_file_count": 8,
+  "content_bytes": 7965777,
+  "complete_output_bytes": 7968110,
+  "manifest_sha256": "6db576c5eb30583f17b647a188f3ff821dd842ad673f845b60c0d25eb6e7214e",
+  "build_log_sha256": "c61f6ffd0dde4b1a0c90f0553fe93c48aabfda1baca08925ebe351cfe0cc5b0f",
+  "files": {
+    "AUTHORS.txt": {
+      "bytes": 200,
+      "origin": "https://raw.githubusercontent.com/LibreOffice/dictionaries/951bb429a4d846699b02e7adb4fc6fca128c6bae/ar/AUTHORS.txt",
+      "sha256": "bade1d2d0d47dff5956c08732cdb9c02432d9b0b8016a56e27f58b8d7e842462"
+    },
+    "COPYING.txt": {
+      "bytes": 532,
+      "origin": "https://raw.githubusercontent.com/LibreOffice/dictionaries/951bb429a4d846699b02e7adb4fc6fca128c6bae/ar/COPYING.txt",
+      "sha256": "73480d918cd78d655508e80aa88c022cbd53634524a0f714b5f2519f2cf19124"
+    },
+    "MPL-1.1.txt": {
+      "bytes": 23669,
+      "origin": "https://raw.githubusercontent.com/spdx/license-list-data/v3.25.0/text/MPL-1.1.txt",
+      "sha256": "6214f8b1300bb9f37b16ebc146f8f61af0187e0025042ff95c8b3030744a8795"
+    },
+    "README.md": {
+      "bytes": 1521,
+      "origin": "generated",
+      "sha256": "a5a0036729ef2ddd491268187acf37a7f357d052013b71983c92ab1de1b713fc"
+    },
+    "README_ar.txt": {
+      "bytes": 420,
+      "origin": "https://raw.githubusercontent.com/LibreOffice/dictionaries/951bb429a4d846699b02e7adb4fc6fca128c6bae/ar/README_ar.txt",
+      "sha256": "5ead684ae5211ccf615686959e24bd21ef6eebbb6195997529fda08b993f615e"
+    },
+    "ar.aff": {
+      "bytes": 86949,
+      "origin": "https://raw.githubusercontent.com/LibreOffice/dictionaries/951bb429a4d846699b02e7adb4fc6fca128c6bae/ar/ar.aff",
+      "sha256": "cec30b8621001e49618feb05aec1984c5fcfbf7d2ec309901d5cbf66585217a3"
+    },
+    "ar.dic": {
+      "bytes": 7217161,
+      "origin": "https://raw.githubusercontent.com/LibreOffice/dictionaries/951bb429a4d846699b02e7adb4fc6fca128c6bae/ar/ar.dic",
+      "sha256": "2a3e5367f61c1583734db9d66734f5603e6be5c2d227cf5c5cd7e4ca586e34fe"
+    },
+    "th_ar.dat": {
+      "bytes": 635325,
+      "origin": "https://raw.githubusercontent.com/LibreOffice/dictionaries/951bb429a4d846699b02e7adb4fc6fca128c6bae/ar/th_ar.dat",
+      "sha256": "ad5578cc74884bd9b3f296d734f96a43689406e6dec65492d1912be46e5d770b"
+    }
+  },
+  "metadata_preserved": true,
+  "all_upstream_pins_verified": true,
+  "source_continuity_with_tests": true
+}

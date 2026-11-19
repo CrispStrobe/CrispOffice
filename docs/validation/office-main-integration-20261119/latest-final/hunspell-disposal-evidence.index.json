@@ -1,0 +1,592 @@
+{
+  "archive": "hunspell-disposal-evidence.tar.xz",
+  "bytes": 245588,
+  "sha256": "395e07b1e33dbdb11158b0986e931c23f904486a6adf02ecc76509bbcb3d5fb8",
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 5992,
+      "sha256": "d68dd77466426f2821b4426cc65fcf8ad204cac4532d14c2decf909da5aa20ae"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/.dart_tool/package_config.json",
+      "bytes": 30629,
+      "sha256": "730174066c88e9a76123d1330d8f52480c0b25ba923196b1b9830c72aaf6a8df"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/.gitignore",
+      "bytes": 8,
+      "sha256": "020c2606e8ed484089c2083e0be438b9d0736bee1558a6b76af0d58bd23f69cf"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/CHANGELOG.md",
+      "bytes": 219,
+      "sha256": "c499774e73d5c1987223a2fd6b02acaf080f705c8324bed3ca6c4ac710d91429"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/LICENSE",
+      "bytes": 1056,
+      "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/README.md",
+      "bytes": 5400,
+      "sha256": "02e893fb32d4fd0ee5d50d90b98d0ccb9cb6e11218dc2c43990113388dc8c0ef"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/lib/installer_io.dart",
+      "bytes": 130,
+      "sha256": "2e11156336f798b5a7f1fa741bad7a9d9dc6975454d9ce427381b719b3424e42"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/lib/quds_proofing_hunspell.dart",
+      "bytes": 358,
+      "sha256": "018c12a44b33d18dbb4d1a00788a22b108c37c22c8e77312504e19279dfbe0b7"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart",
+      "bytes": 4801,
+      "sha256": "a8ae5aac4a07afd95c009cd2ed42369b0a883865846992e6f5790c2f74d0e32c"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+      "bytes": 7456,
+      "sha256": "c9e5f1dc3d2e7ff160f0a1c2a1e81df6df565f24e9cd44543dea5881b39fc666"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart",
+      "bytes": 8877,
+      "sha256": "410f66f563b58653cafb404673734c725c7372c7ca84310d71a83c7195ed8d1a"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/lib/src/hunspell_transport.dart",
+      "bytes": 831,
+      "sha256": "18adb3b59a5283e27b64ec17ae034a08a8a4ed1eca7577ae868827c70b8b1a77"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+      "bytes": 12773,
+      "sha256": "4f4268f625c990e77a1cfee39cb7bcabef3e53a12385a842e178a42b5f40017c"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/lib/src/hunspell_transport_stub.dart",
+      "bytes": 603,
+      "sha256": "4b57ce6cc0e568f6ae2ec7a73332ee2fc14ff1546a7d238592a77ec6a145298e"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/lib/src/hunspell_transport_web.dart",
+      "bytes": 4115,
+      "sha256": "bb68ee90d38081f1812471c3a3dcf522dd8e7fd2c6ce6fd28877f93bb6913900"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/lib/src/hunspell_words.dart",
+      "bytes": 1143,
+      "sha256": "a3fc9d93b0bfe07d6b9168ed39ba87b82bb70a2d566a70f974f03fb08ee128d7"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/licenses/hunspell-1.7.2-library-sources.tar.gz",
+      "bytes": 619231,
+      "sha256": "7efc4a85839455eaaeeb5dae8c6aa48a4d85acddb2ac0d1723822a70e2f46723"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/licenses/manifest.json",
+      "bytes": 4131,
+      "sha256": "fff74108f96b8d1358f2ed0ba8261d5a91d219f865bfab6e4550f2c58701f629"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "bytes": 25755,
+      "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "bytes": 1973,
+      "sha256": "3f7ddd07c296edbfe0a47c7bcc82038ad347a2c4f672345b24f95c624db68513"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "bytes": 2912,
+      "sha256": "dcda061adeed22b26f276c01ec374f930789ae0d684e5aa8f8be309dd680ff20"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/native/CMakeLists.txt",
+      "bytes": 1805,
+      "sha256": "3ac56b1285f88a4eb9989074fa07479980884b50a8f2b48926a4409e1e6c491b"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/native/src/quds_hunspell.cpp",
+      "bytes": 3350,
+      "sha256": "bf9e472ce609973d22aa43d4f092fc8d310a66359f9125de7705532fa7cb84a2"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/pubspec.yaml",
+      "bytes": 374,
+      "sha256": "4d803e1eb286500a2c1c88ea97b5f3a1afa4211a1cfe5919c0f4b4c48e7b5a59"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+      "bytes": 6746,
+      "sha256": "14e5a179d00198bc4bb0eca18162d0eaffc7d4e3a913cb2a6342f94c01c909c4"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+      "bytes": 7414,
+      "sha256": "3bea0e48f42d6fa61b093d3ea5a7cb9571257ff091d0a146be9a3bc94fc80dee"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+      "bytes": 7572,
+      "sha256": "da97d35a0241e8fbb162f730e5b28258f6f2a9eb7ba7063ca899b8fffd557925"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp",
+      "bytes": 2080,
+      "sha256": "a37694aac5d5166a800418e291da48cab3857a96af120014f4ea34d19528a068"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/tool/build.py",
+      "bytes": 8924,
+      "sha256": "b1b9e962f73d5c9bbb9d8d6fdcf407cadd987edc8baa12e7581b6ff46f0d315a"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/tool/corpus_check.dart",
+      "bytes": 2599,
+      "sha256": "ac788636124336af1580bd339d0e147e16e0e43a9e7d0c2c1e3318d3c26ebf44"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/tool/web_compile_check.dart",
+      "bytes": 404,
+      "sha256": "ce592865e6056044cb78518b44b9eb01b8836edaf3cb19207c5a4066e886712a"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/tool/web_smoke.mjs",
+      "bytes": 3124,
+      "sha256": "f3b3acf302e5228a9e7273284ebc3b51d77e90449d3b580df1e03503a5fecfed"
+    },
+    {
+      "path": "after/packages/quds_proofing_hunspell/web/hunspell_worker.mjs",
+      "bytes": 3233,
+      "sha256": "4d2034cccd6fbfc4ab171d2d3c836fcff1c8048b76874a32ab7448ded75a2621"
+    },
+    {
+      "path": "disposal-counter-red-receipt.json",
+      "bytes": 15768,
+      "sha256": "8983e708ef4172aad39164fd7842a3014b8e8ad00895270e94847ef7e86a1bba"
+    },
+    {
+      "path": "disposal-counter-red.log",
+      "bytes": 557,
+      "sha256": "411f99f14bcb9efd8e78a4d1f5a0b0393da5fb869e2df00b439e3a19def81a15"
+    },
+    {
+      "path": "effective-config-receipt.json",
+      "bytes": 767,
+      "sha256": "ffd55318596693ec6f238d7d62dd068ab9c35a979a2b4d9a4fc37a1fff049fd8"
+    },
+    {
+      "path": "fixture/ar.aff",
+      "bytes": 97,
+      "sha256": "c0704a3af1e57ca7d78a0e03632dad5a43488f9317768fc51a12f9f0f4abf4d2"
+    },
+    {
+      "path": "fixture/ar.dic",
+      "bytes": 31,
+      "sha256": "a7b57bb47acddb878847fcbbd4962f4d8971dfb1c4f520152baca1de6326ee1a"
+    },
+    {
+      "path": "format-check-receipt.json",
+      "bytes": 14926,
+      "sha256": "124fcb585b59eaa386633b05f3b1a85bac1dcc72bbefd294be56b66f5f15f9cb"
+    },
+    {
+      "path": "format-check.log",
+      "bytes": 48,
+      "sha256": "258a4230e56648d0a0184e9c74f74677cc9d9b27c3ad6344a0d92f14a3c8eb02"
+    },
+    {
+      "path": "hunspell_review.json",
+      "bytes": 4241,
+      "sha256": "ecd2f14c618759b46270cf191322cdc60f565515953ac23e32fc41aef01b7b8e"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/.dart_tool/package_config.json",
+      "bytes": 30632,
+      "sha256": "1ea3c7a4a8fa9168f46c4368a45b6413acc13bc89d07d35c3129b35fb4207a1f"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/.gitignore",
+      "bytes": 8,
+      "sha256": "020c2606e8ed484089c2083e0be438b9d0736bee1558a6b76af0d58bd23f69cf"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/CHANGELOG.md",
+      "bytes": 219,
+      "sha256": "c499774e73d5c1987223a2fd6b02acaf080f705c8324bed3ca6c4ac710d91429"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/LICENSE",
+      "bytes": 1056,
+      "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/README.md",
+      "bytes": 5400,
+      "sha256": "02e893fb32d4fd0ee5d50d90b98d0ccb9cb6e11218dc2c43990113388dc8c0ef"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/lib/installer_io.dart",
+      "bytes": 130,
+      "sha256": "2e11156336f798b5a7f1fa741bad7a9d9dc6975454d9ce427381b719b3424e42"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/lib/quds_proofing_hunspell.dart",
+      "bytes": 358,
+      "sha256": "018c12a44b33d18dbb4d1a00788a22b108c37c22c8e77312504e19279dfbe0b7"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart",
+      "bytes": 4801,
+      "sha256": "a8ae5aac4a07afd95c009cd2ed42369b0a883865846992e6f5790c2f74d0e32c"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+      "bytes": 7456,
+      "sha256": "c9e5f1dc3d2e7ff160f0a1c2a1e81df6df565f24e9cd44543dea5881b39fc666"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart",
+      "bytes": 8877,
+      "sha256": "410f66f563b58653cafb404673734c725c7372c7ca84310d71a83c7195ed8d1a"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/lib/src/hunspell_transport.dart",
+      "bytes": 831,
+      "sha256": "18adb3b59a5283e27b64ec17ae034a08a8a4ed1eca7577ae868827c70b8b1a77"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+      "bytes": 10440,
+      "sha256": "d16e4af1258787657118c3e062427c4caa2428c0083e5cfd8e70346ca35b91d0"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/lib/src/hunspell_transport_stub.dart",
+      "bytes": 603,
+      "sha256": "4b57ce6cc0e568f6ae2ec7a73332ee2fc14ff1546a7d238592a77ec6a145298e"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/lib/src/hunspell_transport_web.dart",
+      "bytes": 4115,
+      "sha256": "bb68ee90d38081f1812471c3a3dcf522dd8e7fd2c6ce6fd28877f93bb6913900"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/lib/src/hunspell_words.dart",
+      "bytes": 1143,
+      "sha256": "a3fc9d93b0bfe07d6b9168ed39ba87b82bb70a2d566a70f974f03fb08ee128d7"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/licenses/hunspell-1.7.2-library-sources.tar.gz",
+      "bytes": 619231,
+      "sha256": "7efc4a85839455eaaeeb5dae8c6aa48a4d85acddb2ac0d1723822a70e2f46723"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/licenses/manifest.json",
+      "bytes": 4131,
+      "sha256": "fff74108f96b8d1358f2ed0ba8261d5a91d219f865bfab6e4550f2c58701f629"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/licenses/upstream/COPYING.MPL",
+      "bytes": 25755,
+      "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/licenses/upstream/license.hunspell",
+      "bytes": 1973,
+      "sha256": "3f7ddd07c296edbfe0a47c7bcc82038ad347a2c4f672345b24f95c624db68513"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/licenses/upstream/license.myspell",
+      "bytes": 2912,
+      "sha256": "dcda061adeed22b26f276c01ec374f930789ae0d684e5aa8f8be309dd680ff20"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/native/CMakeLists.txt",
+      "bytes": 1805,
+      "sha256": "3ac56b1285f88a4eb9989074fa07479980884b50a8f2b48926a4409e1e6c491b"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/native/src/quds_hunspell.cpp",
+      "bytes": 3350,
+      "sha256": "bf9e472ce609973d22aa43d4f092fc8d310a66359f9125de7705532fa7cb84a2"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/pubspec.yaml",
+      "bytes": 374,
+      "sha256": "4d803e1eb286500a2c1c88ea97b5f3a1afa4211a1cfe5919c0f4b4c48e7b5a59"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+      "bytes": 6746,
+      "sha256": "14e5a179d00198bc4bb0eca18162d0eaffc7d4e3a913cb2a6342f94c01c909c4"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+      "bytes": 7414,
+      "sha256": "3bea0e48f42d6fa61b093d3ea5a7cb9571257ff091d0a146be9a3bc94fc80dee"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+      "bytes": 7572,
+      "sha256": "da97d35a0241e8fbb162f730e5b28258f6f2a9eb7ba7063ca899b8fffd557925"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp",
+      "bytes": 2080,
+      "sha256": "a37694aac5d5166a800418e291da48cab3857a96af120014f4ea34d19528a068"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/tool/build.py",
+      "bytes": 8924,
+      "sha256": "b1b9e962f73d5c9bbb9d8d6fdcf407cadd987edc8baa12e7581b6ff46f0d315a"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/tool/corpus_check.dart",
+      "bytes": 2599,
+      "sha256": "ac788636124336af1580bd339d0e147e16e0e43a9e7d0c2c1e3318d3c26ebf44"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/tool/web_compile_check.dart",
+      "bytes": 404,
+      "sha256": "ce592865e6056044cb78518b44b9eb01b8836edaf3cb19207c5a4066e886712a"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/tool/web_smoke.mjs",
+      "bytes": 3124,
+      "sha256": "f3b3acf302e5228a9e7273284ebc3b51d77e90449d3b580df1e03503a5fecfed"
+    },
+    {
+      "path": "incoming/packages/quds_proofing_hunspell/web/hunspell_worker.mjs",
+      "bytes": 3233,
+      "sha256": "4d2034cccd6fbfc4ab171d2d3c836fcff1c8048b76874a32ab7448ded75a2621"
+    },
+    {
+      "path": "instrumented-build-command.json",
+      "bytes": 2099,
+      "sha256": "5c3cbc4a108397787af40f3f6d3ba320848b1a747f33b755d68c5edcdeb75e1a"
+    },
+    {
+      "path": "instrumented-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "instrumented_adapter.cpp",
+      "bytes": 3585,
+      "sha256": "63fe7e9e3ecfc7bb657f257c2265bec0928a4a2fadcb296c721ebf6878d5cacc"
+    },
+    {
+      "path": "lifecycle-after-analyze-receipt.json",
+      "bytes": 15236,
+      "sha256": "023ce05f537cfcca73582c40c6486d5a96f1322889d32243ce3c95e7ae0161d6"
+    },
+    {
+      "path": "lifecycle-after-analyze.log",
+      "bytes": 425,
+      "sha256": "bec331a57e032adc8c97f80c013c48f4de4830fa252b380af92b54879392abe2"
+    },
+    {
+      "path": "lifecycle-after-format-receipt.json",
+      "bytes": 15239,
+      "sha256": "9a42b053a099f1755ba0493db93e4df00aa26dc7610c6f19462f7869b003cb21"
+    },
+    {
+      "path": "lifecycle-after-format.log",
+      "bytes": 48,
+      "sha256": "ca3538b0d5fbb0d6d2727873c15af731bbb49319ba2d93d6dc4a5e6802d62709"
+    },
+    {
+      "path": "lifecycle-fixture-build-command.json",
+      "bytes": 395,
+      "sha256": "6e2c779fc31157ea9043d3c692a40a195228fd2770e0ea7fef09a43e56f4273c"
+    },
+    {
+      "path": "lifecycle-fixture-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "lifecycle-format.log",
+      "bytes": 201,
+      "sha256": "687a6190459ea0a5b86c9a23c79a6ce315d987b4dac3c0d5df86526880832ee0"
+    },
+    {
+      "path": "lifecycle-green-fixture-receipt.json",
+      "bytes": 15974,
+      "sha256": "77f68c0fa28f8bd314a062f9c87fccc9ea459c6ee7331ca2b1007b37f8956081"
+    },
+    {
+      "path": "lifecycle-green-fixture.log",
+      "bytes": 4002,
+      "sha256": "b51fcd336e123338934acf9a3b8bf3ac591341487f0a79980c57658c7b307316"
+    },
+    {
+      "path": "lifecycle-instrumented-build-command.json",
+      "bytes": 2094,
+      "sha256": "ef4a754e72cb29cd27a938b6cfe64c77db2a0f3e25e5ea8dfe64912d3ab6cdff"
+    },
+    {
+      "path": "lifecycle-instrumented-build-receipt.json",
+      "bytes": 2199,
+      "sha256": "0c318b509b5b6105a9bedcb71d63a585c82e56106c5918f02717fd8d8b69b5c5"
+    },
+    {
+      "path": "lifecycle-instrumented-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "lifecycle-real-green-receipt.json",
+      "bytes": 15962,
+      "sha256": "0c7f5e905922c3d7e487b4a8b1f849d5229358a0cdda6a53fa77ffe3d460c879"
+    },
+    {
+      "path": "lifecycle-real-green.log",
+      "bytes": 3997,
+      "sha256": "2b00c2ec9436b97876ddc54381c950a136fef71e2abd06c70dcc23db6dc6e653"
+    },
+    {
+      "path": "lifecycle-real-red-receipt.json",
+      "bytes": 16158,
+      "sha256": "972b218ec41131e6de310d03aa554f18203ef1a40573dd70406a48b9d7b71153"
+    },
+    {
+      "path": "lifecycle-real-red.log",
+      "bytes": 5653,
+      "sha256": "bb1b1413f4df4a9afa0ffda80806afe6aebf934039730ce9f89fe4cfaf7c8f51"
+    },
+    {
+      "path": "lifecycle_instrumented_adapter.cpp",
+      "bytes": 4554,
+      "sha256": "17d5763c2bcddd66f45695dda5821ad4b4157e430d027b418bb93373cb48d69e"
+    },
+    {
+      "path": "missing-library-test-receipt.json",
+      "bytes": 14831,
+      "sha256": "e8197b863e1699ecb7e4ea17ad8051dfff9076e321e3e812112212c6a3ddae59"
+    },
+    {
+      "path": "missing-library-test.log",
+      "bytes": 1192,
+      "sha256": "8ade6c2734bd016a4d860e8075859a47e79fdd0ef54ffe4eb6598c16d0c1f7a0"
+    },
+    {
+      "path": "native-build/build-command.json",
+      "bytes": 2320,
+      "sha256": "a6011bd408f80da6a75bf621eddc55745afb7081d0ce727e9cf7a0bfc8430c46"
+    },
+    {
+      "path": "native-build/build-receipt.json",
+      "bytes": 2722,
+      "sha256": "09317bc09b70e1df4f8f75b6d14e0a544abadda614e135b43db8a87c8337d2e1"
+    },
+    {
+      "path": "native-build/build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-build/output-inventory.json",
+      "bytes": 777,
+      "sha256": "96c053305473a23569b9fb1030e9f89f39d6101b27bcc45d53623be1849125bd"
+    },
+    {
+      "path": "native-disposal-patch-manifest.json",
+      "bytes": 1096,
+      "sha256": "c5d9b849cd365d3071b1d958f295e6b91ffb0f384f27912d59f5952b7e4ea26d"
+    },
+    {
+      "path": "native-disposal.patch",
+      "bytes": 16023,
+      "sha256": "4c46b0d740c95d54489d254b9d3fe9d53b9e3704a5ac42c7d004d8527e22d684"
+    },
+    {
+      "path": "native_probe.dart",
+      "bytes": 2520,
+      "sha256": "defbd04397fe2f2cc8d8ba7813cd3bd54f4e7a227e24f200655b4be96141c349"
+    },
+    {
+      "path": "provider-node-tests-receipt.json",
+      "bytes": 14742,
+      "sha256": "3ef14febc2c8d0cf5e9a3a52f95d8188ae6d4a8430934be5d9047927bca5ad4f"
+    },
+    {
+      "path": "provider-node-tests.log",
+      "bytes": 6674,
+      "sha256": "d85b1a97dcece28e46e77d7a8fd8f4b44870629ceef2cbe7ca192aba6e5ec1d1"
+    },
+    {
+      "path": "provider-tests-receipt.json",
+      "bytes": 14739,
+      "sha256": "f6eb40df3f5ee19a3087c77722fe665e30a7169394eaa8cd33cf29a41b7d1386"
+    },
+    {
+      "path": "provider-tests.log",
+      "bytes": 6308,
+      "sha256": "88eb0e840a6840ae078d7fb934edf696a066ba08faf0867d098f891dca1bdfb2"
+    },
+    {
+      "path": "real-linux-fixture-receipt.json",
+      "bytes": 15741,
+      "sha256": "984a79d20134a8c769bbd90319b14ae2c0afb93a5666f9768a0e953b2274702e"
+    },
+    {
+      "path": "real-linux-fixture.log",
+      "bytes": 458,
+      "sha256": "f14247c7883d0c533050174e1f40542f2e60c6c93a0e1ce5f9082add19d9757a"
+    },
+    {
+      "path": "replay_build.py",
+      "bytes": 1950,
+      "sha256": "a1c6bc12457699b2b90fa738f1cda9bf5e03428df46ddf9ca36dffcedbb752f0"
+    },
+    {
+      "path": "run_lifecycle_review.py",
+      "bytes": 1626,
+      "sha256": "80ceefff2c0f1989cb8a9f1dcb5163a5d5a67988a715f52cdd989a8fcfa37c0f"
+    },
+    {
+      "path": "run_local_review.py",
+      "bytes": 3218,
+      "sha256": "e7f946f2d36c1a74899793b228d0980bfc4141e29f0ce718c901e632bdf2433c"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 5660,
+      "sha256": "a5a976daadb86071042bfe5a92c92206529c9ae307ef66c3bd21ca269fb17a6f"
+    },
+    {
+      "path": "strict-analyze-receipt.json",
+      "bytes": 14924,
+      "sha256": "8c32eeba0d3ed4f12aab68636fcb7ec784c24f6b6631d6d7ee9184f36cc9380f"
+    },
+    {
+      "path": "strict-analyze.log",
+      "bytes": 388,
+      "sha256": "4b4003e4136406773ea6af8cf8088a1cc865b51ac72fcb38cb59a98ce9c2640d"
+    },
+    {
+      "path": "test-count-review.json",
+      "bytes": 8847,
+      "sha256": "bd4738d736cdb237fca1412c488b145ae5f0fa5f0155c19786e5be791a34be85"
+    },
+    {
+      "path": "web-compile-receipt.json",
+      "bytes": 7003,
+      "sha256": "4cade6d225f94160701baec25cb1fd2bd7ca64837cf65fc47ee81171a3c04164"
+    },
+    {
+      "path": "web-compile.log",
+      "bytes": 112,
+      "sha256": "ee0f77acb56fb40ae0a461c34f91751c774873e187749efd8632eedebfc101c4"
+    }
+  ]
+}

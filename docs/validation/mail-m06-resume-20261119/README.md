@@ -13,6 +13,9 @@ including the direct TLS rejection cleanup. The concurrent
 [Office synchronization record](../office-main-sync-20261119/README.md) is also
 preserved with its captured source and scope. Counts from different checkpoints
 remain separate; no historical result is presented as a new execution.
+The independent [632-execution integration receipt](../office-main-integration-20261119/README.md)
+remains bound to `ac1e4c8c`. The [UID discovery continuation](../mail-uid-pagination-20261119/README.md)
+records the subsequent pagination and cursor-freshness work separately.
 
 ## Historical Mail-branch qualification: PASS on `71edec2d`
 

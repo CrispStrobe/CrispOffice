@@ -19,10 +19,10 @@ from check_reader import write_receipt
 
 
 def execute(command: list[str], *, cwd: Path, env: dict[str, str],
-            stdout, timeout: float) -> int:
-    """Bound a command and clean up its process group on timeout/interruption."""
+            stdout, timeout: float, stderr=subprocess.STDOUT) -> int:
+    """Bound a command, optionally split stderr, and clean up its process group."""
     with subprocess.Popen(command, cwd=cwd, env=env, stdout=stdout,
-                          stderr=subprocess.STDOUT,
+                          stderr=stderr,
                           start_new_session=os.name == 'posix') as process:
         def stop() -> None:
             try:

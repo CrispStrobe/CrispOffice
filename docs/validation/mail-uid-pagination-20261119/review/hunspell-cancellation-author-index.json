@@ -1,0 +1,43 @@
+{
+  "archive": "hunspell-cancellation-author-evidence.tar.gz",
+  "sha256": "e59279ebd2c10df1163d3cc4aed30aaede081633825721f67e6f9e5f57f4ffea",
+  "bytes": 2928,
+  "members": {
+    "receipt.json": {
+      "sha256": "960e6c9affdae827ee2057635a69a278adce302f1ec8d5d4d8feed4506e33f2c",
+      "bytes": 3260
+    },
+    "native-tests.jsonl": {
+      "sha256": "048decf282b187c5431adcdf1223a216377ca9429e8dbb9cdb2ae4b6b1fcf9c7",
+      "bytes": 3567
+    },
+    "native-tests.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "native-tests-2.jsonl": {
+      "sha256": "cb2a82f601a5b03a58489e4c102f2bf8b8a714e7b20f0b7199ce4c81fc55ea6d",
+      "bytes": 2552
+    },
+    "native-tests-2.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "web-host-tests.jsonl": {
+      "sha256": "522edb3b06197673b8414dfa5bfc92b9f556cc426beda9fc2a89c168d56131bf",
+      "bytes": 2691
+    },
+    "web-host-tests.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis.log": {
+      "sha256": "9068abdc635cc045cee43f3ae7f83ad6c190277b14f5ab6712fef48d4891b5a8",
+      "bytes": 228
+    },
+    "format.log": {
+      "sha256": "725a25e3d849ec6009e6718f1be15896780cc316feea4771d60c8303f0c3e1d2",
+      "bytes": 47
+    }
+  }
+}

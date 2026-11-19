@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "purpose": "Six native lifecycle regressions; counter/delay-instrumented real Hunspell adapter with a synthetic dictionary. No AyaSpell linguistic or installer acceptance.",
+  "environment": {
+    "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/libquds_hunspell_lifecycle_real.so"
+  },
+  "library": {
+    "path": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/libquds_hunspell_lifecycle_real.so",
+    "bytes": 892096,
+    "sha256": "46c7956036645284408a2017a9b025dfef3983dceb17a8fec203f8acfdb918cc"
+  },
+  "build_receipt": {
+    "path": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/lifecycle-instrumented-build-receipt.json",
+    "bytes": 2199,
+    "sha256": "0c318b509b5b6105a9bedcb71d63a585c82e56106c5918f02717fd8d8b69b5c5"
+  },
+  "production_adapter": {
+    "path": "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_proofing_hunspell/native/src/quds_hunspell.cpp",
+    "bytes": 3350,
+    "sha256": "bf9e472ce609973d22aa43d4f092fc8d310a66359f9125de7705532fa7cb84a2",
+    "repository_path": "packages/quds_proofing_hunspell/native/src/quds_hunspell.cpp"
+  },
+  "instrumented_adapter": {
+    "path": "/workspace/scratch/a7846890f2e1/runtime-recovery/hunspell-review/lifecycle_instrumented_adapter.cpp",
+    "bytes": 4554,
+    "sha256": "17d5763c2bcddd66f45695dda5821ad4b4157e430d027b418bb93373cb48d69e"
+  },
+  "replay_evidence": {
+    "path": "/workspace/scratch/a7846890f2e1/runtime-recovery/hunspell-review/hunspell-disposal-evidence.tar.xz",
+    "bytes": 245588,
+    "sha256": "395e07b1e33dbdb11158b0986e931c23f904486a6adf02ecc76509bbcb3d5fb8",
+    "repository_path": "docs/validation/office-main-integration-20261119/latest-final/hunspell-disposal-evidence.tar.xz"
+  },
+  "fixture_source": "packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp",
+  "published_ayaspell_revision_unchanged": true
+}

@@ -1,0 +1,64 @@
+{
+  "status": "FAIL",
+  "source_commit": "8dc76f0cc27721bd5e64eec0f979bac8aeb6ce97",
+  "source_base": "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+  "source_tree": "de413047551e1df943740ff8a87db3278b3c1181",
+  "runs": [
+    {
+      "name": "shared-runner-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/document-review-notes-20261118/test_run_checks.py"
+      ],
+      "log": "shared-runner-controls.log",
+      "exit_code": 0,
+      "log_sha256": "c3f6f1f573a8d0949f3c3f43d386b1fb2510bfc9f78d6440123f38c85644e876",
+      "accepted": true
+    },
+    {
+      "name": "runtime-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py"
+      ],
+      "log": "runtime-controls.log",
+      "exit_code": 0,
+      "log_sha256": "c0de0e1c65beb99d8f631ef08233ca33ce0f5e8b41265cbfd60b9b64c7bc9f81",
+      "accepted": true
+    },
+    {
+      "name": "ayaspell-offline-controls",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/proofing/ayaspell",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "log": "ayaspell-offline-controls.log",
+      "exit_code": 1,
+      "log_sha256": "4483a095fcc9e0ddbbdbf55f6f0ded46c335369b069beaa5e7d1744aae687c2e",
+      "accepted": true
+    }
+  ],
+  "started_at_utc": "2026-11-19T08:26:57.006019+00:00",
+  "runtime_receipt_sha256": "0b4544ac387f3efa23abacf71f66b834fcddec7d3b02414209c57dab14299729",
+  "qualification_environment": {
+    "QUDS_HUNSPELL_TEST_LIBRARY": "/workspace/scratch/ab196f483cec/runtime/hunspell/build/native/libquds_proofing_hunspell.so",
+    "QUDS_HUNSPELL_TEST_DICTIONARY": "/workspace/scratch/ab196f483cec/runtime/hunspell/ayaspell-e9ace7cca3844bef906d8d9fc5431c4e15bd2740",
+    "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle/libquds_hunspell_lifecycle.so",
+    "QUDS_HUNSPELL_LIVE_DOWNLOAD": "1"
+  },
+  "github_actions_queried_or_awaited": false,
+  "error": "RuntimeError('ayaspell-offline-controls failed; preserve its raw evidence')",
+  "source_unchanged": true,
+  "runtime_unchanged": true,
+  "source_head_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "untracked_qualification_inputs_after": [],
+  "finished_at_utc": "2026-11-19T08:26:58.890749+00:00"
+}

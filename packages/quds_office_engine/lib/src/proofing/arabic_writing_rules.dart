@@ -11,14 +11,15 @@ part 'arabic_extended_rules.dart';
 /// of standard Arabic orthography; no external rule set was used. Every
 /// lexical rule is a closed, reviewable list: words whose correct form depends
 /// on syntax or meaning are either offered with several suggestions or left
-/// out (for example `علي` is also the name Ali, `فان` is also "perishing").
+/// out (for example `علي` is also the name Ali, `فان` is also "perishing",
+/// and `لان` is also the verb "became soft").
 ///
-/// Matching ignores harakat (U+064B–U+065F except U+0653–U+0655, plus U+0670)
-/// and tatweel (U+0640). Combining maddah and hamza remain part of the spelling.
-/// Findings always cover the original source text and suggestions keep the
-/// writer's harakat, replacing only the corrected letters. Offsets are
-/// original UTF-16 offsets; the text is never rewritten. Links, email
-/// addresses and closed backtick spans are excluded.
+/// Matching ignores vowel marks and tatweel (U+0640), while combining madda
+/// and hamza (U+0653–U+0655) remain part of the spelling. Findings always cover
+/// the original source text and suggestions keep the writer's harakat,
+/// replacing only the corrected letters. Offsets are original UTF-16 offsets;
+/// the text is never rewritten. Lexical checks respect mixed-script token
+/// boundaries. Links, email addresses and closed backtick spans are excluded.
 class ArabicWritingRulesProvider extends OfficeProofingProvider {
   /// [enabledOptionalRuleIds] opts in to rules from
   /// [arabicExtendedOptionalRuleIds] (prescriptive usage, vowelling hints and
@@ -84,7 +85,6 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
     'انها': <String>['أنها', 'إنها'],
     'الا': <String>['إلا', 'ألا'],
     'اما': <String>['أما', 'إما'],
-    'لان': <String>['لأن'],
     'لانه': <String>['لأنه'],
     'لانها': <String>['لأنها'],
     'اي': <String>['أي'],
@@ -221,14 +221,18 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
 
   static const String _letters = r'ء-غف-يٱ-ۓ';
   static const String _marks = r'ً-ٰٟـ';
-  static final RegExp _word = RegExp('[$_letters][$_letters$_marks]*');
+  static const String _wordContinuation = r'\p{L}\p{M}\p{N}\p{Pc}\u200C\u200D';
+  static final RegExp _word = RegExp(
+    '(?<![$_wordContinuation])[$_letters][$_letters$_marks]*'
+    '(?![$_wordContinuation])',
+    unicode: true,
+  );
   static final RegExp _mark = RegExp('[$_marks]');
+  // Combining madda/hamza are letter distinctions, not optional vowels.
+  static final RegExp _comparisonMark = RegExp(
+    r'[\u064B-\u0652\u0656-\u065F\u0670\u0640]',
+  );
   static final RegExp _arabicLetter = RegExp('[$_letters]');
-  static const Set<String> _orthographicMarks = <String>{
-    '\u0653', // Combining maddah above.
-    '\u0654', // Combining hamza above.
-    '\u0655', // Combining hamza below.
-  };
 
   /// The bare spelling and, for each bare letter, its source offset.
   static (String, List<int>) _bare(String word) {
@@ -236,7 +240,7 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
     final List<int> positions = <int>[];
     for (int i = 0; i < word.length; i++) {
       final String unit = word[i];
-      if (_mark.hasMatch(unit) && !_orthographicMarks.contains(unit)) continue;
+      if (_comparisonMark.hasMatch(unit)) continue;
       bare.write(unit);
       positions.add(i);
     }
@@ -421,7 +425,8 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
 
     // Detached conjunction waw: `و هو` -> `وهو`.
     for (final RegExpMatch m in RegExp(
-      '(?<![$_letters$_marks\\p{N}])و[\\u064B-\\u0652]?( +)(?=[$_letters])',
+      '(?<![$_wordContinuation])و[\\u064B-\\u0652]?( +)'
+      '(?=[$_letters][$_letters$_marks]*(?![$_wordContinuation]))',
       unicode: true,
     ).allMatches(text)) {
       final String waw = m

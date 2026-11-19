@@ -49,12 +49,12 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       allowedExtensions: const <String>['eml'],
       withData: true,
     );
-    if (result == null || result.files.isEmpty) return;
+    if (!mounted || result == null || result.files.isEmpty) return;
     final file = result.files.single;
     final bytes =
         file.bytes ??
         (file.path == null ? null : await File(file.path!).readAsBytes());
-    if (bytes == null) return;
+    if (!mounted || bytes == null) return;
     final previous = _controller;
     setState(() {
       _controller = _fromBytes(Uint8List.fromList(bytes));

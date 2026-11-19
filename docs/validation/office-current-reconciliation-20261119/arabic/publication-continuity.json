@@ -1,0 +1,20 @@
+{
+  "publication_head": "3f0277c8c4d317c3607e3bd6a2bf0e9aaf73bd3d",
+  "source_files": {
+    "build_bundle.py": {
+      "bytes": 6840,
+      "sha256": "d34d326ff41709fd740f2324487487aaca2c6056381de0fb26c4b973bec12ec0"
+    },
+    "test_build_bundle.py": {
+      "bytes": 7934,
+      "sha256": "ace3e8d193360145c873291863be876533e4ea8ff2c9ad7fc63c44ce1e5646ef"
+    }
+  },
+  "combined_tests_match_published_source": true,
+  "bundle_inventory_reverified": true,
+  "content_files": 8,
+  "content_bytes": 7965777,
+  "manifest_sha256": "6db576c5eb30583f17b647a188f3ff821dd842ad673f845b60c0d25eb6e7214e",
+  "root_recheck_log_sha256": "9bfeb2aaa87f32a2f50f82fce3ad86b470d607e77a126dfefdeb0e908d7f764c",
+  "publication_performed": false
+}

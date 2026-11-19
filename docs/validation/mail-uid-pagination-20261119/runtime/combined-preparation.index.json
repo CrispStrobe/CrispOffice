@@ -1,0 +1,107 @@
+{
+  "archive": "combined-preparation.tar.xz",
+  "bytes": 240384,
+  "members": [
+    {
+      "bytes": 18401,
+      "path": "runtime.json",
+      "sha256": "0b4544ac387f3efa23abacf71f66b834fcddec7d3b02414209c57dab14299729"
+    },
+    {
+      "bytes": 12606,
+      "path": "original-runtime.json",
+      "sha256": "dce4d5fec2c7bfabdc6d9298327a098bb3418486b37316881a9802a8a0d0fa20"
+    },
+    {
+      "bytes": 1442,
+      "path": "cmake/receipt.json",
+      "sha256": "aee851d6afb4c0718d9d0500c5f31b19fd6f862b835a548176696d4bdeb85a01"
+    },
+    {
+      "bytes": 23272,
+      "path": "cmake/pypi-release.json",
+      "sha256": "06bf931f1dcba57824342008d18eecafd26189e6de15264b57716e89aef11356"
+    },
+    {
+      "bytes": 3741,
+      "path": "dictionary/receipt.json",
+      "sha256": "7fb0a892af72f45a56ad4f08ae88196ea9c86fe19607a5e9c931103189d2fa95"
+    },
+    {
+      "bytes": 615,
+      "path": "native/build-receipt.json",
+      "sha256": "ed6daa8d1cf00d13ec2a79b33eb49b90e50745f4f1abdea9e9cb111c986a16ac"
+    },
+    {
+      "bytes": 887136,
+      "path": "native/libquds_proofing_hunspell.so",
+      "sha256": "648084ab2ea47b23da91c8e865cc8e2523322eb87d9fb921e4568dd3092e9338"
+    },
+    {
+      "bytes": 969,
+      "path": "lifecycle/build-receipt.json",
+      "sha256": "49daa2c6d12388fb246a5f15aaa471daea08a3bb652c3dddcaf4f593b9d7d212"
+    },
+    {
+      "bytes": 0,
+      "path": "lifecycle/build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 59424,
+      "path": "lifecycle/libquds_hunspell_lifecycle.so",
+      "sha256": "56e553c3e89f6d74e3d71e105e85c4473a7dd9e4cbf2f5f3821b1f4362f5c9b6"
+    },
+    {
+      "bytes": 3817,
+      "path": "preparation/build-source-after.json",
+      "sha256": "dbc27a99a433a367454af9c41253b886a84c1bc87180e03d27c767153c67384b"
+    },
+    {
+      "bytes": 3817,
+      "path": "preparation/build-source-before.json",
+      "sha256": "dbc27a99a433a367454af9c41253b886a84c1bc87180e03d27c767153c67384b"
+    },
+    {
+      "bytes": 1265,
+      "path": "preparation/build-verification.json",
+      "sha256": "2ef460417e5d02c03c7627aba6db6064c2383b9e9a0b4a3884078988f7329458"
+    },
+    {
+      "bytes": 1442,
+      "path": "preparation/cmake-setup-3.31.10.log",
+      "sha256": "aee851d6afb4c0718d9d0500c5f31b19fd6f862b835a548176696d4bdeb85a01"
+    },
+    {
+      "bytes": 1790,
+      "path": "preparation/cmake-setup.log",
+      "sha256": "be8f64226e583107ad32ffe25a4943920061ba6f6219d709e5623c2b6de6a6be"
+    },
+    {
+      "bytes": 484,
+      "path": "preparation/dictionary-setup.log",
+      "sha256": "698fc8ed9ed2a0c04cc97cacc53681863d7f5c9ea23c9f632ebb5e7a568e00a2"
+    },
+    {
+      "bytes": 2814,
+      "path": "preparation/native-build.log",
+      "sha256": "f8aa9af2670cdd1a1007525f058e92749f93cafb095f87430240a6a802e19bd9"
+    },
+    {
+      "bytes": 5106,
+      "path": "preparation/prepare_inputs.py",
+      "sha256": "a0d82985cab7440c25f98af25b12229321673311479fa0d6f05e17d32de69f69"
+    },
+    {
+      "bytes": 173,
+      "path": "preparation/runtime-refresh.log",
+      "sha256": "c6cc2b161273e8e7fb999dcc8a5b889bfc1ee0de9ed725a903b016c32bd2646d"
+    },
+    {
+      "bytes": 68,
+      "path": "preparation/workspace-pub-get.log",
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ],
+  "sha256": "307f3126137a9bbaa4078dc4f9737b18a65d55112306d83d5b43fbf3b1c851ae"
+}

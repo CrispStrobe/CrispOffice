@@ -1,0 +1,125 @@
+{
+  "path": "packages/quds_office_editor/example/lib/studio_de_strings.dart",
+  "before_commit": "a6c86f8d158314683087dead60f73ef9ce324c24",
+  "before_sha256": "a386ac294f079c5903735dc7a0750c93879085f8a0b9e92810b1a77b61123d4c",
+  "after_sha256": "606e97e6b5e6b49bf25bf5289537490f57c28a41464b1a854562861549c81d1f",
+  "changed_values": 18,
+  "mapping": [
+    {
+      "line": 44,
+      "key": "Bullets",
+      "before": "AufzÃ¤hlungszeichen",
+      "after": "Aufzählungszeichen"
+    },
+    {
+      "line": 61,
+      "key": "Clear",
+      "before": "LÃ¶schen",
+      "after": "Löschen"
+    },
+    {
+      "line": 66,
+      "key": "Close",
+      "before": "SchlieÃen",
+      "after": "Schließen"
+    },
+    {
+      "line": 90,
+      "key": "Delete",
+      "before": "LÃ¶schen",
+      "after": "Löschen"
+    },
+    {
+      "line": 91,
+      "key": "Delete column",
+      "before": "Spalte lÃ¶schen",
+      "after": "Spalte löschen"
+    },
+    {
+      "line": 92,
+      "key": "Delete row",
+      "before": "Zeile lÃ¶schen",
+      "after": "Zeile löschen"
+    },
+    {
+      "line": 93,
+      "key": "Delete table",
+      "before": "Tabelle lÃ¶schen",
+      "after": "Tabelle löschen"
+    },
+    {
+      "line": 139,
+      "key": "Footer",
+      "before": "FuÃzeile",
+      "after": "Fußzeile"
+    },
+    {
+      "line": 164,
+      "key": "Heading 1",
+      "before": "Ãberschrift 1",
+      "after": "Überschrift 1"
+    },
+    {
+      "line": 165,
+      "key": "Heading 2",
+      "before": "Ãberschrift 2",
+      "after": "Überschrift 2"
+    },
+    {
+      "line": 209,
+      "key": "Margins",
+      "before": "RÃ¤nder",
+      "after": "Ränder"
+    },
+    {
+      "line": 220,
+      "key": "Moderate",
+      "before": "MÃ¤Ãig",
+      "after": "Mäßig"
+    },
+    {
+      "line": 274,
+      "key": "Page margins",
+      "before": "SeitenrÃ¤nder",
+      "after": "Seitenränder"
+    },
+    {
+      "line": 306,
+      "key": "Proofing",
+      "before": "PrÃ¼fen",
+      "after": "Prüfen"
+    },
+    {
+      "line": 308,
+      "key": "Protect",
+      "before": "SchÃ¼tzen",
+      "after": "Schützen"
+    },
+    {
+      "line": 357,
+      "key": "Size",
+      "before": "GrÃ¶Ãe",
+      "after": "Größe"
+    },
+    {
+      "line": 359,
+      "key": "Slide show",
+      "before": "BildschirmprÃ¤sentation",
+      "after": "Bildschirmpräsentation"
+    },
+    {
+      "line": 399,
+      "key": "Transitions",
+      "before": "ÃbergÃ¤nge",
+      "after": "Übergänge"
+    }
+  ],
+  "verification": {
+    "keys_unchanged": true,
+    "all18_reversible_utf8_latin1_repairs": true,
+    "only18_lines_changed": true,
+    "line_count_unchanged": true,
+    "remaining_mojibake_markers": 0
+  },
+  "scope": "Exact reversible text-value correction; no translation redesign or behavior changes; no product tests rerun for this bounded repair."
+}

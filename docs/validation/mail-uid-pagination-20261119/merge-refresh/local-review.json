@@ -1,0 +1,16 @@
+{
+  "tip": "21d979590ea902ad0593c38c816808cbb7134f6b",
+  "tree": "4c0dc561cbb3f58a1cda3bdfb4b588b1f48c0a23",
+  "archive": "local-review.bundle",
+  "bytes": 125375,
+  "sha256": "e1a6577a738201a3d81aa2a139bac562ce5c451b7f1812dcdeb03f946bbb83f0",
+  "excluded_remote_history": [
+    "cb44179bd0f3e8dec3d6278567b0f866c6ae2231",
+    "baf3dbd086d1688c5110335b6a6cc6d5a5feb4eb",
+    "293f45449b496e3024ff100968d78f37983faadd",
+    "c0c71a26e014cadda7a1f42244e710509dea5f6c"
+  ],
+  "verify_stdout": "The bundle contains this ref:\n21d979590ea902ad0593c38c816808cbb7134f6b HEAD\nThe bundle requires these 4 refs:\nbaf3dbd086d1688c5110335b6a6cc6d5a5feb4eb \ncb44179bd0f3e8dec3d6278567b0f866c6ae2231 \n293f45449b496e3024ff100968d78f37983faadd \nc0c71a26e014cadda7a1f42244e710509dea5f6c \nThe bundle uses this hash algorithm: sha1\n",
+  "verify_stderr": "docs/validation/mail-uid-pagination-20261119/merge-refresh/local-review.bundle is okay\n",
+  "purpose": "Preserve exact isolated author/review and local reconciliation Git objects alongside the API-published source tree."
+}

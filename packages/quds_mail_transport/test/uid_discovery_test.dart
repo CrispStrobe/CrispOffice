@@ -143,9 +143,8 @@ void main() {
     expect(refreshed.hasMore, isFalse);
   });
 
-  test(
-    'saved v1 numeric-window cursors resume as discovered UID pages',
-    () async {
+  for (final format in ['quds-imap-window-v1', 'quds-imap-discovery-v2']) {
+    test('saved $format cursors resume with a new revision', () async {
       final fixture = ImapFixture(
         uidNext: 3000001,
         messages: {1: _message(), 2000000: _message()},
@@ -153,7 +152,7 @@ void main() {
       final legacy = MailCursor(
         mailbox: fixture.mailbox,
         value: jsonEncode([
-          'quds-imap-window-v1',
+          format,
           mailboxScope(fixture.mailbox),
           fixture.uidValidity,
           2,
@@ -164,8 +163,73 @@ void main() {
       expect(_uids(page), [2000000]);
       expect(page.imapRange!.firstUid, 2);
       expect(page.imapRange!.lastUid, 3000000);
-      expect(jsonDecode(page.next.value)[0], 'quds-imap-discovery-v2');
+      final next = ImapScanCursor.decode(page.next, fixture.mailbox)!;
+      expect(jsonDecode(page.next.value)[0], 'quds-imap-discovery-v3');
+      expect(next.revision, 1);
       expect(page.resetRequired, isFalse);
+    });
+  }
+
+  test(
+    'page revisions advance through completed, empty and reset sweeps',
+    () async {
+      final fixture = ImapFixture(
+        uidNext: 3,
+        messages: {1: _message(), 2: _message()},
+      );
+      final first = _page(await _pull(fixture, limit: 1));
+      final complete = _page(
+        await _pull(fixture, cursor: first.next, limit: 1),
+      );
+      fixture.messages.clear();
+      final empty = _page(await _pull(fixture, cursor: complete.next));
+      fixture.uidValidity++;
+      fixture.uidNext = 1;
+      final reset = _page(await _pull(fixture, cursor: empty.next));
+      final stillEmpty = _page(await _pull(fixture, cursor: reset.next));
+      final pages = [first, complete, empty, reset, stillEmpty];
+      expect(
+        pages.map(
+          (page) => ImapScanCursor.decode(page.next, fixture.mailbox)!.revision,
+        ),
+        [1, 2, 3, 4, 5],
+      );
+      expect(
+        pages.map((page) => page.next.value).toSet(),
+        hasLength(pages.length),
+      );
+      expect(first.hasMore, isTrue);
+      expect(complete.hasMore, isFalse);
+      expect(empty.imapRange, isNotNull);
+      expect(reset.resetRequired, isTrue);
+      expect(reset.imapRange, isNull);
+      expect(stillEmpty.resetRequired, isFalse);
+      expect(stillEmpty.imapRange, isNull);
+    },
+  );
+
+  test(
+    'revision exhaustion fails before protocol work without wrapping',
+    () async {
+      final fixture = ImapFixture(uidNext: 1);
+      final penultimate = ImapScanCursor(
+        uidValidity: fixture.uidValidity,
+        nextUid: 1,
+        ceiling: 0,
+        revision: ImapScanCursor.maxRevision - 1,
+      ).encode(fixture.mailbox);
+      final last = _page(await _pull(fixture, cursor: penultimate));
+      expect(
+        ImapScanCursor.decode(last.next, fixture.mailbox)!.revision,
+        ImapScanCursor.maxRevision,
+      );
+      expect(last.next.value, isNot(penultimate.value));
+      fixture.commands.clear();
+      expect(
+        _code(await _pull(fixture, cursor: last.next)),
+        MailProblemCode.invalidInput,
+      );
+      expect(fixture.commands, isEmpty);
     },
   );
 

@@ -61,12 +61,14 @@ typedef _ArabicAdd =
       List<String> replacements,
     });
 
-/// The text with harakat and tatweel removed, plus a map back to the source.
+/// Comparison text without optional harakat or tatweel, mapped to the source.
+/// Combining hamza and maddah remain part of the spelling.
 final class _ArabicBareText {
   _ArabicBareText(String text) : _sourceLength = text.length {
     final StringBuffer buffer = StringBuffer();
     for (int i = 0; i < text.length; i++) {
-      if (ArabicWritingRulesProvider._mark.hasMatch(text[i])) continue;
+      if (ArabicWritingRulesProvider._comparisonMark.hasMatch(text[i]))
+        continue;
       buffer.write(text[i]);
       _map.add(i);
     }
@@ -147,6 +149,7 @@ final class _ArabicExtendedRules {
   final List<int> sentenceOf = <int>[];
 
   static const String _l = ArabicWritingRulesProvider._letters;
+  static const String _wc = ArabicWritingRulesProvider._wordContinuation;
   static final RegExp _sentenceEnd = RegExp(r'[.!?؟\n]');
   static final RegExp _spaces = RegExp(r'^[ \u00A0]+$');
   static final RegExp _tanwin = RegExp('[\u064B-\u064D]');
@@ -828,13 +831,14 @@ final class _ArabicExtendedRules {
     if (enabled(weekday) || enabled(invalid)) {
       final String days = _weekdays.keys.join('|');
       final RegExp date = RegExp(
-        '(?<![$_l])[وف]?(?:يوم\\s+)?($days)(?![$_l])\\s*[،,]?\\s*'
+        '(?<![$_wc])[وف]?(?:يوم\\s+)?($days)(?![$_wc])\\s*[،,]?\\s*'
         '(?:(?:الموافق|الماضي|المقبل|القادم|المنصرم)\\s*[،,]?\\s*)?'
         '($_digit{1,2})(?!$_digit)\\s*(?:من\\s+)?(?:شهر\\s+)?'
-        '($_monthPattern)(?![$_l])'
+        '($_monthPattern)(?![$_wc])'
         '(?:\\s*[(/]\\s*(?:$_monthPattern)\\s*\\)?)?'
         '\\s*[،,]?\\s*(?:(?:من\\s+)?(?:عام|سنة|العام)\\s+)?'
-        '($_digit{4})(?!$_digit)(?!\\s*ه)',
+        '($_digit{4})(?![$_wc])(?!\\s*ه)',
+        unicode: true,
       );
       for (final RegExpMatch m in date.allMatches(bare)) {
         final String all = m.group(0)!;
@@ -877,9 +881,10 @@ final class _ArabicExtendedRules {
           'دولار|دينار|درهم|ريال|جنيه|يورو|ليرة|شخص|نسمة|طن|متر|كيلو|برميل|'
           'وحدة|سهم|قطعة|مرة|عامل|زائر|حالة|ق|قبل';
       final RegExp implausible = RegExp(
-        '(?<![$_l])[وفبل]?(?:عام|العام|سنة|السنة|(?:ال)?(?:ربيع|صيف|خريف|شتاء)|'
-        '$_monthPattern)\\s+([12١٢]$_digit{4})(?![0-9٠-٩.,٫٬])'
-        '(?!\\s*(?:$units)(?![$_l]))',
+        '(?<![$_wc])[وفبل]?(?:عام|العام|سنة|السنة|(?:ال)?(?:ربيع|صيف|خريف|شتاء)|'
+        '$_monthPattern)\\s+([12١٢]$_digit{4})(?![$_wc])(?![.,٫٬])'
+        '(?!\\s*(?:$units)(?![$_wc]))',
+        unicode: true,
       );
       for (final RegExpMatch m in implausible.allMatches(bare)) {
         final int at = m.start + m.group(0)!.lastIndexOf(m.group(1)!);
@@ -1161,7 +1166,10 @@ final class _ArabicExtendedRules {
     if (!enabled(id)) return;
     final String bare = bareText.bare;
     for (final _Phrase phrase in phrases) {
-      final RegExp re = RegExp('(?<![$_l])(?:${phrase.pattern})(?![$_l])');
+      final RegExp re = RegExp(
+        '(?<![$_wc])(?:${phrase.pattern})(?![$_wc])',
+        unicode: true,
+      );
       for (final RegExpMatch m in re.allMatches(bare)) {
         final List<String> replacements = <String>[
           for (final String r in phrase.replacements)
@@ -1210,7 +1218,8 @@ final class _ArabicExtendedRules {
     final bool doubleFuture = enabled('ar.redundancy.double-future');
     if (doubleFuture) {
       for (final RegExpMatch m in RegExp(
-        '(?<![$_l])((?:[وف])?)سوف\\s+(س[يتنأ](?!ار)[$_l]+)',
+        '(?<![$_wc])((?:[وف])?)سوف\\s+(س[يتنأ](?!ار)[$_l]+)(?![$_wc])',
+        unicode: true,
       ).allMatches(bareText.bare)) {
         final int verb = m.start + m.group(0)!.lastIndexOf(m.group(2)!);
         final int start = bareText.start(m.start);

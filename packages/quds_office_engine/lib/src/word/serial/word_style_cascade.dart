@@ -112,8 +112,9 @@ class _StyleCascade {
     WmlParagraph source,
     WmlParagraph preview,
     int start,
-    int end,
-  ) {
+    int end, {
+    bool includeComplexScript = false,
+  }) {
     if (identical(source, preview) || source.text != preview.text) {
       throw ArgumentError('Use a detached preview with the source text.');
     }
@@ -181,11 +182,13 @@ class _StyleCascade {
     final prepared = WmlClone.paragraph(preview);
     var changed = false;
     WmlRunEdit.applyRange(prepared, start, end, (props) {
-      final inherited = merged('rPr', [
+      final inheritedLanguage = merged('rPr', [
         for (final layer in tableLayers!) layer.firstChild('rPr'),
         for (final style in paragraphStyles) style.firstChild('rPr'),
         for (final style in chain(props.styleId)) style.firstChild('rPr'),
-      ]).firstChild('lang')?.getAttribute('val');
+      ]).firstChild('lang');
+      final inherited = inheritedLanguage?.getAttribute('val');
+      final inheritedComplex = inheritedLanguage?.getAttribute('bidi');
       final imported = props.importedValues;
       final hasSparseSource =
           imported != null && props.sourcePropertiesXml != null;
@@ -194,23 +197,47 @@ class _StyleCascade {
             ? props.sourcePropertiesXml!
             : WordSerializer().runPropertiesXml(props),
       );
-      final directLanguage = direct
-          .firstChild('lang', namespaceUri: OfficeNamespaces.w)
-          ?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
+      final directLanguage = direct.firstChild(
+        'lang',
+        namespaceUri: OfficeNamespaces.w,
+      );
+      final directLatin = directLanguage?.getAttribute(
+        'val',
+        namespaceUri: OfficeNamespaces.w,
+      );
+      final directComplex = directLanguage?.getAttribute(
+        'bidi',
+        namespaceUri: OfficeNamespaces.w,
+      );
       final pendingOverride =
           hasSparseSource && imported['lang'] != '${props.proofingLanguage}';
-      if (directLanguage == null &&
+      final complexChanged =
+          includeComplexScript &&
+          (directComplex != null ||
+              hasSparseSource &&
+                  imported['lang:bidi'] != '${props.complexScriptLanguage}' ||
+              props.complexScriptLanguage != inheritedComplex);
+      if (directLatin == null &&
           !pendingOverride &&
-          props.proofingLanguage == inherited) {
+          props.proofingLanguage == inherited &&
+          !complexChanged) {
         return;
       }
       WordPropertyIo.mergeLanguage(direct, null);
       props.proofingLanguage = inherited;
+      if (includeComplexScript) {
+        WordPropertyIo.mergeLanguage(direct, null, attribute: 'bidi');
+        props.complexScriptLanguage = inheritedComplex;
+      }
       props.sourcePropertiesXml = XmlDocument(
         root: direct,
       ).toXmlString(declaration: false);
       props.importedValues = hasSparseSource
-          ? {...imported, 'lang': '$inherited'}
+          ? {
+              ...imported,
+              'lang': '$inherited',
+              if (includeComplexScript) 'lang:bidi': '$inheritedComplex',
+            }
           : WordPropertyIo.runValues(props);
       if (direct.firstChild('lang', namespaceUri: OfficeNamespaces.w) == null) {
         props.explicitProperties.remove('lang');
@@ -290,9 +317,10 @@ class _StyleCascade {
       for (final child in layer.childElements) {
         if (child.localName == 'sectPr') continue;
         final old = result.firstChild(child.localName);
-        if (name == 'rPr' && child.localName == 'noProof') {
-          // An omitted on/off value enables noProof. Do not retain a lower
-          // layer's explicit false when the next layer uses <w:noProof/>.
+        if (name == 'rPr' &&
+            const {'noProof', 'rtl', 'cs'}.contains(child.localName)) {
+          // An omitted on/off value enables these properties. Do not retain
+          // a lower layer's explicit false for a direct empty marker.
           final effective = old ?? child.copy();
           effective.setAttribute(
             'val',
@@ -519,11 +547,13 @@ class _StyleCascade {
       reader._parseRPr(inner, resolved);
       // The document default remains live: changing it must affect runs that
       // do not override it without stamping direct formatting onto every run.
-      resolved.proofingLanguage = merged('rPr', [
+      final inheritedLanguage = merged('rPr', [
         for (final t in tableLayers) t.firstChild('rPr'),
         ...styleRuns,
         direct,
-      ]).firstChild('lang')?.getAttribute('val');
+      ]).firstChild('lang');
+      resolved.proofingLanguage = inheritedLanguage?.getAttribute('val');
+      resolved.complexScriptLanguage = inheritedLanguage?.getAttribute('bidi');
       if (run.hyperlink != null) {
         if (rp.firstChild('color') == null) resolved.color = WordLink.color;
         if (rp.firstChild('u') == null) {

@@ -100,9 +100,9 @@ abstract final class StudioPdfGallery {
       id: 'office-crispoffice-word',
       kind: StudioPdfSampleKind.officeToPdf,
       titleEn: 'CrispOffice document briefing',
-      titleAr: 'إحاطة ورد — التحرير',
-      blurbEn: 'Rich DOCX (tables, images, bilingual) exported to PDF.',
-      blurbAr: 'مستند ورد غني (جداول وصور وثنائي اللغة) يُصدَّر إلى PDF.',
+      titleAr: 'مستند تعريفي بـ CrispOffice',
+      blurbEn: 'An editable English document brief exported to PDF.',
+      blurbAr: 'مستند تعريفي قابل للتحرير باللغة الإنجليزية، مُصدَّر إلى PDF.',
       fileName: 'office_crispoffice_briefing.pdf',
       build: ({SfntFont? font, OfficeFontSet? fonts}) => OfficePdfExport.word(
         SampleLibrary.wordBriefing(),

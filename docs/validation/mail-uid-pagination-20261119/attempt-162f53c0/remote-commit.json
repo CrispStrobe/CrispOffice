@@ -1,0 +1,15 @@
+{
+  "sha": "162f53c0aff2314d88df912f9a64c0838e2a9da4",
+  "tree": {
+    "sha": "4c6669ddb9ebafad533ebff3b90a7b175706c8c5",
+    "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/trees/4c6669ddb9ebafad533ebff3b90a7b175706c8c5"
+  },
+  "parents": [
+    {
+      "sha": "8dc76f0cc27721bd5e64eec0f979bac8aeb6ce97"
+    }
+  ],
+  "message": "fix(proofing): reconcile safe bundle directory reuse and retain failed gate [skip ci]\n\nRestore the previously qualified existing-directory contract while preserving the exact verified-file publication list, input pins and immutable readback. Update bundle wording and two prose assertions for the implemented optional adapter. Retain the complete failed 8dc76f0c attempt, all 17 passing focused controls and independent review before rerunning the combined gate.",
+  "url": "https://github.com/CrispStrobe/quds_office_suite/commit/162f53c0aff2314d88df912f9a64c0838e2a9da4",
+  "observed_via": "GitHub plugin read-only GET git/commits; no Actions endpoints"
+}

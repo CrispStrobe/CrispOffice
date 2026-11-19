@@ -1,0 +1,39 @@
+{
+  "status": "prepared_not_executed",
+  "main_plan": "latest-final-plan.json",
+  "node_plan": "latest-node-plan.json",
+  "reviewed_main_suites": 23,
+  "reviewed_node_repeat_suites": 3,
+  "reviewed_static_paths": 34,
+  "native_lifecycle_control_path": "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+  "native_lifecycle_fixture_path": "packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp",
+  "native_lifecycle_separate_receipt": false,
+  "forecast": {
+    "core_store_executions": 250,
+    "core_store_distinct_scenarios": 162,
+    "main_focused_executions": 438,
+    "node_executions": 96,
+    "total_executions": 784,
+    "total_distinct_scenarios": 600,
+    "distinct_suites": 37,
+    "repeated_vm_node_executions": 184
+  },
+  "count_rules": "Counts are reconstructed from complete successful raw JSON starts/completions, deduplicated by repository suite path and exact case name; forecasts only corroborate. Main includes six native lifecycle scenarios using the instrumented real adapter and a synthetic dictionary. Actual AyaSpell and installer cases remain outside this plan. Missing-library selection is separately recorded. Earlier reports remain unchanged.",
+  "artifacts": {
+    "latest-final-plan.json": {
+      "sha256": "da40802a763d2ac4a21b56a5580026d071940212723b06fb7457a11199f5836e",
+      "bytes": 9298
+    },
+    "latest-node-plan.json": {
+      "sha256": "4aee6f7e54986ddcc8364e84c3a343ad5bcae1b80af4ea590372fbe2d23454af",
+      "bytes": 2453
+    },
+    "audit_latest_qualification.py": {
+      "sha256": "ea82f6ed4ff4f7964887e19b6d9b6f16526f294a98e2664e99e2c157cf6a9429",
+      "bytes": 37967
+    }
+  },
+  "instrumented_native_lifecycle_cases_in_main": 6,
+  "native_runtime_binding": "docs/validation/office-main-integration-20261119/latest-final/native-runtime-inputs.json",
+  "native_binding_audit_prepared": true
+}

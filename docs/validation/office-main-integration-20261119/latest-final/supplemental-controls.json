@@ -1,0 +1,58 @@
+{
+  "source_commit": "29dd23a6edd0a0fbb916b3d9f73861a8aa4f435e",
+  "base_commit": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+  "captured_after_start": true,
+  "environment_declaration": {
+    "QUDS_HUNSPELL_LIFECYCLE_LIBRARY": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/local-validation/hunspell/libquds_hunspell_lifecycle_real.so"
+  },
+  "environment_capture_scope": "This is the operator launch declaration; run_checks does not independently serialize the child environment. Both runtime asset hashes are independently bound before and after.",
+  "runtime_receipt": {
+    "path": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/runtime.json",
+    "bytes": 13267,
+    "sha256": "8c8011e01706ead293ca29ae657368ae9937b67f257d871379f01a74fcdd0439"
+  },
+  "publisher_controls": {
+    "failed_before_wording_reconciliation": {
+      "path": "/workspace/scratch/a7846890f2e1/qualification/latest-bundle-controls.log",
+      "bytes": 4755,
+      "sha256": "83c34e8c1f4e1bd69720fafd3e26452575ff21c406b6269036a605308bdb4038"
+    },
+    "passed_after_wording_reconciliation": {
+      "path": "/workspace/scratch/a7846890f2e1/qualification/latest-bundle-controls-green.log",
+      "bytes": 2586,
+      "sha256": "52a12f61d4f37c4096fdb78d49137a6d9ec63ff477f4aaebf0a5d7c92b2d1191"
+    },
+    "passed": 17,
+    "failed": 0,
+    "actual_publication": false,
+    "published_dictionary_revision_and_catalog_hashes_unchanged": true,
+    "inputs": {
+      "tools/proofing/ayaspell/build_bundle.py": {
+        "path": "/workspace/scratch/a7846890f2e1/quds_office_suite/tools/proofing/ayaspell/build_bundle.py",
+        "bytes": 6888,
+        "sha256": "9bf617c3833265a3f531f3dd37364d6f8e6451fd955e6140fec49a7588358962"
+      },
+      "tools/proofing/ayaspell/test_build_bundle.py": {
+        "path": "/workspace/scratch/a7846890f2e1/quds_office_suite/tools/proofing/ayaspell/test_build_bundle.py",
+        "bytes": 8020,
+        "sha256": "9cb668a562d7c71647db1fcaecd8b1560b9c4872b5337fe50e823dd6019b8121"
+      },
+      "tools/proofing/ayaspell/test_build_bundle_incoming.py": {
+        "path": "/workspace/scratch/a7846890f2e1/quds_office_suite/tools/proofing/ayaspell/test_build_bundle_incoming.py",
+        "bytes": 6933,
+        "sha256": "f2380e37d5ea8c0a4248b053a7dab2320e3af497c76039dc775ac2367b19cb26"
+      },
+      "tools/proofing/ayaspell/test_build_bundle_reproducibility.py": {
+        "path": "/workspace/scratch/a7846890f2e1/quds_office_suite/tools/proofing/ayaspell/test_build_bundle_reproducibility.py",
+        "bytes": 5984,
+        "sha256": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096"
+      },
+      "packages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart": {
+        "path": "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_proofing_hunspell/lib/src/hunspell_catalog.dart",
+        "bytes": 4801,
+        "sha256": "a8ae5aac4a07afd95c009cd2ed42369b0a883865846992e6f5790c2f74d0e32c"
+      }
+    }
+  },
+  "whitespace_scope": "All local changes pass git diff --cached --check against captured main b655b8a3. Original Hunspell license notice bytes contain upstream whitespace, were preserved exactly, and match the incoming hashed license manifest."
+}

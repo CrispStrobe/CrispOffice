@@ -1,0 +1,14 @@
+{
+  "tip": "6f3a6580c8259363b64c2e6c5f3a1580f051389a",
+  "archive": "local-about-review.bundle",
+  "bytes": 2293,
+  "sha256": "1f92deda9d6dc2863c202acee55fbcdb791f559a1aabe34ce2e1913c7da8cb86",
+  "prerequisites": [
+    "21d979590ea902ad0593c38c816808cbb7134f6b",
+    "00014577265d1f95d4c016159029510d3a10804b"
+  ],
+  "prior_review_bundle": "local-review.bundle",
+  "prior_review_bundle_sha256": "e1a6577a738201a3d81aa2a139bac562ce5c451b7f1812dcdeb03f946bbb83f0",
+  "verify_stdout": "The bundle contains this ref:\n6f3a6580c8259363b64c2e6c5f3a1580f051389a HEAD\nThe bundle requires these 2 refs:\n00014577265d1f95d4c016159029510d3a10804b \n21d979590ea902ad0593c38c816808cbb7134f6b \nThe bundle uses this hash algorithm: sha1\n",
+  "verify_stderr": "docs/validation/mail-uid-pagination-20261119/merge-refresh/local-about-review.bundle is okay\n"
+}

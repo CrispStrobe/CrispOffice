@@ -1,0 +1,205 @@
+{
+  "archive": "final-preparation.tar.xz",
+  "bytes": 454360,
+  "sha256": "201bf316c5ee0fe2794033d46683fc732c4523797dc83787161a2fb643d1b4b3",
+  "members": [
+    {
+      "path": "host-install/libquds_proofing_hunspell.so",
+      "bytes": 887136,
+      "sha256": "648084ab2ea47b23da91c8e865cc8e2523322eb87d9fb921e4568dd3092e9338",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/host-final/libquds_proofing_hunspell.so"
+    },
+    {
+      "path": "host-install/licenses/hunspell/COPYING.MPL",
+      "bytes": 25755,
+      "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/host-final/licenses/hunspell/COPYING.MPL"
+    },
+    {
+      "path": "host-install/licenses/hunspell/LICENSE.adapter",
+      "bytes": 1056,
+      "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/host-final/licenses/hunspell/LICENSE.adapter"
+    },
+    {
+      "path": "host-install/licenses/hunspell/hunspell-1.7.2-library-sources.tar.gz",
+      "bytes": 619231,
+      "sha256": "7efc4a85839455eaaeeb5dae8c6aa48a4d85acddb2ac0d1723822a70e2f46723",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/host-final/licenses/hunspell/hunspell-1.7.2-library-sources.tar.gz"
+    },
+    {
+      "path": "host-install/licenses/hunspell/license.hunspell",
+      "bytes": 1973,
+      "sha256": "3f7ddd07c296edbfe0a47c7bcc82038ad347a2c4f672345b24f95c624db68513",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/host-final/licenses/hunspell/license.hunspell"
+    },
+    {
+      "path": "host-install/licenses/hunspell/license.myspell",
+      "bytes": 2912,
+      "sha256": "dcda061adeed22b26f276c01ec374f930789ae0d684e5aa8f8be309dd680ff20",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/host-final/licenses/hunspell/license.myspell"
+    },
+    {
+      "path": "host-install/licenses/hunspell/manifest.json",
+      "bytes": 4131,
+      "sha256": "fff74108f96b8d1358f2ed0ba8261d5a91d219f865bfab6e4550f2c58701f629",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/host-final/licenses/hunspell/manifest.json"
+    },
+    {
+      "path": "host-notice-preservation.json",
+      "bytes": 1409,
+      "sha256": "cba4fa90ee0e85d47982d36511ad15961ce23354c0684e3954c50466b42c82e8",
+      "retained_source": "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/mail-uid-pagination-20261119/runtime/host-notice-preservation.json"
+    },
+    {
+      "path": "lifecycle/fixtures.json",
+      "bytes": 4348,
+      "sha256": "b8b679353684ca4d3480ef728db6e67846ae2a6a72fb2e6681978bda705c2867",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle-final/fixtures.json"
+    },
+    {
+      "path": "lifecycle/libquds_hunspell_ownership.so",
+      "bytes": 24080,
+      "sha256": "7b64f411eeaf8adcd6ff0b92b598cd6818a6d8a56a44a0f82c6007feb711aec2",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle-final/libquds_hunspell_ownership.so"
+    },
+    {
+      "path": "lifecycle/libquds_hunspell_primary.so",
+      "bytes": 59424,
+      "sha256": "4d4c3cb501992fefda009e1a4dde954efe44ee5fd0a501d56bc85a3d4f5daa19",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle-final/libquds_hunspell_primary.so"
+    },
+    {
+      "path": "lifecycle/libquds_hunspell_provider.so",
+      "bytes": 23728,
+      "sha256": "3e08ce5ad5944a2dcee8c31649bc1266bfa1499ff248b3178773507890511df6",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle-final/libquds_hunspell_provider.so"
+    },
+    {
+      "path": "lifecycle/ownership-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle-final/ownership-build.log"
+    },
+    {
+      "path": "lifecycle/ownership-receipt.json",
+      "bytes": 1162,
+      "sha256": "8e1bfaf3e6dd4497eedfc4b646b20d8677622fe4cdd24c6902ff6f94123c1278",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle-final/ownership-receipt.json"
+    },
+    {
+      "path": "lifecycle/primary-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle-final/primary-build.log"
+    },
+    {
+      "path": "lifecycle/primary-receipt.json",
+      "bytes": 1162,
+      "sha256": "f6e0ba820815b0ee1370c2e69a874684d2691ae4ca1ab63385fe654279c0dc8b",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle-final/primary-receipt.json"
+    },
+    {
+      "path": "lifecycle/provider-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle-final/provider-build.log"
+    },
+    {
+      "path": "lifecycle/provider-receipt.json",
+      "bytes": 1181,
+      "sha256": "1e09cc8f1f1f2651db0eccf8bd9970b41ae693dbe60fbfc039ee2553e2ffcdcb",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/lifecycle-final/provider-receipt.json"
+    },
+    {
+      "path": "lifecycle/source/QUDS_HUNSPELL_LIFECYCLE_LIBRARY.cpp",
+      "bytes": 2963,
+      "sha256": "aeb066f7ffdec75cd517c534228d77fe974fdf56c8cb8be756b027ffa9a3b9b9",
+      "retained_source": "/workspace/scratch/ab196f483cec/quds_office_suite/packages/quds_proofing_hunspell/test/fixtures/lifecycle_hunspell.cpp"
+    },
+    {
+      "path": "lifecycle/source/QUDS_HUNSPELL_OWNERSHIP_LIBRARY.cpp",
+      "bytes": 2080,
+      "sha256": "a37694aac5d5166a800418e291da48cab3857a96af120014f4ea34d19528a068",
+      "retained_source": "/workspace/scratch/ab196f483cec/quds_office_suite/packages/quds_proofing_hunspell/test/support/lifecycle_library.cpp"
+    },
+    {
+      "path": "lifecycle/source/QUDS_HUNSPELL_PROVIDER_LIFECYCLE_LIBRARY.cpp",
+      "bytes": 1780,
+      "sha256": "54a6aa58c54af098629bd42d594efe6b0da47aa590bb0465e7c55568065e3ff1",
+      "retained_source": "/workspace/scratch/ab196f483cec/quds_office_suite/packages/quds_proofing_hunspell/test/support/hunspell_lifecycle_shim.cpp"
+    },
+    {
+      "path": "native/build-receipt.json",
+      "bytes": 615,
+      "sha256": "ed6daa8d1cf00d13ec2a79b33eb49b90e50745f4f1abdea9e9cb111c986a16ac",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/build-final/build-receipt.json"
+    },
+    {
+      "path": "native/libquds_proofing_hunspell.so",
+      "bytes": 887136,
+      "sha256": "648084ab2ea47b23da91c8e865cc8e2523322eb87d9fb921e4568dd3092e9338",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/hunspell/build-final/native/libquds_proofing_hunspell.so"
+    },
+    {
+      "path": "preparation/build-install.log",
+      "bytes": 3136,
+      "sha256": "268da067af454d52ee0a6842812c3e12416968f7f9dff8a724c0191dcc6d4f0e",
+      "retained_source": "/workspace/scratch/ab196f483cec/hunspell-final-preparation/build-install.log"
+    },
+    {
+      "path": "preparation/build-verification.json",
+      "bytes": 4380,
+      "sha256": "3f556ba91b722a0391b0c1885c22ba686bcf40c050a6a35a45077e9d3f0d1ba3",
+      "retained_source": "/workspace/scratch/ab196f483cec/hunspell-final-preparation/build-verification.json"
+    },
+    {
+      "path": "preparation/runtime-refresh.log",
+      "bytes": 174,
+      "sha256": "1261c9cb7a29e1da9d970f1ef3406611d2c925e83dd639fabfd8d5b516200d77",
+      "retained_source": "/workspace/scratch/ab196f483cec/hunspell-final-preparation/runtime-refresh.log"
+    },
+    {
+      "path": "preparation/shared-runner-controls.log",
+      "bytes": 125,
+      "sha256": "3ccbe7acd6c268b6445fb57eff74ae605ac01d56408bf9aa007b41c33a6c60f4",
+      "retained_source": "/workspace/scratch/ab196f483cec/hunspell-final-preparation/shared-runner-controls.log"
+    },
+    {
+      "path": "preparation/source-after.json",
+      "bytes": 1545,
+      "sha256": "4c2143baeb33730eec9b00170fa4bbf7ee9b5d1b6354a8a43f682dc300d62b4c",
+      "retained_source": "/workspace/scratch/ab196f483cec/hunspell-final-preparation/source-after.json"
+    },
+    {
+      "path": "preparation/source-before.json",
+      "bytes": 1771,
+      "sha256": "529b1d461121be92a0efe57b563b0bf6c2b640381a3214d7ae1e97367ef1197c",
+      "retained_source": "/workspace/scratch/ab196f483cec/hunspell-final-preparation/source-before.json"
+    },
+    {
+      "path": "preparation/workspace-pub-get.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "retained_source": "/workspace/scratch/ab196f483cec/hunspell-final-preparation/workspace-pub-get.log"
+    },
+    {
+      "path": "prior-tail-runtime.json",
+      "bytes": 81652,
+      "sha256": "2d652bd61d2872999131418f845692386d1bf4ba2d037bceb72df10c586ab9a4",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/runtime-before-final-build.json"
+    },
+    {
+      "path": "refresh_final_runtime.py",
+      "bytes": 8201,
+      "sha256": "6689ea35cb6ee0f5c5fc4b62739e3ce0360c424f047aa469714d46ae92643c09",
+      "retained_source": "/workspace/scratch/ab196f483cec/quds_office_suite/docs/validation/mail-uid-pagination-20261119/runtime/refresh_final_runtime.py"
+    },
+    {
+      "path": "runtime.json",
+      "bytes": 91267,
+      "sha256": "71d8cfd27118380f4dcf497786e6949ae2dd56ef60125b11cb3d1f79f7e2b5af",
+      "retained_source": "/workspace/scratch/ab196f483cec/runtime/runtime.json"
+    }
+  ]
+}

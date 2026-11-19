@@ -1,0 +1,72 @@
+{
+  "kind": "focused author verification; not final combined qualification",
+  "base_commit": "9b123dde85dd5679aa4ab11d44a77a76dbf43042",
+  "paths": {
+    "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart": {
+      "sha256": "78f5582b17a1f7622ab7561104e7ef175895d8364ac523549c612a27bf145f08",
+      "bytes": 8497
+    },
+    "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart": {
+      "sha256": "b5d55f5c2ca648a93e17b376c8c590a0eafc4376bec751d4748818724509c69c",
+      "bytes": 5478
+    },
+    "packages/quds_office_editor/example/lib/studio_hunspell_host.dart": {
+      "sha256": "a6cad936e49ebc2aa71f14b72c6ca8c768a893b6ec3d1104f4c89f63fcb4b3b3",
+      "bytes": 3542
+    },
+    "packages/quds_office_editor/example/lib/studio_hunspell_host_native.dart": {
+      "sha256": "dc4d39eb4b357c2b1300a217526d44034780958151a20a79adb5b067404bcc17",
+      "bytes": 4882
+    },
+    "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart": {
+      "sha256": "76a7b7bd44bcf93c40341ff332f7f92260a34157084fe36e370bb7fd0a459f4e",
+      "bytes": 4000
+    },
+    "packages/quds_office_editor/example/test/studio_hunspell_web_host_test.dart": {
+      "sha256": "401eb11210705709e8931de931502bdf5e40cdbe21849ef3af1cb48aa3f1addb",
+      "bytes": 6248
+    }
+  },
+  "runs": {
+    "native-tests": {
+      "success": false,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "jsonl_sha256": "048decf282b187c5431adcdf1223a216377ca9429e8dbb9cdb2ae4b6b1fcf9c7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native-tests-2": {
+      "success": true,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "jsonl_sha256": "cb2a82f601a5b03a58489e4c102f2bf8b8a714e7b20f0b7199ce4c81fc55ea6d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "web-host-tests": {
+      "success": true,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "jsonl_sha256": "522edb3b06197673b8414dfa5bfc92b9f556cc426beda9fc2a89c168d56131bf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "analysis": {
+    "exit_code": 0,
+    "sha256": "9068abdc635cc045cee43f3ae7f83ad6c190277b14f5ab6712fef48d4891b5a8"
+  },
+  "format": {
+    "exit_code": 0,
+    "sha256": "725a25e3d849ec6009e6718f1be15896780cc316feea4771d60c8303f0c3e1d2"
+  },
+  "whitespace_exit_code": 0,
+  "fixture_correction": "First native run timed out before receiving the partial body because HttpServer buffered output. Final fixture sets bufferOutput=false and teardown cancels outstanding operations. Failed output is preserved separately.",
+  "boundaries": [
+    "Native tests use real Linux loopback HttpServer and HttpClient, small pinned fixture bytes, and bounded 3-second cancellation assertions.",
+    "Web host tests run on Flutter VM through an AbortableRequest-preserving redirect client and real loopback IOClient. No browser, Worker, or Wasm runtime execution is claimed.",
+    "Cancellation is checked before native atomic publication and web verified-byte publication; no change to filesystem commit semantics."
+  ],
+  "commit": "99cd4598409bdc20779f44adaf53284de56cabd3"
+}

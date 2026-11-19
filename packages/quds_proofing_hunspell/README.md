@@ -1,10 +1,18 @@
 # Optional local Hunspell spelling
 
-This package adds Hunspell spelling to Quds Office for languages whose
-dictionary the **user downloads from inside the app**. The first dictionary is
+This package provides optional Hunspell spelling infrastructure for Quds hosts.
+The Studio example offers an explicit dictionary download workflow and registers
+the provider after installation. Each host target must package compatible engine
+assets and complete its platform acceptance. A host must offer an explicit user
+choice before downloading dictionary data. The first dictionary is
 Arabic: the AyaSpell bundle published unmodified at
 [`cstr/ayaspell-ar-hunspell`](https://huggingface.co/cstr/ayaspell-ar-hunspell/tree/e9ace7cca3844bef906d8d9fc5431c4e15bd2740)
 (immutable revision `e9ace7cc…`). Nothing is downloaded or enabled by default.
+
+This package supplies the provider, installer and backend. Studio implements
+dictionary setup and provider registration; other hosts supply their own user
+interface and registration. See the Arabic proofing roadmap for platform
+qualification.
 
 - **Engine (part of the app):** the MIT adapter `native/src/quds_hunspell.cpp`
   compiled with the unmodified Hunspell 1.7.2 library sources under their
@@ -47,6 +55,24 @@ web, serve `hunspell_worker.mjs`, `quds_proofing_hunspell.mjs` and
 reports **unavailable**; malformed backend output reports **failed**, never a
 clean result.
 
+Dispose the provider when its session ends. Normal native disposal rejects
+pending Dart requests immediately, then waits for the worker to finish its
+active native call and close its dictionary handle. Concurrent disposal calls
+share this cleanup. Reopening first releases the previous handle, including
+when the replacement cannot be allocated. A native finalizer backs up abnormal
+worker termination. If the worker cannot acknowledge shutdown within two
+seconds, it is terminated; this fallback does not promise immediate completion
+of a synchronous native call or immediate finalizer execution. Termination waits
+for the current worker event boundary so a native open can attach ownership
+before exit. Missing affix or dictionary files are rejected before native
+admission, including an existing affix file paired with an absent dictionary.
+
+Native installation and Studio's web host subscribe to cancellation while
+waiting for headers and while reading a response body. Cancelling closes the
+active connection; an already-cancelled request creates no client. Native
+staging is cleaned up and a subsequent explicit retry can succeed. The native
+host removes its cancellation listener after the operation settles.
+
 ## Behaviour
 
 - **Words** are maximal runs of letters and combining marks. Arabic harakat
@@ -65,6 +91,36 @@ clean result.
   later ones are still reported, without replacements. Arabic suggestions cost
   about 50 ms per word on an M-series Mac, so this bounds a paragraph to about
   1.2 s of background work. A request is limited to 32,768 characters.
+
+The deterministic native ownership suite uses the real FFI/isolate transport
+with an instrumented C ABI fixture. It checks handle closure, repeated and
+concurrent disposal, failed replacement, pending calls and startup races:
+
+```sh
+c++ -std=c++14 -shared -fPIC -pthread \
+  test/fixtures/lifecycle_hunspell.cpp -o /tmp/libquds_hunspell_lifecycle.so
+QUDS_HUNSPELL_LIFECYCLE_LIBRARY=/tmp/libquds_hunspell_lifecycle.so \
+  dart test test/native_lifecycle_test.dart
+```
+
+The fixture suite is separate from qualification against the real Hunspell
+library and verified AyaSpell dictionary. Ordinary package tests skip this
+optional suite when its compiled fixture is absent. Complete qualification
+requires the hash-bound fixture and rejects skipped cases.
+
+Two independently authored fixture families are also retained, with distinct
+environment variables so incompatible counter ABIs cannot be confused:
+
+| Test file | Fixture source | Environment variable |
+| --- | --- | --- |
+| `test/native_lifecycle_test.dart` | `test/fixtures/lifecycle_hunspell.cpp` | `QUDS_HUNSPELL_LIFECYCLE_LIBRARY` |
+| `test/hunspell_native_lifecycle_test.dart` | `test/support/lifecycle_library.cpp` | `QUDS_HUNSPELL_OWNERSHIP_LIBRARY` |
+| `test/provider_native_lifecycle_test.dart` | `test/support/hunspell_lifecycle_shim.cpp` | `QUDS_HUNSPELL_PROVIDER_LIFECYCLE_LIBRARY` |
+
+The ownership family holds native open/check calls for 3.5 seconds to exercise
+the retained two-second shutdown fallback. Its bounded disposal assertions
+remain below the native delay, then independently observe eventual handle
+closure. The provider family checks shared disposal and timeout cleanup.
 
 ## Build and package
 
@@ -116,4 +172,15 @@ QUDS_HUNSPELL_TEST_DICTIONARY=/path/to/verified/bundle \
 QUDS_HUNSPELL_LIVE_DOWNLOAD=1 dart test
 dart run tool/corpus_check.dart <library> <bundle dir> corpus.txt cli-flagged.txt
 node tool/web_smoke.mjs build/web <bundle dir> corpus.txt cli-flagged.txt
+```
+
+The separate native lifecycle suite uses a compiled C ABI allocation-counter
+fixture. It checks actual handle closure, concurrent disposal, startup and
+timeout cleanup without treating the fixture as a spelling engine. On Linux:
+
+```sh
+c++ -std=c++14 -fPIC -fvisibility=hidden -shared -O2 -pthread \
+  test/support/hunspell_lifecycle_shim.cpp -o /tmp/libhunspell_lifecycle_shim.so
+QUDS_HUNSPELL_LIFECYCLE_LIBRARY=/tmp/libhunspell_lifecycle_shim.so \
+  dart test test/hunspell_native_lifecycle_test.dart
 ```

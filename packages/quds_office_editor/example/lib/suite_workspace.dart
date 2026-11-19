@@ -2058,14 +2058,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       StudioRibbonGroup(
         title: _t('Mode', StudioStrings.de('Mode'), 'وضع العمل'),
         children: <Widget>[
-          _cmd(
-            Icons.edit,
-            _t('Edit', StudioStrings.de('Edit'), 'تحرير'),
-            () {
-              setState(() => _mode = OfficeInteractionMode.editing);
-            },
-            selected: _mode == OfficeInteractionMode.editing,
-          ),
+          _cmd(Icons.edit, _t('Edit', StudioStrings.de('Edit'), 'تحرير'), () {
+            setState(() => _mode = OfficeInteractionMode.editing);
+          }, selected: _mode == OfficeInteractionMode.editing),
           _cmd(
             Icons.select_all,
             _t('Select', StudioStrings.de('Select'), 'تحديد'),

@@ -121,6 +121,25 @@ WmlDocument _styledDocument() {
   return WordDeserializer().read(package);
 }
 
+WmlDocument _complexScriptDocument() {
+  final package = OpcPackage.create(OpcPackageKind.word);
+  package.getPart('/word/document.xml')!.writeText('''
+<w:document xmlns:w="${OfficeNamespaces.w}"><w:body><w:p>
+<w:r><w:rPr><w:lang w:val="de-DE" w:bidi="ar-SA" w:eastAsia="ja-JP"/><w:rtl/><w:b/></w:rPr><w:t>عربي</w:t></w:r>
+<w:r><w:rPr><w:lang w:val="fr-FR" w:bidi="he-IL"/></w:rPr><w:t xml:space="preserve"> text</w:t></w:r>
+</w:p><w:sectPr/></w:body></w:document>''');
+  package
+      .createPart('/word/styles.xml', OfficeContentTypes.wordStyles)
+      .writeText(
+        '''
+<w:styles xmlns:w="${OfficeNamespaces.w}"><w:docDefaults><w:rPrDefault><w:rPr><w:lang w:val="en-US" w:bidi="ar-EG"/></w:rPr></w:rPrDefault></w:docDefaults></w:styles>''',
+      );
+  package
+      .relationshipsFor('/word/document.xml')
+      .add(type: RelationshipTypes.styles, target: 'styles.xml');
+  return WordDeserializer().read(package);
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -373,7 +392,9 @@ void main() {
     'caret',
     'text',
     'language',
+    'complex-script language',
     'run language',
+    'run complex-script language',
     'suppression',
     'run replacement',
     'document',
@@ -394,6 +415,8 @@ void main() {
           paragraph.inlines.whereType<WmlRun>().single.text = 'Other';
         case 'language':
           controller.document.proofingLanguage = 'en-GB';
+        case 'complex-script language':
+          controller.document.complexScriptLanguage = 'ar-EG';
         case 'run language':
           paragraph.inlines
                   .whereType<WmlRun>()
@@ -401,6 +424,13 @@ void main() {
                   .properties
                   .proofingLanguage =
               'en-GB';
+        case 'run complex-script language':
+          paragraph.inlines
+                  .whereType<WmlRun>()
+                  .single
+                  .properties
+                  .complexScriptLanguage =
+              'ar-EG';
         case 'suppression':
           paragraph.inlines.whereType<WmlRun>().single.properties.noProof =
               true;
@@ -698,6 +728,85 @@ void main() {
   );
 
   test(
+    'selection language replaces stale bidi metadata and resets both overrides through history and save',
+    () {
+      final controller = _controller(document: _complexScriptDocument());
+      final paragraph = controller.document.paragraphs.single;
+      controller.caret
+        ..selectionAnchor = 0
+        ..logicalIndex = 4;
+      expect(controller.textProofingTarget!.language, 'ar-SA');
+      expect(
+        controller.setTextProofingLanguage(
+          'de-DE',
+          target: controller.textProofingTarget!,
+        ),
+        isTrue,
+      );
+      expect(controller.textProofingTarget!.language, 'de-DE');
+      var runs = paragraph.inlines.whereType<WmlRun>().toList();
+      expect(runs.first.properties.proofingLanguage, 'de-DE');
+      expect(runs.first.properties.complexScriptLanguage, 'de-DE');
+      expect(runs.last.properties.proofingLanguage, 'fr-FR');
+      expect(runs.last.properties.complexScriptLanguage, 'he-IL');
+      final revision = controller.contentRevision;
+      expect(
+        controller.setTextProofingLanguage(
+          'de-DE',
+          target: controller.textProofingTarget!,
+        ),
+        isTrue,
+      );
+      expect(controller.contentRevision, revision);
+      controller.undo();
+      expect(controller.textProofingTarget!.language, 'ar-SA');
+      controller.redo();
+      expect(controller.textProofingTarget!.language, 'de-DE');
+      var loaded = WordDeserializer().readBytes(controller.saveBytes());
+      var props = loaded.paragraphs.single.inlines
+          .whereType<WmlRun>()
+          .first
+          .properties;
+      expect(props.proofingLanguage, 'de-DE');
+      expect(props.complexScriptLanguage, 'de-DE');
+      expect(props.sourcePropertiesXml, contains('eastAsia="ja-JP"'));
+      expect(props.complexScript, isTrue);
+      expect(props.bold, isTrue);
+      expect(
+        controller.setTextProofingLanguage(
+          null,
+          target: controller.textProofingTarget!,
+        ),
+        isTrue,
+      );
+      expect(controller.textProofingTarget!.language, 'ar-EG');
+      runs = paragraph.inlines.whereType<WmlRun>().toList();
+      expect(runs.first.properties.proofingLanguage, isNull);
+      expect(runs.first.properties.complexScriptLanguage, isNull);
+      expect(runs.last.properties.complexScriptLanguage, 'he-IL');
+      controller.undo();
+      expect(controller.textProofingTarget!.language, 'de-DE');
+      controller.redo();
+      expect(controller.textProofingTarget!.language, 'ar-EG');
+      loaded = WordDeserializer().readBytes(controller.saveBytes());
+      props = loaded.paragraphs.single.inlines
+          .whereType<WmlRun>()
+          .first
+          .properties;
+      expect(props.proofingLanguage, isNull);
+      expect(props.complexScriptLanguage, isNull);
+      expect(props.sourcePropertiesXml, contains('eastAsia="ja-JP"'));
+      expect(props.sourcePropertiesXml, isNot(contains('de-DE')));
+      expect(props.sourcePropertiesXml, isNot(contains('ar-SA')));
+      final reopened = _controller(document: loaded);
+      reopened.caret
+        ..selectionAnchor = 0
+        ..logicalIndex = 4;
+      expect(reopened.textProofingTarget!.language, 'ar-EG');
+    },
+  );
+
+  test(
     'language inheritance and explicit checking permission survive DOCX save',
     () {
       final controller = _controller();
@@ -788,7 +897,7 @@ void main() {
       expect(props.italic, isTrue);
       expect(props.noProof, isFalse);
       expect(props.sourcePropertiesXml, contains('ja-JP'));
-      expect(props.sourcePropertiesXml, contains('ar-SA'));
+      expect(props.sourcePropertiesXml, isNot(contains('ar-SA')));
       final report = await controller.proofing.checkNow(
         includeManualProviders: false,
       );

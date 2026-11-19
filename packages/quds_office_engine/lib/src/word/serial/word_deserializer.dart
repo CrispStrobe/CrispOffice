@@ -3610,19 +3610,25 @@ class WordDeserializer {
   /// The source identifies the current table/paragraph/character style context.
   /// Effective inherited run languages remain available for live proofing,
   /// while sparse export continues to omit the removed direct override. Other
-  /// formatting, East Asian/bidi language metadata, and the live document and
+  /// formatting, East Asian language metadata, and the live document and
   /// package are unchanged. Returns false when the selected text already
   /// inherits its language. The preview must be detached and have source text.
+  /// Set [includeComplexScript] to also remove direct `w:lang/@w:bidi`
+  /// overrides. Otherwise complex-script metadata is preserved.
   bool clearRunProofingLanguage(
     WmlDocument document,
     WmlParagraph sourceParagraph,
     WmlParagraph previewParagraph,
     int start,
-    int end,
-  ) => _StyleCascade(
-    this,
-    document,
-  ).clearRunProofingLanguage(sourceParagraph, previewParagraph, start, end);
+    int end, {
+    bool includeComplexScript = false,
+  }) => _StyleCascade(this, document).clearRunProofingLanguage(
+    sourceParagraph,
+    previewParagraph,
+    start,
+    end,
+    includeComplexScript: includeComplexScript,
+  );
 
   /// Recompute effective formatting after editing a source style definition.
   void refreshStyles(WmlDocument document) {

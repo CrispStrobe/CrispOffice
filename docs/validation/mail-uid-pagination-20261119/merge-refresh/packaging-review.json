@@ -1,0 +1,244 @@
+{
+  "workflow": ".github/workflows/crispoffice-binaries.yml",
+  "workflow_sha256": "3c61a81ee14300878b67ab511f2a986672cadda99d8f4e01a3d8f3c702e84a45",
+  "checks": [
+    {
+      "name": "Existing five jobs retained",
+      "passed": true
+    },
+    {
+      "name": "Only manual and release-tag triggers",
+      "passed": true
+    },
+    {
+      "name": "No elevated repository permission",
+      "passed": true
+    },
+    {
+      "name": "macos: app build directory",
+      "passed": true
+    },
+    {
+      "name": "macos: Python 3.12 selected",
+      "passed": true
+    },
+    {
+      "name": "macos: existing verified-output installer and loader path",
+      "passed": true
+    },
+    {
+      "name": "macos: notices and corresponding sources packaged",
+      "passed": true
+    },
+    {
+      "name": "macos: native engine staged before archive",
+      "passed": true
+    },
+    {
+      "name": "macos: shell syntax step 3",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "macos: shell syntax step 4",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "macos: shell syntax step 5",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "macos: shell syntax step 6",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "windows: app build directory",
+      "passed": true
+    },
+    {
+      "name": "windows: Python 3.12 selected",
+      "passed": true
+    },
+    {
+      "name": "windows: existing verified-output installer and loader path",
+      "passed": true
+    },
+    {
+      "name": "windows: notices and corresponding sources packaged",
+      "passed": true
+    },
+    {
+      "name": "windows: native engine staged before archive",
+      "passed": true
+    },
+    {
+      "name": "linux: app build directory",
+      "passed": true
+    },
+    {
+      "name": "linux: Python 3.12 selected",
+      "passed": true
+    },
+    {
+      "name": "linux: existing verified-output installer and loader path",
+      "passed": true
+    },
+    {
+      "name": "linux: notices and corresponding sources packaged",
+      "passed": true
+    },
+    {
+      "name": "linux: native engine staged before archive",
+      "passed": true
+    },
+    {
+      "name": "linux: shell syntax step 2",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "linux: shell syntax step 4",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "linux: shell syntax step 5",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "linux: shell syntax step 6",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "linux: shell syntax step 7",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "android: app build directory",
+      "passed": true
+    },
+    {
+      "name": "android: Python 3.12 selected",
+      "passed": true
+    },
+    {
+      "name": "android: existing verified-output installer and loader path",
+      "passed": true
+    },
+    {
+      "name": "android: notices and corresponding sources packaged",
+      "passed": true
+    },
+    {
+      "name": "android: engine staged before app compilation",
+      "passed": true
+    },
+    {
+      "name": "android: shell syntax step 4",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "android: shell syntax step 5",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "android: shell syntax step 6",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "android: shell syntax step 7",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "web: app build directory",
+      "passed": true
+    },
+    {
+      "name": "web: Python 3.12 selected",
+      "passed": true
+    },
+    {
+      "name": "web: existing verified-output installer and loader path",
+      "passed": true
+    },
+    {
+      "name": "web: notices and corresponding sources packaged",
+      "passed": true
+    },
+    {
+      "name": "web: engine staged before app compilation",
+      "passed": true
+    },
+    {
+      "name": "web: shell syntax step 3",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "web: shell syntax step 4",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "web: shell syntax step 5",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "web: shell syntax step 6",
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "name": "Android APK and backend both arm64",
+      "passed": true
+    },
+    {
+      "name": "macOS local signature renewed after adding library",
+      "passed": true
+    },
+    {
+      "name": "Web SDK version fixed and activated in build shell",
+      "passed": true
+    },
+    {
+      "name": "Packaged notice retained exactly: COPYING.MPL",
+      "passed": true
+    },
+    {
+      "name": "Packaged notice retained exactly: license.hunspell",
+      "passed": true
+    },
+    {
+      "name": "Packaged notice retained exactly: license.myspell",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Static YAML, Bash syntax and checked-in build/loader path consistency. The separate Linux native build and receipt-verified installer run are recorded in runtime preparation.",
+  "not_run": [
+    "GitHub Actions queries, dispatches or waits",
+    "macOS/Windows/Android app builds",
+    "WebAssembly backend build",
+    "Linux GTK desktop app build"
+  ],
+  "distribution_limits": [
+    "macOS artifact uses a local ad-hoc signature; no Developer ID signing or notarization",
+    "Android artifact targets arm64-v8a only",
+    "No iOS workflow or execution claim"
+  ],
+  "emscripten_sources": [
+    "https://emscripten.org/docs/getting_started/downloads.html",
+    "https://github.com/emscripten-core/emsdk/blob/main/emscripten-releases-tags.json"
+  ]
+}

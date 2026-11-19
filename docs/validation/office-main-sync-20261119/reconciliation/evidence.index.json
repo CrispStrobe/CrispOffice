@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "archive": "evidence.tar.xz",
+  "archive_bytes": 22960,
+  "archive_sha256": "11eab4af547b51365fe0e751496aad030d914ec04d6353c18a5b42e22ded0f5c",
+  "source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "publication_source_commit": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "scope": "Fixed401-ref direct capture at2026-11-19T07:51:46.468061Z and freshly recomputed373ancestor/28equivalent dispositions at0669; later concurrent main is separately reconciled.",
+  "members": [
+    {
+      "path": "audit/prior-equivalence-candidates.json",
+      "original": "/workspace/scratch/79e6ad9e4046/audit-review/prior-equivalence-candidates.json",
+      "bytes": 123075,
+      "sha256": "56c28d5617b2d1c0fe905f240a7d77c127c6b3fdf6504d99b6dcc3f7ea7efbf6"
+    },
+    {
+      "path": "audit/publication-b8063b8a-capture-command.json",
+      "original": "/workspace/scratch/79e6ad9e4046/audit-review/publication-b8063b8a-capture-command.json",
+      "bytes": 707,
+      "sha256": "6f30e786025e4959b51f78967bbe6cb1539df7433bb90ec3af1423fed850b7d3"
+    },
+    {
+      "path": "audit/publication-b8063b8a-vs-previous-delta.json",
+      "original": "/workspace/scratch/79e6ad9e4046/audit-review/publication-b8063b8a-vs-previous-delta.json",
+      "bytes": 1169,
+      "sha256": "889ad32017282bc5cf21f3990417c1b78aeee0d49de06f4a73faf4de7814c3a7"
+    },
+    {
+      "path": "audit/ref-audit-0669ac11.json",
+      "original": "/workspace/scratch/79e6ad9e4046/audit-review/ref-audit-0669ac11.json",
+      "bytes": 124846,
+      "sha256": "49fdcb8198ca87b909bcb52a8e14615450be565c505fea80bc156d83b61bb8d4"
+    },
+    {
+      "path": "capture/origin-advertisement.tsv",
+      "original": "/workspace/scratch/79e6ad9e4046/audit-review/publication-b8063b8a-advertisement/origin-advertisement.tsv",
+      "bytes": 28018,
+      "sha256": "1eed473e7a3b9e3d5fa2f7f1dee4730aeb0181e131a045126926a414b98df2f5"
+    },
+    {
+      "path": "capture/remote-refs.json",
+      "original": "/workspace/scratch/79e6ad9e4046/audit-review/publication-b8063b8a-advertisement/remote-refs.json",
+      "bytes": 82582,
+      "sha256": "389958a4309f768db47224aedea3e9b009f09a12f86422cb9a711c6db1a49771"
+    },
+    {
+      "path": "capture/upstream-advertisement.tsv",
+      "original": "/workspace/scratch/79e6ad9e4046/audit-review/publication-b8063b8a-advertisement/upstream-advertisement.tsv",
+      "bytes": 304,
+      "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6"
+    },
+    {
+      "path": "tools/audit_published_refs.py",
+      "original": "/workspace/scratch/79e6ad9e4046/audit-review/reconciliation-audit/audit_published_refs.py",
+      "bytes": 12187,
+      "sha256": "6ecd717495703c8dafd1817138186ace6b9f3881f23dd3c2b7fb8fad185d1d48"
+    },
+    {
+      "path": "tools/capture_remote_refs.py",
+      "original": "/workspace/scratch/79e6ad9e4046/audit-review/reconciliation-audit/capture_remote_refs.py",
+      "bytes": 2630,
+      "sha256": "5d3036f4fabdfd96682698c1fd94b95c8b3969781155ce9be70249a8f733fd83"
+    }
+  ]
+}

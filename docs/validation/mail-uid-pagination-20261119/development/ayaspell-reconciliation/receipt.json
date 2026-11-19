@@ -1,0 +1,28 @@
+{
+  "kind": "focused-development",
+  "at_utc": "2026-11-19T08:29:23.070071+00:00",
+  "result": "PASS",
+  "test_methods": 17,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/proofing/ayaspell",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "sources": {
+    "tools/proofing/ayaspell/build_bundle.py": "80edded8aa135c8213dc8ef316d2db45f26edb2c116f882751681b30db685004",
+    "tools/proofing/ayaspell/test_build_bundle.py": "72658a0784a00966ce4f1886ae424825eb54839ac2e6a744ece70b8bc43fa3e9",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py": "0c37251ea3797276e417ad5ac8e8095904e5b7fd5dbd822436821b62621afcda",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py": "9c170dced06105a0b019bb07e426bc82106a9c6bad1629820ab5aec6f72c4096"
+  },
+  "log_sha256": "15456f83485f88be2183053f67dba2e53fa8b891940214921c2402bb6fc3122b",
+  "scope": "Offline mocks only; no real Hugging Face publication. Not a complete combined acceptance run."
+}
