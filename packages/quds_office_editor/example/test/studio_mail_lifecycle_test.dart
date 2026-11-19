@@ -24,7 +24,7 @@ void main() {
             body: TextButton(
               onPressed: () => showDialog<void>(
                 context: context,
-                builder: (BuildContext context) => const StudioSavedMailDialog(
+                builder: (BuildContext context) => const StudioSavedMailView(
                   strings: StudioStrings(StudioLanguage.en),
                 ),
               ),
@@ -36,8 +36,6 @@ void main() {
     );
     await tester.tap(find.text('Show mail'));
     await tester.pumpAndSettle();
-    await tester.tap(find.byTooltip('Saved messages'));
-    await tester.pumpAndSettle();
     final MailReaderController controller = tester
         .widget<MailMessageView>(find.byType(MailMessageView))
         .controller;
@@ -48,7 +46,7 @@ void main() {
 
     await tester.tap(find.byTooltip('Close'));
     await tester.pumpAndSettle();
-    expect(find.byType(StudioSavedMailDialog), findsNothing);
+    expect(find.byType(StudioSavedMailView), findsNothing);
     expect(controller.isDisposed, isTrue);
 
     final Uint8List message = Uint8List.fromList(
@@ -60,7 +58,7 @@ void main() {
       ]),
     );
     await tester.pumpAndSettle();
-    expect(find.byType(StudioSavedMailDialog), findsNothing);
+    expect(find.byType(StudioSavedMailView), findsNothing);
     expect(tester.takeException(), isNull);
   });
 }
