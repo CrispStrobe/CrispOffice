@@ -68,3 +68,20 @@ built locally. The separate sandboxed arm64 preview passed deep signature verifi
 a 20-second startup, including loading the bundled 109-label language detector.
 See [acceptance.json](acceptance.json). It has a unique app identity and does
 not replace the installed application.
+
+## Incoming bundled macOS runtime follow-up
+
+Integrated main through `9ceb994d` (PRs #213 and #214). The macOS preview now
+contains the signed spaCy native library with a sealed digest descriptor and
+complete runtime notices. The manager offers data-only installs when that
+runtime is bundled. These data downloads still require the existing explicit
+review/consent. No Python runtime, daemon or downloaded executable is used.
+
+A further 24 Studio tests, 32 spaCy unit tests and five CrispCloud host tests
+passed. The explicit native bundle gate passed against an isolated scratch
+installation: real German and English models, lemmas, POS and named entities
+through the worker isolate. It asserted no executable package download directory
+was created. The separate arm64 Runtime Preview passed deep signature validation
+and a 20-second startup. See [bundled-runtime-acceptance.json](bundled-runtime-acceptance.json)
+and [native gate output](bundled-runtime-native-gate.log). Existing open previews
+and user documents were not replaced.
