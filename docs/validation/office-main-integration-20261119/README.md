@@ -1,11 +1,13 @@
 # Office integration for remote main — 19 November 2026
 
-**Subsequent TLS integration is being qualified.** The latest Mail and Zotero
-heads introduced native TCP/TLS ownership changes after the saved qualification
-below. Those results remain attributed to their named commits. The new combined
-TLS source and all three incoming TLS suites will receive a separate gate.
+**Historical integration receipt.** The subsequent combined TLS, parser and
+Store source passed a fresh qualification at `5569c055`, with 836 application
+executions and 78 separate Python controls. The
+[completion report](../office-main-completion-20261119/README.md) records the
+final source, all three real-TLS suites, independent audits and PR #173 as the
+final merge vehicle. Results below retain their original source identities.
 
-The final integrated application source is
+The application source qualified in this historical receipt is
 `7d279e084bae438d383630726ad7b0514da77d35`. Its focused transport/protocol/MIME/UI
 qualification passed **389 distinct cases across 32 suites**. The separately
 qualified core/store receipt contributes **199 executions / 129 distinct
@@ -13,9 +15,10 @@ scenarios**, with every recorded source and direct runtime input verified
 unchanged. Together these specifically attributed receipts cover **588
 executions / 518 distinct scenarios / 44 distinct suites**.
 
-This record accompanies the user-authorized integration into remote `main`
-through PR #174. Later publication commits change documentation and evidence
-only. Actual release acceptance remains separately tracked below. No GitHub
+This record originally accompanied integration prepared for PR #174. The final
+combined integration proceeds through PR #173 and the completion report above.
+Publication commits following each named qualification change documentation and
+evidence only. Actual release acceptance remains separately tracked below. No GitHub
 Actions run was queried, dispatched or awaited.
 
 ## Captured work and reconciliation

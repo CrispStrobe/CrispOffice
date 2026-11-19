@@ -1,11 +1,19 @@
 # Mail M06 continuation — 19 November 2026
 
+**Historical Mail-branch record.** The final combined source is qualified in the
+[Office completion report](../office-main-completion-20261119/README.md):
+836 fresh application executions and 78 separate Python controls at `5569c055`.
+The plans and reviews below preserve the earlier Mail branch design and its own
+source identities. Replay the final merged source with the completion plans;
+the merge retains the Socket API while incorporating both branches' TLS repairs.
+
 ## Recovered source and incoming reconciliation
 
 The continuation restored `eafcd80fdfbd7ff678a7a04fb9a9a98b5330ad00` from
 `codex/mail-reader-20261118`. The previously isolated M06 source had not been
 published. The continuation now includes durable flags and a bounded native
-IMAP foundation, with integrated qualification pending as described below.
+IMAP foundation, with integrated qualification still pending at this historical
+checkpoint, as described below.
 
 Three subsequently captured commits from the thesaurus and Zotero branches
 were integrated into published source
@@ -65,7 +73,7 @@ unchanged. See the [complete receipt](baseline/office-verification.json),
 [archive/case-list audit](baseline/office-archive-audit.json). Historical counts
 from earlier work are not included in these fresh results.
 
-## Integrated M06 qualification: pending
+## Earlier integrated M06 checkpoint: qualification was pending
 
 Checkpoint `c2db80d4caacb4818c06d596566e50f25811d28a` preserves nullable
 durable standard flags and schema v3 migration source. Checkpoint
@@ -75,7 +83,7 @@ The following source also preserves inherited `FormatException` compatibility
 for deterministic resource limits and removes unrelated notices from the new
 MIT package license. Existing MPL fork notices remain intact.
 
-The fresh integrated qualification will use `tools/mail/check_store.py`, the
+The planned integrated qualification used `tools/mail/check_store.py`, the
 [native plan](native-test-plan.json) and the [Node plan](node-test-plan.json)
 against one frozen published source. The native plan covers all new transport
 tests, real coordinator/SQLite integration, affected IMAP/SMTP/POP client and

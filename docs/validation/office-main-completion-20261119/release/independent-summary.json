@@ -1,0 +1,112 @@
+{
+  "audited_at_utc": "2026-11-19T07:27:38.073969+00:00",
+  "source_commit": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "application_case_executions": 836,
+  "suite_platform_executions": 85,
+  "distinct_test_files": 73,
+  "groups": [
+    {
+      "gate": "native",
+      "name": "transport-native",
+      "suites": 6,
+      "passed": 112,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "native",
+      "name": "mime-consumer-vm",
+      "suites": 6,
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "native",
+      "name": "mail-ui-consumers",
+      "suites": 4,
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "native",
+      "name": "enough-mail-protocol-regressions",
+      "suites": 44,
+      "passed": 428,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "node",
+      "name": "transport-node-unsupported",
+      "suites": 1,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "node",
+      "name": "mime-consumer-node",
+      "suites": 6,
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "store",
+      "name": "core-vm",
+      "suites": 4,
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "store",
+      "name": "core-node",
+      "suites": 4,
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "store",
+      "name": "store-vm",
+      "suites": 7,
+      "passed": 95,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "gate": "store",
+      "name": "portable-node",
+      "suites": 3,
+      "passed": 42,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "failed": 0,
+  "skipped": 0,
+  "combined_separate_python_controls": 78,
+  "store_execution_source_commit": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "historical_office_cases_added": 0,
+  "development_cases_added": 0,
+  "runtime_receipt_sha256": "b66a21b8923a8391fbc4aa85832dee7cd559ca2e8752fb2743533e54ff1ca35b",
+  "issues": [],
+  "passed": true,
+  "source_tree": "9d2c815eda61378fbc4b234124e8e7c9cfeacb5b",
+  "all_execution_sources_identical": true,
+  "historical_completed_gate_cases_added": 0,
+  "complete_audit_member": "reconciliation-audit/release-5569c055/independent-summary.json",
+  "complete_audit_sha256": "10dfaa036ad83067d8dda6795c3a5447238aa3bed58648ab856e4939686ca995",
+  "native_source_inputs_reverified": 5031,
+  "node_source_inputs_reverified": 5031,
+  "native_runtime_inputs_reverified": 11164,
+  "node_runtime_inputs_reverified": 11161,
+  "store_source_inputs_reverified": 53,
+  "store_driver_runtime_config_inputs_reverified": 20,
+  "store_launcher_inputs_reverified": 7,
+  "source_and_runtime_unchanged": true,
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

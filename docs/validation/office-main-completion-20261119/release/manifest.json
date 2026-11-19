@@ -1,0 +1,34 @@
+{
+  "created_at_utc": "2026-11-19T07:28:01.749215+00:00",
+  "scope": "Complete fresh release Store/native/Node/support execution and independent source/runtime/ref audits at one published source. Earlier completed gates and development attempts are excluded.",
+  "source_commit": "5569c055a021c893e941fc54d40499ad9d96a5db",
+  "source_tree": "9d2c815eda61378fbc4b234124e8e7c9cfeacb5b",
+  "application_case_executions": 836,
+  "suite_platform_executions": 85,
+  "distinct_test_files": 73,
+  "separate_python_controls": 78,
+  "historical_or_development_cases_added": 0,
+  "summary_sha256": {
+    "independent-summary.json": "f15593f7b517c42597f9e1e01b726315576411ad05fe9b25b1ce0337145cc969",
+    "reconciliation-summary.json": "5e191c34f06569d55e5ed4437e3a7b5bc387865a3f5efb9e99977c0ec406ccd7",
+    "coverage-summary.json": "3161b6bda4d45527516b59f81942ba011922ae98ce3de9c32e14f5ee161beb82"
+  },
+  "runtime_evidence_references": [
+    {
+      "index_repository_path": "docs/validation/office-main-completion-20261119/evidence/runtime-evidence.index.json",
+      "index_sha256": "87428b2d6c1f480d07704e95c4f8be81aebe2e2b1dd53da608e776d17e8d5b5f",
+      "archive_repository_path": "docs/validation/office-main-completion-20261119/evidence/runtime-evidence.tar.xz",
+      "archive_sha256": "8635c4551aff3ee35a5b07113bd59b157ec234660efdc16b6da80552c826953d",
+      "archive_bytes": 917740
+    },
+    {
+      "index_repository_path": "docs/validation/office-main-completion-20261119/evidence/runtime-replay-fix.index.json",
+      "index_sha256": "3b2fc321a7f9be37c2987cae40c007a459d8fbd5ced118ded0dc3285a5783ee2",
+      "archive_repository_path": "docs/validation/office-main-completion-20261119/evidence/runtime-replay-fix.tar.xz",
+      "archive_sha256": "f3fe9a95f2e640a2b39e7cfb78af9ea0f84e82f904de308283b1092ad9fe41f8",
+      "archive_bytes": 13196
+    }
+  ],
+  "runtime_binaries_included": false,
+  "github_actions": "NOT QUERIED OR AWAITED"
+}
