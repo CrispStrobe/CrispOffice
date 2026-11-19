@@ -97,8 +97,7 @@ class StudioPdfViewerEvents {
   }
 
   void link(PdfLinkAction action) {
-    final String target =
-        action.uri ??
+    final String target = action.uri ??
         (action.pageIndex != null ? 'page ${action.pageIndex! + 1}' : '?');
     _mark('onLinkHandle($target)');
   }

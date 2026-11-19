@@ -484,7 +484,11 @@ pw.Widget _label(String text) {
 }
 
 pw.Widget _swatch(String color) {
-  return pw.Container(width: 48, height: 40, color: color);
+  return pw.Container(
+    width: 48,
+    height: 40,
+    color: color,
+  );
 }
 
 pw.Widget _clipCard(pw.Widget clip, String name) {
