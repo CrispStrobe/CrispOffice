@@ -302,7 +302,11 @@ These figures were measured on an Apple M1 shared with other agents (load
   - Native (AOT Dart, through the policy and the FFI isolate, one request
     per paragraph, 8,027 sentences): mean 0.17–0.32 ms, p50 0.15–0.24 ms,
     p95 0.38–0.74 ms.
-  - Web worker (Node 26, in-process): mean 0.35 ms, p95 0.83 ms.
+  - Web: in headless Chrome 157, through the dart2js transport and the
+    module worker (`tool/browser_smoke.{dart,py}`), the mean is 0.37 ms and
+    p95 0.7 ms (the browser timer has 0.1 ms resolution). The worker starts
+    and the model opens in 0.38 s. In-process in Node 26: mean 0.35 ms, p95
+    0.83 ms.
   - A proofing pass detects all uncached paragraphs in one batch before it
     routes them.
 - **Size added:**
