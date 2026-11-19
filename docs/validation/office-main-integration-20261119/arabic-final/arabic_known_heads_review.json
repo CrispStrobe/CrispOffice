@@ -1,0 +1,66 @@
+{
+  "checked_at_utc": "2026-11-19T08:07:52.057065+00:00",
+  "frozen_source": "e41679f85c511bc8cf42447d3d1af0931884dee2",
+  "frozen_tree": "9cdc66213dc329265057a8511357ce53f4583604",
+  "known_incoming_heads": [
+    {
+      "label": "main after PR176",
+      "commit": "f059065fa622da8cee7824d66d29a2aff414d529",
+      "tree": "ffc952a7fd80699449fb25bb8c802e68f473e5b3",
+      "parents": [
+        "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+        "16cbbebdcf7781564658cc7636473c7d04846b38"
+      ],
+      "ancestor_of_frozen_source": true
+    },
+    {
+      "label": "PR177 incoming head",
+      "commit": "c268ce3bceb05f92b7868e90ba8ce7b9a5bbbe1e",
+      "tree": "aaa59b09bd369148e49495f1c480fc79d67c48d9",
+      "parents": [
+        "c94f833f720fd00dd829b8dbe26bdd254a535247"
+      ],
+      "ancestor_of_frozen_source": true
+    },
+    {
+      "label": "PR178 incoming head",
+      "commit": "0b8f8f7f78fbf4e2e26671ecf9a0d858c38ca75c",
+      "tree": "aa0be0c6690b36b83f7e996542363fa1b446049f",
+      "parents": [
+        "c1dc63f934f81e22a41bafd98df1abf22ee6a053",
+        "df98958045f8a63e26d827a819958ddaab13352b"
+      ],
+      "ancestor_of_frozen_source": true
+    },
+    {
+      "label": "main after PR180",
+      "commit": "f7117a493055008a72e6e16713dd67a4f7c2ad39",
+      "tree": "933e3af6ca216df4c6c49197b666ae83197d4914",
+      "parents": [
+        "f059065fa622da8cee7824d66d29a2aff414d529",
+        "8717d8515f0f07875e0d7ed7a0ad73fa319cb594"
+      ],
+      "ancestor_of_frozen_source": true
+    }
+  ],
+  "known_head_count": 4,
+  "all_known_heads_are_ancestors": true,
+  "secondary_merge_parents_derived_from_immutable_commits": [
+    {
+      "observed_merge": "f059065fa622da8cee7824d66d29a2aff414d529",
+      "secondary_parent": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "ancestor_of_frozen_source": true
+    },
+    {
+      "observed_merge": "f7117a493055008a72e6e16713dd67a4f7c2ad39",
+      "secondary_parent": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "ancestor_of_frozen_source": true
+    }
+  ],
+  "saved_inventory_scope": "Separate from the previously saved 409-reference inventory. These four additional known commit observations do not constitute a new advertisement or increase the unique-reference count to 413.",
+  "input_provenance": "Explicit incoming heads supplied for the frozen integration cutoff and already present in local Git; no remote refresh.",
+  "no_github_actions": true,
+  "remote_queries": 0,
+  "repository_or_runtime_mutations": 0,
+  "passed": true
+}

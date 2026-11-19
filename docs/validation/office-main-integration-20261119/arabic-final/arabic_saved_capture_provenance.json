@@ -1,0 +1,2936 @@
+{
+  "captured_at_utc": "2026-11-19T07:40:22.759983+00:00",
+  "frozen_source": "ac1e4c8c788ea608402c2260488235c0189efcba",
+  "frozen_tree": "0ef943f525bfda5d04bddfce55d6c3b4bd3f581a",
+  "inventory_kind": "normalized snapshot of already-fetched local refs; not a new remote advertisement",
+  "fork_inventory": {
+    "path": "socket_fork_refs.txt",
+    "rows": 405,
+    "sha256": "4333ba447043356a3851541f606d96dfa7ace0fb5a3d4dfc514ac167c1c93c0a",
+    "counts": {
+      "branch": 213,
+      "tag": 17,
+      "pr_head": 175
+    }
+  },
+  "raw_local_observations": {
+    "path": "socket_local_refs.tsv",
+    "rows": 583,
+    "sha256": "25fdac9c7eedafffd9e8ce343c42f33e7bc54f9004f074c7c3c7ee516e0a6c25"
+  },
+  "upstream_inventory": {
+    "path": "socket_upstream_refs.txt",
+    "rows": 4,
+    "sha256": "77e7e8cc2b1515cdb809f70b12b9fff6422cb256a068d33ccce0d5ff827b1eb6",
+    "provenance": "Exact copy of prior literal final-upstream-refs.txt advertisement; not refreshed"
+  },
+  "known_incoming_cutoff": [
+    {
+      "ref": "refs/heads/main",
+      "object": "d41000336c84b6ebfe6b35f7f8335140b5d46038",
+      "included_in_frozen_source_by_ancestry": true
+    },
+    {
+      "ref": "refs/heads/codex/mail-reader-20261118",
+      "object": "700e5a35ce5f96e7abd1dc92d1a00d2110d40649",
+      "included_in_frozen_source_by_ancestry": true
+    },
+    {
+      "ref": "refs/heads/codex/zotero-word-parity-20261118",
+      "object": "022a974a96db23e22bc161f7d465e4b972e8c2a9",
+      "included_in_frozen_source_by_ancestry": true
+    },
+    {
+      "ref": "refs/heads/codex/office-main-integration-20261119",
+      "object": "ac1e4c8c788ea608402c2260488235c0189efcba",
+      "included_in_frozen_source_by_ancestry": true
+    }
+  ],
+  "known_incoming_pr_context": {
+    "172": "700e5a35ce5f96e7abd1dc92d1a00d2110d40649",
+    "173": "022a974a96db23e22bc161f7d465e4b972e8c2a9"
+  },
+  "pr_context_scope": "Known incoming heads were supplied by parent after its PR metadata check and fetched as origin branch heads. Stale local PR aliases are preserved literally and are not relabeled as newer observations.",
+  "pr_alias_normalization": [
+    {
+      "normalized_ref": "refs/pull/1/head",
+      "selected_object": "54f0f8de01416640560519aa9d732f668f603709",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/1",
+          "object": "54f0f8de01416640560519aa9d732f668f603709"
+        },
+        {
+          "local_ref": "refs/remotes/pull/1",
+          "object": "54f0f8de01416640560519aa9d732f668f603709"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/2/head",
+      "selected_object": "08b09485588d2b6270f594a07c983689c087587d",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/2",
+          "object": "08b09485588d2b6270f594a07c983689c087587d"
+        },
+        {
+          "local_ref": "refs/remotes/pull/2",
+          "object": "08b09485588d2b6270f594a07c983689c087587d"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/3/head",
+      "selected_object": "e550723b0f2a7cd849970f58820d260c36857502",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/3",
+          "object": "e550723b0f2a7cd849970f58820d260c36857502"
+        },
+        {
+          "local_ref": "refs/remotes/pull/3",
+          "object": "e550723b0f2a7cd849970f58820d260c36857502"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/4/head",
+      "selected_object": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/4",
+          "object": "09f5ec4b8eba290ff4d65678179854fb6ff6a468"
+        },
+        {
+          "local_ref": "refs/remotes/pull/4",
+          "object": "09f5ec4b8eba290ff4d65678179854fb6ff6a468"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/5/head",
+      "selected_object": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/5",
+          "object": "da0979a5c6c4273ea68f360ce9a079bfa747384f"
+        },
+        {
+          "local_ref": "refs/remotes/pull/5",
+          "object": "da0979a5c6c4273ea68f360ce9a079bfa747384f"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/6/head",
+      "selected_object": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/6",
+          "object": "78ed85f5fd19d44f672dee11420fed261c974f4a"
+        },
+        {
+          "local_ref": "refs/remotes/pull/6",
+          "object": "78ed85f5fd19d44f672dee11420fed261c974f4a"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/7/head",
+      "selected_object": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/7",
+          "object": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80"
+        },
+        {
+          "local_ref": "refs/remotes/pull/7",
+          "object": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/8/head",
+      "selected_object": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/8",
+          "object": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7"
+        },
+        {
+          "local_ref": "refs/remotes/pull/8",
+          "object": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/9/head",
+      "selected_object": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/9",
+          "object": "58de54567d45e38c05dd77064b7607c577374b9d"
+        },
+        {
+          "local_ref": "refs/remotes/pull/9",
+          "object": "58de54567d45e38c05dd77064b7607c577374b9d"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/10/head",
+      "selected_object": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/10",
+          "object": "1b1bac125f426b05f868d482e9fbd657d4ffb73a"
+        },
+        {
+          "local_ref": "refs/remotes/pull/10",
+          "object": "1b1bac125f426b05f868d482e9fbd657d4ffb73a"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/11/head",
+      "selected_object": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/11",
+          "object": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5"
+        },
+        {
+          "local_ref": "refs/remotes/pull/11",
+          "object": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/12/head",
+      "selected_object": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/12",
+          "object": "579f2105cf7fca61536f7e3f9b59004929bdb6c5"
+        },
+        {
+          "local_ref": "refs/remotes/pull/12",
+          "object": "579f2105cf7fca61536f7e3f9b59004929bdb6c5"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/13/head",
+      "selected_object": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/13",
+          "object": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e"
+        },
+        {
+          "local_ref": "refs/remotes/pull/13",
+          "object": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/14/head",
+      "selected_object": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/14",
+          "object": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da"
+        },
+        {
+          "local_ref": "refs/remotes/pull/14",
+          "object": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/15/head",
+      "selected_object": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/15",
+          "object": "448eff5aac55054a34eccd4f8a1e79e754909a05"
+        },
+        {
+          "local_ref": "refs/remotes/pull/15",
+          "object": "448eff5aac55054a34eccd4f8a1e79e754909a05"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/16/head",
+      "selected_object": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/16",
+          "object": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e"
+        },
+        {
+          "local_ref": "refs/remotes/pull/16",
+          "object": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/17/head",
+      "selected_object": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/17",
+          "object": "89c7f06c592edde0c67774e9c7e087d96f52184b"
+        },
+        {
+          "local_ref": "refs/remotes/pull/17",
+          "object": "89c7f06c592edde0c67774e9c7e087d96f52184b"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/18/head",
+      "selected_object": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/18",
+          "object": "f31cf308013ceb4527e3f4de677785894bb1bfc0"
+        },
+        {
+          "local_ref": "refs/remotes/pull/18",
+          "object": "f31cf308013ceb4527e3f4de677785894bb1bfc0"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/19/head",
+      "selected_object": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/19",
+          "object": "e8227569a3b90fb21db598483690bd13fe74ddef"
+        },
+        {
+          "local_ref": "refs/remotes/pull/19",
+          "object": "e8227569a3b90fb21db598483690bd13fe74ddef"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/20/head",
+      "selected_object": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/20",
+          "object": "5278aafd512640608fe06b8f7d357c4cffe8520a"
+        },
+        {
+          "local_ref": "refs/remotes/pull/20",
+          "object": "5278aafd512640608fe06b8f7d357c4cffe8520a"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/21/head",
+      "selected_object": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/21",
+          "object": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2"
+        },
+        {
+          "local_ref": "refs/remotes/pull/21",
+          "object": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/22/head",
+      "selected_object": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/22",
+          "object": "4637ddce4154f4b50105c7322fedc1c75fd02193"
+        },
+        {
+          "local_ref": "refs/remotes/pull/22",
+          "object": "4637ddce4154f4b50105c7322fedc1c75fd02193"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/23/head",
+      "selected_object": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/23",
+          "object": "e002b9584bead9761fac8c7cf818431966d1b1c3"
+        },
+        {
+          "local_ref": "refs/remotes/pull/23",
+          "object": "e002b9584bead9761fac8c7cf818431966d1b1c3"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/24/head",
+      "selected_object": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/24",
+          "object": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661"
+        },
+        {
+          "local_ref": "refs/remotes/pull/24",
+          "object": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/25/head",
+      "selected_object": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/25",
+          "object": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8"
+        },
+        {
+          "local_ref": "refs/remotes/pull/25",
+          "object": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/26/head",
+      "selected_object": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/26",
+          "object": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae"
+        },
+        {
+          "local_ref": "refs/remotes/pull/26",
+          "object": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/27/head",
+      "selected_object": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/27",
+          "object": "cde05b85bcd00c26d519d43283fcc6b55a1884e7"
+        },
+        {
+          "local_ref": "refs/remotes/pull/27",
+          "object": "cde05b85bcd00c26d519d43283fcc6b55a1884e7"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/28/head",
+      "selected_object": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/28",
+          "object": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4"
+        },
+        {
+          "local_ref": "refs/remotes/pull/28",
+          "object": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/29/head",
+      "selected_object": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/29",
+          "object": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+        },
+        {
+          "local_ref": "refs/remotes/pull/29",
+          "object": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/30/head",
+      "selected_object": "49b447324159595c59e64d8425b54a09f79ec736",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/30",
+          "object": "49b447324159595c59e64d8425b54a09f79ec736"
+        },
+        {
+          "local_ref": "refs/remotes/pull/30",
+          "object": "49b447324159595c59e64d8425b54a09f79ec736"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/31/head",
+      "selected_object": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/31",
+          "object": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+        },
+        {
+          "local_ref": "refs/remotes/pull/31",
+          "object": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/32/head",
+      "selected_object": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/32",
+          "object": "46850ae47e0241733750decb22417a0150e4b0e4"
+        },
+        {
+          "local_ref": "refs/remotes/pull/32",
+          "object": "46850ae47e0241733750decb22417a0150e4b0e4"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/33/head",
+      "selected_object": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/33",
+          "object": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+        },
+        {
+          "local_ref": "refs/remotes/pull/33",
+          "object": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/34/head",
+      "selected_object": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/34",
+          "object": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+        },
+        {
+          "local_ref": "refs/remotes/pull/34",
+          "object": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/35/head",
+      "selected_object": "e59751246a200e7477657d0e4835bf77b153422c",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/35",
+          "object": "e59751246a200e7477657d0e4835bf77b153422c"
+        },
+        {
+          "local_ref": "refs/remotes/pull/35",
+          "object": "e59751246a200e7477657d0e4835bf77b153422c"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/36/head",
+      "selected_object": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/36",
+          "object": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+        },
+        {
+          "local_ref": "refs/remotes/pull/36",
+          "object": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/37/head",
+      "selected_object": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/37",
+          "object": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+        },
+        {
+          "local_ref": "refs/remotes/pull/37",
+          "object": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/38/head",
+      "selected_object": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/38",
+          "object": "752a94dfddf69522429f3025f9d25702499cb6da"
+        },
+        {
+          "local_ref": "refs/remotes/pull/38",
+          "object": "752a94dfddf69522429f3025f9d25702499cb6da"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/39/head",
+      "selected_object": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/39",
+          "object": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+        },
+        {
+          "local_ref": "refs/remotes/pull/39",
+          "object": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/40/head",
+      "selected_object": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/40",
+          "object": "8855b88a96b5c94349e3b5278c339228a1688c3e"
+        },
+        {
+          "local_ref": "refs/remotes/pull/40",
+          "object": "8855b88a96b5c94349e3b5278c339228a1688c3e"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/41/head",
+      "selected_object": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/41",
+          "object": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+        },
+        {
+          "local_ref": "refs/remotes/pull/41",
+          "object": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/42/head",
+      "selected_object": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/42",
+          "object": "8fc3d06be36da5c2176feb107c14245f61650d75"
+        },
+        {
+          "local_ref": "refs/remotes/pull/42",
+          "object": "8fc3d06be36da5c2176feb107c14245f61650d75"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/43/head",
+      "selected_object": "20681b8658392212c128f51b4c91f0b638942448",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/43",
+          "object": "20681b8658392212c128f51b4c91f0b638942448"
+        },
+        {
+          "local_ref": "refs/remotes/pull/43",
+          "object": "20681b8658392212c128f51b4c91f0b638942448"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/44/head",
+      "selected_object": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/44",
+          "object": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+        },
+        {
+          "local_ref": "refs/remotes/pull/44",
+          "object": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/45/head",
+      "selected_object": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/45",
+          "object": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+        },
+        {
+          "local_ref": "refs/remotes/pull/45",
+          "object": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/46/head",
+      "selected_object": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/46",
+          "object": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+        },
+        {
+          "local_ref": "refs/remotes/pull/46",
+          "object": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/47/head",
+      "selected_object": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/47",
+          "object": "fc37658c907edf6687eccb9564d3046283b49a3a"
+        },
+        {
+          "local_ref": "refs/remotes/pull/47",
+          "object": "fc37658c907edf6687eccb9564d3046283b49a3a"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/48/head",
+      "selected_object": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/48",
+          "object": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+        },
+        {
+          "local_ref": "refs/remotes/pull/48",
+          "object": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/49/head",
+      "selected_object": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/49",
+          "object": "a5febc3362d2fccdb979f012a5296af72e465797"
+        },
+        {
+          "local_ref": "refs/remotes/pull/49",
+          "object": "a5febc3362d2fccdb979f012a5296af72e465797"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/50/head",
+      "selected_object": "428679a33381f943a8ae63117d4207f01dd15462",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/50",
+          "object": "428679a33381f943a8ae63117d4207f01dd15462"
+        },
+        {
+          "local_ref": "refs/remotes/pull/50",
+          "object": "428679a33381f943a8ae63117d4207f01dd15462"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/51/head",
+      "selected_object": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/51",
+          "object": "8769019fb8be5483939edd4655dd88005e2515c4"
+        },
+        {
+          "local_ref": "refs/remotes/pull/51",
+          "object": "8769019fb8be5483939edd4655dd88005e2515c4"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/52/head",
+      "selected_object": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/52",
+          "object": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+        },
+        {
+          "local_ref": "refs/remotes/pull/52",
+          "object": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/53/head",
+      "selected_object": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/53",
+          "object": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+        },
+        {
+          "local_ref": "refs/remotes/pull/53",
+          "object": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/54/head",
+      "selected_object": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/54",
+          "object": "49ba086251ba61032f15b3e7b726fc921874fd12"
+        },
+        {
+          "local_ref": "refs/remotes/pull/54",
+          "object": "49ba086251ba61032f15b3e7b726fc921874fd12"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/55/head",
+      "selected_object": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/55",
+          "object": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+        },
+        {
+          "local_ref": "refs/remotes/pull/55",
+          "object": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/56/head",
+      "selected_object": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/56",
+          "object": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+        },
+        {
+          "local_ref": "refs/remotes/pull/56",
+          "object": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/57/head",
+      "selected_object": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/57",
+          "object": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+        },
+        {
+          "local_ref": "refs/remotes/pull/57",
+          "object": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/58/head",
+      "selected_object": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/58",
+          "object": "864e674795eb422855df2b26ccc375d3255e61a2"
+        },
+        {
+          "local_ref": "refs/remotes/pull/58",
+          "object": "864e674795eb422855df2b26ccc375d3255e61a2"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/59/head",
+      "selected_object": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/59",
+          "object": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+        },
+        {
+          "local_ref": "refs/remotes/pull/59",
+          "object": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/60/head",
+      "selected_object": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/60",
+          "object": "988f423b9b95037d8f5273ee368b58ceedab0667"
+        },
+        {
+          "local_ref": "refs/remotes/pull/60",
+          "object": "988f423b9b95037d8f5273ee368b58ceedab0667"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/61/head",
+      "selected_object": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/61",
+          "object": "b23ee557ea121774833c7a188a49189e4f80ce70"
+        },
+        {
+          "local_ref": "refs/remotes/pull/61",
+          "object": "b23ee557ea121774833c7a188a49189e4f80ce70"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/62/head",
+      "selected_object": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/62",
+          "object": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+        },
+        {
+          "local_ref": "refs/remotes/pull/62",
+          "object": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/63/head",
+      "selected_object": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/63",
+          "object": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+        },
+        {
+          "local_ref": "refs/remotes/pull/63",
+          "object": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/64/head",
+      "selected_object": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/64",
+          "object": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+        },
+        {
+          "local_ref": "refs/remotes/pull/64",
+          "object": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/65/head",
+      "selected_object": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/65",
+          "object": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+        },
+        {
+          "local_ref": "refs/remotes/pull/65",
+          "object": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/66/head",
+      "selected_object": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/66",
+          "object": "379fa8663c81f32b4328415f56c776746ccc23bc"
+        },
+        {
+          "local_ref": "refs/remotes/pull/66",
+          "object": "379fa8663c81f32b4328415f56c776746ccc23bc"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/67/head",
+      "selected_object": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/67",
+          "object": "0ee0a8320875248adac9718cae2e67875b6b932c"
+        },
+        {
+          "local_ref": "refs/remotes/pull/67",
+          "object": "0ee0a8320875248adac9718cae2e67875b6b932c"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/68/head",
+      "selected_object": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/68",
+          "object": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+        },
+        {
+          "local_ref": "refs/remotes/pull/68",
+          "object": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/69/head",
+      "selected_object": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/69",
+          "object": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+        },
+        {
+          "local_ref": "refs/remotes/pull/69",
+          "object": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/70/head",
+      "selected_object": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/70",
+          "object": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+        },
+        {
+          "local_ref": "refs/remotes/pull/70",
+          "object": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/71/head",
+      "selected_object": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/71",
+          "object": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+        },
+        {
+          "local_ref": "refs/remotes/pull/71",
+          "object": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/72/head",
+      "selected_object": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/72",
+          "object": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+        },
+        {
+          "local_ref": "refs/remotes/pull/72",
+          "object": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/73/head",
+      "selected_object": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/73",
+          "object": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+        },
+        {
+          "local_ref": "refs/remotes/pull/73",
+          "object": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/74/head",
+      "selected_object": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/74",
+          "object": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+        },
+        {
+          "local_ref": "refs/remotes/pull/74",
+          "object": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/75/head",
+      "selected_object": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/75",
+          "object": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+        },
+        {
+          "local_ref": "refs/remotes/pull/75",
+          "object": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/76/head",
+      "selected_object": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/76",
+          "object": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+        },
+        {
+          "local_ref": "refs/remotes/pull/76",
+          "object": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/77/head",
+      "selected_object": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/77",
+          "object": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+        },
+        {
+          "local_ref": "refs/remotes/pull/77",
+          "object": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/78/head",
+      "selected_object": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/78",
+          "object": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+        },
+        {
+          "local_ref": "refs/remotes/pull/78",
+          "object": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/79/head",
+      "selected_object": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/79",
+          "object": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+        },
+        {
+          "local_ref": "refs/remotes/pull/79",
+          "object": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/80/head",
+      "selected_object": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/80",
+          "object": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+        },
+        {
+          "local_ref": "refs/remotes/pull/80",
+          "object": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/81/head",
+      "selected_object": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/81",
+          "object": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+        },
+        {
+          "local_ref": "refs/remotes/pull/81",
+          "object": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/82/head",
+      "selected_object": "4497c737623c1339d2422487d53941c20472bac9",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/82",
+          "object": "4497c737623c1339d2422487d53941c20472bac9"
+        },
+        {
+          "local_ref": "refs/remotes/pull/82",
+          "object": "4497c737623c1339d2422487d53941c20472bac9"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/83/head",
+      "selected_object": "331be9688e2de1feb52635490b534042dea10c27",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/83",
+          "object": "331be9688e2de1feb52635490b534042dea10c27"
+        },
+        {
+          "local_ref": "refs/remotes/pull/83",
+          "object": "331be9688e2de1feb52635490b534042dea10c27"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/84/head",
+      "selected_object": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/84",
+          "object": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+        },
+        {
+          "local_ref": "refs/remotes/pull/84",
+          "object": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/85/head",
+      "selected_object": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/85",
+          "object": "9f2dbd81c2289a2285521e1491a9c860c4b59646"
+        },
+        {
+          "local_ref": "refs/remotes/pull/85",
+          "object": "9f2dbd81c2289a2285521e1491a9c860c4b59646"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/86/head",
+      "selected_object": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/86",
+          "object": "001367e89cb0034cf33467783d7258bb0800deb9"
+        },
+        {
+          "local_ref": "refs/remotes/pull/86",
+          "object": "001367e89cb0034cf33467783d7258bb0800deb9"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/87/head",
+      "selected_object": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/87",
+          "object": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+        },
+        {
+          "local_ref": "refs/remotes/pull/87",
+          "object": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/88/head",
+      "selected_object": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/88",
+          "object": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+        },
+        {
+          "local_ref": "refs/remotes/pull/88",
+          "object": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/89/head",
+      "selected_object": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/89",
+          "object": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+        },
+        {
+          "local_ref": "refs/remotes/pull/89",
+          "object": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/90/head",
+      "selected_object": "6da74faa9160275df9c10a864c758033c92f114d",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/90",
+          "object": "6da74faa9160275df9c10a864c758033c92f114d"
+        },
+        {
+          "local_ref": "refs/remotes/pull/90",
+          "object": "6da74faa9160275df9c10a864c758033c92f114d"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/91/head",
+      "selected_object": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/91",
+          "object": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+        },
+        {
+          "local_ref": "refs/remotes/pull/91",
+          "object": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/92/head",
+      "selected_object": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/92",
+          "object": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+        },
+        {
+          "local_ref": "refs/remotes/pull/92",
+          "object": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/93/head",
+      "selected_object": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/93",
+          "object": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+        },
+        {
+          "local_ref": "refs/remotes/pull/93",
+          "object": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/94/head",
+      "selected_object": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/94",
+          "object": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+        },
+        {
+          "local_ref": "refs/remotes/pull/94",
+          "object": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/95/head",
+      "selected_object": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/95",
+          "object": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+        },
+        {
+          "local_ref": "refs/remotes/pull/95",
+          "object": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/96/head",
+      "selected_object": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/96",
+          "object": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+        },
+        {
+          "local_ref": "refs/remotes/pull/96",
+          "object": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/97/head",
+      "selected_object": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/97",
+          "object": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+        },
+        {
+          "local_ref": "refs/remotes/pull/97",
+          "object": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/98/head",
+      "selected_object": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/98",
+          "object": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+        },
+        {
+          "local_ref": "refs/remotes/pull/98",
+          "object": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/99/head",
+      "selected_object": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/99",
+          "object": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+        },
+        {
+          "local_ref": "refs/remotes/pull/99",
+          "object": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/100/head",
+      "selected_object": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/100",
+          "object": "946942a1e30332892aaf19a068ca5a29470d682a"
+        },
+        {
+          "local_ref": "refs/remotes/pull/100",
+          "object": "946942a1e30332892aaf19a068ca5a29470d682a"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/101/head",
+      "selected_object": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/101",
+          "object": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647"
+        },
+        {
+          "local_ref": "refs/remotes/pull/101",
+          "object": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/102/head",
+      "selected_object": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/102",
+          "object": "1549a9c7884eb688732262398b5d9859a68103eb"
+        },
+        {
+          "local_ref": "refs/remotes/pull/102",
+          "object": "1549a9c7884eb688732262398b5d9859a68103eb"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/103/head",
+      "selected_object": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/103",
+          "object": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+        },
+        {
+          "local_ref": "refs/remotes/pull/103",
+          "object": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/104/head",
+      "selected_object": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/104",
+          "object": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+        },
+        {
+          "local_ref": "refs/remotes/pull/104",
+          "object": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/105/head",
+      "selected_object": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/105",
+          "object": "6f1abf273bd10d7ebe5641661dd307c492f897c2"
+        },
+        {
+          "local_ref": "refs/remotes/pull/105",
+          "object": "6f1abf273bd10d7ebe5641661dd307c492f897c2"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/106/head",
+      "selected_object": "7686ec52876288e6799023fd686af79228236826",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/106",
+          "object": "7686ec52876288e6799023fd686af79228236826"
+        },
+        {
+          "local_ref": "refs/remotes/pull/106",
+          "object": "7686ec52876288e6799023fd686af79228236826"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/107/head",
+      "selected_object": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/107",
+          "object": "8471633ed09e2a49ba35ff162a2bac5eb04073c9"
+        },
+        {
+          "local_ref": "refs/remotes/pull/107",
+          "object": "8471633ed09e2a49ba35ff162a2bac5eb04073c9"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/108/head",
+      "selected_object": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/108",
+          "object": "3ec638bd7de5cb6648774abbf14da1c315f5e418"
+        },
+        {
+          "local_ref": "refs/remotes/pull/108",
+          "object": "3ec638bd7de5cb6648774abbf14da1c315f5e418"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/109/head",
+      "selected_object": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/109",
+          "object": "b842ae4b4df892ec5f058f6207589953f3e9dae9"
+        },
+        {
+          "local_ref": "refs/remotes/pull/109",
+          "object": "b842ae4b4df892ec5f058f6207589953f3e9dae9"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/110/head",
+      "selected_object": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/110",
+          "object": "35ae6328a884975c23d2aa5001bf0df05a436f91"
+        },
+        {
+          "local_ref": "refs/remotes/pull/110",
+          "object": "35ae6328a884975c23d2aa5001bf0df05a436f91"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/111/head",
+      "selected_object": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/111",
+          "object": "d1738017afd3696adbd2e895678b1fa7d26065ec"
+        },
+        {
+          "local_ref": "refs/remotes/pull/111",
+          "object": "d1738017afd3696adbd2e895678b1fa7d26065ec"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/112/head",
+      "selected_object": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/112",
+          "object": "12601a41b6785dcd1d617adba8e13297d9af4bc0"
+        },
+        {
+          "local_ref": "refs/remotes/pull/112",
+          "object": "12601a41b6785dcd1d617adba8e13297d9af4bc0"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/113/head",
+      "selected_object": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/113",
+          "object": "93c832f53982a9f5956f19ae0cb9418f55fac8c0"
+        },
+        {
+          "local_ref": "refs/remotes/pull/113",
+          "object": "93c832f53982a9f5956f19ae0cb9418f55fac8c0"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/114/head",
+      "selected_object": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/114",
+          "object": "867df7f257eac69adfe3355c051cdb2f773c53ac"
+        },
+        {
+          "local_ref": "refs/remotes/pull/114",
+          "object": "867df7f257eac69adfe3355c051cdb2f773c53ac"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/115/head",
+      "selected_object": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/115",
+          "object": "b54ef7d2955f44266a87d9067d0e4c332e868c54"
+        },
+        {
+          "local_ref": "refs/remotes/pull/115",
+          "object": "b54ef7d2955f44266a87d9067d0e4c332e868c54"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/116/head",
+      "selected_object": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/116",
+          "object": "6a32a919325d71c121c63e3879cfd1b28d64312e"
+        },
+        {
+          "local_ref": "refs/remotes/pull/116",
+          "object": "6a32a919325d71c121c63e3879cfd1b28d64312e"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/117/head",
+      "selected_object": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/117",
+          "object": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d"
+        },
+        {
+          "local_ref": "refs/remotes/pull/117",
+          "object": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/118/head",
+      "selected_object": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/118",
+          "object": "4391669c881cbcba372c742d2300c24cdc465a2f"
+        },
+        {
+          "local_ref": "refs/remotes/pull/118",
+          "object": "4391669c881cbcba372c742d2300c24cdc465a2f"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/119/head",
+      "selected_object": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/119",
+          "object": "2c7d58d2e83e542655db7e9bbcc04b6bade44902"
+        },
+        {
+          "local_ref": "refs/remotes/pull/119",
+          "object": "2c7d58d2e83e542655db7e9bbcc04b6bade44902"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/120/head",
+      "selected_object": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/120",
+          "object": "e37ccdb47c047f6a0250585cf5cb20efc17573b4"
+        },
+        {
+          "local_ref": "refs/remotes/pull/120",
+          "object": "e37ccdb47c047f6a0250585cf5cb20efc17573b4"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/121/head",
+      "selected_object": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/121",
+          "object": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f"
+        },
+        {
+          "local_ref": "refs/remotes/pull/121",
+          "object": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/122/head",
+      "selected_object": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/122",
+          "object": "54a3a8593bdb34dd7c1f737960aa732d401fc2da"
+        },
+        {
+          "local_ref": "refs/remotes/pull/122",
+          "object": "54a3a8593bdb34dd7c1f737960aa732d401fc2da"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/123/head",
+      "selected_object": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/123",
+          "object": "1138cffdc4a1c909b2b149db80312037c21909d8"
+        },
+        {
+          "local_ref": "refs/remotes/pull/123",
+          "object": "1138cffdc4a1c909b2b149db80312037c21909d8"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/124/head",
+      "selected_object": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/124",
+          "object": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06"
+        },
+        {
+          "local_ref": "refs/remotes/pull/124",
+          "object": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/125/head",
+      "selected_object": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/125",
+          "object": "af2a61862d23572b108bd7ef7719c7f575348d83"
+        },
+        {
+          "local_ref": "refs/remotes/pull/125",
+          "object": "af2a61862d23572b108bd7ef7719c7f575348d83"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/126/head",
+      "selected_object": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/126",
+          "object": "8fae38da39c3c45344e723abca92c9330f15a791"
+        },
+        {
+          "local_ref": "refs/remotes/pull/126",
+          "object": "8fae38da39c3c45344e723abca92c9330f15a791"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/127/head",
+      "selected_object": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/127",
+          "object": "8b70fdb42fb2d974587c75437b3adb5018190159"
+        },
+        {
+          "local_ref": "refs/remotes/pull/127",
+          "object": "8b70fdb42fb2d974587c75437b3adb5018190159"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/128/head",
+      "selected_object": "814f165cb24a5b719dde65495f64d85f86563328",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/128",
+          "object": "814f165cb24a5b719dde65495f64d85f86563328"
+        },
+        {
+          "local_ref": "refs/remotes/pull/128",
+          "object": "814f165cb24a5b719dde65495f64d85f86563328"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/129/head",
+      "selected_object": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/129",
+          "object": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f"
+        },
+        {
+          "local_ref": "refs/remotes/pull/129",
+          "object": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/130/head",
+      "selected_object": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/130",
+          "object": "84076f8ec8e4604a631cbaad9b88b030e508f0bc"
+        },
+        {
+          "local_ref": "refs/remotes/pull/130",
+          "object": "84076f8ec8e4604a631cbaad9b88b030e508f0bc"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/131/head",
+      "selected_object": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/131",
+          "object": "f965fce6a54141b753a22f1e1b6c2fabba44e389"
+        },
+        {
+          "local_ref": "refs/remotes/pull/131",
+          "object": "f965fce6a54141b753a22f1e1b6c2fabba44e389"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/132/head",
+      "selected_object": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/132",
+          "object": "0ecd1615b96d7b90156c1e913e105d467efe9a39"
+        },
+        {
+          "local_ref": "refs/remotes/pull/132",
+          "object": "0ecd1615b96d7b90156c1e913e105d467efe9a39"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/133/head",
+      "selected_object": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/133",
+          "object": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8"
+        },
+        {
+          "local_ref": "refs/remotes/pull/133",
+          "object": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/134/head",
+      "selected_object": "128a187d69555db80890c2a1945a442b951f9c74",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/134",
+          "object": "128a187d69555db80890c2a1945a442b951f9c74"
+        },
+        {
+          "local_ref": "refs/remotes/pull/134",
+          "object": "128a187d69555db80890c2a1945a442b951f9c74"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/135/head",
+      "selected_object": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/135",
+          "object": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+        },
+        {
+          "local_ref": "refs/remotes/pull/135",
+          "object": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/136/head",
+      "selected_object": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/136",
+          "object": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+        },
+        {
+          "local_ref": "refs/remotes/pull/136",
+          "object": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/137/head",
+      "selected_object": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/137",
+          "object": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+        },
+        {
+          "local_ref": "refs/remotes/pull/137",
+          "object": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/138/head",
+      "selected_object": "b8ddaaeb581e010467de304c828764d353149102",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/138",
+          "object": "b8ddaaeb581e010467de304c828764d353149102"
+        },
+        {
+          "local_ref": "refs/remotes/pull/138",
+          "object": "b8ddaaeb581e010467de304c828764d353149102"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/139/head",
+      "selected_object": "6df76a0dff0051312faa04317af41d479dd94162",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/139",
+          "object": "6df76a0dff0051312faa04317af41d479dd94162"
+        },
+        {
+          "local_ref": "refs/remotes/pull/139",
+          "object": "6df76a0dff0051312faa04317af41d479dd94162"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/140/head",
+      "selected_object": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/140",
+          "object": "c34945761e7991f5fe49037d79529acdd260b31c"
+        },
+        {
+          "local_ref": "refs/remotes/pull/140",
+          "object": "c34945761e7991f5fe49037d79529acdd260b31c"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/141/head",
+      "selected_object": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/141",
+          "object": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+        },
+        {
+          "local_ref": "refs/remotes/pull/141",
+          "object": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/142/head",
+      "selected_object": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/142",
+          "object": "69d14f84cabd3931b7640c1654b401c89faba766"
+        },
+        {
+          "local_ref": "refs/remotes/pull/142",
+          "object": "69d14f84cabd3931b7640c1654b401c89faba766"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/143/head",
+      "selected_object": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/143",
+          "object": "83f8c380f9271b6bf34a300c3aedc19442cb61f1"
+        },
+        {
+          "local_ref": "refs/remotes/pull/143",
+          "object": "83f8c380f9271b6bf34a300c3aedc19442cb61f1"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/144/head",
+      "selected_object": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/144",
+          "object": "a1e026b496f91b54bbd3017aae54717bf25a5586"
+        },
+        {
+          "local_ref": "refs/remotes/pull/144",
+          "object": "a1e026b496f91b54bbd3017aae54717bf25a5586"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/145/head",
+      "selected_object": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/145",
+          "object": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+        },
+        {
+          "local_ref": "refs/remotes/pull/145",
+          "object": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/146/head",
+      "selected_object": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/146",
+          "object": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+        },
+        {
+          "local_ref": "refs/remotes/pull/146",
+          "object": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/147/head",
+      "selected_object": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/147",
+          "object": "cee6e2632f891a3fe21c5c02d6bf508805973051"
+        },
+        {
+          "local_ref": "refs/remotes/pull/147",
+          "object": "cee6e2632f891a3fe21c5c02d6bf508805973051"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/148/head",
+      "selected_object": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/148",
+          "object": "e3831cdde529aa0c2368845cd72c1b9b65154665"
+        },
+        {
+          "local_ref": "refs/remotes/pull/148",
+          "object": "e3831cdde529aa0c2368845cd72c1b9b65154665"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/149/head",
+      "selected_object": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/149",
+          "object": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+        },
+        {
+          "local_ref": "refs/remotes/pull/149",
+          "object": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/150/head",
+      "selected_object": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/150",
+          "object": "6d97fedccde17244a917ee7d3372adebe5494089"
+        },
+        {
+          "local_ref": "refs/remotes/pull/150",
+          "object": "6d97fedccde17244a917ee7d3372adebe5494089"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/151/head",
+      "selected_object": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/151",
+          "object": "7ef09f2408f467c65427700e65907531ecb26acb"
+        },
+        {
+          "local_ref": "refs/remotes/pull/151",
+          "object": "7ef09f2408f467c65427700e65907531ecb26acb"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/152/head",
+      "selected_object": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/152",
+          "object": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0"
+        },
+        {
+          "local_ref": "refs/remotes/pull/152",
+          "object": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/153/head",
+      "selected_object": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/153",
+          "object": "2e013f26c7d4db54ecabe2c955117cbce5379408"
+        },
+        {
+          "local_ref": "refs/remotes/pull/153",
+          "object": "2e013f26c7d4db54ecabe2c955117cbce5379408"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/154/head",
+      "selected_object": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/154",
+          "object": "295752ff93b24bafc510e60197b62faa647e2aa3"
+        },
+        {
+          "local_ref": "refs/remotes/pull/154",
+          "object": "295752ff93b24bafc510e60197b62faa647e2aa3"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/155/head",
+      "selected_object": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/155",
+          "object": "536ee2086ce46ab629d4d77144d1ca22a43e3c19"
+        },
+        {
+          "local_ref": "refs/remotes/pull/155",
+          "object": "536ee2086ce46ab629d4d77144d1ca22a43e3c19"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/156/head",
+      "selected_object": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/156",
+          "object": "f4aa218c87293527b3e2b7514500a28d13bd8f70"
+        },
+        {
+          "local_ref": "refs/remotes/pull/156",
+          "object": "f4aa218c87293527b3e2b7514500a28d13bd8f70"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/157/head",
+      "selected_object": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/157",
+          "object": "9fc211f6c72be9495767bd7cacfd8df51abf2fad"
+        },
+        {
+          "local_ref": "refs/remotes/pull/157",
+          "object": "9fc211f6c72be9495767bd7cacfd8df51abf2fad"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/158/head",
+      "selected_object": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/158",
+          "object": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2"
+        },
+        {
+          "local_ref": "refs/remotes/pull/158",
+          "object": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/159/head",
+      "selected_object": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/159",
+          "object": "2292548eb69de2dbb5240ab9da59256f362137c6"
+        },
+        {
+          "local_ref": "refs/remotes/pull/159",
+          "object": "2292548eb69de2dbb5240ab9da59256f362137c6"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/160/head",
+      "selected_object": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/160",
+          "object": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3"
+        },
+        {
+          "local_ref": "refs/remotes/pull/160",
+          "object": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/161/head",
+      "selected_object": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/161",
+          "object": "acfa3c2bf543debd2fff518304ab514ab677418b"
+        },
+        {
+          "local_ref": "refs/remotes/pull/161",
+          "object": "acfa3c2bf543debd2fff518304ab514ab677418b"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/162/head",
+      "selected_object": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/162",
+          "object": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1"
+        },
+        {
+          "local_ref": "refs/remotes/pull/162",
+          "object": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/163/head",
+      "selected_object": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/163",
+          "object": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c"
+        },
+        {
+          "local_ref": "refs/remotes/pull/163",
+          "object": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/164/head",
+      "selected_object": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/164",
+          "object": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869"
+        },
+        {
+          "local_ref": "refs/remotes/pull/164",
+          "object": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/165/head",
+      "selected_object": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/165",
+          "object": "8d74db5da2992e60c7f17b58cd354b874a1ce33a"
+        },
+        {
+          "local_ref": "refs/remotes/pull/165",
+          "object": "8d74db5da2992e60c7f17b58cd354b874a1ce33a"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/166/head",
+      "selected_object": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/166",
+          "object": "3668ed92829dfa012ec5b129943a86738ebb7992"
+        },
+        {
+          "local_ref": "refs/remotes/pull/166",
+          "object": "3668ed92829dfa012ec5b129943a86738ebb7992"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/167/head",
+      "selected_object": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/167",
+          "object": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c"
+        },
+        {
+          "local_ref": "refs/remotes/pull/167",
+          "object": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/168/head",
+      "selected_object": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/168",
+          "object": "6c993f7406037ba462c6aea32e7e6afeebd28c03"
+        },
+        {
+          "local_ref": "refs/remotes/pull/168",
+          "object": "6c993f7406037ba462c6aea32e7e6afeebd28c03"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/169/head",
+      "selected_object": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/169",
+          "object": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1"
+        },
+        {
+          "local_ref": "refs/remotes/pull/169",
+          "object": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/170/head",
+      "selected_object": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/170",
+          "object": "ff1518517dd9f67e214ff56fe7eef06349f5223a"
+        },
+        {
+          "local_ref": "refs/remotes/pull/170",
+          "object": "ff1518517dd9f67e214ff56fe7eef06349f5223a"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/171/head",
+      "selected_object": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/171",
+          "object": "637b67c58482e40a3244c590ce77c08b9fc2740e"
+        },
+        {
+          "local_ref": "refs/remotes/pull/171",
+          "object": "637b67c58482e40a3244c590ce77c08b9fc2740e"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/172/head",
+      "selected_object": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/172",
+          "object": "fa284f22a7e3ad236bc991a4a796ad83565f11ce"
+        },
+        {
+          "local_ref": "refs/remotes/pull/172",
+          "object": "71edec2de364805113d18e0f1d7edbb1f00467e5"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Unique descendant among already-fetched PR aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/173/head",
+      "selected_object": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/173",
+          "object": "5107eff6bf45fe0dca4ecbf511c2e1a98958caaf"
+        },
+        {
+          "local_ref": "refs/remotes/pull/173",
+          "object": "54c36e40daa7b17d73801dac1fd12f110b24017f"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Unique descendant among already-fetched PR aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/174/head",
+      "selected_object": "df62b58975bab1f650879fc88f850550a3df5c13",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/174",
+          "object": "df62b58975bab1f650879fc88f850550a3df5c13"
+        },
+        {
+          "local_ref": "refs/remotes/pull/174",
+          "object": "df62b58975bab1f650879fc88f850550a3df5c13"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    },
+    {
+      "normalized_ref": "refs/pull/175/head",
+      "selected_object": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "local_observations": [
+        {
+          "local_ref": "refs/remotes/pr/175",
+          "object": "c320f28347f1cd292b848be2cf72998d41f8a6ac"
+        },
+        {
+          "local_ref": "refs/remotes/pull/175",
+          "object": "c320f28347f1cd292b848be2cf72998d41f8a6ac"
+        }
+      ],
+      "all_observations_equal_selected_or_ancestors": true,
+      "selection_basis": "Identical aliases"
+    }
+  ],
+  "excluded_alias_and_checkout_refs": [
+    {
+      "ref": "refs/heads/codex/office-main-integration-20261119",
+      "object": "ac1e4c8c788ea608402c2260488235c0189efcba",
+      "reason": "local checkout branch; not a fetched fork reference"
+    },
+    {
+      "ref": "refs/heads/main",
+      "object": "d41000336c84b6ebfe6b35f7f8335140b5d46038",
+      "reason": "local checkout branch; not a fetched fork reference"
+    },
+    {
+      "ref": "refs/remotes/origin/HEAD",
+      "object": "d41000336c84b6ebfe6b35f7f8335140b5d46038",
+      "reason": "symbolic alias",
+      "target": "refs/remotes/origin/main"
+    }
+  ],
+  "differences_from_prior_tls_local_snapshot": [
+    {
+      "ref": "refs/heads/codex/mail-reader-20261118",
+      "prior_object": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "current_object": "700e5a35ce5f96e7abd1dc92d1a00d2110d40649"
+    },
+    {
+      "ref": "refs/heads/codex/office-main-integration-20261119",
+      "prior_object": "4624218f9468eeeac07f1f100ac0e4bb6b050a17",
+      "current_object": "ac1e4c8c788ea608402c2260488235c0189efcba"
+    },
+    {
+      "ref": "refs/heads/codex/offline-thesaurus-20261118",
+      "prior_object": "df62b58975bab1f650879fc88f850550a3df5c13",
+      "current_object": "59e0a7c232e7380021a8bda4477999205da0f8ae"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-word-parity-20261118",
+      "prior_object": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+      "current_object": "022a974a96db23e22bc161f7d465e4b972e8c2a9"
+    },
+    {
+      "ref": "refs/heads/main",
+      "prior_object": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "current_object": "d41000336c84b6ebfe6b35f7f8335140b5d46038"
+    }
+  ],
+  "preserved_review_artifacts": [
+    {
+      "source": "postmerge_mail_documentation_review.json",
+      "preserved_as": "socket_mail_evidence_review.json",
+      "sha256": "99a711f21911927f298a6293d54c41de018a8fa9652b1e4dbab92f3ae356a22f"
+    },
+    {
+      "source": "audit_postmerge_mail.py",
+      "preserved_as": "socket_mail_evidence_replay.py",
+      "sha256": "aa70ad3af25f086f6e7f7046b93730d58971fc1bc8ab0fa89bff7c79df32187d"
+    },
+    {
+      "source": "postmerge_mail_merge_tree.json",
+      "preserved_as": "socket_mail_merge_tree.json",
+      "sha256": "ae8886d808a560d99eebf229878d143e88a5a9e5c6c67c036748e6318b161bd6"
+    },
+    {
+      "source": "postmerge_supplemental_review.md",
+      "preserved_as": "socket_supplemental_review.md",
+      "sha256": "5ebe3bdb7a1d9eb34b5552a7fc97802e73c4c5f3d9edb113aa9eb964a9d4af0f"
+    },
+    {
+      "source": "audit_capture_ancestry.py",
+      "preserved_as": "socket_ancestry_audit.py",
+      "sha256": "4b7566a4fe6182dea7544bea442449c32e1eb169b1b4aed4b0c8d874363a79ab"
+    },
+    {
+      "source": "audit_historical_continuity.py",
+      "preserved_as": "socket_historical_continuity_audit.py",
+      "sha256": "5e8e3b2d191a951bb798afb82f80f3d8d0a5062d45ac50ba2531a10d410de14e"
+    }
+  ],
+  "scope": "These immutable local observations and known incoming heads define this qualification cutoff. No claim that moving remotes remain unchanged afterward; final expected-head merge read is a separate action.",
+  "remote_or_actions_queries_performed": false,
+  "tracked_checkout_or_runtime_mutations_performed": false
+}

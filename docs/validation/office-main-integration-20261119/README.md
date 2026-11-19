@@ -1,12 +1,17 @@
 # Office integration for remote main — 19 November 2026
 
-The latest main merge `f7117a49` adds Arabic writing rules and editor integration.
-The combined source is being frozen for fresh expanded local qualification.
-The [previous complete report](pre-arabic-report.md) preserves the prior
-632-execution application qualification, separate seven-control Arabic bundle
-checks, reconciliation and all release boundaries.
+The [expanded Arabic and Mail qualification](arabic-final/README.md) is complete
+at `e41679f85c511bc8cf42447d3d1af0931884dee2`: **1,286 passing executions /
+1,142 distinct cases / 80 distinct suites**, with 32 strict static targets and
+an independent raw-event/source/runtime audit. Its source and evidence are
+saved incrementally.
 
-See the [current merge scope](arabic-final/merge-review.md). This source checkpoint
-does not represent pending results as passes. Code and evidence continue to be
-saved incrementally to the remote integration branch. GitHub Actions are not
-queried, dispatched or awaited.
+While those gates ran, main advanced to `b655b8a3`, adding UID pagination,
+Hunspell integration, a macOS runner and Arabic documentation. That later main
+is being reconciled separately; its new inputs are not relabeled as part of
+the completed `e41679f8` gate.
+
+The [prior complete report](pre-arabic-report.md) retains the earlier 632-execution
+application qualification and seven-control Arabic publisher result. All
+historical records and acceptance boundaries remain separately attributed.
+No GitHub Actions are queried, dispatched or awaited.
