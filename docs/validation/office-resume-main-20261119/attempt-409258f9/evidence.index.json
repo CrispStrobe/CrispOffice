@@ -1,0 +1,184 @@
+{
+  "archive": "evidence.tar.xz",
+  "bytes": 798136,
+  "sha256": "6c986e9eeccc44eeb03c00f4d97665f19d54ef8e1ad6c957ecdc8ce7b3e0e6e6",
+  "members": [
+    {
+      "path": "native/checks/analysis.log",
+      "bytes": 1179,
+      "sha256": "355dfd5dadab68a3cf39531b4daf58193c1174ea147e0beed0cc0b14e00e5a67"
+    },
+    {
+      "path": "native/checks/analysis.log.gz",
+      "bytes": 445,
+      "sha256": "532522c47a883c007a44eec51c07fd1da5db09195c9fec2f376453998f796b60"
+    },
+    {
+      "path": "native/checks/editor-language-controls-cases.json",
+      "bytes": 13070,
+      "sha256": "79657727e381e1c3ff9453d4fb6875473a57a41c716688065eb01dac59b74f6c"
+    },
+    {
+      "path": "native/checks/editor-language-controls-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "native/checks/editor-language-controls.jsonl",
+      "bytes": 22946,
+      "sha256": "8ec5449d5af9343d0eaceea7a2b19c468b067048040b541e5a5fa849974beb3d"
+    },
+    {
+      "path": "native/checks/editor-language-controls.jsonl.gz",
+      "bytes": 2506,
+      "sha256": "9f0ffce5e0fd45c9df8a5485729f3b3af00b5b3c6cbdd4dad99e92824ffb5f03"
+    },
+    {
+      "path": "native/checks/editor-language-controls.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/checks/editor-language-controls.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions-cases.json",
+      "bytes": 211774,
+      "sha256": "7c98fce3d6f982bc57f8ab9a5628e084696ca70ddbd9d056557b1b10f20a2d83"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions.jsonl",
+      "bytes": 294175,
+      "sha256": "7dc46005885f92d7594c81b0cf11eef7617f7753c4e0a3998a428512d136c8a5"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions.jsonl.gz",
+      "bytes": 22643,
+      "sha256": "436af3e35720748105016e77c181925f5b866ffb315ce0fac5ba5166bb04346f"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/checks/engine-merge-regressions.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "native/checks/format.log",
+      "bytes": 48,
+      "sha256": "48a2058373b89a9a0029a9be9816c1775c635c7c77e0674eb0d43f2265586c6c"
+    },
+    {
+      "path": "native/checks/format.log.gz",
+      "bytes": 68,
+      "sha256": "0eb81732e82fd830fb71c17ee9180809fcebe702498691e2854794e45c95af73"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle-cases.json",
+      "bytes": 9641,
+      "sha256": "78f725031d31583ff4e000e0a3cf10027e4fd953abb4033b10fc4e3a13a6d71e"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle.jsonl",
+      "bytes": 21528,
+      "sha256": "b538c88dd6dd3b9cf7041956c4c5b2db78e069d3b5fa481ae0021ff48ae32308"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle.jsonl.gz",
+      "bytes": 2523,
+      "sha256": "7298bbeecd8d39fe44c973116b1978f8be773bb1d613e7bc87993aac9397eda3"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/checks/hunspell-cancellation-lifecycle.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "native/checks/studio-current-host-cases.json",
+      "bytes": 31778,
+      "sha256": "a64043a82aacb8e904490012e3aeb43e933afb7aa86f13cbea72198912cb5004"
+    },
+    {
+      "path": "native/checks/studio-current-host-errors.json",
+      "bytes": 620,
+      "sha256": "f475ff063700c8f5be630c38c32fa21c9c6273a1a0ee5cbbc9f8626017bc50f7"
+    },
+    {
+      "path": "native/checks/studio-current-host.jsonl",
+      "bytes": 70377,
+      "sha256": "d711be4913ce39934bd6de93e3ab0120f5fd18e4e12e7090a8c48da7fce19a95"
+    },
+    {
+      "path": "native/checks/studio-current-host.jsonl.gz",
+      "bytes": 6430,
+      "sha256": "436cfaae4624b8ee2d2a2ac5385657f12ebc1688c35afea2d7717266ab4515a8"
+    },
+    {
+      "path": "native/checks/studio-current-host.stderr.log",
+      "bytes": 178,
+      "sha256": "3d4c4cad0649e7a0aa29ce892e4d1f5a43bdc1bd3123d439f2b114e7828c3136"
+    },
+    {
+      "path": "native/checks/studio-current-host.stderr.log.gz",
+      "bytes": 139,
+      "sha256": "18ab71da3515f4a2ba0b4877e9797fa5020a674e1ff86dc89c4e1a052511b1a2"
+    },
+    {
+      "path": "native/checks/whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/checks/whitespace.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "native/environment-after.json",
+      "bytes": 1707856,
+      "sha256": "8b8edd35e91c3a38f3d6709a3d7f2f7e47c294205d47c376f52d2c91275475aa"
+    },
+    {
+      "path": "native/environment-before.json",
+      "bytes": 1707856,
+      "sha256": "8b8edd35e91c3a38f3d6709a3d7f2f7e47c294205d47c376f52d2c91275475aa"
+    },
+    {
+      "path": "native/source-after.json",
+      "bytes": 1572157,
+      "sha256": "f30eec1299850068e21ba18b2f6c0fea2c95d6a7df7b66a659ab28425eb3f3d8"
+    },
+    {
+      "path": "native/source-before.json",
+      "bytes": 1572157,
+      "sha256": "f30eec1299850068e21ba18b2f6c0fea2c95d6a7df7b66a659ab28425eb3f3d8"
+    },
+    {
+      "path": "native/verification.json",
+      "bytes": 34976,
+      "sha256": "68e9330149ed00cd42d627d73cc3bf57cc5dbc41f85456003eaa49f4c44df673"
+    }
+  ],
+  "member_count": 35,
+  "all_members_reopened_and_verified": true
+}

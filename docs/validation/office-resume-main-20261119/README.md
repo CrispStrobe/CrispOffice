@@ -79,3 +79,37 @@ verified all ten incoming archives and 828 members, including rejected attempts.
 It recounts the historical host run as 1,285 executions / 979 distinct cases and
 the historical sync run as 1,026 executions / 634 distinct cases. Those results
 remain attached to `9833831a` and `5c18db77`, respectively.
+
+
+## Bounded concurrent continuation and rejected first gate
+
+The first combined gate at `409258f9` was rejected because one Zotero fixture
+retained an undefined helper call after its import changed. Its complete
+[rejected-attempt archive](attempt-409258f9/README.md) is preserved; its 797
+successful visible completions contribute zero to final accepted totals.
+The helper call is corrected, and later source receives a fresh qualification.
+
+A bounded remote recapture completed at 11:18:49 UTC on 19 November 2026
+(12:18:49 CET). The raw advertisements are saved under `reconciliation/`.
+It adds three concurrent continuation heads to the prior capture:
+
+| Branch | Exact captured head | Current disposition |
+| --- | --- | --- |
+| `codex/office-mail-continuation-20261119` | `3119a4598e61f061e7b7633ea4a352d841332b9e` | Reconciled in this checkpoint |
+| `codex/office-continuation-20261119` | `e80beb2ed2fe70397a5a8fff5c9e908b04862f78` | Reviewed integration follows |
+| `codex/office-finish-20261119` | `2abf5d264e5065772fc4ca05c7cab6d34256ab9d` | Reviewed integration follows |
+
+The first of these is a reconciliation/planning checkpoint; its advertised
+saved-reader work is not implemented at that source. The other two contain
+working saved-reader implementations and additional Word metadata controls.
+Those actual implementation heads, rather than their future branch state, form
+the remaining scope. Remote main will be rechecked before merge.
+
+Compact Review controls retain truthful localized state in their tooltip and
+receive a real 390-pixel, 1.4-scale tap/visibility regression. The current Mail
+lifecycle controls explicitly cover dismissal with an existing reader and a
+pending replacement. SMTP submission is now sequenced before saving the Sent
+copy. A typed post-submission outcome preserves confirmation separately from
+Sent-copy and connection-cleanup failures; Studio reports Message sent with the
+applicable warning instead of inviting a duplicate submission. Actual submission
+failures preserve their original error/stack and never file a Sent copy.

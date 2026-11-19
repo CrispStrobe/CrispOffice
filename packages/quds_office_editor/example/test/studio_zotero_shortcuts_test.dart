@@ -10,7 +10,7 @@ import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_zotero.dart';
 import 'package:quds_office_studio/suite_workspace.dart';
 
-import 'support/studio_settings.dart';
+import 'support/studio_test_settings.dart';
 
 final class _Transport extends StudioZoteroTransport {
   _Transport(this.handle, this.onDispose);
@@ -127,7 +127,7 @@ Future<WordEditorController> _studio(
   controller.proofing.configure(OfficeProofingService(providers: []));
   controller.document = WmlDocument.empty(text: 'A citation belongs here.');
   controller.refresh();
-  expect(find.byTooltip('Language'), findsOneWidget);
+  await configureStudioForTest(tester, showNotes: true);
   await _frames(tester);
   editor.focusNode!.requestFocus();
   await _frames(tester);
@@ -353,6 +353,7 @@ void main() {
   ) async {
     final desktop = _Desktop(inspectCurrentField: true);
     final controller = await _studio(tester, desktop);
+    await configureStudioForTest(tester, showNotes: true);
     final note = WordNotes.insert(
       controller.document,
       controller.document.paragraphs.single,

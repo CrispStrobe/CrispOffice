@@ -101,7 +101,7 @@ below. No Arabic resource is downloaded by default.
      user-selected files); `web/proofing/` and `android/.../jniLibs/` are
      generated and ignored. The app licence page lists the Hunspell MPL 1.1
      notices (`assets/licenses/hunspell/`, `registerStudioLicenses`).
-   - Evidence (macOS arm64, Flutter 3.47.8): macOS release app built, the
+   - Incoming packaging evidence (macOS arm64, Flutter 3.47.8): macOS release app built, the
      dylib installed into `Contents/Frameworks` and the bundle re-signed
      (`codesign --verify --deep --strict` passes); the end-to-end test loads
      that bundled dylib with the AyaSpell bundle and checks a Word document
