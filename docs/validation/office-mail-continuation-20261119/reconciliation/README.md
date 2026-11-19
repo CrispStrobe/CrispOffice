@@ -1,5 +1,10 @@
 # Current Office reference reconciliation
 
+The latest bounded capture is documented in
+[final-cutoff-review.md](final-cutoff-review.md): **468 references accounted for
+at published integration `1c415fef`, including 440 ancestors and 28 verified
+historical equivalents**. Earlier captures below retain their original scope.
+
 The initial capture was made on 19 November 2026, with fork `main` at
 `b070e228a749e22cc8ce2098029a76ab5fb8eccb`. The exact captured advertisements are
 `remote-refs-initial.tsv` and `upstream-refs-initial.tsv`; capture metadata is in

@@ -21,6 +21,25 @@ source and tests: relative to `dfb28229`, the merge initially introduced only
 109 changed lines in `studio_mail_native.dart` and `studio_mail_strings.dart`.
 Follow-up action repairs and regressions are qualified under a later source.
 
+The final bounded capture ran from 12:23:58 to 12:24:05 UTC. Its five later
+captured heads reduce to four frontier commits: `e77d0dab`, `5a910773`,
+`0f16754c` and `0601d279`; `22ffa8bd` is an ancestor of `0601d279`.
+All four are actual parents of published checkpoint `1c415fef`. That checkpoint
+retains their original qualification archives and incomplete attempts without
+adding historical results to the current gate. The separately preserved
+`continuation-0601d279.md` keeps the overlapping resume report intact.
+
+Unique late source changes retained are the SMTP abort override that settles a
+pending command before transport close, the reader's bounded body-only text
+projection, and consistent numeric morphology feature text on VM and JavaScript.
+The SMTP change retains the stronger final-250 and command-failure guards.
+The reader projection excludes envelope and attachment summaries; current reply
+drafts remain explicitly plain-text-only. The morphology repair preserves
+fractions, exponents and negative zero while normalizing finite integer double
+text. Current Word semantics and stronger Mail tests take precedence over the
+older overlapping versions. Unique pending-footer, Arabic tooltip-detail and
+nonselectable-INBOX fallback assertions are retained in the canonical suites.
+
 These are preservation checkpoints, not assertions that their incomplete
 combined test/UI adaptations passed. Fresh accepted execution identity and
 results are recorded separately in the final report.

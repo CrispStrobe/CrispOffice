@@ -59,3 +59,9 @@ frozen mailbox, UIDVALIDITY, exact UID, read-write access and resulting flag.
 The foreground operation is serialized, cancellation and stale session checks
 remain in force, and no automatic write retry is introduced. These repairs and
 their focused regression cases precede the next frozen qualification.
+
+The final 12:24 UTC ref capture also retained four later frontier histories
+through `1c415fef`, including the SMTP pending-command abort fix, bounded reader
+body-only projection and Arabic morphology numeric-text portability fix.
+Their separate incoming reports and successful/incomplete attempts keep their
+own source identities. No earlier result is added to the current aggregate.

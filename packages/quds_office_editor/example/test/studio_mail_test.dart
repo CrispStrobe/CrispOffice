@@ -651,6 +651,26 @@ void main() {
     },
   );
 
+  testWidgets('a nonselectable INBOX falls back to a selectable mailbox', (
+    tester,
+  ) async {
+    final client = _Client();
+    client.boxes[0] = mail.Mailbox(
+      encodedName: 'INBOX',
+      encodedPath: 'INBOX',
+      flags: <mail.MailboxFlag>[
+        mail.MailboxFlag.inbox,
+        mail.MailboxFlag.noSelect,
+      ],
+      pathSeparator: '/',
+    );
+    await _open(tester, (_) => client);
+    await _connect(tester);
+    expect(client.selectedMailbox!.path, 'Archive');
+    expect(find.text('First message'), findsOneWidget);
+    await _close(tester);
+  });
+
   testWidgets(
     'opening messages replaces and disposes readers; a failed read preserves the current message',
     (tester) async {

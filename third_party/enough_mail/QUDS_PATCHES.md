@@ -161,6 +161,13 @@ implemented Quds packages outside this directory keep their own MIT license.
     `550`, and actual final `250` acceptance. They check that rejected or
     unconfirmed transactions never file Sent copies. This is SMTP acceptance,
     not a durable outbox, delivery confirmation, or external-provider test.
+20. Settle and clear the active SMTP command before aborting its connection.
+    Repeated abort remains safe and releases a high-level send and any queued
+    disconnect even when the server stops replying. The public-client loopback
+    regression holds the MAIL FROM response, checks the original fixed abort
+    error and stack, and confirms that no submission or Sent copy is reported.
+    This preserves the final-response acceptance checks and the distinction
+    between submission failure and a failure after confirmed submission.
 
 These native additions are covered by MPL-2.0. `UPSTREAM.json` remains the
 unchanged original-source inventory; local additions and modifications are

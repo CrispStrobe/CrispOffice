@@ -308,6 +308,12 @@ void main() {
         await tester.pump();
         final status = compactStatus(language.partial);
         expect(status.hitTestable(), findsOneWidget);
+        if (language.steps == 2) {
+          expect(
+            tester.widget<IconButton>(status).tooltip,
+            contains('Dictionary unavailable'),
+          );
+        }
         expect(
           find.descendant(
             of: status,
@@ -438,6 +444,48 @@ void main() {
       _expectCompactStatus(tester, 'Waiting to check…', Icons.more_horiz);
       expect(_compactStatusButton('No writing issues'), findsNothing);
       await _finish(tester, controller, controller.proofing.checkNow());
+      expect(controller.proofing.summary.complete, isTrue);
+      _expectCompactStatus(
+        tester,
+        'No writing issues',
+        Icons.check_circle_outline,
+      );
+      await tester.pumpWidget(const SizedBox.shrink());
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'compact footer replaces a clean result while a provider check is pending',
+    (tester) async {
+      final controller = await _studio(
+        tester,
+        _StatusProvider(),
+        viewport: const Size(760, 900),
+      );
+      await _finish(tester, controller, controller.proofing.checkNow());
+      _expectCompactStatus(
+        tester,
+        'No writing issues',
+        Icons.check_circle_outline,
+      );
+      final release = Completer<void>();
+      final blocked = _StatusProvider(id: 'compact-pending', release: release);
+      addTearDown(() {
+        controller.proofing.enabled = false;
+        if (!release.isCompleted) release.complete();
+      });
+      controller.proofing.configure(
+        OfficeProofingService(providers: [blocked]),
+      );
+      final pending = controller.proofing.checkNow();
+      await tester.pump(const Duration(milliseconds: 1));
+      expect(blocked.calls, 1);
+      expect(controller.proofing.summary.checking, isTrue);
+      _expectCompactStatus(tester, 'Checking…', Icons.hourglass_top);
+      expect(_compactStatusButton('No writing issues'), findsNothing);
+      release.complete();
+      await _finish(tester, controller, pending);
       expect(controller.proofing.summary.complete, isTrue);
       _expectCompactStatus(
         tester,

@@ -193,6 +193,10 @@
     }
   ],
   "analysis": [
+    "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+    "packages/quds_mail_ui/test/presentation_test.dart",
     "packages/quds_office_editor/example/lib/studio_about.dart",
     "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
     "packages/quds_office_editor/example/lib/studio_mail.dart",
@@ -263,6 +267,10 @@
     "third_party/enough_mail/test/mail/mail_submission_acceptance_test.dart"
   ],
   "format": [
+    "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+    "packages/quds_mail_ui/test/presentation_test.dart",
     "packages/quds_office_editor/example/lib/studio_about.dart",
     "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
     "packages/quds_office_editor/example/lib/studio_mail.dart",
