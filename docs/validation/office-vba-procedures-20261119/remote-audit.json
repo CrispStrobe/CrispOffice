@@ -1,0 +1,382 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "observed_at_utc": "2026-11-19T16:30:51Z",
+  "main": "81ae98688860599f118748afca19bdb2ec45da37",
+  "method": "GitHub plugin repository/branch/PR/compare GET requests plus read-only local git inspection. No CI actions queried or awaited.",
+  "initial_branches": [
+    {
+      "name": "codex/mail-archive-search-20261119",
+      "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "protected": false,
+      "relation_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 1
+    },
+    {
+      "name": "codex/mail-providers-20261119",
+      "head": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+      "protected": false,
+      "relation_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 17
+    },
+    {
+      "name": "codex/mcp-aligned-macros",
+      "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "protected": false,
+      "relation_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 16
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "protected": false,
+      "relation_to_main": "diverged",
+      "ahead_by": 2,
+      "behind_by": 849
+    },
+    {
+      "name": "codex/office-validation-recovery-20261119",
+      "head": "623057111a9179552eb02b21a753a1728de9905d",
+      "protected": false,
+      "relation_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 19
+    },
+    {
+      "name": "codex/vba-excel-macros",
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "protected": false,
+      "relation_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 15
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "protected": false,
+      "relation_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 848
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "protected": false,
+      "relation_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 844
+    },
+    {
+      "name": "feat/arabic-morph-binary-20261119",
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "protected": false,
+      "relation_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 41
+    },
+    {
+      "name": "feat/ews-on-premises",
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "protected": false,
+      "relation_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 42
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "protected": false,
+      "relation_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 849
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "protected": false,
+      "relation_to_main": "diverged",
+      "ahead_by": 2,
+      "behind_by": 846
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "protected": false,
+      "relation_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 847
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "protected": false,
+      "relation_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 833
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "protected": false,
+      "relation_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 829
+    },
+    {
+      "name": "feat/paragraph-language-id-20261119",
+      "head": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "protected": false,
+      "relation_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 36
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "head": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "protected": false,
+      "relation_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 479
+    },
+    {
+      "name": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "protected": false,
+      "relation_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 645
+    },
+    {
+      "name": "main",
+      "head": "81ae98688860599f118748afca19bdb2ec45da37",
+      "protected": false,
+      "relation_to_main": "main",
+      "ahead_by": 0,
+      "behind_by": 0
+    }
+  ],
+  "historical_merged_prs": [
+    {
+      "number": 135,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/135",
+      "state": "closed",
+      "merged_at": "2026-11-17T19:45:42Z",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "branch": "feat/ods-color-scale",
+      "merge_commit": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 137,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/137",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:01:17Z",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "branch": "feat/ods-dynamic-validation-links",
+      "merge_commit": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 140,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/140",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:14:56Z",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "branch": "codex/odt-field-continuation-20261117",
+      "merge_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 141,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/141",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:13:20Z",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "branch": "feat/ods-data-bar",
+      "merge_commit": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 145,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/145",
+      "state": "closed",
+      "merged_at": "2026-11-17T21:23:29Z",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "branch": "feat/ods-icon-sets",
+      "merge_commit": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 149,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/149",
+      "state": "closed",
+      "merged_at": "2026-11-17T21:32:16Z",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "branch": "integrate/office-union-148",
+      "merge_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "merge_commit_is_ancestor_of_main": true
+    },
+    {
+      "number": 151,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/151",
+      "state": "closed",
+      "merged_at": "2026-11-17T22:05:16Z",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "branch": "feat/ods-time-period-conditions",
+      "merge_commit": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "merge_commit_is_ancestor_of_main": true
+    }
+  ],
+  "subsumed_docs_branches": [
+    {
+      "branch": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "change": "Remove color scales from remaining work",
+      "main_contains_change": true
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "change": "Remove data bars from remaining work",
+      "main_contains_change": true
+    }
+  ],
+  "latest_merged_pr": {
+    "number": 203,
+    "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+    "merge": "81ae98688860599f118748afca19bdb2ec45da37",
+    "contains_prs": [
+      198,
+      201,
+      202
+    ]
+  },
+  "open_prs": [
+    {
+      "number": 202,
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "base": "codex/mcp-aligned-macros",
+      "base_sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "draft": true,
+      "head_is_ancestor_of_main": true,
+      "review_comments": 0
+    }
+  ],
+  "rulesets": [],
+  "refreshed_branches": [
+    {
+      "name": "codex/mail-archive-search-20261119",
+      "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb"
+    },
+    {
+      "name": "codex/mail-providers-20261119",
+      "head": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897"
+    },
+    {
+      "name": "codex/mcp-aligned-macros",
+      "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/office-validation-recovery-20261119",
+      "head": "623057111a9179552eb02b21a753a1728de9905d"
+    },
+    {
+      "name": "codex/vba-excel-macros",
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b"
+    },
+    {
+      "name": "codex/vba-procedures-20261119",
+      "head": "81ae98688860599f118748afca19bdb2ec45da37"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/arabic-morph-binary-20261119",
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7"
+    },
+    {
+      "name": "feat/ews-on-premises",
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "feat/paragraph-language-id-20261119",
+      "head": "ff71fa44c693ee2a30fb0372eac206af257c8477"
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "head": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "main",
+      "head": "81ae98688860599f118748afca19bdb2ec45da37"
+    }
+  ],
+  "concurrent_delta": {
+    "branch": "feat/paragraph-language-id-20261119",
+    "previous_head": "107155216505590e2eabfb93fc67cb908ad6173d",
+    "head": "ff71fa44c693ee2a30fb0372eac206af257c8477",
+    "unshared_commits": [
+      "b2dd5f61b3f42c05701407eab7a34c86209d53db",
+      "ff71fa44c693ee2a30fb0372eac206af257c8477"
+    ],
+    "merge_commit": {
+      "sha": "b2dd5f61b3f42c05701407eab7a34c86209d53db",
+      "parents": [
+        "107155216505590e2eabfb93fc67cb908ad6173d",
+        "07b815a79d011f88b048900e22aa6544f44f2758"
+      ],
+      "both_parents_ancestors_of_main": true,
+      "combined_diff_lines": 0
+    },
+    "new_change": {
+      "path": "packages/quds_language_id/test/language_id_native_test.dart",
+      "original_assertion": "expect(results.first, hasLength(3));",
+      "main_assertion": "expect(results.first, hasLength(5));",
+      "incoming_assertion": "expect(results.first, hasLength(identifier.topK));",
+      "product_code_changed": false
+    },
+    "recommendation": "Integrate incoming ancestry and retain identifier.topK in the one overlapping assertion, preserving all newer main product code. Avoid an arbitrary single-merge-base three-dot diff because these histories have multiple merge bases.",
+    "verification": {
+      "performed": "Read-only ancestry, combined merge diff, exact commit diff, endpoint test diff, current topK=5 constructor and native test inspection.",
+      "suggested": "Run native language_id_native_test.dart with a real built CLD3 library; otherwise record it unavailable, not passing. Run language_id unit tests/strict analysis if a dependency workspace is available. Formatting and diff checks suffice for the one-line assertion syntax.",
+      "tests_rerun": false
+    }
+  }
+}

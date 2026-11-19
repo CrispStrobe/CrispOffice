@@ -12,6 +12,11 @@ be inspected, saved, validated, or executed through the existing transactional
 runtime. It has the same tool permissions, document admission, cancellation,
 and publication behavior as handwritten or recorded native macros.
 
+Modules can share source logic through local `Sub` helpers and scalar
+`Function` procedures. Calls are evaluated during compilation with isolated
+local variables and explicit `ByVal` arguments; they do not introduce a second
+document execution path.
+
 This increment targets the spreadsheet family (`xlsx`, including macro-enabled
 and template workbook packages admitted by the existing runtime). Embedded VBA
 projects are preserved as opaque bytes. Opening a workbook never loads or runs
@@ -80,6 +85,95 @@ native plan runs. This distinction matters: source expressions are evaluated
 during compilation, while worksheet formulas are evaluated against the detached
 workbook during execution.
 
+## Reusable procedures and functions
+
+The entry point remains a parameterless `Sub`. It can invoke other procedures
+in the same source module, including procedures declared later in the file:
+
+```vb
+Option Explicit
+
+Sub Main()
+    Dim amount As Long
+    amount = 21
+    Call PutResult(Worksheets(1).Range("A1"), Twice(amount))
+    Worksheets(1).Range("B1").Value2 = amount
+End Sub
+
+Private Sub PutResult(ByVal target As Range, ByVal amount As Long)
+    target.Value2 = amount
+    target.Font.Bold = True
+End Sub
+
+Private Function Twice(ByVal amount As Long) As Long
+    amount = amount * 2
+    Twice = amount
+    Exit Function
+End Function
+```
+
+This emits `42` for `A1` and `21` for `B1`: reassigning a `ByVal` argument does
+not change the caller's variable. A `Worksheet` or `Range` argument retains its
+explicit target binding, so helper property writes still target that worksheet
+or range. Rebinding an object parameter with `Set` changes only that helper's
+binding. A scalar `Variant` cannot carry object bindings.
+
+The compiler accepts `Call Helper(argument1, argument2)` and
+`Helper argument1, argument2`. Use `Helper` or `Call Helper()` for a helper
+without arguments. Functions used in expressions require parentheses, such as
+`Twice(amount)` or `DefaultAmount()`. A function may also be called as a
+statement, in which case its result is discarded. Names are case-insensitive,
+and `Public`/`Private` do not change access within this single-module dialect.
+
+Every declared parameter must explicitly say **`ByVal`**. VBA normally defaults
+to `ByRef`; this compiler rejects an omitted passing mode rather than silently
+changing its meaning. All arguments are required and positional. Parameter
+types are `Long`, `Double`, `String`, `Boolean`, scalar `Variant`, `Worksheet`,
+and `Range`; an omitted `As` means scalar `Variant`. `ByRef`, `Optional`, named
+arguments, default arguments, arrays, and `ParamArray` remain unsupported.
+
+Functions return one supported scalar, using assignment to their own name.
+An omitted return type means scalar `Variant`; object return types are not
+supported. Typed functions begin with the same default value as typed local
+variables: zero, an empty string, or `False`. A `Variant` function whose result
+is consumed must assign that result before returning, because `Empty` remains
+unsupported. Statement calls may discard an unassigned result. A function's
+return variable may be read after initialization or assignment; its name with
+parentheses denotes a call and is subject to recursion checking.
+
+Arguments are evaluated once, from left to right, in the caller's context.
+Each call receives fresh local variables, local constants, and its own `With`
+context. Caller locals and active loop counters are not visible inside the
+callee. Functions can emit the same explicit worksheet writes as Subs; those
+writes appear in the generated plan in evaluation order. Source functions
+still cannot read workbook values.
+
+`Exit Sub` and `Exit Function` return from the containing procedure.
+`Exit For` exits the innermost `For` in that procedure and leaves its counter
+at the current value. These exits work inside nested `If` and `With` blocks;
+the enclosing object context is restored when control returns. An exit cannot
+terminate a caller's loop. Exit kinds are checked even in unused procedures
+and statements following an earlier exit.
+
+The entire module's call graph must be acyclic and fit the 32-frame limit,
+including calls in inactive branches and unused procedures. Local variables,
+parameters, and module constants cannot shadow procedure names. These rules
+keep the supported binding model explicit. There are no cross-module calls,
+dynamic dispatch, external procedures, or recursion.
+
+The committed [procedural report](../packages/quds_office_engine/example/macros/procedural_report.bas)
+uses reusable heading and row helpers plus nested price/discount functions.
+It generates six rows of synthetic sales data, emits **46 native operations**,
+and calculates a net total of **2,117.50** through a worksheet formula. Run it
+with the same CLI:
+
+```bash
+dart run tool/macros/office_macro.dart compile-vba \
+  example/macros/procedural_report.bas report.qudsmacro.json
+dart run tool/macros/office_macro.dart run-vba \
+  input.xlsx example/macros/procedural_report.bas output.xlsx
+```
+
 ## Object model and operation mappings
 
 | Source construct | Behavior |
@@ -117,8 +211,11 @@ ranges, and default members are not translated into approximate operations.
 
 | Construct | Supported behavior and restrictions |
 | --- | --- |
-| Module structure | Optional `Attribute VB_Name = "..."`, optional `Option Explicit`, module constants, and parameterless `Sub` procedures with optional `Public`/`Private` |
-| Entry selection | Case-insensitive selection by `entryPoint`; all procedures are parsed and checked, but only the selected procedure is evaluated |
+| Module structure | Optional `Attribute VB_Name = "..."`, optional `Option Explicit`, module constants, `Sub` helpers, and scalar `Function` procedures with optional `Public`/`Private` |
+| Entry selection | Case-insensitive selection of a parameterless `Sub` by `entryPoint`; every procedure is checked, and the selected entry plus its invoked helpers are evaluated |
+| Procedure arguments | Up to 16 required positional parameters, each explicitly `ByVal`, using supported scalar or `Worksheet`/`Range` types |
+| Calls and returns | In-module procedure calls, scalar functions in expressions, return assignment through the function name, and discarded function results in statement calls |
+| Early exits | `Exit Sub`, `Exit Function`, and innermost `Exit For`, checked against the containing procedure or loop |
 | Declarations | `Dim` and `Const`, including comma-separated declarations; declarations must precede executable statements and remain outside control-flow blocks |
 | Scalar types | `Long`, `Double`, `String`, `Boolean`, and scalar `Variant`; omitted `As` means `Variant` |
 | Object types | `Worksheet` and `Range` variables, assigned with `Set`; object default members are unsupported |
@@ -164,13 +261,14 @@ matching the documented `RGB` behavior. Explicit integer colors use VBA's
 red/green/blue byte ordering and are converted to the engine's six-digit RGB
 hex representation. System colors and palettes are unsupported.
 
-Procedure calls, functions other than `RGB` and object selectors, arguments to
-`Sub`, `ByRef`, recursion, `For Each`, `Do`/`While`, `Exit`, `GoTo`, error handlers,
-conditional compilation, file/network operations, `Shell`, `CreateObject`,
-`Application.Run`, and document-value reads are rejected. Unsupported syntax,
+The compiler rejects other function calls, `ByRef`, recursion, `For Each`,
+`Do`/`While`, other exit kinds, `GoTo`, error handlers, conditional compilation,
+file/network operations, `Shell`, `CreateObject`, `Application.Run`, and
+document-value reads. Unsupported syntax,
 unknown names, and unsupported object shapes are checked in inactive branches
-and unselected procedures too. Value-dependent errors are detected when the
-selected procedure is evaluated.
+and unselected procedures too, including statements after an early exit.
+Value-dependent errors are detected when the selected entry and its helpers
+are evaluated.
 
 ## Compilation limits
 
@@ -183,7 +281,9 @@ The compiler has its own limits before the native runtime receives a plan:
 | Procedure statements | 10,000 |
 | Block nesting | 32 |
 | Expression nesting / AST depth | 64 |
-| Visible variables per procedure, including module constants | 256 |
+| Visible variables per procedure, including constants, parameters, and function return slot | 256 |
+| Parameters / arguments per procedure call | 16 |
+| Procedure frames, including the selected entry | 32 |
 | String literal / concatenation length | 32,767 UTF-16 code units |
 | Absolute numeric magnitude | 9,007,199,254,740,991 (`2^53 − 1`) |
 | Evaluation and statement visits | 100,000 |
@@ -196,6 +296,11 @@ expanding a range that exceeds the remaining operation budget. Each emitted
 operation is charged against the aggregate encoded byte budget, and compilation
 work is charged even for loops with empty bodies. Strings are bounded before
 concatenation allocates a larger result.
+
+Procedure calls share the same aggregate work, operation, string, and encoded
+output budgets. Invoking an empty helper still consumes work. No budget is
+reset at a procedure boundary. Call-graph depth is checked before evaluation,
+and active frames are also bounded during evaluation.
 
 The runtime applies its own policy again. Its default maximum is **1,000
 operations**, so a plan can compile successfully and still exceed a host's
@@ -273,6 +378,10 @@ The supported mappings are based on Microsoft's documented VBA behavior:
 - [For…Next](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/fornext-statement)
 - [RGB color values](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/rgb-function)
 - [Operator precedence](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/operator-precedence)
+- [Sub declarations and ByVal/ByRef defaults](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/sub-statement)
+- [Function declarations and return values](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/function-statement)
+- [Call syntax and discarded function results](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/call-statement)
+- [Exit Sub, Exit Function, and Exit For](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/exit-statement)
 
 This is a bounded source-to-plan implementation. It does not claim native Excel
 interoperability for arbitrary VBA modules or parity with the full Excel object

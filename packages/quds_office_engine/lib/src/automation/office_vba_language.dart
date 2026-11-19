@@ -34,8 +34,9 @@ class OfficeVbaCompileException extends OfficeMacroException {
 /// Compiles a finite, document-independent Excel VBA subset to native calls.
 ///
 /// This is not a general VBA interpreter. All source is parsed and checked,
-/// including unused procedures and branches. Only the selected parameterless
-/// Sub is evaluated. Expressions cannot read the document or invoke external
+/// including unused procedures and branches. The selected parameterless Sub
+/// and its bounded, nonrecursive helpers are evaluated. Expressions cannot
+/// read the document or invoke external
 /// code; explicitly qualified writes retain the ordinary runtime policy and
 /// transaction boundary. Compilation has separate syntax, work, string, range,
 /// operation, and encoded-output limits, including for loops emitting no calls.
@@ -69,6 +70,8 @@ const _maxWork = 100000;
 const _maxVariables = 256;
 const _maxString = 32767;
 const _maxSteps = 10000;
+const _maxArguments = 16;
+const _maxCalls = 32;
 const _maxExactInteger = 9007199254740991;
 
 class _Context {
@@ -461,9 +464,29 @@ class _If extends _Statement {
   final List<_Statement> otherwise;
 }
 
-class _Procedure {
-  const _Procedure(this.name, this.body);
+class _Invoke extends _Statement {
+  const _Invoke(super.token, this.arguments);
+  final List<_Expr> arguments;
+}
+
+enum _ExitKind { sub, function, forLoop }
+
+class _Exit extends _Statement {
+  const _Exit(super.token, this.kind);
+  final _ExitKind kind;
+}
+
+class _Parameter {
+  const _Parameter(this.name, this.type);
   final _Token name;
+  final _Declared type;
+}
+
+class _Procedure {
+  const _Procedure(this.name, this.parameters, this.returnType, this.body);
+  final _Token name;
+  final List<_Parameter> parameters;
+  final _Declared? returnType;
   final List<_Statement> body;
 }
 
@@ -522,10 +545,11 @@ class _Parser {
         constants.addAll(_declarations(true));
       } else {
         _take('public') || _take('private');
-        if (!_take('sub')) {
+        final isFunction = _take('function');
+        if (!isFunction && !_take('sub')) {
           context.unsupported(
             current,
-            'Only parameterless Sub procedures and module constants are supported.',
+            'Only Sub/Function procedures and module constants are supported.',
           );
         }
         final name = _identifier();
@@ -536,27 +560,61 @@ class _Parser {
             'Reserved procedure name ${name.text}.',
           );
         }
-        if (_take('(')) _expect(')');
+        final parameters = _parameters();
+        final returnType = isFunction ? _declaredType() : null;
+        if (returnType == _Declared.worksheet ||
+            returnType == _Declared.range) {
+          context.unsupported(name, 'Functions may return scalar values only.');
+        }
         _endStatement();
-        final body = _body(0, () => _atEnd('sub'));
+        final ending = isFunction ? 'function' : 'sub';
+        final body = _body(0, () => _atEnd(ending));
         _expect('end');
-        _expect('sub');
+        _expect(ending);
         _endStatement();
         if (procedures.containsKey(name.lower)) {
           _syntax('Duplicate procedure ${name.text}.', name);
         }
-        procedures[name.lower] = _Procedure(name, body);
+        procedures[name.lower] = _Procedure(name, parameters, returnType, body);
       }
       _separators();
     }
-    if (!procedures.containsKey(context.source.entryPoint.toLowerCase())) {
+    final entry = procedures[context.source.entryPoint.toLowerCase()];
+    if (entry == null ||
+        entry.returnType != null ||
+        entry.parameters.isNotEmpty) {
       context.fail(
-        current,
+        entry?.name ?? current,
         'vba_entry_point',
         'No parameterless Sub named ${context.source.entryPoint}.',
       );
     }
     return _Module(explicit, constants, procedures);
+  }
+
+  List<_Parameter> _parameters() {
+    if (!_take('(')) return const <_Parameter>[];
+    final result = <_Parameter>[];
+    if (!_is(')')) {
+      do {
+        if (result.length >= _maxArguments) {
+          context.limit(
+            current,
+            'Procedures accept at most $_maxArguments parameters.',
+          );
+        }
+        if (!_take('byval')) {
+          context.unsupported(
+            current,
+            'Parameters require explicit ByVal; ByRef, Optional, and ParamArray are unsupported.',
+          );
+        }
+        final name = _identifier();
+        result.add(_Parameter(name, _declaredType()));
+      } while (_take(','));
+    }
+    _expect(')');
+    return result;
   }
 
   List<_Statement> _body(int depth, bool Function() stop) {
@@ -572,6 +630,27 @@ class _Parser {
       }
       if (_is('dim') || _is('const')) {
         result.addAll(_declarations(_is('const')));
+      } else if (_is('exit')) {
+        final token = current;
+        position++;
+        final kind = _take('sub')
+            ? _ExitKind.sub
+            : _take('function')
+            ? _ExitKind.function
+            : _take('for')
+            ? _ExitKind.forLoop
+            : context.unsupported(
+                current,
+                'Only Exit Sub, Exit Function, and Exit For are supported.',
+              );
+        _endStatement();
+        result.add(_Exit(token, kind));
+      } else if (_is('call')) {
+        position++;
+        final name = _identifier();
+        final arguments = _arguments() ?? const <_Expr>[];
+        _endStatement();
+        result.add(_Invoke(name, arguments));
       } else if (_is('for')) {
         final token = current;
         position++;
@@ -629,24 +708,73 @@ class _Parser {
         _expect('if');
         _endStatement();
         result.add(_If(token, branches, otherwise));
+      } else if (current.kind == _TokenKind.identifier &&
+          !_is('set') &&
+          !_is('let') &&
+          !_is('worksheets') &&
+          tokens[position + 1].text != '=' &&
+          tokens[position + 1].text != '.') {
+        final name = _identifier();
+        final arguments = <_Expr>[];
+        if (_is('(') && tokens[position + 1].text == ')') {
+          position += 2;
+        } else if (current.kind != _TokenKind.separator &&
+            current.kind != _TokenKind.end) {
+          do {
+            if (arguments.length >= _maxArguments) {
+              context.limit(
+                current,
+                'Calls accept at most $_maxArguments arguments.',
+              );
+            }
+            arguments.add(_expression());
+          } while (_take(','));
+        }
+        _endStatement();
+        result.add(_Invoke(name, arguments));
       } else {
+        final start = position;
         final token = current;
         final isSet = _take('set');
-        if (!isSet) _take('let');
+        final isLet = !isSet && _take('let');
         final target = _postfix();
         if (_take('=')) {
           final value = _expression();
           _endStatement();
           result.add(_Assignment(token, target, value, isSet));
         } else if (!isSet &&
+            !isLet &&
             target is _Member &&
             target.token.lower == 'clearcontents') {
           _endStatement();
           result.add(_Clear(token, target));
+        } else if (!isSet &&
+            !isLet &&
+            token.kind == _TokenKind.identifier &&
+            tokens[start + 1].text == '.' &&
+            (tokens[start + 1].line != token.line ||
+                tokens[start + 1].column > token.column + token.text.length)) {
+          // Without an assignment, `Helper .Range("A1")` is a bare call
+          // whose first argument uses the caller's With context. Reparse the
+          // argument after the procedure name; ordinary `sheet .Range = ...`
+          // assignments above retain their existing meaning.
+          position = start + 1;
+          final arguments = <_Expr>[];
+          do {
+            if (arguments.length >= _maxArguments) {
+              context.limit(
+                current,
+                'Calls accept at most $_maxArguments arguments.',
+              );
+            }
+            arguments.add(_expression());
+          } while (_take(','));
+          _endStatement();
+          result.add(_Invoke(token, arguments));
         } else {
           context.unsupported(
             token,
-            'Only assignments, ClearContents, With, For, and block If statements are supported.',
+            'Only assignments, procedure calls, ClearContents, With, For, block If, and supported Exit statements are supported.',
           );
         }
       }
@@ -670,23 +798,7 @@ class _Parser {
     final result = <_Declaration>[];
     do {
       final name = _identifier();
-      var type = _Declared.variant;
-      if (_take('as')) {
-        final typeToken = _identifier();
-        type = switch (typeToken.lower) {
-          'long' => _Declared.long,
-          'double' => _Declared.doubleType,
-          'string' => _Declared.string,
-          'boolean' => _Declared.boolean,
-          'variant' => _Declared.variant,
-          'worksheet' => _Declared.worksheet,
-          'range' => _Declared.range,
-          _ => context.unsupported(
-            typeToken,
-            'Supported declarations are Long, Double, String, Boolean, Variant, Worksheet, and Range.',
-          ),
-        };
-      }
+      final type = _declaredType();
       _Expr? initializer;
       if (isConst) {
         _expect('=');
@@ -699,6 +811,24 @@ class _Parser {
     } while (_take(','));
     _endStatement();
     return result;
+  }
+
+  _Declared _declaredType() {
+    if (!_take('as')) return _Declared.variant;
+    final token = _identifier();
+    return switch (token.lower) {
+      'long' => _Declared.long,
+      'double' => _Declared.doubleType,
+      'string' => _Declared.string,
+      'boolean' => _Declared.boolean,
+      'variant' => _Declared.variant,
+      'worksheet' => _Declared.worksheet,
+      'range' => _Declared.range,
+      _ => context.unsupported(
+        token,
+        'Supported declarations are Long, Double, String, Boolean, Variant, Worksheet, and Range.',
+      ),
+    };
   }
 
   static const _precedence = <String, int>{
@@ -792,10 +922,10 @@ class _Parser {
     final result = <_Expr>[];
     if (!_is(')')) {
       do {
-        if (result.length >= 3) {
-          context.unsupported(
+        if (result.length >= _maxArguments) {
+          context.limit(
             current,
-            'No supported call accepts more than three arguments.',
+            'Calls accept at most $_maxArguments arguments.',
           );
         }
         result.add(_expression());
@@ -869,6 +999,8 @@ class _Checker {
   Map<String, _Symbol> symbols = <String, _Symbol>{};
   final List<_Kind> withKinds = <_Kind>[];
   final Set<String> counters = <String>{};
+  final Map<String, Set<String>> calls = <String, Set<String>>{};
+  late _Procedure currentProcedure;
   static const _reserved = <String>{
     'sub',
     'end',
@@ -934,6 +1066,8 @@ class _Checker {
     'in',
     'byref',
     'byval',
+    'optional',
+    'paramarray',
     'addressof',
     'alias',
     'any',
@@ -960,7 +1094,28 @@ class _Checker {
       _declare(declaration);
     }
     for (final procedure in module.procedures.values) {
+      currentProcedure = procedure;
+      calls[procedure.name.lower] = <String>{};
       symbols = <String, _Symbol>{...globals};
+      withKinds.clear();
+      counters.clear();
+      for (final parameter in procedure.parameters) {
+        _declare(_Declaration(parameter.name, parameter.type, false, null));
+      }
+      if (procedure.returnType case final returnType?) {
+        // Only this implicit result variable may share a procedure name.
+        if (symbols.length >= _maxVariables) {
+          context.limit(
+            procedure.name,
+            'The function result exceeds the visible variable limit.',
+          );
+        }
+        symbols[procedure.name.lower] = _Symbol(
+          returnType,
+          false,
+          procedure.name,
+        );
+      }
       var executable = false;
       for (final statement in procedure.body) {
         if (statement is _Declaration) {
@@ -979,11 +1134,57 @@ class _Checker {
       _statements(procedure.body);
       locals[procedure.name.lower] = Map<String, _Symbol>.of(symbols);
     }
+    _checkCallGraph();
+  }
+
+  void _checkCallGraph() {
+    // Remove leaves iteratively. Recursive DFS would itself overflow on hostile
+    // source before a long or cyclic call graph could receive a diagnostic.
+    final remaining = <String, int>{};
+    final callers = <String, List<String>>{};
+    final depths = <String, int>{};
+    final ready = <String>[];
+    for (final entry in calls.entries) {
+      remaining[entry.key] = entry.value.length;
+      depths[entry.key] = 1;
+      if (entry.value.isEmpty) ready.add(entry.key);
+      for (final target in entry.value) {
+        (callers[target] ??= <String>[]).add(entry.key);
+      }
+    }
+    for (var index = 0; index < ready.length; index++) {
+      final name = ready[index];
+      for (final caller in callers[name] ?? const <String>[]) {
+        final candidate = depths[name]! + 1;
+        if (candidate > depths[caller]!) depths[caller] = candidate;
+        remaining[caller] = remaining[caller]! - 1;
+        if (remaining[caller] == 0) ready.add(caller);
+      }
+    }
+    if (ready.length != calls.length) {
+      final name = remaining.entries
+          .firstWhere((entry) => entry.value != 0)
+          .key;
+      context.unsupported(
+        module.procedures[name]!.name,
+        'Recursive procedure calls are unsupported, including unused paths.',
+      );
+    }
+    for (final entry in depths.entries) {
+      if (entry.value > _maxCalls) {
+        context.limit(
+          module.procedures[entry.key]!.name,
+          'Procedure call chains may contain at most $_maxCalls active frames.',
+        );
+      }
+    }
   }
 
   void _declare(_Declaration declaration) {
     final name = declaration.token.lower;
-    if (_reserved.contains(name) || symbols.containsKey(name)) {
+    if (_reserved.contains(name) ||
+        symbols.containsKey(name) ||
+        module.procedures.containsKey(name)) {
       context.fail(
         declaration.token,
         'vba_name_error',
@@ -1060,7 +1261,9 @@ class _Checker {
           break;
       }
       if (variable != null && !symbols.containsKey(variable.lower)) {
-        if (module.explicit || _reserved.contains(variable.lower)) {
+        if (module.explicit ||
+            _reserved.contains(variable.lower) ||
+            module.procedures.containsKey(variable.lower)) {
           context.fail(
             variable,
             'vba_name_error',
@@ -1170,8 +1373,57 @@ class _Checker {
             _statements(branch.$2, nested: true);
           }
           _statements(statement.otherwise, nested: true);
+        case _Invoke():
+          _procedureCall(
+            statement.token,
+            statement.arguments,
+            needsResult: false,
+          );
+        case _Exit():
+          final allowed = switch (statement.kind) {
+            _ExitKind.sub => currentProcedure.returnType == null,
+            _ExitKind.function => currentProcedure.returnType != null,
+            _ExitKind.forLoop => counters.isNotEmpty,
+          };
+          if (!allowed) {
+            context.unsupported(
+              statement.token,
+              'Exit does not match an enclosing procedure or For loop.',
+            );
+          }
       }
     }
+  }
+
+  _Procedure _procedureCall(
+    _Token token,
+    List<_Expr> arguments, {
+    required bool needsResult,
+  }) {
+    final procedure = module.procedures[token.lower];
+    if (procedure == null) {
+      context.unsupported(
+        token,
+        'Unknown or unsupported procedure ${token.text}.',
+      );
+    }
+    if (needsResult && procedure.returnType == null) {
+      context.type(
+        token,
+        'A Sub cannot be used as a value; use a scalar Function.',
+      );
+    }
+    _count(token, arguments, procedure.parameters.length);
+    for (var index = 0; index < arguments.length; index++) {
+      final argument = arguments[index];
+      _assignable(
+        procedure.parameters[index].type,
+        _expression(argument),
+        argument.token,
+      );
+    }
+    calls[currentProcedure.name.lower]!.add(procedure.name.lower);
+    return procedure;
   }
 
   _Kind _writeKind(_Member target) {
@@ -1233,9 +1485,12 @@ class _Checker {
           }
           return _Kind.number;
         }
-        context.unsupported(
-          expression.token,
-          'Only Worksheets and RGB function calls are supported.',
+        return _kindOf(
+          _procedureCall(
+            expression.token,
+            expression.arguments,
+            needsResult: true,
+          ).returnType!,
         );
       case _Member():
         final receiver = _expression(expression.receiver);
@@ -1427,16 +1682,18 @@ class _Evaluator {
   final _Module module;
   final _Checker checker;
   final List<OfficeMacroStep> steps = <OfficeMacroStep>[];
-  final Map<String, Object> values = <String, Object>{};
-  final List<Object> withValues = <Object>[];
-  late final Map<String, _Symbol> symbols;
+  Map<String, Object> values = <String, Object>{};
+  List<Object> withValues = <Object>[];
+  Map<String, _Symbol> symbols = <String, _Symbol>{};
+  Map<String, Object> globalValues = <String, Object>{};
+  int activeCalls = 0;
   int work = 0;
   int encodedBytes = 0;
 
   OfficeMacro compile() {
     final procedure =
         module.procedures[context.source.entryPoint.toLowerCase()]!;
-    symbols = checker.locals[procedure.name.lower]!;
+    symbols = checker.globals;
     final fullName = '${context.source.moduleName}.${procedure.name.text}';
     final name = fullName.length <= 128 ? fullName : procedure.name.text;
     encodedBytes = utf8
@@ -1455,7 +1712,8 @@ class _Evaluator {
     for (final declaration in module.constants) {
       _initialize(declaration);
     }
-    _execute(procedure.body);
+    globalValues = Map<String, Object>.of(values);
+    _invoke(procedure, const <Object>[], procedure.name, needsResult: false);
     try {
       return OfficeMacro(
         name: name,
@@ -1467,6 +1725,58 @@ class _Evaluator {
         context.limit(procedure.name, error.message);
       }
       rethrow;
+    }
+  }
+
+  Object _invoke(
+    _Procedure procedure,
+    List<Object> arguments,
+    _Token token, {
+    required bool needsResult,
+  }) {
+    _tick(token);
+    if (activeCalls >= _maxCalls) {
+      context.limit(token, 'Procedure calls exceed $_maxCalls active frames.');
+    }
+    final callerValues = values;
+    final callerSymbols = symbols;
+    final callerWithValues = withValues;
+    activeCalls++;
+    symbols = checker.locals[procedure.name.lower]!;
+    values = <String, Object>{...globalValues};
+    withValues = <Object>[];
+    try {
+      for (final entry in symbols.entries) {
+        _tick(entry.value.token);
+        if (!globalValues.containsKey(entry.key)) {
+          values[entry.key] = _default(entry.value.type);
+        }
+      }
+      for (var index = 0; index < arguments.length; index++) {
+        final parameter = procedure.parameters[index];
+        values[parameter.name.lower] = _convert(
+          parameter.type,
+          arguments[index],
+          token,
+        );
+      }
+      _execute(procedure.body);
+      if (needsResult) {
+        final result = values[procedure.name.lower]!;
+        if (result is _Uninitialized) {
+          context.unsupported(
+            token,
+            'Function ${procedure.name.text} returned an uninitialized Variant; assign its result before returning.',
+          );
+        }
+        return result;
+      }
+      return const _Uninitialized();
+    } finally {
+      values = callerValues;
+      symbols = callerSymbols;
+      withValues = callerWithValues;
+      activeCalls--;
     }
   }
 
@@ -1497,7 +1807,7 @@ class _Evaluator {
     }
   }
 
-  void _execute(List<_Statement> statements) {
+  _ExitKind? _execute(List<_Statement> statements) {
     for (final statement in statements) {
       _tick(statement.token);
       switch (statement) {
@@ -1522,18 +1832,26 @@ class _Evaluator {
         case _With():
           final target = _evaluate(statement.target);
           withValues.add(target);
-          _execute(statement.body);
-          withValues.removeLast();
+          try {
+            final exit = _execute(statement.body);
+            if (exit != null) return exit;
+          } finally {
+            withValues.removeLast();
+          }
         case _If():
           var matched = false;
           for (final branch in statement.branches) {
             if (_boolean(_evaluate(branch.$1), branch.$1.token)) {
-              _execute(branch.$2);
+              final exit = _execute(branch.$2);
+              if (exit != null) return exit;
               matched = true;
               break;
             }
           }
-          if (!matched) _execute(statement.otherwise);
+          if (!matched) {
+            final exit = _execute(statement.otherwise);
+            if (exit != null) return exit;
+          }
         case _For():
           final start = _loopInteger(
             _evaluate(statement.start),
@@ -1571,7 +1889,9 @@ class _Evaluator {
           );
           for (var iteration = 0; iteration < count; iteration++) {
             _tick(statement.token);
-            _execute(statement.body);
+            final exit = _execute(statement.body);
+            if (exit == _ExitKind.forLoop) break;
+            if (exit != null) return exit;
             counter += step;
             values[statement.counter.lower] = _convert(
               type,
@@ -1579,8 +1899,21 @@ class _Evaluator {
               statement.counter,
             );
           }
+        case _Invoke():
+          final arguments = <Object>[
+            for (final argument in statement.arguments) _evaluate(argument),
+          ];
+          _invoke(
+            module.procedures[statement.token.lower]!,
+            arguments,
+            statement.token,
+            needsResult: false,
+          );
+        case _Exit():
+          return statement.kind;
       }
     }
+    return null;
   }
 
   Object _evaluate(_Expr expression) {
@@ -1604,9 +1937,18 @@ class _Evaluator {
         final arguments = <Object>[
           for (final argument in expression.arguments) _evaluate(argument),
         ];
-        return expression.token.lower == 'worksheets'
-            ? _sheet(arguments.single, expression.token)
-            : _rgb(arguments, expression.token);
+        if (expression.token.lower == 'worksheets') {
+          return _sheet(arguments.single, expression.token);
+        }
+        if (expression.token.lower == 'rgb') {
+          return _rgb(arguments, expression.token);
+        }
+        return _invoke(
+          module.procedures[expression.token.lower]!,
+          arguments,
+          expression.token,
+          needsResult: true,
+        );
       case _Member():
         final receiver = _evaluate(expression.receiver);
         final arguments = <Object>[
