@@ -1,5 +1,10 @@
 # Office integration for remote main — 19 November 2026
 
+**Subsequent TLS integration is being qualified.** The latest Mail and Zotero
+heads introduced native TCP/TLS ownership changes after the saved qualification
+below. Those results remain attributed to their named commits. The new combined
+TLS source and all three incoming TLS suites will receive a separate gate.
+
 The final integrated application source is
 `7d279e084bae438d383630726ad7b0514da77d35`. Its focused transport/protocol/MIME/UI
 qualification passed **389 distinct cases across 32 suites**. The separately

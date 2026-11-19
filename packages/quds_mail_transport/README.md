@@ -86,9 +86,17 @@ boundary for callers that need detailed partial-parse diagnostics.
 
 One provider instance allows one active operation. Every call opens a fresh
 connection and loads current vault credentials. Operations have a finite total
-timeout and poll the account lease for cancellation. Abort destroys connected
-sockets and rejects late socket/TLS completions. The provider never automatically
-replays a command; retry timing is a host decision.
+timeout and poll the account lease for cancellation. The native connection retains
+the original TCP socket during and after TLS negotiation. Abort closes that
+socket even when the peer never answers ClientHello, settles the pending operation,
+and rejects late socket/TLS completions. The provider never automatically replays
+a command; retry timing is a host decision.
+
+The fork's manual `connect(Socket)` path continues to support ordinary and
+already-secure I/O. A default TLS upgrade of an externally supplied socket is
+explicitly rejected because the SDK hides its TCP owner during the handshake.
+Native upgrades must use `connectToServer`, as this provider does; controlled
+fixtures can inject their connection and upgrade boundaries.
 
 Read/flagged/delete operations verify the UID exists, use UID STORE, then read
 that same UID's observed flags before reporting success. **Delete only sets
@@ -115,11 +123,18 @@ real SQLite/coordinator transactions. A Node test exercises the public browser
 entry and throwing vault/codec spies. Source-bound acceptance logs are maintained
 in the repository's continuation validation records.
 
-Controlled socket streams do not establish a real TLS handshake, certificate or
-hostname rejection, OAuth redirect/refresh integration, or disposable-account
-interoperability. Those are separate gates, as are discovered-UID pagination for
-large/sparse mailboxes, IDLE/CONDSTORE/QRESYNC, SMTP/composition, the account-aware
-mailbox workspace, actual browser persistence, and platform credential hosts.
+Additional real loopback tests exercise successful implicit TLS and STARTTLS,
+peer-observed connection closure after stalled-handshake cancellation/deadlines,
+default-trust rejection, and hostname mismatch rejection. A clearly labeled local
+certificate is trusted only by injected test clients; production trust is unchanged.
+Partial-write controls check queue ordering, final readiness, graceful close, and
+abort of a blocked flush. These controls do not qualify live provider
+interoperability or every operating system's socket implementation.
+
+OAuth redirect/refresh integration and disposable-account interoperability remain
+separate gates, as do discovered-UID pagination for large/sparse mailboxes,
+IDLE/CONDSTORE/QRESYNC, SMTP/composition, the account-aware mailbox workspace,
+actual browser persistence, and platform credential hosts.
 
 Original package code is MIT. The native adapter uses the reviewed MPL-2.0
 `third_party/enough_mail` fork; its new raw-fetch and lifecycle additions retain

@@ -99,10 +99,20 @@ implemented Quds packages outside this directory keep their own MIT license.
     relationship, so existing parser callers and Quds quota classification agree.
 14. Frame IMAP greetings across TCP fragmentation/coalescing. Add hard abort,
     connection-generation guards, and late socket/TLS result destruction.
-    Production socket creation keeps the existing certificate and hostname trust
-    policy. Overridable socket-opening seams permit deterministic protocol tests
-    without claiming a real TLS handshake. SMTP/POP greeting framing retains its
-    existing mode; their shared connection/abort behavior is regression tested.
+    Native connections own the original TCP `RawSocket` throughout implicit TLS
+    and STARTTLS, including stalled handshakes and established TLS output.
+    `RawSecureSocket.secure` retains that hard-abort handle; an explicit abort
+    signal settles the operation even if the SDK's handshake future stays pending.
+    A small internal byte-stream adapter orders partial/final writes before flush
+    and close. Production keeps the existing certificate and hostname trust policy.
+    Real loopback tests cover successful TLS, stalled ClientHello cancellation and
+    deadlines, trust/hostname rejection, and credential sequencing in both modes.
+    Controlled socket seams continue to cover parser and late-result races.
+    SMTP/POP greeting framing retains its existing mode.
+    **Manual connection boundary:** `connect(Socket)` still supports ordinary and
+    already-secure socket I/O. Its default TLS upgrade now rejects explicitly;
+    use `connectToServer` for an owned, cancellable native upgrade. An externally
+    supplied SDK Socket cannot expose its TCP owner after the SDK detaches it.
 15. Correct OAUTHBEARER's GS2 authorization identity from `u=` to `a=` and send
     the required `AQ==` error-challenge terminator. Quds enables initial-response
     token mechanisms only with the corresponding AUTH capability and SASL-IR.

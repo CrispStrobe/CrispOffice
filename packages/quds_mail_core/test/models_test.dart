@@ -18,6 +18,7 @@ void main() {
     expect(empty.isDeleted, isFalse);
     expect(identical(observed, equivalent), isFalse);
     expect(observed, equivalent);
+    expect(observed.hashCode, equivalent.hashCode);
     expect(observed, isNot(empty));
     expect({observed}..add(equivalent), hasLength(1));
     for (final different in const [

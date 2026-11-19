@@ -1,0 +1,16 @@
+{
+  "command": [
+    "dart",
+    "--packages=/workspace/scratch/5c6c66fd3cc3/mail-transport/.dart_tool/package_config.json",
+    "/workspace/scratch/5c6c66fd3cc3/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--compiler=kernel",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "--timeout=8s",
+    "test/native_tls_test.dart"
+  ],
+  "cwd": "/workspace/scratch/5c6c66fd3cc3/mail-transport/packages/quds_mail_transport",
+  "exit_code": 0,
+  "seconds": 14.724638362000405,
+  "log": "/workspace/scratch/5c6c66fd3cc3/transport-dev/real-tls-reviewed.log"
+}

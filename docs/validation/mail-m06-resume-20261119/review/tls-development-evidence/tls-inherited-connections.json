@@ -1,0 +1,18 @@
+{
+  "command": [
+    "dart",
+    "--packages=/workspace/scratch/5c6c66fd3cc3/mail-transport/.dart_tool/package_config.json",
+    "/workspace/scratch/5c6c66fd3cc3/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--compiler=kernel",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "--timeout=8s",
+    "test/connection_robustness_test.dart",
+    "test/reconnect_state_test.dart",
+    "test/mail/mail_client_starttls_test.dart"
+  ],
+  "cwd": "/workspace/scratch/5c6c66fd3cc3/mail-transport/third_party/enough_mail",
+  "exit_code": 0,
+  "seconds": 14.345323746999384,
+  "log": "/workspace/scratch/5c6c66fd3cc3/transport-dev/tls-inherited-connections.log"
+}

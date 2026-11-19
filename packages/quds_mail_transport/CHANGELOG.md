@@ -12,5 +12,8 @@
   write reconciliation, cancellation, timeouts, and late connection/TLS cleanup.
 - Provide a socket-free browser entry that reports typed unsupported results.
 - Add controlled protocol fixtures and provider/coordinator/SQLite integration
-  controls. Real TLS, live-account, OAuth-host, SMTP and mailbox UI gates remain
-  separate and open.
+  controls, plus real loopback TLS success, trust, hostname, and stalled-handshake
+  cancellation/deadline controls with retained TCP ownership.
+- Preserve ordinary/already-secure manual socket I/O; native TLS upgrades require
+  the fork's owned `connectToServer` path. Live-account, OAuth-host, SMTP, broader
+  platform interoperability, and mailbox UI gates remain separate and open.
