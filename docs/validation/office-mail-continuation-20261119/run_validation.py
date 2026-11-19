@@ -33,6 +33,99 @@ def write_json(path: Path, value: object) -> None:
     temporary.replace(path)
 
 
+def language_id_inputs(repo: Path, runtime_receipt: dict, library: Path, fixture: Path) -> dict:
+    """Bind real CLD3 and lifecycle-fixture libraries to their qualified source."""
+    library = library.resolve(strict=True)
+    build_receipt = library.parent.parent / "build-receipt.json"
+    fixture = fixture.resolve(strict=True)
+    fixture_receipt = fixture.with_suffix(".receipt.json")
+    additional = runtime_receipt.get("additional_inputs", {})
+    identities = {}
+    for path in (library, build_receipt, fixture, fixture_receipt):
+        if not path.is_file() or path.is_symlink():
+            raise RuntimeError("Missing/redirected language identifier input: " + str(path))
+        identities[str(path)] = digest(path)
+        if additional.get(str(path)) != identities[str(path)]:
+            raise RuntimeError("Language identifier input is not runtime-bound: " + str(path))
+    build = json.loads(build_receipt.read_text())
+    relative = library.relative_to(build_receipt.parent).as_posix()
+    if not relative.startswith("native/") or build.get("files", {}).get(relative) != identities[str(library)]:
+        raise RuntimeError("Language identifier library differs from its native build receipt")
+    package = repo / "packages/quds_language_id"
+    adapters = {path.relative_to(package).as_posix(): digest(path)
+                for path in sorted((package / "native").rglob("*"))
+                if path.is_file() and path.suffix in {".cpp", ".h", ".txt"}}
+    manifest_path = package / "licenses/manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    component = manifest["component"]
+    if (build.get("adapter") != adapters
+            or build.get("license_manifest_sha256") != digest(manifest_path)
+            or build.get("crispasr") != {"repository": component["source"], "commit": component["commit"]}
+            or build.get("model") != manifest["model"]):
+        raise RuntimeError("Language identifier build provenance differs from the qualified source")
+    model = package / "assets" / manifest["model"]["file"]
+    if model.stat().st_size != manifest["model"]["bytes"] or digest(model) != manifest["model"]["sha256"]:
+        raise RuntimeError("Language identifier model differs from its pinned bytes")
+    fixture_source = "packages/quds_language_id/test/fixtures/native_transport_fixture.cpp"
+    fixture_build = json.loads(fixture_receipt.read_text())
+    fixture_source_hash = digest(repo / fixture_source)
+    if (fixture_build.get("library") != fixture.name
+            or fixture_build.get("library_sha256") != identities[str(fixture)]
+            or fixture_build.get("source") != fixture_source
+            or fixture_build.get("source_sha256") != fixture_source_hash):
+        raise RuntimeError("Language identifier fixture differs from its qualified source or build receipt")
+    return {"library": str(library), "library_sha256": identities[str(library)],
+            "build_receipt": str(build_receipt), "build_receipt_sha256": identities[str(build_receipt)],
+            "environment": {"QUDS_LANGUAGE_ID_TEST_LIBRARY": str(library),
+                            "QUDS_LANGUAGE_ID_FIXTURE_LIBRARY": str(fixture)},
+            "model_sha256": manifest["model"]["sha256"], "adapter_source_files": len(adapters),
+            "fixture": {"library": str(fixture), "library_sha256": identities[str(fixture)],
+                        "build_receipt": str(fixture_receipt), "build_receipt_sha256": identities[str(fixture_receipt)],
+                        "source": fixture_source, "source_sha256": fixture_source_hash}}
+
+
+def arabic_morph_inputs(repo: Path, runtime_receipt: dict, library: Path, bundle: Path) -> dict:
+    """Bind the real morphology backend and all four immutable data inputs."""
+    library, bundle = library.resolve(strict=True), bundle.resolve(strict=True)
+    build_receipt = library.parent.parent / "build-receipt.json"
+    package = repo / "packages/quds_arabic_morph"
+    catalog = package / "lib/src/morph_catalog.dart"
+    definition = catalog.read_text().split("const camelMorphMsaProofingBin =", 1)[1].split("\n);", 1)[0]
+    rows = re.findall(r"MorphArtifact\(\s*'([^']+)',\s*'([0-9a-f]{64})',\s*(\d+),?\s*\)", definition)
+    pins = {name: {"sha256": sha, "bytes": int(size)} for name, sha, size in rows}
+    expected_names = {"manifest.json", "camel_morph_msa_v1.0.proofing.cmorph", "NOTICE", "LICENSE"}
+    if len(rows) != 4 or set(pins) != expected_names or {path.name for path in bundle.iterdir()} != expected_names:
+        raise RuntimeError("Morphology bundle/catalog does not contain exactly the four pinned artifacts")
+    additional = runtime_receipt.get("additional_inputs", {})
+    identities = {}
+    for path in (library, build_receipt, *(bundle / name for name in sorted(pins))):
+        if not path.is_file() or path.is_symlink():
+            raise RuntimeError("Missing/redirected morphology input: " + str(path))
+        actual = digest(path)
+        if additional.get(str(path)) != actual:
+            raise RuntimeError("Morphology input is not runtime-bound: " + str(path))
+        identities[str(path)] = actual
+        if path.parent == bundle and (actual != pins[path.name]["sha256"] or path.stat().st_size != pins[path.name]["bytes"]):
+            raise RuntimeError("Morphology bundle artifact differs from its compiled pin: " + path.name)
+    build = json.loads(build_receipt.read_text())
+    relative = library.relative_to(build_receipt.parent).as_posix()
+    manifest_path = package / "licenses/manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    component = manifest["component"]
+    if (not relative.startswith("native/") or build.get("files", {}).get(relative) != identities[str(library)]
+            or build.get("adapter_sha256") != digest(package / "native/src/quds_arabic_morph.cpp")
+            or build.get("license_manifest_sha256") != digest(manifest_path)
+            or build.get("crispembed") != {"repository": component["source"], "commit": component["commit"],
+                                          "pull_request": component["pull_request"]}):
+        raise RuntimeError("Morphology build provenance differs from the qualified source")
+    return {"library": str(library), "library_sha256": identities[str(library)],
+            "build_receipt": str(build_receipt), "build_receipt_sha256": identities[str(build_receipt)],
+            "bundle": str(bundle), "artifacts": pins, "catalog_sha256": digest(catalog),
+            "environment": {"QUDS_ARABIC_MORPH_TEST_LIBRARY": str(library),
+                            "QUDS_ARABIC_MORPH_TEST_BUNDLE": str(bundle)},
+            "live_external_download_executed": False}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--head", required=True)
@@ -40,6 +133,14 @@ def main() -> int:
     parser.add_argument("--runtime", required=True, type=Path)
     parser.add_argument("--web-sdk", required=True, type=Path,
                         help="Separate engine-pinned web SDK prepared by prepare_web_sdk.py")
+    parser.add_argument("--language-id-library", required=True, type=Path,
+                        help="Real native CLD3 library and sibling build receipt bound in runtime.json")
+    parser.add_argument("--language-id-fixture-library", required=True, type=Path,
+                        help="Native lifecycle fixture library and .receipt.json bound in runtime.json")
+    parser.add_argument("--arabic-morph-library", required=True, type=Path,
+                        help="Real native Camel Morph library and build receipt bound in runtime.json")
+    parser.add_argument("--arabic-morph-bundle", required=True, type=Path,
+                        help="Directory containing the four source-pinned proofing-bin bundle artifacts")
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--command-timeout", type=int, default=900)
     args = parser.parse_args()
@@ -112,20 +213,37 @@ def main() -> int:
         group["cwd"] + "/" + suite
         for group in plan_data["native"]["groups"] for suite in group["tests"]
     }
+    node_suites = {group["cwd"] + "/" + suite
+                   for group in plan_data["node"]["groups"] for suite in group["tests"]}
+    node_only = plan_data["native"].get("node_only_suites", {})
+    if (not isinstance(node_only, dict) or any(not isinstance(reason, str) or not reason.strip()
+                                              for reason in node_only.values())
+            or set(node_only) - node_suites or set(node_only) & planned_suites):
+        raise RuntimeError("Node-only suites need an explicit boundary and exact Node-only selection")
+    # check_store.py discovers all Core tests on VM/Node and all top-level
+    # Store tests across its VM and portable Node selections. Do not execute
+    # those changed suites a second time merely to satisfy this adapter.
+    core_store_suites = {
+        path for path in tracked if path.endswith("_test.dart")
+        and (path.startswith("packages/quds_mail_core/test/")
+             or Path(path).parent.as_posix() == "packages/quds_mail_store/test")
+    }
     optional_suites = {studio_root + "/" + suite for suite in excluded}
     for row in plan_data["native"].get("excluded_native_backend_suites", []):
         if not row.get("reason"):
             raise RuntimeError("Every excluded native backend suite needs an explicit boundary")
         optional_suites.add(row["path"])
     changed_suites = {path for path in changed if path.endswith("_test.dart")}
-    if changed_suites - planned_suites - optional_suites:
-        raise RuntimeError("Changed test suites missing native qualification: "
-                           + str(sorted(changed_suites - planned_suites - optional_suites)))
+    missing_suites = changed_suites - planned_suites - optional_suites - core_store_suites - set(node_only)
+    if missing_suites:
+        raise RuntimeError("Changed test suites missing aggregate qualification: " + str(sorted(missing_suites)))
     receipt = json.loads((runtime / "runtime.json").read_text())
     if receipt.get("status") != "ready" or not receipt.get("archive", {}).get("verified"):
         raise RuntimeError("A verified ready runtime is required")
     if digest(repo / "pubspec.lock") != receipt["workspace_lock_sha256"]:
         raise RuntimeError("Workspace lock differs from the verified runtime")
+    language_id = language_id_inputs(repo, receipt, args.language_id_library, args.language_id_fixture_library)
+    arabic_morph = arabic_morph_inputs(repo, receipt, args.arabic_morph_library, args.arabic_morph_bundle)
     web_identity = json.loads((directory / "web-sdk.json").read_text())
     if web_identity["engine_revision"] != receipt["runtime"]["engineRevision"]:
         raise RuntimeError("Web SDK engine does not match the verified runtime")
@@ -187,9 +305,11 @@ def main() -> int:
     env["PATH"] = str(runtime / "bin") + os.pathsep + env.get("PATH", "")
     removed_environment = []
     for name in list(env):
-        if name.startswith(("QUDS_HUNSPELL_", "QUDS_ARABIC_MORPH_", "QUDS_SHOTS_")):
+        if name.startswith(("QUDS_HUNSPELL_", "QUDS_ARABIC_MORPH_", "QUDS_SHOTS_", "QUDS_LANGUAGE_ID_")):
             removed_environment.append(name)
             del env[name]
+    env.update(language_id["environment"])
+    env.update(arabic_morph["environment"])
     sys.path.insert(0, str(repo / "tools/mail"))
     from check_store import execute
 
@@ -203,9 +323,13 @@ def main() -> int:
         "python_version": sys.version, "strict_changed_dart_inputs": sorted(changed),
         "changed_test_suites": sorted(changed_suites),
         "changed_test_suites_explicitly_excluded": sorted(changed_suites & optional_suites),
+        "core_store_test_suites": sorted(core_store_suites),
+        "node_only_test_suites": node_only,
         "excluded_studio_suites": excluded,
         "excluded_native_backend_suites": plan_data["native"].get("excluded_native_backend_suites", []),
         "removed_optional_native_environment_names": sorted(removed_environment),
+        "language_id_native": language_id,
+        "arabic_morph_native": arabic_morph,
         "web_sdk_identity_sha256": digest(directory / "web-sdk.json"),
         "web_sdk_dart_link_target": str(dart_link.resolve()),
         "historical_results_added_to_current_counts": 0,
@@ -312,6 +436,46 @@ def main() -> int:
             "accepted": True, "browser_session_executed": False,
             "artifacts": {path.name: {"bytes": path.stat().st_size, "sha256": digest(path)} for path in web_outputs},
             "import_closure_sha256": digest(output / "mail-browser-import-closure.json"),
+        }
+        language_entry = repo / "packages/quds_language_id/tool/language_id_web_entry.dart"
+        language_kernel = output / "language-id-web.dill"
+        language_js = output / "language-id-web.js"
+        run("language-id-browser-frontend", [*common,
+            "--packages=" + str(repo / ".dart_tool/package_config.json"),
+            "--cfe-only", "-o", str(language_kernel), str(language_entry)])
+        language_deps = language_kernel.with_suffix(language_kernel.suffix + ".deps")
+        language_entries = set(language_deps.read_text().splitlines())
+        language_required = [
+            "packages/quds_language_id/tool/language_id_web_entry.dart",
+            "packages/quds_language_id/lib/quds_language_id.dart",
+            "packages/quds_language_id/lib/src/cld3_language_identifier.dart",
+            "packages/quds_language_id/lib/src/language_id_transport_web.dart",
+        ]
+        language_forbidden = [
+            "packages/quds_language_id/lib/src/language_id_transport_native.dart",
+            "packages/quds_language_id/lib/src/language_id_transport_stub.dart",
+        ]
+        language_missing = [path for path in language_required if (repo / path).as_uri() not in language_entries]
+        language_present = [path for path in language_forbidden if (repo / path).as_uri() in language_entries]
+        language_closure = {
+            "required_web_paths": language_required, "forbidden_native_paths": language_forbidden,
+            "missing_web_paths": language_missing, "present_native_paths": language_present,
+            "dependency_count": len(language_entries), "dependencies_sha256": digest(language_deps),
+            "passed": not language_missing and not language_present,
+            "scope": "Actual browser frontend and JavaScript compilation; no browser, Worker or Wasm execution.",
+        }
+        write_json(output / "language-id-browser-import-closure.json", language_closure)
+        if not language_closure["passed"]:
+            raise RuntimeError("Language identifier browser import graph selected an unexpected platform path")
+        run("language-id-browser-javascript", [*common, "--no-source-maps", "-o", str(language_js), str(language_kernel)])
+        run("language-id-browser-javascript-syntax", [receipt["node_runtime"]["path"], "--check", str(language_js)])
+        language_outputs = [language_kernel, language_deps, language_js, language_js.with_suffix(language_js.suffix + ".deps")]
+        if any(not path.is_file() or not path.stat().st_size for path in language_outputs):
+            raise RuntimeError("Language identifier browser compilation did not produce all expected artifacts")
+        record["language_id_browser_compilation"] = {
+            "accepted": True, "browser_session_executed": False, "worker_executed": False, "wasm_executed": False,
+            "artifacts": {path.name: {"bytes": path.stat().st_size, "sha256": digest(path)} for path in language_outputs},
+            "import_closure_sha256": digest(output / "language-id-browser-import-closure.json"),
         }
         record["status"] = "PASS"
     except BaseException as error:

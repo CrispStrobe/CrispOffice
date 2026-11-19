@@ -1,5 +1,5 @@
 {
-  "description": "Complementary portable Node executions from the exact same frozen source: Mail cursors/unsupported-platform boundary, MIME and vendored portable codec, Arabic T1/T2 rules and Unicode offsets/shared merge, scripted Hunspell and Camel Morph. Node execution does not establish browser networking/storage/Worker/Wasm acceptance. Repeated platform executions remain distinct from unique suite files.",
+  "description": "Complementary portable Node executions from the exact same frozen source: Mail IMAP/EWS configuration, SOAP and unsupported-platform boundaries, MIME and vendored portable codec, Arabic T1/T2 rules and Unicode offsets/shared merge, scripted Hunspell and Camel Morph, and paragraph-language script/precedence policy. Node execution does not establish browser networking/storage/Worker/Wasm acceptance. Repeated platform executions remain distinct from unique suite files.",
   "groups": [
     {
       "name": "mail-transport-node",
@@ -8,7 +8,10 @@
       "tests": [
         "test/configuration_test.dart",
         "test/cursor_test.dart",
-        "test/unsupported_test.dart"
+        "test/unsupported_test.dart",
+        "test/ews_configuration_test.dart",
+        "test/ews_soap_test.dart",
+        "test/ews_unsupported_test.dart"
       ],
       "platform": "node"
     },
@@ -66,6 +69,16 @@
         "test/arabic_morph_unit_test.dart"
       ],
       "platform": "node"
+    },
+    {
+      "name": "language-identification-policy-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/language_identification_test.dart",
+        "test/proofing/language_identification_calibration_test.dart"
+      ]
     }
   ],
   "analysis": [],
@@ -78,7 +91,9 @@
     "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
     "tools/mail/test_check_store.py",
     "docs/validation/office-mail-continuation-20261119/native-plan.json",
-    "docs/validation/office-mail-continuation-20261119/audit_results.py"
+    "docs/validation/office-mail-continuation-20261119/audit_results.py",
+    "docs/validation/office-mail-continuation-20261119/prepare_language_id.py",
+    "docs/validation/office-mail-continuation-20261119/prepare_arabic_morph.py"
   ],
   "whitespace_preserved_inputs": []
 }

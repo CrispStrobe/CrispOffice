@@ -36,7 +36,10 @@ final class _NativeTransport implements ArabicMorphTransport {
   ReceivePort? _errors;
   Future<SendPort>? _opening;
   Completer<SendPort>? _ready;
+  final _closed = Completer<void>();
+  Future<void>? _disposal;
   bool _disposed = false;
+  bool _aborted = false;
   int _sequence = 0;
   CompactAnalysisDecoder? _decoder;
 
@@ -47,6 +50,8 @@ final class _NativeTransport implements ArabicMorphTransport {
     messages.listen((Object? value) {
       if (value is SendPort) {
         if (!ready.isCompleted) ready.complete(value);
+      } else if (value == 'closed') {
+        if (!_closed.isCompleted) _closed.complete();
       } else if (value case ['result', final int id, final Object? body]) {
         _pending.remove(id)?.complete(body);
       } else if (value case ['error', final int id, final String message]) {
@@ -87,7 +92,7 @@ final class _NativeTransport implements ArabicMorphTransport {
           errorsAreFatal: true,
           debugName: 'Quds Arabic morphology',
         ).then((isolate) {
-          if (_disposed) {
+          if (_aborted) {
             isolate.kill(priority: Isolate.immediate);
           } else {
             _isolate = isolate;
@@ -97,24 +102,30 @@ final class _NativeTransport implements ArabicMorphTransport {
       ], eagerError: true);
       return results.first! as SendPort;
     } on ArabicMorphUnavailableException {
-      await dispose();
       rethrow;
     } on Object {
-      await dispose();
-      throw const ArabicMorphUnavailableException(
+      const error = ArabicMorphUnavailableException(
         'The local Arabic morphology worker could not be started.',
       );
+      _fail(error);
+      throw error;
     }
   }
 
   void _fail(Object error) {
     _disposed = true;
+    _aborted = true;
     final ready = _ready;
     if (ready != null && !ready.isCompleted) ready.completeError(error);
     for (final request in _pending.values) {
       request.completeError(error);
     }
     _pending.clear();
+    if (!_closed.isCompleted) _closed.complete();
+    _terminate();
+  }
+
+  void _terminate() {
     _isolate?.kill(priority: Isolate.immediate);
     _isolate = null;
     _messages?.close();
@@ -177,13 +188,34 @@ final class _NativeTransport implements ArabicMorphTransport {
   }
 
   @override
-  Future<void> dispose() async {
-    if (_disposed) return;
-    _fail(
-      const ArabicMorphUnavailableException(
-        'Arabic morphology worker was disposed.',
-      ),
+  Future<void> dispose() => _disposal ??= _dispose();
+
+  Future<void> _dispose() async {
+    _disposed = true;
+    const error = ArabicMorphUnavailableException(
+      'Arabic morphology worker was disposed.',
     );
+    for (final request in _pending.values) {
+      request.completeError(error);
+    }
+    _pending.clear();
+    try {
+      final opening = _opening;
+      if (opening != null && !_aborted) {
+        // Native allocations and file mappings survive a killed isolate.
+        // Let queued calls finish, then free them in their owning worker.
+        final port = await opening.timeout(const Duration(seconds: 2));
+        port.send(['dispose']);
+        await _closed.future.timeout(const Duration(seconds: 2));
+      }
+    } on Object {
+      // A crashed or unresponsive worker must not hold up app shutdown.
+    } finally {
+      _aborted = true;
+      final ready = _ready;
+      if (ready != null && !ready.isCompleted) ready.completeError(error);
+      _terminate();
+    }
   }
 }
 
@@ -209,6 +241,17 @@ void _workerMain(List<Object?> arguments) {
   host.send(input.sendPort);
   Pointer<Void> handle = nullptr;
   input.listen((Object? value) {
+    if (value case ['dispose']) {
+      try {
+        if (handle != nullptr) bindings.free(handle);
+      } finally {
+        handle = nullptr;
+        bindings.dispose();
+        input.close();
+        host.send('closed');
+      }
+      return;
+    }
     if (value is! List || value.isEmpty || value.first is! int) return;
     final id = value.first as int;
     try {
@@ -335,9 +378,14 @@ final class _Bindings {
     if (abi() != 2 || adapter() != 1) {
       throw StateError('Unsupported Arabic morphology ABI.');
     }
-    _error = _allocate(_errorCapacity);
-    _out = _allocate(sizeOf<Pointer<Uint8>>()).cast();
-    _outLength = _allocate(sizeOf<Size>()).cast();
+    try {
+      _error = _allocate(_errorCapacity);
+      _out = _allocate(sizeOf<Pointer<Uint8>>()).cast();
+      _outLength = _allocate(sizeOf<Size>()).cast();
+    } on Object {
+      dispose();
+      rethrow;
+    }
   }
 
   final Pointer<Void> Function(
@@ -367,9 +415,22 @@ final class _Bindings {
   final void Function(Pointer<Uint8>) _free;
 
   // Buffers owned for the isolate's lifetime (one analyzer per isolate).
-  late final Pointer<Uint8> _error;
-  late final Pointer<Pointer<Uint8>> _out;
-  late final Pointer<Size> _outLength;
+  Pointer<Uint8> _error = nullptr;
+  Pointer<Pointer<Uint8>> _out = nullptr;
+  Pointer<Size> _outLength = nullptr;
+
+  void dispose() {
+    for (final buffer in [
+      _error,
+      _out.cast<Uint8>(),
+      _outLength.cast<Uint8>(),
+    ]) {
+      if (buffer != nullptr) _free(buffer);
+    }
+    _error = nullptr;
+    _out = nullptr;
+    _outLength = nullptr;
+  }
 
   Pointer<Uint8> _allocate(int bytes) {
     final pointer = _malloc(bytes);
@@ -454,8 +515,9 @@ final class _Bindings {
       return rejected.buffer.asUint8List();
     }
     final text = _allocate(total == 0 ? 1 : total);
-    final lengths = _allocate(4 * words.length).cast<Uint32>();
+    Pointer<Uint32> lengths = nullptr;
     try {
+      lengths = _allocate(4 * words.length).cast<Uint32>();
       var at = 0;
       final view = text.asTypedList(total == 0 ? 1 : total);
       for (var i = 0; i < words.length; i++) {
@@ -489,7 +551,7 @@ final class _Bindings {
       }
     } finally {
       _free(text);
-      _free(lengths.cast());
+      if (lengths != nullptr) _free(lengths.cast());
     }
   }
 }

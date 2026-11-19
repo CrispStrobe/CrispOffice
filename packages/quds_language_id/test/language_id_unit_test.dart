@@ -203,6 +203,7 @@ void main() {
         final identifier = Cld3LanguageIdentifier(
           model: _model(),
           transport: transport,
+          topK: 3,
         );
         expect(await identifier.detect('Paragraph text'), isEmpty);
         expect(identifier.failure, isA<FormatException>());

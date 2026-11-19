@@ -382,7 +382,7 @@ final class WordProofingSession extends ChangeNotifier {
       '${_detectionActive ? 'lid' : ''}';
 
   bool get _detectionActive =>
-      _automaticLanguageDetection && _languageDetector != null;
+      !_disposed && _automaticLanguageDetection && _languageDetector != null;
 
   /// The paragraph language detector used for proofing routing, if any.
   ParagraphLanguageDetector? get languageDetector => _languageDetector;
@@ -427,6 +427,7 @@ final class WordProofingSession extends ChangeNotifier {
     final detector = _languageDetector;
     if (_disposed || detector == null) return null;
     final results = await detector.detectAll(texts);
+    if (_disposed || !identical(detector, _languageDetector)) return null;
     for (final result in results) {
       if (_detectionActive) _detections[result.text] = result;
     }
@@ -455,7 +456,9 @@ final class WordProofingSession extends ChangeNotifier {
     final texts = _missingDetections.toList();
     _missingDetections.clear();
     final results = await detector.detectAll(texts);
-    if (!identical(detector, _languageDetector)) return false;
+    if (!_detectionActive || !identical(detector, _languageDetector)) {
+      return false;
+    }
     for (final result in results) {
       _detections[result.text] = result;
     }
@@ -1089,14 +1092,17 @@ final class WordProofingSession extends ChangeNotifier {
     if (_missingDetections.isNotEmpty) {
       // Paragraph detection is fast (well under a millisecond each); route
       // the whole pass with it rather than checking twice.
-      if (await _detectMissing()) {
-        if (_disposed ||
-            generation != _generation ||
-            !identical(document, _document()) ||
-            revision != _revision() ||
-            configuration != _configurationKey) {
-          return _summary;
-        }
+      final detected = await _detectMissing();
+      // Even a discarded detection yielded control: the session, document
+      // or provider configuration may have changed while it was pending.
+      if (_disposed ||
+          generation != _generation ||
+          !identical(document, _document()) ||
+          revision != _revision() ||
+          configuration != _configurationKey) {
+        return _summary;
+      }
+      if (detected) {
         captured = _capture(document);
       }
     }
@@ -1828,6 +1834,10 @@ final class WordProofingSession extends ChangeNotifier {
     _pendingDraftCheck = null;
     _cache.clear();
     _findings.clear();
+    _languageDetector = null;
+    _detections.clear();
+    _missingDetections.clear();
+    _capturedTexts.clear();
     unawaited(_service.dispose());
     final manual = _manualService;
     if (manual != null) unawaited(manual.dispose());

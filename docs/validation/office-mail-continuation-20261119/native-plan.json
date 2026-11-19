@@ -1,5 +1,5 @@
 {
-  "description": "Fresh aggregate qualification of the reconciled continuation: every ordinary Studio suite including account/saved/composer/loader/session behavior, incoming Word language/script inheritance and Arabic T1/T2 fixtures, shared proofing merge behavior, native Mail transport/UID/TLS, portable MIME, Mail reader UI, and vendored SMTP send-transaction plus loopback server-acceptance regressions. All changed Dart files, including vendored implementation and tests, are explicit strict analysis/format targets. Scripted Hunspell/Camel Morph tests and request cancellation execute without native backends. Core/store VM+Node run separately through check_store.py. This is not a full Office suite, installed-application, live-provider, real browser Worker/Wasm, or native dictionary/database acceptance.",
+  "description": "Fresh aggregate qualification of the reconciled continuation: every ordinary Studio suite including account/saved/composer/loader/session behavior, incoming Word language/script inheritance and Arabic T1/T2 fixtures, shared proofing merge behavior, native Mail IMAP/UID/TLS and EWS HTTP/NTLM/provider/Studio behavior, portable MIME, Mail reader UI, and vendored SMTP send-transaction plus loopback server-acceptance regressions. All changed Dart files, including vendored implementation and tests, are explicit strict analysis/format targets. Paragraph-language policy, the pinned CLD3 model and real source-bound native classifier are included. Scripted Hunspell and Camel Morph tests remain included; the real binary Camel Morph backend, pinned four-file proofing bundle, local installer, end-to-end Arabic rules and Studio host also execute. The separately preserved live external download suite is explicitly excluded. Core/store VM+Node run separately through check_store.py. The outer gate compiles the actual Mail and CLD3 browser import closures and JavaScript without executing a browser or Worker. This is not a full Office suite, installed-application, live-provider, real browser Worker/Wasm, or real Hunspell dictionary acceptance.",
   "groups": [
     {
       "name": "engine-proofing-and-language",
@@ -20,7 +20,9 @@
         "test/word_proofing_inheritance_test.dart",
         "test/word_comment_proofing_styles_test.dart",
         "test/wml_run_edit_test.dart",
-        "test/word_package_preservation_test.dart"
+        "test/word_package_preservation_test.dart",
+        "test/proofing/language_identification_test.dart",
+        "test/proofing/language_identification_calibration_test.dart"
       ]
     },
     {
@@ -38,7 +40,8 @@
         "test/word_proofing_capture_cache_test.dart",
         "test/word_incremental_proofing_test.dart",
         "test/word_proofing_navigation_test.dart",
-        "test/word_text_proofing_pane_test.dart"
+        "test/word_text_proofing_pane_test.dart",
+        "test/word_language_detection_test.dart"
       ]
     },
     {
@@ -78,7 +81,10 @@
         "test/studio_zotero_citing_transport_test.dart",
         "test/studio_zotero_shortcuts_test.dart",
         "test/widget_test.dart",
-        "test/word_pdf_face_export_test.dart"
+        "test/word_pdf_face_export_test.dart",
+        "test/studio_mail_ews_test.dart",
+        "test/studio_arabic_morph_native_test.dart",
+        "test/studio_language_id_host_test.dart"
       ]
     },
     {
@@ -93,7 +99,12 @@
         "test/native_tls_cancellation_test.dart",
         "test/native_tls_round_trip_test.dart",
         "test/native_tls_test.dart",
-        "test/uid_discovery_test.dart"
+        "test/uid_discovery_test.dart",
+        "test/ews_configuration_test.dart",
+        "test/ews_http_test.dart",
+        "test/ews_ntlm_test.dart",
+        "test/ews_provider_test.dart",
+        "test/ews_soap_test.dart"
       ]
     },
     {
@@ -190,17 +201,89 @@
       "tests": [
         "test/arabic_morph_unit_test.dart"
       ]
+    },
+    {
+      "name": "language-id-native",
+      "cwd": "packages/quds_language_id",
+      "runner": "dart",
+      "tests": [
+        "test/language_id_unit_test.dart",
+        "test/language_id_native_test.dart",
+        "test/language_id_native_transport_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-morph-native",
+      "cwd": "packages/quds_arabic_morph",
+      "runner": "dart",
+      "tests": [
+        "test/arabic_morph_native_test.dart",
+        "test/arabic_rules_e2e_test.dart"
+      ]
     }
   ],
   "analysis": [
+    "packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart",
     "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+    "packages/quds_arabic_morph/lib/src/morph_catalog.dart",
+    "packages/quds_arabic_morph/lib/src/morph_installer_io.dart",
+    "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+    "packages/quds_arabic_morph/lib/src/morph_transport_web.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_live_download_test.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_native_test.dart",
     "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "packages/quds_arabic_morph/test/arabic_rules_e2e_test.dart",
+    "packages/quds_arabic_morph/tool/browser_smoke.dart",
+    "packages/quds_arabic_morph/tool/pud_benchmark.dart",
+    "packages/quds_arabic_morph/tool/pud_rule_findings.dart",
+    "packages/quds_language_id/lib/quds_language_id.dart",
+    "packages/quds_language_id/lib/src/cld3_labels.dart",
+    "packages/quds_language_id/lib/src/cld3_language_identifier.dart",
+    "packages/quds_language_id/lib/src/cld3_model.dart",
+    "packages/quds_language_id/lib/src/language_id_transport.dart",
+    "packages/quds_language_id/lib/src/language_id_transport_native.dart",
+    "packages/quds_language_id/lib/src/language_id_transport_stub.dart",
+    "packages/quds_language_id/lib/src/language_id_transport_web.dart",
+    "packages/quds_language_id/test/language_id_native_test.dart",
+    "packages/quds_language_id/test/language_id_native_transport_test.dart",
+    "packages/quds_language_id/test/language_id_unit_test.dart",
+    "packages/quds_language_id/tool/language_id_web_entry.dart",
+    "packages/quds_language_id/tool/ud_evaluation.dart",
+    "packages/quds_mail_core/lib/src/model/identity.dart",
+    "packages/quds_mail_core/test/ews_identity_test.dart",
+    "packages/quds_mail_store/test/ews_store_test.dart",
+    "packages/quds_mail_transport/example/ews_probe.dart",
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/ews/configuration.dart",
+    "packages/quds_mail_transport/lib/src/ews/cursor.dart",
+    "packages/quds_mail_transport/lib/src/ews/errors.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/http_client.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/ntlm.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/ews/soap.dart",
+    "packages/quds_mail_transport/lib/src/ews/unsupported.dart",
+    "packages/quds_mail_transport/test/ews_configuration_test.dart",
+    "packages/quds_mail_transport/test/ews_http_test.dart",
+    "packages/quds_mail_transport/test/ews_ntlm_test.dart",
+    "packages/quds_mail_transport/test/ews_provider_test.dart",
+    "packages/quds_mail_transport/test/ews_soap_test.dart",
+    "packages/quds_mail_transport/test/ews_unsupported_test.dart",
     "packages/quds_mail_ui/lib/src/reader/presentation.dart",
     "packages/quds_mail_ui/test/presentation_test.dart",
     "packages/quds_office_editor/example/lib/studio_about.dart",
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart",
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_de_strings.dart",
     "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+    "packages/quds_office_editor/example/lib/studio_language_id_host.dart",
+    "packages/quds_office_editor/example/lib/studio_language_id_host_native.dart",
+    "packages/quds_office_editor/example/lib/studio_language_id_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_licenses.dart",
     "packages/quds_office_editor/example/lib/studio_mail.dart",
     "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
     "packages/quds_office_editor/example/lib/studio_mail_file.dart",
     "packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
     "packages/quds_office_editor/example/lib/studio_mail_file_web.dart",
@@ -222,8 +305,10 @@
     "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
     "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
     "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+    "packages/quds_office_editor/example/test/studio_language_id_host_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
@@ -240,16 +325,22 @@
     "packages/quds_office_editor/example/test/widget_test.dart",
     "packages/quds_office_editor/example/tool/mail_web_entry.dart",
     "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
     "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "packages/quds_office_editor/test/word_language_detection_test.dart",
     "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
     "packages/quds_office_engine/lib/quds_office_engine.dart",
     "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+    "packages/quds_office_engine/lib/src/proofing/language_identification.dart",
     "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
     "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
     "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
     "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
     "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
     "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+    "packages/quds_office_engine/test/proofing/language_identification_calibration_test.dart",
+    "packages/quds_office_engine/test/proofing/language_identification_test.dart",
     "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
     "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
     "packages/quds_office_engine/test/wml_run_edit_test.dart",
@@ -267,14 +358,67 @@
     "third_party/enough_mail/test/mail/mail_submission_acceptance_test.dart"
   ],
   "format": [
+    "packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart",
     "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+    "packages/quds_arabic_morph/lib/src/morph_catalog.dart",
+    "packages/quds_arabic_morph/lib/src/morph_installer_io.dart",
+    "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+    "packages/quds_arabic_morph/lib/src/morph_transport_web.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_live_download_test.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_native_test.dart",
     "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "packages/quds_arabic_morph/test/arabic_rules_e2e_test.dart",
+    "packages/quds_arabic_morph/tool/browser_smoke.dart",
+    "packages/quds_arabic_morph/tool/pud_benchmark.dart",
+    "packages/quds_arabic_morph/tool/pud_rule_findings.dart",
+    "packages/quds_language_id/lib/quds_language_id.dart",
+    "packages/quds_language_id/lib/src/cld3_labels.dart",
+    "packages/quds_language_id/lib/src/cld3_language_identifier.dart",
+    "packages/quds_language_id/lib/src/cld3_model.dart",
+    "packages/quds_language_id/lib/src/language_id_transport.dart",
+    "packages/quds_language_id/lib/src/language_id_transport_native.dart",
+    "packages/quds_language_id/lib/src/language_id_transport_stub.dart",
+    "packages/quds_language_id/lib/src/language_id_transport_web.dart",
+    "packages/quds_language_id/test/language_id_native_test.dart",
+    "packages/quds_language_id/test/language_id_native_transport_test.dart",
+    "packages/quds_language_id/test/language_id_unit_test.dart",
+    "packages/quds_language_id/tool/language_id_web_entry.dart",
+    "packages/quds_language_id/tool/ud_evaluation.dart",
+    "packages/quds_mail_core/lib/src/model/identity.dart",
+    "packages/quds_mail_core/test/ews_identity_test.dart",
+    "packages/quds_mail_store/test/ews_store_test.dart",
+    "packages/quds_mail_transport/example/ews_probe.dart",
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/ews/configuration.dart",
+    "packages/quds_mail_transport/lib/src/ews/cursor.dart",
+    "packages/quds_mail_transport/lib/src/ews/errors.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/http_client.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/ntlm.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/ews/soap.dart",
+    "packages/quds_mail_transport/lib/src/ews/unsupported.dart",
+    "packages/quds_mail_transport/test/ews_configuration_test.dart",
+    "packages/quds_mail_transport/test/ews_http_test.dart",
+    "packages/quds_mail_transport/test/ews_ntlm_test.dart",
+    "packages/quds_mail_transport/test/ews_provider_test.dart",
+    "packages/quds_mail_transport/test/ews_soap_test.dart",
+    "packages/quds_mail_transport/test/ews_unsupported_test.dart",
     "packages/quds_mail_ui/lib/src/reader/presentation.dart",
     "packages/quds_mail_ui/test/presentation_test.dart",
     "packages/quds_office_editor/example/lib/studio_about.dart",
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart",
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_de_strings.dart",
     "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+    "packages/quds_office_editor/example/lib/studio_language_id_host.dart",
+    "packages/quds_office_editor/example/lib/studio_language_id_host_native.dart",
+    "packages/quds_office_editor/example/lib/studio_language_id_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_licenses.dart",
     "packages/quds_office_editor/example/lib/studio_mail.dart",
     "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
     "packages/quds_office_editor/example/lib/studio_mail_file.dart",
     "packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
     "packages/quds_office_editor/example/lib/studio_mail_file_web.dart",
@@ -296,8 +440,10 @@
     "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
     "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
     "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+    "packages/quds_office_editor/example/test/studio_language_id_host_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_operation_test.dart",
@@ -314,16 +460,22 @@
     "packages/quds_office_editor/example/test/widget_test.dart",
     "packages/quds_office_editor/example/tool/mail_web_entry.dart",
     "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
     "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+    "packages/quds_office_editor/test/word_language_detection_test.dart",
     "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
     "packages/quds_office_engine/lib/quds_office_engine.dart",
     "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+    "packages/quds_office_engine/lib/src/proofing/language_identification.dart",
     "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
     "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
     "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
     "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
     "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
     "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+    "packages/quds_office_engine/test/proofing/language_identification_calibration_test.dart",
+    "packages/quds_office_engine/test/proofing/language_identification_test.dart",
     "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
     "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
     "packages/quds_office_engine/test/wml_run_edit_test.dart",
@@ -347,14 +499,15 @@
     "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
     "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
     "tools/mail/test_check_store.py",
-    "docs/validation/office-mail-continuation-20261119/audit_results.py"
+    "docs/validation/office-mail-continuation-20261119/audit_results.py",
+    "docs/validation/office-mail-continuation-20261119/prepare_language_id.py",
+    "docs/validation/office-mail-continuation-20261119/prepare_arabic_morph.py"
   ],
   "whitespace_preserved_inputs": [],
   "excluded_studio_suites": {
     "test/dump_gallery_shots_test.dart": "Optional PDF-to-PNG artifact generator requiring external Poppler; ordinary PDF/gallery checks remain included.",
     "test/studio_shots_test.dart": "Optional screenshot artifact generator requiring QUDS_SHOTS_DIR and installed host fonts.",
-    "test/studio_arabic_proofing_native_test.dart": "Real Hunspell/AyaSpell acceptance requires a built native backend and verified dictionary.",
-    "test/studio_arabic_morph_native_test.dart": "Real Camel Morph host acceptance requires a built native backend and verified noprob database. Original test was moved intact from the ordinary setup suite."
+    "test/studio_arabic_proofing_native_test.dart": "Real Hunspell/AyaSpell acceptance requires a built native backend and verified dictionary."
   },
   "excluded_native_backend_suites": [
     {
@@ -374,12 +527,11 @@
       "reason": "Requires real backend/dictionary or dedicated native lifecycle library."
     },
     {
-      "path": "packages/quds_arabic_morph/test/arabic_morph_native_test.dart",
-      "reason": "Requires real native backend and verified noprob database."
-    },
-    {
-      "path": "packages/quds_arabic_morph/test/arabic_rules_e2e_test.dart",
-      "reason": "Requires real native backend and verified noprob database."
+      "path": "packages/quds_arabic_morph/test/arabic_morph_live_download_test.dart",
+      "reason": "Optional external Hugging Face download acceptance; the complete local native/model/installer/e2e/Studio suites execute with already verified, source-bound inputs and no external data download during qualification."
     }
-  ]
+  ],
+  "node_only_suites": {
+    "packages/quds_mail_transport/test/ews_unsupported_test.dart": "Declares @TestOn('js'); exercises the unsupported EWS browser-platform boundary in the Node plan, with no skipped VM execution."
+  }
 }

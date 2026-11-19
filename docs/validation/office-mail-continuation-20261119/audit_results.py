@@ -423,13 +423,21 @@ class Audit:
                 stderr_raw = stderr.read_bytes()
                 require(gzip.decompress(stderr_gzip.read_bytes()) == stderr_raw,
                         f"Compressed stderr differs: {label}")
+                # The pinned upstream CLD3 implementation prints this success
+                # message once when the real-model suite's setUpAll opens it.
+                # Keep its exact bytes; do not admit unrelated native output.
+                expected_stderr = (b"lid_cld3: loaded 109 labels, hidden_dim=208, n_features=6 (variant=Google CLD3)\n"
+                                   if label == "NATIVE/language-id-native" else b"")
                 diagnostic = {
                     "label": label, "file": str(stderr), "bytes": len(stderr_raw),
                     "sha256": digest(stderr_raw), "text": stderr_raw.decode("utf-8"),
-                    "policy": "Test stderr must be empty; no broad diagnostic allowlist.",
+                    "policy": ("Exactly one pinned CLD3 successful-load line; all other bytes rejected."
+                               if expected_stderr else "Test stderr must be empty; no broad diagnostic allowlist."),
+                    "expected_bytes": len(expected_stderr), "expected_sha256": digest(expected_stderr),
                 }
                 self.diagnostics.append(diagnostic)
-                require(not stderr_raw, f"Unreviewed test stderr: {label}: {diagnostic['text'][:1500]}")
+                require(stderr_raw == expected_stderr,
+                        f"Test stderr differs from exact reviewed policy: {label}: {diagnostic['text'][:1500]}")
                 result, identities, case_rows = audit_events(
                     raw, self.repo, group["cwd"], suites, label, group.get("platform", "vm"))
                 require(result["passed_executions"] == run["passed"] and run["failed"] == run["skipped"] == 0,
@@ -512,6 +520,113 @@ class Audit:
                     f"Python count differs from raw output: {label}")
         return {"name": label, "passed": count, "skipped": 0, "log_sha256": file_hash(path)}
 
+    def language_id(self, record, environment):
+        """Verify native classifier provenance independently of the driver."""
+        require(set(record) == {"library", "library_sha256", "build_receipt", "build_receipt_sha256",
+                               "environment", "model_sha256", "adapter_source_files", "fixture"},
+                "Native language identifier binding fields differ")
+        library, receipt = Path(record["library"]), Path(record["build_receipt"])
+        require(library.is_absolute() and library.resolve() == library
+                and receipt == library.parent.parent / "build-receipt.json",
+                "Native language identifier paths differ")
+        for path, key in ((library, "library_sha256"), (receipt, "build_receipt_sha256")):
+            expected = record[key]
+            require(self.runtime_receipt["additional_inputs"].get(str(path)) == expected
+                    and environment.get("additional/" + str(path)) == expected,
+                    "Unbound native language identifier input: " + str(path))
+            local_file(path, expected)
+        fixture = record["fixture"]
+        require(set(fixture) == {"library", "library_sha256", "build_receipt", "build_receipt_sha256",
+                                "source", "source_sha256"}, "Native language identifier fixture fields differ")
+        fixture_library, fixture_receipt = Path(fixture["library"]), Path(fixture["build_receipt"])
+        require(fixture_library.is_absolute() and fixture_library.resolve() == fixture_library
+                and fixture_receipt == fixture_library.with_suffix(".receipt.json"),
+                "Native language identifier fixture paths differ")
+        for path, key in ((fixture_library, "library_sha256"), (fixture_receipt, "build_receipt_sha256")):
+            expected = fixture[key]
+            require(self.runtime_receipt["additional_inputs"].get(str(path)) == expected
+                    and environment.get("additional/" + str(path)) == expected,
+                    "Unbound native language identifier fixture input: " + str(path))
+            local_file(path, expected)
+        require(record["environment"] == {"QUDS_LANGUAGE_ID_TEST_LIBRARY": str(library),
+                                          "QUDS_LANGUAGE_ID_FIXTURE_LIBRARY": str(fixture_library)},
+                "Native language identifier test environment differs")
+        fixture_source = "packages/quds_language_id/test/fixtures/native_transport_fixture.cpp"
+        require(fixture["source"] == fixture_source and fixture_source in self.tracked,
+                "Native language identifier fixture source differs")
+        local_file(self.repo / fixture_source, fixture["source_sha256"])
+        fixture_build = read_json(fixture_receipt)
+        require(fixture_build.get("library") == fixture_library.name
+                and fixture_build.get("library_sha256") == fixture["library_sha256"]
+                and fixture_build.get("source") == fixture_source
+                and fixture_build.get("source_sha256") == fixture["source_sha256"],
+                "Native language identifier fixture build differs from qualified source")
+        build = read_json(receipt)
+        relative = library.relative_to(receipt.parent).as_posix()
+        require(relative.startswith("native/") and build["files"].get(relative) == record["library_sha256"],
+                "Native language identifier artifact differs from its build receipt")
+        package = self.repo / "packages/quds_language_id"
+        adapters = {name.removeprefix("packages/quds_language_id/"): file_hash(self.repo / name)
+                    for name in self.tracked if name.startswith("packages/quds_language_id/native/")
+                    and Path(name).suffix in {".cpp", ".h", ".txt"}}
+        manifest_path = package / "licenses/manifest.json"
+        manifest = read_json(manifest_path)
+        require(build["adapter"] == adapters and record["adapter_source_files"] == len(adapters),
+                "Native language identifier adapter differs from qualified source")
+        require(build["license_manifest_sha256"] == file_hash(manifest_path)
+                and build["crispasr"] == {"repository": manifest["component"]["source"],
+                                          "commit": manifest["component"]["commit"]}
+                and build["model"] == manifest["model"],
+                "Native language identifier provenance differs from qualified source")
+        require(record["model_sha256"] == manifest["model"]["sha256"], "Native language identifier model pin differs")
+        local_file(package / "assets" / safe_relative(manifest["model"]["file"]),
+                   record["model_sha256"], manifest["model"]["bytes"])
+
+    def arabic_morph(self, record, environment):
+        """Independently bind native morphology and the exact proofing data."""
+        require(set(record) == {"library", "library_sha256", "build_receipt", "build_receipt_sha256",
+                               "bundle", "artifacts", "catalog_sha256", "environment", "live_external_download_executed"},
+                "Native morphology binding fields differ")
+        library, receipt, bundle = Path(record["library"]), Path(record["build_receipt"]), Path(record["bundle"])
+        require(library.is_absolute() and library.resolve() == library
+                and receipt == library.parent.parent / "build-receipt.json"
+                and bundle.is_absolute() and bundle.resolve() == bundle,
+                "Native morphology paths differ")
+        package = self.repo / "packages/quds_arabic_morph"
+        catalog = package / "lib/src/morph_catalog.dart"
+        local_file(catalog, record["catalog_sha256"])
+        declaration = re.search(r"const camelMorphMsaProofingBin = MorphBundleDownload\((.*?)\n\);",
+                                catalog.read_text(), re.S)
+        require(declaration is not None, "Missing pinned morphology bundle declaration")
+        entries = re.findall(r"MorphArtifact\(\s*'([^']+)',\s*'([0-9a-f]{64})',\s*(\d+),?\s*\)", declaration[1])
+        pins = {name: {"sha256": value, "bytes": int(size)} for name, value, size in entries}
+        expected_names = {"manifest.json", "camel_morph_msa_v1.0.proofing.cmorph", "NOTICE", "LICENSE"}
+        require(len(entries) == 4 and set(pins) == expected_names and record["artifacts"] == pins
+                and {path.name for path in bundle.iterdir()} == expected_names,
+                "Native morphology bundle inventory differs from its source pins")
+        paths = [(library, record["library_sha256"], None), (receipt, record["build_receipt_sha256"], None)]
+        paths.extend((bundle / name, row["sha256"], row["bytes"]) for name, row in pins.items())
+        for path, value, size in paths:
+            require(self.runtime_receipt["additional_inputs"].get(str(path)) == value
+                    and environment.get("additional/" + str(path)) == value,
+                    "Unbound native morphology input: " + str(path))
+            local_file(path, value, size)
+        require(record["environment"] == {"QUDS_ARABIC_MORPH_TEST_LIBRARY": str(library),
+                                          "QUDS_ARABIC_MORPH_TEST_BUNDLE": str(bundle)}
+                and record["live_external_download_executed"] is False,
+                "Native morphology test environment or external-download boundary differs")
+        build = read_json(receipt)
+        relative = library.relative_to(receipt.parent).as_posix()
+        manifest_path = package / "licenses/manifest.json"
+        manifest = read_json(manifest_path)
+        require(relative.startswith("native/") and build["files"].get(relative) == record["library_sha256"]
+                and build["adapter_sha256"] == file_hash(package / "native/src/quds_arabic_morph.cpp")
+                and build["license_manifest_sha256"] == file_hash(manifest_path)
+                and build["crispembed"] == {"repository": manifest["component"]["source"],
+                                            "commit": manifest["component"]["commit"],
+                                            "pull_request": manifest["component"]["pull_request"]},
+                "Native morphology build provenance differs from qualified source")
+
     def outer(self, phases):
         directory = self.args.result.resolve()
         receipt = read_json(directory / "execution.json")
@@ -578,6 +693,32 @@ class Audit:
         require(receipt["excluded_studio_suites"] == excluded
                 and receipt["excluded_native_backend_suites"] == native["plan"].get("excluded_native_backend_suites", []),
                 "Outer exclusions differ from source plan")
+        native_suites = {group["cwd"] + "/" + suite
+                         for group in native["plan"]["groups"] for suite in group["tests"]}
+        node_suites = {group["cwd"] + "/" + suite
+                       for group in phases[1]["plan"]["groups"] for suite in group["tests"]}
+        node_only = native["plan"].get("node_only_suites", {})
+        require(isinstance(node_only, dict)
+                and all(isinstance(reason, str) and reason.strip() for reason in node_only.values())
+                and set(node_only) <= node_suites and not (set(node_only) & native_suites),
+                "Node-only suites lack a boundary or exact Node-only execution")
+        require(receipt["node_only_test_suites"] == node_only, "Outer Node-only suite selection differs")
+        core_store_suites = {name for name in self.tracked if name.endswith("_test.dart")
+                             and (name.startswith("packages/quds_mail_core/test/")
+                                  or PurePosixPath(name).parent.as_posix() == "packages/quds_mail_store/test")}
+        require(receipt["core_store_test_suites"] == sorted(core_store_suites),
+                "Outer Core/Store suite selection differs from complete launcher coverage")
+        optional = {"packages/quds_office_editor/example/" + name for name in excluded}
+        backend_exclusions = native["plan"].get("excluded_native_backend_suites", [])
+        require(all(isinstance(row.get("reason"), str) and row["reason"].strip() for row in backend_exclusions),
+                "An excluded native backend suite lacks a boundary")
+        optional.update(row["path"] for row in backend_exclusions)
+        changed_suites = {name for name in changed if name.endswith("_test.dart")}
+        require(receipt["changed_test_suites"] == sorted(changed_suites)
+                and receipt["changed_test_suites_explicitly_excluded"] == sorted(changed_suites & optional),
+                "Changed-suite disposition differs")
+        require(changed_suites <= native_suites | set(node_only) | core_store_suites | optional,
+                "A changed test suite escaped aggregate execution or explicit exclusion")
 
         identity = json.loads(self.git("show", self.source + ":" + gate + "/web-sdk.json"))
         web_root = self.args.web_sdk.resolve()
@@ -607,6 +748,8 @@ class Audit:
             self.runtime_file(self.runtime / name, row["sha256"], row["bytes"])
         for name, expected in self.runtime_receipt["additional_inputs"].items():
             require(environment["additional/" + name] == expected, "Outer additional input differs: " + name)
+        self.language_id(receipt["language_id_native"], environment)
+        self.arabic_morph(receipt["arabic_morph_native"], environment)
         observed_web = {path.relative_to(web_sdk).as_posix() for path in web_sdk.rglob("*") if path.is_file()}
         require(observed_web == set(identity["files"]), "Web SDK member inventory changed")
         for name, row in identity["files"].items():
@@ -627,7 +770,8 @@ class Audit:
                     require(name.startswith("workspace/") and expected is None,
                             "Unexpected nested-only runtime input: " + name)
         names = ["shared-runner-controls", "runtime-replay-controls", "publisher-offline-controls", "hunspell-packaging-controls",
-                 "core-store", "native", "node", "mail-browser-frontend", "mail-browser-javascript", "mail-browser-javascript-syntax"]
+                 "core-store", "native", "node", "mail-browser-frontend", "mail-browser-javascript", "mail-browser-javascript-syntax",
+                 "language-id-browser-frontend", "language-id-browser-javascript", "language-id-browser-javascript-syntax"]
         require([row["name"] for row in receipt["runs"]] == names, "Outer run sequence incomplete or changed")
         controls = []
         control_arguments = {
@@ -659,6 +803,7 @@ class Audit:
             require(started <= datetime.fromisoformat(value["started_at_utc"])
                     < datetime.fromisoformat(value["finished_at_utc"]) <= finished, "Nested execution is outside outer interval")
         self.browser(directory, receipt, web_sdk)
+        self.language_id_browser(directory, receipt, web_sdk)
         return {"receipt": receipt, "sources": sources, "source_rows": source_rows, "environment": environment,
                 "runtime_paths": paths, "controls": controls, "web_sdk_files": len(identity["files"])}
 
@@ -709,6 +854,52 @@ class Audit:
         for row in receipt["runs"]:
             if row["name"] in expected:
                 require(row["command"] == expected[row["name"]], "Browser command differs: " + row["name"])
+
+    def language_id_browser(self, directory, receipt, web_sdk):
+        browser = receipt["language_id_browser_compilation"]
+        require(browser["accepted"] is True and browser["browser_session_executed"] is False
+                and browser["worker_executed"] is False and browser["wasm_executed"] is False,
+                "Language identifier browser compilation boundary differs")
+        require(set(browser["artifacts"]) == {"language-id-web.dill", "language-id-web.dill.deps",
+                                             "language-id-web.js", "language-id-web.js.deps"},
+                "Language identifier browser artifact inventory differs")
+        for name, row in browser["artifacts"].items():
+            require(row["bytes"] > 0, "Empty language identifier browser artifact: " + name)
+            local_file(directory / safe_relative(name), row["sha256"], row["bytes"])
+        closure_path = directory / "language-id-browser-import-closure.json"
+        local_file(closure_path, browser["import_closure_sha256"])
+        closure = read_json(closure_path)
+        dependency_file = directory / "language-id-web.dill.deps"
+        entries = set(dependency_file.read_text().splitlines())
+        required = ["packages/quds_language_id/tool/language_id_web_entry.dart",
+                    "packages/quds_language_id/lib/quds_language_id.dart",
+                    "packages/quds_language_id/lib/src/cld3_language_identifier.dart",
+                    "packages/quds_language_id/lib/src/language_id_transport_web.dart"]
+        forbidden = ["packages/quds_language_id/lib/src/language_id_transport_native.dart",
+                     "packages/quds_language_id/lib/src/language_id_transport_stub.dart"]
+        require(closure["required_web_paths"] == required and closure["forbidden_native_paths"] == forbidden,
+                "Language identifier browser closure requirements differ")
+        require(closure["passed"] is True and closure["missing_web_paths"] == closure["present_native_paths"] == [],
+                "Language identifier browser closure did not pass")
+        require(closure["dependency_count"] == len(entries)
+                and closure["dependencies_sha256"] == file_hash(dependency_file),
+                "Language identifier browser dependency log changed")
+        require(all((self.repo / name).as_uri() in entries for name in required)
+                and all((self.repo / name).as_uri() not in entries for name in forbidden),
+                "Language identifier browser import graph differs")
+        common = [str(self.runtime / "bin/dart"), "compile", "js", "--platform-binaries=" + str(web_sdk / "kernel"),
+                  "--invoker=flutter_tool", "-Ddart.vm.product=true", "-O1"]
+        expected = {
+            "language-id-browser-frontend": [*common, "--packages=" + str(self.repo / ".dart_tool/package_config.json"),
+                "--cfe-only", "-o", str(directory / "language-id-web.dill"), str(self.repo / required[0])],
+            "language-id-browser-javascript": [*common, "--no-source-maps", "-o", str(directory / "language-id-web.js"),
+                str(directory / "language-id-web.dill")],
+            "language-id-browser-javascript-syntax": [self.runtime_receipt["node_runtime"]["path"], "--check",
+                str(directory / "language-id-web.js")],
+        }
+        for row in receipt["runs"]:
+            if row["name"] in expected:
+                require(row["command"] == expected[row["name"]], "Language identifier browser command differs: " + row["name"])
 
     def store(self, outer, phases):
         directory = self.args.result.resolve() / "core-store"
@@ -911,10 +1102,15 @@ class Audit:
                                 "verified_hosted_archives": len(archives), "package_test_launcher_bound": True,
                                 "scope": "Declared SDK, package cache, native-assets, Node, Python executable and browser component inputs; not an exhaustive operating-system dependency inventory."},
             "browser_compilation": outer["receipt"]["browser_compilation"],
+            "language_id_browser_compilation": outer["receipt"]["language_id_browser_compilation"],
+            "language_id_native": outer["receipt"]["language_id_native"],
+            "arabic_morph_native": outer["receipt"]["arabic_morph_native"],
             "runtime_symlinks": self.runtime_symlinks, "stderr_diagnostics": self.diagnostics,
             "validation": {"exact_nonempty_planned_suite_coverage": True, "all_raw_gzip_case_error_and_manifest_hashes_verified": True,
                            "duplicate_or_unfinished_reporter_events": 0, "layout_tap_disposal_diagnostics": 0,
-                           "all_native_node_test_stderr_empty": True, "actual_browser_session": False,
+                           "all_native_node_test_stderr_empty": all(row["bytes"] == 0 for row in self.diagnostics),
+                           "native_node_test_stderr_matches_exact_reviewed_policy": True,
+                           "actual_browser_session": False,
                            "external_mail_provider_session": False, "macos_build_or_installed_application": False,
                            "word_or_libreoffice_reopening": False},
             "outer_execution_sha256": file_hash(self.args.result / "execution.json"),
