@@ -44,23 +44,30 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   }
 
   Future<void> _open() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: const <String>['eml'],
-      withData: true,
-    );
-    if (result == null || result.files.isEmpty) return;
-    final file = result.files.single;
-    final bytes =
-        file.bytes ??
-        (file.path == null ? null : await File(file.path!).readAsBytes());
-    if (bytes == null) return;
-    final previous = _controller;
-    setState(() {
-      _controller = _fromBytes(Uint8List.fromList(bytes));
-      _name = file.name;
-    });
-    WidgetsBinding.instance.addPostFrameCallback((_) => previous.dispose());
+    try {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: const <String>['eml'],
+        withData: true,
+      );
+      if (!mounted || result == null || result.files.isEmpty) return;
+      final file = result.files.single;
+      final bytes =
+          file.bytes ??
+          (file.path == null ? null : await File(file.path!).readAsBytes());
+      if (!mounted || bytes == null) return;
+      final previous = _controller;
+      setState(() {
+        _controller = _fromBytes(Uint8List.fromList(bytes));
+        _name = file.name;
+      });
+      WidgetsBinding.instance.addPostFrameCallback((_) => previous.dispose());
+    } on Object {
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(widget.strings.openMessageFailed)));
+    }
   }
 
   void _setMode(MailReaderMode mode) {

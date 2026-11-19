@@ -283,6 +283,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _sheetHeaders,
       _slideHandles,
       _lengthUnit,
+      _showNotes,
     );
     if (_cachedConfig != null && _configKey == key) {
       return _cachedConfig!;
@@ -1698,44 +1699,29 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(Icons.zoom_out, _arabic ? 'تصغير' : 'Zoom out', () {
             _pdf.zoomBy(1 / 1.1);
           }),
-          _cmd(
-            Icons.fit_screen_outlined,
-            _arabic ? 'عرض' : 'Fit width',
-            () {
-              _togglePdfOption(() {
-                _pdfFitPolicy = PdfFitPolicy.width;
-                _pdf.fitVisibleWidth();
-              });
-            },
-            selected: _pdfFitPolicy == PdfFitPolicy.width,
-          ),
-          _cmd(
-            Icons.aspect_ratio,
-            _arabic ? 'صفحة' : 'Fit page',
-            () {
-              _togglePdfOption(() {
-                _pdfFitPolicy = PdfFitPolicy.page;
-                final Size e = _pdf.viewport.extent;
-                _pdf.fitPage(
-                  e.width > 0 ? e.width : 720,
-                  e.height > 0 ? e.height : 900,
-                );
-              });
-            },
-            selected: _pdfFitPolicy == PdfFitPolicy.page,
-          ),
-          _cmd(
-            Icons.height,
-            _arabic ? 'ارتفاع' : 'Fit height',
-            () {
-              _togglePdfOption(() {
-                _pdfFitPolicy = PdfFitPolicy.height;
-                final double h = _pdf.viewport.extent.height;
-                _pdf.fitHeight(h > 0 ? h : 900);
-              });
-            },
-            selected: _pdfFitPolicy == PdfFitPolicy.height,
-          ),
+          _cmd(Icons.fit_screen_outlined, _arabic ? 'عرض' : 'Fit width', () {
+            _togglePdfOption(() {
+              _pdfFitPolicy = PdfFitPolicy.width;
+              _pdf.fitVisibleWidth();
+            });
+          }, selected: _pdfFitPolicy == PdfFitPolicy.width),
+          _cmd(Icons.aspect_ratio, _arabic ? 'صفحة' : 'Fit page', () {
+            _togglePdfOption(() {
+              _pdfFitPolicy = PdfFitPolicy.page;
+              final Size e = _pdf.viewport.extent;
+              _pdf.fitPage(
+                e.width > 0 ? e.width : 720,
+                e.height > 0 ? e.height : 900,
+              );
+            });
+          }, selected: _pdfFitPolicy == PdfFitPolicy.page),
+          _cmd(Icons.height, _arabic ? 'ارتفاع' : 'Fit height', () {
+            _togglePdfOption(() {
+              _pdfFitPolicy = PdfFitPolicy.height;
+              final double h = _pdf.viewport.extent.height;
+              _pdf.fitHeight(h > 0 ? h : 900);
+            });
+          }, selected: _pdfFitPolicy == PdfFitPolicy.height),
           _cmd(Icons.search, _arabic ? 'بحث' : 'Find', _openFind),
         ],
       ),
@@ -1955,30 +1941,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       StudioRibbonGroup(
         title: _arabic ? 'وضع العمل' : 'Mode',
         children: <Widget>[
-          _cmd(
-            Icons.edit,
-            _arabic ? 'تحرير' : 'Edit',
-            () {
-              setState(() => _mode = OfficeInteractionMode.editing);
-            },
-            selected: _mode == OfficeInteractionMode.editing,
-          ),
-          _cmd(
-            Icons.select_all,
-            _arabic ? 'تحديد' : 'Select',
-            () {
-              setState(() => _mode = OfficeInteractionMode.selecting);
-            },
-            selected: _mode == OfficeInteractionMode.selecting,
-          ),
-          _cmd(
-            Icons.visibility,
-            _arabic ? 'عرض' : 'View',
-            () {
-              setState(() => _mode = OfficeInteractionMode.viewing);
-            },
-            selected: _mode == OfficeInteractionMode.viewing,
-          ),
+          _cmd(Icons.edit, _arabic ? 'تحرير' : 'Edit', () {
+            setState(() => _mode = OfficeInteractionMode.editing);
+          }, selected: _mode == OfficeInteractionMode.editing),
+          _cmd(Icons.select_all, _arabic ? 'تحديد' : 'Select', () {
+            setState(() => _mode = OfficeInteractionMode.selecting);
+          }, selected: _mode == OfficeInteractionMode.selecting),
+          _cmd(Icons.visibility, _arabic ? 'عرض' : 'View', () {
+            setState(() => _mode = OfficeInteractionMode.viewing);
+          }, selected: _mode == OfficeInteractionMode.viewing),
         ],
       ),
     ];

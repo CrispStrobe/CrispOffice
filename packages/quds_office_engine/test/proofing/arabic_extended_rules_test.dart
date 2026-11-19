@@ -304,24 +304,26 @@ void main() {
       });
     }
 
-    test('precomposed phrase controls still produce the intended suggestion', () async {
-      for (final String text in <String>[
-        'أختار بين كتابين.',
-        'أَختارُ بينَ كتابين.',
-      ]) {
-        final List<OfficeProofingFinding> findings = await check(
-          text,
-          optional: <String>{'ar.usage.expression'},
-        );
-        expect(findings, hasLength(1));
-        expect(findings.single.ruleId, 'ar.usage.expression');
-        expect(findings.single.replacements, <String>['أختار من بين']);
-      }
-    });
+    test(
+      'precomposed phrase controls still produce the intended suggestion',
+      () async {
+        for (final String text in <String>[
+          'أختار بين كتابين.',
+          'أَختارُ بينَ كتابين.',
+        ]) {
+          final List<OfficeProofingFinding> findings = await check(
+            text,
+            optional: <String>{'ar.usage.expression'},
+          );
+          expect(findings, hasLength(1));
+          expect(findings.single.ruleId, 'ar.usage.expression');
+          expect(findings.single.replacements, <String>['أختار من بين']);
+        }
+      },
+    );
 
     test('adjacent phrase keeps UTF-16 offsets after semantic marks', () async {
-      const String text =
-          '😀 ا\u0654ختار بين كتابين؛ درس كل حالة على حدى.';
+      const String text = '😀 ا\u0654ختار بين كتابين؛ درس كل حالة على حدى.';
       const int startOffset = 100;
       final List<OfficeProofingFinding> findings = await check(
         text,

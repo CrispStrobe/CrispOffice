@@ -1,20 +1,15 @@
 import 'wml_document.dart';
 
+final RegExp _complexScriptLetter = RegExp(
+  r'(?=\p{L})[\u0590-\u05FF\u0600-\u06FF\u0750-\u077F'
+  r'\u08A0-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]',
+  unicode: true,
+);
+
 /// Whether [text] contains a letter of a right-to-left complex script
 /// (Arabic or Hebrew, including presentation forms).
-bool wordTextHasComplexScriptLetter(String text) {
-  for (final unit in text.codeUnits) {
-    if ((unit >= 0x0590 && unit <= 0x05FF) ||
-        (unit >= 0x0600 && unit <= 0x06FF) ||
-        (unit >= 0x0750 && unit <= 0x077F) ||
-        (unit >= 0x08A0 && unit <= 0x08FF) ||
-        (unit >= 0xFB1D && unit <= 0xFDFF) ||
-        (unit >= 0xFE70 && unit <= 0xFEFF)) {
-      return true;
-    }
-  }
-  return false;
-}
+bool wordTextHasComplexScriptLetter(String text) =>
+    _complexScriptLetter.hasMatch(text);
 
 /// The proofing language Word would apply to [run].
 ///

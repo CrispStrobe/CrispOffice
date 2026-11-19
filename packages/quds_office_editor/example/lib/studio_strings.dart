@@ -71,6 +71,11 @@ final class StudioStrings {
   String get mailTitle =>
       _t('CrispOffice Mail', 'CrispOffice Mail', 'بريد CrispOffice');
   String get openMessage => _t('Open message', 'Nachricht öffnen', 'فتح رسالة');
+  String get openMessageFailed => _t(
+    'The message could not be opened.',
+    'Die Nachricht konnte nicht geöffnet werden.',
+    'تعذّر فتح الرسالة.',
+  );
   String get fullView => _t('Full', 'Vollständig', 'كامل');
   String get compactView => _t('Compact', 'Kompakt', 'مختصر');
   String get noMessage => _t(
