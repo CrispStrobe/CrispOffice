@@ -283,6 +283,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _sheetHeaders,
       _slideHandles,
       _lengthUnit,
+      _showNotes,
     );
     if (_cachedConfig != null && _configKey == key) {
       return _cachedConfig!;

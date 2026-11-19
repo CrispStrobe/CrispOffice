@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 
+import 'support/studio_settings.dart';
+
 class _DraftProvider extends OfficeProofingProvider {
   _DraftProvider({
     this.gates = const {},
@@ -119,13 +121,14 @@ Future<WordEditorController> _studio(
         : RepaintBoundary(key: captureKey, child: const QudsOfficeStudioApp()),
   );
   await _pump(tester);
-  await tester.tap(find.byTooltip('English'));
+  expect(find.byTooltip('Language'), findsOneWidget);
   await _pump(tester);
   final controller = tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
       .controller;
   controller.proofing.enabled = false;
   controller.proofing.configure(OfficeProofingService(providers: [provider]));
+  await enableStudioSetting(tester, 'Show comments');
   controller.document = _document();
   controller.refresh();
   controller.selectComment(1);
