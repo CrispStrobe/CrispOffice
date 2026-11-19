@@ -1,0 +1,83 @@
+{
+  "description": "Complementary portable Node executions from the exact same frozen source: Mail cursors/unsupported-platform boundary, MIME and vendored portable codec, Arabic T1/T2 rules and Unicode offsets/shared merge, scripted Hunspell and Camel Morph. Node execution does not establish browser networking/storage/Worker/Wasm acceptance. Repeated platform executions remain distinct from unique suite files.",
+  "groups": [
+    {
+      "name": "mail-transport-node",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/configuration_test.dart",
+        "test/cursor_test.dart",
+        "test/unsupported_test.dart"
+      ],
+      "platform": "node"
+    },
+    {
+      "name": "mail-mime-node",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ],
+      "platform": "node"
+    },
+    {
+      "name": "fork-portable-mime-node",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/quds_portable_mime_test.dart"
+      ],
+      "platform": "node"
+    },
+    {
+      "name": "arabic-proofing-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart",
+        "test/proofing/arabic_grammar_rules_test.dart",
+        "test/proofing/office_proofing_merge_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart",
+        "test/proofing/word_proofing_language_test.dart"
+      ],
+      "platform": "node"
+    },
+    {
+      "name": "hunspell-scripted-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ],
+      "platform": "node"
+    },
+    {
+      "name": "arabic-morph-scripted-node",
+      "cwd": "packages/quds_arabic_morph",
+      "runner": "dart",
+      "tests": [
+        "test/arabic_morph_unit_test.dart"
+      ],
+      "platform": "node"
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "docs/validation/office-mail-continuation-20261119/run_validation.py",
+    "docs/validation/office-mail-continuation-20261119/node-plan.json",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "tools/mail/test_check_store.py",
+    "docs/validation/office-mail-continuation-20261119/native-plan.json"
+  ],
+  "whitespace_preserved_inputs": []
+}

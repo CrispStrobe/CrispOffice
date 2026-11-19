@@ -1,8 +1,13 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
-import 'package:quds_office_studio/studio_mail.dart';
+import 'package:quds_office_editor/quds_office_editor.dart';
+import 'package:quds_office_studio/studio_mail_native.dart';
+import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 const mailStrings = StudioStrings(StudioLanguage.en);
@@ -46,6 +51,10 @@ final class MailClientFixture extends Fake implements mail.MailClient {
   int fetches = 0;
   int selections = 0;
   final sent = <mail.MimeMessage>[];
+  mail.Mailbox? _selectedMailbox;
+
+  @override
+  mail.Mailbox? get selectedMailbox => _selectedMailbox ?? boxes.first;
 
   @override
   Future<void> connect({Duration timeout = const Duration(seconds: 20)}) async {
@@ -76,6 +85,7 @@ final class MailClientFixture extends Fake implements mail.MailClient {
         mail.FetchPreference.fullWhenWithinSize,
   }) async {
     fetches++;
+    _selectedMailbox = mailbox ?? _selectedMailbox;
     expect(count, 50);
     expect(fetchPreference, mail.FetchPreference.envelope);
     return await onFetch?.call() ?? messages;
@@ -115,6 +125,23 @@ final class MailClientFixture extends Fake implements mail.MailClient {
   }
 }
 
+/// Serves controlled fixture bytes through the client; production uses the
+/// bounded raw provider.
+final class MailLoaderFixture implements StudioMailMessageLoader {
+  MailLoaderFixture(this.client);
+  final mail.MailClient client;
+  @override
+  Future<Uint8List> fetch(mail.Mailbox mailbox, mail.MimeMessage header) async {
+    final full = await client.fetchMessageContents(header);
+    return Uint8List.fromList(utf8.encode(full.renderMessage()));
+  }
+
+  @override
+  void cancel() {}
+  @override
+  void dispose() {}
+}
+
 Finder mailField(String label) => find.byWidgetPredicate(
   (widget) => widget is TextField && widget.decoration?.labelText == label,
 );
@@ -132,6 +159,7 @@ Future<void> openMail(
 }) async {
   await tester.binding.setSurfaceSize(const Size(1440, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
+  mail.MailClient? createdClient;
   await tester.pumpWidget(
     MaterialApp(
       home: Builder(
@@ -141,7 +169,9 @@ Future<void> openMail(
               context: context,
               builder: (_) => StudioMailDialog(
                 strings: strings,
-                clientFactory: clientFactory,
+                clientFactory: (account) =>
+                    createdClient = clientFactory(account),
+                messageLoaderFactory: (_) => MailLoaderFixture(createdClient!),
               ),
             ),
             child: const Text('Launch Mail'),
@@ -189,7 +219,11 @@ Future<void> composeMail(WidgetTester tester) async {
     'recipient@example.invalid',
   );
   await tester.enterText(mailField(mailStrings.subject), 'Controlled draft');
-  await tester.enterText(mailField(mailStrings.messageBody), 'A <safe> body.');
+  tester
+      .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+      .controller
+      .insertText('A <safe> body.');
+  await tester.pump();
   await tester.tap(find.widgetWithText(FilledButton, mailStrings.send));
   await pumpMail(tester);
 }
