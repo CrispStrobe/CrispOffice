@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "/workspace/scratch/f815a4ae580f/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/controller_test.dart",
+    "test/example_test.dart",
+    "test/message_view_test.dart",
+    "test/presentation_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_mail_ui",
+  "environment_overrides": {},
+  "expected_test_files": [
+    "packages/quds_mail_ui/test/controller_test.dart",
+    "packages/quds_mail_ui/test/example_test.dart",
+    "packages/quds_mail_ui/test/message_view_test.dart",
+    "packages/quds_mail_ui/test/presentation_test.dart"
+  ],
+  "name": "mail-ui",
+  "started_at_utc": "2026-11-19T18:05:15.619547+00:00"
+}

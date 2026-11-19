@@ -1,0 +1,41 @@
+{
+  "scope": "Tracked engine example macro fixtures referenced by actual CLI integration cases. These match the starting commit; additional hash capture occurred during the engine run.",
+  "starting_commit": "a9c1ce49993bda4fc29b1cf3397a7ee2731e799c",
+  "inputs": [
+    {
+      "path": "packages/quds_office_engine/example/macros/control_flow_report.bas",
+      "sha256": "b33c71ee3391b47f6f78f207512f393e0fca90e835bdb778987371eb18267c48",
+      "matches_starting_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/monthly_totals.bas",
+      "sha256": "18c9c87831f7cad944553cb932bd6bedc2eff4fba5bd8f8267a3eba8480946be",
+      "matches_starting_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/monthly_totals.parameters.json",
+      "sha256": "1d727332e8584dd1a0faf67df0845beba38ff71d6d7340e60cc349456f2177c0",
+      "matches_starting_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/monthly_totals.qudsmacro.json",
+      "sha256": "6cdc615399c5c22d5dcf212f0aa1edc457e3c92bdc622e7ac15ee82843d06026",
+      "matches_starting_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/procedural_report.bas",
+      "sha256": "94a85ab671c0a5437fd191876d230f1f93e20517d9afdf5aaf78b794d28f5257",
+      "matches_starting_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/slide_notes.qudsmacro.json",
+      "sha256": "f8272b31c5ecedb1319e97f8298c4efda70c52a993e815ed25034cfd27f526b2",
+      "matches_starting_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_heading.qudsmacro.json",
+      "sha256": "77dcc1dcef927c9349b2b30f57f4ad4cbe741596adcea93cf7cfd17f5b59274f",
+      "matches_starting_commit": true
+    }
+  ]
+}

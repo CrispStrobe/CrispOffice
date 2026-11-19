@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/workspace/scratch/f815a4ae580f/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_desktop_menu_test.dart",
+    "test/studio_file_menu_test.dart",
+    "test/studio_ribbon_preferences_test.dart",
+    "test/studio_ribbon_customization_test.dart",
+    "test/widget_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_editor/example",
+  "head_before": "a9c1ce49993bda4fc29b1cf3397a7ee2731e799c",
+  "name": "desktop-ribbon-lifecycle",
+  "source_before_sha256": "a12f7d4cd1e315eeaff9b34398805c92bd65bae15cd6d9c4d9129f80b2d0808c",
+  "started_at_utc": "2026-11-19T17:47:07.142519+00:00",
+  "timeout_seconds": 600
+}

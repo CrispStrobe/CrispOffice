@@ -1,0 +1,27 @@
+{
+  "accepted": true,
+  "changed_source_paths": [],
+  "command": [
+    "/workspace/scratch/f815a4ae580f/runtime/bin/dart",
+    "compile",
+    "js",
+    "--packages=/workspace/scratch/f815a4ae580f/quds_office_suite/.dart_tool/package_config.json",
+    "-O1",
+    "tool/macros/web_vba_procedures_smoke.dart",
+    "-o",
+    "/workspace/scratch/f815a4ae580f/runtime/incoming-javascript/web_vba_procedures_smoke.js"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_engine",
+  "elapsed_seconds": 9.353,
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T18:03:11.650682+00:00",
+  "head_after": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+  "head_before": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+  "name": "web_vba_procedures_smoke-compile",
+  "source_after_sha256": "01c915c68f5456cb0eb8a72488f1037df60410e3f80915699f1de37e6f1d714f",
+  "source_before_sha256": "01c915c68f5456cb0eb8a72488f1037df60410e3f80915699f1de37e6f1d714f",
+  "started_at_utc": "2026-11-19T18:03:02.295156+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "56295ca89386040db8dd1323f5c69709a903fff8fb784ea2a061e5a9cfc12f60",
+  "timeout_seconds": 600
+}

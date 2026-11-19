@@ -1,0 +1,149 @@
+{
+  "additional_command_gates": 9,
+  "additional_example_inputs_still_match": true,
+  "command_failures": 0,
+  "commands": [
+    {
+      "accepted": true,
+      "command_result": "engine/macros-vba/result.json",
+      "name": "macros-vba",
+      "phase": "engine",
+      "test_counts": {
+        "failed": 0,
+        "passed": 269,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "command_result": "engine/branding-and-structure/result.json",
+      "name": "branding-and-structure",
+      "phase": "engine",
+      "test_counts": {
+        "failed": 0,
+        "passed": 216,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "command_result": "engine/web_smoke-compile/result.json",
+      "name": "web_smoke-compile",
+      "phase": "engine",
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "command_result": "engine/web_smoke-node/result.json",
+      "name": "web_smoke-node",
+      "phase": "engine",
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "command_result": "engine/web_vba_smoke-compile/result.json",
+      "name": "web_vba_smoke-compile",
+      "phase": "engine",
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "command_result": "engine/web_vba_smoke-node/result.json",
+      "name": "web_vba_smoke-node",
+      "phase": "engine",
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "command_result": "engine/web_vba_procedures_smoke-compile/result.json",
+      "name": "web_vba_procedures_smoke-compile",
+      "phase": "engine",
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "command_result": "engine/web_vba_procedures_smoke-node/result.json",
+      "name": "web_vba_procedures_smoke-node",
+      "phase": "engine",
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "command_result": "engine/web_vba_control_flow_smoke-compile/result.json",
+      "name": "web_vba_control_flow_smoke-compile",
+      "phase": "engine",
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "command_result": "engine/web_vba_control_flow_smoke-node/result.json",
+      "name": "web_vba_control_flow_smoke-node",
+      "phase": "engine",
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "command_result": "engine/macos-build-script-syntax/result.json",
+      "name": "macos-build-script-syntax",
+      "phase": "engine",
+      "test_counts": null
+    },
+    {
+      "accepted": true,
+      "command_result": "editor/pdf-and-review/result.json",
+      "name": "pdf-and-review",
+      "phase": "editor",
+      "test_counts": {
+        "failed": 0,
+        "passed": 52,
+        "skipped": 0
+      }
+    },
+    {
+      "accepted": true,
+      "command_result": "studio/desktop-ribbon-lifecycle/result.json",
+      "name": "desktop-ribbon-lifecycle",
+      "phase": "studio",
+      "test_counts": {
+        "failed": 0,
+        "passed": 27,
+        "skipped": 0
+      }
+    }
+  ],
+  "current_head_at_summary": "ba9ac010189215b92f518e44dde7ea2e2fdc47e1",
+  "qualification_limits": [
+    "Focused incoming changes only; this is not a full-repository acceptance run.",
+    "All test commands use fresh machine reporter output; the interrupted implicit-resolution launch contributes no test cases.",
+    "AppKit and macOS installation/signing were not exercised on this Linux host.",
+    "Per-command source snapshots qualify actual working files; final publication must preserve the relevant hashes or validate later changes."
+  ],
+  "required_commands_passed": 13,
+  "source_changes_since_accepted_commands": [
+    {
+      "command": "pdf-and-review",
+      "current_sha256": "97370f0ea03a428577072b97217c2d3addb42184db54552e0a508d88bbd129a2",
+      "executed_harness_preserved": true,
+      "path": "docs/validation/mail-archive-restore-20261119/incoming/run_incoming.py",
+      "phase": "editor",
+      "qualified_sha256": "4d53b00971d827c5b8671159860eb459e56170ef40360241d27d0c550dcbd136"
+    },
+    {
+      "command": "desktop-ribbon-lifecycle",
+      "current_sha256": "e7cbd6b3425be30765534c3a3fff9b1e62180fe487192a19c2c45474814d3371",
+      "executed_harness_preserved": false,
+      "path": "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+      "phase": "studio",
+      "qualified_sha256": "a437a48430f63ab039764118d64a1cd3489510e806eb96e9d19da76ecc0da12b"
+    }
+  ],
+  "status": "passed",
+  "test_cohorts": 4,
+  "test_file_count": 30,
+  "test_totals": {
+    "failed": 0,
+    "passed": 564,
+    "skipped": 0
+  },
+  "unique_cases": 564
+}
