@@ -809,8 +809,11 @@ final class WordProofingSession extends ChangeNotifier {
       if (runStart < end && runEnd > start) {
         languages.add(
           normalizeProofingLanguage(
-            run.properties.proofingLanguage ??
-                paragraph.properties.proofingLanguage ??
+            wordRunProofingLanguage(
+                  run,
+                  paragraph,
+                  documentComplexScriptLanguage: document.complexScriptLanguage,
+                ) ??
                 language,
           ),
         );
@@ -897,6 +900,8 @@ final class WordProofingSession extends ChangeNotifier {
           inline.properties.csFont,
           inline.properties.vertAlign.name,
           inline.properties.proofingLanguage,
+          inline.properties.complexScriptLanguage,
+          inline.properties.complexScript,
           inline.properties.noProof,
           inline.properties.sourcePropertiesXml,
           inline.properties.importedValues,
@@ -1359,8 +1364,12 @@ final class WordProofingSession extends ChangeNotifier {
               start: offset,
               end: end,
               language: normalizeProofingLanguage(
-                inline.properties.proofingLanguage ??
-                    paragraph.properties.proofingLanguage ??
+                wordRunProofingLanguage(
+                      inline,
+                      paragraph,
+                      documentComplexScriptLanguage:
+                          document.complexScriptLanguage,
+                    ) ??
                     language,
               ),
             ));
@@ -1400,6 +1409,7 @@ final class WordProofingSession extends ChangeNotifier {
           paragraph.properties.fieldInstruction,
           paragraph.properties.pageNumberField,
           paragraph.properties.proofingLanguage,
+          document.complexScriptLanguage,
           generated,
           emptyField,
           structure,

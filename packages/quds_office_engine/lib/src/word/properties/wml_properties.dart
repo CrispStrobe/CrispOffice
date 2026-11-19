@@ -659,6 +659,8 @@ class WmlRunProps {
     this.vertAlign = WmlVertAlign.baseline,
     this.proofingLanguage,
     this.noProof,
+    this.complexScriptLanguage,
+    this.complexScript,
   });
 
   /// Character style reference (`w:rStyle`).
@@ -704,6 +706,16 @@ class WmlRunProps {
   /// `w:noProof`; null inherits the surrounding style/default.
   bool? noProof;
 
+  /// Complex-script proofing language (`w:lang/@w:bidi`), including inherited
+  /// style formatting. Null leaves the document default live. Sparse export
+  /// preserves other language attributes when this value changes.
+  String? complexScriptLanguage;
+
+  /// `w:rtl` or `w:cs` is on: Word formats and proofs the run as complex
+  /// script, so [complexScriptLanguage] applies. The native flags remain
+  /// read-only and round-trip through [sourcePropertiesXml].
+  bool? complexScript;
+
   /// fontSizePoints API.
   double get fontSizePoints => fontSizeHalfPoints / 2.0;
 
@@ -724,6 +736,8 @@ class WmlRunProps {
           vertAlign: vertAlign,
           proofingLanguage: proofingLanguage,
           noProof: noProof,
+          complexScriptLanguage: complexScriptLanguage,
+          complexScript: complexScript,
         )
         ..explicitProperties.addAll(explicitProperties)
         ..sourcePropertiesXml = sourcePropertiesXml

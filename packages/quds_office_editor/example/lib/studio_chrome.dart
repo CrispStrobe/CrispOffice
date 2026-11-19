@@ -324,6 +324,9 @@ class StudioRibbonGroup extends StatelessWidget {
   final String title;
   final List<Widget> children;
 
+  /// Section captions such as Clipboard and Quick Insert are opt-in chrome.
+  static bool showTitles = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -332,10 +335,11 @@ class StudioRibbonGroup extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(child: Row(children: children)),
-          Text(
-            title,
-            style: const TextStyle(fontSize: 9, color: Color(0xFF888888)),
-          ),
+          if (showTitles)
+            Text(
+              title,
+              style: const TextStyle(fontSize: 9, color: Color(0xFF888888)),
+            ),
         ],
       ),
     );

@@ -116,6 +116,7 @@ export 'src/word/math/omml_linear.dart';
 export 'src/word/model/wml_clone.dart';
 export 'src/word/model/wml_document.dart';
 export 'src/word/model/wml_run_edit.dart';
+export 'src/word/model/word_proofing_language.dart';
 export 'src/word/model/word_bookmarks.dart';
 export 'src/word/model/word_captions.dart';
 export 'src/word/model/word_citations.dart';

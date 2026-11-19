@@ -3,7 +3,8 @@
 Accepted: 19 November 2026. Scope: Arabic spelling, independently authored
 writing rules, then optional model-backed analysis. The initial writing rules
 are registered for Arabic-language text. The optional Hunspell package is
-implemented; host registration and the in-app dictionary download UI remain open.
+implemented and wired into Studio through an explicit dictionary download/install
+dialog. No dictionary is downloaded automatically.
 
 ## Constraints
 
@@ -47,8 +48,8 @@ implemented; host registration and the in-app dictionary download UI remain open
    adds the MPL 1.1 text, a manifest and a card, and can publish the bundle to
    Hugging Face. Publishing includes only the manifest-listed files and
    `manifest.json`; unrelated files in a reused output directory are excluded.
-   The optional Hunspell package is implemented; host registration and the
-   in-app dictionary download UI remain open.
+   The optional Hunspell package is implemented and wired into Studio; the
+   dictionary download/install dialog is described in step 2.
    The upstream GitHub copy (`linuxscout/ayaspell`
    `36a90abb`) is not used: its `.dic` contains file-concatenation separators
    and its `.aff` differs, and Hunspell 1.7.2 rejects common forms such as
@@ -65,7 +66,7 @@ implemented; host registration and the in-app dictionary download UI remain open
    download of `ar.aff`/`ar.dic` from that revision gives the same Hunspell
    results. The Hub's metadata has no `mpl-1.1` identifier, so the card
    declares `license: other` / `license_name: mpl-1.1` and ships the text.
-2. **Hunspell engine in Quds (package implemented, host wiring open).**
+2. **Hunspell engine in Quds (implemented and wired into Studio).**
    `packages/quds_proofing_hunspell`: MIT adapter + unmodified Hunspell 1.7.2
    library files (MPL 1.1 option, tarball SHA-256 `11ddfa39…`, every compiled
    file hashed in `licenses/manifest.json`, exact sources shipped as
@@ -74,10 +75,49 @@ implemented; host registration and the in-app dictionary download UI remain open
    removal. Incoming macOS evidence: identical flagged multiset to the Hunspell CLI on UD
    Arabic-PUD (795 of 15,676 words) for both native and Wasm; 18 Dart tests
    with the real library and dictionary; iOS/Android arm64 compile and link.
-   The [Linux continuation](../validation/office-main-sync-20261119/main-delta/README.md)
-   records a direct-compiler native build and source-bound native/portable checks.
-   Open: host registration and download UI, packaging the library/worker into
-   the app targets, CMake packaging, Windows builds and on-device acceptance.
+   The [Linux continuation](../validation/office-main-sync-20261119/README.md)
+   records a direct-compiler native-library build and source-bound checks;
+   CMake packaging and device execution are outside that local qualification.
+   **Host wiring (19 November 2026, branch `feat/arabic-host-wiring-20261119`):**
+   - Studio: Review › Proofing › **Dictionaries** opens a setup dialog that
+     names the immutable HF revision, licence (MPL 1.1), download size and the
+     pinned SHA-256 of `ar.aff`/`ar.dic`; Download (progress, cancel) and
+     Remove; a Licences button opens the app licence page. Nothing is
+     downloaded without that action. Native hosts install into the app's
+     private data directory through `HunspellInstaller`; the web host keeps the
+     verified bytes in memory for the session. Installed dictionaries
+     re-verify at start-up (no network).
+   - Once installed, the Word service gains a `HunspellProofingProvider`
+     after the Arabic rules; the service is rebuilt on install/remove. The
+     library path comes from `QUDS_HUNSPELL_LIBRARY` or the packaged location
+     next to the executable (`Contents/Frameworks` on macOS, `lib/` on Linux,
+     the executable directory on Windows, `jniLibs` on Android).
+   - Engine: findings from different providers with the same category, range
+     and text that share a replacement are one review item; the earlier
+     provider (the Arabic rule) keeps its rule id and message and the
+     dictionary's extra suggestions follow its own. Different categories stay
+     separate, so the German grammar/spelling pairs are unchanged.
+   - Packaging: `tool/build.py --install-native/--install-web/--install-android/
+     --install-licenses` copies receipt-verified outputs. The Studio example
+     now has a macOS runner (sandbox entitlements: network client,
+     user-selected files); `web/proofing/` and `android/.../jniLibs/` are
+     generated and ignored. The app licence page lists the Hunspell MPL 1.1
+     notices (`assets/licenses/hunspell/`, `registerStudioLicenses`).
+   - Incoming packaging evidence (macOS arm64, Flutter 3.47.8): macOS release app built, the
+     dylib installed into `Contents/Frameworks` and the bundle re-signed
+     (`codesign --verify --deep --strict` passes); the end-to-end test loads
+     that bundled dylib with the AyaSpell bundle and checks a Word document
+     with `w:bidi`: findings `الى`→`إلى` (one merged item from the rule and
+     the dictionary), `المدرسه`→`المدرسة` (merged), `هاذا`→`هذا` (merged with
+     the `ar.spelling.common` rule from #184), German run silent. Web release build contains the worker, module and
+     wasm under `proofing/`. Android arm64-v8a library cross-built (NDK 28,
+     static libc++, only libc/libm/libdl needed) and installed into `jniLibs`;
+     `flutter build apk --release --target-platform android-arm64` packages it
+     as `lib/arm64-v8a/libquds_proofing_hunspell.so` (1.6 MB, stripped) in a
+     69.8 MB release APK. Not yet run on a device.
+   - Open: Linux/Windows app packaging, iOS packaging (the example has no iOS
+     runner), running on real devices, persisting the web download across
+     sessions, signing with a release identity.
 3. **Arabic grammar rules (first set implemented, 19 November 2026).**
    `ArabicWritingRulesProvider` (`arabic-writing`) in `quds_office_engine`
    is independently authored, MIT-licensed and part of the app. It was
@@ -117,12 +157,18 @@ implemented; host registration and the in-app dictionary download UI remain open
    - 2 editor integration tests: default session on an `ar-SA` run with an
      applied suggestion, and silence on German text.
 
-   **Known gap:** paragraph language comes from `w:lang/@w:val`. Word stores
-   the language of right-to-left text in `w:lang/@w:bidi`, so Arabic in
-   documents written by Word with `w:val="en-US" w:bidi="ar-SA"` is still
-   routed as English. Selecting the complex-script language for `w:rtl`/`w:cs`
-   runs is the next editor change. Documents written by Quds already set
-   `w:val="ar-SA"` on Arabic runs.
+   **Complex-script language (closed 19 November 2026):** Word stores the
+   language of right-to-left text in `w:lang/@w:bidi`. Runs marked
+   `w:rtl`/`w:cs`, or containing Arabic or Hebrew letters, now use the run's
+   or the document default's complex-script language
+   (`wordRunProofingLanguage`), so Arabic in Word documents with
+   `w:val="en-US" w:bidi="ar-SA"` reaches the Arabic providers; Latin runs
+   keep `w:val`. Routing preserves both native attributes. Explicit language
+   changes update the selected fragment's active slot (`w:bidi` for complex-
+   script text, `w:val` otherwise); reset restores inherited formatting. Undo,
+   DOCX save/reopen and unrelated East Asian language/direction metadata are
+   covered by the continuation tests. Digits, punctuation and isolated marks
+   alone do not turn a Latin run into complex-script text.
 
    Interpreting LanguageTool's Arabic rules is assessed
    [below](#languagetool-arabic-assessment-v68).

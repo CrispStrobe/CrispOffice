@@ -63,9 +63,10 @@ flows. Existing sandbox, debug JIT and debug server keys remain unchanged. Both
 property lists parse and their Xcode references were checked. Bundle identity,
 signing settings and other project configuration are preserved.
 
-Older guide passages now describe the active Arabic rules and optional Hunspell
-package consistently. No dictionary is downloaded and no Hunspell provider is enabled by the
-application automatically; native qualification uses explicit fixture inputs.
+At that first main merge, guide passages described the active Arabic rules and
+optional package while host setup remained open. Native qualification used
+explicit fixture inputs. The later `be641457` integration below adds Studio's
+user-initiated setup and registration of verified installed dictionaries.
 
 ## Qualification boundary
 
@@ -104,3 +105,41 @@ workspace or SMTP composition.
 The new Studio dependencies are three packages already in this workspace.
 No locked dependency versions change. The package mappings stay stable; the
 Studio dependency-graph entry is reconciled explicitly with those three additions.
+
+## Later current main at `be641457`
+
+After the second frozen attempt, main was read at
+`be641457c8c7d1acc25091b31c87c73eaa3c9c2a`. It contains PR #185's Word
+complex-script language routing, agreeing-provider finding merging, native/web
+Hunspell host, explicit dictionary setup, licence assets and target-packaging
+helpers, plus new CrispOffice English defaults, Settings and About. All incoming
+features and unchanged licence/source bytes are retained.
+
+Review reproduced and repaired these integration defects:
+
+- Digits, punctuation and a BOM alone could select the complex-script language.
+  Routing now requires letters unless complex-script formatting is explicit.
+- Choosing or resetting a language did not update the active bidi slot. The
+  selected fragment now changes the relevant slot, preserving inherited
+  formatting, direction and East Asian metadata through undo and DOCX save.
+  A changed document bidi default invalidates an already displayed target.
+- Two rules from one provider could collapse through an agreeing second provider.
+  Each merged group now tracks the providers it already represents.
+- Show notes changed the Settings switch but reused the old editor configuration.
+  The configuration key now includes that setting; tests inspect the actual
+  notes pane, retained controller and note content.
+- Pre-cancelled, stalled or final-chunk dictionary downloads could proceed too
+  far. Native and web paths now abort active clients and check cancellation up
+  to publication; completed installations remain stable after later cancellation.
+
+Studio regressions explicitly select their required language and visible panes
+under the new defaults, retaining their layout, focus and editing assertions.
+The opt-in screenshot helper is updated and analyzed without claiming a screenshot
+run. Formatting-only repairs are recorded separately. Four offline packaging
+controls exercise receipt selection, tamper rejection, early flag validation and
+exact licence/source copies; they do not build or launch another platform.
+
+The third source-bound plan retains every suite from the rejected second attempt
+and adds the affected Word language, merge, host/setup, Settings and cancellation
+coverage. All prior failed/development/historical events remain outside its
+accepted totals. The original `0669ac11` qualification remains separate.

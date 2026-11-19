@@ -1,0 +1,307 @@
+{
+  "status": "REVIEWED",
+  "prior_qualified_source": "0669ac119da05f5eb777c8cfdbce32e0261df647",
+  "incoming_main_source": "be641457c8c7d1acc25091b31c87c73eaa3c9c2a",
+  "paths": [
+    {
+      "path": "docs/PROOFING.md",
+      "after_sha256": "ddb76c629beb15b5901075580ba0583afc05b0b340b02b14bd74d1612fa22510",
+      "reason": "Reconcile incoming Studio registration/setup and packaging history with exact Linux qualification boundaries, active complex-script language editing and the matching bundle-card assertion.",
+      "incoming_sha256": "b7880bf41119db481171ca1e5c9b9051b04d5275e72e0df0875c6d4a4398d450"
+    },
+    {
+      "path": "docs/roadmaps/arabic-proofing.md",
+      "after_sha256": "a1ccf13757c913aaa709fed2c8825f63d14c17c8f121b92ddf7e812a509f81c0",
+      "reason": "Reconcile incoming Studio registration/setup and packaging history with exact Linux qualification boundaries, active complex-script language editing and the matching bundle-card assertion.",
+      "incoming_sha256": "c125ff689f5cd34a57d190a5e66cadd2fd479d15b8f79e8b797b144f2097ec3c"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host.dart",
+      "after_sha256": "6765b6de82e8badb0e9d86b47bd1309f6cb9cbc6dee8367d56d14f2dec57aad0",
+      "reason": "Cancel before request, after final progress and during a stalled response; abort pending work, prevent publishing a cancelled dictionary and release cancellation listeners; controlled native/web-host regression suites are required.",
+      "incoming_sha256": "e750a3ad93f313d2bfcc547cda26a99f01a37775a84e7dbeb3deb662522036d7"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+      "after_sha256": "6c65c91071f4e91fd741970ceb41c750da6ca863e2e26f85031ced6579ba062d",
+      "reason": "Cancel before request, after final progress and during a stalled response; abort pending work, prevent publishing a cancelled dictionary and release cancellation listeners; controlled native/web-host regression suites are required.",
+      "incoming_sha256": "5579ff3c0886762f2886d17cabb225dd9cc22fa29fe058a429e48e0c04026cb4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail.dart",
+      "after_sha256": "f1dae49946a6ebeef254dcf51a059b1f76c668d0812ccbdf85ca2418aed56e36",
+      "reason": "Prevent setState after either picker or file-read completion when the Mail dialog is already disposed.",
+      "incoming_sha256": "15d140b251f4255d2bdf7ef02fb745917410fa58cbbcc7611a6f280758f704c9"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "after_sha256": "cfc29b9bda1897b43b05e14991d7e89a62434139042e3ecffa5dcde02db405ed",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "21e6e400bfd912ee14a52dfdabcfd177f64dccf2c0f1f6398c038de671955173"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/pdf_gallery_smoke_test.dart",
+      "after_sha256": "430da58ecca85aa566ff5b988d9ff86578bb6a5f4e17d9c362563058b3279275",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "7f2b0a5fefb0807b50fb8962fd17c4ef7638989a19dde32b22aae00e3d197f8a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/pdf_showcase_test.dart",
+      "after_sha256": "e722d725c3b2d1412e1625e43e6c230faa109eb2b76963f4038c1dc9b59f5573",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "5a06db0162ff489999187b0317e9484162f8b0b0c6c06b7720da211c96f7ca45"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "after_sha256": "3b0737b9f0c990ae9991e01c0805d8141d627492a31b1860d243dde3ea383583",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "ab67b95eca6ea7ed597df8b5df241dc2ed46f89808e6b8d4b1ae753ee732dac5"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_keyboard_review_test.dart",
+      "after_sha256": "5b74afad777ef000a617afa3963493161e51769af5220eba479795e472614909",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "6602840c2be7d7135f745cc75b23a1b2c47ca31b02b934c9d01c6c6231fe1806"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_comment_review_test.dart",
+      "after_sha256": "72620ebf1645af47ede12d9668ca2ab81cd23e8fe78efad9db33868b09080a55",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "7974c9cc6c62f273bfdf635d85ecd715800de8dbf0762458ed0919fcd1138588"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_compact_navigation_test.dart",
+      "after_sha256": "2b1e076d43126950ab1c205b5531df459e670fec612eb09d148a0199662f42af",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "5536eb45dda41bfffdee16395165f2e29ea1878a900c7fca1a9f489277827156"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+      "after_sha256": "c71a72e029b66a5c99c37ddb25634c58f9bb545395d2ebf4c2b2768d971aed33",
+      "reason": "Cancel before request, after final progress and during a stalled response; abort pending work, prevent publishing a cancelled dictionary and release cancellation listeners; controlled native/web-host regression suites are required."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "after_sha256": "8eeabb02027a2e941f8a6cc4d804fc2b0dbd6bfe03a53e6d868b08e387576ca6",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+      "after_sha256": "fa3d7f4b6881a2d3d4122d57154eac1566ce185ed9aad8037cb7db66cf1fd2ac",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "0db14563c309aedb65250dd87cf7d07478827c42119e4462c06a4c47f5dfe8fa"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "after_sha256": "dfe523fee8dade5f45ffc707e526c3f7d05e09467d10c315ef2f60421623fef8",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_sheet_navigation_test.dart",
+      "after_sha256": "65063e320bbc6cb2eec64e35e90ea86f1875505684a2054939c18763bdedcff6",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "91e8098243192ee4595ff285de5fdae80438f51934e0a91e52aed9bf3f120bc7"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shots_test.dart",
+      "after_sha256": "66d182f653e18b540d9655f5592b5f84e9108b1352fcc58f6e404fc835d7b617",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "05637e5d6396285f98d19e67637a964b74fe41a70a28831baeca0764833dfb52"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "after_sha256": "8655f93b08434262ddfe0776bbd5611e4aff22299b38fb8ae5cc4ee1cd1a83e2",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "27916e7a920fa463e0f06c4fdfcf5903fbfb70bf503db3b83775792b5b2a1e1c"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/widget_test.dart",
+      "after_sha256": "af2fa088bb763256b1430dca8466680fa84435d186ec1ecaa07476985a9daf37",
+      "reason": "Preserve incoming defaults and all prior behavior assertions; repair localized selectors, bind the notes configuration key, and apply pinned formatting where recorded. The artifact screenshot harness is static-check only.",
+      "incoming_sha256": "37b8f1f8373932e3242324191d1ad77ac168452199fb75c5b7345fbf8ec7cb72"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "after_sha256": "66174b191872e13f581a4b5cf51ec41279a299eefd9a12f385f87222dc706615",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "c7caa0c4b18c21dd604b230162b166bc87031c559fa3734c9bc97b2ccc8af4dc"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "after_sha256": "992198c120f82ac0a1cc661f75d967d17f0a60564ee26811fb7e4208457c91e1",
+      "reason": "Pinned Dart formatter only; incoming semantic source retained and full affected tests selected.",
+      "incoming_sha256": "1f49594faa601205a4cd9c1dfa6cffb4a37141a14c8d82b85f52ee4d42091c4f"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_arabic_writing_integration_test.dart",
+      "after_sha256": "553d62f72f855229156705b4bf44692df5861a8456d36cdc549f41d8d55bc8a6",
+      "reason": "Pinned Dart formatter only; incoming semantic source retained and full affected tests selected.",
+      "incoming_sha256": "bcb469c5128078b348fd451cd94db476ec7e3ba1407ed3010e15a3d5a677bbf0"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_complex_script_proofing_controls_test.dart",
+      "after_sha256": "0197553773e1f1cd559f8f722cedf1cad4e49068822c114483871634d7d251f6",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_extended_rules.dart",
+      "incoming_sha256": "8f92ca7e8400c828d4f6245a7a51f5802b8cad04f74ea25bd67462feaacdc207",
+      "after_sha256": "e5eea6d461a90a694bd70299bea1766f133812a8087fe5692797f65effc98219",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+      "incoming_sha256": "137ab2f071ca60a7512612dcf05f09bb84721610b784c52a79cf94ac5bed955e",
+      "after_sha256": "66bdcbe946c17508786981a644e4cf1f138696cd55fa7c00e54f3d1631f3b0ca",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+      "after_sha256": "60a0044f72b2e831f1c20365c2ad0ec8fe468d7a83e11d75f1ecc3de4482243a",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "a6984f9d372479d63b02d1ce8d680d11ac8f4ec89f4e555931701b1ef3ab88a9"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+      "after_sha256": "994f41390ce0df501f50e3052e1642167b02593db70dd0e932f2b080f7981258",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "e9dc3be5aef6069b6a04e4b4dedb2d64a522be9dbf5b50bf4283dbba2ac93879"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+      "after_sha256": "ba9993a5fe92ffaaf8613e43c9ae0a95702cad12ce1be09e2c872dc18decdfa1",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "729870b4c0c99ea5b92545cedc5254a1acb5d58ddd423021ff01cd6c420ee083"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+      "after_sha256": "bf4c47772b1e08186c21c92351e865a53b66fe67586825bb9f65789375ef9c96",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "f5841b570e6c094fd0f4930e97bd9dd813ff4c79033602dfba3511286823df33"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "after_sha256": "2e76ffd619dde83fbabb567d81a26a735f4836d6bfc157d12fdebf6c28384016",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "2fda59a5cec4bc5a02ad722aaaaf40921c409ccb8d2555f31a41b8f514da791a"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "after_sha256": "6ae2f09ab03508b55016edd2cda6fb2d1df757eb78f3e2dc4efaa1011a7b7e42",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "fad0cbe9069626e75f4895118227aef3ade9c54219f4893121f721be7695c28a"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "after_sha256": "fc6be4341183f9e7a9d27708f293ba4ab7f67d330aff25863fbbafe7408c0db8",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "525e67d8243473db7fa4a79c3131ec2c05f72af4635e2cacb009bfce6baece14"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "after_sha256": "75a0072f023b9db06be37b62efe32d19e5ddb5f7b9299439bb0288f32d811ca5",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "894d44b9a078dc23b624be55a6b942de9c30b6b8568493f44f8dea1bdacd44f8"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+      "incoming_sha256": "61a9335eef69a39fa2562aabc7523e4d0ffefe6f65427d9fe9d9ded9aaa3f751",
+      "after_sha256": "c591de6a69be97b3fe5cad335d885531d155e99630416476dcbe7a45dc3395ea",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+      "incoming_sha256": "2013b4b910a496fad7ea227db197da431669269ca8c0b0ff4571b463ad6c83cf",
+      "after_sha256": "141524cbb9923f2de5eee36e454312080db0c12d21d90ed535ae25935c0bea91",
+      "reason": "Reviewed merge of all prior and incoming Arabic controls, with identifier/orthographic boundary safeguards; fresh VM and Node suites required."
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+      "after_sha256": "29c820b50cf6d47c42f481a2b8a9cd07b26ab2ee1ff1fa0fac98ea9ba13feb73",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required.",
+      "incoming_sha256": "8108875a33c807c6a3ed5df96d947f726a3aa3d354ace982d699e3a6e08e670e"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_complex_script_language_test.dart",
+      "after_sha256": "928b5d73ae2e46e1ee95b302778fab48aedd3cf73658ce28e96e5fdb39a9ff67",
+      "reason": "Resolve true complex-script letters, edit/reset only the active language slot with inheritance and DOCX preservation, and keep same-provider findings distinct across agreement bridges; focused VM/Node/editor coverage is required."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/README.md",
+      "after_sha256": "de31c1ac6d4cafbc071840e2b038e2e254f45eefd456f5b4843cc9b9f71d6fcb",
+      "reason": "Document actual Studio registration and explicit setup, cancellation publication boundaries, and preserved native lifecycle behavior without claiming an executed macOS or WebAssembly build.",
+      "incoming_sha256": "a9ef958cf6960919225b6472eb732bd44cb1cc48f391217bf725b82190c855c7"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_installer_io.dart",
+      "after_sha256": "fae0ed783f67f7bdd5a5d45a0208929ac377e7b6d6df4d14c26599c5c501bb0b",
+      "reason": "Cancel before request, after final progress and during a stalled response; abort pending work, prevent publishing a cancelled dictionary and release cancellation listeners; controlled native/web-host regression suites are required.",
+      "incoming_sha256": "c9e5f1dc3d2e7ff160f0a1c2a1e81df6df565f24e9cd44543dea5881b39fc666"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart",
+      "after_sha256": "07271178b8e6314d3d5aa20dd53ee42d2ea3c4a971a2892993281e3736ae2b64",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate.",
+      "incoming_sha256": "410f66f563b58653cafb404673734c725c7372c7ca84310d71a83c7195ed8d1a"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+      "after_sha256": "cb360c50796dae1ba222dcb9e411476fce1a24aa6cf0fa038555bdaf24252ceb",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate.",
+      "incoming_sha256": "d16e4af1258787657118c3e062427c4caa2428c0083e5cfd8e70346ca35b91d0"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_installer_cancellation_test.dart",
+      "after_sha256": "42838729ba13b577058991d48e4725b30b4b0f3e0d47b44baba43630ebcd875e",
+      "reason": "Cancel before request, after final progress and during a stalled response; abort pending work, prevent publishing a cancelled dictionary and release cancellation listeners; controlled native/web-host regression suites are required."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_native_lifecycle_test.dart",
+      "after_sha256": "e003caefe1bbc832e7b56e2e64cae1e8675c3be99ea074de8a821b11a7dfdcb2",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_native_test.dart",
+      "after_sha256": "bdcd2a390b0f5496ab064d42929dc79d8e4f27c03ad051aa91962bf6219f1d63",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate.",
+      "incoming_sha256": "3bea0e48f42d6fa61b093d3ea5a7cb9571257ff091d0a146be9a3bc94fc80dee"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/hunspell_provider_test.dart",
+      "after_sha256": "ff467fda15817b04f3652dc1a7228afc9917d5b3c5b13652fc45f9bbbc8b18e7",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate.",
+      "incoming_sha256": "da97d35a0241e8fbb162f730e5b28258f6f2a9eb7ba7063ca899b8fffd557925"
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/test/support/hunspell_lifecycle_shim.cpp",
+      "after_sha256": "54a6aa58c54af098629bd42d594efe6b0da47aa590bb0465e7c55568065e3ff1",
+      "reason": "Preserve the exact reviewed lifecycle/disposal and missing-dictionary repair from c0c; rerun the complete real-native, provider and compiled-lifecycle selections in this gate."
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/tool/test_build.py",
+      "after_sha256": "90730e4f17286574545ffae216958c395606c69939ccc6f90c3efbb4e3a956f9",
+      "reason": "Four separate offline Python controls for exact receipt-declared copies, tamper rejection before writes, install-flag validation before fetch and exact license/source/receipt copying; incoming build.py remains unchanged."
+    },
+    {
+      "path": "tools/proofing/ayaspell/build_bundle.py",
+      "after_sha256": "4f72fb1d2bdf9ba44362a92ae522e3e9c1ed9e7a163a8f6f04a607f9bb0f0a7a",
+      "reason": "Reconcile incoming Studio registration/setup and packaging history with exact Linux qualification boundaries, active complex-script language editing and the matching bundle-card assertion.",
+      "incoming_sha256": "d34d326ff41709fd740f2324487487aaca2c6056381de0fb26c4b973bec12ec0"
+    },
+    {
+      "path": "tools/proofing/ayaspell/test_build_bundle.py",
+      "after_sha256": "d92c2e806fe9767b75bd8a8655e5df618e5eaf6b4449f70c3af1a41907b0e66d",
+      "reason": "Reconcile incoming Studio registration/setup and packaging history with exact Linux qualification boundaries, active complex-script language editing and the matching bundle-card assertion.",
+      "incoming_sha256": "ace3e8d193360145c873291863be876533e4ea8ff2c9ad7fc63c44ce1e5646ef"
+    }
+  ],
+  "provenance_receipt_sha256": {
+    "studio-review-v3/studio-files.json": "0dcc5c55454d5fb68c9d5e0ee5fd58bc838e3b32746f87399386c34fb17ae372",
+    "arabic-review/word-routing-v3/candidate-files.json": "7b57bcee0928312ef02ce28ca566b9eb763b3bd3a210b8818c9d262c4c908fe2",
+    "host-cancellation-review/files.json": "c482ac9d4cf1b80ce7036fa52ac2fbcb202079eed8c25e4b229ce63881d76934",
+    "main-delta/be641-docs-files.json": "f5bd83d26655616786981dfc0541f821359057f2e18f9e996a833bd5ed203561",
+    "audit-review/packaging-controls-files.json": "de0117411751ab8fb69482966020e897b5428874581bfaf495499814bc1b286b",
+    "main-delta/v3-format-review/receipt.json": "85b4f49c07aefb117b1fcd0729ac0127b09b019d27b0080b6d2b932c05c6b350"
+  },
+  "development_results_added_to_qualification": 0
+}

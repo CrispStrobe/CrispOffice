@@ -1,11 +1,12 @@
 # Optional local Hunspell spelling
 
 This optional package provides Hunspell spelling and an installer for host apps.
-A host must register the provider and offer a user-initiated dictionary download;
-Office Studio does not yet provide that registration or download UI. The first dictionary is
-Arabic: the AyaSpell bundle published unmodified at
+Studio provides an explicit dictionary download/install dialog and registers a
+verified installed dictionary after the Arabic writing rules. Other hosts can
+register the provider through the API below. The first dictionary is Arabic:
+the AyaSpell bundle published unmodified at
 [`cstr/ayaspell-ar-hunspell`](https://huggingface.co/cstr/ayaspell-ar-hunspell/tree/e9ace7cca3844bef906d8d9fc5431c4e15bd2740)
-(immutable revision `e9ace7cc…`). Nothing is downloaded or enabled by default.
+(immutable revision `e9ace7cc…`). No dictionary is downloaded automatically.
 
 - **Engine (part of the app):** the MIT adapter `native/src/quds_hunspell.cpp`
   compiled with the unmodified Hunspell 1.7.2 library sources under their
@@ -18,7 +19,9 @@ Arabic: the AyaSpell bundle published unmodified at
   and SHA-256 equal the compiled-in catalog (`hunspellCatalog`), publishes the
   tree with one rename and verifies it again; `remove` renames before
   deleting. On the web the host fetches the two dictionary files itself and
-  passes them through `HunspellDictionaryBytes.verified`.
+  passes them through `HunspellDictionaryBytes.verified`. Cancellation aborts
+  active downloads and is checked through the final publication boundary;
+  cancelled native staging is removed and cancelled web data is not registered.
 
 ## Use
 
@@ -79,6 +82,22 @@ garbage collection and isolate-group shutdown guarantees.
 ```sh
 python3 tool/build.py --native --wasm --output build      # host native + web
 python3 tool/build.py --license-bundle                     # regenerate licenses/
+```
+
+Host packaging copies only receipt-verified outputs:
+
+```sh
+# Web: worker, module and wasm plus notices under licenses/hunspell/.
+python3 tool/build.py --wasm --install-web ../quds_office_editor/example/web/proofing
+# macOS: library into the app bundle, notices into Resources, then re-sign.
+python3 tool/build.py --native \
+  --install-native <App>.app/Contents/Frameworks \
+  --install-licenses <App>.app/Contents/Resources/hunspell-licenses
+codesign --force --sign <identity> <App>.app/Contents/Frameworks/libquds_proofing_hunspell.dylib
+codesign --force --deep --sign <identity> --entitlements <Release.entitlements> <App>.app
+# Android: arm64-v8a with the NDK (static libc++) into jniLibs.
+python3 tool/build.py --android \
+  --install-android ../quds_office_editor/example/android/app/src/main/jniLibs/arm64-v8a
 ```
 
 `build.py` downloads the Hunspell 1.7.2 release tarball, checks its SHA-256

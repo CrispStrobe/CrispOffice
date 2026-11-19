@@ -230,6 +230,10 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(1440, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(const QudsOfficeStudioApp());
+    await tester.pump();
+    final word = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
+    word.controller.proofing.enabled = false;
+    word.controller.proofing.configure(OfficeProofingService(providers: []));
     await _pump(tester);
 
     void expectModules(List<String> labels) {
@@ -241,15 +245,6 @@ void main() {
       );
     }
 
-    expectModules(<String>[
-      'المستندات',
-      'جداول البيانات',
-      'العروض التقديمية',
-      'PDF',
-      'البريد',
-    ]);
-    await tester.tap(find.byTooltip('اللغة'));
-    await _pump(tester);
     expectModules(<String>[
       'Documents',
       'Spreadsheets',
@@ -290,6 +285,15 @@ void main() {
       'العروض التقديمية',
       'PDF',
       'البريد',
+    ]);
+    await tester.tap(find.byTooltip('اللغة'));
+    await _pump(tester);
+    expectModules(<String>[
+      'Documents',
+      'Spreadsheets',
+      'Presentations',
+      'PDF',
+      'Mail',
     ]);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());

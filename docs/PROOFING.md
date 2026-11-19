@@ -43,8 +43,8 @@ the AyaSpell Hunspell dictionary under its MPL 1.1 option, built reproducibly by
 then an MPL Hunspell engine adapter, then independently authored Arabic rules.
 The initial Arabic writing rules are registered in default Word proofing and
 Studio for Arabic-language text and require no dictionary download. The optional
-Hunspell package is implemented; host registration and the in-app dictionary
-download UI remain open. No Arabic dictionary is downloaded automatically.
+Hunspell package is implemented and wired into Studio, with an explicit
+dictionary download/install dialog. No Arabic dictionary is downloaded automatically.
 
 `ArabicWritingRulesProvider` (`arabic-writing`) implements the first
 independently authored Arabic rule set. It is part of the app (MIT) and needs
@@ -110,12 +110,22 @@ about 50 ms per suggested word. 18 Dart tests pass with the real library and
 dictionary (no skips), including first suggestions `الى`→`إلى`,
 `المدرسه`→`المدرسة`, `هاذا`→`هذا`, harakat/tatweel offsets, vocabulary,
 installer tamper/changed-download rejection and a live download from the
-pinned revision. iOS arm64 and Android arm64 libraries compile and link;
+pinned revision. iOS arm64 and Android arm64 libraries compile and link.
 Those results belong to the incoming macOS checkpoint. The later
-[Linux continuation](validation/office-main-sync-20261119/main-delta/README.md)
-records a direct-compiler native build and separate source-bound checks. CMake
-packaging, Windows builds and on-device acceptance remain open. No host app
-registers the provider or offers the download yet.
+[Linux continuation](validation/office-main-sync-20261119/README.md)
+records a direct-compiler native build and separate source-bound checks. That
+continuation does not establish CMake packaging, Windows builds or on-device
+acceptance.
+
+**Studio wiring (19 November 2026):** Review › Proofing › Dictionaries offers
+the AyaSpell download (source revision, MPL 1.1, size, pinned digests,
+progress, cancel, remove, licence page). An installed dictionary adds the
+Hunspell provider after the Arabic rules; findings on which a rule and the
+dictionary agree (same category, range and a shared suggestion) are shown
+once with the rule's message. Arabic runs of Word documents are routed by
+their complex-script language (`w:lang/@w:bidi`, with `w:rtl`/`w:cs` or
+Arabic/Hebrew letters). Evidence and packaging steps are in the
+[roadmap](roadmaps/arabic-proofing.md) step 2.
 
 ## Native spelling continuation — 18 November 2026
 

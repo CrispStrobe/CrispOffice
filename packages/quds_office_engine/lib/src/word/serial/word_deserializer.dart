@@ -20,6 +20,7 @@ import '../model/word_content_controls.dart';
 import '../model/word_fields.dart';
 import '../model/word_link.dart';
 import '../model/word_notes.dart';
+import '../model/word_proofing_language.dart';
 import '../model/word_revision.dart';
 import '../model/word_styles.dart';
 import '../model/word_toc.dart';
@@ -2223,6 +2224,15 @@ class WordDeserializer {
             'val',
             namespaceUri: OfficeNamespaces.w,
           );
+          props.complexScriptLanguage = reader.getAttribute(
+            'bidi',
+            namespaceUri: OfficeNamespaces.w,
+          );
+        case 'rtl' || 'cs':
+          final on = _onOff(
+            reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
+          );
+          props.complexScript = (props.complexScript ?? false) || on;
         case 'noProof':
           props.noProof = _onOff(
             reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
@@ -3409,12 +3419,19 @@ class WordDeserializer {
       return;
     }
     if (readProofingLanguage) {
-      document.proofingLanguage = XmlDocument.parse(part.readText()).root
+      final defaultLanguage = XmlDocument.parse(part.readText()).root
           ?.firstChild('docDefaults', namespaceUri: OfficeNamespaces.w)
           ?.firstChild('rPrDefault', namespaceUri: OfficeNamespaces.w)
           ?.firstChild('rPr', namespaceUri: OfficeNamespaces.w)
-          ?.firstChild('lang', namespaceUri: OfficeNamespaces.w)
-          ?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
+          ?.firstChild('lang', namespaceUri: OfficeNamespaces.w);
+      document.proofingLanguage = defaultLanguage?.getAttribute(
+        'val',
+        namespaceUri: OfficeNamespaces.w,
+      );
+      document.complexScriptLanguage = defaultLanguage?.getAttribute(
+        'bidi',
+        namespaceUri: OfficeNamespaces.w,
+      );
     }
     document.styles.clear();
     final XmlPullReader reader = WordMarkupCompatibilityReader(part.readText());
@@ -3589,13 +3606,14 @@ class WordDeserializer {
     }
   }
 
-  /// Removes direct Latin-language overrides from a detached paragraph preview.
+  /// Removes direct overrides of the selected text's active language slot
+  /// from a detached paragraph preview.
   ///
   /// The source identifies the current table/paragraph/character style context.
   /// Effective inherited run languages remain available for live proofing,
   /// while sparse export continues to omit the removed direct override. Other
-  /// formatting, East Asian/bidi language metadata, and the live document and
-  /// package are unchanged. Returns false when the selected text already
+  /// formatting, other language slots, and the live document and package are
+  /// unchanged. Returns false when the selected text already
   /// inherits its language. The preview must be detached and have source text.
   bool clearRunProofingLanguage(
     WmlDocument document,

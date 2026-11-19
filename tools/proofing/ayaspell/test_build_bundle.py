@@ -126,7 +126,9 @@ class BundleBuilderTest(unittest.TestCase):
             "license_link: https://www.mozilla.org/en-US/MPL/1.1/\n"
         ))
         self.assertIn("optional Hunspell adapter package is implemented", card)
-        self.assertIn("in-app dictionary download UI remain open", card)
+        self.assertIn("Studio offers an explicit", card)
+        self.assertIn("dictionary download/install dialog", card)
+        self.assertIn("No dictionary is downloaded automatically", card)
 
     def test_publish_excludes_unrelated_existing_output_files(self) -> None:
         # These must stay local even when the caller reuses a populated directory.

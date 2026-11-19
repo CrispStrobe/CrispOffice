@@ -11,9 +11,9 @@ published unmodified.
     HF_TOKEN=... python3 tools/proofing/ayaspell/build_bundle.py \\
         --output /tmp/ayaspell-ar --publish cstr/ayaspell-ar-hunspell
 
-Quds provides an optional Hunspell adapter package. Host registration and the
-in-app dictionary download UI remain open; the bundle is not part of the
-application binary (docs/roadmaps/arabic-proofing.md).
+Quds provides an optional Hunspell adapter package and an explicit Studio
+dictionary download/install dialog. The bundle is not part of the application
+binary (docs/roadmaps/arabic-proofing.md).
 """
 from __future__ import annotations
 
@@ -83,9 +83,10 @@ are unmodified; their source form is this repository.
 ## Use
 
 Load with any Hunspell-compatible engine, e.g. `hunspell -d ar`. Quds Office's
-optional Hunspell adapter package is implemented. Host registration and the
-in-app dictionary download UI remain open; no dictionary is downloaded
-automatically. The bundle is not part of the application binary.
+optional Hunspell adapter package is implemented. Studio offers an explicit
+dictionary download/install dialog and registers the provider after installation.
+No dictionary is downloaded automatically. The bundle is not part of the
+application binary.
 `manifest.json` lists the SHA-256 of each bundled content file.
 """
 

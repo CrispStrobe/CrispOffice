@@ -179,13 +179,26 @@ class _StyleCascade {
     // Also isolate callers that supplied a shallow preview. Publish the
     // prepared inline list only after every selected run has been resolved.
     final prepared = WmlClone.paragraph(preview);
+    final range = WmlRunEdit.normalizeRange(prepared, start, end);
+    WmlRunEdit.splitAt(prepared, range.end);
+    WmlRunEdit.splitAt(prepared, range.start);
+    final complexProperties = {
+      for (final run in prepared.inlines.whereType<WmlRun>())
+        if (wordRunUsesComplexScriptLanguage(run)) run.properties,
+    };
     var changed = false;
-    WmlRunEdit.applyRange(prepared, start, end, (props) {
+    WmlRunEdit.applyRange(prepared, range.start, range.end, (props) {
+      final complex = complexProperties.contains(props);
+      final attribute = complex ? 'bidi' : 'val';
+      final key = complex ? 'langBidi' : 'lang';
+      final current = complex
+          ? props.complexScriptLanguage
+          : props.proofingLanguage;
       final inherited = merged('rPr', [
         for (final layer in tableLayers!) layer.firstChild('rPr'),
         for (final style in paragraphStyles) style.firstChild('rPr'),
         for (final style in chain(props.styleId)) style.firstChild('rPr'),
-      ]).firstChild('lang')?.getAttribute('val');
+      ]).firstChild('lang')?.getAttribute(attribute);
       final imported = props.importedValues;
       final hasSparseSource =
           imported != null && props.sourcePropertiesXml != null;
@@ -196,21 +209,22 @@ class _StyleCascade {
       );
       final directLanguage = direct
           .firstChild('lang', namespaceUri: OfficeNamespaces.w)
-          ?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
-      final pendingOverride =
-          hasSparseSource && imported['lang'] != '${props.proofingLanguage}';
-      if (directLanguage == null &&
-          !pendingOverride &&
-          props.proofingLanguage == inherited) {
+          ?.getAttribute(attribute, namespaceUri: OfficeNamespaces.w);
+      final pendingOverride = hasSparseSource && imported[key] != '$current';
+      if (directLanguage == null && !pendingOverride && current == inherited) {
         return;
       }
-      WordPropertyIo.mergeLanguage(direct, null);
-      props.proofingLanguage = inherited;
+      WordPropertyIo.mergeLanguage(direct, null, attribute: attribute);
+      if (complex) {
+        props.complexScriptLanguage = inherited;
+      } else {
+        props.proofingLanguage = inherited;
+      }
       props.sourcePropertiesXml = XmlDocument(
         root: direct,
       ).toXmlString(declaration: false);
       props.importedValues = hasSparseSource
-          ? {...imported, 'lang': '$inherited'}
+          ? {...imported, key: '$inherited'}
           : WordPropertyIo.runValues(props);
       if (direct.firstChild('lang', namespaceUri: OfficeNamespaces.w) == null) {
         props.explicitProperties.remove('lang');
@@ -519,11 +533,13 @@ class _StyleCascade {
       reader._parseRPr(inner, resolved);
       // The document default remains live: changing it must affect runs that
       // do not override it without stamping direct formatting onto every run.
-      resolved.proofingLanguage = merged('rPr', [
+      final language = merged('rPr', [
         for (final t in tableLayers) t.firstChild('rPr'),
         ...styleRuns,
         direct,
-      ]).firstChild('lang')?.getAttribute('val');
+      ]).firstChild('lang');
+      resolved.proofingLanguage = language?.getAttribute('val');
+      resolved.complexScriptLanguage = language?.getAttribute('bidi');
       if (run.hyperlink != null) {
         if (rp.firstChild('color') == null) resolved.color = WordLink.color;
         if (rp.firstChild('u') == null) {

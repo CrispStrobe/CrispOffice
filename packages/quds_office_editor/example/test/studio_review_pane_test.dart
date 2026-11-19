@@ -31,8 +31,6 @@ Future<WordEditorController> _studio(WidgetTester tester) async {
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await tester.pump();
-  await tester.tap(find.byTooltip('اللغة'));
-  await tester.pump();
   final controller = tester
       .widget<QudsWordEditor>(find.byType(QudsWordEditor))
       .controller;

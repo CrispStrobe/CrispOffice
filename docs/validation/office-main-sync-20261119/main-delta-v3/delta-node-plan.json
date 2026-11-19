@@ -1,0 +1,74 @@
+{
+  "description": "Exact-source third main delta after be641457: retain every v2 suite and add Word complex-script routing/editing/serialization, agreeing-provider merge, Studio settings and explicit native/web download cancellation. Accepted 1372/90 at 0669 and both rejected attempts contribute zero to this gate. The real native/live-download selection has no skipped acceptance.",
+  "groups": [
+    {
+      "name": "hunspell-provider-node",
+      "cwd": "packages/quds_proofing_hunspell",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/hunspell_provider_test.dart"
+      ]
+    },
+    {
+      "name": "cursor-main-merge-node",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/cursor_test.dart",
+        "test/configuration_test.dart"
+      ]
+    },
+    {
+      "name": "arabic-main-merge-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart"
+      ]
+    },
+    {
+      "name": "word-language-and-findings-node",
+      "cwd": "packages/quds_office_engine",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/word_complex_script_language_test.dart",
+        "test/word_proofing_inheritance_test.dart",
+        "test/proofing/office_proofing_merge_test.dart",
+        "test/proofing/proofing_report_merge_test.dart",
+        "test/proofing/office_proofing_test.dart"
+      ]
+    }
+  ],
+  "analysis": [],
+  "format": [],
+  "extra_inputs": [
+    "docs/PROOFING.md",
+    "docs/roadmaps/arabic-proofing.md",
+    "docs/validation/document-review-notes-20261118/runtime/native_asset_smoke.dart",
+    "docs/validation/document-review-notes-20261118/runtime/restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/runtime/test_restore_runtime.py",
+    "docs/validation/document-review-notes-20261118/test_run_checks.py",
+    "docs/validation/mail-uid-pagination-20261119/run_validation.py",
+    "docs/validation/mail-uid-pagination-20261119/runtime/runtime.json",
+    "docs/validation/office-main-sync-20261119/final-native-plan.json",
+    "docs/validation/office-main-sync-20261119/final-node-plan.json",
+    "docs/validation/office-main-sync-20261119/final-run-validation.py",
+    "docs/validation/office-main-sync-20261119/main-delta-v3/delta-native-plan.json",
+    "docs/validation/office-main-sync-20261119/main-delta-v3/delta-node-plan.json",
+    "docs/validation/office-main-sync-20261119/main-delta-v3/fixture-plan.json",
+    "docs/validation/office-main-sync-20261119/main-delta-v3/reviewed-source-overrides.json",
+    "docs/validation/office-main-sync-20261119/main-delta-v3/run-delta-validation.py",
+    "docs/validation/office-main-sync-20261119/main-delta-v3/verify-delta-continuity.py",
+    "tools/proofing/ayaspell/build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle.py",
+    "tools/proofing/ayaspell/test_build_bundle_incoming.py",
+    "tools/proofing/ayaspell/test_build_bundle_reproducibility.py"
+  ],
+  "whitespace_preserved_inputs": []
+}
