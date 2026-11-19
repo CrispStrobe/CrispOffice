@@ -15368,6 +15368,7 @@ final class _ZoteroDocumentSnapshot {
     required this.footnotes,
     required this.endnotes,
     required this.data,
+    required this.numbering,
   });
 
   factory _ZoteroDocumentSnapshot.capture(WmlDocument document) {
@@ -15404,6 +15405,7 @@ final class _ZoteroDocumentSnapshot {
       footnotes: List<WmlNote>.of(document.footnotes),
       endnotes: List<WmlNote>.of(document.endnotes),
       data: WordZoteroDocumentData.read(document),
+      numbering: WordListNumberingSnapshot.capture(document),
     );
   }
 
@@ -15416,6 +15418,7 @@ final class _ZoteroDocumentSnapshot {
   final List<WmlNote> footnotes;
   final List<WmlNote> endnotes;
   final String data;
+  final WordListNumberingSnapshot numbering;
 
   void restore(WmlDocument document) {
     for (final entry in blocks.entries) {
@@ -15436,6 +15439,7 @@ final class _ZoteroDocumentSnapshot {
       ..clear()
       ..addAll(endnotes);
     document.zoteroDocumentData = data;
+    numbering.restore(document);
   }
 }
 

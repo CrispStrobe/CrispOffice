@@ -1,0 +1,37 @@
+{
+  "status": "sdk-and-hosted-cache-ready-awaiting-source-resolution",
+  "sdk_root": "/workspace/scratch/55eaa121d5ad/runtime-recovery/flutter",
+  "archive": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "archive_bytes": 1581444364,
+    "sdk_root": "/workspace/scratch/55eaa121d5ad/runtime-recovery/flutter",
+    "elapsed_seconds": 89.790806132,
+    "telemetry_environment_required": {
+      "DASH__SUPPRESS_ANALYTICS": "true",
+      "FLUTTER_SUPPRESS_ANALYTICS": "true",
+      "CI": "true"
+    },
+    "telemetry_consent_changed": false
+  },
+  "official_release": {
+    "hash": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "channel": "stable",
+    "version": "3.47.8",
+    "dart_sdk_version": "3.13.7",
+    "dart_sdk_arch": "x64",
+    "release_date": "2026-10-23T19:02:25.384067Z",
+    "archive": "stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2"
+  },
+  "runtime_hashes": {
+    "dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "flutter_tools": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+    "flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "locked_workspace_hosted_entries": 108,
+  "workspace_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "environment_script": "/workspace/scratch/55eaa121d5ad/runtime-recovery/env.sh",
+  "source_resolution_performed": false,
+  "product_tests_performed": false
+}

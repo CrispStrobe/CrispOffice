@@ -6,6 +6,7 @@ import 'wml_clone.dart';
 import 'wml_document.dart';
 import 'wml_run_edit.dart';
 import 'word_content_controls.dart';
+import 'word_lists.dart';
 import 'word_notes.dart';
 import 'word_styles.dart';
 import 'word_tree.dart';
@@ -1030,10 +1031,31 @@ final class WordZoteroCitingSession {
           ..italic = span.italic;
       }
     }
+    final listIds = <int, int>{};
+    for (final entry in text.listItems.entries) {
+      final item = entry.value;
+      final id = listIds.putIfAbsent(
+        item.listId,
+        () => WordLists.numberingId(
+          document,
+          numbered: item.numbered,
+          independent: true,
+        ),
+      );
+      paragraphs[entry.key].properties
+        ..numId = id
+        ..numberingSuppressed = false
+        ..ilvl = 0
+        ..listLabel = item.numbered ? '${item.start + item.index}. ' : '• '
+        ..listRestart = item.index == 0 ? item.start : null
+        ..indent = const WmlIndent(left: 18, hanging: 9)
+        ..explicitIndent = true;
+    }
     _noteTextCaretTailLength = paragraph.text.length - insertionOffset;
-    if (paragraphs.any((p) => p.properties.headingLevel != null)) {
-      // Heading paragraphs must not change the style of surrounding prose.
-      // Keep the complete research note as blocks when it contains headings.
+    if (text.listItems.isNotEmpty ||
+        paragraphs.any((p) => p.properties.headingLevel != null)) {
+      // Headings and lists must not change the style of surrounding prose.
+      // Keep their complete research note as separate blocks.
       final originalProperties = paragraph.properties.copy();
       final tail = WmlRunEdit.splitParagraphInlines(paragraph, insertionOffset);
       final emptyPrefix =

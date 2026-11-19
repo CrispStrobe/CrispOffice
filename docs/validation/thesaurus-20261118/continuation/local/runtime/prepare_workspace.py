@@ -31,9 +31,13 @@ for member in members:
         if child.name in skip:
             continue
         if target.exists() or target.is_symlink():
-            if target.is_symlink():
-                assert target.resolve() == child.resolve(), target
-                links[str(target.relative_to(workspace))] = str(child)
+            relative = target.relative_to(workspace).as_posix()
+            nested_member = any(m == relative or m.startswith(relative + '/') for m in members)
+            if nested_member and target.is_dir() and not target.is_symlink():
+                continue
+            if not target.is_symlink() or target.resolve() != child.resolve():
+                raise RuntimeError('Existing workspace source is not a live checkout link: ' + str(target))
+            links[str(target.relative_to(workspace))] = str(child)
             continue
         target.symlink_to(child, target_is_directory=child.is_dir())
         links[str(target.relative_to(workspace))] = str(child)

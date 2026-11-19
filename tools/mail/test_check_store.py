@@ -175,11 +175,87 @@ class TestStoreEventAccounting(unittest.TestCase):
             if not (event['type'] == 'testDone' and event['testID'] == 3)
         ])
 
+    def test_malformed_completion_result_is_rejected_without_raising(self):
+        for result in [None, 1, ['failure'], {'result': 'failure'}]:
+            with self.subTest(result=result):
+                events = dart_events()
+                events[4]['result'] = result
+                summary = self.summary(event_lines(events))
+                self.assertFalse(summary['valid'])
+                self.assertEqual(summary['protocol_errors'], 1)
+
     def test_incomplete_loader_is_rejected(self):
         self.assert_rejected([
             event for event in dart_events()
             if not (event['type'] == 'testDone' and event['testID'] == 1)
         ])
+
+    def test_hidden_and_loading_failures_cannot_hide_behind_terminal_success(self):
+        for name, hidden in [
+            ('loading sample_test.dart', True),
+            ('loading sample_test.dart', False),
+            ('(setUpAll)', True),
+            ('(tearDownAll)', True),
+        ]:
+            for result in ['failure', 'error']:
+                with self.subTest(name=name, hidden=hidden, result=result):
+                    events = dart_events()
+                    events[2]['test']['name'] = name
+                    events[4].update(result=result, hidden=hidden)
+                    summary = self.summary(event_lines(events))
+                    self.assertFalse(summary['valid'])
+                    self.assertEqual(summary['passed'], 2)
+                    self.assertEqual(summary['failed'], 0)
+                    self.assertEqual(summary['all_failed'], 1)
+                    self.assertEqual(len(summary['cases']), 2)
+
+    def test_hidden_and_loading_skips_prevent_qualification(self):
+        for name, hidden in [
+            ('loading sample_test.dart', True),
+            ('loading sample_test.dart', False),
+            ('(setUpAll)', True),
+            ('(tearDownAll)', True),
+        ]:
+            with self.subTest(name=name, hidden=hidden):
+                events = dart_events()
+                events[2]['test']['name'] = name
+                events[4].update(skipped=True, hidden=hidden)
+                summary = self.summary(event_lines(events))
+                self.assertFalse(summary['valid'])
+                self.assertEqual(summary['passed'], 2)
+                self.assertEqual(summary['skipped'], 0)
+                self.assertEqual(summary['all_skipped'], 1)
+                self.assertEqual(len(summary['cases']), 2)
+
+    def test_incomplete_lifecycle_events_prevent_qualification(self):
+        for name in ['loading sample_test.dart', '(setUpAll)', '(tearDownAll)']:
+            with self.subTest(name=name):
+                events = dart_events()
+                events[2]['test']['name'] = name
+                events = [event for event in events
+                          if not (event['type'] == 'testDone' and event['testID'] == 1)]
+                summary = self.summary(event_lines(events))
+                self.assertFalse(summary['valid'])
+                self.assertEqual(summary['passed'], 2)
+                self.assertEqual(summary['incomplete'], 1)
+
+    def test_successful_hidden_and_loading_events_do_not_inflate_passes(self):
+        for name, hidden in [
+            ('loading sample_test.dart', True),
+            ('loading sample_test.dart', False),
+            ('(setUpAll)', True),
+            ('(tearDownAll)', True),
+        ]:
+            with self.subTest(name=name, hidden=hidden):
+                events = dart_events()
+                events[2]['test']['name'] = name
+                events[4]['hidden'] = hidden
+                summary = self.summary(event_lines(events))
+                self.assertTrue(summary['valid'])
+                self.assertEqual(summary['passed'], 2)
+                self.assertEqual(summary['all_failed'], 0)
+                self.assertEqual(summary['all_skipped'], 0)
+                self.assertEqual(len(summary['cases']), 2)
 
     def test_skipped_case_is_counted_and_prevents_qualification(self):
         events = dart_events()

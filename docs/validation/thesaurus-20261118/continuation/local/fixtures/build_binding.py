@@ -9,12 +9,25 @@ import json
 from pathlib import Path, PurePosixPath
 import re
 
-SCHEMA = 'quds-thesaurus-browser-build-v1'
+from workspace_binding import SCHEMA as WORKSPACE_SCHEMA
+
+SCHEMA = 'quds-thesaurus-browser-build-v2'
 FIXTURE_FILES = (
     'lib/main.dart', 'native_pack_test.dart', 'native_visual_test.dart',
     'install_offline.py', 'run_browser.py', 'run_final_validation.py',
-    'test_browser_harness.py', 'build_binding.py',
+    'test_browser_harness.py', 'build_binding.py', 'workspace_binding.py',
+    'test_workspace_binding.py',
 )
+SOURCE_HELPER_FILES = ('tools/thesaurus/build_packs.py',
+                       'tools/thesaurus/export_review_packet.py')
+
+
+def repository_root(fixture=None):
+    fixture = (fixture or Path(__file__).parent).resolve()
+    for candidate in (fixture, *fixture.parents):
+        if all((candidate / name).is_file() for name in SOURCE_HELPER_FILES):
+            return candidate
+    raise ValueError('Acceptance fixture must remain with its source-verification helpers')
 
 
 def sha256(data):
@@ -99,12 +112,21 @@ def load_compile_receipt(receipt_path, fixture=None):
     inputs = json.loads(gzip.decompress(inputs_bytes))
     if digest(inputs) != receipt.get('input_digest'):
         raise ValueError('Compile source inventory does not match the input digest')
+    if inputs.get('__workspace_binding__', {}).get('schema') != WORKSPACE_SCHEMA:
+        raise ValueError('Compile source inventory does not verify effective workspace roots')
     fixture_inputs = {}
     for name in FIXTURE_FILES:
         checksum = sha256((fixture / name).read_bytes())
         if inputs.get('__fixture__/' + name, {}).get('sha256') != checksum:
             raise ValueError('Compile receipt uses a different acceptance fixture: ' + name)
         fixture_inputs[name] = checksum
+    helper_inputs = {}
+    repo = repository_root(fixture)
+    for name in SOURCE_HELPER_FILES:
+        checksum = sha256((repo / name).read_bytes())
+        if inputs.get('__helper__/' + name, {}).get('sha256') != checksum:
+            raise ValueError('Compile receipt uses a different source-verification helper: ' + name)
+        helper_inputs[name] = checksum
     files_meta = binding['compiled_files']
     files_bytes = read_member(receipt_path.parent, files_meta['path'], files_meta['sha256'])
     records = json.loads(gzip.decompress(files_bytes))
@@ -135,5 +157,7 @@ def load_compile_receipt(receipt_path, fixture=None):
         'compiled_files': len(records),
         'compiled_bytes': receipt['compiled_browser_bytes'],
         'fixture_inputs': fixture_inputs,
+        'source_verification_helpers': helper_inputs,
+        'workspace_binding_schema': WORKSPACE_SCHEMA,
         'build_command': command,
     }

@@ -588,66 +588,88 @@ void main() {
     expect(controller.canUndo, isFalse);
   });
 
-  test(
-    'note IME blocks correction and reveals before committing pending text',
-    () async {
-      final fixture = _fixture(text: 'Before');
-      final controller = fixture.controller;
-      final note = fixture.note;
-      final body = controller.document.paragraphs.single;
-      final revision = WordRevisions.record(
-        controller.document,
-        kind: WmlRevisionKind.insert,
-        paragraph: body,
-        paragraphIndex: 0,
-        start: 0,
-        end: 4,
-        text: 'Body',
-        author: 'Reviewer',
-      );
-      controller.setNoteText(note, 'Feler typed');
-      final issue = await _issue(controller, note);
-      controller.setNoteEditingTarget(
-        note,
-        const TextSelection.collapsed(offset: 5),
-        composing: const TextRange(start: 0, end: 5),
-      );
-      final contentRevision = controller.contentRevision;
-      final target = controller.noteEditingTarget;
-      final focus = controller.noteFocusRequest;
-      expect(controller.canApplyProofingSuggestions, isFalse);
-      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isFalse);
-      expect(controller.revealProofingIssue(issue), isFalse);
-      expect(controller.revealRevision(revision), isFalse);
-      expect(controller.noteEditingTarget, target);
-      expect(controller.noteFocusRequest, focus);
-      expect(controller.contentRevision, contentRevision);
-      expect(controller.canUndo, isFalse);
-
-      controller.setNoteEditingTarget(
-        note,
-        const TextSelection.collapsed(offset: 5),
-      );
-      expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
-      // Recording the existing body revision enabled tracking. Finishing IME
-      // permits the correction but must retain normal tracked-edit semantics.
-      expect(controller.document.trackRevisions, isTrue);
-      expect(controller.noteEditText(note), 'FelerFehler typed');
-      expect(controller.document.revisions, hasLength(3));
-      expect(controller.document.revisions.first, same(revision));
-      final corrections = controller.document.revisions.skip(1).toList();
-      expect(corrections.map((change) => (change.kind, change.text)), [
-        (WmlRevisionKind.delete, 'Feler'),
-        (WmlRevisionKind.insert, 'Fehler'),
-      ]);
-      for (final change in corrections) {
-        expect(
-          WordRevisions.resolveParagraph(controller.document, change),
-          same(note.paragraphs.single),
+  for (final tracking in [false, true]) {
+    test(
+      'note IME blocks correction and reveals before committing pending text '
+      'with tracking $tracking',
+      () async {
+        final fixture = _fixture(text: 'Before');
+        final controller = fixture.controller;
+        final note = fixture.note;
+        final body = controller.document.paragraphs.single;
+        final revision = WordRevisions.record(
+          controller.document,
+          kind: WmlRevisionKind.insert,
+          paragraph: body,
+          paragraphIndex: 0,
+          start: 0,
+          end: 4,
+          text: 'Body',
+          author: 'Reviewer',
         );
-      }
-    },
-  );
+        // Seeding the navigation target enables tracking; exercise both normal
+        // correction and preservation of tracked replacement spans after IME.
+        controller.document.trackRevisions = tracking;
+        controller.setNoteText(note, 'Feler typed');
+        final issue = await _issue(controller, note);
+        controller.setNoteEditingTarget(
+          note,
+          const TextSelection.collapsed(offset: 5),
+          composing: const TextRange(start: 0, end: 5),
+        );
+        final contentRevision = controller.contentRevision;
+        final target = controller.noteEditingTarget;
+        final focus = controller.noteFocusRequest;
+        expect(controller.canApplyProofingSuggestions, isFalse);
+        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isFalse);
+        expect(controller.revealProofingIssue(issue), isFalse);
+        expect(controller.revealRevision(revision), isFalse);
+        expect(controller.noteEditingTarget, target);
+        expect(controller.noteFocusRequest, focus);
+        expect(controller.contentRevision, contentRevision);
+        expect(controller.canUndo, isFalse);
+
+        controller.setNoteEditingTarget(
+          note,
+          const TextSelection.collapsed(offset: 5),
+        );
+        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+        expect(controller.document.trackRevisions, tracking);
+        expect(
+          controller.noteEditText(note),
+          tracking ? 'FelerFehler typed' : 'Fehler typed',
+        );
+        final changes = controller.document.revisions
+            .where(
+              (change) => identical(
+                WordRevisions.resolveParagraph(controller.document, change),
+                note.paragraphs.single,
+              ),
+            )
+            .toList();
+        if (tracking) {
+          // A tracked correction retains both deleted and inserted spans.
+          expect(controller.document.revisions, hasLength(3));
+          expect(controller.document.revisions.first, same(revision));
+          expect(changes.map((change) => change.kind), [
+            WmlRevisionKind.delete,
+            WmlRevisionKind.insert,
+          ]);
+          expect(changes.map((change) => change.text), ['Feler', 'Fehler']);
+        } else {
+          expect(changes, isEmpty);
+          expect(controller.document.revisions, [revision]);
+        }
+        controller.undo();
+        expect(controller.noteEditText(note), 'Feler typed');
+        expect(controller.document.revisions, [revision]);
+        controller.undo();
+        expect(controller.noteEditText(note), 'Before');
+        expect(controller.document.revisions, [revision]);
+        expect(controller.canUndo, isFalse);
+      },
+    );
+  }
 
   test('canvas IME also prevents retargeting review into a note', () async {
     final fixture = _fixture();

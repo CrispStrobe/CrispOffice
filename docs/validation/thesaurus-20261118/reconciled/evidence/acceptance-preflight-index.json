@@ -1,0 +1,12 @@
+{
+  "archive": "acceptance-preflight.tar.xz",
+  "bytes": 804,
+  "sha256": "4b71cff3eb40397bf844bf706c66eca249e90f47567857397950ff95cb0f95cc",
+  "files": [
+    {
+      "path": "receipt.json",
+      "bytes": 938,
+      "sha256": "448f821f1eee3061dfd0a0339b457bf167b20d6e50317c0a4161c98b9118d345"
+    }
+  ]
+}

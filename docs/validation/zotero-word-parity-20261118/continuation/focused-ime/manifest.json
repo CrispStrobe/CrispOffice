@@ -1,0 +1,50 @@
+{
+  "editor-ime.jsonl": {
+    "bytes": 27940,
+    "sha256": "66db919ae8ecc66969440bb4cc1798b11d971e602448a2e6ca7a77f437b2cae2"
+  },
+  "editor-ime.jsonl.gz": {
+    "bytes": 2931,
+    "sha256": "16085092ef977815151b91f062c3492ce27eb8b419c99589f52855be28aefcd6"
+  },
+  "independent-counts.json": {
+    "bytes": 9754,
+    "sha256": "c991967b6a143d406a73aaa1807892f94550161a18d2ce4976739218c429f61a"
+  },
+  "pub-get.json": {
+    "bytes": 4089,
+    "sha256": "43ba6189a77e812ba9be31c2b14660715f0e6bb87a4153512daf7aee27c5e6d4"
+  },
+  "pub-get.log": {
+    "bytes": 68,
+    "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+  },
+  "source-after.json": {
+    "bytes": 242917,
+    "sha256": "33877afc61b87290ca93a91b6e8f3866a147b1f44cba2a0e0ed832ca87daba5a"
+  },
+  "source-after.json.gz": {
+    "bytes": 84646,
+    "sha256": "789881f3aadc7f0513f362a90de16dfb03afc383be45093efa11bbaad89c875e"
+  },
+  "source-before.json": {
+    "bytes": 242917,
+    "sha256": "33877afc61b87290ca93a91b6e8f3866a147b1f44cba2a0e0ed832ca87daba5a"
+  },
+  "source-before.json.gz": {
+    "bytes": 84646,
+    "sha256": "789881f3aadc7f0513f362a90de16dfb03afc383be45093efa11bbaad89c875e"
+  },
+  "studio-ime.jsonl": {
+    "bytes": 8314,
+    "sha256": "589a86d8e54851a334a04e66cd7633bf7f0cf033edd3f780618284f34e1fa2c0"
+  },
+  "studio-ime.jsonl.gz": {
+    "bytes": 1114,
+    "sha256": "b986004a98714be76a72cbe5ee9217dbd2c52e652a370baf4f8758e493932572"
+  },
+  "summary.json": {
+    "bytes": 19585,
+    "sha256": "5d31098fcda763c0c4857b1ec43eb1fbc17f234270db8556d32814dd354000cc"
+  }
+}

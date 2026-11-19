@@ -151,6 +151,24 @@ manifest around a different application cannot qualify it. Historical receipts
 without the new binding remain historical evidence; build the current fixture
 again to run the strengthened gate.
 
+The current `browser-build-v2` binding also checks the **effective workspace**
+before tests, after tests and after compilation. Workspace manifests and the
+lock must match the checkout; every local package's `rootUri` and `packageUri`
+must resolve to the intended source. The documented separate workspace may
+copy manifests and contain separate containers for nested workspace members,
+but its source children must remain live links to the checkout. An old copied
+`lib`, `test`, asset or example tree is rejected even if its bytes currently
+match. The preparer also refuses to reuse those copied trees instead of silently
+retaining them. Direct execution from the same checkout is supported by the
+shared `workspace_binding.snapshot_sources(repo, workspace)` validator.
+
+The input inventory records the verified package roots, source-link targets and
+all files beneath those source children, including Studio assets, fonts and web
+files. A redirection or source mutation during execution invalidates the run.
+Early workspace failures are preserved as failed receipts. The two source-data
+helpers reused for lexical validation are hashed in the compile receipt, so a
+stale helper cannot silently reinterpret an earlier build's observations.
+
 The current compile explicitly selects `--pwa-strategy=none`. The pinned SDK's
 default bootstrap otherwise configures Flutter's own service worker, whose
 unregister stub can compete with this fixture's worker at the same scope. The
@@ -182,6 +200,23 @@ application bytes, competing worker bootstrap settings, equal-count cache
 substitution, post-install byte corruption and missing source examples. These
 controls execute mocked worker APIs and local HTTP shutdown; they do not launch
 a browser or establish a successful install on a desktop.
+
+Every browser query must now have a result consistent with its status: ready
+queries contain distinct meaning IDs, negative controls return no meanings or
+matches, and unsupported French also returns no pack. Each returned meaning is
+compared field for field with its verified installed source shard using the
+linguistic exporter's projection and bounded decompression. This preserves the
+source, part of speech, gloss, labels, examples, terms and relations. Invented
+examples, discarded fields, duplicate meanings and empty ready results cannot
+pass the panel. These are source-fidelity checks, not human linguistic review.
+
+Run the independent workspace and browser-harness controls from a disposable
+writable working directory:
+
+```bash
+python /path/to/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/test_workspace_binding.py
+python /path/to/quds_office_suite/docs/validation/thesaurus-20261118/continuation/local/fixtures/test_browser_harness.py
+```
 
 ## Earlier attempts retained
 

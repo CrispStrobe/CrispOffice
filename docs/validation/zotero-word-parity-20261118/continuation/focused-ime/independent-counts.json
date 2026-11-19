@@ -1,0 +1,310 @@
+{
+  "commit": "6e6e8a683bd998f5e91e8c946774a6f585539607",
+  "tree": "2ad7d3b44e9039ab4c753bd9c16c6a3d281f6c91",
+  "suites": {
+    "packages/quds_office_editor/test/word_zotero_navigation_test.dart": {
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "body navigation selects the citation and leaves contents and history",
+          "result": "passed"
+        },
+        {
+          "name": "locked citations remain navigable in read-only selecting mode",
+          "result": "passed"
+        },
+        {
+          "name": "view-only mode refuses navigation and keyboard focus",
+          "result": "passed"
+        },
+        {
+          "name": "stale citation handles cannot select replacement text",
+          "result": "passed"
+        },
+        {
+          "name": "identically reinserted citations do not revive a stale run handle",
+          "result": "passed"
+        },
+        {
+          "name": "removed paragraphs and fields from another document are rejected",
+          "result": "passed"
+        },
+        {
+          "name": "body table cells use their actual flattened paragraph index",
+          "result": "passed"
+        },
+        {
+          "name": "complete bibliography range is selected across paragraphs in cell false",
+          "result": "passed"
+        },
+        {
+          "name": "complete bibliography range is selected across paragraphs in cell true",
+          "result": "passed"
+        },
+        {
+          "name": "bibliography spanning unrelated table cells is not selectable",
+          "result": "passed"
+        },
+        {
+          "name": "note false paragraph false maps hidden reference-space offsets",
+          "result": "passed"
+        },
+        {
+          "name": "note false paragraph true maps hidden reference-space offsets",
+          "result": "passed"
+        },
+        {
+          "name": "note true paragraph false maps hidden reference-space offsets",
+          "result": "passed"
+        },
+        {
+          "name": "note true paragraph true maps hidden reference-space offsets",
+          "result": "passed"
+        },
+        {
+          "name": "note bibliography selects all exposed paragraphs",
+          "result": "passed"
+        },
+        {
+          "name": "unsupported headers comments frames and note tables leave selection alone",
+          "result": "passed"
+        },
+        {
+          "name": "only an exact complete body bibliography selection resolves its field",
+          "result": "passed"
+        },
+        {
+          "name": "only an exact complete Notes bibliography selection resolves its field",
+          "result": "passed"
+        },
+        {
+          "name": "invalid citation JSON is not a navigation target",
+          "result": "passed"
+        },
+        {
+          "name": "navigation refuses to interrupt active Notes composition",
+          "result": "passed"
+        },
+        {
+          "name": "body navigation leaves Notes and object contexts before focusing",
+          "result": "passed"
+        },
+        {
+          "name": "focus requests retain Notes selection and skip stale deleted notes",
+          "result": "passed"
+        },
+        {
+          "name": "Add Note rejects Notes and noncollapsed body targets before native calls",
+          "result": "passed"
+        },
+        {
+          "name": "body composition rejects every native command before pending edits commit",
+          "result": "passed"
+        },
+        {
+          "name": "body composition beginning during native work rejects completed changes",
+          "result": "passed"
+        },
+        {
+          "name": "body focus return does not clear active composition or change selection",
+          "result": "passed"
+        },
+        {
+          "name": "Notes focus return does not reveal or interrupt active composition",
+          "result": "passed"
+        },
+        {
+          "name": "reattaching an unchanged body target preserves the complete IME draft",
+          "result": "passed"
+        },
+        {
+          "name": "accepted IME text retains its composition through reattachment",
+          "result": "passed"
+        },
+        {
+          "name": "reattachment does not reuse composition after changing paragraph",
+          "result": "passed"
+        },
+        {
+          "name": "reattachment does not reuse composition after changing caret",
+          "result": "passed"
+        },
+        {
+          "name": "reattachment does not reuse composition after changing text",
+          "result": "passed"
+        }
+      ]
+    },
+    "packages/quds_office_editor/test/word_zotero_direct_command_test.dart": {
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "direct mode needs a command before opening a dialog",
+          "result": "passed"
+        },
+        {
+          "name": "body composition prevents modal focus changes and native requests",
+          "result": "passed"
+        },
+        {
+          "name": "composition starting during native work remains intact on return",
+          "result": "passed"
+        },
+        {
+          "name": "native citation returns to writing with one undo operation",
+          "result": "passed"
+        },
+        {
+          "name": "direct edit updates the selected field and returns focus",
+          "result": "passed"
+        },
+        {
+          "name": "refresh changes existing text and returns to the document",
+          "result": "passed"
+        },
+        {
+          "name": "unchanged addEditCitation returns without dirtying the file",
+          "result": "passed"
+        },
+        {
+          "name": "unchanged refresh returns without dirtying the file",
+          "result": "passed"
+        },
+        {
+          "name": "unchanged setDocPrefs returns without dirtying the file",
+          "result": "passed"
+        },
+        {
+          "name": "unchanged addEditBibliography returns without dirtying the file",
+          "result": "passed"
+        },
+        {
+          "name": "chosen document preferences persist before returning",
+          "result": "passed"
+        },
+        {
+          "name": "an unavailable host shows a recoverable error",
+          "result": "passed"
+        },
+        {
+          "name": "busy desktop errors stay visible and never restart the request",
+          "result": "passed"
+        },
+        {
+          "name": "formatting review discards then returns",
+          "result": "passed"
+        },
+        {
+          "name": "formatting review applies then returns",
+          "result": "passed"
+        },
+        {
+          "name": "a stale formatting target stays open without applying the result",
+          "result": "passed"
+        },
+        {
+          "name": "cooperative cancellation returns only after the response drains",
+          "result": "passed"
+        },
+        {
+          "name": "completion never dismisses a newer host dialog",
+          "result": "passed"
+        },
+        {
+          "name": "the ordinary references workspace remains available after a command",
+          "result": "passed"
+        },
+        {
+          "name": "the returned body accepts keyboard input immediately",
+          "result": "passed"
+        },
+        {
+          "name": "a direct citation returns to its footnote caret",
+          "result": "passed"
+        },
+        {
+          "name": "a direct citation returns to its endnote caret",
+          "result": "passed"
+        }
+      ]
+    },
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": {
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "Ctrl Alt C dispatches addEditCitation from the Word caret",
+          "result": "passed"
+        },
+        {
+          "name": "Ctrl Alt R dispatches refresh from the Word caret",
+          "result": "passed"
+        },
+        {
+          "name": "Cmd Alt C dispatches addEditCitation from the Word caret",
+          "result": "passed"
+        },
+        {
+          "name": "Cmd Alt R dispatches refresh from the Word caret",
+          "result": "passed"
+        },
+        {
+          "name": "body composition blocks shortcuts and saved ribbon callbacks",
+          "result": "passed"
+        },
+        {
+          "name": "successive shortcuts return directly to the writing caret",
+          "result": "passed"
+        },
+        {
+          "name": "Add Zotero note ribbon invokes the native note picker",
+          "result": "passed"
+        },
+        {
+          "name": "Ctrl Alt C finds the citation in the focused Notes editor",
+          "result": "passed"
+        },
+        {
+          "name": "citation shortcuts and saved ribbon callbacks respect viewing mode",
+          "result": "passed"
+        },
+        {
+          "name": "citation commands stay inactive in other Studio applications",
+          "result": "passed"
+        },
+        {
+          "name": "a covering modal blocks Zotero even when Word retains focus",
+          "result": "passed"
+        },
+        {
+          "name": "rapid ribbon and shortcut activation opens one Zotero workspace",
+          "result": "passed"
+        },
+        {
+          "name": "citation ribbon shows shortcuts for linux",
+          "result": "passed"
+        },
+        {
+          "name": "citation ribbon shows shortcuts for macOS",
+          "result": "passed"
+        }
+      ]
+    }
+  },
+  "errors": [],
+  "duplicate_completions": [],
+  "unfinished": [],
+  "done_flags": {
+    "editor-ime.jsonl": true,
+    "studio-ime.jsonl": true
+  },
+  "passed": 68,
+  "failed": 0,
+  "skipped": 0,
+  "summary_matches": true
+}

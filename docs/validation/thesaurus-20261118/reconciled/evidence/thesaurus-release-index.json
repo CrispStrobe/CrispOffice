@@ -1,0 +1,10 @@
+{
+  "archive": "thesaurus-release.tar.gz",
+  "bytes": 1923363,
+  "sha256": "fd653c53a1a4ea9178e91a11127b39c583273645417a5a67971c93f36e7e8590",
+  "member_count": 76,
+  "compact_evidence_bytes": 3461943,
+  "all_archive_members_reverified": true,
+  "full_generated_builds_included": false,
+  "original_archive_path": "/workspace/scratch/f3cf174091b0/thesaurus-release-evidence-final.tar.gz"
+}

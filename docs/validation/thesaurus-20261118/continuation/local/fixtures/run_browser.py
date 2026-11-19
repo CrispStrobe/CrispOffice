@@ -16,11 +16,18 @@ from pathlib import Path
 import platform
 import re
 import socket
+import sys
 import threading
 from urllib.parse import urlparse
 
-from build_binding import FIXTURE_FILES
+from build_binding import FIXTURE_FILES, repository_root
 from install_offline import CACHE_PREFIX, validate_installation
+
+# Reuse the packet exporter's exact source projection and bounded hash-checked
+# inflation. Their file hashes are part of the compile/acceptance binding.
+sys.path.insert(0, str(repository_root() / 'tools/thesaurus'))
+from build_packs import shard
+from export_review_packet import observed_sense, verified_bytes
 
 CSP = ("default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; "
        "worker-src 'self' blob:; connect-src 'self'; "
@@ -110,7 +117,7 @@ def expected_packs(build):
             notices[path] = {'text': value.decode('utf-8'), 'sha256': sha256(value)}
         require(notices, f'Compiled pack has no notices: {locale}')
         packs[locale] = {'identity': manifest['packId'] + ':' + sha256(manifest_bytes),
-                         'notices': notices}
+                         'notices': notices, 'manifest': manifest, 'directory': base / locale}
     return packs
 
 
@@ -118,16 +125,39 @@ def validate_panel(panel, packs):
     queries = panel['queries']
     require([(q['text'], q['language']) for q in queries] == QUERIES,
             'Query panel is incomplete or changed its declared cases')
+    verified_shards = {}
     for entry in queries:
         expected = ('unsupportedLanguage' if entry['language'] == 'fr-FR' else
                     'noEntry' if entry['text'].startswith('qudsxyz') else 'ready')
         require(entry['status'] == expected, f'Unexpected lookup outcome: {entry}')
+        senses = entry['senses']
+        require(isinstance(senses, list) and bool(senses) == (expected == 'ready'),
+                'Lookup status and returned senses disagree')
+        require(isinstance(entry['matches'], list), 'Lookup matches are malformed')
+        if expected != 'ready':
+            require(not entry['matches'], 'Unsuccessful lookup returned matched terms')
         if expected != 'unsupportedLanguage':
             locale = entry['language'].split('-')[0]
             require(entry['pack'] == packs[locale]['identity'], 'Lookup used a different pack')
-        require(all(isinstance(sense.get('examples'), list) and
-                    all(isinstance(example, str) for example in sense['examples'])
-                    for sense in entry['senses']), 'Query panel lost source examples')
+        else:
+            require(entry['pack'] is None, 'Unsupported language returned a pack')
+        seen = set()
+        for sense in senses:
+            require(isinstance(sense, dict) and isinstance(sense.get('id'), str),
+                    'Malformed observed meaning')
+            sid = sense['id']
+            require(sid not in seen, 'Duplicate observed meaning: ' + sid)
+            seen.add(sid)
+            name = 'senses/' + shard(sid) + '.json'
+            key = (locale, name)
+            pack = packs[locale]
+            if key not in verified_shards:
+                require(name in pack['manifest']['files'], 'Observed meaning has no source shard')
+                value = verified_bytes(pack['directory'], name, pack['manifest']['files'][name])
+                verified_shards[key] = json.loads(value)
+            source = verified_shards[key].get(sid)
+            require(source is not None and sense == observed_sense(source),
+                    'Observed meaning differs from verified source: ' + sid)
     by_text = {entry['text']: entry for entry in queries}
     require(len(by_text['bank']['senses']) > 1, 'English polysemy was lost')
     require(any(sense['examples'] for sense in by_text['bank']['senses']),

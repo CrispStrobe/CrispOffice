@@ -1,0 +1,22 @@
+{
+  "archive": "exporter-controls.tar.xz",
+  "bytes": 39308,
+  "sha256": "09c904fc22cad8f62c701f31ce579f9440f0095c462358c7626cc174a6b4b9f1",
+  "files": [
+    {
+      "path": "receipt.json",
+      "bytes": 303917,
+      "sha256": "d3da15c97b7a3dd8cf26813a88e0bfc0ba3ae35e7c8861e542eed0020fbd3316"
+    },
+    {
+      "path": "stderr",
+      "bytes": 1036,
+      "sha256": "ef494213e48086210a52aa590a16bf4881f2f3bcdbfdbc57b0421f112c594f6a"
+    },
+    {
+      "path": "stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
