@@ -60,7 +60,7 @@ void main() {
       ],
     );
     expect(results.first.first.confidence, closeTo(0.9994, 0.0005));
-    expect(results.first, hasLength(5));
+    expect(results.first, hasLength(identifier.topK));
     for (final r in results) {
       expect(r.first.confidence, greaterThanOrEqualTo(r.last.confidence));
     }
