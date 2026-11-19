@@ -207,15 +207,17 @@ void main() {
           policy: OfficeMacroPolicy(allowMutation: false),
         );
         final original = session.bytes;
-        final result = await OfficeMacroMcp(session)
-            .callTool('office_macro_compile', <String, Object?>{
-              'source': <String, Object?>{
-                'language': 'vba-excel',
-                'format': 'xlsx',
-                'moduleName': 'EndlessLoop',
-                'source': 'Sub Main()\nDo\nLoop\nEnd Sub',
-              },
-            });
+        final result = await OfficeMacroMcp(session).callTool(
+          'office_macro_compile',
+          <String, Object?>{
+            'source': <String, Object?>{
+              'language': 'vba-excel',
+              'format': 'xlsx',
+              'moduleName': 'EndlessLoop',
+              'source': 'Sub Main()\nDo\nLoop\nEnd Sub',
+            },
+          },
+        );
         expect(result['isError'], isTrue);
         final error = _structured(result)['error']! as Map<String, Object?>;
         expect(error['code'], 'vba_limit_exceeded');

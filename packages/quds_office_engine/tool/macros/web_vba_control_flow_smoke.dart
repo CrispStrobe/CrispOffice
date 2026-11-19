@@ -218,8 +218,9 @@ End Sub
 ''',
     },
   });
-  if (compiled['isError'] != false)
+  if (compiled['isError'] != false) {
     throw StateError('MCP compile failed: $compiled');
+  }
   final content = compiled['structuredContent']! as Map<String, Object?>;
   final run = await mcp.callTool('office_macro_run', <String, Object?>{
     'macro': content['macro'],
