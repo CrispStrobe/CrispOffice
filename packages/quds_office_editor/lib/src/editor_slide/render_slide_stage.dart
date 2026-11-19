@@ -1580,10 +1580,12 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
 
   Color _slidePaper(PmlSlide target) {
     final int? rgb = int.tryParse(target.background, radix: 16);
-    // Inherited neutral paper follows the display theme. Explicit slide and
-    // layout overrides, including white, retain their authored appearance.
+    // Inherited neutral paper follows the display theme when adaptation is
+    // enabled. Explicit slide/layout overrides retain their authored color.
     return rgb == null ||
-            (target.inheritsMasterBackground && (rgb & 0xFFFFFF) == 0xFFFFFF)
+            (_theme.adaptDocumentColors &&
+                target.inheritsMasterBackground &&
+                (rgb & 0xFFFFFF) == 0xFFFFFF)
         ? _theme.slideBackground
         : Color(0xFF000000 | (rgb & 0xFFFFFF));
   }

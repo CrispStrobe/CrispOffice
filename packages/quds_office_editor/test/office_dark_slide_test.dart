@@ -278,6 +278,10 @@ void main() {
       expect(inherited.background, 'FFFFFF');
       expect(explicit.background, 'FFFFFF');
       expect(fresh.background, '778899');
+      inherited.background = '';
+      expect(inherited.inheritsMasterBackground, isTrue);
+      controller.applyMasterBackground('99AABB');
+      expect(inherited.background, '99AABB');
     },
   );
 
@@ -316,6 +320,15 @@ void main() {
             theme.documentText.toARGB32() & 0xFFFFFF,
           ),
           greaterThan(25),
+        );
+        final unadapted = await _paint(
+          tester,
+          slide,
+          theme: theme.copyWith(adaptDocumentColors: false),
+        );
+        expect(
+          unadapted.count(const ui.Rect.fromLTWH(400, 150, 100, 100), 0xFFFFFF),
+          greaterThan(9000),
         );
       }
       expect(slide.background, 'FFFFFF');
