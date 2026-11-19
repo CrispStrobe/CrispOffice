@@ -1,0 +1,21 @@
+00:00 +0: [VM, Kernel] loading test/connection_robustness_test.dart
+00:00 +0: [VM, Kernel] test/connection_robustness_test.dart: IMAP: disconnecting while IDLE waits behind a pending command leaves no unhandled error
+00:00 +1: [VM, Kernel] test/connection_robustness_test.dart: IMAP: losing the connection while IDLE waits behind a pending command leaves no unhandled error
+00:00 +2: [VM, Kernel] test/connection_robustness_test.dart: connect fails when the server closes before greeting
+00:00 +3: [VM, Kernel] test/connection_robustness_test.dart: a manually connected socket may close before the greeting
+00:00 +4: [VM, Kernel] test/connection_robustness_test.dart: connect fails when no greeting arrives within the timeout
+00:00 +5: [VM, Kernel] test/connection_robustness_test.dart: SMTP: a pending command fails when the connection is lost
+00:00 +6: [VM, Kernel] test/connection_robustness_test.dart: POP: a pending command fails when the connection is lost
+00:00 +7: [VM, Kernel] test/connection_robustness_test.dart: POP: a malformed multi-line reply fails the command
+00:00 +8: [VM, Kernel] test/connection_robustness_test.dart: IMAP: a pending command fails plainly when the client disconnects
+00:00 +9: [VM, Kernel] test/connection_robustness_test.dart: a pending command fails when the client disconnects
+00:00 +10: [VM, Kernel] loading test/reconnect_state_test.dart
+00:00 +10: [VM, Kernel] test/reconnect_state_test.dart: SMTP: a partial reply of a lost connection is discarded
+00:00 +11: [VM, Kernel] test/reconnect_state_test.dart: POP: a partial reply of a lost connection is discarded
+00:00 +12: [VM, Kernel] test/reconnect_state_test.dart: IMAP: a partial literal of a lost connection is discarded
+00:00 +13: [VM, Kernel] loading test/mail/mail_client_starttls_test.dart
+00:00 +13: [VM, Kernel] test/mail/mail_client_starttls_test.dart: IMAP: refuses clear-text login when STARTTLS is not offered
+00:01 +14: [VM, Kernel] test/mail/mail_client_starttls_test.dart: IMAP: SocketType.plain also requires STARTTLS
+00:01 +15: [VM, Kernel] test/mail/mail_client_starttls_test.dart: IMAP: plainNoStartTls explicitly allows clear-text login
+00:01 +16: [VM, Kernel] test/mail/mail_client_starttls_test.dart: SMTP: refuses clear-text AUTH when STARTTLS is not offered
+00:01 +17: All tests passed!

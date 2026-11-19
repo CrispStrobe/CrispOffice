@@ -124,6 +124,9 @@ void main() {
           await peer.handshakeFinished.future.timeout(_deadline);
           expect(peer.secureSocket, isNull);
           expect(peer.handshakeError, isA<HandshakeException>());
+          // Check rejection cleanup before finally calls abort itself.
+          expect(client.isConnected, isFalse);
+          expect(client.isLoggedIn, isFalse);
           expect(peer.unexpectedCommands, isEmpty);
         } finally {
           await client.abort().timeout(_deadline);

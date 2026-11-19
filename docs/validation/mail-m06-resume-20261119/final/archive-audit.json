@@ -1,0 +1,439 @@
+{
+  "schema": 1,
+  "reviewer": "recover_repository",
+  "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "source_tree": "8b7443bd15be09276764f62934b9d8ce32a6be68",
+  "status": "PASS",
+  "failures": [],
+  "archives": [
+    {
+      "archive": "development.tar.xz",
+      "index": "development.tar.index.json",
+      "archive_sha256": "10290d92a601ddeff32bcf7e20952c8e11542e5a372b022c488f64f354b3b082",
+      "index_sha256": "50e74d92ccbbc85520825e76a4fb067c6fcb9ce0d16f4c3d3bcdf1ed95728165",
+      "archive_bytes": 10484,
+      "member_count": 48,
+      "uncompressed_bytes": 82267,
+      "all_members_safe_unique_regular": true,
+      "all_member_names_sizes_hashes_and_original_bytes_match": true,
+      "omitted_generated_outputs_checked": 0,
+      "source_commit_scope": null,
+      "scope": "Development diagnostics from multiple intermediate source states, including failed fixture/style attempts and later successful controls. These logs are historical and are not attributed collectively to the final source or counted as final acceptance. Exact final acceptance is in the three source-bound gate archives."
+    },
+    {
+      "archive": "first-attempt.tar.xz",
+      "index": "first-attempt.tar.index.json",
+      "archive_sha256": "812322666eb8802ba72624320816cd5176e3784971f0b53304cbb5aef4286068",
+      "index_sha256": "126395378e99bd16c59d2f65d263018581f08a0d6d57e3539164f1de57966b41",
+      "archive_bytes": 16748,
+      "member_count": 22,
+      "uncompressed_bytes": 180290,
+      "all_members_safe_unique_regular": true,
+      "all_member_names_sizes_hashes_and_original_bytes_match": true,
+      "omitted_generated_outputs_checked": 6,
+      "source_commit_scope": "da78c0bb7bd9e119cc6697a5a476be3b388514c4",
+      "scope": "Failed initial integrated store gate: strict flag-test lint and ambiguous migration-test import. Extended native/Node plans did not start. Retained separately from the repaired final source and its acceptance counts."
+    },
+    {
+      "archive": "mail-final.tar.xz",
+      "index": "mail-final.tar.index.json",
+      "archive_sha256": "0fb354141a95df2fb6ecfef86c898c55e67f5afaef6f09c27accb236b0ca3ba7",
+      "index_sha256": "eea15cdc6ef55dfc96d0b930899c6d1cc85dfdc2dc006f8248e1a495408e1e43",
+      "archive_bytes": 15948,
+      "member_count": 19,
+      "uncompressed_bytes": 180015,
+      "all_members_safe_unique_regular": true,
+      "all_member_names_sizes_hashes_and_original_bytes_match": true,
+      "omitted_generated_outputs_checked": 6,
+      "source_commit_scope": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "scope": "Final evidence bundle; preparation contains setup/repair provenance with its own original identities."
+    },
+    {
+      "archive": "native-final.tar.xz",
+      "index": "native-final.tar.index.json",
+      "archive_sha256": "e879e64884850d2e3935745f12e4cdb96bc649127d22afce87eb6133b7bd54b8",
+      "index_sha256": "6f679a67e0ed5a572ca734f0fe2688b480a3704fdcc65aca33d0ae24966b48b5",
+      "archive_bytes": 756012,
+      "member_count": 28,
+      "uncompressed_bytes": 6815951,
+      "all_members_safe_unique_regular": true,
+      "all_member_names_sizes_hashes_and_original_bytes_match": true,
+      "omitted_generated_outputs_checked": 0,
+      "source_commit_scope": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "scope": "Final evidence bundle; preparation contains setup/repair provenance with its own original identities."
+    },
+    {
+      "archive": "node-final.tar.xz",
+      "index": "node-final.tar.index.json",
+      "archive_sha256": "0721b33e2c05c9f65d86d363123eba27e26855a0573a64aaaf82643b87dc0fbf",
+      "index_sha256": "771d8347b8d1e84d475f1482401d5c2a41609f7b86ef06882f8d8a3699a1d82a",
+      "archive_bytes": 726916,
+      "member_count": 20,
+      "uncompressed_bytes": 6547401,
+      "all_members_safe_unique_regular": true,
+      "all_member_names_sizes_hashes_and_original_bytes_match": true,
+      "omitted_generated_outputs_checked": 0,
+      "source_commit_scope": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "scope": "Final evidence bundle; preparation contains setup/repair provenance with its own original identities."
+    },
+    {
+      "archive": "preparation.tar.xz",
+      "index": "preparation.tar.index.json",
+      "archive_sha256": "c29b4678f948a3811f6223a5ae0b713ca5a9255c1ca4eb0f456c1e4dba3aebd6",
+      "index_sha256": "2fcd86bc4800cff6162d53784a83c398e37101e8ecdd35db787620b85075e9a3",
+      "archive_bytes": 20444,
+      "member_count": 24,
+      "uncompressed_bytes": 95265,
+      "all_members_safe_unique_regular": true,
+      "all_member_names_sizes_hashes_and_original_bytes_match": true,
+      "omitted_generated_outputs_checked": 0,
+      "source_commit_scope": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "scope": "Final evidence bundle; preparation contains setup/repair provenance with its own original identities."
+    },
+    {
+      "archive": "second-attempt.tar.xz",
+      "index": "second-attempt.tar.index.json",
+      "archive_sha256": "0e7571bd6a4912a75b1c1cd34ad5eea98d166a60a3c9f615fc6efe1497fee05a",
+      "index_sha256": "582453f7a010d408b2eb9a23c7ee87a140f1a70571778b9435f5551ddb5d988e",
+      "archive_bytes": 5512,
+      "member_count": 8,
+      "uncompressed_bytes": 25515,
+      "all_members_safe_unique_regular": true,
+      "all_member_names_sizes_hashes_and_original_bytes_match": true,
+      "omitted_generated_outputs_checked": 0,
+      "source_commit_scope": "e734e3bd14f6c802a1da1c05969bd51108890ded",
+      "scope": "Failed tooling preflight: the killed child disappeared during /proc stat reading. No Dart product cohort started. A subsequent test-only observation fix handles reaping without changing process termination or Mail product behavior."
+    },
+    {
+      "archive": "source-review.tar.xz",
+      "index": "source-review.tar.index.json",
+      "archive_sha256": "51e669538061d4912bafd34c911536dd07a952377a95c8bda9e18e87053862ba",
+      "index_sha256": "28d513a0e8fe74aeaad1bc9ebb26f51af9b1f501e545874102974bd8ea50abfb",
+      "archive_bytes": 335832,
+      "member_count": 49,
+      "uncompressed_bytes": 7517445,
+      "all_members_safe_unique_regular": true,
+      "all_member_names_sizes_hashes_and_original_bytes_match": true,
+      "omitted_generated_outputs_checked": 0,
+      "source_commit_scope": null,
+      "scope": "Independent source-review and Office continuity records for final source 71edec2de364805113d18e0f1d7edbb1f00467e5 plus the separately identified earlier failed attempts. Each record carries its own source identity; these audits do not execute tests."
+    }
+  ],
+  "total_archives": 8,
+  "total_members_verified": 218,
+  "standalone_copies": [
+    {
+      "path": "mail-final-receipt.json",
+      "archive": "mail-final.tar.xz",
+      "member": "mail-final/receipt.json",
+      "sha256": "2cd0ac57d699fcf10d98c5d94ddb7ba81f69b6f0e8ccd00f6eae27486e9c429c",
+      "bytes": 26001
+    },
+    {
+      "path": "native-final-verification.json",
+      "archive": "native-final.tar.xz",
+      "member": "native-final/verification.json",
+      "sha256": "621f0d4c4ba60a7aaf30bca2aa3bc9ed7dd2da91d7416a50108af7b63d5f4fc3",
+      "bytes": 32193
+    },
+    {
+      "path": "node-final-verification.json",
+      "archive": "node-final.tar.xz",
+      "member": "node-final/verification.json",
+      "sha256": "c42be361026c965bc8c7d6d59a31c993c8cfde4426782dfad549ab9188eb5f60",
+      "bytes": 15273
+    },
+    {
+      "path": "first-attempt-mail-receipt.json",
+      "archive": "first-attempt.tar.xz",
+      "member": "first-attempt/mail-final/receipt.json",
+      "sha256": "54ad717c8ac8853b803dcae36e5552e4d927d648468d61972b651b6e257a4897",
+      "bytes": 26003
+    },
+    {
+      "path": "second-attempt-mail-receipt.json",
+      "archive": "second-attempt.tar.xz",
+      "member": "second-attempt/mail-final/receipt.json",
+      "sha256": "97c370a1da61a8adbe1776d30897467676258fb8837662d60a8796afcec24581",
+      "bytes": 15017
+    },
+    {
+      "path": "execution.json",
+      "archive": "preparation.tar.xz",
+      "member": "support/final-execution.json",
+      "sha256": "4c547260bc627b09087a8a61e89a056ec3006e3eea17d0f5e5a3ca9db704bd16",
+      "bytes": 3677
+    },
+    {
+      "path": "evidence-audit.json",
+      "archive": "preparation.tar.xz",
+      "member": "support/final-evidence-audit.json",
+      "sha256": "d56d91700f2f31f9c7b6a171d6fe41efd736405f0442f0bba8ab18575d6dbd1a",
+      "bytes": 21526
+    },
+    {
+      "path": "source-continuity.json",
+      "archive": "source-review.tar.xz",
+      "member": "source-review/final-71edec2d/source-continuity.json",
+      "sha256": "57962d885fe024f6bbab7dc89ef414f8d71068b5c5b7182542570ffb9eec79a5",
+      "bytes": 8842
+    },
+    {
+      "path": "transport-review-binding.json",
+      "archive": "source-review.tar.xz",
+      "member": "source-review/final-71edec2d/transport-review-binding.json",
+      "sha256": "1100a8a703ec58062a655b91b2dfddc934dcf18480bafdb77f5c32aa932d83da",
+      "bytes": 31739
+    },
+    {
+      "path": "workspace-and-plan-binding.json",
+      "archive": "source-review.tar.xz",
+      "member": "source-review/final-71edec2d/workspace-and-plan-binding.json",
+      "sha256": "555a363aba3ba0608396b193601f12ebb29f370c3820bec224dd8293599b1e36",
+      "bytes": 1112
+    },
+    {
+      "path": "runner-test-review.json",
+      "archive": "source-review.tar.xz",
+      "member": "source-review/final-71edec2d/runner-test-review.json",
+      "sha256": "afdcee9274ae00e7041cb464438acbce88f5e2a506d59d914167189e3fc42e2d",
+      "bytes": 2594
+    },
+    {
+      "path": "published-readback.json",
+      "archive": "source-review.tar.xz",
+      "member": "source-review/final-71edec2d/published-readback.json",
+      "sha256": "01e7c3dcd1dd28e485f14869a2dedbf85a449d287dd1dbc35f150d270594dbbb",
+      "bytes": 498
+    }
+  ],
+  "historical_scopes": [
+    {
+      "archive": "first-attempt.tar.xz",
+      "source_commit": "da78c0bb7bd9e119cc6697a5a476be3b388514c4",
+      "status": "FAIL",
+      "counted_in_final_acceptance": false
+    },
+    {
+      "archive": "second-attempt.tar.xz",
+      "source_commit": "e734e3bd14f6c802a1da1c05969bd51108890ded",
+      "status": "FAIL",
+      "counted_in_final_acceptance": false
+    },
+    {
+      "archive": "development.tar.xz",
+      "source_commit": null,
+      "status": "mixed historical development",
+      "counted_in_final_acceptance": false
+    },
+    {
+      "archive": "source-review.tar.xz",
+      "source_commit": null,
+      "status": "per-record source identities, including both failed attempts",
+      "counted_in_final_acceptance": false
+    },
+    {
+      "archive": "preparation.tar.xz",
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "status": "setup and repair provenance plus final execution/auditor; individual original identities retained",
+      "counted_in_final_acceptance": false
+    }
+  ],
+  "final_coverage": {
+    "counts": {
+      "raw_successful_test_executions": 631,
+      "unique_platform_suite_case_executions": 631,
+      "repeated_same_platform_executions": 0,
+      "unique_suite_case_scenarios_across_platforms": 508,
+      "scenarios_exercised_on_multiple_platforms": 123,
+      "raw_by_cohort": {
+        "mail": 199,
+        "native": 376,
+        "node": 56
+      },
+      "raw_by_platform": {
+        "vm": 502,
+        "node": 129
+      },
+      "unique_by_platform": {
+        "vm": 502,
+        "node": 129
+      },
+      "unique_suites_across_platforms": 48
+    },
+    "failed": 0,
+    "skipped": 0,
+    "groups": [
+      {
+        "cohort": "mail",
+        "name": "core-vm",
+        "platform": "vm",
+        "passed": 31,
+        "suites": 4,
+        "hidden_loading_events_excluded": 4,
+        "raw_log_sha256": "c7222436e34ad0f339eb81d0e059cb93b531fb3fd87e1e5144b373ce0ee94b96",
+        "case_list_sha256": "734ae4e06de50e80aae7d7b432986fcf90cd63f2e6dacc71ae59660b976efb1c",
+        "raw_case_list_receipt_agree": true
+      },
+      {
+        "cohort": "mail",
+        "name": "core-node",
+        "platform": "node",
+        "passed": 31,
+        "suites": 4,
+        "hidden_loading_events_excluded": 4,
+        "raw_log_sha256": "29bcadebce1101234fc30d685abbf21b4ffdd33a517426631173b5499f0a79a3",
+        "case_list_sha256": "d8ca3ac15f45346114648cf9bdf56e46dc6c03f1d67354a2ef0b45d31ca0b7fd",
+        "raw_case_list_receipt_agree": true
+      },
+      {
+        "cohort": "mail",
+        "name": "store-vm",
+        "platform": "vm",
+        "passed": 95,
+        "suites": 7,
+        "hidden_loading_events_excluded": 7,
+        "raw_log_sha256": "8f8e20f16e7317169278dfb0f09188e90ca0d512a55b660dc6f1697da02645ba",
+        "case_list_sha256": "9ab4c06c690ae491276f25983b3b2a3f24188448600f4db5bcf4049c01703a3d",
+        "raw_case_list_receipt_agree": true
+      },
+      {
+        "cohort": "mail",
+        "name": "portable-node",
+        "platform": "node",
+        "passed": 42,
+        "suites": 3,
+        "hidden_loading_events_excluded": 3,
+        "raw_log_sha256": "043010f90b57b5a92575d40a20f99a4f95fd31133874e61311b32128aa89f7ac",
+        "case_list_sha256": "0bc3d7672b900e24e3921a0d6d035411f519589b504004a33d3ba95a7ad644fa",
+        "raw_case_list_receipt_agree": true
+      },
+      {
+        "cohort": "native",
+        "name": "transport-native",
+        "platform": "vm",
+        "passed": 70,
+        "suites": 4,
+        "hidden_loading_events_excluded": 4,
+        "raw_log_sha256": "d85da3878b29b3bf901d0566145747d6f6c6936b5c401d5243b4241cc6987fc0",
+        "case_list_sha256": "10c9ec12b45d235657b860e274d1ecb3665304bd20cdd131d26798f2cbc37d9d",
+        "raw_case_list_receipt_agree": true
+      },
+      {
+        "cohort": "native",
+        "name": "fork-protocol-regressions",
+        "platform": "vm",
+        "passed": 244,
+        "suites": 21,
+        "hidden_loading_events_excluded": 21,
+        "raw_log_sha256": "64e212663d06f041b2b9df9b45e5163edb6b0669fdda1cd3f1625991a40918c8",
+        "case_list_sha256": "d952f30b635790cf6e93adc37c6c1490c015253ad78e015bd9603b802fe1844e",
+        "raw_case_list_receipt_agree": true
+      },
+      {
+        "cohort": "native",
+        "name": "mime-vm",
+        "platform": "vm",
+        "passed": 32,
+        "suites": 6,
+        "hidden_loading_events_excluded": 6,
+        "raw_log_sha256": "8c8293f19e484e5ce4d3a8b5c27d5931dd6d155f957941f0f5556cb9a9078d3d",
+        "case_list_sha256": "45e6c78b2f263de114cdbf7b27f50bcc7297e1121a74bc8447348b74093b897b",
+        "raw_case_list_receipt_agree": true
+      },
+      {
+        "cohort": "native",
+        "name": "reader-vm",
+        "platform": "vm",
+        "passed": 30,
+        "suites": 4,
+        "hidden_loading_events_excluded": 4,
+        "raw_log_sha256": "16a44051efc23366c10b37d7f015c935247277712a34d6b89148106f3a2e7730",
+        "case_list_sha256": "095786b3cbf41fefe7766737fbae9c5c9ddbe6c42d0efa5afa4b4c5fa9f5ce09",
+        "raw_case_list_receipt_agree": true
+      },
+      {
+        "cohort": "node",
+        "name": "transport-node",
+        "platform": "node",
+        "passed": 15,
+        "suites": 2,
+        "hidden_loading_events_excluded": 2,
+        "raw_log_sha256": "b3c238a853270d1cf2b88bba1b42afbe9cd8f91d265fef264f3d0cd562de4acc",
+        "case_list_sha256": "56a04b3265fb14d2cebb3af8a27b249311c8f96eb8c21a0e786986d29e7f044d",
+        "raw_case_list_receipt_agree": true
+      },
+      {
+        "cohort": "node",
+        "name": "mime-node",
+        "platform": "node",
+        "passed": 32,
+        "suites": 6,
+        "hidden_loading_events_excluded": 6,
+        "raw_log_sha256": "f070756403fdd3ab99c7b4a66094a0e434f07ef7ec87990963a99d680cbc7ece",
+        "case_list_sha256": "45e6c78b2f263de114cdbf7b27f50bcc7297e1121a74bc8447348b74093b897b",
+        "raw_case_list_receipt_agree": true
+      },
+      {
+        "cohort": "node",
+        "name": "fork-portable-node",
+        "platform": "node",
+        "passed": 9,
+        "suites": 1,
+        "hidden_loading_events_excluded": 1,
+        "raw_log_sha256": "a0f229637942bce9c6a56e3e99ca528c5e2e1af318f3f42e4b1a95c4539bd097",
+        "case_list_sha256": "04844d58bfd55023a4175ee52e55c514542726bf731e2ae2091bb30972ff7ea1",
+        "raw_case_list_receipt_agree": true
+      }
+    ],
+    "raw_reporter_streams": 11,
+    "raw_cases_and_retained_lists_and_summaries_agree": true,
+    "coverage_manifest_sha256": "daf01c097829109e94905f38ea5b836481c8ec387191f2f3c98306e5cc102bcf"
+  },
+  "final_source_snapshots": [
+    {
+      "cohort": "mail",
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "source_inputs": 53,
+      "before_after_equal": true,
+      "source_hashes_against_git": true
+    },
+    {
+      "cohort": "native",
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "source_tree": "8b7443bd15be09276764f62934b9d8ce32a6be68",
+      "source_inputs": 5027,
+      "before_after_equal": true,
+      "all_snapshot_git_blobs_and_modes_match_final_tree": true,
+      "environment_snapshot_count": 11164,
+      "environment_live_rehash_performed": false
+    },
+    {
+      "cohort": "node",
+      "source_commit": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+      "source_tree": "8b7443bd15be09276764f62934b9d8ce32a6be68",
+      "source_inputs": 5027,
+      "before_after_equal": true,
+      "all_snapshot_git_blobs_and_modes_match_final_tree": true,
+      "environment_snapshot_count": 11163,
+      "environment_live_rehash_performed": false
+    }
+  ],
+  "scope": {
+    "archive_extraction_performed": false,
+    "original_evidence_bytes_compared": true,
+    "copied_receipts_compared": true,
+    "final_json_reporter_streams_independently_parsed": true,
+    "full_runtime_rehash_performed": false,
+    "tests_or_builds_executed": false,
+    "github_actions_accessed": false,
+    "fresh_incoming_refs_captured": false,
+    "historical_development_failed_and_preparation_records_excluded_from_final_case_counts": true,
+    "trust_limit": "Integrity, provenance, source identity and internal acceptance consistency of retained artifacts; no independent rerun or external signature claim."
+  },
+  "success": true,
+  "audited_at_utc": "2026-11-19T07:19:42.985535+00:00",
+  "checks_performed": 15170,
+  "auditor_path": "verification/audit_final_archives.py",
+  "auditor_sha256": "ed221871b9db672882cdcaa643ec5f8c2d32e94b68f205bdc461d60a2604f6b7"
+}

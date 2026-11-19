@@ -381,42 +381,49 @@ abstract class ClientBase {
     final aborted = _connectionAborted;
     final originalSocket = _socket;
     final originalSubscription = _socketStreamSubscription..pause();
-    final upgrading =
-        createSecureConnectionSocket(
-          originalSocket,
-          host: connectionInfo.host,
-        ).then((socket) {
-          if (generation != _connectionGeneration) {
-            socket.destroy();
-            throw createClientError('TLS upgrade was abandoned');
-          }
-          return socket;
-        });
-    // Closing the TCP owner can end the SDK stream without settling its TLS
-    // handshake future. Resolve the abandoned operation independently of it.
-    final secureSocket = await _untilAborted(
-      upgrading,
-      aborted,
-      'TLS upgrade was abandoned',
-    );
-    if (generation != _connectionGeneration) {
-      secureSocket.destroy();
-      throw createClientError('TLS upgrade was abandoned');
+    try {
+      final upgrading =
+          createSecureConnectionSocket(
+            originalSocket,
+            host: connectionInfo.host,
+          ).then((socket) {
+            if (generation != _connectionGeneration) {
+              socket.destroy();
+              throw createClientError('TLS upgrade was abandoned');
+            }
+            return socket;
+          });
+      // Closing the TCP owner can end the SDK stream without settling its TLS
+      // handshake future. Resolve the abandoned operation independently of it.
+      final secureSocket = await _untilAborted(
+        upgrading,
+        aborted,
+        'TLS upgrade was abandoned',
+      );
+      if (generation != _connectionGeneration) {
+        secureSocket.destroy();
+        throw createClientError('TLS upgrade was abandoned');
+      }
+      await originalSubscription.cancel();
+      if (generation != _connectionGeneration) {
+        secureSocket.destroy();
+        throw createClientError('TLS upgrade was abandoned');
+      }
+      isSocketClosingExpected = true;
+      originalSocket.destroy();
+      isSocketClosingExpected = false;
+      connectionInfo = ConnectionInfo(
+        connectionInfo.host,
+        connectionInfo.port,
+        isSecure: true,
+      );
+      connect(secureSocket);
+    } on Object {
+      if (generation == _connectionGeneration) {
+        await abort();
+      }
+      rethrow;
     }
-    await originalSubscription.cancel();
-    if (generation != _connectionGeneration) {
-      secureSocket.destroy();
-      throw createClientError('TLS upgrade was abandoned');
-    }
-    isSocketClosingExpected = true;
-    originalSocket.destroy();
-    isSocketClosingExpected = false;
-    connectionInfo = ConnectionInfo(
-      connectionInfo.host,
-      connectionInfo.port,
-      isSecure: true,
-    );
-    connect(secureSocket);
   }
 
   Future<void> _onDataReceived(Uint8List data) async {
