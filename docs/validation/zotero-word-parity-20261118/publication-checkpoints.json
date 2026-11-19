@@ -1,7 +1,7 @@
 {
   "branch": "codex/zotero-word-parity-20261118",
   "pull_request": 173,
-  "through_commit": "f40c667adb8f7e721d498f16de4531f6d08c8f7d",
+  "through_commit": "356a3c75c645a9e91d41af0b151d773eb938f3fc",
   "github_actions": "Never queried or awaited",
   "checkpoints": [
     {
@@ -42,11 +42,19 @@
     },
     {
       "sha": "8fa115e8358e305872fd14e757f9133fa9c1540d",
-      "purpose": "Current391-ref Mail/thesaurus/Notes integration; local tree and complete ref audit verified"
+      "purpose": "Current 391-ref Mail/thesaurus/Notes integration; local tree and complete ref audit verified"
     },
     {
       "sha": "f40c667adb8f7e721d498f16de4531f6d08c8f7d",
-      "purpose": "Native research lists, numbering undo snapshots, restored runtime and focusedIME evidence,98file qualification plan"
+      "purpose": "Native research lists, numbering undo snapshots, restored runtime and focused IME evidence, 98-file qualification plan"
+    },
+    {
+      "sha": "9547b087011695efa43014a64b128369b319e0f6",
+      "purpose": "Numbering isolation/XML-order fixes; first frozen 98-file diagnostic preserved with explicit failures"
+    },
+    {
+      "sha": "356a3c75c645a9e91d41af0b151d773eb938f3fc",
+      "purpose": "Qualified frozen source: 1558 Dart cases, 50 separate Python cases, 98 files, 31 analysis/format targets; independent audit accepted"
     }
   ]
 }

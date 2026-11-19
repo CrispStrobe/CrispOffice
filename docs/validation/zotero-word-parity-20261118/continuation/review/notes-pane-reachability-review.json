@@ -1,0 +1,56 @@
+{
+  "source_commit": "9547b087011695efa43014a64b128369b319e0f6",
+  "source_tree": "64f3b106594c8cc30b2a46cb3d06a0e2cf039490",
+  "classification": "Fixture omitted scrolling to existing reachable Notes editor",
+  "product_changed": false,
+  "test_patch": "/workspace/scratch/55eaa121d5ad/runtime-recovery/notes-pane-reachability.patch",
+  "test_changes_only": [
+    "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart"
+  ],
+  "viewport": [
+    320,
+    640
+  ],
+  "text_scale": 2,
+  "rtl_gesture_before": {
+    "field_rect": [
+      8,
+      618,
+      312,
+      692
+    ],
+    "scroll_pixels": 0,
+    "max_scroll_extent": 264
+  },
+  "rtl_gesture_after": {
+    "field_rect": [
+      8,
+      438,
+      312,
+      512
+    ],
+    "scroll_pixels": 180
+  },
+  "results": {
+    "notes-pane-gesture-probe": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "warnings": 0,
+      "unfinished": [],
+      "done_success": true,
+      "sha256": "89a1f1f2b50b9595fa8bb73d49810da9448fbd39e61ca50ed1e954b617566f54"
+    },
+    "notes-pane-reachability-validation": {
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "warnings": 0,
+      "unfinished": [],
+      "done_success": true,
+      "sha256": "aacaae2426c5bf88219707d716607ea26be15fe7955bfa47e35bace03f089463"
+    }
+  }
+}
