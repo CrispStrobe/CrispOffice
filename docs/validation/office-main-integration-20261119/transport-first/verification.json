@@ -1,0 +1,818 @@
+{
+  "started_at_utc": "2026-11-19T06:49:16.998958+00:00",
+  "source_commit": "1655db9ff8a5fb9eb140ef236fa0cca74c472107",
+  "source_tree": "35117fdf144ce59ab31c2ebdd0bce00db8599cfd",
+  "source_base": "ebe0498a8ddd118dd579698cab3ddc281a630b11",
+  "plan": "docs/validation/office-main-integration-20261119/transport-plan.json",
+  "plan_sha256": "0d51106b1f8e09c0128e3654389bf09bfa7707c7e6b1e4a3e3b8fa1e8ab566a2",
+  "source_input_count": 5019,
+  "materialized_source_inputs": 5019,
+  "sparse_source_omissions": [],
+  "runtime_input_count": 11164,
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/flutter"
+  },
+  "workspace_lock_sha256": "35d1ef372908f4ab278973355ec6a957cd3240bea115d615056c5b9e398df974",
+  "runtime_receipt_sha256": "0da554a2520d2527bc83bd29ba6ca8d33199f3ef3f448d682816397a3db0dc75",
+  "test_launcher": "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+  "package_config": "/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/package_config.json",
+  "additional_runtime_inputs": {
+    "/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/native_assets.yaml": "58640f5df92e0506f834eaa277e74620f06c6b695fce080ed5203fef3758a0ad",
+    "/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/lib/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/hooks_runner/shared/sqlite3/build/download-0a658527/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa"
+  },
+  "whitespace_preserved_inputs": [],
+  "planned_groups": [
+    {
+      "name": "transport-native",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/configuration_test.dart",
+        "test/native_provider_test.dart",
+        "test/host_store_integration_test.dart"
+      ]
+    },
+    {
+      "name": "transport-node-boundary",
+      "cwd": "packages/quds_mail_transport",
+      "runner": "dart",
+      "platform": "node",
+      "tests": [
+        "test/unsupported_test.dart"
+      ]
+    },
+    {
+      "name": "vendor-imap-and-byte-reader",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/imap/imap_client_test.dart",
+        "test/imap/imap_robustness_test.dart",
+        "test/imap/imap_quoting_test.dart",
+        "test/src/imap/imap_response_reader_test.dart",
+        "test/src/imap/imap_response_test.dart",
+        "test/src/imap/fetch_parser_test.dart",
+        "test/src/util/uint8_list_reader_test.dart",
+        "test/src/imap/raw_fetch_parser_test.dart"
+      ]
+    },
+    {
+      "name": "vendor-connection-and-protocols",
+      "cwd": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/connection_robustness_test.dart",
+        "test/reconnect_state_test.dart",
+        "test/write_failure_test.dart",
+        "test/pop/pop_client_test.dart",
+        "test/pop/pop_framing_test.dart",
+        "test/smtp/smtp_client_test.dart",
+        "test/smtp/smtp_framing_test.dart",
+        "test/smtp/smtp_send_state_test.dart",
+        "test/mail/mail_client_starttls_test.dart",
+        "test/mail/mail_client_oauth_test.dart"
+      ]
+    },
+    {
+      "name": "mime-consumer-vm",
+      "cwd": "packages/quds_mail_mime",
+      "runner": "dart",
+      "tests": [
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "name": "mail-ui-consumers",
+      "cwd": "packages/quds_mail_ui",
+      "runner": "flutter",
+      "tests": [
+        "test/controller_test.dart",
+        "test/example_test.dart",
+        "test/message_view_test.dart",
+        "test/presentation_test.dart"
+      ]
+    }
+  ],
+  "analysis_files": [
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/unsupported_test.dart",
+    "third_party/enough_mail/lib/imap.dart",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart"
+  ],
+  "formatted_files": [
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+    "packages/quds_mail_transport/test/configuration_test.dart",
+    "packages/quds_mail_transport/test/host_store_integration_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/unsupported_test.dart",
+    "third_party/enough_mail/lib/imap.dart",
+    "third_party/enough_mail/lib/src/imap/imap_client.dart",
+    "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+    "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+    "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+    "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart"
+  ],
+  "tracked_worktree_clean_before": true,
+  "runs": [
+    {
+      "name": "transport-native",
+      "command": [
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--compiler=kernel",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/configuration_test.dart",
+        "test/native_provider_test.dart",
+        "test/host_store_integration_test.dart"
+      ],
+      "cwd": "packages/quds_mail_transport",
+      "exit_code": 0,
+      "elapsed_seconds": 18.133,
+      "log": "checks/transport-native.jsonl",
+      "log_sha256": "865863b5ef8879b655729621202b88ee789fa49a2e8ede89aedc5d78244ef3fc",
+      "cases_file": "checks/transport-native-cases.json",
+      "cases_sha256": "afe073dbacff9e3106e720a13212d51e1a9e6d7bd1879207a07c1dcab9bef4a5",
+      "errors_file": "checks/transport-native-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 56,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_transport/test/configuration_test.dart": {
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_transport/test/native_provider_test.dart": {
+          "passed": 39,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_transport/test/host_store_integration_test.dart": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 3
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 56,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/transport-native.jsonl.gz",
+      "compressed_log_sha256": "006b9064ccb8acfb1ed9b4032e4e32f14dd7128fe5a8bb3e17b81c8f5478e723"
+    },
+    {
+      "name": "transport-node-boundary",
+      "command": [
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/unsupported_test.dart"
+      ],
+      "cwd": "packages/quds_mail_transport",
+      "exit_code": 0,
+      "elapsed_seconds": 16.216,
+      "log": "checks/transport-node-boundary.jsonl",
+      "log_sha256": "1c7851a513603c8a98c6d6ebb647518d5a2b27fde9523aeaa2caa6f90d66b525",
+      "cases_file": "checks/transport-node-boundary-cases.json",
+      "cases_sha256": "903f4d9c1cadc6f0ae16584128ddc27b3c99c96a8465978aa3ad3277260c8e1b",
+      "errors_file": "checks/transport-node-boundary-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_transport/test/unsupported_test.dart": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 1
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/transport-node-boundary.jsonl.gz",
+      "compressed_log_sha256": "6b5c4b8bd3096669399a5a7b2433cb843a3d294757ee2a600b918ae9b6658229"
+    },
+    {
+      "name": "vendor-imap-and-byte-reader",
+      "command": [
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--compiler=kernel",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/imap/imap_client_test.dart",
+        "test/imap/imap_robustness_test.dart",
+        "test/imap/imap_quoting_test.dart",
+        "test/src/imap/imap_response_reader_test.dart",
+        "test/src/imap/imap_response_test.dart",
+        "test/src/imap/fetch_parser_test.dart",
+        "test/src/util/uint8_list_reader_test.dart",
+        "test/src/imap/raw_fetch_parser_test.dart"
+      ],
+      "cwd": "third_party/enough_mail",
+      "exit_code": 0,
+      "elapsed_seconds": 95.201,
+      "log": "checks/vendor-imap-and-byte-reader.jsonl",
+      "log_sha256": "a4369c6899a68e3c5e56a8f05522eca9afb0bcf172d67b68c0ba1912dba4f130",
+      "cases_file": "checks/vendor-imap-and-byte-reader-cases.json",
+      "cases_sha256": "8f23541ae0cf5d8aa3b7904301f7064b77454bc2ac9a75d61c9f7a509ccbe9f3",
+      "errors_file": "checks/vendor-imap-and-byte-reader-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 175,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/imap/imap_client_test.dart": {
+          "passed": 63,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/imap/imap_robustness_test.dart": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/imap/imap_quoting_test.dart": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/src/imap/imap_response_reader_test.dart": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/src/imap/imap_response_test.dart": {
+          "passed": 15,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/src/imap/fetch_parser_test.dart": {
+          "passed": 36,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/src/util/uint8_list_reader_test.dart": {
+          "passed": 21,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart": {
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 8
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 175,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/vendor-imap-and-byte-reader.jsonl.gz",
+      "compressed_log_sha256": "6f7c0eca1b917020762ffda1f4e5a455974e46d598e0b77f2b15d26659ad3739"
+    },
+    {
+      "name": "vendor-connection-and-protocols",
+      "command": [
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--compiler=kernel",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/connection_robustness_test.dart",
+        "test/reconnect_state_test.dart",
+        "test/write_failure_test.dart",
+        "test/pop/pop_client_test.dart",
+        "test/pop/pop_framing_test.dart",
+        "test/smtp/smtp_client_test.dart",
+        "test/smtp/smtp_framing_test.dart",
+        "test/smtp/smtp_send_state_test.dart",
+        "test/mail/mail_client_starttls_test.dart",
+        "test/mail/mail_client_oauth_test.dart"
+      ],
+      "cwd": "third_party/enough_mail",
+      "exit_code": 0,
+      "elapsed_seconds": 20.77,
+      "log": "checks/vendor-connection-and-protocols.jsonl",
+      "log_sha256": "4b0d9fe5aeb132fa6675aabf106f0ce1723196a39e7feb382fee5e66bd47c56f",
+      "cases_file": "checks/vendor-connection-and-protocols-cases.json",
+      "cases_sha256": "dd3dcba0e4bf44d0a0457d36261c7ef9b154a29cc2d3e38878e4e3c10816fd6d",
+      "errors_file": "checks/vendor-connection-and-protocols-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 63,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/connection_robustness_test.dart": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/reconnect_state_test.dart": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/write_failure_test.dart": {
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/pop/pop_client_test.dart": {
+          "passed": 16,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/pop/pop_framing_test.dart": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/smtp/smtp_client_test.dart": {
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/smtp/smtp_framing_test.dart": {
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/smtp/smtp_send_state_test.dart": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/mail/mail_client_starttls_test.dart": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/third_party/enough_mail/test/mail/mail_client_oauth_test.dart": {
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 10
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 63,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/vendor-connection-and-protocols.jsonl.gz",
+      "compressed_log_sha256": "48dfe1b9b5e1b68f36378dfcfdb943550f2b99457c976cfd92ce77657ff0c586"
+    },
+    {
+      "name": "mime-consumer-vm",
+      "command": [
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/a7846890f2e1/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--compiler=kernel",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/eml_bytes_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ],
+      "cwd": "packages/quds_mail_mime",
+      "exit_code": 0,
+      "elapsed_seconds": 13.653,
+      "log": "checks/mime-consumer-vm.jsonl",
+      "log_sha256": "a784cc88f5469f201764024124517b45d932cf03e0172578589aafdcf7a7a5d4",
+      "cases_file": "checks/mime-consumer-vm-cases.json",
+      "cases_sha256": "172708b5da60a0ccc14228fe0870d20a342eaec1f561286f1c711514540d9955",
+      "errors_file": "checks/mime-consumer-vm-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_mime/test/eml_bytes_test.dart": {
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_mime/test/mime_encodings_test.dart": {
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_mime/test/mime_limits_test.dart": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_mime/test/mime_parts_test.dart": {
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_mime/test/mime_review_regressions_test.dart": {
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_mime/test/portable_import_test.dart": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 6
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/mime-consumer-vm.jsonl.gz",
+      "compressed_log_sha256": "bd72292252954bffe7a2e19209375f8a067fb845fe5dedb6099a4302ca1286ce"
+    },
+    {
+      "name": "mail-ui-consumers",
+      "command": [
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/controller_test.dart",
+        "test/example_test.dart",
+        "test/message_view_test.dart",
+        "test/presentation_test.dart"
+      ],
+      "cwd": "packages/quds_mail_ui",
+      "exit_code": 0,
+      "elapsed_seconds": 7.527,
+      "log": "checks/mail-ui-consumers.jsonl",
+      "log_sha256": "a8ff9f47683be898cefd9cef0f2afffaf826b93bcd61bcb04e4a40ff659f6b67",
+      "cases_file": "checks/mail-ui-consumers-cases.json",
+      "cases_sha256": "171e43a1dbe8a99abfc60f9e562241b1c4e38040b0762a9f561d3faf7d647469",
+      "errors_file": "checks/mail-ui-consumers-errors.json",
+      "errors_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0,
+      "per_suite": {
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_ui/test/controller_test.dart": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_ui/test/example_test.dart": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_ui/test/message_view_test.dart": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/workspace/scratch/a7846890f2e1/quds_office_suite/packages/quds_mail_ui/test/presentation_test.dart": {
+          "passed": 13,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "excluded_events": {
+        "hidden": 4
+      },
+      "reporter_success": true,
+      "runner_start_events": 1,
+      "terminal_events": 1,
+      "missing_requested_suites": [],
+      "unexpected_suites": [],
+      "empty_requested_suites": [],
+      "unfinished_reporter_events": [],
+      "reporter_error_count": 0,
+      "protocol_anomalies": [],
+      "strict_event_accounting": {
+        "passed": 30,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "accepted": true,
+      "compressed_log": "checks/mail-ui-consumers.jsonl.gz",
+      "compressed_log_sha256": "647b2e36ff62ad1f8c94d5783b4e3ed6f09a62d6a2bb6010f6ce3862df69456b"
+    },
+    {
+      "name": "analysis",
+      "command": [
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+        "packages/quds_mail_transport/lib/src/configuration.dart",
+        "packages/quds_mail_transport/lib/src/cursor.dart",
+        "packages/quds_mail_transport/lib/src/native/factory.dart",
+        "packages/quds_mail_transport/lib/src/native/provider.dart",
+        "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+        "packages/quds_mail_transport/test/configuration_test.dart",
+        "packages/quds_mail_transport/test/host_store_integration_test.dart",
+        "packages/quds_mail_transport/test/native_provider_test.dart",
+        "packages/quds_mail_transport/test/support/imap_fixture.dart",
+        "packages/quds_mail_transport/test/unsupported_test.dart",
+        "third_party/enough_mail/lib/imap.dart",
+        "third_party/enough_mail/lib/src/imap/imap_client.dart",
+        "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+        "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+        "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+        "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+        "third_party/enough_mail/lib/src/private/util/client_base.dart",
+        "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+        "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+        "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "elapsed_seconds": 5.963,
+      "log": "checks/analysis.log",
+      "log_sha256": "1f28067bf1e14a497db59ffba68168566a654c921b32b2f9ceea75771cf25314",
+      "accepted": true,
+      "compressed_log": "checks/analysis.log.gz",
+      "compressed_log_sha256": "ebcb9ac2f2ef8d877664007e31bddbe8be387847a51c6dba800c171c893ef6ff"
+    },
+    {
+      "name": "format",
+      "command": [
+        "/workspace/scratch/a7846890f2e1/runtime-recovery/toolchains/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+        "packages/quds_mail_transport/lib/src/configuration.dart",
+        "packages/quds_mail_transport/lib/src/cursor.dart",
+        "packages/quds_mail_transport/lib/src/native/factory.dart",
+        "packages/quds_mail_transport/lib/src/native/provider.dart",
+        "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+        "packages/quds_mail_transport/test/configuration_test.dart",
+        "packages/quds_mail_transport/test/host_store_integration_test.dart",
+        "packages/quds_mail_transport/test/native_provider_test.dart",
+        "packages/quds_mail_transport/test/support/imap_fixture.dart",
+        "packages/quds_mail_transport/test/unsupported_test.dart",
+        "third_party/enough_mail/lib/imap.dart",
+        "third_party/enough_mail/lib/src/imap/imap_client.dart",
+        "third_party/enough_mail/lib/src/imap/raw_fetch.dart",
+        "third_party/enough_mail/lib/src/private/imap/imap_response.dart",
+        "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
+        "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
+        "third_party/enough_mail/lib/src/private/util/client_base.dart",
+        "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
+        "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+        "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "elapsed_seconds": 0.166,
+      "log": "checks/format.log",
+      "log_sha256": "f3901f4ad3f8448825494a9219d45d368fd8af378e90e11ef5f30f17a4d62af6",
+      "accepted": true,
+      "compressed_log": "checks/format.log.gz",
+      "compressed_log_sha256": "1b46ed6408a18c9036c2387518e3e3656f212a82dcea76f00979421a8015ae32"
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "ebe0498a8ddd118dd579698cab3ddc281a630b11",
+        "1655db9ff8a5fb9eb140ef236fa0cca74c472107",
+        "--",
+        "."
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "elapsed_seconds": 0.033,
+      "log": "checks/whitespace.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true,
+      "compressed_log": "checks/whitespace.log.gz",
+      "compressed_log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    }
+  ],
+  "github_actions_queried_or_awaited": false,
+  "source_unchanged": true,
+  "environment_unchanged": true,
+  "source_mismatches": [],
+  "environment_mismatches": [],
+  "source_head_unchanged": true,
+  "source_index_unchanged": true,
+  "tracked_worktree_clean_after": true,
+  "unexpected_native_mappings_after": [],
+  "passed": 359,
+  "failed": 0,
+  "skipped": 0,
+  "finished_at_utc": "2026-11-19T06:52:17.035196+00:00",
+  "manifest_sha256": {
+    "source-before.json": "87ca31801e36499244ac285ee852cf9155254ca2b7cf58d2833d223662a5bac3",
+    "source-after.json": "87ca31801e36499244ac285ee852cf9155254ca2b7cf58d2833d223662a5bac3",
+    "environment-before.json": "ea38c9c003b2e8a99201b73d3f958f6aa9cc43120ddd022c5041b7bddaed9bba",
+    "environment-after.json": "ea38c9c003b2e8a99201b73d3f958f6aa9cc43120ddd022c5041b7bddaed9bba"
+  },
+  "success": true
+}
