@@ -25,7 +25,11 @@ class StudioMailDialog extends StatefulWidget {
   });
 
   final StudioStrings strings;
+
+  /// Optional host seam; each attempt must receive a fresh, unshared client.
   final mail.MailClient Function(mail.MailAccount account)? clientFactory;
+
+  /// Optional discovery service used before a session client is allocated.
   final Future<mail.ClientConfig?> Function(String email)? discoverAccount;
 
   @override

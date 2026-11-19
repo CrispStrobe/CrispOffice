@@ -317,8 +317,9 @@ void main() {
       final client = _Client();
       if (stage == 'list') client.listError = StateError('setup failed');
       if (stage == 'fetch') client.fetchError = StateError('setup failed');
-      if (stage == 'no selectable mailbox')
+      if (stage == 'no selectable mailbox') {
         client.boxes = <mail.Mailbox>[_box('Archive', selectable: false)];
+      }
       await _show(tester, (_) => client);
       await _manual(tester);
       await _connect(tester);
@@ -416,7 +417,11 @@ void main() {
     await _compose(tester);
     final disconnect = tester
         .widget<IconButton>(
-          find.byTooltip(_strings.disconnect, skipOffstage: false),
+          find.byWidgetPredicate(
+            (widget) =>
+                widget is IconButton && widget.tooltip == _strings.disconnect,
+            skipOffstage: false,
+          ),
         )
         .onPressed!;
     disconnect();

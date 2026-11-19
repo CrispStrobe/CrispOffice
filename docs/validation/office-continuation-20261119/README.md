@@ -36,7 +36,11 @@ The first reconciliation checkpoint is saved remotely at
 `10bd0cc4aa720acda4f52d0da882c57b05446435`, with tree
 `7679eef3ed733e1409d5be5061a5e25241e700de`. Publication used existing remote
 objects plus hash-verified new blobs, a non-forced expected-head update and
-fetched tree readback.
+fetched tree readback. The recovered histories and subsequent development
+state are additionally saved at `e80beb2ed2fe70397a5a8fff5c9e908b04862f78`
+(tree `09f094eaff1988fe436c0beeca016b94e714365b`); that checkpoint is explicitly
+unqualified. [PR #193](https://github.com/CrispStrobe/quds_office_suite/pull/193)
+is the continuation merge vehicle.
 
 ## Merge decisions
 
@@ -50,6 +54,9 @@ fetched tree readback.
   metadata. Existing engine callers can still explicitly clear both slots.
   Inheritance, Unicode letter classification, undo/redo and DOCX round trips
   remain covered by both incoming test families.
+- Keep selected Latin/complex-script boundaries when applying an already
+  stored language or resetting an inherited slot. Run coalescing respects those
+  routing boundaries, including after formatting, undo/redo and DOCX save.
 - Preserve combining hamza and maddah in extended Arabic phrase comparison,
   matching the existing ordinary comparison behavior and exact UTF-16 offsets.
 - Retain the current abortable dictionary downloads, post-progress cancellation
@@ -57,6 +64,9 @@ fetched tree readback.
 - Restore the saved `.eml` reader as a separate component accessible from the
   current account-aware example. Keep the delayed picker/read, replacement,
   localized error and disposal regressions.
+- Own live Mail clients throughout setup and abort detached sessions promptly.
+  Delayed discovery, folder/body reads, drafts and sends are checked against
+  their original session before updating the UI or submitting a message.
 - Preserve source-specific failed attempts, historical raw evidence and runtime
   preparation records without relabeling them as current passes.
 
