@@ -112,6 +112,70 @@ void main() {
     expect(result.messages[1].bytes, orderedEquals(second));
   });
 
+  for (final delimiters in [
+    ('missing list separator', ' ', ''),
+    ('tab list separator', ' ', '\t'),
+    ('tab sequence separator', '\t', ' '),
+    ('attached quoted prefix', ' ', '"bad" '),
+    ('attached closing list', ' ', ')'),
+  ]) {
+    for (final headersOnly in [false, true]) {
+      test('${headersOnly ? 'header' : 'body'} FETCH with ${delimiters.$1} '
+          'cannot yield an earlier successful prefix', () {
+        final parser = _parser(headersOnly: headersOnly);
+        final item = headersOnly ? rawImapHeaderItem : 'BODY[]';
+        final literal = Uint8List.fromList(
+          ascii.encode('Subject: Fixture\r\n\r\n'),
+        );
+        expect(
+          parser.parseUntagged(_read(_single(item, literal, uid: 3)), null),
+          isTrue,
+        );
+        final malformed = _read(
+          (BytesBuilder()
+                ..add(
+                  ascii.encode(
+                    '* 1${delimiters.$2}FETCH${delimiters.$3}'
+                    '(UID 1 FLAGS () $item {${literal.length}}\r\n',
+                  ),
+                )
+                ..add(literal)
+                ..add(ascii.encode(')\r\n')))
+              .takeBytes(),
+        );
+        expect(
+          () => parser.parseUntagged(malformed, null),
+          throwsFormatException,
+        );
+        expect(() => _taggedOk(parser), throwsFormatException);
+      });
+    }
+  }
+
+  test('FETCH with attached literal cannot yield an empty success', () {
+    final parser = _parser(headersOnly: true);
+    final malformed = _read(
+      Uint8List.fromList(ascii.encode('* 1 FETCH{1}\r\nx)\r\n')),
+    );
+    expect(() => parser.parseUntagged(malformed, null), throwsFormatException);
+    expect(() => _taggedOk(parser), throwsFormatException);
+  });
+
+  test('FETCH-like atoms and unrelated status/data remain unhandled', () {
+    final parser = _parser();
+    for (final line in [
+      '* OK [ALERT] diagnostic FETCH( text',
+      '* FLAGS (\\Seen FETCH)',
+      '* 1 FETCHX (UID 1 FLAGS ())',
+    ]) {
+      expect(
+        parser.parseUntagged(ImapResponse()..add(ImapResponseLine(line)), null),
+        isFalse,
+      );
+    }
+    expect(_taggedOk(parser)!.messages, isEmpty);
+  });
+
   for (final entry in <String, String>{
     'trailing atom': ' UNEXPECTED',
     'trailing anonymous list': ' (UNEXPECTED)',

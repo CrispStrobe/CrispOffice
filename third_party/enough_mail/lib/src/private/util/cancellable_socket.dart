@@ -4,11 +4,20 @@
 
 part of 'client_base.dart';
 
+/// Internal raw-stream adapter retaining its original TCP owner for abort.
+///
+/// This seam also permits deterministic protocol tests using public RawSocket
+/// implementations; it is not exported by the supported package entry points.
+Socket createOwnedRawSocket(RawSocket socket, {RawSocket? transport}) =>
+    _CancellableSocket(socket, transport: transport);
+
 /// Adapts public raw sockets without hiding the owner during a TLS handshake.
 /// The raw subscription stays unpaused: STARTTLS transfers it to the SDK, which
 /// takes over its handlers. Pausing protocol input only disables raw reads.
 final class _CancellableSocket extends Stream<Uint8List> implements Socket {
-  _CancellableSocket(RawSocket raw) : _raw = raw {
+  _CancellableSocket(RawSocket raw, {RawSocket? transport})
+    : _raw = raw,
+      _transport = transport ?? raw {
     raw
       ..readEventsEnabled = false
       ..writeEventsEnabled = false;
@@ -30,6 +39,7 @@ final class _CancellableSocket extends Stream<Uint8List> implements Socket {
   }
 
   RawSocket? _raw;
+  RawSocket? _transport;
   StreamSubscription<RawSocketEvent>? _rawSubscription;
   final _input = StreamController<Uint8List>(sync: true);
   late final _RawSocketConsumer _consumer;
@@ -49,6 +59,7 @@ final class _CancellableSocket extends Stream<Uint8List> implements Socket {
     bool Function(X509Certificate)? onBadCertificate,
   }) async {
     final raw = rawSocket;
+    final transport = _transport ?? raw;
     if (_transferring) {
       throw const SocketException('TLS upgrade is already pending');
     }
@@ -62,6 +73,7 @@ final class _CancellableSocket extends Stream<Uint8List> implements Socket {
       }
       final subscription = _rawSubscription;
       _raw = null;
+      _transport = null;
       _rawSubscription = null;
       _closeInput();
       final secure = await RawSecureSocket.secure(
@@ -71,9 +83,12 @@ final class _CancellableSocket extends Stream<Uint8List> implements Socket {
         context: context,
         onBadCertificate: onBadCertificate,
       );
-      return _CancellableSocket(secure);
+      return createOwnedRawSocket(secure, transport: transport);
     } catch (_) {
-      unawaited(raw.close());
+      unawaited(transport.close());
+      if (!identical(raw, transport)) {
+        unawaited(raw.close());
+      }
       destroy();
       rethrow;
     }
@@ -127,8 +142,13 @@ final class _CancellableSocket extends Stream<Uint8List> implements Socket {
   }
 
   void _onRawDone() {
+    final transport = _transport;
     _raw = null;
+    _transport = null;
     _rawSubscription = null;
+    if (transport != null) {
+      unawaited(transport.close());
+    }
     _endWrites(const SocketException('Socket is closed'));
     _closeInput();
   }
@@ -216,9 +236,18 @@ final class _CancellableSocket extends Stream<Uint8List> implements Socket {
     if (raw == null) {
       return;
     }
+    final transport = _transport;
     _raw = null;
+    _transport = null;
     _endWrites(const SocketException('Socket is closed'));
-    unawaited(raw.close());
+    // RawSecureSocket.close may wait for encrypted output to drain. Closing
+    // the original TCP owner first makes abort independent of that drain.
+    if (transport != null) {
+      unawaited(transport.close());
+    }
+    if (!identical(raw, transport)) {
+      unawaited(raw.close());
+    }
     unawaited(_rawSubscription?.cancel());
     _rawSubscription = null;
     _closeInput();

@@ -1,0 +1,24 @@
+{
+  "prior_qualified_source": "7d279e084bae438d383630726ad7b0514da77d35",
+  "captured_mail": "71edec2de364805113d18e0f1d7edbb1f00467e5",
+  "captured_zotero": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+  "selected_transport": "ClientConnection / RawClientConnection from Mail, preserving original TCP ownership after TLS and explicitly interrupting pending handshakes",
+  "unselected_transport": {
+    "path": "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart",
+    "preserved_in_commit": "54c36e40daa7b17d73801dac1fd12f110b24017f",
+    "reason": "Avoid two competing socket owners and the Socket facade with its SDK-private detach member; equivalent cancellation and stream requirements are implemented by the selected adapter."
+  },
+  "combined_behaviors": [
+    "pending implicit/STARTTLS handshake abort and disconnect",
+    "ordered partial writes and close after final readiness",
+    "idle/active stream producer cancellation with failing abort result",
+    "unchanged default trust and requested hostname verification"
+  ],
+  "tests": {
+    "incoming_tls_suites_retained": 3,
+    "declared_incoming_tls_cases": 23,
+    "zotero_round_trip_changes": "ClientConnection import and captured factory/field types only; all five test bodies and assertions retained",
+    "full_core_store_gate": "Will run freshly with the new hashCode assertion and Python reaping-race control"
+  },
+  "state": "Source checkpoint before integrated execution; previous 389-focused and 199-store results remain separately source-bound."
+}

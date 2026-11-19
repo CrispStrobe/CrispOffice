@@ -62,6 +62,7 @@ abstract class ClientBase {
   late Socket _socket;
   bool _hasSocket = false;
   int _connectionGeneration = 0;
+  Completer<void> _connectionAborted = Completer<void>();
   ConnectionTask<RawSocket>? _pendingConnection;
   RawSocket? _pendingRawSocket;
 
@@ -152,7 +153,7 @@ abstract class ClientBase {
         unawaited(connected.close());
         throw createClientError('connection attempt was abandoned');
       }
-      return _CancellableSocket(connected);
+      return createOwnedRawSocket(connected, transport: raw);
     } catch (_) {
       if (raw != null) {
         unawaited(raw.close());
@@ -182,6 +183,28 @@ abstract class ClientBase {
     }
   }
 
+  void _signalAbort() {
+    if (!_connectionAborted.isCompleted) {
+      _connectionAborted.complete();
+    }
+  }
+
+  int _beginConnectionAttempt() {
+    _cancelPendingConnection();
+    _signalAbort();
+    _connectionAborted = Completer<void>();
+    return ++_connectionGeneration;
+  }
+
+  Future<T> _untilAborted<T>(
+    Future<T> pending,
+    Completer<void> aborted,
+    String reason,
+  ) => Future.any([
+    pending,
+    aborted.future.then<T>((_) => throw createClientError(reason)),
+  ]);
+
   /// Connects to the specified server.
   ///
   /// Specify [isSecure] if you do not want to connect to a secure service.
@@ -199,22 +222,30 @@ abstract class ClientBase {
       'secure: $isSecure, timeout: $timeout',
     );
     connectionInfo = ConnectionInfo(host, port, isSecure: isSecure);
-    final generation = ++_connectionGeneration;
+    final generation = _beginConnectionAttempt();
+    final aborted = _connectionAborted;
     final opening = createConnectionSocket(host, port, isSecure: isSecure);
-    final socket = await opening
-        .then((socket) {
-          if (generation != _connectionGeneration) {
-            socket.destroy();
-            throw createClientError('connection attempt was abandoned');
-          }
-          return socket;
-        })
-        .timeout(
+    // Observe the original future after cancellation too, so a late socket is
+    // destroyed even when the caller has already received the abort error.
+    final guarded = opening.then((socket) {
+      if (generation != _connectionGeneration) {
+        socket.destroy();
+        throw createClientError('connection attempt was abandoned');
+      }
+      return socket;
+    });
+    final socket =
+        await _untilAborted(
+          guarded,
+          aborted,
+          'connection attempt was abandoned',
+        ).timeout(
           timeout,
           onTimeout: () {
             if (generation == _connectionGeneration) {
               _connectionGeneration++;
               _cancelPendingConnection();
+              _signalAbort();
             }
             throw createClientError('connection attempt timed out');
           },
@@ -263,6 +294,7 @@ abstract class ClientBase {
   /// ```
   void connect(Socket socket, {ConnectionInfo? connectionInformation}) {
     if (connectionInformation != null) {
+      _beginConnectionAttempt();
       // used for manually created sockets, e.g. in tests: nobody awaits the
       // greeting, so there must be no completer that could fail unhandled
       connectionInfo = connectionInformation;
@@ -346,11 +378,26 @@ abstract class ClientBase {
   /// Upgrades the current connection without reviving an aborted generation.
   Future<void> upgradeToSslSocket() async {
     final generation = _connectionGeneration;
+    final aborted = _connectionAborted;
     final originalSocket = _socket;
     final originalSubscription = _socketStreamSubscription..pause();
-    final secureSocket = await createSecureConnectionSocket(
-      originalSocket,
-      host: connectionInfo.host,
+    final upgrading =
+        createSecureConnectionSocket(
+          originalSocket,
+          host: connectionInfo.host,
+        ).then((socket) {
+          if (generation != _connectionGeneration) {
+            socket.destroy();
+            throw createClientError('TLS upgrade was abandoned');
+          }
+          return socket;
+        });
+    // Closing the TCP owner can end the SDK stream without settling its TLS
+    // handshake future. Resolve the abandoned operation independently of it.
+    final secureSocket = await _untilAborted(
+      upgrading,
+      aborted,
+      'TLS upgrade was abandoned',
     );
     if (generation != _connectionGeneration) {
       secureSocket.destroy();
@@ -364,6 +411,11 @@ abstract class ClientBase {
     isSocketClosingExpected = true;
     originalSocket.destroy();
     isSocketClosingExpected = false;
+    connectionInfo = ConnectionInfo(
+      connectionInfo.host,
+      connectionInfo.port,
+      isSecure: true,
+    );
     connect(secureSocket);
   }
 
@@ -435,6 +487,7 @@ abstract class ClientBase {
   Future<void> abort() async {
     _connectionGeneration++;
     _cancelPendingConnection();
+    _signalAbort();
     _failGreeting('connection aborted');
     _greetingBytes.clear();
     isLoggedIn = false;

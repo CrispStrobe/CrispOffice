@@ -84,21 +84,31 @@ plan exercises the conditional unsupported transport and portable MIME paths.
 Development checks and static review do not substitute for this final gate;
 the baseline test results above apply only to source `479e1e03`.
 
-The [exact-SDK review](review/tls-sdk-review.md) found an additional blocker
-before freezing acceptance source: during a real stalled TLS handshake, the
-SDK has transferred socket ownership, and aborting the previous `Socket`
-does not close the pending secure connection. T12 remains open in the
-[transport review](review/transport-review.md). The connection lifecycle fix
-and a real local-socket cancellation regression are in progress. This
-checkpoint preserves the plans and review without claiming a final pass.
+The [exact-SDK review](review/tls-sdk-review.md) identified T12 before freezing
+acceptance source: during a real stalled TLS handshake, the SDK has transferred
+socket ownership, and aborting the previous `Socket` cannot close the pending
+secure connection. The repair retains the actual TCP owner throughout TLS and
+races negotiation against abort. It also preserves queued-write, flush and
+write-close behavior. The original finding remains in the review history.
+
+Development checks pass 39 native provider cases plus 14 TLS/manual/write
+controls. Ten of the added controls use real local TLS in both modes, including
+stalled-handshake cancellation/deadlines, successful authenticated exchanges,
+default-trust rejection and hostname rejection. Two cover manual sockets; two
+use a deterministic RawSocket fixture for partial-write/close/abort contracts.
+The strengthened TLS rerun requires actual client certificate-validation
+errors, a secure LOGIN and a bounded deadline result. These development
+results do not replace the pending frozen-source qualification.
 
 ## Continuation boundaries
 
 The transport remains a bounded M06 foundation. `maxUidScan` bounds the highest
 numeric UID, default 10,000 and maximum 100,000; it is not a message-count cap.
-Larger or sparse UID spaces require discovered-UID pagination. Controlled
-protocol fixtures do not qualify actual TLS handshakes, certificate/hostname
-rejection or live mailbox interoperability. Mutation uncertainty is surfaced
+Larger or sparse UID spaces require discovered-UID pagination. Real loopback
+TLS controls complement the controlled protocol fixtures; live mailbox
+interoperability and other operating-system implementations remain separate
+gates. Deterministic partial-write controls do not establish actual Windows
+execution or operating-system backpressure. Mutation uncertainty is surfaced
 for reconciliation, and delete marks `\Deleted` without expunging.
 System-browser OAuth, actual browser storage, live disposable-account
 interoperability, SMTP composition/submission and the account-aware UI retain

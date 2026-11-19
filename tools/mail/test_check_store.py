@@ -484,8 +484,13 @@ class TestCommandBounds(unittest.TestCase):
             # A killed orphan may briefly remain a zombie until the host reaps it.
             state = Path(f'/proc/{pid}/stat')
             deadline = time.monotonic() + 2
-            while state.exists():
-                if state.read_text().split()[2] == 'Z':
+            while True:
+                try:
+                    process_state = state.read_text().split()[2]
+                except (FileNotFoundError, ProcessLookupError):
+                    # Reaping may remove the process before or during read.
+                    break
+                if process_state == 'Z':
                     break
                 if time.monotonic() >= deadline:
                     self.fail('Timed-out launcher left a running child process')

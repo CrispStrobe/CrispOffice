@@ -105,6 +105,9 @@ final class ImapFixture {
   String greeting = '* OK controlled fixture\r\n';
   bool lowerCaseFetch = false;
   bool malformedFetchPrefix = false;
+  String fetchSequenceSeparator = ' ';
+  String fetchListSeparator = ' ';
+  bool bareFetchLiteral = false;
   bool acknowledgeWithoutChange = false;
   bool closeAfterMutation = false;
   final List<String> beforeFetchResponses = [];
@@ -273,7 +276,11 @@ final class ImapFixture {
             : 'BODY[]';
         for (var copy = 0; copy < (duplicateFetch ? 2 : 1); copy++) {
           var prefix =
-              '* $sequence FETCH (UID $uid$flagText $body {${literal.length}}\r\n';
+              '* $sequence${fetchSequenceSeparator}FETCH$fetchListSeparator'
+              '(UID $uid$flagText $body {${literal.length}}\r\n';
+          if (bareFetchLiteral) {
+            prefix = '* $sequence FETCH{${literal.length}}\r\n';
+          }
           if (lowerCaseFetch) prefix = prefix.toLowerCase();
           if (malformedFetchPrefix) {
             prefix = prefix.replaceFirst('* $sequence ', '* x ');

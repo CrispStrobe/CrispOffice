@@ -44,7 +44,7 @@ text containing the word FETCH is kept separate from message data. The runtime
 replay helper now validates exact locked/workspace package names instead of a
 historical fixed package count, including the newly added transport member.
 
-The committed native plan selects 59 suites: five native transport suites, all
+The committed native plan selects 60 suites: six native transport suites, all
 six MIME consumer suites, all four reader UI suites, and 44 shared protocol and
 lifecycle suites. The separate Node plan selects seven suites: the transport's
 unsupported-browser boundary and all six MIME suites. The existing complete

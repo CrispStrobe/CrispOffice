@@ -1,5 +1,5 @@
 {
-  "description": "Frozen integrated M06 native protocol, real SQLite coordinator integration, affected inherited protocol/client regressions, MIME and complete saved-message reader. Core/store full native/Node/compile qualification is recorded separately by check_store.py on the same source. Controlled fixture success is not live TLS/OAuth/disposable-account acceptance.",
+  "description": "Frozen integrated M06 native protocol, real loopback TLS lifecycle/trust/hostname controls, real SQLite coordinator integration, affected inherited protocol/client regressions, MIME and complete saved-message reader. Core/store full native/Node/compile qualification is recorded separately by check_store.py on the same source. Local TLS fixture success is not live OAuth/disposable-account acceptance or other-platform qualification.",
   "groups": [
     {
       "name": "transport-native",
@@ -8,7 +8,8 @@
       "tests": [
         "test/configuration_test.dart",
         "test/native_provider_test.dart",
-        "test/host_store_integration_test.dart"
+        "test/host_store_integration_test.dart",
+        "test/native_tls_test.dart"
       ]
     },
     {
@@ -74,7 +75,9 @@
     "packages/quds_mail_transport/test/configuration_test.dart",
     "packages/quds_mail_transport/test/host_store_integration_test.dart",
     "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/native_tls_test.dart",
     "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/support/tls_server.dart",
     "packages/quds_mail_transport/test/unsupported_test.dart",
     "third_party/enough_mail/lib/imap.dart",
     "third_party/enough_mail/lib/src/imap/imap_client.dart",
@@ -83,6 +86,7 @@
     "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
     "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
     "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/client_connection.dart",
     "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
     "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart"
   ],
@@ -96,7 +100,9 @@
     "packages/quds_mail_transport/test/configuration_test.dart",
     "packages/quds_mail_transport/test/host_store_integration_test.dart",
     "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/native_tls_test.dart",
     "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_transport/test/support/tls_server.dart",
     "packages/quds_mail_transport/test/unsupported_test.dart",
     "third_party/enough_mail/lib/imap.dart",
     "third_party/enough_mail/lib/src/imap/imap_client.dart",
@@ -105,6 +111,7 @@
     "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart",
     "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart",
     "third_party/enough_mail/lib/src/private/util/client_base.dart",
+    "third_party/enough_mail/lib/src/private/util/client_connection.dart",
     "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart",
     "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart"
   ],
