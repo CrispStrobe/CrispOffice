@@ -1,5 +1,9 @@
 # Office integration for remote main — 19 November 2026
 
+> Captured source record retained with its original qualification state. The
+> [later synchronization report](../office-main-sync-20261119/README.md)
+> records the combined source, review fixes and final local acceptance.
+
 The final integrated application, fixtures, execution harness and test-plan
 source is **`ac1e4c8c788ea608402c2260488235c0189efcba`**. Both fresh local
 qualification receipts bind to that same commit: **632 passing test executions,

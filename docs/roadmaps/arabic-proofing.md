@@ -1,7 +1,9 @@
 # Arabic proofing roadmap
 
-Accepted: 19 November 2026. Scope: Arabic spelling first, then grammar rules,
-then optional model-backed analysis. Nothing here is enabled by default yet.
+Accepted: 19 November 2026. Scope: Arabic spelling, independently authored
+writing rules, then optional model-backed analysis. The initial writing rules
+are registered for Arabic-language text; the Hunspell adapter and in-app
+dictionary download remain planned.
 
 ## Constraints
 
@@ -69,10 +71,17 @@ then optional model-backed analysis. Nothing here is enabled by default yet.
    UTF-16 mapping of findings; the existing provider contract already reports
    original UTF-16 offsets. Personal vocabulary and ignore controls as for
    German.
-3. **Arabic grammar rules.** First an independently authored, MIT-licensed set
-   in the existing rule framework for checks that need no model: hamza on alif
-   (أ/إ/ا), ta marbuta vs ha (ة/ه), alif maqsura vs ya (ى/ي), Arabic
-   punctuation (، ؛ ؟) and spacing, tatweel, repeated words, إن/أن. Then
+3. **Arabic writing rules (initial implementation).** The independently
+   authored `ArabicWritingRulesProvider` is registered in default Word proofing
+   and Studio for Arabic-language text. Its closed lists check hamza on alif
+   (أ/إ/ا), definite ta marbuta vs ha (ة/ه), alif maqsura vs ya (ى/ي), Arabic
+   punctuation (، ؛ ؟) and spacing, tatweel, closed-class word repetition,
+   detached conjunction waw and mixed digit systems. Suggestions are advisory;
+   context-dependent forms such as إن/أن offer alternatives rather than a
+   syntactic decision. Matching preserves combining hamza and original UTF-16
+   offsets, respects mixed-script word boundaries, and keeps links, email and
+   closed code spans untouched. A Hunspell dictionary or model is not needed
+   for these initial rules. Broader linguistic acceptance remains separate work. Next,
    assess the LanguageTool Arabic rules as downloadable data (licence of the
    XML and of the POS dictionary; which rule features they use) and, if clean,
    interpret them natively.

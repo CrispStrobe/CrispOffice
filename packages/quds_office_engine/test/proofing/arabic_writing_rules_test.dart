@@ -152,6 +152,18 @@ void main() {
     'الحياة جميلة والصلاة عماد الدين.',
     'الله أكبر.',
     'التوجيه والتنبيه مهمان.',
+    // Combining hamza is part of the spelling, not an optional vowel mark.
+    'ذهب ا\u0655لى البيت.',
+    'ا\u0654نا في البيت.',
+    // Arabic substrings in mixed-script identifiers are not prose words.
+    'المعرف xالى واسم الىbar.',
+    'المعرف 123الى وآخر الى123.',
+    'القيمة _الى أو الى_.',
+    'القيمة x\u200Dالى.',
+    'fooو هو',
+    'و المدرسهX',
+    // لان is also the valid verb "became soft", not necessarily لأن.
+    'لان الحديد بالحرارة.',
   ];
   for (final String text in controls) {
     test('control has no finding: $text', () async {

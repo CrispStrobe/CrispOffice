@@ -98,9 +98,11 @@ cancellation/deadlines, trust and hostname refusal, credential sequencing and
 write lifecycle. These do not establish external-provider or other-OS acceptance.
 
 Synchronization discovers existing UIDs with strict bounded simple SEARCH, then
-fetches at most the requested number of header/flag records. Scoped v2 cursors
+fetches at most the requested number of header/flag records. Scoped v3 cursors
 retain UIDVALIDITY and a fixed sweep ceiling and can resume persisted v1 numeric
-window cursors. An authoritative `MailImapSyncRange`, upserts, actual stored
+window and v2 discovery cursors. Each returned page advances a monotonic cursor
+revision, including completed or empty sweeps, so cursor comparison rejects stale
+concurrent observations instead of reusing the same completed-sweep value. An authoritative `MailImapSyncRange`, upserts, actual stored
 absence tombstones and the next cursor commit atomically through the coordinator
 and store. Numeric gaps create no synthetic tombstone rows. Pending local edits
 for expunged messages retain their reconciliation state.
@@ -137,12 +139,14 @@ persistence remain separate gates.
 
 ## Local verification
 
-### Discovered-UID continuation — qualification in progress
+### Discovered-UID and cursor-freshness continuation — qualification in progress
 
-The [new continuation report](../../validation/mail-uid-pagination-20261119/README.md)
-records incoming reconciliation, the discovery/range implementation, fresh
-runtime provenance and committed local gate plans. Earlier counts below retain
-their original source identities and are not evidence for this new increment.
+The [discovery source report](../../validation/mail-uid-pagination-20261119/README.md)
+records the incoming discovery/range implementation. The
+[complete synchronization report](../../validation/office-main-sync-20261119/README.md)
+adds the completed-sweep cursor freshness fix and fresh combined local
+qualification. Earlier counts below retain their original source identities
+and are not evidence for this increment.
 
 
 ### Historical integration — PASS at `ac1e4c8c`

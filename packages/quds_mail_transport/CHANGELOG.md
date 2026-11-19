@@ -3,7 +3,10 @@
 ## 0.1.0
 
 - Page bounded synchronization by strictly discovered UIDs across sparse/high
-  UID spaces, retaining v1 cursor continuation and fixed sweep ceilings.
+  UID spaces, retaining v1/v2 cursor continuation and fixed sweep ceilings.
+- Advance a durable v3 page revision on every observation, including empty and
+  completed sweeps, so stale pages cannot restore expunged data or overwrite
+  newer flags. Reject revision exhaustion before protocol work.
 - Reconcile typed UID ranges atomically through storage without invented-hole
   tombstones. Bound discovery by existing UID count and protocol bytes; retain
   an explicitly configured legacy numeric ceiling without applying one by default.

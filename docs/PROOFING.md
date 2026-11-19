@@ -41,8 +41,13 @@ as data, never as executable code) and the resource assessment. First step:
 the AyaSpell Hunspell dictionary under its MPL 1.1 option, built reproducibly by
 `tools/proofing/ayaspell/build_bundle.py` from a pinned LibreOffice packaging,
 then an MPL Hunspell engine adapter, then independently authored Arabic rules.
-The Hunspell adapter and in-app Arabic download workflow remain planned.
-Nothing Arabic is enabled or downloaded by default.
+The initial Arabic writing rules are registered in the default Word proofing
+service and Studio. They run for Arabic-language text and offer advisory
+suggestions from closed word lists, punctuation/spacing checks, repetition,
+tatweel and mixed-digit checks. They preserve original UTF-16 offsets and
+exclude links, email and closed code spans.
+The Hunspell adapter and in-app Arabic download workflow remain planned;
+no Arabic dictionary is downloaded automatically.
 
 ## Native spelling continuation — 18 November 2026
 

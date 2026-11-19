@@ -1,5 +1,9 @@
 # Mail UID discovery continuation — 19 November 2026
 
+> Captured source record retained with its original qualification state. The
+> [later synchronization report](../office-main-sync-20261119/README.md)
+> records the combined source, review fixes and final local acceptance.
+
 ## Qualification preparation
 
 The local runtime and committed plans are prepared. **Final product gates have
