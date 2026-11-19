@@ -409,6 +409,21 @@ class PmlShape {
   /// Rich paragraph/run model when the source text has not been replaced.
   List<PmlTextParagraph> richText;
 
+  /// Whether imported rich runs still describe the exposed text and formatting.
+  ///
+  /// Scalar edits are serialized onto the source XML. Until it is reparsed,
+  /// renderers must use those edited values instead of the old run snapshot.
+  bool get hasCurrentRichText {
+    if (richText.isEmpty) return false;
+    final PmlTextSource? source = textSource;
+    return source == null ||
+        (source.text == text &&
+            source.fontSizePt == fontSizePt &&
+            source.textColor == textColor &&
+            source.textAlign == textAlign &&
+            source.rightToLeft == rightToLeft);
+  }
+
   /// Shapes that share a [groupId] move together.
   int? groupId;
 
@@ -495,7 +510,7 @@ class PmlSlide {
     List<PmlShape>? shapes,
     this.layoutName = 'Blank',
     this.masterName = 'Office Theme',
-    this.background = 'FFFFFF',
+    this.background = '',
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
@@ -517,6 +532,7 @@ class PmlSlide {
   String masterName;
 
   /// Resolved solid slide background (`RRGGBB`), inherited from layout/master.
+  /// Empty for an authored slide that still inherits its presentation background.
   String background;
 
   /// Original owning part, retained when slides are reordered.

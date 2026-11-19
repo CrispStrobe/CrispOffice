@@ -336,7 +336,7 @@ abstract final class OfficePdfExport {
         0,
         slideW,
         slideH,
-        slide.background.isEmpty ? 'FFFFFF' : slide.background,
+        slide.background.isEmpty ? deck.master.background : slide.background,
       );
       for (final PmlShape shape in deck.master.shapes) {
         _paintShape(sink, deck, slide, shape);
@@ -458,7 +458,7 @@ abstract final class OfficePdfExport {
           0,
           slideW,
           slideH,
-          slide.background.isEmpty ? 'FFFFFF' : slide.background,
+          slide.background.isEmpty ? deck.master.background : slide.background,
         );
         for (final PmlShape shape in deck.master.shapes) {
           _paintShape(sink, deck, slide, shape);
@@ -1661,9 +1661,7 @@ abstract final class OfficePdfExport {
       }
       final String text = deck.resolveText(shape, slide);
       if (text.isNotEmpty) {
-        final bool richCurrent =
-            shape.richText.isNotEmpty &&
-            (shape.textSource?.text ?? shape.text) == shape.text;
+        final bool richCurrent = shape.hasCurrentRichText && text == shape.text;
         if (richCurrent) {
           _paintRichText(sink, shape, x, y, w, h);
         } else {
