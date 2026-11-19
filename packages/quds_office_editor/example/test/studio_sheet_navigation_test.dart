@@ -77,6 +77,11 @@ Future<SheetEditorController> _studio(WidgetTester tester) async {
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(const QudsOfficeStudioApp());
   await tester.pump();
+  // Worksheet navigation does not exercise the background Word proofreader.
+  // Keep its asynchronous provider timeouts out of these focused UI tests.
+  final word = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
+  word.controller.proofing.enabled = false;
+  word.controller.proofing.configure(OfficeProofingService(providers: []));
   expect(find.byTooltip('Language'), findsOneWidget);
   await tester.pump();
   await tester.tap(find.byTooltip('Spreadsheets').first);
@@ -219,10 +224,12 @@ void main() {
       await tester.pump();
       await tester.tap(find.byTooltip(command));
       await tester.pump();
-      await tester.pump(const Duration(milliseconds: 300));
+      await tester.pump(const Duration(milliseconds: 250));
       expect(find.text('Save changes?'), findsOneWidget);
       expect(controller.workbook, same(previous));
       await tester.tap(find.widgetWithText(TextButton, 'Don’t Save'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 250));
       await tester.pump();
       expect(tester.takeException(), isNull);
       expect(controller.workbook, isNot(same(previous)));

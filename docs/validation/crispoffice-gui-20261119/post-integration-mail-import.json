@@ -1,0 +1,56 @@
+{
+  "status": "accepted",
+  "started_at_utc": "2026-11-19T17:38:18.567970+00:00",
+  "incoming_commit": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+  "integrated_head": "df7f4b4c8df63cbcf80d9087d06707d166a2c678",
+  "prior_verified_head": "ecdc74d87e71f7a1d7c542f8877911a5ffbee014",
+  "source_path": "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart",
+  "source_sha256_before": "480b121c891db73bd4d3a18a935cbfc3eed725dfdd870f45dc73ab695fe57978",
+  "source_sha256_after": "502daf24c427f95a801a0e6495eadd778096d922c6cdee079f669fd0885341cd",
+  "source_delta_paths": [
+    "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart"
+  ],
+  "scope": "Strict analysis and 30 existing tests for canonical temporary directory setup; no product source edits",
+  "runs": [
+    {
+      "check": "post-integration-mail-import-analysis",
+      "command": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_dart.sh",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "test/studio_mail_archive_directory_import_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "elapsed_seconds": 10.07,
+      "log": "/workspace/scratch/9c3338a48b2c/validation/post-integration-mail-import-analysis.log",
+      "log_sha256": "9f8dff458acbe3aa3d867f97627140593845e146c06846226184af6b86c5dd45"
+    },
+    {
+      "check": "post-integration-mail-import",
+      "command": [
+        "/workspace/scratch/9c3338a48b2c/toolchain/run_flutter.sh",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/studio_mail_archive_directory_import_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9c3338a48b2c/crispoffice/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "elapsed_seconds": 8.01,
+      "log": "/workspace/scratch/9c3338a48b2c/validation/post-integration-mail-import.log",
+      "log_sha256": "53848f05a634b4fa15aca02ffdd6c066169f69a7b88ef89a8f3e9178c2e53aaf"
+    }
+  ],
+  "finished_at_utc": "2026-11-19T17:38:36.663406+00:00",
+  "test_cases": 30,
+  "source_files_compared": 77,
+  "source_changes_during_checks": [],
+  "accepted_case_count_unchanged": 634,
+  "case_names_unchanged": true,
+  "final_source_set_sha256": "def8a91709d3f58c3d4eb830f413284f8858d5e3aa68ee9c51a1a8afd3a43937",
+  "final_manifest_sha256": "f6064d9c27cc76528e5b13998b3bcace54a6f96cb290060e1f2f9a6eb8f0926e",
+  "acceptance_summary_sha256": "e16b4bdcc0eeb7bb636d5bc4c811a7744430839b5a81c1346f2884d095b42730"
+}
