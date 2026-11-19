@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "review_completed_at_utc": "2026-11-19 17:56:44 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "comparison_base": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+  "scope": "Initial read-only review of current advertised fork branches, open/recent PRs, and all advertised upstream branches. The root agent separately fetches all PR refs and performs actual integration.",
+  "method": [
+    "GitHub connector GET repository, branches, pull requests, commits and comparisons.",
+    "Local git merge-base --is-ancestor against the pinned comparison base.",
+    "For old accepted branches: enumerate paths changed from git merge-base(branch_head, accepted_merge) to branch_head, compare git rev-parse head:path with accepted_merge:path. This checks blob equality at the accepted merge, not current main file equality.",
+    "Fresh GitHub reads confirm exact old PR heads and accepted merge SHAs. No GitHub Actions or status checks queried."
+  ],
+  "fork_branch_count": 14,
+  "fork_branches": [
+    {
+      "name": "codex/crispoffice-gui-20261119",
+      "head": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "relation_to_base": "behind",
+      "ahead_by": 0,
+      "behind_by": 6
+    },
+    {
+      "name": "codex/mail-archive-restore-20261119",
+      "head": "37ac6ea8a08225a42098c455deb5375837912eec",
+      "relation_to_base": "ahead",
+      "ahead_by": 4,
+      "behind_by": 0
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "relation_to_base": "diverged",
+      "ahead_by": 2,
+      "behind_by": 901
+    },
+    {
+      "name": "codex/vba-control-flow-20261119",
+      "head": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "relation_to_base": "behind",
+      "ahead_by": 0,
+      "behind_by": 1
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "relation_to_base": "diverged",
+      "ahead_by": 1,
+      "behind_by": 900
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "relation_to_base": "diverged",
+      "ahead_by": 1,
+      "behind_by": 896
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "relation_to_base": "diverged",
+      "ahead_by": 1,
+      "behind_by": 901
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "relation_to_base": "diverged",
+      "ahead_by": 2,
+      "behind_by": 898
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "relation_to_base": "diverged",
+      "ahead_by": 1,
+      "behind_by": 899
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "relation_to_base": "diverged",
+      "ahead_by": 1,
+      "behind_by": 885
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "relation_to_base": "diverged",
+      "ahead_by": 1,
+      "behind_by": 881
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "head": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "relation_to_base": "behind",
+      "ahead_by": 0,
+      "behind_by": 531
+    },
+    {
+      "name": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "relation_to_base": "diverged",
+      "ahead_by": 1,
+      "behind_by": 697
+    },
+    {
+      "name": "main",
+      "head": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "relation_to_base": "identical",
+      "ahead_by": 0,
+      "behind_by": 0
+    }
+  ],
+  "new_contributions": [
+    {
+      "pr": 209,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/209",
+      "draft_at_inspection": true,
+      "branch": "codex/mail-archive-restore-20261119",
+      "head": "37ac6ea8a08225a42098c455deb5375837912eec",
+      "ahead_by": 4,
+      "behind_by": 0,
+      "changed_file_count": 21,
+      "affected_areas": [
+        "mail store",
+        "Studio mail archive restoration",
+        "tests",
+        "documentation and validation harness"
+      ],
+      "acceptance_state_at_inspection": "Author states final local acceptance is in progress; no complete acceptance receipt was present at inspected head.",
+      "disposition": "Root plans to integrate this exact head, validate locally and refresh author publication before final merge."
+    }
+  ],
+  "historical_equivalence": [
+    {
+      "branch": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "pr": 135,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/135",
+      "accepted_merge": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "pr_head_and_merge_freshly_confirmed": true,
+      "accepted_merge_is_ancestor_of_base": true,
+      "changed_paths_compared": 7,
+      "matching_blob_ids": 7,
+      "mismatched_paths": []
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "pr": 137,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/137",
+      "accepted_merge": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "pr_head_and_merge_freshly_confirmed": true,
+      "accepted_merge_is_ancestor_of_base": true,
+      "changed_paths_compared": 4,
+      "matching_blob_ids": 4,
+      "mismatched_paths": []
+    },
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "pr": 140,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/140",
+      "accepted_merge": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "pr_head_and_merge_freshly_confirmed": true,
+      "accepted_merge_is_ancestor_of_base": true,
+      "changed_paths_compared": 37,
+      "matching_blob_ids": 37,
+      "mismatched_paths": []
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "pr": 141,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/141",
+      "accepted_merge": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "pr_head_and_merge_freshly_confirmed": true,
+      "accepted_merge_is_ancestor_of_base": true,
+      "changed_paths_compared": 8,
+      "matching_blob_ids": 8,
+      "mismatched_paths": []
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "pr": 145,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/145",
+      "accepted_merge": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "pr_head_and_merge_freshly_confirmed": true,
+      "accepted_merge_is_ancestor_of_base": true,
+      "changed_paths_compared": 7,
+      "matching_blob_ids": 7,
+      "mismatched_paths": []
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "pr": 149,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/149",
+      "accepted_merge": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "pr_head_and_merge_freshly_confirmed": true,
+      "accepted_merge_is_ancestor_of_base": true,
+      "changed_paths_compared": 221,
+      "matching_blob_ids": 221,
+      "mismatched_paths": []
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "pr": 151,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/151",
+      "accepted_merge": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "pr_head_and_merge_freshly_confirmed": true,
+      "accepted_merge_is_ancestor_of_base": true,
+      "changed_paths_compared": 7,
+      "matching_blob_ids": 7,
+      "mismatched_paths": []
+    }
+  ],
+  "subsumed_docs_branches": [
+    {
+      "branch": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "change": "Remove color scales from remaining work",
+      "fresh_check": "Entire commit patch only removes the named capability from remaining work; the current main paragraph already omits color scales, data bars and icon sets."
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "change": "Remove data bars from remaining work",
+      "fresh_check": "Entire commit patch only removes the named capability from remaining work; the current main paragraph already omits color scales, data bars and icon sets."
+    }
+  ],
+  "upstream": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "branches": [
+      {
+        "name": "ci/flutter-workspace",
+        "head": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "is_ancestor_of_base": true
+      },
+      {
+        "name": "cursor/class-certificates-2db8",
+        "head": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "is_ancestor_of_base": true
+      },
+      {
+        "name": "cursor/cloud-agent-1790580069020-0rk1h",
+        "head": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "is_ancestor_of_base": true
+      },
+      {
+        "name": "main",
+        "head": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "is_ancestor_of_base": true
+      }
+    ],
+    "new_commit_count": 0
+  },
+  "limitations": [
+    "This is a time-bounded initial snapshot; the mail branch was actively publishing and must be refreshed before final merge.",
+    "Current main product correctness is not established by historical blob equality; local qualification is recorded separately.",
+    "No repository branches, PRs, comments or other remote resources were changed by this review."
+  ]
+}
