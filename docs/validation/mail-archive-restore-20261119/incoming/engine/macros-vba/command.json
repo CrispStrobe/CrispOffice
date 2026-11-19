@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/workspace/scratch/f815a4ae580f/runtime/bin/dart",
+    "--disable-dart-dev",
+    "--packages=/workspace/scratch/f815a4ae580f/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/f815a4ae580f/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--platform=vm",
+    "--compiler=kernel",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/office_macro_cli_test.dart",
+    "test/office_macro_expansion_test.dart",
+    "test/office_macro_language_test.dart",
+    "test/office_macro_mcp_test.dart",
+    "test/office_macro_runtime_test.dart",
+    "test/office_vba_control_flow_boundaries_test.dart",
+    "test/office_vba_control_flow_integration_test.dart",
+    "test/office_vba_control_flow_test.dart",
+    "test/office_vba_integration_test.dart",
+    "test/office_vba_language_test.dart",
+    "test/office_vba_procedure_boundaries_test.dart",
+    "test/office_vba_procedures_integration_test.dart",
+    "test/office_vba_procedures_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_engine",
+  "head_before": "358544a48466c942873a4718a87fa9d1c2be11f7",
+  "name": "macros-vba",
+  "source_before_sha256": "01c915c68f5456cb0eb8a72488f1037df60410e3f80915699f1de37e6f1d714f",
+  "started_at_utc": "2026-11-19T17:56:19.085987+00:00",
+  "timeout_seconds": 600
+}

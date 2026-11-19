@@ -1,0 +1,19 @@
+{
+  "accepted": true,
+  "argv": [
+    "git",
+    "diff",
+    "--check",
+    "0c29b5d8a0a92148dcd95f3282b4d43c462be20d"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite",
+  "elapsed_seconds": 0.115,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "expected_test_files": [],
+  "finished_at_utc": "2026-11-19T17:54:13.611815+00:00",
+  "name": "whitespace",
+  "started_at_utc": "2026-11-19T17:54:13.497042+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,19 @@
+{
+  "commands": [],
+  "error": "Unified execution reported network approval cancelled during implicit dart test dependency resolution. No stdout/stderr reporter events were produced. No tests are counted from this attempt.",
+  "executed_runner": "executed-runner.py",
+  "head_at_start": "a9c1ce49993bda4fc29b1cf3397a7ee2731e799c",
+  "package_config_sha256": "5b34c4df660897721b774edf91fcfa9b57e1a29311705001e5e331babe0309a3",
+  "parser_sha256": "299ce6d8fffae555e9a0381903815156fd7d416046e1dbd66c1a2e4bb344a6a5",
+  "phase": "engine",
+  "readiness_receipt_sha256": "886302d11ac73dfa56ead721bd07941f085e3379e018e9bee3c062116fa07d37",
+  "runner_sha256": "4d53b00971d827c5b8671159860eb459e56170ef40360241d27d0c550dcbd136",
+  "runtime_receipt_sha256": "42740899a85b0df93963eb420bb8e0640b62d026739cd405537ed228de0a0161",
+  "started_at_utc": "2026-11-19T17:44:30.298253+00:00",
+  "status": "interrupted_before_test_reporter",
+  "test_totals": {
+    "failed": 0,
+    "passed": 0,
+    "skipped": 0
+  }
+}

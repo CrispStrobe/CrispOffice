@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-19T18:15:22.683989+00:00",
+  "candidate_commit": "1a99845fe628c9e539d4bca7e7c586c5616da267",
+  "candidate_tree": "50a2e5a00cb30f81036fa29311c3fcf6bc24da35",
+  "accepted_source_commit": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+  "accepted_source_tree": "8e21cf2370f18ee6f02836cb6b465799a6512004",
+  "evidence_commit": "1a99845fe628c9e539d4bca7e7c586c5616da267",
+  "integrated_main_commit": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+  "source_evidence_and_incoming_are_ancestors": true,
+  "all_changes_since_accepted_source_are_validation_documentation": true,
+  "post_evidence_changes": [],
+  "source_inputs_rehashed": 4441,
+  "source_inputs_match_accepted_inventory_and_candidate_git_blobs": true,
+  "mail_receipt_sha256": "43ccfff8afae97aa4170459fc10c3ea05991698778f8e065fe1145bc3ff5d990",
+  "independent_audit_sha256": "4089c810324a236d7f5a20d03ca9f816372ab8dbbe5fa810c54dd90b007a4cb8",
+  "verified_test_totals": {
+    "failed": 0,
+    "passed": 1640,
+    "skipped": 0
+  },
+  "verified_test_files": 90,
+  "github_actions_used": false,
+  "note": "This check binds the named candidate. The final publication commit adds only the allowlisted documentation; its merge tree is checked again after publication."
+}

@@ -9,6 +9,8 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 import 'studio_mail_archive_host.dart';
 import 'studio_mail_archive_directory_import.dart';
+import 'studio_mail_archive_restore.dart';
+import 'studio_mail_archive_restore_strings.dart';
 import 'studio_mail_archive_strings.dart';
 import 'studio_strings.dart';
 
@@ -64,6 +66,8 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
   MailReaderController? _reader;
   List<MailArchiveOrigin> _origins = const [];
   List<MailArchiveIntegrityIssue> _issues = const [];
+  List<MailArchiveRestoreFailure> _restoreFailures = const [];
+  int _restoreDroppedFailures = 0;
   String? _error;
   String? _notice;
   String? _exportDirectory;
@@ -412,6 +416,8 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
       _notice = null;
       _processed = 0;
       _issues = const [];
+      _restoreFailures = const [];
+      _restoreDroppedFailures = 0;
     });
     try {
       await action(store, cancellation.token, generation);
@@ -619,6 +625,83 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
         );
         if (report.problem != null) {
           _error = s.archiveProblem(report.problem!.code);
+        }
+      });
+    });
+    if (mounted) {
+      final operationError = _error;
+      await _refresh();
+      if (mounted && _error == null && operationError != null) {
+        setState(() => _error = operationError);
+      }
+    }
+  }
+
+  Future<void> _restoreExport() async {
+    await _work((store, cancellation, generation) async {
+      final path = await _files.pickDirectory();
+      if (!_current(generation, store) ||
+          cancellation.isCancelled ||
+          path == null) {
+        return;
+      }
+      final inspected = await _safe(
+        () => store.inspectRestore(path, cancellation: cancellation),
+      );
+      if (!_current(generation, store) || cancellation.isCancelled) return;
+      if (inspected case MailFailure(:final problem)) {
+        setState(() => _error = s.archiveProblem(problem.code));
+        return;
+      }
+      final plan = (inspected as MailSuccess<MailArchiveRestorePlan>).value;
+      if (!mounted) return;
+      final options = await showDialog<StudioMailArchiveRestoreOptions>(
+        context: context,
+        builder: (_) => StudioMailArchiveRestoreDialog(
+          strings: s,
+          plan: plan,
+          indexAttachmentText: _indexAttachments,
+        ),
+      );
+      if (!_current(generation, store) ||
+          cancellation.isCancelled ||
+          options == null) {
+        return;
+      }
+      setState(() => _indexAttachments = options.indexAttachmentText);
+      final report = await store.restoreExport(
+        plan,
+        indexAttachmentText: options.indexAttachmentText,
+        cancellation: cancellation,
+        onProgress: (progress) {
+          if (!_current(generation, store)) return;
+          setState(() {
+            _processed = progress.processed;
+            _notice = s.archiveRestoreCounts(
+              progress.saved,
+              progress.duplicates,
+              progress.failed,
+              progress.planned,
+              progress.originsAdded,
+              progress.bytes,
+              progress.indexWarnings,
+            );
+          });
+          if (_verbose) {
+            debugPrint(
+              '[mail.archive.restore] ${jsonEncode(progress.toJson())}',
+            );
+          }
+        },
+      );
+      if (!_current(generation, store)) return;
+      setState(() {
+        _processed = report.processed;
+        _notice = s.archiveRestoreSummary(report);
+        _restoreFailures = report.failures;
+        _restoreDroppedFailures = report.droppedFailures;
+        if (report.problem case final problem?) {
+          _error = s.archiveProblem(problem.code);
         }
       });
     });
@@ -1017,6 +1100,12 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
               label: Text(s.archiveImportDirectory),
             ),
             OutlinedButton.icon(
+              key: const ValueKey('archive-restore-export'),
+              onPressed: _ready && !_searching ? _restoreExport : null,
+              icon: const Icon(Icons.restore_page_outlined),
+              label: Text(s.archiveRestoreExport),
+            ),
+            OutlinedButton.icon(
               key: const ValueKey('archive-bulk-export'),
               onPressed: _ready && !_searching ? () => _bulkExport() : null,
               icon: const Icon(Icons.drive_folder_upload_outlined),
@@ -1207,6 +1296,25 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
               _notice!,
               key: const ValueKey('archive-notice'),
             ),
+          ),
+        if (_restoreFailures.isNotEmpty || _restoreDroppedFailures > 0)
+          ExpansionTile(
+            key: const ValueKey('archive-restore-failures'),
+            title: Text(s.archiveRestoreFailures),
+            children: [
+              Text(
+                s.archiveFolderItemFailures(
+                  _restoreFailures.length,
+                  _restoreDroppedFailures,
+                ),
+              ),
+              for (final failure in _restoreFailures)
+                ListTile(
+                  dense: true,
+                  title: Text(s.archiveRestoreItem(failure.ordinal)),
+                  subtitle: Text(s.archiveProblem(failure.code)),
+                ),
+            ],
           ),
         if (_issues.isNotEmpty)
           ExpansionTile(

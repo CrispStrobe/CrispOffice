@@ -221,12 +221,56 @@ final class SqliteMailArchive {
     bool indexAttachmentText = false,
     MailCancellationToken? cancellation,
     MailOperationLease? lease,
+  }) => archiveMessageWithOrigins(
+    message,
+    origins: [origin],
+    indexAttachmentText: indexAttachmentText,
+    cancellation: cancellation,
+    lease: lease,
+  );
+
+  /// Atomically retain an original and every supplied provenance record.
+  /// Repeated origins are coalesced after normalization. Invalid origins,
+  /// cancellation, or quota failure roll back the entire current message,
+  /// including any newly added origins on an already archived original.
+  Future<MailResult<MailArchiveImportResult>> archiveMessageWithOrigins(
+    MailMessage message, {
+    required List<MailArchiveOrigin> origins,
+    bool indexAttachmentText = false,
+    MailCancellationToken? cancellation,
+    MailOperationLease? lease,
   }) => _run(MailArchiveOperation.archive, (trace) async {
     cancellation?.throwIfCancelled();
     lease?.checkCurrent();
-    _label(origin.source);
-    _label(origin.sourceMessageId, empty: true);
-    final folder = _folder(origin.folder);
+    if (origins.isEmpty) _fail(MailProblemCode.invalidInput);
+    if (origins.length > limits.maxOrigins) {
+      _fail(MailProblemCode.quotaExceeded);
+    }
+    final copiedOrigins = <MailArchiveOrigin>[];
+    final uniqueOrigins = <String>{};
+    var originUnits = 0;
+    for (final origin in origins) {
+      cancellation?.throwIfCancelled();
+      _label(origin.source);
+      _label(origin.sourceMessageId, empty: true);
+      final folder = _folder(origin.folder);
+      originUnits +=
+          origin.source.length + folder.length + origin.sourceMessageId.length;
+      if (originUnits > limits.maxMetadataCodeUnits) {
+        _fail(MailProblemCode.quotaExceeded);
+      }
+      if (uniqueOrigins.add(
+        jsonEncode([origin.source, folder, origin.sourceMessageId]),
+      )) {
+        copiedOrigins.add(
+          MailArchiveOrigin(
+            source: origin.source,
+            folder: folder,
+            sourceMessageId: origin.sourceMessageId,
+          ),
+        );
+      }
+    }
     if (message.raw.length == 0) _fail(MailProblemCode.invalidInput);
     if (message.raw.length > limits.maxMessageBytes) {
       _fail(MailProblemCode.quotaExceeded);
@@ -312,26 +356,35 @@ final class SqliteMailArchive {
           await _fault?.call(MailArchiveCheckpoint.afterIndex);
         }
         cancellation?.throwIfCancelled();
-        final before = await _rows(
-          'SELECT 1 FROM archive_origins WHERE message=? AND source=? AND folder=? '
-          'AND source_message_id=?',
-          [id, origin.source, folder, origin.sourceMessageId],
-        );
-        if (before.isEmpty) {
-          await _db.customStatement(
-            'INSERT INTO archive_origins(message,source,folder,source_message_id,stored_size) '
-            'VALUES(?,?,?,?,?)',
-            [
-              id,
-              origin.source,
-              folder,
-              origin.sourceMessageId,
-              utf8
-                      .encode(origin.source + folder + origin.sourceMessageId)
-                      .length +
-                  128,
-            ],
+        var originsAdded = 0;
+        for (final origin in copiedOrigins) {
+          cancellation?.throwIfCancelled();
+          final before = await _rows(
+            'SELECT 1 FROM archive_origins WHERE message=? AND source=? AND folder=? '
+            'AND source_message_id=?',
+            [id, origin.source, origin.folder, origin.sourceMessageId],
           );
+          if (before.isEmpty) {
+            await _db.customStatement(
+              'INSERT INTO archive_origins(message,source,folder,source_message_id,stored_size) '
+              'VALUES(?,?,?,?,?)',
+              [
+                id,
+                origin.source,
+                origin.folder,
+                origin.sourceMessageId,
+                utf8
+                        .encode(
+                          origin.source +
+                              origin.folder +
+                              origin.sourceMessageId,
+                        )
+                        .length +
+                    128,
+              ],
+            );
+            originsAdded++;
+          }
         }
         final row = (await _rows(
           'SELECT $_entryColumns FROM archive_items WHERE id=?',
@@ -341,7 +394,8 @@ final class SqliteMailArchive {
         return MailArchiveImportResult(
           entry: _entry(row),
           duplicate: duplicate,
-          originAdded: before.isEmpty,
+          originAdded: originsAdded > 0,
+          originsAdded: originsAdded,
         );
       },
       cancellation: cancellation,

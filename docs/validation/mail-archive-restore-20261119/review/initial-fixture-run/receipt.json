@@ -1,0 +1,201 @@
+{
+  "started_at_utc": "2026-11-19T17:48:24.808854+00:00",
+  "finished_at_utc": "2026-11-19T17:48:42.020280+00:00",
+  "scope": "Independent adversarial manifest restore cases only; source inspection is recorded separately.",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_binary_sha256": "0dfa48d0718507d2a1ab7b90b45ab1d831c4f6adde10530d891ce95fb2f27e59",
+    "package_config_sha256": "5b34c4df660897721b774edf91fcfa9b57e1a29311705001e5e331babe0309a3",
+    "test_entrypoint_sha256": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008",
+    "sqlite": "Default package native asset; no temporary override supplied by this harness."
+  },
+  "commands": [
+    {
+      "name": "format",
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "test/archive_restore_adversarial_test.dart"
+      ],
+      "cwd": "packages/quds_mail_store",
+      "exit_code": 0,
+      "logs": [
+        {
+          "path": "format.stdout.log",
+          "sha256": "ebf8691cd9669b02dd9d748aaf543551b337b2beb44f2d128dc7ffbfa0318f03",
+          "bytes": 46
+        },
+        {
+          "path": "format.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "analysis",
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "test/archive_restore_adversarial_test.dart"
+      ],
+      "cwd": "packages/quds_mail_store",
+      "exit_code": 0,
+      "logs": [
+        {
+          "path": "analysis.stdout.log",
+          "sha256": "fe9ae5c69cec9b5e847f14c3d8284832070d92af4278c717c9a61095211ba27e",
+          "bytes": 68
+        },
+        {
+          "path": "analysis.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "name": "tests",
+      "command": [
+        "dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/f815a4ae580f/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/f815a4ae580f/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=vm",
+        "--compiler=kernel",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/archive_restore_adversarial_test.dart"
+      ],
+      "cwd": "packages/quds_mail_store",
+      "exit_code": 1,
+      "logs": [
+        {
+          "path": "tests.stdout.log",
+          "sha256": "462eb48bd43464401a7e9a35339d3e9f925808d1ce84de7e30a98600e2b60ece",
+          "bytes": 8119
+        },
+        {
+          "path": "tests.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "passed": 13,
+    "failed": 2,
+    "skipped": 0
+  },
+  "cases": [
+    {
+      "id": 3,
+      "name": "a same-size redigested manifest invalidates the confirmed preview",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 4,
+      "name": "a manifest change while parsing stops before the current commit",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 5,
+      "name": "same-size source mutation after decoding does not commit the item",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 6,
+      "name": "a codec cannot replace verified MIME with another original",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 7,
+      "name": "cancellation from confirmed storage diagnostics retains the commit count",
+      "result": "failure",
+      "skipped": false
+    },
+    {
+      "id": 8,
+      "name": "late cancellation also counts new provenance on a duplicate original",
+      "result": "failure",
+      "skipped": false
+    },
+    {
+      "id": 9,
+      "name": "cancellation just before commit leaves original, FTS and provenance absent",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 10,
+      "name": "a corrupt existing raw record never receives new provenance",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 11,
+      "name": "a corrupt existing metadata record never receives new provenance",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 12,
+      "name": "restore reapplies tighter limits to a previously valid preview",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 13,
+      "name": "destination quota rolls back all provenance and indexing on a duplicate",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 14,
+      "name": "failure samples stay bounded and observer errors do not expose content",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 15,
+      "name": "two restorer instances cannot overlap on one archive",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 16,
+      "name": "inspection rejects a symbolic-link ancestor of a regular source directory",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 17,
+      "name": "a source directory replaced by a link during parsing cannot commit",
+      "result": "success",
+      "skipped": false
+    }
+  ],
+  "runner_done": {
+    "success": false,
+    "type": "done",
+    "time": 1338
+  },
+  "source_binding": {
+    "manifest": "source-identities.json",
+    "manifest_sha256": "e7abc59d63273eaa5ac0861049edcb7f81bc403d73bcaaebba71c13d3476d50c",
+    "source_files": 47,
+    "before_after_equal": true,
+    "changed_paths": [],
+    "scope": "All mail core and store Dart library files, executed test, root manifest/lockfile, store manifest and this harness. Dependency and full SDK qualification belongs to the root acceptance receipt."
+  },
+  "accepted": false
+}

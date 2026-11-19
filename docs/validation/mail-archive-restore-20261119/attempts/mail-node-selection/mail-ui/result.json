@@ -1,0 +1,37 @@
+{
+  "accepted": true,
+  "argv": [
+    "/workspace/scratch/f815a4ae580f/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/controller_test.dart",
+    "test/example_test.dart",
+    "test/message_view_test.dart",
+    "test/presentation_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_mail_ui",
+  "elapsed_seconds": 16.381,
+  "environment_overrides": {},
+  "exit_code": 0,
+  "expected_test_files": [
+    "packages/quds_mail_ui/test/controller_test.dart",
+    "packages/quds_mail_ui/test/example_test.dart",
+    "packages/quds_mail_ui/test/message_view_test.dart",
+    "packages/quds_mail_ui/test/presentation_test.dart"
+  ],
+  "finished_at_utc": "2026-11-19T17:58:02.537154+00:00",
+  "missing_files": [],
+  "name": "mail-ui",
+  "started_at_utc": "2026-11-19T17:57:46.155601+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "92b88a46e0799dd32fbf782e66f031ec429c97b03e1881d6eb41a5e0400fdd81",
+  "test_cases_sha256": "9a71e762edc1af85011c2121abb97b499c903d4b52d9ebd9692e5198bb5137ec",
+  "test_counts": {
+    "failed": 0,
+    "passed": 33,
+    "skipped": 0
+  },
+  "unexpected_files": []
+}

@@ -1,0 +1,11 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":48,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_editor/test/office_units_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading /workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_editor/test/office_units_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+{"count":1,"time":4,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":13237}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":null,"column":null,"url":null},"type":"group","time":13239}
+{"test":{"id":3,"name":"physical units accept decimal commas and explicit suffixes","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":5,"column":3,"url":"file:///workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_editor/test/office_units_test.dart"},"type":"testStart","time":13240}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":13266}
+{"test":{"id":4,"name":"surface config preserves units across unrelated changes","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":27,"column":3,"url":"file:///workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_editor/test/office_units_test.dart"},"type":"testStart","time":13267}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":13275}
+{"success":true,"type":"done","time":13291}

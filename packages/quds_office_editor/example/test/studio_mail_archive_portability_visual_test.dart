@@ -11,6 +11,7 @@ import 'package:quds_mail_store/quds_mail_archive_native.dart';
 import 'package:quds_office_editor/quds_office_editor.dart'
     show OfficeHostFonts;
 import 'package:quds_office_studio/studio_mail_archive_native.dart';
+import 'package:quds_office_studio/studio_mail_archive_restore_strings.dart';
 import 'package:quds_office_studio/studio_mail_archive_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
@@ -132,6 +133,45 @@ final class _VisualStore extends Fake implements StudioMailArchiveStore {
   );
   @override
   Future<void> close() async {}
+
+  @override
+  Future<MailResult<MailArchiveRestorePlan>> inspectRestore(
+    String directoryPath, {
+    MailCancellationToken? cancellation,
+  }) async {
+    final result = await planExport(const MailArchiveSearchRequest());
+    final plan = (result as MailSuccess<MailArchiveExportPlan>).value;
+    return MailSuccess(
+      MailArchiveRestorePlan.fromManifest(
+        directoryPath: _destination,
+        manifest: encodeMailArchiveExportManifest(
+          plan,
+          const MailArchiveExportLimits(),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Future<MailArchiveRestoreReport> restoreExport(
+    MailArchiveRestorePlan plan, {
+    bool indexAttachmentText = false,
+    MailCancellationToken? cancellation,
+    MailArchiveRestoreProgressSink? onProgress,
+  }) async => MailArchiveRestoreReport(
+    status: MailArchiveRestoreStatus.completed,
+    planned: plan.messageCount,
+    saved: 3,
+    duplicates: 2,
+    failed: 0,
+    originsAdded: 4,
+    bytes: plan.totalBytes,
+    indexWarnings: 0,
+    elapsedMicroseconds: 15000,
+    observerErrors: 0,
+    failures: const [],
+    droppedFailures: 0,
+  );
 }
 
 final class _VisualFiles extends Fake implements StudioMailArchiveFiles {
@@ -242,6 +282,42 @@ Future<void> _tap(WidgetTester tester, String key) async {
 }
 
 void main() {
+  for (final language in StudioLanguage.values) {
+    testWidgets('restore preview and result in $language', (tester) async {
+      final capture = await _show(
+        tester,
+        language,
+        language == StudioLanguage.ar
+            ? const Size(390, 844)
+            : const Size(1280, 900),
+      );
+      await _tap(tester, 'archive-restore-export');
+      expect(find.byType(AlertDialog), findsOneWidget);
+      expect(
+        find.text(StudioStrings(language).archiveRestoreTrust),
+        findsOneWidget,
+      );
+      expect(
+        Directionality.of(tester.element(_key('archive-restore-confirm'))),
+        language == StudioLanguage.ar ? TextDirection.rtl : TextDirection.ltr,
+      );
+      await _capture(
+        tester,
+        capture,
+        'archive-restore-preview-${language.name}',
+      );
+      await _tap(tester, 'archive-restore-confirm');
+      await tester.ensureVisible(_key('archive-notice'));
+      await _pump(tester);
+      expect(_key('archive-error'), findsNothing);
+      await _capture(
+        tester,
+        capture,
+        'archive-restore-result-${language.name}',
+      );
+    });
+  }
+
   testWidgets(
     'desktop portability controls, export confirmation and long destination',
     (tester) async {

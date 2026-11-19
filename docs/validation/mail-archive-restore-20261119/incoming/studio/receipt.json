@@ -1,0 +1,66 @@
+{
+  "commands": [
+    {
+      "accepted": true,
+      "changed_source_paths": [],
+      "command": [
+        "/workspace/scratch/f815a4ae580f/runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/studio_desktop_menu_test.dart",
+        "test/studio_file_menu_test.dart",
+        "test/studio_ribbon_preferences_test.dart",
+        "test/studio_ribbon_customization_test.dart",
+        "test/widget_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f815a4ae580f/quds_office_suite/packages/quds_office_editor/example",
+      "elapsed_seconds": 72.741,
+      "exit_code": 0,
+      "expected_test_files": [
+        "packages/quds_office_editor/example/test/studio_desktop_menu_test.dart",
+        "packages/quds_office_editor/example/test/studio_file_menu_test.dart",
+        "packages/quds_office_editor/example/test/studio_ribbon_customization_test.dart",
+        "packages/quds_office_editor/example/test/studio_ribbon_preferences_test.dart",
+        "packages/quds_office_editor/example/test/widget_test.dart"
+      ],
+      "finished_at_utc": "2026-11-19T17:57:32.405681+00:00",
+      "head_after": "358544a48466c942873a4718a87fa9d1c2be11f7",
+      "head_before": "358544a48466c942873a4718a87fa9d1c2be11f7",
+      "name": "desktop-ribbon-lifecycle",
+      "source_after_sha256": "da852b2fc6aff2b32a49da3dea116b1427c81debcf7506fcdebfeb6cd1b0814c",
+      "source_before_sha256": "da852b2fc6aff2b32a49da3dea116b1427c81debcf7506fcdebfeb6cd1b0814c",
+      "started_at_utc": "2026-11-19T17:56:19.661818+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "fb236d8080895f6b9152b94ab004c9efc18f2b080231e54057ee65219e476e7a",
+      "test_cases_sha256": "316ebf4b7c6f338289471e59259174bc3ece764b44c180e3749eb8163e74f7b4",
+      "test_counts": {
+        "failed": 0,
+        "passed": 27,
+        "skipped": 0
+      },
+      "timeout_seconds": 600
+    }
+  ],
+  "dependencies_unchanged": true,
+  "executed_runner": "executed-runner.py",
+  "finished_at_utc": "2026-11-19T17:57:33.507581+00:00",
+  "head_at_finish": "358544a48466c942873a4718a87fa9d1c2be11f7",
+  "head_at_start": "358544a48466c942873a4718a87fa9d1c2be11f7",
+  "package_config_sha256": "5b34c4df660897721b774edf91fcfa9b57e1a29311705001e5e331babe0309a3",
+  "package_config_unchanged": true,
+  "parser_sha256": "299ce6d8fffae555e9a0381903815156fd7d416046e1dbd66c1a2e4bb344a6a5",
+  "phase": "studio",
+  "readiness_receipt_sha256": "886302d11ac73dfa56ead721bd07941f085e3379e018e9bee3c062116fa07d37",
+  "runner_sha256": "b7a7c3e5b5b0ccba7941ba936e0f4d12c7b440ac82816d5a9f82499248e07faf",
+  "runtime_receipt_sha256": "42740899a85b0df93963eb420bb8e0640b62d026739cd405537ed228de0a0161",
+  "runtime_receipts_unchanged": true,
+  "started_at_utc": "2026-11-19T17:56:19.324003+00:00",
+  "status": "passed",
+  "test_totals": {
+    "failed": 0,
+    "passed": 27,
+    "skipped": 0
+  }
+}

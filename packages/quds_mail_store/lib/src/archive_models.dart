@@ -83,10 +83,15 @@ final class MailArchiveImportResult {
     required this.entry,
     required this.duplicate,
     required this.originAdded,
-  });
+    int? originsAdded,
+  }) : originsAdded = originsAdded ?? (originAdded ? 1 : 0);
   final MailArchiveEntry entry;
   final bool duplicate;
   final bool originAdded;
+
+  /// Newly committed provenance records. All requested origins are atomic with
+  /// the original and index; existing origins do not increase this count.
+  final int originsAdded;
 }
 
 enum MailArchiveSort { archivedNewest, sentNewest, sentOldest, subject }

@@ -1,0 +1,106 @@
+{
+  "files": [
+    {
+      "file": "archive-export-confirmation-ar.png",
+      "height": 844,
+      "published_copy_matches": true,
+      "sha256": "dfb6fc7f821f0725fbbad667dbe8d2fc790c420fa67ecf684f4b592a5ad1edf4",
+      "width": 390
+    },
+    {
+      "file": "archive-export-confirmation-en.png",
+      "height": 900,
+      "published_copy_matches": true,
+      "sha256": "65d7aceddddb2dcf6679aa57158c3488a200aae85843f601007fa401f74ee43d",
+      "width": 1280
+    },
+    {
+      "file": "archive-export-report-ar.png",
+      "height": 844,
+      "published_copy_matches": true,
+      "sha256": "c8d39fadb8c0655480f7715e7b7ddec6fc5c5faf28b8d193ec3bb2596673ebc8",
+      "width": 390
+    },
+    {
+      "file": "archive-export-report-en.png",
+      "height": 900,
+      "published_copy_matches": true,
+      "sha256": "591c920c6b8bef10cff77e7c188492ec567d0cfe9f23389f783bdaa4debde906",
+      "width": 1280
+    },
+    {
+      "file": "archive-portability-desktop-en.png",
+      "height": 900,
+      "published_copy_matches": true,
+      "sha256": "01998400b40bdadbdd7270fe4fe9dc1dd9b853b157f00acd084a011b0918ba2b",
+      "width": 1280
+    },
+    {
+      "file": "archive-portability-mobile-ar.png",
+      "height": 844,
+      "published_copy_matches": true,
+      "sha256": "cb15cc1802d1c8b34f204ccacd5c4640a8bbd89eadcda788ba1d7739b6592c73",
+      "width": 390
+    },
+    {
+      "file": "archive-restore-preview-ar.png",
+      "height": 844,
+      "published_copy_matches": true,
+      "sha256": "b72e63cb4853125cc9d226eeea7feaf1a25fab42d7683cdb14beccd123d2f96a",
+      "width": 390
+    },
+    {
+      "file": "archive-restore-preview-de.png",
+      "height": 900,
+      "published_copy_matches": true,
+      "sha256": "70f69adc3c114b13525b243864fbb7cc6dab9991d8e4eed574df18fbfb9e7257",
+      "width": 1280
+    },
+    {
+      "file": "archive-restore-preview-en.png",
+      "height": 900,
+      "published_copy_matches": true,
+      "sha256": "d6f84e99cef04770197ca0701e85003ac484cb7c0d38ca4c8248267050ec4305",
+      "width": 1280
+    },
+    {
+      "file": "archive-restore-result-ar.png",
+      "height": 844,
+      "published_copy_matches": true,
+      "sha256": "fa88a17c4764ee771baf677fe7efd6faaa100c5fe4aa93efb03073642cd3cbe5",
+      "width": 390
+    },
+    {
+      "file": "archive-restore-result-de.png",
+      "height": 900,
+      "published_copy_matches": true,
+      "sha256": "40631d2bdbc42668e85f76267be638e774dfa6068359965f349ec414618f37cb",
+      "width": 1280
+    },
+    {
+      "file": "archive-restore-result-en.png",
+      "height": 900,
+      "published_copy_matches": true,
+      "sha256": "c66830d933eae6672296cf0ff0ebb0c99825d3565ca8dbb94f87aac76fb815f3",
+      "width": 1280
+    }
+  ],
+  "fixture": "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart",
+  "fixture_sha256": "04af65f840add6859a8121d612e4a4c3542d6d3ad8caa3114721ea11fabed16c",
+  "frozen_source_head": "0c77b3488eb534868a7f98271ba2923d06759b8d",
+  "limits": [
+    "The captures demonstrate synthetic Flutter widget rendering at 1280x900 (English/German) and 390x844 (Arabic), not installed native macOS/Windows/mobile packaging or real-account interoperability.",
+    "Visual review is tied to these static fixture states; native restore correctness and cancellation/integrity behavior are assessed separately by the accepted VM tests."
+  ],
+  "method": "All 12 accepted-run PNGs were individually displayed and visually inspected by the independent reviewer. Their SHA-256 identities below bind this observation to the final Flutter fixture captures, whose published copies match byte-for-byte.",
+  "observations": [
+    "English and German restore previews show the current 2026-11-19 00:00:00 UTC timestamp, source profile, message/byte/provenance counts, restore explanation, attachment-text option and action buttons.",
+    "The 390 px Arabic restore preview preserves numeric timestamp order; UTC wraps onto the following line. Arabic headings, copy and controls follow the RTL layout.",
+    "Restore result captures in all three languages show 3 saved, 2 already archived, 0 failed, 5 planned, 4 source entries added, 1135 verified bytes and 0 indexing warnings.",
+    "Desktop English and narrow Arabic portability, export confirmation and export report captures show legible controls and counts. The long export destination wraps within the narrow Arabic report.",
+    "No overflow diagnostic stripes or missing primary action buttons were observed in these captures. Result fixtures intentionally scroll the archive controls to make their report visible."
+  ],
+  "product_relationship": "The fixture renders the real StudioMailArchiveDialog and captures its RenderRepaintBoundary, with injected synthetic store/file services and project fonts. It is included among the passing final mail tests.",
+  "reviewed_at_utc": "2026-11-19T18:10:04.742622+00:00",
+  "status": "reviewed"
+}
