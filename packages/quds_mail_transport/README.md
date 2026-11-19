@@ -1,4 +1,20 @@
-# Quds Mail native transport
+# Quds Mail native transports
+
+## Exchange Server on premises (EWS)
+
+`createMailEwsProvider` provides direct native Exchange mail access with an
+explicit HTTPS endpoint and NTLMv2 by default. It supports folder browsing,
+incremental item synchronization, on-demand MIME, read/flag changes, moves,
+move-to-Deleted-Items and EWS submission with Sent filing. Basic over verified
+HTTPS and host-supplied bearer tokens are opt-in alternatives. The default does
+not need Entra, Graph, IMAP, SMTP or a Quds relay.
+
+See [Exchange setup, API contracts and limitations](../../docs/roadmaps/mail/exchange-ews.md)
+and the [read-only native probe](example/ews_probe.dart). The provider is a native
+mail adapter; Calendar, People, Kerberos/Negotiate, automatic Autodiscover, public
+folders and live-server interoperability qualification are separate work.
+
+## IMAP
 
 This is the first M06 native IMAP implementation. It provides manual account
 configuration, current host-vault credential access, selectable folders, bounded

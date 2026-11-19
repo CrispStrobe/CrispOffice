@@ -107,4 +107,126 @@ extension StudioMailFeedback on StudioStrings {
   String get forward => _mailText('Forward', 'Weiterleiten', 'إعادة توجيه');
   String get markRead =>
       _mailText('Mark as read', 'Als gelesen markieren', 'وضع علامة كمقروء');
+
+  String get ewsTitle => _mailText(
+    'Exchange Server (EWS)',
+    'Exchange Server (EWS)',
+    'خادم Exchange ‏(EWS)',
+  );
+  String get ewsSetupHelp => _mailText(
+    'Connect directly to your organization’s Exchange Server using its EWS address.',
+    'Direkt über die EWS-Adresse mit dem Exchange-Server Ihrer Organisation verbinden.',
+    'اتصل مباشرة بخادم Exchange لمؤسستك باستخدام عنوان EWS.',
+  );
+  String get ewsEndpoint => _mailText(
+    'EWS address (HTTPS)',
+    'EWS-Adresse (HTTPS)',
+    'عنوان EWS ‏(HTTPS)',
+  );
+  String get ewsLogin => _mailText(
+    'Login (leave blank to use email)',
+    'Anmeldename (leer: E-Mail-Adresse)',
+    'اسم الدخول (اتركه فارغًا لاستخدام البريد)',
+  );
+  String get ewsDomain => _mailText(
+    'Windows domain (optional)',
+    'Windows-Domäne (optional)',
+    'نطاق Windows (اختياري)',
+  );
+  String get ewsAuthentication =>
+      _mailText('Authentication', 'Authentifizierung', 'المصادقة');
+  String get ewsNtlm =>
+      _mailText('Windows (NTLMv2)', 'Windows (NTLMv2)', 'Windows ‏(NTLMv2)');
+  String get ewsBasic =>
+      _mailText('Basic over HTTPS', 'Basic über HTTPS', 'Basic عبر HTTPS');
+  String get ewsSessionNotice => _mailText(
+    'Session only: credentials, downloaded messages and unsent drafts are kept in memory and cleared when you disconnect or close this window.',
+    'Nur für diese Sitzung: Zugangsdaten, geladene Nachrichten und ungesendete Entwürfe bleiben im Arbeitsspeicher und werden beim Trennen oder Schließen gelöscht.',
+    'للجلسة فقط: تُحفظ بيانات الدخول والرسائل المحمّلة والمسودات غير المرسلة في الذاكرة وتُمسح عند قطع الاتصال أو إغلاق النافذة.',
+  );
+  String get ewsInvalidSettings => _mailText(
+    'Enter a valid email address, password and explicit HTTPS EWS address.',
+    'Eine gültige E-Mail-Adresse, ein Passwort und eine vollständige HTTPS-EWS-Adresse eingeben.',
+    'أدخل عنوان بريد صالحًا وكلمة مرور وعنوان EWS كاملًا باستخدام HTTPS.',
+  );
+  String get ewsAuthenticationFailed => _mailText(
+    'Exchange could not authenticate this account. Check the login, domain, password and enabled authentication method.',
+    'Exchange konnte dieses Konto nicht authentifizieren. Anmeldename, Domäne, Passwort und aktivierte Anmeldemethode prüfen.',
+    'تعذرت مصادقة هذا الحساب لدى Exchange. تحقق من اسم الدخول والنطاق وكلمة المرور وطريقة المصادقة المفعّلة.',
+  );
+  String get ewsAccessFailed => _mailText(
+    'Exchange access was refused. Check mailbox permissions and the server’s trusted HTTPS certificate.',
+    'Der Exchange-Zugriff wurde abgelehnt. Postfachberechtigungen und das vertrauenswürdige HTTPS-Zertifikat des Servers prüfen.',
+    'رُفض الوصول إلى Exchange. تحقق من أذونات صندوق البريد وشهادة HTTPS الموثوقة للخادم.',
+  );
+  String get ewsUnsupported => _mailText(
+    'This Exchange server does not support the requested operation or authentication method.',
+    'Dieser Exchange-Server unterstützt den Vorgang oder die Anmeldemethode nicht.',
+    'لا يدعم خادم Exchange هذا العملية المطلوبة أو طريقة المصادقة.',
+  );
+  String get ewsBudgetExceeded => _mailText(
+    'The request exceeded a message or server limit. Try a smaller folder or message.',
+    'Die Anfrage überschritt eine Nachrichten- oder Servergrenze. Einen kleineren Ordner oder eine kleinere Nachricht versuchen.',
+    'تجاوز الطلب حدًا للرسالة أو الخادم. جرّب مجلدًا أو رسالة أصغر.',
+  );
+  String get ewsSearchLoaded => _mailText(
+    'Search loaded messages',
+    'Geladene Nachrichten durchsuchen',
+    'بحث في الرسائل المحمّلة',
+  );
+  String get ewsLoadMore => _mailText(
+    'Load more messages',
+    'Weitere Nachrichten laden',
+    'تحميل المزيد من الرسائل',
+  );
+  String get ewsHeaderLimit => _mailText(
+    'Showing up to 1,000 messages in this folder. Refresh or choose another folder to continue.',
+    'Bis zu 1.000 Nachrichten in diesem Ordner werden angezeigt. Aktualisieren oder einen anderen Ordner wählen.',
+    'تُعرض حتى 1000 رسالة في هذا المجلد. حدّث القائمة أو اختر مجلدًا آخر للمتابعة.',
+  );
+  String get ewsSubmissionAccepted => _mailText(
+    'Exchange accepted the message and saved a copy in Sent Items.',
+    'Exchange hat die Nachricht angenommen und eine Kopie unter „Gesendete Elemente“ gespeichert.',
+    'قبل Exchange الرسالة وحفظ نسخة في العناصر المرسلة.',
+  );
+  String get ewsSubmissionRejected => _mailText(
+    'The message was not submitted. Your draft is retained for this session.',
+    'Die Nachricht wurde nicht übermittelt. Der Entwurf bleibt in dieser Sitzung erhalten.',
+    'لم تُرسل الرسالة. تبقى المسودة محفوظة لهذه الجلسة.',
+  );
+  String get ewsActionConfirmed => _mailText(
+    'Exchange confirmed the change.',
+    'Exchange hat die Änderung bestätigt.',
+    'أكد Exchange التغيير.',
+  );
+  String get ewsFolderChanged => _mailText(
+    'Exchange confirmed the move. Refresh this folder before loading more messages.',
+    'Exchange hat das Verschieben bestätigt. Den Ordner vor dem Laden weiterer Nachrichten aktualisieren.',
+    'أكد Exchange النقل. حدّث هذا المجلد قبل تحميل المزيد من الرسائل.',
+  );
+  String get ewsMutationFailed => _mailText(
+    'The change could not be confirmed. Refresh this folder before trying again.',
+    'Die Änderung konnte nicht bestätigt werden. Den Ordner vor einem erneuten Versuch aktualisieren.',
+    'تعذر تأكيد التغيير. حدّث هذا المجلد قبل المحاولة مجددًا.',
+  );
+  String get ewsMarkUnread => _mailText(
+    'Mark as unread',
+    'Als ungelesen markieren',
+    'وضع علامة كغير مقروء',
+  );
+  String get ewsFlag => _mailText('Flag', 'Kennzeichnen', 'وضع علامة');
+  String get ewsUnflag =>
+      _mailText('Remove flag', 'Kennzeichnung entfernen', 'إزالة العلامة');
+  String get ewsMove =>
+      _mailText('Move to folder', 'In Ordner verschieben', 'نقل إلى مجلد');
+  String get ewsDelete => _mailText(
+    'Move to Deleted Items',
+    'In „Gelöschte Elemente“ verschieben',
+    'نقل إلى العناصر المحذوفة',
+  );
+  String get ewsDeleteExplanation => _mailText(
+    'Move this message to the Exchange Deleted Items folder?',
+    'Diese Nachricht in den Exchange-Ordner „Gelöschte Elemente“ verschieben?',
+    'هل تريد نقل هذه الرسالة إلى مجلد العناصر المحذوفة في Exchange؟',
+  );
 }

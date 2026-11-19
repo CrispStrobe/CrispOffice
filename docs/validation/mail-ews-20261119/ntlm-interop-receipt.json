@@ -1,0 +1,40 @@
+{
+  "actual_exchange": false,
+  "cases": [
+    {
+      "accepted": true,
+      "case": "separate-domain",
+      "expected_accept": true,
+      "rejection_type": null
+    },
+    {
+      "accepted": true,
+      "case": "domain-backslash",
+      "expected_accept": true,
+      "rejection_type": null
+    },
+    {
+      "accepted": true,
+      "case": "upn",
+      "expected_accept": true,
+      "rejection_type": null
+    },
+    {
+      "accepted": false,
+      "case": "channel-binding-mismatch",
+      "expected_accept": false,
+      "rejection_type": "BadBindingsError"
+    },
+    {
+      "accepted": false,
+      "case": "mic-tampering",
+      "expected_accept": false,
+      "rejection_type": "InvalidTokenError"
+    }
+  ],
+  "source_sha256": {
+    "packages/quds_mail_transport/lib/src/ews/native/http_client.dart": "1529b46450dad66ab4722086f854ceb9901ae92fb2ce2842e01733383dfc4370",
+    "packages/quds_mail_transport/lib/src/ews/native/ntlm.dart": "1859b1a31092de16a59392dd518ea53b5b579934f48bf3c0a9333b4e616fc45a"
+  },
+  "verifier": "pyspnego 0.12.4 Python NTLM acceptor"
+}

@@ -389,7 +389,10 @@ baseline `479e1e03` identity.
 - [ ] Microsoft Graph cloud mail: delegated auth, folder delta state, stable/immutable ID strategy, send/draft operations and rate/consent states.
 - [ ] Gmail: labels/threads/history, cursor-expiry full recovery, send/drafts and explicit OAuth verification status.
 - [ ] JMAP mail where supported: session/capability discovery, state tokens, bounded fetch, changes and submission.
-- [ ] Do not build new Microsoft cloud support on EWS. On-premises Exchange remains separately scoped.
+- [x] Keep Microsoft cloud support on Graph. The separately prioritized
+  [on-premises EWS provider and Studio entry](exchange-ews.md) now provide native
+  mail read/sync/mutations/submission. Its live-server and wider productivity
+  acceptance boundaries are tracked separately.
 - [ ] Native/web support is verified per endpoint/redirect/CORS combination; no generic web success claim.
 
 **Acceptance:** fixture/API-contract tests and disposable-account interoperability for each enabled adapter; feature matrix distinguishes implemented, unsupported and unqualified capabilities. Google production access is a release gate, not something tests can certify.

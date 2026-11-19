@@ -1,5 +1,8 @@
 ## Unreleased
 
+- Add `MailProviderKind.ews` for account-scoped opaque Exchange ItemIds, retaining
+  existing provider names and enum positions. ChangeKey remains a concurrency
+  token outside stable message identity.
 - Add immutable durable standard message flags and nullable header snapshots.
   An unobserved snapshot is distinct from an observed empty flag set.
 

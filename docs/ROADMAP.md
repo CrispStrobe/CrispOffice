@@ -5,6 +5,12 @@ and [MISSION.md](MISSION.md) honest as coverage changes.
 
 ## Mail, Calendar, People and standalone Office — scoped 18 November 2026
 
+**19 November EWS priority:** [Exchange Server on premises](roadmaps/mail/exchange-ews.md)
+now has a native mail/submission provider and Studio entry, with explicit HTTPS,
+NTLMv2, bounded sync/MIME, guarded mailbox changes and EWS Sent filing. See its
+focused validation record for local evidence and the outstanding live-server
+interoperability check. Microsoft cloud work continues through Graph.
+
 The [Quds Mail scope](roadmaps/mail/README.md) and
 [ordered implementation plan / TODO](roadmaps/mail/implementation-plan.md)
 define a shared Dart/Flutter Mail module with two consumers: the existing
