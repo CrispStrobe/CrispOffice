@@ -2646,9 +2646,7 @@ class ReportDesignerController extends ChangeNotifier {
     final int end = textEditor.selectionEnd;
     final List<ReportTextRun> source =
         element.runs.isEmpty || element.plainText != all
-        ? <ReportTextRun>[
-            ReportTextRun(text: all, bold: element.style.bold),
-          ]
+        ? <ReportTextRun>[ReportTextRun(text: all, bold: element.style.bold)]
         : <ReportTextRun>[for (final ReportTextRun r in element.runs) r.copy()];
     final bool on = !_rangeBold(source, start, end);
     element.runs

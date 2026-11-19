@@ -99,23 +99,28 @@ class _PdfOfficeProgressDialog extends StatelessWidget {
       title: Text(arabic ? 'تحويل إلى $format' : 'Converting to $format'),
       content: ValueListenableBuilder<PdfOfficeExportProgress>(
         valueListenable: progress,
-        builder: (BuildContext context, PdfOfficeExportProgress step, Widget? child) {
-          final bool pages = step.stage == 'page' && step.total > 0;
-          return SizedBox(
-            width: 420,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                LinearProgressIndicator(
-                  value: pages ? step.current / step.total : null,
+        builder:
+            (
+              BuildContext context,
+              PdfOfficeExportProgress step,
+              Widget? child,
+            ) {
+              final bool pages = step.stage == 'page' && step.total > 0;
+              return SizedBox(
+                width: 420,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    LinearProgressIndicator(
+                      value: pages ? step.current / step.total : null,
+                    ),
+                    const SizedBox(height: 12),
+                    Text(_label(step, format)),
+                  ],
                 ),
-                const SizedBox(height: 12),
-                Text(_label(step, format)),
-              ],
-            ),
-          );
-        },
+              );
+            },
       ),
       actions: <Widget>[
         TextButton(
@@ -128,9 +133,10 @@ class _PdfOfficeProgressDialog extends StatelessWidget {
 
   String _label(PdfOfficeExportProgress step, String format) {
     return switch (step.stage) {
-      'page' when step.total > 0 => arabic
-          ? 'قراءة الصفحة ${step.current} من ${step.total}'
-          : 'Reading page ${step.current} of ${step.total}',
+      'page' when step.total > 0 =>
+        arabic
+            ? 'قراءة الصفحة ${step.current} من ${step.total}'
+            : 'Reading page ${step.current} of ${step.total}',
       'write' => arabic ? 'كتابة $format' : 'Writing $format',
       'open' => arabic ? 'فتح الملف' : 'Opening the PDF',
       _ => arabic ? 'جارٍ التجهيز' : 'Preparing',

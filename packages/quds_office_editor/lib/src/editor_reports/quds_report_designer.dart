@@ -119,8 +119,7 @@ class QudsReportDesigner extends StatefulWidget {
   /// [ReportVariable.prompt] variables. Return false to stay put. The host
   /// writes the answers with [ReportDesignerController.setRuntimeValues].
   /// Design mode itself does not ask. Null skips the question.
-  final Future<bool> Function(List<ReportVariable> prompts)?
-  onPromptParameters;
+  final Future<bool> Function(List<ReportVariable> prompts)? onPromptParameters;
 
   /// Ready-made reports offered by the Templates button (hidden when empty).
   /// Picking one replaces the template and uses its sample data. Null offers
