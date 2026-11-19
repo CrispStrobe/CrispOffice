@@ -14,13 +14,17 @@
 //
 // QUDS_STUDIO_DATA may point at the app container (the launched app then
 // finds the same verified installation) or at an empty scratch directory.
+// When the bundled library is one with recorded grammar qualification, the
+// gate also switches on manual German grammar through the host (as the
+// Setup dialog does) and checks a sentence from the sealed W6 panel.
 // Missing inputs fail; there are no skips or fallbacks.
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_studio/studio_spacy_host.dart';
 import 'package:quds_office_studio/studio_spacy_host_native.dart';
-import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
+import 'package:quds_office_editor/quds_office_editor.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart';
 
 String _required(String name) {
   final value = Platform.environment[name];
@@ -86,6 +90,50 @@ void main() {
       );
     } finally {
       await transport.dispose();
+    }
+
+    if (spacyGrammarNativeSha256s.contains(bundled.sha256)) {
+      expect(host.status.qualification!.grammarQualified, isTrue);
+      expect(host.status.grammarOffered, isTrue);
+      final wasEnabled = host.status.grammarEnabled;
+      await host.setGrammarEnabled(true);
+      expect(host.status.grammarEnabled, isTrue);
+      // Studio's provider worker: the bundled library without NER.
+      final grammarTransport = await host.openGrammarTransport();
+      final provider = SpacyGrammarProvider.withTransport(
+        transport: grammarTransport,
+        enabled: true,
+      );
+      try {
+        expect(grammarTransport.identity.librarySha256, bundled.sha256);
+        expect(grammarTransport.identity.capabilityMask, 15);
+        // W6 panel: subject with an intervening prepositional modifier.
+        const sentence = 'Die Katzen auf dem Sofa schläft.';
+        final result = await provider.check(
+          OfficeProofingRequest(
+            documentId: 'gate',
+            blockId: 'w6',
+            revision: 1,
+            text: sentence,
+            language: 'de-DE',
+          ),
+        );
+        expect(result.status, OfficeProofingStatus.success);
+        final finding = result.findings.single;
+        expect(finding.ruleId, spacyNounVerbRuleId);
+        expect(finding.originalText, 'schläft');
+        expect(finding.replacements, ['schlafen']);
+        // ignore: avoid_print
+        print(
+          'grammar: "$sentence" -> ${finding.originalText} => '
+          '${finding.replacements.single}',
+        );
+      } finally {
+        await provider.dispose();
+      }
+      if (!wasEnabled) await host.setGrammarEnabled(false);
+    } else {
+      expect(host.status.grammarOffered, isFalse);
     }
 
     const english = 'Tim Cook visited London on Monday.';

@@ -465,6 +465,52 @@ void main() {
       expect(host.status.analysisEnabled, isFalse);
     });
 
+    test(
+      'the qualified bundled library offers manual grammar once set up',
+      () async {
+        final host = NativeStudioSpacyHost(
+          root: root,
+          environment: const {},
+          platform: SpacyPlatform.macosArm64,
+          bundledLibrary: const StudioSpacyBundledLibrary(
+            path: '/app/Contents/Frameworks/libcrispembed-spacy.dylib',
+            sha256: spacyGrammarMacosBundledSha256,
+          ),
+        );
+        await host.refresh();
+        final status = host.status;
+        expect(status.bundledLibrary, isTrue);
+        expect(status.librarySha256, spacyGrammarMacosBundledSha256);
+        expect(status.qualification!.grammarQualified, isTrue);
+        // Nothing is installed yet, so nothing is offered.
+        expect(status.grammarOffered, isFalse);
+        await expectLater(
+          host.setGrammarEnabled(true),
+          throwsA(isA<Exception>()),
+        );
+        // The same status with verified model files offers the opt-in.
+        final installed = StudioSpacyStatus(
+          platformLabel: status.platformLabel,
+          source: StudioSpacySource.installed,
+          bundledLibrary: true,
+          librarySha256: spacyGrammarMacosBundledSha256,
+          qualification: status.qualification,
+          analysisEnabled: true,
+        );
+        expect(installed.grammarOffered, isTrue);
+        // An unqualified rebuild of the same library is analysis only.
+        final rebuilt = StudioSpacyStatus(
+          platformLabel: status.platformLabel,
+          source: StudioSpacySource.installed,
+          bundledLibrary: true,
+          librarySha256: 'c' * 64,
+          qualification: spacyQualificationFor('c' * 64),
+          analysisEnabled: true,
+        );
+        expect(rebuilt.grammarOffered, isFalse);
+      },
+    );
+
     test('the first analysis verifies the saved setup itself', () async {
       final host = NativeStudioSpacyHost(
         root: root,
