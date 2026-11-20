@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve normal-autofit values on authored and edited presentation shapes,
+  including percent-form attributes and exact zero/full-scale bounds. Apply
+  reduced line advances consistently in PDF while respecting fixed-point
+  paragraph spacing and retaining ordinary text-box defaults.
+
 - Preserve Zotero research-note lists with up to nine mixed nesting levels,
   independent counters and starting numbers, and multiple paragraphs per item.
   Keep continuation paragraphs unnumbered at the correct indent, retaining

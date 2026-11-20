@@ -177,6 +177,7 @@ class PmlTextParagraph {
     this.marginLeftPt = 0,
     this.indentPt = 0,
     this.lineSpacing = 1,
+    this.lineSpacingPt,
     this.spaceBeforePt = 0,
     this.spaceAfterPt = 0,
     this.rightToLeft = false,
@@ -193,6 +194,9 @@ class PmlTextParagraph {
   double marginLeftPt;
   double indentPt;
   double lineSpacing;
+
+  /// Fixed line spacing in points; excludes percentage autofit reduction.
+  double? lineSpacingPt;
   double spaceBeforePt;
   double spaceAfterPt;
   bool rightToLeft;
@@ -209,6 +213,7 @@ class PmlTextParagraph {
     marginLeftPt: marginLeftPt,
     indentPt: indentPt,
     lineSpacing: lineSpacing,
+    lineSpacingPt: lineSpacingPt,
     spaceBeforePt: spaceBeforePt,
     spaceAfterPt: spaceAfterPt,
     rightToLeft: rightToLeft,
@@ -426,8 +431,8 @@ class PmlShape {
     this.rightToLeft,
     this.textAlign = PmlTextAlign.left,
     this.textAnchor = PmlTextAnchor.top,
-    this.textScale = 1.0,
-    this.lineSpacingReduction = 0.0,
+    double textScale = 1.0,
+    double lineSpacingReduction = 0.0,
     List<PmlTextParagraph>? richText,
     this.groupId,
     this.placeholder = false,
@@ -438,7 +443,12 @@ class PmlShape {
     this.strokeColor = '',
     this.strokeWidth = 1,
     this.hyperlinkUrl = '',
-  }) : path = path ?? <PmlPathPoint>[],
+  }) : _textScale = _autofitRatio(textScale, 'textScale'),
+       _lineSpacingReduction = _autofitRatio(
+         lineSpacingReduction,
+         'lineSpacingReduction',
+       ),
+       path = path ?? <PmlPathPoint>[],
        richText = richText ?? <PmlTextParagraph>[],
        mediaBytes = mediaBytes ?? <int>[];
 
@@ -505,11 +515,29 @@ class PmlShape {
   /// Vertical text-frame placement from `a:bodyPr/@anchor`.
   PmlTextAnchor textAnchor;
 
-  /// `a:normAutofit/@fontScale`, normalized to 0.1–1.0.
-  double textScale;
+  /// `a:normAutofit/@fontScale`, normalized to 0.0–1.0.
+  double get textScale => _textScale;
+  double _textScale;
+
+  set textScale(double value) => _textScale = _autofitRatio(value, 'textScale');
 
   /// `a:normAutofit/@lnSpcReduction`, normalized to 0.0–1.0.
-  double lineSpacingReduction;
+  double get lineSpacingReduction => _lineSpacingReduction;
+  double _lineSpacingReduction;
+
+  set lineSpacingReduction(double value) =>
+      _lineSpacingReduction = _autofitRatio(value, 'lineSpacingReduction');
+
+  static double _autofitRatio(double value, String name) {
+    if (!value.isFinite || value < 0 || value > 1) {
+      throw RangeError.value(
+        value,
+        name,
+        'Expected a finite value from 0 to 1',
+      );
+    }
+    return value;
+  }
 
   /// Rich paragraph/run model when the source text has not been replaced.
   List<PmlTextParagraph> richText;

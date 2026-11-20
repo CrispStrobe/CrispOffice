@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Render presentation normal-autofit line-spacing reduction consistently,
+  including fully collapsed line advances, while retaining glyph extents and
+  excluding authored fixed-point spacing from percentage reduction.
+
 - Import nested and multiparagraph Zotero note/annotation lists through the
   existing native commands. Preserve citation order, surrounding prose, native
   numbering, and a single undo/redo step; refuse stale targets and excessive
