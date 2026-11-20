@@ -511,6 +511,36 @@ void main() {
       },
     );
 
+    test(
+      'a release-signed copy of the qualified code keeps its qualification',
+      () async {
+        Future<StudioSpacyStatus> statusFor(String? code) async {
+          final host = NativeStudioSpacyHost(
+            root: root,
+            environment: const {},
+            platform: SpacyPlatform.macosArm64,
+            bundledLibrary: StudioSpacyBundledLibrary(
+              path: '/app/Contents/Frameworks/libcrispembed-spacy.dylib',
+              sha256: 'd' * 64,
+              codeSha256: code,
+            ),
+          );
+          await host.refresh();
+          return host.status;
+        }
+
+        final resigned = await statusFor(spacyGrammarMacosBundledCodeSha256);
+        expect(resigned.librarySha256, 'd' * 64);
+        expect(resigned.qualification!.grammarQualified, isTrue);
+        expect(
+          resigned.qualification!.codeSha256,
+          spacyGrammarMacosBundledCodeSha256,
+        );
+        expect((await statusFor('e' * 64)).qualification, isNull);
+        expect((await statusFor(null)).qualification, isNull);
+      },
+    );
+
     test('the first analysis verifies the saved setup itself', () async {
       final host = NativeStudioSpacyHost(
         root: root,
@@ -556,7 +586,31 @@ void main() {
         executable: executable.path,
       );
       expect(found?.sha256, digest);
+      expect(found?.codeSha256, isNull);
       expect(found?.path, endsWith('Frameworks/libcrispembed-spacy.dylib'));
+      // A release-signed build also records the code digest.
+      description.writeAsStringSync(
+        '{"library":"libcrispembed-spacy.dylib","sha256":"$digest",'
+        '"code_sha256":"$spacyGrammarMacosBundledCodeSha256"}',
+      );
+      expect(
+        detectBundledSpacyLibrary(
+          const {},
+          executable: executable.path,
+        )?.codeSha256,
+        spacyGrammarMacosBundledCodeSha256,
+      );
+      description.writeAsStringSync(
+        '{"library":"libcrispembed-spacy.dylib","sha256":"$digest",'
+        '"code_sha256":"short"}',
+      );
+      expect(
+        detectBundledSpacyLibrary(const {}, executable: executable.path),
+        isNull,
+      );
+      description.writeAsStringSync(
+        '{"library":"libcrispembed-spacy.dylib","sha256":"$digest"}',
+      );
       expect(
         detectBundledSpacyLibrary(const {
           'QUDS_SPACY_BUNDLED': '0',

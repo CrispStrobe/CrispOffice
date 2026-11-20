@@ -12,7 +12,8 @@ import 'package:quds_office_engine/quds_office_engine.dart'
 
 import 'analysis.dart';
 import 'backend.dart';
-import 'distribution.dart' show spacyGrammarMacosBundledSha256;
+import 'distribution.dart'
+    show spacyGrammarMacosBundledCodeSha256, spacyGrammarMacosBundledSha256;
 
 const spacyGrammarProviderId = 'spacy-german-grammar';
 const spacyNounVerbRuleId = 'de.spacy.noun-verb';
@@ -33,6 +34,21 @@ const spacyGrammarNativeSha256s = <String>{
   spacyGrammarNativeSha256,
   spacyGrammarMacosBundledSha256,
 };
+
+/// Signature-independent code digests of qualified host-bundled macOS
+/// libraries ([spacyGrammarMacosBundledCodeSha256]). They are accepted only
+/// from [SpacyBackendIdentity.codeSha256], which the native backend measures
+/// itself from the exact bytes it loads out of the host's signed app bundle,
+/// so a copy re-signed with a release identity keeps the grammar
+/// qualification while any code change still loses it.
+const spacyGrammarCodeSha256s = <String>{spacyGrammarMacosBundledCodeSha256};
+
+/// Whether [identity] names a build with recorded grammar qualification:
+/// an exact library digest, or a measured host-bundled code digest.
+bool spacyGrammarQualifiedIdentity(SpacyBackendIdentity identity) =>
+    spacyGrammarNativeSha256s.contains(identity.librarySha256) ||
+    (identity.codeSha256 != null &&
+        spacyGrammarCodeSha256s.contains(identity.codeSha256));
 
 final class SpacyGrammarDecision {
   SpacyGrammarDecision({
@@ -153,9 +169,12 @@ final class SpacyGermanGrammarPlanner {
     }
     final identity = analysis.identity;
     if (identity == null ||
-        !spacyGrammarNativeSha256s.contains(identity.librarySha256) ||
+        !spacyGrammarQualifiedIdentity(identity) ||
         identity !=
-            SpacyBackendIdentity(librarySha256: identity.librarySha256)) {
+            SpacyBackendIdentity(
+              librarySha256: identity.librarySha256,
+              codeSha256: identity.codeSha256,
+            )) {
       return unavailable(OfficeProofingStatus.failed, 'runtime-mismatch');
     }
     if (analysis.sentences.length > 1) {

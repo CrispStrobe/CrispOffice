@@ -24,5 +24,15 @@ void main() {
     expect(_pin(script, 'SPACY_PIN_REVISION'), matches(r'^[0-9a-f]{40}$'));
     expect(_pin(script, 'SPACY_PIN_BYTES'), matches(r'^[1-9][0-9]*$'));
     expect(_pin(script, 'SPACY_PIN_REPOSITORY'), spacyHuggingFaceRepository);
+    // Release signing keeps the qualification only for identical code.
+    expect(
+      _pin(script, 'SPACY_PIN_CODE_SHA256'),
+      spacyGrammarMacosBundledCodeSha256,
+    );
+    expect(
+      _pin(script, 'SPACY_PIN_UNSIGNED_SHA256'),
+      spacyGrammarMacosBundledUnsignedSha256,
+    );
+    expect(qualification.codeSha256, spacyGrammarMacosBundledCodeSha256);
   });
 }
