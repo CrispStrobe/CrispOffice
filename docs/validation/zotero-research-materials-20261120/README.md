@@ -1,5 +1,12 @@
 # Zotero research materials — 20 November 2026
 
+**Publication continuation:** the [continuation report](continuation/README.md)
+records the fresh reconciliation through main's PR #228, all 83 final Dart
+static targets, and 3,201 distinct passing cases in 129 files on the reconciled
+source. The eight identical proofing fixture repeats are counted once with an
+explicit independent accounting record. The original evidence below retains
+its original source and totals; the overlapping fresh runs are not added to it.
+
 **Qualified product source:** `f0122cb5bff5b6cf6a6f69f043545dabc2930791`, on
 `codex/zotero-research-materials-20261120`,
 [PR #223](https://github.com/CrispStrobe/quds_office_suite/pull/223).

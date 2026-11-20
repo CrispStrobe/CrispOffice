@@ -1,0 +1,197 @@
+{
+  "status": "passed",
+  "audited_at_utc": "2026-11-20T05:56:16.651693+00:00",
+  "base_candidate": "f4b7f7af5b405194c28611349e032129c6d048d6",
+  "merged_tree": "aa8955a99d4c81ba1d57779c4cc2cd5dc0372374",
+  "candidate_commit": "6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82",
+  "incoming_commit": "aeb1f09dfb4b61ca30f8b6f086f0c60cf0607cf9",
+  "incoming_main": "3e5f44ae14926b8054b2e5c0558ce71477891a33",
+  "delta": [
+    {
+      "path": "docs/release/macos-signing.md",
+      "before_blob": "114d350db356daeffc9122d5065bb3e234b21d18",
+      "after_blob": "28e5ec1d202a973e5669d52e93c4dd5e229287a5"
+    },
+    {
+      "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "before_blob": "be569c7f64ba5d95170f7ace8bb01a4be5803748",
+      "after_blob": "7a519fbb41f8e28842b1df7dedfd9f049d4b3805"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+      "before_blob": "684fe6254ad118b26091fa824f9aeb75ce2af713",
+      "after_blob": "b675269307d66c4d94fa1ef55247a491e0e185b1"
+    }
+  ],
+  "complete_patch": "diff --git a/docs/release/macos-signing.md b/docs/release/macos-signing.md\nindex 114d350db..28e5ec1d2 100644\n--- a/docs/release/macos-signing.md\n+++ b/docs/release/macos-signing.md\n@@ -66,15 +66,17 @@ qualification bound to the code that was qualified, not to a signature:\n    give `f2022b1c\u202607efeb`; changing one code byte changes it.\n 2. **Apple's tool agrees.** `codesign --remove-signature` of the qualified file\n    and of every re-signed copy yields identical bytes (with Xcode 26: 2,300,136\n-   bytes, SHA-256 `f62d2a0c\u2026886ed2`). The stripped form depends on the\n-   codesign version (Xcode 16 on the CI runner produces other bytes), so the\n-   build compares input and output under the same tool rather than against\n-   that constant.\n+   bytes, SHA-256 `f62d2a0c\u2026886ed2`). Older codesign does not normalize: on\n+   the Xcode 16 CI runner neither ad hoc re-signing nor\n+   `--remove-signature` reproduces these bytes, while the code digest is\n+   unchanged. That is why the code digest, not a file digest, is the identity.\n 3. **Build-time proof.** `build_macos_app.sh` checks the code digest of the\n    pinned input before signing (after verifying its SHA-256 and length) and of\n-   the signed output, requires the signed output to strip to exactly the\n-   pinned input's stripped bytes, and refuses to record the library as\n-   qualified otherwise. It writes `sha256` and `code_sha256` into\n+   the signed output, and refuses to record the library as qualified\n+   otherwise. When the local codesign strips the pinned input to the\n+   reference above, it additionally requires the signed output to strip to\n+   the same bytes. Ad hoc builds do not re-sign the pinned library at all;\n+   they ship its exact qualified bytes. It writes `sha256` and `code_sha256` into\n    `Contents/Resources/spacy-native.json`, which the app signature seals.\n 4. **Runtime proof.** For a host-bundled library the native backend reads the\n    file once, verifies its SHA-256 and computes `machOCodeSha256` from the same\ndiff --git a/packages/quds_office_editor/example/tool/build_macos_app.sh b/packages/quds_office_editor/example/tool/build_macos_app.sh\nindex be569c7f6..7a519fbb4 100755\n--- a/packages/quds_office_editor/example/tool/build_macos_app.sh\n+++ b/packages/quds_office_editor/example/tool/build_macos_app.sh\n@@ -39,11 +39,11 @@\n # Release signing changes the spaCy library's file bytes, so its grammar\n # qualification is carried by code identity rather than by file digest: the\n # script requires the shipped library's machOCodeSha256 to equal\n-# SPACY_PIN_CODE_SHA256 before and after signing, and `codesign\n-# --remove-signature` of the signed library to equal the same operation on the\n-# verified pinned input byte for byte (stripping output depends on the\n-# codesign version, so both sides use this machine's tool;\n-# SPACY_PIN_UNSIGNED_SHA256 is the value Xcode 26 produces). Studio\n+# SPACY_PIN_CODE_SHA256 before and after signing. Where the local codesign\n+# strips the pinned input to SPACY_PIN_UNSIGNED_SHA256 (Xcode 26), it also\n+# requires `codesign --remove-signature` of the signed library to equal that\n+# byte for byte; Xcode 16 does not normalize stripping, so there only the\n+# code digest applies. Ad hoc builds ship the pinned bytes unchanged. Studio\n # re-measures the code digest from the bytes it loads.\n #\n # The spaCy library is not rebuilt by default: the script downloads the exact\n@@ -304,9 +304,15 @@ if [[ \"${QUDS_SKIP_SPACY:-0}\" != 1 && \"$REBUILD_SPACY\" != 1 ]]; then\n   # it for the comparison after signing.\n   [[ \"$(code_sha256 \"$FRAMEWORKS/libcrispembed-spacy.dylib\")\" == \"$SPACY_PIN_CODE_SHA256\" ]] \\\n     || { echo \"pinned spaCy library: unexpected code digest\" >&2; exit 1; }\n+  # Apple's cross-check is meaningful only with a codesign whose\n+  # --remove-signature output does not depend on the signature (Xcode 26\n+  # strips the pinned library to the reference; Xcode 16 does not).\n   SPACY_INPUT_UNSIGNED=\"$(unsigned_sha256 \"$FRAMEWORKS/libcrispembed-spacy.dylib\")\"\n-  [[ \"$SPACY_INPUT_UNSIGNED\" == \"$SPACY_PIN_UNSIGNED_SHA256\" ]] \\\n-    || echo \"note: this codesign strips the pinned library to $SPACY_INPUT_UNSIGNED (Xcode 26: $SPACY_PIN_UNSIGNED_SHA256)\"\n+  if [[ \"$SPACY_INPUT_UNSIGNED\" != \"$SPACY_PIN_UNSIGNED_SHA256\" ]]; then\n+    echo \"note: this codesign strips the pinned library to $SPACY_INPUT_UNSIGNED, not the\" \\\n+      \"Xcode 26 reference; the codesign cross-check is skipped, the code digest still applies\"\n+    SPACY_INPUT_UNSIGNED=\"\"\n+  fi\n fi\n \n log \"Sign ($SIGN_MODE)\"\n@@ -324,6 +330,14 @@ else\n     -c \"Add :com.apple.developer.team-identifier string $TEAM_ID\" \"$ENTITLEMENTS\"\n fi\n for library in \"${LIBRARIES[@]}\"; do\n+  # The pinned spaCy library already carries the ad hoc signature it was\n+  # qualified with; ad hoc re-signing is not reproducible across codesign\n+  # versions, so ad hoc builds ship those exact bytes.\n+  if [[ \"$SIGN_MODE\" == adhoc && \"$library\" == libcrispembed-spacy.dylib \\\n+    && \"$REBUILD_SPACY\" != 1 ]]; then\n+    codesign --verify --strict \"$FRAMEWORKS/$library\"\n+    continue\n+  fi\n   codesign \"${SIGN_ARGS[@]}\" \"$FRAMEWORKS/$library\"\n done\n if [[ \"$SIGN_MODE\" != adhoc ]]; then\n@@ -342,10 +356,10 @@ if [[ \"${QUDS_SKIP_SPACY:-0}\" != 1 ]]; then\n   printf '{\"library\":\"libcrispembed-spacy.dylib\",\"sha256\":\"%s\",\"code_sha256\":\"%s\"}\\n' \\\n     \"$spacy_sha\" \"$spacy_code\" >\"$RESOURCES/spacy-native.json\"\n   if [[ \"$spacy_sha\" == \"$SPACY_PIN_SHA256\" ]]; then\n-    # Ad hoc signing is deterministic, so re-signing the pinned bytes keeps them.\n     SPACY_NOTE=\"spaCy library $spacy_sha: qualified (analysis and manual German grammar)\"\n-  elif [[ \"$spacy_code\" == \"$SPACY_PIN_CODE_SHA256\" \\\n-    && \"$(unsigned_sha256 \"$spacy_library\")\" == \"${SPACY_INPUT_UNSIGNED:-}\" ]]; then\n+  elif [[ \"$REBUILD_SPACY\" != 1 && \"$spacy_code\" == \"$SPACY_PIN_CODE_SHA256\" ]] \\\n+    && [[ -z \"${SPACY_INPUT_UNSIGNED:-}\" \\\n+      || \"$(unsigned_sha256 \"$spacy_library\")\" == \"$SPACY_INPUT_UNSIGNED\" ]]; then\n     SPACY_NOTE=\"spaCy library $spacy_sha: qualified code $spacy_code re-signed ($SIGN_MODE; analysis and manual German grammar)\"\n   elif [[ \"$REBUILD_SPACY\" == 1 ]]; then\n     SPACY_NOTE=\"spaCy library $spacy_sha: UNQUALIFIED rebuild (analysis only; no grammar suggestions)\"\ndiff --git a/packages/quds_proofing_spacy/lib/src/distribution.dart b/packages/quds_proofing_spacy/lib/src/distribution.dart\nindex 684fe6254..b67526930 100644\n--- a/packages/quds_proofing_spacy/lib/src/distribution.dart\n+++ b/packages/quds_proofing_spacy/lib/src/distribution.dart\n@@ -381,10 +381,10 @@ const spacyGrammarMacosBundledCodeSha256 =\n \n /// SHA-256 of `codesign --remove-signature` (Xcode 26) applied to\n /// [spacyGrammarMacosBundledSha256] (2,300,136 bytes); identical for its Apple\n-/// Distribution and Developer ID re-signed copies. The stripped form depends\n-/// on the codesign version (Xcode 16 produces other bytes), so\n-/// build_macos_app.sh compares the signed library's stripped form with the\n-/// pinned input's under the same tool; this value is the reference record.\n+/// Distribution and Developer ID re-signed copies. Older codesign (Xcode 16)\n+/// does not normalize stripping, so build_macos_app.sh requires this\n+/// cross-check only where the local tool reproduces this value; the code\n+/// digest is the identity everywhere.\n const spacyGrammarMacosBundledUnsignedSha256 =\n     'f62d2a0cf457a0ac577f45eceba93d8d5f2f450d4fd5a191f0cec61d88886ed2';\n \n",
+  "distribution_all_non_documentation_lines_identical": true,
+  "distribution_executable_tokens_unchanged": true,
+  "all_script_pins_unchanged": true,
+  "pins": {
+    "SPACY_PIN_REPOSITORY": "cstr/crispembed-spacy-de-core-news-sm-3.8.0",
+    "SPACY_PIN_REVISION": "2aa70083055073adf8d2ffbb0ff203cc4fcafd7e",
+    "SPACY_PIN_SHA256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f",
+    "SPACY_PIN_BYTES": "2322928",
+    "SPACY_PIN_PATH": "\"app-bundled/macos-arm64/$SPACY_PIN_SHA256/libcrispembed-spacy.dylib\"",
+    "SPACY_PIN_CODE_SHA256": "f2022b1cf75d831cddbd047eec5f5ac759728fee169ed2b5b785ecda1a07efeb",
+    "SPACY_PIN_UNSIGNED_SHA256": "f62d2a0cf457a0ac577f45eceba93d8d5f2f450d4fd5a191f0cec61d88886ed2"
+  },
+  "bash_syntax": {
+    "exit_code": 0,
+    "script_sha256": "da352b38e812b1cf873fb6bb39c66b6fab3bca84ad8bff3c8855cec79122c4f0"
+  },
+  "shell_control_flow": {
+    "source": "Exact input gate, signing loop and post-signing qualification blocks extracted from the merged script.",
+    "command_stubs": [
+      "code_sha256",
+      "unsigned_sha256",
+      "shasum",
+      "codesign"
+    ],
+    "fragment_sha256": "6e1f54492c2efa28ff63f215fd60ab9cd89b2c931d3453fb27f8fd5a672a882a",
+    "cases": [
+      {
+        "name": "adhoc pinned bytes verified, not re-signed",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "stdout": "RESULT|spaCy library ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f: qualified (analysis and manual German grammar)\n",
+        "stderr": "",
+        "stub_calls": [
+          "unsigned|before",
+          "codesign|--force --sign TEST /synthetic-frameworks/libother.dylib",
+          "codesign|--verify --strict /synthetic-frameworks/libcrispembed-spacy.dylib"
+        ],
+        "passed": true
+      },
+      {
+        "name": "adhoc existing-signature failure stops build",
+        "exit_code": 7,
+        "expected_exit_code": 7,
+        "stdout": "",
+        "stderr": "",
+        "stub_calls": [
+          "unsigned|before",
+          "codesign|--force --sign TEST /synthetic-frameworks/libother.dylib",
+          "codesign|--verify --strict /synthetic-frameworks/libcrispembed-spacy.dylib"
+        ],
+        "passed": true
+      },
+      {
+        "name": "adhoc rebuild remains unqualified and is signed",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "stdout": "RESULT|spaCy library changed-signature-file: UNQUALIFIED rebuild (analysis only; no grammar suggestions)\n",
+        "stderr": "",
+        "stub_calls": [
+          "codesign|--force --sign TEST /synthetic-frameworks/libother.dylib",
+          "codesign|--force --sign TEST /synthetic-frameworks/libcrispembed-spacy.dylib"
+        ],
+        "passed": true
+      },
+      {
+        "name": "signed known code plus matching normalized bytes",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "stdout": "RESULT|spaCy library changed-signature-file: qualified code f2022b1cf75d831cddbd047eec5f5ac759728fee169ed2b5b785ecda1a07efeb re-signed (developer-id; analysis and manual German grammar)\n",
+        "stderr": "",
+        "stub_calls": [
+          "unsigned|before",
+          "codesign|--force --sign TEST /synthetic-frameworks/libother.dylib",
+          "codesign|--force --sign TEST /synthetic-frameworks/libcrispembed-spacy.dylib",
+          "unsigned|after"
+        ],
+        "passed": true
+      },
+      {
+        "name": "signed known code accepts unsupported strip normalization",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "stdout": "note: this codesign strips the pinned library to older-tool-input, not the Xcode 26 reference; the codesign cross-check is skipped, the code digest still applies\nRESULT|spaCy library changed-signature-file: qualified code f2022b1cf75d831cddbd047eec5f5ac759728fee169ed2b5b785ecda1a07efeb re-signed (developer-id; analysis and manual German grammar)\n",
+        "stderr": "",
+        "stub_calls": [
+          "unsigned|before",
+          "codesign|--force --sign TEST /synthetic-frameworks/libother.dylib",
+          "codesign|--force --sign TEST /synthetic-frameworks/libcrispembed-spacy.dylib"
+        ],
+        "passed": true
+      },
+      {
+        "name": "changed signed code is refused even without strip normalization",
+        "exit_code": 1,
+        "expected_exit_code": 1,
+        "stdout": "note: this codesign strips the pinned library to older-tool-input, not the Xcode 26 reference; the codesign cross-check is skipped, the code digest still applies\n",
+        "stderr": "pinned spaCy library changed while signing: changed-signature-file (code wrong-code)\n",
+        "stub_calls": [
+          "unsigned|before",
+          "codesign|--force --sign TEST /synthetic-frameworks/libother.dylib",
+          "codesign|--force --sign TEST /synthetic-frameworks/libcrispembed-spacy.dylib"
+        ],
+        "passed": true
+      },
+      {
+        "name": "normalized stripping mismatch is refused",
+        "exit_code": 1,
+        "expected_exit_code": 1,
+        "stdout": "",
+        "stderr": "pinned spaCy library changed while signing: changed-signature-file (code f2022b1cf75d831cddbd047eec5f5ac759728fee169ed2b5b785ecda1a07efeb)\n",
+        "stub_calls": [
+          "unsigned|before",
+          "codesign|--force --sign TEST /synthetic-frameworks/libother.dylib",
+          "codesign|--force --sign TEST /synthetic-frameworks/libcrispembed-spacy.dylib",
+          "unsigned|after"
+        ],
+        "passed": true
+      },
+      {
+        "name": "wrong input code fails before signing",
+        "exit_code": 1,
+        "expected_exit_code": 1,
+        "stdout": "",
+        "stderr": "pinned spaCy library: unexpected code digest\n",
+        "stub_calls": [],
+        "passed": true
+      },
+      {
+        "name": "signed rebuild cannot reuse code-only qualification",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "stdout": "RESULT|spaCy library changed-signature-file: UNQUALIFIED rebuild (analysis only; no grammar suggestions)\n",
+        "stderr": "",
+        "stub_calls": [
+          "codesign|--force --sign TEST /synthetic-frameworks/libother.dylib",
+          "codesign|--force --sign TEST /synthetic-frameworks/libcrispembed-spacy.dylib"
+        ],
+        "passed": true
+      },
+      {
+        "name": "explicit spaCy skip bypasses only spaCy work",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "stdout": "RESULT|none\n",
+        "stderr": "",
+        "stub_calls": [
+          "codesign|--force --sign TEST /synthetic-frameworks/libother.dylib"
+        ],
+        "passed": true
+      }
+    ],
+    "passed": 10
+  },
+  "selected_test_read_dependency": {
+    "path": "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart",
+    "cases": 1,
+    "action": "Rerun on final merged checkout because it reads tool/build_macos_app.sh. Original selected test source and all pins are unchanged."
+  },
+  "required_followup": [
+    "Fresh one-file Studio pin test using the original test runner guards.",
+    "Fresh final static receipt because distribution.dart documentation bytes changed."
+  ],
+  "limitations": [
+    "This review does not execute macOS codesign, native loading, release signing, or a native build.",
+    "The ten shell cases verify control-flow and gate handling with command stubs; they do not verify Apple tool behavior or cryptographic implementations.",
+    "Previous source and accepted receipts remain immutable and retain their original source attribution."
+  ],
+  "github_actions_queried": false,
+  "remote_refs_mutated": false,
+  "verifier_sha256": "6adb8def74d44d46b17b5752f46d319b92663c5e13cab769983546d0cf60f543"
+}
