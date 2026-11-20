@@ -598,7 +598,9 @@ final class _Projection {
       if (source.startsWith('<!--', index)) {
         final end = source.indexOf('-->', index + 4);
         if (end < 0) {
-          incompleteHtml('Unterminated HTML comment prevents complete quotation.');
+          incompleteHtml(
+            'Unterminated HTML comment prevents complete quotation.',
+          );
           blocked++;
           break;
         }
@@ -659,7 +661,9 @@ final class _Projection {
       if (_blockedTags.contains(name)) blocked++;
       final attributes = _attributes(token, nameMatch.end);
       if (name == 'plaintext') {
-        incompleteHtml('Unsupported HTML plaintext prevents complete quotation.');
+        incompleteHtml(
+          'Unsupported HTML plaintext prevents complete quotation.',
+        );
         break;
       }
       if (name == 'script' ||
@@ -674,7 +678,9 @@ final class _Projection {
         if (matches.moveNext()) {
           index = matches.current.end;
         } else {
-          incompleteHtml('Unterminated active HTML prevents complete quotation.');
+          incompleteHtml(
+            'Unterminated active HTML prevents complete quotation.',
+          );
           index = source.length;
         }
         continue;

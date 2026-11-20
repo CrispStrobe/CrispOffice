@@ -164,7 +164,8 @@ void main() {
       final draft = buildStudioMailReplyDraft(
         _message(
           plain: null,
-          html: '<p>Decoded <b>HTML</b> &amp; café 😀</p>'
+          html:
+              '<p>Decoded <b>HTML</b> &amp; café 😀</p>'
               '<script>privateScript()</script>'
               '<style>privateStyle</style>'
               '<form>privateForm</form>'
@@ -208,13 +209,13 @@ void main() {
   });
 
   test('HTML quote cutoff preserves Unicode and reports truncation', () {
-    final retained = 'x' * 7999 + '😀';
+    final retained = '${'x' * 7999}😀';
     final draft = buildStudioMailReplyDraft(
-      _message(plain: null, html: '<p>' + retained + 'Omitted</p>'),
+      _message(plain: null, html: '<p>${retained}Omitted</p>'),
       forward: false,
       truncationNotice: '[Quote ended.]',
     );
-    expect(draft.body, endsWith(retained + '\n\n[Quote ended.]'));
+    expect(draft.body, endsWith('$retained\n\n[Quote ended.]'));
     expect(draft.body, isNot(contains('Omitted')));
     expect(draft.body, isNot(contains('\uFFFD')));
     expect(utf8.decode(utf8.encode(draft.body)), draft.body);
@@ -515,7 +516,10 @@ void main() {
     expect(draft.body, isNot(contains('private@example.invalid')));
     expect(draft.body, isNot(contains('private-attachment-name')));
     expect(draft.body, isNot(contains('private-part')));
-    expect(draft.to, 'reply@example.invalid, original-recipient@example.invalid');
+    expect(
+      draft.to,
+      'reply@example.invalid, original-recipient@example.invalid',
+    );
     expect(draft.bcc, isEmpty);
     expect(draft.attachments.isEmpty, isTrue);
     expect(draft.thread.inReplyTo, '<parent@example.invalid>');

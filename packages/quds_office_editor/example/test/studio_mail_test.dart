@@ -429,9 +429,7 @@ void main() {
         await tester.tap(find.text('First message'));
         await _pump(tester);
         expect(_reader(tester).decodedText, contains('Exact café body.'));
-        await tester.tap(
-          find.byTooltip(tooltip),
-        );
+        await tester.tap(find.byTooltip(tooltip));
         await _pump(tester);
 
         expect(find.byType(StudioMailComposeDialog), findsOneWidget);
@@ -715,7 +713,10 @@ void main() {
       await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
       await tester.tap(find.text(_strings.mailDraftSaveClose));
       await _pump(tester);
-      expect(drafts.records.values.single.draft.attachments.items, hasLength(2));
+      expect(
+        drafts.records.values.single.draft.attachments.items,
+        hasLength(2),
+      );
       expect(drafts.records.values.single.submissionUncertain, isFalse);
       expect(client.sent, isEmpty);
 
@@ -745,7 +746,10 @@ void main() {
       expect(decoded.message!.envelope.inReplyTo, isNull);
       expect(decoded.message!.envelope.references, isEmpty);
       expect(decoded.message!.envelope.bcc, isEmpty);
-      expect(decoded.message!.envelope.to.single.address, 'forward@example.invalid');
+      expect(
+        decoded.message!.envelope.to.single.address,
+        'forward@example.invalid',
+      );
       expect(drafts.records, isEmpty);
       await _close(tester);
     },
@@ -757,10 +761,12 @@ void main() {
       final client = _Client();
       final raw = Uint8List.fromList(
         utf8.encode(
-          utf8.decode(_forwardWire()).replaceFirst(
-            'Content-Transfer-Encoding: base64',
-            'Content-Transfer-Encoding: x-private-transfer',
-          ),
+          utf8
+              .decode(_forwardWire())
+              .replaceFirst(
+                'Content-Transfer-Encoding: base64',
+                'Content-Transfer-Encoding: x-private-transfer',
+              ),
         ),
       );
       final parsed = const QudsMimeCodec().parse(raw);

@@ -1541,7 +1541,9 @@ void main() {
       );
       expect(
         tester
-            .widget<IconButton>(_iconButton(_strings.mailForwardWithAttachments))
+            .widget<IconButton>(
+              _iconButton(_strings.mailForwardWithAttachments),
+            )
             .onPressed,
         isNull,
       );
@@ -2019,7 +2021,10 @@ void main() {
       );
       await tester.pump(const Duration(milliseconds: 500));
       await tester.pump();
-      expect(drafts.records.values.single.draft.attachments.items, hasLength(1));
+      expect(
+        drafts.records.values.single.draft.attachments.items,
+        hasLength(1),
+      );
       expect(drafts.records.values.single.submissionUncertain, isFalse);
       drafts.saveGate = markerGate;
       final send = find.widgetWithText(FilledButton, _strings.send);
