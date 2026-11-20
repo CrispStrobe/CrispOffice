@@ -845,6 +845,7 @@ abstract final class PaintRunText {
     TextAlign? align,
     bool? rtl,
     bool bold = false,
+    double height = 1.0,
   }) {
     final bool useRtl = rtl ?? looksRtl(text);
     return TextPainter(
@@ -852,7 +853,7 @@ abstract final class PaintRunText {
         text: text,
         style: TextStyle(
           fontSize: fontSize,
-          height: 1.0,
+          height: height,
           fontWeight: bold ? FontWeight.bold : FontWeight.normal,
           fontFamily: familyFor(text: text, themeFamily: themeFamily),
           fontFamilyFallback: fallbacksFor(text),

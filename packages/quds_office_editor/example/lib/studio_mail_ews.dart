@@ -16,6 +16,7 @@ import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
+import 'studio_mail_workspace_strings.dart';
 import 'studio_mail_submission.dart';
 import 'studio_strings.dart';
 
@@ -96,7 +97,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   final _login = TextEditingController();
   final _domain = TextEditingController();
   final _password = TextEditingController();
-  final _search = TextEditingController();
+  final _messageListKey = GlobalKey(debugLabel: 'mail-provider-list');
+  final _usedHeaderCursors = <String>{};
   MailEwsAuthentication _authentication = MailEwsAuthentication.ntlm;
   MailProvider? _provider;
   MailSubmissionProvider? _submission;
@@ -228,7 +230,6 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _login,
       _domain,
       _password,
-      _search,
       _clientId,
       _tenant,
       _clientSecret,
@@ -352,7 +353,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       );
       if (!_current(provider, lease)) return;
       final page = _value(response);
+      _validateHeaderPage(page, inbox.id, limit: _pageSize);
       setState(() {
+        _usedHeaderCursors.clear();
         _connected = true;
         _capabilities = supported;
         _busy = false;
@@ -519,7 +522,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _needsRefresh = false;
       _password.clear();
       _clientSecret.clear();
-      _search.clear();
+      _usedHeaderCursors.clear();
       _error = null;
       _notice = null;
       _sender = '';
@@ -586,6 +589,33 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
   }
 
+  void _validateHeaderPage(
+    MailHeaderPage page,
+    MailMailboxId mailbox, {
+    MailCursor? cursor,
+    required int limit,
+  }) {
+    final next = page.next;
+    if (page.messages.length > limit ||
+        _usedHeaderCursors.length >= _maxHeaders) {
+      throw const _EwsUiFailure(MailProblem(MailProblemCode.quotaExceeded));
+    }
+    if (page.messages.any(
+          (header) => header.remote.account != mailbox.account,
+        ) ||
+        page.messages.map((header) => header.remote).toSet().length !=
+            page.messages.length ||
+        page.messages.map((header) => header.id).toSet().length !=
+            page.messages.length ||
+        next != null &&
+            (next.mailbox != mailbox ||
+                next.value.isEmpty ||
+                next.value == cursor?.value ||
+                _usedHeaderCursors.contains(next.value))) {
+      throw const _EwsUiFailure(MailProblem(MailProblemCode.conflict));
+    }
+  }
+
   Future<void> _loadHeaders(MailMailbox mailbox, {bool more = false}) async {
     final provider = _provider;
     final session = _session;
@@ -611,40 +641,56 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         _reader = null;
         _headers = const [];
         _next = null;
+        _usedHeaderCursors.clear();
         _showMessage = false;
       }
     });
     _retire(old);
+    final remaining = _maxHeaders - (more ? _headers.length : 0);
+    final limit = remaining < _pageSize ? remaining : _pageSize;
     try {
       final response = await provider.fetchHeaders(
         mailbox.id,
         cursor: cursor,
-        limit: _pageSize,
+        limit: limit,
         lease: lease,
       );
       if (!_current(provider, lease)) return;
       final page = _value(response);
+      _validateHeaderPage(page, mailbox.id, cursor: cursor, limit: limit);
       final byId = <MailRemoteIdentity, MailHeaderRecord>{
         if (more)
           for (final header in _headers) header.remote: header,
         for (final header in page.messages) header.remote: header,
       };
+      if (byId.values.map((header) => header.id).toSet().length !=
+          byId.length) {
+        throw const _EwsUiFailure(MailProblem(MailProblemCode.conflict));
+      }
       setState(() {
-        _headers = byId.values.take(_maxHeaders).toList();
+        if (cursor != null) _usedHeaderCursors.add(cursor.value);
+        _headers = byId.values.toList();
+        if (more && _selected != null) _selected = byId[_selected!.remote];
         _next = page.next;
         _busy = false;
         if (!more) _needsRefresh = false;
         if (_headers.length >= _maxHeaders && _next != null) {
-          _notice = widget.strings.ewsHeaderLimit;
+          _notice = widget.strings.mailWorkspaceLimit;
         }
       });
     } on Object catch (error) {
       if (!_current(provider, lease)) return;
       setState(() {
         _busy = false;
-        _error = error is _EwsUiFailure
-            ? _problem(error.problem, widget.strings.mailMailboxFailed)
-            : widget.strings.mailMailboxFailed;
+        if (error is _EwsUiFailure &&
+            error.problem.code == MailProblemCode.conflict) {
+          _needsRefresh = true;
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        } else {
+          _error = error is _EwsUiFailure
+              ? _problem(error.problem, widget.strings.mailMailboxFailed)
+              : widget.strings.mailMailboxFailed;
+        }
       });
     }
   }
@@ -1362,11 +1408,21 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         child: LayoutBuilder(
           builder: (context, constraints) {
             final compact = constraints.maxWidth < 1000;
-            if (compact && _reader != null && _showMessage) {
-              return Column(
+            if (compact) {
+              return IndexedStack(
+                index: _reader != null && _showMessage ? 1 : 0,
                 children: [
-                  _actions(compact: true),
-                  Expanded(child: MailMessageView(controller: _reader!)),
+                  ExcludeFocus(
+                    excluding: _reader != null && _showMessage,
+                    child: _messageList(compact: true),
+                  ),
+                  if (_reader != null)
+                    Column(
+                      children: [
+                        _actions(compact: true),
+                        Expanded(child: MailMessageView(controller: _reader!)),
+                      ],
+                    ),
                 ],
               );
             }
@@ -1439,108 +1495,84 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     ],
   );
 
-  Widget _messageList({required bool compact}) {
-    final query = _search.text.trim().toLowerCase();
-    final visible = _headers
-        .where(
-          (header) =>
-              query.isEmpty ||
-              header.envelope.subject.toLowerCase().contains(query) ||
-              header.envelope.from.any(
-                (address) => address.address.toLowerCase().contains(query),
-              ),
-        )
-        .toList();
-    return Column(
-      children: [
-        if (compact)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: DropdownButton<MailMailboxId>(
-              isExpanded: true,
-              value: _mailbox?.id,
-              items: [
-                for (final box in _mailboxes)
-                  DropdownMenuItem(
-                    value: box.id,
-                    child: Text(
-                      box.displayName,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-              ],
-              onChanged: _blocked
-                  ? null
-                  : (id) {
-                      if (id != null) {
-                        unawaited(
-                          _loadHeaders(
-                            _mailboxes.firstWhere((box) => box.id == id),
-                          ),
-                        );
-                      }
-                    },
-            ),
-          ),
+  Widget _messageList({required bool compact}) => Column(
+    children: [
+      if (compact)
         Padding(
-          padding: const EdgeInsets.all(10),
-          child: TextField(
-            controller: _search,
-            onChanged: (_) => setState(() {}),
-            decoration: InputDecoration(
-              isDense: true,
-              prefixIcon: const Icon(Icons.search),
-              hintText: widget.strings.ewsSearchLoaded,
-              border: const OutlineInputBorder(),
-            ),
-          ),
-        ),
-        Expanded(
-          child: visible.isEmpty
-              ? Center(child: Text(widget.strings.noMessages))
-              : ListView.builder(
-                  itemCount: visible.length,
-                  itemBuilder: (context, index) {
-                    final header = visible[index];
-                    return ListTile(
-                      key: ValueKey('ews-message-${header.id.value}'),
-                      selected: header.remote == _selected?.remote,
-                      leading: header.flags?.isFlagged == true
-                          ? const Icon(Icons.flag, size: 18)
-                          : null,
-                      title: Text(
-                        header.envelope.subject,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontWeight: header.flags?.isRead == false
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                        ),
-                      ),
-                      subtitle: Text(
-                        header.envelope.from.firstOrNull?.address ?? '',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      onTap: _blocked ? null : () => _openMessage(header),
-                    );
-                  },
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: DropdownButton<MailMailboxId>(
+            isExpanded: true,
+            value: _mailbox?.id,
+            items: [
+              for (final box in _mailboxes)
+                DropdownMenuItem(
+                  value: box.id,
+                  child: Text(
+                    box.displayName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-        ),
-        if (_next != null && _headers.length < _maxHeaders)
-          TextButton.icon(
-            key: const ValueKey('ews-load-more'),
-            onPressed: _blocked || _needsRefresh || _mailbox == null
+            ],
+            onChanged: _blocked
                 ? null
-                : () => _loadHeaders(_mailbox!, more: true),
-            icon: const Icon(Icons.expand_more),
-            label: Text(widget.strings.ewsLoadMore),
+                : (id) {
+                    if (id != null) {
+                      unawaited(
+                        _loadHeaders(
+                          _mailboxes.firstWhere((box) => box.id == id),
+                        ),
+                      );
+                    }
+                  },
           ),
-      ],
-    );
-  }
+        ),
+      Expanded(
+        child: MailMessageList(
+          key: _messageListKey,
+          scopeId: '${identityHashCode(_provider)}:${_mailbox?.id.value}',
+          strings: widget.strings.mailMessageListStrings,
+          items: [
+            for (final header in _headers)
+              MailMessageListItem(
+                id: 'ews-message-${header.id.value}',
+                subject: header.envelope.subject,
+                sender: header.envelope.from
+                    .map(
+                      (address) =>
+                          address.displayName == null ||
+                              address.displayName!.isEmpty
+                          ? address.address
+                          : '${address.displayName} <${address.address}>',
+                    )
+                    .join(', '),
+                dateLabel: header.envelope.sentAt?.toLocal().toString(),
+                isRead: header.flags?.isRead,
+                isFlagged: header.flags?.isFlagged,
+              ),
+          ],
+          selectedId: _selected == null
+              ? null
+              : 'ews-message-${_selected!.id.value}',
+          busy: _blocked,
+          hasMore: _next != null && _headers.length < _maxHeaders,
+          loadMoreKey: const ValueKey('ews-load-more'),
+          onLoadMore: _needsRefresh || _mailbox == null
+              ? null
+              : () => unawaited(_loadHeaders(_mailbox!, more: true)),
+          limitNotice: _headers.length >= _maxHeaders && _next != null
+              ? widget.strings.mailWorkspaceLimit
+              : null,
+          onOpen: (id) {
+            final header = _headers
+                .where((item) => 'ews-message-${item.id.value}' == id)
+                .firstOrNull;
+            if (header != null) unawaited(_openMessage(header));
+          },
+        ),
+      ),
+    ],
+  );
 
   Widget _actions({required bool compact}) {
     final selected = _selected;

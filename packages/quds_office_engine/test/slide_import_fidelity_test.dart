@@ -1028,6 +1028,118 @@ void main() {
     });
 
     test(
+      'normal autofit accepts percentage strings and retains fixed leading',
+      () {
+        final PmlPresentation deck = _deck([
+          _sld(
+            _textBox(2, 'Fitted')
+                .replaceFirst(
+                  '<a:bodyPr/>',
+                  '<a:bodyPr><a:normAutofit fontScale="1.000%" '
+                      'lnSpcReduction="20.000%"/></a:bodyPr>',
+                )
+                .replaceFirst(
+                  '<a:p>',
+                  '<a:p><a:pPr><a:lnSpc><a:spcPts val="2400"/></a:lnSpc></a:pPr>',
+                ),
+          ),
+        ]);
+        final PmlShape shape = deck.slides.single.shapes.single;
+        expect(shape.textScale, 0.01);
+        expect(shape.lineSpacingReduction, 0.2);
+        expect(shape.richText.single.lineSpacingPt, 24);
+        expect(shape.copy().richText.single.lineSpacingPt, 24);
+        final PmlShape reopened = SlideDeserializer()
+            .readBytes(SlideSerializer().writeBytes(deck))
+            .slides
+            .single
+            .shapes
+            .single;
+        expect(reopened.textScale, 0.01);
+        expect(reopened.richText.single.lineSpacingPt, 24);
+      },
+    );
+
+    test(
+      'autofit model edits survive repeated saves and fresh deck copies',
+      () {
+        final PmlPresentation deck = _deck([
+          _sld(
+            _textBox(2, 'Fitted').replaceFirst(
+              '<a:bodyPr/>',
+              '<a:bodyPr anchor="ctr"><a:normAutofit '
+                  'fontScale="80000" lnSpcReduction="10000"/></a:bodyPr>',
+            ),
+          ),
+        ]);
+        final PmlShape shape = deck.slides.single.shapes.single
+          ..textScale = 0.6
+          ..lineSpacingReduction = 0.25;
+        var copied = PmlPresentation(
+          slides: [
+            PmlSlide(id: 256, shapes: [shape.copy()]),
+          ],
+        );
+        for (var pass = 0; pass < 2; pass++) {
+          copied = SlideDeserializer().readBytes(
+            SlideSerializer().writeBytes(copied),
+          );
+          final PmlShape current = copied.slides.single.shapes.single;
+          expect(current.textScale, 0.6);
+          expect(current.lineSpacingReduction, 0.25);
+          expect(current.textAnchor, PmlTextAnchor.center);
+          expect(current.textSource!.xml, contains('fontScale="60000"'));
+          expect(
+            RegExp('normAutofit').allMatches(current.textSource!.xml),
+            hasLength(1),
+          );
+        }
+        copied.slides.single.shapes.single
+          ..textScale = 1
+          ..lineSpacingReduction = 0;
+        final PmlShape cleared = SlideDeserializer()
+            .readBytes(SlideSerializer().writeBytes(copied))
+            .slides
+            .single
+            .shapes
+            .single;
+        expect(cleared.textScale, 1);
+        expect(cleared.lineSpacingReduction, 0);
+      },
+    );
+
+    test(
+      'native autofit settings are serialized without changing default boxes',
+      () {
+        final PmlPresentation deck = PmlPresentation(
+          slides: [
+            PmlSlide(
+              id: 256,
+              shapes: [
+                PmlShape(
+                  id: 2,
+                  name: 'Fitted',
+                  text: 'Fitted',
+                  textScale: 0.75,
+                  lineSpacingReduction: 0.15,
+                ),
+                PmlShape(id: 3, name: 'Default', text: 'Default'),
+              ],
+            ),
+          ],
+        );
+        final List<PmlShape> shapes = SlideDeserializer()
+            .readBytes(SlideSerializer().writeBytes(deck))
+            .slides
+            .single
+            .shapes;
+        expect(shapes.first.textScale, 0.75);
+        expect(shapes.first.lineSpacingReduction, 0.15);
+        expect(shapes.last.textSource!.xml, isNot(contains('normAutofit')));
+      },
+    );
+
+    test(
       'selected gradient survives copies and repeated saves then clears on edit',
       () {
         final PmlPresentation deck = _deck(

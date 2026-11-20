@@ -51,6 +51,17 @@ The research-material, Mail recovery/attachments, and Android workflow heads
 are already ancestors of captured main. Incoming native qualification remains
 attributed to its original platform and source; it is not fresh execution here.
 
+The pre-acceptance refresh found three further captured heads while main stayed
+at `5e38de19`: Android workflow `7ac3d3be`, radial/PDF work `20573cab`, and Mail
+workspace `6fea99ed`. They are included before the fixed-source acceptance.
+The Mail list feature receives fresh local tests; its incoming Office evidence
+does not qualify Mail behavior. Its overlapping PDF layout fixes are combined
+with the validated autofit boundary/ownership repair, preserving all incoming
+regression tests. Radial rendering keeps the existing complete implementation;
+new PDF alpha references are wired to page resources and scoped to the image.
+No further feature-branch advances are folded into this bounded snapshot.
+Remote main is checked again before publication to prevent lost concurrent work.
+
 ## Selected behavior and review findings
 
 - Complete bounded PNG/JPEG note and image/ink annotation support already saved
