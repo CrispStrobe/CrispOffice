@@ -1541,6 +1541,12 @@ void main() {
       );
       expect(
         tester
+            .widget<IconButton>(_iconButton(_strings.mailForwardWithAttachments))
+            .onPressed,
+        isNull,
+      );
+      expect(
+        tester
             .widget<PopupMenuButton<MailMailbox>>(
               find.byType(PopupMenuButton<MailMailbox>),
             )
@@ -1969,6 +1975,214 @@ void main() {
   );
 
   testWidgets(
+    'EWS explicit attachment forward waits for durable save and starts a new thread',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts();
+      final markerGate = Completer<void>();
+      late _Provider provider;
+      bool? durableAtSubmission;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials)
+              ..replyParticipants = true
+              ..onSubmit = () => durableAtSubmission =
+                  drafts.records.values.single.submissionUncertain,
+        drafts: drafts,
+      );
+      await _connect(tester);
+      final source = const QudsMimeCodec().parse(provider.message().raw.bytes);
+      expect(source.status, MailParseStatus.complete);
+      expect(source.message!.attachments, hasLength(1));
+      await tester.tap(find.text('First Exchange message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.mailForwardWithAttachments));
+      await _pump(tester);
+      final initial = tester
+          .widget<StudioMailComposeDialog>(find.byType(StudioMailComposeDialog))
+          .initialDraft!;
+      expect(initial.to, isEmpty);
+      expect(initial.cc, isEmpty);
+      expect(initial.bcc, isEmpty);
+      expect(initial.attachments.items.single.name, 'example.txt');
+      expect(
+        initial.attachments.items.single.content.bytes,
+        utf8.encode('example'),
+      );
+      expect(initial.thread.inReplyTo, isNull);
+      expect(initial.thread.references, isNull);
+      expect(initial.body, isNot(contains(_strings.mailTextOnlyForward)));
+      expect(provider.submissions, isEmpty);
+      await tester.enterText(
+        _composerField(_strings.to),
+        'forward@example.test',
+      );
+      await tester.pump(const Duration(milliseconds: 500));
+      await tester.pump();
+      expect(drafts.records.values.single.draft.attachments.items, hasLength(1));
+      expect(drafts.records.values.single.submissionUncertain, isFalse);
+      drafts.saveGate = markerGate;
+      final send = find.widgetWithText(FilledButton, _strings.send);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(provider.submissions, isEmpty);
+      expect(drafts.records.values.single.submissionUncertain, isFalse);
+      markerGate.complete();
+      await _pump(tester);
+      expect(durableAtSubmission, isTrue);
+      final submission = provider.submissions.single;
+      final parsed = const QudsMimeCodec().parse(submission.wire.bytes);
+      expect(parsed.status, MailParseStatus.complete);
+      final message = parsed.message!;
+      expect(message.attachments.single.displayName, 'example.txt');
+      expect(message.attachments.single.content.bytes, utf8.encode('example'));
+      expect(message.attachments.single.inline, isFalse);
+      expect(message.envelope.inReplyTo, isNull);
+      expect(message.envelope.references, isEmpty);
+      expect(message.envelope.bcc, isEmpty);
+      expect(submission.envelope.recipients, ['forward@example.test']);
+      expect(
+        utf8.decode(submission.wire.bytes),
+        isNot(contains('hidden@example.test')),
+      );
+      expect(drafts.records, isEmpty);
+      expect(find.text(_strings.ewsSubmissionAccepted), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  for (final tooltip in [
+    _strings.reply,
+    _strings.replyAll,
+    _strings.forward,
+    _strings.mailForwardWithAttachments,
+  ]) {
+    testWidgets(
+      'EWS $tooltip quotes safe HTML body text without active content',
+      (tester) async {
+        late _Provider provider;
+        await _show(
+          tester,
+          (configuration, credentials) =>
+              provider = _Provider(configuration, credentials),
+        );
+        await _connect(tester);
+        final raw = Uint8List.fromList(
+          utf8.encode(
+            'From: writer@example.test\r\n'
+            'To: reader@example.test\r\n'
+            'Bcc: hidden@example.test\r\n'
+            'Subject: HTML from Exchange\r\n'
+            'Content-Type: text/html; charset=utf-8\r\n\r\n'
+            '<p>Quoted Exchange HTML.</p>'
+            '<script>private-script-content</script>'
+            '<style>private-style-content</style>',
+          ),
+        );
+        final parsed = const QudsMimeCodec().parse(raw);
+        expect(parsed.status, MailParseStatus.complete);
+        expect(parsed.message!.body.plainText, isNull);
+        provider.messageGate = Completer<MailResult<MailMessage>>()
+          ..complete(MailSuccess(parsed.message!));
+        await tester.tap(find.text('First Exchange message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(tooltip));
+        await _pump(tester);
+        expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+        final body = tester
+            .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+            .controller
+            .document
+            .paragraphs
+            .map((paragraph) => paragraph.text)
+            .join('\n');
+        expect(body, contains('Quoted Exchange HTML.'));
+        expect(body, isNot(contains('hidden@example.test')));
+        expect(body, isNot(contains('private-script-content')));
+        expect(body, isNot(contains('private-style-content')));
+        expect(provider.submissions, isEmpty);
+        await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+        await tester.tap(find.text(_strings.mailDraftSaveClose));
+        await _pump(tester);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  testWidgets(
+    'EWS retained uncertainty takes priority over invalid forward attachments',
+    (tester) async {
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials)
+              ..outcome = MailSubmissionOutcome.uncertain,
+      );
+      await _connect(tester);
+      await _compose(tester);
+      expect(provider.submissions, hasLength(1));
+      final source = provider.message();
+      provider.messageGate = Completer<MailResult<MailMessage>>()
+        ..complete(
+          MailSuccess(
+            MailMessage(
+              raw: source.raw,
+              envelope: source.envelope,
+              body: source.body,
+              attachments: [
+                ...source.attachments,
+                MailAttachment(
+                  partPath: 'unsupported',
+                  mediaType: 'message/rfc822',
+                  displayName: 'private-source.eml',
+                  content: MailBytes(Uint8List.fromList([1, 2, 3])),
+                ),
+              ],
+              remoteIdentity: source.remoteIdentity,
+              localId: source.localId,
+            ),
+          ),
+        );
+      await tester.tap(find.text('First Exchange message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.mailForwardWithAttachments));
+      await _pump(tester);
+      expect(find.text(_strings.mailRetainedDraft), findsOneWidget);
+      expect(
+        find.text(_strings.mailForwardAttachmentsUnavailable),
+        findsNothing,
+      );
+      expect(find.byType(StudioMailComposeDialog), findsNothing);
+      expect(provider.submissions, hasLength(1));
+      await tester.tap(find.byTooltip(_strings.compose));
+      await _pump(tester);
+      expect(
+        tester
+            .widget<TextField>(_composerField(_strings.subject))
+            .controller!
+            .text,
+        'EWS send',
+      );
+      expect(find.text(_strings.mailRetryAcknowledgement), findsOneWidget);
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, _strings.send),
+            )
+            .onPressed,
+        isNull,
+      );
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(provider.submissions, hasLength(1));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
     'EWS Reply all opens visible participants and preserves threading',
     (tester) async {
       late _Provider provider;
@@ -2021,6 +2235,7 @@ void main() {
       ]);
       expect(message.envelope.bcc, isEmpty);
       expect(message.body.plainText, contains('A message from Exchange.'));
+      expect(message.attachments, isEmpty);
       expect(
         utf8.decode(submission.wire.bytes),
         isNot(contains('hidden@example.test')),
