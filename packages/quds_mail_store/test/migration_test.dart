@@ -362,6 +362,12 @@ void main() {
           final check = sqlite.sqlite3.open(file.path);
           expect(check.userVersion, 3);
           expect(
+            check
+                .select('PRAGMA table_info(store_profile)')
+                .map((row) => row['name']),
+            isNot(contains('local_account_revision')),
+          );
+          expect(
             check.select(
               "SELECT name FROM sqlite_master WHERE name='local_accounts'",
             ),
@@ -708,6 +714,14 @@ Future<MailResult<SqliteMailRepository>> _open(
 Map<String, List<List<Object?>>> _snapshot(File file) {
   final database = sqlite.sqlite3.open(file.path);
   try {
+    if (database.userVersion == 4) {
+      expect(
+        database
+            .select('SELECT local_account_revision FROM store_profile')
+            .single['local_account_revision'],
+        0,
+      );
+    }
     return {
       for (final table in const [
         'store_profile',
@@ -728,11 +742,15 @@ Map<String, List<List<Object?>>> _snapshot(File file) {
       ])
         table: [
           for (final row in database.select(
-            // Compare every pre-existing column even after the additive v3
-            // migration. Nullable flags are checked independently above.
-            table == 'messages'
-                ? 'SELECT account,id,remote,envelope FROM messages ORDER BY rowid'
-                : 'SELECT * FROM $table ORDER BY rowid',
+            // Preserve every pre-existing column across the additive v3/v4
+            // migrations. Flags and the new counter are checked separately.
+            switch (table) {
+              'messages' =>
+                'SELECT account,id,remote,envelope FROM messages ORDER BY rowid',
+              'store_profile' =>
+                'SELECT singleton,host_id,profile_id,removed FROM store_profile ORDER BY rowid',
+              _ => 'SELECT * FROM $table ORDER BY rowid',
+            },
           ))
             [
               for (final Object? value in row.values)

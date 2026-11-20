@@ -320,6 +320,96 @@ void main() {
     },
   );
 
+  for (final foreignWordPrefix in [false, true]) {
+    for (final (label, step) in [
+      ('apply bullets', _default(false)),
+      ('toggle numbers', _default(true)),
+      ('remove numbers', _remove(type: 'paragraph')),
+    ]) {
+      test(
+        '$label preserves foreign namespace metadata with '
+        '${foreignWordPrefix ? 'a rebound w prefix' : 'w-named attributes'}',
+        () async {
+          const extension = 'urn:word-list-prefix-extension';
+          final prefix = foreignWordPrefix ? 'q' : 'w';
+          final collision = foreignWordPrefix ? 'w1' : 'w';
+          final properties =
+              '<$prefix:pPr x:$collision="root" xmlns:x="$_x" '
+              'xmlns:$prefix="$_w" '
+              '${foreignWordPrefix ? 'xmlns:w="$extension" w:keep="root-extension"' : ''}>'
+              '<$prefix:numPr x:$collision="numbering">'
+              '<$prefix:ilvl $prefix:val="0" x:$collision="level"/>'
+              '<$prefix:numId $prefix:val="71" x:$collision="number"/>'
+              '</$prefix:numPr>'
+              '<$prefix:ind $prefix:left="1440" $prefix:right="240" '
+              'x:$collision="indent"/>'
+              '${foreignWordPrefix ? '<w:opaque w:keep="child-extension"/>' : ''}'
+              '</$prefix:pPr>';
+          final session = OfficeMacroSession(
+            _fixture(
+              body: '<w:p>$properties<w:r><w:t>Original</w:t></w:r></w:p>',
+              numbering: _definition(),
+            ),
+            format: OfficeMacroFormat.docx,
+          );
+          await session.run(_plan([step]));
+          var bytes = session.bytes;
+          for (var cycle = 0; cycle < 3; cycle++) {
+            final pp = _properties(bytes);
+            expect(
+              pp.getAttribute(collision, namespaceUri: _x),
+              'root',
+              reason: 'Foreign metadata after save/reopen cycle $cycle',
+            );
+            final number = pp.firstChild('numPr', namespaceUri: _w)!;
+            expect(
+              number.getAttribute(collision, namespaceUri: _x),
+              'numbering',
+            );
+            for (final (name, expected) in [
+              ('ilvl', 'level'),
+              ('numId', 'number'),
+            ]) {
+              expect(
+                number
+                    .firstChild(name, namespaceUri: _w)!
+                    .getAttribute(collision, namespaceUri: _x),
+                expected,
+              );
+            }
+            final indent = pp.firstChild('ind', namespaceUri: _w)!;
+            expect(indent.getAttribute(collision, namespaceUri: _x), 'indent');
+            expect(indent.getAttribute('right', namespaceUri: _w), '240');
+            if (foreignWordPrefix) {
+              expect(
+                pp.getAttribute('keep', namespaceUri: extension),
+                'root-extension',
+              );
+              expect(pp.getAttribute('keep', namespaceUri: _w), isNull);
+              expect(
+                pp
+                    .firstChild('opaque', namespaceUri: extension)!
+                    .getAttribute('keep', namespaceUri: extension),
+                'child-extension',
+              );
+            }
+            final reopened = _read(bytes);
+            expect(reopened.paragraphs.single.text, 'Original');
+            final formatted = reopened.paragraphs.single.properties;
+            if (label == 'apply bullets') {
+              expect(formatted.numId, isNotNull);
+              expect(formatted.listLabel, '• ');
+            } else {
+              expect(formatted.numId, isNull);
+              expect(formatted.numberingSuppressed, isTrue);
+            }
+            bytes = WordSerializer().writeBytes(reopened);
+          }
+        },
+      );
+    }
+  }
+
   final rejected = <String, ({String properties, String numbering})>{
     'missing number ID': (
       properties: '<w:numPr><w:ilvl w:val="0"/></w:numPr>',

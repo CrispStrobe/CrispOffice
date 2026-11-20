@@ -629,6 +629,35 @@ class _StyleCascade {
     ];
   }
 
+  static XmlElement _numberingProjection(XmlElement source) {
+    final projection = source.copy();
+    final bindings = <String, String>{};
+    for (XmlElement? node = source; node != null; node = node.parent) {
+      for (final attribute in node.attributes) {
+        if (attribute.prefix == 'xmlns' || attribute.qualifiedName == 'xmlns') {
+          bindings.putIfAbsent(attribute.qualifiedName, () => attribute.value);
+        }
+      }
+    }
+    // Moving numPr under the effective pPr must retain the namespace context
+    // of its IDs and levels. Their native prefix need not be the literal w.
+    for (final entry in bindings.entries) {
+      if (projection.attributes.any((a) => a.qualifiedName == entry.key)) {
+        continue;
+      }
+      final prefixed = entry.key.startsWith('xmlns:');
+      projection.attributes.add(
+        XmlAttribute(
+          localName: prefixed ? entry.key.substring(6) : 'xmlns',
+          prefix: prefixed ? 'xmlns' : '',
+          namespaceUri: 'http://www.w3.org/2000/xmlns/',
+          value: entry.value,
+        ),
+      );
+    }
+    return projection;
+  }
+
   XmlElement merged(
     String name,
     Iterable<XmlElement?> layers, {
@@ -638,7 +667,10 @@ class _StyleCascade {
       ..setAttribute('w', OfficeNamespaces.w, prefix: 'xmlns');
     for (final layer in layers) {
       if (layer == null) continue;
-      for (final child in layer.childElements) {
+      for (final incoming in layer.childElements) {
+        final child = name == 'pPr' && _word(incoming, 'numPr')
+            ? _numberingProjection(incoming)
+            : incoming;
         if (name == 'pPr' &&
             (child.localName == 'spacing' ||
                 child.localName == 'bidi' ||
@@ -777,8 +809,13 @@ class _StyleCascade {
 
   void paragraph(WmlParagraph p, List<XmlElement> tableLayers) {
     final bool previouslyImported = p.properties.importedValues != null;
-    if (p.properties.importedValues != null ||
-        p.properties.numberingSuppressed) {
+    // A fresh import can already contain native numId=0. Its source XML owns
+    // extension metadata that a full generated pPr cannot reproduce. Only
+    // materialize a new suppression when there is no direct source to retain.
+    final authoredSuppression =
+        p.properties.numberingSuppressed &&
+        (p.properties.sourcePropertiesXml?.isEmpty ?? true);
+    if (previouslyImported || authoredSuppression) {
       p.properties.sourcePropertiesXml = WordSerializer()
           .paragraphPropertiesXml(p.properties);
     }

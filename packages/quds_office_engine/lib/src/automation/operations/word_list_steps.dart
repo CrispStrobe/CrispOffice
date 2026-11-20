@@ -87,7 +87,27 @@ int _integer(String? value, String field, {int min = 0, int max = 2147483647}) {
 
 XmlElement _element(String name) =>
     XmlElement(localName: name, prefix: 'w', namespaceUri: _w)
-      ..setAttribute('w', _w, prefix: 'xmlns');
+      ..attributes.add(_wordNamespace('w'));
+
+XmlAttribute _wordNamespace(String prefix) => XmlAttribute(
+  localName: prefix,
+  value: _w,
+  prefix: 'xmlns',
+  namespaceUri: 'http://www.w3.org/2000/xmlns/',
+);
+
+void _declareWordNamespace(XmlElement node, String prefix) {
+  // Namespace declarations own their qualified name. A foreign attribute
+  // named x:w or x:w1 must never be replaced by a declaration for that prefix.
+  final declarations = node.attributes
+      .where((attribute) => attribute.qualifiedName == 'xmlns:$prefix')
+      .toList(growable: false);
+  if (declarations.length > 1 ||
+      declarations.any((attribute) => attribute.value != _w)) {
+    throw UnsupportedError('Conflicting native list namespace declaration.');
+  }
+  if (declarations.isEmpty) node.attributes.add(_wordNamespace(prefix));
+}
 
 void _set(XmlElement node, String name, String value) {
   // A native attribute gets its own bound prefix; foreign same-name metadata
@@ -105,7 +125,7 @@ void _set(XmlElement node, String name, String value) {
   while (bindings[prefix] != null && bindings[prefix] != _w) {
     prefix = 'w${suffix++}';
   }
-  node.setAttribute(prefix, _w, prefix: 'xmlns');
+  _declareWordNamespace(node, prefix);
   node.attributes.removeWhere(
     (a) => a.localName == name && a.namespaceUri == _w,
   );
@@ -148,7 +168,16 @@ XmlElement _parseProperties(String source) {
       'List edits require unambiguous native paragraph properties.',
     );
   }
-  return children.single..setAttribute('w', _w, prefix: 'xmlns');
+  final properties = children.single;
+  // Generated fragments inherit w from the wrapper and need that binding
+  // when detached. Imported properties may legitimately bind w to an
+  // extension namespace while using another prefix for native Word nodes.
+  if (!properties.attributes.any(
+    (attribute) => attribute.qualifiedName == 'xmlns:w',
+  )) {
+    _declareWordNamespace(properties, 'w');
+  }
+  return properties;
 }
 
 void _checkProperties(XmlElement properties) {
