@@ -80,6 +80,7 @@ class StudioNativeMenus extends StatelessWidget {
     required this.settingsLabel,
     required this.fileGroups,
     required this.editGroups,
+    this.viewGroups = const <List<StudioMenuAction>>[],
     required this.onAbout,
     required this.onSettings,
     required this.child,
@@ -93,6 +94,7 @@ class StudioNativeMenus extends StatelessWidget {
   final String settingsLabel;
   final List<List<StudioMenuAction>> fileGroups;
   final List<List<StudioMenuAction>> editGroups;
+  final List<List<StudioMenuAction>> viewGroups;
   final VoidCallback onAbout;
   final VoidCallback onSettings;
   final Widget child;
@@ -153,10 +155,20 @@ class StudioNativeMenus extends StatelessWidget {
         PlatformMenu(label: editLabel, menus: _groups(editGroups)),
         PlatformMenu(
           label: viewLabel,
-          menus: const <PlatformMenuItem>[
-            PlatformProvidedMenuItem(
-              type: PlatformProvidedMenuItemType.toggleFullScreen,
-            ),
+          menus: <PlatformMenuItem>[
+            ..._groups(viewGroups),
+            if (viewGroups.isEmpty)
+              const PlatformProvidedMenuItem(
+                type: PlatformProvidedMenuItemType.toggleFullScreen,
+              )
+            else
+              const PlatformMenuItemGroup(
+                members: <PlatformMenuItem>[
+                  PlatformProvidedMenuItem(
+                    type: PlatformProvidedMenuItemType.toggleFullScreen,
+                  ),
+                ],
+              ),
           ],
         ),
         PlatformMenu(

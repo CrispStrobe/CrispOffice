@@ -1,0 +1,100 @@
+{
+  "captured_at": "2026-11-20T08:39:29.038783+00:00",
+  "status": "ready",
+  "environment_script": "/workspace/scratch/8e9460dcd580/runtime/env.sh",
+  "bootstrap_receipt": "/workspace/scratch/8e9460dcd580/runtime/runtime.json",
+  "sdk_supplement": {
+    "command": [
+      "git",
+      "restore",
+      "--source=HEAD",
+      "--worktree",
+      "--",
+      "dev",
+      "examples"
+    ],
+    "cwd": "/workspace/scratch/8e9460dcd580/runtime/flutter",
+    "verification": [
+      "git",
+      "diff",
+      "--exit-code",
+      "--",
+      "dev",
+      "examples"
+    ],
+    "exit_code": 0
+  },
+  "sqlite": {
+    "command": [
+      "dart",
+      "run",
+      "build/runtime-preparation/sqlite_probe.dart"
+    ],
+    "cwd": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_mail_store",
+    "exit_code": 0,
+    "fts5": "ready",
+    "stdout": "Running build hooks...Running build hooks...{\"sqlite3\":\"Version(libVersion: 3.54.1, sourceId: 2026-10-16 14:45:20 555e07ef33f69a0957d24d8e555b702464a131d6f1607f4c3c1e4551e8e6ca76, number: 3054001)\",\"fts5\":\"ready\"}\n"
+  },
+  "files": {
+    "bootstrap_script": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/bootstrap_runtime.py",
+      "sha256": "109f2306e27d0a2fdae40a7c69fb57b646af51be3ba08752f82ef3da452bd5a4",
+      "bytes": 9171
+    },
+    "dart": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "bytes": 4835712
+    },
+    "flutter_tester": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/artifacts/engine/linux-x64/flutter_tester",
+      "sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+      "bytes": 36051744
+    },
+    "flutter_tools_snapshot": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_tools.snapshot",
+      "sha256": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+      "bytes": 47740368
+    },
+    "sqlite3_native": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/lib/libsqlite3.so",
+      "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+      "bytes": 1823736
+    },
+    "package_configuration": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/package_config.json",
+      "sha256": "8eab41ca699dc7d09f48d2d845430dc09b57bf225cb202d67688c5da03d3edf2",
+      "bytes": 32782
+    },
+    "package_graph": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/package_graph.json",
+      "sha256": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e",
+      "bytes": 29965
+    },
+    "package_test_entry": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+      "sha256": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008",
+      "bytes": 260
+    },
+    "workspace_manifest": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/pubspec.yaml",
+      "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "bytes": 1043
+    },
+    "workspace_lock": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/pubspec.lock",
+      "sha256": "df9ff88b4df699b2420954d0ddc0dd7a1c40dbca8d9e3af3f25bec7e66700e7e",
+      "bytes": 31364
+    },
+    "sqlite_probe": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/sqlite_probe.dart",
+      "sha256": "a4b3477221f443491fab6ba4011e9248ff28e2fc2d703f3ca70bc60b38d4a3d3",
+      "bytes": 606
+    },
+    "sqlite_probe_log": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/logs/sqlite-readiness.log",
+      "sha256": "1add0471127824f774b78a833845f3537efa2b35bb15ab4d851b2a8e15b3c16e",
+      "bytes": 214
+    }
+  }
+}

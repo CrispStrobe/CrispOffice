@@ -91,6 +91,7 @@ enum PmlShapePreset {
   chevron,
   parallelogram,
   trapezoid,
+  homePlate,
 }
 
 /// One colour stop in a DrawingML gradient fill.
@@ -103,19 +104,27 @@ class PmlGradientStop {
   PmlGradientStop copy() => PmlGradientStop(position: position, color: color);
 }
 
-/// A linear DrawingML gradient fill.
+/// A linear or centered circular DrawingML gradient fill.
 class PmlGradientFill {
-  PmlGradientFill({List<PmlGradientStop>? stops, this.angleDegrees = 0})
-    : stops = stops ?? <PmlGradientStop>[];
+  PmlGradientFill({
+    List<PmlGradientStop>? stops,
+    this.angleDegrees = 0,
+    this.radial = false,
+  }) : stops = stops ?? <PmlGradientStop>[];
 
   final List<PmlGradientStop> stops;
   double angleDegrees;
+
+  /// Circular shading from the center to the circumscribed shape bounds.
+  /// Other path types and noncentral focus rectangles are not modeled.
+  bool radial;
 
   String get fallbackColor => stops.isEmpty ? '' : stops.first.color;
 
   PmlGradientFill copy() => PmlGradientFill(
     stops: <PmlGradientStop>[for (final stop in stops) stop.copy()],
     angleDegrees: angleDegrees,
+    radial: radial,
   );
 }
 
@@ -171,6 +180,7 @@ class PmlTextParagraph {
     this.marginLeftPt = 0,
     this.indentPt = 0,
     this.lineSpacing = 1,
+    this.lineSpacingPt,
     this.spaceBeforePt = 0,
     this.spaceAfterPt = 0,
     this.rightToLeft = false,
@@ -179,6 +189,7 @@ class PmlTextParagraph {
     this.defaultColor = '',
     this.defaultBold = false,
     this.defaultItalic = false,
+    this.replacementRun,
   }) : runs = runs ?? <PmlTextRun>[];
 
   List<PmlTextRun> runs;
@@ -187,6 +198,9 @@ class PmlTextParagraph {
   double marginLeftPt;
   double indentPt;
   double lineSpacing;
+
+  /// Fixed line spacing in points; excludes percentage autofit reduction.
+  double? lineSpacingPt;
   double spaceBeforePt;
   double spaceAfterPt;
   bool rightToLeft;
@@ -196,6 +210,10 @@ class PmlTextParagraph {
   bool defaultBold;
   bool defaultItalic;
 
+  /// Imported ordinary-run formatting used when text is explicitly replaced.
+  /// It can differ from the first visible run when a field or break precedes it.
+  PmlTextRun? replacementRun;
+
   PmlTextParagraph copy() => PmlTextParagraph(
     runs: <PmlTextRun>[for (final PmlTextRun run in runs) run.copy()],
     align: align,
@@ -203,6 +221,7 @@ class PmlTextParagraph {
     marginLeftPt: marginLeftPt,
     indentPt: indentPt,
     lineSpacing: lineSpacing,
+    lineSpacingPt: lineSpacingPt,
     spaceBeforePt: spaceBeforePt,
     spaceAfterPt: spaceAfterPt,
     rightToLeft: rightToLeft,
@@ -211,6 +230,7 @@ class PmlTextParagraph {
     defaultColor: defaultColor,
     defaultBold: defaultBold,
     defaultItalic: defaultItalic,
+    replacementRun: replacementRun?.copy(),
   );
 }
 
@@ -224,6 +244,9 @@ class PmlTableCell {
 
   /// fillColor API.
   String fillColor;
+
+  /// Optional gradient fill; takes precedence over [fillColor] when present.
+  PmlGradientFill? gradient;
 
   /// textColor API.
   String textColor;
@@ -373,6 +396,8 @@ class PmlTextSource {
     required this.textColor,
     required this.textAlign,
     required this.rightToLeft,
+    this.textScale = 1,
+    this.lineSpacingReduction = 0,
   });
 
   /// Original DrawingML text body, including namespace declarations.
@@ -392,6 +417,9 @@ class PmlTextSource {
 
   /// Imported paragraph direction.
   final bool? rightToLeft;
+
+  final double textScale;
+  final double lineSpacingReduction;
 }
 
 /// Class PmlShape.
@@ -407,14 +435,27 @@ class PmlShape {
     this.gradient,
     this.textColor = '',
     this.fontSizePt = 0,
+    this.textBold,
+    this.textItalic,
+    this.textUnderline,
+    this.textFontFamily,
+    this.textSizeOverride = false,
+    this.textColorOverride = false,
+    this.textAlignOverride = false,
+    this.textDirectionOverride = false,
+    this.textReplacementRequested = false,
     this.textSource,
     this.embedRelId,
     List<PmlPathPoint>? path,
     this.visual,
+    this.isBackgroundPicture = false,
+    this.isBackgroundGradient = false,
     this.table,
     this.rightToLeft,
     this.textAlign = PmlTextAlign.left,
     this.textAnchor = PmlTextAnchor.top,
+    double textScale = 1.0,
+    double lineSpacingReduction = 0.0,
     List<PmlTextParagraph>? richText,
     this.groupId,
     this.placeholder = false,
@@ -425,7 +466,12 @@ class PmlShape {
     this.strokeColor = '',
     this.strokeWidth = 1,
     this.hyperlinkUrl = '',
-  }) : path = path ?? <PmlPathPoint>[],
+  }) : _textScale = _autofitRatio(textScale, 'textScale'),
+       _lineSpacingReduction = _autofitRatio(
+         lineSpacingReduction,
+         'lineSpacingReduction',
+       ),
+       path = path ?? <PmlPathPoint>[],
        richText = richText ?? <PmlTextParagraph>[],
        mediaBytes = mediaBytes ?? <int>[];
 
@@ -456,6 +502,34 @@ class PmlShape {
   /// fontSizePt API.
   double fontSizePt;
 
+  /// Explicit whole-text formatting. Null retains the imported run styles;
+  /// false explicitly removes the corresponding decoration.
+  bool? textBold;
+  bool? textItalic;
+  bool? textUnderline;
+  String? textFontFamily;
+
+  /// Retain the intent of a whole-text assignment even when its scalar value
+  /// equals the representative imported value but individual runs differ.
+  bool textSizeOverride;
+  bool textColorOverride;
+  bool textAlignOverride;
+  bool textDirectionOverride;
+
+  /// Explicit native text assignments replace imported runs even when the
+  /// scalar text is unchanged, using the same template for display and export.
+  bool textReplacementRequested;
+
+  bool get hasExplicitTextFormatting =>
+      textBold != null ||
+      textItalic != null ||
+      textUnderline != null ||
+      textFontFamily != null ||
+      textSizeOverride ||
+      textColorOverride ||
+      textAlignOverride ||
+      textDirectionOverride;
+
   /// Source rich text used to preserve unchanged imported formatting.
   PmlTextSource? textSource;
 
@@ -467,6 +541,18 @@ class PmlShape {
 
   /// visual API.
   OfficeVisual? visual;
+
+  /// A full-slide picture resolved from the native `p:bg` fill.
+  /// This role distinguishes the background from ordinary template pictures.
+  /// It is rendered in [PmlSlide.backgroundShapes] and saved as `p:bg`.
+  final bool isBackgroundPicture;
+
+  /// A full-slide gradient resolved from the selected native `p:bg` fill.
+  /// It shares fill ownership with a background picture, while ordinary
+  /// gradient decorations remain independent of solid-background edits.
+  final bool isBackgroundGradient;
+
+  bool get isBackgroundFill => isBackgroundPicture || isBackgroundGradient;
 
   /// table API.
   PmlTable? table;
@@ -480,6 +566,30 @@ class PmlShape {
   /// Vertical text-frame placement from `a:bodyPr/@anchor`.
   PmlTextAnchor textAnchor;
 
+  /// `a:normAutofit/@fontScale`, normalized to 0.0–1.0.
+  double get textScale => _textScale;
+  double _textScale;
+
+  set textScale(double value) => _textScale = _autofitRatio(value, 'textScale');
+
+  /// `a:normAutofit/@lnSpcReduction`, normalized to 0.0–1.0.
+  double get lineSpacingReduction => _lineSpacingReduction;
+  double _lineSpacingReduction;
+
+  set lineSpacingReduction(double value) =>
+      _lineSpacingReduction = _autofitRatio(value, 'lineSpacingReduction');
+
+  static double _autofitRatio(double value, String name) {
+    if (!value.isFinite || value < 0 || value > 1) {
+      throw RangeError.value(
+        value,
+        name,
+        'Expected a finite value from 0 to 1',
+      );
+    }
+    return value;
+  }
+
   /// Rich paragraph/run model when the source text has not been replaced.
   List<PmlTextParagraph> richText;
 
@@ -490,25 +600,82 @@ class PmlShape {
   /// Replacing imported text invalidates the old runs altogether.
   List<PmlTextParagraph> get resolvedRichText {
     final PmlTextSource? source = textSource;
-    if (source == null || richText.isEmpty) return richText;
-    if (source.text != text) return const <PmlTextParagraph>[];
-    final bool fontChanged = source.fontSizePt != fontSizePt;
-    final bool colorChanged = source.textColor != textColor;
-    final bool alignChanged = source.textAlign != textAlign;
-    final bool directionChanged = source.rightToLeft != rightToLeft;
-    if (!fontChanged && !colorChanged && !alignChanged && !directionChanged) {
+    final bool explicit = hasExplicitTextFormatting || textReplacementRequested;
+    if (!explicit && (source == null || richText.isEmpty)) return richText;
+    if (!explicit && source!.text != text) return const <PmlTextParagraph>[];
+    final bool replace =
+        textReplacementRequested ||
+        source == null ||
+        richText.isEmpty ||
+        source.text != text;
+    final bool fontChanged =
+        textSizeOverride ||
+        (source == null
+            ? replace && fontSizePt > 0
+            : source.fontSizePt != fontSizePt);
+    final bool colorChanged =
+        textColorOverride ||
+        (source == null
+            ? replace && textColor.isNotEmpty
+            : source.textColor != textColor);
+    final bool alignChanged =
+        textAlignOverride ||
+        (source == null ? replace : source.textAlign != textAlign);
+    final bool directionChanged =
+        textDirectionOverride ||
+        (source == null ? replace : source.rightToLeft != rightToLeft);
+    if (!explicit &&
+        !fontChanged &&
+        !colorChanged &&
+        !alignChanged &&
+        !directionChanged) {
       return richText;
     }
+    final List<PmlTextParagraph> originals;
+    if (replace) {
+      final lines = text.split('\n');
+      originals = <PmlTextParagraph>[];
+      for (var i = 0; i < lines.length; i++) {
+        // Without an imported XML source, export starts from the authored
+        // scalar text/style. Unsaved display runs are not its replacement
+        // template and must not leave stale text or styling in live output.
+        final template = source == null || richText.isEmpty
+            ? PmlTextParagraph()
+            : richText[i < richText.length ? i : richText.length - 1].copy();
+        final run =
+            template.replacementRun?.copy() ??
+            (template.runs.isEmpty
+                ? PmlTextRun(
+                    text: lines[i],
+                    fontSizePt: template.defaultFontSizePt,
+                    color: template.defaultColor,
+                    bold: template.defaultBold,
+                    italic: template.defaultItalic,
+                  )
+                : template.runs.first.copy());
+        run.text = lines[i];
+        template.runs = <PmlTextRun>[run];
+        originals.add(template);
+      }
+    } else {
+      originals = richText;
+    }
     final List<PmlTextParagraph> resolved = <PmlTextParagraph>[];
-    for (final PmlTextParagraph original in richText) {
+    for (final PmlTextParagraph original in originals) {
       final PmlTextParagraph paragraph = original.copy();
       if (alignChanged) paragraph.align = textAlign;
       if (directionChanged) paragraph.rightToLeft = rightToLeft ?? false;
       if (fontChanged) paragraph.defaultFontSizePt = fontSizePt;
       if (colorChanged) paragraph.defaultColor = textColor;
+      if (textBold != null) paragraph.defaultBold = textBold!;
+      if (textItalic != null) paragraph.defaultItalic = textItalic!;
       for (final PmlTextRun run in paragraph.runs) {
         if (fontChanged) run.fontSizePt = fontSizePt;
         if (colorChanged) run.color = textColor;
+        if (textBold != null) run.bold = textBold!;
+        if (textItalic != null) run.italic = textItalic!;
+        if (textUnderline != null) run.underline = textUnderline!;
+        if (textFontFamily != null) run.fontFamily = textFontFamily!;
       }
       resolved.add(paragraph);
     }
@@ -518,7 +685,11 @@ class PmlShape {
   /// Whether the unmodified imported runs still match scalar text formatting.
   /// Renderers use [resolvedRichText] to apply edits while retaining run styles.
   bool get hasCurrentRichText {
-    if (richText.isEmpty) return false;
+    if (richText.isEmpty ||
+        hasExplicitTextFormatting ||
+        textReplacementRequested) {
+      return false;
+    }
     final PmlTextSource? source = textSource;
     return source == null ||
         (source.text == text &&
@@ -571,14 +742,27 @@ class PmlShape {
       gradient: gradient?.copy(),
       textColor: textColor,
       fontSizePt: fontSizePt,
+      textBold: textBold,
+      textItalic: textItalic,
+      textUnderline: textUnderline,
+      textFontFamily: textFontFamily,
+      textSizeOverride: textSizeOverride,
+      textColorOverride: textColorOverride,
+      textAlignOverride: textAlignOverride,
+      textDirectionOverride: textDirectionOverride,
+      textReplacementRequested: textReplacementRequested,
       textSource: textSource,
       embedRelId: embedRelId,
       path: <PmlPathPoint>[...path],
       visual: visual?.copy(),
+      isBackgroundPicture: isBackgroundPicture,
+      isBackgroundGradient: isBackgroundGradient,
       table: table?.copy(),
       rightToLeft: rightToLeft,
       textAlign: textAlign,
       textAnchor: textAnchor,
+      textScale: textScale,
+      lineSpacingReduction: lineSpacingReduction,
       richText: <PmlTextParagraph>[
         for (final PmlTextParagraph paragraph in richText) paragraph.copy(),
       ],
@@ -622,6 +806,7 @@ class PmlSlide {
     this.showMasterShapes = true,
     this.notes = '',
     this.sourcePartUri,
+    this.sourceLayoutPartUri,
     this.transition = const PmlSlideTransition(),
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
@@ -664,8 +849,7 @@ class PmlSlide {
   String _background;
   String? _primaryMasterBackground;
   XmlElement? _sourceBackground;
-  PmlShape? _backgroundPicture;
-  PmlShape? _backgroundGradient;
+  PmlShape? _backgroundFill;
   bool _backgroundFromSource = false;
 
   /// Authored slide fill retained with its namespace bindings for serialization.
@@ -673,10 +857,12 @@ class PmlSlide {
   XmlElement? get sourceBackground => _sourceBackground;
 
   /// The selected imported picture, also present first in [backgroundShapes].
-  PmlShape? get backgroundPicture => _backgroundPicture;
+  PmlShape? get backgroundPicture =>
+      (_backgroundFill?.isBackgroundPicture ?? false) ? _backgroundFill : null;
 
-  /// Selected imported gradient, painted before ordinary decorations.
-  PmlShape? get backgroundGradient => _backgroundGradient;
+  /// The selected imported gradient, also present first in [backgroundShapes].
+  PmlShape? get backgroundGradient =>
+      (_backgroundFill?.isBackgroundGradient ?? false) ? _backgroundFill : null;
 
   /// A direct solid-color assignment must be serialized as an authored fill.
   bool get writesSolidBackground =>
@@ -690,23 +876,20 @@ class PmlSlide {
     PmlShape? picture,
     PmlShape? gradient,
   }) {
+    if (picture != null && gradient != null) {
+      throw ArgumentError('A background selects one picture or gradient fill.');
+    }
     _clearSourceBackground();
     _sourceBackground = source?.copy();
     _backgroundFromSource = true;
-    _backgroundPicture = picture;
-    _backgroundGradient = gradient;
-    if (picture != null) backgroundShapes.insert(0, picture);
-    if (gradient != null) backgroundShapes.insert(0, gradient);
+    _backgroundFill = picture ?? gradient;
+    if (_backgroundFill != null) backgroundShapes.insert(0, _backgroundFill!);
   }
 
   void _clearSourceBackground() {
-    if (_backgroundPicture != null) backgroundShapes.remove(_backgroundPicture);
-    if (_backgroundGradient != null) {
-      backgroundShapes.remove(_backgroundGradient);
-    }
+    if (_backgroundFill != null) backgroundShapes.remove(_backgroundFill);
     _sourceBackground = null;
-    _backgroundPicture = null;
-    _backgroundGradient = null;
+    _backgroundFill = null;
     _backgroundFromSource = false;
   }
 
@@ -719,6 +902,7 @@ class PmlSlide {
     _background = value;
     inheritsMasterBackground = value.isEmpty;
     _primaryMasterBackground = null;
+    backgroundShapes.removeWhere((shape) => shape.isBackgroundFill);
   }
 
   /// Whether a master-background edit should update this slide's paper.
@@ -757,11 +941,17 @@ class PmlSlide {
   void updateMasterBackground(String value) {
     if (inheritsMasterBackground) {
       setInheritedBackground(value, masterBackground: value);
+      backgroundShapes.removeWhere((shape) => shape.isBackgroundFill);
     }
   }
 
   /// Original owning part, retained when slides are reordered.
   String? sourcePartUri;
+
+  /// Imported layout provenance, retained by copies within the same package.
+  /// It preserves native master-background inheritance when a copy gets a new
+  /// slide part rather than flattening an inherited picture into a local fill.
+  String? sourceLayoutPartUri;
 
   /// notes API.
   String notes;
@@ -790,6 +980,7 @@ class PmlSlide {
       ],
       showMasterShapes: showMasterShapes,
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
+      sourceLayoutPartUri: sourceLayoutPartUri,
       transition: transition,
       hidden: hidden,
       animations: <PmlShapeAnimation>[
@@ -799,16 +990,10 @@ class PmlSlide {
     ).._primaryMasterBackground = _primaryMasterBackground;
     result._sourceBackground = _sourceBackground?.copy();
     result._backgroundFromSource = _backgroundFromSource;
-    if (_backgroundPicture != null) {
-      final int index = backgroundShapes.indexOf(_backgroundPicture!);
+    if (_backgroundFill != null) {
+      final int index = backgroundShapes.indexOf(_backgroundFill!);
       if (index >= 0) {
-        result._backgroundPicture = result.backgroundShapes[index];
-      }
-    }
-    if (_backgroundGradient != null) {
-      final int index = backgroundShapes.indexOf(_backgroundGradient!);
-      if (index >= 0) {
-        result._backgroundGradient = result.backgroundShapes[index];
+        result._backgroundFill = result.backgroundShapes[index];
       }
     }
     return result;
@@ -837,17 +1022,43 @@ class PmlLayout {
 /// Class PmlMaster.
 class PmlMaster {
   /// PmlMaster API.
-  PmlMaster({
-    required this.name,
-    this.background = 'FFFFFF',
-    List<PmlShape>? shapes,
-  }) : shapes = shapes ?? <PmlShape>[];
+  PmlMaster({required this.name, String? background, List<PmlShape>? shapes})
+    : _background = background ?? 'FFFFFF',
+      _hasAuthoredBackground = background != null,
+      shapes = shapes ?? <PmlShape>[];
 
   /// name API.
   String name;
 
-  /// background API.
-  String background;
+  String _background;
+  bool _hasAuthoredBackground;
+  String? _nativeBackground;
+
+  /// Resolved paper color. Assigning it authors a solid master fill, including
+  /// when the color equals an imported picture's solid fallback.
+  String get background => _background;
+
+  set background(String value) {
+    _background = value;
+    _hasAuthoredBackground = true;
+  }
+
+  /// Whether native master fills should be replaced by the authored color.
+  bool get hasAuthoredBackground => _hasAuthoredBackground;
+
+  /// A changed primary color also changes inherited secondary-master colors.
+  /// An explicit assignment of the same color can still replace picture fills.
+  bool get changesNativeBackgroundColor =>
+      _nativeBackground == null ||
+      _nativeBackground !=
+          (_background.isEmpty ? 'FFFFFF' : _background.toUpperCase());
+
+  /// Records a resolved imported or published color without authoring a fill.
+  void setImportedBackground(String value) {
+    _background = value;
+    _hasAuthoredBackground = false;
+    _nativeBackground = value.isEmpty ? 'FFFFFF' : value.toUpperCase();
+  }
 
   /// Master shapes / placeholders.
   final List<PmlShape> shapes;

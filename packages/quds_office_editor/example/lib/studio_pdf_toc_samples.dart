@@ -18,7 +18,7 @@ Uint8List studioContentsGuidePdf() {
       margin: const pw.EdgeInsets.fromLTRB(40, 36, 40, 40),
       footer: (pw.Context context) => pw.Footer(
         leading: const pw.Text(
-          'QUDS OFFICE  ·  CONTENTS',
+          'CRISPOFFICE  ·  CONTENTS',
           style: pw.TextStyle(fontSize: 8, color: '78716C'),
         ),
         trailing: pw.Text(

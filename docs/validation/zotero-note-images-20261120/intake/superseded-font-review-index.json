@@ -1,0 +1,82 @@
+{
+  "status": "Superseded development; original local API is replaced by the stronger incoming e656bc17 font implementation, not final acceptance.",
+  "archive": "superseded-font-review.tar.gz",
+  "sha256": "92c78590c3b6b73f05fd3b5034088f551bed66320612961dc71c88994cda002d",
+  "members": [
+    {
+      "path": "analysis.json",
+      "bytes": 1498,
+      "sha256": "6e2aff1013c6e2950447b962186105eb9789883400fdb9b05d1b08cdf258b458"
+    },
+    {
+      "path": "analysis.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis.stdout.log",
+      "bytes": 457,
+      "sha256": "1b9b80eba2b66827b120d6d06d2ec1f446eabc4197a760e8dc476372e22aa293"
+    },
+    {
+      "path": "development-inputs.json",
+      "bytes": 1572,
+      "sha256": "2b20b06730504189a6e2c6f33ec4c39a447f51118326cdb481490191e9c7bf6b"
+    },
+    {
+      "path": "development.json",
+      "bytes": 3079,
+      "sha256": "b5855a573b9bee7d3e205c11517210b8ad6314d83ef379017fafdae39c628f6e"
+    },
+    {
+      "path": "development.jsonl",
+      "bytes": 6705,
+      "sha256": "36f7ec8eadb7233da0829d5b7fcab259292f3611915077ec92079f63fd2939bd"
+    },
+    {
+      "path": "development.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pre-incoming/manifest.json",
+      "bytes": 1234,
+      "sha256": "e2191eff99a586ca0debcdc0710e4acef9fad8b929bb1f89bec05dc22299aa25"
+    },
+    {
+      "path": "pre-incoming/packages/quds_office_editor/example/lib/studio_fonts.dart",
+      "bytes": 824,
+      "sha256": "7ac6596e17434c6542136c670309ab12f0f1e4403cbe46a4e8e141b6d5084ea9"
+    },
+    {
+      "path": "pre-incoming/packages/quds_office_editor/lib/src/embed/office_host_fonts.dart",
+      "bytes": 11271,
+      "sha256": "38121d5b311465f1303a7eb0b7e680d082cb5865c804ebb4271de81bd8c3050b"
+    },
+    {
+      "path": "pre-incoming/packages/quds_office_editor/lib/src/embed/office_system_font_face.dart",
+      "bytes": 811,
+      "sha256": "c2eae6b49f3fba292d775b2f4ea8ec33974398750f21d2bbc9f1a4a349c4543c"
+    },
+    {
+      "path": "pre-incoming/packages/quds_office_editor/lib/src/embed/office_system_fonts.dart",
+      "bytes": 608,
+      "sha256": "f8be3164e6fda5904e0e0f830b938262875eb49dc85e2669fef8af423f67c2ab"
+    },
+    {
+      "path": "pre-incoming/packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+      "bytes": 4738,
+      "sha256": "a8dae90e7a1f41ed635ba4d5864060284ab012eed5909475edc8851b48384b1c"
+    },
+    {
+      "path": "pre-incoming/packages/quds_office_editor/test/system_fonts_test.dart",
+      "bytes": 5669,
+      "sha256": "f36488352b90e7a13f6838eb19e2f20a2e8f4cc78b966c15c004b58b743aa2b4"
+    },
+    {
+      "path": "pre-incoming/tracked-font-delta.patch",
+      "bytes": 11797,
+      "sha256": "c52165d1c7cb4865eccc10a3cc6cc2fd50e3f8614296bae990c82c7fffe0bcb7"
+    }
+  ]
+}

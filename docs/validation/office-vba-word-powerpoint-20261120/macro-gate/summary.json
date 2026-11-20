@@ -1,0 +1,624 @@
+{
+  "label": "final-macro-gate-fb09a29b",
+  "source_head_start": "fb09a29b70e469c2858bde48c8977590791b6ba7",
+  "started_at_utc": "2026-11-20T09:31:39.962526+00:00",
+  "environment": {
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "CI": "true",
+    "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache"
+  },
+  "package_config_sha256": "0735d6d73ba4a4299f504cce68fd6881b8210e3e4638490932973280ef63e3f0",
+  "validation_script_sha256": {
+    "/workspace/scratch/f8bca915f70d/toolchains/run_final_macro_gate.py": "c1936f30f8e01e5a5914e79eaf033b78141f10495a292031caa912124a84daaa",
+    "/workspace/scratch/f8bca915f70d/toolchains/run_powerpoint_portable.py": "f683b90afb954827bac2d84826334930ffb53e06b941d759510f0d3b28f5dec7",
+    "/workspace/scratch/f8bca915f70d/toolchains/check_powerpoint_report_example.dart": "557b5a6f094f3e46a5973a1c4e742f04d328353dd8dba8edc087daee38665fc6"
+  },
+  "resolved_lock_sha256": "0c3f527784e6f4a057d4fdf0a4e124e841a5ef0f521db06d7485c86cb0d6bf09",
+  "source_scope": [
+    "packages/quds_office_engine/lib",
+    "packages/quds_office_engine/test",
+    "packages/quds_office_engine/tool",
+    "packages/quds_office_engine/example/macros",
+    "packages/legacy_doc_parser/lib"
+  ],
+  "extra_inputs": [
+    "pubspec.yaml",
+    "pubspec.lock",
+    ".fvmrc",
+    "analysis_options.yaml",
+    "packages/quds_office_engine/pubspec.yaml",
+    "packages/quds_office_engine/analysis_options.yaml",
+    "packages/legacy_doc_parser/pubspec.yaml"
+  ],
+  "selected_files": [
+    "test/office_operations_test.dart",
+    "test/office_steps_test.dart",
+    "test/office_macro_runtime_test.dart",
+    "test/office_macro_expansion_test.dart",
+    "test/office_macro_word_revision_guard_test.dart",
+    "test/office_macro_slide_format_test.dart",
+    "test/word_step_atomicity_test.dart",
+    "test/word_steps_vocabulary_test.dart",
+    "test/word_structure_steps_test.dart",
+    "test/table_grid_steps_test.dart",
+    "test/word_table_grid_addressing_test.dart",
+    "test/sheet_macro_preservation_test.dart",
+    "test/office_vba_word_integration_test.dart",
+    "test/office_vba_word_format_integration_test.dart",
+    "test/office_vba_powerpoint_integration_test.dart",
+    "test/slide_import_fidelity_test.dart",
+    "test/slide_text_fidelity_test.dart",
+    "test/slide_rich_text_explicit_style_test.dart",
+    "test/office_macro_language_test.dart",
+    "test/office_vba_variant_conversions_test.dart",
+    "test/office_vba_conformance_test.dart",
+    "test/office_vba_word_conformance_test.dart",
+    "test/office_vba_powerpoint_conformance_test.dart",
+    "test/office_vba_word_extensions_test.dart",
+    "test/office_vba_powerpoint_test.dart",
+    "test/office_vba_word_language_test.dart",
+    "test/office_vba_variant_conformance_test.dart",
+    "test/office_vba_language_test.dart",
+    "test/office_macro_mcp_test.dart",
+    "test/office_macro_cli_test.dart",
+    "test/office_vba_word_cli_test.dart",
+    "test/office_vba_powerpoint_cli_test.dart"
+  ],
+  "test_timeout_factor": "4x",
+  "max_files_per_batch": 4,
+  "transient_limit_bytes": 681574400,
+  "all_stages_passed": true,
+  "retained_evidence_note": "Earlier source-only array/procedure/control-flow cohorts remain separately attributed; they are not added to this final-source execution count.",
+  "test_resource_release_file": "/workspace/scratch/f8bca915f70d/toolchains/final-macro-gate-fb09a29b-resource-release",
+  "waiting_for_other_local_tests": false,
+  "source_changes": {},
+  "source_head_finish": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+  "finished_at_utc": "2026-11-20T09:38:54.744631+00:00",
+  "totals": {
+    "executed_test_cases": 1221,
+    "passed": 1221,
+    "failed": 0,
+    "skipped": 0,
+    "unique_case_ids": 1220,
+    "peak_batch_temporary_bytes": 219439338
+  },
+  "stages": [
+    {
+      "stage": "engine-analysis",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/quds_office_suite/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/engine-analysis-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 17.071,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/engine-analysis.log",
+      "peak_temporary_bytes": 0,
+      "resource_stop": null,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "01-operations-runtime",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/office_operations_test.dart",
+        "test/office_steps_test.dart",
+        "test/office_macro_runtime_test.dart",
+        "test/office_macro_expansion_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/01-operations-runtime-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 6.526,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/01-operations-runtime.log",
+      "peak_temporary_bytes": 219246379,
+      "resource_stop": null,
+      "tests_passed": 63,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 5445
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "02-format-and-word-guards",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/office_macro_word_revision_guard_test.dart",
+        "test/office_macro_slide_format_test.dart",
+        "test/word_step_atomicity_test.dart",
+        "test/word_steps_vocabulary_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/02-format-and-word-guards-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 6.526,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/02-format-and-word-guards.log",
+      "peak_temporary_bytes": 219280874,
+      "resource_stop": null,
+      "tests_passed": 56,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 5238
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "03-word-structure-and-sheet",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/word_structure_steps_test.dart",
+        "test/table_grid_steps_test.dart",
+        "test/word_table_grid_addressing_test.dart",
+        "test/sheet_macro_preservation_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/03-word-structure-and-sheet-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 6.054,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/03-word-structure-and-sheet.log",
+      "peak_temporary_bytes": 219266549,
+      "resource_stop": null,
+      "tests_passed": 90,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 5206
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "04-word-powerpoint-transactions",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/office_vba_word_integration_test.dart",
+        "test/office_vba_word_format_integration_test.dart",
+        "test/office_vba_powerpoint_integration_test.dart",
+        "test/slide_import_fidelity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/04-word-powerpoint-transactions-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 6.023,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/04-word-powerpoint-transactions.log",
+      "peak_temporary_bytes": 219439338,
+      "resource_stop": null,
+      "tests_passed": 75,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 5393
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "05-slide-fidelity-and-variant",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/slide_text_fidelity_test.dart",
+        "test/slide_rich_text_explicit_style_test.dart",
+        "test/office_macro_language_test.dart",
+        "test/office_vba_variant_conversions_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/05-slide-fidelity-and-variant-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 7.072,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/05-slide-fidelity-and-variant.log",
+      "peak_temporary_bytes": 219233787,
+      "resource_stop": null,
+      "tests_passed": 257,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 5818
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "06-conformance-and-word-format",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/office_vba_conformance_test.dart",
+        "test/office_vba_word_conformance_test.dart",
+        "test/office_vba_powerpoint_conformance_test.dart",
+        "test/office_vba_word_extensions_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/06-conformance-and-word-format-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 5.038,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/06-conformance-and-word-format.log",
+      "peak_temporary_bytes": 219221999,
+      "resource_stop": null,
+      "tests_passed": 215,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 4245
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "07-compiler-host-boundaries",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/office_vba_powerpoint_test.dart",
+        "test/office_vba_word_language_test.dart",
+        "test/office_vba_variant_conformance_test.dart",
+        "test/office_vba_language_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/07-compiler-host-boundaries-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 6.038,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/07-compiler-host-boundaries.log",
+      "peak_temporary_bytes": 219262000,
+      "resource_stop": null,
+      "tests_passed": 438,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 4870
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "08-mcp-cli-bridge",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/office_macro_mcp_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/08-mcp-cli-bridge-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 42.701,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/08-mcp-cli-bridge.log",
+      "peak_temporary_bytes": 87710173,
+      "resource_stop": null,
+      "tests_passed": 15,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 42125
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "09-native-macro-cli",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/office_macro_cli_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/09-native-macro-cli-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 84.522,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/09-native-macro-cli.log",
+      "peak_temporary_bytes": 87662797,
+      "resource_stop": null,
+      "tests_passed": 5,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 83166
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "10-word-vba-cli",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/office_vba_word_cli_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/10-word-vba-cli-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 106.637,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/10-word-vba-cli.log",
+      "peak_temporary_bytes": 87683038,
+      "resource_stop": null,
+      "tests_passed": 5,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 106039
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "11-powerpoint-vba-cli",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/office_vba_powerpoint_cli_test.dart"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/11-powerpoint-vba-cli-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 80.717,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/11-powerpoint-vba-cli.log",
+      "peak_temporary_bytes": 87673373,
+      "resource_stop": null,
+      "tests_passed": 2,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "errors": [],
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 79096
+        }
+      ],
+      "runner_success": true,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "powerpoint-report-example",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/f8bca915f70d/validation-workspace/.dart_tool/package_config.json",
+        "/workspace/scratch/f8bca915f70d/toolchains/check_powerpoint_report_example.dart",
+        "/workspace/scratch/f8bca915f70d/quds_office_suite/packages/quds_office_engine/example/macros/powerpoint_report.bas"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/powerpoint-report-example-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 12.552,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/powerpoint-report-example.log",
+      "peak_temporary_bytes": 0,
+      "resource_stop": null,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "portable-conformance",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/f8bca915f70d/toolchains/run_powerpoint_portable.py",
+        "conformance",
+        "final-macro-gate-fb09a29b"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/portable-conformance-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 19.566,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/portable-conformance.log",
+      "peak_temporary_bytes": 0,
+      "resource_stop": null,
+      "source_changes": {},
+      "passed": true
+    },
+    {
+      "stage": "portable-smoke",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/f8bca915f70d/toolchains/run_powerpoint_portable.py",
+        "smoke",
+        "final-macro-gate-fb09a29b"
+      ],
+      "cwd": "/workspace/scratch/f8bca915f70d",
+      "environment": {
+        "DART_SUPPRESS_ANALYTICS": "true",
+        "CI": "true",
+        "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+        "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/portable-smoke-tmp"
+      },
+      "exit_code": 0,
+      "seconds": 26.097,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b/portable-smoke.log",
+      "peak_temporary_bytes": 0,
+      "resource_stop": null,
+      "source_changes": {},
+      "passed": true
+    }
+  ],
+  "product_commit": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+  "engine_tree": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+  "verified_unchanged_inputs": 1041,
+  "example_check": {
+    "source": "example/macros/powerpoint_report.bas",
+    "defaultEntryPoint": "Main",
+    "nativeOperationCount": 18,
+    "textWrites": 2,
+    "formatWrites": 12,
+    "geometryWrites": 4,
+    "titleText": "Weekly supply report",
+    "bodyText": "Source records: 3; total units: 14",
+    "computedTotal": 14,
+    "validationNonPublication": true,
+    "nativeReadback": true,
+    "unaddressedShapePreserved": true,
+    "revision": 1
+  }
+}

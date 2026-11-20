@@ -4,7 +4,7 @@ import 'office_macro_language.dart';
 import 'office_macro_model.dart';
 import 'office_operations.dart';
 
-/// A source diagnostic from the explicitly invoked Excel VBA subset compiler.
+/// A source diagnostic from an explicitly invoked bounded VBA compiler.
 /// Line and column are one-based UTF-16 positions in the supplied source.
 class OfficeVbaCompileException extends OfficeMacroException {
   const OfficeVbaCompileException(
@@ -56,10 +56,64 @@ class OfficeVbaMacroLanguage implements OfficeMacroLanguage {
         'vba-excel only targets spreadsheet documents.',
       );
     }
-    final module = _Parser(context, _Lexer(context).scan()).parse();
-    final checked = _Checker(context, module)..check();
-    return _Evaluator(context, module, checked).compile();
+    return _compileVba(context);
   }
+}
+
+/// Compiles explicit paragraph writes from the bounded Word VBA dialect.
+///
+/// The language and resource limits are shared with [OfficeVbaMacroLanguage].
+/// Word bindings select main-story paragraphs without reading document content.
+/// Native plans retain the ordinary runtime policy and atomic save boundary.
+class OfficeVbaWordMacroLanguage implements OfficeMacroLanguage {
+  const OfficeVbaWordMacroLanguage();
+
+  @override
+  String get id => 'vba-word';
+
+  @override
+  OfficeMacro compile(OfficeMacroSource source) {
+    final context = _Context(source, isWord: true);
+    if (source.format != OfficeMacroFormat.docx) {
+      context.fail(
+        const _Token(_TokenKind.end, '', 1, 1),
+        'vba_unsupported',
+        'vba-word only targets word-processing documents.',
+      );
+    }
+    return _compileVba(context);
+  }
+}
+
+/// Compiles explicit slide and shape writes from the bounded PowerPoint dialect.
+///
+/// `ActivePresentation` in source denotes the presentation supplied to the
+/// native session, never an ambient application or an embedded VBA project.
+/// The language, diagnostics and aggregate limits are shared with Excel/Word.
+class OfficeVbaPowerPointMacroLanguage implements OfficeMacroLanguage {
+  const OfficeVbaPowerPointMacroLanguage();
+
+  @override
+  String get id => 'vba-powerpoint';
+
+  @override
+  OfficeMacro compile(OfficeMacroSource source) {
+    final context = _Context(source, isPowerPoint: true);
+    if (source.format != OfficeMacroFormat.pptx) {
+      context.fail(
+        const _Token(_TokenKind.end, '', 1, 1),
+        'vba_unsupported',
+        'vba-powerpoint only targets presentation documents.',
+      );
+    }
+    return _compileVba(context);
+  }
+}
+
+OfficeMacro _compileVba(_Context context) {
+  final module = _Parser(context, _Lexer(context).scan()).parse();
+  final checked = _Checker(context, module)..check();
+  return _Evaluator(context, module, checked).compile();
 }
 
 const _maxTokens = 50000;
@@ -78,10 +132,121 @@ const _maxActiveArrayStringUnits = 1048576;
 const _maxExactInteger = 9007199254740991;
 const _comparisonOperators = <String>{'=', '<>', '<', '>', '<=', '>='};
 const _stringIntrinsics = <String>{'len', r'left$', r'right$', r'mid$'};
+const _variantIntrinsics = <String>{
+  'isempty',
+  'isnull',
+  'cbool',
+  'cdbl',
+  'clng',
+  'cstr',
+  'cvar',
+};
+const _wordConstants = <String, int>{
+  'wdalignparagraphleft': 0,
+  'wdalignparagraphcenter': 1,
+  'wdalignparagraphright': 2,
+  'wdalignparagraphjustify': 3,
+  'wdunderlinenone': 0,
+  'wdunderlinesingle': 1,
+  'wdunderlinewords': 2,
+  'wdunderlinedouble': 3,
+  'wdunderlinedotted': 4,
+  'wdunderlinethick': 6,
+  'wdunderlinedash': 7,
+  'wdunderlinedotdash': 9,
+  'wdunderlinedotdotdash': 10,
+  'wdunderlinewavy': 11,
+  'wdunderlinedottedheavy': 20,
+  'wdunderlinedashheavy': 23,
+  'wdunderlinedotdashheavy': 25,
+  'wdunderlinedotdotdashheavy': 26,
+  'wdunderlinewavyheavy': 27,
+  'wdunderlinedashlong': 39,
+  'wdunderlinewavydouble': 43,
+  'wdunderlinedashlongheavy': 55,
+};
+const _wordUnderlines = <int, String>{
+  0: 'none',
+  1: 'single',
+  2: 'words',
+  3: 'double',
+  4: 'dotted',
+  6: 'thick',
+  7: 'dash',
+  9: 'dotDash',
+  10: 'dotDotDash',
+  11: 'wave',
+  20: 'dottedHeavy',
+  23: 'dashedHeavy',
+  25: 'dashDotHeavy',
+  26: 'dashDotDotHeavy',
+  27: 'wavyHeavy',
+  39: 'dashLong',
+  43: 'wavyDouble',
+  55: 'dashLongHeavy',
+};
+const _wordReserved = <String>{
+  'thisdocument',
+  'activedocument',
+  'document',
+  'paragraph',
+  'paragraphs',
+  'wdalignparagraphleft',
+  'wdalignparagraphcenter',
+  'wdalignparagraphright',
+  'wdalignparagraphjustify',
+};
+const _powerPointConstants = <String, int>{
+  'msofalse': 0,
+  'msotrue': -1,
+  'msoctrue': 1,
+  'msotristatemixed': -2,
+  'msotristatetoggle': -3,
+  'ppalignleft': 1,
+  'ppaligncenter': 2,
+  'ppalignright': 3,
+  'ppalignjustify': 4,
+  'ppaligndistribute': 5,
+  'ppalignthaidistribute': 6,
+  'ppalignjustifylow': 7,
+  'ppalignmentmixed': -2,
+};
+const _powerPointReserved = <String>{
+  'application',
+  'activepresentation',
+  'presentation',
+  'slides',
+  'slide',
+  'shapes',
+  'shape',
+  'textframe',
+  'textrange',
+};
 
 class _Context {
-  const _Context(this.source);
+  const _Context(this.source, {this.isWord = false, this.isPowerPoint = false});
   final OfficeMacroSource source;
+  final bool isWord;
+  final bool isPowerPoint;
+  bool get isExcel => !isWord && !isPowerPoint;
+
+  OfficeMacroFormat get format => isWord
+      ? OfficeMacroFormat.docx
+      : isPowerPoint
+      ? OfficeMacroFormat.pptx
+      : OfficeMacroFormat.xlsx;
+
+  Map<String, int> get constants => isWord
+      ? _wordConstants
+      : isPowerPoint
+      ? _powerPointConstants
+      : const <String, int>{};
+
+  bool reserved(String name) =>
+      _Checker._reserved.contains(name) ||
+      constants.containsKey(name) ||
+      (isWord && _wordReserved.contains(name)) ||
+      (isPowerPoint && _powerPointReserved.contains(name));
 
   Never fail(
     _Token token,
@@ -358,9 +523,65 @@ enum _Kind {
   workbook,
   font,
   interior,
+  document,
+  paragraph,
+  paragraphFormat,
+  powerPointApplication,
+  presentation,
+  slides,
+  slide,
+  shapes,
+  shape,
+  textFrame,
+  textRange,
+  powerPointFont,
+  powerPointColor,
+  powerPointParagraphFormat,
+  triState,
 }
 
-enum _Declared { long, doubleType, string, boolean, variant, worksheet, range }
+enum _Declared {
+  long,
+  doubleType,
+  string,
+  boolean,
+  variant,
+  worksheet,
+  range,
+  document,
+  paragraph,
+  presentation,
+  slide,
+  shape,
+  textRange,
+}
+
+bool _objectType(_Declared type) =>
+    type == _Declared.worksheet ||
+    type == _Declared.range ||
+    type == _Declared.document ||
+    type == _Declared.paragraph ||
+    type == _Declared.presentation ||
+    type == _Declared.slide ||
+    type == _Declared.shape ||
+    type == _Declared.textRange;
+
+const _powerPointObjectKinds = <_Kind>{
+  _Kind.powerPointApplication,
+  _Kind.presentation,
+  _Kind.slides,
+  _Kind.slide,
+  _Kind.shapes,
+  _Kind.shape,
+  _Kind.textFrame,
+  _Kind.textRange,
+  _Kind.powerPointFont,
+  _Kind.powerPointColor,
+  _Kind.powerPointParagraphFormat,
+};
+
+// These are source values, never native JSON null or unbound object bindings.
+enum _VariantState { empty, nullValue }
 
 _Kind _kindOf(_Declared type) => switch (type) {
   _Declared.long || _Declared.doubleType => _Kind.number,
@@ -369,6 +590,12 @@ _Kind _kindOf(_Declared type) => switch (type) {
   _Declared.variant => _Kind.variant,
   _Declared.worksheet => _Kind.worksheet,
   _Declared.range => _Kind.range,
+  _Declared.document => _Kind.document,
+  _Declared.paragraph => _Kind.paragraph,
+  _Declared.presentation => _Kind.presentation,
+  _Declared.slide => _Kind.slide,
+  _Declared.shape => _Kind.shape,
+  _Declared.textRange => _Kind.textRange,
 };
 
 sealed class _Expr {
@@ -474,6 +701,11 @@ class _Assignment extends _Statement {
 
 class _Clear extends _Statement {
   const _Clear(super.token, this.target);
+  final _Member target;
+}
+
+class _InsertBefore extends _Statement {
+  const _InsertBefore(super.token, this.target);
   final _Member target;
 }
 
@@ -660,7 +892,7 @@ class _Parser {
           );
         }
         final name = _identifier();
-        if (_Checker._reserved.contains(name.lower)) {
+        if (context.reserved(name.lower)) {
           context.fail(
             name,
             'vba_name_error',
@@ -669,8 +901,7 @@ class _Parser {
         }
         final parameters = _parameters();
         final returnType = isFunction ? _declaredType() : null;
-        if (returnType == _Declared.worksheet ||
-            returnType == _Declared.range) {
+        if (returnType != null && _objectType(returnType)) {
           context.unsupported(name, 'Functions may return scalar values only.');
         }
         _endStatement();
@@ -786,10 +1017,30 @@ class _Parser {
         result.add(_Exit(token, kind));
       } else if (_is('call')) {
         position++;
-        final name = _identifier();
-        final arguments = _arguments() ?? const <_Expr>[];
-        _endStatement();
-        result.add(_Invoke(name, arguments));
+        if (context.isWord) {
+          final target = _postfix();
+          if (target is _Member && target.token.lower == 'insertbefore') {
+            if (target.arguments == null) {
+              context.unsupported(
+                target.token,
+                'Call InsertBefore requires parenthesized arguments.',
+              );
+            }
+            result.add(_InsertBefore(target.token, target));
+          } else if (target is _Call) {
+            result.add(_Invoke(target.token, target.arguments));
+          } else if (target is _Name) {
+            result.add(_Invoke(target.token, const <_Expr>[]));
+          } else {
+            context.unsupported(target.token, 'Unsupported Call target.');
+          }
+          _endStatement();
+        } else {
+          final name = _identifier();
+          final arguments = _arguments() ?? const <_Expr>[];
+          _endStatement();
+          result.add(_Invoke(name, arguments));
+        }
       } else if (_is('for')) {
         final token = current;
         position++;
@@ -1009,6 +1260,32 @@ class _Parser {
             target.token.lower == 'clearcontents') {
           _endStatement();
           result.add(_Clear(token, target));
+        } else if (context.isWord &&
+            !isSet &&
+            !isLet &&
+            target is _Member &&
+            target.token.lower == 'insertbefore') {
+          final arguments = target.arguments ?? <_Expr>[];
+          if (target.arguments == null &&
+              current.kind != _TokenKind.separator &&
+              current.kind != _TokenKind.end) {
+            do {
+              if (arguments.length >= _maxArguments) {
+                context.limit(
+                  current,
+                  'Calls accept at most $_maxArguments arguments.',
+                );
+              }
+              arguments.add(_expression());
+            } while (_take(','));
+          }
+          _endStatement();
+          result.add(
+            _InsertBefore(
+              target.token,
+              _bounded(_Member(target.token, target.receiver, arguments)),
+            ),
+          );
         } else if (!isSet &&
             !isLet &&
             token.kind == _TokenKind.identifier &&
@@ -1144,11 +1421,21 @@ class _Parser {
       'string' => _Declared.string,
       'boolean' => _Declared.boolean,
       'variant' => _Declared.variant,
-      'worksheet' => _Declared.worksheet,
-      'range' => _Declared.range,
+      'worksheet' when context.isExcel => _Declared.worksheet,
+      'range' when !context.isPowerPoint => _Declared.range,
+      'document' when context.isWord => _Declared.document,
+      'paragraph' when context.isWord => _Declared.paragraph,
+      'presentation' when context.isPowerPoint => _Declared.presentation,
+      'slide' when context.isPowerPoint => _Declared.slide,
+      'shape' when context.isPowerPoint => _Declared.shape,
+      'textrange' when context.isPowerPoint => _Declared.textRange,
       _ => context.unsupported(
         token,
-        'Supported declarations are Long, Double, String, Boolean, Variant, Worksheet, and Range.',
+        context.isPowerPoint
+            ? 'Supported declarations are Long, Double, String, Boolean, Variant, Presentation, Slide, Shape, and TextRange.'
+            : context.isWord
+            ? 'Supported declarations are Long, Double, String, Boolean, Variant, Document, Paragraph, and Range.'
+            : 'Supported declarations are Long, Double, String, Boolean, Variant, Worksheet, and Range.',
       ),
     };
   }
@@ -1223,6 +1510,13 @@ class _Parser {
       position++;
       if (token.lower == 'true' || token.lower == 'false') {
         result = _Literal(token, token.lower == 'true');
+      } else if (token.lower == 'empty' || token.lower == 'null') {
+        result = _Literal(
+          token,
+          token.lower == 'empty'
+              ? _VariantState.empty
+              : _VariantState.nullValue,
+        );
       } else {
         final arguments = _arguments();
         result = arguments == null
@@ -1347,6 +1641,7 @@ class _Checker {
   late _Procedure currentProcedure;
   static const _reserved = <String>{
     ..._stringIntrinsics,
+    ..._variantIntrinsics,
     'sub',
     'end',
     'dim',
@@ -1532,7 +1827,7 @@ class _Checker {
 
   void _declare(_Declaration declaration) {
     final name = declaration.token.lower;
-    if (_reserved.contains(name) ||
+    if (context.reserved(name) ||
         symbols.containsKey(name) ||
         module.procedures.containsKey(name)) {
       context.fail(
@@ -1548,8 +1843,7 @@ class _Checker {
       );
     }
     if (declaration.isConst) {
-      if (declaration.type == _Declared.range ||
-          declaration.type == _Declared.worksheet) {
+      if (_objectType(declaration.type)) {
         context.type(declaration.token, 'Constants must be scalar.');
       }
       final initializer = declaration.initializer!;
@@ -1561,8 +1855,7 @@ class _Checker {
       );
     }
     if (declaration.isArray) {
-      if (declaration.type == _Declared.range ||
-          declaration.type == _Declared.worksheet) {
+      if (_objectType(declaration.type)) {
         context.unsupported(
           declaration.token,
           'Array elements must be scalar.',
@@ -1609,6 +1902,9 @@ class _Checker {
       final current = pending.removeLast();
       switch (current) {
         case _Name():
+          if (context.constants.containsKey(current.token.lower)) {
+            break;
+          }
           final symbol = _symbol(current.token);
           if (!constantValues.containsKey(symbol) && needed.add(symbol)) {
             pending.add(symbol.initializer!);
@@ -1653,9 +1949,16 @@ class _Checker {
   void _constant(_Expr expression) {
     switch (expression) {
       case _Literal():
+        if (expression.value is _VariantState) {
+          context.unsupported(
+            expression.token,
+            'Empty and Null are source values, not supported Const expressions.',
+          );
+        }
         break;
       case _Name():
-        if (!(symbols[expression.token.lower]?.isConst ?? false)) {
+        if (!(symbols[expression.token.lower]?.isConst ?? false) &&
+            !context.constants.containsKey(expression.token.lower)) {
           context.unsupported(
             expression.token,
             'Const expressions may only refer to previously declared constants.',
@@ -1705,7 +2008,7 @@ class _Checker {
       }
       if (variable != null && !symbols.containsKey(variable.lower)) {
         if (module.explicit ||
-            _reserved.contains(variable.lower) ||
+            context.reserved(variable.lower) ||
             module.procedures.containsKey(variable.lower)) {
           context.fail(
             variable,
@@ -1774,13 +2077,11 @@ class _Checker {
                 'Constants and active For counters cannot be assigned.',
               );
             }
-            final object =
-                symbol.type == _Declared.worksheet ||
-                symbol.type == _Declared.range;
+            final object = _objectType(symbol.type);
             if (statement.isSet != object) {
               context.type(
                 target.token,
-                'Set is required only for declared Worksheet and Range variables.',
+                'Set is required exactly for supported declared object variables.',
               );
             }
             _assignable(symbol.type, valueKind, statement.value.token);
@@ -1816,6 +2117,12 @@ class _Checker {
             );
           }
         case _Clear():
+          if (!context.isExcel) {
+            context.unsupported(
+              statement.target.token,
+              'ClearContents belongs to the Excel object model.',
+            );
+          }
           _arguments(statement.target, 0, allowProperty: true);
           if (_expression(statement.target.receiver) != _Kind.range) {
             context.type(
@@ -1823,6 +2130,19 @@ class _Checker {
               'ClearContents requires an explicit Range.',
             );
           }
+        case _InsertBefore():
+          final arguments = _arguments(statement.target, 1);
+          if (_expression(statement.target.receiver) != _Kind.range) {
+            context.type(
+              statement.target.token,
+              'InsertBefore requires an explicit Word Range.',
+            );
+          }
+          _compatible(
+            _Kind.string,
+            _expression(arguments.single),
+            arguments.single.token,
+          );
         case _For():
           final counter = _symbol(statement.counter);
           if (counter.isConst ||
@@ -1855,6 +2175,12 @@ class _Checker {
           final isArray =
               collection is _Name &&
               (symbols[collection.token.lower]?.isArray ?? false);
+          if (!context.isExcel && !isArray) {
+            context.unsupported(
+              collection.token,
+              'Document collections cannot be enumerated without live reads.',
+            );
+          }
           if (!isArray && _expression(collection) != _Kind.range) {
             context.type(
               collection.token,
@@ -1909,10 +2235,25 @@ class _Checker {
           _statements(statement.otherwise, nested: true);
         case _With():
           final kind = _expression(statement.target);
-          if (kind != _Kind.worksheet && kind != _Kind.range) {
+          final wordObject =
+              context.isWord &&
+              (kind == _Kind.document ||
+                  kind == _Kind.paragraph ||
+                  kind == _Kind.font ||
+                  kind == _Kind.paragraphFormat);
+          final powerPointObject =
+              context.isPowerPoint && _powerPointObjectKinds.contains(kind);
+          if (kind != _Kind.worksheet &&
+              kind != _Kind.range &&
+              !wordObject &&
+              !powerPointObject) {
             context.type(
               statement.token,
-              'With requires a Worksheet or Range.',
+              context.isPowerPoint
+                  ? 'With requires an explicitly bound PowerPoint object.'
+                  : context.isWord
+                  ? 'With requires a Document, Paragraph, Range, Font, or ParagraphFormat.'
+                  : 'With requires a Worksheet or Range.',
             );
           }
           withKinds.add(kind);
@@ -1982,6 +2323,74 @@ class _Checker {
     _arguments(target, 0, allowProperty: true);
     final receiver = _expression(target.receiver);
     final property = target.token.lower;
+    if (context.isPowerPoint) {
+      if (receiver == _Kind.textRange && property == 'text') {
+        return _Kind.string;
+      }
+      if (receiver == _Kind.powerPointFont) {
+        if (property == 'bold' ||
+            property == 'italic' ||
+            property == 'underline') {
+          return _Kind.triState;
+        }
+        if (property == 'name') return _Kind.string;
+        if (property == 'size') return _Kind.number;
+      }
+      if (receiver == _Kind.powerPointColor && property == 'rgb') {
+        return _Kind.number;
+      }
+      if (receiver == _Kind.powerPointParagraphFormat &&
+          property == 'alignment') {
+        return _Kind.number;
+      }
+      if (receiver == _Kind.shape &&
+          const <String>{
+            'left',
+            'top',
+            'width',
+            'height',
+            'rotation',
+          }.contains(property)) {
+        return _Kind.number;
+      }
+      context.unsupported(
+        target.token,
+        'Unsupported writable PowerPoint property ${target.token.text}.',
+      );
+    }
+    if (context.isWord) {
+      if (receiver == _Kind.font) {
+        if (property == 'bold' ||
+            property == 'italic' ||
+            property == 'strikethrough') {
+          return _Kind.boolean;
+        }
+        if (property == 'size' ||
+            property == 'color' ||
+            property == 'underline') {
+          return _Kind.number;
+        }
+        if (property == 'name') return _Kind.string;
+      } else if (receiver == _Kind.paragraphFormat) {
+        if (property == 'keeptogether' || property == 'pagebreakbefore') {
+          return _Kind.boolean;
+        }
+        if (const <String>{
+          'alignment',
+          'spacebefore',
+          'spaceafter',
+          'leftindent',
+          'rightindent',
+          'firstlineindent',
+        }.contains(property)) {
+          return _Kind.number;
+        }
+      }
+      context.unsupported(
+        target.token,
+        'Unsupported writable Word property ${target.token.text}.',
+      );
+    }
     if (receiver == _Kind.range) {
       if (property == 'value' || property == 'value2') return _Kind.variant;
       if (property == 'formula') return _Kind.string;
@@ -2000,13 +2409,47 @@ class _Checker {
   _Kind _expression(_Expr expression) {
     switch (expression) {
       case _Literal():
-        return expression.value is num
+        return expression.value is _VariantState
+            ? _Kind.variant
+            : expression.value is num
             ? _Kind.number
             : expression.value is bool
             ? _Kind.boolean
             : _Kind.string;
       case _Name():
-        if (expression.token.lower == 'thisworkbook') return _Kind.workbook;
+        if (context.constants.containsKey(expression.token.lower)) {
+          return _Kind.number;
+        }
+        if (context.isPowerPoint) {
+          if (expression.token.lower == 'activepresentation') {
+            return _Kind.presentation;
+          }
+          if (expression.token.lower == 'application') {
+            return _Kind.powerPointApplication;
+          }
+          if (expression.token.lower == 'thisworkbook' ||
+              expression.token.lower == 'thisdocument') {
+            context.unsupported(
+              expression.token,
+              'The selected object belongs to another Office application.',
+            );
+          }
+        }
+        if (context.isWord) {
+          if (expression.token.lower == 'thisdocument') return _Kind.document;
+          if (_wordConstants.containsKey(expression.token.lower)) {
+            return _Kind.number;
+          }
+          if (expression.token.lower == 'thisworkbook') {
+            context.unsupported(
+              expression.token,
+              'ThisWorkbook belongs to the Excel object model.',
+            );
+          }
+        } else if (context.isExcel &&
+            expression.token.lower == 'thisworkbook') {
+          return _Kind.workbook;
+        }
         final symbol = _symbol(expression.token);
         if (symbol.isArray) {
           context.type(
@@ -2030,6 +2473,17 @@ class _Checker {
         if (_stringIntrinsics.contains(expression.token.lower)) {
           return _stringIntrinsic(expression);
         }
+        if (_variantIntrinsics.contains(expression.token.lower)) {
+          _count(expression.token, expression.arguments, 1);
+          final argument = expression.arguments.single;
+          _scalar(_expression(argument), argument.token);
+          return switch (expression.token.lower) {
+            'isempty' || 'isnull' || 'cbool' => _Kind.boolean,
+            'cdbl' || 'clng' => _Kind.number,
+            'cstr' => _Kind.string,
+            _ => _Kind.variant,
+          };
+        }
         if (expression.token.lower == 'lbound' ||
             expression.token.lower == 'ubound') {
           if (expression.arguments.isEmpty || expression.arguments.length > 2) {
@@ -2046,6 +2500,12 @@ class _Checker {
           return _Kind.number;
         }
         if (expression.token.lower == 'worksheets') {
+          if (!context.isExcel) {
+            context.unsupported(
+              expression.token,
+              'Worksheets belongs to the Excel object model.',
+            );
+          }
           _count(expression.token, expression.arguments, 1);
           final kind = _expression(expression.arguments.single);
           if (kind != _Kind.string &&
@@ -2075,6 +2535,29 @@ class _Checker {
       case _Member():
         final receiver = _expression(expression.receiver);
         final name = expression.token.lower;
+        if (context.isPowerPoint) {
+          return _powerPointMember(expression, receiver);
+        }
+        if (context.isWord) {
+          if (receiver == _Kind.document && name == 'paragraphs') {
+            final argument = _arguments(expression, 1).single;
+            _compatible(_Kind.number, _expression(argument), argument.token);
+            return _Kind.paragraph;
+          }
+          if (receiver == _Kind.paragraph && name == 'range') {
+            _arguments(expression, 0, allowProperty: true);
+            return _Kind.range;
+          }
+          if (receiver == _Kind.range &&
+              (name == 'font' || name == 'paragraphformat')) {
+            _arguments(expression, 0, allowProperty: true);
+            return name == 'font' ? _Kind.font : _Kind.paragraphFormat;
+          }
+          context.unsupported(
+            expression.token,
+            'Unsupported Word object member or document read: ${expression.token.text}.',
+          );
+        }
         if (receiver == _Kind.workbook && name == 'worksheets') {
           final arguments = _arguments(expression, 1);
           final kind = _expression(arguments.single);
@@ -2116,33 +2599,98 @@ class _Checker {
         final expected = expression.token.lower == 'not'
             ? _Kind.boolean
             : _Kind.number;
-        _compatible(
-          expected,
-          _expression(expression.operand),
-          expression.operand.token,
-        );
-        return expected;
+        final operand = _expression(expression.operand);
+        _compatible(expected, operand, expression.operand.token);
+        // A Variant operand may be Null. Preserve that possible result so a
+        // nested expression behaves like the same value stored in a Variant.
+        return operand == _Kind.variant ? _Kind.variant : expected;
       case _Binary():
         final left = _expression(expression.left);
         final right = _expression(expression.right);
         final operator = expression.token.lower;
+        final nullable = left == _Kind.variant || right == _Kind.variant;
         if (operator == '&') {
           _scalar(left, expression.left.token);
           _scalar(right, expression.right.token);
-          return _Kind.string;
+          return nullable ? _Kind.variant : _Kind.string;
         }
         if (const <String>{'and', 'or', 'xor'}.contains(operator)) {
           _compatible(_Kind.boolean, left, expression.left.token);
           _compatible(_Kind.boolean, right, expression.right.token);
-          return _Kind.boolean;
+          return nullable ? _Kind.variant : _Kind.boolean;
         }
         if (_comparisonOperators.contains(operator)) {
           _comparisonKinds(left, right, expression.token);
-          return _Kind.boolean;
+          return nullable ? _Kind.variant : _Kind.boolean;
         }
         _compatible(_Kind.number, left, expression.left.token);
         _compatible(_Kind.number, right, expression.right.token);
-        return _Kind.number;
+        return nullable ? _Kind.variant : _Kind.number;
+    }
+  }
+
+  _Kind _powerPointMember(_Member expression, _Kind receiver) {
+    final name = expression.token.lower;
+    if (receiver == _Kind.powerPointApplication &&
+        name == 'activepresentation') {
+      _arguments(expression, 0, allowProperty: true);
+      return _Kind.presentation;
+    }
+    if (receiver == _Kind.presentation && name == 'slides') {
+      if (expression.arguments == null) return _Kind.slides;
+      _powerPointSelector(expression, shape: false);
+      return _Kind.slide;
+    }
+    if (receiver == _Kind.slides && name == 'item') {
+      _powerPointSelector(expression, shape: false);
+      return _Kind.slide;
+    }
+    if (receiver == _Kind.slide && name == 'shapes') {
+      if (expression.arguments == null) return _Kind.shapes;
+      _powerPointSelector(expression, shape: true);
+      return _Kind.shape;
+    }
+    if (receiver == _Kind.shapes && name == 'item') {
+      _powerPointSelector(expression, shape: true);
+      return _Kind.shape;
+    }
+    if (receiver == _Kind.shape && name == 'textframe') {
+      _arguments(expression, 0, allowProperty: true);
+      return _Kind.textFrame;
+    }
+    if (receiver == _Kind.textFrame && name == 'textrange') {
+      _arguments(expression, 0, allowProperty: true);
+      return _Kind.textRange;
+    }
+    if (receiver == _Kind.textRange &&
+        (name == 'font' || name == 'paragraphformat')) {
+      _arguments(expression, 0, allowProperty: true);
+      return name == 'font'
+          ? _Kind.powerPointFont
+          : _Kind.powerPointParagraphFormat;
+    }
+    if (receiver == _Kind.powerPointFont && name == 'color') {
+      _arguments(expression, 0, allowProperty: true);
+      return _Kind.powerPointColor;
+    }
+    context.unsupported(
+      expression.token,
+      'Unsupported PowerPoint object member or document read: ${expression.token.text}.',
+    );
+  }
+
+  void _powerPointSelector(_Member expression, {required bool shape}) {
+    final argument = _arguments(expression, 1).single;
+    final kind = _expression(argument);
+    if (kind != _Kind.number &&
+        kind != _Kind.variant &&
+        !(shape && kind == _Kind.string)) {
+      context.type(
+        argument.token,
+        shape
+            ? 'Shapes requires a one-based index or an exact shape name.'
+            : 'Slides requires a one-based index.',
+      );
     }
   }
 
@@ -2228,9 +2776,28 @@ class _Checker {
       _compatible(_kindOf(type), value, token);
 
   void _compatible(_Kind expected, _Kind value, _Token token) {
+    if (expected == _Kind.triState) {
+      if (value == _Kind.boolean ||
+          value == _Kind.number ||
+          value == _Kind.variant) {
+        return;
+      }
+      context.type(
+        token,
+        'A Boolean or exact msoTrue/msoFalse value is required.',
+      );
+    }
     if (expected == _Kind.variant) {
       _scalar(value, token);
-    } else if (expected != value && value != _Kind.variant) {
+    } else if (expected != value &&
+        (value != _Kind.variant ||
+            expected == _Kind.worksheet ||
+            expected == _Kind.range ||
+            expected == _Kind.document ||
+            expected == _Kind.paragraph ||
+            _powerPointObjectKinds.contains(expected))) {
+      // Scalar Variant values may defer scalar checks until evaluation, but
+      // cannot ever carry object bindings, including in unexecuted code.
       context.type(
         token,
         'Implicit conversion from ${value.name} to ${expected.name} is unsupported.',
@@ -2313,6 +2880,83 @@ class _Interior {
   final _Range range;
 }
 
+class _WordDocument {
+  const _WordDocument();
+}
+
+class _WordParagraph {
+  const _WordParagraph(this.index);
+  final int index;
+}
+
+class _WordRange {
+  const _WordRange(this.paragraph);
+  final _WordParagraph paragraph;
+}
+
+class _WordFont {
+  const _WordFont(this.range);
+  final _WordRange range;
+}
+
+class _WordParagraphFormat {
+  const _WordParagraphFormat(this.range);
+  final _WordRange range;
+}
+
+class _PowerPointApplication {
+  const _PowerPointApplication();
+}
+
+class _Presentation {
+  const _Presentation();
+}
+
+class _Slides {
+  const _Slides();
+}
+
+class _Slide {
+  const _Slide(this.index);
+  final int index;
+}
+
+class _Shapes {
+  const _Shapes(this.slide);
+  final _Slide slide;
+}
+
+class _Shape {
+  const _Shape(this.slide, this.selector);
+  final _Slide slide;
+  final Object selector;
+}
+
+class _TextFrame {
+  const _TextFrame(this.shape);
+  final _Shape shape;
+}
+
+class _TextRange {
+  const _TextRange(this.shape);
+  final _Shape shape;
+}
+
+class _PowerPointFont {
+  const _PowerPointFont(this.range);
+  final _TextRange range;
+}
+
+class _PowerPointColor {
+  const _PowerPointColor(this.range);
+  final _TextRange range;
+}
+
+class _PowerPointParagraphFormat {
+  const _PowerPointParagraphFormat(this.range);
+  final _TextRange range;
+}
+
 sealed class _ExecutionFrame {}
 
 class _BodyFrame extends _ExecutionFrame {
@@ -2375,7 +3019,7 @@ class _Evaluator {
           jsonEncode(<String, Object?>{
             'version': 1,
             'name': name,
-            'format': 'xlsx',
+            'format': context.format.name,
             'steps': <Object?>[],
           }),
         )
@@ -2389,11 +3033,7 @@ class _Evaluator {
     globalValues = Map<String, Object>.of(values);
     _invoke(procedure, const <Object>[], procedure.name, needsResult: false);
     try {
-      return OfficeMacro(
-        name: name,
-        format: OfficeMacroFormat.xlsx,
-        steps: steps,
-      );
+      return OfficeMacro(name: name, format: context.format, steps: steps);
     } on OfficeMacroException catch (error) {
       if (error.code == 'limit_exceeded') {
         context.limit(procedure.name, error.message);
@@ -2438,14 +3078,7 @@ class _Evaluator {
       }
       _execute(procedure.body);
       if (needsResult) {
-        final result = values[procedure.name.lower]!;
-        if (result is _Uninitialized) {
-          context.unsupported(
-            token,
-            'Function ${procedure.name.text} returned an uninitialized Variant; assign its result before returning.',
-          );
-        }
-        return result;
+        return values[procedure.name.lower]!;
       }
       return const _Uninitialized();
     } finally {
@@ -2463,6 +3096,7 @@ class _Evaluator {
     _Declared.doubleType => 0.0,
     _Declared.string => '',
     _Declared.boolean => false,
+    _Declared.variant => _VariantState.empty,
     _ => const _Uninitialized(),
   };
 
@@ -2627,6 +3261,15 @@ class _Evaluator {
             _emitRange(range, 'cellValue', <String, Object?>{
               'value': null,
             }, statement.token);
+          case _InsertBefore():
+            final range = _evaluate(statement.target.receiver) as _WordRange;
+            final value = _evaluate(statement.target.arguments!.single);
+            final text = _wordText(value, statement.target.token);
+            _emitWord(range, 'replaceText', <String, Object?>{
+              'start': 0,
+              'end': 0,
+              'text': text,
+            }, statement.target.token);
           case _With():
             withValues.add(_evaluate(statement.target));
             frames.add(_WithFrame());
@@ -2634,7 +3277,7 @@ class _Evaluator {
           case _If():
             var selected = statement.otherwise;
             for (final branch in statement.branches) {
-              if (_boolean(_evaluate(branch.$1), branch.$1.token)) {
+              if (_condition(_evaluate(branch.$1), branch.$1.token)) {
                 selected = branch.$2;
                 break;
               }
@@ -2759,7 +3402,7 @@ class _Evaluator {
   bool _continues(_ConditionalLoop loop) {
     final condition = loop.condition;
     if (condition == null) return true;
-    return _boolean(_evaluate(condition), condition.token) != loop.until;
+    return _condition(_evaluate(condition), condition.token) != loop.until;
   }
 
   bool _caseMatches(Object selector, _CaseMatch match) {
@@ -2767,7 +3410,10 @@ class _Evaluator {
     final first = _evaluate(match.first);
     final last = match.last;
     if (last == null) {
-      return _compare(match.operator, selector, first, match.token);
+      return _condition(
+        _compare(match.operator, selector, first, match.token),
+        match.token,
+      );
     }
     _rangeValue(selector, match.token);
     _rangeValue(first, match.first.token);
@@ -2777,11 +3423,11 @@ class _Evaluator {
     final upperValue = _evaluate(last);
     _rangeValue(upperValue, last.token);
     final upper = _compare('<=', selector, upperValue, last.token);
-    return lower && upper;
+    return _condition(lower, match.token) && _condition(upper, match.token);
   }
 
   void _rangeValue(Object value, _Token token) {
-    if (value is! num && value is! String) {
+    if (value is! num && value is! String && value is! _VariantState) {
       context.type(token, 'Case To ranges require numbers or strings.');
     }
   }
@@ -2792,7 +3438,24 @@ class _Evaluator {
       case _Literal():
         return expression.value;
       case _Name():
-        if (expression.token.lower == 'thisworkbook') return const _Workbook();
+        final constant = context.constants[expression.token.lower];
+        if (constant != null) return constant;
+        if (context.isPowerPoint) {
+          if (expression.token.lower == 'activepresentation') {
+            return const _Presentation();
+          }
+          if (expression.token.lower == 'application') {
+            return const _PowerPointApplication();
+          }
+        }
+        if (context.isWord) {
+          if (expression.token.lower == 'thisdocument') {
+            return const _WordDocument();
+          }
+        } else if (context.isExcel &&
+            expression.token.lower == 'thisworkbook') {
+          return const _Workbook();
+        }
         final value = values[expression.token.lower]!;
         return _initialized(value, expression.token);
       case _WithValue():
@@ -2828,6 +3491,9 @@ class _Evaluator {
         if (_stringIntrinsics.contains(expression.token.lower)) {
           return _stringIntrinsic(expression, arguments);
         }
+        if (_variantIntrinsics.contains(expression.token.lower)) {
+          return _variantIntrinsic(expression, arguments.single);
+        }
         if (expression.token.lower == 'worksheets') {
           return _sheet(arguments.single, expression.token);
         }
@@ -2846,6 +3512,26 @@ class _Evaluator {
           for (final argument in expression.arguments ?? const <_Expr>[])
             _evaluate(argument),
         ];
+        if (context.isPowerPoint) {
+          return _evaluatePowerPointMember(expression, receiver, arguments);
+        }
+        if (context.isWord) {
+          if (receiver is _WordDocument) {
+            final index = _integer(arguments.single, expression.token);
+            if (index < 1) {
+              context.type(
+                expression.token,
+                'Paragraphs requires a positive one-based index.',
+              );
+            }
+            return _WordParagraph(index - 1);
+          }
+          if (receiver is _WordParagraph) return _WordRange(receiver);
+          final range = receiver as _WordRange;
+          return expression.token.lower == 'font'
+              ? _WordFont(range)
+              : _WordParagraphFormat(range);
+        }
         if (receiver is _Workbook) {
           return _sheet(arguments.single, expression.token);
         }
@@ -2870,10 +3556,11 @@ class _Evaluator {
             : _Interior(range);
       case _Unary():
         final value = _evaluate(expression.operand);
+        if (value == _VariantState.nullValue) return value;
         if (expression.token.lower == 'not') {
           return !_boolean(value, expression.token);
         }
-        final number = _number(value, expression.token);
+        final number = _arithmeticNumber(value, expression.token);
         return _finite(
           expression.token.lower == '-' ? -number : number,
           expression.token,
@@ -2884,6 +3571,10 @@ class _Evaluator {
         final right = _evaluate(expression.right);
         final operator = expression.token.lower;
         if (operator == '&') {
+          if (left == _VariantState.nullValue &&
+              right == _VariantState.nullValue) {
+            return _VariantState.nullValue;
+          }
           final a = _scalarString(left, expression.token);
           final b = _scalarString(right, expression.token);
           if (a.length > _maxString - b.length) {
@@ -2895,13 +3586,7 @@ class _Evaluator {
           return a + b;
         }
         if (const <String>{'and', 'or', 'xor'}.contains(operator)) {
-          final a = _boolean(left, expression.token);
-          final b = _boolean(right, expression.token);
-          return operator == 'and'
-              ? a && b
-              : operator == 'or'
-              ? a || b
-              : a != b;
+          return _logical(operator, left, right, expression.token);
         }
         if (_comparisonOperators.contains(operator)) {
           return _compare(operator, left, right, expression.token);
@@ -2909,8 +3594,15 @@ class _Evaluator {
         // Use floating-point intermediates before checking the safe-integer
         // magnitude. Native Dart int multiplication can wrap before a later
         // range check; JS has no equivalent 64-bit integer arithmetic.
-        final a = _number(left, expression.token).toDouble();
-        final b = _number(right, expression.token).toDouble();
+        // Validate non-Null operands before propagation: Null does not admit
+        // unsupported String/Boolean arithmetic into this bounded dialect.
+        final a = left == _VariantState.nullValue
+            ? null
+            : _arithmeticNumber(left, expression.token).toDouble();
+        final b = right == _VariantState.nullValue
+            ? null
+            : _arithmeticNumber(right, expression.token).toDouble();
+        if (a == null || b == null) return _VariantState.nullValue;
         if (operator == '/' && b == 0) {
           context.fail(
             expression.token,
@@ -2928,7 +3620,53 @@ class _Evaluator {
     }
   }
 
-  bool _compare(String operator, Object left, Object right, _Token token) {
+  Object _evaluatePowerPointMember(
+    _Member expression,
+    Object receiver,
+    List<Object> arguments,
+  ) {
+    if (receiver is _PowerPointApplication) return const _Presentation();
+    if (receiver is _Presentation || receiver is _Slides) {
+      if (expression.arguments == null) return const _Slides();
+      return _Slide(_powerPointIndex(arguments.single, expression.token));
+    }
+    if (receiver is _Slide || receiver is _Shapes) {
+      final slide = receiver is _Slide ? receiver : (receiver as _Shapes).slide;
+      if (expression.arguments == null) return _Shapes(slide);
+      final value = arguments.single;
+      final Object selector = value is String
+          ? _powerPointText(value, expression.token, name: true)
+          : _powerPointIndex(value, expression.token);
+      return _Shape(slide, selector);
+    }
+    if (receiver is _Shape) return _TextFrame(receiver);
+    if (receiver is _TextFrame) return _TextRange(receiver.shape);
+    if (receiver is _TextRange) {
+      return expression.token.lower == 'font'
+          ? _PowerPointFont(receiver)
+          : _PowerPointParagraphFormat(receiver);
+    }
+    if (receiver is _PowerPointFont) return _PowerPointColor(receiver.range);
+    context.unsupported(expression.token, 'Unsupported PowerPoint binding.');
+  }
+
+  int _powerPointIndex(Object value, _Token token) {
+    final index = _integer(value, token);
+    if (index < 1 || index > 2147483647) {
+      context.type(
+        token,
+        'A positive one-based signed Long index is required.',
+      );
+    }
+    return index - 1;
+  }
+
+  Object _compare(String operator, Object left, Object right, _Token token) {
+    if (left == _VariantState.nullValue || right == _VariantState.nullValue) {
+      return _VariantState.nullValue;
+    }
+    if (left == _VariantState.empty) left = _emptyComparisonValue(right);
+    if (right == _VariantState.empty) right = _emptyComparisonValue(left);
     final int comparison;
     if (left is num && right is num) {
       // Dart compareTo distinguishes signed zero; VBA numeric equality and
@@ -2952,11 +3690,37 @@ class _Evaluator {
     };
   }
 
+  Object _emptyComparisonValue(Object other) => other is String
+      ? ''
+      : other is bool
+      ? false
+      : 0;
+
+  num _arithmeticNumber(Object value, _Token token) =>
+      value == _VariantState.empty ? 0 : _number(value, token);
+
+  Object _logical(String operator, Object left, Object right, _Token token) {
+    final a = left == _VariantState.nullValue ? null : _boolean(left, token);
+    final b = right == _VariantState.nullValue ? null : _boolean(right, token);
+    if (operator == 'and') {
+      if (a == false || b == false) return false;
+      return a == null || b == null ? _VariantState.nullValue : true;
+    }
+    if (operator == 'or') {
+      if (a == true || b == true) return true;
+      return a == null || b == null ? _VariantState.nullValue : false;
+    }
+    return a == null || b == null ? _VariantState.nullValue : a != b;
+  }
+
+  bool _condition(Object value, _Token token) =>
+      value is _VariantState ? false : _boolean(value, token);
+
   Object _initialized(Object value, _Token token) {
     if (value is _Uninitialized) {
       context.unsupported(
         token,
-        'Uninitialized Variant/objects (Empty or Nothing) are unsupported; assign before reading.',
+        'Uninitialized objects (Nothing) are unsupported; bind with Set before reading.',
       );
     }
     return value;
@@ -3094,6 +3858,15 @@ class _Evaluator {
   }
 
   Object _convert(_Declared type, Object value, _Token token) {
+    final typedScalar =
+        type == _Declared.long ||
+        type == _Declared.doubleType ||
+        type == _Declared.string ||
+        type == _Declared.boolean;
+    if (typedScalar && value == _VariantState.nullValue) {
+      _invalidNull(token);
+    }
+    if (typedScalar && value == _VariantState.empty) return _default(type);
     switch (type) {
       case _Declared.long:
         final number = _integer(value, token);
@@ -3111,7 +3884,10 @@ class _Evaluator {
       case _Declared.boolean:
         return _boolean(value, token);
       case _Declared.variant:
-        if (value is! String && value is! num && value is! bool) {
+        if (value is! String &&
+            value is! num &&
+            value is! bool &&
+            value is! _VariantState) {
           context.type(token, 'Variant bindings support scalar values only.');
         }
         return value is num ? _finite(value, token) : value;
@@ -3121,9 +3897,198 @@ class _Evaluator {
         }
         return value;
       case _Declared.range:
-        if (value is! _Range) context.type(token, 'Set requires a Range.');
+        if (context.isWord ? value is! _WordRange : value is! _Range) {
+          context.type(token, 'Set requires a Range.');
+        }
+        return value;
+      case _Declared.document:
+        if (value is! _WordDocument) {
+          context.type(token, 'Set requires a Document.');
+        }
+        return value;
+      case _Declared.paragraph:
+        if (value is! _WordParagraph) {
+          context.type(token, 'Set requires a Paragraph.');
+        }
+        return value;
+      case _Declared.presentation:
+        if (value is! _Presentation) {
+          context.type(token, 'Set requires a Presentation.');
+        }
+        return value;
+      case _Declared.slide:
+        if (value is! _Slide) {
+          context.type(token, 'Set requires a Slide.');
+        }
+        return value;
+      case _Declared.shape:
+        if (value is! _Shape) {
+          context.type(token, 'Set requires a Shape.');
+        }
+        return value;
+      case _Declared.textRange:
+        if (value is! _TextRange) {
+          context.type(token, 'Set requires a TextRange.');
+        }
         return value;
     }
+  }
+
+  Never _invalidNull(_Token token) => context.fail(
+    token,
+    'vba_invalid_use_of_null',
+    'Null cannot be converted to a typed scalar or published as a cell value; handle it explicitly with IsNull.',
+  );
+
+  Object _variantIntrinsic(_Call expression, Object value) {
+    final name = expression.token.lower;
+    final token = expression.arguments.single.token;
+    if (name == 'isempty') return value == _VariantState.empty;
+    if (name == 'isnull') return value == _VariantState.nullValue;
+    if (name == 'cvar') return _convert(_Declared.variant, value, token);
+    if (value == _VariantState.nullValue) _invalidNull(token);
+    if (name == 'cstr') {
+      if (value == _VariantState.empty) return '';
+      if (value is String) {
+        // Charge even an identity conversion: callers must not bypass the
+        // shared copy-work limit by repeatedly converting a large String.
+        _charge(value.length, token);
+        return value;
+      }
+      if (value is bool) {
+        _charge(value ? 4 : 5, token);
+        return value ? 'True' : 'False';
+      }
+      return _invariantNumberString(_number(value, token), token);
+    }
+    if (name == 'cbool') {
+      if (value == _VariantState.empty) return false;
+      if (value is bool) return value;
+      if (value is String) {
+        final text = _conversionText(value, token);
+        final lower = text.toLowerCase();
+        if (lower == 'true') return true;
+        if (lower == 'false') return false;
+        return _parseConversionNumber(text, token) != 0;
+      }
+      return _number(value, token) != 0;
+    }
+    final number = _conversionNumber(value, token);
+    if (name == 'cdbl') return number.toDouble();
+    // Explicit CLng follows ties-to-even. Ordinary Long assignment still
+    // requires an exact integer and does not acquire this coercion.
+    final lower = number.floor();
+    final fraction = number - lower;
+    final rounded = fraction < 0.5
+        ? lower
+        : fraction > 0.5
+        ? lower + 1
+        : lower.isEven
+        ? lower
+        : lower + 1;
+    if (rounded < -2147483648 || rounded > 2147483647) {
+      context.type(
+        token,
+        'CLng overflows its signed 32-bit range after rounding.',
+      );
+    }
+    return rounded;
+  }
+
+  num _conversionNumber(Object value, _Token token) {
+    if (value == _VariantState.empty) return 0;
+    if (value is bool) return value ? -1 : 0;
+    if (value is String) {
+      return _parseConversionNumber(_conversionText(value, token), token);
+    }
+    return _number(value, token);
+  }
+
+  String _conversionText(String value, _Token token) {
+    // Charge before scanning, substring allocation, case folding or parsing.
+    _charge(value.length, token);
+    bool whitespace(int unit) => unit == 32 || (unit >= 9 && unit <= 13);
+    var start = 0;
+    var end = value.length;
+    while (start < end && whitespace(value.codeUnitAt(start))) {
+      start++;
+    }
+    while (end > start && whitespace(value.codeUnitAt(end - 1))) {
+      end--;
+    }
+    return value.substring(start, end);
+  }
+
+  static final _conversionNumberPattern = RegExp(
+    r'^[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?$',
+  );
+
+  num _parseConversionNumber(String text, _Token token) {
+    // This deliberately accepts invariant ASCII decimal/exponent syntax only.
+    // Host locale, currency/grouping separators and base prefixes are absent.
+    final match = _conversionNumberPattern.firstMatch(text);
+    if (match == null || match.end != text.length) {
+      context.type(
+        token,
+        'Explicit numeric conversion requires an invariant ASCII decimal or exponent string.',
+      );
+    }
+    final value = double.tryParse(text);
+    if (value == null) {
+      context.type(token, 'The string is not a supported numeric value.');
+    }
+    return _finite(value, token);
+  }
+
+  String _invariantNumberString(num value, _Token token) {
+    if (value == value.truncateToDouble()) {
+      final integer = value.toInt();
+      // Portable integers have at most 16 decimal digits plus a sign.
+      _charge(17, token);
+      return integer.toString();
+    }
+    final magnitude = value.abs().toDouble();
+    var scientific = '';
+    // Find the fewest significant digits that round-trip to this binary64
+    // value. Using one explicit formatting algorithm avoids Dart/JavaScript
+    // defaults choosing different fixed/scientific cutoffs. Each candidate
+    // is bounded (17 digits, exponent, sign), charged before allocation.
+    for (var precision = 1; precision <= 17; precision++) {
+      _charge(32, token);
+      scientific = magnitude.toStringAsExponential(precision - 1);
+      if (double.parse(scientific) == magnitude) break;
+    }
+    final separator = scientific.indexOf('e');
+    final exponent = int.parse(scientific.substring(separator + 1));
+    var digits = scientific.substring(0, separator).replaceAll('.', '');
+    while (digits.length > 1 && digits.endsWith('0')) {
+      digits = digits.substring(0, digits.length - 1);
+    }
+    final sign = value < 0 ? '-' : '';
+    if (exponent < -6) {
+      final length =
+          sign.length +
+          digits.length +
+          (digits.length > 1 ? 1 : 0) +
+          1 +
+          exponent.toString().length;
+      _charge(length, token);
+      final mantissa = digits.length == 1
+          ? digits
+          : '${digits[0]}.${digits.substring(1)}';
+      return '$sign${mantissa}e$exponent';
+    }
+    final point = exponent + 1;
+    if (point <= 0) {
+      _charge(sign.length + 2 - point + digits.length, token);
+      return '${sign}0.${'0' * -point}$digits';
+    }
+    if (point >= digits.length) {
+      _charge(sign.length + point, token);
+      return '$sign$digits${'0' * (point - digits.length)}';
+    }
+    _charge(sign.length + digits.length + 1, token);
+    return '$sign${digits.substring(0, point)}.${digits.substring(point)}';
   }
 
   num _finite(num value, _Token token) {
@@ -3232,6 +4197,7 @@ class _Evaluator {
   }
 
   String _scalarString(Object value, _Token token) {
+    if (value is _VariantState) return '';
     if (value is String) return value;
     if (value is bool) return value ? 'True' : 'False';
     if (value is num) {
@@ -3314,6 +4280,14 @@ class _Evaluator {
   void _write(_Member target, Object value) {
     final receiver = _evaluate(target.receiver);
     final property = target.token.lower;
+    if (context.isPowerPoint) {
+      _writePowerPoint(receiver, property, value, target.token);
+      return;
+    }
+    if (context.isWord) {
+      _writeWord(receiver, property, value, target.token);
+      return;
+    }
     if (receiver is _Range) {
       if (property == 'formula') {
         final formula = _string(value, target.token);
@@ -3327,10 +4301,14 @@ class _Evaluator {
           'formula': formula,
         }, target.token);
       } else {
-        if (value is! String && value is! num && value is! bool) {
+        if (value == _VariantState.nullValue) _invalidNull(target.token);
+        if (value is! String &&
+            value is! num &&
+            value is! bool &&
+            value != _VariantState.empty) {
           context.type(
             target.token,
-            'Value/Value2 supports scalar strings, numbers, and Booleans.',
+            'Value/Value2 supports scalar strings, numbers, Booleans, and Empty.',
           );
         }
         // Excel can reinterpret these as formulas. Do not silently preserve a
@@ -3342,7 +4320,7 @@ class _Evaluator {
           );
         }
         _emitRange(receiver, 'cellValue', <String, Object?>{
-          'value': value,
+          'value': value == _VariantState.empty ? null : value,
         }, target.token);
       }
     } else if (receiver is _Font) {
@@ -3372,6 +4350,310 @@ class _Evaluator {
     }
   }
 
+  void _writePowerPoint(
+    Object receiver,
+    String property,
+    Object value,
+    _Token token,
+  ) {
+    if (receiver is _TextRange) {
+      _emitPowerPoint(receiver.shape, 'shapeText', <String, Object?>{
+        'text': _powerPointText(value, token),
+      }, token);
+      return;
+    }
+    if (receiver is _Shape) {
+      final number = _number(value, token);
+      final field = switch (property) {
+        'left' => 'x',
+        'top' => 'y',
+        _ => property,
+      };
+      final scale = property == 'rotation' ? 60000 : 12700;
+      // DrawingML coordinates and rotations must remain representable after
+      // native unit conversion on both the VM and JavaScript. Bound the XML
+      // integer to a signed Long before the native operation rounds it.
+      if ((number.toDouble() * scale).abs() > 2147483647 ||
+          ((property == 'width' || property == 'height') && number < 0.01)) {
+        context.type(
+          token,
+          'Geometry requires finite points/degrees within signed Long native units; dimensions must be at least 0.01 points.',
+        );
+      }
+      _emitPowerPoint(receiver, 'shapeGeometry', <String, Object?>{
+        field: number,
+      }, token);
+      return;
+    }
+    if (receiver is _PowerPointFont) {
+      final String field;
+      final Object normalized;
+      if (property == 'bold' ||
+          property == 'italic' ||
+          property == 'underline') {
+        field = property;
+        normalized = _powerPointTriState(value, token);
+      } else if (property == 'name') {
+        field = 'font';
+        final family = _powerPointText(value, token, name: true);
+        if (family.trim().isEmpty ||
+            family.length > 255 ||
+            family.contains('\u007f')) {
+          context.type(
+            token,
+            'PowerPoint Font.Name requires a non-whitespace typeface name of at most 255 UTF-16 units, without control characters.',
+          );
+        }
+        normalized = family;
+      } else {
+        field = 'size';
+        final points = _number(value, token);
+        final hundredths = points * 100;
+        if (points < 1 || points > 4000 || hundredths.round() / 100 != points) {
+          context.type(
+            token,
+            'PowerPoint Font.Size requires exact hundredth-points in 1..4000.',
+          );
+        }
+        normalized = points;
+      }
+      _emitPowerPoint(receiver.range.shape, 'shapeFormat', <String, Object?>{
+        field: normalized,
+      }, token);
+      return;
+    }
+    if (receiver is _PowerPointColor) {
+      _emitPowerPoint(receiver.range.shape, 'shapeFormat', <String, Object?>{
+        'color': _color(value, token),
+      }, token);
+      return;
+    }
+    final format = receiver as _PowerPointParagraphFormat;
+    final alignment = _integer(value, token);
+    if (alignment < 1 || alignment > 4) {
+      context.unsupported(
+        token,
+        'Only ppAlignLeft, ppAlignCenter, ppAlignRight and ppAlignJustify are supported.',
+      );
+    }
+    _emitPowerPoint(format.range.shape, 'shapeFormat', <String, Object?>{
+      'alignment': const <String>[
+        'left',
+        'center',
+        'right',
+        'justify',
+      ][alignment - 1],
+    }, token);
+  }
+
+  bool _powerPointTriState(Object value, _Token token) {
+    if (value is bool) return value;
+    final state = _integer(value, token);
+    if (state != 0 && state != -1) {
+      context.type(
+        token,
+        'Only Boolean values or msoTrue (-1) and msoFalse (0) are supported; mixed and toggle states require live reads.',
+      );
+    }
+    return state == -1;
+  }
+
+  String _powerPointText(Object value, _Token token, {bool name = false}) {
+    final text = _string(value, token);
+    _charge(text.length, token);
+    _nativeString(text, token);
+    if (name && text.isEmpty) {
+      context.type(token, 'Font and shape names require a nonempty String.');
+    }
+    for (var index = 0; index < text.length; index++) {
+      final unit = text.codeUnitAt(index);
+      if ((unit < 0x20 && (unit != 9 || name)) ||
+          unit == 0xfffe ||
+          unit == 0xffff) {
+        context.type(
+          token,
+          name
+              ? 'Font and shape names require XML-safe text without tabs or line breaks.'
+              : 'TextRange.Text requires XML-safe single-paragraph text; tabs are allowed but line breaks are unsupported.',
+        );
+      }
+    }
+    return text;
+  }
+
+  void _emitPowerPoint(
+    _Shape shape,
+    String operation,
+    Map<String, Object?> fields,
+    _Token token,
+  ) {
+    if (steps.length >= _maxSteps) {
+      context.limit(
+        token,
+        'PowerPoint writes exceed $_maxSteps emitted operations.',
+      );
+    }
+    _emitNative('pptx.$operation', <String, Object?>{
+      'topLevel': true,
+      'slide': shape.slide.index,
+      if (shape.selector is String)
+        'shapeName': shape.selector
+      else
+        'shape': shape.selector,
+      ...fields,
+    }, token);
+  }
+
+  void _writeWord(
+    Object receiver,
+    String property,
+    Object value,
+    _Token token,
+  ) {
+    if (receiver is _WordFont) {
+      final String field;
+      final Object normalized;
+      if (property == 'bold' ||
+          property == 'italic' ||
+          property == 'strikethrough') {
+        field = property == 'strikethrough' ? 'strike' : property;
+        normalized = _boolean(value, token);
+      } else if (property == 'underline') {
+        field = 'underline';
+        final underline = _wordUnderlines[_integer(value, token)];
+        if (underline == null) {
+          context.unsupported(token, 'Unsupported WdUnderline value.');
+        }
+        normalized = underline;
+      } else if (property == 'name') {
+        field = 'font';
+        normalized = _wordText(value, token, fontName: true);
+      } else if (property == 'size') {
+        field = 'size';
+        final size = _number(value, token);
+        final halfPoints = size * 2;
+        if (size < 0.5 ||
+            size > 1638 ||
+            halfPoints != halfPoints.truncateToDouble()) {
+          context.type(
+            token,
+            'Word Font.Size requires exact half-points in 0.5..1638.',
+          );
+        }
+        normalized = size;
+      } else {
+        field = 'color';
+        normalized = _color(value, token);
+      }
+      _emitWord(receiver.range, 'runFormat', <String, Object?>{
+        field: normalized,
+      }, token);
+      return;
+    }
+    final format = receiver as _WordParagraphFormat;
+    if (property == 'keeptogether' || property == 'pagebreakbefore') {
+      _emitWord(format.range, 'paragraphFormat', <String, Object?>{
+        property == 'keeptogether' ? 'keepTogether' : 'pageBreakBefore':
+            _boolean(value, token),
+      }, token);
+      return;
+    }
+    if (property == 'leftindent' ||
+        property == 'rightindent' ||
+        property == 'firstlineindent') {
+      final points = _number(value, token);
+      final twips = points * 20;
+      if (twips.abs() > 2147483647 || twips.round() / 20 != points) {
+        context.type(
+          token,
+          'Paragraph indents require exact twentieth-points within signed Long twips.',
+        );
+      }
+      _emitWord(format.range, 'paragraphFormat', <String, Object?>{
+        if (property == 'firstlineindent') ...<String, Object?>{
+          'firstLine': points < 0 ? 0 : points,
+          'hanging': points < 0 ? -points : 0,
+        } else
+          property == 'leftindent' ? 'left' : 'right': points,
+      }, token);
+      return;
+    }
+    final String field;
+    final Object normalized;
+    if (property == 'alignment') {
+      final alignment = _integer(value, token);
+      if (alignment < 0 || alignment > 3) {
+        context.unsupported(
+          token,
+          'Only left, center, right, and justified paragraph alignment are supported.',
+        );
+      }
+      field = 'alignment';
+      normalized = const <String>[
+        'left',
+        'center',
+        'right',
+        'justify',
+      ][alignment];
+    } else {
+      final points = _number(value, token);
+      final twips = points * 20;
+      if (points < 0 ||
+          twips > 2147483647 ||
+          twips != twips.truncateToDouble()) {
+        context.type(
+          token,
+          'Paragraph spacing requires nonnegative exact twentieth-points with at most 2147483647 twips.',
+        );
+      }
+      field = property == 'spacebefore' ? 'before' : 'after';
+      normalized = points;
+    }
+    _emitWord(format.range, 'paragraphFormat', <String, Object?>{
+      field: normalized,
+    }, token);
+  }
+
+  String _wordText(Object value, _Token token, {bool fontName = false}) {
+    final text = _string(value, token);
+    // Bound publication scans/copies before validating or encoding a string.
+    _charge(text.length, token);
+    _nativeString(text, token);
+    if (fontName && text.isEmpty) {
+      context.type(token, 'Font.Name requires a nonempty String.');
+    }
+    for (var index = 0; index < text.length; index++) {
+      final unit = text.codeUnitAt(index);
+      if ((unit < 0x20 && unit != 9) ||
+          unit == 0xfffe ||
+          unit == 0xffff ||
+          (fontName && unit == 9)) {
+        context.type(
+          token,
+          fontName
+              ? 'Font.Name requires XML-safe text without tabs or line breaks.'
+              : 'InsertBefore requires XML-safe single-paragraph text; tabs are allowed but line breaks are unsupported.',
+        );
+      }
+    }
+    return text;
+  }
+
+  void _emitWord(
+    _WordRange range,
+    String operation,
+    Map<String, Object?> fields,
+    _Token token,
+  ) {
+    if (steps.length >= _maxSteps) {
+      context.limit(token, 'Word writes exceed $_maxSteps emitted operations.');
+    }
+    _emitNative('docx.$operation', <String, Object?>{
+      'paragraph': range.paragraph.index,
+      ...fields,
+    }, token);
+  }
+
   String _color(Object value, _Token token) {
     final color = _integer(value, token);
     if (color < 0 || color > 0xFFFFFF) {
@@ -3398,7 +4680,11 @@ class _Evaluator {
       if (!paired) {
         context.type(
           token,
-          'Native spreadsheet writes require well-formed UTF-16; isolated surrogates cannot be published losslessly.',
+          context.isPowerPoint
+              ? 'Native PowerPoint writes require well-formed UTF-16; isolated surrogates cannot be published losslessly.'
+              : context.isWord
+              ? 'Native Word writes require well-formed UTF-16; isolated surrogates cannot be published losslessly.'
+              : 'Native spreadsheet writes require well-formed UTF-16; isolated surrogates cannot be published losslessly.',
         );
       }
       index++;
@@ -3429,27 +4715,26 @@ class _Evaluator {
     }
     for (var row = range.minRow; row <= range.maxRow; row++) {
       for (var column = range.minColumn; column <= range.maxColumn; column++) {
-        _tick(token);
         final arguments = <String, Object?>{
           'sheet': range.sheet.selector,
           'cell': '${_columnLetters(column)}$row',
           ...fields,
         };
-        final json = <String, Object?>{
-          'tool': 'xlsx.$operation',
-          'arguments': arguments,
-        };
-        final bytes =
-            utf8.encode(jsonEncode(json)).length + (steps.isEmpty ? 0 : 1);
-        if (bytes > macroJsonByteLimit - encodedBytes) {
-          context.limit(token, 'Compiled native JSON exceeds 1 MiB.');
-        }
-        encodedBytes += bytes;
-        steps.add(
-          OfficeMacroStep(tool: 'xlsx.$operation', arguments: arguments),
-        );
+        _emitNative('xlsx.$operation', arguments, token);
       }
     }
+  }
+
+  void _emitNative(String tool, Map<String, Object?> arguments, _Token token) {
+    _tick(token);
+    final json = <String, Object?>{'tool': tool, 'arguments': arguments};
+    final bytes =
+        utf8.encode(jsonEncode(json)).length + (steps.isEmpty ? 0 : 1);
+    if (bytes > macroJsonByteLimit - encodedBytes) {
+      context.limit(token, 'Compiled native JSON exceeds 1 MiB.');
+    }
+    encodedBytes += bytes;
+    steps.add(OfficeMacroStep(tool: tool, arguments: arguments));
   }
 
   String _columnLetters(int column) {

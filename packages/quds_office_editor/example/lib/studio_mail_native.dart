@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
-import 'package:quds_mail_core/quds_mail_core.dart' show MailProblemCode;
+import 'package:quds_mail_core/quds_mail_core.dart'
+    show MailProblemCode, MailCursor;
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
@@ -21,6 +22,7 @@ import 'studio_mail_operation.dart';
 import 'studio_mail_presets.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
+import 'studio_mail_workspace_strings.dart';
 import 'studio_mail_submission.dart';
 import 'studio_saved_mail.dart';
 import 'studio_strings.dart';
@@ -73,7 +75,14 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   final _password = TextEditingController();
   final _imapHost = TextEditingController();
   final _smtpHost = TextEditingController();
-  final _search = TextEditingController();
+  static const _pageSize = 50;
+  static const _maxHeaders = 1000;
+  final _messageListKey = GlobalKey(debugLabel: 'mail-imap-list');
+  final _usedHeaderCursors = <String>{};
+  final _confirmedFlags =
+      Map<mail.MimeMessage, ({bool? read, bool? flagged})>.identity();
+  MailCursor? _nextHeaders;
+  bool _needsRefresh = false;
   final _primaryLogin = TextEditingController();
   StudioMailImapPreset? _preset;
   bool _icloudFullAddressLogin = false;
@@ -233,7 +242,6 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     _password.dispose();
     _imapHost.dispose();
     _smtpHost.dispose();
-    _search.dispose();
     _primaryLogin.dispose();
     _reader?.dispose();
     _messageLoader?.dispose();
@@ -453,27 +461,47 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       if (inbox == null) {
         throw const FormatException('The account has no selectable mailbox.');
       }
-      final messages = await client.fetchMessages(
-        mailbox: inbox,
-        count: 50,
-        fetchPreference: mail.FetchPreference.envelope,
-      );
+      final StudioMailHeaderPage page;
+      final mail.Mailbox observedMailbox;
+      if (loader is StudioMailMailboxBrowser) {
+        final selected = await client.selectMailbox(inbox);
+        if (!_currentAttempt(generation)) return;
+        observedMailbox = (client.selectedMailbox ?? selected).copyWith();
+        page = await (loader as StudioMailMailboxBrowser).fetchHeaders(
+          observedMailbox,
+          limit: _pageSize,
+        );
+      } else {
+        // Existing reader-only host adapters retain their bounded first page.
+        final messages = await client.fetchMessages(
+          mailbox: inbox,
+          count: _pageSize,
+          fetchPreference: mail.FetchPreference.envelope,
+        );
+        observedMailbox = (client.selectedMailbox ?? inbox).copyWith();
+        page = StudioMailHeaderPage(messages: messages);
+      }
       if (!_currentAttempt(generation)) return;
+      _validateHeaderPage(page, observedMailbox, limit: _pageSize);
       final previous = _reader;
       setState(() {
         _client = client;
         _pendingClient = null;
         _messageLoader = loader;
         _pendingLoader = null;
-        _messageMailbox = (client.selectedMailbox ?? inbox).copyWith();
+        _messageMailbox = observedMailbox;
         _account = account;
         _mailboxes = boxes;
         _mailbox = inbox;
-        _messages = messages;
+        _messages = page.messages;
+        _nextHeaders = page.next;
+        _usedHeaderCursors.clear();
+        _confirmedFlags.clear();
+        _needsRefresh = false;
         _selected = null;
         _reader = null;
         _connecting = false;
-        _notice = '${messages.length} messages';
+        _notice = null;
       });
       adopted = true;
       _retireReader(previous);
@@ -519,44 +547,136 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     }
   });
 
-  Future<void> _selectMailbox(mail.Mailbox mailbox) =>
+  void _validateHeaderPage(
+    StudioMailHeaderPage page,
+    mail.Mailbox mailbox, {
+    MailCursor? cursor,
+    required int limit,
+  }) {
+    final next = page.next;
+    if (page.messages.length > limit ||
+        _usedHeaderCursors.length >= _maxHeaders) {
+      throw const StudioMailMessageLoadException(MailProblemCode.quotaExceeded);
+    }
+    if (page.messages
+                .map((message) => _messageKey(message, mailbox: mailbox))
+                .toSet()
+                .length !=
+            page.messages.length ||
+        next != null &&
+            (next.mailbox.value != mailbox.path ||
+                next.value.isEmpty ||
+                cursor != null && next.mailbox != cursor.mailbox ||
+                next.value == cursor?.value ||
+                _usedHeaderCursors.contains(next.value))) {
+      throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+    }
+  }
+
+  Future<void> _selectMailbox(mail.Mailbox mailbox, {bool more = false}) =>
       runStudioMailOperation(() async {
         final client = _client;
-        if (client == null || _busy || _dialogOpen) return;
+        final loader = _messageLoader;
+        if (client == null ||
+            loader == null ||
+            _busy ||
+            _dialogOpen ||
+            more &&
+                (_needsRefresh ||
+                    _nextHeaders == null ||
+                    _messages.length >= _maxHeaders ||
+                    _messageMailbox == null ||
+                    mailbox.path != _mailbox?.path ||
+                    loader is! StudioMailMailboxBrowser)) {
+          return;
+        }
         final generation = _sessionGeneration;
-        final previous = _reader;
+        final previous = more ? null : _reader;
+        final cursor = more ? _nextHeaders : null;
         setState(() {
           _busy = true;
           _error = null;
           _notice = null;
-          _mailbox = mailbox;
-          _messageMailbox = null;
-          _selected = null;
-          _messages = const <mail.MimeMessage>[];
-          _reader = null;
-          _showCompactMessage = false;
+          if (!more) {
+            _mailbox = mailbox;
+            _messageMailbox = null;
+            _selected = null;
+            _messages = const <mail.MimeMessage>[];
+            _nextHeaders = null;
+            _usedHeaderCursors.clear();
+            _confirmedFlags.clear();
+            _reader = null;
+            _showCompactMessage = false;
+          }
         });
         _retireReader(previous);
         try {
-          await client.selectMailbox(mailbox);
+          final mail.Mailbox observedMailbox;
+          if (more) {
+            observedMailbox = _messageMailbox!;
+          } else {
+            final selected = await client.selectMailbox(mailbox);
+            if (!_currentSession(client, generation)) return;
+            observedMailbox = (client.selectedMailbox ?? selected).copyWith();
+          }
+          final remaining = _maxHeaders - (more ? _messages.length : 0);
+          final limit = remaining < _pageSize ? remaining : _pageSize;
+          final StudioMailHeaderPage page;
+          if (loader is StudioMailMailboxBrowser) {
+            page = await (loader as StudioMailMailboxBrowser).fetchHeaders(
+              observedMailbox,
+              cursor: cursor,
+              limit: limit,
+            );
+          } else {
+            page = StudioMailHeaderPage(
+              messages: await client.fetchMessages(
+                mailbox: mailbox,
+                count: limit,
+                fetchPreference: mail.FetchPreference.envelope,
+              ),
+            );
+          }
           if (!_currentSession(client, generation)) return;
-          final messages = await client.fetchMessages(
-            mailbox: mailbox,
-            count: 50,
-            fetchPreference: mail.FetchPreference.envelope,
+          _validateHeaderPage(
+            page,
+            observedMailbox,
+            cursor: cursor,
+            limit: limit,
           );
-          if (!_currentSession(client, generation)) return;
+          final messages = <String, mail.MimeMessage>{
+            if (more)
+              for (final message in _messages) _messageKey(message): message,
+            for (final message in page.messages)
+              _messageKey(message, mailbox: observedMailbox): message,
+          };
           setState(() {
-            _messages = messages;
-            _messageMailbox = (client.selectedMailbox ?? mailbox).copyWith();
+            if (cursor != null) _usedHeaderCursors.add(cursor.value);
+            _messages = messages.values.toList();
+            final retained = Set<mail.MimeMessage>.identity()
+              ..addAll(_messages);
+            _confirmedFlags.removeWhere(
+              (message, _) => !retained.contains(message),
+            );
+            if (more && _selected != null) {
+              _selected = messages[_messageKey(_selected!)];
+            }
+            _messageMailbox = observedMailbox;
+            _nextHeaders = page.next;
+            _needsRefresh = false;
             _busy = false;
-            _notice = '${messages.length} messages';
           });
-        } on Object {
+        } on Object catch (error) {
           if (_currentSession(client, generation)) {
             setState(() {
               _busy = false;
-              _error = widget.strings.mailMailboxFailed;
+              if (error is StudioMailMessageLoadException &&
+                  error.code == MailProblemCode.conflict) {
+                _needsRefresh = true;
+                _error = widget.strings.mailWorkspaceRefreshRequired;
+              } else {
+                _error = widget.strings.mailMailboxFailed;
+              }
             });
           }
         }
@@ -844,56 +964,83 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     });
   }
 
-  Future<void> _markRead() => runStudioMailOperation(() async {
-    final client = _client;
-    final loader = _messageLoader;
-    final mailbox = _messageMailbox;
-    final message = _selected;
-    if (client == null ||
-        loader == null ||
-        mailbox == null ||
-        message == null ||
-        message.isSeen ||
-        _busy ||
-        _dialogOpen) {
-      return;
-    }
-    final generation = _sessionGeneration;
-    final uid = message.uid;
-    final uidValidity = mailbox.uidValidity;
-    final mailboxPath = mailbox.path;
-    setState(() {
-      _busy = true;
-      _error = null;
-      _notice = null;
-    });
-    try {
-      await loader.markRead(mailbox, message);
-      if (_currentSession(client, generation)) {
+  Future<void> _markRead() => _changeMessageFlags(read: true);
+
+  Future<void> _changeMessageFlags({bool? read, bool? flagged}) =>
+      runStudioMailOperation(() async {
+        final client = _client;
+        final loader = _messageLoader;
+        final mailbox = _messageMailbox;
+        final message = _selected;
+        final actions = loader is StudioMailMessageActions
+            ? loader as StudioMailMessageActions
+            : null;
+        if (client == null ||
+            loader == null ||
+            mailbox == null ||
+            message == null ||
+            _busy ||
+            _dialogOpen ||
+            _needsRefresh ||
+            (read == null) == (flagged == null) ||
+            actions == null && (read != true || message.isSeen)) {
+          return;
+        }
+        final generation = _sessionGeneration;
+        final uid = message.uid;
+        final uidValidity = mailbox.uidValidity;
+        final mailboxPath = mailbox.path;
         setState(() {
-          if (identical(_selected, message) &&
-              identical(_messageLoader, loader) &&
-              identical(_messageMailbox, mailbox) &&
-              message.uid == uid &&
-              mailbox.uidValidity == uidValidity &&
-              mailbox.path == mailboxPath) {
-            message.setFlag(mail.MessageFlags.seen, true);
-            _error = null;
+          _busy = true;
+          _error = null;
+          _notice = null;
+        });
+        try {
+          if (actions == null) {
+            await loader.markRead(mailbox, message);
+          } else if (read != null) {
+            await actions.setRead(mailbox, message, read: read);
           } else {
-            _error = widget.strings.mailMarkReadFailed;
+            await actions.setFlagged(mailbox, message, flagged: flagged!);
           }
-          _busy = false;
-        });
-      }
-    } on Object {
-      if (_currentSession(client, generation)) {
-        setState(() {
-          _busy = false;
-          _error = widget.strings.mailMarkReadFailed;
-        });
-      }
-    }
-  });
+          if (!_currentSession(client, generation)) return;
+          if (!identical(_selected, message) ||
+              !identical(_messageLoader, loader) ||
+              !identical(_messageMailbox, mailbox) ||
+              message.uid != uid ||
+              mailbox.uidValidity != uidValidity ||
+              mailbox.path != mailboxPath) {
+            throw const StudioMailMessageLoadException(
+              MailProblemCode.conflict,
+            );
+          }
+          setState(() {
+            _confirmedFlags[message] = (
+              read: read ?? _observedRead(message),
+              flagged: flagged ?? _observedFlagged(message),
+            );
+            if (read != null) message.setFlag(mail.MessageFlags.seen, read);
+            if (flagged != null) {
+              message.setFlag(mail.MessageFlags.flagged, flagged);
+            }
+            _busy = false;
+            _notice = actions == null
+                ? null
+                : widget.strings.mailWorkspaceActionConfirmed;
+          });
+        } on Object {
+          if (!_currentSession(client, generation)) return;
+          setState(() {
+            _busy = false;
+            // An unconfirmed write may have reached the server. A new folder
+            // observation is required; there is no automatic mutation retry.
+            _needsRefresh = actions != null;
+            _error = actions == null
+                ? widget.strings.mailMarkReadFailed
+                : widget.strings.mailWorkspaceRefreshRequired;
+          });
+        }
+      });
 
   void _disconnect() {
     _sessionGeneration++;
@@ -921,6 +1068,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _mailboxes = const <mail.Mailbox>[];
       _mailbox = null;
       _messages = const <mail.MimeMessage>[];
+      _nextHeaders = null;
+      _usedHeaderCursors.clear();
+      _confirmedFlags.clear();
+      _needsRefresh = false;
       _selected = null;
       _showCompactMessage = false;
       _error = null;
@@ -1307,20 +1458,6 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   );
 
   Widget _inbox(BuildContext context, {required bool compact}) {
-    final query = _search.text.trim().toLowerCase();
-    final visible = query.isEmpty
-        ? _messages
-        : _messages
-              .where(
-                (message) =>
-                    (message.decodeSubject() ?? '').toLowerCase().contains(
-                      query,
-                    ) ||
-                    (message.from?.firstOrNull?.email ?? '')
-                        .toLowerCase()
-                        .contains(query),
-              )
-              .toList();
     return Column(
       children: <Widget>[
         if (_busy) const LinearProgressIndicator(minHeight: 2),
@@ -1344,7 +1481,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           ),
         Expanded(
           child: compact
-              ? _compactInbox(context, visible)
+              ? _compactInbox(context)
               : Row(
                   children: <Widget>[
                     SizedBox(
@@ -1398,64 +1535,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                       ),
                     ),
                     const VerticalDivider(width: 1),
-                    SizedBox(
-                      width: 360,
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: TextField(
-                              controller: _search,
-                              onChanged: (_) => setState(() {}),
-                              decoration: InputDecoration(
-                                isDense: true,
-                                prefixIcon: const Icon(Icons.search, size: 18),
-                                hintText: widget.strings.searchMail,
-                                border: const OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: visible.isEmpty
-                                ? Center(child: Text(widget.strings.noMessages))
-                                : ListView.builder(
-                                    itemCount: visible.length,
-                                    itemBuilder: (context, index) {
-                                      final message = visible[index];
-                                      final subject =
-                                          message.decodeSubject() ??
-                                          '(no subject)';
-                                      final from =
-                                          message.from?.firstOrNull?.email ??
-                                          '';
-                                      final date = message.decodeDate();
-                                      return ListTile(
-                                        selected: identical(message, _selected),
-                                        title: Text(
-                                          subject,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontWeight: message.isSeen
-                                                ? FontWeight.w400
-                                                : FontWeight.w700,
-                                          ),
-                                        ),
-                                        subtitle: Text(
-                                          '$from${date == null ? '' : '\n${date.toLocal()}'}',
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        onTap: _busy
-                                            ? null
-                                            : () => _openMessage(message),
-                                      );
-                                    },
-                                  ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    SizedBox(width: 360, child: _messageList()),
                     const VerticalDivider(width: 1),
                     Expanded(
                       child: _reader == null
@@ -1535,8 +1615,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   Widget _messageActions() => Align(
     alignment: AlignmentDirectional.centerEnd,
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
+    child: Wrap(
       children: <Widget>[
         StudioArchiveMessageButton(
           strings: widget.strings,
@@ -1564,114 +1643,184 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           tooltip: widget.strings.forward,
           icon: const Icon(Icons.forward_outlined),
         ),
-        IconButton(
-          onPressed: _busy || (_selected?.isSeen ?? true) ? null : _markRead,
-          tooltip: widget.strings.markRead,
-          icon: const Icon(Icons.mark_email_read_outlined),
-        ),
+        if (_messageLoader is StudioMailMessageActions) ...[
+          IconButton(
+            onPressed:
+                _busy || _dialogOpen || _needsRefresh || _selected == null
+                ? null
+                : () => _changeMessageFlags(
+                    read: _observedRead(_selected!) != true,
+                  ),
+            tooltip: _selected != null && _observedRead(_selected!) == true
+                ? widget.strings.ewsMarkUnread
+                : widget.strings.markRead,
+            icon: Icon(
+              _selected != null && _observedRead(_selected!) == true
+                  ? Icons.mark_email_unread_outlined
+                  : Icons.mark_email_read_outlined,
+            ),
+          ),
+          IconButton(
+            onPressed:
+                _busy || _dialogOpen || _needsRefresh || _selected == null
+                ? null
+                : () => _changeMessageFlags(
+                    flagged: _observedFlagged(_selected!) != true,
+                  ),
+            tooltip: _selected != null && _observedFlagged(_selected!) == true
+                ? widget.strings.ewsUnflag
+                : widget.strings.ewsFlag,
+            icon: Icon(
+              _selected != null && _observedFlagged(_selected!) == true
+                  ? Icons.flag
+                  : Icons.outlined_flag,
+            ),
+          ),
+        ] else
+          IconButton(
+            onPressed: _busy || _dialogOpen || (_selected?.isSeen ?? true)
+                ? null
+                : _markRead,
+            tooltip: widget.strings.markRead,
+            icon: const Icon(Icons.mark_email_read_outlined),
+          ),
         const SizedBox(width: 8),
       ],
     ),
   );
 
-  Widget _compactInbox(BuildContext context, List<mail.MimeMessage> visible) {
-    if (_reader != null && _showCompactMessage) {
-      return Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              IconButton(
-                onPressed: () => setState(() => _showCompactMessage = false),
-                tooltip: widget.strings.backToMessages,
-                icon: const Icon(Icons.arrow_back),
-              ),
-              Expanded(
-                child: Text(
-                  _selected?.decodeSubject() ?? '',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-          _messageActions(),
-          Expanded(child: MailMessageView(controller: _reader!)),
-        ],
-      );
-    }
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: DropdownButton<String>(
-            isExpanded: true,
-            value: _mailbox?.path,
-            items: <DropdownMenuItem<String>>[
-              for (final box in _mailboxes)
-                if (!box.isNotSelectable)
-                  DropdownMenuItem<String>(
-                    value: box.path,
-                    child: Text(
-                      box.name,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-            ],
-            onChanged: _busy
-                ? null
-                : (path) {
-                    if (path == null) return;
-                    final box = _mailboxes.firstWhere(
-                      (item) => item.path == path,
-                    );
-                    unawaited(_selectMailbox(box));
-                  },
-          ),
+  bool? _observedRead(mail.MimeMessage message) {
+    final confirmed = _confirmedFlags[message];
+    return confirmed != null
+        ? confirmed.read
+        : message.flags == null
+        ? null
+        : message.isSeen;
+  }
+
+  bool? _observedFlagged(mail.MimeMessage message) {
+    final confirmed = _confirmedFlags[message];
+    return confirmed != null
+        ? confirmed.flagged
+        : message.flags == null
+        ? null
+        : message.isFlagged;
+  }
+
+  String _messageKey(mail.MimeMessage message, {mail.Mailbox? mailbox}) {
+    final observed = mailbox ?? _messageMailbox;
+    // Production browser rows always have a validated UID. Legacy injected
+    // readers may omit it; their row stays local to this in-memory snapshot.
+    return 'imap-message-${observed?.uidValidity}:${message.uid ?? identityHashCode(message)}';
+  }
+
+  Widget _messageList() => MailMessageList(
+    key: _messageListKey,
+    scopeId: '$_sessionGeneration:${_mailbox?.path}',
+    strings: widget.strings.mailMessageListStrings,
+    items: [
+      for (final message in _messages)
+        MailMessageListItem(
+          id: _messageKey(message),
+          subject: message.decodeSubject() ?? '(no subject)',
+          sender:
+              message.from
+                  ?.map(
+                    (address) =>
+                        address.personalName == null ||
+                            address.personalName!.isEmpty
+                        ? address.email
+                        : '${address.personalName} <${address.email}>',
+                  )
+                  .join(', ') ??
+              '',
+          dateLabel: message.decodeDate()?.toLocal().toString(),
+          isRead: _observedRead(message),
+          isFlagged: _observedFlagged(message),
         ),
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: TextField(
-            controller: _search,
-            onChanged: (_) => setState(() {}),
-            decoration: InputDecoration(
-              isDense: true,
-              prefixIcon: const Icon(Icons.search, size: 18),
-              hintText: widget.strings.searchMail,
-              border: const OutlineInputBorder(),
-            ),
-          ),
-        ),
-        Expanded(
-          child: visible.isEmpty
-              ? Center(child: Text(widget.strings.noMessages))
-              : ListView.builder(
-                  itemCount: visible.length,
-                  itemBuilder: (context, index) {
-                    final message = visible[index];
-                    return ListTile(
-                      selected: identical(message, _selected),
-                      title: Text(
-                        message.decodeSubject() ?? '(no subject)',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontWeight: message.isSeen
-                              ? FontWeight.w400
-                              : FontWeight.w700,
+    ],
+    selectedId: _selected == null ? null : _messageKey(_selected!),
+    busy: _busy || _dialogOpen,
+    hasMore: _nextHeaders != null && _messages.length < _maxHeaders,
+    loadMoreKey: const ValueKey('imap-load-more'),
+    onLoadMore: _needsRefresh || _mailbox == null
+        ? null
+        : () => unawaited(_selectMailbox(_mailbox!, more: true)),
+    limitNotice: _messages.length >= _maxHeaders && _nextHeaders != null
+        ? widget.strings.mailWorkspaceLimit
+        : null,
+    onOpen: (id) {
+      final message = _messages
+          .where((message) => _messageKey(message) == id)
+          .firstOrNull;
+      if (message != null) unawaited(_openMessage(message));
+    },
+  );
+
+  Widget _compactInbox(BuildContext context) => IndexedStack(
+    index: _reader != null && _showCompactMessage ? 1 : 0,
+    children: [
+      ExcludeFocus(
+        excluding: _reader != null && _showCompactMessage,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: DropdownButton<String>(
+                isExpanded: true,
+                value: _mailbox?.path,
+                items: [
+                  for (final box in _mailboxes)
+                    if (!box.isNotSelectable)
+                      DropdownMenuItem(
+                        value: box.path,
+                        child: Text(
+                          box.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      subtitle: Text(
-                        message.from?.firstOrNull?.email ?? '',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      onTap: _busy ? null : () => _openMessage(message),
-                    );
-                  },
-                ),
+                ],
+                onChanged: _busy || _dialogOpen
+                    ? null
+                    : (path) {
+                        if (path != null) {
+                          unawaited(
+                            _selectMailbox(
+                              _mailboxes.firstWhere((box) => box.path == path),
+                            ),
+                          );
+                        }
+                      },
+              ),
+            ),
+            Expanded(child: _messageList()),
+          ],
         ),
-      ],
-    );
-  }
+      ),
+      if (_reader != null)
+        Column(
+          children: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () => setState(() => _showCompactMessage = false),
+                  tooltip: widget.strings.backToMessages,
+                  icon: const Icon(Icons.arrow_back),
+                ),
+                Expanded(
+                  child: Text(
+                    _selected?.decodeSubject() ?? '',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+            _messageActions(),
+            Expanded(child: MailMessageView(controller: _reader!)),
+          ],
+        ),
+    ],
+  );
 }

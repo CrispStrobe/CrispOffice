@@ -49,7 +49,8 @@ final class _Operation {
 
 /// Stateless connections keep account generations and credentials isolated.
 /// A provider allows one active operation, and never automatically replays one.
-final class NativeMailImapProvider implements MailProvider {
+final class NativeMailImapProvider
+    implements MailProvider, MailImapHeaderBrowser {
   NativeMailImapProvider({
     required this.configuration,
     required this.credentialStore,
@@ -482,6 +483,124 @@ final class NativeMailImapProvider implements MailProvider {
         ),
       ),
     };
+  }
+
+  @override
+  Future<MailResult<MailHeaderPage>> fetchNewestHeaders(
+    MailMailboxId mailbox, {
+    required int uidValidity,
+    MailCursor? cursor,
+    required int limit,
+    required MailOperationLease lease,
+  }) async {
+    if (!_mailboxValid(mailbox) ||
+        limit < 1 ||
+        limit > limits.maxPageSize ||
+        uidValidity < 1 ||
+        uidValidity > 0xffffffff) {
+      return _failure(MailProblemCode.invalidInput);
+    }
+    ImapBrowseCursor? previous;
+    try {
+      previous = ImapBrowseCursor.decode(cursor, mailbox);
+    } on FormatException {
+      return _failure(MailProblemCode.invalidInput);
+    }
+    if (previous != null && previous.uidValidity != uidValidity) {
+      return _failure(MailProblemCode.conflict);
+    }
+    return _run(lease, (client, operation) async {
+      final selected = await _select(client, operation, mailbox);
+      if (selected.uidValidity != uidValidity) {
+        throw const _Failure(MailProblemCode.conflict);
+      }
+      final currentCeiling = selected.uidNext! - 1;
+      final initialCeiling = previous?.initialCeiling ?? currentCeiling;
+      if (currentCeiling < initialCeiling) {
+        throw const _Failure(MailProblemCode.providerFailure);
+      }
+      final legacyCeiling = limits.maxUidScan;
+      if (legacyCeiling != null && initialCeiling > legacyCeiling) {
+        throw const _Failure(MailProblemCode.unsupported);
+      }
+      final ceiling = previous?.nextCeiling ?? initialCeiling;
+      if (ceiling == 0) return MailHeaderPage(messages: const []);
+      // Bound the widest possible dense SEARCH line before asking the server
+      // for it. A token has at most this ceiling's digits plus one separator;
+      // fixed slack covers SEARCH framing and its tagged completion response.
+      // Use at most half the connection's aggregate byte budget for SEARCH to
+      // retain headroom for authentication, SELECT and headers. The underlying
+      // hard quota remains authoritative for unusually large control replies
+      // or headers; this estimate never relaxes that connection-wide bound.
+      final uidTokenBytes = ceiling.toString().length + 1;
+      final windowSize = math.max(
+        1,
+        math.min(
+          limits.maxDiscoveredUids,
+          math.min(
+            (limits.maxProtocolLineBytes - 32) ~/ uidTokenBytes,
+            (limits.maxResponseBytes ~/ 2 - 64) ~/ uidTokenBytes,
+          ),
+        ),
+      );
+      // SELECT's count is only an optimization; the strict parser still
+      // enforces every count and byte budget if that hint is inaccurate. The
+      // library also uses zero for an unobserved count, so only a positive,
+      // small count permits a whole-range search across large numeric gaps.
+      final count = selected.messagesExists;
+      final searchFirst = count > 0 && count <= windowSize
+          ? 1
+          : math.max(1, ceiling - windowSize + 1);
+      final discovered = await client.uidSearchRaw(
+        firstUid: searchFirst,
+        lastUid: ceiling,
+        maxUids: limits.maxDiscoveredUids,
+        responseTimeout: limits.operationTimeout,
+      );
+      operation.check();
+      final selectedUids = discovered.reversed.take(limit).toSet();
+      final messages = <MailHeaderRecord>[];
+      if (selectedUids.isNotEmpty) {
+        final fetched = await client.uidFetchRawMessages(
+          firstUid: selectedUids.last,
+          lastUid: ceiling,
+          headersOnly: true,
+          maxMessages: limit,
+          maxLiteralBytes: limits.maxHeaderBytes,
+          responseTimeout: limits.operationTimeout,
+        );
+        operation.check();
+        final observed = <int>{};
+        for (final source in fetched.messages) {
+          if (!selectedUids.contains(source.uid) || !observed.add(source.uid)) {
+            throw const _Failure(MailProblemCode.providerFailure);
+          }
+          messages.add(_header(source, mailbox, uidValidity, operation));
+        }
+      }
+      messages.sort(
+        (left, right) => (right.remote as MailImapIdentity).uid.compareTo(
+          (left.remote as MailImapIdentity).uid,
+        ),
+      );
+      // One SEARCH and at most one FETCH per page: a sparse bounded window can
+      // return an empty page with older ranges still available. Do not spin
+      // through gaps or silently discard their continuation. Expunges between
+      // SEARCH and FETCH advance the same already-observed range.
+      final nextCeiling = discovered.length > limit
+          ? selectedUids.last - 1
+          : searchFirst - 1;
+      return MailHeaderPage(
+        messages: messages,
+        next: nextCeiling > 0
+            ? ImapBrowseCursor(
+                uidValidity: uidValidity,
+                initialCeiling: initialCeiling,
+                nextCeiling: nextCeiling,
+              ).encode(mailbox)
+            : null,
+      );
+    });
   }
 
   @override

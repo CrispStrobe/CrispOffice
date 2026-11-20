@@ -1,0 +1,138 @@
+diff --git a/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart b/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
+index 7721766a..c69ce675 100644
+--- a/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
++++ b/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
+@@ -516,8 +516,8 @@ class PmlShape {
+   bool textAlignOverride;
+   bool textDirectionOverride;
+ 
+-  /// Native text assignments keep the replacement template available to live
+-  /// renderers, while direct scalar edits retain their established behavior.
++  /// Explicit native text assignments replace imported runs even when the
++  /// scalar text is unchanged, using the same template for display and export.
+   bool textReplacementRequested;
+ 
+   bool get hasExplicitTextFormatting =>
+@@ -604,7 +604,10 @@ class PmlShape {
+     if (!explicit && (source == null || richText.isEmpty)) return richText;
+     if (!explicit && source!.text != text) return const <PmlTextParagraph>[];
+     final bool replace =
+-        source == null || richText.isEmpty || source.text != text;
++        textReplacementRequested ||
++        source == null ||
++        richText.isEmpty ||
++        source.text != text;
+     final bool fontChanged =
+         textSizeOverride ||
+         (source == null
+@@ -682,7 +685,11 @@ class PmlShape {
+   /// Whether the unmodified imported runs still match scalar text formatting.
+   /// Renderers use [resolvedRichText] to apply edits while retaining run styles.
+   bool get hasCurrentRichText {
+-    if (richText.isEmpty || hasExplicitTextFormatting) return false;
++    if (richText.isEmpty ||
++        hasExplicitTextFormatting ||
++        textReplacementRequested) {
++      return false;
++    }
+     final PmlTextSource? source = textSource;
+     return source == null ||
+         (source.text == text &&
+diff --git a/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart b/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart
+index 26105301..1fbb02b0 100644
+--- a/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart
++++ b/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart
+@@ -1410,7 +1410,10 @@ void _writeShapeText(XmlWriter writer, PmlShape shape) {
+     body.addChild(_textElement('lstStyle'));
+   }
+   _writeAutofit(body, shape);
+-  final bool replace = source == null || source.text != shape.text;
++  final bool replace =
++      shape.textReplacementRequested ||
++      source == null ||
++      source.text != shape.text;
+   if (replace) {
+     final List<XmlElement> original = body.childrenNamed(
+       'p',
+diff --git a/packages/quds_office_engine/test/office_macro_slide_format_test.dart b/packages/quds_office_engine/test/office_macro_slide_format_test.dart
+index a1301b83..d9c317c5 100644
+--- a/packages/quds_office_engine/test/office_macro_slide_format_test.dart
++++ b/packages/quds_office_engine/test/office_macro_slide_format_test.dart
+@@ -369,6 +369,77 @@ void main() {
+     },
+   );
+ 
++  for (final restoreOriginal in [false, true]) {
++    test(
++      restoreOriginal
++          ? 'replacement then original text cannot revive imported fields or runs'
++          : 'same-value native text assignment replaces imported fields and runs',
++      () {
++        const body =
++            '<p:txBody><a:bodyPr anchor="ctr"/><a:lstStyle/><a:p>'
++            '<a:pPr algn="r"/>'
++            '<a:fld id="{field}" type="slidenum">'
++            '<a:rPr sz="4000" i="1"/><a:t>7</a:t></a:fld>'
++            '<a:r><a:rPr sz="1000" i="0"/><a:t>Original</a:t></a:r>'
++            '<a:r><a:rPr sz="2000" i="1"><a:hlinkClick r:id="rIdLink"/>'
++            '</a:rPr><a:t> linked</a:t></a:r></a:p></p:txBody>';
++        var deck = _deck(shapes: _shape(2, 'Title', body: body));
++        final target = deck.slides.single.shapes.single;
++        final originalText = target.text;
++        final sourceSnapshot = target.textSource!.xml;
++        expect(originalText, '7Original linked');
++        expect(target.richText.single.runs, hasLength(3));
++        expect(target.hasCurrentRichText, isTrue);
++        if (restoreOriginal) {
++          applySlideStep(deck, {
++            'op': 'shapeText',
++            'shapeName': 'Title',
++            'topLevel': true,
++            'text': 'Temporary replacement',
++          });
++        }
++        applySlideStep(deck, {
++          'op': 'shapeText',
++          'shapeName': 'Title',
++          'topLevel': true,
++          'text': originalText,
++        });
++        final live = target.copy().resolvedRichText.single.runs.single;
++        expect(target.hasCurrentRichText, isFalse);
++        expect(
++          (live.text, live.fontSizePt, live.italic),
++          (originalText, 10.0, false),
++        );
++        expect(target.textSource!.xml, sourceSnapshot);
++        expect(target.richText.single.runs, hasLength(3));
++        for (var cycle = 0; cycle < 2; cycle++) {
++          final savedBody = _savedBody(deck);
++          expect(_descendants(savedBody, 'fld'), isEmpty);
++          expect(_descendants(savedBody, 'hlinkClick'), isEmpty);
++          expect(_descendants(savedBody, 'r'), hasLength(1));
++          expect(_descendants(savedBody, 't').single.text, originalText);
++          expect(
++            _descendants(savedBody, 'bodyPr').single.getAttribute('anchor'),
++            'ctr',
++          );
++          expect(
++            _descendants(savedBody, 'pPr').single.getAttribute('algn'),
++            'r',
++          );
++          deck = SlideDeserializer().readBytes(
++            SlideSerializer().writeBytes(deck),
++          );
++          final saved =
++              deck.slides.single.shapes.single.richText.single.runs.single;
++          expect(
++            (saved.text, saved.fontSizePt, saved.italic),
++            (live.text, live.fontSizePt, live.italic),
++          );
++        }
++      },
++    );
++  }
++
+   test(
+     'new and replaced text display overrides and save consecutive assignments',
+     () {

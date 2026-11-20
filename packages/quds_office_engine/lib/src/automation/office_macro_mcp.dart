@@ -116,8 +116,9 @@ final class OfficeMacroMcp {
           'office_macro_compile',
           'Compile source using a host-registered language adapter. '
               'Compilation does not run the resulting macro. '
-              'The default registry supports quds-json and vba-excel, a '
-              'bounded Excel VBA subset with compile-time values and loops. '
+              'The default registry supports quds-json, vba-excel, '
+              'vba-word and vba-powerpoint: bounded Office VBA subsets with '
+              'compile-time values and loops. '
               'Embedded projects are never executed automatically.',
           _objectSchema(
             <String, Object?>{

@@ -166,7 +166,7 @@ final class _WebTransport implements ArabicMorphTransport {
       );
     }
     // The buffers are transferred, not copied: the worker owns the only
-    // copy of the 78 MB database bytes from here on.
+    // copy of the verified database bytes from here on.
     final buffers = <JSObject>[];
     final files = <JSAny>[
       for (final entry in database.files.entries)
@@ -226,6 +226,12 @@ final class _WebTransport implements ArabicMorphTransport {
       ..setProperty('files'.toJS, files);
     final body = _success(await _send(request, transfer: buffers.toJS));
     return (body['info'] as Map).cast<String, Object?>();
+  }
+
+  @override
+  Future<void> unloadDisambiguator() async {
+    final request = JSObject()..setProperty('op'.toJS, 'close_model'.toJS);
+    _success(await _send(request));
   }
 
   @override

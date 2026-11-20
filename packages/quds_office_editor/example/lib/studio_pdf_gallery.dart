@@ -18,7 +18,7 @@ import 'studio_sample_pdf.dart';
 
 /// How a gallery sample is produced.
 enum StudioPdfSampleKind {
-  /// OOXML (Word / Excel / PowerPoint) compiled through [OfficePdfExport].
+  /// OOXML (Writer / Spreadsheet / Presentation) compiled through [OfficePdfExport].
   officeToPdf,
 
   /// Direct [PdfDocument] / [PdfReportBuilder] writer.
@@ -146,8 +146,8 @@ abstract final class StudioPdfGallery {
     StudioPdfSample(
       id: 'office-excel-budget',
       kind: StudioPdfSampleKind.officeToPdf,
-      titleEn: 'Excel budget workbook',
-      titleAr: 'دفتر ميزانية Excel',
+      titleEn: 'Spreadsheet budget workbook',
+      titleAr: 'دفتر ميزانية الجدول',
       blurbEn: 'Studio budget + roster sheets printed landscape.',
       blurbAr: 'ميزانية الاستوديو تُطبع أفقياً.',
       fileName: 'office_excel_budget.pdf',
@@ -181,7 +181,7 @@ abstract final class StudioPdfGallery {
       kind: StudioPdfSampleKind.officeToPdf,
       titleEn: 'Studio slide deck',
       titleAr: 'عرض شرائح الاستوديو',
-      blurbEn: 'PowerPoint sample → PDF pages.',
+      blurbEn: 'Presentation sample → PDF pages.',
       blurbAr: 'شرائح عينة → صفحات PDF.',
       fileName: 'office_slide_deck.pdf',
       build: ({SfntFont? font, OfficeFontSet? fonts}) =>
@@ -578,8 +578,8 @@ abstract final class StudioPdfGallery {
     return switch (kind) {
       StudioPdfSampleKind.officeToPdf =>
         arabic
-            ? 'Word / Excel / PowerPoint تُنشأ ثم تُحوَّل إلى PDF.'
-            : 'Build Word / Excel / PowerPoint, then compile to PDF.',
+            ? 'Writer / Spreadsheet / Presentation تُنشأ ثم تُحوَّل إلى PDF.'
+            : 'Build Writer / Spreadsheet / Presentation, then compile to PDF.',
       StudioPdfSampleKind.pdfEngine =>
         arabic
             ? 'PdfDocument و PdfReportBuilder مباشرة.'
@@ -748,7 +748,7 @@ Uint8List _executiveMemo(SfntFont? font) {
       x: 48,
       y: 38,
       fontSize: 16,
-      text: 'QUDS OFFICE  ·  EXECUTIVE MEMO',
+      text: 'CRISPOFFICE  ·  EXECUTIVE MEMO',
       color: 'FFFFFF',
     )
     ..showLatin(
@@ -850,7 +850,7 @@ Uint8List _certificate(SfntFont? font) {
       x: 80,
       y: 100,
       fontSize: 12,
-      text: 'QUDS OFFICE SUITE  ·  LEARNING LAB',
+      text: 'CRISPOFFICE  ·  LEARNING LAB',
       color: '5C6BC0',
     )
     ..showLatin(
@@ -1008,7 +1008,7 @@ Uint8List _invoice(SfntFont? font) {
         children: <pw.Widget>[
           pw.Expanded(
             child: pw.Text(
-              'QUDS OFFICE',
+              'CRISPOFFICE',
               style: const pw.TextStyle(
                 fontSize: 12,
                 fontWeight: pw.FontWeight.bold,

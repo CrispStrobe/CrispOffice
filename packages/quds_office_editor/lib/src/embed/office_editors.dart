@@ -2436,6 +2436,7 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
           color: const Color(0xFF000000),
           child: SlideStage(
             slide: _c.slideShow?.currentSlide ?? _c.slide,
+            master: _c.presentation.master,
             selected: null,
             viewport: _c.viewport,
             config: config,
@@ -2840,6 +2841,7 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
                             slide: _c.isPlayingMotion
                                 ? (_c.slideShow?.currentSlide ?? _c.slide)
                                 : _c.canvasSlide,
+                            master: _c.presentation.master,
                             selected: _c.isPresenting ? null : _c.selected,
                             selectedShapes: _c.isPresenting
                                 ? const <PmlShape>[]

@@ -1,7 +1,8 @@
 # macOS signing and release (CrispOffice)
 
-How the Studio macOS app (`packages/quds_office_editor/example`, product
-`quds_office_studio`, brand CrispOffice) is signed for the Mac App Store and
+How the Studio macOS app (`packages/quds_office_editor/example`, Dart package
+`quds_office_studio`, product and bundle `CrispOffice.app`, bundle id
+`com.crispstrobe.crispoffice`) is signed for the Mac App Store and
 for direct download, and how the spaCy grammar qualification survives
 re-signing. Private values (team, key and certificate identifiers, keychain
 passwords, contact data) are deliberately not recorded here; they live in the
@@ -15,13 +16,15 @@ name below.
 
 | Mode | Identity | Output | Bundle id |
 |------|----------|--------|-----------|
-| `adhoc` (default) | ad hoc (`-`) | `build/macos/Build/Products/Release/quds_office_studio.app` | unchanged (`com.quds.qudsOfficeStudio`) |
+| `adhoc` (default) | ad hoc (`-`) | `build/macos/Build/Products/Release/CrispOffice.app` | `com.crispstrobe.crispoffice` |
 | `appstore` | Apple Distribution + Mac Installer Distribution | `build/macos/signed/CrispOffice.app` and `CrispOffice-<version>-<build>.pkg` | `com.crispstrobe.crispoffice` |
 | `developer-id` | Developer ID Application | notarized, stapled `build/macos/signed/CrispOffice.app` and `CrispOffice-<version>-<build>-macos.zip` | `com.crispstrobe.crispoffice` |
 
 Every mode builds the same native libraries and installs the same pinned
 spaCy library. Signed modes copy the built app to `QUDS_SIGN_OUTPUT`
-(default `build/macos/signed`), rename it `CrispOffice.app`, set the bundle id,
+(default `build/macos/signed`), name it `CrispOffice.app` (or
+`QUDS_APP_NAME`), set the bundle id (`QUDS_BUNDLE_ID`, same default as the
+Xcode project),
 embed the provisioning profile and sign inside out: each dylib, each
 framework, then the app with `Release.entitlements` plus
 `com.apple.application-identifier` and `com.apple.developer.team-identifier`
@@ -40,7 +43,7 @@ Store Connect rejects a repeated `CFBundleVersion` and a repeated
 | `QUDS_SIGN_IDENTITY` | signed | SHA-1 or full name of the code-signing identity. Default: the single valid `Apple Distribution: …` / `Developer ID Application: …` identity on the keychain search list (the script fails when there are several). |
 | `QUDS_INSTALLER_IDENTITY` | appstore | SHA-1 or full name of the installer identity (`3rd Party Mac Developer Installer: …` / `Mac Installer Distribution: …`). Set it when several are listed; a stale one in the login keychain is a common cause of ambiguity. |
 | `QUDS_SIGN_KEYCHAIN` | signed | Limit identity lookup to this keychain (it must also be on the user search list; `codesign` searches only there). |
-| `QUDS_BUNDLE_ID` | signed | Default `com.crispstrobe.crispoffice`. |
+| `QUDS_BUNDLE_ID` | signed | Default `com.crispstrobe.crispoffice` (the Xcode project's id; override only for a differently registered id). |
 | `QUDS_APP_NAME` | signed | Default `CrispOffice` (name of the signed `.app` and its archives). |
 | `QUDS_SIGN_OUTPUT` | signed | Output directory. |
 | `QUDS_NOTARY_KEY`, `QUDS_NOTARY_KEY_ID`, `QUDS_NOTARY_ISSUER` | developer-id | App Store Connect API key file (`.p8`), key id and issuer id for `notarytool`. |
@@ -101,24 +104,49 @@ are not changed by signing.
 
 ## Data location after the bundle id change
 
-A sandboxed app's data lives in `~/Library/Containers/<bundle id>`. Ad hoc
-development builds keep `com.quds.qudsOfficeStudio`, so existing test data,
-settings and the gate instructions for development builds are unchanged.
-Release-signed builds use `com.crispstrobe.crispoffice` and start with an empty
-container: spelling dictionaries, the Arabic morphology database and the spaCy
-model files are verified downloads and can be installed again from the app;
-saved mail account passwords are in the keychain under the old identity and
-must be entered again. To carry existing data over to a signed build once,
-quit both apps and copy the application-support directory (macOS may ask to
-allow Terminal access to another app's data):
+A sandboxed app's data lives in `~/Library/Containers/<bundle id>`. Every
+build, ad hoc and release-signed, now uses `com.crispstrobe.crispoffice`;
+builds made before the CrispOffice rename used `com.quds.qudsOfficeStudio`
+and the product name `quds_office_studio.app`. The app is unreleased, so there
+is no automatic migration: a new build starts with an empty container.
+Spelling dictionaries, the Arabic morphology database and the spaCy model
+files are verified downloads; install them again from the app (Review ›
+Proofing › Dictionaries and language data, Review › Analysis setup). Saved
+mail accounts are keychain items owned by the old app's identity and must be
+entered again; the old items stay in the keychain until removed with Keychain
+Access. Ribbon preferences, the local Mail archive and saved drafts also live
+in the old container, but use two different support directories. Proofing and
+ribbon preferences use `quds_office_studio`. Mail uses the platform support
+directory, to which the pinned `path_provider_foundation` appends the bundle
+id, followed by `quds_mail` (drafts) or `quds_mail_archive` (archive).
+
+To keep existing test data, quit both apps and copy both support directories
+once, before creating local Mail data in the new app (macOS may ask to allow
+Terminal access to another app's data). If the new app already contains drafts
+or an archive, preserve both copies before attempting a migration; these
+commands are for an empty destination, not a database merge:
 
 ```bash
-ditto "$HOME/Library/Containers/com.quds.qudsOfficeStudio/Data/Library/Application Support/quds_office_studio" \
-      "$HOME/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/quds_office_studio"
+ditto "$HOME/Library/Containers/com.quds.qudsOfficeStudio/Data/Library/Application Support/quds_office_studio" "$HOME/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/quds_office_studio"
+ditto "$HOME/Library/Containers/com.quds.qudsOfficeStudio/Data/Library/Application Support/com.quds.qudsOfficeStudio" "$HOME/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/com.crispstrobe.crispoffice"
 ```
 
-Point `QUDS_STUDIO_DATA` of the gate tests at the matching container (or a
-scratch directory) for whichever build is tested.
+Copy a source directory only if it exists. Copying `quds_office_studio` alone
+does **not** migrate the Mail archive or draft database. Keep each complete
+Mail directory together, including any SQLite sidecar files; reconnect with
+the same provider/account identity to recover its draft. This does not move
+keychain credentials or enable access to the old keychain identity.
+
+The proofing data folder name inside the container (`quds_office_studio`) is
+an internal identifier and is unchanged. Point `QUDS_STUDIO_DATA` of the gate
+tests at `~/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/quds_office_studio`
+or at a scratch directory.
+
+The same applies on the other platforms: iOS uses the bundle id
+`com.crispstrobe.crispoffice` and Android the application id
+`com.crispstrobe.crispoffice` (previously `com.quds.qudsOfficeStudio` and
+`com.quds.quds_office_studio`), so they install as a new app beside an older
+development build, with their own data and keychain/keystore entries.
 
 ## Mac App Store procedure
 

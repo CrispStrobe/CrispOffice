@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show LogicalKeyboardKey;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
@@ -15,6 +16,7 @@ import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
+import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 import 'package:quds_office_studio/studio_mail_archive_action.dart';
 import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
@@ -31,6 +33,8 @@ final class _Provider extends Fake implements MailEwsProvider {
   final MailCredentialStore credentials;
   Completer<MailResult<MailCapabilities>>? connectGate;
   Completer<MailResult<MailMessage>>? messageGate;
+  Completer<MailResult<MailHeaderPage>>? headerGate;
+  MailHeaderPage Function(MailMailboxId, MailCursor?)? headerPage;
   Completer<MailSubmissionResult>? sendGate;
   MailSubmissionOutcome outcome = MailSubmissionOutcome.accepted;
   MailCapabilities supported = MailCapabilities(const [
@@ -49,6 +53,7 @@ final class _Provider extends Fake implements MailEwsProvider {
   MailEnvelope? envelopeOverride;
   void Function()? onSubmit;
   final List<MailCursor?> cursors = [];
+  final List<int> headerLimits = [];
   final List<MailOperation> commands = [];
   final List<MailPreparedMessage> submissions = [];
   final List<String> attempts = [];
@@ -63,14 +68,18 @@ final class _Provider extends Fake implements MailEwsProvider {
     value: id,
   );
 
-  MailHeaderRecord header(String id, String subject) => MailHeaderRecord(
+  MailHeaderRecord header(
+    String id,
+    String subject, {
+    MailMessageFlags? flags = const MailMessageFlags(),
+  }) => MailHeaderRecord(
     id: MailMessageId(id),
     remote: identity(id),
     envelope: MailEnvelope(
       subject: subject,
       from: [const MailAddress('writer@example.test')],
     ),
-    flags: const MailMessageFlags(),
+    flags: flags,
   );
 
   MailMessage message() {
@@ -131,8 +140,11 @@ final class _Provider extends Fake implements MailEwsProvider {
     required MailOperationLease lease,
   }) async {
     cursors.add(cursor);
+    headerLimits.add(limit);
     lastLease = lease;
-    expect(limit, 50);
+    expect(limit, inInclusiveRange(1, 50));
+    if (headerGate case final gate?) return gate.future;
+    if (headerPage case final page?) return MailSuccess(page(mailbox, cursor));
     if (mailbox.value == 'archive') {
       return MailSuccess(
         MailHeaderPage(
@@ -328,6 +340,737 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
 );
 
 void main() {
+  testWidgets(
+    'EWS confirms a previously unknown flag without inventing unread',
+    (tester) async {
+      late _Provider provider;
+      await _show(tester, (configuration, credentials) {
+        provider = _Provider(configuration, credentials);
+        provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+          messages: [
+            provider.header('one', 'First Exchange message', flags: null),
+          ],
+        );
+        return provider;
+      });
+      await _connect(tester);
+      await tester.tap(_field('ews-message-one'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.ewsFlag));
+      await _pump(tester);
+      final row = tester
+          .widget<MailMessageList>(find.byType(MailMessageList))
+          .items
+          .single;
+      expect(row.isFlagged, isTrue);
+      expect(row.isRead, isNull);
+      expect(find.byTooltip(_strings.ewsUnflag), findsOneWidget);
+      await tester.tap(_field('mail-list-flagged'));
+      await _pump(tester);
+      expect(_field('ews-message-one'), findsOneWidget);
+      await tester.tap(_field('mail-list-unread'));
+      await _pump(tester);
+      expect(_field('ews-message-one'), findsNothing);
+      await tester.tap(find.byTooltip(_strings.ewsUnflag));
+      await _pump(tester);
+      final updated = tester
+          .widget<MailMessageList>(find.byType(MailMessageList))
+          .items
+          .single;
+      expect(updated.isFlagged, isFalse);
+      expect(updated.isRead, isNull);
+      expect(
+        provider.commands.last,
+        isA<MailSetFlagged>().having(
+          (command) => command.flagged,
+          'flagged',
+          false,
+        ),
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('EWS confirms unknown read state without inventing flag state', (
+    tester,
+  ) async {
+    late _Provider provider;
+    await _show(tester, (configuration, credentials) {
+      provider = _Provider(configuration, credentials);
+      provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+        messages: [
+          provider.header('one', 'First Exchange message', flags: null),
+        ],
+      );
+      return provider;
+    });
+    await _connect(tester);
+    await tester.tap(_field('ews-message-one'));
+    await _pump(tester);
+    await tester.tap(find.byTooltip(_strings.markRead));
+    await _pump(tester);
+    var row = tester
+        .widget<MailMessageList>(find.byType(MailMessageList))
+        .items
+        .single;
+    expect(row.isRead, isTrue);
+    expect(row.isFlagged, isNull);
+    await tester.tap(_field('mail-list-unread'));
+    await _pump(tester);
+    expect(_field('ews-message-one'), findsNothing);
+    await tester.tap(find.byTooltip(_strings.ewsMarkUnread));
+    await _pump(tester);
+    row = tester
+        .widget<MailMessageList>(find.byType(MailMessageList))
+        .items
+        .single;
+    expect(row.isRead, isFalse);
+    expect(row.isFlagged, isNull);
+    expect(_field('ews-message-one'), findsOneWidget);
+    await tester.tap(_field('mail-list-flagged'));
+    await _pump(tester);
+    expect(_field('ews-message-one'), findsNothing);
+    expect(provider.commands.map((command) => (command as MailSetRead).read), [
+      true,
+      false,
+    ]);
+    expect(tester.takeException(), isNull);
+  });
+
+  for (final observed in [false, true]) {
+    testWidgets(
+      'EWS refresh replaces command observations with ${observed ? 'observed' : 'unknown'} flags',
+      (tester) async {
+        late _Provider provider;
+        await _show(tester, (configuration, credentials) {
+          provider = _Provider(configuration, credentials);
+          provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+            messages: [
+              provider.header('one', 'First Exchange message', flags: null),
+            ],
+          );
+          return provider;
+        });
+        await _connect(tester);
+        await tester.tap(_field('ews-message-one'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.markRead));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.ewsFlag));
+        await _pump(tester);
+        provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+          messages: [
+            provider.header(
+              'one',
+              'First Exchange message',
+              flags: observed ? const MailMessageFlags() : null,
+            ),
+          ],
+        );
+        await tester.tap(find.byTooltip(_strings.refresh));
+        await _pump(tester);
+        final row = tester
+            .widget<MailMessageList>(find.byType(MailMessageList))
+            .items
+            .single;
+        expect(row.isRead, observed ? isFalse : isNull);
+        expect(row.isFlagged, observed ? isFalse : isNull);
+        expect(find.byType(MailMessageView), findsNothing);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  testWidgets(
+    'EWS appended flag snapshots supersede only observed command state',
+    (tester) async {
+      late _Provider provider;
+      await _show(tester, (configuration, credentials) {
+        provider = _Provider(configuration, credentials);
+        provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+          messages: [
+            provider.header('one', 'First Exchange message', flags: null),
+          ],
+          next: MailCursor(mailbox: mailbox, value: 'next-page'),
+        );
+        return provider;
+      });
+      await _connect(tester);
+      await tester.tap(_field('ews-message-one'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.ewsFlag));
+      await _pump(tester);
+      provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+        messages: [
+          provider.header('one', 'First Exchange message', flags: null),
+        ],
+        next: MailCursor(mailbox: mailbox, value: 'third-page'),
+      );
+      await tester.tap(_field('ews-load-more'));
+      await _pump(tester);
+      var row = tester
+          .widget<MailMessageList>(find.byType(MailMessageList))
+          .items
+          .single;
+      expect(row.isFlagged, isTrue);
+      expect(row.isRead, isNull);
+      expect(find.byTooltip(_strings.ewsUnflag), findsOneWidget);
+      provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+        messages: [
+          provider.header(
+            'one',
+            'First Exchange message',
+            flags: const MailMessageFlags(isRead: true),
+          ),
+        ],
+      );
+      await tester.tap(_field('ews-load-more'));
+      await _pump(tester);
+      row = tester
+          .widget<MailMessageList>(find.byType(MailMessageList))
+          .items
+          .single;
+      expect(row.isRead, isTrue);
+      expect(row.isFlagged, isFalse);
+      expect(find.byTooltip(_strings.ewsMarkUnread), findsOneWidget);
+      expect(find.byTooltip(_strings.ewsFlag), findsOneWidget);
+      expect(provider.commands, hasLength(1));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('EWS folder changes retire confirmations for reused remote ids', (
+    tester,
+  ) async {
+    late _Provider provider;
+    await _show(tester, (configuration, credentials) {
+      provider = _Provider(configuration, credentials);
+      provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+        messages: [
+          provider.header('one', 'First Exchange message', flags: null),
+        ],
+      );
+      return provider;
+    });
+    await _connect(tester);
+    await tester.tap(_field('ews-message-one'));
+    await _pump(tester);
+    await tester.tap(find.byTooltip(_strings.ewsFlag));
+    await _pump(tester);
+    expect(
+      tester
+          .widget<MailMessageList>(find.byType(MailMessageList))
+          .items
+          .single
+          .isFlagged,
+      isTrue,
+    );
+    await tester.tap(find.text('Archive'));
+    await _pump(tester);
+    final row = tester
+        .widget<MailMessageList>(find.byType(MailMessageList))
+        .items
+        .single;
+    expect(row.isFlagged, isNull);
+    expect(row.isRead, isNull);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('EWS folder navigation resets loaded search and filter scope', (
+    tester,
+  ) async {
+    late _Provider provider;
+    await _show(
+      tester,
+      (configuration, credentials) =>
+          provider = _Provider(configuration, credentials),
+    );
+    await _connect(tester);
+    await tester.enterText(_field('mail-list-search'), 'first');
+    await tester.tap(_field('mail-list-unread'));
+    await tester.tap(_field('mail-list-flagged'));
+    await _pump(tester);
+    expect(
+      find.text(_strings.mailMessageListStrings.noMatches),
+      findsOneWidget,
+    );
+    await tester.tap(find.text('Archive'));
+    await _pump(tester);
+    expect(_field('ews-message-archive-message'), findsOneWidget);
+    expect(
+      tester.widget<TextField>(_field('mail-list-search')).controller!.text,
+      isEmpty,
+    );
+    expect(
+      tester.widget<FilterChip>(_field('mail-list-unread')).selected,
+      isFalse,
+    );
+    expect(
+      tester.widget<FilterChip>(_field('mail-list-flagged')).selected,
+      isFalse,
+    );
+    expect(provider.cursors, hasLength(2));
+    expect(provider.reads, 0);
+    expect(provider.commands, isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'EWS loaded filters retain pagination with zero visible matches',
+    (tester) async {
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials),
+      );
+      await _connect(tester);
+      await tester.enterText(_field('mail-list-search'), 'second');
+      await tester.tap(_field('mail-list-unread'));
+      await _pump(tester);
+      expect(
+        find.text(_strings.mailMessageListStrings.noMatches),
+        findsOneWidget,
+      );
+      expect(provider.cursors, hasLength(1));
+      expect(provider.reads, 0);
+      await tester.tap(_field('ews-load-more'));
+      await _pump(tester);
+      expect(_field('ews-message-one'), findsNothing);
+      expect(_field('ews-message-two'), findsOneWidget);
+      expect(
+        find.text(
+          '1 shown · 2 loaded\n${_strings.mailMessageListStrings.loadedScope}',
+        ),
+        findsOneWidget,
+      );
+      expect(provider.cursors.map((cursor) => cursor?.value), [
+        null,
+        'next-page',
+      ]);
+      expect(provider.reads, 0);
+      expect(provider.commands, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'EWS compact Back and resize preserve query selection and reader',
+    (tester) async {
+      late _Provider provider;
+      await _show(tester, (configuration, credentials) {
+        provider = _Provider(configuration, credentials);
+        provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+          messages: [
+            provider.header(
+              'one',
+              'First Exchange message',
+              flags: const MailMessageFlags(isFlagged: true),
+            ),
+          ],
+        );
+        return provider;
+      }, size: const Size(400, 850));
+      await _connect(tester);
+      await tester.enterText(_field('mail-list-search'), 'first');
+      await tester.tap(_field('mail-list-unread'));
+      await tester.tap(_field('mail-list-flagged'));
+      await _pump(tester);
+      await tester.tap(_field('ews-message-one'));
+      await _pump(tester);
+      final reader = tester
+          .widget<MailMessageView>(find.byType(MailMessageView))
+          .controller;
+      expect(
+        reader.result.message!.body.plainText,
+        contains('A message from Exchange.'),
+      );
+      await tester.tap(find.byTooltip(_strings.backToMessages));
+      await _pump(tester);
+      expect(
+        tester.widget<TextField>(_field('mail-list-search')).controller!.text,
+        'first',
+      );
+      expect(
+        tester.widget<FilterChip>(_field('mail-list-unread')).selected,
+        isTrue,
+      );
+      expect(
+        tester.widget<FilterChip>(_field('mail-list-flagged')).selected,
+        isTrue,
+      );
+      expect(
+        tester.widget<Semantics>(_field('ews-message-one')).properties.selected,
+        isTrue,
+      );
+      expect(
+        tester
+            .widget<MailMessageView>(
+              find.byType(MailMessageView, skipOffstage: false),
+            )
+            .controller,
+        same(reader),
+      );
+      tester.view.physicalSize = const Size(1280, 900);
+      await _pump(tester);
+      expect(
+        tester.widget<TextField>(_field('mail-list-search')).controller!.text,
+        'first',
+      );
+      expect(
+        tester.widget<MailMessageView>(find.byType(MailMessageView)).controller,
+        same(reader),
+      );
+      tester.view.physicalSize = const Size(400, 850);
+      await _pump(tester);
+      expect(
+        tester.widget<TextField>(_field('mail-list-search')).controller!.text,
+        'first',
+      );
+      expect(provider.reads, 1);
+      expect(provider.commands, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('EWS confirmed read and flag changes update active filters', (
+    tester,
+  ) async {
+    late _Provider provider;
+    await _show(
+      tester,
+      (configuration, credentials) =>
+          provider = _Provider(configuration, credentials),
+    );
+    await _connect(tester);
+    await tester.tap(_field('mail-list-unread'));
+    await tester.tap(_field('ews-message-one'));
+    await _pump(tester);
+    await tester.tap(find.byTooltip(_strings.markRead));
+    await _pump(tester);
+    expect(_field('ews-message-one'), findsNothing);
+    expect(find.byType(MailMessageView), findsOneWidget);
+    await tester.tap(find.byTooltip(_strings.ewsMarkUnread));
+    await _pump(tester);
+    expect(_field('ews-message-one'), findsOneWidget);
+    await tester.tap(_field('mail-list-flagged'));
+    await _pump(tester);
+    expect(_field('ews-message-one'), findsNothing);
+    await tester.tap(find.byTooltip(_strings.ewsFlag));
+    await _pump(tester);
+    expect(_field('ews-message-one'), findsOneWidget);
+    await tester.tap(find.byTooltip(_strings.ewsUnflag));
+    await _pump(tester);
+    expect(_field('ews-message-one'), findsNothing);
+    expect(provider.commands, hasLength(4));
+    expect(
+      provider.commands[0],
+      isA<MailSetRead>().having((command) => command.read, 'read', true),
+    );
+    expect(
+      provider.commands[1],
+      isA<MailSetRead>().having((command) => command.read, 'read', false),
+    );
+    expect(
+      provider.commands[2],
+      isA<MailSetFlagged>().having(
+        (command) => command.flagged,
+        'flagged',
+        true,
+      ),
+    );
+    expect(
+      provider.commands[3],
+      isA<MailSetFlagged>().having(
+        (command) => command.flagged,
+        'flagged',
+        false,
+      ),
+    );
+    expect(provider.reads, 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('EWS list keyboard navigation requires explicit opening', (
+    tester,
+  ) async {
+    late _Provider provider;
+    await _show(
+      tester,
+      (configuration, credentials) =>
+          provider = _Provider(configuration, credentials),
+    );
+    await _connect(tester);
+    await tester.tap(_field('ews-load-more'));
+    await _pump(tester);
+    tester.widget<Focus>(_field('mail-list-focus')).focusNode!.requestFocus();
+    await tester.pump();
+    await tester.sendKeyEvent(LogicalKeyboardKey.end);
+    await tester.sendKeyEvent(LogicalKeyboardKey.home);
+    await _pump(tester);
+    expect(provider.reads, 0);
+    expect(provider.commands, isEmpty);
+    await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+    await _pump(tester);
+    expect(provider.reads, 1);
+    expect(provider.commands, isEmpty);
+    expect(find.byType(MailMessageView), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  for (final invalid in [
+    'nonadvancing cursor',
+    'wrong mailbox cursor',
+    'wrong account cursor',
+    'wrong account header',
+    'wrong provider header',
+    'duplicate remote identity',
+    'duplicate local identity',
+    'oversized page',
+  ]) {
+    testWidgets('EWS rejects $invalid without replacing loaded rows', (
+      tester,
+    ) async {
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials),
+      );
+      await _connect(tester);
+      provider.headerPage = (mailbox, cursor) {
+        final foreignAccount = MailAccountId(
+          'foreign',
+          profile: provider.account.profile,
+        );
+        final added = provider.header('rejected', 'Rejected page');
+        return switch (invalid) {
+          'nonadvancing cursor' => MailHeaderPage(
+            messages: [added],
+            next: cursor,
+          ),
+          'wrong mailbox cursor' => MailHeaderPage(
+            messages: [added],
+            next: MailCursor(
+              mailbox: provider.box('archive'),
+              value: 'foreign',
+            ),
+          ),
+          'wrong account cursor' => MailHeaderPage(
+            messages: [added],
+            next: MailCursor(
+              mailbox: MailMailboxId('inbox', account: foreignAccount),
+              value: 'foreign',
+            ),
+          ),
+          'wrong account header' => MailHeaderPage(
+            messages: [
+              MailHeaderRecord(
+                id: added.id,
+                remote: MailOpaqueIdentity(
+                  account: foreignAccount,
+                  provider: MailProviderKind.ews,
+                  value: 'foreign',
+                ),
+                envelope: added.envelope,
+              ),
+            ],
+          ),
+          'wrong provider header' => MailHeaderPage(
+            messages: [
+              MailHeaderRecord(
+                id: added.id,
+                remote: MailOpaqueIdentity(
+                  account: provider.account,
+                  provider: MailProviderKind.graph,
+                  value: 'foreign',
+                ),
+                envelope: added.envelope,
+              ),
+            ],
+          ),
+          'duplicate remote identity' => MailHeaderPage(
+            messages: [
+              added,
+              MailHeaderRecord(
+                id: MailMessageId('other-id'),
+                remote: added.remote,
+                envelope: added.envelope,
+              ),
+            ],
+          ),
+          'duplicate local identity' => MailHeaderPage(
+            messages: [
+              added,
+              MailHeaderRecord(
+                id: added.id,
+                remote: provider.identity('other-remote'),
+                envelope: added.envelope,
+              ),
+            ],
+          ),
+          _ => MailHeaderPage(
+            messages: [
+              for (var i = 0; i < 51; i++)
+                provider.header('rejected-$i', 'Rejected page'),
+            ],
+          ),
+        };
+      };
+      await tester.tap(_field('ews-load-more'));
+      await _pump(tester);
+      expect(_field('ews-message-one'), findsOneWidget);
+      expect(find.text('Rejected page'), findsNothing);
+      expect(
+        find.text(
+          invalid == 'oversized page'
+              ? _strings.ewsBudgetExceeded
+              : _strings.mailWorkspaceRefreshRequired,
+        ),
+        findsOneWidget,
+      );
+      expect(provider.cursors, hasLength(2));
+      expect(
+        tester.widget<TextButton>(_field('ews-load-more')).onPressed,
+        invalid == 'oversized page' ? isNotNull : isNull,
+      );
+      expect(provider.reads, 0);
+      expect(provider.commands, isEmpty);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets(
+    'EWS rejects a cursor cycle and retains earlier successful pages',
+    (tester) async {
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials),
+      );
+      await _connect(tester);
+      provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+        messages: [provider.header('two', 'Second Exchange message')],
+        next: MailCursor(mailbox: mailbox, value: 'third-page'),
+      );
+      await tester.tap(_field('ews-load-more'));
+      await _pump(tester);
+      provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+        messages: [provider.header('rejected', 'Rejected page')],
+        next: MailCursor(mailbox: mailbox, value: 'next-page'),
+      );
+      await tester.tap(_field('ews-load-more'));
+      await _pump(tester);
+      expect(_field('ews-message-one'), findsOneWidget);
+      expect(_field('ews-message-two'), findsOneWidget);
+      expect(find.text('Rejected page'), findsNothing);
+      expect(find.text(_strings.mailWorkspaceRefreshRequired), findsOneWidget);
+      expect(
+        tester.widget<TextButton>(_field('ews-load-more')).onPressed,
+        isNull,
+      );
+      expect(provider.cursors.map((cursor) => cursor?.value), [
+        null,
+        'next-page',
+        'third-page',
+      ]);
+      provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+        messages: [provider.header('fresh', 'Refreshed message')],
+        next: MailCursor(mailbox: mailbox, value: 'fresh-next-page'),
+      );
+      await tester.tap(find.byTooltip(_strings.refresh));
+      await _pump(tester);
+      expect(_field('ews-message-fresh'), findsOneWidget);
+      expect(_field('ews-message-one'), findsNothing);
+      expect(provider.cursors.last, isNull);
+      expect(
+        tester.widget<TextButton>(_field('ews-load-more')).onPressed,
+        isNotNull,
+      );
+      expect(find.text(_strings.mailWorkspaceRefreshRequired), findsNothing);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('EWS late header completion cannot enter a reconnected session', (
+    tester,
+  ) async {
+    late _Provider provider;
+    await _show(
+      tester,
+      (configuration, credentials) =>
+          provider = _Provider(configuration, credentials),
+    );
+    await _connect(tester);
+    final previous = provider;
+    final gate = Completer<MailResult<MailHeaderPage>>();
+    previous.headerGate = gate;
+    await tester.tap(_field('ews-load-more'));
+    await _pump(tester);
+    final lease = previous.lastLease!;
+    await tester.tap(find.byTooltip(_strings.disconnect));
+    await _pump(tester);
+    await _connect(tester);
+    expect(identical(provider, previous), isFalse);
+    expect(lease.isCurrent, isFalse);
+    gate.complete(
+      MailSuccess(
+        MailHeaderPage(
+          messages: [previous.header('late', 'Late private result')],
+        ),
+      ),
+    );
+    await _pump(tester);
+    expect(_field('ews-message-one'), findsOneWidget);
+    expect(find.text('Late private result'), findsNothing);
+    expect(provider.cursors, hasLength(1));
+    expect(provider.reads, 0);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('EWS requests only remaining capacity and stops at 1000 rows', (
+    tester,
+  ) async {
+    late _Provider provider;
+    var produced = 0;
+    await _show(tester, (configuration, credentials) {
+      provider = _Provider(configuration, credentials);
+      provider.headerPage = (mailbox, cursor) {
+        final count = cursor == null ? 37 : provider.headerLimits.last;
+        final start = produced;
+        produced += count;
+        return MailHeaderPage(
+          messages: [
+            for (var i = start; i < produced; i++)
+              provider.header('row-$i', 'Message $i'),
+          ],
+          next: MailCursor(mailbox: mailbox, value: 'next-$produced'),
+        );
+      };
+      return provider;
+    });
+    await _connect(tester);
+    for (var page = 0; page < 20; page++) {
+      await tester.tap(_field('ews-load-more'));
+      await _pump(tester);
+    }
+    expect(produced, 1000);
+    expect(provider.headerLimits.last, 13);
+    expect(provider.cursors, hasLength(21));
+    expect(_field('ews-load-more'), findsNothing);
+    expect(find.text(_strings.mailWorkspaceLimit), findsWidgets);
+    expect(
+      find.text(
+        '1000 shown · 1000 loaded\n${_strings.mailMessageListStrings.loadedScope}',
+      ),
+      findsOneWidget,
+    );
+    expect(provider.reads, 0);
+    expect(provider.commands, isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets(
     'EWS restores an unfinished draft after closing and reconnecting',
     (tester) async {

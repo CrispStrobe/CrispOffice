@@ -1,0 +1,518 @@
+{
+  "mode": "conformance",
+  "source_head": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+  "runtime": "Dart SDK 3.13.7 (archive SHA256 eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229)",
+  "node": "v24.22.3",
+  "commands": [
+    {
+      "stage": "vm",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/f8bca915f70d/validation-workspace/.dart_tool/package_config.json",
+        "<fixture base64, sha256 c33ad7a4ebd6018b4a87b00361dce4747f59011217334100b0c42acdc6b4bcdb>",
+        "tool/macros/web_vba_conformance.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 11.587,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b-powerpoint-conformance-vm.log"
+    },
+    {
+      "stage": "compile-js",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O1",
+        "--packages=/workspace/scratch/f8bca915f70d/validation-workspace/.dart_tool/package_config.json",
+        "<fixture base64, sha256 c33ad7a4ebd6018b4a87b00361dce4747f59011217334100b0c42acdc6b4bcdb>",
+        "tool/macros/web_vba_conformance.dart",
+        "-o",
+        "/workspace/scratch/f8bca915f70d/toolchains/build/final-macro-gate-fb09a29b-powerpoint-conformance.js"
+      ],
+      "exit_code": 0,
+      "seconds": 7.71,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b-powerpoint-conformance-compile-js.log"
+    },
+    {
+      "stage": "js",
+      "argv": [
+        "node",
+        "-e",
+        "globalThis.self = globalThis; require(process.argv[1])",
+        "/workspace/scratch/f8bca915f70d/toolchains/build/final-macro-gate-fb09a29b-powerpoint-conformance.js"
+      ],
+      "exit_code": 0,
+      "seconds": 0.141,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b-powerpoint-conformance-js.log"
+    }
+  ],
+  "all_commands_passed": true,
+  "vm_js_byte_equal": true,
+  "inputs_before": {
+    "lib/src/automation/office_vba_language.dart": "68b0ad7f890605e64717e2417fadc83c77211f7b9856645dfc55f266ebb88217",
+    "lib/src/automation/office_macro_model.dart": "412acbb6f2b163eb5b9d040946e1ab060a3cc2c27901bc31e17347eceb61791f",
+    "lib/src/automation/office_macro_language.dart": "62dc76fbc627fdb9e26e6cad9b4c6509cd1d737c71cd0b0ff3304542174084e3",
+    "lib/src/automation/operations/slide_steps.dart": "f722f6b8105685ee85dc2cf14896db3b1a3a67a315de08a9ceb412cafdb2ce38",
+    "lib/src/slide/shapes/drawingml.dart": "14b8b6ee5e192382c8b61ae7b81af5bcf8692373db5515ace377e7d0efd1db11",
+    "lib/src/slide/model/pml_presentation.dart": "f1f52de35baf5065940d3beaead70b9a0cd5f91f530f63f49d16de960625e594",
+    "tool/macros/web_vba_conformance.dart": "d8b8164343da96d99976de841ea59fd0b1548e7e03509d4bc507f5273541dffc",
+    "test/support/vba_conformance.dart": "f70c51531c2d2ac8024fa5ba14469094bbabc9275462f9bf4962c4e769ee9000",
+    "test/fixtures/vba_conformance/powerpoint_shapes_v1.json": "c33ad7a4ebd6018b4a87b00361dce4747f59011217334100b0c42acdc6b4bcdb"
+  },
+  "inputs_after": {
+    "lib/src/automation/office_vba_language.dart": "68b0ad7f890605e64717e2417fadc83c77211f7b9856645dfc55f266ebb88217",
+    "lib/src/automation/office_macro_model.dart": "412acbb6f2b163eb5b9d040946e1ab060a3cc2c27901bc31e17347eceb61791f",
+    "lib/src/automation/office_macro_language.dart": "62dc76fbc627fdb9e26e6cad9b4c6509cd1d737c71cd0b0ff3304542174084e3",
+    "lib/src/automation/operations/slide_steps.dart": "f722f6b8105685ee85dc2cf14896db3b1a3a67a315de08a9ceb412cafdb2ce38",
+    "lib/src/slide/shapes/drawingml.dart": "14b8b6ee5e192382c8b61ae7b81af5bcf8692373db5515ace377e7d0efd1db11",
+    "lib/src/slide/model/pml_presentation.dart": "f1f52de35baf5065940d3beaead70b9a0cd5f91f530f63f49d16de960625e594",
+    "tool/macros/web_vba_conformance.dart": "d8b8164343da96d99976de841ea59fd0b1548e7e03509d4bc507f5273541dffc",
+    "test/support/vba_conformance.dart": "f70c51531c2d2ac8024fa5ba14469094bbabc9275462f9bf4962c4e769ee9000",
+    "test/fixtures/vba_conformance/powerpoint_shapes_v1.json": "c33ad7a4ebd6018b4a87b00361dce4747f59011217334100b0c42acdc6b4bcdb"
+  },
+  "inputs_changed": {},
+  "canonical_output": {
+    "caseCount": 20,
+    "cases": [
+      {
+        "actual": {
+          "steps": [
+            {
+              "arguments": {
+                "shape": 2,
+                "slide": 1,
+                "text": "Report",
+                "topLevel": true
+              },
+              "tool": "pptx.shapeText"
+            }
+          ]
+        },
+        "feature": "One-based slide and shape selection",
+        "id": "indexed-shape-text",
+        "nativePlanRoundTrip": true,
+        "provenance": "spec-derived"
+      },
+      {
+        "actual": {
+          "steps": [
+            {
+              "arguments": {
+                "shapeName": " Title 😀 ",
+                "slide": 0,
+                "text": "Named target",
+                "topLevel": true
+              },
+              "tool": "pptx.shapeText"
+            }
+          ]
+        },
+        "feature": "Application, Item and exact name selection",
+        "id": "application-item-exact-shape-name",
+        "nativePlanRoundTrip": true,
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "steps": [
+            {
+              "arguments": {
+                "shapeName": "Other",
+                "slide": 0,
+                "text": "Helper",
+                "topLevel": true
+              },
+              "tool": "pptx.shapeText"
+            },
+            {
+              "arguments": {
+                "shape": 2,
+                "slide": 1,
+                "text": "Caller",
+                "topLevel": true
+              },
+              "tool": "pptx.shapeText"
+            }
+          ]
+        },
+        "feature": "Object aliases and ByVal identity",
+        "id": "byval-shape-rebinding",
+        "nativePlanRoundTrip": true,
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "steps": [
+            {
+              "arguments": {
+                "font": "Aptos",
+                "shape": 0,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeFormat"
+            },
+            {
+              "arguments": {
+                "shape": 0,
+                "size": 1.1,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeFormat"
+            },
+            {
+              "arguments": {
+                "bold": true,
+                "shape": 0,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeFormat"
+            },
+            {
+              "arguments": {
+                "italic": false,
+                "shape": 0,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeFormat"
+            },
+            {
+              "arguments": {
+                "shape": 0,
+                "slide": 0,
+                "topLevel": true,
+                "underline": false
+              },
+              "tool": "pptx.shapeFormat"
+            },
+            {
+              "arguments": {
+                "color": "112233",
+                "shape": 0,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeFormat"
+            }
+          ]
+        },
+        "feature": "Nested font formatting and packed RGB",
+        "id": "nested-font-tristate-and-rgb",
+        "nativePlanRoundTrip": true,
+        "provenance": "spec-derived"
+      },
+      {
+        "actual": {
+          "steps": [
+            {
+              "arguments": {
+                "shape": 1,
+                "slide": 0,
+                "topLevel": true,
+                "x": -12.5
+              },
+              "tool": "pptx.shapeGeometry"
+            },
+            {
+              "arguments": {
+                "shape": 1,
+                "slide": 0,
+                "topLevel": true,
+                "y": 36.25
+              },
+              "tool": "pptx.shapeGeometry"
+            },
+            {
+              "arguments": {
+                "shape": 1,
+                "slide": 0,
+                "topLevel": true,
+                "width": 240
+              },
+              "tool": "pptx.shapeGeometry"
+            },
+            {
+              "arguments": {
+                "height": 80.5,
+                "shape": 1,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeGeometry"
+            },
+            {
+              "arguments": {
+                "rotation": -15,
+                "shape": 1,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeGeometry"
+            }
+          ]
+        },
+        "feature": "Geometry units and signed positions",
+        "id": "shape-geometry-points-degrees",
+        "nativePlanRoundTrip": true,
+        "provenance": "spec-derived"
+      },
+      {
+        "actual": {
+          "steps": [
+            {
+              "arguments": {
+                "alignment": "left",
+                "shape": 0,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeFormat"
+            },
+            {
+              "arguments": {
+                "alignment": "center",
+                "shape": 0,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeFormat"
+            },
+            {
+              "arguments": {
+                "alignment": "right",
+                "shape": 0,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeFormat"
+            },
+            {
+              "arguments": {
+                "alignment": "justify",
+                "shape": 0,
+                "slide": 0,
+                "topLevel": true
+              },
+              "tool": "pptx.shapeFormat"
+            }
+          ]
+        },
+        "feature": "PowerPoint paragraph alignment constants",
+        "id": "powerpoint-alignment-values",
+        "nativePlanRoundTrip": true,
+        "provenance": "spec-derived"
+      },
+      {
+        "actual": {
+          "steps": [
+            {
+              "arguments": {
+                "shapeName": "Title",
+                "slide": 0,
+                "text": "First",
+                "topLevel": true
+              },
+              "tool": "pptx.shapeText"
+            },
+            {
+              "arguments": {
+                "shapeName": "Title",
+                "slide": 1,
+                "text": "Second",
+                "topLevel": true
+              },
+              "tool": "pptx.shapeText"
+            }
+          ]
+        },
+        "feature": "Shared bounded language across slides",
+        "id": "source-array-loop-and-helper",
+        "nativePlanRoundTrip": true,
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "steps": [
+            {
+              "arguments": {
+                "shape": 0,
+                "slide": 0,
+                "text": "Total 2",
+                "topLevel": true
+              },
+              "tool": "pptx.shapeText"
+            }
+          ]
+        },
+        "feature": "Variant defaults and ties-to-even conversion",
+        "id": "variant-default-and-explicit-conversion",
+        "nativePlanRoundTrip": true,
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "steps": [
+            {
+              "arguments": {
+                "shape": 0,
+                "slide": 0,
+                "text": "",
+                "topLevel": true
+              },
+              "tool": "pptx.shapeText"
+            }
+          ]
+        },
+        "feature": "Empty actual String assignment",
+        "id": "empty-text-clears-range",
+        "nativePlanRoundTrip": true,
+        "provenance": "spec-derived"
+      },
+      {
+        "actual": {
+          "steps": [
+            {
+              "arguments": {
+                "shape": 0,
+                "slide": 0,
+                "text": "A\t😀",
+                "topLevel": true
+              },
+              "tool": "pptx.shapeText"
+            }
+          ]
+        },
+        "feature": "UTF-16 text and case-insensitive source names",
+        "id": "unicode-tab-and-case-insensitive-members",
+        "nativePlanRoundTrip": true,
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "diagnostic": {
+            "code": "vba_type_error",
+            "column": 22,
+            "line": 2
+          }
+        },
+        "feature": "One-based index refusal",
+        "id": "reject-zero-slide-index",
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "diagnostic": {
+            "code": "vba_type_error",
+            "column": 39,
+            "line": 2
+          }
+        },
+        "feature": "Selector static type restriction",
+        "id": "reject-boolean-shape-index",
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "diagnostic": {
+            "code": "vba_type_error",
+            "column": 67,
+            "line": 2
+          }
+        },
+        "feature": "Mixed TriState is not a Boolean write",
+        "id": "reject-mixed-tristate-write",
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "diagnostic": {
+            "code": "vba_type_error",
+            "column": 67,
+            "line": 2
+          }
+        },
+        "feature": "Native font precision restriction",
+        "id": "reject-sub-hundredth-font-size",
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "diagnostic": {
+            "code": "vba_unsupported",
+            "column": 78,
+            "line": 2
+          }
+        },
+        "feature": "Unsupported enum value refusal",
+        "id": "reject-distributed-alignment",
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "diagnostic": {
+            "code": "vba_unsupported",
+            "column": 39,
+            "line": 4
+          }
+        },
+        "feature": "Whole-module checking and no live reads",
+        "id": "reject-dead-branch-collection-read",
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "diagnostic": {
+            "code": "vba_unsupported",
+            "column": 3,
+            "line": 2
+          }
+        },
+        "feature": "Word object-model isolation",
+        "id": "reject-word-host-object",
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "diagnostic": {
+            "code": "vba_unsupported",
+            "column": 42,
+            "line": 2
+          }
+        },
+        "feature": "Group child access requires a distinct model",
+        "id": "reject-group-child-path",
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "diagnostic": {
+            "code": "vba_type_error",
+            "column": 62,
+            "line": 2
+          }
+        },
+        "feature": "Lossless native text boundary",
+        "id": "reject-isolated-surrogate-publication",
+        "provenance": "dialect-contract"
+      },
+      {
+        "actual": {
+          "diagnostic": {
+            "code": "vba_unsupported",
+            "column": 3,
+            "line": 2
+          }
+        },
+        "feature": "Excel object-model isolation",
+        "id": "reject-excel-host-object",
+        "provenance": "dialect-contract"
+      }
+    ],
+    "dialect": "vba-powerpoint",
+    "schemaVersion": 1,
+    "suite": "vba-powerpoint-shapes"
+  }
+}

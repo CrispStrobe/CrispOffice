@@ -5,9 +5,9 @@
 // Arabic/German/English Word document end to end:
 //
 //   packages/quds_office_editor/example/tool/build_macos_app.sh
-//   APP=.../build/macos/Build/Products/Release/quds_office_studio.app
+//   APP=.../build/macos/Build/Products/Release/CrispOffice.app
 //   QUDS_STUDIO_APP=$APP \
-//   QUDS_STUDIO_DATA="$HOME/Library/Containers/com.quds.qudsOfficeStudio/Data/Library/Application Support/quds_office_studio" \
+//   QUDS_STUDIO_DATA="$HOME/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/quds_office_studio" \
 //   flutter test --dart-define=QUDS_HARPER_LIBRARY=$APP/Contents/Frameworks/libquds_proofing_harper.dylib \
 //     test/studio_macos_bundle_native_gate.dart
 //

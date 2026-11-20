@@ -1,5 +1,38 @@
 # Mail implementation status — 20 November 2026
 
+## Shared foreground mailbox navigation
+
+The [mailbox workspace continuation](mailbox-workspace.md) adds one reusable
+`MailMessageList` to the native IMAP/SMTP, EWS, Gmail and Microsoft 365 hosts.
+Users can search loaded subjects/senders, combine Unread and Flagged filters,
+move keyboard focus without fetching a body, explicitly open the focused row,
+and load another bounded page even when the current filter has no matches.
+Stable message identities preserve selection across appends and compact
+reader/Back transitions. Folder/account changes reset the list's local scope.
+English, German and Arabic copy describes the loaded-only search and limits.
+
+The production IMAP path now browses newest UIDs first in explicit pages of
+up to 50, independent of the ascending synchronization cursor. Its fixed
+initial ceiling excludes later arrivals until Refresh. Discovery is bounded
+by the existing UID-count, protocol-line and response-byte budgets; sparse
+empty windows retain an older-range continuation. The host stops at 1,000
+loaded messages. Invalid, repeated or cross-account/provider continuations
+are rejected before adopting a page, and transient failures retain prior rows.
+
+IMAP read/unread and flag/unflag controls use confirmed transport outcomes.
+Cloud/EWS and IMAP hosts preserve unknown read/flag observations independently;
+confirming one flag cannot manufacture an observation for the other. Stale
+callbacks cannot update a replaced connection, and uncertain IMAP mutations
+require Refresh before further mutation or paging. Navigation/filtering never
+implicitly sends a provider request.
+
+The [acceptance report](../../validation/mail-workspace-20261120/README.md)
+separates the fresh Mail gate, incoming Office qualification and retained
+development probes. M04W is still open: durable repository-driven lists,
+persistent account switching, a unified inbox, offline mailbox entry and bulk
+commands are not implemented by this foreground-list increment. Draft recovery
+and send safety retain their existing contracts below.
+
 ## Durable local drafts and safe reconnect
 
 The [draft recovery continuation](draft-recovery.md) connects the existing
@@ -189,8 +222,9 @@ The earlier Studio continuation saved its combined source remotely, but its
 aggregate qualification failed before completion and subsequent filesystem tool
 launches reported no space left on device. No accepted aggregate result is
 claimed for that earlier source. Its report retains exact source identities,
-attempts and replay instructions; the new attachment record above documents the
-freshly qualified cohorts, and previous totals below remain historical.
+attempts and replay instructions; the combined qualification record above documents its captured cohorts, and
+previous totals below remain historical. Later changes have separately bound
+results.
 
 ## Delivered code
 

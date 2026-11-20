@@ -1,0 +1,226 @@
+{
+  "archive": "development.tar.gz",
+  "sha256": "61a7dd4ec614a2ce0898b2e4a6df6545a6ad708fba9ddc85ff7e592756d6fae0",
+  "files": [
+    {
+      "path": "pptx-development/analyze-final.txt",
+      "bytes": 123,
+      "sha256": "a5bb6430d0e3d07f66a4ad2c989a4b1475afddf8918fd51f3d6b7b621259b436"
+    },
+    {
+      "path": "pptx-development/analyze.txt",
+      "bytes": 1040,
+      "sha256": "76d020dd05dfee7191937c93fdae45ce6df125e8fd51e29e0215de15a34c3233"
+    },
+    {
+      "path": "pptx-development/background-after.jsonl",
+      "bytes": 41972,
+      "sha256": "cdcbbf6ebc7bf5fc1a312814bafdd3a912ce9e65cd3ba55a6123cdaccc61efec"
+    },
+    {
+      "path": "pptx-development/background-after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pptx-development/background-baseline-corrected.jsonl",
+      "bytes": 16397,
+      "sha256": "a96a65fe7f049a3a193fd7087a7a7a025dfac40b8dd023c8d9b59688ce8d78af"
+    },
+    {
+      "path": "pptx-development/background-baseline-corrected.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pptx-development/background-before.jsonl",
+      "bytes": 1483,
+      "sha256": "2447dd045395656f1c60faae00cc2d2ac15a370d3928a00c17d070fb85f9ced0"
+    },
+    {
+      "path": "pptx-development/background-before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pptx-development/rendering-engine-final.jsonl",
+      "bytes": 106128,
+      "sha256": "3eb4b994ff1620369fdca5f9e42fafece590bc0985b360df27e19c5172ef96c0"
+    },
+    {
+      "path": "pptx-development/rendering-engine-final.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pptx-development/rendering-engine.jsonl",
+      "bytes": 106785,
+      "sha256": "cc61c6e82bb34a1fe016ab36239d4b955f64542e9a992341775a5b6c3d42bfe2"
+    },
+    {
+      "path": "pptx-development/rendering-engine.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pptx-development/summary.json",
+      "bytes": 7761,
+      "sha256": "ca858b51fe3ba657271b5cf1fe244a944ecfbb8b49eb3b3de71550c1f36e7d62"
+    },
+    {
+      "path": "pub-get.log",
+      "bytes": 288,
+      "sha256": "894df9b75365a1c0485adeab9ee7495a3d9588f96da463533f3d53ec6f8023cc"
+    },
+    {
+      "path": "review/variant-composition-before.jsonl",
+      "bytes": 2299,
+      "sha256": "c7527c51906e2a18e8f4e564f407610398ffcd2c9a6dc324ab2cdb77f73616b5"
+    },
+    {
+      "path": "review/variant_composition_probe.dart",
+      "bytes": 1857,
+      "sha256": "c48431562b94009828eec6e83c03711d3224f6190334acf84164b27a727b30a1"
+    },
+    {
+      "path": "runtime-version.json",
+      "bytes": 632,
+      "sha256": "07eec994d596f4799aeb040c6c725b301da0e8ef4bc999501f10865849086ca6"
+    },
+    {
+      "path": "variant-conformance-development/final-vm-tests.log",
+      "bytes": 1565,
+      "sha256": "2bb26fdbfd484d77b09038737433d047e26b49cffc0bf5061243e23b2f39a167"
+    },
+    {
+      "path": "variant-conformance-development/first-fixture.json",
+      "bytes": 93884,
+      "sha256": "9fe88db6223f46a0ec09bc6cda7ad6a44fe68592b8638324764becc49c39e003"
+    },
+    {
+      "path": "variant-conformance-development/first-run.log",
+      "bytes": 15957,
+      "sha256": "4a7f1bcb0e586f9c5590878e4b962de207ffd87dfc84db93661c5dac490d632f"
+    },
+    {
+      "path": "variant-conformance-development/fixture-corrections.json",
+      "bytes": 2058,
+      "sha256": "a7f7c9dc2fdd60215713029a8bb46bebc87f4d691925da5ff7316368094f2401"
+    },
+    {
+      "path": "variant-conformance-development/js-compile.log",
+      "bytes": 112,
+      "sha256": "4032cd8a290bfd136fb13630af5978731ee727f9a2042db966f4b40a4cc4a0d0"
+    },
+    {
+      "path": "variant-conformance-development/numeric-expectation-review.json",
+      "bytes": 3171,
+      "sha256": "db501484fad1d10838476200ab1dcab8ed70d8b348c6d38e658e805a53e16803"
+    },
+    {
+      "path": "variant-conformance-development/portable-source-after.log",
+      "bytes": 258,
+      "sha256": "a9269b987929916d1e0b21e5052f2aacbe01ad7d3f10b54370c9d1d49b62d0ef"
+    },
+    {
+      "path": "variant-conformance-development/variants-js.json",
+      "bytes": 41060,
+      "sha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc"
+    },
+    {
+      "path": "variant-conformance-development/variants-vm.json",
+      "bytes": 41060,
+      "sha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc"
+    },
+    {
+      "path": "variant-conformance-development/vm-source-after.log",
+      "bytes": 160,
+      "sha256": "f33eb805e62f510d7d62c7bd0f9b50864bcb189397a554f5812609692036c8de"
+    },
+    {
+      "path": "variant-conformance-development/vm-tests.log",
+      "bytes": 32721,
+      "sha256": "628a41ec82e47a3092c8dd24bd7996124fe816bc60d2c717b6ae1a7c929b5abe"
+    },
+    {
+      "path": "variant-development/development-summary.json",
+      "bytes": 2795,
+      "sha256": "dee9e935d1505c1e1f3cf9adf1c341b79e37d17ead865f220f8d118dd75f7c30"
+    },
+    {
+      "path": "variant-development/first-analysis.log",
+      "bytes": 97,
+      "sha256": "138b82d60c742ac4b001b44210aee3ac6991a525249f8a2c2b5f537d2f3457ee"
+    },
+    {
+      "path": "variant-development/first-tests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "variant-development/first-tests.stderr",
+      "bytes": 140,
+      "sha256": "15cb77cefb9bb0bdba388d2e55af99c05795a053d8825cb98527061a318c8d85"
+    },
+    {
+      "path": "variant-development/integration-analysis.log",
+      "bytes": 83,
+      "sha256": "16c3b5e838fdcbadb86eb20d2f8c999ae2ff5c3321c2a8eea814c37c91331419"
+    },
+    {
+      "path": "variant-development/integration-input-check.json",
+      "bytes": 368,
+      "sha256": "dfb550ebda3730edc2cbd4711617a9e4256dfa947f2593bbe40bfa2cde52c38b"
+    },
+    {
+      "path": "variant-development/integration-inputs-before.json",
+      "bytes": 124085,
+      "sha256": "34810ca95197db32ab7065d0abc73882ac50a665e7736fd1826ac1840f44120f"
+    },
+    {
+      "path": "variant-development/integration-tests.jsonl",
+      "bytes": 6407,
+      "sha256": "4d4ef463bd1ee3d2d140fed431a070e9908df7efa953ad9bb26872147f0d02a3"
+    },
+    {
+      "path": "variant-development/integration-tests.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "variant-development/second-tests.jsonl",
+      "bytes": 235906,
+      "sha256": "b5bde44d691d350a1d18a463e4be4c371b0b8879371113cc4651926dba4c9aed"
+    },
+    {
+      "path": "variant-development/second-tests.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "variant-development/subnormal-expectation-review.json",
+      "bytes": 1165,
+      "sha256": "bbc6bddbfbe98e2436b9dbf299a15b30998df6da99be483f0e0aae60d28d1ade"
+    },
+    {
+      "path": "variant-development/third-tests.jsonl",
+      "bytes": 235518,
+      "sha256": "559010ba8301af2f019fe29be790a402e16e01f4dda42d428d6058f7bc9c6671"
+    },
+    {
+      "path": "variant-development/third-tests.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "variant-integration-development/first.events.jsonl",
+      "bytes": 1841,
+      "sha256": "b1782c5dfc5a649f4dcc563dd3c81851a3c9554ef542eeb0990cc7a4ec7f2a0c"
+    },
+    {
+      "path": "variant-integration-development/first.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

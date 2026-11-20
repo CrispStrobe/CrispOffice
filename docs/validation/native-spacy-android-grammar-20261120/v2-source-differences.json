@@ -1,0 +1,77 @@
+{
+  "schema": "quds.spacy.grammar.v2.source-differences.v1",
+  "explanation": "Planner-source differences between the sealed grammar v2 qualification (Quds b7f04f12) and the current source: the post-qualification subject-person guard \"possible-coordinated-subject\" (grammar_families.dart, documented in docs/validation/native-spacy-grammar-v2-20261120/README.md). Measured first with the qualified macOS library ccc96620 on this source, then required to be exactly these on Android. Subject-person is experimental and off by default; no annotation digest differs.",
+  "pinned": [
+    "corpus:test-s256/decisions",
+    "sp-error-14/combined",
+    "sp-error-14/decisions",
+    "sp-error-14/model",
+    "sp-valid-07/combined",
+    "sp-valid-07/decisions",
+    "sp-valid-07/model"
+  ],
+  "rows": [
+    {
+      "id": "sp-error-14",
+      "text": "Meine Kollegin und ich bereitet die Präsentation vor.",
+      "family": "subject-person",
+      "recorded": {
+        "action": "proposed",
+        "reason": "reviewed-person-disagreement",
+        "proposal": [
+          [
+            "bereitet",
+            [
+              "bereite"
+            ]
+          ]
+        ]
+      },
+      "replay": {
+        "action": "abstained",
+        "reason": "possible-coordinated-subject",
+        "proposal": []
+      },
+      "analysis_sha256_equal": true
+    },
+    {
+      "id": "sp-valid-07",
+      "text": "Meine Kollegin und ich bereiten die Präsentation vor.",
+      "family": "subject-person",
+      "recorded": {
+        "action": "proposed",
+        "reason": "reviewed-person-disagreement",
+        "proposal": [
+          [
+            "bereiten",
+            [
+              "bereite"
+            ]
+          ]
+        ]
+      },
+      "replay": {
+        "action": "abstained",
+        "reason": "possible-coordinated-subject",
+        "proposal": []
+      },
+      "analysis_sha256_equal": true
+    },
+    {
+      "id": "corpus:test-s256",
+      "text": "Sie ist einfach ein Profi und ich habe und werde sie jederzeit weiterempfehlen.",
+      "family": "subject-person",
+      "recorded": {
+        "action": "preserved",
+        "reason": "compatible-reading",
+        "proposal": []
+      },
+      "replay": {
+        "action": "abstained",
+        "reason": "possible-coordinated-subject",
+        "proposal": []
+      },
+      "analysis_sha256_equal": true
+    }
+  ]
+}

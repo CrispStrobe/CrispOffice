@@ -42,6 +42,9 @@ final class _FakeTransport implements ArabicMorphTransport {
     return {'model_format': 'crispembed-camel-morph-disambig-v1'};
   }
 
+  @override
+  Future<void> unloadDisambiguator() async {}
+
   /// Every word reads as a noun (best, 0.9) or a verb (0.1).
   @override
   Future<List<List<ArabicContextReading>>> disambiguate(

@@ -1,0 +1,101 @@
+{
+  "source_snapshot": "final-pdf-source-snapshot.json",
+  "source_hashes_unchanged": true,
+  "batches": [
+    {
+      "log": "final-pdf-incoming-batch1.log",
+      "passed": 39,
+      "sha256": "a2b4abf13c667d11f92ec2112597d2965ffbb4f7250b71e829523e01a8df267d",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "--timeout",
+        "4x",
+        "--concurrency",
+        "1",
+        "test/slide_normal_autofit_test.dart",
+        "test/pdf_picture_opacity_test.dart",
+        "test/slide_radial_opacity_test.dart",
+        "test/slide_gradient_merge_test.dart"
+      ],
+      "working_directory": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "test_files": [
+        "test/slide_normal_autofit_test.dart",
+        "test/pdf_picture_opacity_test.dart",
+        "test/slide_radial_opacity_test.dart",
+        "test/slide_gradient_merge_test.dart"
+      ],
+      "exit_code": 0
+    },
+    {
+      "log": "final-pdf-retained-batch2.log",
+      "passed": 119,
+      "sha256": "cc2d41d89ce737630cc9b68316e87270714d1356446943b8731f5fa26b86fdeb",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "--timeout",
+        "4x",
+        "--concurrency",
+        "1",
+        "test/office_pdf_export_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_gradient_publication_test.dart",
+        "test/slide_picture_background_test.dart"
+      ],
+      "working_directory": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "test_files": [
+        "test/office_pdf_export_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_gradient_publication_test.dart",
+        "test/slide_picture_background_test.dart"
+      ],
+      "exit_code": 0
+    },
+    {
+      "log": "final-pdf-import-batch3.log",
+      "passed": 55,
+      "sha256": "4fb945d2580531a36f5ab6c944dadeb5748bc0c6942c3965d3dd2f64ad88fe98",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "--timeout",
+        "4x",
+        "--concurrency",
+        "1",
+        "test/slide_import_fidelity_test.dart",
+        "test/office_pdf_alpha_integration_test.dart"
+      ],
+      "working_directory": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+      "test_files": [
+        "test/slide_import_fidelity_test.dart",
+        "test/office_pdf_alpha_integration_test.dart"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "total_passed": 213,
+  "test_files": 10,
+  "max_files_per_process": 4,
+  "dart_sdk": "3.13.7",
+  "flags": [
+    "--reporter",
+    "expanded",
+    "--timeout",
+    "4x",
+    "--concurrency",
+    "1"
+  ],
+  "github_actions_used": false,
+  "flutter_tests_run": false,
+  "verified_source_commit": "fb09a29b70e469c2858bde48c8977590791b6ba7",
+  "published_product_commit": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+  "engine_tree": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+  "published_engine_equals_qualified_source": true
+}
