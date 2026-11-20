@@ -78,6 +78,15 @@ const _maxActiveArrayStringUnits = 1048576;
 const _maxExactInteger = 9007199254740991;
 const _comparisonOperators = <String>{'=', '<>', '<', '>', '<=', '>='};
 const _stringIntrinsics = <String>{'len', r'left$', r'right$', r'mid$'};
+const _variantIntrinsics = <String>{
+  'isempty',
+  'isnull',
+  'cbool',
+  'cdbl',
+  'clng',
+  'cstr',
+  'cvar',
+};
 
 class _Context {
   const _Context(this.source);
@@ -361,6 +370,9 @@ enum _Kind {
 }
 
 enum _Declared { long, doubleType, string, boolean, variant, worksheet, range }
+
+// These are source values, never native JSON null or unbound object bindings.
+enum _VariantState { empty, nullValue }
 
 _Kind _kindOf(_Declared type) => switch (type) {
   _Declared.long || _Declared.doubleType => _Kind.number,
@@ -1223,6 +1235,13 @@ class _Parser {
       position++;
       if (token.lower == 'true' || token.lower == 'false') {
         result = _Literal(token, token.lower == 'true');
+      } else if (token.lower == 'empty' || token.lower == 'null') {
+        result = _Literal(
+          token,
+          token.lower == 'empty'
+              ? _VariantState.empty
+              : _VariantState.nullValue,
+        );
       } else {
         final arguments = _arguments();
         result = arguments == null
@@ -1347,6 +1366,7 @@ class _Checker {
   late _Procedure currentProcedure;
   static const _reserved = <String>{
     ..._stringIntrinsics,
+    ..._variantIntrinsics,
     'sub',
     'end',
     'dim',
@@ -1653,6 +1673,12 @@ class _Checker {
   void _constant(_Expr expression) {
     switch (expression) {
       case _Literal():
+        if (expression.value is _VariantState) {
+          context.unsupported(
+            expression.token,
+            'Empty and Null are source values, not supported Const expressions.',
+          );
+        }
         break;
       case _Name():
         if (!(symbols[expression.token.lower]?.isConst ?? false)) {
@@ -2000,7 +2026,9 @@ class _Checker {
   _Kind _expression(_Expr expression) {
     switch (expression) {
       case _Literal():
-        return expression.value is num
+        return expression.value is _VariantState
+            ? _Kind.variant
+            : expression.value is num
             ? _Kind.number
             : expression.value is bool
             ? _Kind.boolean
@@ -2029,6 +2057,17 @@ class _Checker {
         }
         if (_stringIntrinsics.contains(expression.token.lower)) {
           return _stringIntrinsic(expression);
+        }
+        if (_variantIntrinsics.contains(expression.token.lower)) {
+          _count(expression.token, expression.arguments, 1);
+          final argument = expression.arguments.single;
+          _scalar(_expression(argument), argument.token);
+          return switch (expression.token.lower) {
+            'isempty' || 'isnull' || 'cbool' => _Kind.boolean,
+            'cdbl' || 'clng' => _Kind.number,
+            'cstr' => _Kind.string,
+            _ => _Kind.variant,
+          };
         }
         if (expression.token.lower == 'lbound' ||
             expression.token.lower == 'ubound') {
@@ -2438,14 +2477,7 @@ class _Evaluator {
       }
       _execute(procedure.body);
       if (needsResult) {
-        final result = values[procedure.name.lower]!;
-        if (result is _Uninitialized) {
-          context.unsupported(
-            token,
-            'Function ${procedure.name.text} returned an uninitialized Variant; assign its result before returning.',
-          );
-        }
-        return result;
+        return values[procedure.name.lower]!;
       }
       return const _Uninitialized();
     } finally {
@@ -2463,6 +2495,7 @@ class _Evaluator {
     _Declared.doubleType => 0.0,
     _Declared.string => '',
     _Declared.boolean => false,
+    _Declared.variant => _VariantState.empty,
     _ => const _Uninitialized(),
   };
 
@@ -2634,7 +2667,7 @@ class _Evaluator {
           case _If():
             var selected = statement.otherwise;
             for (final branch in statement.branches) {
-              if (_boolean(_evaluate(branch.$1), branch.$1.token)) {
+              if (_condition(_evaluate(branch.$1), branch.$1.token)) {
                 selected = branch.$2;
                 break;
               }
@@ -2759,7 +2792,7 @@ class _Evaluator {
   bool _continues(_ConditionalLoop loop) {
     final condition = loop.condition;
     if (condition == null) return true;
-    return _boolean(_evaluate(condition), condition.token) != loop.until;
+    return _condition(_evaluate(condition), condition.token) != loop.until;
   }
 
   bool _caseMatches(Object selector, _CaseMatch match) {
@@ -2767,7 +2800,10 @@ class _Evaluator {
     final first = _evaluate(match.first);
     final last = match.last;
     if (last == null) {
-      return _compare(match.operator, selector, first, match.token);
+      return _condition(
+        _compare(match.operator, selector, first, match.token),
+        match.token,
+      );
     }
     _rangeValue(selector, match.token);
     _rangeValue(first, match.first.token);
@@ -2777,11 +2813,11 @@ class _Evaluator {
     final upperValue = _evaluate(last);
     _rangeValue(upperValue, last.token);
     final upper = _compare('<=', selector, upperValue, last.token);
-    return lower && upper;
+    return _condition(lower, match.token) && _condition(upper, match.token);
   }
 
   void _rangeValue(Object value, _Token token) {
-    if (value is! num && value is! String) {
+    if (value is! num && value is! String && value is! _VariantState) {
       context.type(token, 'Case To ranges require numbers or strings.');
     }
   }
@@ -2828,6 +2864,9 @@ class _Evaluator {
         if (_stringIntrinsics.contains(expression.token.lower)) {
           return _stringIntrinsic(expression, arguments);
         }
+        if (_variantIntrinsics.contains(expression.token.lower)) {
+          return _variantIntrinsic(expression, arguments.single);
+        }
         if (expression.token.lower == 'worksheets') {
           return _sheet(arguments.single, expression.token);
         }
@@ -2870,10 +2909,11 @@ class _Evaluator {
             : _Interior(range);
       case _Unary():
         final value = _evaluate(expression.operand);
+        if (value == _VariantState.nullValue) return value;
         if (expression.token.lower == 'not') {
           return !_boolean(value, expression.token);
         }
-        final number = _number(value, expression.token);
+        final number = _arithmeticNumber(value, expression.token);
         return _finite(
           expression.token.lower == '-' ? -number : number,
           expression.token,
@@ -2884,6 +2924,10 @@ class _Evaluator {
         final right = _evaluate(expression.right);
         final operator = expression.token.lower;
         if (operator == '&') {
+          if (left == _VariantState.nullValue &&
+              right == _VariantState.nullValue) {
+            return _VariantState.nullValue;
+          }
           final a = _scalarString(left, expression.token);
           final b = _scalarString(right, expression.token);
           if (a.length > _maxString - b.length) {
@@ -2895,13 +2939,7 @@ class _Evaluator {
           return a + b;
         }
         if (const <String>{'and', 'or', 'xor'}.contains(operator)) {
-          final a = _boolean(left, expression.token);
-          final b = _boolean(right, expression.token);
-          return operator == 'and'
-              ? a && b
-              : operator == 'or'
-              ? a || b
-              : a != b;
+          return _logical(operator, left, right, expression.token);
         }
         if (_comparisonOperators.contains(operator)) {
           return _compare(operator, left, right, expression.token);
@@ -2909,8 +2947,15 @@ class _Evaluator {
         // Use floating-point intermediates before checking the safe-integer
         // magnitude. Native Dart int multiplication can wrap before a later
         // range check; JS has no equivalent 64-bit integer arithmetic.
-        final a = _number(left, expression.token).toDouble();
-        final b = _number(right, expression.token).toDouble();
+        // Validate non-Null operands before propagation: Null does not admit
+        // unsupported String/Boolean arithmetic into this bounded dialect.
+        final a = left == _VariantState.nullValue
+            ? null
+            : _arithmeticNumber(left, expression.token).toDouble();
+        final b = right == _VariantState.nullValue
+            ? null
+            : _arithmeticNumber(right, expression.token).toDouble();
+        if (a == null || b == null) return _VariantState.nullValue;
         if (operator == '/' && b == 0) {
           context.fail(
             expression.token,
@@ -2928,7 +2973,12 @@ class _Evaluator {
     }
   }
 
-  bool _compare(String operator, Object left, Object right, _Token token) {
+  Object _compare(String operator, Object left, Object right, _Token token) {
+    if (left == _VariantState.nullValue || right == _VariantState.nullValue) {
+      return _VariantState.nullValue;
+    }
+    if (left == _VariantState.empty) left = _emptyComparisonValue(right);
+    if (right == _VariantState.empty) right = _emptyComparisonValue(left);
     final int comparison;
     if (left is num && right is num) {
       // Dart compareTo distinguishes signed zero; VBA numeric equality and
@@ -2952,11 +3002,37 @@ class _Evaluator {
     };
   }
 
+  Object _emptyComparisonValue(Object other) => other is String
+      ? ''
+      : other is bool
+      ? false
+      : 0;
+
+  num _arithmeticNumber(Object value, _Token token) =>
+      value == _VariantState.empty ? 0 : _number(value, token);
+
+  Object _logical(String operator, Object left, Object right, _Token token) {
+    final a = left == _VariantState.nullValue ? null : _boolean(left, token);
+    final b = right == _VariantState.nullValue ? null : _boolean(right, token);
+    if (operator == 'and') {
+      if (a == false || b == false) return false;
+      return a == null || b == null ? _VariantState.nullValue : true;
+    }
+    if (operator == 'or') {
+      if (a == true || b == true) return true;
+      return a == null || b == null ? _VariantState.nullValue : false;
+    }
+    return a == null || b == null ? _VariantState.nullValue : a != b;
+  }
+
+  bool _condition(Object value, _Token token) =>
+      value is _VariantState ? false : _boolean(value, token);
+
   Object _initialized(Object value, _Token token) {
     if (value is _Uninitialized) {
       context.unsupported(
         token,
-        'Uninitialized Variant/objects (Empty or Nothing) are unsupported; assign before reading.',
+        'Uninitialized objects (Nothing) are unsupported; bind with Set before reading.',
       );
     }
     return value;
@@ -3094,6 +3170,15 @@ class _Evaluator {
   }
 
   Object _convert(_Declared type, Object value, _Token token) {
+    final typedScalar =
+        type == _Declared.long ||
+        type == _Declared.doubleType ||
+        type == _Declared.string ||
+        type == _Declared.boolean;
+    if (typedScalar && value == _VariantState.nullValue) {
+      _invalidNull(token);
+    }
+    if (typedScalar && value == _VariantState.empty) return _default(type);
     switch (type) {
       case _Declared.long:
         final number = _integer(value, token);
@@ -3111,7 +3196,10 @@ class _Evaluator {
       case _Declared.boolean:
         return _boolean(value, token);
       case _Declared.variant:
-        if (value is! String && value is! num && value is! bool) {
+        if (value is! String &&
+            value is! num &&
+            value is! bool &&
+            value is! _VariantState) {
           context.type(token, 'Variant bindings support scalar values only.');
         }
         return value is num ? _finite(value, token) : value;
@@ -3124,6 +3212,163 @@ class _Evaluator {
         if (value is! _Range) context.type(token, 'Set requires a Range.');
         return value;
     }
+  }
+
+  Never _invalidNull(_Token token) => context.fail(
+    token,
+    'vba_invalid_use_of_null',
+    'Null cannot be converted to a typed scalar or published as a cell value; handle it explicitly with IsNull.',
+  );
+
+  Object _variantIntrinsic(_Call expression, Object value) {
+    final name = expression.token.lower;
+    final token = expression.arguments.single.token;
+    if (name == 'isempty') return value == _VariantState.empty;
+    if (name == 'isnull') return value == _VariantState.nullValue;
+    if (name == 'cvar') return _convert(_Declared.variant, value, token);
+    if (value == _VariantState.nullValue) _invalidNull(token);
+    if (name == 'cstr') {
+      if (value == _VariantState.empty) return '';
+      if (value is String) {
+        // Charge even an identity conversion: callers must not bypass the
+        // shared copy-work limit by repeatedly converting a large String.
+        _charge(value.length, token);
+        return value;
+      }
+      if (value is bool) {
+        _charge(value ? 4 : 5, token);
+        return value ? 'True' : 'False';
+      }
+      return _invariantNumberString(_number(value, token), token);
+    }
+    if (name == 'cbool') {
+      if (value == _VariantState.empty) return false;
+      if (value is bool) return value;
+      if (value is String) {
+        final text = _conversionText(value, token);
+        final lower = text.toLowerCase();
+        if (lower == 'true') return true;
+        if (lower == 'false') return false;
+        return _parseConversionNumber(text, token) != 0;
+      }
+      return _number(value, token) != 0;
+    }
+    final number = _conversionNumber(value, token);
+    if (name == 'cdbl') return number.toDouble();
+    // Explicit CLng follows ties-to-even. Ordinary Long assignment still
+    // requires an exact integer and does not acquire this coercion.
+    final lower = number.floor();
+    final fraction = number - lower;
+    final rounded = fraction < 0.5
+        ? lower
+        : fraction > 0.5
+        ? lower + 1
+        : lower.isEven
+        ? lower
+        : lower + 1;
+    if (rounded < -2147483648 || rounded > 2147483647) {
+      context.type(
+        token,
+        'CLng overflows its signed 32-bit range after rounding.',
+      );
+    }
+    return rounded;
+  }
+
+  num _conversionNumber(Object value, _Token token) {
+    if (value == _VariantState.empty) return 0;
+    if (value is bool) return value ? -1 : 0;
+    if (value is String) {
+      return _parseConversionNumber(_conversionText(value, token), token);
+    }
+    return _number(value, token);
+  }
+
+  String _conversionText(String value, _Token token) {
+    // Charge before scanning, substring allocation, case folding or parsing.
+    _charge(value.length, token);
+    bool whitespace(int unit) => unit == 32 || (unit >= 9 && unit <= 13);
+    var start = 0;
+    var end = value.length;
+    while (start < end && whitespace(value.codeUnitAt(start))) {
+      start++;
+    }
+    while (end > start && whitespace(value.codeUnitAt(end - 1))) {
+      end--;
+    }
+    return value.substring(start, end);
+  }
+
+  static final _conversionNumberPattern = RegExp(
+    r'^[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?$',
+  );
+
+  num _parseConversionNumber(String text, _Token token) {
+    // This deliberately accepts invariant ASCII decimal/exponent syntax only.
+    // Host locale, currency/grouping separators and base prefixes are absent.
+    final match = _conversionNumberPattern.firstMatch(text);
+    if (match == null || match.end != text.length) {
+      context.type(
+        token,
+        'Explicit numeric conversion requires an invariant ASCII decimal or exponent string.',
+      );
+    }
+    final value = double.tryParse(text);
+    if (value == null) {
+      context.type(token, 'The string is not a supported numeric value.');
+    }
+    return _finite(value, token);
+  }
+
+  String _invariantNumberString(num value, _Token token) {
+    if (value == value.truncateToDouble()) {
+      final integer = value.toInt();
+      // Portable integers have at most 16 decimal digits plus a sign.
+      _charge(17, token);
+      return integer.toString();
+    }
+    final magnitude = value.abs().toDouble();
+    var scientific = '';
+    // Find the fewest significant digits that round-trip to this binary64
+    // value. Using one explicit formatting algorithm avoids Dart/JavaScript
+    // defaults choosing different fixed/scientific cutoffs. Each candidate
+    // is bounded (17 digits, exponent, sign), charged before allocation.
+    for (var precision = 1; precision <= 17; precision++) {
+      _charge(32, token);
+      scientific = magnitude.toStringAsExponential(precision - 1);
+      if (double.parse(scientific) == magnitude) break;
+    }
+    final separator = scientific.indexOf('e');
+    final exponent = int.parse(scientific.substring(separator + 1));
+    var digits = scientific.substring(0, separator).replaceAll('.', '');
+    while (digits.length > 1 && digits.endsWith('0')) {
+      digits = digits.substring(0, digits.length - 1);
+    }
+    final sign = value < 0 ? '-' : '';
+    if (exponent < -6) {
+      final length =
+          sign.length +
+          digits.length +
+          (digits.length > 1 ? 1 : 0) +
+          1 +
+          exponent.toString().length;
+      _charge(length, token);
+      final mantissa = digits.length == 1
+          ? digits
+          : '${digits[0]}.${digits.substring(1)}';
+      return '$sign${mantissa}e$exponent';
+    }
+    final point = exponent + 1;
+    if (point <= 0) {
+      _charge(sign.length + 2 - point + digits.length, token);
+      return '${sign}0.${'0' * -point}$digits';
+    }
+    if (point >= digits.length) {
+      _charge(sign.length + point, token);
+      return '$sign$digits${'0' * (point - digits.length)}';
+    }
+    _charge(sign.length + digits.length + 1, token);
+    return '$sign${digits.substring(0, point)}.${digits.substring(point)}';
   }
 
   num _finite(num value, _Token token) {
@@ -3232,6 +3477,7 @@ class _Evaluator {
   }
 
   String _scalarString(Object value, _Token token) {
+    if (value is _VariantState) return '';
     if (value is String) return value;
     if (value is bool) return value ? 'True' : 'False';
     if (value is num) {
@@ -3327,10 +3573,14 @@ class _Evaluator {
           'formula': formula,
         }, target.token);
       } else {
-        if (value is! String && value is! num && value is! bool) {
+        if (value == _VariantState.nullValue) _invalidNull(target.token);
+        if (value is! String &&
+            value is! num &&
+            value is! bool &&
+            value != _VariantState.empty) {
           context.type(
             target.token,
-            'Value/Value2 supports scalar strings, numbers, and Booleans.',
+            'Value/Value2 supports scalar strings, numbers, Booleans, and Empty.',
           );
         }
         // Excel can reinterpret these as formulas. Do not silently preserve a
@@ -3342,7 +3592,7 @@ class _Evaluator {
           );
         }
         _emitRange(receiver, 'cellValue', <String, Object?>{
-          'value': value,
+          'value': value == _VariantState.empty ? null : value,
         }, target.token);
       }
     } else if (receiver is _Font) {
