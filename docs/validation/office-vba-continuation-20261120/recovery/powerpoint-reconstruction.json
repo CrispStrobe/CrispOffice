@@ -1,0 +1,245 @@
+{
+  "format": "quds-office-vba-powerpoint-recovery-v1",
+  "base_commit": "9aa177ba9abeae7179edd517da8924f16c4c78f4",
+  "status": "UNQUALIFIED WORK IN PROGRESS; no PowerPoint-specific tests were executed",
+  "blocker": "Workspace ENOSPC prevents exec_command and apply_patch sandbox startup",
+  "files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "sha": "ad8b5710eb600959e89481953459b80b14f6004f",
+      "base_sha": "c69ce675387ad5c611ed9dc3ce30a8b8cb28dce9",
+      "identity": "reconstructed exact successful edits; formatter reported unchanged"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/anim/pml_motion.dart",
+      "sha": "f2becedae9d020bb97ebb5283a76abd64eab48ce",
+      "base_sha": "a5ab1347b2961741bb640a30a02279887d6bc930",
+      "identity": "reconstructed exact successful edits; formatter reported unchanged"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart",
+      "sha": "ff5e022191bb2bf206402885149fccd84d5a95ec",
+      "base_sha": "af91e120227cd8fd35f24bbdb2432df750420ed9",
+      "identity": "exact successful source edits before formatter; worktree byte identity not asserted"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "sha": "cdcaaef571743791513b5d428c5108ab9a0a87e3",
+      "base_sha": "95cf0ba946cd4088c8c5dd467880b879b1eb3176",
+      "identity": "exact successful source edits before formatter; worktree byte identity not asserted; namespace fix pending"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/anim/pml_motion_io.dart",
+      "sha": "11f78779231c4879217546a69fa24e67e78ebc9e",
+      "base_sha": "66bdad4ad144a8634ff769d963cf2680f6951a09",
+      "identity": "exact successful source edits before formatter; worktree byte identity not asserted; namespace fix pending"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_layout_test.dart",
+      "sha": "86c08c48455d22d912b5dbbbee5d229ca1eaa9cb",
+      "identity": "exact newly added file, never formatted or executed"
+    }
+  ],
+  "shared_compiler": {
+    "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "sha": "73aae616b076e895af0e50ffd7e50618682bde4a",
+    "word_base_blob": "05f6711c7df6ee8f098c4d5b232917009aee6367",
+    "byte_identity": "combined remote blob matches local git diff prefix 73aae616; compiler never formatted"
+  },
+  "exact_unique_replacements": {
+    "shared_compiler": [
+      [
+        "constants",
+        "const _powerPointConstants = <String, int>{\n",
+        "const _powerPointConstants = <String, int>{\n  'msoanchortop': 1,\n  'msoanchortopbaseline': 2,\n  'msoanchormiddle': 3,\n  'msoanchorbottom': 4,\n  'msoanchorbottombaseline': 5,\n  'msoverticalanchormixed': -2,\n  'ppeffectnone': 0,\n  'ppeffectcut': 257,\n  'ppeffectfadesmoothly': 3849,\n  'ppeffectpushdown': 3852,\n  'ppeffectpushleft': 3853,\n  'ppeffectpushright': 3854,\n  'ppeffectpushup': 3855,\n  'ppeffectwipeleft': 2817,\n  'ppeffectwipeup': 2818,\n  'ppeffectwiperight': 2819,\n  'ppeffectwipedown': 2820,\n"
+      ],
+      [
+        "reserved",
+        "  'textframe',\n  'textrange',\n};",
+        "  'textframe',\n  'textrange',\n  'slideshowtransition',\n};"
+      ],
+      [
+        "kind",
+        "  powerPointParagraphFormat,\n  triState,",
+        "  powerPointParagraphFormat,\n  slideShowTransition,\n  triState,"
+      ],
+      [
+        "declared",
+        "  shape,\n  textRange,\n}",
+        "  shape,\n  textRange,\n  textFrame,\n  powerPointFont,\n  powerPointParagraphFormat,\n  slideShowTransition,\n}"
+      ],
+      [
+        "objectTypes",
+        "    type == _Declared.textRange;",
+        "    type == _Declared.textRange ||\n    type == _Declared.textFrame ||\n    type == _Declared.powerPointFont ||\n    type == _Declared.powerPointParagraphFormat ||\n    type == _Declared.slideShowTransition;"
+      ],
+      [
+        "withKinds",
+        "  _Kind.powerPointParagraphFormat,\n};",
+        "  _Kind.powerPointParagraphFormat,\n  _Kind.slideShowTransition,\n};"
+      ],
+      [
+        "kindOf",
+        "  _Declared.textRange => _Kind.textRange,",
+        "  _Declared.textRange => _Kind.textRange,\n  _Declared.textFrame => _Kind.textFrame,\n  _Declared.powerPointFont => _Kind.powerPointFont,\n  _Declared.powerPointParagraphFormat => _Kind.powerPointParagraphFormat,\n  _Declared.slideShowTransition => _Kind.slideShowTransition,"
+      ],
+      [
+        "typeTokens",
+        "      'textrange' when context.isPowerPoint => _Declared.textRange,",
+        "      'textrange' when context.isPowerPoint => _Declared.textRange,\n      'textframe' when context.isPowerPoint => _Declared.textFrame,\n      'font' when context.isPowerPoint => _Declared.powerPointFont,\n      'paragraphformat' when context.isPowerPoint =>\n        _Declared.powerPointParagraphFormat,\n      'slideshowtransition' when context.isPowerPoint =>\n        _Declared.slideShowTransition,"
+      ],
+      [
+        "typeMessage",
+        "? 'Supported declarations are Long, Double, String, Boolean, Variant, Presentation, Slide, Shape, and TextRange.'",
+        "? 'Supported declarations are Long, Double, String, Boolean, Variant, Presentation, Slide, Shape, TextFrame, TextRange, Font, ParagraphFormat, and SlideShowTransition.'"
+      ],
+      [
+        "writeKind",
+        "    final receiver = _expression(target.receiver);\n    final property = target.token.lower;\n    if (context.isPowerPoint) {\n",
+        "    final receiver = _expression(target.receiver);\n    final property = target.token.lower;\n    if (context.isPowerPoint) {\n      if (receiver == _Kind.textFrame && property == 'verticalanchor') {\n        return _Kind.number;\n      }\n      if (receiver == _Kind.slideShowTransition) {\n        if (property == 'hidden' || property == 'advanceonclick') {\n          return _Kind.triState;\n        }\n        if (property == 'entryeffect' || property == 'duration') {\n          return _Kind.number;\n        }\n      }\n"
+      ],
+      [
+        "transitionMember",
+        "    if (receiver == _Kind.slide && name == 'shapes') {\n      if (expression.arguments == null) return _Kind.shapes;\n      _powerPointSelector(expression, shape: true);\n      return _Kind.shape;\n    }\n",
+        "    if (receiver == _Kind.slide && name == 'shapes') {\n      if (expression.arguments == null) return _Kind.shapes;\n      _powerPointSelector(expression, shape: true);\n      return _Kind.shape;\n    }\n    if (receiver == _Kind.slide && name == 'slideshowtransition') {\n      _arguments(expression, 0, allowProperty: true);\n      return _Kind.slideShowTransition;\n    }\n"
+      ],
+      [
+        "transitionBinding",
+        "class _TextFrame {\n  const _TextFrame(this.shape);\n  final _Shape shape;\n}\n",
+        "class _TextFrame {\n  const _TextFrame(this.shape);\n  final _Shape shape;\n}\n\nclass _SlideShowTransition {\n  const _SlideShowTransition(this.slide);\n  final _Slide slide;\n}\n"
+      ],
+      [
+        "evaluate",
+        "      final slide = receiver is _Slide ? receiver : (receiver as _Shapes).slide;\n      if (expression.arguments == null) return _Shapes(slide);",
+        "      final slide = receiver is _Slide ? receiver : (receiver as _Shapes).slide;\n      if (expression.token.lower == 'slideshowtransition') {\n        return _SlideShowTransition(slide);\n      }\n      if (expression.arguments == null) return _Shapes(slide);"
+      ],
+      [
+        "convert",
+        "      case _Declared.textRange:\n        if (value is! _TextRange) {\n          context.type(token, 'Set requires a TextRange.');\n        }\n        return value;\n",
+        "      case _Declared.textRange:\n        if (value is! _TextRange) {\n          context.type(token, 'Set requires a TextRange.');\n        }\n        return value;\n      case _Declared.textFrame:\n        if (value is! _TextFrame) {\n          context.type(token, 'Set requires a TextFrame.');\n        }\n        return value;\n      case _Declared.powerPointFont:\n        if (value is! _PowerPointFont) {\n          context.type(token, 'Set requires a PowerPoint Font.');\n        }\n        return value;\n      case _Declared.powerPointParagraphFormat:\n        if (value is! _PowerPointParagraphFormat) {\n          context.type(token, 'Set requires a PowerPoint ParagraphFormat.');\n        }\n        return value;\n      case _Declared.slideShowTransition:\n        if (value is! _SlideShowTransition) {\n          context.type(token, 'Set requires a SlideShowTransition.');\n        }\n        return value;\n"
+      ],
+      [
+        "writePowerPoint",
+        "  void _writePowerPoint(\n    Object receiver,\n    String property,\n    Object value,\n    _Token token,\n  ) {\n",
+        "  void _writePowerPoint(\n    Object receiver,\n    String property,\n    Object value,\n    _Token token,\n  ) {\n    if (receiver is _TextFrame) {\n      final anchor = switch (_integer(value, token)) {\n        1 => 'top',\n        3 => 'center',\n        4 => 'bottom',\n        _ => null,\n      };\n      if (anchor == null) {\n        context.unsupported(\n          token,\n          'VerticalAnchor supports msoAnchorTop, msoAnchorMiddle and msoAnchorBottom; baseline and mixed anchors are unsupported.',\n        );\n      }\n      _emitPowerPoint(receiver.shape, 'shapeTextFrame', <String, Object?>{\n        'anchor': anchor,\n      }, token);\n      return;\n    }\n    if (receiver is _SlideShowTransition) {\n      if (property == 'hidden' || property == 'advanceonclick') {\n        _emitPowerPointSlide(\n          receiver.slide,\n          property == 'hidden' ? 'slideHidden' : 'slideTransition',\n          <String, Object?>{\n            property == 'hidden' ? 'hidden' : 'advanceOnClick':\n                _powerPointTriState(value, token),\n          },\n          token,\n        );\n      } else if (property == 'duration') {\n        final seconds = _number(value, token);\n        final milliseconds = seconds * 1000;\n        if (milliseconds < 1 ||\n            milliseconds > 2147483647 ||\n            milliseconds.round() / 1000 != seconds) {\n          context.type(\n            token,\n            'SlideShowTransition.Duration requires positive seconds in exact milliseconds within signed Long milliseconds.',\n          );\n        }\n        _emitPowerPointSlide(receiver.slide, 'slideTransition', <String, Object?>{\n          'durationMs': milliseconds.round(),\n        }, token);\n      } else {\n        final effect = switch (_integer(value, token)) {\n          0 => ('none', null),\n          257 => ('cut', null),\n          3849 => ('fade', null),\n          3852 => ('push', 'down'),\n          3853 => ('push', 'left'),\n          3854 => ('push', 'right'),\n          3855 => ('push', 'up'),\n          2817 => ('wipe', 'left'),\n          2818 => ('wipe', 'up'),\n          2819 => ('wipe', 'right'),\n          2820 => ('wipe', 'down'),\n          _ => null,\n        };\n        if (effect == null) {\n          context.unsupported(\n            token,\n            'EntryEffect supports None, Cut, FadeSmoothly and the four Push/Wipe directions.',\n          );\n        }\n        _emitPowerPointSlide(receiver.slide, 'slideTransition', <String, Object?>{\n          'kind': effect.$1,\n          if (effect.$2 != null) 'direction': effect.$2,\n        }, token);\n      }\n      return;\n    }\n"
+      ],
+      [
+        "emitSlide",
+        "  void _writeWord(\n",
+        "  void _emitPowerPointSlide(\n    _Slide slide,\n    String operation,\n    Map<String, Object?> fields,\n    _Token token,\n  ) {\n    if (steps.length >= _maxSteps) {\n      context.limit(token, 'PowerPoint writes exceed $_maxSteps emitted operations.');\n    }\n    _emitNative('pptx.$operation', <String, Object?>{\n      'slide': slide.index,\n      ...fields,\n    }, token);\n  }\n\n  void _writeWord(\n"
+      ]
+    ],
+    "slide_steps": [
+      [
+        "catalog",
+        "  'shapeText': ['slide', 'shape', 'shapeName', 'topLevel', 'text'],\n",
+        "  'shapeText': ['slide', 'shape', 'shapeName', 'topLevel', 'text'],\n  'shapeTextFrame': ['slide', 'shape', 'shapeName', 'topLevel', 'anchor'],\n"
+      ],
+      [
+        "handler",
+        "  switch (op) {\n    case 'shapeText':",
+        "  switch (op) {\n    case 'shapeTextFrame':\n      final target = shape();\n      if (target.visual != null || target.table != null) {\n        throw ArgumentError('shapeTextFrame requires a text shape');\n      }\n      final anchor = PmlTextAnchor.values.byName(s.string('anchor'));\n      target.textAnchor = anchor;\n      target.textAnchorOverride = true;\n    case 'shapeText':"
+      ],
+      [
+        "optionalKind",
+        "        kind: PmlTransitionKind.values.byName(s.string('kind')),",
+        "        kind: PmlTransitionKind.values.byName(\n          s.string('kind', fallback: slide.transition.kind.name),\n        ),"
+      ],
+      [
+        "provenance",
+        "        advanceAfterMs: slide.transition.advanceAfterMs,\n",
+        "        advanceAfterMs: slide.transition.advanceAfterMs,\n        source: slide.transition.source,\n        effectOverride:\n            slide.transition.effectOverride || s.has('kind') || s.has('direction'),\n        durationOverride: slide.transition.durationOverride || s.has('durationMs'),\n        advanceOnClickOverride:\n            slide.transition.advanceOnClickOverride || s.has('advanceOnClick'),\n"
+      ]
+    ],
+    "drawingml": [
+      [
+        "emptyFrame",
+        "      shape.hasExplicitTextFormatting ||\n      shape.textReplacementRequested) {\n",
+        "      shape.hasExplicitTextFormatting ||\n      shape.textAnchorOverride ||\n      shape.textAnchor != PmlTextAnchor.top ||\n      shape.textReplacementRequested) {\n"
+      ],
+      [
+        "anchorWriter",
+        "  _writeAutofit(body, shape);\n",
+        "  final properties = body.firstChild('bodyPr', namespaceUri: OfficeNamespaces.a);\n  final importedAnchor = switch (properties?.getAttribute('anchor')) {\n    'ctr' => PmlTextAnchor.center,\n    'b' => PmlTextAnchor.bottom,\n    _ => PmlTextAnchor.top,\n  };\n  if (shape.textAnchorOverride || importedAnchor != shape.textAnchor) {\n    final anchorProperties = properties ?? _textElement('bodyPr');\n    if (properties == null) {\n      anchorProperties.parent = body;\n      body.children.insert(0, anchorProperties);\n    }\n    anchorProperties.setAttribute('anchor', switch (shape.textAnchor) {\n      PmlTextAnchor.top => 't',\n      PmlTextAnchor.center => 'ctr',\n      PmlTextAnchor.bottom => 'b',\n    });\n  }\n  _writeAutofit(body, shape);\n"
+      ]
+    ],
+    "pml_motion_io": [
+      [
+        "imports",
+        "import '../../xml/xml_writer.dart';\n",
+        "import '../../xml/xml_writer.dart';\nimport '../../xml/xml_node.dart';\nimport '../../xml/namespaces.dart';\n"
+      ],
+      [
+        "presence",
+        "  var inTransition = false;\n",
+        "  var inTransition = false;\n  var hasTransition = false;\n"
+      ],
+      [
+        "endScope",
+        "      if (reader.localName == 'transition') {\n",
+        "      if (reader.localName == 'transition' &&\n          reader.namespaceUri == OfficeNamespaces.p && reader.depth == 1) {\n"
+      ],
+      [
+        "startScope",
+        "    if (reader.localName == 'transition') {\n      inTransition = true;\n",
+        "    if (reader.localName == 'transition' &&\n        reader.namespaceUri == OfficeNamespaces.p && reader.depth == 2) {\n      inTransition = !reader.isEmptyElement;\n      hasTransition = true;\n"
+      ],
+      [
+        "effectScope",
+        "    } else if (inTransition && kind == null) {\n",
+        "    } else if (inTransition && kind == null && reader.depth == 3 &&\n        reader.namespaceUri == OfficeNamespaces.p) {\n"
+      ],
+      [
+        "snapshot",
+        "  if (kind != null) {\n    slide.transition = PmlSlideTransition(\n      kind: kind,\n      direction: dir,\n      durationMs: durationMs,\n      advanceOnClick: advClick,\n      advanceAfterMs: advAfter,\n    );\n  }\n",
+        "  if (hasTransition) {\n    final value = PmlSlideTransition(\n      kind: kind ?? PmlTransitionKind.none,\n      direction: dir,\n      durationMs: durationMs,\n      advanceOnClick: advClick,\n      advanceAfterMs: advAfter,\n    );\n    final sourceReader = XmlPullReader(xml);\n    String? source;\n    while (sourceReader.next()) {\n      if (sourceReader.eventType == XmlEventType.startElement &&\n          sourceReader.localName == 'transition' &&\n          sourceReader.namespaceUri == OfficeNamespaces.p &&\n          sourceReader.depth == 2) {\n        source = XmlDocument(root: XmlDocument.readElement(sourceReader))\n            .toXmlString(declaration: false);\n        break;\n      }\n    }\n    slide.transition = PmlSlideTransition(\n      kind: value.kind,\n      direction: value.direction,\n      durationMs: value.durationMs,\n      advanceOnClick: value.advanceOnClick,\n      advanceAfterMs: value.advanceAfterMs,\n      source: source == null ? null : PmlTransitionSource(xml: source, value: value),\n    );\n  }\n"
+      ],
+      [
+        "emitNone",
+        "  if (!slide.transition.isNone) {\n    w.writeStartElement('transition', prefix: 'p');\n",
+        "  if (_writePreservedTransition(w, slide.transition)) {\n    // The imported node owns unrelated transition settings.\n  } else if (!slide.transition.isNone ||\n      !slide.transition.advanceOnClick ||\n      slide.transition.advanceAfterMs != null ||\n      slide.transition.durationMs != 700 ||\n      slide.transition.durationOverride ||\n      slide.transition.advanceOnClickOverride ||\n      slide.transition.effectOverride) {\n    w.writeStartElement('transition', prefix: 'p');\n"
+      ],
+      [
+        "emptyEffectStart",
+        "    final String name = _kindToXml(slide.transition.kind);\n    w.writeStartElement(name, prefix: 'p');\n",
+        "    if (!slide.transition.isNone) {\n      final String name = _kindToXml(slide.transition.kind);\n      w.writeStartElement(name, prefix: 'p');\n"
+      ],
+      [
+        "emptyEffectEnd",
+        "    w.writeEndElement();\n    w.writeEndElement();\n  }\n  if (slide.animations.isEmpty) {",
+        "      w.writeEndElement();\n    }\n    w.writeEndElement();\n  }\n  if (slide.animations.isEmpty) {"
+      ],
+      [
+        "writerHelper",
+        "/// writeSlideMotion helper.\n",
+        "bool _writePreservedTransition(XmlWriter writer, PmlSlideTransition transition) {\n  final source = transition.source;\n  if (source == null) return false;\n  final body = XmlDocument.parse(source.xml).root;\n  if (body == null) {\n    throw const FormatException('Imported slide transition is empty');\n  }\n  final before = source.value;\n  if (transition.durationOverride || transition.durationMs != before.durationMs) {\n    body.setAttribute('spd', _msToSpd(transition.durationMs));\n    body.setAttribute(\n      'p14',\n      'http://schemas.microsoft.com/office/powerpoint/2010/main',\n      prefix: 'xmlns',\n    );\n    body.setAttribute('dur', '${transition.durationMs}', prefix: 'p14');\n  }\n  if (transition.advanceOnClickOverride ||\n      transition.advanceOnClick != before.advanceOnClick) {\n    body.setAttribute('advClick', transition.advanceOnClick ? '1' : '0');\n  }\n  if (transition.advanceAfterMs != before.advanceAfterMs) {\n    if (transition.advanceAfterMs == null) {\n      body.removeAttribute('advTm');\n    } else {\n      body.setAttribute('advTm', '${transition.advanceAfterMs}');\n    }\n  }\n  if (transition.effectOverride ||\n      transition.kind != before.kind ||\n      transition.direction != before.direction) {\n    body.children.removeWhere(\n      (node) => node is XmlElement &&\n          !(node.namespaceUri == OfficeNamespaces.p &&\n              (node.localName == 'sndAc' || node.localName == 'extLst')),\n    );\n    if (!transition.isNone) {\n      final effect = XmlElement(\n        localName: _kindToXml(transition.kind),\n        prefix: 'p',\n        namespaceUri: OfficeNamespaces.p,\n      );\n      if (transition.kind == PmlTransitionKind.fadeThroughBlack) {\n        effect.setAttribute('thruBlk', '1');\n      }\n      if (transition.kind == PmlTransitionKind.morph) {\n        effect.setAttribute('option', 'byObject');\n      }\n      final direction = _dirToXml(transition);\n      if (direction != null) effect.setAttribute('dir', direction);\n      body.children.insert(0, effect..parent = body);\n    }\n  }\n  body.writeTo(writer);\n  return true;\n}\n\n/// writeSlideMotion helper.\n"
+      ]
+    ]
+  },
+  "format_commands": {
+    "runtime": "Dart 3.13.7",
+    "first_run": {
+      "unchanged": [
+        "pml_motion.dart",
+        "pml_presentation.dart"
+      ],
+      "changed": [
+        "pml_motion_io.dart",
+        "slide_steps.dart",
+        "drawingml.dart"
+      ]
+    },
+    "second_run": {
+      "changed": [
+        "pml_motion_io.dart"
+      ]
+    },
+    "recovery_note": "Native snapshot blobs for the three changed files reproduce exact successful edits before formatting. Whitespace equality with local worktree is not asserted. The two unchanged files and the compiler/test file retain exact original edit bytes."
+  },
+  "pending": [
+    "Namespace-owned attribute setters/readers in motion_io and drawingml; first correction apply_patch failed before any file mutation.",
+    "Native PowerPoint layout/transition integration tests and collision regressions have not yet been written.",
+    "PowerPoint documentation and runnable layout example remain to be added.",
+    "Run formatter, strict analysis, targeted native/compiler/rollback tests and VM/JS portability before accepting these changes."
+  ]
+}

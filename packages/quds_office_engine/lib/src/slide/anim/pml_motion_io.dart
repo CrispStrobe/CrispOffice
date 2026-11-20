@@ -1,5 +1,7 @@
 import '../../xml/xml_reader.dart';
 import '../../xml/xml_writer.dart';
+import '../../xml/xml_node.dart';
+import '../../xml/namespaces.dart';
 import '../model/pml_presentation.dart';
 import 'pml_motion.dart';
 
@@ -10,6 +12,7 @@ void parseSlideMotion(String xml, PmlSlide slide) {
 
   /// inTransition API.
   var inTransition = false;
+  var hasTransition = false;
 
   /// inTiming API.
   var inTiming = false;
@@ -54,7 +57,8 @@ void parseSlideMotion(String xml, PmlSlide slide) {
   var order = 0;
   while (reader.next()) {
     if (reader.eventType == XmlEventType.endElement) {
-      if (reader.localName == 'transition') {
+      if (reader.localName == 'transition' &&
+          reader.namespaceUri == OfficeNamespaces.p && reader.depth == 1) {
         inTransition = false;
       } else if (reader.localName == 'timing') {
         inTiming = false;
@@ -83,8 +87,10 @@ void parseSlideMotion(String xml, PmlSlide slide) {
     if (reader.eventType != XmlEventType.startElement) {
       continue;
     }
-    if (reader.localName == 'transition') {
-      inTransition = true;
+    if (reader.localName == 'transition' &&
+        reader.namespaceUri == OfficeNamespaces.p && reader.depth == 2) {
+      inTransition = !reader.isEmptyElement;
+      hasTransition = true;
       durationMs = _spdToMs(reader.getAttribute('spd'));
       final String? dur =
           reader.getAttribute('dur') ?? reader.getAttribute('p14:dur');
@@ -96,7 +102,8 @@ void parseSlideMotion(String xml, PmlSlide slide) {
       if (tm != null && tm > 0) {
         advAfter = tm;
       }
-    } else if (inTransition && kind == null) {
+    } else if (inTransition && kind == null && reader.depth == 3 &&
+        reader.namespaceUri == OfficeNamespaces.p) {
       if (reader.localName == 'prstTrans' &&
           reader.getAttribute('prst') == 'morph') {
         kind = PmlTransitionKind.morph;
@@ -153,20 +160,105 @@ void parseSlideMotion(String xml, PmlSlide slide) {
       pendingSpid = int.tryParse(reader.getAttribute('spid') ?? '');
     }
   }
-  if (kind != null) {
-    slide.transition = PmlSlideTransition(
-      kind: kind,
+  if (hasTransition) {
+    final value = PmlSlideTransition(
+      kind: kind ?? PmlTransitionKind.none,
       direction: dir,
       durationMs: durationMs,
       advanceOnClick: advClick,
       advanceAfterMs: advAfter,
     );
+    final sourceReader = XmlPullReader(xml);
+    String? source;
+    while (sourceReader.next()) {
+      if (sourceReader.eventType == XmlEventType.startElement &&
+          sourceReader.localName == 'transition' &&
+          sourceReader.namespaceUri == OfficeNamespaces.p &&
+          sourceReader.depth == 2) {
+        source = XmlDocument(root: XmlDocument.readElement(sourceReader))
+            .toXmlString(declaration: false);
+        break;
+      }
+    }
+    slide.transition = PmlSlideTransition(
+      kind: value.kind,
+      direction: value.direction,
+      durationMs: value.durationMs,
+      advanceOnClick: value.advanceOnClick,
+      advanceAfterMs: value.advanceAfterMs,
+      source: source == null ? null : PmlTransitionSource(xml: source, value: value),
+    );
   }
+}
+
+bool _writePreservedTransition(XmlWriter writer, PmlSlideTransition transition) {
+  final source = transition.source;
+  if (source == null) return false;
+  final body = XmlDocument.parse(source.xml).root;
+  if (body == null) {
+    throw const FormatException('Imported slide transition is empty');
+  }
+  final before = source.value;
+  if (transition.durationOverride || transition.durationMs != before.durationMs) {
+    body.setAttribute('spd', _msToSpd(transition.durationMs));
+    body.setAttribute(
+      'p14',
+      'http://schemas.microsoft.com/office/powerpoint/2010/main',
+      prefix: 'xmlns',
+    );
+    body.setAttribute('dur', '${transition.durationMs}', prefix: 'p14');
+  }
+  if (transition.advanceOnClickOverride ||
+      transition.advanceOnClick != before.advanceOnClick) {
+    body.setAttribute('advClick', transition.advanceOnClick ? '1' : '0');
+  }
+  if (transition.advanceAfterMs != before.advanceAfterMs) {
+    if (transition.advanceAfterMs == null) {
+      body.removeAttribute('advTm');
+    } else {
+      body.setAttribute('advTm', '${transition.advanceAfterMs}');
+    }
+  }
+  if (transition.effectOverride ||
+      transition.kind != before.kind ||
+      transition.direction != before.direction) {
+    body.children.removeWhere(
+      (node) => node is XmlElement &&
+          !(node.namespaceUri == OfficeNamespaces.p &&
+              (node.localName == 'sndAc' || node.localName == 'extLst')),
+    );
+    if (!transition.isNone) {
+      final effect = XmlElement(
+        localName: _kindToXml(transition.kind),
+        prefix: 'p',
+        namespaceUri: OfficeNamespaces.p,
+      );
+      if (transition.kind == PmlTransitionKind.fadeThroughBlack) {
+        effect.setAttribute('thruBlk', '1');
+      }
+      if (transition.kind == PmlTransitionKind.morph) {
+        effect.setAttribute('option', 'byObject');
+      }
+      final direction = _dirToXml(transition);
+      if (direction != null) effect.setAttribute('dir', direction);
+      body.children.insert(0, effect..parent = body);
+    }
+  }
+  body.writeTo(writer);
+  return true;
 }
 
 /// writeSlideMotion helper.
 void writeSlideMotion(XmlWriter w, PmlSlide slide) {
-  if (!slide.transition.isNone) {
+  if (_writePreservedTransition(w, slide.transition)) {
+    // The imported node owns unrelated transition settings.
+  } else if (!slide.transition.isNone ||
+      !slide.transition.advanceOnClick ||
+      slide.transition.advanceAfterMs != null ||
+      slide.transition.durationMs != 700 ||
+      slide.transition.durationOverride ||
+      slide.transition.advanceOnClickOverride ||
+      slide.transition.effectOverride) {
     w.writeStartElement('transition', prefix: 'p');
     w.writeAttribute('spd', _msToSpd(slide.transition.durationMs));
     w.writeNamespace(
@@ -178,8 +270,9 @@ void writeSlideMotion(XmlWriter w, PmlSlide slide) {
     if (slide.transition.advanceAfterMs != null) {
       w.writeAttribute('advTm', '${slide.transition.advanceAfterMs}');
     }
-    final String name = _kindToXml(slide.transition.kind);
-    w.writeStartElement(name, prefix: 'p');
+    if (!slide.transition.isNone) {
+      final String name = _kindToXml(slide.transition.kind);
+      w.writeStartElement(name, prefix: 'p');
     if (slide.transition.kind == PmlTransitionKind.fadeThroughBlack) {
       w.writeAttribute('thruBlk', '1');
     }
@@ -190,7 +283,8 @@ void writeSlideMotion(XmlWriter w, PmlSlide slide) {
     if (dir != null) {
       w.writeAttribute('dir', dir);
     }
-    w.writeEndElement();
+      w.writeEndElement();
+    }
     w.writeEndElement();
   }
   if (slide.animations.isEmpty) {
