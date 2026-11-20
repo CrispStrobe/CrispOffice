@@ -761,21 +761,19 @@ void _peerBulkWorkspaceTests() {
   testWidgets(
     'certified native quota stops the tail and keeps retry guidance without refresh',
     (tester) async {
-      final browser = _BulkBrowser()
-        ..pages = (_, _, _) async =>
-            StudioMailHeaderPage(
-                messages: [
-                  for (final uid in [300, 200, 100])
-                    _header(uid, 'Message $uid'),
-                ],
-              )
-              ..bulkAnswer = (_) async => const MailFailure(
-                MailProblem(
-                  MailProblemCode.quotaExceeded,
-                  retryAfter: Duration(milliseconds: 1250),
-                  mutationMayHaveOccurred: false,
-                ),
-              );
+      final browser = _BulkBrowser();
+      browser.pages = (_, _, _) async => StudioMailHeaderPage(
+        messages: [
+          for (final uid in [300, 200, 100]) _header(uid, 'Message $uid'),
+        ],
+      );
+      browser.bulkAnswer = (_) async => const MailFailure(
+        MailProblem(
+          MailProblemCode.quotaExceeded,
+          retryAfter: Duration(milliseconds: 1250),
+          mutationMayHaveOccurred: false,
+        ),
+      );
       await _show(tester, browser);
       _mailList(tester).onBulkAction!(MailBulkFlagAction.flag, [
         'imap-message-91:300',
