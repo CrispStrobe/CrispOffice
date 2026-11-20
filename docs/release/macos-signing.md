@@ -65,12 +65,16 @@ qualification bound to the code that was qualified, not to a signature:
    Apple Distribution copy and a Developer ID copy (with secure timestamp) all
    give `f2022b1c…07efeb`; changing one code byte changes it.
 2. **Apple's tool agrees.** `codesign --remove-signature` of the qualified file
-   and of every re-signed copy yields the same 2,300,136 bytes, SHA-256
-   `f62d2a0c…886ed2`.
-3. **Build-time proof.** `build_macos_app.sh` checks both digests on the pinned
-   input before signing (after verifying its SHA-256 and length) and again on
-   the signed output, and refuses to record the library as qualified
-   otherwise. It writes `sha256` and `code_sha256` into
+   and of every re-signed copy yields identical bytes (with Xcode 26: 2,300,136
+   bytes, SHA-256 `f62d2a0c…886ed2`). The stripped form depends on the
+   codesign version (Xcode 16 on the CI runner produces other bytes), so the
+   build compares input and output under the same tool rather than against
+   that constant.
+3. **Build-time proof.** `build_macos_app.sh` checks the code digest of the
+   pinned input before signing (after verifying its SHA-256 and length) and of
+   the signed output, requires the signed output to strip to exactly the
+   pinned input's stripped bytes, and refuses to record the library as
+   qualified otherwise. It writes `sha256` and `code_sha256` into
    `Contents/Resources/spacy-native.json`, which the app signature seals.
 4. **Runtime proof.** For a host-bundled library the native backend reads the
    file once, verifies its SHA-256 and computes `machOCodeSha256` from the same
