@@ -253,5 +253,12 @@
         "disposition": "Active overlapping Mail development introduced after initial intake; preserved remotely, not integrated into this Word change."
       }
     ]
+  },
+  "post_merge_word_checkpoint": {
+    "head": "8ca1958d9eb737beb88269bb962a2418f7a3a44a",
+    "observed_before_publication": "2026-11-20T20:41:23Z",
+    "production_resolution": "Already represented by adopted binary64 named-conversion implementation. Retain final named-argument source unchanged.",
+    "preserved": "Six historical evidence files, expanded historical README and two large-scalar regression expectations.",
+    "original_merge": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a"
   }
 }

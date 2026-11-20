@@ -1,8 +1,9 @@
 # Word VBA physical measurements — integration and validation
 
 > Historical incoming qualification record captured from main
-> `b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a` (PR #272), including evidence
-> added by `6d370884cd2b62ae83e627d9e71809ae9d795684`. Its unexecuted-test
+> `22cf73b816328cd5fe54ec1793c89f1cc322db3b`, following PR #272 at
+> `b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a` and evidence added by
+> `6d370884cd2b62ae83e627d9e71809ae9d795684`. Its unexecuted-test
 > statements describe that incoming environment and are not the status of the
 > later local qualification. See the
 > [current qualification](../word-vba-unit-conversions-20261120/README.md) for
@@ -128,6 +129,14 @@ The incoming commit messages report focused local passes, but this environment
 did not reproduce them or obtain raw result streams. They are not counted as
 verified qualification of the consolidated merge. The source file is adopted
 byte-for-byte from that incoming checkpoint.
+
+A final continuation checkpoint, `8ca1958d9eb737beb88269bb962a2418f7a3a44a`,
+arrived just before the first main merge. Its binary64 promotion is already in
+the adopted named-argument source. The follow-up preserves its six historical
+review records and additional large-scalar test expectations, recording that
+head as a real merge parent without changing production source. Its arithmetic
+harness is explicitly bound to the older positional-only compiler blob and
+must be reproduced at its recorded historical commit, not at current main.
 
 ### Late Mail work
 

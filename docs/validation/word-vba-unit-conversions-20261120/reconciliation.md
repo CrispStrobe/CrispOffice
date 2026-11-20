@@ -86,7 +86,9 @@ The Word production file remains unchanged from `e08635b3`:
 | --- | --- |
 | `packages/quds_office_engine/lib/src/automation/office_vba_language.dart` | `41de865411b884d18c1097e9a80d68cd6bf1fb245e1844a46f72af05636f5ecd` |
 
-The four Mail files below are byte-identical to captured head `69ab514b`:
+At the initial reconciliation checkpoint, the four Mail files below were
+byte-identical to captured head `69ab514b`. Later captured Mail UI/provider work
+is tracked separately in the final intake section below:
 
 | File | SHA-256 |
 | --- | --- |
@@ -148,3 +150,54 @@ records are preserved. The latest-main merge does not restore an older Mail
 or Word implementation. Six focused suites and both portable drivers require
 qualification against the final named layout; this merge record does not
 claim those new runs have passed.
+
+
+## Bounded final intake and fixture correction
+
+The final branch inventory was captured on 2026-11-20 at 20:52:58 UTC:
+38 branches and two open PRs (#271 and #273). The intake cutoff is the fixed
+set below. Subsequent feature-branch development is outside this captured
+union; remote main is still checked when publishing the final merge.
+
+| Fixed incoming head | Reconciliation decision |
+| --- | --- |
+| `22cf73b816328cd5fe54ec1793c89f1cc322db3b` (main) | Preserve all ten documentation/evidence updates and the additional large-scalar source test. Its parent `cd306bdea352c6f6400b5d1af7cc33e737004462` is already included. |
+| `c12ad8bc9c17f1849acdf92b2245e9198f1005b8` (PR #271) | Preserve final source-review, late-scope and historical qualification evidence. Retain the current named-argument compiler; the incoming positional-only implementation adds no new capability. |
+| `835b8019cbb873c72424e63d4df292174edd3c3e` (Zotero continuation intake) | Preserve ancestry and its intake JSON/Markdown. Keep canonical 8/9/13 example names and stronger retained suites; port its declaration-order fixture correction. |
+| `9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384` (Mail bulk actions) | Newly adds UI selection and guarded foreground hosts beyond the earlier core-only capture; reconcile separately with the Mail flags branch. |
+| `fcc7bd27f7df6200ac7d3174f6e21097f931cca0` (Mail bulk flags) | Newly adds core, transport, UI and host contracts; requires deliberate resolution of overlapping Mail changes and separate qualification. |
+
+The two later PR #271 README snapshots are retained as
+[incoming main records](incoming-pr271-main22cf-checkpoint.md) and
+[final incoming evidence](incoming-pr271-final-c12-checkpoint.md).
+The earlier positional-only [qualification receipt](incoming-pr271-qualification.json)
+is historical, retains its original JSON bytes, and explicitly does not claim
+Dart execution. It is distinct from final executed local qualification.
+
+The frozen `ba6b170c1e011853128af6dcb9333ae9e22e79a1` six-suite run identified
+eight failing cases in one incoming test loop. Their source declared
+`Dim result As Double` after assigning `value = "1"`, so the declaration-first
+subset correctly rejected the fixture before reaching the intended numeric
+type check. Moving both declarations before the assignment corrects the
+fixture in `office_vba_word_measurements_test.dart`; no production behavior is
+changed. The same correction is present in the captured Zotero branch's
+alternatively named positional suite. That branch's older named suites are
+not substituted for the retained thirteen compiler and one integration
+additions.
+
+The production compiler remains the byte-identical named-argument file
+recorded above. These intake and source-resolution statements are not a pass
+claim for the new test run. Executed qualification must bind the final
+published source and report its observed results separately.
+
+
+### Independent Word intake suite carried by Mail
+
+The fixed Mail actions head `9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384`
+also carries `office_vba_word_bulk_intake_conversions_test.dart`. Preserve this
+independent suite before the Word qualification freeze so its binding,
+diagnostic-location, decimal inverse/native-grid composition, typed-helper
+Variant flow, side-effect ordering, near-grid rejection and large-scalar
+cases are included in the same Word test gate. Only canonical Dart formatting
+is applied to the captured file; its expected behavior is retained. Full
+Mail branch ancestry and product integration remain a separate reconciliation.
