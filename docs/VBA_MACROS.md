@@ -672,6 +672,12 @@ unsupported String/Boolean arithmetic. Both expressions are evaluated before
 validation or propagation, so a failing helper or `1/0` expression still fails.
 String addition and broader implicit arithmetic coercion remain unsupported.
 
+Nullable operator results remain compositional: nesting an expression directly
+and passing the same result through a Variant temporary have the same supported
+semantics. Known incompatible non-state operands still fail static checks, even
+in unused code. Scalar Variants cannot satisfy Worksheet/Range bindings or
+parameters, including in unexecuted branches.
+
 All six comparisons return `Null` if either scalar is Null, including
 `Null = Null` and `Null <> Null`. Use `IsNull` to inspect the state. Empty
 compares as `0` against numbers, `False` against Booleans, or `""` against

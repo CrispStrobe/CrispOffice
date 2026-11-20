@@ -2155,33 +2155,33 @@ class _Checker {
         final expected = expression.token.lower == 'not'
             ? _Kind.boolean
             : _Kind.number;
-        _compatible(
-          expected,
-          _expression(expression.operand),
-          expression.operand.token,
-        );
-        return expected;
+        final operand = _expression(expression.operand);
+        _compatible(expected, operand, expression.operand.token);
+        // A Variant operand may be Null. Preserve that possible result so a
+        // nested expression behaves like the same value stored in a Variant.
+        return operand == _Kind.variant ? _Kind.variant : expected;
       case _Binary():
         final left = _expression(expression.left);
         final right = _expression(expression.right);
         final operator = expression.token.lower;
+        final nullable = left == _Kind.variant || right == _Kind.variant;
         if (operator == '&') {
           _scalar(left, expression.left.token);
           _scalar(right, expression.right.token);
-          return _Kind.string;
+          return nullable ? _Kind.variant : _Kind.string;
         }
         if (const <String>{'and', 'or', 'xor'}.contains(operator)) {
           _compatible(_Kind.boolean, left, expression.left.token);
           _compatible(_Kind.boolean, right, expression.right.token);
-          return _Kind.boolean;
+          return nullable ? _Kind.variant : _Kind.boolean;
         }
         if (_comparisonOperators.contains(operator)) {
           _comparisonKinds(left, right, expression.token);
-          return _Kind.boolean;
+          return nullable ? _Kind.variant : _Kind.boolean;
         }
         _compatible(_Kind.number, left, expression.left.token);
         _compatible(_Kind.number, right, expression.right.token);
-        return _Kind.number;
+        return nullable ? _Kind.variant : _Kind.number;
     }
   }
 
@@ -2269,7 +2269,12 @@ class _Checker {
   void _compatible(_Kind expected, _Kind value, _Token token) {
     if (expected == _Kind.variant) {
       _scalar(value, token);
-    } else if (expected != value && value != _Kind.variant) {
+    } else if (expected != value &&
+        (value != _Kind.variant ||
+            expected == _Kind.worksheet ||
+            expected == _Kind.range)) {
+      // Scalar Variant values may defer scalar checks until evaluation, but
+      // cannot ever carry object bindings, including in unexecuted code.
       context.type(
         token,
         'Implicit conversion from ${value.name} to ${expected.name} is unsupported.',

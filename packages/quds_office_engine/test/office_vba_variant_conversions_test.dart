@@ -32,6 +32,121 @@ void _reject(String body, String code) =>
     expect(() => _compile(_module(body)), throwsA(_error(code)), reason: body);
 
 void main() {
+  group('nullable operator composition', () {
+    final expressions = <(String, String, String)>[
+      ('(Null & Null) + 1', 'Null & Null', 'value + 1'),
+      ('(Null + 1) And True', 'Null + 1', 'value And True'),
+      ('(Null = Null) + 1', 'Null = Null', 'value + 1'),
+      ('Not (Null & Null)', 'Null & Null', 'Not value'),
+      ('(Null + 1) = "x"', 'Null + 1', 'value = "x"'),
+      ('(-Null) = "x"', '-Null', 'value = "x"'),
+      ('(Null Xor True) * 2', 'Null Xor True', 'value * 2'),
+    ];
+    for (final (nested, intermediate, assigned) in expressions) {
+      test('nested $nested agrees with a Variant intermediate', () {
+        final plan = _compile(
+          _module('''
+Dim value As Variant
+value = $intermediate
+Worksheets(1).Range("A1").Value2 = IsNull($nested)
+Worksheets(1).Range("A2").Value2 = IsNull($assigned)
+'''),
+        );
+        expect(_values(plan), <Object?>[true, true]);
+      });
+    }
+    for (final expression in <String>[
+      'Null + "bad"',
+      '"bad" * Null',
+      'True And 1',
+      'Null Or "bad"',
+      '1 = "bad"',
+      '-"bad"',
+      'Not 1',
+      'Worksheets(1) & Null',
+    ]) {
+      test(
+        'known invalid operand remains checked in unused code: $expression',
+        () {
+          expect(
+            () => _compile('''
+Sub Main()
+End Sub
+Sub Unused()
+  Dim value As Variant
+  Exit Sub
+  value = $expression
+End Sub
+'''),
+            throwsA(_error('vba_type_error')),
+          );
+        },
+      );
+    }
+    test(
+      'non-Null Variant arithmetic still enforces runtime operand types',
+      () {
+        _reject('''
+Dim value As Variant
+value = 1
+${_write('(value + 1) = "bad"')}
+''', 'vba_type_error');
+        _reject(_write('(Empty + 1) And True'), 'vba_type_error');
+      },
+    );
+  });
+
+  group('scalar Variant object boundaries', () {
+    for (final type in <String>['Worksheet', 'Range']) {
+      for (final value in <String>['Empty', 'Null', 'CVar(Empty)', 'scalar']) {
+        test('$type Set rejects scalar $value even after an unused exit', () {
+          expect(
+            () => _compile('''
+Sub Main()
+End Sub
+Sub Unused()
+  Dim target As $type, scalar As Variant
+  Exit Sub
+  Set target = $value
+End Sub
+'''),
+            throwsA(_error('vba_type_error')),
+          );
+        });
+        test('$type ByVal rejects scalar $value in an unused procedure', () {
+          expect(
+            () => _compile('''
+Sub Main()
+End Sub
+Sub Unused()
+  Dim scalar As Variant
+  Call Typed($value)
+End Sub
+Sub Typed(ByVal target As $type)
+End Sub
+'''),
+            throwsA(_error('vba_type_error')),
+          );
+        });
+      }
+    }
+    test('ordinary Worksheet and Range bindings still pass ByVal', () {
+      final plan = _compile('''
+Sub Main()
+  Dim sheet As Worksheet, cell As Range
+  Set sheet = Worksheets(1)
+  Set cell = sheet.Range("A1")
+  Call Typed(sheet, cell)
+End Sub
+Sub Typed(ByVal sheet As Worksheet, ByVal cell As Range)
+  cell.Value2 = 42
+  sheet.Range("A2").Value2 = "bound"
+End Sub
+''');
+      expect(_values(plan), <Object?>[42, 'bound']);
+    });
+  });
+
   group('Variant states and lifetime', () {
     final predicates = <(String, Object?)>[
       ('IsEmpty(Empty)', true),
