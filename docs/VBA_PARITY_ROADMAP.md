@@ -160,6 +160,9 @@ source has local Dart acceptance; earlier arithmetic-model and authored
 JavaScript checks retain their separate execution status. See the
 [measurement contract](VBA_WORD_MACROS.md#physical-measurement-conversions)
 and [combined-source qualification](validation/zotero-merged-cells-20261120/intake.md).
+The incoming Mail continuation additionally qualified the named-argument
+example and original eight-, nine- and thirteen-operation examples on the
+VM and JavaScript; see its [source-specific record](validation/mail-bulk-actions-20261120/intake-local-word-final.md).
 
 ### Next shared-language increments
 

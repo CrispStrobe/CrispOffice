@@ -1,0 +1,44 @@
+{
+  "purpose": "Qualify e975 rendering/font main update and focused corrections",
+  "recorded_at_utc": "2026-11-20T21:46:26.553524+00:00",
+  "accepted_source": "3f9d3647a20b06c73f5bfd0ade2846e7859e4502",
+  "incorporated_main": "e975cec13b289fe067ef406cd3044701ecc44744",
+  "source_checkpoints": [
+    "511990e9b81ff5d6ef2ed1488ff31e2565f21618",
+    "75da007cc238673c9f0eed5a83e24f11d3de625a",
+    "d9b86f633e8b3b71551a913100d3a2b163b8fbba",
+    "3f9d3647a20b06c73f5bfd0ade2846e7859e4502"
+  ],
+  "counts": {
+    "word_vm": 961,
+    "word_node": 758,
+    "word_bas_semantic_pairs": 3,
+    "hosts_fresh": 352,
+    "visual_tests": 8,
+    "identical_previously_inspected_images": 21,
+    "fonts": 9,
+    "focused_layout": 11,
+    "focused_deserializer": 85
+  },
+  "cohorts_overlap": true,
+  "focused_word_counts_included_in_broad": true,
+  "diagnostics": {
+    "layout_before": {
+      "passed": 2,
+      "failed": 9
+    },
+    "deserializer_before": {
+      "passed": 12,
+      "failed": 9
+    },
+    "sparse_spacing_before": {
+      "failed": 1
+    }
+  },
+  "mail_dart_paths_unchanged": 211,
+  "core_transport_binding_unchanged": 268,
+  "ui_binding_unchanged": 59,
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "status": "PASS",
+  "publication_boundary_note": "Main advanced again to698209aa after this acceptance. That Zotero reconciliation is recorded separately and must not be implied by this immutable e975 evidence."
+}

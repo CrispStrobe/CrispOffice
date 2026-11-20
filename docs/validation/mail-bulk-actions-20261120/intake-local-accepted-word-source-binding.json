@@ -1,0 +1,18 @@
+{
+  "schema": "quds-mail-bulk-final-word-source-binding/v1",
+  "verified_at_utc": "2026-11-20T21:26:04.776247+00:00",
+  "target_commit": "4772d52492076241c39fdee0990c950c92367b1f",
+  "target_tree": "69cc7f32a80346ade83ed02eacca0faa2e293974",
+  "accepted_receipt": "intake-local-word-cutoff-validation.json",
+  "accepted_receipt_sha256": "4fc3ef7ec27bce8d1369ebe8f9aec5d839ec904c166f974999e78f674f4c3030",
+  "accepted_receipt_status": "PASS",
+  "combined_cohort_receipt": "intake-local-word-combined-cohorts.json",
+  "combined_cohort_receipt_sha256": "cb013a48df2a5a39611f2b8130ce5d13815d75d6c9ff74eedd119274d2ca875f",
+  "scope": "Every scoped Word/dependency path from the accepted final focused receipt, read from immutable published Git blobs. The linked combined-cohort record reuses unchanged broad-suite and BAS qualification. Mail files are outside this binding.",
+  "source_path_count": 369,
+  "expected_source_manifest_sha256": "45519da5e1b5916d9b2c8e12171486922e887554bdfb81909b7926a01ab8e6a0",
+  "published_source_manifest_sha256": "45519da5e1b5916d9b2c8e12171486922e887554bdfb81909b7926a01ab8e6a0",
+  "mismatches": [],
+  "status": "PASS",
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

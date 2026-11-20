@@ -16,6 +16,20 @@ All notable changes to `quds_office_editor` are documented here.
   [continuation validation record](../../docs/validation/zotero-merged-cells-20261120/README.md)
   for local checks; installed Zotero/Word/LibreOffice acceptance remains separate.
 
+- Recognize conventional lowercase Arial and Times New Roman font filenames
+  for regular, bold, italic and bold-italic faces, retaining metadata checks
+  and canonical candidate precedence.
+
+- Show localized foreground bulk progress and per-message receipts with frozen
+  subjects, cancellation after the current message and refresh-aware dismissal.
+
+- Add foreground bulk read/unread/flag/unflag actions to connected IMAP, EWS,
+  Gmail and Microsoft 365. Freeze checked visible identities, run sequentially,
+  report confirmed/failed/uncertain/unattempted counts and stop on uncertainty.
+  Let users stop after the current request, require explicit refresh for an
+  unconfirmed write, preserve nullable flags and reject stale scope callbacks.
+  Keep cached mail read-only and preserve discovery state on same-folder refresh.
+
 - Refuse an oversized Studio settings snapshot before replacing the last valid
   saved settings. Keep the existing load budget and expose a recoverable save
   error so accepted personal dictionaries cannot reset preferences on restart.

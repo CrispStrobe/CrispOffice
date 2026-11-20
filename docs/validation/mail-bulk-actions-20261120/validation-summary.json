@@ -1,0 +1,99 @@
+{
+  "milestone": "foreground bulk mail read/unread/flag/unflag",
+  "status": "accepted before final-main reconciliation",
+  "frozen_intake_target": "4772d52492076241c39fdee0990c950c92367b1f",
+  "pending_main": "e975cec13b289fe067ef406cd3044701ecc44744",
+  "github_actions_queried": false,
+  "github_actions_awaited": false,
+  "cohorts": {
+    "core_vm": 181,
+    "core_bulk_node": 87,
+    "transport_vm": 415,
+    "transport_cloud_node": 107,
+    "shared_ui": 161,
+    "hosts_consolidated": 352,
+    "visual_tests": 8,
+    "visual_captures_inspected": 21,
+    "word_vm_assembled": 771,
+    "word_node_assembled": 725,
+    "bas_vm_node_semantic_matches": 3
+  },
+  "counts_overlap": true,
+  "archive": {
+    "bytes": 3021830,
+    "path": "evidence.tar.gz",
+    "sha256": "5ff4d171e28d83ea8804b5e112efe31725b7e9c83c2b81230223c09b3bfa6121"
+  },
+  "archive_members": 264,
+  "unique_bound_inputs": 1107,
+  "frozen_refs": 320,
+  "uncovered_refs": 0,
+  "historical_replacement_proofs": 14,
+  "saved_remote_checkpoints_before_evidence": [
+    {
+      "sha": "4d9cddeea2608ac1d7a8f1acfdd5ecc1482f5114",
+      "title": "Reconcile remaining CI branch history; retain temporary workflow removal [skip ci]"
+    },
+    {
+      "sha": "b8b4d97934846fe44c370c4e86065a0b04c9fedd",
+      "title": "Record refreshed fork and upstream source intake for bulk mail milestone [skip ci]"
+    },
+    {
+      "sha": "d33875709546a323c786f1a0ec487e7ccdd1c03a",
+      "title": "Integrate concurrent Word measurement work and source inventory [skip ci]"
+    },
+    {
+      "sha": "69ab514b57a4d6d4db062d802eb853c2691d80fe",
+      "title": "mail: add bounded foreground bulk flag coordinator and explicit outcomes [skip ci]"
+    },
+    {
+      "sha": "b60c0ec26f2a80c984076fb1d480eb2e641b542e",
+      "title": "mail: wire visible bulk selection and guarded foreground host actions [skip ci]"
+    },
+    {
+      "sha": "9861fae8f6ac2eead50fd89123e678478b704d15",
+      "title": "Refine bulk refresh and localized controls; qualify incoming Word measurements [skip ci]"
+    },
+    {
+      "sha": "802fc11f5c265b3656dbbde66956c66e1d8dfa9f",
+      "title": "Guard bulk actions across reconnect and preserve status semantics [skip ci]"
+    },
+    {
+      "sha": "9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384",
+      "title": "Integrate latest main and named Word measurement contracts [skip ci]"
+    },
+    {
+      "sha": "cebd8e10bc303885f39befbb2903c18617b480e1",
+      "title": "Reconcile parallel Word conversion proofs and overflow regression [skip ci]"
+    },
+    {
+      "sha": "639ea75a813d558cb5a1a848a6242fbf17bcf0c3",
+      "title": "Unify concurrent bulk mail work with provider certainty and frozen menu choices [skip ci]"
+    },
+    {
+      "sha": "e3fcf3d16222a9a95d28c70aab6631b73966393a",
+      "title": "Cover unavailable-provider receipts and correct Word test declaration order [skip ci]"
+    },
+    {
+      "sha": "0d2fb8d1baceba6340e0d8cd6fdf3e81aa53d5cd",
+      "title": "Reconcile latest main validation history without changing accepted Word source [skip ci]"
+    },
+    {
+      "sha": "65468fdff43c3acec20fd0d7fd8d4ae9d254d572",
+      "title": "Reconcile concurrent mail receipts and qualify Word continuation [skip ci]"
+    },
+    {
+      "sha": "f74c670bf731b2fbabd22907d5950a7b104362dd",
+      "title": "Align host regression interactions and preserve final intake diagnostics [skip ci]"
+    },
+    {
+      "sha": "e85faffbee0b4d61dd794954a6bc8cd16e354948",
+      "title": "Preserve captured Word named-measurement regressions and reconciliation records [skip ci]"
+    },
+    {
+      "sha": "4772d52492076241c39fdee0990c950c92367b1f",
+      "title": "Account for captured Zotero merge with exact source equivalence [skip ci]"
+    }
+  ],
+  "checkpoint_note": "This list ends before the commit containing this report; later publication and main reconciliation are recorded separately."
+}

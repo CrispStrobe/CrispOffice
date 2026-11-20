@@ -21,13 +21,16 @@ MailMessageList(
 );
 ```
 
-The list searches loaded subjects and senders without making requests. Unread
+The list searches loaded headers with structured sender, subject, visible
+recipient, state and local-date predicates without making requests. Unread
 and Flagged filters combine; nullable unknown flags do not count as observed
 unread/flagged states. Counts distinguish visible and loaded rows. Load more
 remains available when filtering hides every loaded row. Rows are virtualized.
 
-Arrow Up/Down and Home/End move list focus; Enter/Space explicitly activates
-the focused row. Editing the search field keeps its normal editing keys.
+Arrow Up/Down and Home/End move list focus; Enter explicitly activates
+the focused row. Space activates it when bulk selection is unavailable, or
+checks it when a bulk-action callback is supplied. Editing the search field
+keeps its normal editing keys.
 Focus and opened-message selection are separate stable identities. Changing
 `scopeId` resets query, filters, focus and scrolling. Hosts can retain the
 widget while displaying a compact reader, but must exclude hidden list focus
@@ -40,6 +43,48 @@ and supplies loading/error/retry and limit policy. The Studio integration uses
 the planned account-aware `QudsMailWorkspace`; repository streams, unified
 inbox and durable command orchestration remain open. See the
 [foreground mailbox contract](../../docs/roadmaps/mail/mailbox-workspace.md).
+
+### Foreground bulk read and flag selection
+
+Connected hosts can opt in to checked-message actions:
+
+```dart
+MailMessageList(
+  scopeId: hostAccountAndFolderIdentity,
+  selectionScopeId: hostMailboxRevision,
+  items: rows,
+  strings: hostLocalizedListStrings,
+  onOpen: hostOpenMessage,
+  onBulkAction: hostRunForegroundFlagBatch,
+  bulkActionsEnabled: !refreshRequired,
+  busy: isFetchingOrChangingFlags,
+  bulkStatus: hostBatchProgressOrResults,
+  onCancelBulk: isChangingFlags ? hostStopAfterCurrentMessage : null,
+);
+```
+
+The list keeps checkboxes separate from the opened message. **Select shown**
+and Ctrl/Cmd+A, while the list owns focus, check only the currently matching
+loaded rows. Space checks the keyboard cursor; Enter opens it; Escape clears checks. Selection itself
+does not open messages, load pages, read bodies or invoke a mutation callback.
+Filtering prunes hidden checks permanently; newly loaded rows are not selected
+automatically. Sorting preserves checked identities.
+
+The action menu exposes `markRead`, `markUnread`, `flag` and `unflag`. An explicit
+choice forwards an unmodifiable ID list in visible order and immediately clears
+the checks. Pending menu and pointer callbacks are rejected after host updates,
+scope/revision/filter/sort/selection changes, or disposal. Changing `scopeId` or
+`selectionScopeId` clears the selection. The host must advance the revision
+when its account, provider session or mailbox identity observations change, and
+independently validate the submitted IDs before issuing provider commands.
+
+`busy` disables selection and mutation controls. `bulkActionsEnabled: false` clears
+checks and keeps controls unavailable while the host requires a refresh. Omit
+`onBulkAction` entirely for cached/read-only hosts; no mutable bulk controls are
+shown. Host-owned progress, cancellation and per-message outcomes can be supplied
+as `bulkStatus` within the compact scrollable header. `onCancelBulk` keeps a
+localized stop-after-current control available while busy blocks new work. This list does not queue,
+retry, persist or send commands by itself.
 
 ## Embed the same reader in either host
 
