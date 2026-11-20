@@ -1,0 +1,59 @@
+{
+  "candidate": "906843fbf2bfc20f8040543a122d88c93f20de83",
+  "candidateTree": "b6671cdc8383261711e00a77cf9f07a1dc5da18e",
+  "capturedSnapshotCount": 2,
+  "branchCaptureRows": 33,
+  "pullRequestCaptureRows": 200,
+  "distinctPullRequestNumbers": 100,
+  "distinctCapturedHeads": 117,
+  "headDispositions": {
+    "included_by_ancestry": 106,
+    "included_by_recomputed_historical_equivalence": 11
+  },
+  "historicalProofsRecomputed": 11,
+  "historicalDeltaPathComparisons": 477,
+  "historicalWholeTreeIdentities": 6,
+  "missingCommitObjectCount": 0,
+  "unresolvedCapturedHeadCount": 0,
+  "allCapturedWorkPreserved": true,
+  "snapshotSha256": {
+    "initial-remote-inventory.json": "0a7b224ea78cd89a78c33b76dff10141e6ecd3ecb998d19a79bb94375a8859d9",
+    "remote-intake-02.json": "94f6ffd92db6da29393e9ccf7e121f9caa852e1bdf593da27a9291dbdf169610"
+  },
+  "snapshots": [
+    {
+      "file": "initial-remote-inventory.json",
+      "branchCount": 18,
+      "pullRequestCount": 100,
+      "branchDispositions": {
+        "included_by_recomputed_historical_equivalence": 9,
+        "included_by_ancestry": 9
+      },
+      "pullRequestDispositions": {
+        "included_by_ancestry": 98,
+        "included_by_recomputed_historical_equivalence": 2
+      },
+      "allCapturedWorkPreserved": true
+    },
+    {
+      "file": "remote-intake-02.json",
+      "branchCount": 15,
+      "pullRequestCount": 100,
+      "branchDispositions": {
+        "included_by_recomputed_historical_equivalence": 9,
+        "included_by_ancestry": 6
+      },
+      "pullRequestDispositions": {
+        "included_by_ancestry": 98,
+        "included_by_recomputed_historical_equivalence": 2
+      },
+      "allCapturedWorkPreserved": true
+    }
+  ],
+  "missingCommitObjects": [],
+  "unresolvedCapturedHeads": [],
+  "incomingFindings": {
+    "genuinelyMissingWorkIdentified": false,
+    "note": "Every captured head is retained by ancestry or a freshly recomputed complete identity proof."
+  }
+}

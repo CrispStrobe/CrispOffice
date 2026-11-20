@@ -12,11 +12,11 @@ uncertain submissions retain the complete draft for the current session.
 MIME uses a mixed root containing the alternative body and base64 attachments,
 with ASCII-safe RFC 2231 filenames and no Bcc in the canonical wire. A scoped
 quoted-printable correction preserves terminal whitespace and bounds Unicode
-line wrapping. The [current local validation](../../validation/zotero-research-materials-20261120/README.md)
-records the actual pinned Flutter/Dart workspace and resolved locked package
-graph for its captured source. The later narrow and right-to-left composer
-changes need their own combined-source validation; older receipts keep their
-original source and scope.
+line wrapping. The [current local validation](../../validation/mail-attachments-20261120/README.md)
+records the pinned Flutter/Dart runtime, actual locked workspace and final-source
+checks, including the narrow/right-to-left composer, IME and resize regressions.
+The incoming Zotero and earlier mail receipts retain their own original source
+identities and scope.
 
 This remains foreground, session-only composition: no local autosave, durable
 outbox, automatic attachment copying on forward, current-document/PDF attachment
@@ -123,9 +123,10 @@ and `References` metadata through editing, explicit uncertain retries and the
 shared MIME builder; forwards start independent conversations. Unsupported
 parent IDs leave the reply unthreaded, and an unsupported ancestor token drops
 the inherited chain. [Reply threading](reply-threading.md) records the supported
-identifier subset, limits and original source qualification. The later
-recipient continuation exercised a pure threading subset, while MIME and
-Flutter checks remain open under the qualification boundary below.
+identifier subset, limits and source qualification. The recipient continuation
+originally exercised only a pure threading subset; the attachment continuation
+now qualifies the complete threading/MIME cases and composer/host suites against
+the locked workspace, as recorded below.
 HTML-only quotation remains outside this increment. A retained uncertain draft
 cannot be silently replaced by a reply/forward; Compose resumes it, and an
 explicit confirmed discard removes only the session draft without cancelling
@@ -169,14 +170,15 @@ results.
 | --- | --- | --- |
 | M00 baseline | The reader foundation reconciled its captured Office heads; the M05 continuation captures and reconciles incoming main, branch and PR history separately before implementation | Capture-specific dispositions and subsequent changes belong to the dated reconciliation receipts; historical test reports are not new results |
 | M01 fork | Pinned enough_mail 3.0.0 source, retained MPL/provenance, supported public `mime_core.dart`, content-redacted diagnostics, strict charset admission, RFC2231 and date corrections, selected dependency/source inventory | Actual browser execution and per-product shipped dependency/notice clearance remain open |
-| M02 core | Pure-Dart immutable DTOs, exact-byte ownership, profile/account/IMAP identity, nullable standard flag snapshots, budgets/capabilities, typed host/provider/store ports, cancellation leases, cursor compare-and-set and tested outbox state machine | M05 implements persistence; the initial M06 IMAP adapter passed combined local qualification; SMTP remains subsequent work |
+| M02 core | Pure-Dart immutable DTOs, exact-byte ownership, profile/account/IMAP identity, nullable standard flag snapshots, budgets/capabilities, typed host/provider/store ports, cancellation leases, cursor compare-and-set and tested outbox state machine | M05 implements persistence; the initial M06 IMAP adapter passed combined local qualification; Studio foreground sending exists, while repository-backed queued sending remains open |
 | M03 codec | Bounded byte-range scanning, public upstream header parsing, strict transfer/charset decoding, exact raw export and attachment snapshots, deterministic multipart alternatives/CID metadata | Synchronous bounded work; no streaming claim or low-memory-device qualification |
 | M04 reader | Account-free full/compact reader, custom RenderBox selection, decoded search/copy, static HTML projection, local bounded CID PNG/JPEG, immutable source/attachment callbacks, policy-approved links, actual MIME example | Browser runtime no-fetch gate remains unqualified; host parity is a separate task |
 | M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema v3 with nullable durable flags | Schema v3 and the integrated flags/transport source passed local qualification; browser storage and power-loss durability are unqualified; the database is unencrypted |
-| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, bounded discovered-UID synchronization with atomic stored-range reconciliation, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated qualification and real Linux TLS loopback checks passed; external-provider/other-OS interoperability, OAuth authorization hosts, discovery beyond the configured SEARCH budget, SMTP and the account-aware UI remain open |
+| M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, bounded discovered-UID synchronization with atomic stored-range reconciliation, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated qualification and real Linux TLS loopback checks passed; external-provider/other-OS interoperability, IMAP OAuth authorization hosts, discovery beyond the configured SEARCH budget and the repository-driven mailbox/SMTP adapter remain open; Studio's foreground session is separate |
 
 M06 is partially implemented, not complete. M04W and M07–M13 still require the
-mailbox workspace, composition/SMTP sending, Office attachment editing,
+repository-driven mailbox workspace, durable draft/autosave and queued sending,
+Office attachment editing,
 standalone full Office host, CrispCloud migration, additional providers,
 Calendar/People and Apple distribution work. M14 evidence continues for each
 increment; it does not qualify those later products.

@@ -1,0 +1,375 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 5924,
+      "git_blob_sha1": "d67190f63bab1257515f71f2e535f9259647fddb",
+      "sha256": "4e420027f3f8417bd03382f7d815dea511552462bb23e5509a7599bfe479f4b5"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "ce7067783bf1909650068ae7b24d983c7e3708f9",
+      "sha256": "52e9db87b8268ed422214da22676057de7f7ed06654340bafd939373462a01a5"
+    },
+    "inputs.json.gz": {
+      "bytes": 488412,
+      "git_blob_sha1": "f4ce83ec42f7f97511166d6720ad767a046e2dac",
+      "sha256": "c3a5f456731a5bb8c922ff16d58c7ae6019a200c7b18310c90e644de2abd7000"
+    },
+    "selection-adapter.json": {
+      "bytes": 4670,
+      "git_blob_sha1": "124e91b3c9008e0ee4e87893826a3b536e3ebbdb",
+      "sha256": "2528c8e6a9727bfd28c31142cd903de467650b6c3782211f998bfd05b7df5f12"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "editor-rendering",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/office_dark_slide_test.dart",
+    "test/paint_run_text_unicode_test.dart",
+    "test/slide_arrange_history_test.dart",
+    "test/slide_incoming_pptx_regression_test.dart",
+    "test/slide_notes_history_test.dart",
+    "test/slide_render_fidelity_test.dart",
+    "test/slide_section_reorder_test.dart",
+    "test/slide_transform_orientation_test.dart",
+    "test/word_small_caps_test.dart",
+    "test/word_tab_stops_editor_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor",
+  "elapsed_seconds": 33.811650920997636,
+  "exit_code": 0,
+  "external_dependency_file_count": 2365,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "933be403148951949732d7912c4e0b0c01f54a5f1b116d97c0bead7b5ed35b4c",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "476883c1bc0b207f06d8857c238d292ef9907ca6a63afad04132ad1b121e6d4c",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "before_sha256": {
+      "dependencies": "933be403148951949732d7912c4e0b0c01f54a5f1b116d97c0bead7b5ed35b4c",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "476883c1bc0b207f06d8857c238d292ef9907ca6a63afad04132ad1b121e6d4c",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T05:31:35.786261+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": true,
+    "runtime_unchanged": true,
+    "selection_adapter_and_primary_runner_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_office_editor",
+  "runner": "flutter",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/75dc9d25dfaf/runtime/flutter",
+    "pub_cache": "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache"
+  },
+  "selected_files": [
+    "test/office_dark_slide_test.dart",
+    "test/paint_run_text_unicode_test.dart",
+    "test/slide_arrange_history_test.dart",
+    "test/slide_incoming_pptx_regression_test.dart",
+    "test/slide_notes_history_test.dart",
+    "test/slide_render_fidelity_test.dart",
+    "test/slide_section_reorder_test.dart",
+    "test/slide_transform_orientation_test.dart",
+    "test/word_small_caps_test.dart",
+    "test/word_tab_stops_editor_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "packages/quds_office_editor/test/paint_run_text_unicode_test.dart",
+    "packages/quds_office_editor/test/slide_arrange_history_test.dart",
+    "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+    "packages/quds_office_editor/test/slide_notes_history_test.dart",
+    "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+    "packages/quds_office_editor/test/slide_section_reorder_test.dart",
+    "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+    "packages/quds_office_editor/test/word_small_caps_test.dart",
+    "packages/quds_office_editor/test/word_tab_stops_editor_test.dart"
+  ],
+  "selection_adapter": {
+    "adapter_command": [
+      "/workspace/scratch/75dc9d25dfaf/final-validation/run_flutter_cohort.py",
+      "editor-rendering",
+      "--repo",
+      "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+      "--expected-head",
+      "b8686c05e055ca0395726fe528d585379597d628",
+      "--output",
+      "/workspace/scratch/75dc9d25dfaf/final-validation/flutter-cohorts/editor-rendering"
+    ],
+    "all_disjoint_selections": {
+      "editor-rendering": [
+        "packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "packages/quds_office_editor/test/paint_run_text_unicode_test.dart",
+        "packages/quds_office_editor/test/slide_arrange_history_test.dart",
+        "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "packages/quds_office_editor/test/slide_notes_history_test.dart",
+        "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "packages/quds_office_editor/test/slide_section_reorder_test.dart",
+        "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "packages/quds_office_editor/test/word_small_caps_test.dart",
+        "packages/quds_office_editor/test/word_tab_stops_editor_test.dart"
+      ],
+      "editor-zotero-materials": [
+        "packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_children_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_preview_test.dart"
+      ],
+      "mail-host": [
+        "packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_threading_test.dart"
+      ],
+      "studio-spacy": [
+        "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ]
+    },
+    "code_after": {
+      "adapter": {
+        "bytes": 4970,
+        "path": "/workspace/scratch/75dc9d25dfaf/final-validation/run_flutter_cohort.py",
+        "sha256": "5d0b15fa13c89a5ad9ff3968d46be0ba8baa4f9e270a9a65b194a0176b88760f"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_before": {
+      "adapter": {
+        "bytes": 4970,
+        "path": "/workspace/scratch/75dc9d25dfaf/final-validation/run_flutter_cohort.py",
+        "sha256": "5d0b15fa13c89a5ad9ff3968d46be0ba8baa4f9e270a9a65b194a0176b88760f"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_unchanged": true,
+    "cohort": "editor-rendering",
+    "delegated_arguments": [
+      "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "editor-rendering",
+      "--repo",
+      "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+      "--timeout",
+      "1800",
+      "--output",
+      "/workspace/scratch/75dc9d25dfaf/final-validation/flutter-cohorts/editor-rendering",
+      "--expected-head",
+      "b8686c05e055ca0395726fe528d585379597d628"
+    ],
+    "inherited_mail_host_and_editor_rendering_specs_unchanged": true,
+    "primary_runner_exit_code": 0,
+    "primary_test_audit_and_fingerprint_logic_unchanged": true,
+    "purpose": "Final combined-source Flutter validation with disjoint complete suites",
+    "selection": {
+      "additional": [
+        "office_dark_slide_test.dart",
+        "paint_run_text_unicode_test.dart",
+        "word_small_caps_test.dart",
+        "word_tab_stops_editor_test.dart"
+      ],
+      "package": "packages/quds_office_editor",
+      "patterns": [
+        "slide*_test.dart"
+      ],
+      "runner": "flutter"
+    }
+  },
+  "source_file_count": 4006,
+  "source_head_at_finish": "b8686c05e055ca0395726fe528d585379597d628",
+  "source_head_at_start": "b8686c05e055ca0395726fe528d585379597d628",
+  "started_at_utc": "2026-11-20T05:30:59.926349+00:00",
+  "status": "passed",
+  "tests": {
+    "application_cases": 109,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 16,
+    "excluded_reasons": {
+      "hidden_lifecycle": 16
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 31705,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 109,
+    "skipped": 0,
+    "suite_count": 10,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 12,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 17,
+        "passed": 12,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 34,
+        "passed": 22,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/test/slide_arrange_history_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 59,
+        "passed": 15,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 77,
+        "passed": 7,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/test/slide_notes_history_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 87,
+        "passed": 9,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 99,
+        "passed": 12,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/test/slide_section_reorder_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 114,
+        "passed": 8,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 125,
+        "passed": 5,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 135,
+        "passed": 7,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 125,
+    "test_start_events": 125,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 29772,
+    "git_blob_sha1": "269eef52038d97ae307859439875a23f350e0b0a",
+    "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "watchdog_seconds": 1800
+}

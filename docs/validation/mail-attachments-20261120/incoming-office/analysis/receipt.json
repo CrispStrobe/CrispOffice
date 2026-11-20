@@ -1,0 +1,126 @@
+{
+  "artifacts": {
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "2e72d98c0aa14271bab77ac8a7162fe7422e4af2",
+      "sha256": "71b0f794e24c6f28cedb991dae51112f254f4f787d14ed16f641973b550c5191"
+    },
+    "inputs.json.gz": {
+      "bytes": 469728,
+      "git_blob_sha1": "e303d60c2d47e6a4060ba8ba732de89c1728852d",
+      "sha256": "0f853393f77064ab972bb9cb6f0b60e63f683de303df617ab1cdbd71a093f3f2"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.log": {
+      "bytes": 408,
+      "git_blob_sha1": "736c6dff393e60f9a37d6e5c9c8fc3fab5332c28",
+      "sha256": "b1b35d4e35ab4e9970bcd84b00c9243443cc74481f05d9269f3b5930de59eeb3"
+    }
+  },
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "packages/quds_proofing_spacy/lib",
+    "packages/quds_proofing_spacy/test",
+    "packages/quds_proofing_spacy/tool/dump_development_analysis.dart",
+    "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart",
+    "packages/quds_office_engine/lib/src/slide/model/pml_arrange.dart",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart",
+    "packages/quds_office_engine/test/office_pdf_export_test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+    "packages/quds_office_engine/test/slide_incoming_pptx_regression_test.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart",
+    "packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart"
+  ],
+  "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+  "elapsed_seconds": 10.633349652998731,
+  "exit_code": 0,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "ae80abdf73d3be1b0d83aa29cfc28a1059aac0b9f5080d2e3ba3017fac56fadf",
+      "host_fonts": "4be4b92815b98d2a6f0d6825c864c1a068da7f899e44f9c7d604d697e81cbfc4",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "before_sha256": {
+      "dependencies": "ae80abdf73d3be1b0d83aa29cfc28a1059aac0b9f5080d2e3ba3017fac56fadf",
+      "host_fonts": "4be4b92815b98d2a6f0d6825c864c1a068da7f899e44f9c7d604d697e81cbfc4",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T05:37:46.652014+00:00",
+  "guards": {
+    "dependencies_unchanged": true,
+    "host_fonts_unchanged": true,
+    "no_timeout": true,
+    "runtime_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "strict_analyzer_exit_zero": true,
+    "workspace_unchanged": true
+  },
+  "no_github_ci_or_status_endpoints": true,
+  "source_file_count": 4006,
+  "source_head_at_finish": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "source_head_at_start": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "started_at_utc": "2026-11-20T05:37:35.966572+00:00",
+  "status": "passed",
+  "targets": [
+    "packages/quds_proofing_spacy/lib",
+    "packages/quds_proofing_spacy/test",
+    "packages/quds_proofing_spacy/tool/dump_development_analysis.dart",
+    "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart",
+    "packages/quds_office_engine/lib/src/slide/model/pml_arrange.dart",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart",
+    "packages/quds_office_engine/test/office_pdf_export_test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+    "packages/quds_office_engine/test/slide_incoming_pptx_regression_test.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart",
+    "packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart"
+  ],
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 30338,
+    "git_blob_sha1": "df943ecfa0f0fe240787a8dc6c1f24384601c68a",
+    "path": "/workspace/scratch/75dc9d25dfaf/run_pure_dart_validation.py",
+    "sha256": "eab84beb3bda9c6b0dae9049cc35137abae1ce8b653f976f9f0c58f2dcfbaefd"
+  },
+  "watchdog_seconds": 1200
+}

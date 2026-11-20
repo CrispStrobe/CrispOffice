@@ -1,0 +1,56 @@
+{
+  "source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "/workspace/scratch/75dc9d25dfaf/final-validation/capture_mail_arabic_test.dart"
+  ],
+  "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example",
+  "surface": [
+    390,
+    844
+  ],
+  "harness_sha256": "f1a7bbe3b9cd6bd8cd5261f2401171edb7afd092068ca44df91d8ffc9f73b31c",
+  "source_before": {
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart": "38e6faffd82f8823b9343128b04984dd910642e25b7c4a6ceaa0f1e9a2de7bdc",
+    "packages/quds_office_editor/example/lib/studio_mail_attachment.dart": "22ebf4e9fb73e5f241c98f6bf6e1bf6bf2669a069e3ac85a10428f35cbd8ab77",
+    "packages/quds_office_editor/example/lib/studio_mail_draft.dart": "67ce1fc016cb8876180ccfd3647689972bd8098365cd967a86fb6010bf642d93",
+    "packages/quds_office_editor/example/lib/studio_mail_strings.dart": "979b7717ac4a0a7dee6e75f56150ab1e36172e120efd2e81f4c4e517cc170dd5",
+    "pubspec.lock": "b71c74cada904d0a3fac7d057b7c718011c50d2e108b6cfd0390566f8abab202",
+    ".dart_tool/package_config.json": "807a699c56139ac331ffe594fba15677e4acebab656c8d92ce2ab4fd2dd3e9a8",
+    "packages/quds_office_editor/example/lib/main.dart": "61d0fd39e8a61d6a5d3c960fdda7f43a21538465a71cb3c349ebae938687b33d",
+    "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart": "96885c5b98b2413d68886770052ffd231f5f41070bc980b8a7db83d8f168a97b"
+  },
+  "status": "passed",
+  "scope": "Fresh synthetic Arabic composer visual capture; separate from the 496 accepted application cases.",
+  "prior_capture_attempt": "../arabic-capture-final",
+  "harness_adjustment": "Match Studio main.dart registered font families, fallback and color seed; load the pinned MaterialIcons face explicitly instead of test Ahem fallback.",
+  "material_icons_font": {
+    "path": "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf",
+    "sha256": "d9865b671a09d683d13a863089d8825e0f61a37696ce5d7d448bc8023aa62453"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 7.057,
+  "source_after": {
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart": "38e6faffd82f8823b9343128b04984dd910642e25b7c4a6ceaa0f1e9a2de7bdc",
+    "packages/quds_office_editor/example/lib/studio_mail_attachment.dart": "22ebf4e9fb73e5f241c98f6bf6e1bf6bf2669a069e3ac85a10428f35cbd8ab77",
+    "packages/quds_office_editor/example/lib/studio_mail_draft.dart": "67ce1fc016cb8876180ccfd3647689972bd8098365cd967a86fb6010bf642d93",
+    "packages/quds_office_editor/example/lib/studio_mail_strings.dart": "979b7717ac4a0a7dee6e75f56150ab1e36172e120efd2e81f4c4e517cc170dd5",
+    "pubspec.lock": "b71c74cada904d0a3fac7d057b7c718011c50d2e108b6cfd0390566f8abab202",
+    ".dart_tool/package_config.json": "807a699c56139ac331ffe594fba15677e4acebab656c8d92ce2ab4fd2dd3e9a8",
+    "packages/quds_office_editor/example/lib/main.dart": "61d0fd39e8a61d6a5d3c960fdda7f43a21538465a71cb3c349ebae938687b33d",
+    "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart": "96885c5b98b2413d68886770052ffd231f5f41070bc980b8a7db83d8f168a97b"
+  },
+  "source_head_after": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "source_unchanged": true,
+  "image": {
+    "path": "arabic-composer.png",
+    "bytes": 46725,
+    "sha256": "9a72cd786161a0309c88fa8f6fe48cc81ed40a894bc2f4b52fee714ed10869ad"
+  }
+}

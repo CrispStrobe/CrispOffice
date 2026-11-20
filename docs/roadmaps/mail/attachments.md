@@ -6,7 +6,7 @@ SMTP, on-premises Exchange EWS, Gmail and Microsoft 365 share the same immutable
 draft and MIME builder. This is the next foreground M07 increment toward Office
 document-to-mail workflows; it does not complete the durable outbox or M08.
 
-The [validation record](../../validation/zotero-research-materials-20261120/README.md)
+The [validation record](../../validation/mail-attachments-20261120/README.md)
 separates local qualification from live-provider and installed-platform tests.
 
 ## Using attachments
@@ -139,11 +139,14 @@ adds the complete model/MIME, recipient/reply/threading, vendor codec/builder,
 file-reader, composer and provider-host suites. Together they check immutable
 ownership, empty and duplicate files, names and media-type admission, count/byte
 limits, exact attachment hashes, MIME structure, Bcc absence and reply threading.
-A maximum-size probe combines ten files totaling 10 MiB
-with a 1 MiB body of quotes, whose escaped HTML expands sixfold. Its complete
-message stays within the 22 MiB wire guard and the default 32 MiB cloud
-outer-base64 request budget, and the production codec recovers every file and
-the complete body. It is a bound probe, not a device-wide performance claim.
+A maximum-size probe combines ten files totaling 10 MiB with a 1 MiB body of
+quotes, whose escaped HTML expands sixfold. In the recorded run the canonical
+message is 21,986,572 bytes and its outer-base64 representation is 29,315,432
+bytes, below the 22 MiB wire guard and default 32 MiB cloud request budget.
+The production codec recovers every file and the complete body. The probe
+records a separate allowance estimate for the private Bcc header and request
+wrapper; it does not capture a live provider request or establish a server's
+quota. It is a serialization bound probe, not a device-wide performance claim.
 
 Live-provider delivery, actual native picker behavior on each installed OS and
 real browser persistence remain separate qualifications.

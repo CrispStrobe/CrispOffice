@@ -1,0 +1,45 @@
+{
+  "status": "complete",
+  "artifacts": {
+    "README.md": {
+      "bytes": 8900,
+      "sha256": "db354c558ebae52eee933e13192a95d8333c9b7b29b2f79ac078282551f686f6"
+    },
+    "audit_supplement.py": {
+      "bytes": 14372,
+      "sha256": "fdb1fc6a205cbe02711a40baaca6cedf9bbcd4de01a4cf3c91561fde77542df2"
+    },
+    "audit_validation.py": {
+      "bytes": 32655,
+      "sha256": "f01a254e6b1b39ddbfcac4666436929de99989d1f37de32ec65d0342344ff568"
+    },
+    "diagnostics/auditor-unicode-framing.json": {
+      "bytes": 5704,
+      "sha256": "8af5e5a44f7ecc9b53e094924cd33246c9b8d762d2900fab97ad16574eeeb79f"
+    },
+    "report-cases.json.gz": {
+      "bytes": 45929,
+      "sha256": "068cb3dbc5012f71b510c6474e756560fcb51450f0d7712f94f8dbddb5135d61"
+    },
+    "report.json": {
+      "bytes": 55740,
+      "sha256": "c82f098ec6c209f736ea1ed5890991a120f193602a99416593219b9ea51a4b58"
+    },
+    "summary.json": {
+      "bytes": 1371,
+      "sha256": "a2e89c739836972750dbf796264a8ee1c3e18ce64fb20fa28590693801f00286"
+    },
+    "supplemental-source-applicability.json": {
+      "bytes": 943,
+      "sha256": "06bf778d91330301e788de2acb87c82df172216184af506198b150927978c8a7"
+    },
+    "supplemental-source-delta.patch": {
+      "bytes": 1066,
+      "sha256": "a85004bc3c839e587d6ed87e951aea3bc8940a0a4300820c226573f868833f50"
+    },
+    "supplemental-validation-report.json": {
+      "bytes": 6880,
+      "sha256": "37eb1018a153d9ba2600f0e7124dbf711fbde50545516f6aa4635b5f69e2e1df"
+    }
+  }
+}

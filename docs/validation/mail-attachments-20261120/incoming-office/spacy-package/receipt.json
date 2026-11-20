@@ -1,0 +1,276 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 6875,
+      "git_blob_sha1": "3137f56b37bc064b3f2e2d3dd8be332876fc94cc",
+      "sha256": "587c288718a7f11738d9b6c9c1a3e9b8eca903d6e3ce7d1921760e56e4888e54"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "81a350e500a12d581d0db015b57a50aa1c77c79d",
+      "sha256": "ab9f418f02300ece6e2054b82d4fa7824420fced3b02440c4f6afa5975ae6f49"
+    },
+    "inputs.json.gz": {
+      "bytes": 469723,
+      "git_blob_sha1": "9eb16976748f18827f2ef92aa6a8f0ffef0632a1",
+      "sha256": "6baacc1262fefbe2571110f7c089997a0e953637a68dbafd204a499b4fe60759"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "spacy-package",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/analysis_test.dart",
+    "test/bundle_test.dart",
+    "test/distribution_test.dart",
+    "test/grammar_evaluation_harness_test.dart",
+    "test/grammar_families_test.dart",
+    "test/grammar_planner_test.dart",
+    "test/grammar_provider_test.dart",
+    "test/language_catalog_test.dart",
+    "test/macho_code_identity_test.dart",
+    "test/ner_removal_test.dart",
+    "test/worker_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy",
+  "elapsed_seconds": 25.891765055999713,
+  "exit_code": 0,
+  "external_dependency_file_count": 2113,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "ae80abdf73d3be1b0d83aa29cfc28a1059aac0b9f5080d2e3ba3017fac56fadf",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "before_sha256": {
+      "dependencies": "ae80abdf73d3be1b0d83aa29cfc28a1059aac0b9f5080d2e3ba3017fac56fadf",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T05:36:02.566898+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": false,
+    "runtime_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_proofing_spacy",
+  "runner": "dart",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/75dc9d25dfaf/runtime/flutter",
+    "pub_cache": "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache"
+  },
+  "selected_files": [
+    "test/analysis_test.dart",
+    "test/bundle_test.dart",
+    "test/distribution_test.dart",
+    "test/grammar_evaluation_harness_test.dart",
+    "test/grammar_families_test.dart",
+    "test/grammar_planner_test.dart",
+    "test/grammar_provider_test.dart",
+    "test/language_catalog_test.dart",
+    "test/macho_code_identity_test.dart",
+    "test/ner_removal_test.dart",
+    "test/worker_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_proofing_spacy/test/analysis_test.dart",
+    "packages/quds_proofing_spacy/test/bundle_test.dart",
+    "packages/quds_proofing_spacy/test/distribution_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_families_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_planner_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_provider_test.dart",
+    "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+    "packages/quds_proofing_spacy/test/macho_code_identity_test.dart",
+    "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+    "packages/quds_proofing_spacy/test/worker_test.dart"
+  ],
+  "source_file_count": 4006,
+  "source_head_at_finish": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "source_head_at_start": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "started_at_utc": "2026-11-20T05:35:34.130505+00:00",
+  "status": "failed",
+  "tests": {
+    "application_cases": 114,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 11,
+    "excluded_reasons": {
+      "hidden_lifecycle": 11
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 14269,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 113,
+    "skipped": 1,
+    "suite_count": 11,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 12,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/analysis_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 15,
+        "passed": 3,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/bundle_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 21,
+        "passed": 14,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/distribution_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 39,
+        "passed": 9,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 51,
+        "passed": 12,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/grammar_families_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 66,
+        "passed": 21,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/grammar_planner_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 90,
+        "passed": 16,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/grammar_provider_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 109,
+        "passed": 8,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/language_catalog_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 120,
+        "passed": 2,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/macho_code_identity_test.dart",
+        "skipped": 1
+      },
+      {
+        "failed": 0,
+        "id": 126,
+        "passed": 2,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/ner_removal_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 131,
+        "passed": 14,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_proofing_spacy/test/worker_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 125,
+    "test_start_events": 125,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 30338,
+    "git_blob_sha1": "df943ecfa0f0fe240787a8dc6c1f24384601c68a",
+    "path": "/workspace/scratch/75dc9d25dfaf/run_pure_dart_validation.py",
+    "sha256": "eab84beb3bda9c6b0dae9049cc35137abae1ce8b653f976f9f0c58f2dcfbaefd"
+  },
+  "watchdog_seconds": 1800
+}

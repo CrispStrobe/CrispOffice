@@ -1,0 +1,6 @@
+Analyzing pml_presentation.dart, slide_serial.dart, drawingml.dart, slide_import_fidelity_test.dart...
+
+  error - packages/quds_office_engine/test/slide_import_fidelity_test.dart:686:65 - The getter 'bytes' isn't defined for the type 'PackagePart'. Try importing the library that defines 'bytes', correcting the name to the name of an existing getter, or defining a getter or field named 'bytes'. - undefined_getter
+   info - packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart:754:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+2 issues found.

@@ -1,0 +1,22 @@
+{
+  ".github/workflows/macos-app-weekly.yml": {
+    "bytes": 10626,
+    "git_blob_sha1": "7fc5cd5cd5f2ffce66ed7b3e6b3533ed1880e28b",
+    "sha256": "66fa9feefff78e8594fa96b45a273bb986c003e2e9ca0767d679c67bb360cd1d"
+  },
+  "docs/release/macos-signing.md": {
+    "bytes": 11944,
+    "git_blob_sha1": "28e5ec1d202a973e5669d52e93c4dd5e229287a5",
+    "sha256": "a5f2219a2816e533dd05d9a0e9e59f1966075ae9eeaccbc8a387fbcf6f79c066"
+  },
+  "packages/quds_office_editor/example/tool/build_macos_app.sh": {
+    "bytes": 21478,
+    "git_blob_sha1": "7a519fbb41f8e28842b1df7dedfd9f049d4b3805",
+    "sha256": "da352b38e812b1cf873fb6bb39c66b6fab3bca84ad8bff3c8855cec79122c4f0"
+  },
+  "packages/quds_proofing_spacy/lib/src/distribution.dart": {
+    "bytes": 27627,
+    "git_blob_sha1": "b675269307d66c4d94fa1ef55247a491e0e185b1",
+    "sha256": "a0a439cf7b4744370821e5e95dcf664c0553ec499357994b40ce65cbbf9c581d"
+  }
+}

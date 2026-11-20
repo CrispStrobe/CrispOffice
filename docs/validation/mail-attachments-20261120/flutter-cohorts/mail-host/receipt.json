@@ -1,0 +1,390 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 14354,
+      "git_blob_sha1": "f6f83242feff0a347cb6a904a84aea98f6a5dc49",
+      "sha256": "a3ffaddb5784880b6317546e98876b43d307d2454b52b12699c70ad2022afbe7"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "ed79c97523624b3ac75821e832de4ab241fb6c65",
+      "sha256": "d9364f319d97fbd385e52e970378411ea66040760a768e333c022a6d4fbcb882"
+    },
+    "inputs.json.gz": {
+      "bytes": 654866,
+      "git_blob_sha1": "a6c8ecd86441d7d141d0027c202eec2f31d3f9bc",
+      "sha256": "fe069dff7155e5a7d00409ae60d7d76dbca3158c094e069640e39d6a1e55186c"
+    },
+    "selection-adapter.json": {
+      "bytes": 4900,
+      "git_blob_sha1": "8e9164f146de9e947e43202b4c26f639d701c958",
+      "sha256": "3bcb9f0afb0b71e0ea027d17747e31e1e050bcbe8805dc2a074576660cd81759"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "mail-host",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/studio_mail_attachment_compose_test.dart",
+    "test/studio_mail_attachment_loader_test.dart",
+    "test/studio_mail_attachment_test.dart",
+    "test/studio_mail_cloud_test.dart",
+    "test/studio_mail_compose_test.dart",
+    "test/studio_mail_ews_test.dart",
+    "test/studio_mail_recipients_test.dart",
+    "test/studio_mail_reply_test.dart",
+    "test/studio_mail_session_test.dart",
+    "test/studio_mail_test.dart",
+    "test/studio_mail_threading_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example",
+  "elapsed_seconds": 105.12896280700079,
+  "exit_code": 0,
+  "external_dependency_file_count": 4502,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "b579a0a8650bfab4b7567da5122fd44e067b03fed6e0648a4d1ce841002e6762",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "476883c1bc0b207f06d8857c238d292ef9907ca6a63afad04132ad1b121e6d4c",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "before_sha256": {
+      "dependencies": "b579a0a8650bfab4b7567da5122fd44e067b03fed6e0648a4d1ce841002e6762",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "476883c1bc0b207f06d8857c238d292ef9907ca6a63afad04132ad1b121e6d4c",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T05:30:58.145163+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": true,
+    "runtime_unchanged": true,
+    "selection_adapter_and_primary_runner_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_office_editor/example",
+  "runner": "flutter",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/75dc9d25dfaf/runtime/flutter",
+    "pub_cache": "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache"
+  },
+  "selected_files": [
+    "test/studio_mail_attachment_compose_test.dart",
+    "test/studio_mail_attachment_loader_test.dart",
+    "test/studio_mail_attachment_test.dart",
+    "test/studio_mail_cloud_test.dart",
+    "test/studio_mail_compose_test.dart",
+    "test/studio_mail_ews_test.dart",
+    "test/studio_mail_recipients_test.dart",
+    "test/studio_mail_reply_test.dart",
+    "test/studio_mail_session_test.dart",
+    "test/studio_mail_test.dart",
+    "test/studio_mail_threading_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_threading_test.dart"
+  ],
+  "selection_adapter": {
+    "adapter_command": [
+      "/workspace/scratch/75dc9d25dfaf/final-validation/run_flutter_cohort.py",
+      "mail-host",
+      "--repo",
+      "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+      "--expected-head",
+      "b8686c05e055ca0395726fe528d585379597d628",
+      "--output",
+      "/workspace/scratch/75dc9d25dfaf/final-validation/flutter-cohorts/mail-host"
+    ],
+    "all_disjoint_selections": {
+      "editor-rendering": [
+        "packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "packages/quds_office_editor/test/paint_run_text_unicode_test.dart",
+        "packages/quds_office_editor/test/slide_arrange_history_test.dart",
+        "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "packages/quds_office_editor/test/slide_notes_history_test.dart",
+        "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "packages/quds_office_editor/test/slide_section_reorder_test.dart",
+        "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "packages/quds_office_editor/test/word_small_caps_test.dart",
+        "packages/quds_office_editor/test/word_tab_stops_editor_test.dart"
+      ],
+      "editor-zotero-materials": [
+        "packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_children_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_preview_test.dart"
+      ],
+      "mail-host": [
+        "packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_threading_test.dart"
+      ],
+      "studio-spacy": [
+        "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+      ]
+    },
+    "code_after": {
+      "adapter": {
+        "bytes": 4970,
+        "path": "/workspace/scratch/75dc9d25dfaf/final-validation/run_flutter_cohort.py",
+        "sha256": "5d0b15fa13c89a5ad9ff3968d46be0ba8baa4f9e270a9a65b194a0176b88760f"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_before": {
+      "adapter": {
+        "bytes": 4970,
+        "path": "/workspace/scratch/75dc9d25dfaf/final-validation/run_flutter_cohort.py",
+        "sha256": "5d0b15fa13c89a5ad9ff3968d46be0ba8baa4f9e270a9a65b194a0176b88760f"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_unchanged": true,
+    "cohort": "mail-host",
+    "delegated_arguments": [
+      "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "mail-host",
+      "--repo",
+      "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+      "--timeout",
+      "1800",
+      "--output",
+      "/workspace/scratch/75dc9d25dfaf/final-validation/flutter-cohorts/mail-host",
+      "--expected-head",
+      "b8686c05e055ca0395726fe528d585379597d628"
+    ],
+    "inherited_mail_host_and_editor_rendering_specs_unchanged": true,
+    "primary_runner_exit_code": 0,
+    "primary_test_audit_and_fingerprint_logic_unchanged": true,
+    "purpose": "Final combined-source Flutter validation with disjoint complete suites",
+    "selection": {
+      "additional": [
+        "studio_mail_attachment_test.dart",
+        "studio_mail_attachment_loader_test.dart",
+        "studio_mail_attachment_compose_test.dart",
+        "studio_mail_cloud_test.dart",
+        "studio_mail_ews_test.dart",
+        "studio_mail_session_test.dart",
+        "studio_mail_compose_test.dart",
+        "studio_mail_recipients_test.dart",
+        "studio_mail_reply_test.dart",
+        "studio_mail_threading_test.dart",
+        "studio_mail_test.dart"
+      ],
+      "package": "packages/quds_office_editor/example",
+      "patterns": [],
+      "runner": "flutter"
+    }
+  },
+  "source_file_count": 4006,
+  "source_head_at_finish": "b8686c05e055ca0395726fe528d585379597d628",
+  "source_head_at_start": "b8686c05e055ca0395726fe528d585379597d628",
+  "started_at_utc": "2026-11-20T05:29:09.652164+00:00",
+  "status": "passed",
+  "tests": {
+    "application_cases": 319,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 11,
+    "excluded_reasons": {
+      "hidden_lifecycle": 11
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 101745,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 319,
+    "skipped": 0,
+    "suite_count": 11,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 11,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 14,
+        "passed": 13,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 30,
+        "passed": 49,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 82,
+        "passed": 31,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 116,
+        "passed": 24,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 143,
+        "passed": 22,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 168,
+        "passed": 31,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 202,
+        "passed": 39,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 244,
+        "passed": 11,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 258,
+        "passed": 64,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 325,
+        "passed": 24,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_threading_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 330,
+    "test_start_events": 330,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 29772,
+    "git_blob_sha1": "269eef52038d97ae307859439875a23f350e0b0a",
+    "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "watchdog_seconds": 1800
+}
