@@ -151,9 +151,9 @@ final class StudioStrings {
     'اتصل بحساب IMAP/SMTP. يُستخدم الاكتشاف التلقائي ما لم يتم تفعيل إعدادات الخادم اليدوية.',
   );
   String get mailSessionNotice => _t(
-    'With Remember enabled, the account and password are saved in the system keychain after a successful connection. Messages and drafts remain in this session.',
-    'Mit aktivierter Speicheroption werden Konto und Passwort nach erfolgreicher Verbindung im Systemschlüsselbund gespeichert. Nachrichten und Entwürfe bleiben in dieser Sitzung.',
-    'عند تفعيل الحفظ، يُحفظ الحساب وكلمة المرور في سلسلة مفاتيح النظام بعد اتصال ناجح. تبقى الرسائل والمسودات في هذه الجلسة.',
+    'With Remember enabled, the account and password are saved in the selected credential store after a successful connection. Messages and drafts remain in this session.',
+    'Mit aktivierter Speicheroption werden Konto und Passwort nach erfolgreicher Verbindung im gewählten Zugangsdaten-Speicher gespeichert. Nachrichten und Entwürfe bleiben in dieser Sitzung.',
+    'عند تفعيل الحفظ، يُحفظ الحساب وكلمة المرور في مخزن بيانات الاعتماد المحدد بعد اتصال ناجح. تبقى الرسائل والمسودات في هذه الجلسة.',
   );
   String get searchMail => _t('Search mail', 'E-Mail suchen', 'بحث في البريد');
   String get noMessages =>

@@ -724,7 +724,7 @@ void _registerPlatformCredentialTests() {
     bool failDelete = false;
 
     setUp(() {
-      store = StudioMailCredentialStore();
+      store = StudioMailCredentialStore(storage: const FlutterSecureStorage());
       records = {};
       calls = [];
       beforeWrite = null;

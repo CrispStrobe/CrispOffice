@@ -79,7 +79,19 @@ esac
 EXAMPLE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PACKAGES="$(cd "$EXAMPLE/../.." && pwd)"
 JOBS="${QUDS_BUILD_JOBS:-4}"
-APP="$EXAMPLE/build/macos/Build/Products/Release/CrispOffice.app"
+BUILD_MODE="${QUDS_BUILD_MODE:-release}"
+case "$BUILD_MODE" in
+  debug) BUILD_CONFIGURATION=Debug ;;
+  profile) BUILD_CONFIGURATION=Profile ;;
+  release) BUILD_CONFIGURATION=Release ;;
+  *) echo "QUDS_BUILD_MODE must be debug, profile or release" >&2; exit 64 ;;
+esac
+APP="$EXAMPLE/build/macos/Build/Products/$BUILD_CONFIGURATION/CrispOffice.app"
+while IFS= read -r executable; do
+  [[ "$executable" != "$APP/Contents/MacOS/CrispOffice" ]] || {
+    echo "Preserve the running workspace; build from a separate checkout." >&2; exit 1;
+  }
+done < <(ps -axo comm=)
 
 log() { printf '\n== %s\n' "$*"; }
 
@@ -237,9 +249,9 @@ if [[ "${QUDS_SKIP_SPACY:-0}" != 1 ]]; then
   fi
 fi
 
-log "flutter build macos --release"
+log "flutter build macos --$BUILD_MODE"
 cd "$EXAMPLE"
-flutter build macos --release ${FLUTTER_ARGS[@]+"${FLUTTER_ARGS[@]}"}
+flutter build macos "--$BUILD_MODE" ${FLUTTER_ARGS[@]+"${FLUTTER_ARGS[@]}"}
 [[ -d "$APP" ]] || { echo "missing $APP" >&2; exit 1; }
 
 FRAMEWORKS="$APP/Contents/Frameworks"
@@ -321,6 +333,9 @@ log "Sign ($SIGN_MODE)"
 if [[ "$SIGN_MODE" == adhoc ]]; then
   SIGN_ARGS=(--force --sign - --timestamp=none)
   ENTITLEMENTS="$EXAMPLE/macos/Runner/Release.entitlements"
+  if [[ "$BUILD_MODE" == debug ]]; then
+    ENTITLEMENTS="$EXAMPLE/macos/Runner/DebugProfile.entitlements"
+  fi
 else
   SIGN_ARGS=(--force --sign "$SIGN_IDENTITY" --options runtime --timestamp)
   # Release entitlements plus the identifiers the profile authorizes (the

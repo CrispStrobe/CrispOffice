@@ -226,261 +226,282 @@ class _MailMessageViewState extends State<MailMessageView> {
                 .toSet()
                 .toList(growable: false);
             final padding = widget.compact ? 12.0 : 20.0;
-            return Material(
-              color: Theme.of(context).colorScheme.surface,
-              child: CustomScrollView(
-                key: const ValueKey('mail-reader-scroll'),
-                controller: _scroll,
-                slivers: [
-                  SliverPadding(
-                    padding: EdgeInsets.all(padding),
-                    sliver: SliverToBoxAdapter(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            presentation.rejected
-                                ? 'Message display unavailable'
-                                : '${_statusLabel(result.status)} · ${controller.mode.name} reader',
-                            key: const ValueKey('mail-reader-status'),
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          const SizedBox(height: 8),
-                          Wrap(
-                            spacing: 8,
-                            runSpacing: 4,
-                            children: [
-                              TextButton.icon(
-                                key: const ValueKey('mail-select-all'),
-                                onPressed: presentation.text.isEmpty
-                                    ? null
-                                    : controller.selectAll,
-                                icon: const Icon(Icons.select_all),
-                                label: const Text('Select all'),
-                              ),
-                              TextButton.icon(
-                                key: const ValueKey('mail-copy'),
-                                onPressed: controller.selection.isCollapsed
-                                    ? null
-                                    : () => unawaited(_copy()),
-                                icon: const Icon(Icons.copy),
-                                label: const Text('Copy selection'),
-                              ),
-                              TextButton.icon(
-                                key: const ValueKey('mail-find'),
-                                onPressed: _showFind,
-                                icon: const Icon(Icons.search),
-                                label: const Text('Find in message'),
-                              ),
-                              if (result.original != null &&
-                                  widget.onOpenSource != null)
-                                for (final view in MailSourceView.values)
-                                  TextButton.icon(
-                                    key: ValueKey('mail-${view.name}'),
-                                    onPressed: () => unawaited(
-                                      _hostAction(
-                                        () => widget.onOpenSource!(
-                                          result.original!,
-                                          view,
-                                        ),
-                                      ),
-                                    ),
-                                    icon: Icon(
-                                      view == MailSourceView.source
-                                          ? Icons.code
-                                          : Icons.data_array,
-                                    ),
-                                    label: Text(
-                                      view == MailSourceView.source
-                                          ? 'Raw source'
-                                          : 'Hex',
-                                    ),
-                                  ),
-                              if (message?.body.html != null &&
-                                  message?.body.plainText != null)
-                                TextButton(
-                                  onPressed: () => controller.setPreferHtml(
-                                    !controller.preferHtml,
-                                  ),
-                                  child: Text(
-                                    controller.preferHtml
-                                        ? 'Show plain text'
-                                        : 'Show static HTML',
-                                  ),
-                                ),
-                            ],
-                          ),
-                          if (_findVisible)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8),
-                              child: TextField(
-                                key: const ValueKey('mail-find-input'),
-                                controller: _findInput,
-                                focusNode: _findFocus,
-                                maxLength: 2048,
-                                decoration: const InputDecoration(
-                                  labelText: 'Find in decoded message',
-                                  counterText: '',
-                                  border: OutlineInputBorder(),
-                                ),
-                                onChanged: controller.search,
-                                onSubmitted: (_) => _next(),
-                              ),
+            return RepaintBoundary(
+              key: const ValueKey('mail-reader-repaint-boundary'),
+              child: Material(
+                color: Theme.of(context).colorScheme.surface,
+                child: CustomScrollView(
+                  key: const ValueKey('mail-reader-scroll'),
+                  controller: _scroll,
+                  slivers: [
+                    SliverPadding(
+                      padding: EdgeInsets.all(padding),
+                      sliver: SliverToBoxAdapter(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              presentation.rejected
+                                  ? 'Message display unavailable'
+                                  : '${_statusLabel(result.status)} · ${controller.mode.name} reader',
+                              key: const ValueKey('mail-reader-status'),
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
-                          if (controller.searchQuery.isNotEmpty)
+                            const SizedBox(height: 8),
                             Wrap(
-                              crossAxisAlignment: WrapCrossAlignment.center,
+                              spacing: 8,
+                              runSpacing: 4,
                               children: [
-                                Text(
-                                  '${controller.searchMatches.length}${controller.searchHasMore ? '+' : ''} '
-                                  '${controller.searchMatches.length == 1 && !controller.searchHasMore ? 'match' : 'matches'}',
-                                ),
-                                IconButton(
-                                  tooltip: 'Previous match (Shift+F3)',
-                                  onPressed: controller.searchMatches.isEmpty
+                                TextButton.icon(
+                                  key: const ValueKey('mail-select-all'),
+                                  onPressed: presentation.text.isEmpty
                                       ? null
-                                      : () => _next(backwards: true),
-                                  icon: const Icon(Icons.arrow_upward),
+                                      : controller.selectAll,
+                                  icon: const Icon(Icons.select_all),
+                                  label: const Text('Select all'),
                                 ),
-                                IconButton(
-                                  tooltip: 'Next match (F3)',
-                                  onPressed: controller.searchMatches.isEmpty
+                                TextButton.icon(
+                                  key: const ValueKey('mail-copy'),
+                                  onPressed: controller.selection.isCollapsed
                                       ? null
-                                      : _next,
-                                  icon: const Icon(Icons.arrow_downward),
+                                      : () => unawaited(_copy()),
+                                  icon: const Icon(Icons.copy),
+                                  label: const Text('Copy selection'),
                                 ),
-                              ],
-                            ),
-                          if (_notice != null)
-                            Semantics(
-                              liveRegion: true,
-                              child: Text(
-                                _notice!,
-                                key: const ValueKey('mail-host-notice'),
-                              ),
-                            ),
-                          for (final diagnostic in presentation.diagnostics)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 3),
-                              child: Semantics(
-                                liveRegion:
-                                    diagnostic.severity ==
-                                    MailDiagnosticSeverity.error,
-                                child: Text(
-                                  diagnostic.message,
-                                  style: TextStyle(
-                                    color:
-                                        diagnostic.severity ==
-                                            MailDiagnosticSeverity.error
-                                        ? Theme.of(context).colorScheme.error
-                                        : null,
-                                  ),
+                                TextButton.icon(
+                                  key: const ValueKey('mail-find'),
+                                  onPressed: _showFind,
+                                  icon: const Icon(Icons.search),
+                                  label: const Text('Find in message'),
                                 ),
-                              ),
-                            ),
-                          const Divider(),
-                          if (!presentation.rejected)
-                            MailSelectionSurface(
-                              key: _surfaceKey,
-                              controller: controller,
-                              textDirection: direction,
-                              style:
-                                  Theme.of(context).textTheme.bodyLarge ??
-                                  const TextStyle(fontSize: 16),
-                              textScaler: MediaQuery.textScalerOf(context),
-                              onFocusRequest: _focus.requestFocus,
-                              onCopy: () => unawaited(_copy()),
-                              onLink: widget.onOpenApprovedLink == null
-                                  ? null
-                                  : (target) => unawaited(_openLink(target)),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  if (!presentation.rejected && presentation.images.isNotEmpty)
-                    SliverPadding(
-                      padding: EdgeInsets.symmetric(horizontal: padding),
-                      sliver: SliverList.builder(
-                        itemCount: presentation.images.length,
-                        itemBuilder: (context, index) => _CidImage(
-                          key: ValueKey(
-                            presentation.images[index].attachment.partPath,
-                          ),
-                          image: presentation.images[index],
-                        ),
-                      ),
-                    ),
-                  if (!presentation.rejected &&
-                      links.isNotEmpty &&
-                      widget.onOpenApprovedLink != null)
-                    SliverPadding(
-                      padding: EdgeInsets.all(padding),
-                      sliver: SliverList.builder(
-                        itemCount: links.length,
-                        itemBuilder: (context, index) => Align(
-                          alignment: AlignmentDirectional.centerStart,
-                          child: TextButton.icon(
-                            key: ValueKey('mail-link-$index'),
-                            onPressed: () => unawaited(_openLink(links[index])),
-                            icon: const Icon(Icons.open_in_new),
-                            label: Text(
-                              'Open link: ${links[index]}',
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  if (!presentation.rejected &&
-                      message != null &&
-                      message.attachments.isNotEmpty)
-                    SliverPadding(
-                      padding: EdgeInsets.all(padding),
-                      sliver: SliverList.builder(
-                        itemCount: message.attachments.length,
-                        itemBuilder: (context, index) {
-                          final attachment = message.attachments[index];
-                          return Semantics(
-                            label:
-                                'Read-only attachment ${attachment.displayName}',
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Wrap(
-                                  spacing: 12,
-                                  runSpacing: 8,
-                                  crossAxisAlignment: WrapCrossAlignment.center,
-                                  children: [
-                                    Text(
-                                      '${attachment.displayName} · ${attachment.mediaType} · ${attachment.observedSize} bytes',
-                                    ),
-                                    if (widget.onOpenAttachmentReadOnly != null)
-                                      TextButton.icon(
-                                        key: ValueKey('mail-attachment-$index'),
-                                        onPressed: () => unawaited(
-                                          _hostAction(
-                                            () =>
-                                                widget
-                                                    .onOpenAttachmentReadOnly!(
-                                                  attachment,
-                                                ),
+                                if (result.original != null &&
+                                    widget.onOpenSource != null)
+                                  for (final view in MailSourceView.values)
+                                    TextButton.icon(
+                                      key: ValueKey('mail-${view.name}'),
+                                      onPressed: () => unawaited(
+                                        _hostAction(
+                                          () => widget.onOpenSource!(
+                                            result.original!,
+                                            view,
                                           ),
                                         ),
-                                        icon: const Icon(
-                                          Icons.visibility_outlined,
-                                        ),
-                                        label: const Text('Open read only'),
                                       ),
-                                  ],
+                                      icon: Icon(
+                                        view == MailSourceView.source
+                                            ? Icons.code
+                                            : Icons.data_array,
+                                      ),
+                                      label: Text(
+                                        view == MailSourceView.source
+                                            ? 'Raw source'
+                                            : 'Hex',
+                                      ),
+                                    ),
+                                if (message?.body.html != null &&
+                                    message?.body.plainText != null)
+                                  TextButton(
+                                    onPressed: () => controller.setPreferHtml(
+                                      !controller.preferHtml,
+                                    ),
+                                    child: Text(
+                                      controller.preferHtml
+                                          ? 'Show plain text'
+                                          : 'Show static HTML',
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            if (_findVisible)
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                ),
+                                child: TextField(
+                                  key: const ValueKey('mail-find-input'),
+                                  controller: _findInput,
+                                  focusNode: _findFocus,
+                                  maxLength: 2048,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Find in decoded message',
+                                    counterText: '',
+                                    border: OutlineInputBorder(),
+                                  ),
+                                  onChanged: controller.search,
+                                  onSubmitted: (_) => _next(),
                                 ),
                               ),
-                            ),
-                          );
-                        },
+                            if (controller.searchQuery.isNotEmpty)
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: [
+                                  Text(
+                                    '${controller.searchMatches.length}${controller.searchHasMore ? '+' : ''} '
+                                    '${controller.searchMatches.length == 1 && !controller.searchHasMore ? 'match' : 'matches'}',
+                                  ),
+                                  IconButton(
+                                    tooltip: 'Previous match (Shift+F3)',
+                                    onPressed: controller.searchMatches.isEmpty
+                                        ? null
+                                        : () => _next(backwards: true),
+                                    icon: const Icon(Icons.arrow_upward),
+                                  ),
+                                  IconButton(
+                                    tooltip: 'Next match (F3)',
+                                    onPressed: controller.searchMatches.isEmpty
+                                        ? null
+                                        : _next,
+                                    icon: const Icon(Icons.arrow_downward),
+                                  ),
+                                ],
+                              ),
+                            if (_notice != null)
+                              Semantics(
+                                liveRegion: true,
+                                child: Text(
+                                  _notice!,
+                                  key: const ValueKey('mail-host-notice'),
+                                ),
+                              ),
+                            for (final diagnostic in presentation.diagnostics)
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 3,
+                                ),
+                                child: Semantics(
+                                  liveRegion:
+                                      diagnostic.severity ==
+                                      MailDiagnosticSeverity.error,
+                                  child: Text(
+                                    diagnostic.message,
+                                    style: TextStyle(
+                                      color:
+                                          diagnostic.severity ==
+                                              MailDiagnosticSeverity.error
+                                          ? Theme.of(context).colorScheme.error
+                                          : null,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            const Divider(),
+                            if (!presentation.rejected)
+                              MailSelectionSurface(
+                                key: _surfaceKey,
+                                controller: controller,
+                                textDirection: direction,
+                                style:
+                                    (Theme.of(context).textTheme.bodyLarge ??
+                                            const TextStyle(fontSize: 16))
+                                        .copyWith(
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onSurface,
+                                        ),
+                                linkColor: Theme.of(
+                                  context,
+                                ).colorScheme.primary,
+                                textScaler: MediaQuery.textScalerOf(context),
+                                onFocusRequest: _focus.requestFocus,
+                                onCopy: () => unawaited(_copy()),
+                                onLink: widget.onOpenApprovedLink == null
+                                    ? null
+                                    : (target) => unawaited(_openLink(target)),
+                              ),
+                          ],
+                        ),
                       ),
                     ),
-                ],
+                    if (!presentation.rejected &&
+                        presentation.images.isNotEmpty)
+                      SliverPadding(
+                        padding: EdgeInsets.symmetric(horizontal: padding),
+                        sliver: SliverList.builder(
+                          itemCount: presentation.images.length,
+                          itemBuilder: (context, index) => _CidImage(
+                            key: ValueKey(
+                              presentation.images[index].attachment.partPath,
+                            ),
+                            image: presentation.images[index],
+                          ),
+                        ),
+                      ),
+                    if (!presentation.rejected &&
+                        links.isNotEmpty &&
+                        widget.onOpenApprovedLink != null)
+                      SliverPadding(
+                        padding: EdgeInsets.all(padding),
+                        sliver: SliverList.builder(
+                          itemCount: links.length,
+                          itemBuilder: (context, index) => Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: TextButton.icon(
+                              key: ValueKey('mail-link-$index'),
+                              onPressed: () =>
+                                  unawaited(_openLink(links[index])),
+                              icon: const Icon(Icons.open_in_new),
+                              label: Text(
+                                'Open link: ${links[index]}',
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (!presentation.rejected &&
+                        message != null &&
+                        message.attachments.isNotEmpty)
+                      SliverPadding(
+                        padding: EdgeInsets.all(padding),
+                        sliver: SliverList.builder(
+                          itemCount: message.attachments.length,
+                          itemBuilder: (context, index) {
+                            final attachment = message.attachments[index];
+                            return Semantics(
+                              label:
+                                  'Read-only attachment ${attachment.displayName}',
+                              child: Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Wrap(
+                                    spacing: 12,
+                                    runSpacing: 8,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.center,
+                                    children: [
+                                      Text(
+                                        '${attachment.displayName} · ${attachment.mediaType} · ${attachment.observedSize} bytes',
+                                      ),
+                                      if (widget.onOpenAttachmentReadOnly !=
+                                          null)
+                                        TextButton.icon(
+                                          key: ValueKey(
+                                            'mail-attachment-$index',
+                                          ),
+                                          onPressed: () => unawaited(
+                                            _hostAction(
+                                              () =>
+                                                  widget
+                                                      .onOpenAttachmentReadOnly!(
+                                                    attachment,
+                                                  ),
+                                            ),
+                                          ),
+                                          icon: const Icon(
+                                            Icons.visibility_outlined,
+                                          ),
+                                          label: const Text('Open read only'),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                  ],
+                ),
               ),
             );
           },
