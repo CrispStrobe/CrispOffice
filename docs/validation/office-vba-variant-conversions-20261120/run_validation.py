@@ -130,6 +130,7 @@ def main() -> None:
             command = ([str(sdk / 'bin/flutter'), '--suppress-analytics', '--no-version-check',
                         'test', '--no-pub'] if cohort['runner'] == 'flutter'
                        else [dart, f'--packages={package_config}', test_runner])
+            command += cohort.get('extra_args', [])
             command += cohort['tests'] + ['--reporter', 'json', '--concurrency', '1', '--timeout', '4x']
             cwd = repo / cohort['package']
             record = {
