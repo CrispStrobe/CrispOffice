@@ -611,6 +611,10 @@ void main() {
         text: 'Note',
       );
       final controller = _controller(document);
+      // The fixture already contains the footnote's body reference marker.
+      final body = document.paragraphs.single;
+      final bodyText = body.text;
+      final bodyInlines = List<WmlInline>.of(body.inlines);
       controller.setNoteEditingTarget(
         note,
         const TextSelection.collapsed(offset: 2),
@@ -623,7 +627,8 @@ void main() {
         isA<WordZoteroTransaction>(),
       );
       expect(controller.noteEditText(note), 'Note');
-      expect(document.paragraphs.single.text, 'Body');
+      expect(body.text, bodyText);
+      expect(body.inlines, orderedEquals(bodyInlines));
       _clean(controller);
       controller.clearNoteEditingTarget();
       controller.caret
@@ -637,7 +642,8 @@ void main() {
         ),
         isA<WordZoteroTransaction>(),
       );
-      expect(document.paragraphs.single.text, 'Body');
+      expect(body.text, bodyText);
+      expect(body.inlines, orderedEquals(bodyInlines));
       expect(controller.noteEditText(note), 'Note');
       expect(_selection(controller), selection);
       _clean(controller);
