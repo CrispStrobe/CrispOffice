@@ -394,8 +394,18 @@ codesign "${SIGN_ARGS[@]}" ${APP_IDENTITY_ARGS[@]+"${APP_IDENTITY_ARGS[@]}"} --e
 
 log "Verify"
 codesign --verify --deep --strict --verbose=1 "$SIGNED_APP"
+APP_MINIMUM_OS="$(plutil -extract LSMinimumSystemVersion raw -o - "$SIGNED_APP/Contents/Info.plist")"
+# true when version $1 <= version $2 (dotted, numeric)
+version_le() { [[ "$(printf '%s\n%s\n' "$1" "$2" | sort -t. -k1,1n -k2,2n -k3,3n | head -1)" == "$1" ]]; }
 for library in "${LIBRARIES[@]}"; do
   path="$FRAMEWORKS/$library"
+  # A library whose minimum macOS exceeds the app's would fail to load on
+  # older systems the app claims to support (the host SDK leaks in when a
+  # build does not pin its deployment target).
+  library_minimum="$(vtool -show-build "$path" | awk '/minos/{print $2}' | sort -t. -k1,1n -k2,2n | tail -1)"
+  [[ -n "$library_minimum" ]] || { echo "$library declares no minimum macOS" >&2; exit 1; }
+  version_le "$library_minimum" "$APP_MINIMUM_OS" \
+    || { echo "$library needs macOS $library_minimum, app declares $APP_MINIMUM_OS" >&2; exit 1; }
   # Only system libraries (or the library itself) may be referenced.
   foreign="$(otool -L "$path" | tail -n +2 | awk '{print $1}' \
     | grep -v -e '^/usr/lib/' -e '^/System/' -e "$library\$" || true)"
