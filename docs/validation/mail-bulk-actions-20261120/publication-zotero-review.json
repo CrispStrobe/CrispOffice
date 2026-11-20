@@ -1,0 +1,535 @@
+{
+  "status": "Read-only source and evidence review complete; no concrete blocker found. Local merged-source gates are separate.",
+  "incoming_commit": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+  "comparison_base": "e975cec13b289fe067ef406cd3044701ecc44744",
+  "qualified_source_commit": "180399f99a3898501ab1959e3b845150d7da59fd",
+  "qualified_source_tree": "500931fdbb32699dcce23e3f4eb293b9141168b2",
+  "previously_reconciled_ancestor": "835b8019cbb873c72424e63d4df292174edd3c3e",
+  "new_commits": [
+    "6e20c7bff9ce88821c316f126ce16367caa0847c",
+    "6a00886f2c7f2ceddf859fcc1ccb99fbfcbb989a",
+    "180399f99a3898501ab1959e3b845150d7da59fd",
+    "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+    "698209aaa6e7f1350b6541df5eb192b7b233443d"
+  ],
+  "production_inputs": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart": {
+      "git_blob": "9982b851a441191eb15857f45861b34ae6a74e47",
+      "sha256": "2e7d30616ed82d94b3bf202f35e7465b66f1b1b979b2c5dff727b7797fd164a5"
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": {
+      "git_blob": "70c3dc118c59ac15bc672bfd3ea6d4f68d878e6b",
+      "sha256": "18e594770044913cce273c89c2a7889a573ed35695a9d8dd2b4b67f6bb631120"
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart": {
+      "git_blob": "fb757361ac427208c41777fbd3d322305ebbdd7c",
+      "sha256": "ce0ede4c087aabe574e50ff548e52c0306da06886a4af63250907f81cbb970e1"
+    },
+    "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart": {
+      "git_blob": "1e9d9910dba74f9429444ba54e1496ed32c0d07a",
+      "sha256": "9b35b90b5ed9f3266f0515bbf7432a07559376e274d30a10a10c333605369dd6"
+    }
+  },
+  "archive": {
+    "path": "docs/validation/zotero-merged-cells-20261120/local-validation.tar.gz",
+    "bytes": 256079,
+    "sha256": "16555ee79fd5d2699bc015a39cceac70f8d19f7cf700aa7a616b4bf24702917d",
+    "all_48_member_sizes_and_hashes_match": true,
+    "members": {
+      "final-audit.json": {
+        "bytes": 7247,
+        "sha256": "02fc8448f1c76d29c675d7bb5ec70e0ea9fb8d31281a3e662c8ae1b8e2d2bd80"
+      },
+      "final-client-analysis.log": {
+        "bytes": 254,
+        "sha256": "b89a8950b4cf3711fe1afeeeecf81d1fa361f99d9e976a7c109986408c78801a"
+      },
+      "final-client-analysis.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-editor-analysis.json": {
+        "bytes": 649,
+        "sha256": "c5577703a7ed10261dfdf9da9c762480ecd5c18d388095af5e068a1318aaff94"
+      },
+      "final-editor-analysis.log": {
+        "bytes": 216,
+        "sha256": "f468a650956efc4f0948cfc8da82697bbc8827d3cbf0075c6f1c779ad43b684f"
+      },
+      "final-editor-rerun.jsonl": {
+        "bytes": 268394,
+        "sha256": "3b2c4d9097d24045d5b9045c9bf6cb2c3653074ab1ccf814969d4b63f1092715"
+      },
+      "final-editor-rerun.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-editor.jsonl": {
+        "bytes": 8545,
+        "sha256": "07065777d13fefc0fad9996b061c225bfc9033513184a301f03ab81507f2e6fc"
+      },
+      "final-editor.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-engine-analysis.exit.json": {
+        "bytes": 1311,
+        "sha256": "985bd4d7da84f2f2cbede7ddc6ab48950fa1195087afdc31be6dae87d04861cf"
+      },
+      "final-engine-analysis.log": {
+        "bytes": 313,
+        "sha256": "e161bc319a5b0c10f580b1fad2a333d9bf11ef3962366a248d7d9d01aabca115"
+      },
+      "final-engine-analysis.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-engine-qualified.exit.json": {
+        "bytes": 1117,
+        "sha256": "27439512a0ba173be238492dfde94f38698821bb3d4b4ec6c7e6a0fc2e599268"
+      },
+      "final-engine-qualified.jsonl": {
+        "bytes": 336263,
+        "sha256": "f33e1ee70885ca9bb59e8f28424fa6d7e230e27c158acd88af4d80ac0441051c"
+      },
+      "final-engine-qualified.sources.json": {
+        "bytes": 107605,
+        "sha256": "6deff3f772099364ec0ad8d17e7bd562b9b990f768434db49f0c294ff00f199a"
+      },
+      "final-engine-qualified.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-engine-rerun.exit.json": {
+        "bytes": 2330,
+        "sha256": "e8dd265b8477f56636f3f791a5ff3eff18221d88902ca720f4588eef2720e0ce"
+      },
+      "final-engine-rerun.jsonl": {
+        "bytes": 336604,
+        "sha256": "b946ec662a4835fd2348e2d496769a8055e448f9882f0c5d44dc871ac8556ef7"
+      },
+      "final-engine-rerun.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-engine.jsonl": {
+        "bytes": 15442,
+        "sha256": "328986a3313952552e4392ed96c7782d11c123f598304646479fc2eedef00b05"
+      },
+      "final-engine.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-font-analysis.log": {
+        "bytes": 58,
+        "sha256": "63cf6260f45a6b26d1dd5e758360876544eff0b8848d5120912a02b218d9d33f"
+      },
+      "final-format-qualified.json": {
+        "bytes": 2721,
+        "sha256": "ca895387013cdeaecce3a62151b4678379ab3a7ea032cf05d565f010a5ff9989"
+      },
+      "final-format-qualified.log": {
+        "bytes": 48,
+        "sha256": "eb827912b9f0bb10b2b7b9358a276f638c7accf37375785fe2c1ece02de7ac83"
+      },
+      "final-formatted-incoming.diff": {
+        "bytes": 5514,
+        "sha256": "8f77df44aebbe11df1393a1004962e912002b4e1ee0119d8a4639b2e76ca30ce"
+      },
+      "final-formatted-incoming.exit.json": {
+        "bytes": 1974,
+        "sha256": "6658bdcf9ae811512ea51dd6429d5721e6a421e2f84e99409214bdd41753987f"
+      },
+      "final-formatted-incoming.format.log": {
+        "bytes": 396,
+        "sha256": "9569dd33ea24f1688025c5308198082a1cf2acaff21bc2a7fd3ead732bcc2092"
+      },
+      "final-formatted-incoming.jsonl": {
+        "bytes": 248870,
+        "sha256": "262c16844ea998a2a1120c4ded638a263ca153dfaafa45d96c7892a320e43b32"
+      },
+      "final-formatted-incoming.source-changes.json": {
+        "bytes": 2411,
+        "sha256": "914ecd4e176cbc728b2a7a81de1308bcc814d03d50bd0cc83fdfb6f2ea7df0e6"
+      },
+      "final-formatted-incoming.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-main-editor.exit.json": {
+        "bytes": 923,
+        "sha256": "8f62a8e079e924a78aecc8e55c239ca1f5d8ba8f21e963d5a5f8c61590e15906"
+      },
+      "final-main-editor.jsonl": {
+        "bytes": 268490,
+        "sha256": "45a355eb54c257340b220f130522e21129052a7157c03be74ca72112c6585ec1"
+      },
+      "final-main-editor.sources.json": {
+        "bytes": 128234,
+        "sha256": "2fe562a56bb1fd0e3e991f33ba0584ad06c62bdb3f956ce980e2a63b3002fd36"
+      },
+      "final-main-editor.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-main-engine-analysis.exit.json": {
+        "bytes": 932,
+        "sha256": "dd31e17d4a96434c054fd9c9b2728b3c25d59cbcd684cb627d4b4cc4b742337f"
+      },
+      "final-main-engine-analysis.log": {
+        "bytes": 71,
+        "sha256": "51d7e43fbc99fa37ddced12aeaf4174be8f53ea1ddf8fb4940d703ffee54528e"
+      },
+      "final-main-engine-analysis.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-main-engine.exit.json": {
+        "bytes": 1232,
+        "sha256": "c363dca774e648baf1550f5f34ed4da4fbe01544a55e82cc1b28c638ee684fa4"
+      },
+      "final-main-engine.jsonl": {
+        "bytes": 336263,
+        "sha256": "f896c42a2fff8c3734929a363ba31affa4f7ba34d889d85d21251d02ec78e3dc"
+      },
+      "final-main-engine.sources.json": {
+        "bytes": 107919,
+        "sha256": "45113e1942b16c09616087b3c6d66f117b0e6af60c00042b9112001f2eabda2b"
+      },
+      "final-main-engine.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-main-incoming.counts.json": {
+        "bytes": 2760,
+        "sha256": "ea3f0821beb3c1338a22eb79688f66662e8d077cc1718857171715442662e8c9"
+      },
+      "final-main-incoming.exit": {
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      "final-main-incoming.jsonl": {
+        "bytes": 581535,
+        "sha256": "96a5d1ad7bdda59848a1d537d77f6fd1df7a93fdeba7a0ce8e042b0b43bb300b"
+      },
+      "final-main-incoming.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final_main_incoming_test.dart": {
+        "bytes": 2505,
+        "sha256": "51408d4a399cf70d58a9752071bf1dfdfd0200057f95841e4cba91d771c3f6a3"
+      },
+      "engine-acceptance.dart.txt": {
+        "bytes": 2497,
+        "sha256": "4d6ff47b51a65a340fe97f5e36160d7f0b6abdecc6d91c564efa14cd64352392"
+      },
+      "editor-acceptance.dart.txt": {
+        "bytes": 2237,
+        "sha256": "cb6ac4346aac7a4895dd38835c6596681ab2d1129e0cd7e74ff44f6a1d14cbc1"
+      }
+    }
+  },
+  "qualification_document": {
+    "path": "docs/validation/zotero-merged-cells-20261120/qualification.json",
+    "git_blob": "b657cb650db41a2f826eff007be36174b74ea187",
+    "sha256": "2cffbc2fb0bb2a654d9d94e816bd10298ac63886f6599d4dc4a6499889d41694"
+  },
+  "source_bindings": {
+    "final-main-engine.sources.json": {
+      "manifest_sha256": "45113e1942b16c09616087b3c6d66f117b0e6af60c00042b9112001f2eabda2b",
+      "inputs": 769,
+      "matched_git_inputs": 765,
+      "mismatches": [
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart",
+          "manifest_sha256": "8bf9b639b4a83e4d35e5262a8b543593e856849c9505611f2ad64d353242bb2b",
+          "incoming_sha256": "3113c470dfc7784a9fec8fe9a9634db633f134985fbb38c3c835ab0f4773dfdc"
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+          "manifest_sha256": "16a027580adda608d70811c2f8ab2cb0d2f844fd274e50047fe297108037f31b",
+          "incoming_sha256": "45768d1287088a69950fe956cd0c96f776212de2c60bbe56724fcece0c10b25f"
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+          "manifest_sha256": "f6746000cfea5eba4ef9b499dd8f18b71c3f628842e60c682c142ea1477502ad",
+          "incoming_sha256": "27f8f3af8ed8f84a9b063a5f34e6c5ca2192b868b8ae3259e3140d3c913e6e3d"
+        }
+      ],
+      "not_in_git": [
+        ".dart_tool/package_config.json"
+      ]
+    },
+    "final-main-editor.sources.json": {
+      "manifest_sha256": "2fe562a56bb1fd0e3e991f33ba0584ad06c62bdb3f956ce980e2a63b3002fd36",
+      "inputs": 904,
+      "matched_git_inputs": 903,
+      "mismatches": [],
+      "not_in_git": [
+        ".dart_tool/package_config.json"
+      ]
+    }
+  },
+  "recounts": {
+    "final-main-engine": {
+      "passed": 495,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "unfinished": 0,
+      "done_event": {
+        "success": true,
+        "type": "done",
+        "time": 71362
+      },
+      "stderr_bytes": 0,
+      "non_json_lines": 0,
+      "groups": {
+        "word_zotero_adjacent_citations_test.dart": {
+          "success": 23
+        },
+        "zotero_citing_test.dart": {
+          "success": 48
+        },
+        "word_zotero_note_table_test.dart": {
+          "success": 90
+        },
+        "word_zotero_note_tables_integration_test.dart": {
+          "success": 27
+        },
+        "word_incremental_layout_prefix_test.dart": {
+          "success": 2
+        },
+        "word_incremental_layout_test.dart": {
+          "success": 9
+        },
+        "word_zotero_research_target_test.dart": {
+          "success": 35
+        },
+        "word_zotero_add_note_test.dart": {
+          "success": 35
+        },
+        "word_zotero_note_insertion_test.dart": {
+          "success": 41
+        },
+        "word_zotero_citing_test.dart": {
+          "success": 59
+        },
+        "word_zotero_rich_edit_test.dart": {
+          "success": 30
+        },
+        "word_zotero_note_list_test.dart": {
+          "success": 38
+        },
+        "word_zotero_note_images_integration_test.dart": {
+          "success": 10
+        },
+        "word_zotero_bibliography_layout_test.dart": {
+          "success": 14
+        },
+        "word_zotero_preference_flow_test.dart": {
+          "success": 11
+        },
+        "word_zotero_style_preferences_review_test.dart": {
+          "success": 9
+        },
+        "slide_radial_opacity_test.dart": {
+          "success": 14
+        }
+      },
+      "skipped_cases": [],
+      "log_sha256": "f896c42a2fff8c3734929a363ba31affa4f7ba34d889d85d21251d02ec78e3dc"
+    },
+    "final-main-editor": {
+      "passed": 378,
+      "skipped": 8,
+      "failed": 0,
+      "errors": 0,
+      "unfinished": 0,
+      "done_event": {
+        "success": true,
+        "type": "done",
+        "time": 155642
+      },
+      "stderr_bytes": 0,
+      "non_json_lines": 14,
+      "groups": {
+        "word_zotero_adjacent_citations_controller_test.dart": {
+          "success": 6
+        },
+        "word_incremental_layout_equivalence_test.dart": {
+          "success": 66,
+          "skipped": 8
+        },
+        "word_zotero_add_note_controller_test.dart": {
+          "success": 108
+        },
+        "word_zotero_note_target_test.dart": {
+          "success": 33
+        },
+        "word_zotero_note_image_controller_test.dart": {
+          "success": 21
+        },
+        "word_zotero_citing_controller_test.dart": {
+          "success": 21
+        },
+        "word_zotero_citing_dialog_test.dart": {
+          "success": 24
+        },
+        "word_zotero_direct_command_test.dart": {
+          "success": 23
+        },
+        "word_zotero_bibliography_controller_test.dart": {
+          "success": 13
+        },
+        "word_zotero_rich_controller_test.dart": {
+          "success": 8
+        },
+        "word_proofing_session_test.dart": {
+          "success": 35
+        },
+        "word_proofing_capture_cache_test.dart": {
+          "success": 4
+        },
+        "studio_comment_draft_proofing_test.dart": {
+          "success": 15
+        },
+        "studio_word_chrome_settle_test.dart": {
+          "success": 1
+        }
+      },
+      "skipped_cases": [
+        "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+        "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+        "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+        "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+        "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+        "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+        "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+        "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx"
+      ],
+      "log_sha256": "45a355eb54c257340b220f130522e21129052a7157c03be74ca72112c6585ec1"
+    },
+    "final-main-incoming": {
+      "passed": 928,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "unfinished": 0,
+      "done_event": {
+        "success": true,
+        "type": "done",
+        "time": 34089
+      },
+      "stderr_bytes": 0,
+      "non_json_lines": 0,
+      "groups": {
+        "office_vba_word_measurements_test": {
+          "success": 197
+        },
+        "office_vba_word_measurements_integration_test": {
+          "success": 6
+        },
+        "office_vba_word_measurements_positional_test": {
+          "success": 197
+        },
+        "office_vba_word_measurements_positional_integration_test": {
+          "success": 6
+        },
+        "office_vba_word_unit_conversions_test": {
+          "success": 202
+        },
+        "office_vba_word_unit_conversions_integration_test": {
+          "success": 6
+        },
+        "office_vba_word_line_spacing_test": {
+          "success": 103
+        },
+        "office_vba_word_line_spacing_integration_test": {
+          "success": 23
+        },
+        "bulk_flags_test": {
+          "success": 31
+        },
+        "office_vba_word_named_measurements_test": {
+          "success": 147
+        },
+        "office_vba_word_named_measurements_integration_test": {
+          "success": 10
+        }
+      },
+      "skipped_cases": [],
+      "log_sha256": "96a5d1ad7bdda59848a1d537d77f6fd1df7a93fdeba7a0ce8e042b0b43bb300b"
+    },
+    "final-formatted-incoming": {
+      "passed": 405,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "unfinished": 0,
+      "done_event": {
+        "success": true,
+        "type": "done",
+        "time": 9502
+      },
+      "stderr_bytes": 0,
+      "non_json_lines": 0,
+      "groups": {
+        "office_vba_word_measurements_test": {
+          "success": 197
+        },
+        "office_vba_word_measurements_integration_test": {
+          "success": 6
+        },
+        "office_vba_word_unit_conversions_test": {
+          "success": 202
+        }
+      },
+      "skipped_cases": [],
+      "log_sha256": "262c16844ea998a2a1120c4ded638a263ca153dfaafa45d96c7892a320e43b32"
+    }
+  },
+  "historical_total": {
+    "passed": 1801,
+    "skipped": 8,
+    "formatting_followup_405_is_overlapping": true
+  },
+  "counting_method": "Parse JSON events; reject malformed JSON-looking lines, duplicate completions, unfinished events or errors; exclude hidden/loading/setUpAll/tearDownAll events; count skipped:true separately. Check successful terminal event and empty stderr.",
+  "review_findings": [
+    "Horizontal spans preserve authored cell/paragraph ownership and use one width per logical column; existing table, row, column, authored-cell and overall-width limits remain.",
+    "Unsupported vertical merges, nested tables, nonrectangular rows and conflicting widths fail while results remain staged.",
+    "Adjacency is established by actual packet endpoints in one paragraph; structural markers, nonempty text, comments, controls and native fields break the chain.",
+    "Enumeration checks the next live field, original note identity and conversion state; staged inserts/deletions cannot fabricate a merge across intervening physical content.",
+    "Previously reported adjacency is rechecked before apply alongside existing source/field/note guards.",
+    "The protocol exposes a boolean citation-merging capability while document import/export remains unsupported."
+  ],
+  "merge_preservation": [
+    "Keep the consolidated current Mail core API: incoming historical Mail code is already superseded.",
+    "Keep accepted canonical measurement files and expanded named-measurement coverage; positional alias equivalence was established during prior intake.",
+    "Retain current e975 deserializer/layout/font corrections; incoming evidence predates those corrections."
+  ],
+  "recommended_local_gate": {
+    "engine_tests": [
+      "packages/quds_office_engine/test/word_zotero_adjacent_citations_test.dart",
+      "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+      "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+      "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "packages/quds_office_engine/test/zotero_citing_test.dart"
+    ],
+    "historical_engine_cases": 282,
+    "editor_tests": [
+      "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart"
+    ],
+    "historical_editor_cases": 114,
+    "note": "These are expected historical counts, not a claim that the merged current checkout has already passed."
+  },
+  "limitations": [
+    "The archive establishes historical local qualification for its source; it does not substitute for the selected post-merge local gate.",
+    "The package configuration is an environment artifact and cannot be verified as a Git blob.",
+    "No new installed Zotero/Word/LibreOffice or live account round trip was performed."
+  ],
+  "github_actions": "Not queried or awaited."
+}

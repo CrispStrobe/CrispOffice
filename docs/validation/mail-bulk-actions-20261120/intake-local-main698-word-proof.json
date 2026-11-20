@@ -1,0 +1,161 @@
+{
+  "schema": "quds-mail-main698-word-mail-canonical-review/v1",
+  "reviewed_at_utc": "2026-11-20T21:48:39.500861+00:00",
+  "incoming_main": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+  "accepted_source": "3f9d3647a20b06c73f5bfd0ade2846e7859e4502",
+  "incoming_parent_main": "e975cec13b289fe067ef406cd3044701ecc44744",
+  "scope": "Immutable-object review of inherited Mail/Word copies only; new Zotero behavior is independently reviewed/qualified. No fetch, product/test edit or compiler run.",
+  "canonical_exact_matches": [
+    {
+      "path": "packages/quds_office_engine/example/macros/word_measurements.bas",
+      "incoming_blob": "01834ab0fb95c43a4ff4a19e1c3bd7a9e554c2c5",
+      "accepted_blob": "01834ab0fb95c43a4ff4a19e1c3bd7a9e554c2c5",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_named_measurements.bas",
+      "incoming_blob": "761c539c853170f43e0ae6e374a57e919923e274",
+      "accepted_blob": "761c539c853170f43e0ae6e374a57e919923e274",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+      "incoming_blob": "cf996b99e767d1742557f257599bf0edf61eefa0",
+      "accepted_blob": "cf996b99e767d1742557f257599bf0edf61eefa0",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+      "incoming_blob": "eb78cf4e18994c001f2785d0dd9d1f8abbccc3b3",
+      "accepted_blob": "eb78cf4e18994c001f2785d0dd9d1f8abbccc3b3",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart",
+      "incoming_blob": "6c46344b5cb05a13b7ff4a5e79cccd0502602d50",
+      "accepted_blob": "6c46344b5cb05a13b7ff4a5e79cccd0502602d50",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+      "incoming_blob": "a79178ab4e51aaf2cf59e804537c09c81c57140b",
+      "accepted_blob": "a79178ab4e51aaf2cf59e804537c09c81c57140b",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+      "incoming_blob": "c77d152d00f9d26ff2a4ece598ce1001a72b5803",
+      "accepted_blob": "c77d152d00f9d26ff2a4ece598ce1001a72b5803",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_measurements_smoke.dart",
+      "incoming_blob": "bd5707ab5cc784b7e7bbade7aaa7e42f2bf5b312",
+      "accepted_blob": "bd5707ab5cc784b7e7bbade7aaa7e42f2bf5b312",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_named_measurements_smoke.dart",
+      "incoming_blob": "2f3fdd3f05c1786ba909ea0588e7f85d8c93ae5a",
+      "accepted_blob": "2f3fdd3f05c1786ba909ea0588e7f85d8c93ae5a",
+      "exact": true
+    }
+  ],
+  "redundant_positional_aliases": [
+    {
+      "incoming_path": "packages/quds_office_engine/example/macros/word_measurements_positional.bas",
+      "canonical_path": "packages/quds_office_engine/example/macros/word_measurements.bas",
+      "incoming_and_835_blob": "01834ab0fb95c43a4ff4a19e1c3bd7a9e554c2c5",
+      "canonical_blob": "01834ab0fb95c43a4ff4a19e1c3bd7a9e554c2c5",
+      "exact_bytes": true,
+      "normalizations": [],
+      "normalized_equal": true
+    },
+    {
+      "incoming_path": "packages/quds_office_engine/test/office_vba_word_measurements_positional_test.dart",
+      "canonical_path": "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+      "incoming_and_835_blob": "eb78cf4e18994c001f2785d0dd9d1f8abbccc3b3",
+      "canonical_blob": "eb78cf4e18994c001f2785d0dd9d1f8abbccc3b3",
+      "exact_bytes": true,
+      "normalizations": [],
+      "normalized_equal": true
+    },
+    {
+      "incoming_path": "packages/quds_office_engine/test/office_vba_word_measurements_positional_integration_test.dart",
+      "canonical_path": "packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart",
+      "incoming_and_835_blob": "1fedccd86989692db7d8e58edc7e6e57c65b2bc9",
+      "canonical_blob": "6c46344b5cb05a13b7ff4a5e79cccd0502602d50",
+      "exact_bytes": false,
+      "normalizations": [
+        {
+          "replace": "word_measurements_positional",
+          "with": "word_measurements",
+          "purpose": "Point the positional integration suite at its retained canonical filenames."
+        },
+        {
+          "replace": "import '../tool/macros/web_vba_word_measurements_smoke.dart'\n    as portable;",
+          "with": "import '../tool/macros/web_vba_word_measurements_smoke.dart' as portable;",
+          "purpose": "Formatter-only import line wrapping after the shorter filename."
+        }
+      ],
+      "normalized_equal": true
+    },
+    {
+      "incoming_path": "packages/quds_office_engine/tool/macros/web_vba_word_measurements_positional_smoke.dart",
+      "canonical_path": "packages/quds_office_engine/tool/macros/web_vba_word_measurements_smoke.dart",
+      "incoming_and_835_blob": "bd5707ab5cc784b7e7bbade7aaa7e42f2bf5b312",
+      "canonical_blob": "bd5707ab5cc784b7e7bbade7aaa7e42f2bf5b312",
+      "exact_bytes": true,
+      "normalizations": [],
+      "normalized_equal": true
+    }
+  ],
+  "named_superset_retention": [
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+      "incoming_blob": "d74dc1fe2c1d55a450f109a4cc297cf9782a8531",
+      "accepted_blob": "c75c1cb85db21db86bcd1395927b61c9fad3bb09",
+      "prior_equivalence_record": "intake-zotero-equivalence.json",
+      "prior_equivalence_target": "65468fdff43c3acec20fd0d7fd8d4ae9d254d572",
+      "decision": "Retain accepted strict superset with 13 compiler and 1 integration additions, reexecuted in final-main-word-validation.json."
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+      "incoming_blob": "1a4ff8bbbea4399eb9a8be21e7ae05a5d88eed63",
+      "accepted_blob": "8e333f8b1906ecdc780ede315a0afed6eb1e29bf",
+      "prior_equivalence_record": "intake-zotero-equivalence.json",
+      "prior_equivalence_target": "65468fdff43c3acec20fd0d7fd8d4ae9d254d572",
+      "decision": "Retain accepted strict superset with 13 compiler and 1 integration additions, reexecuted in final-main-word-validation.json."
+    }
+  ],
+  "superseded_mail_snapshot": [
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "incoming_and_835_blob": "5b62d0cf3c8049ad5979ad2f971ce151eee575f5",
+      "decision": "Retain newer accepted Mail implementation; this snapshot is already superseded."
+    },
+    {
+      "path": "packages/quds_mail_core/lib/quds_mail_core.dart",
+      "incoming_and_835_blob": "7a001164dbf973c78ff1145bc4bdd4ed63ddbcbc",
+      "decision": "Retain newer accepted Mail implementation; this snapshot is already superseded."
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/sync/bulk_flags.dart",
+      "incoming_and_835_blob": "d5a6a9f3892504f619ccc6e4e2d1e38dd6f1eb52",
+      "decision": "Retain newer accepted Mail implementation; this snapshot is already superseded."
+    },
+    {
+      "path": "packages/quds_mail_core/test/bulk_flags_test.dart",
+      "incoming_and_835_blob": "fbbb20b4ee8d7cb6fe03dfe4606394154749132b",
+      "decision": "Retain newer accepted Mail implementation; this snapshot is already superseded."
+    }
+  ],
+  "expected_changed_final_word_scope_after_canonical_merge": [
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+    "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart"
+  ],
+  "decision": "Keep canonical Word examples/tests/drivers and richer named suites; retain accepted Mail core; omit duplicate positional aliases. Incorporate and qualify the four new Zotero libraries, then verify the actual merged 492-input map separately.",
+  "status": "REVIEWED_CANONICAL_CONTENT_ACCOUNTED"
+}

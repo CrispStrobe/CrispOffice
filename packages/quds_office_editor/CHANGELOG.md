@@ -18,6 +18,18 @@ All notable changes to `quds_office_editor` are documented here.
   unconfirmed write, preserve nullable flags and reject stale scope callbacks.
   Keep cached mail read-only and preserve discovery state on same-folder refresh.
 
+- Accept horizontally merged Zotero research-note and annotation tables through
+  the existing native commands. Preserve cell-owned rich text, lists, pictures
+  and active citations in body, footnote and endnote targets; retain span widths,
+  surrounding prose, the final caret and one undo/redo step through DOCX reopening.
+- Let native Zotero Refresh combine directly touching citation fields in one
+  paragraph/story/note using Zotero's item order and formatting. Keep separated
+  fields distinct, recheck physical adjacency before applying, and leave
+  cancelled or stale results detached. A completed refresh is one undo/redo
+  step. See the
+  [continuation validation record](../../docs/validation/zotero-merged-cells-20261120/README.md)
+  for local checks; installed Zotero/Word/LibreOffice acceptance remains separate.
+
 - Refuse an oversized Studio settings snapshot before replacing the last valid
   saved settings. Keep the existing load budget and expose a recoverable save
   error so accepted personal dictionaries cannot reset preferences on restart.
