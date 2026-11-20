@@ -1,0 +1,83 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "captured_from": "GitHub connector repository, branches, PR metadata, comparison, immutable file and Git commit endpoints; no workflow/status endpoints",
+  "main": "3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
+  "upstream": "MohammedAsaadAsaad/quds_office_suite",
+  "open_prs": [
+    {
+      "number": 262,
+      "title": "Mail: retain visited folders and opened messages for offline reading [skip ci]",
+      "head": "work/mail-cached-workspace-20261120",
+      "head_sha": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "base_sha": "3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
+      "draft": true,
+      "mergeable": true,
+      "updated_at": "2026-11-20T17:28:40Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/262"
+    }
+  ],
+  "mail_comparison": {
+    "repository_full_name": "CrispStrobe/quds_office_suite",
+    "base": "main",
+    "head": "c7e721b7703766491fd4459b69de30bf68d9010d",
+    "status": "ahead",
+    "ahead_by": 13,
+    "behind_by": 0,
+    "total_commits": 13,
+    "too_large": null,
+    "base_commit": {
+      "sha": "3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/3ee4e3622c9a2198d384ed1cb296ab092a8838d0"
+    },
+    "merge_base_commit": {
+      "sha": "3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/3ee4e3622c9a2198d384ed1cb296ab092a8838d0"
+    }
+  },
+  "qualified_source_to_final_delta": [
+    {
+      "filename": "docs/validation/mail-cached-workspace-20261120/README.md",
+      "status": "modified",
+      "additions": 239,
+      "deletions": 60,
+      "changes": 299,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/mail-cached-workspace-20261120/evidence-files.json",
+      "status": "modified",
+      "additions": 1150,
+      "deletions": 50,
+      "changes": 1200,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/mail-cached-workspace-20261120/evidence.tar.xz",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/mail-cached-workspace-20261120/final-qualification.json",
+      "status": "added",
+      "additions": 515,
+      "deletions": 0,
+      "changes": 515,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/mail-cached-workspace-20261120/final-reconciliation.json",
+      "status": "modified",
+      "additions": 11,
+      "deletions": 11,
+      "changes": 22,
+      "previous_filename": null
+    }
+  ],
+  "pr_metadata_note": "PR #262 body still says complete Studio rerun is pending. Immutable c7e721b7 README/final-qualification seal records passing completion.",
+  "github_actions_used": false
+}
