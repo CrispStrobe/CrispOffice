@@ -108,6 +108,32 @@ final class MailReaderController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Appends host-loaded, already validated remote images. Nothing is fetched
+  /// here; the host performs the explicit user-approved request.
+  void addImages(Iterable<MailInlineImage> extra) {
+    if (_disposed) return;
+    final images = <MailInlineImage>[..._presentation.images, ...extra];
+    if (images.length == _presentation.images.length) return;
+    final rebuilt = buildMailPresentation(
+      _result,
+      budget: budget,
+      preferHtml: _preferHtml,
+      externalImagePlaceholders: false,
+    );
+    _presentation = MailReaderPresentation(
+      text: rebuilt.text,
+      bodyText: rebuilt.bodyText,
+      runs: rebuilt.runs,
+      images: <MailInlineImage>[...rebuilt.images, ...extra],
+      diagnostics: rebuilt.diagnostics,
+      rejected: rebuilt.rejected,
+      usedHtml: rebuilt.usedHtml,
+      blockedResourceCount: rebuilt.blockedResourceCount,
+    );
+    _revision++;
+    notifyListeners();
+  }
+
   /// Offsets use UTF-16 like Flutter. Selection snaps to grapheme boundaries.
   void select(TextSelection value) {
     if (_disposed) return;

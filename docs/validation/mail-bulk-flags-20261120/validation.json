@@ -99,5 +99,11 @@
     "No installed platform releases or macOS font-discovery execution",
     "Node is compiled JavaScript, not browser/WASM UI acceptance",
     "Foreground receipts and flags do not provide durable command/cache synchronization"
-  ]
+  ],
+  "publication_status": "PASS",
+  "publication_source": {
+    "commit": "44f3f61fa7d812971e973f1763ac8e04eb39785a",
+    "tree": "9ad9555b01e5c0a0872f868356c232e669a8b977"
+  },
+  "publication_acceptance": "peer-reconciliation.json"
 }
