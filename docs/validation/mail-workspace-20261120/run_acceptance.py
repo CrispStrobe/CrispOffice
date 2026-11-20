@@ -82,7 +82,9 @@ def source_manifest(runtime):
 
 def parse_tests(path, cwd, selected):
     events = []
-    for line in path.read_text(errors='replace').splitlines():
+    # JSONL separates records with LF. Unicode separators such as U+0085,
+    # U+2028 and U+2029 can be literal characters inside a valid JSON string.
+    for line in path.read_text(errors='replace').split('\n'):
         try:
             event = json.loads(line)
         except json.JSONDecodeError:
@@ -126,6 +128,9 @@ def parse_tests(path, cwd, selected):
             'selected_suites': len(expected), 'loaded_suites': len(loaded),
             'missing_suites': sorted(expected - loaded),
             'unexpected_suites': sorted(loaded - expected),
+            'missing_case_metadata': [case['id'] for case in cases if
+                                      not isinstance(case['name'], str) or
+                                      case['suite_id'] is None],
             'errors': errors, 'cases': cases}
 
 
@@ -255,7 +260,7 @@ def main():
                     tests['passed'] > 0 and tests['failed'] == 0 and
                     tests['skipped'] == 0 and tests['hidden_skips'] == 0 and
                     not tests['missing_suites'] and not tests['unexpected_suites'] and
-                    not tests['errors'])
+                    not tests['missing_case_metadata'] and not tests['errors'])
             record['runs'].append(run)
             write_json(receipt, record)
             print(json.dumps({'name': name, 'exit_code': code,
