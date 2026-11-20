@@ -37,8 +37,10 @@ Widget tests run in debug JIT with fake time. Absolute numbers are higher than
 a release build; only compare runs made back to back under similar load. The
 local runs below alternate base and branch builds in one worktree
 (base `c16e1213`, the branch point); load averages are recorded with each run. The
-`Typing proofing benchmark` workflow repeats the comparison on hosted
-macOS and Ubuntu runners.
+`Typing proofing benchmark` workflow
+(`.github/workflows/typing-proofing-benchmark.yml`) repeats the comparison on
+hosted macOS and Ubuntu runners and runs the Studio example suite on both
+revisions.
 
 ## Root causes (evidence)
 
@@ -180,7 +182,25 @@ Reading the table:
   workspace rebuild; its status button still rebuilds once per keystroke
   because an inherited dependency above it changes (see Remaining work).
 
-HOSTED_RESULTS
+### Hosted runners (workflow `Typing proofing benchmark`, run 44716976894)
+
+Three runs per job; "before" is `c16e1213` with the same benchmark file.
+Each variant ran on its own runner VM, so cross-job differences include VM
+variance; the counters (passes, provider calls, notifications, rebuilds,
+label changes) were identical to the local runs in every hosted run.
+
+| Runner | Variant | Handler p50 / p95 (ms) | Frame p50 / p95 (ms) | Timer work p50 / p95 (ms) | Session notifications |
+|---|---|---|---|---|---|
+| ubuntu-latest | before | 176.3 / 248.7 · 176.8 / 252.6 · 179.1 / 252.5 | 14.3 / 22.5 · 14.8 / 22.0 · 14.8 / 22.4 | 55.1 / 83.3 · 55.9 / 82.9 · 56.5 / 79.0 | 44 |
+| ubuntu-latest | after | 111.0 / 175.0 · 111.3 / 174.9 · 111.6 / 176.7 | 7.2 / 13.4 · 7.1 / 12.7 · 7.2 / 12.0 | 32.8 / 51.8 · 31.5 / 49.6 · 31.9 / 48.9 | 22 |
+| macos-latest | before | 216.8 / 357.6 · 217.0 / 342.8 · 250.3 / 413.5 | 15.5 / 36.9 · 15.5 / 35.0 · 18.7 / 41.9 | 53.1 / 119.7 · 51.9 / 105.7 · 60.9 / 133.8 | 44 |
+| macos-latest | after | 220.4 / 346.1 · 233.3 / 378.5 · 288.4 / 454.6 | 13.4 / 34.3 · 14.5 / 40.2 · 18.9 / 48.4 | 54.2 / 102.7 · 52.9 / 117.0 · 71.1 / 148.2 | 22 |
+
+The Ubuntu jobs were very stable within each job and show handler −37 %,
+frame −51 % and timer work −43 %; the shared macOS runners and the local
+Mac show no difference beyond noise in those three timings, which stay
+dominated by relayout. Treat the timing deltas as unconfirmed and the
+counter reductions as the measured effect.
 
 ## Tests
 
@@ -198,7 +218,17 @@ HOSTED_RESULTS
   Tests that pumped a hard-coded 450 ms for the old 400 ms debounce now pump
   `WordProofingTiming.idle` plus 50 ms.
 
-TEST_RESULTS
+Results on the branch (local, `dartrun`, load average 3–13; the hosted CI
+queue was stalled for over an hour, so the suites ran locally once the load
+had dropped):
+
+| Suite | Result |
+|---|---|
+| Editor package, full (`flutter test`) | 20 failures in 10 files (Office layout/structure/table/frame goldens, `embed_test` tab gap, dark slide colors, bookmark history); **the same 20 fail with this change reverted**, so none is caused by it |
+| Editor proofing/review subset (35 files incl. the new test) | all pass |
+| Studio example, full (`flutter test`, 1011 tests) | all pass locally; on hosted Ubuntu 1010 pass and `dump_gallery_shots_test` fails on both the baseline and the branch |
+| `dart analyze packages apps` | 0 errors, 0 warnings (909 pre-existing infos in other packages; none in changed files) |
+
 
 ## Remaining work
 
