@@ -268,6 +268,9 @@ const _wordReserved = <String>{
 const _wordListMethods = <String>{
   'applybulletdefault',
   'applynumberdefault',
+  'applyoutlinenumberdefault',
+  'listindent',
+  'listoutdent',
   'removenumbers',
 };
 const _powerPointConstants = <String, int>{
@@ -2579,6 +2582,11 @@ class _Checker {
       );
     }
     final arguments = member.arguments ?? const <_Expr>[];
+    if (member.token.lower == 'listindent' ||
+        member.token.lower == 'listoutdent') {
+      _count(member.token, arguments, 0);
+      return;
+    }
     if (arguments.length > 1) {
       context.type(
         member.token,
@@ -2815,6 +2823,9 @@ class _Checker {
     }
     if (context.isWord) {
       if (receiver == _Kind.range && property == 'highlightcolorindex') {
+        return _Kind.number;
+      }
+      if (receiver == _Kind.wordListFormat && property == 'listlevelnumber') {
         return _Kind.number;
       }
       if (receiver == _Kind.font) {
@@ -5304,6 +5315,13 @@ class _Evaluator {
     // Capture the selector before evaluating a helper argument. The native
     // operation decides whether to apply or remove a list at execution time.
     final format = _evaluate(member.receiver) as _WordListFormat;
+    if (member.token.lower == 'listindent' ||
+        member.token.lower == 'listoutdent') {
+      _emitWord(format.range, 'listLevel', <String, Object?>{
+        'delta': member.token.lower == 'listindent' ? 1 : -1,
+      }, member.token);
+      return;
+    }
     final removes = member.token.lower == 'removenumbers';
     final arguments = member.arguments ?? const <_Expr>[];
     var option = removes ? 3 : 0;
@@ -5333,9 +5351,15 @@ class _Evaluator {
           'DefaultListBehavior supports only wdWord8ListBehavior; web-oriented and Word 2002 list behavior are unsupported.',
         );
       }
-      _emitWord(format.range, 'listDefault', <String, Object?>{
-        'numbered': member.token.lower == 'applynumberdefault',
-      }, member.token);
+      final outline = member.token.lower == 'applyoutlinenumberdefault';
+      _emitWord(
+        format.range,
+        outline ? 'listOutlineDefault' : 'listDefault',
+        <String, Object?>{
+          if (!outline) 'numbered': member.token.lower == 'applynumberdefault',
+        },
+        member.token,
+      );
     }
   }
 
@@ -5405,6 +5429,19 @@ class _Evaluator {
     Object value,
     _Token token,
   ) {
+    if (receiver is _WordListFormat) {
+      final level = _integer(value, token);
+      if (level < 1 || level > 9) {
+        context.type(
+          token,
+          'ListLevelNumber requires an exact integer in 1..9.',
+        );
+      }
+      _emitWord(receiver.range, 'listLevel', <String, Object?>{
+        'level': level - 1,
+      }, token);
+      return;
+    }
     if (receiver is _WordRange) {
       final index = _integer(value, token);
       if (index < 0 || index >= _wordHighlights.length) {
