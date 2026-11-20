@@ -1,0 +1,93 @@
+{
+  "createdAt": "2026-11-20T04:37:34.234665+00:00",
+  "sourceCheckpoint": "50fb2ded700ffd765c8379c7757cbd8f298fc160",
+  "sourceTree": "5c8143c91a0b855e4cc804b5c46f236df13d6a2a",
+  "reconciledMain": "f9128aba7ace7f981746b7282d463cc25a1e6d87",
+  "noProductionChangeSinceFinalPortableSource": true,
+  "portable": {
+    "inputCount": 945,
+    "differences": [
+      {
+        "path": ".github/workflows/office-macros.yml",
+        "qualifiedSha256": "84ddf9204bf9681d2aebade8a9c2d382c2766e910acf44ca988ff1c5a20b0081",
+        "currentSha256": "1de0c0bbc9fe51717c18a5e22dec90263b54b0324551bf55fbc7811e7edf2c7c"
+      }
+    ],
+    "workflowDelta": "Only adds the separately qualified Word guard test; portable commands unchanged."
+  },
+  "wholeEngineAnalysis": {
+    "inputCount": 2315,
+    "differences": []
+  },
+  "word": {
+    "inputCount": 918,
+    "differences": [],
+    "originalFullInputCount": 6225,
+    "scope": "Repository subset rechecked; original full runtime/package receipt remains unchanged and archived."
+  },
+  "presentation": {
+    "connector-engine-final": {
+      "inputCount": 28,
+      "differences": []
+    },
+    "connector-editor-final": {
+      "inputCount": 28,
+      "differences": []
+    },
+    "connector-analysis-final": {
+      "inputCount": 28,
+      "differences": []
+    },
+    "connector-format-final": {
+      "inputCount": 28,
+      "differences": []
+    }
+  },
+  "macroImportedInputs": {
+    "inputCount": 432,
+    "differences": [
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_revision.dart",
+        "qualifiedSha256": "9153dbdcedc4efd661d23bca9476db7d2bbbabbb2038849c37ced835c82937ca",
+        "currentSha256": "6c18298af04cafa24fd8ba67825664dcec392d704c6306a03eac51a98e05e5ee"
+      }
+    ],
+    "laterDeltaQualification": "Fresh 34-case Word/native gate, final whole-engine analysis, all six portable programs and 69-case VM/JS corpus."
+  },
+  "originalDarkTestByteIdentical": true,
+  "keyFiles": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": {
+      "sha256": "a220206dd7fe42e60a0b0f0be6a4e8adfc19571e095f7bd75b11c8683056a914",
+      "gitBlob": "961aefdb604e8f5db36deb69aa7b731e7b947710"
+    },
+    "packages/quds_office_engine/test/fixtures/vba_conformance/string_intrinsics_v1.json": {
+      "sha256": "a1f82c1931e78212fe9beddb47e5fcca098ffa09c133e91ab8d3819d268f9151",
+      "gitBlob": "a01f3ad9b9f6356adf3a1c3526a298461be19686"
+    },
+    "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart": {
+      "sha256": "80ff807f42866a4fa091869e3535699706a6efb3b8d63fc89adcc6690268c620",
+      "gitBlob": "b2f7cd85c71cb51a7e90d8a479f6846a4c6a2058"
+    },
+    "packages/quds_office_engine/test/office_vba_string_intrinsics_integration_test.dart": {
+      "sha256": "197f639911a80b69c8b5e1d423ac91d6e3af383df717a212e0cb0b19bfade813",
+      "gitBlob": "4e1174a95476287196a9da264fa66f6069b1eaac"
+    },
+    "packages/quds_office_engine/test/office_vba_conformance_test.dart": {
+      "sha256": "0aa628264bdefdd162ce6047bad4b3faa867fa9b468bc8861882fb93a7c42394",
+      "gitBlob": "de4e708b65135c420655771484b3cab2d954386b"
+    },
+    "packages/quds_office_engine/test/office_macro_word_revision_guard_test.dart": {
+      "sha256": "ca6e36618c597818637f9d1d852387361abff9a6659326424a3089350ec19af8",
+      "gitBlob": "0780d6dfdca7ec5f30c076e613bf5ed23c1c7e20"
+    },
+    ".github/workflows/office-macros.yml": {
+      "sha256": "1de0c0bbc9fe51717c18a5e22dec90263b54b0324551bf55fbc7811e7edf2c7c",
+      "gitBlob": "bf9e461810e31dfd652d72405c3a7627c8f49d4c"
+    },
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": {
+      "sha256": "367c06ea0376db58561fb51b326b45cc3259a851d8701c44350ce16e8ad55721",
+      "gitBlob": "0a0fe244c4e71bd6bd1a31cea5e2d6bcbe985304"
+    }
+  },
+  "note": "Qualification is bound by exact file bytes. Evidence/publication-only descendants need no source rerun. No GitHub Actions queried or awaited."
+}
