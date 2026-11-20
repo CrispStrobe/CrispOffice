@@ -62,3 +62,19 @@ Native semantics references:
 [run-property history](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.runpropertieschange),
 [paragraph-property history](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.paragraphpropertieschange),
 and [move source runs and paired ranges](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.movefromrun).
+
+## Integrated preview
+
+Reconciled incoming main through `096ddbef`, including the bundled macOS runtime
+qualification, mail and Zotero work. The only overlap with the tested Word source
+was an unrelated Slide controller background update. The review implementation
+is published as `a452efda`. Its separate **CrispOffice Review Preview** passed a
+release arm64 build, deep signature verification and a 20-second startup. The
+five native libraries and notices are bundled, with the spaCy digest sealed in
+the app. The runtime was rebuilt with the incoming reproducible-prefix mapping.
+
+The explicit native worker gate passed German/English linguistic analysis and
+NER, plus the German grammar smoke `schläft => schlafen`, against that preview.
+It used isolated test model data and did not download executable packages.
+See [preview receipt](preview-acceptance.json), [native gate](preview-native-gate.txt)
+and [analysis](analysis.txt). Existing app windows were not replaced.
