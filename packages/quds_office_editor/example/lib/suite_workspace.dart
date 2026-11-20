@@ -234,7 +234,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         _arabic ? 'تشغيل ${shape.mediaName}' : 'Playing ${shape.mediaName}',
       );
     };
-    _word.addListener(_rebuild);
+    _word.addListener(_rebuildWord);
+    // Proofing results and settings reach panes and comment canvases built
+    // here; they notify rarely, unlike edits (see _rebuildWord).
+    _wordProofing = _word.proofing..addListener(_rebuild);
     _sheet.addListener(_rebuild);
     _slides.addListener(_rebuild);
     _pdf.addListener(_rebuild);
@@ -243,7 +246,123 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     });
   }
 
+  /// Word notifies on every keystroke and caret move. Most of the chrome
+  /// (ribbon, panes, title) only shows formatting, selection and history
+  /// state, so the workspace rebuilds when [_wordChromeKey] changes; the
+  /// status line listens to the controller itself. Anything not in the key
+  /// is refreshed by one trailing rebuild after notifications pause.
+  void _rebuildWord() {
+    if (_app != SuiteApp.word) {
+      _rebuild();
+      return;
+    }
+    final List<Object?> key = _wordChromeKey();
+    if (_lastWordChromeKey != null && listEquals(key, _lastWordChromeKey)) {
+      _rebuildSideEffects();
+      _wordChromeTimer?.cancel();
+      _wordChromeTimer = Timer(_wordChromeSettle, () {
+        _wordChromeTimer = null;
+        _rebuild();
+      });
+      return;
+    }
+    _wordChromeTimer?.cancel();
+    _wordChromeTimer = null;
+    _rebuild();
+  }
+
+  static const Duration _wordChromeSettle = Duration(milliseconds: 400);
+  Timer? _wordChromeTimer;
+  List<Object?>? _lastWordChromeKey;
+  WordProofingSession? _wordProofing;
+
+  /// Everything the Word chrome shows that typing can change.
+  List<Object?> _wordChromeKey() {
+    final WordEditorController w = _word;
+    final WmlRunProps run = w.activeRunProps;
+    final List<WmlParagraph> paras = w.isEditingHeaderFooter
+        ? const <WmlParagraph>[]
+        : w.document.paragraphs.toList();
+    final int at = w.documentCaret.paragraphIndex;
+    final WmlParagraph? para = at >= 0 && at < paras.length ? paras[at] : null;
+    final WmlParagraphProps? pp = para?.properties;
+    return <Object?>[
+      w.document,
+      w.config,
+      w.canUndo,
+      w.canRedo,
+      w.isDirty,
+      w.pageCount,
+      w.visiblePageIndex,
+      at,
+      w.documentCaret.isCollapsed,
+      w.isEditingComment,
+      w.isEditingHeaderFooter,
+      w.isEditingHeader,
+      w.isEditingFooter,
+      w.editingHeaderFooterVariant,
+      w.editingSectionIndex,
+      w.selectedCommentId,
+      w.selectedVisual,
+      w.selectedEquation,
+      w.selectedRevision,
+      // Not selectedProofingIssue: validating it captures the document for
+      // proofing on every keystroke.
+      w.chosenProofingIssue,
+      w.tableAtCaret,
+      w.sectionAtCaret,
+      w.reviewPaneVisible,
+      w.reviewPaneTab,
+      w.pictureCropMode,
+      w.noteEditingTarget == null,
+      w.proofing.draftConfigurationKey,
+      w.document.trackRevisions,
+      run.styleId,
+      run.bold,
+      run.italic,
+      run.underline,
+      run.strike,
+      run.smallCaps,
+      run.vertAlign,
+      run.fontSizeHalfPoints,
+      run.asciiFont,
+      run.csFont,
+      run.color,
+      run.highlight,
+      run.proofingLanguage,
+      pp?.styleId,
+      pp?.headingLevel,
+      pp?.justification,
+      pp?.listLabel,
+      pp?.numId,
+      pp?.rightToLeft,
+      pp?.indent.left,
+      pp?.indent.right,
+      pp?.indent.firstLine,
+      pp?.indent.hanging,
+      pp?.spacingBefore,
+      pp?.spacingAfter,
+      pp?.lineSpacing,
+      pp?.lineSpacingRule,
+      pp?.shadingFill,
+      pp?.borderColor,
+      pp?.dropCapLines,
+      pp?.proofingLanguage,
+      para == null ? null : PaintRunText.looksRtl(para.text),
+    ];
+  }
+
+  void _rebuildSideEffects() {
+    _commentReviewTimer?.cancel();
+    if (_commentContextMenu != null &&
+        !(_commentContextIsCurrent?.call() ?? false)) {
+      _dismissCommentContext();
+    }
+    _syncCommentReplyDrafts();
+  }
+
   void _rebuild() {
+    if (_app == SuiteApp.word) _lastWordChromeKey = _wordChromeKey();
     _commentReviewTimer?.cancel();
     if (_commentContextMenu != null &&
         !(_commentContextIsCurrent?.call() ?? false)) {
@@ -397,8 +516,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     studioArabicMorphHost.removeListener(_syncArabicMorph);
     studioLanguageIdHost.removeListener(_syncLanguageId);
     _spacyGrammarEpoch++;
+    _wordChromeTimer?.cancel();
+    _wordProofing?.removeListener(_rebuild);
     _word
-      ..removeListener(_rebuild)
+      ..removeListener(_rebuildWord)
       ..dispose();
     _sheet
       ..removeListener(_rebuild)
@@ -11675,43 +11796,44 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   static const Duration _wordFooterDelay = Duration(milliseconds: 700);
 
+  String _statusDetail() => switch (_app) {
+    SuiteApp.word =>
+      '${_t('Page', StudioStrings.de('Page'), 'صفحة')} ${_word.visiblePageIndex + 1}'
+          ' ${_t('of', StudioStrings.de('of'), 'من')} ${_word.pageCount}'
+          ' · ${_t('Paragraph', StudioStrings.de('Paragraph'), 'فقرة')} ${_word.documentCaret.paragraphIndex + 1}'
+          ' · ${_wordCounts.paragraphs} '
+          '${_t('paragraphs', StudioStrings.de('paragraphs'), 'فقرات')}'
+          ' · ${_wordCounts.words} ${_t('words', StudioStrings.de('words'), 'كلمة')}'
+          '${_word.selectedVisual != null ? ' · ${_word.selectedVisual!.visual.title}' : ''}'
+          '${_wordCounts.comments == 0 ? '' : ' · ${_wordCounts.comments} ${_t('comments', StudioStrings.de('comments'), 'تعليقات')}'}'
+          '${_word.isDirty ? ' · •' : ''}',
+    SuiteApp.excel =>
+      '${_sheet.sheet.name}!${_sheet.selectionAddress}'
+          '${_sheet.cellEditor.editing ? (_t(' · editing cell', StudioStrings.de(' · editing cell'), ' · تحرير الخلية')) : ''}'
+          ' · ${_sheet.workbook.sheets.length} '
+          '${_t('sheets', StudioStrings.de('sheets'), 'أوراق')}'
+          '${_sheet.selectedDrawing != null ? ' · ${_sheet.selectedDrawing!.visual.title}' : ''}'
+          '${_sheet.isDirty ? ' · •' : ''}',
+    SuiteApp.powerpoint =>
+      '${_t('Slide', StudioStrings.de('Slide'), 'شريحة')} ${_slides.activeSlideIndex + 1}'
+          '/${_slides.presentation.slides.length}'
+          '${_slides.isPresenting ? (_t(' · slideshow · Esc to exit', StudioStrings.de(' · slideshow · Esc to exit'), ' · عرض الشرائح · Esc للخروج')) : ''}'
+          '${!_slides.slide.transition.isNone ? ' · ${PmlMotionCatalog.transitionLabel(_slides.slide.transition.kind, arabic: _arabic)}' : ''}'
+          '${_slides.slide.animations.isNotEmpty ? ' · ${_slides.slide.animations.length} ${_t('fx', StudioStrings.de('fx'), 'حركة')}' : ''}'
+          '${_slides.selected != null ? ' · ${_slides.selected!.name}' : ''}'
+          '${_slides.editingText ? (_t(' · editing text', StudioStrings.de(' · editing text'), ' · تحرير النص')) : ''}'
+          '${_slides.slide.hidden ? (_t(' · hidden', StudioStrings.de(' · hidden'), ' · مخفية')) : ''}'
+          '${_slides.isDirty ? ' · •' : ''}',
+    SuiteApp.pdf =>
+      '${_t('Page', StudioStrings.de('Page'), 'صفحة')} ${_pdf.pageIndex + 1}/${_pdf.pageCount}'
+          '${_pdfNightMode ? (_t(' · night', StudioStrings.de(' · night'), ' · ليلي')) : ''}'
+          '${_pdfSwipeHorizontal ? (_t(' · horizontal', StudioStrings.de(' · horizontal'), ' · أفقي')) : ''}'
+          '${_pdfPageSnap ? (_t(' · snap', StudioStrings.de(' · snap'), ' · محاذاة')) : ''}'
+          '${_pdfEvents.last.isEmpty ? '' : ' · ${_pdfEvents.last}'}'
+          '${_pdf.isDirty ? ' · •' : ''}',
+  };
+
   Widget _statusBar() {
-    final String detail = switch (_app) {
-      SuiteApp.word =>
-        '${_t('Page', StudioStrings.de('Page'), 'صفحة')} ${_word.visiblePageIndex + 1}'
-            ' ${_t('of', StudioStrings.de('of'), 'من')} ${_word.pageCount}'
-            ' · ${_t('Paragraph', StudioStrings.de('Paragraph'), 'فقرة')} ${_word.documentCaret.paragraphIndex + 1}'
-            ' · ${_wordCounts.paragraphs} '
-            '${_t('paragraphs', StudioStrings.de('paragraphs'), 'فقرات')}'
-            ' · ${_wordCounts.words} ${_t('words', StudioStrings.de('words'), 'كلمة')}'
-            '${_word.selectedVisual != null ? ' · ${_word.selectedVisual!.visual.title}' : ''}'
-            '${_wordCounts.comments == 0 ? '' : ' · ${_wordCounts.comments} ${_t('comments', StudioStrings.de('comments'), 'تعليقات')}'}'
-            '${_word.isDirty ? ' · •' : ''}',
-      SuiteApp.excel =>
-        '${_sheet.sheet.name}!${_sheet.selectionAddress}'
-            '${_sheet.cellEditor.editing ? (_t(' · editing cell', StudioStrings.de(' · editing cell'), ' · تحرير الخلية')) : ''}'
-            ' · ${_sheet.workbook.sheets.length} '
-            '${_t('sheets', StudioStrings.de('sheets'), 'أوراق')}'
-            '${_sheet.selectedDrawing != null ? ' · ${_sheet.selectedDrawing!.visual.title}' : ''}'
-            '${_sheet.isDirty ? ' · •' : ''}',
-      SuiteApp.powerpoint =>
-        '${_t('Slide', StudioStrings.de('Slide'), 'شريحة')} ${_slides.activeSlideIndex + 1}'
-            '/${_slides.presentation.slides.length}'
-            '${_slides.isPresenting ? (_t(' · slideshow · Esc to exit', StudioStrings.de(' · slideshow · Esc to exit'), ' · عرض الشرائح · Esc للخروج')) : ''}'
-            '${!_slides.slide.transition.isNone ? ' · ${PmlMotionCatalog.transitionLabel(_slides.slide.transition.kind, arabic: _arabic)}' : ''}'
-            '${_slides.slide.animations.isNotEmpty ? ' · ${_slides.slide.animations.length} ${_t('fx', StudioStrings.de('fx'), 'حركة')}' : ''}'
-            '${_slides.selected != null ? ' · ${_slides.selected!.name}' : ''}'
-            '${_slides.editingText ? (_t(' · editing text', StudioStrings.de(' · editing text'), ' · تحرير النص')) : ''}'
-            '${_slides.slide.hidden ? (_t(' · hidden', StudioStrings.de(' · hidden'), ' · مخفية')) : ''}'
-            '${_slides.isDirty ? ' · •' : ''}',
-      SuiteApp.pdf =>
-        '${_t('Page', StudioStrings.de('Page'), 'صفحة')} ${_pdf.pageIndex + 1}/${_pdf.pageCount}'
-            '${_pdfNightMode ? (_t(' · night', StudioStrings.de(' · night'), ' · ليلي')) : ''}'
-            '${_pdfSwipeHorizontal ? (_t(' · horizontal', StudioStrings.de(' · horizontal'), ' · أفقي')) : ''}'
-            '${_pdfPageSnap ? (_t(' · snap', StudioStrings.de(' · snap'), ' · محاذاة')) : ''}'
-            '${_pdfEvents.last.isEmpty ? '' : ' · ${_pdfEvents.last}'}'
-            '${_pdf.isDirty ? ' · •' : ''}',
-    };
     return Material(
       color: _appAccent,
       child: SizedBox(
@@ -11726,18 +11848,23 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: Text(
-                        _opening
-                            ? _openStatusLabel
-                            : (_isSaving
-                                  ? _saveStatusLabel
-                                  : '$_modeLabel · $detail'),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
+                      // Caret paragraph and page change while typing without
+                      // a workspace rebuild (see _rebuildWord).
+                      child: ListenableBuilder(
+                        listenable: _word,
+                        builder: (BuildContext context, Widget? _) => Text(
+                          _opening
+                              ? _openStatusLabel
+                              : (_isSaving
+                                    ? _saveStatusLabel
+                                    : '$_modeLabel · ${_statusDetail()}'),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
                       ),
                     ),
                     if (_app == SuiteApp.word)
