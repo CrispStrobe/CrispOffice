@@ -1,0 +1,91 @@
+{
+  "archive": "audit-initial.tar.gz",
+  "sha256": "878042783844ed6a925cda0a6210b9a05847fa9bd6a2fa1e04a10c56a1b9ff68",
+  "files": [
+    {
+      "path": "PPTX_REPAIR.md",
+      "bytes": 3348,
+      "sha256": "93f1cc159d14fec271705bc1203054419ebb83165e47bb54f4fa8ca3584c820a"
+    },
+    {
+      "path": "RECONCILIATION.md",
+      "bytes": 5596,
+      "sha256": "ccb0baba27111bcecf1a760137998e6d156d6bec4f29a63d62dd62197523d3e9"
+    },
+    {
+      "path": "build_variant_corpus.py",
+      "bytes": 29154,
+      "sha256": "bf1fce33667ff2b558252acab6fba543e57f26b6f69b5365418d39c4455e1595"
+    },
+    {
+      "path": "classify_inventory.py",
+      "bytes": 4101,
+      "sha256": "cb5b0be5b668d84960e3c9309d1a8db5b11779186d469c39e004a1adb675f10e"
+    },
+    {
+      "path": "combined_merge_simulation.json",
+      "bytes": 1758,
+      "sha256": "ee74b1057670be2147446287351e77e11b70fba7d5f2f9b043e44ae737984b4d"
+    },
+    {
+      "path": "final-refresh-classification.json",
+      "bytes": 97023,
+      "sha256": "6f626d759c4323cce7f83918864039c1a2dfc909c960bc19489839be85a8c1ad"
+    },
+    {
+      "path": "final-refresh-fetch.json",
+      "bytes": 430,
+      "sha256": "37ba7ca0037fba46cba74ba6a0d4ef72ebd17c22c54264a5ca91dd14ff1906f8"
+    },
+    {
+      "path": "final-refresh-mail-links.json",
+      "bytes": 28491,
+      "sha256": "bbf1cb470889931425a439f2c6a5b0b5a4f3f413e0feec9de08d95196158f00a"
+    },
+    {
+      "path": "final-refresh-remote-inventory.json",
+      "bytes": 65769,
+      "sha256": "1fdfb4db8cc8670f61dd4515075d21ab08fb23982bd8ce76a9d453f535839c0b"
+    },
+    {
+      "path": "incoming_validation_plan.json",
+      "bytes": 5790,
+      "sha256": "319232977946fce214fbc22d093975a8db918aa2be0198dc02f08a7e1132fb6f"
+    },
+    {
+      "path": "initial_merge_analysis.json",
+      "bytes": 1505,
+      "sha256": "f41a2f637afd647970853c6837f8bb8f90038bf9d3fefa83cc1c9a892f11af53"
+    },
+    {
+      "path": "initial_remote_classification.json",
+      "bytes": 91001,
+      "sha256": "a077d297e5bfee7e3221451208a084c222e817872550102efce75c2cbe5628cf"
+    },
+    {
+      "path": "initial_remote_inventory.json",
+      "bytes": 68156,
+      "sha256": "16cf8283dbf184ebf0801a9a843737425fb0ad7b617abac9b9e65e4377854ccd"
+    },
+    {
+      "path": "pptx_merge_resolution.json",
+      "bytes": 3005,
+      "sha256": "53fa311a5640bd0f9a3fc3f1e4a84b73584c566523a0bb27b2d95221f161b272"
+    },
+    {
+      "path": "upstream_inventory.json",
+      "bytes": 411,
+      "sha256": "008dd210ae1a5cddf6aad0abb7a12e5ad9f264a54147ecdfa9747f969cfa9862"
+    },
+    {
+      "path": "variant-contract-sources.md",
+      "bytes": 4691,
+      "sha256": "69d53499604fc3f15610f02c4a91bca29de64898a992f536606051f99140b73a"
+    },
+    {
+      "path": "variant-corpus-first-run.log",
+      "bytes": 15957,
+      "sha256": "4a7f1bcb0e586f9c5590878e4b962de207ffd87dfc84db93661c5dac490d632f"
+    }
+  ]
+}

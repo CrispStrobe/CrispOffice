@@ -661,6 +661,35 @@ void main() {
       }
     });
 
+    test('gradient fills retain stops and angle', () {
+      final PmlPresentation deck = _deck(<String>[
+        _sld(
+          '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Gradient"/>'
+          '<p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr>'
+          '${_xfrm(0, 0, 914400, 914400)}'
+          '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>'
+          '<a:gradFill><a:gsLst>'
+          '<a:gs pos="0"><a:srgbClr val="112233"/></a:gs>'
+          '<a:gs pos="100000"><a:srgbClr val="AABBCC"/></a:gs>'
+          '</a:gsLst><a:lin ang="5400000"/></a:gradFill>'
+          '</p:spPr></p:sp>',
+        ),
+      ]);
+      final PmlShape shape = deck.slides.single.shapes.single;
+      expect(shape.gradient?.stops, hasLength(2));
+      expect(shape.gradient!.stops.first.color, '112233');
+      expect(shape.gradient!.stops.last.color, 'AABBCC');
+      expect(shape.gradient!.angleDegrees, 90);
+      expect(shape.fillColor, '112233');
+      final PmlPresentation reopened = SlideDeserializer().readBytes(
+        SlideSerializer().writeBytes(deck),
+      );
+      expect(
+        reopened.slides.single.shapes.single.gradient?.stops,
+        hasLength(2),
+      );
+    });
+
     test(
       'authored slide image replaces inherited images behind decorations',
       () {
@@ -922,7 +951,7 @@ void main() {
     });
 
     test(
-      'gradient rendering follows slide layout and secondary master scope',
+      'gradient fallback follows slide layout and secondary master scope',
       () {
         final PmlPresentation masters = _deck(
           <String>[_sld(''), _sld('')],
@@ -943,18 +972,20 @@ void main() {
           layoutBackground: _gradientBackground('ABCDEF', 'FEDCBA'),
         );
         expect(overrides.slides.single.background, '123456');
+        // Gradients now have a selected paint snapshot, while the unrelated
+        // master picture must still be absent from this explicit override.
         expect(overrides.slides.single.backgroundShapes, hasLength(1));
         expect(
-          overrides
-              .slides
-              .single
-              .backgroundGradient
-              ?.gradient
-              ?.stops
-              .first
-              .color,
-          '123456',
+          overrides.slides.single.backgroundShapes.single.isBackgroundGradient,
+          isTrue,
         );
+        expect(
+          overrides.slides.single.backgroundGradient!.gradient!.stops.map(
+            (stop) => stop.color,
+          ),
+          ['123456', '654321'],
+        );
+        expect(overrides.slides.single.backgroundPicture, isNull);
         expect(overrides.slides.single.inheritsMasterBackground, isFalse);
         final PmlPresentation layout = _deck(
           <String>[_sld('')],
@@ -965,9 +996,16 @@ void main() {
         expect(layout.slides.single.background, 'ABCDEF');
         expect(layout.slides.single.backgroundShapes, hasLength(1));
         expect(
-          layout.slides.single.backgroundGradient?.gradient?.stops.first.color,
-          'ABCDEF',
+          layout.slides.single.backgroundShapes.single.isBackgroundGradient,
+          isTrue,
         );
+        expect(
+          layout.slides.single.backgroundGradient!.gradient!.stops.map(
+            (stop) => stop.color,
+          ),
+          ['ABCDEF', 'FEDCBA'],
+        );
+        expect(layout.slides.single.backgroundPicture, isNull);
         expect(layout.slides.single.inheritsMasterBackground, isFalse);
       },
     );
@@ -1178,35 +1216,6 @@ void main() {
       },
     );
 
-    test('gradient fills retain stops and angle', () {
-      final PmlPresentation deck = _deck(<String>[
-        _sld(
-          '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Gradient"/>'
-          '<p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr>'
-          '${_xfrm(0, 0, 914400, 914400)}'
-          '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>'
-          '<a:gradFill><a:gsLst>'
-          '<a:gs pos="0"><a:srgbClr val="112233"/></a:gs>'
-          '<a:gs pos="100000"><a:srgbClr val="AABBCC"/></a:gs>'
-          '</a:gsLst><a:lin ang="5400000"/></a:gradFill>'
-          '</p:spPr></p:sp>',
-        ),
-      ]);
-      final PmlShape shape = deck.slides.single.shapes.single;
-      expect(shape.gradient?.stops, hasLength(2));
-      expect(shape.gradient!.stops.first.color, '112233');
-      expect(shape.gradient!.stops.last.color, 'AABBCC');
-      expect(shape.gradient!.angleDegrees, 90);
-      expect(shape.fillColor, '112233');
-      final PmlPresentation reopened = SlideDeserializer().readBytes(
-        SlideSerializer().writeBytes(deck),
-      );
-      expect(
-        reopened.slides.single.shapes.single.gradient?.stops,
-        hasLength(2),
-      );
-    });
-
     test('master background resolves theme lumMod', () {
       final PmlPresentation deck = _deck(
         <String>[_sld(_textBox(2, 'Slide'))],
@@ -1297,6 +1306,61 @@ void main() {
           copiedSecondary.resolveBackground(deck.master.background),
           '00FF00',
         );
+      },
+    );
+
+    test(
+      'secondary master paper is consistent through same-color native saves',
+      () {
+        final PmlPresentation deck = _deck(
+          <String>[
+            _sld(''),
+            _sld(''),
+            _sld('', background: _solidBackground('FFFFFF')),
+          ],
+          masterBackground: _solidBackground('AABBCC'),
+          secondaryMasterBackground: _solidBackground('112233'),
+        );
+        deck.slides.add(deck.slides[1].copy(id: 999));
+
+        void expectPaper(PmlPresentation candidate, List<String> expected) {
+          expect(
+            candidate.slides.map(
+              (slide) => slide
+                  .resolveBackground(candidate.master.background)
+                  .toUpperCase(),
+            ),
+            expected,
+          );
+          final PdfFile pdf = PdfFile.open(
+            OfficePdfExport.presentation(candidate),
+          );
+          for (var page = 0; page < candidate.slides.length; page++) {
+            expect(
+              pdf
+                  .displayList(page)
+                  .ops
+                  .whereType<PdfFillPath>()
+                  .map((op) => op.color),
+              contains(0xFF000000 | int.parse(expected[page], radix: 16)),
+              reason: 'Native paper on PDF page $page',
+            );
+          }
+        }
+
+        for (final (assignment, expected) in [
+          ('aabbcc', <String>['AABBCC', '112233', 'FFFFFF', '112233']),
+          ('FF0000', <String>['FF0000', 'FF0000', 'FFFFFF', 'FF0000']),
+          ('aabbcc', <String>['AABBCC', 'AABBCC', 'FFFFFF', 'AABBCC']),
+        ]) {
+          deck.master.background = assignment;
+          expectPaper(deck, expected);
+          final PmlPresentation reopened = SlideDeserializer().readBytes(
+            SlideSerializer().writeBytes(deck),
+          );
+          expectPaper(deck, expected);
+          expectPaper(reopened, expected);
+        }
       },
     );
 

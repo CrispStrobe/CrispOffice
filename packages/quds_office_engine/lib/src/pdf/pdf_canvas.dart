@@ -34,6 +34,7 @@ class PdfCanvas {
     if (!alpha.isFinite) {
       throw ArgumentError.value(alpha, 'alpha', 'Must be finite');
     }
+    endText();
     final double value = alpha.clamp(0.0, 1.0);
     final int key = (value * 1000).round();
     _alphaStates.add('GS$key');

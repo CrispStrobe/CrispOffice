@@ -29,6 +29,11 @@ is unchanged. This follows the same protocol as the
   `tool/build.py` already strips it, so the APK carries exactly these bytes.
   A build that strips or rewrites the file again has a different digest,
   and grammar is refused for it.
+- **The build host matters.** The same pins built with the Linux-hosted NDK
+  on GitHub gave a different x86_64 file (`415eb360…`) from the
+  macOS-hosted receipt (`0372f77d…`). So the qualified arm64 bytes must be
+  taken from the recorded macOS-hosted build and not rebuilt on CI. The
+  workflow's `expected_sha256` input refuses any other bytes.
 - **Reproduced byte-exact.** A fresh `tool/build.py --android --android-abi
   arm64-v8a --ios` from the pinned CrispEmbed `45b05770` / PCRE2 `b2bd4254`
   with NDK 28.2 gave `ed730f62…` again. It also gave the receipt's iOS
@@ -168,7 +173,8 @@ original Linux results with 0 differences. This also checks the refactor of
 | macOS controls (W6, W7, v2) | Local Mac, `dart run` | `ccc96620…` | W6/W7 0 differences; v2 exactly the 7 source differences |
 | Mobile gate with the new grammar step (`mobile_native_proofing_test.dart`) | Local arm64 emulator | `ed730f62…` | **not completed**. The Mac was overloaded (load about 60–80) and the owner moved emulator work off the machine, so the Gradle build was stopped before the test ran. The earlier gate in [native-proofing-mobile-20261120](../native-proofing-mobile-20261120/README.md) passed on these bytes, but without the grammar step. |
 | `/dev/kvm` probe | GitHub `ubuntu-24.04-arm` ([run 44704041243](https://github.com/CrispStrobe/quds_office_suite/actions/runs/44704041243)) | — | no `/dev/kvm` and no Android SDK, so no arm64 emulator on GitHub-hosted runners |
-| Mobile gate, workflow [`android-spacy-grammar.yml`](../../../.github/workflows/android-spacy-grammar.yml) | GitHub `ubuntu-latest`, x86_64 emulator with KVM | the x86_64 library built there | see the PR. It covers the x86_64 bytes only, and no claim moves between the two ABIs. |
+| Mobile gate, workflow [`android-spacy-grammar.yml`](../../../.github/workflows/android-spacy-grammar.yml) (`abi=x86_64 replay=false gate=true`) | GitHub `ubuntu-latest`, API 36 x86_64 emulator with KVM ([run 44708075168](https://github.com/CrispStrobe/quds_office_suite/actions/runs/44708075168)) | x86_64 library built there, `415eb360…` | **7/7 passed** ([ci-x86_64-gate.json](ci-x86_64-gate.json)). Development parity is exact (113 tokens, 22 sentences, 2,571 fields). The new grammar step took the refusal path: the build is unrecorded, Studio does not offer the option and enabling it throws. This is **no claim**: these are x86_64 bytes, and the Linux-hosted NDK gives `415eb360…` where the macOS-hosted receipt gives `0372f77d…`, so the bytes depend on the build host. |
+| First CI attempt ([run 44704735862](https://github.com/CrispStrobe/quds_office_suite/actions/runs/44704735862)) | GitHub `ubuntu-latest` | — | failed before the emulator: the Harper Rust target went into the wrong toolchain. Fixed in the workflow. |
 
 ## iOS
 

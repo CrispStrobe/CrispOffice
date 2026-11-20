@@ -55,7 +55,7 @@ abstract final class PaintRunText {
     // Ahem in tests). Keep the document's requested face in its model, but
     // paint an explicit bundled fallback until the host registers real bytes.
     if (OfficeHostFonts.registeredFamily(requested) != null) {
-      return requested;
+      return OfficeHostFonts.paintFamily(requested);
     }
     return looksRtl(text) ? 'Noto Naskh Arabic' : 'Liberation Sans';
   }

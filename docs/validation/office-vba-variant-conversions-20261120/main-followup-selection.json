@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "purpose": "Focused follow-up after preserving main PR231 and repairing Arabic lifecycle defects. This is a separate source-bound run; it does not relabel the accepted2762-case CP22 run as execution on the newer source. Overlapping macro and Studio cases are not added into a unique grand total.",
+  "capturedMain": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+  "cohorts": {
+    "arabic-morph-lifecycle": {
+      "package": "packages/quds_arabic_morph",
+      "runner": "dart",
+      "tests": [
+        "test/arabic_morph_unit_test.dart",
+        "test/arabic_morph_lifecycle_test.dart"
+      ]
+    },
+    "arabic-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/proofing/arabic_grammar_context_test.dart",
+        "test/proofing/arabic_grammar_rules_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart",
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/office_proofing_test.dart",
+        "test/proofing/office_proofing_merge_test.dart"
+      ]
+    },
+    "arabic-studio": {
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_arabic_morph_setup_test.dart",
+        "test/studio_hunspell_setup_test.dart",
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_layout_theme_test.dart",
+        "test/studio_arabic_morph_web_lifecycle_test.dart"
+      ]
+    },
+    "macro-semantic-followup": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/office_vba_variant_conversions_test.dart",
+        "test/office_vba_variant_conformance_test.dart",
+        "test/office_vba_string_intrinsics_test.dart",
+        "test/office_vba_conformance_test.dart"
+      ]
+    }
+  },
+  "caveats": [
+    "No hosted CI, workflow, check or status endpoints queried or awaited.",
+    "Fresh native or Wasm grammar model execution is not claimed; the immutable ABI3 primary source pins are verified separately. Environment-gated native/live-download/e2e files are outside this selection.",
+    "Chromium cannot start under managed socket permissions. Controlled worker transfer/lifecycle execution and production JavaScript compilation are reported separately, not as browser persistence execution.",
+    "Fresh complete portable macro replay and strict source analysis supplement the exact macro/PPTX implementation identity carried forward from CP22."
+  ]
+}

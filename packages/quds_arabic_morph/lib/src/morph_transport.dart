@@ -17,6 +17,10 @@ abstract interface class ArabicMorphTransport {
   /// (CrispEmbed ABI 3); completes with the model's `info` object.
   Future<Map<String, Object?>> openDisambiguator(MorphDatabase model);
 
+  /// Releases the context model while keeping the open database and worker.
+  /// Calling this without a loaded model is harmless.
+  Future<void> unloadDisambiguator();
+
   /// Readings of every token of [sentences] in order (one list per
   /// sentence), ranked in context by the open model.
   Future<List<List<ArabicContextReading>>> disambiguate(

@@ -97,12 +97,12 @@ abstract final class StudioFiles {
   }
 
   /// Strict read-only input validation: a spreadsheet or damaged package must
-  /// never become an empty Word document and report a misleading comparison.
+  /// never become an empty Writer document and report a misleading comparison.
   static WmlDocument decodeComparisonDocument(Uint8List bytes) {
     final package = OpcPackage.openBytes(bytes);
     if (package.kind != OpcPackageKind.word) {
       throw const FormatException(
-        'Choose a Word DOCX, DOCM, DOTX or DOTM document.',
+        'Choose a Writer DOCX, DOCM, DOTX or DOTM document.',
       );
     }
     final relationship = package.packageRelationships.firstByType(
@@ -112,7 +112,7 @@ abstract final class StudioFiles {
       package.packageRelationships.resolve(relationship),
     );
     if (mainPart == null) {
-      throw const FormatException('The Word document content is missing.');
+      throw const FormatException('The Writer document content is missing.');
     }
     _validateComparisonXml(mainPart.readText());
     return WordDeserializer().read(package);
@@ -141,20 +141,20 @@ abstract final class StudioFiles {
                     'http://purl.oclc.org/ooxml/wordprocessingml/main',
                   }.contains(reader.namespaceUri)) {
                 throw const FormatException(
-                  'The package must contain one Word document root.',
+                  'The package must contain one Writer document root.',
                 );
               }
               wordNamespace = reader.namespaceUri;
             } else if (depth == 1 && reader.localName == 'body') {
               if (reader.namespaceUri != wordNamespace || ++bodies != 1) {
                 throw const FormatException(
-                  'The Word document must contain one body in its namespace.',
+                  'The Writer document must contain one body in its namespace.',
                 );
               }
             }
             if (reader.prefix.isNotEmpty && reader.namespaceUri.isEmpty) {
               throw const FormatException(
-                'The Word document uses an undeclared XML namespace.',
+                'The Writer document uses an undeclared XML namespace.',
               );
             }
             depth++;
@@ -166,25 +166,25 @@ abstract final class StudioFiles {
             final text = reader.text;
             if (depth == 0 && text.isNotEmpty && !reader.isWhitespace) {
               throw const FormatException(
-                'The Word document contains text outside its root.',
+                'The Writer document contains text outside its root.',
               );
             }
           case XmlEventType.cdata:
             if (depth == 0) {
               throw const FormatException(
-                'The Word document contains content outside its root.',
+                'The Writer document contains content outside its root.',
               );
             }
           case XmlEventType.xmlDeclaration:
             if (declarationSeen || roots != 0) {
               throw const FormatException(
-                'The Word document has a misplaced XML declaration.',
+                'The Writer document has a misplaced XML declaration.',
               );
             }
             declarationSeen = true;
           case XmlEventType.dtd:
             throw const FormatException(
-              'Word comparison does not support XML document type declarations.',
+              'Document comparison does not support XML document type declarations.',
             );
           case XmlEventType.none:
           case XmlEventType.processingInstruction:
@@ -194,11 +194,11 @@ abstract final class StudioFiles {
         }
       }
     } on XmlParseException catch (error) {
-      throw FormatException('The Word document XML is malformed: $error');
+      throw FormatException('The Writer document XML is malformed: $error');
     }
     if (depth != 0 || roots != 1 || bodies != 1) {
       throw const FormatException(
-        'The Word document must contain one complete document and body.',
+        'The Writer document must contain one complete document and body.',
       );
     }
   }
