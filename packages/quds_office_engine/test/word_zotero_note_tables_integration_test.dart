@@ -171,7 +171,7 @@ void main() {
     final start = paragraph.text.indexOf('TARGET');
     final session = _session(document, paragraph, start: start, end: start + 6);
     final original = _fields(session);
-    _start(session, _table('$_one', '$_two'));
+    _start(session, _table(_one, _two));
     final inserted = _convert(session, ['SECOND2', 'FIRST1']);
     _set(session, original.first, 'before', '(Before expanded)');
     _set(session, original.last, 'after', '(After expanded)');
@@ -203,10 +203,7 @@ void main() {
   test('ordinary paragraphs around a table remain outside its cells', () {
     final document = WmlDocument.empty(text: 'BeforeAfter');
     final session = _session(document, document.paragraphs.single, start: 6);
-    _start(
-      session,
-      '<p>Intro</p>' + _table('Cell one', 'Cell two') + '<p>End</p>',
-    );
+    _start(session, '<p>Intro</p>${_table('Cell one', 'Cell two')}<p>End</p>');
     _finish(session);
     final blocks = document.sections.single.blocks;
     expect(blocks.map((b) => b is WmlParagraph ? b.text : 'TABLE'), [
@@ -247,7 +244,7 @@ void main() {
             original,
             start: separator ? 1 : 0,
           );
-          _start(session, _table('$_one', '$_two'), type: type);
+          _start(session, _table(_one, _two), type: type);
           final fields = _convert(session, ['SECOND2', 'FIRST1'], type: type);
           expect(fields.map((f) => f['noteIndex']), [1, 1]);
           _set(session, fields[0], 'two', '(Two)');
@@ -354,7 +351,7 @@ void main() {
         );
         final original = note.paragraphs.single;
         final session = _session(document, original);
-        _start(session, _table('$_one', ''), type: type);
+        _start(session, _table(_one, ''), type: type);
         expect(
           () => _convert(session, ['FIRST1'], type: endnote ? 1 : 2),
           throwsUnsupportedError,
@@ -422,13 +419,12 @@ void main() {
       final session = _session(document, document.paragraphs.single, start: 6);
       final html =
           '<table><tbody><tr>'
-              '<td data-colwidth="120" style="background-color: #abcdef">'
-              '<ol start="3"><li>First $_one</li><li>Next</li></ol></td>'
-              '<td data-colwidth="240"><p><img src="data:image/png;base64,' +
-          base64Encode(png) +
-          '" width="24" alt="Cell image"/></p>'
-              '<ol start="7"><li>Second $_two</li></ol></td>'
-              '</tr></tbody></table>';
+          '<td data-colwidth="120" style="background-color: #abcdef">'
+          '<ol start="3"><li>First $_one</li><li>Next</li></ol></td>'
+          '<td data-colwidth="240"><p><img src="data:image/png;base64,'
+          '${base64Encode(png)}" width="24" alt="Cell image"/></p>'
+          '<ol start="7"><li>Second $_two</li></ol></td>'
+          '</tr></tbody></table>';
       _start(session, html);
       final fields = _convert(session, ['SECOND2', 'FIRST1']);
       _set(session, fields[0], 'two', '(Two)');
@@ -528,7 +524,7 @@ void main() {
         final document = WmlDocument.empty(text: 'Keep');
         final paragraph = document.paragraphs.single;
         final session = _session(document, paragraph, end: 4);
-        _start(session, _table('$_one', '$_two'));
+        _start(session, _table(_one, _two));
         expect(() => _convert(session, ids), throwsFormatException);
         expect(
           () => _call(session, 'Document.complete'),

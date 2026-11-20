@@ -243,13 +243,13 @@ void main() {
   test(
     'lists in separate cells keep independent starts and continuation indexes',
     () {
+      final table = _table(
+        '<tr><td><ol start="4"><li>First<p>Continuation</p>'
+        '<ul><li>Deep $_one</li></ul></li></ol></td>'
+        '<td><ol start="7"><li>Other $_two</li></ol></td></tr>',
+      );
       final note = WordZoteroNoteText.fromHtml(
-        _table(
-              '<tr><td><ol start="4"><li>First<p>Continuation</p>'
-              '<ul><li>Deep $_one</li></ul></li></ol></td>'
-              '<td><ol start="7"><li>Other $_two</li></ol></td></tr>',
-            ) +
-            '<ol start="2"><li>Tail</li></ol>',
+        '$table<ol start="2"><li>Tail</li></ol>',
       );
       expect(note.paragraphs.map((paragraph) => paragraph.text), [
         'First',

@@ -1142,11 +1142,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           ? buildStudioMailReplyAllDraft(
               message,
               sender: account.email,
+              sourceStatus: result.status,
               truncationNotice: widget.strings.mailQuotedTextTruncated,
             )
           : buildStudioMailReplyDraft(
               message,
               forward: forward,
+              sourceStatus: result.status,
               truncationNotice: widget.strings.mailQuotedTextTruncated,
               forwardNotice: widget.strings.mailTextOnlyForward,
             );

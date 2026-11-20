@@ -25,6 +25,9 @@ String expressions can use `Len`, `Left$`, `Right$`, and `Mid$` with explicit
 UTF-16 indexing, strict argument types, and the shared compilation work budget.
 Scalar Variants now distinguish `Empty` and `Null`, with state predicates,
 explicit bounded conversions, and an explicit native-publication contract.
+Module helpers also accept named arguments and optional scalar `ByVal`
+parameters, including an explicit omitted-Variant state checked by `IsMissing`.
+The [shared argument contract](VBA_ARGUMENTS.md) applies to all three adapters.
 
 This increment targets the spreadsheet family (`xlsx`, including macro-enabled
 and template workbook packages admitted by the existing runtime). Embedded VBA
@@ -141,11 +144,15 @@ write `Call Helper: ...` or `Helper(): ...` explicitly.
 
 Every declared parameter must explicitly say **`ByVal`**. VBA normally defaults
 to `ByRef`; this compiler rejects an omitted passing mode rather than silently
-changing its meaning. All arguments are required and positional. Parameter
+changing its meaning. Required parameters can be supplied positionally or by
+name (`name:=expression`). Optional scalar parameters use `Optional ByVal`
+and may declare constant defaults. Parameter
 types are `Long`, `Double`, `String`, `Boolean`, scalar `Variant`, `Worksheet`,
-and `Range`; an omitted `As` means scalar `Variant`. `ByRef`, `Optional`, named
-arguments, default arguments, array parameters, and `ParamArray` remain unsupported.
+and `Range`; an omitted `As` means scalar `Variant`. `ByRef`, optional object
+parameters, array parameters, and `ParamArray` remain unsupported.
 Individual scalar array elements can be passed to scalar `ByVal` parameters.
+See [named arguments, omissions, defaults, and IsMissing](VBA_ARGUMENTS.md)
+for the exact binding and refusal rules.
 
 Functions return one supported scalar, using assignment to their own name.
 An omitted return type means scalar `Variant`; object return types are not
@@ -739,7 +746,8 @@ dart run tool/macros/office_macro.dart run-vba \
 | --- | --- |
 | Module structure | Optional `Attribute VB_Name = "..."`, `Option Explicit`, `Option Base 0/1`, module constants, `Sub` helpers, and scalar `Function` procedures with optional `Public`/`Private` |
 | Entry selection | Case-insensitive selection of a parameterless `Sub` by `entryPoint`; every procedure is checked, and the selected entry plus its invoked helpers are evaluated |
-| Procedure arguments | Up to 16 required positional parameters, each explicitly `ByVal`, using supported scalar or `Worksheet`/`Range` types |
+| Procedure arguments | Up to 16 explicit `ByVal` parameters; named/positional helper calls, required supported scalar or object types, optional scalar defaults and comma omissions |
+| Omitted Variant parameters | `IsMissing` on a direct optional Variant formal; unhandled omitted values refuse publication and ordinary reads |
 | Calls and returns | In-module procedure calls, scalar functions in expressions, return assignment through the function name, and discarded function results in statement calls |
 | Early exits | `Exit Sub`, `Exit Function`, innermost `Exit For`, and innermost `Exit Do`, checked against the containing procedure or matching loop kind |
 | Declarations | `Dim` and `Const`, including comma-separated declarations; declarations must precede executable statements and remain outside control-flow blocks |

@@ -1,0 +1,505 @@
+{
+  "featureBase": "06defcfef83e1b33215441c92531c9467d3f89f4",
+  "applyOnLatestEvidenceCheckpoint": "dae988351b4a3694500f3d10a40162effbac830f",
+  "incomingMain": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+  "recursiveMergeBases": [
+    "9b581e8a125f89c1974952d628bfe6e111a44bf6",
+    "03de5b6ad9eff4666c8e0963d1a6b059417951ed"
+  ],
+  "rawRecursiveMergeTree": "4b646e0e84f751b09f08c15f90947c51c7b5f2cc",
+  "entryCount": 74,
+  "entries": [
+    {
+      "path": "docs/MACROS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5e9450a7672c6c9a2baeff3ff682061854ef260"
+    },
+    {
+      "path": "docs/VBA_ARGUMENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "156f61d8c426958238d89e7538c4b49aefc3249d"
+    },
+    {
+      "path": "docs/VBA_MACROS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8837a89162107c7e2a3b3858e02f23c78b8e835"
+    },
+    {
+      "path": "docs/VBA_PARITY_ROADMAP.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee236653b764df65fd0126204e94cb51b3dbfdb0"
+    },
+    {
+      "path": "docs/VBA_POWERPOINT_MACROS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3eef6505eb084867d03fe8a89b78c8c756cf04d8"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa50f8025d50f12a85be3a84d4c9d80ad6601f12"
+    },
+    {
+      "path": "docs/performance/incremental-layout-20261120.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04966ea41d55d0aeafe83177c2bafc5fb6eeda9a"
+    },
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac0abac2be589eaac18054655c7d1e4666194321"
+    },
+    {
+      "path": "docs/roadmaps/mail/reply-forward.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61c6c4292528d892206dd32946419913f5df6599"
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ce62ac853edfa23142ef87ac7b151adc9b4d6f6"
+    },
+    {
+      "path": "docs/validation/mail-accounts-20261120/recovery.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9d6e35feb7f4d112f315d6607f3f105660e82c4"
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0bc9c8aa09a62d47643dd864fcbf25ac652d6387"
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/final-intake.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a19c5313423d8702f37b861745741a31d87dd8c7"
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/final-machine-logs.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84e6d07458ef99da6fcd52b4659cc6d93e600b6a"
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/initial-machine-logs.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b86fb57cee9178cfc5349f9d8db0333638112ba8"
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/integration-machine-logs.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "565313398b6a3af8b65a9d333ba52759748cc570"
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/integration-runtime-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8caa98973522e90f2ad55afee2c10fddfec03fc5"
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/integration.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "723738e1c382a85afb78f3e92b8ec1134c09c3f4"
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/runtime-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "103bc0e8803a2b39b810fdd3776ce239bae81c46"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/captured-inclusion.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6840a4d76a597b8985c63050b177cc6c24f083f"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/initial-inventory.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e235cee2bc08f2c7d4e8e897f51189344103640f"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/layout/passed.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "901b096b22af64696bea1942c66593f801172659"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/layout/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd23568865ad99ad06dd54de2db98036f72d6bcb"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/layout/setup-failure.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8ecba87285760cde9b598c86bcb4565d52884f4"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/layout/source-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7d0a0be2909284422beae60fa99ee02d2f3de06"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/powerpoint-review/passed.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1963573d0628e661dd7cba255e2c9d821336f7e1"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/powerpoint-review/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e02f694c4e0b97f5a98733cdeb6497b6d96c3c22"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/prequalification-inclusion.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e33ffddacaaafb185fc224bf5a77d8e795ce17a8"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/prequalification-inventory.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6c2d1791a08d3abb99647670d0d344b2ae50b2e"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/prequalification-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a5a99bd763080edb5f355d29c6233a991de8246e"
+    },
+    {
+      "path": "docs/validation/office-vba-expansion-20261120/integration/reconciliation.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1b4f44990782b780a50d2fd8014b0e738570e7f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0169f7b146eac6563eae61f27f87d75c43838b92"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6912a9bea83fd979bd19c51a289b042420e3ec4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83c050b588f6460ab6d7fcc0eb767828c00b0d24"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45c83b75e2c9e42004131f509677a0364ad3d4c4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f8f372238f8af891f88af9e91fa2bea71f98b85"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_downloads_layout_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f619e0d1c301297ffba7e47d16429cb7ab93ff5b"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55e44f6ec2760797b372609ee6bd6a0437d86dd4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b1d7d810e7a90b3dbf773414e09b2e1c1a2f4b6"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_forward_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9466f81c348f3faf0a09ac91b15bd4d1cba034f4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d9e857eb0d5062ccfb736702d18e44cba4b2c51"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "873390865d4e2b3404e51567d68d22d92ce31231"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/studio_download_fakes.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a9c19b9bf1e7d9c34c27b895005a1561888a9d2"
+    },
+    {
+      "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "db475dfe95ead38b1fe395b452ef10419c04bb3f"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "901a791d95ee37436d86b434decbe71dfd42ea40"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e3dab837737d311ebb8c540970163ae51cbbb8d"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/powerpoint_optional_helpers.bas",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0777e44e6ecdb9d9182eb530f51a82bde1cb42a9"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/powerpoint_text_margins.bas",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dfb1a8231bf3c64c671ec4ab4cfef02269fa49a8"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_optional_helpers.bas",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88ae1ca5a692f7436209552a6bbfe5cfa92b3095"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_paragraph_layout.bas",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf90468fadea64a3cb9c47eff8f8d8b6984ecf54"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd745dcb1cfabbed7a8430c9f7efd76ab07320dc"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e109342b4075ed29eddf72767d9abac4d2532975"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f71bb330b9a537df97ae9d0ca93c815d2eee7f6e"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "729af5e3e7ed150618e43317d10eef102d7e0700"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f884406159ef20c22517bc7d1de1dbf285bbe0de"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61ac74d03fa14313fa86684596514a9a530c88fc"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1dce00da7d88dfb5b642b17dfcbd9e1b3e67eb24"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "129f1602f03360f1607f14f73cf6be6ed6b5c5c0"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2bbb48531fb88aaf14f1624ce9b8e01c13bc1ef6"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_arguments_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13e30b35b9d73098201788412a005cad9d2ecde3"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_arguments_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6dbc271e32dd0266f89d991732a12927cdbdd907"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_margins_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a527079adb3a309c558ae1a4555ce6204aeed0a4"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_margins_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45752abc905d49111e07b643f52839c581fc0df6"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "057b83e9f20f332e16b17f0b4cf5168f0d321cd4"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d32f11541d4a5a2156e0d159ec2c4c786299f73"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_argument_shapes_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "311dc47ffe2be4c37c504d1b351d85bd3807a881"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_paragraph_layout_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d1e0f5fd1daca9d44734f492dc08a68f82e2d81"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_paragraph_layout_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a822f35517b06ca39b896088897c93d9bf70a2f"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de031f4b6e8383912da137298e04e25aac135c62"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6caac2c0762630a407de323d548295053a1cd25e"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "216eaa761a77dd552f52db6ad45f141a95cccf0f"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad18ba640ab42e8144d8181bf3b76882d5358b5b"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_arguments_smoke.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc09398479ce7031a7b4f33402864863ffb13cbe"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_office_expansion_smoke.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "581c5c1a0f19a95111def0c8fecd27e9a4b4c6df"
+    }
+  ],
+  "sourceOfEntries": "Independent git merge-tree --write-tree recursive merge produced75 changed paths relative to06def and4 textual conflicts. Resolving word_layout to the already-qualified feature source removes1 change. The two table-test conflicts choose exact main lint-only equivalents; the engine changelog combines both entries. The sole custom clean source merge is native45c, exact git output. After a subsequent unnecessary write-tree prefetch terminated the isolated shell, this74-entry manifest was reconstructed from the pinned92-path GitHub comparison and exact18 exclusions, preserving the already-observed recursive merge choices.",
+  "verification": {
+    "noDeletions": true,
+    "noExistingModesOrTypesChanged": true,
+    "exactIncomingMainBlobs": 72,
+    "reviewedNewBlobs": 2,
+    "mainBuildScriptMode": "100755",
+    "preservesNewEvidencePaths": true,
+    "excludesMainWorkflowAndOtherAlreadyIdenticalFiles": true,
+    "fourFinalLayoutFilesRetained": "word_layout.dart, word_incremental_layout.dart, suite_workspace.dart, word_incremental_layout_test.dart remain exactly feature.",
+    "editorChangelog": "Retain feature version unchanged; main adds no editor changelog entry.",
+    "engineChangelog": "Retain both new Zotero and incoming VBA entries in8e3dab.",
+    "tableTestConflicts": "Only interpolation/direct-string/style cleanups in main; all test cases and assertions unchanged.",
+    "credentialFences": "native45c is byte-for-byte feature native plus the two sourceStatus arguments; catalog, storage, and credential fixture files remain feature."
+  },
+  "lateAncestry": [
+    {
+      "name": "vba",
+      "sha": "89910ff6363cd45ced5faf0e48b11cac46754b28",
+      "ancestorOfB42": true
+    },
+    {
+      "name": "downloads",
+      "sha": "e6737bc6bccd521660dff0425ca620525dc04a58",
+      "ancestorOfB42": true
+    },
+    {
+      "name": "accounts",
+      "sha": "cb7f832590b77bd5be6e04814f1b64ae418b2b55",
+      "ancestorOfB42": false
+    },
+    {
+      "name": "mailhost",
+      "sha": "feffbfa437ee466a74801276fbeb178b548845e0",
+      "ancestorOfB42": true
+    },
+    {
+      "name": "reply",
+      "sha": "4df7a148f156d9a697028994f14b171877d1d47c",
+      "ancestorOfB42": true
+    },
+    {
+      "name": "validation",
+      "sha": "d6de5ef4707004d000fcf00935197e88fb0a4c1d",
+      "ancestorOfB42": true
+    }
+  ],
+  "qualification": "Source/merge review only. Root owns commits/refs and runtime qualification. No CI/Actions/check/status queries."
+}

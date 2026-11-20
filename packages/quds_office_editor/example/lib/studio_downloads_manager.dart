@@ -146,9 +146,10 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
     final fontHost = widget.fontPacks;
     final fontStatus = item.review == StudioDownloadReview.fontPack
         ? fontHost?.statuses
-              .where((status) => status.pack.id == item.id)
+              .where((candidate) => candidate.pack.id == item.id)
               .firstOrNull
         : null;
+    // The host can refresh its inventory after a row was rendered.
     if (item.review == StudioDownloadReview.fontPack &&
         (fontHost == null || fontStatus == null)) {
       return Future<void>.value();

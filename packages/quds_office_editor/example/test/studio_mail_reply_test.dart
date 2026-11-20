@@ -209,13 +209,13 @@ void main() {
   });
 
   test('HTML quote cutoff preserves Unicode and reports truncation', () {
-    final retained = 'x' * 7999 + '😀';
+    final retained = '${'x' * 7999}😀';
     final draft = buildStudioMailReplyDraft(
-      _message(plain: null, html: '<p>' + retained + 'Omitted</p>'),
+      _message(plain: null, html: '<p>${retained}Omitted</p>'),
       forward: false,
       truncationNotice: '[Quote ended.]',
     );
-    expect(draft.body, endsWith(retained + '\n\n[Quote ended.]'));
+    expect(draft.body, endsWith('$retained\n\n[Quote ended.]'));
     expect(draft.body, isNot(contains('Omitted')));
     expect(draft.body, isNot(contains('\uFFFD')));
     expect(utf8.decode(utf8.encode(draft.body)), draft.body);
@@ -229,6 +229,31 @@ void main() {
       ),
       throwsA(isA<StudioMailReplyUnavailable>()),
     );
+  });
+
+  test('incomplete MIME cannot become an apparently complete HTML quote', () {
+    final message = _message(plain: null, html: '<p>Complete HTML prefix</p>');
+    for (final status in MailParseStatus.values) {
+      if (status == MailParseStatus.complete) continue;
+      for (final forward in [false, true]) {
+        expect(
+          () => buildStudioMailReplyDraft(
+            message,
+            forward: forward,
+            sourceStatus: status,
+          ),
+          throwsA(isA<StudioMailReplyUnavailable>()),
+        );
+      }
+      expect(
+        () => buildStudioMailReplyAllDraft(
+          message,
+          sender: 'writer@example.invalid',
+          sourceStatus: status,
+        ),
+        throwsA(isA<StudioMailReplyUnavailable>()),
+      );
+    }
   });
 
   test('an explicitly empty plain body never falls back to HTML', () {
