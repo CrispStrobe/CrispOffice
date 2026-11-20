@@ -330,12 +330,13 @@ final class _PlatformStudioMailCredentialStore
         ),
       );
     }
+    final StudioMailCredentials accepted = snapshot;
     return _perform((storage) async {
       final catalog = await _readCatalog(storage);
       final accounts = List<StudioMailSavedAccount>.of(catalog.accounts);
-      final id = snapshot.accountId;
+      final id = accepted.accountId;
       final index = accounts.indexWhere((account) => account.id == id);
-      final saved = StudioMailSavedAccount(id: id, credentials: snapshot);
+      final saved = StudioMailSavedAccount(id: id, credentials: accepted);
       if (index < 0) {
         if (accounts.length >= StudioMailAccountCatalog.maxAccounts) {
           throw const _CatalogFailure(
