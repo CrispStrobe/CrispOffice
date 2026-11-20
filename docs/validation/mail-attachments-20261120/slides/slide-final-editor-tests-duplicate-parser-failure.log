@@ -1,0 +1,191 @@
+00:00 +0: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart
+../quds_office_engine/lib/src/slide/serial/slide_serial.dart:248:15: Error: '_showsMasterShapes' is already declared in this scope.
+  static bool _showsMasterShapes(String xml) {
+              ^^^^^^^^^^^^^^^^^^
+../quds_office_engine/lib/src/slide/serial/slide_serial.dart:220:15: Context: Previous declaration of '_showsMasterShapes'.
+  static bool _showsMasterShapes(String xml) {
+              ^^^^^^^^^^^^^^^^^^
+00:00 +0 -1: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart [E]
+  Failed to load "/workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart":
+  Compilation failed for testPath=/workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: ../quds_office_engine/lib/src/slide/serial/slide_serial.dart:248:15: Error: '_showsMasterShapes' is already declared in this scope.
+    static bool _showsMasterShapes(String xml) {
+                ^^^^^^^^^^^^^^^^^^
+  ../quds_office_engine/lib/src/slide/serial/slide_serial.dart:220:15: Context: Previous declaration of '_showsMasterShapes'.
+    static bool _showsMasterShapes(String xml) {
+                ^^^^^^^^^^^^^^^^^^
+  .
+  Error: The Dart compiler exited unexpectedly.
+  package:flutter_tools/src/base/common.dart 34:3  throwToolExit
+  package:flutter_tools/src/compile.dart 1024:11   DefaultResidentCompiler._compile.<fn>
+  dart:async/zone_root.dart 48:47                  _rootRunUnary
+  dart:async/zone.dart 816:35                      _CustomZone.runUnary
+  dart:async/future_impl.dart 948:45               Future._propagateToListeners.handleValueCallback
+  dart:async/future_impl.dart 977:13               Future._propagateToListeners
+  dart:async/future_impl.dart 862:9                Future._propagateToListeners
+  dart:async/future_impl.dart 720:5                Future._completeWithValue
+  dart:async/future_impl.dart 804:7                Future._asyncCompleteWithValue.<fn>
+  dart:async/zone_root.dart 35:13                  _rootRun
+  dart:async/zone.dart 810:35                      _CustomZone.run
+  dart:async/zone.dart 702:7                       _CustomZone.runGuarded
+  dart:async/zone.dart 743:23                      _CustomZone.bindCallbackGuarded.<fn>
+  dart:async/schedule_microtask.dart 40:35         _microtaskLoop
+  dart:async/schedule_microtask.dart 49:5          _startMicrotaskLoop
+  dart:isolate-patch/isolate_patch.dart 127:13     _runPendingImmediateCallback
+  dart:isolate-patch/isolate_patch.dart 193:5      _RawReceivePort._handleMessage
+  
+../quds_office_engine/lib/src/slide/serial/slide_serial.dart:248:15: Error: '_showsMasterShapes' is already declared in this scope.
+  static bool _showsMasterShapes(String xml) {
+              ^^^^^^^^^^^^^^^^^^
+../quds_office_engine/lib/src/slide/serial/slide_serial.dart:220:15: Context: Previous declaration of '_showsMasterShapes'.
+  static bool _showsMasterShapes(String xml) {
+              ^^^^^^^^^^^^^^^^^^
+00:00 +0 -2: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart [E]
+  Failed to load "/workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart":
+  Compilation failed for testPath=/workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart: ../quds_office_engine/lib/src/slide/serial/slide_serial.dart:248:15: Error: '_showsMasterShapes' is already declared in this scope.
+    static bool _showsMasterShapes(String xml) {
+                ^^^^^^^^^^^^^^^^^^
+  ../quds_office_engine/lib/src/slide/serial/slide_serial.dart:220:15: Context: Previous declaration of '_showsMasterShapes'.
+    static bool _showsMasterShapes(String xml) {
+                ^^^^^^^^^^^^^^^^^^
+  .
+00:00 +0 -2: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart [E]
+  Error: The Dart compiler exited unexpectedly.
+  package:flutter_tools/src/base/common.dart 34:3  throwToolExit
+  package:flutter_tools/src/compile.dart 1024:11   DefaultResidentCompiler._compile.<fn>
+  dart:async/zone_root.dart 48:47                  _rootRunUnary
+  dart:async/zone.dart 816:35                      _CustomZone.runUnary
+  dart:async/future_impl.dart 948:45               Future._propagateToListeners.handleValueCallback
+  dart:async/future_impl.dart 977:13               Future._propagateToListeners
+  dart:async/future_impl.dart 862:9                Future._propagateToListeners
+  dart:async/future_impl.dart 720:5                Future._completeWithValue
+  dart:async/future_impl.dart 804:7                Future._asyncCompleteWithValue.<fn>
+  dart:async/zone_root.dart 35:13                  _rootRun
+  dart:async/zone.dart 810:35                      _CustomZone.run
+  dart:async/zone.dart 702:7                       _CustomZone.runGuarded
+  dart:async/zone.dart 743:23                      _CustomZone.bindCallbackGuarded.<fn>
+  dart:async/schedule_microtask.dart 40:35         _microtaskLoop
+  dart:async/schedule_microtask.dart 49:5          _startMicrotaskLoop
+  dart:isolate-patch/isolate_patch.dart 127:13     _runPendingImmediateCallback
+  dart:isolate-patch/isolate_patch.dart 193:5      _RawReceivePort._handleMessage
+  
+../quds_office_engine/lib/src/slide/serial/slide_serial.dart:248:15: Error: '_showsMasterShapes' is already declared in this scope.
+  static bool _showsMasterShapes(String xml) {
+              ^^^^^^^^^^^^^^^^^^
+../quds_office_engine/lib/src/slide/serial/slide_serial.dart:220:15: Context: Previous declaration of '_showsMasterShapes'.
+  static bool _showsMasterShapes(String xml) {
+              ^^^^^^^^^^^^^^^^^^
+00:00 +0 -3: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart [E]
+  Failed to load "/workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart":
+  Compilation failed for testPath=/workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: ../quds_office_engine/lib/src/slide/serial/slide_serial.dart:248:15: Error: '_showsMasterShapes' is already declared in this scope.
+    static bool _showsMasterShapes(String xml) {
+                ^^^^^^^^^^^^^^^^^^
+  ../quds_office_engine/lib/src/slide/serial/slide_serial.dart:220:15: Context: Previous declaration of '_showsMasterShapes'.
+    static bool _showsMasterShapes(String xml) {
+                ^^^^^^^^^^^^^^^^^^
+  .
+00:00 +0 -3: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart [E]
+  Error: The Dart compiler exited unexpectedly.
+  package:flutter_tools/src/base/common.dart 34:3  throwToolExit
+  package:flutter_tools/src/compile.dart 1024:11   DefaultResidentCompiler._compile.<fn>
+  dart:async/zone_root.dart 48:47                  _rootRunUnary
+  dart:async/zone.dart 816:35                      _CustomZone.runUnary
+  dart:async/future_impl.dart 948:45               Future._propagateToListeners.handleValueCallback
+  dart:async/future_impl.dart 977:13               Future._propagateToListeners
+  dart:async/future_impl.dart 862:9                Future._propagateToListeners
+  dart:async/future_impl.dart 720:5                Future._completeWithValue
+  dart:async/future_impl.dart 804:7                Future._asyncCompleteWithValue.<fn>
+  dart:async/zone_root.dart 35:13                  _rootRun
+  dart:async/zone.dart 810:35                      _CustomZone.run
+  dart:async/zone.dart 702:7                       _CustomZone.runGuarded
+  dart:async/zone.dart 743:23                      _CustomZone.bindCallbackGuarded.<fn>
+  dart:async/schedule_microtask.dart 40:35         _microtaskLoop
+  dart:async/schedule_microtask.dart 49:5          _startMicrotaskLoop
+  dart:isolate-patch/isolate_patch.dart 127:13     _runPendingImmediateCallback
+  dart:isolate-patch/isolate_patch.dart 193:5      _RawReceivePort._handleMessage
+  
+../quds_office_engine/lib/src/slide/serial/slide_serial.dart:248:15: Error: '_showsMasterShapes' is already declared in this scope.
+  static bool _showsMasterShapes(String xml) {
+              ^^^^^^^^^^^^^^^^^^
+../quds_office_engine/lib/src/slide/serial/slide_serial.dart:220:15: Context: Previous declaration of '_showsMasterShapes'.
+  static bool _showsMasterShapes(String xml) {
+              ^^^^^^^^^^^^^^^^^^
+00:00 +0 -4: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart [E]
+  Failed to load "/workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart":
+  Compilation failed for testPath=/workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: ../quds_office_engine/lib/src/slide/serial/slide_serial.dart:248:15: Error: '_showsMasterShapes' is already declared in this scope.
+    static bool _showsMasterShapes(String xml) {
+                ^^^^^^^^^^^^^^^^^^
+  ../quds_office_engine/lib/src/slide/serial/slide_serial.dart:220:15: Context: Previous declaration of '_showsMasterShapes'.
+    static bool _showsMasterShapes(String xml) {
+                ^^^^^^^^^^^^^^^^^^
+  .
+00:00 +0 -4: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart [E]
+  Error: The Dart compiler exited unexpectedly.
+  package:flutter_tools/src/base/common.dart 34:3  throwToolExit
+  package:flutter_tools/src/compile.dart 1024:11   DefaultResidentCompiler._compile.<fn>
+  dart:async/zone_root.dart 48:47                  _rootRunUnary
+  dart:async/zone.dart 816:35                      _CustomZone.runUnary
+  dart:async/future_impl.dart 948:45               Future._propagateToListeners.handleValueCallback
+  dart:async/future_impl.dart 977:13               Future._propagateToListeners
+  dart:async/future_impl.dart 862:9                Future._propagateToListeners
+  dart:async/future_impl.dart 720:5                Future._completeWithValue
+  dart:async/future_impl.dart 804:7                Future._asyncCompleteWithValue.<fn>
+  dart:async/zone_root.dart 35:13                  _rootRun
+  dart:async/zone.dart 810:35                      _CustomZone.run
+  dart:async/zone.dart 702:7                       _CustomZone.runGuarded
+  dart:async/zone.dart 743:23                      _CustomZone.bindCallbackGuarded.<fn>
+  dart:async/schedule_microtask.dart 40:35         _microtaskLoop
+  dart:async/schedule_microtask.dart 49:5          _startMicrotaskLoop
+  dart:isolate-patch/isolate_patch.dart 127:13     _runPendingImmediateCallback
+  dart:isolate-patch/isolate_patch.dart 193:5      _RawReceivePort._handleMessage
+  
+../quds_office_engine/lib/src/slide/serial/slide_serial.dart:248:15: Error: '_showsMasterShapes' is already declared in this scope.
+  static bool _showsMasterShapes(String xml) {
+              ^^^^^^^^^^^^^^^^^^
+../quds_office_engine/lib/src/slide/serial/slide_serial.dart:220:15: Context: Previous declaration of '_showsMasterShapes'.
+  static bool _showsMasterShapes(String xml) {
+              ^^^^^^^^^^^^^^^^^^
+00:00 +0 -5: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_arrange_history_test.dart [E]
+  Failed to load "/workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_arrange_history_test.dart":
+  Compilation failed for testPath=/workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_arrange_history_test.dart: ../quds_office_engine/lib/src/slide/serial/slide_serial.dart:248:15: Error: '_showsMasterShapes' is already declared in this scope.
+    static bool _showsMasterShapes(String xml) {
+                ^^^^^^^^^^^^^^^^^^
+  ../quds_office_engine/lib/src/slide/serial/slide_serial.dart:220:15: Context: Previous declaration of '_showsMasterShapes'.
+    static bool _showsMasterShapes(String xml) {
+                ^^^^^^^^^^^^^^^^^^
+  .
+00:00 +0 -5: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart [E]
+  Error: The Dart compiler exited unexpectedly.
+  package:flutter_tools/src/base/common.dart 34:3  throwToolExit
+  package:flutter_tools/src/compile.dart 1024:11   DefaultResidentCompiler._compile.<fn>
+  dart:async/zone_root.dart 48:47                  _rootRunUnary
+  dart:async/zone.dart 816:35                      _CustomZone.runUnary
+  dart:async/future_impl.dart 948:45               Future._propagateToListeners.handleValueCallback
+  dart:async/future_impl.dart 977:13               Future._propagateToListeners
+  dart:async/future_impl.dart 862:9                Future._propagateToListeners
+  dart:async/future_impl.dart 720:5                Future._completeWithValue
+  dart:async/future_impl.dart 804:7                Future._asyncCompleteWithValue.<fn>
+  dart:async/zone_root.dart 35:13                  _rootRun
+  dart:async/zone.dart 810:35                      _CustomZone.run
+  dart:async/zone.dart 702:7                       _CustomZone.runGuarded
+  dart:async/zone.dart 743:23                      _CustomZone.bindCallbackGuarded.<fn>
+  dart:async/schedule_microtask.dart 40:35         _microtaskLoop
+  dart:async/schedule_microtask.dart 49:5          _startMicrotaskLoop
+  dart:isolate-patch/isolate_patch.dart 127:13     _runPendingImmediateCallback
+  dart:isolate-patch/isolate_patch.dart 193:5      _RawReceivePort._handleMessage
+  
+00:00 +0 -5: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: single move retains connector orientation through history and saving
+00:00 +1 -5: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: single resize retains connector orientation through history and saving
+00:00 +2 -5: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: single rotate retains connector orientation through history and saving
+00:00 +3 -5: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: group move retains connector orientation through history and saving
+00:00 +4 -5: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: group resize retains connector orientation through history and saving
+00:00 +5 -5: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: group rotate retains connector orientation through history and saving
+00:00 +6 -5: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: keyboard and group moves retain each connector orientation
+00:00 +7 -5: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: copy and paste retain frozen connector orientation
+00:00 +8 -5: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart
+  /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart
+  /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_arrange_history_test.dart: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_arrange_history_test.dart
+  /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart
+  /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart

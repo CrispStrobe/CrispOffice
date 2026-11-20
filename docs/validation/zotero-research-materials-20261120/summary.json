@@ -1,0 +1,132 @@
+{
+  "qualified_product_source": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "later_main_integration_source": "d1b8f9be24f08b2e4de7292c8727eddbd77bbf55",
+  "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/223",
+  "distinct_application_tests_passed": 2886,
+  "distinct_test_files": 135,
+  "changed_dart_targets": 55,
+  "primary_tests": 2884,
+  "primary_files": 134,
+  "additional_word_macro_tests": 2,
+  "additional_word_macro_files": 1,
+  "qualification_attribution": "134 suites at the primary source, then one new two-case suite at the later main integration; all 3994 existing recorded source inputs are byte-identical.",
+  "new_zotero_cases": {
+    "engine_children": 40,
+    "note_preview": 23,
+    "child_dialog": 15,
+    "workspace_integration": 10,
+    "total": 88
+  },
+  "cohorts": [
+    {
+      "name": "engine-zotero",
+      "label": "Zotero engine",
+      "source_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+      "passed": 642,
+      "files": 29,
+      "receipt": "accepted-engine-zotero/receipt.json",
+      "receipt_sha256": "f8c20c2cda68b97d8809cada71326f0647ab9bc09f069acd1e83131b58ad54b7"
+    },
+    {
+      "name": "editor-zotero",
+      "label": "Zotero editor",
+      "source_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+      "passed": 632,
+      "files": 43,
+      "receipt": "accepted-editor-zotero/receipt.json",
+      "receipt_sha256": "8a033678761262a514eb178875fcd18583911eed845c4e7bd260ed8b511cb26e"
+    },
+    {
+      "name": "engine-rendering",
+      "label": "Rendering engine and PDF",
+      "source_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+      "passed": 191,
+      "files": 11,
+      "receipt": "accepted-engine-rendering/receipt.json",
+      "receipt_sha256": "03af2b8866ffa4cca896dbc7bae81515fc06fe9d1e623066c5272b6c98279590"
+    },
+    {
+      "name": "editor-rendering",
+      "label": "Rendering editor",
+      "source_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+      "passed": 101,
+      "files": 9,
+      "receipt": "accepted-editor-rendering/receipt.json",
+      "receipt_sha256": "d63dd2d8e88d441fd520712533db1b7d1d3f43f88d2f3c1fdc63c2fba84f04e8"
+    },
+    {
+      "name": "engine-vba",
+      "label": "VBA and shared macros, genuine VM/CLI",
+      "source_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+      "passed": 743,
+      "files": 21,
+      "receipt": "accepted-engine-vba/receipt.json",
+      "receipt_sha256": "bebafc7d166b00cc1f48d9e10f8163563a16c069e4c701a76111944b836c969f"
+    },
+    {
+      "name": "mail-host",
+      "label": "Mail Studio host",
+      "source_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+      "passed": 318,
+      "files": 11,
+      "receipt": "accepted-mail-host/receipt.json",
+      "receipt_sha256": "3e712db9c785a5ca8894e5df600c8e4d131c89c363012d01ca12c351c7a83e5c"
+    },
+    {
+      "name": "mail-mime",
+      "label": "Mail MIME/SMTP",
+      "source_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+      "passed": 115,
+      "files": 6,
+      "receipt": "accepted-mail-mime/receipt.json",
+      "receipt_sha256": "3e6c1c5229622895104843c3cb6bfec9879d564fa5f3e77c2282310f0a95489f"
+    },
+    {
+      "name": "mail-transport",
+      "label": "Mail cloud/EWS transport",
+      "source_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+      "passed": 113,
+      "files": 2,
+      "receipt": "accepted-mail-transport/receipt.json",
+      "receipt_sha256": "b5307b7a8331662e8af6b2beea2aa474222d515caff3f466ed33405a0b897dab"
+    },
+    {
+      "name": "engine-docx",
+      "label": "DOCX revision engine",
+      "source_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+      "passed": 23,
+      "files": 1,
+      "receipt": "accepted-engine-docx/receipt.json",
+      "receipt_sha256": "860d5fba7d03e3af7ea146981bc8b32a6c81f9cda35a8312cd47d7454256d302"
+    },
+    {
+      "name": "editor-docx",
+      "label": "DOCX review editor",
+      "source_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+      "passed": 6,
+      "files": 1,
+      "receipt": "accepted-editor-docx/receipt.json",
+      "receipt_sha256": "1e702fcc52749d00216b3fc35dd1b1cd2a44990a1eff24cbcadd1ed37959157c"
+    }
+  ],
+  "additional_cohorts": [
+    {
+      "name": "word-revision-guard",
+      "source_head": "d1b8f9be24f08b2e4de7292c8727eddbd77bbf55",
+      "passed": 2,
+      "files": 1,
+      "receipt": "post-main/accepted-word-revision-guard/receipt.json",
+      "receipt_sha256": "6e877f1e134c86fd4c33bcd975ab4a9b64aee31d0f9c46bd8c151f8db32865ff"
+    }
+  ],
+  "additional_checks_not_added_to_unit_test_count": {
+    "vba_portable_corpus_cases": 69,
+    "independent_mime_messages": 1,
+    "independent_mime_assertions": 30
+  },
+  "independent_audit": "independent-audit/audit.json",
+  "post_main_input_and_count_audit": "post-main/audit.json",
+  "supplemental_archive_sha256": "5663330c8116b26226044915c1ba47cbe68788a34c8fc02e1e15749c9471677e",
+  "github_actions_queried": false,
+  "github_actions_awaited": false
+}

@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:typed_data';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
@@ -17,6 +19,8 @@ import 'package:quds_office_studio/studio_strings.dart';
 import 'package:quds_office_studio/studio_mail_archive_action.dart';
 import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
 import 'package:quds_office_studio/studio_mail_archive_strings.dart';
+
+import 'support/mail_attachment_picker.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 
@@ -262,6 +266,7 @@ Future<void> _compose(
   String to = 'recipient@example.test',
   String cc = '',
   String bcc = '',
+  Future<void> Function()? beforeSend,
 }) async {
   await tester.tap(find.byTooltip(_strings.compose));
   await _pump(tester);
@@ -278,6 +283,7 @@ Future<void> _compose(
       .controller
       .insertText('Composed in the existing Word editor.');
   await tester.pump();
+  await beforeSend?.call();
   await tester.ensureVisible(find.widgetWithText(FilledButton, _strings.send));
   await tester.tap(find.widgetWithText(FilledButton, _strings.send));
   await _pump(tester);
@@ -746,6 +752,91 @@ void main() {
         utf8.decode(submitted.wire.bytes),
         isNot(contains('hidden@example.test')),
       );
+      expect(find.text(_strings.ewsSubmissionAccepted), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'EWS keeps exact attachments and private recipients across acknowledged retry',
+    (tester) async {
+      final source = Uint8List.fromList([0, 255, 128, 13, 10, 42]);
+      final expected = Uint8List.fromList(source);
+      final picker = MailAttachmentPickerFixture(
+        () async => FilePickerResult([
+          PlatformFile(
+            name: 'Exchange snapshot.docx',
+            size: source.length,
+            readStream: Stream<List<int>>.value(source),
+          ),
+        ]),
+      );
+      FilePicker.platform = picker;
+      addTearDown(() => FilePicker.platform = FilePickerIO());
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials)
+              ..outcome = MailSubmissionOutcome.uncertain,
+      );
+      await _connect(tester);
+      await _compose(
+        tester,
+        cc: 'copied@example.test',
+        bcc: 'hidden@example.test',
+        beforeSend: () async {
+          final add = find.byKey(const ValueKey('studio-mail-add-attachments'));
+          await tester.ensureVisible(add);
+          await tester.tap(add);
+          await _pump(tester);
+          expect(find.text('Exchange snapshot.docx'), findsOneWidget);
+          source.fillRange(0, source.length, 17);
+        },
+      );
+      expect(provider.submissions, hasLength(1));
+      expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+      await tester.pump(const Duration(minutes: 1));
+      expect(provider.submissions, hasLength(1));
+      await tester.tap(find.byTooltip(_strings.compose));
+      await _pump(tester);
+      expect(find.text('Exchange snapshot.docx'), findsOneWidget);
+      expect(picker.calls, 1);
+      final send = find.widgetWithText(FilledButton, _strings.send);
+      expect(tester.widget<FilledButton>(send).onPressed, isNull);
+      provider.outcome = MailSubmissionOutcome.accepted;
+      await tester.ensureVisible(find.byType(CheckboxListTile));
+      await tester.tap(find.byType(CheckboxListTile));
+      await _pump(tester);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(provider.submissions, hasLength(2));
+      expect(provider.attempts.toSet(), hasLength(2));
+      for (final submission in provider.submissions) {
+        expect(submission.envelope.recipients, [
+          'recipient@example.test',
+          'copied@example.test',
+          'hidden@example.test',
+        ]);
+        final wire = ascii.decode(submission.wire.bytes);
+        expect(wire, contains('multipart/mixed'));
+        expect(wire, contains('multipart/alternative'));
+        expect(wire, isNot(contains('hidden@example.test')));
+        final decoded = const QudsMimeCodec().parse(submission.wire.bytes);
+        expect(decoded.status, MailParseStatus.complete);
+        expect(
+          decoded.message!.body.plainText,
+          'Composed in the existing Word editor.',
+        );
+        expect(decoded.message!.attachments, hasLength(1));
+        expect(
+          decoded.message!.attachments.single.displayName,
+          'Exchange snapshot.docx',
+        );
+        expect(decoded.message!.attachments.single.content.bytes, expected);
+        expect(decoded.message!.envelope.bcc, isEmpty);
+      }
       expect(find.text(_strings.ewsSubmissionAccepted), findsOneWidget);
       expect(tester.takeException(), isNull);
     },

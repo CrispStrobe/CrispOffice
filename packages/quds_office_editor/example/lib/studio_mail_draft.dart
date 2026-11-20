@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'studio_mail_attachment.dart';
 import 'studio_mail_recipients.dart';
 import 'studio_mail_threading.dart';
 
+export 'studio_mail_attachment.dart';
+
 enum StudioMailDraftProblem { recipient, subject, body }
 
-/// Immutable plain-text submission snapshot, owned by the current Mail session.
+/// Immutable submission snapshot, owned by the current Mail session.
 final class StudioMailDraft {
   const StudioMailDraft({
     required this.to,
@@ -14,6 +17,7 @@ final class StudioMailDraft {
     this.cc = '',
     this.bcc = '',
     this.thread = const StudioMailThread.empty(),
+    this.attachments = const StudioMailAttachments.empty(),
   });
 
   final String to;
@@ -22,6 +26,7 @@ final class StudioMailDraft {
   final String subject;
   final String body;
   final StudioMailThread thread;
+  final StudioMailAttachments attachments;
 
   static const maxBodyBytes = 1024 * 1024;
 

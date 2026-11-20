@@ -1,0 +1,369 @@
+{
+  "metric": "foreground ink F1; threshold <200; 144 DPI; fixed 1px/0.5pt matching tolerance",
+  "requiredF1StrictlyGreaterThan": 0.95,
+  "cases": [
+    {
+      "name": "calibri-auto-240",
+      "requestedFamily": "Calibri",
+      "resolvedFamily": "Calibri",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 1.0,
+          "recall": 0.999574569251367,
+          "f1": 0.9997872393682261,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "calibri-auto-360",
+      "requestedFamily": "Calibri",
+      "resolvedFamily": "Calibri",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 1.0,
+          "recall": 0.9993955094991365,
+          "f1": 0.9996976633697577,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        },
+        {
+          "page": 2,
+          "precision": 1.0,
+          "recall": 0.9995004314455698,
+          "f1": 0.9997501533150113,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "calibri-exact-360",
+      "requestedFamily": "Calibri",
+      "resolvedFamily": "Calibri",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        },
+        {
+          "page": 2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "calibri-atLeast-240",
+      "requestedFamily": "Calibri",
+      "resolvedFamily": "Calibri",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 1.0,
+          "recall": 0.999574569251367,
+          "f1": 0.9997872393682261,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "aptos-auto-240",
+      "requestedFamily": "Aptos",
+      "resolvedFamily": "Aptos",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "aptos-auto-360",
+      "requestedFamily": "Aptos",
+      "resolvedFamily": "Aptos",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 1.0,
+          "recall": 0.9999835054267147,
+          "f1": 0.9999917526453391,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        },
+        {
+          "page": 2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "aptos-exact-360",
+      "requestedFamily": "Aptos",
+      "resolvedFamily": "Aptos",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        },
+        {
+          "page": 2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "aptos-atLeast-240",
+      "requestedFamily": "Aptos",
+      "resolvedFamily": "Aptos",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "arial-auto-240",
+      "requestedFamily": "Arial",
+      "resolvedFamily": "Liberation Sans",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 0.9970931222818991,
+          "recall": 0.988016366908283,
+          "f1": 0.9925339932238036,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "arial-auto-360",
+      "requestedFamily": "Arial",
+      "resolvedFamily": "Liberation Sans",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 0.9967282863849766,
+          "recall": 0.988266022142523,
+          "f1": 0.9924791164497869,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        },
+        {
+          "page": 2,
+          "precision": 0.9989953282764856,
+          "recall": 0.9873850664060765,
+          "f1": 0.9931562667353758,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "arial-exact-360",
+      "requestedFamily": "Arial",
+      "resolvedFamily": "Liberation Sans",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 0.9063663792559302,
+          "recall": 0.8568394697426955,
+          "f1": 0.8809073407229417,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": false
+        },
+        {
+          "page": 2,
+          "precision": 0.9080641517957985,
+          "recall": 0.8558432470258922,
+          "f1": 0.8811806931587005,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": false
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "arial-atLeast-240",
+      "requestedFamily": "Arial",
+      "resolvedFamily": "Liberation Sans",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 0.9970931222818991,
+          "recall": 0.988016366908283,
+          "f1": 0.9925339932238036,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "times-auto-240",
+      "requestedFamily": "Times New Roman",
+      "resolvedFamily": "Liberation Serif",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 0.9978149225480508,
+          "recall": 0.9878880120736184,
+          "f1": 0.9928266540444973,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "times-auto-360",
+      "requestedFamily": "Times New Roman",
+      "resolvedFamily": "Liberation Serif",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 0.9983656609195403,
+          "recall": 0.9886917044985555,
+          "f1": 0.9935051339594083,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        },
+        {
+          "page": 2,
+          "precision": 0.9950528724259476,
+          "recall": 0.9846695434930729,
+          "f1": 0.9898339785058098,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "times-exact-360",
+      "requestedFamily": "Times New Roman",
+      "resolvedFamily": "Liberation Serif",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 0.8508933405522469,
+          "recall": 0.8400216071758568,
+          "f1": 0.8454225239729393,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": false
+        },
+        {
+          "page": 2,
+          "precision": 0.8515126283652512,
+          "recall": 0.8387755102040816,
+          "f1": 0.8450960791889692,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": false
+        }
+      ],
+      "passed": false
+    },
+    {
+      "name": "times-atLeast-240",
+      "requestedFamily": "Times New Roman",
+      "resolvedFamily": "Liberation Serif",
+      "pageCountsMatch": true,
+      "pages": [
+        {
+          "page": 1,
+          "precision": 0.9978149225480508,
+          "recall": 0.9878880120736184,
+          "f1": 0.9928266540444973,
+          "textMatches": true,
+          "geometryMatches": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "passedPages": 20,
+  "totalPages": 24,
+  "passed": false
+}

@@ -3,8 +3,11 @@
 **Scope date:** 2026-11-19. The native Studio foreground composer supports
 multiple To recipients, Cc, Bcc and Reply all. Native SMTP, Exchange EWS, Gmail
 and Microsoft 365 use the same validated draft and MIME construction.
-See the [qualification record](../../validation/mail-recipients-20261119/README.md)
-for the executed subset and the remaining MIME, provider and widget checks.
+The [original qualification record](../../validation/mail-recipients-20261119/README.md)
+retains its executed subset and dependency limitations. The later
+[attachment continuation](../../validation/mail-attachments-20261120/README.md)
+qualifies the complete recipient/reply/threading, MIME, provider-host and composer
+cohorts against the locked workspace; see the qualification section below.
 
 ## Using the composer
 
@@ -94,6 +97,15 @@ outbox, background sending or exactly-once delivery claim is introduced.
 
 ## Qualification
 
+The 20 November attachment continuation ran all 31 recipient, 39 reply and
+24 threading cases, including their MIME assertions, plus the complete focused
+composer and native/EWS/Gmail/Graph host suites. It used Flutter 3.47.8 / Dart
+3.13.7 and the actual workspace's locked package versions and archive hashes.
+The [new record](../../validation/mail-attachments-20261120/README.md) binds those
+results to their source and preserves the live-account/platform boundaries.
+
+### Original 19 November qualification
+
 The pinned Flutter 3.47.8 / Dart 3.13.7 runtime was installed locally. Full
 workspace dependency setup stopped at the executor's network approval boundary;
 the missing packages also prevented a strictly offline workspace resolution.
@@ -104,6 +116,6 @@ the whole MIME-dependent cases. Separate parser checks exercise the input limits
 Prepared tests cover canonical MIME/Bcc separation, maximum-length folded
 recipient lists, native/EWS/Gmail/Graph host envelopes, Reply all controls,
 uncertain retry retention and narrow composer layouts. Those MIME and Flutter
-cases remain unexecuted here. GitHub Actions are neither awaited nor used as a
+cases were unexecuted in that original continuation. GitHub Actions were neither awaited nor used as a
 gate. Exact commands, source hashes and test-subset transformations are retained
 in the qualification record.

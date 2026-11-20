@@ -1,0 +1,123 @@
+{
+  "archive": "prepublication.tar.gz",
+  "archive_sha256": "0d66d0bfa401383fedba7321f0c560058e5836f45f5e6731b72e2ef8edf48b3a",
+  "file_count": 23,
+  "files": [
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/README.md",
+      "bytes": 1992,
+      "sha256": "6a7a5f87b233efb5786ddf91db05ea3bee58e7bb986716a55eb47b52a1aaef60"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/accepted-editor-zotero/events.jsonl.gz",
+      "bytes": 31369,
+      "sha256": "67f5016b8734d25688261145fe00793f29a65fc391e89c340bca6a698497dc9b"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/accepted-editor-zotero/input-check.json",
+      "bytes": 1248,
+      "sha256": "f3adff8640b5b6c32817ac7c301d61c5e81751e70efa856e50568eaf9890c9c4"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/accepted-editor-zotero/inputs.json.gz",
+      "bytes": 487494,
+      "sha256": "be8119c2933468f0e96b3467adebe39f049550ef63788450241c3bd59132d71b"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/accepted-editor-zotero/receipt.json",
+      "bytes": 23845,
+      "sha256": "625aafcc55309c149a17446079a468af1b188c1d8521a959dd74b7a5ace342c4"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/accepted-editor-zotero/stderr.log.gz",
+      "bytes": 31,
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/accepted-engine-zotero/events.jsonl.gz",
+      "bytes": 27502,
+      "sha256": "1b5c8685f7073d121387f761ceb9f950681f308ae4a64d0fb48869080c99fd9c"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/accepted-engine-zotero/input-check.json",
+      "bytes": 1248,
+      "sha256": "2d68b2a7e823c082d5fc6bbd66d1c38d464831e0360a3bad6fbe01d64b78bfc4"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/accepted-engine-zotero/inputs.json.gz",
+      "bytes": 468807,
+      "sha256": "5d1eee013424f5732fb2efa8a9dd2708308ee4a420cef37ffc3ff6eaf3f501b7"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/accepted-engine-zotero/receipt.json",
+      "bytes": 17696,
+      "sha256": "c07a4614ad9132c5316e95801d1b4f95ba2d2ff1747e52eeb89b9054df7df5f3"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/accepted-engine-zotero/stderr.log.gz",
+      "bytes": 31,
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/application-cases.json.gz",
+      "bytes": 30454,
+      "sha256": "590e48320e56c8b1ee611ed97bd393c0861fe516c5cc11e0810d21fa4a108b62"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/audit-console.json",
+      "bytes": 1674,
+      "sha256": "a1fc13137487cf42d7da7c33a4a08c7ed5b1ff8255da13cdd97cb4716745173d"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/audit.json",
+      "bytes": 24650,
+      "sha256": "6df5318af742892f4d0064289ce22ba9a962689ffe450bb5a467855386f63cb0"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/audit_validation.py",
+      "bytes": 29961,
+      "sha256": "417afe3a29ad5cb02aed98acbf676ff5e72bbd3f0a48de45c28daa782334d059"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/run_validation.py",
+      "bytes": 29772,
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/runtime-supplement-before.json.gz",
+      "bytes": 60061,
+      "sha256": "c10867ba4753edc1b959b63fdf8315b737e9dc274a9290aac58c42e5dd6bd459"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/static-final/analysis.log",
+      "bytes": 1480,
+      "sha256": "0dba2c698be16ec0a53800d6825014431f4684324c597ae70f2b83eafb620f45"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/static-final/format.log",
+      "bytes": 48,
+      "sha256": "d4729c00c22767717ad2a4f04168e2f789745ac29c718338f914e4fafbb787a6"
+    },
+    {
+      "path": "final-validation/independent-audit/pre-connector-wave/static-final/receipt.json",
+      "bytes": 25803,
+      "sha256": "8e9c405149e7b396e5d1c9439eff2f41377a6953d649b8ccaeb60c5111c02569"
+    },
+    {
+      "path": "final-validation/static-initial/analysis.log",
+      "bytes": 1480,
+      "sha256": "0dba2c698be16ec0a53800d6825014431f4684324c597ae70f2b83eafb620f45"
+    },
+    {
+      "path": "final-validation/static-initial/format.log",
+      "bytes": 290,
+      "sha256": "1d779541a79875d3582a5048bf723532e0c467e2ac39f45abe3af30b531d4c94"
+    },
+    {
+      "path": "final-validation/static-initial/receipt.json",
+      "bytes": 18840,
+      "sha256": "21f2bfdc695265835863907cbfcbd77c4ae2840aeb95cb6b0ec8a3012500d51c"
+    }
+  ],
+  "scope": "Historical development/qualification evidence; excluded from final distinct test totals. Byte-identical copies of the two accepted cohorts and final static checks are preserved once inside the independent audit folder."
+}
