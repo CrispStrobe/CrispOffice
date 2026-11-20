@@ -24,10 +24,17 @@ mail.MimeMessage _header(
   String subject, {
   bool read = false,
   bool flagged = false,
+  DateTime? date,
+  List<mail.MailAddress> to = const [],
+  List<mail.MailAddress> cc = const [],
 }) => mail.MimeMessage.fromEnvelope(
   mail.Envelope(
     subject: subject,
     from: [mail.MailAddress('Writer', 'writer@example.test')],
+    to: to,
+    cc: cc,
+    bcc: [mail.MailAddress('Hidden', 'hidden@example.test')],
+    date: date,
   ),
   uid: uid,
   flags: [
@@ -265,6 +272,62 @@ Future<_Client> _show(
 }
 
 void main() {
+  testWidgets('IMAP searches visible header fields without provider work', (
+    tester,
+  ) async {
+    final date = DateTime(2026, 11, 20, 12);
+    final browser = _Browser()
+      ..pages = (mailbox, cursor, limit) async => StudioMailHeaderPage(
+        messages: [
+          _header(
+            300,
+            'Quarterly report',
+            flagged: true,
+            date: date,
+            to: [mail.MailAddress('Project Team', 'team@example.test')],
+            cc: [mail.MailAddress('Reviewer', 'reviewer@example.test')],
+          ),
+          _header(200, 'Quarterly report', read: true),
+        ],
+      );
+    await _show(tester, browser);
+    final rows = tester
+        .widget<MailMessageList>(find.byType(MailMessageList))
+        .items;
+    expect(rows.first.date, date);
+    expect(rows.first.to, contains('Project Team <team@example.test>'));
+    expect(rows.first.cc, contains('reviewer@example.test'));
+    await tester.enterText(
+      _key('mail-list-search'),
+      'from:writer to:"Project Team" cc:reviewer subject:"Quarterly report" '
+      'on:2026-11-20 is:unread is:flagged',
+    );
+    await _pump(tester);
+    expect(_key('imap-message-91:300'), findsOneWidget);
+    expect(_key('imap-message-91:200'), findsNothing);
+    expect(find.textContaining('1 shown · 2 loaded'), findsOneWidget);
+    await tester.enterText(_key('mail-list-search'), 'to:hidden@example.test');
+    await _pump(tester);
+    expect(
+      find.text(_strings.mailMessageListStrings.noMatches),
+      findsOneWidget,
+    );
+    await tester.enterText(_key('mail-list-search'), 'bcc:hidden@example.test');
+    await _pump(tester);
+    expect(
+      find.text(
+        _strings.mailMessageListStrings.searchError(
+          MailHeaderSearchError.unknownField,
+        ),
+      ),
+      findsOneWidget,
+    );
+    expect(browser.requests, hasLength(1));
+    expect(browser.reads, 0);
+    expect(browser.changes, isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('IMAP uses bounded pages and keeps no-match pagination visible', (
     tester,
   ) async {
@@ -622,6 +685,25 @@ void main() {
       expect(labels.flagged, isNotEmpty);
       expect(labels.noMatches, isNotEmpty);
       expect(labels.loadedScope, isNotEmpty);
+      expect(labels.searchHelpText, contains('subject:'));
+      expect(labels.searchHelpText, contains('before:'));
+      expect(labels.searchHelp, isNotEmpty);
+      expect(labels.clearSearch, isNotEmpty);
+      expect(labels.sort, isNotEmpty);
+      expect(labels.providerOrder, isNotEmpty);
+      expect(labels.newestFirst, isNotEmpty);
+      expect(labels.oldestFirst, isNotEmpty);
+      expect(labels.senderAscending, isNotEmpty);
+      expect(labels.subjectAscending, isNotEmpty);
+      for (final error in MailHeaderSearchError.values) {
+        expect(labels.searchError(error), isNotEmpty);
+        if (language != StudioLanguage.en) {
+          expect(
+            labels.searchError(error),
+            isNot(_strings.mailMessageListStrings.searchError(error)),
+          );
+        }
+      }
       expect(labels.count(3, 7), contains('3'));
       expect(labels.count(3, 7), contains('7'));
       expect(strings.mailWorkspaceLimit, isNotEmpty);

@@ -1,5 +1,20 @@
 # Mail implementation status — 20 November 2026
 
+## Structured loaded-header search and sorting
+
+The [header-search continuation](header-search.md) adds bounded field/phrase
+queries, visible To/Cc search, local-calendar date predicates and observed
+read/flag states to all connected and cached mailbox lists. Invalid queries
+fail explicitly; oversized/IME input is not silently rewritten. Users can sort
+by newest/oldest, sender or subject while preserving stable row identities.
+English/German/Arabic help and controls describe the loaded-folder scope.
+Filtering, sorting and keyboard movement issue no provider/body/mutation work.
+
+This advances discovery within M04W. Account-wide search, durable commands,
+bulk triage, conversations and full offline synchronization remain open. The
+[local record](../../validation/mail-header-search-20261120/README.md) separates
+fresh validation from inherited evidence and live-provider/platform gates.
+
 ## Cached mailbox views
 
 The [cached mailbox continuation](cached-mailboxes.md) retains the ordered

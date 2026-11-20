@@ -14,6 +14,7 @@ import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_draft_store_native.dart';
 import 'package:quds_office_studio/studio_mail_mailbox_store.dart';
+import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_outbox_store.dart';
@@ -35,6 +36,7 @@ MailHeaderRecord _header(
   StudioMailDraftAccount identity,
   int id, {
   String folder = 'Inbox',
+  MailEnvelope? envelope,
 }) => MailHeaderRecord(
   id: MailMessageId('message-$id'),
   remote: identity.provider == MailProviderKind.imap
@@ -48,11 +50,13 @@ MailHeaderRecord _header(
           provider: identity.provider,
           value: 'remote-$id',
         ),
-  envelope: MailEnvelope(
-    subject: 'Saved message $id',
-    from: const [MailAddress('author@example.test', displayName: 'Author')],
-    sentAt: _captured,
-  ),
+  envelope:
+      envelope ??
+      MailEnvelope(
+        subject: 'Saved message $id',
+        from: const [MailAddress('author@example.test', displayName: 'Author')],
+        sentAt: _captured,
+      ),
   flags: id == 1 ? const MailMessageFlags(isFlagged: true) : null,
 );
 
@@ -261,6 +265,67 @@ Finder get _confirmClear =>
 
 void main() {
   for (final provider in ['imap', 'ews', 'gmail', 'graph']) {
+    testWidgets('$provider cached search needs no body or draft access', (
+      tester,
+    ) async {
+      final identity = _identity(provider);
+      final (owner, mailbox) = _fixture(identity);
+      final date = DateTime(2026, 11, 20, 12);
+      final view = _view(
+        identity,
+        headers: [
+          _header(
+            identity,
+            1,
+            envelope: MailEnvelope(
+              subject: 'Quarterly report',
+              from: const [
+                MailAddress('writer@example.test', displayName: 'Writer'),
+              ],
+              to: const [
+                MailAddress('team@example.test', displayName: 'Project Team'),
+              ],
+              cc: const [
+                MailAddress('reviewer@example.test', displayName: 'Reviewer'),
+              ],
+              bcc: const [MailAddress('hidden@example.test')],
+              sentAt: date,
+            ),
+          ),
+          _header(identity, 2),
+        ],
+      );
+      mailbox.views[view.mailbox.id] = view;
+      await _show(tester, identity, (_) async => owner);
+      final rows = tester
+          .widget<MailMessageList>(find.byType(MailMessageList))
+          .items;
+      expect(rows.first.date, date);
+      expect(rows.first.to, contains('Project Team <team@example.test>'));
+      expect(rows.first.cc, contains('reviewer@example.test'));
+      await tester.enterText(
+        find.byKey(const ValueKey('mail-list-search')),
+        'from:writer to:"Project Team" cc:reviewer subject:"Quarterly report" '
+        'on:2026-11-20 is:unread is:flagged',
+      );
+      await pumpOutboxWidgets(tester);
+      expect(find.text('Quarterly report'), findsOneWidget);
+      expect(find.text('Saved message 2'), findsNothing);
+      await tester.enterText(
+        find.byKey(const ValueKey('mail-list-search')),
+        'to:hidden@example.test',
+      );
+      await pumpOutboxWidgets(tester);
+      expect(
+        find.text(_strings.mailMessageListStrings.noMatches),
+        findsOneWidget,
+      );
+      expect(mailbox.listReads, 1);
+      expect(mailbox.bodyReads, 0);
+      expect(mailbox.clearCalls, 0);
+      expect(tester.takeException(), isNull);
+    });
+
     testWidgets('$provider reads saved headers and body without draft access', (
       tester,
     ) async {

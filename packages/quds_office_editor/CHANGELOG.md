@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add structured loaded-header search and stable local sorting to connected
+  IMAP, EWS, Gmail and Microsoft 365 lists and offline cached mail. Search
+  visible sender/To/Cc, subject, local calendar dates and observed read/flag
+  states; show localized syntax help/errors in English, German and Arabic.
+  Filtering and sorting preserve message identity and never fetch bodies,
+  change server state or expand the explicitly loaded folder scope.
+
 - Native Studio Mail saves dated ordered views of visited IMAP, EWS, Gmail and
   Microsoft 365 folders plus explicitly opened message bodies/attachments.
   Verified accounts offer a separate Cached mail entry without credentials or

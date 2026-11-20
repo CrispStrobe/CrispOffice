@@ -3149,6 +3149,25 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   )
                   .join(', ') ??
               '',
+          to:
+              message.to
+                  ?.map(
+                    (address) => address.personalName?.isNotEmpty == true
+                        ? '${address.personalName} <${address.email}>'
+                        : address.email,
+                  )
+                  .join(', ') ??
+              '',
+          cc:
+              message.cc
+                  ?.map(
+                    (address) => address.personalName?.isNotEmpty == true
+                        ? '${address.personalName} <${address.email}>'
+                        : address.email,
+                  )
+                  .join(', ') ??
+              '',
+          date: message.decodeDate(),
           dateLabel: message.decodeDate()?.toLocal().toString(),
           isRead: _observedRead(message),
           isFlagged: _observedFlagged(message),

@@ -1,5 +1,9 @@
 ## 0.1.0
 
+- Add bounded structured search of loaded message headers with localized syntax
+  errors, recipient/date/state predicates, explicit clear and accessible help.
+- Add stable local provider/date/sender/subject ordering without provider work,
+  keeping unknown dates last and preserving message identity through reordering.
 - Add a bounded body-only quotation API, preserving empty plain alternatives and
   rejecting incomplete HTML without reading message headers or attachments.
 - Add a reusable foreground mailbox list with explicit loaded-message search,

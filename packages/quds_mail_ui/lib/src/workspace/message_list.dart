@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:quds_mail_core/quds_mail_core.dart';
 
 /// An immutable, provider-neutral row for foreground mailbox navigation.
 ///
@@ -14,6 +15,9 @@ final class MailMessageListItem {
     required this.id,
     required this.subject,
     required this.sender,
+    this.to = '',
+    this.cc = '',
+    this.date,
     this.dateLabel,
     this.isRead,
     this.isFlagged,
@@ -22,9 +26,25 @@ final class MailMessageListItem {
   final String id;
   final String subject;
   final String sender;
+
+  /// Already loaded, visible recipient headers, never hidden recipients or body.
+  final String to;
+  final String cc;
+
+  /// Actual message timestamp for search/sort; [dateLabel] is presentation only.
+  final DateTime? date;
   final String? dateLabel;
   final bool? isRead;
   final bool? isFlagged;
+}
+
+/// Local ordering of the loaded rows. Equal values retain provider order.
+enum MailMessageListSort {
+  providerOrder,
+  newestFirst,
+  oldestFirst,
+  senderAscending,
+  subjectAscending,
 }
 
 /// Host-localized copy; the shared list has no application localization global.
@@ -39,6 +59,26 @@ final class MailMessageListStrings {
     required this.loading,
     required this.loadedScope,
     required this.count,
+    this.clearSearch = 'Clear search',
+    this.searchHelp = 'Search help',
+    this.searchHelpTitle = 'Search loaded message headers',
+    this.searchHelpText =
+        'Combine terms to require every match. Use from:, to:, cc:, subject:, '
+        'is:read, is:unread, is:flagged or is:unflagged. '
+        'Use before:YYYY-MM-DD, after:YYYY-MM-DD or on:YYYY-MM-DD for dates. '
+        'Before and after exclude the specified date. '
+        'Put phrases in double quotes and keep values next to the colon. '
+        'Only loaded message headers are searched. '
+        'Body text, attachments, OR/NOT/AND, wildcards and grouping are not '
+        'supported.',
+    this.close = 'Close',
+    this.sort = 'Sort loaded messages',
+    this.providerOrder = 'Provider order',
+    this.newestFirst = 'Newest first',
+    this.oldestFirst = 'Oldest first',
+    this.senderAscending = 'Sender (A–Z)',
+    this.subjectAscending = 'Subject (A–Z)',
+    this.searchError = _defaultSearchError,
   });
 
   final String searchLoaded;
@@ -50,19 +90,50 @@ final class MailMessageListStrings {
   final String loading;
   final String loadedScope;
   final String Function(int shown, int loaded) count;
+  final String clearSearch;
+  final String searchHelp;
+  final String searchHelpTitle;
+  final String searchHelpText;
+  final String close;
+  final String sort;
+  final String providerOrder;
+  final String newestFirst;
+  final String oldestFirst;
+  final String senderAscending;
+  final String subjectAscending;
+  final String Function(MailHeaderSearchError error) searchError;
 }
+
+String _defaultSearchError(MailHeaderSearchError error) => switch (error) {
+  MailHeaderSearchError.queryTooLong => 'The search is too long.',
+  MailHeaderSearchError.tooManyTerms => 'Use fewer search terms.',
+  MailHeaderSearchError.invalidCharacter =>
+    'The search contains an unsupported character.',
+  MailHeaderSearchError.unclosedQuote => 'Close the quoted search phrase.',
+  MailHeaderSearchError.invalidEscape =>
+    'Inside quotes, only a quote or backslash can be escaped.',
+  MailHeaderSearchError.emptyTerm => 'Enter text inside the quoted phrase.',
+  MailHeaderSearchError.missingValue => 'Enter a value after the search field.',
+  MailHeaderSearchError.unknownField => 'This search field is not supported.',
+  MailHeaderSearchError.invalidState =>
+    'Use is:read, is:unread, is:flagged or is:unflagged.',
+  MailHeaderSearchError.invalidDate => 'Enter a valid date as YYYY-MM-DD.',
+  MailHeaderSearchError.unsupportedOperator =>
+    'Use separate terms to match all. Search operators are not supported.',
+};
 
 /// Shared, virtualized foreground message navigation for native/cloud hosts.
 ///
-/// Search and the conjunctive unread/flagged filters only inspect [items]. They
-/// never trigger a provider request. The host owns pagination, selection,
-/// message reads, mutations and durable storage; this view cannot mark a message
-/// read. Arrow/Home/End keys move a separate keyboard cursor, while Enter or an
-/// explicit row activation invokes [onOpen]. Search editing owns its own keys.
+/// Structured header search, sorting and the conjunctive unread/flagged filters
+/// only inspect [items]. They never trigger a provider request. The host owns
+/// pagination, selection, message reads, mutations and durable storage; this
+/// view cannot mark a message read. Arrow/Home/End keys move a separate keyboard
+/// cursor, while Enter or an explicit row activation invokes [onOpen]. Search
+/// editing owns its own keys.
 ///
 /// Change [scopeId] (or the widget key) for a different account or mailbox.
-/// That resets query, filters, keyboard focus and scroll position. Within one
-/// scope the keyboard cursor follows the stable row ID through reordering.
+/// That resets query, filters, sort, keyboard focus and scroll position. Within
+/// one scope the keyboard cursor follows the stable row ID through reordering.
 class MailMessageList extends StatefulWidget {
   MailMessageList({
     super.key,
@@ -106,20 +177,72 @@ class _MailMessageListState extends State<MailMessageList> {
   final _scroll = ScrollController();
   bool _unread = false;
   bool _flagged = false;
+  MailHeaderSearchQuery? _compiledQuery = MailHeaderSearchQuery.parse('');
+  MailHeaderSearchException? _queryError;
+  MailMessageListSort _sort = MailMessageListSort.providerOrder;
+  int _scopeGeneration = 0;
   String? _activeId;
   double _itemExtent = 84;
 
   List<MailMessageListItem> get _visible {
-    final query = _query.text.trim().toLowerCase();
-    return [
-      for (final item in widget.items)
-        if ((!_unread || item.isRead == false) &&
-            (!_flagged || item.isFlagged == true) &&
-            (query.isEmpty ||
-                item.subject.toLowerCase().contains(query) ||
-                item.sender.toLowerCase().contains(query)))
-          item,
-    ];
+    final query = _compiledQuery;
+    if (query == null) return const [];
+    final rows = <({int index, MailMessageListItem item})>[];
+    for (var index = 0; index < widget.items.length; index++) {
+      final item = widget.items[index];
+      if ((!_unread || item.isRead == false) &&
+          (!_flagged || item.isFlagged == true) &&
+          query.matches(
+            MailHeaderSearchDocument(
+              subject: item.subject,
+              sender: item.sender,
+              to: item.to,
+              cc: item.cc,
+              date: item.date,
+              isRead: item.isRead,
+              isFlagged: item.isFlagged,
+            ),
+          )) {
+        rows.add((index: index, item: item));
+      }
+    }
+    if (_sort != MailMessageListSort.providerOrder) {
+      rows.sort((a, b) {
+        final comparison = switch (_sort) {
+          MailMessageListSort.providerOrder => 0,
+          MailMessageListSort.newestFirst => _compareDates(
+            a.item,
+            b.item,
+            true,
+          ),
+          MailMessageListSort.oldestFirst => _compareDates(
+            a.item,
+            b.item,
+            false,
+          ),
+          MailMessageListSort.senderAscending =>
+            a.item.sender.toLowerCase().compareTo(b.item.sender.toLowerCase()),
+          MailMessageListSort.subjectAscending =>
+            a.item.subject.toLowerCase().compareTo(
+              b.item.subject.toLowerCase(),
+            ),
+        };
+        return comparison == 0 ? a.index.compareTo(b.index) : comparison;
+      });
+    }
+    return [for (final row in rows) row.item];
+  }
+
+  int _compareDates(
+    MailMessageListItem a,
+    MailMessageListItem b,
+    bool descending,
+  ) {
+    final left = a.date;
+    final right = b.date;
+    if (left == null) return right == null ? 0 : 1;
+    if (right == null) return -1;
+    return descending ? right.compareTo(left) : left.compareTo(right);
   }
 
   bool get _filtered => _unread || _flagged || _query.text.trim().isNotEmpty;
@@ -128,9 +251,12 @@ class _MailMessageListState extends State<MailMessageList> {
   void didUpdateWidget(MailMessageList oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.scopeId != widget.scopeId) {
+      _scopeGeneration++;
       _query.clear();
+      _compileQuery();
       _unread = false;
       _flagged = false;
+      _sort = MailMessageListSort.providerOrder;
       _activeId = null;
       _listFocus.unfocus();
       _resetScroll();
@@ -169,6 +295,61 @@ class _MailMessageListState extends State<MailMessageList> {
     _resetScroll();
   }
 
+  void _compileQuery() {
+    try {
+      _compiledQuery = MailHeaderSearchQuery.parse(_query.text);
+      _queryError = null;
+    } on MailHeaderSearchException catch (error) {
+      _compiledQuery = null;
+      _queryError = error;
+    }
+  }
+
+  String _sortLabel(MailMessageListSort sort) => switch (sort) {
+    MailMessageListSort.providerOrder => widget.strings.providerOrder,
+    MailMessageListSort.newestFirst => widget.strings.newestFirst,
+    MailMessageListSort.oldestFirst => widget.strings.oldestFirst,
+    MailMessageListSort.senderAscending => widget.strings.senderAscending,
+    MailMessageListSort.subjectAscending => widget.strings.subjectAscending,
+  };
+
+  void _sortChanged(MailMessageListSort value) {
+    setState(() {
+      _sort = value;
+      _reconcileCursor(_visible);
+    });
+    if (_listFocus.hasFocus) {
+      _revealCursor();
+    } else {
+      _resetScroll();
+    }
+  }
+
+  void _showSearchHelp() {
+    final strings = widget.strings;
+    final direction = Directionality.of(context);
+    final textScaler = MediaQuery.textScalerOf(context);
+    showDialog<void>(
+      context: context,
+      builder: (context) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaler: textScaler),
+        child: Directionality(
+          textDirection: direction,
+          child: AlertDialog(
+            title: Text(strings.searchHelpTitle),
+            content: SingleChildScrollView(child: Text(strings.searchHelpText)),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(strings.close),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   void _revealCursor() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || !_scroll.hasClients) return;
@@ -190,8 +371,13 @@ class _MailMessageListState extends State<MailMessageList> {
     });
   }
 
-  void _open(String id) {
-    if (widget.busy || !widget.items.any((item) => item.id == id)) return;
+  void _open(String id, {int? scopeGeneration}) {
+    if (!mounted ||
+        scopeGeneration != null && scopeGeneration != _scopeGeneration ||
+        widget.busy ||
+        !_visible.any((item) => item.id == id)) {
+      return;
+    }
     setState(() => _activeId = id);
     _listFocus.requestFocus();
     widget.onOpen(id);
@@ -256,15 +442,38 @@ class _MailMessageListState extends State<MailMessageList> {
           child: TextField(
             key: const ValueKey('mail-list-search'),
             controller: _query,
-            onChanged: (_) => _filterChanged(() {}),
+            onChanged: (_) => _filterChanged(_compileQuery),
             decoration: InputDecoration(
               isDense: true,
               prefixIcon: const Icon(Icons.search, size: 18),
               hintText: strings.searchLoaded,
+              suffixIcon: _query.text.isEmpty
+                  ? null
+                  : IconButton(
+                      key: const ValueKey('mail-list-clear-search'),
+                      tooltip: strings.clearSearch,
+                      icon: const Icon(Icons.clear, size: 18),
+                      onPressed: () => _filterChanged(() {
+                        _query.clear();
+                        _compileQuery();
+                      }),
+                    ),
               border: const OutlineInputBorder(),
             ),
           ),
         ),
+        if (_queryError case final error?)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 6, 10, 0),
+            child: Semantics(
+              liveRegion: true,
+              child: Text(
+                strings.searchError(error.code),
+                key: const ValueKey('mail-list-search-error'),
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
+            ),
+          ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           child: Wrap(
@@ -282,6 +491,33 @@ class _MailMessageListState extends State<MailMessageList> {
                 label: Text(strings.flagged),
                 selected: _flagged,
                 onSelected: (value) => _filterChanged(() => _flagged = value),
+              ),
+              PopupMenuButton<MailMessageListSort>(
+                key: const ValueKey('mail-list-sort'),
+                tooltip: strings.sort,
+                initialValue: _sort,
+                onSelected: _sortChanged,
+                itemBuilder: (context) => [
+                  for (final sort in MailMessageListSort.values)
+                    PopupMenuItem(
+                      key: ValueKey('mail-list-sort-${sort.name}'),
+                      value: sort,
+                      child: Text(_sortLabel(sort), textScaler: scaler),
+                    ),
+                ],
+                child: Chip(
+                  avatar: const Icon(Icons.sort, size: 18),
+                  label: Text(
+                    _sortLabel(_sort),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
+              IconButton(
+                key: const ValueKey('mail-list-search-help'),
+                tooltip: strings.searchHelp,
+                icon: const Icon(Icons.help_outline, size: 20),
+                onPressed: _showSearchHelp,
               ),
             ],
           ),
@@ -347,6 +583,7 @@ class _MailMessageListState extends State<MailMessageList> {
   }
 
   Widget _row(MailMessageListItem item) {
+    final scopeGeneration = _scopeGeneration;
     final colors = Theme.of(context).colorScheme;
     final active = _listFocus.hasFocus && item.id == _activeId;
     final selected = item.id == widget.selectedId;
@@ -364,7 +601,9 @@ class _MailMessageListState extends State<MailMessageList> {
             : Colors.transparent,
         child: InkWell(
           canRequestFocus: false,
-          onTap: widget.busy ? null : () => _open(item.id),
+          onTap: widget.busy
+              ? null
+              : () => _open(item.id, scopeGeneration: scopeGeneration),
           child: DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(
