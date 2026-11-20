@@ -335,11 +335,7 @@ abstract final class OfficePdfExport {
         sink.canvas.translateScale(ox, oy, scale);
       }
       sink.canvas.fillRect(0, 0, slideW, slideH, _slideBackground(deck, slide));
-      for (final PmlShape shape
-          in (slide.backgroundShapesResolved ||
-                  slide.backgroundShapes.isNotEmpty)
-              ? slide.backgroundShapes
-              : deck.master.shapes) {
+      for (final PmlShape shape in _slideBackgroundShapes(deck, slide)) {
         _paintShape(sink, deck, slide, shape);
       }
       for (final PmlShape shape in slide.shapes) {
@@ -379,12 +375,7 @@ abstract final class OfficePdfExport {
         }
       }
 
-      linkShapes(
-        (slide.backgroundShapesResolved || slide.backgroundShapes.isNotEmpty)
-            ? slide.backgroundShapes
-            : deck.master.shapes,
-        scaled: notes,
-      );
+      linkShapes(_slideBackgroundShapes(deck, slide), scaled: notes);
       linkShapes(slide.shapes, scaled: notes);
       if (notes) {
         sink.drawText(
@@ -466,11 +457,7 @@ abstract final class OfficePdfExport {
           slideH,
           _slideBackground(deck, slide),
         );
-        for (final PmlShape shape
-            in (slide.backgroundShapesResolved ||
-                    slide.backgroundShapes.isNotEmpty)
-                ? slide.backgroundShapes
-                : deck.master.shapes) {
+        for (final PmlShape shape in _slideBackgroundShapes(deck, slide)) {
           _paintShape(sink, deck, slide, shape);
         }
         for (final PmlShape shape in slide.shapes) {
@@ -494,11 +481,7 @@ abstract final class OfficePdfExport {
           }
         }
 
-        linkShapes(
-          (slide.backgroundShapesResolved || slide.backgroundShapes.isNotEmpty)
-              ? slide.backgroundShapes
-              : deck.master.shapes,
-        );
+        linkShapes(_slideBackgroundShapes(deck, slide));
         linkShapes(slide.shapes);
         sink.drawText(
           '${index + 1} / ${deck.slides.length}',
@@ -1917,6 +1900,16 @@ abstract final class OfficePdfExport {
         canvas.rect(x, y, w, h);
         canvas.fill();
     }
+  }
+
+  static List<PmlShape> _slideBackgroundShapes(
+    PmlPresentation deck,
+    PmlSlide slide,
+  ) {
+    if (!slide.showMasterShapes) return const <PmlShape>[];
+    return slide.backgroundShapesResolved || slide.backgroundShapes.isNotEmpty
+        ? slide.backgroundShapes
+        : deck.master.shapes;
   }
 
   static String _slideBackground(PmlPresentation deck, PmlSlide slide) {

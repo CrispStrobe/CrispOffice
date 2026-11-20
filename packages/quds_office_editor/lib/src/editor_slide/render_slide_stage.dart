@@ -1081,7 +1081,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         : rect;
     Color? background = _slidePaper(target);
     for (final List<PmlShape> layer in <List<PmlShape>>[
-      target.backgroundShapes,
+      if (target.showMasterShapes) target.backgroundShapes,
       target.shapes,
     ]) {
       final bool decorations = identical(layer, target.backgroundShapes);
@@ -1729,8 +1729,10 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     );
     // Decoration IDs belong to their master/layout part, not the slide.
     // Slide animations and morph exclusions must not target matching IDs here.
-    for (final PmlShape shape in target.backgroundShapes) {
-      _paintShapeInRect(canvas, shape, _shapeRect(shape));
+    if (target.showMasterShapes) {
+      for (final PmlShape shape in target.backgroundShapes) {
+        _paintShapeInRect(canvas, shape, _shapeRect(shape));
+      }
     }
     for (final PmlShape shape in target.shapes) {
       if (skipIds != null && skipIds.contains(shape.id)) {

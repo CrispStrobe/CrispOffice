@@ -366,6 +366,8 @@ void main() {
       );
       expect(hiddenSlide.slides.single.backgroundShapes, isEmpty);
       expect(hiddenSlide.slides.single.backgroundShapesResolved, isTrue);
+      expect(hiddenSlide.slides.single.showMasterShapes, isFalse);
+      expect(hiddenSlide.slides.single.copy(id: 999).showMasterShapes, isFalse);
       final PmlPresentation hiddenMaster = _deck(
         <String>[_sld(_textBox(2, 'Slide'))],
         masterShapes: _textBox(9, 'Master decoration'),
@@ -381,6 +383,7 @@ void main() {
       );
       expect(reopened.slides.single.backgroundShapes, isEmpty);
       expect(reopened.slides.single.backgroundShapesResolved, isTrue);
+      expect(reopened.slides.single.showMasterShapes, isFalse);
     });
 
     test('block arrow presets survive import', () {

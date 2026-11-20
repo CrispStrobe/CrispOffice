@@ -560,6 +560,7 @@ class PmlSlide {
     this.transition = const PmlSlideTransition(),
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
+    this.showMasterShapes = true,
   }) : _background = background,
        _primaryMasterBackground = background.isEmpty
            ? null
@@ -657,6 +658,9 @@ class PmlSlide {
   /// PowerPoint `p:sld/@show="0"` — skipped during a slide show.
   bool hidden;
 
+  /// Whether master/layout decorations are visible (`p:sld/@showMasterSp`).
+  bool showMasterShapes;
+
   /// copy API.
   PmlSlide copy({int? id}) {
     return PmlSlide(
@@ -673,6 +677,7 @@ class PmlSlide {
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
       transition: transition,
       hidden: hidden,
+      showMasterShapes: showMasterShapes,
       animations: <PmlShapeAnimation>[
         for (final PmlShapeAnimation anim in animations) anim.copyWith(),
       ],

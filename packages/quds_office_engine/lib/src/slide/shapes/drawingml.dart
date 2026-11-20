@@ -624,6 +624,9 @@ String slideToXml(PmlSlide slide, {Map<PmlShape, String>? embedIds}) {
   if (slide.hidden) {
     w.writeAttribute('show', '0');
   }
+  if (!slide.showMasterShapes) {
+    w.writeAttribute('showMasterSp', '0');
+  }
 
   /// writeNamespace API.
   w.writeNamespace('p', OfficeNamespaces.p);

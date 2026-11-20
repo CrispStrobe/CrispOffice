@@ -103,6 +103,7 @@ class SlideDeserializer {
       final slidePart = package.getPart(uri);
       if (slidePart != null) {
         final String slideXml = slidePart.readText();
+        pres.slides[i].showMasterShapes = _showsMasterShapes(slideXml);
         final _SlideTemplate? layout = templates.layoutOf(uri);
         final Set<PmlShape> positioned = Set<PmlShape>.identity();
         final List<PmlShape> shapes = parseSlideShapes(
@@ -131,7 +132,7 @@ class SlideDeserializer {
             layout.placeholders,
             layout.master?.placeholders ?? const <PmlShape>[],
           ]);
-          if (_showsMasterShapes(slideXml)) {
+          if (pres.slides[i].showMasterShapes) {
             pres.slides[i].backgroundShapes.addAll(<PmlShape>[
               if (layout.showMasterShapes)
                 for (final PmlShape shape
