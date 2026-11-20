@@ -198,4 +198,38 @@ void main() {
     );
   }
 
+  test('foreign engine reuse remeasures every section with current metrics', () {
+    document = WmlDocument(
+      sections: <WmlSection>[
+        WmlSection(blocks: <WmlBlock>[_p(_text(0) * 4)]),
+        WmlSection(blocks: <WmlBlock>[_p(_text(2) * 3)]),
+      ],
+    );
+    final firstEngine = WordLayoutEngine(
+      font: null,
+      fallbackWidthFactor: 0.35,
+    );
+    final previous = firstEngine.layout(document, updateFields: false);
+    final secondEngine = WordLayoutEngine(
+      font: null,
+      fallbackWidthFactor: 0.9,
+    );
+    final actual = secondEngine.layout(
+      document,
+      updateFields: false,
+      // Even the ordinary fallback must discard the foreign first section.
+      fromSectionIndex: 1,
+      reuse: previous,
+      dirtyParagraphs: <WmlParagraph>{},
+    );
+    final expected = WordLayoutEngine(
+      font: null,
+      fallbackWidthFactor: 0.9,
+    ).layout(document, updateFields: false);
+    expect(wordLayoutFingerprint(actual), wordLayoutFingerprint(expected));
+    expect(actual.pages.first, isNot(same(previous.pages.first)));
+    expect(WordIncrementalLayoutStats.incremental, 0);
+    expect(WordIncrementalLayoutStats.fallbacks, 1);
+  });
+
 }

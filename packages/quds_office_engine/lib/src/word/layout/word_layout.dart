@@ -1021,6 +1021,7 @@ class WordLayoutEngine {
   );
 
   _Recorder? _recorder;
+  final Object _incrementalOwner = Object();
 
   /// Last line breaks per paragraph (see [_BreakCache]).
   final Expando<_BreakCache> _breakCache = Expando<_BreakCache>();
@@ -1062,6 +1063,14 @@ class WordLayoutEngine {
       WordIncrementalLayoutStats.fallbacks++;
     }
     _prepareLayout(document, updateFields: updateFields);
+    final _IncrementalState? previousState = reuse?._incremental;
+    if (previousState != null &&
+        !identical(previousState.owner, _incrementalOwner)) {
+      // A rejected incremental attempt must not keep earlier sections from a
+      // different engine's font or measurement environment in its fallback.
+      reuse = null;
+      fromSectionIndex = 0;
+    }
     if (document.footnotes.isNotEmpty || document.endnotes.isNotEmpty) {
       fromSectionIndex = 0;
     }
@@ -1160,7 +1169,7 @@ class WordLayoutEngine {
       document,
       pages,
       updateFields: updateFields,
-      state: recorded ? _IncrementalState(document, recorder.sections) : null,
+      state: recorded ? _IncrementalState(_incrementalOwner, document, recorder.sections) : null,
     );
   }
 
@@ -1215,6 +1224,7 @@ class WordLayoutEngine {
   ) {
     final _IncrementalState? old = reuse._incremental;
     if (old == null ||
+        !identical(old.owner, _incrementalOwner) ||
         !identical(old.document, document) ||
         old.sections.length != document.sections.length ||
         document.footnotes.isNotEmpty ||
@@ -1283,7 +1293,7 @@ class WordLayoutEngine {
         return LaidOutDocument(
           pages: List<LaidOutPage>.of(reuse.pages),
           pageSize: document.sections.first.pageSize,
-        ).._incremental = _IncrementalState(document, recorder.sections);
+        ).._incremental = _IncrementalState(_incrementalOwner, document, recorder.sections);
       }
       final _SectionRecord resumeRecord = old.sections[firstSection]!;
       final _Checkpoint cp = resumeRecord.checkpoints[firstBlock];
@@ -1352,7 +1362,7 @@ class WordLayoutEngine {
         document,
         pages,
         updateFields: false,
-        state: _IncrementalState(document, recorder.sections),
+        state: _IncrementalState(_incrementalOwner, document, recorder.sections),
       );
     } finally {
       _recorder = null;

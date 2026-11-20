@@ -120,8 +120,10 @@ class _SectionRecord {
 }
 
 class _IncrementalState {
-  _IncrementalState(this.document, this.sections);
+  _IncrementalState(this.owner, this.document, this.sections);
 
+  /// Opaque identity of the engine that shaped these pages and checkpoints.
+  final Object owner;
   final WmlDocument document;
   final List<_SectionRecord?> sections;
 }
@@ -299,7 +301,9 @@ class _Recorder {
 /// A paragraph's line breaks with the environment they were made for. The
 /// paragraph's own content (text, run and paragraph properties) is not part
 /// of the key: entries are read only for blocks an incremental layout proved
-/// unchanged since the previous layout; every layout rewrites them.
+/// unchanged since the previous layout. Dirty or noncacheable layouts retire
+/// old entries before returning, so wrapped or empty content cannot leave stale
+/// unwrapped breaks behind.
 class _BreakCache {
   _BreakCache(
     this.lines, {
