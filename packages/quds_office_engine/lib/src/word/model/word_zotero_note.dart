@@ -4,6 +4,7 @@ import '../../xml/xml_reader.dart';
 import '../../zotero/zotero_formatted_text.dart';
 import '../properties/wml_properties.dart';
 import 'wml_document.dart';
+import 'word_zotero_note_image.dart';
 
 /// A bounded, inert note fragment with citation placeholders kept separate.
 /// Unsupported structure and formatting are refused before document edits.
@@ -32,6 +33,8 @@ final class WordZoteroNoteText {
     final canonical = StringBuffer();
     final stack = <_NoteElement>[];
     final links = <_NoteLink>[];
+    final images = <WmlVisual>[];
+    final imageReader = WordZoteroNoteImageReader();
     final items = <WordZoteroNoteListItem>[];
     var listCount = 0;
     var activeLink = false;
@@ -62,12 +65,21 @@ final class WordZoteroNoteText {
                   name != 'class' &&
                   !(name == 'href' && tag == 'a') &&
                   !(name == 'start' && tag == 'ol') &&
+                  !(tag == 'img' &&
+                      const <String>{
+                        'src',
+                        'width',
+                        'height',
+                        'alt',
+                        'title',
+                      }.contains(name)) &&
                   !(const <String>{
                         'data-schema-version',
                         'data-citation-items',
                       }.contains(name) &&
                       tag == 'div') &&
-                  !(name == 'data-annotation' && tag == 'span')) {
+                  !(name == 'data-annotation' &&
+                      (tag == 'span' || tag == 'img'))) {
                 throw UnsupportedError(
                   'This Zotero note contains unsupported $name attributes. The document was kept unchanged.',
                 );
@@ -83,6 +95,13 @@ final class WordZoteroNoteText {
               attributes[name] = value;
             }
             final parent = stack.lastOrNull;
+            if (tag == 'img' &&
+                activeLink &&
+                links.last.placeholderId != null) {
+              throw UnsupportedError(
+                'A Zotero citation placeholder cannot contain an image. The document was kept unchanged.',
+              );
+            }
             final activeItem = stack
                 .where((element) => element.tag == 'li')
                 .lastOrNull;
@@ -141,7 +160,8 @@ final class WordZoteroNoteText {
                 ),
               );
             }
-            final outputTag = tag == 'a' || (tag == 'p' && activeItem != null)
+            final outputTag =
+                tag == 'a' || tag == 'img' || (tag == 'p' && activeItem != null)
                 ? 'span'
                 : isList
                 ? 'div'
@@ -175,6 +195,11 @@ final class WordZoteroNoteText {
             }
             // Preserve authored empty paragraphs through the shared renderer.
             if (tag == 'p' || tag == 'li') canonical.write('\uE002');
+            if (tag == 'img') {
+              final index = images.length;
+              images.add(WmlVisual(visual: imageReader.read(attributes)));
+              canonical.write('\uE000i$index\uE001');
+            }
             if (itemIndex != null) {
               canonical.write('\uE000l$itemIndex\uE001');
             }
@@ -205,7 +230,8 @@ final class WordZoteroNoteText {
                 (element.hasText ||
                     element.tag == 'p' ||
                     element.tag == 'div' ||
-                    element.tag == 'li')) {
+                    element.tag == 'li' ||
+                    element.tag == 'img')) {
               stack.last.hasText = true;
             }
           case XmlEventType.characters:
@@ -247,7 +273,9 @@ final class WordZoteroNoteText {
     _NoteLink? current;
     var currentStart = 0;
     var currentParagraph = 0;
-    final marker = RegExp('\uE000([0-9]+|h[1-6]|/h|l[0-9]+)\uE001|\uE002');
+    final marker = RegExp(
+      '\uE000([0-9]+|h[1-6]|/h|l[0-9]+|i[0-9]+)\uE001|\uE002',
+    );
     for (final sourceRuns in formatted.toParagraphRuns(
       baseProperties: baseProperties,
     )) {
@@ -272,7 +300,19 @@ final class WordZoteroNoteText {
         for (final match in marker.allMatches(run.text)) {
           append(run.text.substring(start, match.start));
           final number = match[1];
-          if (number != null && number.startsWith('l')) {
+          if (number != null && number.startsWith('i')) {
+            paragraph.inlines.add(
+              WmlRun(
+                text: '\uFFFC',
+                properties: run.properties.copy(),
+                inlineVisual: images[int.parse(number.substring(1))],
+                hyperlink: current == null
+                    ? null
+                    : WmlHyperlink(url: current.href),
+              ),
+            );
+            offset++;
+          } else if (number != null && number.startsWith('l')) {
             if (offset != 0 || listItems.containsKey(paragraphs.length)) {
               throw _malformed();
             }
@@ -344,13 +384,61 @@ final class WordZoteroNoteText {
     if (value.contains(RegExp('[\uE000-\uE002]'))) throw _malformed();
   }
 
-  static String _normalize(String html) => html
-      .replaceAllMapped(RegExp(r'&([A-Za-z][A-Za-z0-9]*);'), (match) {
+  static String _normalize(String html) {
+    final normalized = html.replaceAllMapped(
+      RegExp(r'&([A-Za-z][A-Za-z0-9]*);'),
+      (match) {
         final value = _entities[match[1]];
         if (value == null) throw _malformed();
         return '&#$value;';
-      })
-      .replaceAll(RegExp(r'<br\s*>', caseSensitive: false), '<br/>');
+      },
+    );
+    // Zotero's DOM serializer emits HTML void elements. Recognize their real
+    // tag boundaries without mistaking a quoted '>' or comment for markup.
+    final out = StringBuffer();
+    var position = 0;
+    while (position < normalized.length) {
+      final start = normalized.indexOf('<', position);
+      if (start < 0) {
+        out.write(normalized.substring(position));
+        break;
+      }
+      out.write(normalized.substring(position, start));
+      if (normalized.startsWith('<!--', start)) {
+        final end = normalized.indexOf('-->', start + 4);
+        if (end < 0) throw _malformed();
+        out.write(normalized.substring(start, end + 3));
+        position = end + 3;
+        continue;
+      }
+      var end = start + 1;
+      int? quote;
+      for (; end < normalized.length; end++) {
+        final code = normalized.codeUnitAt(end);
+        if (quote != null) {
+          if (code == quote) quote = null;
+        } else if (code == 34 || code == 39) {
+          quote = code;
+        } else if (code == 62) {
+          break;
+        }
+      }
+      if (end == normalized.length) throw _malformed();
+      final tag = normalized.substring(start, end);
+      out.write(tag);
+      if (RegExp(
+            r'^<(?:img|br)(?:\s|/|$)',
+            caseSensitive: false,
+          ).hasMatch(tag) &&
+          !tag.trimRight().endsWith('/')) {
+        out.write('/');
+      }
+      out.write('>');
+      position = end + 1;
+    }
+    return out.toString();
+  }
+
   static FormatException _malformed() => const FormatException(
     'Zotero returned a malformed or unsupported note. The document was kept unchanged.',
   );
@@ -368,6 +456,7 @@ final class WordZoteroNoteText {
     'span',
     'a',
     'br',
+    'img',
     'b',
     'strong',
     'i',

@@ -4,6 +4,15 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Support embedded research-note pictures and Zotero image/ink annotations in
+  the existing native Add Note and Add Annotation controls. Images, active
+  citations, notes and preferences apply together as one undo step, with stale
+  target and cancellation guards. Verify actual editor image painting and
+  repeated DOCX save/reopen with undo/redo.
+
+- Remove inherited selected gradients from the slide canvas immediately after
+  a master background edit, preserving local fills and background ownership.
+
 - Render distinct pentagon and home-plate silhouettes while retaining chevron
   geometry. Keep the Studio Mail theme's button height with a finite minimum
   width so PDF organization controls can lay out in both light and dark themes.

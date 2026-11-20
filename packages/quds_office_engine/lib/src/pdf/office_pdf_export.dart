@@ -2124,7 +2124,9 @@ abstract final class OfficePdfExport {
         // deleting imported snapshots or overriding local slide/layout fills.
         return [
           for (final shape in slide.backgroundShapes)
-            if (!shape.isBackgroundPicture) shape,
+            if (!shape.isBackgroundPicture &&
+                !identical(shape, slide.backgroundGradient))
+              shape,
         ];
       }
       return slide.backgroundShapes;

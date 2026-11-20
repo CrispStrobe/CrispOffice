@@ -4,6 +4,16 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Accept bounded embedded PNG and supported upright RGB/YCbCr JPEG pictures in
+  Zotero Add Note and Add Annotation responses. Preserve original image bytes,
+  dimensions, alternative text, title, ordinary links and active citation
+  offsets as native inline Word pictures. Validate complete raster streams and
+  resource budgets before publication; unsupported content refuses the entire
+  staged insertion. Preserve refresh and DOCX save/reopen behavior.
+
+- Hide the selected inherited slide gradient immediately after a direct master
+  background edit in PDF export, while retaining authored slide/layout fills.
+
 - Add the bounded `vba-word` adapter on the shared VBA compiler. Target explicit
   document paragraphs, insert text before their content, and apply supported
   font and paragraph formatting through existing atomic Word operations.

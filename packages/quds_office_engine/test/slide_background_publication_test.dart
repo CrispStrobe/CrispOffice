@@ -50,7 +50,53 @@ Iterable<PmlShape> _pictures(PmlSlide slide) =>
 PmlPresentation _reopen(PmlPresentation deck) =>
     SlideDeserializer().readBytes(SlideSerializer().writeBytes(deck));
 
+PmlPresentation _importGradient(String owner) {
+  final deck = _importPicture(owner);
+  const gradient =
+      '<p:bg><p:bgPr><a:gradFill><a:gsLst>'
+      '<a:gs pos="0"><a:srgbClr val="FF0000"/></a:gs>'
+      '<a:gs pos="100000"><a:srgbClr val="0000FF"/></a:gs>'
+      '</a:gsLst><a:lin ang="0"/></a:gradFill></p:bgPr></p:bg>';
+  for (final uri in [
+    '/ppt/slideMasters/slideMaster1.xml',
+    '/ppt/slideLayouts/slideLayout1.xml',
+    '/ppt/slides/slide1.xml',
+  ]) {
+    final part = deck.package!.getPart(uri)!;
+    part.writeText(part.readText().replaceAll(_picture, gradient));
+  }
+  return SlideDeserializer().read(deck.package!);
+}
+
+List<int> _fillColors(PmlPresentation deck, int perPage) => PdfFile.open(
+  OfficePdfExport.presentation(deck, slidesPerPage: perPage),
+).displayList(0).ops.whereType<PdfFillPath>().map((op) => op.color).toList();
+
 void main() {
+  test('direct master solids suppress inherited gradients without saving', () {
+    for (final color in ['112233', 'FFFFFF']) {
+      for (final owner in ['master', 'layout', 'slide']) {
+        for (final perPage in [1, 2]) {
+          final deck = _importGradient(owner);
+          final selected = deck.slides.single.backgroundGradient;
+          expect(selected, isNotNull);
+          final before = _fillColors(deck, perPage);
+          expect(before.toSet().length, greaterThan(2));
+          deck.master.background = color;
+          final expected = _importGradient(owner);
+          expected.slides.single.background = color;
+          expect(
+            _fillColors(deck, perPage),
+            owner == 'master' ? _fillColors(expected, perPage) : before,
+            reason: '$owner owner, $color paper, $perPage per page',
+          );
+          // Rendering must not rewrite the retained native background.
+          expect(deck.slides.single.backgroundGradient, same(selected));
+        }
+      }
+    }
+  });
+
   test(
     'direct master solids affect PDF immediately, retaining local fills',
     () {
