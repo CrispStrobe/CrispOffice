@@ -22,6 +22,7 @@ Future<void> showStudioDownloadsManager(
   BuildContext context, {
   Set<String> languages = const <String>{},
   StudioLanguage language = StudioLanguage.en,
+  StudioFontPackHost? fontPacks,
 }) {
   // Dialogs are pushed on the root navigator, above the workspace's own
   // Directionality; carry the caller's direction into the route.
@@ -38,7 +39,7 @@ Future<void> showStudioDownloadsManager(
         hunspell: studioHunspellHost,
         morphology: studioArabicMorphHost,
         spacy: studioSpacyHost,
-        fontPacks: studioFontPackHost,
+        fontPacks: fontPacks ?? studioFontPackHost,
       ),
     ),
   );
