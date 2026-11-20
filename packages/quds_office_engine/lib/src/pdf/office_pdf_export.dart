@@ -1690,6 +1690,66 @@ abstract final class OfficePdfExport {
     sink.canvas.restore();
   }
 
+  static void _shapePath(
+    PdfCanvas canvas,
+    PmlShapePreset preset,
+    double x,
+    double y,
+    double w,
+    double h,
+  ) {
+    switch (preset) {
+      case PmlShapePreset.diamond:
+        canvas.moveTo(x + w / 2, y);
+        canvas.lineTo(x + w, y + h / 2);
+        canvas.lineTo(x + w / 2, y + h);
+        canvas.lineTo(x, y + h / 2);
+      case PmlShapePreset.hexagon:
+        canvas.moveTo(x + w * 0.25, y);
+        canvas.lineTo(x + w * 0.75, y);
+        canvas.lineTo(x + w, y + h / 2);
+        canvas.lineTo(x + w * 0.75, y + h);
+        canvas.lineTo(x + w * 0.25, y + h);
+        canvas.lineTo(x, y + h / 2);
+      case PmlShapePreset.pentagon:
+        canvas.moveTo(x, y);
+        canvas.lineTo(x + w * 0.75, y);
+        canvas.lineTo(x + w, y + h / 2);
+        canvas.lineTo(x + w * 0.75, y + h);
+        canvas.lineTo(x, y + h);
+        canvas.lineTo(x + w * 0.25, y + h / 2);
+      case PmlShapePreset.chevron:
+        canvas.moveTo(x, y);
+        canvas.lineTo(x + w * 0.75, y);
+        canvas.lineTo(x + w, y + h / 2);
+        canvas.lineTo(x + w * 0.75, y + h);
+        canvas.lineTo(x, y + h);
+        canvas.lineTo(x + w * 0.25, y + h / 2);
+      case PmlShapePreset.parallelogram:
+        canvas.moveTo(x + w * 0.25, y);
+        canvas.lineTo(x + w, y);
+        canvas.lineTo(x + w * 0.75, y + h);
+        canvas.lineTo(x, y + h);
+      case PmlShapePreset.trapezoid:
+        canvas.moveTo(x + w * 0.2, y);
+        canvas.lineTo(x + w * 0.8, y);
+        canvas.lineTo(x + w, y + h);
+        canvas.lineTo(x, y + h);
+      case PmlShapePreset.rect:
+      case PmlShapePreset.roundRect:
+      case PmlShapePreset.ellipse:
+      case PmlShapePreset.triangle:
+      case PmlShapePreset.connector:
+      case PmlShapePreset.freeform:
+      case PmlShapePreset.downArrow:
+      case PmlShapePreset.upArrow:
+      case PmlShapePreset.leftArrow:
+      case PmlShapePreset.rightArrow:
+        canvas.rect(x, y, w, h);
+    }
+    canvas.closePath();
+  }
+
   static void _arrowPath(
     PdfCanvas canvas,
     double x,
@@ -1792,6 +1852,14 @@ abstract final class OfficePdfExport {
         canvas.stroke();
       case PmlShapePreset.rightArrow:
         _arrowPath(canvas, x, y, w, h, _ArrowDirection.right);
+        canvas.stroke();
+      case PmlShapePreset.diamond:
+      case PmlShapePreset.hexagon:
+      case PmlShapePreset.pentagon:
+      case PmlShapePreset.chevron:
+      case PmlShapePreset.parallelogram:
+      case PmlShapePreset.trapezoid:
+        _shapePath(canvas, preset, x, y, w, h);
         canvas.stroke();
       case PmlShapePreset.freeform:
         if (path.length >= 2) {
@@ -1903,6 +1971,14 @@ abstract final class OfficePdfExport {
       case PmlShapePreset.rightArrow:
         _arrowPath(canvas, x, y, w, h, _ArrowDirection.right);
         canvas.fill();
+      case PmlShapePreset.diamond:
+      case PmlShapePreset.hexagon:
+      case PmlShapePreset.pentagon:
+      case PmlShapePreset.chevron:
+      case PmlShapePreset.parallelogram:
+      case PmlShapePreset.trapezoid:
+        _shapePath(canvas, preset, x, y, w, h);
+        canvas.fill();
       case PmlShapePreset.freeform:
         if (path.length >= 2) {
           canvas.moveTo(x + path.first.x / 12700, y + path.first.y / 12700);
@@ -1925,8 +2001,6 @@ abstract final class OfficePdfExport {
     PmlPresentation deck,
     PmlSlide slide,
   ) {
-    // Resolved decorations already exclude hidden master shapes. Layout
-    // decorations remain visible even when the slide hides its master.
     if (slide.backgroundShapesResolved || slide.backgroundShapes.isNotEmpty) {
       return slide.backgroundShapes;
     }
@@ -1999,6 +2073,7 @@ abstract final class OfficePdfExport {
                 ? paragraph.defaultFontSizePt
                 : fallbackSize);
       final double size = unscaledSize * fitScale;
+
       final bool bold =
           (run?.bold ?? false) &&
           !(run?.fontFamily.toLowerCase().contains('microsoft sans serif') ??
@@ -2034,6 +2109,7 @@ abstract final class OfficePdfExport {
                 ? paragraph.defaultFontSizePt
                 : fallbackSize);
       final double size = unscaledSize * fitScale;
+
       final String color = (run?.color ?? '').isNotEmpty
           ? run!.color
           : fallbackColor;
@@ -2060,6 +2136,28 @@ abstract final class OfficePdfExport {
         PmlTextAlign.right => _TextAlign.right,
         PmlTextAlign.left || PmlTextAlign.justify => _TextAlign.left,
       };
+      // Keep authored order for numeric lines that fit. Wider content uses
+      // normal wrapping; explicit breaks also work with Standard 14 fonts.
+      final List<String>? plainLtrLines =
+          !paragraph.rightToLeft &&
+              !text.contains('\r') &&
+              !RegExp(r'\p{L}', unicode: true).hasMatch(text)
+          ? text.split('\n')
+          : null;
+      final bool plainLtrFits =
+          plainLtrLines?.every(
+            (line) =>
+                sink.plainWidth(
+                  line,
+                  size,
+                  bold: bold,
+                  italic: italic,
+                  family: family,
+                ) <=
+                maxWidth,
+          ) ??
+          false;
+
       if (text.contains('\t')) {
         final List<String> parts = text.split('\t');
         final double tabBase = x + paragraph.marginLeftPt;
@@ -2101,6 +2199,34 @@ abstract final class OfficePdfExport {
           fallbackColor,
           fitScale,
         );
+      } else if (plainLtrLines != null && plainLtrFits) {
+        // Keep authored order within each numeric line without collapsing
+        // explicit breaks, including blank lines, into one horizontal run.
+        for (final String line in plainLtrLines) {
+          final double textWidth = sink.plainWidth(
+            line,
+            size,
+            bold: bold,
+            italic: italic,
+            family: family,
+          );
+          final double dx = switch (align) {
+            _TextAlign.center => (maxWidth - textWidth) / 2,
+            _TextAlign.right => maxWidth - textWidth,
+            _TextAlign.left || _TextAlign.auto => 0,
+          };
+          sink.drawPlainLtr(
+            line,
+            px + dx,
+            cy + size,
+            size,
+            color,
+            bold: bold,
+            italic: italic,
+            family: family,
+          );
+          cy += size * 1.25;
+        }
       } else {
         sink.drawText(
           text,
@@ -2166,6 +2292,7 @@ abstract final class OfficePdfExport {
       final double size = run.fontSizePt > 0
           ? run.fontSizePt * sizeScale
           : fallbackSize;
+
       final String color = run.color.isEmpty ? fallbackColor : run.color;
       final bool bold =
           run.bold &&
@@ -3126,6 +3253,63 @@ class _PageSink {
   }
 
   /// Number of laid-out lines for [text] at [size].
+  double plainWidth(
+    String text,
+    double size, {
+    bool bold = false,
+    bool italic = false,
+    String? family,
+  }) {
+    var width = 0.0;
+    for (final int cp in text.runes) {
+      if (cp < 32) continue;
+      width += pack.widthOf(
+        cp,
+        size,
+        family: family,
+        weight: bold ? 700 : 400,
+        italic: italic,
+      );
+    }
+    return width;
+  }
+
+  void drawPlainLtr(
+    String text,
+    double x,
+    double baseline,
+    double size,
+    String color, {
+    bool bold = false,
+    bool italic = false,
+    String? family,
+  }) {
+    var cx = x;
+    for (final int cp in text.runes) {
+      if (cp < 32) continue;
+      final double advance = pack.widthOf(
+        cp,
+        size,
+        family: family,
+        weight: bold ? 700 : 400,
+        italic: italic,
+      );
+      _emit(
+        oldGid: 0,
+        codePoint: cp,
+        x: cx,
+        y: baseline,
+        size: size,
+        color: color,
+        bold: bold,
+        italic: italic,
+        family: family,
+        advance: advance,
+      );
+      cx += advance;
+    }
+  }
+
   int lineCount(
     String text,
     double size, {

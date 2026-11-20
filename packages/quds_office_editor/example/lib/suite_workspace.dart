@@ -9248,6 +9248,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ? t.y
         : ((_slides.presentation.slideHeight - t.cy) * y).round();
     _slides.applyTransform(shape, t.copyWith(x: nextX, y: nextY));
+
     _slides.refresh();
   }
 

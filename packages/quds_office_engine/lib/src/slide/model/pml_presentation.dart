@@ -85,6 +85,12 @@ enum PmlShapePreset {
   upArrow,
   leftArrow,
   rightArrow,
+  diamond,
+  hexagon,
+  pentagon,
+  chevron,
+  parallelogram,
+  trapezoid,
 }
 
 /// Enum PmlTextAlign.
@@ -583,6 +589,7 @@ class PmlSlide {
     List<PmlShape>? backgroundShapes,
     bool? backgroundShapesResolved,
     this.showMasterShapes = true,
+
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
@@ -598,6 +605,7 @@ class PmlSlide {
        backgroundShapes = backgroundShapes ?? <PmlShape>[],
        backgroundShapesResolved =
            backgroundShapesResolved ?? (backgroundShapes != null),
+
        animations = animations ?? <PmlShapeAnimation>[];
 
   /// id API.
@@ -614,8 +622,7 @@ class PmlSlide {
   /// A resolved empty list must not fall back to the presentation master.
   final bool backgroundShapesResolved;
 
-  /// The authored master-shape visibility flag (`p:sld/@showMasterSp`).
-  /// Layout shapes are unaffected; import resolves master shapes separately.
+  /// The slide's authored `showMasterSp` flag, retained when saving/copying.
   bool showMasterShapes;
 
   /// layoutName API.
@@ -698,12 +705,12 @@ class PmlSlide {
       masterName: masterName,
       background: background,
       inheritsMasterBackground: inheritsMasterBackground,
+      showMasterShapes: showMasterShapes,
       notes: notes,
       backgroundShapesResolved: backgroundShapesResolved,
       backgroundShapes: <PmlShape>[
         for (final PmlShape shape in backgroundShapes) shape.copy(),
       ],
-      showMasterShapes: showMasterShapes,
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
       transition: transition,
       hidden: hidden,

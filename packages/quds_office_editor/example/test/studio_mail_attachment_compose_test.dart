@@ -40,17 +40,22 @@ Future<void> _open(
             onPressed: () async => result(
               await showDialog<StudioMailDraft>(
                 context: context,
-                builder: (_) => StudioMailComposeDialog(
-                  strings: strings,
-                  from: 'writer@example.invalid',
-                  initialDraft:
-                      initial ??
-                      const StudioMailDraft(
-                        to: 'reader@example.invalid',
-                        subject: 'Attachments',
-                        body: 'Body',
-                      ),
-                  previousSubmissionUncertain: uncertain,
+                builder: (_) => Directionality(
+                  textDirection: strings.language == StudioLanguage.ar
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  child: StudioMailComposeDialog(
+                    strings: strings,
+                    from: 'writer@example.invalid',
+                    initialDraft:
+                        initial ??
+                        const StudioMailDraft(
+                          to: 'reader@example.invalid',
+                          subject: 'Attachments',
+                          body: 'Body',
+                        ),
+                    previousSubmissionUncertain: uncertain,
+                  ),
                 ),
               ),
             ),
@@ -296,6 +301,134 @@ void main() {
       expect(result!.thread, same(thread));
       expect(result!.cc, initial.cc);
       expect(result!.bcc, initial.bcc);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'narrow Arabic body stays visible and retains IME and undo through resize',
+    (tester) async {
+      await tester.runAsync(OfficeHostFonts.ensureRegistered);
+      const strings = StudioStrings(StudioLanguage.ar);
+      const original = 'مرحبًا بكم في مراجعة التقرير والميزانية.';
+      const edited = '$original جديد';
+      final initial = StudioMailDraft(
+        to: 'reader@example.invalid',
+        subject: 'مراجعة',
+        body: original,
+        attachments: StudioMailAttachments.from([
+          _attachment('مراجعة 2026.pdf', [1, 2, 3]),
+        ]),
+      );
+      StudioMailDraft? result;
+      await _open(
+        tester,
+        (value) => result = value,
+        initial: initial,
+        strings: strings,
+        size: const Size(390, 844),
+      );
+      final editor = find.byType(QudsWordEditor);
+      await tester.ensureVisible(editor);
+      await _pump(tester);
+      final body = tester.widget<QudsWordEditor>(editor).controller;
+      final document = body.document;
+      final paragraph = document.paragraphs.single;
+      expect(body.config.textDirection, TextDirection.rtl);
+      expect(body.viewport.scale, 1);
+      expect(
+        tester.widget<Text>(find.text('مراجعة 2026.pdf')).textDirection,
+        TextDirection.ltr,
+      );
+      expect(
+        tester.widget<Text>(find.text('3 B')).textDirection,
+        TextDirection.ltr,
+      );
+
+      void expectVisibleBody() {
+        final canvas = tester.renderObject<RenderWordCanvas>(
+          find.byType(WordCanvas),
+        );
+        final lines = body.documentLaidOut.pages.first.lines;
+        expect(lines, isNotEmpty);
+        for (final line in lines) {
+          for (final glyph in line.glyphs) {
+            final start = canvas.windowForPagePoint(0, Offset(glyph.x, line.y));
+            final end = canvas.windowForPagePoint(
+              0,
+              Offset(glyph.x + glyph.advance, line.y + line.height),
+            );
+            expect(start.dx, greaterThanOrEqualTo(0));
+            expect(end.dx, lessThan(canvas.size.width));
+            expect(start.dy, greaterThanOrEqualTo(0));
+            expect(end.dy, lessThan(canvas.size.height));
+          }
+        }
+      }
+
+      expectVisibleBody();
+      final canvas = tester.renderObject<RenderWordCanvas>(
+        find.byType(WordCanvas),
+      );
+      final firstLine = body.documentLaidOut.pages.first.lines.first;
+      final glyph = firstLine.glyphs.firstWhere((glyph) => glyph.advance > 0);
+      await tester.tapAt(
+        canvas.localToGlobal(
+          canvas.windowForPagePoint(
+            0,
+            Offset(
+              glyph.x + glyph.advance / 2,
+              firstLine.y + firstLine.height / 2,
+            ),
+          ),
+        ),
+      );
+      await _pump(tester);
+      expect(body.input.isAttached, isTrue);
+      final composing = TextRange(
+        start: original.length + 1,
+        end: edited.length,
+      );
+      tester.testTextInput.updateEditingValue(
+        TextEditingValue(
+          text: edited,
+          selection: const TextSelection.collapsed(offset: edited.length),
+          composing: composing,
+        ),
+      );
+      await _pump(tester);
+      expect(paragraph.text, edited);
+      expect(body.input.composing, composing);
+      expectVisibleBody();
+
+      for (final size in [const Size(1100, 850), const Size(390, 844)]) {
+        await tester.binding.setSurfaceSize(size);
+        await _pump(tester);
+        expect(tester.widget<QudsWordEditor>(editor).controller, same(body));
+        expect(body.document, same(document));
+        expect(body.document.paragraphs.single, same(paragraph));
+        expect(paragraph.text, edited);
+        expect(body.input.composing, composing);
+        expect(body.caret.logicalIndex, edited.length);
+        expect(body.input.isAttached, isTrue);
+        expectVisibleBody();
+      }
+      tester.testTextInput.updateEditingValue(
+        const TextEditingValue(
+          text: edited,
+          selection: TextSelection.collapsed(offset: edited.length),
+        ),
+      );
+      await _pump(tester);
+      expect(body.canUndo, isTrue);
+      body.undo();
+      expect(body.document.paragraphs.single.text, original);
+      body.redo();
+      await _pump(tester);
+      expectVisibleBody();
+      await _send(tester, strings);
+      expect(result!.body, edited);
+      expect(result!.attachments, same(initial.attachments));
       expect(tester.takeException(), isNull);
     },
   );

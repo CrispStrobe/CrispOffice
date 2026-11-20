@@ -101,9 +101,11 @@ is the default behavior, not an exception.
   deterministic/native/combined arms, merge suppression, operational status
   and corrected rechecks. **0 differences.**
 
-The real native editor gate (`studio_spacy_grammar_native_gate.dart`) passes
-10/10 with the macOS bundled library and the new default families. Its log is
-[editor-gate-macos.log](editor-gate-macos.log). One control changed on
+The incoming implementation report records 10/10 passes for the real native
+editor gate (`studio_spacy_grammar_native_gate.dart`) with the macOS bundled
+library and the new default families. The named `editor-gate-macos.log` was
+not present in the captured branch, so that reported result cannot be
+independently recounted from this repository. One control changed on
 purpose. Ignoring only the noun/verb rule still suppresses its suggestion, but
 the other enabled families still analyze. Ignoring every enabled family makes
 no native call.
