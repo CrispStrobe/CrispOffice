@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend Word VBA with `InchesToPoints`, `PointsToInches`,
+  `CentimetersToPoints`, `PointsToCentimeters`, `MillimetersToPoints`,
+  `PointsToMillimeters`, `PicasToPoints` and `PointsToPicas`. Support global,
+  `Application` and `With Application` calls through the existing checked
+  source compiler. Use explicit numeric inputs and exact physical ratios;
+  preserve native write precision, resource limits and transaction guards.
+  These bounded binary64 conversions do not emulate VBA `Single` coercion.
+
 - Fall back to full Word layout for changed footnote/endnote paragraphs,
   including nested note tables, so formatting edits cannot reuse stale note
   geometry. Keep incremental body edits when note content is unchanged and
