@@ -63,9 +63,9 @@ final class StudioStrings {
     'CrispOffice مساحة عمل مستقلة للمستندات وجداول البيانات والعروض التقديمية.',
   );
   String get legalNotice => _t(
-    'Microsoft, Word, Excel and PowerPoint are trademarks of the Microsoft group of companies. CrispOffice is not affiliated with or endorsed by Microsoft. Product names describe file formats and compatibility only.',
-    'Microsoft, Word, Excel und PowerPoint sind Marken der Microsoft-Unternehmensgruppe. CrispOffice steht in keiner Verbindung zu Microsoft und wird nicht von Microsoft unterstützt. Produktnamen beschreiben ausschließlich Dateiformate und Kompatibilität.',
-    'Microsoft وWord وExcel وPowerPoint علامات تجارية لمجموعة شركات Microsoft. CrispOffice غير تابع لشركة Microsoft وغير معتمد منها. تُستخدم أسماء المنتجات فقط لوصف صيغ الملفات والتوافق.',
+    'Microsoft Office are trademarks of the Microsoft group of companies. CrispOffice is not affiliated with or endorsed by Microsoft. Product names describe file formats and compatibility only.',
+    'Microsoft Office sind Marken der Microsoft-Unternehmensgruppe. CrispOffice steht in keiner Verbindung zu Microsoft und wird nicht von Microsoft unterstützt. Produktnamen beschreiben ausschließlich Dateiformate und Kompatibilität.',
+    'Microsoft Office علامات تجارية لمجموعة شركات Microsoft. CrispOffice غير تابع لشركة Microsoft وغير معتمد منها. تُستخدم أسماء المنتجات فقط لوصف صيغ الملفات والتوافق.',
   );
   String get licenses => _t(
     'Open-source licences',

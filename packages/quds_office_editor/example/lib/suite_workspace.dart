@@ -104,6 +104,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   late final StudioRibbonPreferences _ribbonPreferences;
   OfficeLengthUnit _lengthUnit = OfficeLengthUnit.millimeters;
   var _showAnimPane = true;
+  var _showSheetNav = true;
   var _showPasteOptions = false;
   final GlobalKey _settingsButtonKey = GlobalKey();
   final GlobalKey _themeScopeKey = GlobalKey();
@@ -432,6 +433,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             settingsLabel: '${_strings.settings}…',
             fileGroups: _desktopFileGroups,
             editGroups: _desktopEditGroups,
+            viewGroups: _desktopViewGroups,
             onAbout: () => _showNativeDialog(_showAbout),
             onSettings: () => _showNativeDialog(_openSettings),
             child: CallbackShortcuts(
@@ -764,6 +766,24 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   bool get _fileActionsAvailable =>
       !_opening && !_isSaving && (ModalRoute.isCurrentOf(context) ?? true);
+
+  List<List<StudioMenuAction>> get _desktopViewGroups =>
+      <List<StudioMenuAction>>[
+        <StudioMenuAction>[
+          StudioMenuAction(
+            id: 'sheet-navigation',
+            label: _t(
+              'Sheets pane',
+              StudioStrings.de('Sheets pane'),
+              'لوحة الأوراق',
+            ),
+            icon: Icons.view_sidebar_outlined,
+            onSelected: _app == SuiteApp.excel
+                ? () => setState(() => _showSheetNav = !_showSheetNav)
+                : null,
+          ),
+        ],
+      ];
 
   List<List<StudioMenuAction>> get _desktopFileGroups {
     final bool enabled = _fileActionsAvailable;
@@ -2415,8 +2435,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             : 'Rotated text was written as a horizontal line.',
       'jpegOnSlide' =>
         _arabic
-            ? 'صور JPEG تُحفظ في Word. الشرائح تضمّن PNG فقط.'
-            : 'JPEG pictures are saved in Word. Slides embed PNG only.',
+            ? 'صور JPEG تُحفظ في Writer. العروض تضمّن PNG فقط.'
+            : 'JPEG pictures are saved in Writer. Presentations embed PNG only.',
       'imageSkipped' =>
         note.message.startsWith('JPX')
             ? (_arabic
@@ -3041,20 +3061,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         id: 'styles',
         title: _t('Styles', StudioStrings.de('Styles'), 'أنماط'),
         children: <Widget>[
-          StudioCombo<int>(
-            value: _word.activeHeadingLevel,
-            items: const <int>[0, 1, 2, 3, 4],
-            labelOf: _headingStyleLabel,
-            width: 118,
-            enabled: _wordFullFormat,
-            tooltip: _t(
-              'Paragraph style',
-              StudioStrings.de('Paragraph style'),
-              'نمط الفقرة',
-            ),
-            onSelected: _wordFullFormat ? _word.applyHeading : null,
-          ),
-          const SizedBox(width: 4),
           StudioCombo<String>(
             value: WordStyles.ofParagraph(_activeParagraph).id,
             items: <String>[
@@ -3062,10 +3068,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             ],
             labelOf: (String id) =>
                 WordStyles.byId(id)?.label(arabic: _arabic) ?? id,
-            width: 132,
+            width: 168,
             enabled: _wordFullFormat,
             tooltip: _t(
-              'Style gallery',
+              'Paragraph style',
               StudioStrings.de('Style gallery'),
               'معرض الأنماط',
             ),
@@ -4403,7 +4409,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
           _cmd(
             Icons.text_fields,
-            _t('Word', StudioStrings.de('Word'), 'كلمة'),
+            _t('Select word', StudioStrings.de('Select word'), 'تحديد كلمة'),
             _word.selectWordAtCaret,
           ),
           _cmd(
@@ -4625,6 +4631,67 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               _sheet.selection.selectColumn(_sheet.selection.focus.col);
               _sheet.refresh();
             },
+          ),
+        ],
+      ),
+      StudioRibbonGroup(
+        id: 'font',
+        title: _t('Font', StudioStrings.de('Font'), 'خط'),
+        children: <Widget>[
+          StudioCombo<String>(
+            value: _sheet.selectionFontFamily,
+            items: const <String>[
+              'Calibri',
+              'Aptos',
+              'Arial',
+              'Times New Roman',
+              'Courier New',
+              'Liberation Sans',
+              'DejaVu Sans',
+            ],
+            labelOf: (String family) => family,
+            previewFamily: (String family) => family,
+            width: 132,
+            enabled: _canMutate,
+            tooltip: _t(
+              'Font family',
+              StudioStrings.de('Font family'),
+              'نوع الخط',
+            ),
+            onSelected: _canMutate ? _sheet.setSelectionFontFamily : null,
+          ),
+          const SizedBox(width: 4),
+          StudioCombo<double>(
+            value: _sheet.selectionFontSize,
+            items: const <double>[
+              8,
+              9,
+              10,
+              11,
+              12,
+              14,
+              16,
+              18,
+              20,
+              24,
+              28,
+              32,
+              36,
+              48,
+            ],
+            labelOf: (double size) => size.toStringAsFixed(0),
+            width: 64,
+            enabled: _canMutate,
+            tooltip: _t('Font size', StudioStrings.de('Font size'), 'حجم الخط'),
+            onSelected: _canMutate ? _sheet.setSelectionFontSize : null,
+          ),
+          _cmd(
+            Icons.format_bold,
+            _t('Bold', StudioStrings.de('Bold'), 'عريض'),
+            _canMutate
+                ? () => _sheet.setSelectionFontBold(!_sheet.selectionFontBold)
+                : null,
+            selected: _sheet.selectionFontBold,
           ),
         ],
       ),
@@ -5036,6 +5103,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         id: 'grid',
         title: _t('Grid', StudioStrings.de('Grid'), 'عرض الشبكة'),
         children: <Widget>[
+          _cmd(
+            Icons.view_sidebar_outlined,
+            _t('Sheets pane', StudioStrings.de('Sheets pane'), 'لوحة الأوراق'),
+            () => setState(() => _showSheetNav = !_showSheetNav),
+            selected: _showSheetNav,
+          ),
           _cmd(
             Icons.border_all,
             _t('Gridlines', StudioStrings.de('Gridlines'), 'خطوط'),
@@ -6741,8 +6814,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (_app != SuiteApp.word) {
       _toast(
         _t(
-          'Spelling is available in Word',
-          StudioStrings.de('Spelling is available in Word'),
+          'Spelling is available in Writer',
+          StudioStrings.de('Spelling is available in Writer'),
           'التدقيق للمستندات',
         ),
       );
@@ -8924,8 +8997,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             return AlertDialog(
               title: Text(
                 _t(
-                  'Excel function guide',
-                  StudioStrings.de('Excel function guide'),
+                  'Spreadsheet function guide',
+                  StudioStrings.de('Spreadsheet function guide'),
                   'دليل دوال الإكسل',
                 ),
               ),
@@ -9318,7 +9391,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             children: <Widget>[
               if (constraints.maxWidth >= 700 &&
                   !(_app == SuiteApp.powerpoint && _slides.isPresenting) &&
-                  (_app != SuiteApp.word || _showOutline))
+                  (_app != SuiteApp.word || _showOutline) &&
+                  (_app != SuiteApp.excel || _showSheetNav))
                 _sidePane(dark),
               Expanded(child: _stage(dark)),
               if (_app == SuiteApp.word && _showComments && !commentsBelow)
@@ -10822,13 +10896,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         },
       ),
     );
-  }
-
-  String _headingStyleLabel(int level) {
-    if (level <= 0) {
-      return _t('Normal', StudioStrings.de('Normal'), 'عادي');
-    }
-    return _arabic ? 'عنوان $level' : 'Heading $level';
   }
 
   Widget _wordNav() {
