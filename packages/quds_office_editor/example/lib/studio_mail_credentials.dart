@@ -1,12 +1,9 @@
 import 'dart:convert';
-import 'credentials/secure_storage_service.dart';
-import 'credentials/utils/async_lock.dart';
-import 'studio_credential_storage.dart';
-
 import 'package:crypto/crypto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'credentials/secure_storage_service.dart';
+import 'credentials/utils/async_lock.dart';
 import 'studio_credential_storage.dart';
 import 'studio_mail_presets.dart';
 import 'studio_mail_recipients.dart';

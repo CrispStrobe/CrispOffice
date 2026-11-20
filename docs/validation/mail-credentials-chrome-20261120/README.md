@@ -80,3 +80,5 @@ and passed deep strict stable-signature verification. Its owned preview stopped
 in macOS sandbox initialization before Flutter startup while the desktop was
 locked. This is not counted as live UI, keychain-save or physical-flicker acceptance.
 No existing user app or document was closed or overwritten.
+
+Final combined host run: **812 tests passed**, including the incoming reply/forward, EWS, account-catalog, selected-store race and layout/chrome suites. The reader/UI package passed **85 tests**. The strict stable-signed release-mode build 45 also completed; no live provider or unlocked-desktop flicker qualification is implied.
