@@ -1,0 +1,203 @@
+{
+  "main": "243b99a5ee56e591991f381533b2363586bd5dd0",
+  "engine_source": "192ea2aedbf0b1494627953c79a7042037a63301",
+  "engine_proofs": [
+    {
+      "path": "packages/quds_office_engine",
+      "source": "407edf2942642eb3917b5f6882acf173a49f667f",
+      "main": "407edf2942642eb3917b5f6882acf173a49f667f",
+      "identical": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "source": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "main": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "identical": true
+    },
+    {
+      "path": "pubspec.lock",
+      "source": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+      "main": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+      "identical": true
+    },
+    {
+      "path": "analysis_options.yaml",
+      "source": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "main": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "identical": true
+    }
+  ],
+  "mail_source": "2a775500aa31b5e8426df54c3f68f4ceadec0790",
+  "mail_delta": {
+    "status": "ahead",
+    "files": [
+      {
+        "path": "docs/validation/mail-accounts-20261120/README.md",
+        "status": "modified",
+        "sha": "e55d17d4a98a7a5847aac6ba3542efd3effefd09"
+      },
+      {
+        "path": "docs/validation/mail-accounts-20261120/final-integration-archive-verification.json",
+        "status": "added",
+        "sha": "637c5de9505b38f0ddbae6cb535d96a0197570dc"
+      },
+      {
+        "path": "docs/validation/mail-accounts-20261120/final-integration-evidence-manifest.json",
+        "status": "added",
+        "sha": "e7bda0c6e5c1401379eb38215034a407f0300f2f"
+      },
+      {
+        "path": "docs/validation/mail-accounts-20261120/final-integration-evidence.tar.xz",
+        "status": "added",
+        "sha": "8ab2c6953dfb654d66da906b84c214f28eb2d6b0"
+      },
+      {
+        "path": "docs/validation/mail-accounts-20261120/final-integration-qualification.json",
+        "status": "added",
+        "sha": "11d2294a947b2c969bf35d891c6d7e1284fe3e2b"
+      },
+      {
+        "path": "docs/validation/mail-accounts-20261120/final-integration-replay-verification.json",
+        "status": "added",
+        "sha": "1db3093d8eff05b9b5a7a6b75e168d4889c1c3ca"
+      },
+      {
+        "path": "docs/validation/mail-accounts-20261120/final-integration.json",
+        "status": "modified",
+        "sha": "6b7f438d58deb65d84336528e5e4bb7db223ebde"
+      },
+      {
+        "path": "docs/validation/mail-accounts-20261120/historical-625f4d76.md",
+        "status": "added",
+        "sha": "25c235525c4ddf30b2bac61e4f924d4946363f02"
+      },
+      {
+        "path": "docs/validation/mail-accounts-20261120/source-continuity-625f4d76.json",
+        "status": "added",
+        "sha": "ea48bdacb4df2cb72930ac810a939f3dda6f572b"
+      },
+      {
+        "path": "docs/validation/mail-accounts-20261120/source-continuity.json",
+        "status": "modified",
+        "sha": "2bd44044dfe54adec9014ae2b376500d265fc078"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/README.md",
+        "status": "modified",
+        "sha": "731ee9fa29a923cd1f482d717157269eea8090dc"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/acceptance.json",
+        "status": "added",
+        "sha": "3f01fca292607e7a08bdcae0e8ae6a7f0862c5c2"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/evidence-index.json",
+        "status": "added",
+        "sha": "18f68d6e150488aac37cd61910b63916519a4731"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/evidence.tar.gz",
+        "status": "added",
+        "sha": "5a08e635313d43fa8efca8fe05d7b1156aa5be57"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/final-incoming-audit.json",
+        "status": "added",
+        "sha": "95b2dc606249fc7b83619369ddfd28df9ac4e5af"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/final-main-reconciliation.json",
+        "status": "added",
+        "sha": "96764a14af166d5e241ad3491bcd927df2ae6a70"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/late-runner-analysis.log",
+        "status": "added",
+        "sha": "079ee178e689b92e9874cef2e5f317cc9737fac5"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/late-runner-format.log",
+        "status": "added",
+        "sha": "d0d87ff86984d487979dcb863c8a6c7133388aa9"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/late-runner-help.log",
+        "status": "added",
+        "sha": "11b2d8dd20c176224cc33f73a32879ad8b44440d"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/late-zotero-audit.json",
+        "status": "added",
+        "sha": "c425b5c760aaf122eae36d69d874ac951573b260"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/late-zotero-reconciliation.json",
+        "status": "added",
+        "sha": "d2a8ff59c66245053ea9f047b193e80af971e9b4"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/premerge-intake-audit.json",
+        "status": "added",
+        "sha": "c7dbe3f3e31f02ae6ba65b3f2c8a60afd9f72b6f"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/review.json",
+        "status": "added",
+        "sha": "db44e600693614fdd5b121a9bc4235c47bbd07cf"
+      },
+      {
+        "path": "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.json",
+        "status": "added",
+        "sha": "73520de53aaf185be6c5f631a60cdc7c76f38596"
+      },
+      {
+        "path": "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.tar.xz",
+        "status": "added",
+        "sha": "f84f48d83afb360cee48151ddb5b72abb0085dd8"
+      },
+      {
+        "path": "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-summary.json",
+        "status": "added",
+        "sha": "d04b1f1df45b1b5daa2d7316fee88e22a00a1bff"
+      },
+      {
+        "path": "docs/validation/zotero-research-tables-20261120/checkpoint-reconciled-engine-summary.json",
+        "status": "added",
+        "sha": "cf5dac8526a495a7ece8afa1e6334d241ba2b646"
+      },
+      {
+        "path": "docs/validation/zotero-research-tables-20261120/latest-main-outbox-preservation.json",
+        "status": "added",
+        "sha": "3372c20e146ca59a8ca4a957373ac8b3132ba250"
+      },
+      {
+        "path": "docs/validation/zotero-research-tables-20261120/latest-main-outbox-reconciliation.json",
+        "status": "added",
+        "sha": "2d3628dece4a12736331fb68e6f3b38e896c9777"
+      },
+      {
+        "path": "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart",
+        "status": "modified",
+        "sha": "55dc70ad3bd15b3cfb910c6a07e49f5c3dbb6534"
+      }
+    ],
+    "only_docs_and_known_helper": true
+  },
+  "qualification": "Read-only Git identity comparison. Execution results retain the immutable sources identified by their original acceptance records.",
+  "final_tree_policy": "Adopt all production, test and configuration entries from main 243b99a5ee56e591991f381533b2363586bd5dd0 verbatim. Add only documentation and evidence. Record final publication and merge identities in the documentation/evidence follow-up PR, linked from the already-merged implementation PR #249.",
+  "readme_blob": "fa3ebfd77a1cf725cbfb40b4d16b8b43c0563d92",
+  "readme_links": {
+    "adopted_main": "243b99a5ee56e591991f381533b2363586bd5dd0",
+    "existing_links": 34,
+    "new_evidence_links": 10,
+    "missing": []
+  },
+  "readme_review": {
+    "approved": true,
+    "reviewer": "Independent Word/Zotero/PPT reviewer",
+    "scope": "Feature envelope, accepted-result counts and source attribution, current-main adoption, historical pending-head language. Publication references updated after observed automatic merge of PR #249."
+  },
+  "github_actions_queried": false,
+  "github_actions_awaited": false
+}
