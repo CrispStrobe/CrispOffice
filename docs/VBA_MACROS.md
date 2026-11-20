@@ -527,6 +527,13 @@ The text unit is explicitly UTF-16, matching the compiler's source positions
 and String limits. `Len("A😀B")` is `4`, and `Mid$("A😀B", 2, 2)` is `"😀"`.
 Combining marks count separately. A one-unit slice can split a surrogate pair;
 these intrinsics do not count Unicode scalar values or grapheme clusters.
+Such halves may be held in local values, measured with `Len`, and recombined.
+Every String emitted into a native operation, including a cell value, formula,
+or sheet selector, must contain well-formed UTF-16. A lone surrogate at this
+boundary produces a positioned `vba_type_error` before a plan is returned;
+the compiler never silently substitutes a replacement character during XLSX
+publication. A normal supplementary character or correctly recombined pair is
+preserved through the native plan and workbook round trip.
 
 This slice keeps the dialect's strict conversion rules. Numeric/Boolean text
 arguments, numeric `Len`, fractional counts, String-to-number conversion,

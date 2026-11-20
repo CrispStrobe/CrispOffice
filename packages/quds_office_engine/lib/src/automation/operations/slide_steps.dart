@@ -71,6 +71,8 @@ void applySlideStep(
                 .round(),
         rot: (s.number('rotation', fallback: before.rotationDegrees) * 60000)
             .round(),
+        flipH: before.flipH,
+        flipV: before.flipV,
       );
       target.transform = transform;
       if (target.visual case final OfficeVisual visual) {

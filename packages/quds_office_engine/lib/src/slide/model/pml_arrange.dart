@@ -22,6 +22,8 @@ abstract final class PmlArrange {
             cx: shape.transform.cx,
             cy: shape.transform.cy,
             rot: shape.transform.rot,
+            flipH: shape.transform.flipH,
+            flipV: shape.transform.flipV,
           );
         }
       case PmlAlignAxis.right:
@@ -35,6 +37,8 @@ abstract final class PmlArrange {
             cx: shape.transform.cx,
             cy: shape.transform.cy,
             rot: shape.transform.rot,
+            flipH: shape.transform.flipH,
+            flipV: shape.transform.flipV,
           );
         }
       case PmlAlignAxis.center:
@@ -52,6 +56,8 @@ abstract final class PmlArrange {
             cx: shape.transform.cx,
             cy: shape.transform.cy,
             rot: shape.transform.rot,
+            flipH: shape.transform.flipH,
+            flipV: shape.transform.flipV,
           );
         }
       case PmlAlignAxis.top:
@@ -65,6 +71,8 @@ abstract final class PmlArrange {
             cx: shape.transform.cx,
             cy: shape.transform.cy,
             rot: shape.transform.rot,
+            flipH: shape.transform.flipH,
+            flipV: shape.transform.flipV,
           );
         }
       case PmlAlignAxis.bottom:
@@ -78,6 +86,8 @@ abstract final class PmlArrange {
             cx: shape.transform.cx,
             cy: shape.transform.cy,
             rot: shape.transform.rot,
+            flipH: shape.transform.flipH,
+            flipV: shape.transform.flipV,
           );
         }
       case PmlAlignAxis.middle:
@@ -95,6 +105,8 @@ abstract final class PmlArrange {
             cx: shape.transform.cx,
             cy: shape.transform.cy,
             rot: shape.transform.rot,
+            flipH: shape.transform.flipH,
+            flipV: shape.transform.flipV,
           );
         }
     }
@@ -137,6 +149,8 @@ abstract final class PmlArrange {
         cx: shape.transform.cx,
         cy: shape.transform.cy,
         rot: shape.transform.rot,
+        flipH: shape.transform.flipH,
+        flipV: shape.transform.flipV,
       );
       cursor += horizontal ? shape.transform.cx : shape.transform.cy;
     }

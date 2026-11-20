@@ -90,7 +90,8 @@ a specification-derived expected value as an observed Office result.
 
 The first suite records clamping, optional length, signed-Long boundaries,
 strict actual-String and exact-integer types, eager source-order evaluation,
-Unicode BMP/supplementary/combining characters, lone-surrogate plan round trips,
+Unicode BMP/supplementary/combining characters, internal surrogate halves and
+recombined-pair round trips, malformed-UTF-16 refusals at native write boundaries,
 static checking of unused code, unsupported neighboring syntax, and shared
 work/string budgets. Full VBA coercion, numeric `Len`, `Empty`/`Null`, byte
 variants, and unsuffixed substring functions remain outside this slice.

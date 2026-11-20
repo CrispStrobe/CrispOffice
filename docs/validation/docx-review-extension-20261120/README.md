@@ -87,3 +87,10 @@ target, export/decision now fails explicitly rather than assigning one run's
 history to another. A valid single empty run still saves and resolves normally.
 The [23-case focused replay](empty-format-guard-tests.txt) passed; the additional
 case raises the unique regression count from 139 to **140**.
+
+Final preview code is `930074b8` (**CrispOffice Word Review Preview**), including
+the empty-run guard. Its arm64 release build, deep signature validation and
+20-second startup passed. All five signed native library hashes match the
+previously qualified preview exactly. See [final preview receipt](final-preview-acceptance.json)
+and [guard analysis](empty-format-guard-analysis.txt). This final preview is
+opened separately; existing windows and documents are preserved.

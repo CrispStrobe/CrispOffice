@@ -3385,6 +3385,26 @@ class _Evaluator {
     return '${hex(color & 255)}${hex((color >> 8) & 255)}${hex((color >> 16) & 255)}';
   }
 
+  void _nativeString(Object? value, _Token token) {
+    if (value is! String) return;
+    for (var index = 0; index < value.length; index++) {
+      final unit = value.codeUnitAt(index);
+      if (unit < 0xd800 || unit > 0xdfff) continue;
+      final paired =
+          unit <= 0xdbff &&
+          index + 1 < value.length &&
+          value.codeUnitAt(index + 1) >= 0xdc00 &&
+          value.codeUnitAt(index + 1) <= 0xdfff;
+      if (!paired) {
+        context.type(
+          token,
+          'Native spreadsheet writes require well-formed UTF-16; isolated surrogates cannot be published losslessly.',
+        );
+      }
+      index++;
+    }
+  }
+
   void _emitRange(
     _Range range,
     String operation,
@@ -3399,6 +3419,13 @@ class _Evaluator {
         token,
         'Range expansion exceeds $_maxSteps emitted operations.',
       );
+    }
+    // Source expressions may split/recombine UTF-16 pairs, but the workbook
+    // serializer cannot publish isolated surrogates without replacing them.
+    // Check each template string once before expanding its native operations.
+    _nativeString(range.sheet.selector, token);
+    for (final value in fields.values) {
+      _nativeString(value, token);
     }
     for (var row = range.minRow; row <= range.maxRow; row++) {
       for (var column = range.minColumn; column <= range.maxColumn; column++) {

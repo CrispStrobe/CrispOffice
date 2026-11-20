@@ -77,28 +77,30 @@ void main() {
       });
     }
 
-    test('preserves lone UTF-16 surrogates through native plan JSON', () {
-      final macro = _compile(
-        _module(r'''
-Worksheets(1).Range("A1").Value2 = Left$("😀", 1)
-Worksheets(1).Range("A2").Value2 = Right$("😀", 1)
-Worksheets(1).Range("A3").Value2 = Mid$("A😀B", 2, 1)
-Worksheets(1).Range("A4").Value2 = Mid$("A😀B", 3, 1)
+    test(
+      'recombines internal UTF-16 halves before native plan publication',
+      () {
+        final macro = _compile(
+          _module(r'''
+Dim high As String, low As String, parts(0 To 1) As String
+high = Left$("😀", 1)
+low = Right$("😀", 1)
+parts(0) = Mid$("A😀B", 2, 1)
+parts(1) = Mid$("A😀B", 3, 1)
+Worksheets(1).Range("A1").Value2 = Len(high)
+Worksheets(1).Range("A2").Value2 = Len(low)
+Worksheets(1).Range("A3").Value2 = high & low
+Worksheets(1).Range("A4").Value2 = "A" & parts(0) & parts(1) & "B"
 '''),
-      );
-      final saved = OfficeMacro.parse(utf8.decode(utf8.encode(macro.encode())));
-      for (final plan in <OfficeMacro>[macro, saved]) {
-        expect(
-          _values(plan).map((value) => (value! as String).codeUnits),
-          <List<int>>[
-            <int>[0xd83d],
-            <int>[0xde00],
-            <int>[0xd83d],
-            <int>[0xde00],
-          ],
         );
-      }
-    });
+        final saved = OfficeMacro.parse(
+          utf8.decode(utf8.encode(macro.encode())),
+        );
+        for (final plan in <OfficeMacro>[macro, saved]) {
+          expect(_values(plan), <Object?>[1, 1, '😀', 'A😀B']);
+        }
+      },
+    );
 
     test(
       'accepts String and exact-number Variant values and array elements',
@@ -336,6 +338,80 @@ End Function
         _reject(_write(r'Mid$("abc",1,)'), 'vba_syntax_error');
       },
     );
+  });
+
+  group('lossless native spreadsheet text boundary', () {
+    for (final expression in <String>[
+      r'Left$("😀", 1)',
+      r'Right$("😀", 1)',
+      r'Mid$("A😀B", 2, 1)',
+      r'Mid$("A😀B", 3, 1)',
+      r'Left$("😀", 1) & "x"',
+      r'"x" & Right$("😀", 1)',
+      r'Right$("😀", 1) & Left$("😀", 1)',
+      r'"😀" & Left$("😀", 1)',
+      r'Right$("😀", 1) & "😀"',
+    ]) {
+      test('refuses a lossy cell value from $expression', () {
+        final body = 'Worksheets(1).Range("A1:B2").Value2 = $expression';
+        expect(
+          () => _compile(_module(body)),
+          throwsA(
+            _error('vba_type_error')
+                .having((error) => error.line, 'line', 2)
+                .having(
+                  (error) => error.column,
+                  'emission column',
+                  body.indexOf('Value2') + 1,
+                ),
+          ),
+        );
+      });
+    }
+
+    test('refuses a lossy formula at the write property', () {
+      const body = r'Worksheets(1).Range("A1").Formula = "=" & Left$("😀", 1)';
+      expect(
+        () => _compile(_module(body)),
+        throwsA(
+          _error('vba_type_error')
+              .having((error) => error.line, 'line', 2)
+              .having(
+                (error) => error.column,
+                'emission column',
+                body.indexOf('Formula') + 1,
+              ),
+        ),
+      );
+    });
+
+    for (final (operation, token) in <(String, String)>[
+      ('Value = 1', 'Value'),
+      ('Value2 = "safe"', 'Value2'),
+      ('Formula = "=1"', 'Formula'),
+      ('Font.Bold = True', 'Bold'),
+      ('Interior.Color = RGB(1, 2, 3)', 'Color'),
+      // ClearContents retains its existing statement-start emission position.
+      ('ClearContents', 'Worksheets'),
+    ]) {
+      test('refuses a lossy worksheet selector for $operation', () {
+        final body =
+            r'Worksheets(Left$("😀", 1)).Range("A1").'
+            '$operation';
+        expect(
+          () => _compile(_module(body)),
+          throwsA(
+            _error('vba_type_error')
+                .having((error) => error.line, 'line', 2)
+                .having(
+                  (error) => error.column,
+                  'emission column',
+                  body.indexOf(token) + 1,
+                ),
+          ),
+        );
+      });
+    }
   });
 
   group('String intrinsic resource accounting', () {
