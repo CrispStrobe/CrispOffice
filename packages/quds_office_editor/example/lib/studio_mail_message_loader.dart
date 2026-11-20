@@ -463,7 +463,11 @@ final class NativeStudioMailMessageLoader
       (provider, lease) =>
           provider.fetchMessage(identity, budget: budget, lease: lease),
     );
-    if (message.remoteIdentity != identity) {
+    final record = _browsedRecords[header];
+    if (message.remoteIdentity != identity ||
+        record != null &&
+            message.localId != null &&
+            message.localId != record.id) {
       throw const StudioMailMessageLoadException(MailProblemCode.conflict);
     }
     if (message.raw.length > budget.maxRawBytes) {

@@ -52,8 +52,9 @@ typedef StudioCloudProviderFactory =
       MailCloudLogSink? log,
     });
 
-/// Foreground Exchange Server or cloud mailbox host. Credentials, downloaded
-/// messages belong to this session; draft snapshots use account-scoped storage.
+/// Foreground Exchange Server or cloud mailbox host. Credentials belong to the
+/// session; drafts, visited views and explicitly opened messages use optional
+/// account-scoped local storage.
 class StudioMailEwsDialog extends StatefulWidget {
   const StudioMailEwsDialog({
     super.key,

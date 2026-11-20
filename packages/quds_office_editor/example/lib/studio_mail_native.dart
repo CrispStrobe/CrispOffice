@@ -1123,6 +1123,12 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           if (records != null) {
             header = records.observedHeader(mailbox, message);
             observed = await records.fetchMessage(mailbox, message);
+            if (observed.remoteIdentity != header.remote ||
+                observed.localId != null && observed.localId != header.id) {
+              throw const StudioMailMessageLoadException(
+                MailProblemCode.conflict,
+              );
+            }
           } else {
             header = null;
             observed = null;
