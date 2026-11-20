@@ -45,8 +45,11 @@ String upos(String? pos) => switch (pos) {
   'noun_num' || 'adj_num' || 'digit' => 'NUM',
   'adj' || 'adj_comp' => 'ADJ',
   'adv' || 'adv_interrog' || 'adv_rel' => 'ADV',
-  'pron' || 'pron_dem' || 'pron_exclam' || 'pron_interrog' || 'pron_rel' =>
-    'PRON',
+  'pron' ||
+  'pron_dem' ||
+  'pron_exclam' ||
+  'pron_interrog' ||
+  'pron_rel' => 'PRON',
   'verb' => 'VERB',
   'verb_pseudo' => 'AUX',
   'prep' => 'ADP',
@@ -75,22 +78,24 @@ void main() {
     final panel =
         (jsonDecode(File(_panelPath).readAsStringSync())
                 as Map<String, Object?>)['sentences']!
-            as List;
+            as List<Object?>;
     final sentences = [
-      for (final s in panel) [for (final w in s as List) w as String],
+      for (final s in panel)
+        [for (final w in s! as List<Object?>) w! as String],
     ];
     final words = [for (final s in sentences) ...s];
 
-    final web = jsonDecode(File(_web!).readAsStringSync()) as Map;
+    final web =
+        jsonDecode(File(_web!).readAsStringSync()) as Map<String, Object?>;
     expect(web['words'], words.length);
     expect(web['sentence_lengths'], [for (final s in sentences) s.length]);
     expect(web['model_format'], 'crispembed-camel-morph-disambig-v1');
-    final webReadings = CompactAnalysisDecoder(
-      (web['keys'] as List).cast<String>(),
-    ).decodeReadings(
-      Uint8List.fromList(base64Decode(web['buffer_base64'] as String)),
-      words.length,
-    );
+    final webReadings =
+        CompactAnalysisDecoder((web['keys']! as List<Object?>).cast<String>())
+            .decodeReadings(
+              Uint8List.fromList(base64Decode(web['buffer_base64'] as String)),
+              words.length,
+            );
 
     final morphology = CamelArabicMorphology(
       database: MorphDatabaseFiles(
@@ -138,7 +143,8 @@ void main() {
 
     final report = {
       'panel': _panelPath,
-      'model': '${camelMorphMsaDisambig.repository}@'
+      'model':
+          '${camelMorphMsaDisambig.repository}@'
           '${camelMorphMsaDisambig.revision}/${camelMorphMsaDisambig.directory}',
       'tokens': words.length,
       'analyses': analyses,
@@ -154,12 +160,13 @@ void main() {
     final expected = File(_expectedPath);
     if (expected.existsSync()) {
       final golden =
-          (jsonDecode(expected.readAsStringSync()) as Map)['choices'] as List;
-      expect(
-        choices,
-        [for (final c in golden) Map<String, String>.from(c as Map)],
-        reason: 'both paths must keep the recorded panel choices',
-      );
+          (jsonDecode(expected.readAsStringSync())
+                  as Map<String, Object?>)['choices']!
+              as List<Object?>;
+      expect(choices, [
+        for (final c in golden)
+          (c! as Map<String, Object?>).cast<String, String>(),
+      ], reason: 'both paths must keep the recorded panel choices');
     }
   }, skip: _skip);
 }

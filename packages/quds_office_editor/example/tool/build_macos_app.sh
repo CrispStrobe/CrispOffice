@@ -395,17 +395,32 @@ codesign "${SIGN_ARGS[@]}" ${APP_IDENTITY_ARGS[@]+"${APP_IDENTITY_ARGS[@]}"} --e
 log "Verify"
 codesign --verify --deep --strict --verbose=1 "$SIGNED_APP"
 APP_MINIMUM_OS="$(plutil -extract LSMinimumSystemVersion raw -o - "$SIGNED_APP/Contents/Info.plist")"
-# true when version $1 <= version $2 (dotted, numeric)
-version_le() { [[ "$(printf '%s\n%s\n' "$1" "$2" | sort -t. -k1,1n -k2,2n -k3,3n | head -1)" == "$1" ]]; }
+# Compare dotted numeric versions, treating omitted components as zero.
+version_le() {
+  [[ "$1" =~ ^[0-9]+(\.[0-9]+)*$ && "$2" =~ ^[0-9]+(\.[0-9]+)*$ ]] || return 2
+  awk -v left="$1" -v right="$2" 'BEGIN {
+    left_count = split(left, left_parts, /[.]/)
+    right_count = split(right, right_parts, /[.]/)
+    count = left_count > right_count ? left_count : right_count
+    for (part = 1; part <= count; part++) {
+      if (left_parts[part] + 0 < right_parts[part] + 0) exit 0
+      if (left_parts[part] + 0 > right_parts[part] + 0) exit 1
+    }
+    exit 0
+  }'
+}
 for library in "${LIBRARIES[@]}"; do
   path="$FRAMEWORKS/$library"
   # A library whose minimum macOS exceeds the app's would fail to load on
   # older systems the app claims to support (the host SDK leaks in when a
   # build does not pin its deployment target).
-  library_minimum="$(vtool -show-build "$path" | awk '/minos/{print $2}' | sort -t. -k1,1n -k2,2n | tail -1)"
-  [[ -n "$library_minimum" ]] || { echo "$library declares no minimum macOS" >&2; exit 1; }
-  version_le "$library_minimum" "$APP_MINIMUM_OS" \
-    || { echo "$library needs macOS $library_minimum, app declares $APP_MINIMUM_OS" >&2; exit 1; }
+  library_minima="$(vtool -show-build "$path" | awk '$1 == "minos" {if (NF != 2) exit 1; print $2}')"
+  [[ -n "$library_minima" ]] || { echo "$library declares no minimum macOS" >&2; exit 1; }
+  # Universal libraries can declare a different minimum in each architecture.
+  while IFS= read -r library_minimum; do
+    version_le "$library_minimum" "$APP_MINIMUM_OS" \
+      || { echo "$library needs macOS $library_minimum, app declares $APP_MINIMUM_OS" >&2; exit 1; }
+  done <<< "$library_minima"
   # Only system libraries (or the library itself) may be referenced.
   foreign="$(otool -L "$path" | tail -n +2 | awk '{print $1}' \
     | grep -v -e '^/usr/lib/' -e '^/System/' -e "$library\$" || true)"
