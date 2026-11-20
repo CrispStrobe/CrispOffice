@@ -559,12 +559,20 @@ void main() {
     _at(c, 30, 5);
     c.insertText('x'); // seeds state after the constructor's full layout
     WordIncrementalLayoutStats.reset();
-    c.insertParagraphBreak();
-    // Everything below moves by a line: no convergence, but every unchanged
-    // paragraph below reuses its line breaks.
-    expect(WordIncrementalLayoutStats.incremental, 1);
-    expect(WordIncrementalLayoutStats.breaksReused, greaterThan(80));
-    _expectEquivalent(c, 'enter', _Run());
+    final _Run run = _Run();
+    // An empty paragraph moves everything below by a line. The flow meets
+    // the old layout only where a page break absorbs the shift; until then
+    // every unchanged paragraph reuses its line breaks instead of reshaping.
+    for (final int p in <int>[100, 70, 40, 10]) {
+      _at(c, p, _paras(c)[p].text.length);
+      c.insertParagraphBreak();
+      _expectEquivalent(c, 'enter after ¶$p', run);
+    }
+    expect(WordIncrementalLayoutStats.incremental, 4);
+    expect(
+      WordIncrementalLayoutStats.breaksReused,
+      greaterThan(WordIncrementalLayoutStats.blocksLaidOut ~/ 2),
+    );
   });
 
   test('typing in one paragraph lays out a handful of blocks', () {
