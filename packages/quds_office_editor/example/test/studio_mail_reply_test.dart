@@ -230,6 +230,31 @@ void main() {
     );
   });
 
+  test('incomplete MIME cannot become an apparently complete HTML quote', () {
+    final message = _message(plain: null, html: '<p>Complete HTML prefix</p>');
+    for (final status in MailParseStatus.values) {
+      if (status == MailParseStatus.complete) continue;
+      for (final forward in [false, true]) {
+        expect(
+          () => buildStudioMailReplyDraft(
+            message,
+            forward: forward,
+            sourceStatus: status,
+          ),
+          throwsA(isA<StudioMailReplyUnavailable>()),
+        );
+      }
+      expect(
+        () => buildStudioMailReplyAllDraft(
+          message,
+          sender: 'writer@example.invalid',
+          sourceStatus: status,
+        ),
+        throwsA(isA<StudioMailReplyUnavailable>()),
+      );
+    }
+  });
+
   test('an explicitly empty plain body never falls back to HTML', () {
     final draft = buildStudioMailReplyDraft(
       _message(plain: ''),

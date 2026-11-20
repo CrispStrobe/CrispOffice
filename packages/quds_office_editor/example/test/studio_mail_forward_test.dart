@@ -174,13 +174,31 @@ void main() {
     expect(draft.body, isNot(contains('Unselected alternate')));
   });
 
-  test('missing body still refuses an otherwise complete attached forward', () {
-    expect(
-      () => buildStudioMailForwardWithAttachmentsDraft(
-        _source(plain: null, attachments: [_attachment('file.bin', [1])]),
-      ),
-      throwsA(isA<StudioMailReplyUnavailable>()),
+  test('complete attachment-only messages forward their files with attribution', () {
+    final draft = buildStudioMailForwardWithAttachmentsDraft(
+      _source(plain: null, attachments: [_attachment('file.bin', [1])]),
     );
+    expect(draft.body, contains('From: author@example.invalid'));
+    expect(draft.body, endsWith('> '));
+    expect(draft.attachments.items.single.name, 'file.bin');
+    expect(draft.attachments.items.single.content.bytes, [1]);
+    expect(draft.to, isEmpty);
+  });
+
+  test('missing body without files and malformed HTML still refuse', () {
+    for (final source in [
+      _source(plain: null),
+      _source(
+        plain: null,
+        html: '<p>Incomplete source</p><script>',
+        attachments: [_attachment('file.bin', [1])],
+      ),
+    ]) {
+      expect(
+        () => buildStudioMailForwardWithAttachmentsDraft(source),
+        throwsA(isA<StudioMailReplyUnavailable>()),
+      );
+    }
   });
 
   test('every noncomplete parse is refused even with apparently valid parts', () {
