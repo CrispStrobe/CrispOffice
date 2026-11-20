@@ -75,7 +75,9 @@ the original document, selection and composition state are still current.
 Surrounding prose, supported formatting, lists and images remain intact. One
 undo restores the entire document and the original selection direction.
 Selections across paragraphs or through existing fields, atomic content,
-commented text or structural/protected ranges remain guarded.
+commented text or structural/protected ranges remain guarded. Native complex
+Word fields and bookmark endpoints are protected too. DOCX reopening now
+resolves visible list labels independently for each authored footnote/endnote.
 
 The [target-insertion work record](../../validation/zotero-note-targets-20261120/README.md)
 records the reconciled baseline, implementation checkpoints and local checks.

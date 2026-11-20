@@ -1,0 +1,203 @@
+{
+  "archive": "editor-analysis-evidence.tar.gz",
+  "sha256": "b79657acb6acfca7a95fc567889f5f206645614ef8352d38096c84a9fe0ebd36",
+  "git_blob": "428f9e95c33169a4505cebdde99865de4fc08821",
+  "bytes": 639742,
+  "entries": [
+    {
+      "path": "runtime/editor-acceptance-infrastructure-summary.json",
+      "size": 4898,
+      "sha256": "611e03a6f3179a7cddf91bb2c7c3e453629faa7638d1fddc95ba4ed0437101fa"
+    },
+    {
+      "path": "runtime/editor-setup-missing-impellerc.receipt.json",
+      "size": 758279,
+      "sha256": "411ccc624adad4a33bc93f5a6a184e4d659e7b49de885c1ec8da63f2789999cf"
+    },
+    {
+      "path": "runtime/editor-setup-missing-impellerc.jsonl",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/editor-setup-missing-impellerc.stderr.log",
+      "size": 2380,
+      "sha256": "c3e5319982f82adc202115ac16eec0342009a82b8dd2fa1313acc3a3f732ee18"
+    },
+    {
+      "path": "runtime/editor-acceptance-integrated.receipt.json",
+      "size": 759078,
+      "sha256": "3734fd079fc2380369ad0763a81a74046b3323b57ccb3cf64c8cfe8d2836068a"
+    },
+    {
+      "path": "runtime/editor-acceptance-integrated.jsonl",
+      "size": 741,
+      "sha256": "fa89179f2f184d1c06bd6cf1dc3c242235220e4a8e582ef954d3b2c5a9fde45a"
+    },
+    {
+      "path": "runtime/editor-acceptance-integrated.stderr.log",
+      "size": 2226,
+      "sha256": "250903663b6790de62e5a28065296eb94273cbcc339d94eac34d5cff398175ef"
+    },
+    {
+      "path": "runtime/editor-core-acceptance-integrated.receipt.json",
+      "size": 761113,
+      "sha256": "fbd27c3f449c49ed3670a13fb7249f2affa840b132d1e93acf8efd6a74110230"
+    },
+    {
+      "path": "runtime/editor-core-acceptance-integrated.jsonl",
+      "size": 633,
+      "sha256": "286a5a0bc09ca91a1d3923823a6a87cb448a174ff614612c2af971c1739e0b0d"
+    },
+    {
+      "path": "runtime/editor-core-acceptance-integrated.stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/selected-repo-materialization-receipt.json",
+      "size": 46076,
+      "sha256": "6711329c3c65b6b2a1be6e6be877fd58387b4f5d1e5a31679f7b9b5d5dc9d7f3"
+    },
+    {
+      "path": "runtime/native-hook-restore-receipt.json",
+      "size": 7778,
+      "sha256": "24f22b5c5b85b0fa3af8af5b5fa17f5f76cbc5d0df7a67c52cdac3e8b91d4ad7"
+    },
+    {
+      "path": "runtime/sdk-package-restore-receipt.json",
+      "size": 5353,
+      "sha256": "58bd87a6d63bc50ef18894e0a8a5106429687753f8485204c46e84e43a226557"
+    },
+    {
+      "path": "runtime/impellerc-restore-receipt.json",
+      "size": 677,
+      "sha256": "7b5f203e8079299a752a5c12b06b8400ebd85db5ba6e61b62e457ae82ba4b4a3"
+    },
+    {
+      "path": "runtime/analyzer-restore-receipt.json",
+      "size": 698,
+      "sha256": "cf5ce1f892a62ad8ca6b4441b251b8549736be18687a8bd694ede888a85c5e8f"
+    },
+    {
+      "path": "runtime/pub-cache-receipt.json",
+      "size": 37307,
+      "sha256": "186bddd9858d54775b3ba9c3fc31c56c2acc6d39f9af533fae7824bb44d6a7c9"
+    },
+    {
+      "path": "runtime/flutter-test-runtime.md",
+      "size": 2486,
+      "sha256": "76a61654e27b79eb9982c3ae009cad27b863616e921194d5213146faa36bb5da"
+    },
+    {
+      "path": "runtime/run_editor_acceptance.py",
+      "size": 6019,
+      "sha256": "a6d642d12fdea781179cc38432e65afadf107472841f073341ff220fd9a4bf34"
+    },
+    {
+      "path": "runtime/run_editor_core_acceptance.py",
+      "size": 6464,
+      "sha256": "2cb7aeb6af0795c82bf5918aed3e1f984052e4fd2b83d359987b34c2a085a743"
+    },
+    {
+      "path": "runtime/package_config.json",
+      "size": 34087,
+      "sha256": "1efa74626ff79b78858fcf97e00d3ca12132610c400048bc7f54471420a3ab92"
+    },
+    {
+      "path": "runtime/package_graph.json",
+      "size": 33957,
+      "sha256": "e2d5f47925685ff05f7fb5daf159cbe9ecc55450d2d3754ae54def17df132138"
+    },
+    {
+      "path": "runtime/env.sh",
+      "size": 588,
+      "sha256": "787be54e3b994aaf83293677f68d6db097c778e3ea97092e0ffa72a5667b15fd"
+    },
+    {
+      "path": "analysis/01-word_zotero_citing.dart.log",
+      "size": 54,
+      "sha256": "e57ed0a0273afe2ef90512a08006d7a1c996f671c83dd2818c2484176d758ef2"
+    },
+    {
+      "path": "analysis/02-word_deserializer.dart.log",
+      "size": 53,
+      "sha256": "1b8245104c0664548724210ad6caa19fae01e30f3f686ce05eceb7981feff5c9"
+    },
+    {
+      "path": "analysis/03-word_zotero_research_target_test.dart.log",
+      "size": 68,
+      "sha256": "90f42fc9781e71eb07b0c8d0f45789920b14f038ffce25369b6325607579af30"
+    },
+    {
+      "path": "analysis/04-word_zotero_add_note_test.dart.log",
+      "size": 61,
+      "sha256": "e51e5d7cf6db3181ea65f07990db31c5ea3a6872b0521f321346028dffc28974"
+    },
+    {
+      "path": "analysis/05-research_target_acceptance.dart.log",
+      "size": 895,
+      "sha256": "767cb85f2d946eb2582871a6c65b3bafe0509517442d3565693d60281c9899a1"
+    },
+    {
+      "path": "analysis/06-office_controller.dart.log",
+      "size": 53,
+      "sha256": "b3f9cc4a9c4f5e0d4a2a81cc95d5460c7cf070c7da2a40c48b026ebc40a7cea6"
+    },
+    {
+      "path": "analysis/07-word_zotero_dialog.dart.log",
+      "size": 54,
+      "sha256": "6a47162c20f278ad123ad1ac59faef7d31c17051725177fffae4f5e82e4732ee"
+    },
+    {
+      "path": "analysis/08-word_zotero_add_note_controller_test.dart.log",
+      "size": 72,
+      "sha256": "5f6091b030256d202732a5e3dc05e5ac0a047b963131f312a34cef731495da60"
+    },
+    {
+      "path": "analysis/09-word_zotero_citing_dialog_test.dart.log",
+      "size": 66,
+      "sha256": "a7643032625c4b6616cc9ebe5ff919e97c5b312598c9be6772916612773b3667"
+    },
+    {
+      "path": "analysis/10-word_proofing_session_test.dart.log",
+      "size": 62,
+      "sha256": "474d6e4746767c151a038cb866852d31864c89bdad40352b18ec63689843d3d2"
+    },
+    {
+      "path": "analysis/11-research_target_acceptance.dart.log",
+      "size": 62,
+      "sha256": "ec84859b3f7cdd41668dc7c01c0f1e145b051d66b1c18f497e2e08731c8faa40"
+    },
+    {
+      "path": "analysis/receipt.json",
+      "size": 9497,
+      "sha256": "16ad07f50c028e3682497c42102e63090a317395c89e8a6612f9d7784b5e2b1e"
+    },
+    {
+      "path": "analysis/source-hashes-after.json",
+      "size": 1567,
+      "sha256": "1299e06be57b5fd1f40d217cbbf1b5575208659d996da53e96ea1be5f7c24ce0"
+    },
+    {
+      "path": "analysis/source-hashes-before.json",
+      "size": 1567,
+      "sha256": "1299e06be57b5fd1f40d217cbbf1b5575208659d996da53e96ea1be5f7c24ce0"
+    },
+    {
+      "path": "runtime/editor_core_acceptance.dart",
+      "size": 2436,
+      "sha256": "e0cef1fa3812bc492179925ed392123dce3fbbbc01ca1ca5ab29bfae789115c2"
+    },
+    {
+      "path": "runtime/bin/flutter",
+      "size": 200,
+      "sha256": "3cda652963ebca00d52f875274942dfbbf559bd602f39d185632be31708ef335"
+    },
+    {
+      "path": "runtime/bin/dart",
+      "size": 98,
+      "sha256": "50ddec897fc321414095d96f470ae80f1d1484e0b2d87d4038beba79796ff7dc"
+    }
+  ]
+}
