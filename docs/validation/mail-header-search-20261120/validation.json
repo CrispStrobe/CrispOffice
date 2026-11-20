@@ -1,0 +1,334 @@
+{
+  "schema": "quds-mail-local-validation/v1",
+  "status": "PASS_WITH_DOCUMENTED_SKIPS",
+  "recorded_at_utc": "2026-11-20T19:20:21.650789+00:00",
+  "qualified_source_commit": "1cf0c8e86403df8e48094cb6275cd697094b8015",
+  "qualified_source_tree": "b2d25db4cc6f3c6b68e493dfefd62bd3dd576326",
+  "core": {
+    "native_tests": 94,
+    "node_tests": 27,
+    "receipt": "records/core-validation-receipt.json"
+  },
+  "accepted_test_runs": {
+    "mail_ui": {
+      "log": "mail-ui-tests.jsonl",
+      "sha256": "8f245a5ee77552a0737bbf021aab97c650c910ac0bc935b0f5983359429a51ba",
+      "complete": true,
+      "success": true,
+      "tests": 110,
+      "passed": 110,
+      "skipped": 0,
+      "result_counts": {
+        "success": 110
+      },
+      "elapsed_ms": 34446,
+      "suites": {
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_mail_ui/test/controller_test.dart": 5,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_mail_ui/test/message_view_test.dart": 11,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_mail_ui/test/body_presentation_test.dart": 31,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_mail_ui/test/presentation_test.dart": 16,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_mail_ui/test/example_test.dart": 1,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_mail_ui/test/body_presentation_contract_test.dart": 11,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_mail_ui/test/reader_theme_scroll_test.dart": 2,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart": 33
+      },
+      "errors": [],
+      "non_json_lines": []
+    },
+    "mail_visuals": {
+      "log": "mail-visual-tests.jsonl",
+      "sha256": "00e7dcb24b50a21ea230dbeddd1499e9ca120f7e42d3533717e7642d1bf22eaf",
+      "complete": true,
+      "success": true,
+      "tests": 5,
+      "passed": 5,
+      "skipped": 0,
+      "result_counts": {
+        "success": 5
+      },
+      "elapsed_ms": 10399,
+      "suites": {
+        "/workspace/scratch/f31e183d600e/runtime/mail_visual_probe_test.dart": 5
+      },
+      "errors": [],
+      "non_json_lines": []
+    },
+    "studio_hosts_and_settings": {
+      "log": "mail-host-accepted.jsonl",
+      "sha256": "86bf46e5008a9884a9321ce7144d149a9ac8a164d007dbfe7b2e4f7d1e4ebc62",
+      "complete": true,
+      "success": true,
+      "tests": 190,
+      "passed": 190,
+      "skipped": 0,
+      "result_counts": {
+        "success": 190
+      },
+      "elapsed_ms": 177238,
+      "suites": {
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": 17,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart": 62,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart": 59,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": 32,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart": 19,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/example/test/studio_compact_navigation_test.dart": 1
+      },
+      "errors": [],
+      "non_json_lines": []
+    },
+    "word_and_layout": {
+      "log": "incoming-engine-acceptance-tests.jsonl",
+      "sha256": "b7c7368f0e19f75f5656eb941c11e028938a9271384f0f5e6c60d6db310a6d80",
+      "complete": true,
+      "success": true,
+      "tests": 486,
+      "passed": 486,
+      "skipped": 0,
+      "result_counts": {
+        "success": 486
+      },
+      "elapsed_ms": 98112,
+      "suites": {
+        "test/office_macro_word_line_spacing_test.dart": 96,
+        "test/office_vba_word_line_spacing_integration_test.dart": 23,
+        "test/office_macro_word_paragraph_controls_test.dart": 118,
+        "test/office_vba_word_paragraph_controls_test.dart": 148,
+        "test/office_vba_word_paragraph_controls_integration_test.dart": 34,
+        "test/word_paragraph_style_identity_test.dart": 40,
+        "test/word_incremental_layout_test.dart": 9,
+        "test/word_incremental_layout_prefix_test.dart": 2,
+        "test/word_incremental_layout_differential_test.dart": 16
+      },
+      "errors": [],
+      "non_json_lines": []
+    },
+    "editor_zotero_rerun": {
+      "log": "editor-zotero-accepted.jsonl",
+      "sha256": "1b34a76e7aac3a8ba9f1bd6ddf643852decf879b2e3114cd639a125e1ff1ffa6",
+      "complete": true,
+      "success": true,
+      "tests": 32,
+      "passed": 32,
+      "skipped": 0,
+      "result_counts": {
+        "success": 32
+      },
+      "elapsed_ms": 9629,
+      "suites": {
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart": 32
+      },
+      "errors": [],
+      "non_json_lines": []
+    }
+  },
+  "editor_composed_coverage": {
+    "kind": "Composed coverage, not a single successful five-suite run",
+    "original_mixed_run": {
+      "log": "editor-five-tests.jsonl",
+      "sha256": "1190f73dae4836edbe678dea5f22aa02faf9297f6aa15625f4997cb5bb228566",
+      "complete": true,
+      "success": false,
+      "tests": 212,
+      "passed": 203,
+      "skipped": 8,
+      "result_counts": {
+        "success": 211,
+        "failure": 1
+      },
+      "elapsed_ms": 243162,
+      "suites": {
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/test/word_cross_paragraph_marker_delete_test.dart": 7,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart": 74,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/test/embed_test.dart": 88,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/test/word_bookmark_history_test.dart": 11,
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart": 32
+      },
+      "errors": [
+        {
+          "testID": 218,
+          "error": "Expected: 'Body'\n  Actual: 'Body1'\n   Which: is different. Both strings start the same, but the actual value also has the following trailing characters: 1\n",
+          "stackTrace": "package:matcher                                     expect\npackage:flutter_test/src/widget_tester.dart 473:18  expect\ntest/word_zotero_navigation_test.dart 626:7         main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 243024
+        }
+      ],
+      "non_json_lines": []
+    },
+    "accepted_unchanged_suites": {
+      "word_cross_paragraph_marker_delete_test.dart": {
+        "passed": 7
+      },
+      "word_incremental_layout_equivalence_test.dart": {
+        "passed": 66,
+        "skipped": 8
+      },
+      "embed_test.dart": {
+        "passed": 88
+      },
+      "word_bookmark_history_test.dart": {
+        "passed": 11
+      }
+    },
+    "corrected_suite": {
+      "log": "editor-zotero-accepted.jsonl",
+      "sha256": "1b34a76e7aac3a8ba9f1bd6ddf643852decf879b2e3114cd639a125e1ff1ffa6",
+      "complete": true,
+      "success": true,
+      "tests": 32,
+      "passed": 32,
+      "skipped": 0,
+      "result_counts": {
+        "success": 32
+      },
+      "elapsed_ms": 9629,
+      "suites": {
+        "/workspace/scratch/f31e183d600e/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart": 32
+      },
+      "errors": [],
+      "non_json_lines": []
+    },
+    "passed": 204,
+    "skipped": 8,
+    "skipped_cases": [
+      {
+        "suite": "word_incremental_layout_equivalence_test.dart",
+        "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+        "reason": null
+      },
+      {
+        "suite": "word_incremental_layout_equivalence_test.dart",
+        "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+        "reason": null
+      },
+      {
+        "suite": "word_incremental_layout_equivalence_test.dart",
+        "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+        "reason": null
+      },
+      {
+        "suite": "word_incremental_layout_equivalence_test.dart",
+        "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+        "reason": null
+      },
+      {
+        "suite": "word_incremental_layout_equivalence_test.dart",
+        "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+        "reason": null
+      },
+      {
+        "suite": "word_incremental_layout_equivalence_test.dart",
+        "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+        "reason": null
+      },
+      {
+        "suite": "word_incremental_layout_equivalence_test.dart",
+        "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+        "reason": null
+      },
+      {
+        "suite": "word_incremental_layout_equivalence_test.dart",
+        "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx",
+        "reason": null
+      }
+    ],
+    "source_recheck": {
+      "checked_files": 9,
+      "mismatches": []
+    },
+    "receipt": "editor-validation-summary.json"
+  },
+  "source_applicability": {
+    "core": {
+      "checked_files": 4,
+      "mismatches": []
+    },
+    "mail_ui": {
+      "checked_files": 7,
+      "mismatches": []
+    },
+    "studio_analysis": {
+      "checked_files": 19,
+      "mismatches": []
+    },
+    "formatting": {
+      "checked_files": 22,
+      "mismatches": []
+    },
+    "engine": {
+      "checked_files": 19,
+      "mismatches": []
+    },
+    "mail_and_settings_hosts": {
+      "checked_files": 22,
+      "mismatches": []
+    },
+    "later_host_manifest_changes": {
+      "packages/quds_office_editor/example/test/app_store_screenshots_gate.dart": "Covered by final engine/editor validation or screenshot-gate analysis; mail/settings source is unchanged.",
+      "packages/quds_office_editor/test/word_zotero_navigation_test.dart": "Covered by final engine/editor validation or screenshot-gate analysis; mail/settings source is unchanged.",
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "Covered by final engine/editor validation or screenshot-gate analysis; mail/settings source is unchanged."
+    }
+  },
+  "strict_analysis": {
+    "mail_core": "clean",
+    "mail_ui_lib_and_test": "clean",
+    "studio_changed_files": 19,
+    "engine_changed_files": 17,
+    "editor_changed_files": 6,
+    "editor_exit_metadata_followup": "records/editor-analysis-final-exit.json"
+  },
+  "formatting": {
+    "files": 22,
+    "changed": 0
+  },
+  "macos_guard_python_tests": 5,
+  "intake": {
+    "target": "1cf0c8e86403df8e48094cb6275cd697094b8015",
+    "counts": {
+      "fork_branches": {
+        "ancestor": 24,
+        "equivalent": 9
+      },
+      "fork_pull_requests": {
+        "ancestor": 256,
+        "equivalent": 14
+      },
+      "upstream_branches": {
+        "ancestor": 4
+      },
+      "upstream_pull_requests": {
+        "ancestor": 4
+      }
+    },
+    "historical_proofs": 14,
+    "uncovered": 0
+  },
+  "archive": {
+    "path": "evidence.tar.gz",
+    "bytes": 193574,
+    "sha256": "dc8d4eca158a1a0e739063e36bcd39399727342c1f0c9a18a3efe4d008985f2f",
+    "member_count": 88,
+    "manifest": "evidence-members.json"
+  },
+  "visuals": {
+    "compact-locales.png": {
+      "bytes": 67968,
+      "sha256": "cd21c8c8dc2693fde943702ec77d9677ad3d14d8d84e28ecb6afc3cffb596b49"
+    },
+    "help-locales.png": {
+      "bytes": 376609,
+      "sha256": "c3da6b48e777bb65393925fd7953afc9bee269da0ef88cead2f4ea67ee33477d"
+    }
+  },
+  "github_actions": "Neither queried nor awaited",
+  "publication": "Source is saved on work/mail-parity-20261120. PR #270 records the eventual observed merge transaction.",
+  "limits": [
+    "Loaded header search; no account-wide/body/Bcc search.",
+    "Fake-provider/widget tests do not qualify live accounts or real sends.",
+    "No installed-platform build, App Store screenshot workflow, or native Arabic/WASM/browser parity run.",
+    "Node checks portable query JavaScript, not browser UI.",
+    "Eight image-only editor fixtures had no paragraphs to edit and were skipped.",
+    "Editor coverage combines four unchanged suites from a mixed run and a clean corrected Zotero rerun.",
+    "Test cohorts overlap; no distinct-test grand total is claimed."
+  ]
+}

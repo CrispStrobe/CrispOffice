@@ -1,10 +1,10 @@
 {
   "schema": "quds-mail-source-intake/v1",
   "status": "PASS",
-  "captured_at_utc": "2026-11-20T18:51:51.227575+00:00",
+  "captured_at_utc": "2026-11-20T19:18:13.384493+00:00",
   "repository": "CrispStrobe/quds_office_suite",
-  "target_commit": "f4f0da7379822d030e3549292696e76a6fd05526",
-  "target_tree": "9f85bea2bd6c56dc09067eac3d40b6bebfe031bd",
+  "target_commit": "1cf0c8e86403df8e48094cb6275cd697094b8015",
+  "target_tree": "b2d25db4cc6f3c6b68e493dfefd62bd3dd576326",
   "scope": "Source inclusion from fetched remote-tracking refs; no runtime qualification claim.",
   "counts": {
     "fork_branches": {
@@ -50,14 +50,14 @@
       "fix/main-green-20261120": "15cd2ff4188ec811cb8f41d7480a0480d888136e",
       "integrate/office-union-148": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
       "integrate/recent-pptx": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
-      "main": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "main": "d1e9cbc0c5dd38f0c8d28e3d76e7fdd59990f3f4",
       "work/mail-accounts-20261120": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
       "work/mail-cached-workspace-20261120": "c7e721b7703766491fd4459b69de30bf68d9010d",
       "work/mail-multiple-drafts-20261120": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
       "work/mail-offline-accounts-20261120": "44855ab24c2c7fd34953e879fba571381cce0bc3",
       "work/mail-outbox-20261120": "9443612b024114c424ba2f8146e04050d6e049b0",
       "work/mail-outbox-management-20261120": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
-      "work/mail-parity-20261120": "f4f0da7379822d030e3549292696e76a6fd05526"
+      "work/mail-parity-20261120": "1cf0c8e86403df8e48094cb6275cd697094b8015"
     },
     "fork_pull_requests": {
       "1": "54f0f8de01416640560519aa9d732f668f603709",
@@ -344,7 +344,7 @@
       "7": "f45099688e7a3f67a1302efdb442830d052f2240"
     }
   },
-  "inventory_sha256": "9683a3008ba1e2869db20a9c2c4776bc5246cbfa1856a8698c81aeace35cba9d",
+  "inventory_sha256": "79fd959672a598e5b3559528029396243b681e051cb40a7de90b96a9694a2094",
   "historical_proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json",
   "historical_proof_sha256": "08fd117ac9f4b94ba73889691be0fe8599a28a7c600e07268f59c6a67c781523",
   "recomputed_equivalence": {
