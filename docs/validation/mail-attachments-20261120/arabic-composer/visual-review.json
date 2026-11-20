@@ -1,0 +1,28 @@
+{
+  "status": "visually-reviewed",
+  "image": "arabic-composer.png",
+  "source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "surface": [
+    390,
+    844
+  ],
+  "observations": [
+    "Arabic body text stays fully visible within the editor viewport at normal size.",
+    "Two attachment filenames and byte counts are readable; both remove buttons are visible.",
+    "Attachment summary, Attach files, Send and Cancel controls fit the narrow dialog.",
+    "The capture uses the public production composer, Studio base font families/color seed, registered editor fonts, and the pinned MaterialIcons face."
+  ],
+  "scope": "Fresh synthetic widget capture. It is not a screenshot from an installed native application or evidence of actual provider delivery. Separate from the 496 accepted application cases.",
+  "prior_attempts": [
+    {
+      "path": "../arabic-capture",
+      "status": "harness failure",
+      "reason": "pumpAndSettle waited for continuing Word animation; replaced with the finite pump helper already used by production regression tests."
+    },
+    {
+      "path": "../arabic-capture-final",
+      "status": "test passed, visual fixture superseded",
+      "reason": "Body text was visible but Material chrome used test Ahem fallback; final harness applies Studio fonts and pinned icons."
+    }
+  ]
+}

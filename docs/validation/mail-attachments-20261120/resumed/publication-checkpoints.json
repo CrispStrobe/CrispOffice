@@ -31,7 +31,18 @@
       ],
       "purpose": "Preserve incoming PPTX/grammar/macOS/VBA reconciliation and MIME probe; save/reopen repair still pending",
       "expected_previous_sha": "2c3479838721632167933eb99b78beaac285e862"
+    },
+    {
+      "ordinal": 3,
+      "remote_sha": "906843fbf2bfc20f8040543a122d88c93f20de83",
+      "local_candidate": "b8686c05e055ca0395726fe528d585379597d628",
+      "tree": "b6671cdc8383261711e00a77cf9f07a1dc5da18e",
+      "parents": [
+        "e12910204ef77644c12bf06ef7030c11268ada86"
+      ],
+      "purpose": "Preserve completed background round trips and accepted mail package evidence; combined qualification in progress",
+      "expected_previous_sha": "e12910204ef77644c12bf06ef7030c11268ada86"
     }
   ],
-  "policy": "Every published tree is compared with the local candidate tree before creating the commit. Branch updates use expected_sha and force=false. Original incoming commits remain ordered parents or ancestors."
+  "policy": "Every published tree is compared with the local candidate tree before creating the commit. Branch updates use expected_sha and force=false. Original incoming commits remain ordered parents or ancestors. The final PR body records the publication that contains this ledger, avoiding a self-referential commit ID."
 }

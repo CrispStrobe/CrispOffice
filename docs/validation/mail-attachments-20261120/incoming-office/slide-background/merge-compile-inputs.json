@@ -1,0 +1,6 @@
+{
+  "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "f44206c09fce1be52bdcd9d93b7c2acf3afdbe592dad3c934c7fcbd6ef468ff3",
+  "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "d3c2f7cd53db898bc754ae17e1ad0276cd84bea1871fce08d10aa3d38f5c0de6",
+  "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "a6451a445439be959197246962f2d797dc5303b5d85c648de5538289da40b060",
+  "pubspec.lock": "b71c74cada904d0a3fac7d057b7c718011c50d2e108b6cfd0390566f8abab202"
+}

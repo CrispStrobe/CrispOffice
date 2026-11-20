@@ -1,0 +1,63 @@
+{
+  "started_at_utc": "2026-11-20T05:45:57.612Z",
+  "finished_at_utc": "2026-11-20T05:45:58.106Z",
+  "scope": "Main integration refresh and visibility of concurrently active PRs; the original branch/PR preservation audit stays bounded to the two saved intake inventories.",
+  "no_ci_or_status_endpoints": true,
+  "main": {
+    "ref": "refs/heads/main",
+    "node_id": "REF_kwDOVjGvya9yZWZzL2hlYWRzL21haW4",
+    "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/refs/heads/main",
+    "object": {
+      "sha": "3e5f44ae14926b8054b2e5c0558ce71477891a33",
+      "type": "commit",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/commits/3e5f44ae14926b8054b2e5c0558ce71477891a33"
+    }
+  },
+  "open_prs": [
+    {
+      "number": 223,
+      "title": "Extend Zotero research-material browsing and reconcile recent work [skip ci]",
+      "state": "open",
+      "draft": false,
+      "head": {
+        "ref": "codex/zotero-research-materials-20261120",
+        "sha": "b1c8c8e534c41914b934defd6023839b851b28a2"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "b0b79d90b0f4ca0036483d73095b4821efddcc8e"
+      },
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/223"
+    },
+    {
+      "number": 227,
+      "title": "Extend VBA Variant states and conversions; reconcile recent Office work [skip ci]",
+      "state": "open",
+      "draft": true,
+      "head": {
+        "ref": "codex/vba-variant-conversions-20261120",
+        "sha": "767f388b5c3381d5392df4f27b1b33a4112827a8"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "b0b79d90b0f4ca0036483d73095b4821efddcc8e"
+      },
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/227"
+    },
+    {
+      "number": 221,
+      "title": "Add bounded mail attachments and reconcile current Office work",
+      "state": "open",
+      "draft": true,
+      "head": {
+        "ref": "work/mail-attachments-20261120",
+        "sha": "906843fbf2bfc20f8040543a122d88c93f20de83"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7"
+      },
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/221"
+    }
+  ]
+}

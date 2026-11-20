@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart"
+  ],
+  "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+  "name": "format",
+  "started_at_utc": "2026-11-20T05:42:27.267031+00:00"
+}

@@ -42,15 +42,29 @@ void main() {
         OfficePdfExport.presentation(deck),
       ).join();
       final int image = content.indexOf('/Im1 Do');
-      final int border = content.indexOf('2.5 w');
+      final List<RegExpMatch> borders = RegExp(r'([0-9.]+) w\n')
+          .allMatches(content)
+          .where((match) => double.parse(match.group(1)!) == 2.5)
+          .toList();
       expect(image, greaterThanOrEqualTo(0));
+      expect(borders, hasLength(1));
+      final int border = borders.single.start;
       expect(border, greaterThan(image));
       expect(content.substring(border), contains('0.800 0.200 0 RG'));
-      expect(content.substring(border), contains('10 20 100 50 re S'));
+      expect(
+        content.substring(border),
+        matches(RegExp(r'10 20 100 50 re\s+S')),
+      );
       if (cropped) {
         // The border follows restoration of the crop clip, so it outlines
         // the visible picture frame rather than the full expanded image.
-        expect(content.substring(image, border), contains('Q'));
+        expect(
+          RegExp(
+            r'^Q$',
+            multiLine: true,
+          ).allMatches(content.substring(image, border)),
+          hasLength(2),
+        );
       }
       picture.picture.borderWidth = 0;
       final String borderless = _inflated(

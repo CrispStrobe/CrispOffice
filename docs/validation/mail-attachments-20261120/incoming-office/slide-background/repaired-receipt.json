@@ -1,0 +1,37 @@
+{
+  "phase": "repaired",
+  "startedAtUtc": "2026-11-20T05:22:19.742076+00:00",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+    "--reporter=json",
+    "--concurrency=2"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 12.803414456997416,
+  "inputCount": 416,
+  "inputsUnchanged": true,
+  "changedInputs": [],
+  "passed": 37,
+  "failed": 1,
+  "skipped": 0,
+  "failures": [
+    {
+      "testID": 24,
+      "error": "Expected: [\n            137,\n            80,\n            78,\n            71,\n            13,\n            10,\n            26,\n            10,\n            0,\n            0,\n            0,\n            13,\n            73,\n            72,\n            68,\n            82,\n            0,\n            0,\n            0,\n            1,\n            0,\n            0,\n            0,\n            1,\n            ...\n          ]\n  Actual: [\n            137,\n            80,\n            78,\n            71,\n            13,\n            10,\n            26,\n            10,\n            0,\n            0,\n            0,\n            13,\n            73,\n            72,\n            68,\n            82,\n            0,\n            0,\n            0,\n            1,\n            0,\n            0,\n            0,\n            1,\n            ...\n          ]\n   Which: at location [44] is <97> instead of <249>\n",
+      "stackTrace": "package:matcher                                                          expect\npackages/quds_office_engine/test/slide_import_fidelity_test.dart 643:11  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 2668
+    }
+  ],
+  "done": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 2729
+    }
+  ]
+}
