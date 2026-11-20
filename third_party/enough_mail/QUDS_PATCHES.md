@@ -176,7 +176,9 @@ implemented Quds packages outside this directory keep their own MIT license.
     CRLF/LF normalization, trailing whitespace and disabled soft wrapping. The
     Studio attachment continuation also qualifies serialized MIME through an
     independent Python receiver; its source-bound receipt is separate from the
-    historical portable-closure verification below.
+    historical portable-closure verification below. See the
+    [combined local qualification](../../docs/validation/zotero-research-materials-20261120/README.md)
+    for the current controlled MIME/SMTP tests and independent parser evidence.
 
 These native additions are covered by MPL-2.0. `UPSTREAM.json` remains the
 unchanged original-source inventory; local additions and modifications are

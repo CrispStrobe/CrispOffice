@@ -1,0 +1,176 @@
+{
+  "allChecksPassed": true,
+  "checkCount": 30,
+  "checks": [
+    {
+      "details": [],
+      "name": "No Python MIME/header parser defects",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Complete MIME wire is ASCII",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Wire uses CRLF without bare CR or LF",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Root is multipart/mixed",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Mixed root contains exactly body plus attachment",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Subject decodes to exact Unicode",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Sender matches",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Visible To addresses are exact",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Visible Cc addresses are exact",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "No Bcc MIME header at any level",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Private Bcc addresses never appear on MIME wire",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Explicit envelope retains To Cc and private Bcc",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Envelope groups remain separate",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Body is multipart/alternative",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Alternative contains plain then HTML",
+      "passed": true
+    },
+    {
+      "details": {
+        "actualSha256": "86ca2bf8ae01facc87b9606e65299561b29edd673b3d26e470041f835af4f363",
+        "expectedSha256": "86ca2bf8ae01facc87b9606e65299561b29edd673b3d26e470041f835af4f363"
+      },
+      "name": "Plain text retains multibyte characters and terminal spaces/tabs",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "HTML decodes with exact escaping and line breaks",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "text/plain uses quoted-printable",
+      "passed": true
+    },
+    {
+      "details": {
+        "maximumLineLength": 75
+      },
+      "name": "text/plain encoded lines stay within 76 columns",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "text/plain has no literal trailing transport padding",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "text/html uses quoted-printable",
+      "passed": true
+    },
+    {
+      "details": {
+        "maximumLineLength": 76
+      },
+      "name": "text/html encoded lines stay within 76 columns",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "text/html has no literal trailing transport padding",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Attachment disposition is attachment",
+      "passed": true
+    },
+    {
+      "details": {
+        "decodedFilename": "研究 سجل \"alpha\"; 100%😀.bin"
+      },
+      "name": "RFC 2231 Unicode quoted filename decodes exactly",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Attachment media type is exact",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Attachment charset is not guessed",
+      "passed": true
+    },
+    {
+      "details": {
+        "actualSha256": "1e973d029df2b2c66cb42a942c5edb45966f02abaff29fe99410e44d271d0efc",
+        "expectedSha256": "1e973d029df2b2c66cb42a942c5edb45966f02abaff29fe99410e44d271d0efc",
+        "length": 4097
+      },
+      "name": "Binary attachment is byte-exact",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Attachment transport is base64",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Binary encoded lines stay within 76 columns",
+      "passed": true
+    }
+  ],
+  "doesNotClaimExternalProviderOrInstalledAppAcceptance": true,
+  "envelopeSha256": "715e9f6e5c3c6c3537cbadce9921786581c2f0e9ec94958bb06d2fa1d13c9406",
+  "fixture": "Reserved example.invalid addresses, synthetic Unicode text and generated binary bytes.",
+  "kind": "independent Python standard-library receiver inspection of actual Studio builder output",
+  "messageCount": 1,
+  "noNetworkOrMailSubmission": true,
+  "rawMimeSha256": "f8e5dfd5fb1a9ddb6705b407d0dc141799fb39337910225d83cc5356ecd130e8"
+}

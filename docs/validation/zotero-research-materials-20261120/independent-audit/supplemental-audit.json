@@ -1,0 +1,29 @@
+{
+  "additional_distinct_unit_tests": 0,
+  "audited_at_utc": "2026-11-20T05:02:38.630205+00:00",
+  "auditor_sha256": "e3e0c68b97030d3f4f97c1770a408651ee05a092a9255a56ed589fef04b861ea",
+  "failures": [],
+  "imported_auditor_sha256": "926e3da266f5e6362964ce0f9d9bc624e5944e348850da7efac07ff8d98068f0",
+  "limits": [
+    "No application commands, network calls, transport sends, or tests were executed by this auditor.",
+    "The69 portable cases overlap the main VBA conformance unit suite; MIME assertions are supplemental receiver checks, not additional unit cases.",
+    "Existing-evidence auditing requires the recorded checkout, SDK and dependency filesystem layout; the separate qualification runner recreates evidence for another environment."
+  ],
+  "mime_recorded_assertions": 30,
+  "mime_wire_independently_reparsed": true,
+  "portable_actuals_equal_canonical_expected": true,
+  "portable_cases": 69,
+  "portable_receipts_byte_identical": true,
+  "receipt_sha256": "cb82e8a51618ec9802aece9a2909a9d517f28bf21074915d21cda8ae52de1a9e",
+  "recorded_inputs_before_after_identical": true,
+  "source_commit": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "status": "verified",
+  "verified_input_counts": {
+    "dependency_files": 5388,
+    "qualification_helpers": 3,
+    "runtime": 12,
+    "source": 3994,
+    "supplemental_runtime": 540,
+    "workspace": 2
+  }
+}

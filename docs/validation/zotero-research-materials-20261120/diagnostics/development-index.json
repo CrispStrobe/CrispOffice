@@ -1,0 +1,283 @@
+{
+  "archive": "development.tar.gz",
+  "archive_sha256": "3b8e80c11f7721ce7fda3a66367246abe5f2412ae880d9fc7a262855d43fa9f8",
+  "file_count": 55,
+  "files": [
+    {
+      "path": "children-editor-analysis.log",
+      "bytes": 206,
+      "sha256": "9d7502128ebf95de3cda1d7400e12d8a001e82559e3cef2d69dd04357046e64f"
+    },
+    {
+      "path": "children-ui-development.jsonl",
+      "bytes": 8136,
+      "sha256": "b15d83207df6d0f30d3add79332c93f9cf20df5ff1cb9c7796252ac296aa126c"
+    },
+    {
+      "path": "children-ui-development.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reconciliation/audit_final_refs.py",
+      "bytes": 9470,
+      "sha256": "bb7e7a081f8d4b36eab1c462204971f3816787e759e305b2f3c49f903758a358"
+    },
+    {
+      "path": "reconciliation/audit_refs.py",
+      "bytes": 5087,
+      "sha256": "c990a3185f389397c10da5c3920b5ceb5e5dd24edbbbe4f94fae05b766d7a675"
+    },
+    {
+      "path": "reconciliation/f832-resolution/analysis.txt",
+      "bytes": 374,
+      "sha256": "96f4eae03d2c58d95ded086d076889fcb6c29a2f3c6e57837818f0442855b09d"
+    },
+    {
+      "path": "reconciliation/f832-resolution/resolution.json",
+      "bytes": 4009,
+      "sha256": "12e8501f966b68c85f7b23df5d5add9c816deebc1387564af4d9f1a9b8cef8f9"
+    },
+    {
+      "path": "reconciliation/final-reconciliation.json",
+      "bytes": 180068,
+      "sha256": "99beeb76fac77814483d331ca46f1cafe0bc6c5a51adc202a97ab6b30896ae96"
+    },
+    {
+      "path": "reconciliation/final-remote-snapshot.json",
+      "bytes": 122407,
+      "sha256": "2c4efc80b8b3b3d184682f9f2c774430285fe5be6c1da93d9b8fb485023ee044"
+    },
+    {
+      "path": "reconciliation/incoming-vba-render-editor-analysis.txt",
+      "bytes": 96,
+      "sha256": "14779d9ef01c063a6de13d6b4cfeef3150d131e6adcfbf83404b2d35c84a56c8"
+    },
+    {
+      "path": "reconciliation/incoming-vba-render-engine-analysis-final.txt",
+      "bytes": 170,
+      "sha256": "6b249c855724a30b9f5ccb4415dd757a28ed0621f11297f3e4aded29a28003e2"
+    },
+    {
+      "path": "reconciliation/incoming-vba-render-engine-analysis.txt",
+      "bytes": 859,
+      "sha256": "288a9973aab6546545b0ecbc0d1cc19d56b8e29b2279d10e2f8aeece868dadb2"
+    },
+    {
+      "path": "reconciliation/initial-reconciliation.json",
+      "bytes": 124511,
+      "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+    },
+    {
+      "path": "reconciliation/integration-editor-analysis-replay.txt",
+      "bytes": 108,
+      "sha256": "113e5a97d955dcc6c274d32a3aef0573c535f3b233244401136230028d6b2ffb"
+    },
+    {
+      "path": "reconciliation/integration-editor-analysis.txt",
+      "bytes": 108,
+      "sha256": "113e5a97d955dcc6c274d32a3aef0573c535f3b233244401136230028d6b2ffb"
+    },
+    {
+      "path": "reconciliation/integration-editor-replay.jsonl",
+      "bytes": 11115,
+      "sha256": "40fab8a52499077acd7d8e5a555ca37535a7beea4765c93ce59ef28dda8425f1"
+    },
+    {
+      "path": "reconciliation/integration-editor-tests.jsonl",
+      "bytes": 11115,
+      "sha256": "8fb7814eb1fc5fdb2d7eeed9e90f17c2dc6cbb4d466a6cd6d1f93c839bb58b2a"
+    },
+    {
+      "path": "reconciliation/integration-engine-analysis-final.txt",
+      "bytes": 173,
+      "sha256": "033f0b70a14f08dce7a1c796cfb9912033eea43a79b1931be23f2bee13fc5852"
+    },
+    {
+      "path": "reconciliation/integration-engine-analysis-replay.txt",
+      "bytes": 136,
+      "sha256": "ba2db66f1c02b1ba040e18bf6adcfa6a2a6de9f5a5d6602bac11d77384fc5a63"
+    },
+    {
+      "path": "reconciliation/integration-engine-analysis.txt",
+      "bytes": 173,
+      "sha256": "033f0b70a14f08dce7a1c796cfb9912033eea43a79b1931be23f2bee13fc5852"
+    },
+    {
+      "path": "reconciliation/integration-engine-flutter-tests.jsonl",
+      "bytes": 22377,
+      "sha256": "4378fc5449cb768df1d76afe4452d775447d0461ecc55766139fb90975b0566d"
+    },
+    {
+      "path": "reconciliation/integration-engine-replay.jsonl",
+      "bytes": 20092,
+      "sha256": "7c5a0810ffec033f7a11c3df3b6b44592e0780e51cafdea97e869607587f0dc0"
+    },
+    {
+      "path": "reconciliation/integration-engine-tests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reconciliation/integration-validation.json",
+      "bytes": 11090,
+      "sha256": "54376ab1a093a574c0a68b12dfb51e998a03d6b1ac3f6ba8918d76c31649ca65"
+    },
+    {
+      "path": "reconciliation/remote-snapshot.json",
+      "bytes": 143990,
+      "sha256": "4475fb088d985094e3087772f65c9759e66881629be35b3d3e9b1b629732cec2"
+    },
+    {
+      "path": "reconciliation/upstream-reconciliation.json",
+      "bytes": 1566,
+      "sha256": "d12177212f052b4a4e4b487595591e260f62e3a8be299823819b99f109df9a02"
+    },
+    {
+      "path": "reconciliation/upstream-snapshot.json",
+      "bytes": 1265,
+      "sha256": "66e2b03b21106ea57463d90e05cc7d5f1703fdf9bfc9b7004b5f0dc421022a68"
+    },
+    {
+      "path": "reconciliation/zotero-children-dialog-analysis.txt",
+      "bytes": 68,
+      "sha256": "8d9dd9b1071622945277e53c7d2af624ef76388182e31294cb6c7ef14ab7ec9e"
+    },
+    {
+      "path": "reconciliation/zotero-children-dialog-desktop-diagnostic.jsonl",
+      "bytes": 8498,
+      "sha256": "38e00a0fa915d41169b750281a9d0350a411620b0c03ffaad29059bac4458426"
+    },
+    {
+      "path": "reconciliation/zotero-children-dialog-format.txt",
+      "bytes": 46,
+      "sha256": "ebf8691cd9669b02dd9d748aaf543551b337b2beb44f2d128dc7ffbfa0318f03"
+    },
+    {
+      "path": "reconciliation/zotero-children-dialog-replay.jsonl",
+      "bytes": 6336,
+      "sha256": "b39272524e19f855f2119c56c6d5b843697a95b8fd99d2e2195cf5e045ec5040"
+    },
+    {
+      "path": "reconciliation/zotero-children-dialog-tests.jsonl",
+      "bytes": 408699,
+      "sha256": "625f9c97df9d7c0064ea8dbe421068819d1c4c1af811a4bd81fe695910cfff4b"
+    },
+    {
+      "path": "reconciliation/zotero-children-dialog-validation.json",
+      "bytes": 4420,
+      "sha256": "88b39cd7ef1289e7f4cdca60299341915d40a97f4f181be18c79f6d192d30947"
+    },
+    {
+      "path": "zotero-children-engine-analyze.log",
+      "bytes": 101,
+      "sha256": "c1f8f521898da45d3489144ca7c4970b42bf33fe19504626ae5c93fb25bb1d79"
+    },
+    {
+      "path": "zotero-children-engine-receipt.json",
+      "bytes": 1910,
+      "sha256": "b49d276f3d16bd403df6cf87d4c195a580cc91b10442c11f2c0bc438abc4ff6c"
+    },
+    {
+      "path": "zotero-children-engine-regression.jsonl",
+      "bytes": 73511,
+      "sha256": "5aeba10eb9695047f366d5387b47dfc9fd8e85991d9a6134456b82d019858e31"
+    },
+    {
+      "path": "zotero-children-engine-regression.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-children-engine-test.jsonl",
+      "bytes": 18435,
+      "sha256": "5dc59caab1b0f71268b62ed287f242d582506e28de5431b5becbe5c2a5211aa7"
+    },
+    {
+      "path": "zotero-children-engine-test.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-toolchain/logs/attempt-concurrent-tools-prefetch.log",
+      "bytes": 2076,
+      "sha256": "8eed276694f1a71bc41eb2835101a9263b0cef42b1e9ae3b064473016817f707"
+    },
+    {
+      "path": "zotero-toolchain/logs/attempt-concurrent-workspace-prefetch.log",
+      "bytes": 4822,
+      "sha256": "9a9b5f65d9947bcf7d0fa123a076aefc8dafb2738452ef0989aecedaa6d329b3"
+    },
+    {
+      "path": "zotero-toolchain/logs/combined-prefetch.log",
+      "bytes": 68224,
+      "sha256": "ebf69bfec9a029d972627e37a002a1ac26c00591ef5b393fcba3ba2cedbeb54b"
+    },
+    {
+      "path": "zotero-toolchain/logs/dart-version.log",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "zotero-toolchain/logs/finalize.log",
+      "bytes": 1682,
+      "sha256": "56a53a5dca52e6232b4aa3cc9243e91a7b142511b08bc2aa1c72f2cae9595a70"
+    },
+    {
+      "path": "zotero-toolchain/logs/flutter-tools-pub-get.log",
+      "bytes": 1192,
+      "sha256": "c7df7cfd9293a198ccdd7a9d714748cf63b772af8efc5fbaef427528064a3c5f"
+    },
+    {
+      "path": "zotero-toolchain/logs/flutter-version.json",
+      "bytes": 641,
+      "sha256": "75cfcc747b42256117cfc9898d74d96465a3f508ef8a6088c67ba6744f735512"
+    },
+    {
+      "path": "zotero-toolchain/logs/flutter-version.log",
+      "bytes": 641,
+      "sha256": "75cfcc747b42256117cfc9898d74d96465a3f508ef8a6088c67ba6744f735512"
+    },
+    {
+      "path": "zotero-toolchain/logs/flutter-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-toolchain/logs/note-preview-analysis.log",
+      "bytes": 96,
+      "sha256": "387e7566cc582efecfb00e9552b7e2a28365dcaad19511a2304faa23a00405a7"
+    },
+    {
+      "path": "zotero-toolchain/logs/note-preview-development.jsonl",
+      "bytes": 10575,
+      "sha256": "d5a67c7444de7df84d173612e897b0a3ba744a2bb61982fe727fbae21d6a3e1b"
+    },
+    {
+      "path": "zotero-toolchain/logs/note-preview-development.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "zotero-toolchain/logs/note-preview-leading-break-analysis.log",
+      "bytes": 96,
+      "sha256": "387e7566cc582efecfb00e9552b7e2a28365dcaad19511a2304faa23a00405a7"
+    },
+    {
+      "path": "zotero-toolchain/logs/note-preview-leading-break-smoke.log",
+      "bytes": 56,
+      "sha256": "aae7eaa22b2f93e5b012f8dbd8d875509888b2217bdc6374a6c63d5ddbfc56d5"
+    },
+    {
+      "path": "zotero-toolchain/logs/setup-format-smoke.log",
+      "bytes": 17243,
+      "sha256": "37c24f1528e20d5eaa64ee1cddd3fe86bf90682e07495db5930ce253f87f1059"
+    },
+    {
+      "path": "zotero-toolchain/logs/workspace-pub-get.log",
+      "bytes": 288,
+      "sha256": "894df9b75365a1c0485adeab9ee7495a3d9588f96da463533f3d53ec6f8023cc"
+    }
+  ],
+  "scope": "Historical development/qualification evidence; excluded from final distinct test totals."
+}
