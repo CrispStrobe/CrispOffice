@@ -1,39 +1,120 @@
-// Run the original incoming reconciliation suites in one compilation.
-// Each group keeps its original hooks, fixtures, and assertions.
-import 'package:flutter_test/flutter_test.dart';
+// Run from the example workspace after `flutter pub get --enforce-lockfile`.
+// Each original test file gets its own Flutter tester process. Keeping the
+// groups sequential bounds compiler memory and preserves file-local test state.
+import 'dart:convert';
+import 'dart:io';
 
-import '../../../quds_mail_ui/test/body_presentation_test.dart' as suite14;
-import '../../../quds_mail_ui/test/reader_theme_scroll_test.dart' as suite15;
-import '../test/studio_credential_selection_race_test.dart' as suite1;
-import '../test/studio_credential_selection_test.dart' as suite0;
-import '../test/studio_downloads_capture_test.dart' as suite11;
-import '../test/studio_downloads_layout_test.dart' as suite12;
-import '../test/studio_downloads_manager_test.dart' as suite13;
-import '../test/studio_layout_theme_test.dart' as suite10;
-import '../test/studio_mail_account_catalog_test.dart' as suite4;
-import '../test/studio_mail_account_stores_test.dart' as suite5;
-import '../test/studio_mail_accounts_test.dart' as suite3;
-import '../test/studio_mail_credentials_test.dart' as suite2;
-import '../test/studio_mail_ews_test.dart' as suite8;
-import '../test/studio_mail_reply_test.dart' as suite9;
-import '../test/studio_mail_selected_store_integration_test.dart' as suite6;
-import '../test/studio_mail_test.dart' as suite7;
-
-void main() {
-  group('studio_credential_selection_test.dart', suite0.main);
-  group('studio_credential_selection_race_test.dart', suite1.main);
-  group('studio_mail_credentials_test.dart', suite2.main);
-  group('studio_mail_accounts_test.dart', suite3.main);
-  group('studio_mail_account_catalog_test.dart', suite4.main);
-  group('studio_mail_account_stores_test.dart', suite5.main);
-  group('studio_mail_selected_store_integration_test.dart', suite6.main);
-  group('studio_mail_test.dart', suite7.main);
-  group('studio_mail_ews_test.dart', suite8.main);
-  group('studio_mail_reply_test.dart', suite9.main);
-  group('studio_layout_theme_test.dart', suite10.main);
-  group('studio_downloads_capture_test.dart', suite11.main);
-  group('studio_downloads_layout_test.dart', suite12.main);
-  group('studio_downloads_manager_test.dart', suite13.main);
-  group('body_presentation_test.dart', suite14.main);
-  group('reader_theme_scroll_test.dart', suite15.main);
+Future<void> main(List<String> arguments) async {
+  if (arguments.contains('--help')) {
+    stdout.writeln(
+      'dart tool/incoming_reconciliation_acceptance.dart\n'
+      'Runs the incoming Mail, credential, Downloads and reader regression files '
+      'through the standard Flutter test CLI. Set FLUTTER_BIN to select Flutter.',
+    );
+    return;
+  }
+  if (arguments.isNotEmpty) {
+    stderr.writeln('Only --help is supported.');
+    exitCode = 64;
+    return;
+  }
+  final example = File.fromUri(Platform.script).parent.parent;
+  final mailUi = Directory.fromUri(
+    example.parent.parent.uri.resolve('quds_mail_ui/'),
+  );
+  final batches = <({String name, Directory directory, List<String> tests})>[
+    (
+      name: 'Credential selection',
+      directory: example,
+      tests: [
+        'studio_credential_selection_test.dart',
+        'studio_credential_selection_race_test.dart',
+      ],
+    ),
+    (
+      name: 'Mail account catalog',
+      directory: example,
+      tests: [
+        'studio_mail_credentials_test.dart',
+        'studio_mail_accounts_test.dart',
+        'studio_mail_account_catalog_test.dart',
+      ],
+    ),
+    (
+      name: 'Selected credential stores',
+      directory: example,
+      tests: [
+        'studio_mail_account_stores_test.dart',
+        'studio_mail_selected_store_integration_test.dart',
+      ],
+    ),
+    (name: 'Native Mail', directory: example, tests: ['studio_mail_test.dart']),
+    (
+      name: 'EWS and reply',
+      directory: example,
+      tests: ['studio_mail_ews_test.dart', 'studio_mail_reply_test.dart'],
+    ),
+    (
+      name: 'Downloads and theme',
+      directory: example,
+      tests: [
+        'studio_layout_theme_test.dart',
+        'studio_downloads_capture_test.dart',
+        'studio_downloads_layout_test.dart',
+        'studio_downloads_manager_test.dart',
+      ],
+    ),
+    (
+      name: 'Mail reader',
+      directory: mailUi,
+      tests: ['body_presentation_test.dart', 'reader_theme_scroll_test.dart'],
+    ),
+  ];
+  final flutter = Platform.environment['FLUTTER_BIN'] ?? 'flutter';
+  for (final batch in batches) {
+    stderr.writeln(
+      'Running ${batch.name} (${batch.tests.length} original files)',
+    );
+    final process = await Process.start(
+      flutter,
+      [
+        'test',
+        '--no-pub',
+        '--reporter=json',
+        '--concurrency=1',
+        for (final test in batch.tests) 'test/$test',
+      ],
+      workingDirectory: batch.directory.path,
+      runInShell: Platform.isWindows,
+    );
+    var terminalEvents = 0;
+    var terminalSuccess = false;
+    final outputDone = process.stdout
+        .transform(utf8.decoder)
+        .transform(const LineSplitter())
+        .forEach((line) {
+          stdout.writeln(line);
+          try {
+            final event = jsonDecode(line);
+            if (event is Map<String, dynamic> && event['type'] == 'done') {
+              terminalEvents++;
+              terminalSuccess = event['success'] == true;
+            }
+          } on FormatException {
+            // Flutter can print asset and native-hook progress before JSON.
+          }
+        });
+    final errorsDone = stderr.addStream(process.stderr);
+    final result = await process.exitCode;
+    await Future.wait([outputDone, errorsDone]);
+    if (result != 0 || terminalEvents != 1 || !terminalSuccess) {
+      stderr.writeln(
+        '${batch.name} did not complete successfully: exit $result, '
+        '$terminalEvents terminal events, success=$terminalSuccess.',
+      );
+      exitCode = result == 0 ? 1 : result;
+      return;
+    }
+  }
+  stderr.writeln('All incoming regression groups completed successfully.');
 }
