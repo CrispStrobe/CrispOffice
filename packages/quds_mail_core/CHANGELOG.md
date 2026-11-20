@@ -1,5 +1,9 @@
 ## Unreleased
 
+- Add explicitly acknowledged outbox retries with a durable earlier-uncertainty
+  guard. A later definite rejection cannot enable ordinary retry or cancellation
+  after a possibly accepted submission; inherited composer uncertainty is kept.
+
 - Add the optional `MailImapHeaderBrowser` port for descending foreground pages
   bound to an explicit mailbox generation, independent of durable sync cursors.
 

@@ -219,7 +219,7 @@ inspection receipt, not a complete dependency or runtime certification.
 **Depends on:** M04 and M05; connected acceptance also requires M06/M07. **Files:** quds_mail_ui/workspace.
 
 - [x] Deliver the bounded foreground-list foundation: shared virtualized loaded-message list, stable identities, local subject/sender search, conjunctive unread/flagged filters, keyboard activation, compact reader/Back state and explicit 50-message pagination across native Studio hosts. Native IMAP browsing has its own scoped descending-UID cursor and a 1,000-loaded-message host ceiling; confirmed flag actions preserve nullable observations. See the [contract](mailbox-workspace.md) and [local evidence](../../validation/mail-workspace-20261120/README.md). This is a prerequisite slice and does not close the broader items below.
-- [ ] Qualify the native [remembered IMAP/SMTP account chooser](remembered-accounts.md): bounded keychain catalog, legacy migration, explicit selection/connection, selected-only Forget and unchanged per-account draft recovery. This host increment does not close the provider-neutral repository-driven switching item below.
+- [ ] Qualify the native [remembered IMAP/SMTP account chooser](remembered-accounts.md): bounded selected-backend catalog, verified legacy migration, explicit selection/connection, selected-only Forget and unchanged per-account draft recovery. This host increment does not close the provider-neutral repository-driven switching item below.
 - [ ] Implement QudsMailWorkspace with account/folder or label navigation, paginated/virtualized message and conversation lists, stable selection and coordinated reader/composer sessions.
 - [ ] Drive lists, unread counts and local search from repository streams; keep loading, empty, offline, synchronizing, failed credentials and unsupported capabilities distinct.
 - [ ] Bind read/unread, flag, archive, move, delete and supported bulk actions to durable commands; expose failure/reconciliation status without discarding local state.
@@ -344,10 +344,12 @@ The pure draft model is independent of the widget surface. Current locked-graph
 qualification is recorded with the attachment increment, separately from the
 earlier recipient subset. The [draft recovery continuation](draft-recovery.md)
 adds one durable local draft per connected account, debounced autosave and
-interrupted-send recovery to SMTP, EWS, Gmail and Graph. Multiple drafts,
-repository-backed queued submission, richer bodies, automatic source-attachment
-forwarding and live-provider gates remain open; this does not complete M07 or
-the document-snapshot work in M08.
+interrupted-send recovery to SMTP, EWS, Gmail and Graph. The later
+[Outbox continuation](outbox.md) atomically transfers a saved draft into a frozen
+queue and exposes explicit send/retry/cancel with restart recovery. The
+[reply/forward continuation](reply-forward.md) adds complete supported attachment
+forwarding. Multiple drafts, richer bodies, Sent reconciliation and live-provider
+gates remain open; this does not complete M07 or the document-snapshot work in M08.
 
 - [x] Add bounded outgoing file attachments to the shared Studio foreground
   composer and retain their immutable bytes across rejected/uncertain attempts.
@@ -361,7 +363,8 @@ the document-snapshot work in M08.
 - [ ] Generate ASCII-safe wire MIME for the current text-oriented enough_mail SMTP API. Encode display names/subjects/filenames and payloads correctly. Handle non-ASCII mailbox local parts through negotiated SMTPUTF8 or explicit unsupported feedback.
 - [ ] Keep Bcc recipients in the SMTP envelope and out of transmitted headers, including folded/case-varied header cases.
 - [ ] Use the DATA submission path initially. Preserve the current all-or-abort RCPT policy and add typed recipient-attempt outcomes in the adapter/fork where the library exposes only an aggregate error. A failed RCPT followed by RSET must leave every recipient marked not submitted, never delivered. BDAT or partial-recipient delivery requires separate qualification before enabling it.
-- [ ] Freeze queued revision and wire payload; enforce the section 3 state machine, partial-recipient results, final response handling and Sent-folder reconciliation.
+- [x] Freeze the saved draft revision, MIME and complete envelope together; atomically clear the source draft; expose native account-scoped queued/submitting/accepted/failed/uncertain/cancelled states, restart recovery, explicit send/retry/cancel and guarded terminal cleanup. No automatic uncertain retry or reconnect sending.
+- [ ] Complete partial-recipient results, live SMTP transcript qualification, provider Sent-folder reconciliation, outbox preview/edit-copy and explicit uncertain-record resolution. Add undo-send and scheduling only on the durable frozen-entry foundation.
 - [ ] Do not send imported arbitrary raw MIME through a text path and call it byte-exact. Byte-stream SMTP is a separate extension.
 
 **Acceptance:** raw SMTP transcript proves envelope/header separation, DATA dot handling, MIME bytes and final-response semantics; mixed 250/550 RCPT replies cause RSET and no DATA; injected CR/LF is rejected; connection loss after potential acceptance yields uncertain, not automatic resend; reopen preserves draft and queue. Submitted means accepted by the submission server, not final delivery. Large-file behavior respects declared limits without claiming BDAT means streaming memory.

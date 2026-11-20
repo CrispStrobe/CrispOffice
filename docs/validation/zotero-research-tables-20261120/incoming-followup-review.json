@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-20",
+  "base": "71243862159d0134b42a06b7e723ed5d5c2a20c9",
+  "main": "7e740a53d3fea4b6bd734537e89888b641a8b735",
+  "performance_head": "e6f70bffb3525b33616f0396e3d58c44432c5f7b",
+  "merge_parent": "e6f70bffb3525b33616f0396e3d58c44432c5f7b",
+  "scope": "Reconcile the later remote main and the already captured incremental-layout lane. The performance head preserves later main ancestry, including Mail reply/forward and the VBA lane. Original five-head intake and historical-equivalence record remain unchanged.",
+  "resolutions": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+      "sha": "65b1f48fea758d1b0f5ebcddaba1acc3d5e1b304",
+      "reason": "Keep main's optional backend test seam, all-backend write verification and AsyncLock; retain the selected-store revision fence and one captured backend per transaction."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "sha": "97ec1e703fe95b0eda334dbe9c909cdf22d4d1bc",
+      "reason": "Keep main's explicit attachment-forward and complete parse admission; retain selection change listener, queued operation fences and connection persistence guards."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+      "sha": "e6d159e45bfce3a76cb11c8d812ab3de1bc04c13",
+      "reason": "Keep V2 committed selection revision; incoming main matches V1 on this path."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+      "sha": "dc268e884f4e6ca834c5292335e1081e5fcea35c",
+      "reason": "Adopt incoming corrected line/frame prefix-count delta propagation. This supersedes the earlier conservative equality guard; retain both original regression cases."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "sha": "d91683f6515f565bb3cb3488b4ae11793fc5b7f3",
+      "reason": "Keep incoming unchanged-paragraph break cache, but invalidate dirty/full, empty and wrapping-frame paths so changed wrapped text cannot later reuse a stale unwrapped entry."
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "sha": "3cbf37a0111dc7cea18f7fd5dbca34cef61b1a2b",
+      "reason": "Retain incoming tests and add two wrapped-cache transition regressions."
+    }
+  ],
+  "validation": "This checkpoint records source reconciliation. Newly combined engine/controller/credential paths still require execution against the final formatted source. Incoming release evidence belongs to its original source and is not counted as this branch's accepted test result.",
+  "ci": "No GitHub Actions runs, check statuses or workflow queues queried or awaited."
+}

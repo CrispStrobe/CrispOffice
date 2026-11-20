@@ -6,6 +6,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 
 import 'studio_mail_attachment_loader.dart';
 import 'studio_mail_draft.dart';
+import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_threading.dart';
 import 'studio_strings.dart';
@@ -22,6 +23,7 @@ class StudioMailComposeDialog extends StatefulWidget {
     this.initialDraft,
     this.previousSubmissionUncertain = false,
     this.onSaveDraft,
+    this.onQueueDraft,
   });
 
   final StudioStrings strings;
@@ -32,6 +34,9 @@ class StudioMailComposeDialog extends StatefulWidget {
   /// Persists an immutable editor snapshot, including unfinished recipients.
   /// A failed save keeps the composer open and prevents submission.
   final Future<void> Function(StudioMailDraft draft)? onSaveDraft;
+
+  /// Atomically transfers the saved draft to the account's local Outbox.
+  final Future<void> Function(StudioMailDraft draft)? onQueueDraft;
 
   @override
   State<StudioMailComposeDialog> createState() =>
@@ -58,6 +63,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   int _editRevision = 0;
   int _savedRevision = 0;
   bool _saveFailed = false;
+  bool _queueFailed = false;
   bool _finishing = false;
   bool _allowPop = false;
 
@@ -190,7 +196,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     }
   }
 
-  Future<void> _finish({required bool send}) async {
+  Future<void> _finish({required bool send, bool queue = false}) async {
     if (_finishing || (send && _pickingAttachments)) return;
     if (send && widget.previousSubmissionUncertain && !_retryAcknowledged) {
       return;
@@ -207,11 +213,14 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
         return;
       }
     }
-    if (widget.onSaveDraft == null) {
+    if (widget.onSaveDraft == null && !queue) {
       Navigator.pop(context, send ? snapshot : null);
       return;
     }
-    setState(() => _finishing = true);
+    setState(() {
+      _finishing = true;
+      _queueFailed = false;
+    });
     final saved = await _save();
     if (!mounted) return;
     if (!saved) {
@@ -226,9 +235,23 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       });
       return;
     }
+    if (queue) {
+      try {
+        await widget.onQueueDraft!(finalSnapshot);
+      } on Object {
+        if (mounted) {
+          setState(() {
+            _finishing = false;
+            _queueFailed = true;
+          });
+        }
+        return;
+      }
+      if (!mounted) return;
+    }
     setState(() => _allowPop = true);
     // An explicit pop follows the completed save; only a send returns a draft.
-    Navigator.pop(context, send ? finalSnapshot : null);
+    Navigator.pop(context, send && !queue ? finalSnapshot : null);
   }
 
   Future<void> _closeWithoutSaving() async {
@@ -594,6 +617,13 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                               ),
                           ],
                         ),
+                      if (_queueFailed)
+                        Text(
+                          strings.mailQueueFailed,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ),
                       OverflowBar(
                         alignment: MainAxisAlignment.end,
                         spacing: 8,
@@ -615,6 +645,19 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                                   : strings.mailDraftSaveClose,
                             ),
                           ),
+                          if (widget.onQueueDraft != null)
+                            TextButton.icon(
+                              key: const ValueKey('studio-mail-queue'),
+                              onPressed:
+                                  _finishing ||
+                                      _pickingAttachments ||
+                                      (widget.previousSubmissionUncertain &&
+                                          !_retryAcknowledged)
+                                  ? null
+                                  : () => _finish(send: true, queue: true),
+                              icon: const Icon(Icons.outbox_outlined),
+                              label: Text(strings.mailQueue),
+                            ),
                           FilledButton.icon(
                             onPressed:
                                 _finishing ||

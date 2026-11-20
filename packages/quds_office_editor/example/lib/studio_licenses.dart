@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -31,7 +33,14 @@ void registerStudioLicenses() {
   LicenseRegistry.addLicense(() async* {
     yield LicenseEntryWithLineBreaks(
       const ['CrispOffice open font pack (SIL Open Font License 1.1)'],
-      await rootBundle.loadString('assets/licenses/open_font_pack/LICENSE.txt'),
+      // The OFL text is over 50 KB, where loadString decodes on a compute
+      // isolate; that never completes under the widget-test fake clock and
+      // hung every licence-page test. Decode the bytes in place instead.
+      utf8.decode(
+        (await rootBundle.load(
+          'assets/licenses/open_font_pack/LICENSE.txt',
+        )).buffer.asUint8List(),
+      ),
     );
   });
   LicenseRegistry.addLicense(() async* {

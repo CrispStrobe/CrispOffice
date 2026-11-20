@@ -1,0 +1,174 @@
+{
+  "schema": "quds.incoming-hardening-source-review.v3",
+  "reviewed_at_utc": "2026-11-20T11:56:35.401Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "scope": {
+    "incoming_main": "7e740a53d3fea4b6bd734537e89888b641a8b735",
+    "incoming_perf": "e6f70bffb3525b33616f0396e3d58c44432c5f7b",
+    "previous_perf": "5e83131d4a7aad18ebf184e1ca89609775775ffe",
+    "author_actions": "Exact-source retrieval, bounded source review, synthetic regression authoring and GitHub blob creation/readback only. No commits/ref writes or executable checks by this reviewer.",
+    "related_review_blob": "7e728ba1deb8a8954aafd6634788da6858d7e5b7",
+    "initial_intake_blob": "f4d222a2635e1f4171f616c748bf90c2a6a73fd3",
+    "parent_reported_checkpoint": "ab8d42ec",
+    "further_branch_refresh": "Stopped after bounded capture, final check belongs to root."
+  },
+  "credential_merge": {
+    "retained_from_main": [
+      "Optional explicit backend factory seam for account-free and selected-backend tests.",
+      "Write readback verification for all backends, including the FlutterSecureStorage seam.",
+      "Serialized account operations through existing AsyncLock.",
+      "Native complete-message attachment-forward handler/action and parsed-result ownership.",
+      "Settings modal brace/lint/format changes."
+    ],
+    "retained_v2": [
+      "Canonical bounded catalog and full-route account identities, strict alternate-map migration.",
+      "Synchronous credential snapshot before save queues.",
+      "Selection revision capture before account queue and guards before/after backend acquisition; one captured backend per operation.",
+      "Committed store selection revision and serialized selection operations.",
+      "Default Mail dialog listener, stale catalog/form/Forget-target invalidation, connection persistence fence and opt-out load/Forget fence.",
+      "Busy settings modal protection, input snapshots and disabled editing, queued external store change reload on dismissal."
+    ],
+    "files": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+        "main_blob": "f533883c4c81d5880b0b1a086bca2f2b5fdd207b",
+        "v2_blob": "3b528d0fdd5dce9b45a73d55bd9fc4d52543ab10",
+        "combined_blob": "65b1f48fea758d1b0f5ebcddaba1acc3d5e1b304",
+        "exact_remote_readback": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "main_blob": "437bd7bf22fa71afc0a75768402dce25bde2c44a",
+        "v2_blob": "2ce06667c24e4123dc30d871ac7b75baec92464d",
+        "combined_blob": "97ec1e703fe95b0eda334dbe9c909cdf22d4d1bc",
+        "exact_remote_readback": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+        "main_blob": "222e1d292d8786296d0293a3af85acc192631d00",
+        "combined_blob": "e6d159e45bfce3a76cb11c8d812ab3de1bc04c13",
+        "exact_remote_readback": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_credential_settings.dart",
+        "main_blob": "9bebe73783ebb49d138789cbd2abbef61186579d",
+        "combined_blob": "9bebe73783ebb49d138789cbd2abbef61186579d",
+        "decision": "Retain lint-clean main source; behavior matches reviewed V1 helper."
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart",
+        "combined_blob": "f860b00aad609af68af90f6b8ca6a9d4c31d3465",
+        "cases": 14,
+        "exact_remote_readback": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_credential_selection_race_test.dart",
+        "combined_blob": "416ff884cb906f9c1d926cb245b6185aebd646d8",
+        "cases": 6,
+        "exact_remote_readback": true
+      }
+    ],
+    "requested_validation": {
+      "working_directory": "packages/quds_office_editor/example",
+      "commands": [
+        "flutter test test/studio_mail_selected_store_integration_test.dart test/studio_credential_selection_race_test.dart --reporter expanded",
+        "flutter test test/studio_mail_account_catalog_test.dart test/studio_mail_accounts_test.dart test/studio_mail_credentials_test.dart test/studio_mail_account_stores_test.dart --reporter expanded"
+      ],
+      "expected": "Record actual execution, counts, source hashes and remaining platform-specific qualification separately. Nothing in this review represents a test pass."
+    }
+  },
+  "layout_findings": [
+    {
+      "id": "stale-unwrapped-breaks",
+      "introduced_in": "6e0abf paragraph-break-cache increment after d661e024",
+      "source_evidence": "The wrapped path skipped cache lookup and rewrite, leaving an older unwrapped BrokenLine list. Empty paragraph returns occurred before cache maintenance.",
+      "reproduction": "Cache paragraph A unwrapped; optionally lay it out empty; insert a square wrapping frame before three paragraphs and change the third to B; lay out again; remove the frame and incrementally relayout. Only the first remaining block is dirty, so the third is clean and may read stale A breaks.",
+      "correction": "Retire old cache entries at dirty/full paragraph entry, at the empty paragraph return, and whenever wrapping frames make breaks position dependent.",
+      "tests": [
+        "removing a wrapping frame discards older breaks (empty intermediate: false)",
+        "removing a wrapping frame discards older breaks (empty intermediate: true)"
+      ],
+      "status": "Concrete source-derived reproduction; baseline failure and corrected success requested, not executed by author."
+    },
+    {
+      "id": "foreign-engine-incremental-state",
+      "present_in": "d661e024 initial incremental-layout lane",
+      "source_evidence": "Incremental state recorded only model document/section identities. A different engine could accept the same document state and return old pages even when its font or measurement environment differed.",
+      "reproduction": "Layout two sections with engine A fallbackWidthFactor 0.35. Pass it to engine B factor 0.9, empty dirty set and fromSectionIndex 1. Baseline accepts the foreign layout; a correct fallback must also remeasure section zero.",
+      "correction": "Attach an opaque per-engine owner token to state. Reject mismatched ownership and discard foreign reuse before the ordinary fallback, resetting fromSectionIndex to zero.",
+      "tests": [
+        "foreign engine reuse remeasures every section with current metrics"
+      ],
+      "status": "Concrete source-derived reproduction; baseline failure and corrected success requested, not executed by author."
+    }
+  ],
+  "layout_files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+      "original_blob": "dc268e884f4e6ca834c5292335e1081e5fcea35c",
+      "corrected_blob": "93c7e51944395cd0e23c0801fd47b0e7f54eebb2",
+      "exact_remote_readback": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "original_blob": "6f13777f04c8241ee1083cf583d7046b191412cd",
+      "cache_fix_only_blob": "d91683f6515f565bb3cb3488b4ae11793fc5b7f3",
+      "corrected_blob": "90b5e974acae4a050aae4b18f5bf6491320b2d9a",
+      "exact_remote_readback": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "original_blob": "0e9edc1f261daaa6f452ce883b7cea34394f5465",
+      "cache_cases_blob": "3cbf37a0111dc7cea18f7fd5dbca34cef61b1a2b",
+      "corrected_blob": "4426fd6457d8e6c68b4f0a962ed59f2d1afc3ed5",
+      "exact_remote_readback": true,
+      "cases": 9,
+      "note": "Six incoming tests plus two wrapping-cache cases and one foreign-owner case. Root must retain its two additional prefix/checkpoint regressions independently."
+    }
+  ],
+  "red_green_requests": {
+    "working_directory": "packages/quds_office_engine",
+    "safety": "Use an isolated replay checkout or temporary package copy. Do not overwrite the integration tree during concurrent validation. Keep the new test source for both baselines and the corrected run.",
+    "red_cache": {
+      "sources": {
+        "word_layout": "6f13777f04c8241ee1083cf583d7046b191412cd",
+        "word_incremental_layout": "dc268e884f4e6ca834c5292335e1081e5fcea35c",
+        "test": "4426fd6457d8e6c68b4f0a962ed59f2d1afc3ed5"
+      },
+      "command": "dart test test/word_incremental_layout_test.dart --name 'removing a wrapping frame' --reporter expanded",
+      "expected": "Two fingerprint-equivalence failures reveal stale glyphs."
+    },
+    "red_owner": {
+      "sources": {
+        "word_layout": "d91683f6515f565bb3cb3488b4ae11793fc5b7f3",
+        "word_incremental_layout": "dc268e884f4e6ca834c5292335e1081e5fcea35c",
+        "test": "4426fd6457d8e6c68b4f0a962ed59f2d1afc3ed5"
+      },
+      "command": "dart test test/word_incremental_layout_test.dart --name 'foreign engine reuse' --reporter expanded",
+      "expected": "One fingerprint-equivalence failure reveals foreign metrics."
+    },
+    "green": {
+      "sources": {
+        "word_layout": "90b5e974acae4a050aae4b18f5bf6491320b2d9a",
+        "word_incremental_layout": "93c7e51944395cd0e23c0801fd47b0e7f54eebb2",
+        "test": "4426fd6457d8e6c68b4f0a962ed59f2d1afc3ed5"
+      },
+      "command": "dart test test/word_incremental_layout_test.dart --reporter expanded",
+      "expected": "Run and record all nine cases, plus the separately preserved prefix regressions."
+    }
+  },
+  "latest_perf_delta": {
+    "commit": "0300bddcf1a97b9bab72e3beee841a7314c602cb",
+    "engine_layout_sources_equal_to_5e83131d": true,
+    "additional_behavior": "Workspace changes rebuild Word chrome when sampled state changes, retain a trailing 400ms rebuild for unsampled state, subscribe proofing changes, and update the status display directly from the controller. The controller adds a cheap chosenProofingIssue getter.",
+    "bounded_review": "Stable Word controller and proofing session lifetimes matched listener removal; timer is canceled in dispose; status listens directly. No additional concrete defect found in the narrowly reviewed delta.",
+    "qualification": "No hosted benchmark or runtime performance claim; workflow file content was only repository source, never a workflow/status/Actions query."
+  },
+  "execution_qualification": {
+    "source_readback": "Exact equality verified for every authored blob listed.",
+    "formatting": "Not performed by this author; parent may format during integration and must record final hashes.",
+    "analyzer": "Not performed by this author.",
+    "runtime_tests": "Not performed by this author.",
+    "ci": "No GitHub Actions, workflow, checks or status endpoint queried or awaited."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "checkpoint": "40442e5e3b188386bc7a410efb92cab46bf68b82",
+  "qualification": "Source review and blob readback only. Genuine Dart/Flutter replay is owned by validation_runtime; no pass claimed in this record.",
+  "file": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+  "originalBlob": "15491c03ebf33756b8d32f062f3cd790d16ec305",
+  "correctedBlob": "5eb8a66e7db33e3ec3687b847ff0a72448e6a9f0",
+  "productionChanges": [],
+  "observedFailures": [
+    {
+      "case": "failed custom keychain selection preserves the original store and never redirects a write",
+      "cause": "The fixture supplies /tmp/synthetic.keychain-db, but overrides Flutter target only. StudioCredentialStorage.select uses dart:io Platform.isMacOS, so a Linux runner refuses the selection before native initialize.",
+      "fix": "Assert exact real-host admission; preserve same original session store and zero calls on nonmacOS. On macOS preserve native denial code. Add separate direct MacOsCustomKeychainStorage denial test with exact path, denied initialization, refusal of subsequent write, and no fallback."
+    },
+    {
+      "case": "local macOS platform probe uses the file keychain and verifies read-back before deletion",
+      "cause": "Locked flutter_secure_storage 9.2.4 _selectOptions uses dart:io Platform, independently of debugDefaultTargetPlatformOverride. Linux wire options do not contain macOS useDataProtectionKeyChain.",
+      "fix": "Assert macOS option false only on actual macOS, absence on other hosts. Keep write/read/delete sequence, successful readback, and sentinel cleanup."
+    }
+  ],
+  "sourceEvidence": [
+    "https://github.com/CrispStrobe/quds_office_suite/blob/40442e5e3b188386bc7a410efb92cab46bf68b82/packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+    "https://github.com/CrispStrobe/quds_office_suite/blob/40442e5e3b188386bc7a410efb92cab46bf68b82/packages/quds_office_editor/example/pubspec.lock",
+    "https://github.com/juliansteenbakker/flutter_secure_storage/blob/v9.2.4/flutter_secure_storage/lib/flutter_secure_storage.dart"
+  ],
+  "testCount": 4,
+  "replay": "cd packages/quds_office_editor/example && flutter test test/studio_credential_selection_test.dart --reporter expanded",
+  "limitations": [
+    "Linux pass does not qualify macOS native wire behavior or actual OS credential services.",
+    "The separate external-store UI case remains under diagnosis; this record does not change it."
+  ]
+}

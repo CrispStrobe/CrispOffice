@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "file": "checkpoint-engine-evidence.tar.xz",
+  "bytes": 396632,
+  "sha256": "fdfd1e504a4929b7e79c3201e2ac8dbf80ab1a1a5893274ef6624c3bfe67c308",
+  "git_blob": "5b3d2910f4ef85028567939982becc2ab4530bbd",
+  "members": 72,
+  "engine": {
+    "source": "e618dbe2d01a71e68a757aec8688b1c7a5540bdf",
+    "compiler": "source",
+    "visible_tests": 399,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "exit": 0,
+    "source_hashes": 1494,
+    "unchanged_during_execution": true
+  },
+  "negative_controls": {
+    "description": "Three wrapping-cache and foreign-engine regressions fail on the exact original e6 layout sources, pass on restored e618; full failure fingerprints and restored hash checks retained.",
+    "expected_red_failures": 3,
+    "green_pass": 3,
+    "green_exit": 0
+  },
+  "later_source": {
+    "sha": "745486277c0563123f1583066e2be86c2c3d8533",
+    "change": "A Mail-only nullable closure capture is fixed using a validated non-null immutable snapshot. Engine product/test sources remain identical to e618.",
+    "credential_analysis": {
+      "exit": 0,
+      "errors": 0,
+      "warnings": 0,
+      "style_infos": 3
+    }
+  },
+  "contents": "Authenticated SDK/dependency and setup receipts, format receipts, failed early diagnostics, raw engine results/source hashes, red/green controls, credential analysis and failed e618 Flutter compilation. Final Flutter/controller and broader incoming execution evidence will follow.",
+  "performance_notes": "Incoming9b581e8a adds only author-reported local chrome A/B notes; those numbers are preserved with their original attribution and are not this branch's benchmark or hosted acceptance."
+}

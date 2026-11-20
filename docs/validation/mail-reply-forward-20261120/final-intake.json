@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "observed_at_utc": "2026-11-20T12:25:09Z",
+  "description": "Captured branch snapshot; later current-lane publications are recorded separately, not substituted into the snapshot.",
+  "branches": [
+    {
+      "branch": "main",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "disposition": "preserve_main"
+    },
+    {
+      "branch": "fix/mail-credential-stores-chrome-20261120",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "disposition": "identical_to_main"
+    },
+    {
+      "branch": "feat/downloads-manager-redesign-20261120",
+      "sha": "e6737bc6bccd521660dff0425ca620525dc04a58",
+      "disposition": "isolated_license_fix_included"
+    },
+    {
+      "branch": "integrate/recent-pptx",
+      "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+      "disposition": "main_ancestor"
+    },
+    {
+      "branch": "codex/word-powerpoint-vba-continuation-20261120",
+      "sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "disposition": "main_ancestor"
+    },
+    {
+      "branch": "codex/zotero-note-targets-20261120",
+      "sha": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "disposition": "main_ancestor"
+    },
+    {
+      "branch": "codex/zotero-parity-continuation-20261120",
+      "sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "disposition": "main_ancestor"
+    },
+    {
+      "branch": "work/mail-body-projection-20261120",
+      "sha": "d5680c7066b971d67c335fe7cd9c4ab5c52b69a9",
+      "disposition": "included_feature_and_main"
+    },
+    {
+      "branch": "work/mail-forward-host-tests-20261120",
+      "sha": "feffbfa437ee466a74801276fbeb178b548845e0",
+      "disposition": "included_feature_and_main"
+    },
+    {
+      "branch": "work/mail-validation-20261120",
+      "sha": "d6de5ef4707004d000fcf00935197e88fb0a4c1d",
+      "disposition": "included_feature_and_main"
+    },
+    {
+      "branch": "work/mail-main-reconcile-20261120",
+      "sha": "4df7a148f156d9a697028994f14b171877d1d47c",
+      "disposition": "qualified_mail_source_retained"
+    },
+    {
+      "branch": "work/mail-reply-forward-20261120",
+      "sha": "170622d85f62df1803700fc9db2fc9838466c02a",
+      "disposition": "current_lane_subsequently_advanced"
+    },
+    {
+      "branch": "work/mail-validation-final-20261120",
+      "sha": "170622d85f62df1803700fc9db2fc9838466c02a",
+      "disposition": "current_lane_evidence_subsequently_advanced"
+    },
+    {
+      "branch": "work/mail-accounts-20261120",
+      "sha": "17732959d2b6cdf9587a4b19bba124d3473ecd19",
+      "disposition": "active_external_continuation"
+    },
+    {
+      "branch": "perf/incremental-layout-20261120",
+      "sha": "9b581e8a125f89c1974952d628bfe6e111a44bf6",
+      "disposition": "active_draft_247"
+    },
+    {
+      "branch": "codex/zotero-research-tables-20261120",
+      "sha": "f1bb7077e60a1f9b9be22f741ac030c7459d8f1f",
+      "disposition": "active_draft_249"
+    },
+    {
+      "branch": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "c9cbeb1248d6b5f088d1084a8c113a743aa7a77f",
+      "disposition": "active_external_word_layout_continuation"
+    },
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "disposition": "historical_changed_path_equivalence"
+    },
+    {
+      "branch": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "disposition": "historical_whole_tree_equivalence"
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "disposition": "historical_whole_tree_equivalence"
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "disposition": "historical_whole_tree_equivalence"
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "disposition": "historical_whole_tree_equivalence"
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "disposition": "historical_whole_tree_equivalence"
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "disposition": "historical_whole_tree_equivalence"
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "disposition": "historical_whole_tree_equivalence"
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "disposition": "historical_whole_tree_equivalence"
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 242,
+      "state": "merged",
+      "disposition": "Original Downloads integrated; separate post-merge license correction included."
+    },
+    {
+      "number": 243,
+      "state": "merged",
+      "disposition": "Published remembered-account work integrated; active continuation retains its owner."
+    },
+    {
+      "number": 247,
+      "state": "open_draft",
+      "disposition": "Preserve incorporated main content; remaining incremental Word layout work stays with its owner."
+    },
+    {
+      "number": 248,
+      "state": "open_draft_at_snapshot",
+      "disposition": "Current lane; source and local qualification are finalized through normal PR publication."
+    },
+    {
+      "number": 249,
+      "state": "open_draft",
+      "disposition": "Preserve incorporated main content; remaining Zotero qualification/continuation stays with its owner."
+    }
+  ],
+  "decisions": [
+    "No additional ready, unmerged Mail or Downloads PR was found.",
+    "Do not reapply historical equivalent Office/ODS heads over current source.",
+    "Do not import broad active branch tips merely because their names contain earlier credential or Downloads work.",
+    "Preserve a652 main wholesale and merge only the three unique Mail evidence files; all other Mail feature paths already match.",
+    "Include isolated e673 license correction, with direct existing license registry tests.",
+    "Retain all parent histories, use non-forced ref updates, and do not wait on GitHub Actions."
+  ],
+  "subsequent_publications": [
+    {
+      "sha": "f475589eef691695535d280fe76bb492f2e89aa0",
+      "parents": [
+        "170622d85f62df1803700fc9db2fc9838466c02a",
+        "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d"
+      ],
+      "purpose": "Latest main plus qualified Mail evidence"
+    },
+    {
+      "sha": "081f337475b76e0b13a513fb95bc3c9ef766f6f4",
+      "parents": [
+        "f475589eef691695535d280fe76bb492f2e89aa0",
+        "e6737bc6bccd521660dff0425ca620525dc04a58"
+      ],
+      "tree": "4d1d20bdd3145ee692d9bd4d09476a1954b51e0d",
+      "purpose": "Final combined product source including isolated license correction"
+    }
+  ]
+}

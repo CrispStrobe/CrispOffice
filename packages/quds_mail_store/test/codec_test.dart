@@ -436,6 +436,149 @@ void main() {
 
   group('outbox persistence transitions', () {
     test(
+      'version-one payloads recover with no invented earlier uncertainty',
+      () {
+        final pending = _queued().beginAttempt(
+          attemptId: 'attempt-1',
+          now: _later(1),
+        );
+        for (final entry in [
+          _queued(),
+          pending,
+          pending.recoverInterrupted(now: _later(2)),
+        ]) {
+          final payload = MailStoreCodec.encodeOutbox(entry);
+          final old = _json(payload.data)
+            ..['version'] = 1
+            ..remove('priorSubmissionUncertain');
+          final restored = _decodeOutbox(payload, data: jsonEncode(old));
+          expect(restored.priorSubmissionUncertain, isFalse);
+          expect(restored.state, entry.state);
+          expect(restored.prepared.wireHash, entry.prepared.wireHash);
+          expect(
+            restored.canBeginAcknowledgedAttempt,
+            entry.state == MailOutboxState.uncertain,
+          );
+        }
+      },
+    );
+
+    test(
+      'versioned uncertainty rejects missing, extra and nonboolean data',
+      () {
+        final payload = MailStoreCodec.encodeOutbox(_queued());
+        for (final mutate in <void Function(Map<String, Object?>)>[
+          (value) => value.remove('priorSubmissionUncertain'),
+          (value) => value['priorSubmissionUncertain'] = null,
+          (value) => value['priorSubmissionUncertain'] = 1,
+          (value) => value['priorSubmissionUncertain'] = 'true',
+          (value) => value['version'] = 1,
+          (value) => value['version'] = 3,
+        ]) {
+          final data = _json(payload.data);
+          mutate(data);
+          expect(
+            () => _decodeOutbox(payload, data: jsonEncode(data)),
+            throwsFormatException,
+          );
+        }
+      },
+    );
+
+    test(
+      'acknowledged retry and all outcomes retain a sticky durable guard',
+      () {
+        final uncertain = _queued()
+            .beginAttempt(attemptId: 'attempt-1', now: _later(1))
+            .recoverInterrupted(now: _later(2));
+        final retry = uncertain.beginAcknowledgedAttempt(
+          attemptId: 'attempt-2',
+          now: _later(3),
+        );
+        expect(MailStoreCodec.validOutboxTransition(uncertain, retry), isTrue);
+        expect(
+          MailStoreCodec.validOutboxTransition(
+            uncertain,
+            _copy(retry, priorSubmissionUncertain: false),
+          ),
+          isFalse,
+        );
+        for (final outcome in MailSubmissionOutcome.values) {
+          final completed = retry.complete(
+            _result(outcome, attemptId: 'attempt-2'),
+            now: _later(4),
+          );
+          expect(
+            MailStoreCodec.validOutboxTransition(retry, completed),
+            isTrue,
+          );
+          expect(
+            MailStoreCodec.validOutboxTransition(
+              retry,
+              _copy(completed, priorSubmissionUncertain: false),
+            ),
+            isFalse,
+          );
+          final restored = _decodeOutbox(
+            MailStoreCodec.encodeOutbox(completed),
+          );
+          expect(restored.priorSubmissionUncertain, isTrue);
+          expect(restored.canBeginAttempt, isFalse);
+          expect(restored.canCancel, isFalse);
+          if (outcome != MailSubmissionOutcome.accepted) {
+            expect(
+              MailStoreCodec.validOutboxTransition(
+                restored,
+                restored.beginAcknowledgedAttempt(
+                  attemptId: 'attempt-3',
+                  now: _later(5),
+                ),
+              ),
+              isTrue,
+            );
+          }
+        }
+      },
+    );
+
+    test(
+      'ordinary attempt cannot invent prior uncertainty and legacy queue keeps it',
+      () {
+        final queued = _queued();
+        final pending = queued.beginAttempt(
+          attemptId: 'attempt-1',
+          now: _later(1),
+        );
+        expect(
+          MailStoreCodec.validOutboxTransition(
+            queued,
+            _copy(pending, priorSubmissionUncertain: true),
+          ),
+          isFalse,
+        );
+        final inherited = MailOutboxEntry.queued(
+          id: queued.id,
+          prepared: queued.prepared,
+          now: queued.createdAt,
+          priorSubmissionUncertain: true,
+        );
+        final restored = _decodeOutbox(MailStoreCodec.encodeOutbox(inherited));
+        expect(restored.canBeginAttempt, isFalse);
+        expect(restored.canBeginAcknowledgedAttempt, isTrue);
+        expect(
+          MailStoreCodec.validOutboxTransition(
+            restored,
+            restored.beginAcknowledgedAttempt(
+              attemptId: 'attempt-1',
+              now: _later(1),
+            ),
+          ),
+          isTrue,
+        );
+      },
+    );
+
+    test(
       'new entries must be initial queued and all legitimate transitions pass',
       () {
         final queued = _queued();
@@ -774,6 +917,7 @@ MailOutboxEntry _copy(
   int? attemptNumber,
   String? attemptId,
   MailSubmissionResult? result,
+  bool? priorSubmissionUncertain,
 }) => MailOutboxEntry.restore(
   id: id ?? entry.id,
   prepared: prepared ?? entry.prepared,
@@ -783,6 +927,8 @@ MailOutboxEntry _copy(
   attemptNumber: attemptNumber ?? entry.attemptNumber,
   attemptId: attemptId ?? entry.attemptId,
   result: result ?? entry.result,
+  priorSubmissionUncertain:
+      priorSubmissionUncertain ?? entry.priorSubmissionUncertain,
 );
 
 MailDraft _decodeDraft(

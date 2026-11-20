@@ -1,4 +1,3 @@
-import 'support/mail_credentials.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
@@ -18,6 +17,7 @@ import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_attachment_picker.dart';
+import 'support/mail_credential_store.dart';
 import 'support/mail_draft_store.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
@@ -201,6 +201,7 @@ Future<void> _show(
   String email = 'reader@example.invalid',
 }) async {
   final draftStorage = drafts ?? MemoryStudioMailDrafts();
+  final credentialStore = memoryStudioMailCredentialStore();
   tester.view
     ..physicalSize = const Size(1300, 1000)
     ..devicePixelRatio = 1;
@@ -214,8 +215,8 @@ Future<void> _show(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailDialog(
-                credentialStore: SessionMailCredentials(),
                 draftStoreFactory: draftStorage.open,
+                credentialStore: credentialStore,
                 strings: _strings,
                 clientFactory: factory,
                 accountDiscovery: discover,
@@ -242,8 +243,10 @@ Future<void> _manual(WidgetTester tester) async {
 }
 
 Future<void> _connect(WidgetTester tester) async {
-  await tester.ensureVisible(find.text(_strings.connect));
-  await tester.tap(find.text(_strings.connect));
+  final connect = find.widgetWithText(FilledButton, _strings.connect);
+  await tester.ensureVisible(connect);
+  expect(tester.widget<FilledButton>(connect).onPressed, isNotNull);
+  await tester.tap(connect);
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 100));
 }

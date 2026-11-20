@@ -1,0 +1,148 @@
+{
+  "source": "b5463074086004219627dca938d650adc42aaafc",
+  "runtime": "Dart3.13.7 with exact locked workspace package config",
+  "checkedFiles": 61,
+  "formatExit": 0,
+  "files": [
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/message_view.dart",
+      "originalBlobSha": "2f63d87e92dcaf00a4c61310befbcc67fdfd41a7",
+      "formattedBlobSha": "bbfedc796817cdb4383020aabe974f042f657cbb",
+      "bytes": 25167,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+      "originalBlobSha": "5b83d5612e0ac8ed0d9eb2b664f3fae016314bff",
+      "formattedBlobSha": "3db312a5572c78e9115a666ed5363eea467c28d5",
+      "bytes": 29746,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_mail_ui/test/body_presentation_test.dart",
+      "originalBlobSha": "6b496c1803d2f3a5ccb398e506d4de472782865b",
+      "formattedBlobSha": "d272c44557fa20b045824cbcd689377fdacb7100",
+      "bytes": 12318,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/native_system_io.dart",
+      "originalBlobSha": "03018e5328c1c390871fc1973bfcf00e57c1516c",
+      "formattedBlobSha": "0844caca16ae23ea0bc3a8eeeeaea7255d77c039",
+      "bytes": 6263,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+      "originalBlobSha": "65b1f48fea758d1b0f5ebcddaba1acc3d5e1b304",
+      "formattedBlobSha": "3863e0ce78f2ac3d855d940ee1af7e01846694e9",
+      "bytes": 24998,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "originalBlobSha": "97ec1e703fe95b0eda334dbe9c909cdf22d4d1bc",
+      "formattedBlobSha": "fdd51050b8390d01a07bf51df42eaa6cff5aedd9",
+      "bytes": 88895,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_race_test.dart",
+      "originalBlobSha": "416ff884cb906f9c1d926cb245b6185aebd646d8",
+      "formattedBlobSha": "f39c42864cb09c847e40991bc6a468b2e29d8e8a",
+      "bytes": 9690,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+      "originalBlobSha": "6c9f2fe6e7f15f68f4b704fce6864de07524cdf2",
+      "formattedBlobSha": "15491c03ebf33756b8d32f062f3cd790d16ec305",
+      "bytes": 3882,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "originalBlobSha": "1fe073de40be616b39b1e82d4376856b20b0173c",
+      "formattedBlobSha": "6c7931c62a0e14d471fb2ab040ea8db898c25471",
+      "bytes": 19005,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "originalBlobSha": "5333af9e500af115ffc84cd6b53a44df811d1de6",
+      "formattedBlobSha": "60eec780a3469e1c4949b9ffd3664fef045cf0a5",
+      "bytes": 85612,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "originalBlobSha": "ba3b6a965018f0229e95281b227c1aaef55b0b06",
+      "formattedBlobSha": "9cdce7fd8d3025b9f5e1ac4ce0e00d16195db754",
+      "bytes": 22261,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart",
+      "originalBlobSha": "f860b00aad609af68af90f6b8ca6a9d4c31d3465",
+      "formattedBlobSha": "805f93c35c91e5648c5a7d19c81b7803e0f64c3a",
+      "bytes": 14569,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "originalBlobSha": "941a9d411aa4868143da1a460220feb07394a1fd",
+      "formattedBlobSha": "0b38a3df851c657ef67f06d2da096ab922de2edd",
+      "bytes": 78550,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "originalBlobSha": "69d371124d7fadaa7685a9a08dba1098cfd03e68",
+      "formattedBlobSha": "43e5b8137da90d4fe310e3ee74e4f035989e2e48",
+      "bytes": 62043,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "originalBlobSha": "90b5e974acae4a050aae4b18f5bf6491320b2d9a",
+      "formattedBlobSha": "b50ee59383518783106875edc853b071685ea3f3",
+      "bytes": 126485,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "originalBlobSha": "2fbf06b7d13eed44a65b64d8bad879881654c46d",
+      "formattedBlobSha": "6b752df7f08107daf3976271ba2abbcd5afe526f",
+      "bytes": 74126,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_prefix_test.dart",
+      "originalBlobSha": "3d29f91ca4d850743a041dddc8c098e8667956a1",
+      "formattedBlobSha": "60845ddbfe2db7df70dec6ae02e9192f6fdd7c6e",
+      "bytes": 5608,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "originalBlobSha": "4426fd6457d8e6c68b4f0a962ed59f2d1afc3ed5",
+      "formattedBlobSha": "e0129b6356a03aea83a66f9619d20b26a1a756cf",
+      "bytes": 8251,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "originalBlobSha": "c46acf97fa7a13a625dc10bda2c91841d4b158a2",
+      "formattedBlobSha": "0b6b41ac5707c24431df761d791b233b108ce811",
+      "bytes": 21660,
+      "remote": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+      "originalBlobSha": "da919adf7faca2ec9a2c60d3fe4de75847d028ad",
+      "formattedBlobSha": "89a3b191470e97b454c426fddc5457b7cd916c47",
+      "bytes": 19406,
+      "remote": true
+    }
+  ]
+}

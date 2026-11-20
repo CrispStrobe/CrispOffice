@@ -32,8 +32,10 @@ class CredentialStorageDiagnostics {
     String? code;
     String message;
     if (error is PlatformException) {
-      final details = error.details;
-      final status = details is Map ? details['status'] : null;
+      final Object? details = error.details;
+      final Object? status = details is Map<Object?, Object?>
+          ? details['status']
+          : null;
       code = '${error.code}${status is num ? ' (OSStatus $status)' : ''}';
       // Custom-keychain messages are fixed native descriptions. Other plugin
       // payloads may contain credential values; retain their code and stack,

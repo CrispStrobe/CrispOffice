@@ -19,7 +19,7 @@ plan rather than treating provider connectivity as full product parity.
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Local autosave, attachment/reply recovery and interrupted-send warnings now connected to native hosts | Multiple drafts, offline draft entry and provider-side Drafts synchronization |
 | 2 | Everyday mailbox workspace (M04W/M06) | Shared foreground list across IMAP, EWS, Gmail and Microsoft 365; remembered native IMAP/SMTP accounts with explicit switching and retained local drafts | Repository-driven account/folder workspace, durable account sessions across providers, unified/offline inbox, durable commands, consistent move/delete and bulk actions |
-| 3 | Sending and outbox (M07) | Foreground submission and durable draft safety; core outbox/store contracts exist | Visible queued messages, immutable prepared MIME/envelopes, crash recovery, explicit retry/cancel, then undo-send and scheduled send |
+| 3 | Sending and outbox (M07) | Visible native durable Outbox, atomic draft transfer, frozen MIME/envelopes, restart recovery and explicit send/retry/cancel across SMTP/EWS/Gmail/Microsoft 365 | Preview/edit-copy and explicit uncertain-record resolution, then undo-send, scheduling, background execution and Sent reconciliation |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches and bounded mailbox filtering | Full account search, conversations, tags/categories, bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert HTML-only text quotes, file attachments and explicit complete attachment forwarding | Signatures/templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
@@ -29,7 +29,12 @@ focused local tests and a remote source checkpoint before the next. Reconcile
 current main/branches/PRs before final publication. GitHub Actions queue time is
 not an acceptance dependency; record the actual local commands and scope.
 
-The [reply and forwarding guide](reply-forward.md) describes the current
+The [durable Outbox guide](outbox.md) describes the sending continuation, atomic
+draft handoff, sticky uncertainty and native account boundaries. Its
+[local evidence](../../validation/mail-outbox-20261120/README.md) records source,
+intake and actual qualification separately from previous increments.
+
+The [reply and forwarding guide](reply-forward.md) describes the preceding
 composition-fidelity increment: HTML-only text quotations, complete attachment
 forwarding, preserved draft recovery and explicit refusal boundaries. Its
 [validation record](../../validation/mail-reply-forward-20261120/README.md)
