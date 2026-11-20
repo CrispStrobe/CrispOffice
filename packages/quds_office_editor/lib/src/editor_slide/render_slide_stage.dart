@@ -1080,10 +1080,15 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         ? Rect.fromLTWH(rect.left, rect.top, rect.width, 208)
         : rect;
     Color? background = _slidePaper(target);
-    for (final previous in target.shapes) {
+    final int inheritedCount = target.backgroundShapes.length;
+    var precedingIndex = 0;
+    for (final previous in target.backgroundShapes.followedBy(target.shapes)) {
+      final bool inherited = precedingIndex++ < inheritedCount;
       if (identical(previous, shape)) break;
-      if (skipIds?.contains(previous.id) ?? false) continue;
-      final previousSample = samples?[previous.id] ?? PmlAnimSample.identity;
+      if (!inherited && (skipIds?.contains(previous.id) ?? false)) continue;
+      final previousSample = inherited
+          ? PmlAnimSample.identity
+          : samples?[previous.id] ?? PmlAnimSample.identity;
       if (!previousSample.visible || previousSample.opacity <= 0.01) continue;
       // Animated transforms/clips can expose arbitrary mixed backing. The
       // authored colour is safer than treating it as untouched dark paper.
@@ -1719,16 +1724,11 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       Paint()..color = _slidePaper(target),
     );
     for (final PmlShape shape in target.backgroundShapes) {
-      if (skipIds != null && skipIds.contains(shape.id)) {
-        continue;
-      }
-      final PmlAnimSample sample = samples?[shape.id] ?? PmlAnimSample.identity;
-      if (!sample.visible || sample.opacity <= 0.01) {
-        continue;
-      }
+      // Master/layout shape ids belong to their own parts. Slide animations
+      // and morph matching must never apply to a coincident decoration id.
       final Rect r = _shapeRect(shape);
       canvas.save();
-      PaintSlideMotion.applyShapeSample(canvas, r, sample);
+      _rotateCanvas(canvas, shape, r);
       _paintShapeInRect(canvas, shape, r);
       canvas.restore();
     }

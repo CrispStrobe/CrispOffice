@@ -2088,29 +2088,33 @@ abstract final class OfficePdfExport {
         );
       } else if (!paragraph.rightToLeft &&
           !RegExp(r'\p{L}', unicode: true).hasMatch(text)) {
-        final double textWidth = sink.plainWidth(
-          text,
-          size,
-          bold: bold,
-          italic: italic,
-          family: family,
-        );
-        final double dx = switch (align) {
-          _TextAlign.center => (maxWidth - textWidth) / 2,
-          _TextAlign.right => maxWidth - textWidth,
-          _TextAlign.left || _TextAlign.auto => 0,
-        };
-        sink.drawPlainLtr(
-          text,
-          px + dx,
-          cy + size,
-          size,
-          color,
-          bold: bold,
-          italic: italic,
-          family: family,
-        );
-        cy += size * 1.25;
+        // Keep authored order within each numeric line without collapsing
+        // explicit breaks, including blank lines, into one horizontal run.
+        for (final String line in text.split('\n')) {
+          final double textWidth = sink.plainWidth(
+            line,
+            size,
+            bold: bold,
+            italic: italic,
+            family: family,
+          );
+          final double dx = switch (align) {
+            _TextAlign.center => (maxWidth - textWidth) / 2,
+            _TextAlign.right => maxWidth - textWidth,
+            _TextAlign.left || _TextAlign.auto => 0,
+          };
+          sink.drawPlainLtr(
+            line,
+            px + dx,
+            cy + size,
+            size,
+            color,
+            bold: bold,
+            italic: italic,
+            family: family,
+          );
+          cy += size * 1.25;
+        }
       } else {
         sink.drawText(
           text,
