@@ -275,20 +275,38 @@ const _wordListMethods = <String>{
 };
 const _wordSpacingMethods = <String>{'space1', 'space15', 'space2'};
 const _wordParagraphControls = <String>{'openup', 'closeup', 'openorcloseup'};
-// Integral scale pairs preserve exact inch/metric relationships without
-// tolerance-based rounding. One inch is 72 points, 2.54 cm, or 25.4 mm.
-const _wordUnitConversions = <String, (int, int)>{
-  'linestopoints': (240, 20),
-  'pointstolines': (20, 240),
-  'inchestopoints': (1440, 20),
-  'pointstoinches': (20, 1440),
-  'centimeterstopoints': (72000, 2540),
-  'pointstocentimeters': (2540, 72000),
-  'millimeterstopoints': (7200, 2540),
-  'pointstomillimeters': (2540, 7200),
-  'picastopoints': (240, 20),
-  'pointstopicas': (20, 240),
-};
+// Exact physical ratios, not the rounded metric examples in Word's API prose.
+// These functions retain this dialect's bounded Double arithmetic; they do not
+// introduce VBA Single subtype/coercion semantics or native-unit rounding.
+const _wordUnitConversions =
+    <String, ({String parameter, int numerator, int denominator})>{
+      'inchestopoints': (parameter: 'inches', numerator: 72, denominator: 1),
+      'centimeterstopoints': (
+        parameter: 'centimeters',
+        numerator: 3600,
+        denominator: 127,
+      ),
+      'millimeterstopoints': (
+        parameter: 'millimeters',
+        numerator: 360,
+        denominator: 127,
+      ),
+      'picastopoints': (parameter: 'picas', numerator: 12, denominator: 1),
+      'linestopoints': (parameter: 'lines', numerator: 12, denominator: 1),
+      'pointstoinches': (parameter: 'points', numerator: 1, denominator: 72),
+      'pointstocentimeters': (
+        parameter: 'points',
+        numerator: 127,
+        denominator: 3600,
+      ),
+      'pointstomillimeters': (
+        parameter: 'points',
+        numerator: 127,
+        denominator: 360,
+      ),
+      'pointstopicas': (parameter: 'points', numerator: 1, denominator: 12),
+      'pointstolines': (parameter: 'points', numerator: 1, denominator: 12),
+    };
 const _powerPointConstants = <String, int>{
   'msoanchortop': 1,
   'msoanchortopbaseline': 2,
@@ -3026,9 +3044,7 @@ class _Checker {
         }
         if (context.isWord &&
             _wordUnitConversions.containsKey(expression.token.lower)) {
-          _count(expression.token, expression.arguments, 1);
-          final argument = expression.arguments.single;
-          _compatible(_Kind.number, _expression(argument), argument.token);
+          _wordUnitCall(expression.token, expression.arguments);
           return _Kind.number;
         }
         if (_variantIntrinsics.contains(expression.token.lower)) {
@@ -3118,8 +3134,7 @@ class _Checker {
           }
           if (receiver == _Kind.wordApplication &&
               _wordUnitConversions.containsKey(name)) {
-            final argument = _arguments(expression, 1).single;
-            _compatible(_Kind.number, _expression(argument), argument.token);
+            _wordUnitCall(expression.token, expression.arguments);
             return _Kind.number;
           }
           if (receiver == _Kind.document && name == 'paragraphs') {
@@ -3354,6 +3369,26 @@ class _Checker {
       );
     }
     return name == 'len' ? _Kind.number : _Kind.string;
+  }
+
+  void _wordUnitCall(_Token token, List<_Expr>? arguments) {
+    if (arguments == null || arguments.length != 1) {
+      context.type(token, '${token.text} requires one numeric argument.');
+    }
+    final argument = arguments.single;
+    if (argument is _OmittedArgument) {
+      context.type(argument.token, '${token.text} requires its argument.');
+    }
+    if (argument is _NamedArgument &&
+        argument.token.lower != _wordUnitConversions[token.lower]!.parameter) {
+      context.fail(
+        argument.token,
+        'vba_name_error',
+        'Unknown named argument ${argument.token.text} for ${token.text}.',
+      );
+    }
+    final value = argument is _NamedArgument ? argument.value : argument;
+    _compatible(_Kind.number, _expression(value), value.token);
   }
 
   List<_Expr> _arguments(
@@ -4220,6 +4255,10 @@ class _Evaluator {
               ? bounds.lower
               : bounds.upper;
         }
+        if (context.isWord &&
+            _wordUnitConversions.containsKey(expression.token.lower)) {
+          return _evaluateWordUnitCall(expression.token, expression.arguments);
+        }
         final arguments = <Object>[
           for (final argument in expression.arguments) _evaluate(argument),
         ];
@@ -4228,10 +4267,6 @@ class _Evaluator {
         }
         if (_variantIntrinsics.contains(expression.token.lower)) {
           return _variantIntrinsic(expression, arguments.single);
-        }
-        if (context.isWord &&
-            _wordUnitConversions.containsKey(expression.token.lower)) {
-          return _wordUnitConversion(expression.token, arguments.single);
         }
         if (expression.token.lower == 'worksheets') {
           return _sheet(arguments.single, expression.token);
@@ -4247,6 +4282,11 @@ class _Evaluator {
         );
       case _Member():
         final receiver = _evaluate(expression.receiver);
+        if (context.isWord &&
+            receiver is _WordApplication &&
+            _wordUnitConversions.containsKey(expression.token.lower)) {
+          return _evaluateWordUnitCall(expression.token, expression.arguments!);
+        }
         final arguments = <Object>[
           for (final argument in expression.arguments ?? const <_Expr>[])
             _evaluate(argument),
@@ -4256,9 +4296,6 @@ class _Evaluator {
         }
         if (context.isWord) {
           if (receiver is _WordApplication) {
-            if (_wordUnitConversions.containsKey(expression.token.lower)) {
-              return _wordUnitConversion(expression.token, arguments.single);
-            }
             return const _WordDocument();
           }
           if (receiver is _WordDocument && expression.arguments == null) {
@@ -5775,29 +5812,33 @@ class _Evaluator {
     return text;
   }
 
-  Object _wordUnitConversion(_Token token, Object value) {
-    // Every allowed integer is exactly representable as binary64. Promote
-    // before scaling so large metric intermediates cannot wrap on the VM.
-    final number = _number(value, token).toDouble();
-    final (unitsPerInput, unitsPerOutput) = _wordUnitConversions[token.lower]!;
+  Object _evaluateWordUnitCall(_Token token, List<_Expr> arguments) {
+    // The checker has validated the one required positional/named argument.
+    // Evaluate only its value, once, retaining ordinary expression work limits.
+    final argument = arguments.single;
+    final value = argument is _NamedArgument ? argument.value : argument;
+    final number = _number(_evaluate(value), token).toDouble();
+    final conversion = _wordUnitConversions[token.lower]!;
+    final numerator = conversion.numerator;
+    final denominator = conversion.denominator;
+    var result = number * numerator / denominator;
+
+    // Canonicalize an exact native-grid value only when converting it back
+    // reproduces the input double. No epsilon or tolerance snaps near misses.
+    // Bound integer products to the VM/JavaScript common exact-integer range.
     final toPoints = token.lower.endsWith('topoints');
-    final factor = toPoints
-        ? unitsPerInput / unitsPerOutput
-        : unitsPerOutput / unitsPerInput;
-    final units = number * unitsPerInput;
-    // Use the integral conversion grid only when the input round-trips on it.
-    // This keeps 1.15 lines -> 13.8 points and 2.54 cm -> 72 points canonical
-    // without epsilon rounding or blanket snapping of off-grid inputs.
-    // The destination property's independent precision checks still apply.
-    final onGrid =
-        units.isFinite &&
-        units.abs() <= _maxExactInteger &&
-        units.round() / unitsPerInput == number;
-    final result = onGrid
-        ? units.round() / unitsPerOutput
-        : toPoints
-        ? number * factor
-        : number / factor;
+    final units = (toPoints ? result : number) * 20;
+    final multiplier = toPoints ? denominator : numerator;
+    if (units.isFinite && units.abs() <= _maxExactInteger / multiplier) {
+      final twips = units.round();
+      if (toPoints) {
+        if (twips * denominator / (20 * numerator) == number) {
+          result = twips / 20;
+        }
+      } else if (twips / 20 == number) {
+        result = twips * numerator / (20 * denominator);
+      }
+    }
     if (!result.isFinite || result.abs() > _maxExactInteger) {
       context.type(
         token,

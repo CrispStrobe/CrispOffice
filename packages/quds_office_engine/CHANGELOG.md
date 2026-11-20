@@ -4,14 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
-- Add Word VBA inch, centimeter, millimeter and pica conversions in both
-  directions, unqualified or on Application, including With Application.
-  Preserve exact physical ratios, canonical conversion-grid arithmetic and
-  the legacy line-conversion fallback. Retain explicit numeric typing,
-  destination precision checks, finite bounds and shared execution guards.
-  Include a two-paragraph BAS example and focused compiler/native regression
-  suites; see the continuation record for executed validation and environment
-  limits. No native document operation or VBA Single coercion is added.
+- Extend Word VBA with `InchesToPoints`, `PointsToInches`,
+  `CentimetersToPoints`, `PointsToCentimeters`, `MillimetersToPoints`,
+  `PointsToMillimeters`, `PicasToPoints` and `PointsToPicas`. Support global,
+  `Application` and `With Application` calls through the existing checked
+  source compiler, with the official required argument names on all ten
+  physical/line conversion functions. Use explicit numeric inputs and exact physical ratios;
+  preserve native write precision, resource limits and transaction guards.
+  These bounded binary64 conversions do not emulate VBA `Single` coercion.
 
 - Fall back to full Word layout for changed footnote/endnote paragraphs,
   including nested note tables, so formatting edits cannot reuse stale note
