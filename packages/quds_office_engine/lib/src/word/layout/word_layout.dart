@@ -1169,7 +1169,9 @@ class WordLayoutEngine {
       document,
       pages,
       updateFields: updateFields,
-      state: recorded ? _IncrementalState(_incrementalOwner, document, recorder.sections) : null,
+      state: recorded
+          ? _IncrementalState(_incrementalOwner, document, recorder.sections)
+          : null,
     );
   }
 
@@ -1291,9 +1293,14 @@ class WordLayoutEngine {
           recorder.sections[s] = old.sections[s];
         }
         return LaidOutDocument(
-          pages: List<LaidOutPage>.of(reuse.pages),
-          pageSize: document.sections.first.pageSize,
-        ).._incremental = _IncrementalState(_incrementalOwner, document, recorder.sections);
+            pages: List<LaidOutPage>.of(reuse.pages),
+            pageSize: document.sections.first.pageSize,
+          )
+          .._incremental = _IncrementalState(
+            _incrementalOwner,
+            document,
+            recorder.sections,
+          );
       }
       final _SectionRecord resumeRecord = old.sections[firstSection]!;
       final _Checkpoint cp = resumeRecord.checkpoints[firstBlock];
@@ -1362,7 +1369,11 @@ class WordLayoutEngine {
         document,
         pages,
         updateFields: false,
-        state: _IncrementalState(_incrementalOwner, document, recorder.sections),
+        state: _IncrementalState(
+          _incrementalOwner,
+          document,
+          recorder.sections,
+        ),
       );
     } finally {
       _recorder = null;

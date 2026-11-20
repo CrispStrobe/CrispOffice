@@ -164,7 +164,8 @@ void main() {
       final draft = buildStudioMailReplyDraft(
         _message(
           plain: null,
-          html: '<p>Decoded <b>HTML</b> &amp; café 😀</p>'
+          html:
+              '<p>Decoded <b>HTML</b> &amp; café 😀</p>'
               '<script>privateScript()</script>'
               '<style>privateStyle</style>'
               '<form>privateForm</form>'
@@ -490,7 +491,10 @@ void main() {
     expect(draft.body, isNot(contains('private@example.invalid')));
     expect(draft.body, isNot(contains('private-attachment-name')));
     expect(draft.body, isNot(contains('private-part')));
-    expect(draft.to, 'reply@example.invalid, original-recipient@example.invalid');
+    expect(
+      draft.to,
+      'reply@example.invalid, original-recipient@example.invalid',
+    );
     expect(draft.bcc, isEmpty);
     expect(draft.attachments.isEmpty, isTrue);
     expect(draft.thread.inReplyTo, '<parent@example.invalid>');

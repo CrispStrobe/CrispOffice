@@ -269,9 +269,8 @@ final class _PlatformStudioMailCredentialStore
     int Function()? storageRevision,
   }) : _storage =
            selectedStorage ??
-           (() async => _FlutterMailStorage(
-             storage ?? const FlutterSecureStorage(),
-           )),
+           (() async =>
+               _FlutterMailStorage(storage ?? const FlutterSecureStorage())),
        _verifyWrites = true,
        _storageRevision = storageRevision;
 
@@ -318,14 +317,18 @@ final class _PlatformStudioMailCredentialStore
     try {
       snapshot = StudioMailCredentials.fromJson(credentials.toJson());
     } on Object {
-      return Future.value(const StudioMailAccountCatalogResult.failure(
-        StudioMailAccountCatalogProblem.unavailable,
-      ));
+      return Future.value(
+        const StudioMailAccountCatalogResult.failure(
+          StudioMailAccountCatalogProblem.unavailable,
+        ),
+      );
     }
     if (snapshot == null) {
-      return Future.value(const StudioMailAccountCatalogResult.failure(
-        StudioMailAccountCatalogProblem.invalid,
-      ));
+      return Future.value(
+        const StudioMailAccountCatalogResult.failure(
+          StudioMailAccountCatalogProblem.invalid,
+        ),
+      );
     }
     return _perform((storage) async {
       final catalog = await _readCatalog(storage);
@@ -403,11 +406,15 @@ final class _PlatformStudioMailCredentialStore
     return _ordered(() async {
       try {
         if (acceptedRevision != _storageRevision?.call()) {
-          throw const _CatalogFailure(StudioMailAccountCatalogProblem.unavailable);
+          throw const _CatalogFailure(
+            StudioMailAccountCatalogProblem.unavailable,
+          );
         }
         final storage = await _storage();
         if (acceptedRevision != _storageRevision?.call()) {
-          throw const _CatalogFailure(StudioMailAccountCatalogProblem.unavailable);
+          throw const _CatalogFailure(
+            StudioMailAccountCatalogProblem.unavailable,
+          );
         }
         // From this point every read, write and cleanup uses this backend,
         // even when another dialog changes the app-wide selection meanwhile.
@@ -561,11 +568,17 @@ final class _PlatformStudioMailCredentialStore
       if (credentials == null) {
         throw const _CatalogFailure(StudioMailAccountCatalogProblem.invalid);
       }
-      final oldId = sha256.convert(utf8.encode([
-        credentials.email.trim().toLowerCase(),
-        credentials.imapHost.toLowerCase(),
-        credentials.preset?.name ?? '',
-      ].join('\n'))).toString();
+      final oldId = sha256
+          .convert(
+            utf8.encode(
+              [
+                credentials.email.trim().toLowerCase(),
+                credentials.imapHost.toLowerCase(),
+                credentials.preset?.name ?? '',
+              ].join('\n'),
+            ),
+          )
+          .toString();
       final id = credentials.accountId;
       if (entry.key != oldId || !ids.add(id)) {
         throw const _CatalogFailure(StudioMailAccountCatalogProblem.invalid);
@@ -605,10 +618,14 @@ final class StudioMailAccountsStore
     Future<SecureStorage> Function()? storage,
     int Function()? selectionRevision,
   }) : _repository = _PlatformStudioMailCredentialStore(
-        selectedStorage: storage ?? (() => StudioCredentialStorage.instance.storage),
-        storageRevision: selectionRevision ??
-            (storage == null ? () => StudioCredentialStorage.instance.revision : null),
-      );
+         selectedStorage:
+             storage ?? (() => StudioCredentialStorage.instance.storage),
+         storageRevision:
+             selectionRevision ??
+             (storage == null
+                 ? () => StudioCredentialStorage.instance.revision
+                 : null),
+       );
 
   final _PlatformStudioMailCredentialStore _repository;
 
@@ -641,9 +658,11 @@ final class StudioMailAccountsStore
       _ => null,
     };
     if (id == null) {
-      return Future.value(const StudioMailAccountCatalogResult.failure(
-        StudioMailAccountCatalogProblem.invalid,
-      ));
+      return Future.value(
+        const StudioMailAccountCatalogResult.failure(
+          StudioMailAccountCatalogProblem.invalid,
+        ),
+      );
     }
     return _repository.selectAccount(id);
   }

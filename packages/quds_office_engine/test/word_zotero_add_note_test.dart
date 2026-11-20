@@ -94,120 +94,129 @@ String _snapshot(WmlDocument document) => jsonEncode(<String, Object?>{
 });
 
 void main() {
-  test('rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive', () {
-    final note = WordZoteroNoteText.fromHtml(
-      '<html><body><div data-schema-version="9"><p><b>Bold</b> &amp; '
-      '<i>italic</i><br>next</p><p></p>'
-      '<p><a href="https://example.org/?a=1&amp;b=2"><u>linked</u> text</a> $_one</p>'
-      '</div></body></html>',
-    );
-    expect(note.paragraphs.map((p) => p.text), [
-      'Bold & italic\nnext',
-      '',
-      'linked text (Old 1)',
-    ]);
-    final first = note.paragraphs.first.inlines.whereType<WmlRun>();
-    expect(first.first.properties.bold, isTrue);
-    expect(
-      first.any((r) => r.text.contains('italic') && r.properties.italic),
-      isTrue,
-    );
-    final linked = note.paragraphs.last.inlines
-        .whereType<WmlRun>()
-        .where((r) => r.hyperlink != null)
-        .toList();
-    expect(linked.map((r) => r.text).join(), 'linked text');
-    expect(linked.first.hyperlink!.url, 'https://example.org/?a=1&b=2');
-    expect(linked.first.properties.underline, WmlUnderline.single);
-    final placeholder = note.placeholders['ABC123']!;
-    expect(placeholder.paragraphIndex, 2);
-    expect(
-      note.paragraphs[2].text.substring(placeholder.start, placeholder.end),
-      '(Old 1)',
-    );
-  });
-
-  test('default Zotero annotation export keeps heading quote comment and active citation', () {
-    // Shape from pinned notes.js:getExportableNote, editorInstance.js:
-    // serializeAnnotations and defaults/preferences/zotero.js noteTemplates.
-    final document = WmlDocument.empty(text: 'BeforeAfter');
-    final session = _session(document, offset: 6);
-    _nativeStart(
-      session,
-      '<html><body><div data-schema-version="9" '
-      'data-citation-items="%5B%5D"><h1>Annotations<br/>(2026-11-18)</h1>'
-      '<p><span class="highlight" data-annotation="%7B%22pageLabel%22%3A%224%22%7D">'
-      '&#8220;A <i>quoted</i> passage&#8221;</span> $_one My comment</p>'
-      '</div></body></html>',
-    );
-    _set(
-      session,
-      _convert(session, ['ABC123']).single,
-      'quote',
-      '(Author 2026, p. 4)',
-    );
-    _finish(session);
-    expect(document.paragraphs.map((p) => p.text), [
-      'Before',
-      'Annotations\n(2026-11-18)',
-      '“A quoted passage” (Author 2026, p. 4) My comment',
-      'After',
-    ]);
-    expect(document.paragraphs.elementAt(1).properties.headingLevel, 1);
-    expect(document.paragraphs.elementAt(1).properties.styleId, 'Heading1');
-    expect(document.paragraphs.first.properties.headingLevel, isNull);
-    expect(document.paragraphs.last.properties.headingLevel, isNull);
-    expect(WordZotero.fields(document).single.citation!.citationId, 'quote');
-    expect(session.caretAfter!.paragraph.text, contains('My comment'));
-    expect(
-      session.caretAfter!.offset,
-      session.caretAfter!.paragraph.text.length,
-    );
-    final reopened = WordDeserializer().readBytes(
-      WordSerializer().writeBytes(document),
-    );
-    expect(reopened.paragraphs.elementAt(1).properties.headingLevel, 1);
-    expect(WordZotero.fields(reopened).single.citation!.citationId, 'quote');
-    expect(
-      reopened.paragraphs
-          .elementAt(2)
-          .inlines
+  test(
+    'rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive',
+    () {
+      final note = WordZoteroNoteText.fromHtml(
+        '<html><body><div data-schema-version="9"><p><b>Bold</b> &amp; '
+        '<i>italic</i><br>next</p><p></p>'
+        '<p><a href="https://example.org/?a=1&amp;b=2"><u>linked</u> text</a> $_one</p>'
+        '</div></body></html>',
+      );
+      expect(note.paragraphs.map((p) => p.text), [
+        'Bold & italic\nnext',
+        '',
+        'linked text (Old 1)',
+      ]);
+      final first = note.paragraphs.first.inlines.whereType<WmlRun>();
+      expect(first.first.properties.bold, isTrue);
+      expect(
+        first.any((r) => r.text.contains('italic') && r.properties.italic),
+        isTrue,
+      );
+      final linked = note.paragraphs.last.inlines
           .whereType<WmlRun>()
-          .any((r) => r.text.contains('quoted') && r.properties.italic),
-      isTrue,
-    );
-  });
+          .where((r) => r.hyperlink != null)
+          .toList();
+      expect(linked.map((r) => r.text).join(), 'linked text');
+      expect(linked.first.hyperlink!.url, 'https://example.org/?a=1&b=2');
+      expect(linked.first.properties.underline, WmlUnderline.single);
+      final placeholder = note.placeholders['ABC123']!;
+      expect(placeholder.paragraphIndex, 2);
+      expect(
+        note.paragraphs[2].text.substring(placeholder.start, placeholder.end),
+        '(Old 1)',
+      );
+    },
+  );
 
-  test('custom heading styles retain structural level and explicit character resets', () {
-    final document = WmlDocument.empty(text: '');
-    document.styles.add(
-      const WmlStyle(
-        id: 'Heading2',
-        name: 'Custom heading',
-        nameAr: 'Custom',
-        bold: true,
-        italic: true,
-        fontSizePoints: 19,
-      ),
-    );
-    final session = _session(document);
-    _nativeStart(
-      session,
-      '<h2><span style="font-weight:normal;font-style:normal">Plain</span> '
-      '<b>Strong</b></h2><p>Body</p>',
-    );
-    _finish(session);
-    final heading = document.paragraphs.first;
-    expect(heading.properties.headingLevel, 2);
-    expect(heading.properties.styleId, 'Heading2');
-    final runs = heading.inlines.whereType<WmlRun>();
-    expect(runs.first.properties.bold, isFalse);
-    expect(runs.first.properties.italic, isFalse);
-    expect(runs.first.properties.fontSizeHalfPoints, 38);
-    expect(runs.last.properties.bold, isTrue);
-    expect(document.paragraphs.last.text, 'Body');
-    expect(document.paragraphs.last.properties.headingLevel, isNull);
-  });
+  test(
+    'default Zotero annotation export keeps heading quote comment and active citation',
+    () {
+      // Shape from pinned notes.js:getExportableNote, editorInstance.js:
+      // serializeAnnotations and defaults/preferences/zotero.js noteTemplates.
+      final document = WmlDocument.empty(text: 'BeforeAfter');
+      final session = _session(document, offset: 6);
+      _nativeStart(
+        session,
+        '<html><body><div data-schema-version="9" '
+        'data-citation-items="%5B%5D"><h1>Annotations<br/>(2026-11-18)</h1>'
+        '<p><span class="highlight" data-annotation="%7B%22pageLabel%22%3A%224%22%7D">'
+        '&#8220;A <i>quoted</i> passage&#8221;</span> $_one My comment</p>'
+        '</div></body></html>',
+      );
+      _set(
+        session,
+        _convert(session, ['ABC123']).single,
+        'quote',
+        '(Author 2026, p. 4)',
+      );
+      _finish(session);
+      expect(document.paragraphs.map((p) => p.text), [
+        'Before',
+        'Annotations\n(2026-11-18)',
+        '“A quoted passage” (Author 2026, p. 4) My comment',
+        'After',
+      ]);
+      expect(document.paragraphs.elementAt(1).properties.headingLevel, 1);
+      expect(document.paragraphs.elementAt(1).properties.styleId, 'Heading1');
+      expect(document.paragraphs.first.properties.headingLevel, isNull);
+      expect(document.paragraphs.last.properties.headingLevel, isNull);
+      expect(WordZotero.fields(document).single.citation!.citationId, 'quote');
+      expect(session.caretAfter!.paragraph.text, contains('My comment'));
+      expect(
+        session.caretAfter!.offset,
+        session.caretAfter!.paragraph.text.length,
+      );
+      final reopened = WordDeserializer().readBytes(
+        WordSerializer().writeBytes(document),
+      );
+      expect(reopened.paragraphs.elementAt(1).properties.headingLevel, 1);
+      expect(WordZotero.fields(reopened).single.citation!.citationId, 'quote');
+      expect(
+        reopened.paragraphs
+            .elementAt(2)
+            .inlines
+            .whereType<WmlRun>()
+            .any((r) => r.text.contains('quoted') && r.properties.italic),
+        isTrue,
+      );
+    },
+  );
+
+  test(
+    'custom heading styles retain structural level and explicit character resets',
+    () {
+      final document = WmlDocument.empty(text: '');
+      document.styles.add(
+        const WmlStyle(
+          id: 'Heading2',
+          name: 'Custom heading',
+          nameAr: 'Custom',
+          bold: true,
+          italic: true,
+          fontSizePoints: 19,
+        ),
+      );
+      final session = _session(document);
+      _nativeStart(
+        session,
+        '<h2><span style="font-weight:normal;font-style:normal">Plain</span> '
+        '<b>Strong</b></h2><p>Body</p>',
+      );
+      _finish(session);
+      final heading = document.paragraphs.first;
+      expect(heading.properties.headingLevel, 2);
+      expect(heading.properties.styleId, 'Heading2');
+      final runs = heading.inlines.whereType<WmlRun>();
+      expect(runs.first.properties.bold, isFalse);
+      expect(runs.first.properties.italic, isFalse);
+      expect(runs.first.properties.fontSizeHalfPoints, 38);
+      expect(runs.last.properties.bold, isTrue);
+      expect(document.paragraphs.last.text, 'Body');
+      expect(document.paragraphs.last.properties.headingLevel, isNull);
+    },
+  );
 
   test('existing ordinary notes count around inserted citation notes', () {
     final document = WmlDocument.empty(text: 'Start End');
@@ -298,40 +307,44 @@ void main() {
     );
   }
 
-  test('existing bibliography updates in same transaction as inserted note citations', () {
-    final p = WmlParagraph(inlines: [WmlRun(text: 'Body')]);
-    final bibliography = WordZotero.nativeBibliographyParagraphs(
-      instruction: 'ADDIN ZOTERO_BIBL {"uncited":[],"omitted":[],"custom":[]} CSL_BIBLIOGRAPHY',
-      text: 'Old reference',
-    );
-    final document = WmlDocument(
-      sections: [
-        WmlSection(blocks: [p, ...bibliography]),
-      ],
-    );
-    final session = _session(document, offset: 4);
-    final bib = _fields(session).single;
-    _nativeStart(session, '<p>$_one</p>');
-    _set(
-      session,
-      _convert(session, ['ABC123']).single,
-      'new-source',
-      '(New source)',
-    );
-    _call(session, 'Field.setText', [
-      bib['id'],
-      '<p>Old reference</p><p>New reference</p>',
-      true,
-    ]);
-    _finish(session);
-    final fields = WordZotero.fields(document);
-    expect(fields.first.citation!.citationId, 'new-source');
-    expect(fields.last.kind, ZoteroFieldKind.bibliography);
-    expect(fields.last.paragraphs.map((p) => p.text), [
-      'Old reference',
-      'New reference',
-    ]);
-  });
+  test(
+    'existing bibliography updates in same transaction as inserted note citations',
+    () {
+      final p = WmlParagraph(inlines: [WmlRun(text: 'Body')]);
+      final bibliography = WordZotero.nativeBibliographyParagraphs(
+        instruction:
+            'ADDIN ZOTERO_BIBL {"uncited":[],"omitted":[],"custom":[]} CSL_BIBLIOGRAPHY',
+        text: 'Old reference',
+      );
+      final document = WmlDocument(
+        sections: [
+          WmlSection(blocks: [p, ...bibliography]),
+        ],
+      );
+      final session = _session(document, offset: 4);
+      final bib = _fields(session).single;
+      _nativeStart(session, '<p>$_one</p>');
+      _set(
+        session,
+        _convert(session, ['ABC123']).single,
+        'new-source',
+        '(New source)',
+      );
+      _call(session, 'Field.setText', [
+        bib['id'],
+        '<p>Old reference</p><p>New reference</p>',
+        true,
+      ]);
+      _finish(session);
+      final fields = WordZotero.fields(document);
+      expect(fields.first.citation!.citationId, 'new-source');
+      expect(fields.last.kind, ZoteroFieldKind.bibliography);
+      expect(fields.last.paragraphs.map((p) => p.text), [
+        'Old reference',
+        'New reference',
+      ]);
+    },
+  );
 
   for (final type in [0, 1, 2]) {
     test('native note type $type preserves citation order and DOCX fields', () {
@@ -378,9 +391,9 @@ void main() {
       final reopened = WordDeserializer().readBytes(
         WordSerializer().writeBytes(document),
       );
-      final citations = WordZotero.fields(reopened)
-          .map((f) => f.citation!.citationId)
-          .toSet();
+      final citations = WordZotero.fields(
+        reopened,
+      ).map((f) => f.citation!.citationId).toSet();
       expect(citations, {'first', 'second'});
       expect(WordZotero.fields(reopened).every((f) => f.canEdit), isTrue);
     });
@@ -415,40 +428,50 @@ void main() {
     expect(document.paragraphs.single.text, 'unchanged');
   });
 
-  test('uncited heading note replaces an empty prefix without extra blank paragraph', () {
-    final document = WmlDocument.empty(text: '');
-    final session = _session(document);
-    _nativeStart(session, '<h2>Research</h2><p>Text</p>');
-    _finish(session);
-    expect(document.paragraphs.map((p) => p.text), ['Research', 'Text']);
-    expect(document.paragraphs.first.properties.headingLevel, 2);
-  });
+  test(
+    'uncited heading note replaces an empty prefix without extra blank paragraph',
+    () {
+      final document = WmlDocument.empty(text: '');
+      final session = _session(document);
+      _nativeStart(session, '<h2>Research</h2><p>Text</p>');
+      _finish(session);
+      expect(document.paragraphs.map((p) => p.text), ['Research', 'Text']);
+      expect(document.paragraphs.first.properties.headingLevel, 2);
+    },
+  );
 
-  test('existing fields before and after insertion update without shifting note caret', () {
-    final p = WmlParagraph(inlines: [WmlRun(text: ' / ')]);
-    WordZotero.insertCitation(p, _citation('left', 'L'), index: 0);
-    WordZotero.insertCitation(p, _citation('right', 'R'), index: p.text.length);
-    final document = WmlDocument(
-      sections: [
-        WmlSection(blocks: [p]),
-      ],
-    );
-    final session = _session(document, offset: 3);
-    final original = _fields(session);
-    _nativeStart(session, '<p>$_one</p>');
-    final field = _convert(session, ['ABC123']).single;
-    _set(session, field, 'new', 'NEW');
-    _set(session, original.first, 'left', 'LEFT-LONG');
-    _set(session, original.last, 'right', 'RIGHT-LONG');
-    _finish(session);
-    expect(p.text, 'LEFT-LONG /NEW RIGHT-LONG');
-    expect(session.caretAfter!.offset, 'LEFT-LONG /NEW'.length);
-    expect(WordZotero.fields(document).map((f) => f.citation!.citationId), [
-      'left',
-      'new',
-      'right',
-    ]);
-  });
+  test(
+    'existing fields before and after insertion update without shifting note caret',
+    () {
+      final p = WmlParagraph(inlines: [WmlRun(text: ' / ')]);
+      WordZotero.insertCitation(p, _citation('left', 'L'), index: 0);
+      WordZotero.insertCitation(
+        p,
+        _citation('right', 'R'),
+        index: p.text.length,
+      );
+      final document = WmlDocument(
+        sections: [
+          WmlSection(blocks: [p]),
+        ],
+      );
+      final session = _session(document, offset: 3);
+      final original = _fields(session);
+      _nativeStart(session, '<p>$_one</p>');
+      final field = _convert(session, ['ABC123']).single;
+      _set(session, field, 'new', 'NEW');
+      _set(session, original.first, 'left', 'LEFT-LONG');
+      _set(session, original.last, 'right', 'RIGHT-LONG');
+      _finish(session);
+      expect(p.text, 'LEFT-LONG /NEW RIGHT-LONG');
+      expect(session.caretAfter!.offset, 'LEFT-LONG /NEW'.length);
+      expect(WordZotero.fields(document).map((f) => f.citation!.citationId), [
+        'left',
+        'new',
+        'right',
+      ]);
+    },
+  );
 
   test(
     'note citations can be explicitly unlinked or deleted before completion',
@@ -530,29 +553,32 @@ void main() {
     expect(document.paragraphs.single.text, 'Original changed');
   });
 
-  test('authored footnote advertises text insertion but an existing citation does not', () {
-    final document = WmlDocument.empty(text: 'Body');
-    final note = WordNotes.insert(
-      document,
-      document.paragraphs.first,
-      endnote: false,
-      text: 'Note',
-    );
-    final inNote = _session(document, paragraph: note.paragraphs.single);
-    expect(inNote.canInsertNoteText, isTrue);
-    expect(inNote.assertCanInsertNoteText, returnsNormally);
-    WordZotero.insertCitation(
-      document.paragraphs.first,
-      _citation('field', 'Citation'),
-      index: 0,
-    );
-    final inField = _session(document, offset: 1);
-    expect(inField.canInsertNoteText, isFalse);
-    expect(
-      () => _call(inField, 'Document.insertText', ['<p>New</p>']),
-      throwsUnsupportedError,
-    );
-  });
+  test(
+    'authored footnote advertises text insertion but an existing citation does not',
+    () {
+      final document = WmlDocument.empty(text: 'Body');
+      final note = WordNotes.insert(
+        document,
+        document.paragraphs.first,
+        endnote: false,
+        text: 'Note',
+      );
+      final inNote = _session(document, paragraph: note.paragraphs.single);
+      expect(inNote.canInsertNoteText, isTrue);
+      expect(inNote.assertCanInsertNoteText, returnsNormally);
+      WordZotero.insertCitation(
+        document.paragraphs.first,
+        _citation('field', 'Citation'),
+        index: 0,
+      );
+      final inField = _session(document, offset: 1);
+      expect(inField.canInsertNoteText, isFalse);
+      expect(
+        () => _call(inField, 'Document.insertText', ['<p>New</p>']),
+        throwsUnsupportedError,
+      );
+    },
+  );
 
   for (final html in [
     '<p>$_one $_one</p>',

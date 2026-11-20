@@ -474,7 +474,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   @override
   void dispose() {
     if (widget.credentialStore == null) {
-      StudioCredentialStorage.instance.removeListener(_credentialStorageChanged);
+      StudioCredentialStorage.instance.removeListener(
+        _credentialStorageChanged,
+      );
     }
     _sessionGeneration++;
     _credentialGeneration++;
@@ -1470,7 +1472,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       changed = await showStudioCredentialSettings(context);
     } on Object {
       if (mounted) {
-        setState(() => _credentialError = widget.strings.mailAccountsLoadFailed);
+        setState(
+          () => _credentialError = widget.strings.mailAccountsLoadFailed,
+        );
       }
     } finally {
       if (mounted) {

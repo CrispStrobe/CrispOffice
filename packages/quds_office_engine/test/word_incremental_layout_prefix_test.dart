@@ -28,8 +28,9 @@ void _expectFullLayout(
   LaidOutDocument incremental, {
   required String step,
 }) {
-  final full = WordLayoutEngine(font: null)
-      .layout(document, updateFields: false);
+  final full = WordLayoutEngine(
+    font: null,
+  ).layout(document, updateFields: false);
   expect(
     wordLayoutFingerprint(incremental),
     wordLayoutFingerprint(full),

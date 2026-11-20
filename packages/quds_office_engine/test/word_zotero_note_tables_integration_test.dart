@@ -259,8 +259,9 @@ void main() {
           expect(original.text, separator ? ' ' : '');
           final table = _onlyTable(note.blocks);
           expect(
-            WordTree.paragraphs([table])
-                .expand((p) => p.inlines.whereType<WmlNoteMarker>()),
+            WordTree.paragraphs([
+              table,
+            ]).expand((p) => p.inlines.whereType<WmlNoteMarker>()),
             isEmpty,
           );
           final suffix = note.blocks.last as WmlParagraph;
@@ -282,8 +283,9 @@ void main() {
               ['one', 'two'],
             );
             expect(
-              _fields(_session(result, current.paragraphs.first))
-                  .map((f) => f['noteIndex']),
+              _fields(
+                _session(result, current.paragraphs.first),
+              ).map((f) => f['noteIndex']),
               [1, 1],
             );
           }
@@ -300,10 +302,10 @@ void main() {
         text: ' Tail',
       );
       final paragraph = note.paragraphs.single;
-      paragraph.inlines.insert(0, WmlNoteMarker(
-              endnote: endnote,
-              properties: WmlRunProps(),
-            ));
+      paragraph.inlines.insert(
+        0,
+        WmlNoteMarker(endnote: endnote, properties: WmlRunProps()),
+      );
       final session = _session(document, paragraph);
       _start(session, _table('Left', 'Right'), type: type);
       _finish(session);
@@ -400,8 +402,9 @@ void main() {
             hasLength(2),
           );
           expect(
-            _fields(_session(result, result.paragraphs.first))
-                .map((f) => f['noteIndex']),
+            _fields(
+              _session(result, result.paragraphs.first),
+            ).map((f) => f['noteIndex']),
             [1, 2],
           );
         }
