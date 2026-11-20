@@ -67,7 +67,8 @@ class SlideDeserializer {
             rel.targetMode == RelationshipTargetMode.external ||
             package.getPart(presentationRels.resolve(rel))?.contentType !=
                 OfficeContentTypes.slide) {
-          slideRelationshipIssue = 'Section membership requires modeled internal slide relationships.';
+          slideRelationshipIssue =
+              'Section membership requires modeled internal slide relationships.';
         }
         slideUris.add(
           rel != null && rel.type == RelationshipTypes.slide
@@ -150,21 +151,22 @@ class SlideDeserializer {
                 package.relationshipsFor(uri),
                 pres.slideWidth,
                 pres.slideHeight,
-                colors: layout?.colors ?? templates.defaultColors,
               )
-            : layout?.backgroundImage;
-        final PmlShape? backgroundGradient = ownsBackground
+            : layout?.backgroundImage?.copy();
+        final PmlShape? backgroundGradient = backgroundImage != null
+            ? null
+            : ownsBackground
             ? _backgroundGradientShape(
                 slideXml,
                 pres.slideWidth,
                 pres.slideHeight,
                 layout?.colors ?? templates.defaultColors,
               )
-            : layout?.backgroundGradient;
+            : layout?.backgroundGradient?.copy();
         pres.slides[i].retainSourceBackground(
           sourceBackground,
-          picture: backgroundImage?.copy(),
-          gradient: backgroundGradient?.copy(),
+          picture: backgroundImage,
+          gradient: backgroundGradient,
         );
         if (layout != null) {
           pres.slides[i].layoutName = layout.name;
@@ -317,9 +319,8 @@ class SlideDeserializer {
     OpcPackage package,
     RelationshipCollection rels,
     int width,
-    int height, {
-    Map<String, String> colors = const {},
-  }) {
+    int height,
+  ) {
     final XmlPullReader reader = XmlPullReader(xml);
     final PictureAdjust picture = PictureAdjust();
     var inBg = false;
@@ -387,7 +388,8 @@ class SlideDeserializer {
     );
   }
 
-  /// Converts a `p:bg/a:gradFill` into a full-slide gradient decoration.
+  /// Converts the selected native gradient fill into a background snapshot.
+  /// Keep fill ownership separate from ordinary master/layout decorations.
   static PmlShape? _backgroundGradientShape(
     String xml,
     int width,
@@ -395,59 +397,90 @@ class SlideDeserializer {
     Map<String, String> colors,
   ) {
     final XmlPullReader reader = XmlPullReader(xml);
-    var inBg = false;
-    var inGrad = false;
+    int? backgroundDepth;
+    int? propertiesDepth;
+    int? gradientDepth;
+    int? stopDepth;
     double? position;
     double angle = 0;
+    var radial = false;
     final List<PmlGradientStop> stops = <PmlGradientStop>[];
     while (reader.next()) {
       if (reader.eventType == XmlEventType.endElement) {
-        if (reader.localName == 'gradFill') {
-          if (stops.length >= 2) {
-            final List<PmlGradientStop> sorted = <PmlGradientStop>[...stops]
-              ..sort((a, b) => a.position.compareTo(b.position));
-            return PmlShape(
-              id: 1,
-              name: 'Background',
-              fillColor: sorted.first.color,
-              gradient: PmlGradientFill(stops: sorted, angleDegrees: angle),
-              transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
-            );
-          }
-          inGrad = false;
-        } else if (reader.localName == 'bg' || reader.localName == 'bgPr') {
-          inBg = false;
-          inGrad = false;
+        // The pull reader reports end events after popping the element.
+        if (gradientDepth != null &&
+            reader.depth == gradientDepth - 1 &&
+            reader.localName == 'gradFill') {
+          if (stops.length < 2) return null;
+          stops.sort((a, b) => a.position.compareTo(b.position));
+          return PmlShape(
+            id: 1,
+            name: 'Background',
+            isBackgroundGradient: true,
+            fillColor: stops.first.color,
+            gradient: PmlGradientFill(
+              stops: stops,
+              angleDegrees: angle,
+              radial: radial,
+            ),
+            transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
+          );
+        }
+        if (backgroundDepth != null &&
+            reader.depth == backgroundDepth - 1 &&
+            reader.localName == 'bg') {
+          return null;
+        }
+        if (stopDepth != null &&
+            reader.depth == stopDepth - 1 &&
+            reader.localName == 'gs') {
+          stopDepth = null;
+          position = null;
         }
         continue;
       }
       if (reader.eventType != XmlEventType.startElement) continue;
-      if (reader.localName == 'bg' || reader.localName == 'bgPr') {
-        inBg = true;
-      } else if (inBg && reader.localName == 'gradFill') {
-        inGrad = true;
-      } else if (inGrad && reader.localName == 'gs') {
-        position =
-            (int.tryParse(reader.getAttribute('pos') ?? '') ?? 0) / 100000;
-      } else if (inGrad && reader.localName == 'path') {
-        return null;
-      } else if (inGrad && reader.localName == 'lin') {
-        angle = (int.tryParse(reader.getAttribute('ang') ?? '') ?? 0) / 60000;
-      } else if (inGrad &&
-          position != null &&
-          const <String>{
-            'srgbClr',
-            'schemeClr',
-            'sysClr',
-            'prstClr',
-          }.contains(reader.localName)) {
-        final String? color = resolveDrawingmlColor(reader, colors);
-        if (color != null && color.isNotEmpty) {
-          stops.add(
-            PmlGradientStop(position: position.clamp(0.0, 1.0), color: color),
-          );
+      if (reader.localName == 'bg' &&
+          reader.namespaceUri == OfficeNamespaces.p) {
+        backgroundDepth = reader.depth;
+      } else if (backgroundDepth != null &&
+          reader.depth == backgroundDepth + 1 &&
+          reader.namespaceUri == OfficeNamespaces.p &&
+          reader.localName == 'bgPr') {
+        propertiesDepth = reader.depth;
+      } else if (propertiesDepth != null &&
+          reader.depth == propertiesDepth + 1 &&
+          reader.namespaceUri == OfficeNamespaces.a &&
+          reader.localName == 'gradFill') {
+        gradientDepth = reader.depth;
+      } else if (gradientDepth != null &&
+          reader.namespaceUri == OfficeNamespaces.a) {
+        if (reader.localName == 'gs' && reader.depth == gradientDepth + 2) {
+          stopDepth = reader.depth;
+          position =
+              ((int.tryParse(reader.getAttribute('pos') ?? '') ?? 0) / 100000)
+                  .clamp(0.0, 1.0);
+        } else if (reader.localName == 'lin' &&
+            reader.depth == gradientDepth + 1) {
+          angle = (int.tryParse(reader.getAttribute('ang') ?? '') ?? 0) / 60000;
+        } else if (reader.localName == 'path' &&
+            reader.depth == gradientDepth + 1) {
+          radial = true;
+        } else if (position != null &&
+            stopDepth != null &&
+            reader.depth == stopDepth + 1 &&
+            const <String>{
+              'srgbClr',
+              'schemeClr',
+              'sysClr',
+              'prstClr',
+            }.contains(reader.localName)) {
+          final String? color = resolveDrawingmlColor(reader, colors);
+          if (color != null && color.isNotEmpty) {
+            stops.add(PmlGradientStop(position: position, color: color));
+          }
+          position = null;
         }
-        position = null;
       }
     }
     return null;
@@ -683,7 +716,6 @@ class _SlideTemplates {
               package.relationshipsFor(uri),
               slideWidth,
               slideHeight,
-              colors: colors,
             )
           : master?.backgroundImage,
       backgroundGradient: ownsBackground
@@ -735,7 +767,6 @@ class _SlideTemplates {
         package.relationshipsFor(uri),
         slideWidth,
         slideHeight,
-        colors: colors,
       ),
       backgroundGradient: SlideDeserializer._backgroundGradientShape(
         xml,
@@ -1104,9 +1135,7 @@ class SlideSerializer {
       }
       if (slide.inheritsMasterBackground) {
         slide.setInheritedBackground(resolved, masterBackground: color);
-        slide.backgroundShapes.removeWhere(
-          (shape) => shape.isBackgroundPicture,
-        );
+        slide.backgroundShapes.removeWhere((shape) => shape.isBackgroundFill);
       }
     }
     for (final uri in masterUris) {

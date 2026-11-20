@@ -421,6 +421,7 @@ class PmlShape {
     List<PmlPathPoint>? path,
     this.visual,
     this.isBackgroundPicture = false,
+    this.isBackgroundGradient = false,
     this.table,
     this.rightToLeft,
     this.textAlign = PmlTextAlign.left,
@@ -482,6 +483,13 @@ class PmlShape {
   /// This role distinguishes the background from ordinary template pictures.
   /// It is rendered in [PmlSlide.backgroundShapes] and saved as `p:bg`.
   final bool isBackgroundPicture;
+
+  /// A full-slide gradient resolved from the selected native `p:bg` fill.
+  /// It shares fill ownership with a background picture, while ordinary
+  /// gradient decorations remain independent of solid-background edits.
+  final bool isBackgroundGradient;
+
+  bool get isBackgroundFill => isBackgroundPicture || isBackgroundGradient;
 
   /// table API.
   PmlTable? table;
@@ -591,6 +599,7 @@ class PmlShape {
       path: <PmlPathPoint>[...path],
       visual: visual?.copy(),
       isBackgroundPicture: isBackgroundPicture,
+      isBackgroundGradient: isBackgroundGradient,
       table: table?.copy(),
       rightToLeft: rightToLeft,
       textAlign: textAlign,
@@ -681,8 +690,7 @@ class PmlSlide {
   String _background;
   String? _primaryMasterBackground;
   XmlElement? _sourceBackground;
-  PmlShape? _backgroundPicture;
-  PmlShape? _backgroundGradient;
+  PmlShape? _backgroundFill;
   bool _backgroundFromSource = false;
 
   /// Authored slide fill retained with its namespace bindings for serialization.
@@ -690,10 +698,12 @@ class PmlSlide {
   XmlElement? get sourceBackground => _sourceBackground;
 
   /// The selected imported picture, also present first in [backgroundShapes].
-  PmlShape? get backgroundPicture => _backgroundPicture;
+  PmlShape? get backgroundPicture =>
+      (_backgroundFill?.isBackgroundPicture ?? false) ? _backgroundFill : null;
 
-  /// Selected imported gradient, painted before ordinary decorations.
-  PmlShape? get backgroundGradient => _backgroundGradient;
+  /// The selected imported gradient, also present first in [backgroundShapes].
+  PmlShape? get backgroundGradient =>
+      (_backgroundFill?.isBackgroundGradient ?? false) ? _backgroundFill : null;
 
   /// A direct solid-color assignment must be serialized as an authored fill.
   bool get writesSolidBackground =>
@@ -707,23 +717,20 @@ class PmlSlide {
     PmlShape? picture,
     PmlShape? gradient,
   }) {
+    if (picture != null && gradient != null) {
+      throw ArgumentError('A background selects one picture or gradient fill.');
+    }
     _clearSourceBackground();
     _sourceBackground = source?.copy();
     _backgroundFromSource = true;
-    _backgroundPicture = picture;
-    _backgroundGradient = gradient;
-    if (picture != null) backgroundShapes.insert(0, picture);
-    if (gradient != null) backgroundShapes.insert(0, gradient);
+    _backgroundFill = picture ?? gradient;
+    if (_backgroundFill != null) backgroundShapes.insert(0, _backgroundFill!);
   }
 
   void _clearSourceBackground() {
-    if (_backgroundPicture != null) backgroundShapes.remove(_backgroundPicture);
-    if (_backgroundGradient != null) {
-      backgroundShapes.remove(_backgroundGradient);
-    }
+    if (_backgroundFill != null) backgroundShapes.remove(_backgroundFill);
     _sourceBackground = null;
-    _backgroundPicture = null;
-    _backgroundGradient = null;
+    _backgroundFill = null;
     _backgroundFromSource = false;
   }
 
@@ -736,7 +743,7 @@ class PmlSlide {
     _background = value;
     inheritsMasterBackground = value.isEmpty;
     _primaryMasterBackground = null;
-    backgroundShapes.removeWhere((shape) => shape.isBackgroundPicture);
+    backgroundShapes.removeWhere((shape) => shape.isBackgroundFill);
   }
 
   /// Whether a master-background edit should update this slide's paper.
@@ -775,7 +782,7 @@ class PmlSlide {
   void updateMasterBackground(String value) {
     if (inheritsMasterBackground) {
       setInheritedBackground(value, masterBackground: value);
-      backgroundShapes.removeWhere((shape) => shape.isBackgroundPicture);
+      backgroundShapes.removeWhere((shape) => shape.isBackgroundFill);
     }
   }
 
@@ -824,16 +831,10 @@ class PmlSlide {
     ).._primaryMasterBackground = _primaryMasterBackground;
     result._sourceBackground = _sourceBackground?.copy();
     result._backgroundFromSource = _backgroundFromSource;
-    if (_backgroundPicture != null) {
-      final int index = backgroundShapes.indexOf(_backgroundPicture!);
+    if (_backgroundFill != null) {
+      final int index = backgroundShapes.indexOf(_backgroundFill!);
       if (index >= 0) {
-        result._backgroundPicture = result.backgroundShapes[index];
-      }
-    }
-    if (_backgroundGradient != null) {
-      final int index = backgroundShapes.indexOf(_backgroundGradient!);
-      if (index >= 0) {
-        result._backgroundGradient = result.backgroundShapes[index];
+        result._backgroundFill = result.backgroundShapes[index];
       }
     }
     return result;

@@ -58,6 +58,7 @@ PmlPresentation _deck({required bool inherited, bool gradient = false}) {
       gradient: PmlShape(
         id: 1,
         name: 'Background gradient',
+        isBackgroundGradient: true,
         fillColor: 'FF0000',
         gradient: PmlGradientFill(
           stops: [

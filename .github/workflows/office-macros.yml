@@ -76,6 +76,7 @@ jobs:
           test/office_steps_test.dart
           test/word_step_atomicity_test.dart
           test/word_steps_vocabulary_test.dart
+          test/style_cascade_test.dart
           test/word_structure_steps_test.dart
           test/table_grid_steps_test.dart
           test/word_table_grid_addressing_test.dart

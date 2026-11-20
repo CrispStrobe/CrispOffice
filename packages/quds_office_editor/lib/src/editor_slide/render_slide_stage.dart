@@ -1870,8 +1870,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   }
 
   bool _hiddenBackgroundPicture(PmlSlide target, PmlShape shape) =>
-      (shape.isBackgroundPicture ||
-          identical(shape, target.backgroundGradient)) &&
+      shape.isBackgroundFill &&
       target.inheritsMasterBackground &&
       (master?.hasAuthoredBackground ?? false);
 

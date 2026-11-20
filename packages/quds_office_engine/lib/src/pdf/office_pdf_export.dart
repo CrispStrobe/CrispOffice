@@ -1706,10 +1706,14 @@ abstract final class OfficePdfExport {
       case PmlShapePreset.rect:
         canvas.rect(x, y, w, h);
       case PmlShapePreset.roundRect:
-        canvas.roundedRect(x, y, w, h, 8);
+        canvas.roundedRect(x, y, w, h, math.min(8, math.min(w, h) / 4));
       case PmlShapePreset.ellipse:
         canvas.ellipse(x, y, w, h);
       case PmlShapePreset.triangle:
+        canvas.moveTo(x + w / 2, y);
+        canvas.lineTo(x + w, y + h);
+        canvas.lineTo(x, y + h);
+        canvas.closePath();
       case PmlShapePreset.diamond:
       case PmlShapePreset.hexagon:
       case PmlShapePreset.pentagon:
@@ -1717,18 +1721,22 @@ abstract final class OfficePdfExport {
       case PmlShapePreset.chevron:
       case PmlShapePreset.parallelogram:
       case PmlShapePreset.trapezoid:
-      case PmlShapePreset.downArrow:
-      case PmlShapePreset.upArrow:
-      case PmlShapePreset.leftArrow:
-      case PmlShapePreset.rightArrow:
         _shapePath(canvas, preset, x, y, w, h);
+      case PmlShapePreset.downArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.down);
+      case PmlShapePreset.upArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.up);
+      case PmlShapePreset.leftArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.left);
+      case PmlShapePreset.rightArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.right);
       case PmlShapePreset.connector:
         canvas.rect(x, y, w, h);
       case PmlShapePreset.freeform:
         if (path.length >= 2) {
           canvas.moveTo(x + path.first.x / 12700, y + path.first.y / 12700);
-          for (int i = 1; i < path.length; i++) {
-            canvas.lineTo(x + path[i].x / 12700, y + path[i].y / 12700);
+          for (final point in path.skip(1)) {
+            canvas.lineTo(x + point.x / 12700, y + point.y / 12700);
           }
           canvas.closePath();
         } else {
@@ -1739,24 +1747,37 @@ abstract final class OfficePdfExport {
     final double angle = gradient.angleDegrees;
     final double cx = x + w / 2;
     final double cy = y + h / 2;
-    final double radians = angle * math.pi / 180;
-    final double span =
-        w * math.cos(radians).abs() + h * math.sin(radians).abs();
-    final double crossSpan =
-        w * math.sin(radians).abs() + h * math.cos(radians).abs();
-    canvas.rotateAround(cx, cy, angle);
     const int steps = 72;
-    for (int i = 0; i < steps; i++) {
-      final double t0 = i / steps;
-      final double t1 = (i + 1) / steps;
-      canvas.setFillColor(_gradientColor(gradient, (t0 + t1) / 2));
-      canvas.rect(
-        cx - span / 2 + span * t0,
-        cy - crossSpan / 2,
-        span * (t1 - t0) + 0.35,
-        crossSpan,
-      );
-      canvas.fill();
+    if (gradient.radial) {
+      canvas.fillRect(x, y, w, h, gradient.stops.last.color);
+      final double radius = math.min(w, h) / 2;
+      for (var i = steps; i > 0; i--) {
+        final double r = radius * i / steps;
+        canvas.setFillColor(_gradientColor(gradient, (i - .5) / steps));
+        canvas.ellipse(cx - r, cy - r, r * 2, r * 2);
+        canvas.fill();
+      }
+    } else {
+      final double radians = angle * math.pi / 180;
+      final double cosine = math.cos(radians).abs();
+      final double sine = math.sin(radians).abs();
+      // Project the bounds onto the gradient direction, matching the editor.
+      // A horizontal gradient spans w, and a vertical one spans h.
+      final double span = w * cosine + h * sine;
+      final double cross = w * sine + h * cosine;
+      canvas.rotateAround(cx, cy, angle);
+      for (int i = 0; i < steps; i++) {
+        final double t0 = i / steps;
+        final double t1 = (i + 1) / steps;
+        canvas.setFillColor(_gradientColor(gradient, (t0 + t1) / 2));
+        canvas.rect(
+          cx - span / 2 + span * t0,
+          cy - cross / 2,
+          span * (t1 - t0) + 0.35,
+          cross,
+        );
+        canvas.fill();
+      }
     }
     canvas.restore();
   }
@@ -2124,9 +2145,7 @@ abstract final class OfficePdfExport {
         // deleting imported snapshots or overriding local slide/layout fills.
         return [
           for (final shape in slide.backgroundShapes)
-            if (!shape.isBackgroundPicture &&
-                !identical(shape, slide.backgroundGradient))
-              shape,
+            if (!shape.isBackgroundFill) shape,
         ];
       }
       return slide.backgroundShapes;
