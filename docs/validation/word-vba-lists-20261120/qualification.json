@@ -1,0 +1,50 @@
+{
+  "recorded_at_utc": "2026-11-20T15:56:38.961030+00:00",
+  "source_commit": "57456c602856a8ec56095352e9c1b9b17476ea69",
+  "source_tree": "ef086f4b2fe1d5a4db86f53e2da7bf210289dba7",
+  "accepted": true,
+  "github_actions_used": false,
+  "regression": {
+    "passing_cases": 2292,
+    "files": 62,
+    "failed": 0,
+    "skipped": 0,
+    "input_count": 1118,
+    "inputs_unchanged": true,
+    "new_cases": {
+      "office_vba_word_lists_test.dart": 95,
+      "office_macro_word_list_format_test.dart": 61,
+      "office_vba_word_lists_integration_test.dart": 22
+    },
+    "unchanged_previous_cases": 2114
+  },
+  "portable": {
+    "raw_equal": true,
+    "raw_bytes": 1176,
+    "canonical_equal": true,
+    "canonical_sha256": "3ad9648c52a2495ffa433f629e97302edd94501b7393424036f6f81986e01def",
+    "source_sha256": "96ddf69952ce93af84949ac18e070e7b10de9a0f6882c6ca228eec4f400daf75",
+    "input_count": 1116
+  },
+  "analysis": "Whole engine, --fatal-infos, exit 0, no issues found",
+  "format": {
+    "changed_dart_files": 7,
+    "changes": 0,
+    "exit_code": 0
+  },
+  "independent_source_review": "No unresolved concrete issue; two field-span findings corrected",
+  "independent_evidence_review": "Accepted; raw reporter and byte/hash identities recomputed",
+  "captured_inventory": {
+    "branches": 21,
+    "pull_requests": 258,
+    "upstream": 4
+  },
+  "uncovered_captured_heads": 0,
+  "qualification_input_manifest_sha256": "2bb7c222c6959bea8639509478e8cb18ee713679b7bfb664b8e34b294f9ddb1b",
+  "excluded_attempts": [
+    "Stopped full gate v1: 162 partial cases, exit 130",
+    "Stopped full gate v2: 600 partial cases, exit 130",
+    "Failed first final portable run and older development checks"
+  ],
+  "scope_limit": "Modules share one VM isolate and process-wide caches. This does not claim the original separate-file isolate boundary. No selected test mutates shared engine configuration; native ListFormat cases use fresh documents."
+}

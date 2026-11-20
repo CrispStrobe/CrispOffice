@@ -1,0 +1,532 @@
+{
+  "accepted": true,
+  "case_identity": [
+    "file",
+    "name",
+    "occurrence"
+  ],
+  "complete": true,
+  "declared_per_file_cases": {
+    "odt_tab_stop_fidelity_test.dart": 8,
+    "odt_tab_style_cache_test.dart": 5,
+    "odt_tab_style_fidelity_test.dart": 2,
+    "office_macro_expansion_test.dart": 5,
+    "office_macro_runtime_test.dart": 25,
+    "office_macro_word_list_format_test.dart": 61,
+    "office_macro_word_revision_guard_test.dart": 2,
+    "office_macro_word_tab_stops_test.dart": 40,
+    "office_operations_test.dart": 27,
+    "office_vba_arguments_integration_test.dart": 16,
+    "office_vba_arguments_test.dart": 68,
+    "office_vba_arrays_boundaries_test.dart": 144,
+    "office_vba_arrays_integration_test.dart": 11,
+    "office_vba_arrays_test.dart": 32,
+    "office_vba_conformance_test.dart": 115,
+    "office_vba_control_flow_boundaries_test.dart": 42,
+    "office_vba_control_flow_integration_test.dart": 9,
+    "office_vba_control_flow_test.dart": 35,
+    "office_vba_dynamic_arrays_integration_test.dart": 11,
+    "office_vba_dynamic_arrays_test.dart": 50,
+    "office_vba_integration_test.dart": 12,
+    "office_vba_language_test.dart": 55,
+    "office_vba_powerpoint_cli_test.dart": 2,
+    "office_vba_powerpoint_conformance_test.dart": 24,
+    "office_vba_powerpoint_integration_test.dart": 7,
+    "office_vba_powerpoint_layout_integration_test.dart": 46,
+    "office_vba_powerpoint_layout_test.dart": 41,
+    "office_vba_powerpoint_margins_integration_test.dart": 16,
+    "office_vba_powerpoint_margins_test.dart": 27,
+    "office_vba_powerpoint_test.dart": 63,
+    "office_vba_procedure_boundaries_test.dart": 19,
+    "office_vba_procedures_integration_test.dart": 10,
+    "office_vba_procedures_test.dart": 26,
+    "office_vba_string_intrinsics_integration_test.dart": 11,
+    "office_vba_string_intrinsics_test.dart": 102,
+    "office_vba_variant_conformance_test.dart": 162,
+    "office_vba_variant_conversions_integration_test.dart": 9,
+    "office_vba_variant_conversions_test.dart": 239,
+    "office_vba_word_argument_shapes_test.dart": 8,
+    "office_vba_word_cli_test.dart": 5,
+    "office_vba_word_conformance_test.dart": 46,
+    "office_vba_word_extensions_test.dart": 30,
+    "office_vba_word_format_integration_test.dart": 2,
+    "office_vba_word_integration_test.dart": 14,
+    "office_vba_word_language_test.dart": 156,
+    "office_vba_word_lists_integration_test.dart": 22,
+    "office_vba_word_lists_test.dart": 95,
+    "office_vba_word_paragraph_layout_integration_test.dart": 17,
+    "office_vba_word_paragraph_layout_test.dart": 37,
+    "office_vba_word_tabstops_integration_test.dart": 10,
+    "office_vba_word_tabstops_test.dart": 85,
+    "office_vba_word_typography_integration_test.dart": 30,
+    "office_vba_word_typography_test.dart": 48,
+    "style_cascade_test.dart": 11,
+    "styleless_import_fidelity_test.dart": 5,
+    "word_compatibility_fidelity_test.dart": 5,
+    "word_fidelity_test.dart": 19,
+    "word_package_preservation_test.dart": 32,
+    "word_paragraph_mark_layout_test.dart": 3,
+    "word_proofing_inheritance_test.dart": 16,
+    "word_referenced_styles_and_breaks_test.dart": 2,
+    "word_styles_layout_test.dart": 15
+  },
+  "errors": [],
+  "execution": "One VM suite, original test modules imported as separate Dart libraries and registered under a filename group; original engine cwd; serial cases.",
+  "exit_code": 0,
+  "failed_cases": 0,
+  "file_count": 62,
+  "finished_utc": "2026-11-20T15:51:42.842707+00:00",
+  "hashes": {
+    "cases.json.gz": "29c1290a686ef734ac5e4ca18a6c4f56994c1eeadc8b3051c2831f2d596a6fcd",
+    "command.json": "95c376335dd2583da60afe2e6b6686c75737ab02517aef2d7c3dc255c8ef3c3c",
+    "inputs-after.json.gz": "91ae8c65aaf46f421d519ba91d268f239b74785d8c44ccdf5bff7060a2f03914",
+    "inputs-before.json.gz": "7dad40067b9a670f90c1dd5deed591e0ca71b3bce2aa85fd2c9097c5f404cce1",
+    "plan.json": "152021f9fed7fe173d86e8acb17ba869957019583e222e031373394371cddd1f",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout.jsonl": "f92984f7c2c97acdf897229a89731629e773347aafdfdc6e45b62235b92b72f5",
+    "word_office_gate_test.bootstrap.isolate.dart": "cfcfe949d6d80043054a45aa12b2431bc36393465837b192eb6121c275217ef9",
+    "word_office_gate_test.dart": "50fb8f569c7d2b7f84b1b26f3c24ce964c2e1d5d60a0755a66c1a8cf13a7616d"
+  },
+  "head_matches_worktree": true,
+  "hidden_completions": 1,
+  "input_entries": 1118,
+  "inputs_unchanged": true,
+  "isolation_difference": "Modules share one VM isolate and process-wide caches. This does not claim the original separate-file isolate boundary. No selected test mutates shared engine configuration; native ListFormat cases use fresh documents.",
+  "passing_cases": 2292,
+  "per_file_cases": {
+    "odt_tab_stop_fidelity_test.dart": 8,
+    "odt_tab_style_cache_test.dart": 5,
+    "odt_tab_style_fidelity_test.dart": 2,
+    "office_macro_expansion_test.dart": 5,
+    "office_macro_runtime_test.dart": 25,
+    "office_macro_word_list_format_test.dart": 61,
+    "office_macro_word_revision_guard_test.dart": 2,
+    "office_macro_word_tab_stops_test.dart": 40,
+    "office_operations_test.dart": 27,
+    "office_vba_arguments_integration_test.dart": 16,
+    "office_vba_arguments_test.dart": 68,
+    "office_vba_arrays_boundaries_test.dart": 144,
+    "office_vba_arrays_integration_test.dart": 11,
+    "office_vba_arrays_test.dart": 32,
+    "office_vba_conformance_test.dart": 115,
+    "office_vba_control_flow_boundaries_test.dart": 42,
+    "office_vba_control_flow_integration_test.dart": 9,
+    "office_vba_control_flow_test.dart": 35,
+    "office_vba_dynamic_arrays_integration_test.dart": 11,
+    "office_vba_dynamic_arrays_test.dart": 50,
+    "office_vba_integration_test.dart": 12,
+    "office_vba_language_test.dart": 55,
+    "office_vba_powerpoint_cli_test.dart": 2,
+    "office_vba_powerpoint_conformance_test.dart": 24,
+    "office_vba_powerpoint_integration_test.dart": 7,
+    "office_vba_powerpoint_layout_integration_test.dart": 46,
+    "office_vba_powerpoint_layout_test.dart": 41,
+    "office_vba_powerpoint_margins_integration_test.dart": 16,
+    "office_vba_powerpoint_margins_test.dart": 27,
+    "office_vba_powerpoint_test.dart": 63,
+    "office_vba_procedure_boundaries_test.dart": 19,
+    "office_vba_procedures_integration_test.dart": 10,
+    "office_vba_procedures_test.dart": 26,
+    "office_vba_string_intrinsics_integration_test.dart": 11,
+    "office_vba_string_intrinsics_test.dart": 102,
+    "office_vba_variant_conformance_test.dart": 162,
+    "office_vba_variant_conversions_integration_test.dart": 9,
+    "office_vba_variant_conversions_test.dart": 239,
+    "office_vba_word_argument_shapes_test.dart": 8,
+    "office_vba_word_cli_test.dart": 5,
+    "office_vba_word_conformance_test.dart": 46,
+    "office_vba_word_extensions_test.dart": 30,
+    "office_vba_word_format_integration_test.dart": 2,
+    "office_vba_word_integration_test.dart": 14,
+    "office_vba_word_language_test.dart": 156,
+    "office_vba_word_lists_integration_test.dart": 22,
+    "office_vba_word_lists_test.dart": 95,
+    "office_vba_word_paragraph_layout_integration_test.dart": 17,
+    "office_vba_word_paragraph_layout_test.dart": 37,
+    "office_vba_word_tabstops_integration_test.dart": 10,
+    "office_vba_word_tabstops_test.dart": 85,
+    "office_vba_word_typography_integration_test.dart": 30,
+    "office_vba_word_typography_test.dart": 48,
+    "style_cascade_test.dart": 11,
+    "styleless_import_fidelity_test.dart": 5,
+    "word_compatibility_fidelity_test.dart": 5,
+    "word_fidelity_test.dart": 19,
+    "word_package_preservation_test.dart": 32,
+    "word_paragraph_mark_layout_test.dart": 3,
+    "word_proofing_inheritance_test.dart": 16,
+    "word_referenced_styles_and_breaks_test.dart": 2,
+    "word_styles_layout_test.dart": 15
+  },
+  "problems": [],
+  "same_source_test_count_checks": {
+    "odt_tab_stop_fidelity_test.dart": {
+      "current": 8,
+      "matches": true,
+      "previous": 8
+    },
+    "odt_tab_style_cache_test.dart": {
+      "current": 5,
+      "matches": true,
+      "previous": 5
+    },
+    "odt_tab_style_fidelity_test.dart": {
+      "current": 2,
+      "matches": true,
+      "previous": 2
+    },
+    "office_macro_expansion_test.dart": {
+      "current": 5,
+      "matches": true,
+      "previous": 5
+    },
+    "office_macro_runtime_test.dart": {
+      "current": 25,
+      "matches": true,
+      "previous": 25
+    },
+    "office_macro_word_revision_guard_test.dart": {
+      "current": 2,
+      "matches": true,
+      "previous": 2
+    },
+    "office_macro_word_tab_stops_test.dart": {
+      "current": 40,
+      "matches": true,
+      "previous": 40
+    },
+    "office_operations_test.dart": {
+      "current": 27,
+      "matches": true,
+      "previous": 27
+    },
+    "office_vba_arguments_integration_test.dart": {
+      "current": 16,
+      "matches": true,
+      "previous": 16
+    },
+    "office_vba_arguments_test.dart": {
+      "current": 68,
+      "matches": true,
+      "previous": 68
+    },
+    "office_vba_arrays_boundaries_test.dart": {
+      "current": 144,
+      "matches": true,
+      "previous": 144
+    },
+    "office_vba_arrays_integration_test.dart": {
+      "current": 11,
+      "matches": true,
+      "previous": 11
+    },
+    "office_vba_arrays_test.dart": {
+      "current": 32,
+      "matches": true,
+      "previous": 32
+    },
+    "office_vba_conformance_test.dart": {
+      "current": 115,
+      "matches": true,
+      "previous": 115
+    },
+    "office_vba_control_flow_boundaries_test.dart": {
+      "current": 42,
+      "matches": true,
+      "previous": 42
+    },
+    "office_vba_control_flow_integration_test.dart": {
+      "current": 9,
+      "matches": true,
+      "previous": 9
+    },
+    "office_vba_control_flow_test.dart": {
+      "current": 35,
+      "matches": true,
+      "previous": 35
+    },
+    "office_vba_dynamic_arrays_integration_test.dart": {
+      "current": 11,
+      "matches": true,
+      "previous": 11
+    },
+    "office_vba_dynamic_arrays_test.dart": {
+      "current": 50,
+      "matches": true,
+      "previous": 50
+    },
+    "office_vba_integration_test.dart": {
+      "current": 12,
+      "matches": true,
+      "previous": 12
+    },
+    "office_vba_language_test.dart": {
+      "current": 55,
+      "matches": true,
+      "previous": 55
+    },
+    "office_vba_powerpoint_cli_test.dart": {
+      "current": 2,
+      "matches": true,
+      "previous": 2
+    },
+    "office_vba_powerpoint_conformance_test.dart": {
+      "current": 24,
+      "matches": true,
+      "previous": 24
+    },
+    "office_vba_powerpoint_integration_test.dart": {
+      "current": 7,
+      "matches": true,
+      "previous": 7
+    },
+    "office_vba_powerpoint_layout_integration_test.dart": {
+      "current": 46,
+      "matches": true,
+      "previous": 46
+    },
+    "office_vba_powerpoint_layout_test.dart": {
+      "current": 41,
+      "matches": true,
+      "previous": 41
+    },
+    "office_vba_powerpoint_margins_integration_test.dart": {
+      "current": 16,
+      "matches": true,
+      "previous": 16
+    },
+    "office_vba_powerpoint_margins_test.dart": {
+      "current": 27,
+      "matches": true,
+      "previous": 27
+    },
+    "office_vba_powerpoint_test.dart": {
+      "current": 63,
+      "matches": true,
+      "previous": 63
+    },
+    "office_vba_procedure_boundaries_test.dart": {
+      "current": 19,
+      "matches": true,
+      "previous": 19
+    },
+    "office_vba_procedures_integration_test.dart": {
+      "current": 10,
+      "matches": true,
+      "previous": 10
+    },
+    "office_vba_procedures_test.dart": {
+      "current": 26,
+      "matches": true,
+      "previous": 26
+    },
+    "office_vba_string_intrinsics_integration_test.dart": {
+      "current": 11,
+      "matches": true,
+      "previous": 11
+    },
+    "office_vba_string_intrinsics_test.dart": {
+      "current": 102,
+      "matches": true,
+      "previous": 102
+    },
+    "office_vba_variant_conformance_test.dart": {
+      "current": 162,
+      "matches": true,
+      "previous": 162
+    },
+    "office_vba_variant_conversions_integration_test.dart": {
+      "current": 9,
+      "matches": true,
+      "previous": 9
+    },
+    "office_vba_variant_conversions_test.dart": {
+      "current": 239,
+      "matches": true,
+      "previous": 239
+    },
+    "office_vba_word_argument_shapes_test.dart": {
+      "current": 8,
+      "matches": true,
+      "previous": 8
+    },
+    "office_vba_word_cli_test.dart": {
+      "current": 5,
+      "matches": true,
+      "previous": 5
+    },
+    "office_vba_word_conformance_test.dart": {
+      "current": 46,
+      "matches": true,
+      "previous": 46
+    },
+    "office_vba_word_extensions_test.dart": {
+      "current": 30,
+      "matches": true,
+      "previous": 30
+    },
+    "office_vba_word_format_integration_test.dart": {
+      "current": 2,
+      "matches": true,
+      "previous": 2
+    },
+    "office_vba_word_integration_test.dart": {
+      "current": 14,
+      "matches": true,
+      "previous": 14
+    },
+    "office_vba_word_language_test.dart": {
+      "current": 156,
+      "matches": true,
+      "previous": 156
+    },
+    "office_vba_word_paragraph_layout_integration_test.dart": {
+      "current": 17,
+      "matches": true,
+      "previous": 17
+    },
+    "office_vba_word_paragraph_layout_test.dart": {
+      "current": 37,
+      "matches": true,
+      "previous": 37
+    },
+    "office_vba_word_tabstops_integration_test.dart": {
+      "current": 10,
+      "matches": true,
+      "previous": 10
+    },
+    "office_vba_word_tabstops_test.dart": {
+      "current": 85,
+      "matches": true,
+      "previous": 85
+    },
+    "office_vba_word_typography_integration_test.dart": {
+      "current": 30,
+      "matches": true,
+      "previous": 30
+    },
+    "office_vba_word_typography_test.dart": {
+      "current": 48,
+      "matches": true,
+      "previous": 48
+    },
+    "style_cascade_test.dart": {
+      "current": 11,
+      "matches": true,
+      "previous": 11
+    },
+    "styleless_import_fidelity_test.dart": {
+      "current": 5,
+      "matches": true,
+      "previous": 5
+    },
+    "word_compatibility_fidelity_test.dart": {
+      "current": 5,
+      "matches": true,
+      "previous": 5
+    },
+    "word_fidelity_test.dart": {
+      "current": 19,
+      "matches": true,
+      "previous": 19
+    },
+    "word_package_preservation_test.dart": {
+      "current": 32,
+      "matches": true,
+      "previous": 32
+    },
+    "word_paragraph_mark_layout_test.dart": {
+      "current": 3,
+      "matches": true,
+      "previous": 3
+    },
+    "word_proofing_inheritance_test.dart": {
+      "current": 16,
+      "matches": true,
+      "previous": 16
+    },
+    "word_referenced_styles_and_breaks_test.dart": {
+      "current": 2,
+      "matches": true,
+      "previous": 2
+    },
+    "word_styles_layout_test.dart": {
+      "current": 15,
+      "matches": true,
+      "previous": 15
+    }
+  },
+  "seconds": 1212.483,
+  "skipped_cases": 0,
+  "source_commit": "57456c602856a8ec56095352e9c1b9b17476ea69",
+  "source_tree": "ef086f4b2fe1d5a4db86f53e2da7bf210289dba7",
+  "started_utc": "2026-11-20T15:31:30.359427+00:00",
+  "groups": [
+    {
+      "name": "Complete Word and Office regression selection",
+      "files": [
+        "odt_tab_stop_fidelity_test.dart",
+        "odt_tab_style_cache_test.dart",
+        "odt_tab_style_fidelity_test.dart",
+        "office_macro_expansion_test.dart",
+        "office_macro_runtime_test.dart",
+        "office_macro_word_list_format_test.dart",
+        "office_macro_word_revision_guard_test.dart",
+        "office_macro_word_tab_stops_test.dart",
+        "office_operations_test.dart",
+        "office_vba_arguments_integration_test.dart",
+        "office_vba_arguments_test.dart",
+        "office_vba_arrays_boundaries_test.dart",
+        "office_vba_arrays_integration_test.dart",
+        "office_vba_arrays_test.dart",
+        "office_vba_conformance_test.dart",
+        "office_vba_control_flow_boundaries_test.dart",
+        "office_vba_control_flow_integration_test.dart",
+        "office_vba_control_flow_test.dart",
+        "office_vba_dynamic_arrays_integration_test.dart",
+        "office_vba_dynamic_arrays_test.dart",
+        "office_vba_integration_test.dart",
+        "office_vba_language_test.dart",
+        "office_vba_powerpoint_cli_test.dart",
+        "office_vba_powerpoint_conformance_test.dart",
+        "office_vba_powerpoint_integration_test.dart",
+        "office_vba_powerpoint_layout_integration_test.dart",
+        "office_vba_powerpoint_layout_test.dart",
+        "office_vba_powerpoint_margins_integration_test.dart",
+        "office_vba_powerpoint_margins_test.dart",
+        "office_vba_powerpoint_test.dart",
+        "office_vba_procedure_boundaries_test.dart",
+        "office_vba_procedures_integration_test.dart",
+        "office_vba_procedures_test.dart",
+        "office_vba_string_intrinsics_integration_test.dart",
+        "office_vba_string_intrinsics_test.dart",
+        "office_vba_variant_conformance_test.dart",
+        "office_vba_variant_conversions_integration_test.dart",
+        "office_vba_variant_conversions_test.dart",
+        "office_vba_word_argument_shapes_test.dart",
+        "office_vba_word_cli_test.dart",
+        "office_vba_word_conformance_test.dart",
+        "office_vba_word_extensions_test.dart",
+        "office_vba_word_format_integration_test.dart",
+        "office_vba_word_integration_test.dart",
+        "office_vba_word_language_test.dart",
+        "office_vba_word_lists_integration_test.dart",
+        "office_vba_word_lists_test.dart",
+        "office_vba_word_paragraph_layout_integration_test.dart",
+        "office_vba_word_paragraph_layout_test.dart",
+        "office_vba_word_tabstops_integration_test.dart",
+        "office_vba_word_tabstops_test.dart",
+        "office_vba_word_typography_integration_test.dart",
+        "office_vba_word_typography_test.dart",
+        "style_cascade_test.dart",
+        "styleless_import_fidelity_test.dart",
+        "word_compatibility_fidelity_test.dart",
+        "word_fidelity_test.dart",
+        "word_package_preservation_test.dart",
+        "word_paragraph_mark_layout_test.dart",
+        "word_proofing_inheritance_test.dart",
+        "word_referenced_styles_and_breaks_test.dart",
+        "word_styles_layout_test.dart"
+      ]
+    }
+  ]
+}

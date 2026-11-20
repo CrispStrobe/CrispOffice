@@ -1,0 +1,182 @@
+{
+  "schema": "quds-word-vba-independent-source-review/v1",
+  "reviewer": "remote_inventory subagent; separate from compiler and native implementation authors",
+  "reviewed_at_utc": "2026-11-20T15:34:04.302140+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "source_commit": "57456c602856a8ec56095352e9c1b9b17476ea69",
+  "source_tree": "ef086f4b2fe1d5a4db86f53e2da7bf210289dba7",
+  "files": [
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "mode": "100644",
+      "type": "blob",
+      "git_blob": "0dd54986bbe850fe4d611738f1c11166e13b3a2e",
+      "sha256": "c3ca3a8bcb9cca4fb7cf7e3cd1019c3645143bd00c9524e3489225c1c5d18a00",
+      "working_file_matches_frozen_blob": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_lists.bas",
+      "mode": "100644",
+      "type": "blob",
+      "git_blob": "3e21bbd5d590a334156fdd96bb65b69bd1f46207",
+      "sha256": "96ddf69952ce93af84949ac18e070e7b10de9a0f6882c6ca228eec4f400daf75",
+      "working_file_matches_frozen_blob": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "mode": "100644",
+      "type": "blob",
+      "git_blob": "50e8eeda64be2f6a1c3839637fd6537c1b852e23",
+      "sha256": "4bc983e37a336eaebbdb23bc7004c91cba6ab4f39df68503cd4a4eb6c77a225b",
+      "working_file_matches_frozen_blob": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+      "mode": "100644",
+      "type": "blob",
+      "git_blob": "8dba722adc862f76b6b04569f3152f9d8c17919a",
+      "sha256": "bd2e4ccbe036efb407969dc1b6e01f1f63a99b6a44615c1c73f4d19e157e30a3",
+      "working_file_matches_frozen_blob": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "mode": "100644",
+      "type": "blob",
+      "git_blob": "4867dea5bc789a04725b0111f25033c77e12f0ef",
+      "sha256": "08cdda031dde3327f1f54ece5679d66527e2da9a6f68a6e65ba62ab75d1e29a4",
+      "working_file_matches_frozen_blob": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_word_list_format_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "git_blob": "266022d13f6092708303027cc76e58a75afa410e",
+      "sha256": "bcd0ac62f2f7caffaf5b751a9cbea7b118106b818dfb3d0003cc9133eedda660",
+      "working_file_matches_frozen_blob": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_lists_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "git_blob": "44d8f54846de1420f3c6c2bdb790740553941e53",
+      "sha256": "55a13de52913f218a96f78765be0e364d7a807b59abff61288193bfe043b6d7d",
+      "working_file_matches_frozen_blob": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_lists_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "git_blob": "d422e2a2d772e815eb677763205642a7abdd1988",
+      "sha256": "02bd03066a14d8c96e28d1bcec57771d700d9f4012b9796b8939d83b765572d0",
+      "working_file_matches_frozen_blob": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_lists_smoke.dart",
+      "mode": "100644",
+      "type": "blob",
+      "git_blob": "efd4655334b7d03a46975cf438dc71948e5141e5",
+      "sha256": "bc3322c4aa1d7630d7999d528bee6baa3a65340bc0558136fc419b3dd8748805",
+      "working_file_matches_frozen_blob": true
+    }
+  ],
+  "scope": [
+    "ListFormat compiler object typing, immutable selector aliases, required ByVal parameters, With and call/enum binding",
+    "Native list classification/default allocation, inherited suppression, sparse property preservation, direct operation preparation and detached session publication",
+    "LISTNUM field scanning across visible paragraphs and opaque body boundaries",
+    "New compiler, native, session integration, actual BAS and portable driver coverage against the documented bounded contract",
+    "Shared serializer-preservation refusal across modeled body/header/footer/note/comment stories and regression assertions that compare complete native field-token sequences"
+  ],
+  "confirmed_findings": [
+    {
+      "id": "opaque-listnum-field-span",
+      "status": "fixed_in_reviewed_source",
+      "problem": "All-number removal previously ignored a LISTNUM opening boundary inside a preceding opaque body block. It could accept removal on a selected result paragraph and preserve the LISTNUM field despite reporting success.",
+      "reproduced_variants": [
+        "customXml opening with end in selected paragraph",
+        "customXml opening with end in later opaque block",
+        "smartTag opening with end in selected paragraph",
+        "smartTag opening with end in later opaque block"
+      ],
+      "pre_fix_observation": "All four direct-operation probes accepted and retained LISTNUM; two selected middle paragraphs contained no modeled field boundary at all.",
+      "resolution": "All-number removal now inspects native field tokens in every opaque body block and inline, including outside the selected paragraph, and refuses when spans cannot be resolved. Selected orphan separator/end, duplicate separators, and instruction-after-separator are refused. Paragraph-only behavior is additionally subject to the shared serializer-preservation guard described by the second finding.",
+      "regression_binding": "Frozen native tests and portable driver cover all four opaque-boundary cases with direct/session and byte/revision/recording rollback. The fully opaque variants preserve complete native field-token sequences across three reads; variants with modeled orphan endings refuse."
+    },
+    {
+      "id": "modeled-unbalanced-field-boundary-serialization",
+      "status": "fixed_in_reviewed_source",
+      "discovery": "The first final portable run failed its full field-token preservation assertion; the native implementation agent traced the difference to the existing serializer rule. This supersedes the earlier dc5 source-review conclusion.",
+      "problem": "With a field opening hidden in an opaque block and an ending modeled in the selected paragraph, paragraph-only removal could succeed but serialization discarded the modeled end as an orphan. Keeping text, numbering suppression and the LISTNUM instruction alone did not detect the lost boundary.",
+      "resolution": "The shared _ListEdit constructor now calls WordFieldSpans.unbalanced(document) and refuses every new list operation when the returned set is nonempty, before native package or paragraph mutation. The guard uses exactly the serializer predicate across its modeled stories; the serializer itself is unchanged.",
+      "read_only_verification": "Inspected the final constructor, both callers, the serializer predicate and its story traversal. The guard precedes package mutation, paragraph property replacement and numbering definition allocation/publication. The preceding paragraph-property preparation is detached. Both default kinds and both removal modes pass through the guard.",
+      "regression_binding": "Ten story cases exercise four new operation forms each for direct refusal and unchanged properties/package. Portable coverage distinguishes two atomic paragraph-mode refusals from two successful fully opaque field-preservation variants, with validate/run, recording, byte and revision checks and two additional reopens."
+    }
+  ],
+  "probe_results": [
+    {
+      "probe": "cross_fields.dart",
+      "outcome": "Ordinary cross-paragraph LISTNUM and instructions split across visible paragraphs correctly refuse when target overlaps; an unrelated completed LISTNUM field is accepted."
+    },
+    {
+      "probe": "inherited_indent.dart",
+      "outcome": "A native numbering-level 72pt left/18pt hanging indent survives both matching default toggle and RemoveNumbers through save/reopen; no defect confirmed."
+    },
+    {
+      "probe": "opaque_field_alias.dart",
+      "outcome": "After the fix, w-prefixed, q-prefixed, and default Word-namespace elements with Word-qualified attributes all refuse. Imported opaque roots retain required namespace declarations; no namespace-alias evasion."
+    }
+  ],
+  "probe_artifacts": [
+    {
+      "path": "cross_fields.dart",
+      "sha256": "b139d7a0559d4b8d10f80b7a9da9f347069fa28c6e7d482c9b2f7c0fd2dd3a8a",
+      "bytes": 1707
+    },
+    {
+      "path": "inherited_indent.dart",
+      "sha256": "cbfe2897484ecc469a62f3295e1ca6f3fe1baa54b8b97ba5ce9f527b4d4506c3",
+      "bytes": 1977
+    },
+    {
+      "path": "opaque_field_span.dart",
+      "sha256": "72a0b03aeb57bead7887d58f4b22f3f2de252cb316128e5596845ae8fb0637cb",
+      "bytes": 1808
+    },
+    {
+      "path": "opaque_field_alias.dart",
+      "sha256": "afb17909d4d481e92de324290085f62acc8887096c28f3eeb664f8039b969e14",
+      "bytes": 1639
+    },
+    {
+      "path": "opaque-field-alias-valid.jsonl",
+      "sha256": "77bf91d743cfa4957bb7cf968424e92a781b70d90fad4575f449c680daa312e5",
+      "bytes": 2248
+    }
+  ],
+  "final_namespace_probe_outcomes": [
+    {
+      "prefix": "w",
+      "result": "Unsupported operation: RemoveNumbers all cannot determine field spans through opaque body blocks."
+    },
+    {
+      "prefix": "q",
+      "result": "Unsupported operation: RemoveNumbers all cannot determine field spans through opaque body blocks."
+    },
+    {
+      "prefix": "(default)",
+      "result": "Unsupported operation: RemoveNumbers all cannot determine field spans through opaque body blocks."
+    }
+  ],
+  "unresolved_concrete_issues": [],
+  "limits": [
+    "This is a bounded independent source review with targeted development probes, not proof of complete Word/COM/VBA parity or absence of all defects.",
+    "The reviewer authored the initial integration/portable artifacts; compiler and native implementation review was independent of their authors. The native implementation agent authored the final portable correction.",
+    "All-number removal conservatively rejects opaque field-bearing body content even where a specific selected overlap cannot be proven. Every new list method also refuses modeled field boundaries that the existing serializer would discard. Paragraph-only removal remains available for supported ordinary fields and fully opaque packets when this shared guard passes.",
+    "Outline application, live collection/property reads, arbitrary ranges and unsupported Word9/Word10 behaviors remain outside the documented contract.",
+    "This source review does not itself claim the final full regression gate or final VM/JS run passed; those require the separate raw-evidence review.",
+    "No GitHub Actions/status queries or waits were used."
+  ],
+  "final_review_delta": "Read-only inspection of dc5bbcd949ce9a27f2f9e03f1295fa972b953d61..57456c602856a8ec56095352e9c1b9b17476ea69 confirmed the shared unbalanced-field preflight, exact field-token persistence assertions, ten story-level atomicity cases, revised portable refusal/preservation expectations, and matching documentation. The earlier opaque-span guard remains present. No source changes or product tests were performed by this reviewer after the final freeze.",
+  "frozen_source_modified_by_review": false,
+  "superseded": false,
+  "supersedes": "source-review-dc5-superseded.json"
+}
