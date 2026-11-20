@@ -1,0 +1,29 @@
+{
+  "schema": "quds-mail-bulk-word-cutoff-resolution/v1",
+  "resolved_at_utc": "2026-11-20T21:22:53.151605+00:00",
+  "incoming_commit": "ba6b170c1e011853128af6dcb9333ae9e22e79a1",
+  "local_head_before_merge": "f74c670bf731b2fbabd22907d5950a7b104362dd",
+  "source_decisions": {
+    "production": "Accepted parser and all production/driver/BAS inputs unchanged.",
+    "measurement_fixture": "Retain current declaration-order correction and formatting.",
+    "unit_fixture": "Retain current large-scalar regression and formatting.",
+    "named_suites": "Preserve thirteen additional compiler cases and one saved-tab/recording/replay integration case.",
+    "feature_documentation": "Keep the consolidated named/physical contract plus main Office coordinate/native-unit citations; point current runtime qualification at this milestone.",
+    "historical_evidence": "Restore the newer README at its original path and retain incoming-pr271-checkpoint.md verbatim from incoming; keep all newer evidence files."
+  },
+  "source_receipt": "intake-local-word-final-validation.json",
+  "changed_scoped_inputs_from_accepted": [
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+  ],
+  "unchanged_scoped_input_count": 367,
+  "resolved_paths": [
+    "docs/VBA_WORD_MACROS.md",
+    "docs/validation/word-vba-unit-conversions-20261120/incoming-pr271-checkpoint.md",
+    "docs/validation/word-vba-unit-conversions-20261120/README.md",
+    "docs/VBA_PARITY_ROADMAP.md",
+    "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart"
+  ],
+  "status": "RESOLVED_PENDING_TARGETED_QUALIFICATION"
+}
