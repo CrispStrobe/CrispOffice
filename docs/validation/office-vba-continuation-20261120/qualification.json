@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "qualified_at_utc": "2026-11-20T11:14:20.586684+00:00",
+  "acceptance_source": "08020076b1552fef214d7625ace7ae087b70be88",
+  "acceptance_source_tree": "76b0a8eb9625b45ec0deaa9a26baa1bb21db62c8",
+  "integration_commit": "153c818cd6dba07559fead6e86214a8482cf08b7",
+  "integration_tree": "06255edcea0fa902e7ac0ee4f899c4276ee58072",
+  "input_scope": [
+    "packages/quds_office_engine/lib",
+    "packages/quds_office_engine/test",
+    "packages/quds_office_engine/tool",
+    "packages/quds_office_engine/example/macros",
+    "packages/quds_office_editor/fonts",
+    "packages/legacy_doc_parser/lib",
+    "packages/quds_office_engine/pubspec.yaml",
+    "packages/legacy_doc_parser/pubspec.yaml",
+    "pubspec.lock"
+  ],
+  "final_input_scope_matches_acceptance_source": true,
+  "passed": 2190,
+  "failed": 0,
+  "skipped": 0,
+  "unique_cases": 2190,
+  "test_files": 64,
+  "new_property_cases": 165,
+  "exit_code": 0,
+  "source_unchanged_during_gate": true,
+  "analysis": "--fatal-infos: no issues",
+  "format": "17 changed/source paths, zero formatting changes",
+  "portable": {
+    "vm_exit": 0,
+    "compile_js_exit": 0,
+    "node_exit": 0,
+    "byte_equal": true,
+    "word_native_steps": 12,
+    "powerpoint_native_steps": 12,
+    "second_save_semantic_match": true
+  },
+  "github_actions_used_or_awaited": false,
+  "archive": {
+    "path": "runtime/acceptance-evidence.tar.gz",
+    "bytes": 319724,
+    "sha256": "e1fb9b4f685e126fa0470ac4102b1fbeb3692eceb5f4d09d1062e060bf479828"
+  },
+  "limitations": [
+    "No Flutter SDK, widget runtime or editor UI execution available",
+    "No installed Microsoft Word or PowerPoint host qualification",
+    "Historical failed ENOSPC processes excluded from final acceptance counts"
+  ],
+  "excluded_development_attempts": [
+    "Kernel-cache ENOSPC runs recorded in recovery/",
+    "The 5cf source native gate: missing sparse font fixtures, Morph fragment regression and preexisting note-list reader gap",
+    "The 5cf broad VBA gate: ten temporary-directory ENOSPC failures; all cases rerun in accepted final gate"
+  ],
+  "case_identity": "Each declared runner case counted once; repeated labels distinguished by per-file occurrence and recorded runner ID",
+  "distinct_case_labels": 2189,
+  "repeated_labels": {
+    "test/office_macro_slide_format_test.dart::strict Office shape collection refuses <p:grpSp> before a target": 2
+  }
+}

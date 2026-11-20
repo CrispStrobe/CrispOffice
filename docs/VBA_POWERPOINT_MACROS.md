@@ -316,10 +316,12 @@ The text-frame/slideshow continuation adds
 [compiler contracts](../packages/quds_office_engine/test/office_vba_powerpoint_layout_test.dart)
 and [native integration regressions](../packages/quds_office_engine/test/office_vba_powerpoint_layout_integration_test.dart)
 for exact mappings, partial writes, source namespaces, empty/same-value intent,
-opaque containers, rollback, policy, and recording. At this source checkpoint,
-these new checks are unexecuted; the
+opaque containers, rollback, policy, and recording. These checks pass in the
+final combined local gate. The actual slideshow example also passes native
+transactions and repeated save/reopen on VM and compiled JavaScript with identical
+semantic results. See the
 [continuation execution record](validation/office-vba-continuation-20261120/README.md)
-tracks their qualification independently of the earlier baseline.
+for source hashes, raw results and qualification boundaries.
 Specification-derived expectations are separate from observed Office-host
 fixtures; no installed Microsoft PowerPoint results are claimed.
 

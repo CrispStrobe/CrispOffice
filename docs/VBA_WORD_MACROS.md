@@ -353,6 +353,11 @@ precision, transaction rollback, revision history, and opaque macro-part
 preservation. The conformance runner also supports compiled JavaScript. These
 checks do not claim observed Microsoft Word host results.
 
+The typography continuation passes its compiler/native regressions within the
+[final combined local gate](validation/office-vba-continuation-20261120/README.md).
+The actual `word_typography.bas` example also produces identical native
+transaction and repeated-save results on VM and compiled JavaScript.
+
 Unsupported scope includes document-content reads,
 `Selection`, `Paragraphs.Count`, live collection iteration, editable character
 subranges, paragraph creation, whole-document ranges, tables as Word objects,

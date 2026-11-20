@@ -27,8 +27,9 @@ aliases and `Paragraphs.Item`. The PowerPoint adapter targets explicit top-level
 slide shapes for text, font, alignment and geometry edits, with source-preserving
 formatting and a strict native collection identity guard. Its continuation adds
 text-frame anchors, typed formatting helpers and bounded slideshow transitions.
-The continuation's final local qualification remains pending; see the
-[execution and recovery record](validation/office-vba-continuation-20261120/recovery/README.md).
+The continuation passed its local compiler/native, CLI/MCP, strict analysis
+and VM/JavaScript gates; see the
+[executed qualification record](validation/office-vba-continuation-20261120/README.md).
 The [parity roadmap](VBA_PARITY_ROADMAP.md) records remaining language/runtime
 work and broader application objects.
 It does not add a ribbon editor, a full VBA interpreter, document-open events,
