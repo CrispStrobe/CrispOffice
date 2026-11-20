@@ -336,55 +336,6 @@
       }
     },
     {
-      "id": "utf16-lone-surrogate-native-values",
-      "feature": "Left$",
-      "source": "Sub Main()\n  Worksheets(1).Range(\"A1\").Value2 = Left$(\"\ud83d\ude00\",1)\n  Worksheets(1).Range(\"A2\").Value2 = Right$(\"\ud83d\ude00\",1)\n  Worksheets(1).Range(\"A3\").Value2 = Mid$(\"A\ud83d\ude00B\",2,1)\n  Worksheets(1).Range(\"A4\").Value2 = Mid$(\"A\ud83d\ude00B\",3,1)\nEnd Sub\n",
-      "expected": {
-        "steps": [
-          {
-            "tool": "xlsx.cellValue",
-            "arguments": {
-              "sheet": 0,
-              "cell": "A1",
-              "value": "\ud83d"
-            }
-          },
-          {
-            "tool": "xlsx.cellValue",
-            "arguments": {
-              "sheet": 0,
-              "cell": "A2",
-              "value": "\ude00"
-            }
-          },
-          {
-            "tool": "xlsx.cellValue",
-            "arguments": {
-              "sheet": 0,
-              "cell": "A3",
-              "value": "\ud83d"
-            }
-          },
-          {
-            "tool": "xlsx.cellValue",
-            "arguments": {
-              "sheet": 0,
-              "cell": "A4",
-              "value": "\ude00"
-            }
-          }
-        ]
-      },
-      "provenance": {
-        "kind": "dialect-contract",
-        "references": [
-          "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md",
-          "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2"
-        ],
-        "note": "UTF-16 slicing can emit individual surrogate code units. The conformance runner verifies native plan JSON round trips without treating this as workbook or Office-host qualification."
-      }
-    },
-    {
       "id": "case-insensitive-names",
       "feature": "Left$",
       "source": "Sub Main()\n  Worksheets(1).Range(\"A1\").Value2 = lEn(lEfT$(\"abcdef\",3))\n  Worksheets(1).Range(\"A2\").Value2 = rIgHt$(mId$(\"abcdef\",2,4),2)\nEnd Sub\n",
@@ -1577,6 +1528,195 @@
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md"
         ],
         "note": "Source positions count CR and CRLF as single line breaks, matching the compiler lexer. This is a dialect diagnostic convention, not an Office-host observation."
+      }
+    },
+    {
+      "id": "refuses-emitted-high-surrogate-value",
+      "feature": "Left$",
+      "source": "Sub Main()\n  Worksheets(1).Range(\"A1\").Value2 = Left$(\"\ud83d\ude00\",1)\nEnd Sub\n",
+      "expected": {
+        "diagnostic": {
+          "code": "vba_type_error",
+          "line": 2,
+          "column": 29
+        }
+      },
+      "provenance": {
+        "kind": "dialect-contract",
+        "references": [
+          "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md",
+          "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2"
+        ],
+        "note": "UTF-16 halves may exist inside expressions, but malformed emitted text is refused at the write member before native plan expansion. This prevents lossy document publication; no Office host was executed."
+      }
+    },
+    {
+      "id": "refuses-emitted-low-surrogate-value",
+      "feature": "Right$",
+      "source": "Sub Main()\n  Worksheets(1).Range(\"A1\").Value2 = Right$(\"\ud83d\ude00\",1)\nEnd Sub\n",
+      "expected": {
+        "diagnostic": {
+          "code": "vba_type_error",
+          "line": 2,
+          "column": 29
+        }
+      },
+      "provenance": {
+        "kind": "dialect-contract",
+        "references": [
+          "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md",
+          "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2"
+        ],
+        "note": "UTF-16 halves may exist inside expressions, but malformed emitted text is refused at the write member before native plan expansion. This prevents lossy document publication; no Office host was executed."
+      }
+    },
+    {
+      "id": "refuses-emitted-high-surrogate-formula",
+      "feature": "Left$",
+      "source": "Sub Main()\n  Worksheets(1).Range(\"A1\").Formula = \"=\"\"\" & Left$(\"\ud83d\ude00\",1) & \"\"\"\"\nEnd Sub\n",
+      "expected": {
+        "diagnostic": {
+          "code": "vba_type_error",
+          "line": 2,
+          "column": 29
+        }
+      },
+      "provenance": {
+        "kind": "dialect-contract",
+        "references": [
+          "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md",
+          "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2"
+        ],
+        "note": "UTF-16 halves may exist inside expressions, but malformed emitted text is refused at the write member before native plan expansion. This prevents lossy document publication; no Office host was executed."
+      }
+    },
+    {
+      "id": "refuses-emitted-low-surrogate-formula",
+      "feature": "Right$",
+      "source": "Sub Main()\n  Worksheets(1).Range(\"A1\").Formula = \"=\"\"\" & Right$(\"\ud83d\ude00\",1) & \"\"\"\"\nEnd Sub\n",
+      "expected": {
+        "diagnostic": {
+          "code": "vba_type_error",
+          "line": 2,
+          "column": 29
+        }
+      },
+      "provenance": {
+        "kind": "dialect-contract",
+        "references": [
+          "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md",
+          "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2"
+        ],
+        "note": "UTF-16 halves may exist inside expressions, but malformed emitted text is refused at the write member before native plan expansion. This prevents lossy document publication; no Office host was executed."
+      }
+    },
+    {
+      "id": "refuses-malformed-selector-for-value",
+      "feature": "Left$",
+      "source": "Sub Main()\n  Worksheets(Left$(\"\ud83d\ude00\",1)).Range(\"A1\").Value2 = \"ordinary\"\nEnd Sub\n",
+      "expected": {
+        "diagnostic": {
+          "code": "vba_type_error",
+          "line": 2,
+          "column": 41
+        }
+      },
+      "provenance": {
+        "kind": "dialect-contract",
+        "references": [
+          "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md",
+          "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2"
+        ],
+        "note": "UTF-16 halves may exist inside expressions, but malformed emitted text is refused at the write member before native plan expansion. This prevents lossy document publication; no Office host was executed."
+      }
+    },
+    {
+      "id": "refuses-malformed-selector-for-clear",
+      "feature": "Right$",
+      "source": "Sub Main()\n  Worksheets(Right$(\"\ud83d\ude00\",1)).Range(\"A1\").ClearContents\nEnd Sub\n",
+      "expected": {
+        "diagnostic": {
+          "code": "vba_type_error",
+          "line": 2,
+          "column": 3
+        }
+      },
+      "provenance": {
+        "kind": "dialect-contract",
+        "references": [
+          "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md",
+          "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2"
+        ],
+        "note": "Malformed emitted selectors are refused before native plan expansion. ClearContents uses its existing statement-start diagnostic token; property writes use their member token. This prevents lossy document publication; no Office host was executed."
+      }
+    },
+    {
+      "id": "refuses-malformed-selector-for-format",
+      "feature": "Left$",
+      "source": "Sub Main()\n  Worksheets(Left$(\"\ud83d\ude00\",1)).Range(\"A1\").Font.Bold = True\nEnd Sub\n",
+      "expected": {
+        "diagnostic": {
+          "code": "vba_type_error",
+          "line": 2,
+          "column": 46
+        }
+      },
+      "provenance": {
+        "kind": "dialect-contract",
+        "references": [
+          "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md",
+          "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2"
+        ],
+        "note": "UTF-16 halves may exist inside expressions, but malformed emitted text is refused at the write member before native plan expansion. This prevents lossy document publication; no Office host was executed."
+      }
+    },
+    {
+      "id": "emits-paired-and-recombined-supplementary-text",
+      "feature": "UTF-16 publication",
+      "source": "Sub Main()\n  Worksheets(1).Range(\"A1\").Value2 = \"A\ud83d\ude00B\"\n  Worksheets(1).Range(\"A2\").Value2 = Left$(\"\ud83d\ude00\",1) & Right$(\"\ud83d\ude00\",1)\n  Worksheets(1).Range(\"A3\").Formula = \"=\"\"\ud83d\ude00\"\"\"\n  Worksheets(\"\ud83d\ude00\").Range(\"A1\").Value2 = Mid$(\"A\ud83d\ude00B\",2,2)\nEnd Sub\n",
+      "expected": {
+        "steps": [
+          {
+            "tool": "xlsx.cellValue",
+            "arguments": {
+              "sheet": 0,
+              "cell": "A1",
+              "value": "A\ud83d\ude00B"
+            }
+          },
+          {
+            "tool": "xlsx.cellValue",
+            "arguments": {
+              "sheet": 0,
+              "cell": "A2",
+              "value": "\ud83d\ude00"
+            }
+          },
+          {
+            "tool": "xlsx.cellFormula",
+            "arguments": {
+              "sheet": 0,
+              "cell": "A3",
+              "formula": "=\"\ud83d\ude00\""
+            }
+          },
+          {
+            "tool": "xlsx.cellValue",
+            "arguments": {
+              "sheet": "\ud83d\ude00",
+              "cell": "A1",
+              "value": "\ud83d\ude00"
+            }
+          }
+        ]
+      },
+      "provenance": {
+        "kind": "dialect-contract",
+        "references": [
+          "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md",
+          "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2"
+        ],
+        "note": "Valid supplementary pairs and reassembled halves remain valid native values, formulas, and sheet selectors. The portable harness verifies native plan JSON round trips; workbook publication has separate integration qualification."
       }
     }
   ]

@@ -16,6 +16,10 @@ const _lateFailure = r'''Sub Main()
   Worksheets("Summary").Range("A1").Value2 = Right$("pending", 4)
   Worksheets(Mid$("xMissing", 2)).Range("A1").Value2 = Len("fail")
 End Sub''';
+const _invalidUnicode = r'''Sub Main()
+  Worksheets(1).Range("A1").Value2 = "pending"
+  Worksheets(1).Range("A2").Value2 = Left$("😀", 1)
+End Sub''';
 
 Uint8List _workbook() {
   final builder = XlsxWorkbookBuilder();
@@ -104,6 +108,37 @@ void _expectReport(Uint8List bytes) {
 
 void main() {
   group('string intrinsic plans through the document runtime', () {
+    test(
+      'internal surrogate halves recombine without workbook data loss',
+      () async {
+        final macro = _compile(r'''Sub Main()
+  Dim high As String, low As String
+  high = Left$("😀", 1)
+  low = Right$("😀", 1)
+  Worksheets(1).Range("A1").Value2 = high & low
+  Worksheets(1).Range("B1").Value2 = Len(high)
+  Worksheets(1).Range("C1").Value2 = Len(low)
+End Sub''');
+        final session = _session();
+        final original = session.bytes;
+        await session.validate(macro);
+        expect(session.bytes, original);
+        expect(session.revision, 0);
+        await session.run(OfficeMacro.parse(macro.encode()));
+        final sheet = SheetDeserializer()
+            .readBytes(session.bytes)
+            .sheets
+            .single;
+        expect((sheet.cellA1('A1').value! as String).codeUnits, <int>[
+          0xD83D,
+          0xDE00,
+        ]);
+        expect(sheet.cellA1('B1').value, 1);
+        expect(sheet.cellA1('C1').value, 1);
+        expect(session.revision, 1);
+      },
+    );
+
     test('example validates, round-trips and publishes one revision', () async {
       final macro = _compile(File(_example).readAsStringSync());
       expect(macro.steps, hasLength(_reportSteps));
@@ -161,6 +196,35 @@ void main() {
   });
 
   group('string intrinsics through MCP', () {
+    test('malformed UTF-16 never returns a partial publishable plan', () async {
+      for (final statement in <String>[
+        r'Worksheets(1).Range("A2").Value2 = Left$("😀", 1)',
+        r'Worksheets(1).Range("A2").Formula = "=" & Right$("😀", 1)',
+        r'Worksheets(Left$("😀", 1)).Range("A1").ClearContents',
+        r'Worksheets(Right$("😀", 1)).Range("A1").Font.Bold = True',
+      ]) {
+        final session = _session();
+        final original = session.bytes;
+        final result = await OfficeMacroMcp(session).callTool(
+          'office_macro_compile',
+          _source(
+            'Sub Main()\n  Worksheets(1).Range("A1").Value2 = "pending"\n  $statement\nEnd Sub',
+            module: 'UnicodeBoundary',
+          ),
+        );
+        expect(result['isError'], isTrue, reason: statement);
+        final content = _structured(result);
+        expect(content.containsKey('macro'), isFalse);
+        final error = content['error']! as Map<String, Object?>;
+        expect(error['code'], 'vba_type_error');
+        expect(error['moduleName'], 'UnicodeBoundary');
+        expect(error['line'], 3);
+        expect(error['column'], greaterThan(0));
+        expect(session.bytes, original);
+        expect(session.revision, 0);
+      }
+    });
+
     test(
       'compiled plan validates and runs through the shared transaction',
       () async {
@@ -309,6 +373,7 @@ void main() {
           ..writeAsBytesSync(original);
         for (final (text, code) in <(String, String)>[
           (_invalidCount, 'vba_type_error'),
+          (_invalidUnicode, 'vba_type_error'),
           (_lateFailure, 'operation_failed'),
         ]) {
           final source = File('${temporary.path}/Failure.bas')
