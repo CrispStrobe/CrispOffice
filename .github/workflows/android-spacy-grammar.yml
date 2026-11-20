@@ -1,0 +1,179 @@
+name: Android spaCy grammar replay
+
+# Builds the Android spaCy library from its pins, installs it into the Studio
+# APK and replays the consumed W6, W7 and grammar v2 panels on an emulator
+# through the Studio grammar worker
+# (integration_test/mobile_spacy_grammar_replay_test.dart). Optionally runs
+# the mobile native proofing gate as well (all five native libraries).
+#
+# A claim belongs to the exact library bytes that ran: the job prints the
+# SHA-256 of the installed libcrispembed-spacy.so and, with
+# `expected_sha256`, refuses to run anything else. An x86_64 run never
+# qualifies the arm64-v8a library, and the other way round.
+on:
+  workflow_dispatch:
+    inputs:
+      abi:
+        description: Android ABI to build and run (arm64-v8a needs a KVM arm64 runner)
+        type: choice
+        options: [x86_64, arm64-v8a]
+        default: x86_64
+      expected_sha256:
+        description: Required SHA-256 of the built libcrispembed-spacy.so (empty = record only)
+        type: string
+        default: ''
+      gate:
+        description: Also build all five libraries and run mobile_native_proofing_test.dart
+        type: boolean
+        default: false
+      probe_only:
+        description: Only probe whether the arm64 runner exposes /dev/kvm
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_VERSION: 3.47.8
+  ANDROID_NDK_VERSION: 28.2.13676358
+  API_LEVEL: 36
+
+jobs:
+  kvm-probe:
+    name: KVM probe (ubuntu-24.04-arm)
+    if: inputs.probe_only || inputs.abi == 'arm64-v8a'
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 10
+    outputs:
+      kvm: ${{ steps.probe.outputs.kvm }}
+    steps:
+      - id: probe
+        run: |
+          uname -a
+          ls -l /dev/kvm || true
+          if [ -c /dev/kvm ] && sudo test -r /dev/kvm; then kvm=yes; else kvm=no; fi
+          grep -c -E 'vmx|svm|^Features.*' /proc/cpuinfo || true
+          echo "kvm=$kvm" | tee -a "$GITHUB_OUTPUT"
+          SDKMANAGER="${ANDROID_HOME:-$ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager"
+          if [ -x "$SDKMANAGER" ]; then
+            "$SDKMANAGER" --list 2>/dev/null | grep -E '^ *(emulator|system-images;android-36;google_apis;arm64)' | head -5 || true
+          else
+            echo "no Android SDK on this runner image"
+          fi
+
+  replay:
+    name: Replay (${{ inputs.abi }})
+    needs: kvm-probe
+    if: >-
+      always() && !inputs.probe_only &&
+      (inputs.abi == 'x86_64' || needs.kvm-probe.outputs.kvm == 'yes')
+    runs-on: ${{ inputs.abi == 'arm64-v8a' && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
+    timeout-minutes: 120
+    env:
+      ABI: ${{ inputs.abi }}
+      JNI: packages/quds_office_editor/example/android/app/src/main/jniLibs
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' \
+            | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Resolve workspace
+        run: flutter pub get
+      - name: Install the NDK
+        run: |
+          SDKMANAGER="${ANDROID_HOME:-$ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMANAGER" "ndk;$ANDROID_NDK_VERSION" >/dev/null
+          echo "ANDROID_NDK_HOME=${ANDROID_HOME:-$ANDROID_SDK_ROOT}/ndk/$ANDROID_NDK_VERSION" >>"$GITHUB_ENV"
+      - name: Build the spaCy library from its pins
+        run: |
+          python3 packages/quds_proofing_spacy/tool/build.py --android --android-abi "$ABI" \
+            --output build/spacy-android --install-android "$JNI/$ABI"
+          sha=$(sha256sum "$JNI/$ABI/libcrispembed-spacy.so" | cut -d' ' -f1)
+          echo "SPACY_SHA256=$sha" >>"$GITHUB_ENV"
+          echo "### libcrispembed-spacy.so ($ABI): \`$sha\`" >>"$GITHUB_STEP_SUMMARY"
+          cp build/spacy-android/build-receipt-mobile.json spacy-receipt.json
+          if [ -n "${{ inputs.expected_sha256 }}" ] && [ "$sha" != "${{ inputs.expected_sha256 }}" ]; then
+            echo "::error::built $sha, expected ${{ inputs.expected_sha256 }}: different bytes, no run"
+            exit 1
+          fi
+      - name: Build the other native libraries (gate)
+        if: inputs.gate
+        run: |
+          case "$ABI" in arm64-v8a) triple=aarch64-linux-android ;; x86_64) triple=x86_64-linux-android ;; esac
+          rustup target add "$triple"
+          for p in quds_proofing_hunspell quds_arabic_morph quds_language_id quds_proofing_harper; do
+            python3 packages/$p/tool/build.py --android --android-abi "$ABI" \
+              --output "build/$p-android" --install-android "$JNI/$ABI"
+          done
+          sha256sum "$JNI/$ABI"/*.so | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Serve the pinned panel inputs
+        run: |
+          mkdir -p reports
+          nohup python3 tools/proofing/spacy/grammar_replay_server.py --port 8765 \
+            --reports reports >server.log 2>&1 &
+          for i in $(seq 1 60); do
+            curl -sf http://127.0.0.1:8765/inputs/w6-panel.json >/dev/null && break
+            sleep 2
+          done
+          cat server.log
+      - name: Write the emulator script
+        run: |
+          cat >"$RUNNER_TEMP/on-emulator.sh" <<'SCRIPT'
+          set -euo pipefail
+          adb reverse tcp:8765 tcp:8765
+          cd "$GITHUB_WORKSPACE/packages/quds_office_editor/example"
+          flutter test integration_test/mobile_spacy_grammar_replay_test.dart -d emulator-5554 \
+            --dart-define=QUDS_GRAMMAR_REPLAY_URL=http://127.0.0.1:8765 2>&1 | tee "$GITHUB_WORKSPACE/replay.log"
+          if [ "$RUN_GATE" = "true" ]; then
+            flutter test integration_test/mobile_native_proofing_test.dart -d emulator-5554 2>&1 \
+              | tee "$GITHUB_WORKSPACE/gate.log"
+          fi
+          SCRIPT
+      - name: Replay on the emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          RUN_GATE: ${{ inputs.gate }}
+        with:
+          api-level: ${{ env.API_LEVEL }}
+          arch: ${{ inputs.abi }}
+          target: google_apis
+          profile: pixel_6
+          ram-size: 4096M
+          disk-size: 8G
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          disable-animations: true
+          script: bash "$RUNNER_TEMP/on-emulator.sh"
+      - name: Summarize
+        if: always()
+        run: |
+          grep -h -o 'QUDS_GRAMMAR_REPLAY .*' replay.log >>"$GITHUB_STEP_SUMMARY" || true
+          grep -h -o 'QUDS_NATIVE_GATE .*' gate.log >>"$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+          echo "spaCy library: $SPACY_SHA256" >>"$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-spacy-grammar-${{ inputs.abi }}
+          path: |
+            reports/
+            replay.log
+            gate.log
+            server.log
+            spacy-receipt.json
+          if-no-files-found: warn
+          retention-days: 30
