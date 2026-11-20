@@ -1,7 +1,7 @@
+import '../../xml/namespaces.dart';
+import '../../xml/xml_node.dart';
 import '../../xml/xml_reader.dart';
 import '../../xml/xml_writer.dart';
-import '../../xml/xml_node.dart';
-import '../../xml/namespaces.dart';
 import '../model/pml_presentation.dart';
 import 'pml_motion.dart';
 
@@ -61,7 +61,8 @@ void parseSlideMotion(String xml, PmlSlide slide) {
   while (reader.next()) {
     if (reader.eventType == XmlEventType.endElement) {
       if (reader.localName == 'transition' &&
-          reader.namespaceUri == OfficeNamespaces.p && reader.depth == 1) {
+          reader.namespaceUri == OfficeNamespaces.p &&
+          reader.depth == 1) {
         inTransition = false;
       } else if (reader.localName == 'timing') {
         inTiming = false;
@@ -91,7 +92,8 @@ void parseSlideMotion(String xml, PmlSlide slide) {
       continue;
     }
     if (reader.localName == 'transition' &&
-        reader.namespaceUri == OfficeNamespaces.p && reader.depth == 2) {
+        reader.namespaceUri == OfficeNamespaces.p &&
+        reader.depth == 2) {
       inTransition = !reader.isEmptyElement;
       hasTransition = true;
       durationMs = _spdToMs(reader.getAttribute('spd', namespaceUri: ''));
@@ -108,7 +110,9 @@ void parseSlideMotion(String xml, PmlSlide slide) {
       if (tm != null && tm > 0) {
         advAfter = tm;
       }
-    } else if (inTransition && kind == null && reader.depth == 3 &&
+    } else if (inTransition &&
+        kind == null &&
+        reader.depth == 3 &&
         reader.namespaceUri == OfficeNamespaces.p) {
       if (reader.localName == 'prstTrans' &&
           reader.getAttribute('prst', namespaceUri: '') == 'morph') {
@@ -250,7 +254,9 @@ String? _inheritTransitionContext(XmlElement root, XmlElement fragment) {
     }
     final prefixes = <String>{
       if (own.isNotEmpty)
-        ...own.single.value.split(RegExp(r'\s+')).where((token) => token.isNotEmpty),
+        ...own.single.value
+            .split(RegExp(r'\s+'))
+            .where((token) => token.isNotEmpty),
     };
     for (final token in inherited.value.split(RegExp(r'\s+'))) {
       if (token.isEmpty) continue;
@@ -284,7 +290,11 @@ String? _inheritTransitionContext(XmlElement root, XmlElement fragment) {
   return null;
 }
 
-String _transitionContextPrefix(XmlElement fragment, String preferred, String uri) {
+String _transitionContextPrefix(
+  XmlElement fragment,
+  String preferred,
+  String uri,
+) {
   for (final declaration in fragment.attributes) {
     if (declaration.prefix == 'xmlns' && declaration.value == uri) {
       return declaration.localName;
@@ -310,8 +320,11 @@ bool _containsTransitionBranch(XmlElement container) {
       return true;
     }
     if (child.namespaceUri == OfficeNamespaces.mc &&
-        const <String>{'AlternateContent', 'Choice', 'Fallback'}
-            .contains(child.localName) &&
+        const <String>{
+          'AlternateContent',
+          'Choice',
+          'Fallback',
+        }.contains(child.localName) &&
         _containsTransitionBranch(child)) {
       return true;
     }
@@ -340,11 +353,7 @@ void _setTransitionDuration(XmlElement element, int milliseconds) {
     (attribute) => attribute.qualifiedName == 'xmlns:$prefix',
   )) {
     element.attributes.add(
-      XmlAttribute(
-        localName: prefix,
-        prefix: 'xmlns',
-        value: _powerPoint2010,
-      ),
+      XmlAttribute(localName: prefix, prefix: 'xmlns', value: _powerPoint2010),
     );
   }
   element.removeAttribute('dur', namespaceUri: _powerPoint2010);
@@ -359,7 +368,10 @@ void _setTransitionDuration(XmlElement element, int milliseconds) {
   );
 }
 
-bool _writePreservedTransition(XmlWriter writer, PmlSlideTransition transition) {
+bool _writePreservedTransition(
+  XmlWriter writer,
+  PmlSlideTransition transition,
+) {
   final source = transition.source;
   if (source == null) return false;
   final contextIssue = source.unsupportedContext;
@@ -385,13 +397,18 @@ bool _writePreservedTransition(XmlWriter writer, PmlSlideTransition transition) 
     body.writeTo(writer);
     return true;
   }
-  if (transition.durationOverride || transition.durationMs != before.durationMs) {
+  if (transition.durationOverride ||
+      transition.durationMs != before.durationMs) {
     _setTransitionAttribute(body, 'spd', _msToSpd(transition.durationMs));
     _setTransitionDuration(body, transition.durationMs);
   }
   if (transition.advanceOnClickOverride ||
       transition.advanceOnClick != before.advanceOnClick) {
-    _setTransitionAttribute(body, 'advClick', transition.advanceOnClick ? '1' : '0');
+    _setTransitionAttribute(
+      body,
+      'advClick',
+      transition.advanceOnClick ? '1' : '0',
+    );
   }
   if (transition.advanceAfterMs != before.advanceAfterMs) {
     if (transition.advanceAfterMs == null) {
@@ -404,7 +421,8 @@ bool _writePreservedTransition(XmlWriter writer, PmlSlideTransition transition) 
       transition.kind != before.kind ||
       transition.direction != before.direction) {
     body.children.removeWhere(
-      (node) => node is XmlElement &&
+      (node) =>
+          node is XmlElement &&
           !(node.namespaceUri == OfficeNamespaces.p &&
               (node.localName == 'sndAc' || node.localName == 'extLst')),
     );
@@ -454,16 +472,16 @@ void writeSlideMotion(XmlWriter w, PmlSlide slide) {
     if (!slide.transition.isNone) {
       final String name = _kindToXml(slide.transition.kind);
       w.writeStartElement(name, prefix: 'p');
-    if (slide.transition.kind == PmlTransitionKind.fadeThroughBlack) {
-      w.writeAttribute('thruBlk', '1');
-    }
-    if (slide.transition.kind == PmlTransitionKind.morph) {
-      w.writeAttribute('option', 'byObject');
-    }
-    final String? dir = _dirToXml(slide.transition);
-    if (dir != null) {
-      w.writeAttribute('dir', dir);
-    }
+      if (slide.transition.kind == PmlTransitionKind.fadeThroughBlack) {
+        w.writeAttribute('thruBlk', '1');
+      }
+      if (slide.transition.kind == PmlTransitionKind.morph) {
+        w.writeAttribute('option', 'byObject');
+      }
+      final String? dir = _dirToXml(slide.transition);
+      if (dir != null) {
+        w.writeAttribute('dir', dir);
+      }
       w.writeEndElement();
     }
     w.writeEndElement();

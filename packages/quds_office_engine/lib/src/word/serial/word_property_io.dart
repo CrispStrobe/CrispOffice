@@ -97,7 +97,8 @@ abstract final class WordPropertyIo {
         // the complex-script size and must survive a regular-size edit.
         // Foreign properties can share local names. Only Word elements and
         // intentionally unbound internal w fragments belong to this edit.
-        (n) => n is XmlElement &&
+        (n) =>
+            n is XmlElement &&
             n.localName == key &&
             (n.namespaceUri == OfficeNamespaces.w ||
                 (n.namespaceUri.isEmpty && n.prefix == 'w')),

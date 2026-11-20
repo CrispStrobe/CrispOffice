@@ -4559,9 +4559,12 @@ class _Evaluator {
             'SlideShowTransition.Duration requires positive seconds in exact milliseconds within signed Long milliseconds.',
           );
         }
-        _emitPowerPointSlide(receiver.slide, 'slideTransition', <String, Object?>{
-          'durationMs': milliseconds.round(),
-        }, token);
+        _emitPowerPointSlide(
+          receiver.slide,
+          'slideTransition',
+          <String, Object?>{'durationMs': milliseconds.round()},
+          token,
+        );
       } else {
         final effect = switch (_integer(value, token)) {
           0 => ('none', null),
@@ -4583,10 +4586,15 @@ class _Evaluator {
             'EntryEffect supports None, Cut, FadeSmoothly and the four Push/Wipe directions.',
           );
         }
-        _emitPowerPointSlide(receiver.slide, 'slideTransition', <String, Object?>{
-          'kind': effect.$1,
-          if (effect.$2 != null) 'direction': effect.$2,
-        }, token);
+        _emitPowerPointSlide(
+          receiver.slide,
+          'slideTransition',
+          <String, Object?>{
+            'kind': effect.$1,
+            if (effect.$2 != null) 'direction': effect.$2,
+          },
+          token,
+        );
       }
       return;
     }
@@ -4745,7 +4753,10 @@ class _Evaluator {
     _Token token,
   ) {
     if (steps.length >= _maxSteps) {
-      context.limit(token, 'PowerPoint writes exceed $_maxSteps emitted operations.');
+      context.limit(
+        token,
+        'PowerPoint writes exceed $_maxSteps emitted operations.',
+      );
     }
     _emitNative('pptx.$operation', <String, Object?>{
       'slide': slide.index,
