@@ -10,7 +10,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_store/src/codec.dart';
 import 'package:quds_mail_store/src/schema/database.dart'
-    show schemaV1, schemaV2, schemaV3;
+    show schemaV1, schemaV2, schemaV3, schemaV4;
 import 'package:sqlite3/sqlite3.dart' as sqlite;
 import 'package:test/test.dart';
 
@@ -82,7 +82,7 @@ void main() {
       expect(_snapshot(file), before);
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 4);
+        expect(database.userVersion, 5);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           database.select('SELECT count(*) AS n FROM mail_fts').single['n'],
@@ -169,7 +169,7 @@ void main() {
 
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 4);
+        expect(database.userVersion, 5);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         for (final invalid in <Object?>[-1, 32, 0.5, 'invalid']) {
           expect(
@@ -327,7 +327,7 @@ void main() {
       expect(_snapshot(file), before);
       final upgraded = sqlite.sqlite3.open(file.path);
       try {
-        expect(upgraded.userVersion, 4);
+        expect(upgraded.userVersion, 5);
       } finally {
         upgraded.close();
       }
@@ -403,7 +403,7 @@ void main() {
         await repository.close();
         expect(_snapshot(file), before);
         final current = sqlite.sqlite3.open(file.path);
-        expect(current.userVersion, 4);
+        expect(current.userVersion, 5);
         expect(current.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           current
@@ -416,7 +416,149 @@ void main() {
     );
   }
 
-  for (final version in [5, 9]) {
+  for (final interrupted in [false, true]) {
+    test(
+      'v4 mailbox-view migration preserves all original data; interrupted=$interrupted',
+      () async {
+        _upgradeFixtureV2(file);
+        final old = sqlite.sqlite3.open(file.path);
+        for (final statement in [...schemaV3, ...schemaV4]) {
+          old.execute(statement);
+        }
+        old.execute('UPDATE messages SET flags=3');
+        old.execute('UPDATE store_profile SET local_account_revision=67');
+        old.execute(
+          'INSERT INTO local_accounts(id,provider,endpoint,login,sender,connected_at,revision) '
+          'VALUES(?,?,?,?,?,?,?)',
+          [
+            'verified',
+            'imap',
+            'imaps://imap.example.test:993',
+            'Login',
+            'sender@example.test',
+            1234,
+            67,
+          ],
+        );
+        old.userVersion = 4;
+        old.close();
+        Map<String, List<List<Object?>>> original() {
+          final database = sqlite.sqlite3.open(file.path);
+          try {
+            return {
+              for (final table in [
+                'store_profile',
+                'accounts',
+                'mailboxes',
+                'messages',
+                'memberships',
+                'cursors',
+                'tombstones',
+                'blobs',
+                'blob_refs',
+                'cached_messages',
+                'drafts',
+                'outbox',
+                'outbox_attempts',
+                'pending_operations',
+                'credential_cleanup',
+                'mail_fts',
+                'index_state',
+                'local_accounts',
+              ])
+                table: [
+                  for (final row in database.select(
+                    'SELECT * FROM $table ORDER BY rowid',
+                  ))
+                    [
+                      for (final Object? value in row.values)
+                        value is Uint8List ? Uint8List.fromList(value) : value,
+                    ],
+                ],
+            };
+          } finally {
+            database.close();
+          }
+        }
+
+        final before = original();
+        if (interrupted) {
+          final failed = await _open(
+            file,
+            faultInjector: (point) {
+              if (point == MailStoreCheckpoint.migrationCreated) {
+                throw const MailStoreStorageException(
+                  MailProblemCode.storageFailure,
+                );
+              }
+            },
+          );
+          expect(_problem(failed), MailProblemCode.storageFailure);
+          expect(original(), before);
+          final check = sqlite.sqlite3.open(file.path);
+          try {
+            expect(check.userVersion, 4);
+            expect(
+              check.select(
+                "SELECT name FROM sqlite_master WHERE name LIKE 'mailbox_view%'",
+              ),
+              isEmpty,
+            );
+          } finally {
+            check.close();
+          }
+        }
+        final repository = _value(await _open(file));
+        try {
+          expect(_value(await repository.listMailboxViews(_account)), isEmpty);
+          expect(_value(await repository.loadMailboxView(_mailbox)), isNull);
+          expect(
+            _value(await repository.listLocalAccounts()).single.revision,
+            67,
+          );
+          expect(
+            _value(
+              await repository.loadDraft(_account, _draft.id),
+            )!.attachments.first.content.bytes,
+            _attachmentA.bytes,
+          );
+          expect(
+            _value(
+              await repository.recoverOutbox(_account),
+            ).single.prepared.wireHash,
+            _queued.prepared.wireHash,
+          );
+          expect(
+            _value(
+              await repository.loadCachedMessage(
+                _account,
+                MailMessageId('message-1'),
+              ),
+            )!.raw.sha256,
+            _raw.sha256,
+          );
+        } finally {
+          await repository.close();
+        }
+        expect(original(), before);
+        final current = sqlite.sqlite3.open(file.path);
+        try {
+          expect(current.userVersion, 5);
+          expect(current.select('PRAGMA foreign_key_check'), isEmpty);
+          expect(
+            current.select(
+              "SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'mailbox_view%'",
+            ),
+            hasLength(2),
+          );
+        } finally {
+          current.close();
+        }
+      },
+    );
+  }
+
+  for (final version in [6, 9]) {
     test(
       'future schema $version is rejected without changing existing data',
       () async {
@@ -714,7 +856,7 @@ Future<MailResult<SqliteMailRepository>> _open(
 Map<String, List<List<Object?>>> _snapshot(File file) {
   final database = sqlite.sqlite3.open(file.path);
   try {
-    if (database.userVersion == 4) {
+    if (database.userVersion >= 4) {
       expect(
         database
             .select('SELECT local_account_revision FROM store_profile')

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Retain bounded, ordered foreground mailbox windows with timestamps, explicit
+  partial scope, transactional revision checks and lease cancellation. Keep
+  browse references separate from synchronization cursors and authoritative
+  memberships, preserve cached messages across synchronization pruning, and
+  migrate existing databases additively to schema v5.
+
 - Add a bounded non-secret local account directory with additive schema-v4
   migration, immutable route identities, monotonic connection revisions and
   compare-and-set shortcut removal. Preserve existing draft, Outbox, blob,

@@ -127,6 +127,52 @@ final class MailStoreAccount {
   final MailStoredAccountState state;
 }
 
+/// Metadata for one retained foreground mailbox window. This is a dated local
+/// observation of loaded headers, not an authoritative synchronized mailbox.
+/// A true [hasMore] means the provider offered additional headers at capture.
+final class MailCachedMailboxSummary {
+  const MailCachedMailboxSummary({
+    required this.mailbox,
+    required this.revision,
+    required this.capturedAt,
+    required this.headerCount,
+    required this.hasMore,
+  });
+
+  final MailMailbox mailbox;
+  final int revision;
+  final DateTime capturedAt;
+  final int headerCount;
+  final bool hasMore;
+}
+
+/// An ordered, bounded window retained after successful foreground browsing.
+/// Body availability is independent: loadCachedMessage may still return null.
+/// Provider synchronization cursors and authoritative memberships are separate.
+final class MailCachedMailboxView {
+  MailCachedMailboxView({
+    required this.mailbox,
+    required this.revision,
+    required this.capturedAt,
+    required List<MailHeaderRecord> headers,
+    required this.hasMore,
+  }) : headers = List.unmodifiable(headers);
+
+  final MailMailbox mailbox;
+  final int revision;
+  final DateTime capturedAt;
+  final List<MailHeaderRecord> headers;
+  final bool hasMore;
+
+  MailCachedMailboxSummary get summary => MailCachedMailboxSummary(
+    mailbox: mailbox,
+    revision: revision,
+    capturedAt: capturedAt,
+    headerCount: headers.length,
+    hasMore: hasMore,
+  );
+}
+
 /// A draft's metadata and revision without its body or attachment payloads.
 /// Opening the draft separately verifies and loads its retained blob bytes.
 final class MailDraftSummary {

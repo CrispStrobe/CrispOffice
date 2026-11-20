@@ -16,6 +16,8 @@ enum TransactionCrashScenario {
   afterDraftBlobs,
   afterOutboxWrite,
   committedSubmitting,
+  beforeMailboxViewCommit,
+  committedMailboxView,
 }
 
 final crashProfile = MailProfileId('transactions', hostId: 'mail-crash-tests');
@@ -99,6 +101,9 @@ Future<void> main(List<String> arguments) async {
       TransactionCrashScenario.afterOutboxWrite =>
         MailStoreCheckpoint.afterOutboxWrite,
       TransactionCrashScenario.committedSubmitting => null,
+      TransactionCrashScenario.beforeMailboxViewCommit =>
+        MailStoreCheckpoint.beforeCommit,
+      TransactionCrashScenario.committedMailboxView => null,
     };
     final opened = _required<SqliteMailRepository>(
       await openNativeMailStore(
@@ -113,6 +118,21 @@ Future<void> main(List<String> arguments) async {
     );
     store = opened;
     switch (scenario) {
+      case TransactionCrashScenario.beforeMailboxViewCommit:
+      case TransactionCrashScenario.committedMailboxView:
+        _required(
+          await opened.saveMailboxView(
+            MailMailbox(id: crashMailbox, displayName: 'Changed folder'),
+            [crashHeader(2)],
+            expectedRevision: 1,
+            hasMore: true,
+            lease: MailAccountSession(crashAccount).begin(),
+          ),
+          'mailbox view replacement',
+        );
+        if (scenario == TransactionCrashScenario.committedMailboxView) {
+          await _ready(scenario);
+        }
       case TransactionCrashScenario.afterSyncRecords:
       case TransactionCrashScenario.beforeSyncCursor:
         _required(

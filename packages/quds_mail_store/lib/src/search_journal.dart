@@ -146,52 +146,63 @@ extension MailStoreLocalOperations on SqliteMailRepository {
   Future<MailResult<MailUnit>> cacheMessage(
     MailAccountId account,
     MailMessageId id,
-    MailMessage message,
-  ) => _write(() async {
-    await _account(account);
-    final rows = await _rows(
-      'SELECT * FROM messages WHERE account=? AND id=?',
-      [account.value, id.value],
-    );
-    if (rows.isEmpty) SqliteMailRepository._fail(MailProblemCode.invalidInput);
-    final header = _header(rows.single, account);
-    if ((message.localId != null && message.localId != id) ||
-        message.remoteIdentity != header.remote) {
-      SqliteMailRepository._fail(MailProblemCode.invalidInput);
-    }
-    if (message.raw.length > limits.maxBlobBytes) {
-      SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
-    }
-    final draft = MailDraft(
-      id: id.value,
-      account: account,
-      revision: 0,
-      envelope: message.envelope,
-      body: message.body,
-      attachments: message.attachments,
-    );
-    _draftBudget(draft);
-    final encoded = MailStoreCodec.encodeDraft(draft);
-    final blobs = <String, MailBytes>{
-      ...encoded.blobs,
-      message.raw.sha256: message.raw,
-    };
-    await _storePayload(
-      account,
-      'cache',
-      id.value,
-      MailStorePayload(data: encoded.data, blobs: blobs),
-    );
-    await _db.customStatement(
-      'INSERT INTO cached_messages(account,message,raw_hash,data) VALUES(?,?,?,?) '
-      'ON CONFLICT(account,message) DO UPDATE SET raw_hash=excluded.raw_hash,data=excluded.data',
-      [account.value, id.value, message.raw.sha256, encoded.data],
-    );
-    await _collectBlobs(account);
-    await _index(account, id, header.envelope, message.body.plainText);
-    await _quota(account);
-    return MailUnit.value;
-  });
+    MailMessage message, {
+    MailOperationLease? lease,
+  }) => _run(
+    () => _commit(() async {
+      await _account(account);
+      if (lease != null && lease.account != account) {
+        SqliteMailRepository._fail(MailProblemCode.invalidInput);
+      }
+      lease?.checkCurrent();
+      final rows = await _rows(
+        'SELECT * FROM messages WHERE account=? AND id=?',
+        [account.value, id.value],
+      );
+      if (rows.isEmpty) {
+        SqliteMailRepository._fail(MailProblemCode.invalidInput);
+      }
+      final header = _header(rows.single, account);
+      if ((message.localId != null && message.localId != id) ||
+          message.remoteIdentity != header.remote) {
+        SqliteMailRepository._fail(MailProblemCode.invalidInput);
+      }
+      if (message.raw.length > limits.maxBlobBytes) {
+        SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+      }
+      final draft = MailDraft(
+        id: id.value,
+        account: account,
+        revision: 0,
+        envelope: message.envelope,
+        body: message.body,
+        attachments: message.attachments,
+      );
+      _draftBudget(draft);
+      final encoded = MailStoreCodec.encodeDraft(draft);
+      final blobs = <String, MailBytes>{
+        ...encoded.blobs,
+        message.raw.sha256: message.raw,
+      };
+      await _storePayload(
+        account,
+        'cache',
+        id.value,
+        MailStorePayload(data: encoded.data, blobs: blobs),
+      );
+      await _db.customStatement(
+        'INSERT INTO cached_messages(account,message,raw_hash,data) VALUES(?,?,?,?) '
+        'ON CONFLICT(account,message) DO UPDATE SET raw_hash=excluded.raw_hash,data=excluded.data',
+        [account.value, id.value, message.raw.sha256, encoded.data],
+      );
+      await _collectBlobs(account);
+      await _index(account, id, header.envelope, message.body.plainText);
+      await _quota(account);
+      await _db.fault(MailStoreCheckpoint.beforeCommit);
+      lease?.checkCurrent();
+      return MailUnit.value;
+    }),
+  );
 
   Future<MailResult<MailMessage?>> loadCachedMessage(
     MailAccountId account,
@@ -584,6 +595,8 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       'blob_refs',
       'blobs',
       'memberships',
+      'mailbox_view_members',
+      'mailbox_views',
       'cursors',
       'index_state',
       'messages',

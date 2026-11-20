@@ -6,6 +6,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 
 import 'studio_mail_draft.dart';
+import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_content.dart';
 import 'studio_mail_submission.dart';
@@ -201,6 +202,7 @@ final class SqliteStudioMailDraftStore
     implements
         StudioMailDraftStore,
         StudioMailDraftCatalog,
+        StudioMailMailboxStoreOwner,
         StudioMailOutboxStore,
         StudioMailOutboxManagementStore {
   SqliteStudioMailDraftStore({
@@ -222,6 +224,12 @@ final class SqliteStudioMailDraftStore
   static const maxOutboxEntries = 100;
 
   final SqliteMailRepository _repository;
+  @override
+  late final StudioMailMailboxStore mailboxStore = SqliteStudioMailMailboxStore(
+    repository: _repository,
+    account: account,
+    serialize: _serialize,
+  );
   final DateTime Function() _clock;
   @override
   final MailAccountId account;

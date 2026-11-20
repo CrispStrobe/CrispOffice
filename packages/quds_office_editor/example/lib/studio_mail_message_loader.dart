@@ -44,6 +44,21 @@ abstract interface class StudioMailMailboxBrowser {
   });
 }
 
+/// Immutable provider observations for durable cached views. This optional
+/// port never derives an identity from a mutable high-level message after a
+/// fetch. Older reader-only host adapters remain valid without local caching.
+abstract interface class StudioMailMailboxRecords {
+  MailAccountId get account;
+  MailHeaderRecord observedHeader(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
+  );
+  Future<MailMessage> fetchMessage(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
+  );
+}
+
 /// Optional confirmed flag actions, separate from existing reader fakes.
 abstract interface class StudioMailMessageActions {
   Future<void> setRead(
@@ -123,6 +138,7 @@ final class NativeStudioMailMessageLoader
     implements
         StudioMailMessageLoader,
         StudioMailMailboxBrowser,
+        StudioMailMailboxRecords,
         StudioMailMessageActions,
         StudioMailMailboxArchiver {
   factory NativeStudioMailMessageLoader(
@@ -202,6 +218,23 @@ final class NativeStudioMailMessageLoader
 
   static int _nextSession = 0;
   static final _browsedIdentities = Expando<MailImapIdentity>();
+  static final _browsedRecords = Expando<MailHeaderRecord>();
+
+  @override
+  MailAccountId get account => _configuration.account;
+
+  @override
+  MailHeaderRecord observedHeader(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
+  ) {
+    final identity = _identity(selectedMailbox, header);
+    final record = _browsedRecords[header];
+    if (record == null || record.remote != identity) {
+      throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+    }
+    return record;
+  }
 
   static MailProvider _createProvider({
     required MailImapConfiguration configuration,
@@ -399,6 +432,7 @@ final class NativeStudioMailMessageLoader
         mailboxUidValidity: validity,
       );
       _browsedIdentities[header] = identity;
+      _browsedRecords[header] = record;
       messages.add(header);
     }
     _browse = next == null
@@ -417,6 +451,12 @@ final class NativeStudioMailMessageLoader
   Future<Uint8List> fetch(
     mail.Mailbox selectedMailbox,
     mail.MimeMessage header,
+  ) async => (await fetchMessage(selectedMailbox, header)).raw.copyBytes();
+
+  @override
+  Future<MailMessage> fetchMessage(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
   ) async {
     final identity = _identity(selectedMailbox, header);
     final message = await _run(
@@ -429,7 +469,7 @@ final class NativeStudioMailMessageLoader
     if (message.raw.length > budget.maxRawBytes) {
       throw const StudioMailMessageLoadException(MailProblemCode.quotaExceeded);
     }
-    return message.raw.copyBytes();
+    return message;
   }
 
   @override

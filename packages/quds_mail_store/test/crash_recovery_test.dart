@@ -56,6 +56,15 @@ Future<void> _seed(Directory directory) async {
       ),
     );
     _value(
+      await store.saveMailboxView(
+        MailMailbox(id: fixture.crashMailbox, displayName: 'Baseline folder'),
+        [header],
+        expectedRevision: null,
+        hasMore: false,
+        lease: MailAccountSession(fixture.crashAccount).begin(),
+      ),
+    );
+    _value(
       await store.cacheMessage(
         fixture.crashAccount,
         header.id,
@@ -183,7 +192,10 @@ Future<void> _killAtBarrier(
   }
 }
 
-Future<void> _checkBaseline(SqliteMailRepository store) async {
+Future<void> _checkBaseline(
+  SqliteMailRepository store, {
+  bool committedView = false,
+}) async {
   expect(
     _value(await store.readCursor(fixture.crashMailbox))!.value,
     'baseline-cursor',
@@ -191,7 +203,21 @@ Future<void> _checkBaseline(SqliteMailRepository store) async {
   final headers = _value(await store.listHeaders(fixture.crashMailbox));
   expect(headers.map((header) => header.id.value), ['message-1']);
   expect(headers.single.envelope.subject, 'Baseline message');
-  expect(_value(await store.search(fixture.crashAccount, 'Changed')), isEmpty);
+  expect(
+    _value(await store.search(fixture.crashAccount, 'Changed')),
+    committedView ? hasLength(1) : isEmpty,
+  );
+  final view = _value(await store.loadMailboxView(fixture.crashMailbox))!;
+  expect(view.revision, committedView ? 2 : 1);
+  expect(view.hasMore, committedView);
+  expect(
+    view.mailbox.displayName,
+    committedView ? 'Changed folder' : 'Baseline folder',
+  );
+  expect(
+    view.headers.single.id.value,
+    committedView ? 'message-2' : 'message-1',
+  );
   final cached = _value(
     await store.loadCachedMessage(
       fixture.crashAccount,
@@ -219,7 +245,12 @@ void main() {
           await _killAtBarrier(directory, scenario);
           var store = await _open(directory);
           try {
-            await _checkBaseline(store);
+            await _checkBaseline(
+              store,
+              committedView:
+                  scenario ==
+                  fixture.TransactionCrashScenario.committedMailboxView,
+            );
             final recovered = _value(
               await store.recoverOutbox(fixture.crashAccount),
             ).single;

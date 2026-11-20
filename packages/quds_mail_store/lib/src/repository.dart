@@ -10,6 +10,7 @@ import 'schema/database.dart';
 
 part 'search_journal.dart';
 part 'local_accounts.dart';
+part 'mailbox_views.dart';
 
 /// One profile in one database, with native/browser setup in separate entries.
 ///
@@ -478,6 +479,8 @@ final class SqliteMailRepository implements MailRepository {
     for (final row in await _rows(
       'SELECT m.id FROM messages m WHERE m.account=? AND NOT EXISTS '
       '(SELECT 1 FROM memberships s WHERE s.account=m.account AND s.message=m.id) '
+      'AND NOT EXISTS (SELECT 1 FROM mailbox_view_members v '
+      'WHERE v.account=m.account AND v.message=m.id) '
       "AND NOT EXISTS (SELECT 1 FROM pending_operations p WHERE p.account=m.account AND p.remote=m.remote "
       "AND p.state IN ('queued','applying','reconcile'))",
       [account.value],
@@ -736,6 +739,11 @@ final class SqliteMailRepository implements MailRepository {
       ('mailboxes', ['id', 'display_name']),
       ('messages', ['id', 'remote', 'envelope', 'flags']),
       ('memberships', ['mailbox', 'message']),
+      (
+        'mailbox_views',
+        ['mailbox', 'revision', 'captured_at', 'header_count', 'has_more'],
+      ),
+      ('mailbox_view_members', ['mailbox', 'position', 'message']),
       ('cursors', ['mailbox', 'cursor']),
       ('tombstones', ['mailbox', 'remote']),
       ('blobs', ['hash', 'data']),

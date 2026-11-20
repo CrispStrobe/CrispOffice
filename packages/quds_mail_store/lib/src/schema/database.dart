@@ -13,7 +13,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -34,11 +34,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV4) {
         await customStatement(statement);
       }
+      for (final statement in schemaV5) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 4');
+      await customStatement('PRAGMA user_version = 5');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 3 || to != 4) {
+      if (from < 1 || from > 4 || to != 5) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -52,11 +55,16 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        for (final statement in schemaV4) {
+        if (from < 4) {
+          for (final statement in schemaV4) {
+            await customStatement(statement);
+          }
+        }
+        for (final statement in schemaV5) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 4');
+        await customStatement('PRAGMA user_version = 5');
       });
     },
     beforeOpen: (_) async {
@@ -193,4 +201,32 @@ const schemaV4 = <String>[
     revision INTEGER NOT NULL DEFAULT 0
       CHECK(typeof(revision) = 'integer' AND revision BETWEEN 0 AND 9007199254740991)
   )''',
+];
+
+/// Foreground browse windows have their own ordering and revision. They never
+/// advance a provider sync cursor or claim authoritative server membership.
+const schemaV5 = <String>[
+  '''CREATE TABLE mailbox_views (
+    account TEXT NOT NULL, mailbox TEXT NOT NULL,
+    revision INTEGER NOT NULL CHECK(typeof(revision) = 'integer' AND
+      revision BETWEEN 1 AND 9007199254740991),
+    captured_at INTEGER NOT NULL CHECK(typeof(captured_at) = 'integer' AND
+      captured_at BETWEEN 0 AND 8640000000000000),
+    header_count INTEGER NOT NULL CHECK(typeof(header_count) = 'integer' AND
+      header_count BETWEEN 0 AND 1000),
+    has_more INTEGER NOT NULL CHECK(has_more IN (0,1)),
+    PRIMARY KEY(account,mailbox),
+    FOREIGN KEY(account,mailbox) REFERENCES mailboxes(account,id)
+      ON DELETE CASCADE
+  )''',
+  '''CREATE TABLE mailbox_view_members (
+    account TEXT NOT NULL, mailbox TEXT NOT NULL,
+    position INTEGER NOT NULL CHECK(typeof(position) = 'integer' AND
+      position BETWEEN 0 AND 999), message TEXT NOT NULL,
+    PRIMARY KEY(account,mailbox,position), UNIQUE(account,mailbox,message),
+    FOREIGN KEY(account,mailbox) REFERENCES mailbox_views(account,mailbox)
+      ON DELETE CASCADE,
+    FOREIGN KEY(account,message) REFERENCES messages(account,id)
+  )''',
+  'CREATE INDEX mailbox_view_message ON mailbox_view_members(account,message)',
 ];
