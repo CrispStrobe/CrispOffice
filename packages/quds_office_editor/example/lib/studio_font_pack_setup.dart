@@ -25,6 +25,10 @@ class StudioFontPackSetupDialog extends StatelessWidget {
       animation: host,
       builder: (context, _) {
         final theme = Theme.of(context);
+        final current = host.statuses
+            .where((item) => item.pack.id == status.pack.id)
+            .firstOrNull;
+        final installed = current?.installed ?? status.installed;
         return AlertDialog(
           title: Text(pack.title),
           scrollable: true,
@@ -41,14 +45,14 @@ class StudioFontPackSetupDialog extends StatelessWidget {
                 Text('Download size: ${_size(pack.bytes)}'),
                 const SizedBox(height: 8),
                 Text(
-                  status.installed
+                  installed
                       ? 'Installed in the application-support folder. No document is modified.'
                       : 'Downloads start only when you choose Install. Every file is verified by SHA-256 before it is registered.',
                   style: theme.textTheme.bodySmall,
                 ),
-                if (status.problem != null)
+                if (current?.problem != null || status.problem != null)
                   Text(
-                    status.problem!,
+                    current?.problem ?? status.problem!,
                     style: TextStyle(color: theme.colorScheme.error),
                   ),
                 if (host.error != null)
@@ -79,7 +83,7 @@ class StudioFontPackSetupDialog extends StatelessWidget {
               ),
               child: const Text('Open licence'),
             ),
-            if (status.installed)
+            if (installed)
               TextButton(
                 onPressed: host.busy ? null : () => host.remove(pack),
                 child: const Text('Remove'),
@@ -94,7 +98,7 @@ class StudioFontPackSetupDialog extends StatelessWidget {
                         // The error is displayed above and remains actionable.
                       }
                     },
-              child: Text(status.installed ? 'Repair' : 'Install'),
+              child: Text(installed ? 'Repair' : 'Install'),
             ),
             TextButton(
               onPressed: () => Navigator.pop(context),

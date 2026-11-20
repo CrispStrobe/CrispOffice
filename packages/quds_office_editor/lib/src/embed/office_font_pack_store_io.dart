@@ -54,6 +54,12 @@ class OfficeFontPackStore {
     }
   }
 
+  static void _checkFileName(String value) {
+    if (!RegExp(r'^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$').hasMatch(value)) {
+      throw ArgumentError('Invalid font file name.');
+    }
+  }
+
   Future<List<OfficeFontPackStatus>> statuses() async {
     final result = <OfficeFontPackStatus>[];
     for (final pack in packs) {
@@ -116,7 +122,7 @@ class OfficeFontPackStore {
       ..idleTimeout = const Duration(seconds: 30);
     try {
       for (final file in pack.files) {
-        _checkId(file.fileName, 'font file name');
+        _checkFileName(file.fileName);
         if (cancelled?.call() ?? false) {
           throw const _FontPackCancelled();
         }
