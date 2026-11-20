@@ -9,6 +9,8 @@
   public `operationAt`, operation-bearing receipts and typed stop reasons. Use
   stable `planId:index` operation IDs and nonblank plan IDs up to 256 characters.
   Uncertainty takes precedence over simultaneous stop or scope changes.
+  Expose `MailBulkFlagAttempt.fromResult` as the shared provider-evidence
+  adapter used by the runner and certified coordinator integrations.
 
 - Add bounded portable loaded-header search with field-scoped text, quoted
   phrases, observed read/flag states and strict local-calendar date predicates.

@@ -108,6 +108,17 @@ final class MailBulkFlagPlan {
 /// is unknown. Explicit `mutationMayHaveOccurred: true` on a failed problem
 /// contradicts that certificate and is conservatively treated as uncertain.
 final class MailBulkFlagAttempt {
+  /// Only explicit no-mutation evidence makes a provider failure definite.
+  /// Codes such as permission denied or cancelled cannot establish delivery.
+  factory MailBulkFlagAttempt.fromResult(MailResult<MailUnit> result) =>
+      switch (result) {
+        MailSuccess<MailUnit>() => const MailBulkFlagAttempt.confirmed(),
+        MailFailure<MailUnit>(:final problem) =>
+          problem.mutationMayHaveOccurred == false
+              ? MailBulkFlagAttempt.failed(problem)
+              : MailBulkFlagAttempt.uncertain(problem),
+      };
+
   const MailBulkFlagAttempt.confirmed()
     : outcome = MailBulkFlagOutcome.confirmed,
       problem = null;
@@ -203,16 +214,8 @@ final class MailBulkFlagRunner {
     isScopeCurrent: isScopeCurrent,
     shouldStop: shouldStop,
     onProgress: onProgress,
-    apply: (operation, lease) async {
-      final result = await apply(operation, lease);
-      return switch (result) {
-        MailSuccess<MailUnit>() => const MailBulkFlagAttempt.confirmed(),
-        MailFailure<MailUnit>(:final problem) =>
-          problem.mutationMayHaveOccurred == false
-              ? MailBulkFlagAttempt.failed(problem)
-              : MailBulkFlagAttempt.uncertain(problem),
-      };
-    },
+    apply: (operation, lease) async =>
+        MailBulkFlagAttempt.fromResult(await apply(operation, lease)),
   );
 }
 

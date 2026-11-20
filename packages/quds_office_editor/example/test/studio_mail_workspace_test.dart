@@ -973,6 +973,105 @@ void _peerBulkWorkspaceTests() {
       expect(browser.reads, 0);
       expect(tester.takeException(), isNull);
     });
+
+    // The peer's final 639ea75 revision added certified provider outcomes.
+    // Exercise them through the accepted typed adapter, with no legacy writes.
+    for (final problem in [
+      MailProblemCode.permissionDenied,
+      MailProblemCode.cancelled,
+      MailProblemCode.staleOperation,
+    ]) {
+      testWidgets('explicit no-mutation $problem evidence stays definite', (
+        tester,
+      ) async {
+        final stops = problem != MailProblemCode.permissionDenied;
+        final refreshRequired = problem == MailProblemCode.staleOperation;
+        final browser = _BulkBrowser()
+          ..pages = ((_, _, _) async => StudioMailHeaderPage(
+            messages: [
+              for (final uid in [300, 200, 100]) _header(uid, 'Message $uid'),
+            ],
+          ))
+          ..bulkAnswer = (command) async =>
+              (command.message as MailImapIdentity).uid == 300
+              ? MailFailure(
+                  MailProblem(problem, mutationMayHaveOccurred: false),
+                )
+              : const MailSuccess(MailUnit.value);
+        await _show(tester, browser);
+        _mailList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
+          'imap-message-91:300',
+          'imap-message-91:200',
+          'imap-message-91:100',
+        ]);
+        await _pump(tester);
+        expect(browser.bulkCommands, hasLength(stops ? 1 : 3));
+        expect(_mailList(tester).items.map((row) => row.isRead), [
+          false,
+          !stops,
+          !stops,
+        ]);
+        expect(_mailList(tester).bulkEnabled, !refreshRequired);
+        final report = _bulkStatus(tester).report;
+        expect(report.confirmedCount, stops ? 0 : 2);
+        expect(report.failedCount, 1);
+        expect(report.uncertainCount, 0);
+        expect(report.unattemptedCount, stops ? 2 : 0);
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          refreshRequired ? findsOneWidget : findsNothing,
+        );
+        expect(browser.changes, isEmpty);
+        expect(browser.reads, 0);
+        expect(browser.requests, hasLength(1));
+        expect(_mailList(tester).busy, isFalse);
+        expect(tester.takeException(), isNull);
+      });
+    }
+
+    for (final mayHaveOccurred in <bool?>[null, true]) {
+      testWidgets('uncertified $mayHaveOccurred failure remains uncertain', (
+        tester,
+      ) async {
+        final browser = _BulkBrowser()
+          ..pages = ((_, _, _) async => StudioMailHeaderPage(
+            messages: [
+              for (final uid in [300, 200, 100]) _header(uid, 'Message $uid'),
+            ],
+          ))
+          ..bulkAnswer = (_) async => MailFailure(
+            MailProblem(
+              MailProblemCode.permissionDenied,
+              mutationMayHaveOccurred: mayHaveOccurred,
+            ),
+          );
+        await _show(tester, browser);
+        _mailList(tester).onBulkAction!(MailBulkFlagAction.flag, [
+          'imap-message-91:300',
+          'imap-message-91:200',
+          'imap-message-91:100',
+        ]);
+        await _pump(tester);
+        expect(browser.bulkCommands, hasLength(1));
+        expect(
+          _mailList(tester).items.every((row) => row.isFlagged == false),
+          isTrue,
+        );
+        expect(_mailList(tester).bulkEnabled, isFalse);
+        final report = _bulkStatus(tester).report;
+        expect(report.confirmedCount, 0);
+        expect(report.failedCount, 0);
+        expect(report.uncertainCount, 1);
+        expect(report.unattemptedCount, 2);
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          findsOneWidget,
+        );
+        expect(browser.changes, isEmpty);
+        expect(browser.reads, 0);
+        expect(browser.requests, hasLength(1));
+      });
+    }
   });
 }
 

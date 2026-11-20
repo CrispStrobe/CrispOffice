@@ -11,6 +11,7 @@ implementation. The integration consolidates that work with
 two sets of acceptance rules. The peer's `MailBulkFlagCoordinator`, certified
 attempts, provider validation, `operationAt` and receipt accessors remain
 available alongside `MailBulkFlagRunner`, using one private execution engine.
+`MailBulkFlagAttempt.fromResult` provides their shared provider-result mapping.
 See the [portable API](bulk-flags.md#portable-execution-api) and the
 [technical reconciliation record](../../validation/mail-bulk-flags-20261120/reconciliation.md)
 for exact compatibility choices and preserved tests.

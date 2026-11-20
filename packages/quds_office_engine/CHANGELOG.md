@@ -4,14 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
-- Extend Word VBA with `InchesToPoints`, `PointsToInches`,
-  `CentimetersToPoints`, `PointsToCentimeters`, `MillimetersToPoints`,
-  `PointsToMillimeters`, `PicasToPoints` and `PointsToPicas`. Support global,
-  `Application` and `With Application` calls through the existing checked
-  source compiler, with the official required argument names on all ten
-  physical/line conversion functions. Use explicit numeric inputs and exact physical ratios;
-  preserve native write precision, resource limits and transaction guards.
-  These bounded binary64 conversions do not emulate VBA `Single` coercion.
+- Extend Word VBA with inches, centimeters, millimeters and picas conversions
+  to/from points, plus official named arguments for all ten measurement
+  functions. Preserve bounded Double arithmetic, exact native-unit checks,
+  document-independent compilation and atomic publication. Add a repeatable
+  Word layout example and source, saved-document, CLI/MCP and portable
+  JavaScript checks; retain the independent eight-, nine- and thirteen-operation
+  examples under distinct filenames. Document the Single-precision and native
+  ownership limits.
 
 - Fall back to full Word layout for changed footnote/endnote paragraphs,
   including nested note tables, so formatting edits cannot reuse stale note

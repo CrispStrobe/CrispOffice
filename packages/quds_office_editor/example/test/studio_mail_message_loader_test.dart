@@ -15,6 +15,51 @@ void main() {
   _archiveAdapterTests();
   _browsingTests();
 
+  for (final flag in [false, true]) {
+    for (final evidence in <bool?>[false, true, null]) {
+      test(
+        '${flag ? 'flag' : 'read'} failure preserves mutation evidence $evidence',
+        () async {
+          final harness = _Harness()
+            ..applyAnswer = (_, _) async => MailFailure(
+              MailProblem(
+                MailProblemCode.permissionDenied,
+                mutationMayHaveOccurred: evidence,
+              ),
+            );
+          final loader = _loader(harness);
+          addTearDown(loader.dispose);
+          final header = _header();
+          final pending = flag
+              ? loader.setFlagged(_mailbox(), header, flagged: true)
+              : loader.setRead(_mailbox(), header, read: false);
+          await expectLater(
+            pending,
+            throwsA(
+              _problemEvidence(MailProblemCode.permissionDenied, evidence),
+            ),
+          );
+          expect(harness.mutations, hasLength(1));
+          expect(header.flags, isNull);
+        },
+      );
+    }
+  }
+
+  test(
+    'provider construction failure certifies no mutation was invoked',
+    () async {
+      final harness = _Harness()..factoryError = StateError('private detail');
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      await expectLater(
+        loader.markRead(_mailbox(), _header()),
+        throwsA(_problemEvidence(MailProblemCode.providerFailure, false)),
+      );
+      expect(harness.mutations, isEmpty);
+    },
+  );
+
   test(
     'mark-read freezes the full identity and requires provider success',
     () async {
@@ -56,13 +101,13 @@ void main() {
         final header = _header(uid: uid)..sequenceId = 2;
         await expectLater(
           loader.markRead(_mailbox(), header),
-          throwsA(_problem(MailProblemCode.invalidInput)),
+          throwsA(_problemEvidence(MailProblemCode.invalidInput, false)),
         );
       }
       for (final validity in [null, 0, -1, 0x100000000]) {
         await expectLater(
           loader.markRead(_mailbox(uidValidity: validity), _header()),
-          throwsA(_problem(MailProblemCode.invalidInput)),
+          throwsA(_problemEvidence(MailProblemCode.invalidInput, false)),
         );
       }
       await expectLater(
@@ -70,7 +115,7 @@ void main() {
           _mailbox(flags: [mail.MailboxFlag.noSelect]),
           _header(),
         ),
-        throwsA(_problem(MailProblemCode.invalidInput)),
+        throwsA(_problemEvidence(MailProblemCode.invalidInput, false)),
       );
       final stale = _header()
         ..setGuid(
@@ -80,7 +125,7 @@ void main() {
         );
       await expectLater(
         loader.markRead(_mailbox(), stale),
-        throwsA(_problem(MailProblemCode.conflict)),
+        throwsA(_problemEvidence(MailProblemCode.conflict, false)),
       );
       expect(harness.factoryCalls, 0);
       expect(harness.mutations, isEmpty);
@@ -106,7 +151,7 @@ void main() {
           throw StateError('private server response fixture-only-password');
       await expectLater(
         loader.markRead(_mailbox(), _header()),
-        throwsA(_problem(MailProblemCode.providerFailure)),
+        throwsA(_problemEvidence(MailProblemCode.providerFailure, null)),
       );
     },
   );
@@ -123,7 +168,7 @@ void main() {
       addTearDown(loader.dispose);
       await expectLater(
         loader.markRead(_mailbox(), _header()),
-        throwsA(_problem(MailProblemCode.invalidInput)),
+        throwsA(_problemEvidence(MailProblemCode.invalidInput, false)),
       );
       expect(harness.mutations, isEmpty);
     },
@@ -163,7 +208,7 @@ void main() {
       final first = loader.markRead(_mailbox(), _header());
       final expectation = expectLater(
         first,
-        throwsA(_problem(MailProblemCode.cancelled)),
+        throwsA(_problemEvidence(MailProblemCode.cancelled, null)),
       );
 
       expect(
@@ -189,14 +234,14 @@ void main() {
       final first = loader.markRead(_mailbox(), _header());
       final expectation = expectLater(
         first,
-        throwsA(_problem(MailProblemCode.staleOperation)),
+        throwsA(_problemEvidence(MailProblemCode.staleOperation, null)),
       );
 
       loader.dispose();
       await expectation.timeout(const Duration(seconds: 1));
       await expectLater(
         loader.markRead(_mailbox(), _header()),
-        throwsA(_problem(MailProblemCode.staleOperation)),
+        throwsA(_problemEvidence(MailProblemCode.staleOperation, false)),
       );
       final credentials = await harness.credentials!.load(
         harness.configuration!.credential,
@@ -2141,6 +2186,15 @@ void _archiveAdapterTests() {
 
 Matcher _problem(MailProblemCode code) => isA<StudioMailMessageLoadException>()
     .having((error) => error.code, 'code', code);
+
+Matcher _problemEvidence(MailProblemCode code, bool? evidence) =>
+    isA<StudioMailMessageLoadException>()
+        .having((error) => error.code, 'code', code)
+        .having(
+          (error) => error.mutationMayHaveOccurred,
+          'mutationMayHaveOccurred',
+          evidence,
+        );
 
 NativeStudioMailMessageLoader _loader(_Harness harness) =>
     NativeStudioMailMessageLoader(_account(), providerFactory: harness.create);

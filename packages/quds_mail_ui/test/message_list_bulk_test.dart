@@ -325,6 +325,41 @@ void main() {
     });
   }
 
+  for (final change in ['scope', 'filter', 'selection', 'sort', 'host']) {
+    testWidgets('actual open popup rejects a $change change', (tester) async {
+      var actions = 0;
+      Widget app({String scope = 'a/inbox'}) =>
+          _app(_list(scope: scope, onBulkAction: (_, _) => actions++));
+      await tester.pumpWidget(app());
+      await _selectAll(tester);
+      await _tap(tester, _key('mail-list-bulk-actions'));
+      switch (change) {
+        case 'scope':
+          await tester.pumpWidget(app(scope: 'b/inbox'));
+          await tester.pumpWidget(app());
+        case 'filter':
+          final field = tester.widget<TextField>(_key('mail-list-search'));
+          field.controller!.text = 'project';
+          field.onChanged!('project');
+        case 'selection':
+          tester.widget<Checkbox>(_check('z')).onChanged!(false);
+        case 'sort':
+          tester
+              .widget<PopupMenuButton<MailMessageListSort>>(
+                _key('mail-list-sort'),
+              )
+              .onSelected!(MailMessageListSort.subjectAscending);
+        case 'host':
+          await tester.pumpWidget(app());
+      }
+      await tester.pumpAndSettle();
+      expect(_key('mail-list-bulk-markRead'), findsOneWidget);
+      await _tap(tester, _key('mail-list-bulk-markRead'));
+      expect(actions, 0);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
   testWidgets('actual open popup is inert after host refresh', (tester) async {
     var actions = 0;
     Widget app(int revision) =>

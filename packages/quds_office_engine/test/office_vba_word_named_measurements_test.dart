@@ -64,6 +64,11 @@ void main() {
       });
     }
 
+    // Retained from the independently authored 4d0086ab measurement fixtures.
+    test('$method accepts an explicitly converted numeric string', () {
+      expect(_value('$method(CDbl("$input"))'), expected);
+    });
+
     test('$method works inside With Application with a numeric Variant', () {
       final plan = _compile('''
 Dim value As Variant
@@ -435,5 +440,43 @@ End Sub
         throwsA(_error('vba_unsupported')),
       );
     }
+  });
+
+  test('large metric conversions retain portable numeric results', () {
+    // Accepted scalar results must not wrap when products exceed integer range.
+    for (final (expression, expected) in <(String, double)>[
+      ('CentimetersToPoints(200000000000000)', 5669291338582677.0),
+      ('MillimetersToPoints(2000000000000000)', 5669291338582677.0),
+      ('PointsToMillimeters(9007199254740991)', 3177539737089183.0),
+    ]) {
+      expect(_value(expression), closeTo(expected, 1));
+      expect(_value('-$expression'), closeTo(-expected, 1));
+    }
+  });
+
+  test('converted tab positions retain the exact native upper boundary', () {
+    final plan = _compile(
+      'ActiveDocument.Paragraphs(1).TabStops.Add InchesToPoints(22)',
+    );
+    expect(plan.steps.single.arguments['position'], 1584);
+    expect(
+      () => _compile(
+        'ActiveDocument.Paragraphs(1).TabStops.Add InchesToPoints(22.5)',
+      ),
+      throwsA(_error('vba_type_error')),
+    );
+  });
+
+  test('conversion-only loops retain the shared source work budget', () {
+    expect(
+      () => _compile('''
+Dim i As Long
+Dim value As Double
+For i = 1 To 100000
+  value = InchesToPoints(0.5)
+Next i
+'''),
+      throwsA(_error('vba_limit_exceeded')),
+    );
   });
 }

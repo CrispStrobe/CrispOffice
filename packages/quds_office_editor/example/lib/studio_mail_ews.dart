@@ -1025,7 +1025,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       };
       setState(() {
         _bulkReport = report;
-        if (report.requiresRefresh) _needsRefresh = true;
+        if (report.requiresRefresh ||
+            report.stopReason == MailBulkFlagStopReason.staleScope) {
+          _needsRefresh = true;
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        }
         if (confirmed.isEmpty) return;
         final readAction =
             action == MailBulkFlagAction.markRead ||

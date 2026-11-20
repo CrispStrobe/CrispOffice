@@ -36,12 +36,20 @@ subject and outcome for every selected message:
 | Uncertain | A mutation may have reached the server, or the provider supplied no reliable mutation evidence. The batch stops here. |
 | Not attempted | No command was dispatched for this message. |
 
-After an uncertain result, refresh the folder before another flag mutation. The
+After an uncertain result, refresh the folder before another flag mutation. A
+provider's certified stale-scope rejection also requires refresh, even when it
+proves that this particular message was not changed; it remains a failed result,
+not an uncertain result. The
 uncertainty explanation remains available until refresh; dismissing a receipt
 cannot clear the refresh requirement. A refresh obtains new observations and
 does not replay the batch. Closing the view or changing the account prevents
 subsequent dispatch and stale UI updates; an already confirmed remote operation
 is not rolled back.
+
+A stale-scope result also requires refresh when its original connection remains
+open, even if the provider proved no mutation occurred. Its per-message outcome
+remains Failed; requiring a fresh observation does not make that receipt
+uncertain. A user-requested stop alone does not require refresh.
 
 Controls, progress and outcome details are localized in English, German and
 Arabic. Compact layouts keep controls scrollable and leave space for rows.
@@ -68,7 +76,11 @@ A pre-write identity conflict and a post-write confirmation conflict can thus
 have the same code without being presented as the same outcome. Unexpected
 callback exceptions are uncertain. IMAP, EWS, Gmail and Microsoft 365 annotate
 their existing real mutation boundaries. Legacy providers without this metadata
-retain conservative treatment.
+retain conservative treatment. Cloud flag commands accept only explicit
+request, authentication, resource or precondition rejections as no-write
+evidence. Rate limits, timeouts and unfamiliar failures after dispatch remain
+uncertain. This flag-command rule preserves the separate existing submission
+outcome contract.
 
 Only confirmed target flags update the live view. An unobserved unrelated flag
 stays unknown. A successful in-flight acknowledgment is retained in the report
@@ -88,7 +100,8 @@ with a stable `planId:index` ID.
 There is one execution engine with two entry points:
 
 - `MailBulkFlagRunner.run` accepts `MailResult<MailUnit>` callbacks, including
-  `MailProvider.apply`, and uses the mutation evidence described above.
+  `MailProvider.apply`, and delegates the evidence mapping to
+  `MailBulkFlagAttempt.fromResult`.
 - `MailBulkFlagCoordinator.run` accepts `MailBulkFlagAttempt` callbacks from
   adapters that already certify outcomes. The coordinator is single-use,
   including when its first run fails a predispatch scope check. Its separate

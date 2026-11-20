@@ -1860,7 +1860,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         }
       }
       _bulkReport = report;
-      if (report.requiresRefresh) _needsRefresh = true;
+      if (report.requiresRefresh ||
+          report.stopReason == MailBulkFlagStopReason.staleScope) {
+        _needsRefresh = true;
+      }
     }
 
     setState(() {
@@ -1906,7 +1909,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         project(report);
         _bulkRunning = false;
         _busy = false;
-        if (report.requiresRefresh) {
+        if (_needsRefresh) {
           _error = widget.strings.mailWorkspaceRefreshRequired;
         }
       });

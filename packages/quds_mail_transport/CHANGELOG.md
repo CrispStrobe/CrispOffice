@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Treat dispatched cloud message-mutation rate limits and unfamiliar client
+  errors as uncertain; only explicit request, authorization, resource or
+  precondition rejections certify no mutation. Preserve the separate submission
+  rejection and Retry-After contract.
+
 - Report explicit mutation-boundary evidence for failed IMAP, EWS, Gmail and
   Microsoft 365 operations. Foreground bulk commands can distinguish definite
   no-write failures from uncertain writes without guessing from a problem code.
