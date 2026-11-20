@@ -1,0 +1,286 @@
+{
+  "accepted_actual_executions": {
+    "failed": 0,
+    "files": 70,
+    "passed": 2381,
+    "skipped": 8
+  },
+  "accepted_canonical_identities": {
+    "failed": 0,
+    "files": 68,
+    "passed": 2178,
+    "skipped": 8
+  },
+  "accepted_case_exports": {
+    "pr277-word-accepted-canonical-cases.json": {
+      "bytes": 744749,
+      "sha256": "4d3fc83cd4f24336ef03c392f085a4b6e8a8d7feeab978715bbb81b5c28972e3"
+    },
+    "pr277-word-accepted-execution-cases.json": {
+      "bytes": 814727,
+      "sha256": "5209dfdcf5a2547006f255d729cb7c7e3ea3c0f1e443eec2be986cd97131c6bd"
+    }
+  },
+  "compiler_sha256": "41de865411b884d18c1097e9a80d68cd6bf1fb245e1844a46f72af05636f5ecd",
+  "counting_policy": "These scopes overlap prior Word/Zotero and historical VBA coverage. Only thirteen cases were freshly executed here. Positional aliases are executions, not new canonical cases. Do not add this scope to the historical3598 or Mail totals.",
+  "editor_exclusions": [
+    {
+      "cohort": "editor",
+      "executed_source": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+      "occurrence": 1,
+      "reason": "no paragraphs to edit",
+      "result": "success",
+      "skipped": true
+    },
+    {
+      "cohort": "editor",
+      "executed_source": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+      "occurrence": 1,
+      "reason": "no paragraphs to edit",
+      "result": "success",
+      "skipped": true
+    },
+    {
+      "cohort": "editor",
+      "executed_source": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+      "occurrence": 1,
+      "reason": "no paragraphs to edit",
+      "result": "success",
+      "skipped": true
+    },
+    {
+      "cohort": "editor",
+      "executed_source": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+      "occurrence": 1,
+      "reason": "no paragraphs to edit",
+      "result": "success",
+      "skipped": true
+    },
+    {
+      "cohort": "editor",
+      "executed_source": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+      "occurrence": 1,
+      "reason": "no paragraphs to edit",
+      "result": "success",
+      "skipped": true
+    },
+    {
+      "cohort": "editor",
+      "executed_source": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+      "occurrence": 1,
+      "reason": "no paragraphs to edit",
+      "result": "success",
+      "skipped": true
+    },
+    {
+      "cohort": "editor",
+      "executed_source": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+      "occurrence": 1,
+      "reason": "no paragraphs to edit",
+      "result": "success",
+      "skipped": true
+    },
+    {
+      "cohort": "editor",
+      "executed_source": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx",
+      "occurrence": 1,
+      "reason": "no paragraphs to edit",
+      "result": "success",
+      "skipped": true
+    }
+  ],
+  "excluded_shared_studio_results": {
+    "files": [
+      "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+      "packages/quds_office_editor/example/test/studio_word_chrome_settle_test.dart"
+    ],
+    "passed": 16,
+    "reason": "Incoming shell compiles different Mail implementations; keep historical source attribution."
+  },
+  "fresh": {
+    "failed": 0,
+    "files": 1,
+    "header_analysis_and_format_passed": true,
+    "passed": 13,
+    "runtime_files_sealed": 14,
+    "skipped": 0,
+    "source": "5c7b76a6137bc9373276ce2e7fccc6ed48903998",
+    "source_files_sealed": 2877
+  },
+  "github_actions_used": false,
+  "header_replacement": {
+    "additional_canonical_cases": [
+      {
+        "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+        "name": "footer distinct nodes may reuse one asset at the same placement",
+        "occurrence": 1
+      },
+      {
+        "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+        "name": "header distinct nodes may reuse one asset at the same placement",
+        "occurrence": 1
+      }
+    ],
+    "complete_fresh_file_expected": 13,
+    "equivalent_shared_node_title_substitution": {
+      "shared model node paints exactly once": "shared node at the same placement paints exactly once"
+    },
+    "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+    "fresh_execution_source": "5c7b76a6137bc9373276ce2e7fccc6ed48903998",
+    "fresh_passed": 13,
+    "old_incoming_cases_superseded": 11,
+    "pending_fresh_execution": false
+  },
+  "historical_macro_corpus": {
+    "cases": 3598,
+    "compiler_and_examples_unchanged": true,
+    "new_cases_added_by_incoming974": 0,
+    "not_a_whole_corpus_rerun": true,
+    "suites": 69
+  },
+  "incoming_archive_directory": "../zotero-vertical-tables-20261120",
+  "incoming_archives": {
+    "freshness-tail-evidence.tar.gz": {
+      "bytes": 1234042,
+      "members": 31,
+      "sha256": "15187283e3420fc49561560da254c7f46b2a52aaccaa1962afe5b3ada5b39aed"
+    },
+    "local-validation.tar.gz": {
+      "bytes": 2206062,
+      "members": 78,
+      "sha256": "0758993b29e7c554766e9de3b273bee5f6525b30bcdd6ffd84c0275e233be561"
+    },
+    "post-main-evidence.tar.gz": {
+      "bytes": 1331836,
+      "members": 56,
+      "sha256": "7d4d37823cb5c41da09371ad130a73b74fb793998dd09b0fb0cb7ab858f126b3"
+    }
+  },
+  "incoming_audit_sha256": "dcb5b589e7910339fb3a55edf9b5c8659a44aa1e433bf3939279cddf0bacb101",
+  "incoming_retention_ledger_sha256": "08d5bae84d34053e25886b5cb6637393768d859a7b3d909df67f246c01c5af37",
+  "incoming_static_retention": {
+    "execution_source": "6045998d885cbb045454a993aedfdfc0977714d6",
+    "format_and_fatal_warning_info_analysis_passed": true,
+    "full_scoped_files": 75,
+    "retained_exact_word_paths_count": 30,
+    "retained_exact_word_sha256": {
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "28f6754d5833ce82585193f369157e749d05a8b173f79f3a6435fb3404a7992b",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart": "2a2145be89e90eec652052c06855fcd1bb18ca7494a55b9c18750ccc2f378ea5",
+      "packages/quds_office_editor/test/office_system_fonts_test.dart": "9bcb153f4e97dea6abe938a32f5fe1bbb396bde4f84932bcbd17bde5df7f916f",
+      "packages/quds_office_editor/test/word_vertical_table_hit_test.dart": "36f4b069b133b0b7f334cc3c99f58730afceb6b83a921f6bc9d3fe44fe0ac450",
+      "packages/quds_office_editor/test/word_vertical_table_row_geometry_test.dart": "1efa1a3f00192859d02fdc312c5c0f71741c07e4e7e59017ff952d978ffbbf9f",
+      "packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart": "ff14286a4bec04bdb6b17d3bcac0bae9bf3098c6e1a29bbcd63a26ea152fa3c6",
+      "packages/quds_office_editor/tool/zotero/vertical_table_acceptance.dart": "7bb8bee72b98f548d2863c9db47d06f4db346a8521df7d3b04ef8f43a9f47028",
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "3060ff99393720875c27149acc79408e77aeb4bb84ff4187cb4c0963bcfa629b",
+      "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart": "86f8ad84f1120b2ddb61e1a14a4c44d2a46414555ce11e2e7b28845e3b44ca73",
+      "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart": "93e4e6fc2d95f9e3a8515d3414970ac24189a6bfd7ecc772a94305cc13bb7037",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart": "dee9163fe712cf7b36f75532481d8229bf8a2835041f29973a8bd293d6ec8dc8",
+      "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "f497d871548a813fbb399370930b105696e43980801e283dcad86b8be16a9286",
+      "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "c0a82cdcbc4d65aa5b9f6a162511e2b62a9a17993e9070a656c9dfdc5858bbe8",
+      "packages/quds_office_engine/test/office_vba_word_bulk_intake_conversions_test.dart": "5576a2bc76dea09bd5414b6be33dd8c681bba264ae6655192478ad77dca0cc76",
+      "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart": "b42fcd0ea4055ce24867ecaef23a298bd53160703f62c6e4c5bf9ae6c756d9d2",
+      "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart": "79c48eeb04c463ceda403c142ec4c0aab69f9336eaaa75b0df9fd186e9bcbb5c",
+      "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": "dd9f84c89839d3033e8c262e233beabf27d5c1624f0523ff7108761005fc5ed5",
+      "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart": "f7d4bf3536be78e7939760a4617a735ae0fdac0eb5494b02f11cc49958befff3",
+      "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart": "ce5eeff6a26217e7465aa9fcfa25c2accca2592f6665a104452db76fe5d0ed93",
+      "packages/quds_office_engine/test/word_styles_layout_test.dart": "b96fa31bfebba2773007600923de80371d1dd4e95f760e4029387a696fb610a3",
+      "packages/quds_office_engine/test/word_table_cell_border_roundtrip_test.dart": "b5212da6c335c28a3a17a616da591ba628069da38c937556a76bf71b778febaa",
+      "packages/quds_office_engine/test/word_table_style_import_regression_test.dart": "3c0b8d76a20fae56a2a40e6cc7111a391be09f6f857fbac817ce0d1b59cb5cb8",
+      "packages/quds_office_engine/test/word_table_style_precedence_test.dart": "04767936d2a0881b1d113aa65df9f07c28721efcfdff08df286c025f464c1bfe",
+      "packages/quds_office_engine/test/word_table_vertical_merge_layout_test.dart": "81e94757e5f489a2b0e8fafaa39da03f33bc5ce335805bd4991651bded592989",
+      "packages/quds_office_engine/test/word_vertical_table_row_geometry_test.dart": "bfd05091d9d634d600f71e8b56bf80666e48e53fb6a0a91e8625d8e7b02b015d",
+      "packages/quds_office_engine/test/word_zotero_note_table_test.dart": "8828645bade113e02404a410cb273748bd7011494cd985fe273bf013278081bf",
+      "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart": "9dc6f5243970713b9bfafe651ed7d986a7c8571d557b8f76ac7d232d054da9fd",
+      "packages/quds_office_engine/test/zotero_citing_test.dart": "f9fd27737968bdc10469bddb33a90bc497bb644bec63b1d70ff0987f94a1d0b2",
+      "packages/quds_office_engine/tool/zotero/incoming_word_acceptance.dart": "15179c98a6cd17f8d8915442782097632c6c5c1a96305c1fc135a734cd97c29d",
+      "packages/quds_office_engine/tool/zotero/vertical_table_acceptance.dart": "5c7917a78c06a835579076428b4f26182b2c4c015c2aa5a707d3e65ed09b051d"
+    },
+    "stronger_header_file_requires_its_own_fresh_analysis_format": true
+  },
+  "independent_review_sha256": "377992d9802e55520d6a9f92ffcadaa06439c9c154ee6676214f0c3547ae74e6",
+  "limitations": [
+    "Incoming executions retain their actual520d0ca8 source and runtime attribution; this is not2381 executions at the final source.",
+    "Incoming archives retain a stable package-config hash and locked runtime versions, but not that configuration content or a complete external-dependency byte inventory.",
+    "One unavailable unrelated historical Mail blob was excluded; all selected Word/parser/fixture inputs were Git-bound.",
+    "Sixteen incoming shared-Studio cases compile a different Mail implementation and are not adopted as exact-current shared-shell acceptance.",
+    "Eight image-only editing-equivalence fixtures have no paragraphs to edit and remain explicit exclusions.",
+    "This report does not claim installed Word/Zotero interoperability, full VBA/COM, Single emulation, or DOCM signature validity."
+  ],
+  "merge_record": "https://github.com/CrispStrobe/quds_office_suite/pull/278",
+  "parents": [
+    "0e4e999a08996a6b8696ca3adba11e303331b73e",
+    "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537"
+  ],
+  "populations": {
+    "actual_execution_identities": {
+      "files": 70,
+      "passed": 2381,
+      "skipped": 8
+    },
+    "actual_populations": {
+      "editor_direct": 582,
+      "engine_native": 825,
+      "macro_including_aliases": 974
+    },
+    "canonical_identities": {
+      "files": 68,
+      "passed": 2178,
+      "skipped": 8
+    },
+    "canonical_populations": {
+      "editor_direct": 582,
+      "engine_native": 825,
+      "macro": 771
+    }
+  },
+  "positional_aliases": {
+    "additional_canonical_cases": 0,
+    "executions": 203,
+    "proof": "incoming-retention-ledger.json"
+  },
+  "qualified_source": "5c7b76a6137bc9373276ce2e7fccc6ed48903998",
+  "qualified_tree": "c3ac8ba4f302e6d4057e49d989ce3b81cd1dcd3c",
+  "retained": {
+    "actual": {
+      "failed": 0,
+      "files": 69,
+      "passed": 2368,
+      "skipped": 8
+    },
+    "canonical": {
+      "failed": 0,
+      "files": 67,
+      "passed": 2165,
+      "skipped": 8
+    },
+    "execution_source": "520d0ca8870c6a169e23603660f2cde96366f9b2"
+  },
+  "schema": 1,
+  "seven_incoming_libraries_byte_identical": {
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "28f6754d5833ce82585193f369157e749d05a8b173f79f3a6435fb3404a7992b",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "2a2145be89e90eec652052c06855fcd1bb18ca7494a55b9c18750ccc2f378ea5",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "3060ff99393720875c27149acc79408e77aeb4bb84ff4187cb4c0963bcfa629b",
+    "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart": "86f8ad84f1120b2ddb61e1a14a4c44d2a46414555ce11e2e7b28845e3b44ca73",
+    "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart": "93e4e6fc2d95f9e3a8515d3414970ac24189a6bfd7ecc772a94305cc13bb7037",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart": "dee9163fe712cf7b36f75532481d8229bf8a2835041f29973a8bd293d6ec8dc8",
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "c0a82cdcbc4d65aa5b9f6a162511e2b62a9a17993e9070a656c9dfdc5858bbe8"
+  },
+  "source_resolution": "source-resolution.json",
+  "success": true
+}

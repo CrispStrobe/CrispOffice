@@ -1,0 +1,51 @@
+{
+  "acceptance_use": "Historical provenance only. None of these overlapping incoming totals is added to our accepted Mail union. Our new merged APIs/tests require the targeted frozen-source gate; unchanged cohorts retain our independently qualified prior inputs.",
+  "declared_mail_final_total": 1173,
+  "git_source_binding": {
+    "mismatches": [],
+    "missing_historical_blobs": [
+      "packages/quds_office_editor/example/lib/studio_mail_native.dart"
+    ],
+    "relevant_inputs": 531,
+    "verified": 530
+  },
+  "github_actions_queried": false,
+  "incoming_main": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+  "later_post_main": {
+    "declared_mail_total": 1249,
+    "source": "fe2c57604c33c1ee5ef1e9f25121e99d66c74d9a"
+  },
+  "latest_freshness_tail": {
+    "declared_mail_total": 1249,
+    "host_replacement_policy": "Replace accounts22, native workspace60 and visual13 inside the existing436 host population; add no cases.",
+    "source": "6045998d885cbb045454a993aedfdfc0977714d6"
+  },
+  "mail_final_archive": {
+    "bytes": 1209821,
+    "sha256": "caebb31d305f6b719d4fed26446a6747ad1a556a4a1964bddfb0716712ad8407",
+    "verified_members": 34
+  },
+  "mail_final_sources": {
+    "new_core_and_hosts": "e8edb90a2948af60f41e50795c049a0a4d1ed3e6",
+    "retained_transport_and_ui": "38dcd802ae79e22d9f84ad79db1a197c43f3ad70"
+  },
+  "network_used": false,
+  "raw_recounts": {
+    "core": {
+      "raw_passed": 219,
+      "raw_terminal_success": true,
+      "source_count": 2656,
+      "source_head": "e8edb90a2948af60f41e50795c049a0a4d1ed3e6",
+      "source_runtime_sealed": true
+    },
+    "hosts": {
+      "raw_passed": 375,
+      "raw_terminal_success": true,
+      "source_count": 2656,
+      "source_head": "e8edb90a2948af60f41e50795c049a0a4d1ed3e6",
+      "source_runtime_sealed": true
+    }
+  },
+  "schema_version": 1,
+  "source_limit": "The incoming mail-final-* package predates later reader/autoconnect changes. Its e8ed/38d qualification cannot be relabeled as383 or the merged source. Later incoming post-main/freshness packages remain separately source-bound."
+}

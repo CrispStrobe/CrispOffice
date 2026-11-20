@@ -1,0 +1,50 @@
+{
+  "github_actions_queried": false,
+  "heads": [
+    {
+      "committed": "2026-11-21T00:30:56+01:00",
+      "head": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "parents": [
+        "8206975dd91330914f77d0e3ceab3fadbe9ad519"
+      ],
+      "role": "previous_completed_publication",
+      "subject": "Document qualified Word VBA delivery and integration evidence [skip ci]",
+      "tree": "818182bb9f0029c3410f68cebe5fe79dc808b903"
+    },
+    {
+      "committed": "2026-11-21T00:21:37+01:00",
+      "head": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+      "parents": [
+        "329d03914808589d3e7650fa870df15a2408afe2",
+        "a7d9f37ecbaaf70544f4866d7d9e572696948184"
+      ],
+      "role": "captured_incoming_main",
+      "subject": "Merge pull request #277 from CrispStrobe/codex/zotero-vertical-tables-20261120",
+      "tree": "ee47862a407fea8480effb5c0a06e1f6f29c0bad"
+    },
+    {
+      "committed": "2026-11-21T00:20:24+01:00",
+      "head": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "parents": [
+        "6045998d885cbb045454a993aedfdfc0977714d6"
+      ],
+      "role": "incoming_pr277_branch",
+      "subject": "Record final Zotero vertical-table and reconciled Office qualification [skip ci]",
+      "tree": "ee47862a407fea8480effb5c0a06e1f6f29c0bad"
+    },
+    {
+      "committed": "2026-11-21T00:43:58+01:00",
+      "head": "5c7b76a6137bc9373276ce2e7fccc6ed48903998",
+      "parents": [
+        "0e4e999a08996a6b8696ca3adba11e303331b73e",
+        "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537"
+      ],
+      "role": "accepted_merge_source",
+      "subject": "Reconcile latest Zotero vertical-table main with qualified Word and Mail work [skip ci]",
+      "tree": "c3ac8ba4f302e6d4057e49d989ce3b81cd1dcd3c"
+    }
+  ],
+  "network_used": false,
+  "schema_version": 1,
+  "scope": "Fixed PR277 intake only; historical source-bound package records remain unchanged."
+}
