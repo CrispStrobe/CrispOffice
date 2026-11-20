@@ -849,20 +849,7 @@ final class SqliteMailRepository implements MailRepository {
   }) => _write(() async {
     final account = entry.prepared.account;
     await _account(account, active: entry.state == MailOutboxState.submitting);
-    _id(entry.id);
-    _id(entry.prepared.draftId);
-    if (entry.prepared.wire.length > limits.maxBlobBytes ||
-        entry.prepared.envelope.recipients.length > 512) {
-      _fail(MailProblemCode.quotaExceeded);
-    }
-    if (entry.attemptId case final attempt?) _id(attempt);
-    var envelopeUnits = entry.prepared.envelope.sender.length;
-    for (final recipient in entry.prepared.envelope.recipients) {
-      envelopeUnits += recipient.length;
-    }
-    if (envelopeUnits > limits.maxMetadataCodeUnits) {
-      _fail(MailProblemCode.quotaExceeded);
-    }
+    _outboxBudget(entry);
     final previous = await _outbox(account, entry.id);
     if (previous?.state != expectedState ||
         previous?.attemptId != expectedAttemptId ||
@@ -880,6 +867,121 @@ final class SqliteMailRepository implements MailRepository {
     }
     await _db.fault(MailStoreCheckpoint.afterOutboxWrite);
     await _quota(account);
+    return MailUnit.value;
+  });
+
+  void _outboxBudget(MailOutboxEntry entry) {
+    _id(entry.id);
+    _id(entry.prepared.draftId);
+    if (entry.prepared.wire.length > limits.maxBlobBytes ||
+        entry.prepared.envelope.recipients.length > 512) {
+      _fail(MailProblemCode.quotaExceeded);
+    }
+    if (entry.attemptId case final attempt?) _id(attempt);
+    var envelopeUnits = entry.prepared.envelope.sender.length;
+    for (final recipient in entry.prepared.envelope.recipients) {
+      envelopeUnits += recipient.length;
+    }
+    if (envelopeUnits > limits.maxMetadataCodeUnits) {
+      _fail(MailProblemCode.quotaExceeded);
+    }
+  }
+
+  /// Atomically transfers one saved draft revision into a new frozen outbox
+  /// item, retaining the next empty draft revision to reject stale autosaves.
+  /// The host must prepare [entry] from that exact saved revision and validate
+  /// its MIME/envelope before calling. This storage boundary checks ownership,
+  /// revision, initial state, uncertainty, immutable bytes and storage limits;
+  /// it does not parse or regenerate MIME. Failure preserves the entire draft.
+  Future<MailResult<MailUnit>> enqueueDraft(
+    MailOutboxEntry entry, {
+    required int expectedDraftRevision,
+  }) => _write(() async {
+    final prepared = entry.prepared;
+    final account = prepared.account;
+    await _account(account);
+    _outboxBudget(entry);
+    if (prepared.draftRevision != expectedDraftRevision ||
+        !MailStoreCodec.validOutboxTransition(null, entry) ||
+        await _outbox(account, entry.id) != null) {
+      _fail(MailProblemCode.conflict);
+    }
+    final rows = await _rows(
+      'SELECT revision,data FROM drafts WHERE account=? AND id=?',
+      [account.value, prepared.draftId],
+    );
+    if (rows.isEmpty ||
+        rows.single.read<int>('revision') != expectedDraftRevision) {
+      _fail(MailProblemCode.conflict);
+    }
+    final draft = MailStoreCodec.decodeDraft(
+      rows.single.read<String>('data'),
+      account: account,
+      id: prepared.draftId,
+      revision: expectedDraftRevision,
+      blobs: await _blobs(account, 'draft', prepared.draftId),
+    );
+    if ((draft.editorState?.isCleared ?? false) ||
+        (draft.editorState?.submissionUncertain ?? false) !=
+            entry.priorSubmissionUncertain) {
+      _fail(MailProblemCode.conflict);
+    }
+    await _putOutbox(entry);
+    await _db.fault(MailStoreCheckpoint.afterOutboxWrite);
+    final cleared = MailDraft(
+      id: draft.id,
+      account: account,
+      revision: expectedDraftRevision + 1,
+      envelope: MailEnvelope(),
+      body: const MailBody(),
+      editorState: MailDraftEditorState(isCleared: true),
+    );
+    final payload = MailStoreCodec.encodeDraft(cleared);
+    await _storePayload(account, 'draft', draft.id, payload);
+    await _db.fault(MailStoreCheckpoint.afterDraftBlobs);
+    await _db.customStatement(
+      'UPDATE drafts SET revision=?,data=? WHERE account=? AND id=?',
+      [cleared.revision, payload.data, account.value, draft.id],
+    );
+    await _collectBlobs(account);
+    await _quota(account);
+    return MailUnit.value;
+  });
+
+  /// Removes a reviewed terminal local record and releases unreferenced bytes.
+  /// It never recalls a message. Queued, active, retryable and uncertain items,
+  /// including any record retaining earlier uncertainty, cannot be removed.
+  /// Cleanup is allowed even when the account now exceeds a lowered quota.
+  Future<MailResult<MailUnit>> removeOutbox(
+    MailAccountId account,
+    String id, {
+    required MailOutboxState expectedState,
+    required String? expectedAttemptId,
+  }) => _write(() async {
+    await _account(account);
+    _id(id);
+    final entry = await _outbox(account, id);
+    if (entry == null ||
+        entry.state != expectedState ||
+        entry.attemptId != expectedAttemptId ||
+        entry.priorSubmissionUncertain ||
+        !const {
+          MailOutboxState.submitted,
+          MailOutboxState.cancelled,
+          MailOutboxState.permanentFailure,
+        }.contains(entry.state)) {
+      _fail(MailProblemCode.conflict);
+    }
+    await _db.customStatement(
+      'DELETE FROM blob_refs WHERE account=? AND owner_kind=? AND owner_id=?',
+      [account.value, 'outbox', id],
+    );
+    await _db.customStatement('DELETE FROM outbox WHERE account=? AND id=?', [
+      account.value,
+      id,
+    ]);
+    await _collectBlobs(account);
+    await _db.fault(MailStoreCheckpoint.afterOutboxWrite);
     return MailUnit.value;
   });
 
