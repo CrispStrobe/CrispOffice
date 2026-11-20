@@ -1,0 +1,39 @@
+{
+  "accepted_source_head": "58cc4283b35b29a4036528f65ee0590230d583f6",
+  "accepted_source_tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+  "actionable_findings": [],
+  "archive_bytes": 2295172,
+  "archive_members_verified": 253,
+  "archive_sha256": "bda1bedc59e7724097ca7fe05deb3d5c6c3a202a1668b58b5478f6ab0bb7e956",
+  "auditor_sha256": "31aeb27e7e6ca2fb6fcca86dcbb92038b47b6012d2bf2b2f0642c80cd9f2039f",
+  "captured_commit_parent_and_tree_rows_verified": 7,
+  "deterministic_archive_rebuild_equal": true,
+  "documentation_review": {
+    "accepted_population_attribution_correct": true,
+    "failed_original_receipt_and_complete_corrective_scope_preserved": true,
+    "live_provider_and_runtime_archive_limits_explicit": true,
+    "node_case_overlap_explicit": true,
+    "source_and_reproduction_paths_consistent": true
+  },
+  "independent_raw_review_sha256": "8b6061940aa5abda3130c4617cba313a6d885358e4b96c5f434c6a876f5cd1a5",
+  "limits": [
+    "No tests, image captures, provider calls, CI, or repository/config mutations.",
+    "Archive/runtime reproduction was inspected; only the read-only evidence verifier was executed.",
+    "The earlier 606-case raw execution remains in its separately hashed baseline package."
+  ],
+  "outer_checksums_verified": 16,
+  "raw_members_identical_to_independently_reviewed_runtime": 203,
+  "readable_exports_bound_to_archive": 14,
+  "readme_recount_executed_from_extracted_archive": true,
+  "recount_output_files_byte_identical": [
+    "accepted-union.json",
+    "accepted-test-cases.json",
+    "accepted-platform-recheck-cases.json",
+    "retained-test-cases.json",
+    "replaced-prior-test-cases.json",
+    "superseded-initial-focused-cases.json",
+    "initial-focused-failed-cases.json"
+  ],
+  "schema": 1,
+  "success": true
+}
