@@ -1,0 +1,67 @@
+00:00 +0: loading test/slide_import_fidelity_test.dart
+00:00 +0: test/slide_import_fidelity_test.dart: shape import text boxes stay text; only p:pic becomes a picture
+00:00 +1: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:00 +2: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:00 +3: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:00 +4: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:01 +5: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:01 +6: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:01 +7: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:01 +8: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:01 +9: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:01 +10: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:01 +11: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:01 +12: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:02 +13: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:02 +14: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:02 +15: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:02 +16: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:02 +17: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +18: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +19: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +20: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +21: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +22: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +23: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +24: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +25: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +26: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +27: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:02 +28: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +29: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +30: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +31: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +32: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +33: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +34: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +35: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +36: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +37: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +38: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +39: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +40: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +41: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +42: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:03 +43: test/word_extended_revision_test.dart: accept keeps current formatting and removes native history
+00:03 +44: test/word_extended_revision_test.dart: paragraph formatting imports current alignment and rejects previous spacing
+00:03 +45: test/word_extended_revision_test.dart: empty previous properties restore inheritance instead of editor defaults
+00:03 +46: test/word_extended_revision_test.dart: formatting history survives three direct saves
+00:03 +47: test/word_extended_revision_test.dart: formatting history survives three isolate saves
+00:04 +48: test/word_extended_revision_test.dart: accept either side resolves an entire multi-run move
+00:04 +49: test/word_extended_revision_test.dart: reject either side resolves an entire multi-run move
+00:04 +50: test/word_extended_revision_test.dart: move endpoints and linkage survive repeated native saves across paragraphs
+00:04 +51: test/word_extended_revision_test.dart: move preflight is atomic when the other side is stale
+00:04 +52: test/word_extended_revision_test.dart: formatting can overlap tracked text; accepting deletion discards its formatting
+00:04 +53: test/word_extended_revision_test.dart: rejecting formatting leaves the overlapping text insertion pending
+00:04 +54: test/word_extended_revision_test.dart: empty paragraphs preserve and resolve paragraph formatting
+00:04 +55: test/word_extended_revision_test.dart: old color, size and language attributes restore with namespace identity
+00:04 +56: test/word_extended_revision_test.dart: formatting ranges rebase through a text replacement without text attribution conflicts
+00:04 +57: test/word_extended_revision_test.dart: paragraph formatting remains reviewable when its text changes
+00:04 +58: test/word_extended_revision_test.dart: a missing previous property set cannot be silently accepted or exported
+00:04 +59: test/word_extended_revision_test.dart: an incomplete move cannot be partially resolved or silently exported
+00:04 +60: test/word_extended_revision_test.dart: move preflight checks a protected destination before deleting source text
+00:04 +61: test/word_extended_revision_test.dart: Word 16.111.1 saved native formatting and move revisions round-trip
+00:04 +62: test/word_extended_revision_test.dart: an empty text run retains its formatting revision through a save
+00:05 +63: test/word_extended_revision_test.dart: ambiguous or removed empty formatting targets fail without losing history
+00:05 +64: test/word_extended_revision_test.dart: write a native tracked formatting and move interoperability fixture
+00:05 +65: All tests passed!

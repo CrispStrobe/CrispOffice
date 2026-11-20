@@ -20,6 +20,21 @@ All notable changes to `quds_office_engine` are documented here.
   plan is returned. Add independent conformance cases and a runnable Variant
   report with native runtime, MCP, CLI and rollback coverage.
 
+- Integrate captured PPTX linear-gradient and picture-shadow work. Preserve
+  gradient stops and angles through shape copying and save/reopen, render the
+  gradient in PDF, and keep selected slide/layout/master gradient backgrounds
+  separate from decorations so overrides and master edits remain correct.
+  Preserve radial gradient snapshots and paint them through the same scoped
+  editor/PDF paths. Native PowerPoint rendering is not newly qualified by this
+  increment.
+
+- Resolve PPTX picture and gradient background ownership per slide, layout and
+  master, preserving authored overrides independently of hidden master shapes.
+  Retain authored background XML and image relationships through copying and
+  save/reopen; explicit solid edits replace the original fill without reviving it.
+  Draw authored picture borders after cropping in PDF export and retain the
+  existing numeric text, font fitting and connector regressions.
+
 - Add bounded VBA `Len`, `Left$`, `Right$`, and `Mid$` string intrinsics with
   explicit UTF-16 semantics, a versioned conformance corpus, and portable
   VM/JavaScript receipts. Refuse malformed UTF-16 at workbook-write boundaries

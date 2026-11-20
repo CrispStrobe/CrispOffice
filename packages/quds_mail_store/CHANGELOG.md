@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Persist optional draft editor state in a versioned payload while continuing
+  to read existing version-one drafts. Account quotas include raw editor text.
+
 - Add durable restore receipts committed atomically with originals, indexes and
   all provenance. Explicit `resume: true` verifies previously committed
   destination items and imports only unfinished items; default reruns still

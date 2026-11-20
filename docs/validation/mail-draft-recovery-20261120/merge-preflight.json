@@ -1,0 +1,100 @@
+{
+  "captured_at_utc": "2026-11-20T07:59:53.366366+00:00",
+  "purpose": "Preflight before the evidence-only checkpoint and pull-request merge",
+  "source_head": "793dae7de10848b5a1ec0762e0fc4b55b70296f3",
+  "source_tree": "59fc3e06df00a73e53c46f4f2591231c19eef06a",
+  "main": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26",
+  "fetched_all_fork_heads_and_pr_heads": true,
+  "github_actions_used": false,
+  "remote_heads": [
+    {
+      "ref": "origin",
+      "sha": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26"
+    },
+    {
+      "ref": "origin/codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "ref": "origin/codex/vba-variant-conversions-20261120",
+      "sha": "656e7b96f15142942b00335e8b7eb894ce068565"
+    },
+    {
+      "ref": "origin/codex/zotero-parity-20261120",
+      "sha": "6042874358fd7341df8cb2c9b69a418bcf351086"
+    },
+    {
+      "ref": "origin/codex/zotero-research-materials-20261120",
+      "sha": "a31616d3567a43307251e13a9728cf92fd8690c6"
+    },
+    {
+      "ref": "origin/docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "ref": "origin/docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "ref": "origin/feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "ref": "origin/feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "ref": "origin/feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "ref": "origin/feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "ref": "origin/feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "ref": "origin/integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "ref": "origin/integrate/recent-pptx",
+      "sha": "9bd16ff4d97f2a63f450f161fe10eb3bb2808857"
+    },
+    {
+      "ref": "origin/main",
+      "sha": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26"
+    },
+    {
+      "ref": "origin/work/mail-attachments-20261120",
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c"
+    },
+    {
+      "ref": "origin/work/mail-draft-recovery-20261120",
+      "sha": "793dae7de10848b5a1ec0762e0fc4b55b70296f3"
+    }
+  ],
+  "pending_work": [
+    {
+      "ref": "integrate/recent-pptx",
+      "head": "9bd16ff4d97f2a63f450f161fe10eb3bb2808857",
+      "disposition": "Post-start installed-font checkpoint deferred; alias registration defect reproduced. Earlier gradient/shadow/transparency work already integrated."
+    },
+    {
+      "pr": 227,
+      "ref": "codex/vba-variant-conversions-20261120",
+      "head": "656e7b96f15142942b00335e8b7eb894ce068565",
+      "state": "open",
+      "draft": true,
+      "mergeable": false,
+      "disposition": "Latest PR metadata still explicitly reports final combined-source qualification in progress."
+    },
+    {
+      "ref": "codex/zotero-parity-20261120",
+      "head": "6042874358fd7341df8cb2c9b69a418bcf351086",
+      "disposition": "New concurrent in-progress reconciliation checkpoint, parents e06eb3a7 and older draft VBA4b8ad781. Its new Zotero delta is planning/evidence only; README explicitly says implementation/qualification pending. Preserve remote branch for its owner."
+    }
+  ]
+}
