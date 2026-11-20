@@ -1,0 +1,157 @@
+{
+  "kind": "Word VBA continuation recovery record",
+  "scope": "Development observations and exact recovered source; not final-source qualification.",
+  "base": "d040c15a07f652d01e75363031d0efdee6357bda",
+  "integrated_base": "9aa177ba9abeae7179edd517da8924f16c4c78f4",
+  "recovered_files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05f6711c7df6ee8f098c4d5b232917009aee6367",
+      "sha256": "41b9413d50482ddad2ec36d99e9bcc03a39c9030268032a41ccba900540b8595",
+      "chars": 155798
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0ba5a206684bc81e783e7132bd5e5bb7870ed54",
+      "sha256": "c4d334d43735778b7d35e6311ac0f1e509dea0c6f76f2ec8502280fc9d139139",
+      "chars": 28896
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_language_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1fbb805763623f374d3dc1f63d032f9b9baecea",
+      "sha256": "2900ef6d789b4026d6b31ffc2e8001b6dfcea57ea23d2618ec6501336bb0f7cc",
+      "chars": 18654
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_typography_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d9858de4e88f73bffc34ba470f7e92ae5903f1e",
+      "sha256": "875d67b379ff435591c0af2808e55fb257aca00b0563728a90e656d63e791624",
+      "chars": 6386
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_typography_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ddbce7c9d4797dd771efefc1cb5c6f53ffd8fba",
+      "sha256": "7ab686acb67a699e8afec43ab71f0a10304dfd6bfec12bfef10b64fb6fe5d2c6",
+      "chars": 10823
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eed53a046de1db38f7172622731a042810a9ae60",
+      "sha256": "46477a262c3e5ee934958ff200375ace39bdd8348e7ba4086a3664162adfc5c6",
+      "chars": 21145
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_typography.bas",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a27baad681cd9cab85594f7a8c4f42a35ca75d6",
+      "sha256": "cbe4ec2d15549b25577a8ee84027d5c748ae85de33435b7e72d71fbf391c6a40",
+      "chars": 843
+    }
+  ],
+  "reconstruction": "Existing files rebuilt from immutable base plus individually checked unique replacements reproducing successful apply_patch operations. New test strings verified by SHA-256 against the executed-input hashes captured before ENOSPC. Word-only shared compiler is an intermediate composition artifact; tests ran against the combined Word/PowerPoint compiler.",
+  "tested_combined_compiler_sha256": "02c0cb275fd9358ee8f999eb3d02c735b6414792721478b2b9cf4e8c48e9f12e",
+  "runtime": "Dart 3.13.7; reduced pure Dart workspace with unchanged copied manifests and matching resolved dependency versions.",
+  "development_runs": [
+    {
+      "files": [
+        "office_vba_word_typography_test.dart",
+        "office_vba_word_typography_integration_test.dart",
+        "office_vba_word_language_test.dart"
+      ],
+      "passed": 229,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 255,
+      "duration_seconds": 19.265995740890503,
+      "status": "Unqualified infrastructure failure",
+      "observation": "Runner emitted done success=true; process then failed creating engine/.dart_tool during compiler disposal with FileSystemException: No space left on device.",
+      "raw_logs_local_prefix": "/workspace/scratch/86ea302351d7/word-development"
+    },
+    {
+      "file": "office_vba_word_typography_test.dart",
+      "passed": 48,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "duration_seconds": 18.876614093780518,
+      "source_unchanged": true,
+      "source_sha256": "875d67b379ff435591c0af2808e55fb257aca00b0563728a90e656d63e791624",
+      "raw_logs_local_prefix": "/workspace/scratch/86ea302351d7/word-retry-office_vba_word_typography_test"
+    },
+    {
+      "file": "office_vba_word_typography_integration_test.dart",
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "duration_seconds": 18.30234456062317,
+      "source_unchanged": true,
+      "source_sha256": "7ab686acb67a699e8afec43ab71f0a10304dfd6bfec12bfef10b64fb6fe5d2c6",
+      "raw_logs_local_prefix": "/workspace/scratch/86ea302351d7/word-retry-office_vba_word_typography_integration_test"
+    },
+    {
+      "file": "office_vba_word_language_test.dart",
+      "passed": 156,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 255,
+      "duration_seconds": 19.832310914993286,
+      "source_unchanged": true,
+      "source_sha256": "2900ef6d789b4026d6b31ffc2e8001b6dfcea57ea23d2618ec6501336bb0f7cc",
+      "status": "Unqualified infrastructure failure; local stderr still needs rereading",
+      "raw_logs_local_prefix": "/workspace/scratch/86ea302351d7/word-retry-office_vba_word_language_test"
+    }
+  ],
+  "command_template": [
+    "/workspace/scratch/86ea302351d7/toolchains/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/86ea302351d7/validation-workspace/.dart_tool/package_config.json",
+    "/workspace/scratch/86ea302351d7/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "test/FILE",
+    "--concurrency=1",
+    "--timeout=4x",
+    "--reporter=json"
+  ],
+  "working_directory": "/workspace/scratch/86ea302351d7/quds_office_suite/packages/quds_office_engine",
+  "environment": {
+    "PUB_CACHE": "/workspace/scratch/86ea302351d7/toolchains/pub-cache",
+    "TMPDIR": "/workspace/scratch/86ea302351d7/toolchains/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "CI": "true"
+  },
+  "raw_log_recovery": "Raw JSONL and stderr files exist locally; sandbox launch failures prevented reading/uploading them after ENOSPC. This record reproduces only observations returned by completed tool calls, not the missing raw logs.",
+  "pending_unapplied_hardening": [
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "change": "Qualify the new SmallCaps helper's xmlns:w setAttribute call with namespaceUri http://www.w3.org/2000/xmlns/ to preserve an unrelated root attribute such as x:w. Add an extension-attribute preservation regression.",
+      "status": "Proposed by review; apply_patch failed before reading target because sandbox launch ran out of space. No source variant applied."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "change": "In _writeFullRPr, emit highlight val=none when highlight is null but explicitProperties contains highlight; emit vertAlign val=baseline when baseline but explicitProperties contains vertAlign. Imported session paths passed; this closes an authored/source-null inherited-style clearing edge. Add a source-null authored style regression.",
+      "status": "Proposed by review, not applied or tested."
+    }
+  ],
+  "remaining": "Recover runtime capacity; apply/review pending hardening; format all changed Dart; run final frozen local tests, analysis, native examples and portability checks; publish only after reconciliation with current main.",
+  "primary_references": [
+    "https://learn.microsoft.com/en-us/office/vba/api/word.font.smallcaps",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.font.superscript",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.font.subscript",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.range.highlightcolorindex",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.wdcolorindex",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.item",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.application.activedocument"
+  ]
+}

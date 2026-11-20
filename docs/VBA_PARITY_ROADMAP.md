@@ -73,7 +73,25 @@ VM/JavaScript, native transaction and CLI/MCP evidence is retained in the
 Groups, arbitrary text subranges, Word stories/tables, and live collection
 behavior remain separate increments with their own identity and range tests.
 
-### Next increment
+### Continuation awaiting local qualification
+
+The `codex/word-powerpoint-vba-continuation-20261120` branch extends the Word
+slice with active-document aliases, `Paragraphs.Item`, small caps,
+superscript/subscript and fixed-palette highlighting. PowerPoint gains typed
+text-frame/font/paragraph-format/transition bindings, top/middle/bottom anchors,
+slide visibility, click advancing, duration and eleven entry-effect constants.
+These remain source-to-plan writes; no document-content reads are introduced.
+
+The intake includes all captured current fork and PR heads plus verified
+upstream ancestry. Initial Word development checks passed, but filesystem
+exhaustion blocked final qualification. The branch retains source checkpoints,
+review corrections and regression fixtures for completion; it is not a new
+Office-host or release qualification. See the
+[continuation status](validation/office-vba-continuation-20261120/recovery/README.md).
+Full AllCaps rendering, paint provenance for Fill/Line writes, baseline text
+anchors and broader slideshow behavior remain separate work.
+
+### Next shared-language increment
 
 Add named arguments and optional parameters as a separate procedure milestone,
 with explicit omitted-argument/Missing semantics, declaration-time defaults,

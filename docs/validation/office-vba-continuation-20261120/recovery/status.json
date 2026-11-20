@@ -1,0 +1,40 @@
+{
+  "state": "blocked-local-runtime",
+  "remote_branch": "codex/word-powerpoint-vba-continuation-20261120",
+  "integrated_head": "dd415bfef2381c57c0a5b0e157056804b4d674da",
+  "initial_main": "d040c15a07f652d01e75363031d0efdee6357bda",
+  "integration": {
+    "fork_branch_heads": 22,
+    "pull_request_heads": 239,
+    "uncovered": 0,
+    "upstream_heads": 4,
+    "upstream_all_ancestors": true
+  },
+  "development_test_reports": {
+    "word_typography_compiler": {
+      "passed": 48,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "word_typography_native": {
+      "passed": 25,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "word_legacy": {
+      "passed": 156,
+      "failed": 0,
+      "exit_code": 255,
+      "accepted": false,
+      "reason": "Test kernel cache cleanup exhausted local filesystem"
+    }
+  },
+  "blocker": "Sandbox launcher fails before command execution with bwrap ENOSPC. Escalated cleanup unavailable under configured approval policy. No final frozen-source qualification or new feature merge has occurred.",
+  "pending": [
+    "Apply namespace-specific XML attribute writes and regression fixtures",
+    "Persist explicit baseline and no-highlight on authored Word runs",
+    "Complete PowerPoint native and compiler tests, docs, example",
+    "Run final source-bound Dart analysis, regression tests and VM/JavaScript checks",
+    "Refresh main, reconcile concurrent work and merge after validation"
+  ]
+}
