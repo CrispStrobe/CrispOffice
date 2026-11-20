@@ -56,9 +56,25 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     _attachments =
         widget.initialDraft?.attachments ?? const StudioMailAttachments.empty();
     _subject = TextEditingController(text: widget.initialDraft?.subject ?? '');
+    final document = WmlDocument.empty(text: widget.initialDraft?.body ?? '');
+    for (final section in document.sections) {
+      section.margins = const WmlPageMargins(
+        top: 12,
+        bottom: 12,
+        left: 12,
+        right: 12,
+        header: 0,
+        footer: 0,
+      );
+    }
+    final arabic = widget.strings.language == StudioLanguage.ar;
     _body = WordEditorController(
-      document: WmlDocument.empty(text: widget.initialDraft?.body ?? ''),
-      config: const OfficeSurfaceConfig(showRulers: false),
+      document: document,
+      config: OfficeSurfaceConfig(
+        showRulers: false,
+        textDirection: arabic ? TextDirection.rtl : TextDirection.ltr,
+        strings: arabic ? OfficeStrings.arabic : OfficeStrings.english,
+      ),
       proofingService: OfficeProofingService(providers: const []),
     );
     _body.proofing.enabled = false;
@@ -143,6 +159,28 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       ]);
       _attachmentFailed = false;
     });
+  }
+
+  void _fitBodyToWidth(double width) {
+    // The shared Word canvas reserves 64 logical pixels on each side and a
+    // 14-pixel scrollbar. Reflow this disposable plain-text mail document at
+    // normal zoom instead of shrinking a full paper page (or hiding RTL text
+    // beyond the viewport). Resizing must not replace the controller, source
+    // paragraphs, input connection, selection or undo history.
+    const pointsToPixels = 96 / 72;
+    final pageWidth = ((width - 2 * 64 - 14) / pointsToPixels).clamp(
+      48.0,
+      double.infinity,
+    );
+    var changed = false;
+    for (final section in _body.document.sections) {
+      if (section.pageSize.width != pageWidth) {
+        section.pageSize = section.pageSize.copyWith(width: pageWidth);
+        changed = true;
+      }
+    }
+    // relayout does not notify during layout or create an editing command.
+    if (changed) _body.relayout();
   }
 
   @override
@@ -237,6 +275,10 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                       _attachments.items.length,
                       _attachments.totalBytes,
                     ),
+                    textDirection: TextDirection.ltr,
+                    textAlign: Directionality.of(context) == TextDirection.rtl
+                        ? TextAlign.right
+                        : TextAlign.left,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   for (
@@ -251,6 +293,11 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                         Expanded(
                           child: Text(
                             _attachments.items[index].name,
+                            textDirection: TextDirection.ltr,
+                            textAlign:
+                                Directionality.of(context) == TextDirection.rtl
+                                ? TextAlign.right
+                                : TextAlign.left,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -260,6 +307,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                           strings.mailAttachmentSize(
                             _attachments.items[index].length,
                           ),
+                          textDirection: TextDirection.ltr,
                         ),
                         IconButton(
                           key: ValueKey('studio-mail-remove-attachment-$index'),
@@ -301,14 +349,21 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                           color: Theme.of(context).dividerColor,
                         ),
                       ),
-                      child: QudsWordEditor(
-                        key: const ValueKey<String>('studio-mail-compose-body'),
-                        controller: _body,
-                        focusNode: _bodyFocus,
-                        enableLiveProofing: false,
-                        showReviewStatus: false,
-                        toolbarBuilder: (_, _) => const SizedBox.shrink(),
-                        statusBarBuilder: (_, _) => const SizedBox.shrink(),
+                      child: LayoutBuilder(
+                        builder: (context, bodyConstraints) {
+                          _fitBodyToWidth(bodyConstraints.maxWidth);
+                          return QudsWordEditor(
+                            key: const ValueKey<String>(
+                              'studio-mail-compose-body',
+                            ),
+                            controller: _body,
+                            focusNode: _bodyFocus,
+                            enableLiveProofing: false,
+                            showReviewStatus: false,
+                            toolbarBuilder: (_, _) => const SizedBox.shrink(),
+                            statusBarBuilder: (_, _) => const SizedBox.shrink(),
+                          );
+                        },
                       ),
                     ),
                   ),

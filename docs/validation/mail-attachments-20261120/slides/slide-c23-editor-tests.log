@@ -1,0 +1,72 @@
+00:00 +0: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart
+00:00 +0: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: slide animation cannot hide an inherited decoration with the same id
+00:00 +1: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: morph keeps inherited decorations when content ids match
+00:00 +2: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: inherited decorations retain their authored rotation
+00:00 +3: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: clicking the first painted PmlTextAnchor.center line selects that line
+00:00 +4: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: clicking the first painted PmlTextAnchor.bottom line selects that line
+00:00 +5: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: edited scalar size and ink replace stale imported rendering
+00:01 +6: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: rich runs without explicit size or ink inherit shape values
+00:01 +7: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: master decoration IDs do not inherit slide animation samples
+00:01 +8: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: dark slide text uses the decoration painted behind it
+00:01 +9: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart: foreground animation IDs never hide master decorations
+00:01 +10: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart: morph foreground IDs never skip master decorations
+00:01 +11: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart: master decoration rotation matches authored geometry
+00:01 +12: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart: dark-slide ink respects a white master decoration behind text
+00:01 +13: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart: curved decorations do not imply a uniform backing rectangle
+00:02 +14: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: (setUpAll)
+00:02 +14: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled slide text stays readable over inherited decorations
+00:03 +15: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: native and authored slide backgrounds retain readable ink
+00:03 +16: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: rich slide formatting edits render before saving and reopening
+00:04 +17: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: (setUpAll)
+00:04 +18: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: (setUpAll)
+00:04 +19: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: (setUpAll)
+00:04 +19: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: rich text painting follows font-size edits and undo
+00:04 +20: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: logical slices retain whole Unicode graphemes at every UTF-16 unit
+00:04 +21: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:04 +22: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:04 +23: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:04 +24: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:04 +25: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:04 +26: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:04 +27: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: Latin ZWSP retain source offsets through paint and hit testing
+00:04 +28: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +29: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +30: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +31: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +32: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +33: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +34: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +35: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +36: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +37: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +38: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +39: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +40: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +41: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +42: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +43: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +44: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +45: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +46: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +47: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +48: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +49: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +50: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +51: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:04 +52: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_arrange_history_test.dart: ungroup rejects duplicate and foreign shapes atomically
+00:04 +53: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over chart
+00:04 +54: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over chart
+00:04 +55: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over chart
+00:04 +56: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over chart
+00:04 +57: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: single move retains connector orientation through history and saving
+00:05 +58: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: single move retains connector orientation through history and saving
+00:05 +59: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: single move retains connector orientation through history and saving
+00:05 +60: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: single move retains connector orientation through history and saving
+00:05 +61: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: single resize retains connector orientation through history and saving
+00:05 +62: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: single rotate retains connector orientation through history and saving
+00:05 +63: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: group move retains connector orientation through history and saving
+00:05 +64: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: group resize retains connector orientation through history and saving
+00:05 +65: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: group rotate retains connector orientation through history and saving
+00:06 +66: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: keyboard and group moves retain each connector orientation
+00:06 +67: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart: copy and paste retain frozen connector orientation
+00:06 +68: All tests passed!

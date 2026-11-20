@@ -1,0 +1,69 @@
+00:00 +0: loading test/slide_import_fidelity_test.dart
+00:00 +0: test/slide_import_fidelity_test.dart: shape import text boxes stay text; only p:pic becomes a picture
+00:00 +1: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +2: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +3: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +4: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +5: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +6: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +7: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +8: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +9: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +10: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +11: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +12: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +13: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +14: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +15: test/slide_rich_text_explicit_style_test.dart: explicit plain run styles survive paragraph defaults and PPTX saves
+00:00 +16: test/slide_import_fidelity_test.dart: slide order saving keeps the order and points sldId at real relationships
+00:00 +17: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:00 +18: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:00 +19: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:01 +20: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:01 +21: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:01 +22: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:01 +23: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:01 +24: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:01 +25: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:01 +26: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:01 +27: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:01 +28: test/slide_text_fidelity_test.dart: native text point sizes survive unchanged asynchronous export
+00:01 +29: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:01 +30: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:01 +31: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 645 631 62d 628 627
+00:01 +32: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 645 631 62d 628 627
+00:01 +33: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 645 631 62d 628 627
+00:01 +34: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 645 631 62d 628 627
+00:01 +35: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 645 631 62d 628 627
+00:01 +36: test/slide_text_fidelity_test.dart: chart frames transitions and source axis IDs have valid schema values
+00:01 +37: test/slide_text_fidelity_test.dart: chart frames transitions and source axis IDs have valid schema values
+00:01 +38: test/slide_text_fidelity_test.dart: chart frames transitions and source axis IDs have valid schema values
+00:01 +39: test/slide_text_fidelity_test.dart: chart frames transitions and source axis IDs have valid schema values
+00:01 +40: test/slide_text_fidelity_test.dart: chart frames transitions and source axis IDs have valid schema values
+00:01 +41: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:01 +42: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:01 +43: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:01 +44: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:01 +45: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:01 +46: test/pdf_logical_text_export_test.dart: presentation PDF retains logical Arabic and mixed bidi text
+00:01 +47: test/office_pdf_export_test.dart: transparent PNG pictures emit a DeviceGray SMask
+00:01 +48: test/pdf_logical_text_export_test.dart: rotated presentation preserves source without repainting replacements
+00:01 +49: test/pdf_logical_text_export_test.dart: rotated presentation preserves source without repainting replacements
+00:01 +50: test/pdf_logical_text_export_test.dart: rotated presentation preserves source without repainting replacements
+00:01 +51: test/office_pdf_export_test.dart: Word PDF writes TOC and web link annotations
+00:01 +52: test/office_pdf_export_test.dart: Word PDF writes TOC and web link annotations
+00:01 +53: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:01 +54: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:01 +55: test/office_pdf_export_test.dart: OfficePrint forwards sheet and slide ranges
+00:01 +56: test/pdf_logical_text_export_test.dart: wrapped presentation lines retain source separators
+00:01 +57: test/pdf_logical_text_export_test.dart: wrapped presentation lines retain source separators
+00:02 +58: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:02 +59: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:02 +60: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:02 +61: test/pdf_logical_text_export_test.dart: mixed bidi source preserves supplementary Unicode without splitting
+00:02 +62: test/pdf_logical_text_export_test.dart: mixed bidi source preserves supplementary Unicode without splitting
+00:02 +63: test/pdf_logical_text_export_test.dart: mixed bidi source preserves supplementary Unicode without splitting
+00:02 +64: test/pdf_logical_text_export_test.dart: mixed small-cap displays and Arabic retain the same authored line
+00:02 +65: test/pdf_logical_text_export_test.dart: explicit soft hyphens copy once across wrapped Word lines
+00:02 +66: test/pdf_logical_text_export_test.dart: Word table, header, footer and generated note label keep logical text
+00:02 +67: All tests passed!

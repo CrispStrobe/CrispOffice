@@ -614,8 +614,7 @@ class PmlSlide {
   /// A resolved empty list must not fall back to the presentation master.
   final bool backgroundShapesResolved;
 
-  /// The authored master-shape visibility flag (`p:sld/@showMasterSp`).
-  /// Layout shapes are unaffected; import resolves master shapes separately.
+  /// The slide's authored `showMasterSp` flag, retained when saving/copying.
   bool showMasterShapes;
 
   /// layoutName API.

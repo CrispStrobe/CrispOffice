@@ -1747,8 +1747,8 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       Paint()..color = _slidePaper(target),
     );
     for (final PmlShape shape in target.backgroundShapes) {
-      // Master/layout shape IDs are scoped to their source parts. Foreground
-      // animation and morph IDs must never hide or transform decorations.
+      // Master/layout shape ids belong to their own parts. Slide animations
+      // and morph matching must never apply to a coincident decoration id.
       final Rect r = _shapeRect(shape);
       canvas.save();
       _rotateCanvas(canvas, shape, r);
