@@ -1,0 +1,93 @@
+{
+  "purpose": "Source applicability after final main incorporation and focused corrections",
+  "checked_at_utc": "2026-11-20T21:41:12.783048+00:00",
+  "source_commit": "3f9d3647a20b06c73f5bfd0ade2846e7859e4502",
+  "source_tree": "40cb0dc3d27af7b31f76a179ef048dcbd76b9934",
+  "accepted_baseline": "511990e9b81ff5d6ef2ed1488ff31e2565f21618",
+  "incorporated_main": "e975cec13b289fe067ef406cd3044701ecc44744",
+  "both_ancestors": true,
+  "original_archive_sha256": "5ff4d171e28d83ea8804b5e112efe31725b7e9c83c2b81230223c09b3bfa6121",
+  "baseline_cohort_comparison": {
+    "core-and-transport": {
+      "input_count": 268,
+      "unchanged": true,
+      "changes": []
+    },
+    "hosts-consolidated": {
+      "input_count": 1002,
+      "unchanged": false,
+      "changes": [
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+          "accepted_sha256": "6c1ccc6790e3921c81ea21793a286345d7529f176b930193c532e0caea89f12a",
+          "current_sha256": "fa607b5173809b226d63f203ee4fc7a40e7c75ae9e6e865517c444269d7b22b8"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+          "accepted_sha256": "a0385aa798546881829bb366622a44c0fa61bb5623e739e5337e7a43971c9253",
+          "current_sha256": "ec820bd02b287b7f1ef109248d7336e243f436c0206eedb4982631b6855e690e"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "accepted_sha256": "929c35fe59d9b7267dd74a94f7f0dc4353c8db11c569a5a7f5601c5f4868ded8",
+          "current_sha256": "4a5a9b69e45f3f6123103f98f31623b55892e3b2dfce8283322bacc9c9d5244b"
+        }
+      ]
+    },
+    "shared-ui": {
+      "input_count": 59,
+      "unchanged": true,
+      "changes": []
+    },
+    "visuals": {
+      "input_count": 1006,
+      "unchanged": false,
+      "changes": [
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+          "accepted_sha256": "6c1ccc6790e3921c81ea21793a286345d7529f176b930193c532e0caea89f12a",
+          "current_sha256": "fa607b5173809b226d63f203ee4fc7a40e7c75ae9e6e865517c444269d7b22b8"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+          "accepted_sha256": "a0385aa798546881829bb366622a44c0fa61bb5623e739e5337e7a43971c9253",
+          "current_sha256": "ec820bd02b287b7f1ef109248d7336e243f436c0206eedb4982631b6855e690e"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "accepted_sha256": "929c35fe59d9b7267dd74a94f7f0dc4353c8db11c569a5a7f5601c5f4868ded8",
+          "current_sha256": "4a5a9b69e45f3f6123103f98f31623b55892e3b2dfce8283322bacc9c9d5244b"
+        }
+      ]
+    },
+    "word-cutoff": {
+      "input_count": 369,
+      "unchanged": false,
+      "changes": [
+        {
+          "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+          "accepted_sha256": "a0385aa798546881829bb366622a44c0fa61bb5623e739e5337e7a43971c9253",
+          "current_sha256": "ec820bd02b287b7f1ef109248d7336e243f436c0206eedb4982631b6855e690e"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "accepted_sha256": "929c35fe59d9b7267dd74a94f7f0dc4353c8db11c569a5a7f5601c5f4868ded8",
+          "current_sha256": "4a5a9b69e45f3f6123103f98f31623b55892e3b2dfce8283322bacc9c9d5244b"
+        }
+      ]
+    }
+  },
+  "mail_dart_paths_verified_identical": 211,
+  "changed_mail_dart_paths": [],
+  "frozen_intake": {
+    "accepted_target": "4772d52492076241c39fdee0990c950c92367b1f",
+    "target_remains_ancestor": true,
+    "manifest_sha256": "1dcc95a5959fa8f0347fea77751e4e12aaa1b4cec712fd6e36528da4a6ecc94f",
+    "report_sha256": "880491bfa56a0f63d5941c7db46650c6de28cdb62ac88c8076f600af77449914",
+    "captured_refs": 320,
+    "uncovered_refs": 0,
+    "note": "No new branch/PR scan. The accepted cutoff and historical equivalence proofs remain valid through ancestry; main publication reconciliation is recorded separately."
+  },
+  "acceptance_rule": "Retain core/transport and shared UI acceptance because every input is unchanged. Replace host, visual and affected Word applicability with fresh source-bound final-main receipts. This comparison itself does not claim those reruns passed.",
+  "status": "PASS"
+}
