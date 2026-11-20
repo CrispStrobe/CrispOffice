@@ -1,5 +1,5 @@
-# Temporary (removed before merge): regenerate Linux editor goldens on the CI
-# toolchain so the diffs can be reviewed.
+# Temporary (removed before merge): regenerate Linux editor goldens at several
+# historical commits to attribute each golden diff to the commit causing it.
 name: tmp regenerate editor goldens
 on:
   push:
@@ -7,32 +7,31 @@ on:
 jobs:
   goldens:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/quds_office_editor
+    strategy:
+      fail-fast: false
+      matrix:
+        sha: [6d7c696e, 5d1f4f1e, 102b55f7, 35829317, f0b9c738, 3dcf9494, 03a28d58, 2dbd1c58, ab84bc1a, a3caf4ad]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: git checkout ${{ matrix.sha }}
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
           flutter-version: 3.47.8
-      - name: Resolve workspace
-        working-directory: .
-        run: flutter pub get
+      - run: flutter pub get
       - name: Regenerate
+        working-directory: packages/quds_office_editor
         run: |
-          cp -r test/goldens /tmp/goldens-before
-          flutter test --update-goldens test/office_table_grid_golden_test.dart test/office_layout_goldens_test.dart test/office_structure_goldens_test.dart test/office_frame_wrap_golden_test.dart test/office_fidelity_golden_test.dart test/office_story_golden_test.dart test/office_nested_table_golden_test.dart || true
-          mkdir -p /tmp/out/after /tmp/out/before
-          git status --porcelain test/goldens
-          for f in $(git status --porcelain test/goldens | awk '{print $2}'); do
-            rel=${f#packages/quds_office_editor/}; rel=${rel#test/goldens/}
-            mkdir -p "/tmp/out/after/$(dirname "$rel")" "/tmp/out/before/$(dirname "$rel")"
-            cp "test/goldens/$rel" "/tmp/out/after/$rel"
-            [ -f "/tmp/goldens-before/$rel" ] && cp "/tmp/goldens-before/$rel" "/tmp/out/before/$rel" || true
+          files=""
+          for f in office_table_grid_golden_test office_layout_goldens_test office_structure_goldens_test office_frame_wrap_golden_test office_fidelity_golden_test office_story_golden_test office_nested_table_golden_test; do
+            [ -f test/$f.dart ] && files="$files test/$f.dart"
           done
+          flutter test --update-goldens $files || true
+          mkdir -p /tmp/out && cp -r test/goldens /tmp/out/
       - uses: actions/upload-artifact@v4
         with:
-          name: regenerated-goldens
+          name: goldens-${{ matrix.sha }}
           path: /tmp/out/
           retention-days: 3
