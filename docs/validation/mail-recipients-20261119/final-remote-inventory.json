@@ -1,0 +1,1186 @@
+{
+  "baselineMain": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "observationStage": "Remote inventory observed before incorporating captured tips 8356fb0a and 400fffd0; those tips are now ancestors of the product checkpoint.",
+  "branches": [
+    {
+      "name": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be"
+    },
+    {
+      "name": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd"
+    },
+    {
+      "name": "codex/vba-dynamic-arrays-20261119",
+      "sha": "8356fb0ad4630824a39453ea9a5923d9fb2a2101"
+    },
+    {
+      "name": "codex/zotero-workflow-20261119",
+      "sha": "400fffd04fcceee78959e4c38b4d1dbe89767c2b"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d"
+    },
+    {
+      "name": "main",
+      "sha": "2170791c9250d72c9df31a065408365f9b50abaa"
+    },
+    {
+      "name": "work/mail-continuation-20261119",
+      "sha": "3279d1ffb0d80c0133fc6edaa2c3854512ac8481"
+    },
+    {
+      "name": "work/mail-next-20261119",
+      "sha": "ab833975409abfb207f3a6a1a146183a4a5198fd"
+    }
+  ],
+  "recentPullRequests": [
+    {
+      "number": 217,
+      "title": "Add To/Cc/Bcc and Reply all; reconcile concurrent fork work [skip ci]",
+      "state": "open",
+      "draft": true,
+      "updatedAt": "2026-11-19T21:27:14Z",
+      "mergedAt": null,
+      "headSha": "3279d1ffb0d80c0133fc6edaa2c3854512ac8481",
+      "headBranch": "work/mail-continuation-20261119",
+      "baseSha": "2170791c9250d72c9df31a065408365f9b50abaa"
+    },
+    {
+      "number": 218,
+      "title": "Extend Zotero tag discovery and source citation navigation",
+      "state": "open",
+      "draft": false,
+      "updatedAt": "2026-11-19T21:25:20Z",
+      "mergedAt": null,
+      "headSha": "400fffd04fcceee78959e4c38b4d1dbe89767c2b",
+      "headBranch": "codex/zotero-workflow-20261119",
+      "baseSha": "2170791c9250d72c9df31a065408365f9b50abaa"
+    },
+    {
+      "number": 216,
+      "title": "Preserve mail reply threading and reconcile fork continuations",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T20:51:02Z",
+      "mergedAt": "2026-11-19T20:50:37Z",
+      "headSha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "headBranch": "work/mail-next-20261119",
+      "baseSha": "5715d56053e93dc11e8b5165bd13f8db2a1f3917"
+    },
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "state": "closed",
+      "draft": true,
+      "updatedAt": "2026-11-19T20:50:38Z",
+      "mergedAt": "2026-11-19T20:50:38Z",
+      "headSha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "headBranch": "codex/crispoffice-layout-theme-20261119",
+      "baseSha": "9f41e0427734d815b19149eba5eabef202f78ba6"
+    },
+    {
+      "number": 210,
+      "title": "Extend VBA macros with bounded arrays and For Each; reconcile fork work",
+      "state": "closed",
+      "draft": true,
+      "updatedAt": "2026-11-19T20:50:38Z",
+      "mergedAt": "2026-11-19T20:50:38Z",
+      "headSha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "headBranch": "codex/vba-arrays-foreach-20261119",
+      "baseSha": "9f41e0427734d815b19149eba5eabef202f78ba6"
+    },
+    {
+      "number": 212,
+      "title": "Resume mail archive restores with durable destination checkpoints [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T20:17:01Z",
+      "mergedAt": "2026-11-19T20:16:03Z",
+      "headSha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "headBranch": "codex/mail-archive-resume-20261119",
+      "baseSha": "756885bc9cb1612f8d400889f8d3020cec9ad945"
+    },
+    {
+      "number": 215,
+      "title": "Verify the saved spaCy setup before the first analysis [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T19:53:18Z",
+      "mergedAt": "2026-11-19T19:53:14Z",
+      "headSha": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "headBranch": "fix/spacy-open-refresh-20261119",
+      "baseSha": "9ceb994d8edce3989228f1244cda90ecc9884931"
+    },
+    {
+      "number": 214,
+      "title": "Align bundled spaCy mode with NER state and the downloads manager [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T19:43:15Z",
+      "mergedAt": "2026-11-19T19:42:42Z",
+      "headSha": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "headBranch": "fix/spacy-bundled-ner-20261119",
+      "baseSha": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c"
+    },
+    {
+      "number": 213,
+      "title": "Bundle the spaCy runtime in the macOS app, register missing licences, harden the build [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T19:43:15Z",
+      "mergedAt": "2026-11-19T19:15:39Z",
+      "headSha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "headBranch": "fix/app-gaps-20261119",
+      "baseSha": "d9bee6e507f6b631aee55bb8a89187119410847f"
+    },
+    {
+      "number": 209,
+      "title": "Restore exported mail archives with verified originals and provenance",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T19:43:14Z",
+      "mergedAt": "2026-11-19T18:16:42Z",
+      "headSha": "6275d21246040e03f6264b27171992c88d1474a2",
+      "headBranch": "codex/mail-archive-restore-20261119",
+      "baseSha": "cf59efa99232a3fd26cf21ce7f2382402e576f9b"
+    },
+    {
+      "number": 207,
+      "title": "Extend bounded VBA macros with conditional loops and Select Case",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T19:43:14Z",
+      "mergedAt": "2026-11-19T17:49:23Z",
+      "headSha": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "headBranch": "codex/vba-control-flow-20261119",
+      "baseSha": "0d87cebea232c3edf55c4f4a22f63684dbe5a3f5"
+    },
+    {
+      "number": 206,
+      "title": "Improve CrispOffice ribbons and native desktop menus [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T19:43:14Z",
+      "mergedAt": "2026-11-19T17:40:16Z",
+      "headSha": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "headBranch": "codex/crispoffice-gui-20261119",
+      "baseSha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d"
+    },
+    {
+      "number": 208,
+      "title": "[skip ci] MacBook build integration: resolve temp folder in Studio directory-import tests",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T17:40:45Z",
+      "mergedAt": "2026-11-19T17:39:56Z",
+      "headSha": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "headBranch": "integrate/macbook-build-20261119",
+      "baseSha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d"
+    },
+    {
+      "number": 204,
+      "title": "Extend VBA macros with reusable procedures and scalar functions",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T17:40:22Z",
+      "mergedAt": "2026-11-19T16:48:52Z",
+      "headSha": "3db248be978b24d0693d1133505d9be200fd1256",
+      "headBranch": "codex/vba-procedures-20261119",
+      "baseSha": "81ae98688860599f118748afca19bdb2ec45da37"
+    },
+    {
+      "number": 202,
+      "title": "Extend Office macros with a bounded Excel VBA compiler",
+      "state": "closed",
+      "draft": true,
+      "updatedAt": "2026-11-19T17:40:22Z",
+      "mergedAt": null,
+      "headSha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "headBranch": "codex/vba-excel-macros",
+      "baseSha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a"
+    },
+    {
+      "number": 197,
+      "title": "Add on-premises Exchange EWS support",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T17:40:22Z",
+      "mergedAt": "2026-11-19T14:56:01Z",
+      "headSha": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "headBranch": "feat/ews-on-premises",
+      "baseSha": "0336116d6a07a16f5b46dbe07583b47ee9dcec83"
+    },
+    {
+      "number": 196,
+      "title": "Arabic morphology: binary proofing bundle and compact ABI",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T17:40:22Z",
+      "mergedAt": "2026-11-19T14:04:12Z",
+      "headSha": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "headBranch": "feat/arabic-morph-binary-20261119",
+      "baseSha": "0336116d6a07a16f5b46dbe07583b47ee9dcec83"
+    },
+    {
+      "number": 205,
+      "title": "Add resumable bulk mail export and recursive archive import [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T17:40:21Z",
+      "mergedAt": "2026-11-19T17:27:22Z",
+      "headSha": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "headBranch": "codex/mail-archive-portability-20261119",
+      "baseSha": "304d4bff45da24f22cee420ec464882d7c7ce516"
+    },
+    {
+      "number": 203,
+      "title": "Add durable mail archiving, indexing and search [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T17:40:21Z",
+      "mergedAt": "2026-11-19T16:26:50Z",
+      "headSha": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "headBranch": "codex/mail-archive-search-20261119",
+      "baseSha": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897"
+    },
+    {
+      "number": 201,
+      "title": "Add Office macros with shared MCP commands and language adapters",
+      "state": "closed",
+      "draft": true,
+      "updatedAt": "2026-11-19T17:40:21Z",
+      "mergedAt": "2026-11-19T16:26:52Z",
+      "headSha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "headBranch": "codex/mcp-aligned-macros",
+      "baseSha": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897"
+    },
+    {
+      "number": 198,
+      "title": "Complete Office validation recovery and reconcile language identification",
+      "state": "closed",
+      "draft": true,
+      "updatedAt": "2026-11-19T17:40:21Z",
+      "mergedAt": "2026-11-19T16:26:53Z",
+      "headSha": "623057111a9179552eb02b21a753a1728de9905d",
+      "headBranch": "codex/office-validation-recovery-20261119",
+      "baseSha": "07b815a79d011f88b048900e22aa6544f44f2758"
+    },
+    {
+      "number": 199,
+      "title": "Automatic per-paragraph language identification (bundled CLD3)",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T14:56:01Z",
+      "mergedAt": "2026-11-19T14:56:01Z",
+      "headSha": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "headBranch": "feat/paragraph-language-id-20261119",
+      "baseSha": "07b815a79d011f88b048900e22aa6544f44f2758"
+    },
+    {
+      "number": 200,
+      "title": "Add Gmail, Microsoft 365 and additional CrispOffice mail providers",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T14:55:59Z",
+      "mergedAt": "2026-11-19T14:55:59Z",
+      "headSha": "4b2ad7995c1ddff052232c21749d847701d77f96",
+      "headBranch": "codex/mail-providers-20261119",
+      "baseSha": "07b815a79d011f88b048900e22aa6544f44f2758"
+    },
+    {
+      "number": 163,
+      "title": "spaCy follow-up: opt-in NER and published macOS arm64 capsule pins [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:59Z",
+      "mergedAt": "2026-11-18T12:36:33Z",
+      "headSha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "headBranch": "integrate/spacy-ner-macos-followup-20261118",
+      "baseSha": "5588726c705700ab8ab08c34472e0f88d059cf29"
+    },
+    {
+      "number": 171,
+      "title": "English and French local analysis (native spaCy v2 bundles) + incoming integration [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:57Z",
+      "mergedAt": "2026-11-18T20:17:10Z",
+      "headSha": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "headBranch": "integrate/spacy-en-fr-20261118",
+      "baseSha": "4fbc8741f314af67592517595c760ba3036dedba"
+    },
+    {
+      "number": 152,
+      "title": "Reconcile Office union qualification and frame bookmarks",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:55Z",
+      "mergedAt": "2026-11-17T22:10:10Z",
+      "headSha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "headBranch": "integrate/office-union-150",
+      "baseSha": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6"
+    },
+    {
+      "number": 147,
+      "title": "Reconcile ODT field, bookmark and column-break fidelity",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:53Z",
+      "mergedAt": "2026-11-17T21:29:45Z",
+      "headSha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "headBranch": "integrate/odt-column-boundary-144",
+      "baseSha": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4"
+    },
+    {
+      "number": 125,
+      "title": "Merge Office continuation without AOT",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:50Z",
+      "mergedAt": "2026-11-17T18:25:42Z",
+      "headSha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "headBranch": "integrate/codex-office-continuation-20261117",
+      "baseSha": "93cb0773f82b3d41a75bc50705074efcb9d4df78"
+    },
+    {
+      "number": 129,
+      "title": "Merge remaining proofing branches and remove AOT/RML",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:47Z",
+      "mergedAt": "2026-11-17T19:09:23Z",
+      "headSha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "headBranch": "integrate/aot-then-remove-20261117",
+      "baseSha": "97f6553c3fdca35be0270a66d6eaeb286c884fef"
+    },
+    {
+      "number": 34,
+      "title": "Accept UTF-16 custom XML while probing bibliography ownership",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:42Z",
+      "mergedAt": "2026-11-15T18:49:26Z",
+      "headSha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "headBranch": "fix/utf16-custom-xml",
+      "baseSha": "3d255f0f5c37af3efbaf69b29f4fcfc869de3eaa"
+    },
+    {
+      "number": 186,
+      "title": "Fix Studio example widget tests after CrispOffice rebrand; apply Show notes setting",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:41Z",
+      "mergedAt": "2026-11-19T09:26:24Z",
+      "headSha": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "headBranch": "fix/studio-example-tests-20261119",
+      "baseSha": "00014577265d1f95d4c016159029510d3a10804b"
+    },
+    {
+      "number": 42,
+      "title": "Lift a trailing section break out of a body content control",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:39Z",
+      "mergedAt": "2026-11-15T20:24:56Z",
+      "headSha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "headBranch": "fix/sdt-trailing-section-break",
+      "baseSha": "42b7f1e767454a962ef3a21342eac335bbf925db"
+    },
+    {
+      "number": 44,
+      "title": "Split content controls across multiple document sections",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:37Z",
+      "mergedAt": "2026-11-15T22:18:54Z",
+      "headSha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "headBranch": "fix/sdt-multi-section-control",
+      "baseSha": "7f005ef2592d2c1691762c6f0a3826302fedbdbc"
+    },
+    {
+      "number": 130,
+      "title": "Preserve inline ODT PAGE and NUMPAGES fields",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:35Z",
+      "mergedAt": "2026-11-17T19:11:34Z",
+      "headSha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "headBranch": "fix/odt-inline-fields",
+      "baseSha": "6061aa72e2e59ba23085451c04286184aa23b9e0"
+    },
+    {
+      "number": 73,
+      "title": "Define the ODS writer default page layout",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:34Z",
+      "mergedAt": "2026-11-16T18:30:45Z",
+      "headSha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "headBranch": "fix/ods-writer-page-layout",
+      "baseSha": "ed5facb4bd503667749ed3d13378da6a1b34738b"
+    },
+    {
+      "number": 80,
+      "title": "Model and round-trip worksheet page setup",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:29Z",
+      "mergedAt": "2026-11-16T19:47:41Z",
+      "headSha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "headBranch": "feat/sheet-page-setup",
+      "baseSha": "be9eeec9ea3455018de26fff5874c558dbc66798"
+    },
+    {
+      "number": 32,
+      "title": "Preserve hidden ODS rows and columns",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:27Z",
+      "mergedAt": "2026-11-15T16:51:32Z",
+      "headSha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "headBranch": "feat/sheet-hidden-state",
+      "baseSha": "2f47132206a88c6dd0f724a665fb6b7158cf3a57"
+    },
+    {
+      "number": 33,
+      "title": "Preserve hidden ODS worksheets",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:26Z",
+      "mergedAt": "2026-11-15T18:39:22Z",
+      "headSha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "headBranch": "feat/sheet-hidden-sheets",
+      "baseSha": "49769a21ba26cf2866ee26c66938d3ce8d5ad3d9"
+    },
+    {
+      "number": 127,
+      "title": "Write cached ODT table-of-contents entries",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:22Z",
+      "mergedAt": "2026-11-17T18:59:52Z",
+      "headSha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "headBranch": "feat/odt-toc",
+      "baseSha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff"
+    },
+    {
+      "number": 115,
+      "title": "Write ODT table borders and row heights",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:21Z",
+      "mergedAt": "2026-11-17T16:11:54Z",
+      "headSha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "headBranch": "feat/odt-table-borders",
+      "baseSha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad"
+    },
+    {
+      "number": 118,
+      "title": "Write ODT paragraph tab stops",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:19Z",
+      "mergedAt": "2026-11-17T17:26:19Z",
+      "headSha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "headBranch": "feat/odt-tab-stops",
+      "baseSha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3"
+    },
+    {
+      "number": 104,
+      "title": "Write ODT section layouts and page breaks",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:18Z",
+      "mergedAt": "2026-11-17T14:18:03Z",
+      "headSha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "headBranch": "feat/odt-sections2",
+      "baseSha": "3458c8977cef969a86a07b39734c761ba62e4b40"
+    },
+    {
+      "number": 112,
+      "title": "Write ODT paragraph shading and borders",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:16Z",
+      "mergedAt": "2026-11-17T15:52:04Z",
+      "headSha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "headBranch": "feat/odt-paragraph-shading",
+      "baseSha": "9941c80d09145310efd752b1558356c7bfb97f02"
+    },
+    {
+      "number": 122,
+      "title": "Write ODT column breaks and keep-together",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:15Z",
+      "mergedAt": "2026-11-17T18:00:25Z",
+      "headSha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "headBranch": "feat/odt-paragraph-breaks",
+      "baseSha": "edd023c3505942cd2433bfa6c815a7d009432a3c"
+    },
+    {
+      "number": 110,
+      "title": "Write ODT page-number fields",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:13Z",
+      "mergedAt": "2026-11-17T15:45:06Z",
+      "headSha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "headBranch": "feat/odt-page-fields",
+      "baseSha": "eaebdac8332ec365617152a7aec1fbfe2641532c"
+    },
+    {
+      "number": 97,
+      "title": "Write ordered ODT list groups",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:11Z",
+      "mergedAt": "2026-11-17T08:36:14Z",
+      "headSha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "headBranch": "feat/odt-ordered-lists",
+      "baseSha": "ee72594686c17e508740e1b446c87593da9ffbda"
+    },
+    {
+      "number": 106,
+      "title": "Write nested ODT list levels",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:10Z",
+      "mergedAt": "2026-11-17T14:40:22Z",
+      "headSha": "7686ec52876288e6799023fd686af79228236826",
+      "headBranch": "feat/odt-nested-lists",
+      "baseSha": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b"
+    },
+    {
+      "number": 95,
+      "title": "Write ODT list groups",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:08Z",
+      "mergedAt": "2026-11-17T08:24:48Z",
+      "headSha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "headBranch": "feat/odt-lists",
+      "baseSha": "8a778f1884b15065ef74f4c20f828d34b2374e06"
+    },
+    {
+      "number": 107,
+      "title": "Write ODT bookmarks and linked ranges",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:07Z",
+      "mergedAt": "2026-11-17T14:52:11Z",
+      "headSha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "headBranch": "feat/odt-links-bookmarks",
+      "baseSha": "2277634a33b77405f045321ee3ea9ae432066f9a"
+    },
+    {
+      "number": 100,
+      "title": "Write ODT footnotes and endnotes",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:04Z",
+      "mergedAt": "2026-11-17T09:02:35Z",
+      "headSha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "headBranch": "feat/odt-footnotes",
+      "baseSha": "b0d6c58b45a7e2cf4d161270b0e8223f05e0d470"
+    },
+    {
+      "number": 133,
+      "title": "Write ODT first and even header/footer variants",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:03Z",
+      "mergedAt": "2026-11-17T19:23:07Z",
+      "headSha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "headBranch": "feat/odt-first-even-headers",
+      "baseSha": "081af8a55338c713ba8b350f2519f2021d9caee3"
+    },
+    {
+      "number": 124,
+      "title": "Write ODT field results",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:01Z",
+      "mergedAt": "2026-11-17T18:17:58Z",
+      "headSha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "headBranch": "feat/odt-fields",
+      "baseSha": "9626152fced037379a79ef4fec458645e0d8c2ff"
+    },
+    {
+      "number": 92,
+      "title": "Add a bounded ODT document writer",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:31:00Z",
+      "mergedAt": "2026-11-16T23:41:09Z",
+      "headSha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "headBranch": "feat/odt-document-writer",
+      "baseSha": "f57d8f5debd8c27fe7cb9b9322c84fb284ff2c49"
+    },
+    {
+      "number": 103,
+      "title": "Write ODT comments",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:58Z",
+      "mergedAt": "2026-11-17T13:47:00Z",
+      "headSha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "headBranch": "feat/odt-comments",
+      "baseSha": "518fb28b1cff7aeefad446cbf41c2832673c4d33"
+    },
+    {
+      "number": 119,
+      "title": "Write multi-column ODT sections",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:57Z",
+      "mergedAt": "2026-11-17T17:42:54Z",
+      "headSha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "headBranch": "feat/odt-columns",
+      "baseSha": "388bd7451067794b58276d174fe05470aa9994ed"
+    },
+    {
+      "number": 68,
+      "title": "Extend the ODS writer to metadata and number formats",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:55Z",
+      "mergedAt": "2026-11-16T15:16:47Z",
+      "headSha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "headBranch": "feat/ods-writer-metadata",
+      "baseSha": "3398d53198263d3b76189fabb25b9d53ddf934db"
+    },
+    {
+      "number": 70,
+      "title": "Write worksheet pictures into ODS packages",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:53Z",
+      "mergedAt": "2026-11-16T15:55:20Z",
+      "headSha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "headBranch": "feat/ods-writer-images",
+      "baseSha": "b6d13f6546e1f240b2d4c5940fbf66bcf9ca53f2"
+    },
+    {
+      "number": 69,
+      "title": "Write ODS conditional formats and validations",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:52Z",
+      "mergedAt": "2026-11-16T15:49:13Z",
+      "headSha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "headBranch": "feat/ods-writer-conditional",
+      "baseSha": "91f82b8007e4555b855d807a9d9785914e73b650"
+    },
+    {
+      "number": 67,
+      "title": "Add a bounded ODS workbook writer",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:51Z",
+      "mergedAt": "2026-11-16T15:11:41Z",
+      "headSha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "headBranch": "feat/ods-writer",
+      "baseSha": "ea88b25f0242ecb0145fea96bf2f8471dba93cad"
+    },
+    {
+      "number": 39,
+      "title": "Import ODS list validations",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:49Z",
+      "mergedAt": "2026-11-15T19:18:34Z",
+      "headSha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "headBranch": "feat/ods-validations",
+      "baseSha": "9f1efe0758f5e67f10cec05883cc587a3b08b14c"
+    },
+    {
+      "number": 51,
+      "title": "Import ODS numeric, date and length validations",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:47Z",
+      "mergedAt": "2026-11-16T08:32:57Z",
+      "headSha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "headBranch": "feat/ods-validation-operators",
+      "baseSha": "dc5f93b673e6087cccc6d66b33dfbfd099668f77"
+    },
+    {
+      "number": 54,
+      "title": "Import ODS validation prompts and error styles",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:46Z",
+      "mergedAt": "2026-11-16T09:10:51Z",
+      "headSha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "headBranch": "feat/ods-validation-messages",
+      "baseSha": "adffad55e28479bcae20a87a95fb4e96e25cd96c"
+    },
+    {
+      "number": 57,
+      "title": "Preserve ODS worksheet tab colours",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:44Z",
+      "mergedAt": "2026-11-16T10:30:10Z",
+      "headSha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "headBranch": "feat/ods-tab-color",
+      "baseSha": "6c2e3d173b8ed3a84b26792105a061bd9dd57c35"
+    },
+    {
+      "number": 78,
+      "title": "Write ODS row outline groups and off-extent geometry",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:42Z",
+      "mergedAt": "2026-11-16T19:23:12Z",
+      "headSha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "headBranch": "feat/ods-row-groups",
+      "baseSha": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18"
+    },
+    {
+      "number": 60,
+      "title": "Preserve ODS outline groups",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:41Z",
+      "mergedAt": "2026-11-16T13:32:40Z",
+      "headSha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "headBranch": "feat/ods-outline",
+      "baseSha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2"
+    },
+    {
+      "number": 58,
+      "title": "Import ODS named expressions",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:39Z",
+      "mergedAt": "2026-11-16T10:37:36Z",
+      "headSha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "headBranch": "feat/ods-named-expressions",
+      "baseSha": "91d574acefb45f326a82b9e416719213050068cc"
+    },
+    {
+      "number": 48,
+      "title": "Import ODS workbook metadata",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:37Z",
+      "mergedAt": "2026-11-15T23:02:25Z",
+      "headSha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "headBranch": "feat/ods-metadata",
+      "baseSha": "dbad8f1ca289eda1c4677c282e845df01ec754f6"
+    },
+    {
+      "number": 29,
+      "title": "Carry ODS pictures into worksheet drawings",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:36Z",
+      "mergedAt": "2026-11-15T14:12:12Z",
+      "headSha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "headBranch": "feat/ods-images",
+      "baseSha": "df533bebc6b1a96341a79e9c1a03fc5a90985a28"
+    },
+    {
+      "number": 59,
+      "title": "Preserve ODS cell hyperlinks",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:34Z",
+      "mergedAt": "2026-11-16T13:26:38Z",
+      "headSha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "headBranch": "feat/ods-hyperlinks",
+      "baseSha": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "number": 83,
+      "title": "Round-trip ODS header and footer sections",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:33Z",
+      "mergedAt": "2026-11-16T19:57:58Z",
+      "headSha": "331be9688e2de1feb52635490b534042dea10c27",
+      "headBranch": "feat/ods-header-footer",
+      "baseSha": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3"
+    },
+    {
+      "number": 62,
+      "title": "Preserve ODS filter predicates",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:31Z",
+      "mergedAt": "2026-11-16T13:37:17Z",
+      "headSha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "headBranch": "feat/ods-filter-predicates",
+      "baseSha": "3624a9702054f6f64f7132b374bbcf827bfcf232"
+    },
+    {
+      "number": 65,
+      "title": "Support ODS filter comparison operators",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:30Z",
+      "mergedAt": "2026-11-16T14:13:30Z",
+      "headSha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "headBranch": "feat/ods-filter-operators",
+      "baseSha": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95"
+    },
+    {
+      "number": 76,
+      "title": "Write ODS autofilter predicates",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:28Z",
+      "mergedAt": "2026-11-16T19:17:09Z",
+      "headSha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "headBranch": "feat/ods-filter-conditions",
+      "baseSha": "ff873a4e304f247902cf4cd9a75d447baa8796d9"
+    },
+    {
+      "number": 30,
+      "title": "Apply ODS document default cell styles",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:26Z",
+      "mergedAt": "2026-11-15T16:25:32Z",
+      "headSha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "headBranch": "feat/ods-default-style",
+      "baseSha": "5532d598499eceac0a75098fda3d54bfd9515ed0"
+    },
+    {
+      "number": 31,
+      "title": "Honor nameless ODS default styles and geometry",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:24Z",
+      "mergedAt": "2026-11-15T16:45:53Z",
+      "headSha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "headBranch": "feat/ods-default-geometry",
+      "baseSha": "39761edb40a140fc488b3bdb0ddc36dbee557a93"
+    },
+    {
+      "number": 53,
+      "title": "Import ODS custom formula validations",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:22Z",
+      "mergedAt": "2026-11-16T09:04:41Z",
+      "headSha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "headBranch": "feat/ods-custom-validation",
+      "baseSha": "bd130094b4d1bc666aa9b166e6ed7fb1b447aeb3"
+    },
+    {
+      "number": 35,
+      "title": "Import ODS conditional formats and paint matches",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:20Z",
+      "mergedAt": "2026-11-15T18:57:27Z",
+      "headSha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "headBranch": "feat/ods-conditional",
+      "baseSha": "7b3b0bbba3a8530678d77325bbec1091f6aae9c9"
+    },
+    {
+      "number": 98,
+      "title": "Write ODP slide transitions",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:19Z",
+      "mergedAt": "2026-11-17T08:48:42Z",
+      "headSha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "headBranch": "feat/odp-transitions",
+      "baseSha": "69a1396eacae0ec5c79f5d0feba6431e641d9448"
+    },
+    {
+      "number": 108,
+      "title": "Write ODP text-shape hyperlinks",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:17Z",
+      "mergedAt": "2026-11-17T15:21:10Z",
+      "headSha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "headBranch": "feat/odp-shape-links",
+      "baseSha": "67482c25a90631d54dd6dff6cda489687efb380f"
+    },
+    {
+      "number": 126,
+      "title": "Export ODP ellipse and rounded-rectangle shapes",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:15Z",
+      "mergedAt": "2026-11-17T18:38:00Z",
+      "headSha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "headBranch": "feat/odp-preset-shapes",
+      "baseSha": "13e7172977d671190ba8c3cf964deec4d7473090"
+    },
+    {
+      "number": 93,
+      "title": "Add a bounded ODP presentation writer",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:14Z",
+      "mergedAt": "2026-11-17T06:11:15Z",
+      "headSha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "headBranch": "feat/odp-presentation-writer",
+      "baseSha": "8a3f5a9de14c556fd01ffacb3897629c51f4fa7e"
+    },
+    {
+      "number": 121,
+      "title": "Preserve ODP chart data as tables",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:12Z",
+      "mergedAt": "2026-11-17T17:54:19Z",
+      "headSha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "headBranch": "feat/odp-chart-data",
+      "baseSha": "924f09bab2caf7b5985ffa6c16702a837a58d7bc"
+    },
+    {
+      "number": 132,
+      "title": "Preserve ODF stories, header media and bookmark ranges",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:11Z",
+      "mergedAt": "2026-11-17T19:17:06Z",
+      "headSha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "headBranch": "feat/odf-story-fidelity",
+      "baseSha": "3ee7e5eeefdec0570246d4f0995e29995d5343e0"
+    },
+    {
+      "number": 109,
+      "title": "Export document metadata in ODT and ODP",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:09Z",
+      "mergedAt": "2026-11-17T15:37:09Z",
+      "headSha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "headBranch": "feat/odf-metadata",
+      "baseSha": "4af75017a9b7df726c1f80741809f5bccdb70f4c"
+    },
+    {
+      "number": 153,
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "state": "closed",
+      "draft": true,
+      "updatedAt": "2026-11-19T13:30:07Z",
+      "mergedAt": null,
+      "headSha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "headBranch": "feat/native-spacy-w7-20261118",
+      "baseSha": "20026ff49ac37391e2a1fd0947560a587f2f7332"
+    },
+    {
+      "number": 139,
+      "title": "Add optional native German analysis and qualified manual agreement corrections",
+      "state": "closed",
+      "draft": true,
+      "updatedAt": "2026-11-19T13:30:05Z",
+      "mergedAt": "2026-11-18T10:30:57Z",
+      "headSha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "headBranch": "feat/native-spacy-reference-20261117",
+      "baseSha": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4"
+    },
+    {
+      "number": 181,
+      "title": "Optional Hunspell spelling with a user-downloaded Arabic dictionary (AyaSpell) [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:30:04Z",
+      "mergedAt": "2026-11-19T07:58:37Z",
+      "headSha": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "headBranch": "feat/hunspell-engine-20261119",
+      "baseSha": "f7117a493055008a72e6e16713dd67a4f7c2ad39"
+    },
+    {
+      "number": 86,
+      "title": "Import and export top, bottom and average conditional rules",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:56Z",
+      "mergedAt": "2026-11-16T20:11:30Z",
+      "headSha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "headBranch": "feat/conditional-top-bottom",
+      "baseSha": "63194d8e482892f284eaccb95ce48a8a8132376d"
+    },
+    {
+      "number": 38,
+      "title": "Import ODS contains-text and duplicate rules",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:54Z",
+      "mergedAt": "2026-11-15T19:13:56Z",
+      "headSha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "headBranch": "feat/conditional-text",
+      "baseSha": "85f5109c8067133bc30942d71b0be6ea9d9bf68c"
+    },
+    {
+      "number": 36,
+      "title": "Support the full numeric conditional comparators",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:52Z",
+      "mergedAt": "2026-11-15T19:01:57Z",
+      "headSha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "headBranch": "feat/conditional-operators",
+      "baseSha": "1d7fee380def59d5a766cab106e519952d5c3292"
+    },
+    {
+      "number": 89,
+      "title": "Retain conditional-format dxf styles",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:50Z",
+      "mergedAt": "2026-11-16T23:17:46Z",
+      "headSha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "headBranch": "feat/conditional-dxf-styles",
+      "baseSha": "8e405a09e7b6a017c95ffc6bd32b49ab613a7a3f"
+    },
+    {
+      "number": 37,
+      "title": "Emit conditional dxf styles for generated rules",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:48Z",
+      "mergedAt": "2026-11-15T19:10:36Z",
+      "headSha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "headBranch": "feat/conditional-dxf",
+      "baseSha": "8815cec9705f8a0b099f83f38d5eca75c5564171"
+    },
+    {
+      "number": 41,
+      "title": "Support between conditional rules",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:47Z",
+      "mergedAt": "2026-11-15T20:23:40Z",
+      "headSha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "headBranch": "feat/conditional-between",
+      "baseSha": "c210315bee537776b556ae9885e907483b6df7bd"
+    },
+    {
+      "number": 43,
+      "title": "Support begins-with and ends-with conditions",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:45Z",
+      "mergedAt": "2026-11-15T22:05:48Z",
+      "headSha": "20681b8658392212c128f51b4c91f0b638942448",
+      "headBranch": "feat/conditional-affix",
+      "baseSha": "b2d5331f49001af189118d90af208cbc1ee2ae67"
+    },
+    {
+      "number": 190,
+      "title": "Arabic proofing: clean-room morphology-based (T2) grammar rules",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:43Z",
+      "mergedAt": "2026-11-19T10:27:18Z",
+      "headSha": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "headBranch": "feat/arabic-rules-t2-20261119",
+      "baseSha": "aae486af799381ccc4fbd702db582792d70e3002"
+    },
+    {
+      "number": 184,
+      "title": "Arabic proofing: clean-room T1 rules from the abstract spec (32 rule ids)",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:41Z",
+      "mergedAt": "2026-11-19T08:31:27Z",
+      "headSha": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "headBranch": "feat/arabic-rules-t1-20261119",
+      "baseSha": "f705d4ba70607ae630331847fc21986aa501b0f6"
+    },
+    {
+      "number": 180,
+      "title": "Arabic proofing: roadmap, AyaSpell bundle, authored Arabic writing rules [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:39Z",
+      "mergedAt": "2026-11-19T07:55:05Z",
+      "headSha": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "headBranch": "feat/arabic-rules-20261119",
+      "baseSha": "f059065fa622da8cee7824d66d29a2aff414d529"
+    },
+    {
+      "number": 176,
+      "title": "Arabic proofing roadmap and published AyaSpell bundle [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:37Z",
+      "mergedAt": "2026-11-19T07:45:15Z",
+      "headSha": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "headBranch": "feat/arabic-proofing-20261119",
+      "baseSha": "55e262ef269634a0d618c0b5102dc9be5430a5f3"
+    },
+    {
+      "number": 188,
+      "title": "Arabic morphology analyzer interface [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:36Z",
+      "mergedAt": "2026-11-19T09:43:17Z",
+      "headSha": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "headBranch": "feat/arabic-morph-interface-20261119",
+      "baseSha": "4f80ba522ea9a1d029d24aaed99fe8ecfaee8330"
+    },
+    {
+      "number": 189,
+      "title": "Arabic morphology: native Camel Morph MSA analyzer behind ArabicMorphology (noprob, user download)",
+      "state": "closed",
+      "draft": false,
+      "updatedAt": "2026-11-19T13:29:34Z",
+      "mergedAt": "2026-11-19T10:49:30Z",
+      "headSha": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "headBranch": "feat/arabic-morph-integration-20261119",
+      "baseSha": "e76635f325260aa1eba4ae2094187af743a50a11"
+    }
+  ],
+  "main": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "actionsQueriedOrAwaited": false
+}

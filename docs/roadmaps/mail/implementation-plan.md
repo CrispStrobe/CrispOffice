@@ -332,6 +332,13 @@ baseline `479e1e03` identity.
 
 **Depends on:** M03, M04, M05; native send also M06.
 
+**Foreground increment:** [recipient groups and Reply all](recipients-and-reply-all.md)
+now provide bounded To/Cc/Bcc composition, explicit-envelope Bcc separation,
+visible-participant replies and retained uncertain drafts in the Studio host.
+The pure draft model is independent of the widget surface. This does not complete
+the durable composition/outbox, rich-body, attachment or live-provider gates below;
+executed subset and dependency limitations are recorded with the increment.
+
 - [ ] Typed draft model, identity/To/Cc/Bcc, subject, attachments, reply/reply-all/forward and local autosave.
 - [ ] Implement a mail-body custom RenderBox editor with IME, selection, undo, bidi and accessibility, reusing approved Quds input/command primitives where appropriate.
 - [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.

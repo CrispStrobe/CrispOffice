@@ -1,0 +1,176 @@
+{
+  "status": "blocked_before_execution",
+  "tests_run": 0,
+  "network_attempted": false,
+  "production_modified": false,
+  "reason": "Direct VBA compiler imports still resolve office_operations, Word proofing, the broad engine barrel, PDF image, and legacy DOC dependencies. Missing compatible cached packages prevent legitimate offline execution. Import show clauses cannot remove transitive library resolution. No stubs or substitute implementations were used.",
+  "required_constraints": {
+    "characters": "^1.4.1",
+    "image": "^4.5.0",
+    "archive_from_legacy_doc_parser": "^4.6.0"
+  },
+  "graph": [
+    {
+      "entry": "src/automation/office_vba_language.dart",
+      "local_sources_in_graph": 384,
+      "external_dependencies": {
+        "crypto": {
+          "in_existing_resolved_harness": true,
+          "cached_directories": [
+            "crypto-3.0.7"
+          ],
+          "chain": [
+            "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+            "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+            "packages/quds_office_engine/lib/src/opc/opc_archive.dart",
+            "packages/quds_office_engine/lib/src/opc/crypto/office_crypto.dart"
+          ],
+          "uri": "package:crypto/crypto.dart"
+        },
+        "characters": {
+          "in_existing_resolved_harness": false,
+          "cached_directories": [],
+          "chain": [
+            "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+            "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+            "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+            "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+            "packages/quds_office_engine/lib/src/proofing/office_proofing.dart"
+          ],
+          "uri": "package:characters/characters.dart"
+        },
+        "image": {
+          "in_existing_resolved_harness": false,
+          "cached_directories": [],
+          "chain": [
+            "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+            "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+            "packages/quds_office_engine/lib/src/automation/operations/inspect_word.dart",
+            "packages/quds_office_engine/lib/quds_office_engine.dart",
+            "packages/quds_office_engine/lib/src/pdf/pdf_image.dart"
+          ],
+          "uri": "package:image/image.dart"
+        },
+        "archive": {
+          "in_existing_resolved_harness": false,
+          "cached_directories": [
+            "archive-3.6.1"
+          ],
+          "chain": [
+            "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+            "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+            "packages/quds_office_engine/lib/src/automation/operations/inspect_word.dart",
+            "packages/quds_office_engine/lib/quds_office_engine.dart",
+            "packages/quds_office_engine/lib/src/word/legacy/legacy_word_conversion.dart",
+            "packages/legacy_doc_parser/lib/legacy_doc_parser.dart",
+            "packages/legacy_doc_parser/lib/src/legacy_word_metafile.dart"
+          ],
+          "uri": "package:archive/archive.dart"
+        }
+      },
+      "missing_local_files": {}
+    },
+    {
+      "entry": "quds_office_automation.dart",
+      "local_sources_in_graph": 387,
+      "external_dependencies": {
+        "crypto": {
+          "in_existing_resolved_harness": true,
+          "cached_directories": [
+            "crypto-3.0.7"
+          ],
+          "chain": [
+            "packages/quds_office_engine/lib/quds_office_automation.dart",
+            "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+            "packages/quds_office_engine/lib/src/opc/opc_archive.dart",
+            "packages/quds_office_engine/lib/src/opc/crypto/office_crypto.dart"
+          ],
+          "uri": "package:crypto/crypto.dart"
+        },
+        "characters": {
+          "in_existing_resolved_harness": false,
+          "cached_directories": [],
+          "chain": [
+            "packages/quds_office_engine/lib/quds_office_automation.dart",
+            "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+            "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+            "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart",
+            "packages/quds_office_engine/lib/src/proofing/office_proofing.dart"
+          ],
+          "uri": "package:characters/characters.dart"
+        },
+        "image": {
+          "in_existing_resolved_harness": false,
+          "cached_directories": [],
+          "chain": [
+            "packages/quds_office_engine/lib/quds_office_automation.dart",
+            "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+            "packages/quds_office_engine/lib/src/automation/operations/inspect_word.dart",
+            "packages/quds_office_engine/lib/quds_office_engine.dart",
+            "packages/quds_office_engine/lib/src/pdf/pdf_image.dart"
+          ],
+          "uri": "package:image/image.dart"
+        },
+        "archive": {
+          "in_existing_resolved_harness": false,
+          "cached_directories": [
+            "archive-3.6.1"
+          ],
+          "chain": [
+            "packages/quds_office_engine/lib/quds_office_automation.dart",
+            "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+            "packages/quds_office_engine/lib/src/automation/operations/inspect_word.dart",
+            "packages/quds_office_engine/lib/quds_office_engine.dart",
+            "packages/quds_office_engine/lib/src/word/legacy/legacy_word_conversion.dart",
+            "packages/legacy_doc_parser/lib/legacy_doc_parser.dart",
+            "packages/legacy_doc_parser/lib/src/legacy_word_metafile.dart"
+          ],
+          "uri": "package:archive/archive.dart"
+        }
+      },
+      "missing_local_files": {}
+    }
+  ],
+  "source_hashes": {
+    "packages/legacy_doc_parser/lib/legacy_doc_parser.dart": "619db5c39bae8ff8cb6205203c4fdec21f7c98c0b3549c58c5207bf36f91e0c9",
+    "packages/legacy_doc_parser/lib/src/conversion.dart": "a41743ac05501531b1230dfee2b727603f51ffb0958e35098d33d159b3eb9675",
+    "packages/legacy_doc_parser/lib/src/legacy_word_metafile.dart": "1b852d36df20adcb846021452f58aba61aa51076f54ddd47e0f252320a6d73e1",
+    "packages/legacy_doc_parser/pubspec.yaml": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+    "packages/quds_office_engine/lib/pdf_file.dart": "52ef0127bb6fa2378ed7e01b2d536483f2b9acbefba6387a30f3bb50de9b0422",
+    "packages/quds_office_engine/lib/quds_office_automation.dart": "2010e7caebfee9a2dedb29fef563a766234bf4552cc1efc03a1cd19dd5b03d88",
+    "packages/quds_office_engine/lib/quds_office_engine.dart": "264792cfb5ad955e2b847cb386a20bd9e8d876dfaa9fa9bc4121597a573df318",
+    "packages/quds_office_engine/lib/src/automation/office_operations.dart": "87fcb80b601427f3b261e0364de3c5142e1a5326d423f9c32afa041e22a9c38a",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "2382b1940b8322005bbc0e66a32aa5a7f06a6e9cefe386fec8075865be93adfa",
+    "packages/quds_office_engine/lib/src/automation/operations/inspect_word.dart": "408b09bbdb81b6e1ef9d3eeea1d6aaf5b8f061faa4eda39eda828bc11e38a06d",
+    "packages/quds_office_engine/lib/src/bidi/grapheme_clusters.dart": "f04618334611bb31abcf34a7388c45c0068b161f09a56303d3c39226f859ce60",
+    "packages/quds_office_engine/lib/src/opc/crypto/office_crypto.dart": "b14a302282ddeeeb818cda9931858a1f556c1b57e31a29a0afc7cd11d2980107",
+    "packages/quds_office_engine/lib/src/opc/opc_archive.dart": "038c553db1487ce5c879245189e50afa3934055f2962d783d213878530b942aa",
+    "packages/quds_office_engine/lib/src/pdf/file/crypto/pdf_security.dart": "889d24940b271f454b9ab3041e1270830fea852119ccf7032f79c9112eb980fc",
+    "packages/quds_office_engine/lib/src/pdf/file/decode/pdf_cms.dart": "8a69c059ef9633ad183d2d76268751143741a3f224a15bbfe060d04d4da3a1dd",
+    "packages/quds_office_engine/lib/src/pdf/file/model/pdf_file.dart": "21c272d223d78b9bc962d66a84d91169a13581bdb57fd1d35cf6d8d13b7bcb90",
+    "packages/quds_office_engine/lib/src/pdf/pdf_image.dart": "d1fbd9b32b99858c72b64b640f67920790d525d763b81ab1bd80213225e8c281",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart": "48b7ce08ce6cbc9ec57c2410dd65048a156e52f9860a13878594c5273db960af",
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "f178d019d17b8f05137affae177f3b3dc78b329aabec6366423324f264fa9ca4",
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "ddd5b60c3bf9d150a86f73df6255a6e7e51407106cf676266a1a01b998214f67",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "60a0044f72b2e831f1c20365c2ad0ec8fe468d7a83e11d75f1ecc3de4482243a",
+    "packages/quds_office_engine/lib/src/thesaurus/office_thesaurus.dart": "cbc2b84e349337f373d6299c61a7c666cc93925add5e37e613b2bebc6d5d6f4f",
+    "packages/quds_office_engine/lib/src/word/legacy/legacy_word_conversion.dart": "5ba402ba6094655584d8f16573f0c52c8327d86054c28ec01cd522ebf0a8f364",
+    "packages/quds_office_engine/lib/src/word/model/word_comparison.dart": "283ba60630832a7466f519de2bb5b11d7c8e0786843a96a8300baae05c65a89b",
+    "packages/quds_office_engine/lib/src/word/model/word_proofing_language.dart": "e609d4521bc7345b931dc6811b1a91ef04bb1eedd7c9ba2636561836c7bc9ff0",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "86d7689235afdde1aa93f05875e215b49947430643f1239be8cf707f7f0beff7",
+    "packages/quds_office_engine/lib/src/word/serial/word_drawing_io.dart": "d4b779e24fa1eb5b6ea816cace0368a05e9abcc7c7029c9088ea1fda6b36a4bb",
+    "packages/quds_office_engine/lib/src/word/serial/word_opaque_io.dart": "e7a1d2c190e998bdcea27387a957470b11bb61e34dcf41cd792e37df73b07896",
+    "packages/quds_office_engine/lib/src/word/serial/word_package_preservation.dart": "d498dba54add5833e0114978eb382a783ad7fe4cbdb6397db87fc098b3ba62f2",
+    "packages/quds_office_engine/pubspec.yaml": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+    "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart": "4d884bf9d22dc416bebdda9f9e092e8d5ca45c098f52c3298334cb6d63555780",
+    "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart": "34a87ce3d0173c801b49701384b356b6d4f281dad619149af60e27dab364604c",
+    "packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart": "a720c6435e8850461e052636f2973ea4324890037967015ce2122fe530b511d3",
+    "packages/quds_office_engine/test/office_vba_language_test.dart": "70ee6186e470c17455f781791fc95af6caddaa4ca7af4fe684ad87268346ad2f"
+  },
+  "requested_tests": [
+    "packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart",
+    "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+    "packages/quds_office_engine/test/office_vba_language_test.dart",
+    "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart"
+  ]
+}

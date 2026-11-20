@@ -1,0 +1,505 @@
+{
+  "baselineMain": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "branchInventory": [
+    {
+      "name": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be"
+    },
+    {
+      "name": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6"
+    },
+    {
+      "name": "main",
+      "sha": "2170791c9250d72c9df31a065408365f9b50abaa"
+    },
+    {
+      "name": "work/mail-next-20261119",
+      "sha": "ab833975409abfb207f3a6a1a146183a4a5198fd"
+    }
+  ],
+  "openPullRequests": [],
+  "branchComparisons": [
+    {
+      "name": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 44,
+      "merge_base": "cacae8569814e4cb81f58d358734d31431f102be",
+      "files": []
+    },
+    {
+      "name": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 13,
+      "merge_base": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "files": []
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "status": "diverged",
+      "ahead_by": 2,
+      "behind_by": 982,
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "files": [
+        "docs/odf-export-fidelity.md",
+        "docs/validation/german-proofing-recovery-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+        "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+        "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/package-config.json",
+        "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+        "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+        "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+        "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+        "docs/validation/odt-field-continuation-20261117/run_logged.py",
+        "docs/validation/odt-field-continuation-20261117/runtime.json",
+        "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+        "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+        "docs/validation/odt-field-continuation-20261117/verification.json",
+        "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+      ]
+    },
+    {
+      "name": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 49,
+      "merge_base": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "files": []
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 981,
+      "merge_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "files": [
+        "docs/office-remaining-gaps.md"
+      ]
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 977,
+      "merge_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "files": [
+        "docs/office-remaining-gaps.md"
+      ]
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 982,
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "files": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ]
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "status": "diverged",
+      "ahead_by": 2,
+      "behind_by": 979,
+      "merge_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "files": [
+        "docs/office-remaining-gaps.md",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ]
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 980,
+      "merge_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "files": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ]
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 966,
+      "merge_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "files": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ]
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 962,
+      "merge_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "files": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ]
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 612,
+      "merge_base": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "files": []
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 778,
+      "merge_base": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "files": [
+        "docs/office-remaining-gaps.md",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-portable-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-portable-9e21.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-preflight-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-preflight-9e21.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-zotero-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-zotero-9e21.tar.xz"
+      ]
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6",
+      "status": "ahead",
+      "ahead_by": 1,
+      "behind_by": 0,
+      "merge_base": "2170791c9250d72c9df31a065408365f9b50abaa",
+      "files": [
+        "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart",
+        "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+        "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart",
+        "packages/quds_office_engine/lib/src/pdf/pdf_image.dart",
+        "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/slide_rich_text.dart",
+        "packages/quds_office_engine/lib/src/visual/drawingml_visual_io.dart",
+        "packages/quds_office_engine/pubspec.yaml",
+        "packages/quds_office_engine/test/pdf_image_interlace_test.dart",
+        "packages/quds_office_engine/test/slide_import_fidelity_test.dart"
+      ]
+    },
+    {
+      "name": "work/mail-next-20261119",
+      "sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 1,
+      "merge_base": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "files": []
+    }
+  ],
+  "recomputedHistoricalProofs": [
+    {
+      "original": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "equivalent": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "commonBase": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "completeOriginalDeltaPaths": 37,
+      "exactPathModeTypeBlobMismatches": [],
+      "equivalentAncestorOfBaselineMain": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "independentlyRecomputedThisSession": true
+    },
+    {
+      "original": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "equivalent": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+      "commonBase": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "completeOriginalDeltaPaths": 1,
+      "exactPathModeTypeBlobMismatches": [],
+      "equivalentAncestorOfBaselineMain": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "independentlyRecomputedThisSession": true
+    },
+    {
+      "original": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "equivalent": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+      "commonBase": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "completeOriginalDeltaPaths": 1,
+      "exactPathModeTypeBlobMismatches": [],
+      "equivalentAncestorOfBaselineMain": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "independentlyRecomputedThisSession": true
+    },
+    {
+      "original": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "commonBase": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "completeOriginalDeltaPaths": 7,
+      "exactPathModeTypeBlobMismatches": [],
+      "equivalentAncestorOfBaselineMain": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "independentlyRecomputedThisSession": true
+    },
+    {
+      "original": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "commonBase": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "completeOriginalDeltaPaths": 8,
+      "exactPathModeTypeBlobMismatches": [],
+      "equivalentAncestorOfBaselineMain": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "independentlyRecomputedThisSession": true
+    },
+    {
+      "original": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "commonBase": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "completeOriginalDeltaPaths": 4,
+      "exactPathModeTypeBlobMismatches": [],
+      "equivalentAncestorOfBaselineMain": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "independentlyRecomputedThisSession": true
+    },
+    {
+      "original": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "commonBase": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "completeOriginalDeltaPaths": 7,
+      "exactPathModeTypeBlobMismatches": [],
+      "equivalentAncestorOfBaselineMain": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "independentlyRecomputedThisSession": true
+    },
+    {
+      "original": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "equivalent": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "commonBase": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "completeOriginalDeltaPaths": 7,
+      "exactPathModeTypeBlobMismatches": [],
+      "equivalentAncestorOfBaselineMain": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "independentlyRecomputedThisSession": true
+    },
+    {
+      "original": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "commonBase": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "completeOriginalDeltaPaths": 221,
+      "exactPathModeTypeBlobMismatches": [],
+      "equivalentAncestorOfBaselineMain": true,
+      "method": "exact_complete_tree_identity",
+      "independentlyRecomputedThisSession": true
+    }
+  ],
+  "historicalProofBasis": "docs/validation/mail-archive-resume-20261119/continuation/current-reference-reconciliation.json",
+  "upstream": {
+    "main": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+    "status": "behind",
+    "ahead": 0,
+    "behind": 2117,
+    "mergeBase": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+  },
+  "incoming": {
+    "branch": "integrate/recent-pptx",
+    "head": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6",
+    "parent": "2170791c9250d72c9df31a065408365f9b50abaa",
+    "tree": "90b62a9154388cd9a809abf8708f20ec7a7d2d9f",
+    "subject": "Fix PPTX slide backgrounds, crops and rich text fidelity",
+    "files": [
+      {
+        "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "status": "modified",
+        "additions": 102,
+        "deletions": 6
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 4
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+        "status": "modified",
+        "additions": 531,
+        "deletions": 26
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart",
+        "status": "modified",
+        "additions": 23,
+        "deletions": 1
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/pdf/pdf_image.dart",
+        "status": "modified",
+        "additions": 41,
+        "deletions": 3
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "status": "modified",
+        "additions": 110,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "status": "modified",
+        "additions": 62,
+        "deletions": 8
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "status": "modified",
+        "additions": 40,
+        "deletions": 6
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/shapes/slide_rich_text.dart",
+        "status": "added",
+        "additions": 261,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/visual/drawingml_visual_io.dart",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 2
+      },
+      {
+        "path": "packages/quds_office_engine/pubspec.yaml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_engine/test/pdf_image_interlace_test.dart",
+        "status": "added",
+        "additions": 29,
+        "deletions": 0
+      },
+      {
+        "path": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+        "status": "modified",
+        "additions": 72,
+        "deletions": 3
+      }
+    ],
+    "dependency": "image: ^4.5.0",
+    "newTestDeclarations": 4,
+    "includedExecutionReceipt": false,
+    "sourceReviewFindings": [
+      "Default PmlSlide.background FFFFFF bypasses dark/high-contrast theme paper; automatic text still resolves against theme paper and becomes white on white.",
+      "applyMasterBackground changes presentation.master.background only while new PDF code uses slide.background, so the existing master-background operation does not update default slide export.",
+      "Rich render eligibility compares source text only, so scalar fontSizePt edits are ignored by the editor/PDF rich-run paths."
+    ]
+  },
+  "qualification": "Read-only API, git ancestry/tree metadata, and source review. No Dart/Flutter tests executed by this audit. No GitHub Actions queried or awaited."
+}

@@ -590,7 +590,12 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
   }
 
   @override
-  Future<SpacyTransport> openTransport() async {
+  Future<SpacyTransport> openTransport() => _openGerman(entities: true);
+
+  @override
+  Future<SpacyTransport> openGrammarTransport() => _openGerman(entities: false);
+
+  Future<SpacyTransport> _openGerman({required bool entities}) async {
     if (!_verified) await refresh();
     if (_developerConfigured) return _openDeveloperTransport();
     if (!_status.analysisEnabled) {
@@ -613,7 +618,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
       );
     }
     final ner = spacyNerDownload;
-    final nerPath = _status.nerEnabled && ner != null
+    final nerPath = entities && _status.nerEnabled && ner != null
         ? await _installer.installedNer(ner)
         : null;
     // The worker enables the exact library it opens through

@@ -1,0 +1,106 @@
+{
+  "status": "passed",
+  "scope": "Focused pure mail source subset; full Flutter/MIME/provider suites unexecuted",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7"
+  },
+  "tests": {
+    "passed": 57,
+    "failed": 0,
+    "exit_code": 0,
+    "by_file": {
+      "studio_mail_recipients_offline_test.dart": 8,
+      "studio_mail_reply_offline_test.dart": 33,
+      "studio_mail_threading_offline_test.dart": 16
+    },
+    "retained_declarations": 46,
+    "omitted_mime_declarations": 18
+  },
+  "source_verification": {
+    "files_checked": 7,
+    "all_match_pre_run": true
+  },
+  "dependency_resolution": "Legitimate standalone offline pub package using actual core path dependency",
+  "dependency_version_differences": {
+    "_fe_analyzer_shared": {
+      "harness": "95.0.0",
+      "repository_lock": "103.0.0"
+    },
+    "analyzer": {
+      "harness": "10.1.0",
+      "repository_lock": "13.3.0"
+    },
+    "coverage": {
+      "harness": "1.15.1",
+      "repository_lock": "1.16.1"
+    },
+    "crypto": {
+      "harness": "3.0.7",
+      "repository_lock": "3.0.8"
+    },
+    "frontend_server_client": {
+      "harness": "4.0.0",
+      "repository_lock": "4.2.0"
+    },
+    "glob": {
+      "harness": "2.1.3",
+      "repository_lock": "2.2.0"
+    },
+    "http_multi_server": {
+      "harness": "3.2.2",
+      "repository_lock": "3.2.3"
+    },
+    "io": {
+      "harness": "1.0.5",
+      "repository_lock": "1.1.0"
+    },
+    "meta": {
+      "harness": "1.18.3",
+      "repository_lock": "1.19.0"
+    },
+    "mime": {
+      "harness": "2.0.0",
+      "repository_lock": "2.1.0"
+    },
+    "pool": {
+      "harness": "1.5.2",
+      "repository_lock": "1.5.3"
+    },
+    "pub_semver": {
+      "harness": "2.2.0",
+      "repository_lock": "2.2.1"
+    },
+    "shelf": {
+      "harness": "1.4.2",
+      "repository_lock": "1.4.3"
+    },
+    "shelf_static": {
+      "harness": "1.1.3",
+      "repository_lock": "1.2.0"
+    },
+    "source_maps": {
+      "harness": "0.10.13",
+      "repository_lock": "0.10.14"
+    },
+    "stack_trace": {
+      "harness": "1.12.1",
+      "repository_lock": "1.12.2"
+    },
+    "vm_service": {
+      "harness": "15.2.0",
+      "repository_lock": "15.4.0"
+    },
+    "web": {
+      "harness": "1.1.1",
+      "repository_lock": "1.1.2"
+    },
+    "yaml": {
+      "harness": "3.1.3",
+      "repository_lock": "3.1.4"
+    }
+  },
+  "test_log_sha256": "0318c4e9a5af8366b48fa084ec3d4c5125d422269581d4b9615eb260bef47595",
+  "provenance_sha256": "0781c36bc0debdf6446bcf179efa0e1a442d0399dcb5c2cfefa78bdc2fa90170",
+  "github_actions_used": false
+}

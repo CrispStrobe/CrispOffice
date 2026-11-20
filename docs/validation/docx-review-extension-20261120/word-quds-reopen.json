@@ -1,0 +1,28 @@
+{
+  "application": "Microsoft Word",
+  "version": "16.111.1",
+  "passed": true,
+  "results": [
+    {
+      "file": "quds-pending.docx",
+      "expectedRevisions": 4,
+      "passed": true,
+      "stdout": "4, Changed formatting\nSome other text.Moved sentence.\nParagraph formatting",
+      "stderr": ""
+    },
+    {
+      "file": "quds-accepted.docx",
+      "expectedRevisions": 0,
+      "passed": true,
+      "stdout": "0, Changed formatting\nSome other text.Moved sentence.\nParagraph formatting",
+      "stderr": ""
+    },
+    {
+      "file": "quds-rejected.docx",
+      "expectedRevisions": 0,
+      "passed": true,
+      "stdout": "0, Changed formatting\nMoved sentence.Some other text.\nParagraph formatting",
+      "stderr": ""
+    }
+  ]
+}

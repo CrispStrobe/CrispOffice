@@ -1,0 +1,81 @@
+{
+  "auditor": "runtime_setup independent raw-event/hash audit; no tests or compilers run",
+  "recorded_at_utc": "2026-11-19T21:28:58.032950+00:00",
+  "accepted": true,
+  "current_head": "400fffd04fcceee78959e4c38b4d1dbe89767c2b",
+  "tested_vba_commit": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+  "tested_vba_is_ancestor_of_current_head": true,
+  "vba": {
+    "accepted": true,
+    "passed_visible_tests": 364,
+    "hidden_loader_or_fixture_tests": 8,
+    "all_started_tests": 372,
+    "all_completed_tests": 372,
+    "terminal_success": true,
+    "terminal_event_count": 1,
+    "runner_start_count": 1,
+    "errors": 0,
+    "failed_ids": [],
+    "skipped_ids": [],
+    "unfinished_ids": [],
+    "orphaned_completion_ids": [],
+    "duplicate_ids": [],
+    "non_json_lines": [],
+    "expected_suite_count": 8,
+    "observed_suite_count": 8,
+    "missing_suites": [],
+    "unexpected_suites": [],
+    "per_suite_passed": {
+      "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart": 144,
+      "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart": 11,
+      "packages/quds_office_engine/test/office_vba_arrays_test.dart": 32,
+      "packages/quds_office_engine/test/office_vba_control_flow_test.dart": 35,
+      "packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart": 49,
+      "packages/quds_office_engine/test/office_vba_integration_test.dart": 12,
+      "packages/quds_office_engine/test/office_vba_language_test.dart": 55,
+      "packages/quds_office_engine/test/office_vba_procedures_test.dart": 26
+    },
+    "events_sha256": "8607326b091b28ca82f9756066ce78ded8cacfa351003adde5b9857e3f861754",
+    "process_exit_code": 0,
+    "input_count": 372,
+    "inputs_changed_during": [],
+    "current_input_mismatches": [],
+    "current_input_inventory_sha256": "34de3b7233b3a8415e693b44a62a7b1e5d6143cbd2a93707b8db659995608d93",
+    "analyzer_accepted": true,
+    "analyzer_log_sha256": "0c6f13a4c98e0a00aadde29a20d8ddeb6f8185d41fe20467567f3c8d9f357778",
+    "receipt_sha256": "8dcac439cd3e18f87378a1b70e7e68f89d28e6494d9deb81bbfa0bee92d4b34b",
+    "source_head_before": "30bf612547fd7a00a5cb2ba525a04fbe27d3d90d",
+    "source_head_after": "400fffd04fcceee78959e4c38b4d1dbe89767c2b"
+  },
+  "combined_count_check": {
+    "core_visible_tests": 1219,
+    "mail_visible_tests": 225,
+    "vba_visible_tests": 364,
+    "total_visible_tests": 1808,
+    "expected_total": 1808,
+    "matches_expected_total": true,
+    "distinct_suite_count": 93,
+    "suite_overlap": {
+      "core_vba": [],
+      "core_mail": [],
+      "mail_vba": []
+    },
+    "mail_event_recounts": [
+      {
+        "log": "mail-final.jsonl",
+        "accepted_event_stream": true,
+        "visible_tests": 219,
+        "suites": 7,
+        "events_sha256": "dec0cf1d286a580986663e4a3f9f23ce944e6b2e6d5006848c735742cdb705d6"
+      },
+      {
+        "log": "mail-final-transport.jsonl",
+        "accepted_event_stream": true,
+        "visible_tests": 6,
+        "suites": 3,
+        "events_sha256": "090cd2acd66bdca698b86fa2544a5177395a997a79b1481249b2b5e84d327c48"
+      }
+    ],
+    "scope_note": "Core audit retains its pre-formatting frozen780 source binding. Mail event streams recounted for distinct totals only; source/analyzer qualification belongs to separate mail receipts and later formatting evidence. Failed prior attempts excluded."
+  }
+}

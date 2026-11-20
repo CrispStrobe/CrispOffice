@@ -57,6 +57,8 @@ jobs:
           test/office_vba_arrays_test.dart
           test/office_vba_arrays_boundaries_test.dart
           test/office_vba_arrays_integration_test.dart
+          test/office_vba_dynamic_arrays_test.dart
+          test/office_vba_dynamic_arrays_integration_test.dart
           test/office_macro_expansion_test.dart
           test/office_macro_mcp_test.dart
           test/office_macro_cli_test.dart
@@ -81,3 +83,5 @@ jobs:
           node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_control_flow_smoke.js")'
           dart compile js -O1 tool/macros/web_vba_arrays_smoke.dart -o build/macros/web_vba_arrays_smoke.js
           node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_arrays_smoke.js")'
+          dart compile js -O1 tool/macros/web_vba_dynamic_arrays_smoke.dart -o build/macros/web_vba_dynamic_arrays_smoke.js
+          node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_dynamic_arrays_smoke.js")'

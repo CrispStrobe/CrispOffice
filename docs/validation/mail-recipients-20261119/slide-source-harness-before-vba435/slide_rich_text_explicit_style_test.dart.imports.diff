@@ -1,0 +1,12 @@
+--- packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart
++++ adapted_tests/slide_rich_text_explicit_style_test.dart
+@@ -1,4 +1,8 @@
+-import 'package:quds_office_engine/quds_office_engine.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/opc/opc_archive.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/xml/namespaces.dart';
++import 'file:///workspace/scratch/32e3793609d8/quds_office_suite/packages/quds_office_engine/lib/src/xml/xml_node.dart';
+ import 'package:test/test.dart';
+ 
+ PmlPresentation _deck() {

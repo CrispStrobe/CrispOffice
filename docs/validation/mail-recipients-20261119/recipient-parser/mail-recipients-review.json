@@ -1,0 +1,205 @@
+{
+  "runtime": "3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "source": "packages/quds_office_editor/example/lib/studio_mail_recipients.dart",
+  "checks": [
+    {
+      "name": "groups_parse",
+      "passed": true
+    },
+    {
+      "name": "to_order_and_first_spelling",
+      "passed": true
+    },
+    {
+      "name": "cc_visible_precedence",
+      "passed": true
+    },
+    {
+      "name": "bcc_preserves_distinct_local_case",
+      "passed": true
+    },
+    {
+      "name": "explicit_envelope_order",
+      "passed": true
+    },
+    {
+      "name": "identity_key_only_folds_domain",
+      "passed": true
+    },
+    {
+      "name": "to_immutable",
+      "passed": true
+    },
+    {
+      "name": "cc_immutable",
+      "passed": true
+    },
+    {
+      "name": "bcc_immutable",
+      "passed": true
+    },
+    {
+      "name": "envelope_immutable",
+      "passed": true
+    },
+    {
+      "name": "empty_envelope_rejected",
+      "passed": true
+    },
+    {
+      "name": "cc_only_accepted",
+      "passed": true
+    },
+    {
+      "name": "bcc_only_accepted",
+      "passed": true
+    },
+    {
+      "name": "leading_separator_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "trailing_separator_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "empty_member_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "display_name_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "group_syntax_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "quoted_local_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "whitespace_pair_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "tab_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "lf_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "crlf_injection_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "nul_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "del_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "non_ascii_space_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "unicode_local_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "unicode_domain_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "domain_literal_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "domain_empty_label_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "local_empty_atom_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "domain_bad_hyphen_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "missing_local_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "missing_domain_rejected_in_all_groups",
+      "passed": true
+    },
+    {
+      "name": "254_octet_address_accepted",
+      "passed": true
+    },
+    {
+      "name": "255_octet_address_rejected",
+      "passed": true
+    },
+    {
+      "name": "64_octet_local_accepted",
+      "passed": true
+    },
+    {
+      "name": "65_octet_local_rejected",
+      "passed": true
+    },
+    {
+      "name": "63_octet_domain_label_accepted",
+      "passed": true
+    },
+    {
+      "name": "64_octet_domain_label_rejected",
+      "passed": true
+    },
+    {
+      "name": "single_label_host_supported",
+      "passed": true
+    },
+    {
+      "name": "100_entries_accepted",
+      "passed": true
+    },
+    {
+      "name": "101_entries_rejected",
+      "passed": true
+    },
+    {
+      "name": "100_duplicates_accepted_once",
+      "passed": true
+    },
+    {
+      "name": "101_duplicates_rejected_before_dedup",
+      "passed": true
+    },
+    {
+      "name": "entry_limit_sums_across_groups",
+      "passed": true
+    },
+    {
+      "name": "exact_input_character_bound_accepted",
+      "passed": true
+    },
+    {
+      "name": "input_bound_sums_all_groups",
+      "passed": true
+    },
+    {
+      "name": "100_max_length_addresses_fit_input_bound",
+      "passed": true
+    }
+  ],
+  "passed": 49,
+  "failed": 0,
+  "qualification": "Direct imported production recipient helper only; no Flutter, MIME, provider, widget, or live-service acceptance."
+}

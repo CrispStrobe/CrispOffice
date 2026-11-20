@@ -1,0 +1,9 @@
+{
+ "disabled_without_flag_or_env": true,
+ "previous_flags_initially_zero": true,
+ "analysis_with_flag": true,
+ "unknown_bits_ignored": true,
+ "cleared_flag_disables_calls": true,
+ "calls_disabled_after_clear": true,
+ "environment_gate_still_works": true
+}

@@ -1,0 +1,162 @@
+{
+  "reviewedAtUtc": "2026-11-19T21:16:22.656789+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/vba-dynamic-arrays-20261119",
+  "head": "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760",
+  "headTree": "76c61592dda5b998b7789a3452c6d29a59660878",
+  "startingMain": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "alreadyIntegratedPptxBase": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6",
+  "mainIsAncestor": true,
+  "postPptxCommits": [
+    {
+      "sha": "73319103cef9bc93ae19dc95f844d52cd3830427",
+      "parents": [
+        "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6"
+      ],
+      "subject": "Reconcile incoming PPTX work and stage VBA parity roadmap [skip ci]"
+    },
+    {
+      "sha": "1580807e1eb99a40d6c8620e93ebd039b9a01132",
+      "parents": [
+        "73319103cef9bc93ae19dc95f844d52cd3830427"
+      ],
+      "subject": "Add bounded VBA dynamic array lifecycle and Option Base [skip ci]"
+    },
+    {
+      "sha": "32bc52338fa3e1d753ed2130ca069a69d0bc8710",
+      "parents": [
+        "1580807e1eb99a40d6c8620e93ebd039b9a01132"
+      ],
+      "subject": "Document and exercise dynamic arrays through CLI MCP and JavaScript [skip ci]"
+    },
+    {
+      "sha": "9dbba0f7b6581aba4d7a26f7f69ff6492c02b760",
+      "parents": [
+        "32bc52338fa3e1d753ed2130ca069a69d0bc8710"
+      ],
+      "subject": "Preserve slide theme defaults and rich text edits after PPTX integration [skip ci]"
+    }
+  ],
+  "postPptxChanges": [
+    {
+      "status": "M",
+      "path": ".github/workflows/office-macros.yml"
+    },
+    {
+      "status": "M",
+      "path": "README.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/MACROS.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/VBA_MACROS.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/VBA_PARITY_ROADMAP.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/office-vba-dynamic-arrays-20261119/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/CHANGELOG.md"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/test/office_dark_slide_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/CHANGELOG.md"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/example/macros/dynamic_array_report.bas"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/test/office_pdf_export_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/test/office_vba_language_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/test/slide_text_fidelity_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/tool/macros/web_vba_dynamic_arrays_smoke.dart"
+    }
+  ],
+  "runtimeFeaturePath": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+  "vbaReview": [
+    "Dynamic arrays require explicit local Dim declarations; scalar-only, one-dimensional arrays remain enforced.",
+    "ReDim bounds evaluate once, left-to-right and within signed32-bit/per-array/aggregate limits.",
+    "Preserve retains matching lower bound and copies the bounded overlap; work includes allocation, retirement, and copying.",
+    "Erase distinguishes fixed reset from dynamic deallocation and releases string occupancy consistently.",
+    "For Each locks are released on normal completion, loop exit, and exceptional unwinding; nested locks remain counted independently.",
+    "Procedure return restores caller allocation/string quotas; array parameters and global arrays remain outside this dialect."
+  ],
+  "addedTestDeclarations": {
+    "office_vba_dynamic_arrays_test.dart": 44,
+    "office_vba_dynamic_arrays_integration_test.dart": 11
+  },
+  "integrationCoverageAdded": [
+    "native document runtime and rollback",
+    "CLI subprocesses",
+    "MCP compile/validate/run",
+    "JavaScript smoke path"
+  ],
+  "dependencyChangesAfterPptxBase": [],
+  "authorValidationRecord": "docs/validation/office-vba-dynamic-arrays-20261119/README.md",
+  "authorRuntimeQualification": "Explicitly work in progress; no runtime execution receipt included.",
+  "independentRuntimeTestsPerformedForThisVbaHead": 0,
+  "githubActionsQueriedOrAwaited": false,
+  "vbaBlockingSourceFindings": [],
+  "overlappingPptxNotes": [
+    "9dbba0f7 adds a resolvedRichText implementation equivalent to the mail continuation implementation; retain only one declaration.",
+    "Incoming16pt plain-font and paragraph-font fallback fixes are useful and should be preserved.",
+    "Incoming explicit authored-white UI expectation conflicts with mapping every white background to theme; reconcile using inherited-vs-explicit background state.",
+    "Direct engine edits to imported primary-master background need snapshot-aware resolution to avoid stale cached color while preserving secondary-master colors."
+  ],
+  "recommendation": "Integrate all four post-5c3f commits with history preserved; reconcile overlapping PPTX production code and test semantics before acceptance. Preserve the original provisional author evidence without reclassifying it as fresh runtime qualification."
+}

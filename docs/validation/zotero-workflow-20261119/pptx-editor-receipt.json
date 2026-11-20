@@ -1,0 +1,27 @@
+{
+  "name": "pptx-editor",
+  "source_head": "30bf612547fd7a00a5cb2ba525a04fbe27d3d90d",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "--timeout",
+    "90s",
+    "test/slide_render_fidelity_test.dart",
+    "test/office_dark_slide_test.dart"
+  ],
+  "package": "packages/quds_office_editor",
+  "files": [
+    "test/slide_render_fidelity_test.dart",
+    "test/office_dark_slide_test.dart"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 8.342,
+  "inputs_unchanged": true,
+  "input_count": 2048,
+  "inputs_manifest": "source-inputs.json.gz"
+}

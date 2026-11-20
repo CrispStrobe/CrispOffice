@@ -1,0 +1,18 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:analyzer/dart/analysis/utilities.dart';
+
+void main(List<String> args) {
+  final repository = args[0];
+  final backup = args[1];
+  final results = <Map<String, Object>>[];
+  for (final path in args.skip(2)) {
+    final before = parseString(content: File('$backup/$path').readAsStringSync());
+    final after = parseString(content: File('$repository/$path').readAsStringSync());
+    final equal = before.unit.toSource() == after.unit.toSource();
+    results.add({'path': path, 'ast_to_source_equal': equal});
+    if (!equal) exitCode = 1;
+  }
+  stdout.writeln(jsonEncode(results));
+}

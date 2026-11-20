@@ -1,0 +1,1072 @@
+{
+  "baseline": "2170791c9250d72c9df31a065408365f9b50abaa",
+  "branches": [
+    {
+      "name": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be"
+    },
+    {
+      "name": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "5c3f9d7fd4531dfac7c0e49fba1827c39e17caf6"
+    },
+    {
+      "name": "main",
+      "sha": "2170791c9250d72c9df31a065408365f9b50abaa"
+    },
+    {
+      "name": "work/mail-next-20261119",
+      "sha": "ab833975409abfb207f3a6a1a146183a4a5198fd"
+    }
+  ],
+  "recentPullRequests": [
+    {
+      "number": 216,
+      "title": "Preserve mail reply threading and reconcile fork continuations",
+      "state": "closed",
+      "updated_at": "2026-11-19T20:51:02Z",
+      "merged_at": "2026-11-19T20:50:37Z",
+      "head": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "branch": "work/mail-next-20261119",
+      "merge_commit_sha": "2170791c9250d72c9df31a065408365f9b50abaa"
+    },
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "state": "closed",
+      "updated_at": "2026-11-19T20:50:38Z",
+      "merged_at": "2026-11-19T20:50:38Z",
+      "head": "cacae8569814e4cb81f58d358734d31431f102be",
+      "branch": "codex/crispoffice-layout-theme-20261119",
+      "merge_commit_sha": "2638a2c96ea5e66ace5884896fe09de92a7ce380"
+    },
+    {
+      "number": 210,
+      "title": "Extend VBA macros with bounded arrays and For Each; reconcile fork work",
+      "state": "closed",
+      "updated_at": "2026-11-19T20:50:38Z",
+      "merged_at": "2026-11-19T20:50:38Z",
+      "head": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "branch": "codex/vba-arrays-foreach-20261119",
+      "merge_commit_sha": "2638a2c96ea5e66ace5884896fe09de92a7ce380"
+    },
+    {
+      "number": 212,
+      "title": "Resume mail archive restores with durable destination checkpoints [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T20:17:01Z",
+      "merged_at": "2026-11-19T20:16:03Z",
+      "head": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "branch": "codex/mail-archive-resume-20261119",
+      "merge_commit_sha": "5715d56053e93dc11e8b5165bd13f8db2a1f3917"
+    },
+    {
+      "number": 215,
+      "title": "Verify the saved spaCy setup before the first analysis [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T19:53:18Z",
+      "merged_at": "2026-11-19T19:53:14Z",
+      "head": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "branch": "fix/spacy-open-refresh-20261119",
+      "merge_commit_sha": "53d5e43b1dec37c191d44dbff101c68f8221de7e"
+    },
+    {
+      "number": 214,
+      "title": "Align bundled spaCy mode with NER state and the downloads manager [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T19:43:15Z",
+      "merged_at": "2026-11-19T19:42:42Z",
+      "head": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "branch": "fix/spacy-bundled-ner-20261119",
+      "merge_commit_sha": "9ceb994d8edce3989228f1244cda90ecc9884931"
+    },
+    {
+      "number": 213,
+      "title": "Bundle the spaCy runtime in the macOS app, register missing licences, harden the build [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T19:43:15Z",
+      "merged_at": "2026-11-19T19:15:39Z",
+      "head": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "branch": "fix/app-gaps-20261119",
+      "merge_commit_sha": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c"
+    },
+    {
+      "number": 209,
+      "title": "Restore exported mail archives with verified originals and provenance",
+      "state": "closed",
+      "updated_at": "2026-11-19T19:43:14Z",
+      "merged_at": "2026-11-19T18:16:42Z",
+      "head": "6275d21246040e03f6264b27171992c88d1474a2",
+      "branch": "codex/mail-archive-restore-20261119",
+      "merge_commit_sha": "caf378f40fd5bda50f504a6816404d01d8bbb8f8"
+    },
+    {
+      "number": 207,
+      "title": "Extend bounded VBA macros with conditional loops and Select Case",
+      "state": "closed",
+      "updated_at": "2026-11-19T19:43:14Z",
+      "merged_at": "2026-11-19T17:49:23Z",
+      "head": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "branch": "codex/vba-control-flow-20261119",
+      "merge_commit_sha": "cf59efa99232a3fd26cf21ce7f2382402e576f9b"
+    },
+    {
+      "number": 206,
+      "title": "Improve CrispOffice ribbons and native desktop menus [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T19:43:14Z",
+      "merged_at": "2026-11-19T17:40:16Z",
+      "head": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "branch": "codex/crispoffice-gui-20261119",
+      "merge_commit_sha": "0d87cebea232c3edf55c4f4a22f63684dbe5a3f5"
+    },
+    {
+      "number": 208,
+      "title": "[skip ci] MacBook build integration: resolve temp folder in Studio directory-import tests",
+      "state": "closed",
+      "updated_at": "2026-11-19T17:40:45Z",
+      "merged_at": "2026-11-19T17:39:56Z",
+      "head": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "branch": "integrate/macbook-build-20261119",
+      "merge_commit_sha": "bcb061e163834f9a5a6e0b61571ffda909bdd61e"
+    },
+    {
+      "number": 204,
+      "title": "Extend VBA macros with reusable procedures and scalar functions",
+      "state": "closed",
+      "updated_at": "2026-11-19T17:40:22Z",
+      "merged_at": "2026-11-19T16:48:52Z",
+      "head": "3db248be978b24d0693d1133505d9be200fd1256",
+      "branch": "codex/vba-procedures-20261119",
+      "merge_commit_sha": "304d4bff45da24f22cee420ec464882d7c7ce516"
+    },
+    {
+      "number": 202,
+      "title": "Extend Office macros with a bounded Excel VBA compiler",
+      "state": "closed",
+      "updated_at": "2026-11-19T17:40:22Z",
+      "merged_at": null,
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "branch": "codex/vba-excel-macros",
+      "merge_commit_sha": "2309cb3ca7d482bf741d891515216ce6306bf8aa"
+    },
+    {
+      "number": 197,
+      "title": "Add on-premises Exchange EWS support",
+      "state": "closed",
+      "updated_at": "2026-11-19T17:40:22Z",
+      "merged_at": "2026-11-19T14:56:01Z",
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "branch": "feat/ews-on-premises",
+      "merge_commit_sha": "f2131f3813d042fc6f3b16813c5ba0937e6ff0ec"
+    },
+    {
+      "number": 196,
+      "title": "Arabic morphology: binary proofing bundle and compact ABI",
+      "state": "closed",
+      "updated_at": "2026-11-19T17:40:22Z",
+      "merged_at": "2026-11-19T14:04:12Z",
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "branch": "feat/arabic-morph-binary-20261119",
+      "merge_commit_sha": "1427f69d2599fd507e68c7b23e6d278de94c8737"
+    },
+    {
+      "number": 205,
+      "title": "Add resumable bulk mail export and recursive archive import [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T17:40:21Z",
+      "merged_at": "2026-11-19T17:27:22Z",
+      "head": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "branch": "codex/mail-archive-portability-20261119",
+      "merge_commit_sha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d"
+    },
+    {
+      "number": 203,
+      "title": "Add durable mail archiving, indexing and search [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T17:40:21Z",
+      "merged_at": "2026-11-19T16:26:50Z",
+      "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "branch": "codex/mail-archive-search-20261119",
+      "merge_commit_sha": "81ae98688860599f118748afca19bdb2ec45da37"
+    },
+    {
+      "number": 201,
+      "title": "Add Office macros with shared MCP commands and language adapters",
+      "state": "closed",
+      "updated_at": "2026-11-19T17:40:21Z",
+      "merged_at": "2026-11-19T16:26:52Z",
+      "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "branch": "codex/mcp-aligned-macros",
+      "merge_commit_sha": "9f87eff5e9c3ade6a13f5a816b7b42313e5a9f74"
+    },
+    {
+      "number": 198,
+      "title": "Complete Office validation recovery and reconcile language identification",
+      "state": "closed",
+      "updated_at": "2026-11-19T17:40:21Z",
+      "merged_at": "2026-11-19T16:26:53Z",
+      "head": "623057111a9179552eb02b21a753a1728de9905d",
+      "branch": "codex/office-validation-recovery-20261119",
+      "merge_commit_sha": "d7584360c187fa20167c6330f5476042983f524c"
+    },
+    {
+      "number": 199,
+      "title": "Automatic per-paragraph language identification (bundled CLD3)",
+      "state": "closed",
+      "updated_at": "2026-11-19T14:56:01Z",
+      "merged_at": "2026-11-19T14:56:01Z",
+      "head": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "branch": "feat/paragraph-language-id-20261119",
+      "merge_commit_sha": "0812a07e07856b885853b203089bc085d0ce9c57"
+    },
+    {
+      "number": 200,
+      "title": "Add Gmail, Microsoft 365 and additional CrispOffice mail providers",
+      "state": "closed",
+      "updated_at": "2026-11-19T14:55:59Z",
+      "merged_at": "2026-11-19T14:55:59Z",
+      "head": "4b2ad7995c1ddff052232c21749d847701d77f96",
+      "branch": "codex/mail-providers-20261119",
+      "merge_commit_sha": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897"
+    },
+    {
+      "number": 163,
+      "title": "spaCy follow-up: opt-in NER and published macOS arm64 capsule pins [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:59Z",
+      "merged_at": "2026-11-18T12:36:33Z",
+      "head": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "branch": "integrate/spacy-ner-macos-followup-20261118",
+      "merge_commit_sha": "517f6d10f0ec2509b1381b3cf23807645bba4f92"
+    },
+    {
+      "number": 171,
+      "title": "English and French local analysis (native spaCy v2 bundles) + incoming integration [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:57Z",
+      "merged_at": "2026-11-18T20:17:10Z",
+      "head": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "branch": "integrate/spacy-en-fr-20261118",
+      "merge_commit_sha": "bfa88aab88a74028285619dfa07f3a81868fe59b"
+    },
+    {
+      "number": 152,
+      "title": "Reconcile Office union qualification and frame bookmarks",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:55Z",
+      "merged_at": "2026-11-17T22:10:10Z",
+      "head": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "branch": "integrate/office-union-150",
+      "merge_commit_sha": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e"
+    },
+    {
+      "number": 147,
+      "title": "Reconcile ODT field, bookmark and column-break fidelity",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:53Z",
+      "merged_at": "2026-11-17T21:29:45Z",
+      "head": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "branch": "integrate/odt-column-boundary-144",
+      "merge_commit_sha": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c"
+    },
+    {
+      "number": 125,
+      "title": "Merge Office continuation without AOT",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:50Z",
+      "merged_at": "2026-11-17T18:25:42Z",
+      "head": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "branch": "integrate/codex-office-continuation-20261117",
+      "merge_commit_sha": "13e7172977d671190ba8c3cf964deec4d7473090"
+    },
+    {
+      "number": 129,
+      "title": "Merge remaining proofing branches and remove AOT/RML",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:47Z",
+      "merged_at": "2026-11-17T19:09:23Z",
+      "head": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "branch": "integrate/aot-then-remove-20261117",
+      "merge_commit_sha": "6061aa72e2e59ba23085451c04286184aa23b9e0"
+    },
+    {
+      "number": 34,
+      "title": "Accept UTF-16 custom XML while probing bibliography ownership",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:42Z",
+      "merged_at": "2026-11-15T18:49:26Z",
+      "head": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "branch": "fix/utf16-custom-xml",
+      "merge_commit_sha": "7b3b0bbba3a8530678d77325bbec1091f6aae9c9"
+    },
+    {
+      "number": 186,
+      "title": "Fix Studio example widget tests after CrispOffice rebrand; apply Show notes setting",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:41Z",
+      "merged_at": "2026-11-19T09:26:24Z",
+      "head": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "branch": "fix/studio-example-tests-20261119",
+      "merge_commit_sha": "7adec5c7f04afa28888c673aa2c18f1bd0c4a9a6"
+    },
+    {
+      "number": 42,
+      "title": "Lift a trailing section break out of a body content control",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:39Z",
+      "merged_at": "2026-11-15T20:24:56Z",
+      "head": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "branch": "fix/sdt-trailing-section-break",
+      "merge_commit_sha": "b2d5331f49001af189118d90af208cbc1ee2ae67"
+    },
+    {
+      "number": 44,
+      "title": "Split content controls across multiple document sections",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:37Z",
+      "merged_at": "2026-11-15T22:18:54Z",
+      "head": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "branch": "fix/sdt-multi-section-control",
+      "merge_commit_sha": "33d36cd0e111fbfdd152c49d54532286fe8e8d2d"
+    },
+    {
+      "number": 130,
+      "title": "Preserve inline ODT PAGE and NUMPAGES fields",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:35Z",
+      "merged_at": "2026-11-17T19:11:34Z",
+      "head": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "branch": "fix/odt-inline-fields",
+      "merge_commit_sha": "aa9591d496d66a549d4e0c67aee73eada0d9d46f"
+    },
+    {
+      "number": 73,
+      "title": "Define the ODS writer default page layout",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:34Z",
+      "merged_at": "2026-11-16T18:30:45Z",
+      "head": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "branch": "fix/ods-writer-page-layout",
+      "merge_commit_sha": "c108be5f5033af9c0d07123e1650a16a361dd3e0"
+    },
+    {
+      "number": 80,
+      "title": "Model and round-trip worksheet page setup",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:29Z",
+      "merged_at": "2026-11-16T19:47:41Z",
+      "head": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "branch": "feat/sheet-page-setup",
+      "merge_commit_sha": "36db2a6cbc0f028dd15b558914045f995aeae949"
+    },
+    {
+      "number": 32,
+      "title": "Preserve hidden ODS rows and columns",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:27Z",
+      "merged_at": "2026-11-15T16:51:32Z",
+      "head": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "branch": "feat/sheet-hidden-state",
+      "merge_commit_sha": "a6c9d7efc3b986baac52d1237deb5f50a162db3a"
+    },
+    {
+      "number": 33,
+      "title": "Preserve hidden ODS worksheets",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:26Z",
+      "merged_at": "2026-11-15T18:39:22Z",
+      "head": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "branch": "feat/sheet-hidden-sheets",
+      "merge_commit_sha": "3d255f0f5c37af3efbaf69b29f4fcfc869de3eaa"
+    },
+    {
+      "number": 127,
+      "title": "Write cached ODT table-of-contents entries",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:22Z",
+      "merged_at": "2026-11-17T18:59:52Z",
+      "head": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "branch": "feat/odt-toc",
+      "merge_commit_sha": "162288351af0ad43bb4d869fd2d814eaaa30a930"
+    },
+    {
+      "number": 115,
+      "title": "Write ODT table borders and row heights",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:21Z",
+      "merged_at": "2026-11-17T16:11:54Z",
+      "head": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "branch": "feat/odt-table-borders",
+      "merge_commit_sha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3"
+    },
+    {
+      "number": 118,
+      "title": "Write ODT paragraph tab stops",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:19Z",
+      "merged_at": "2026-11-17T17:26:19Z",
+      "head": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "branch": "feat/odt-tab-stops",
+      "merge_commit_sha": "cc9b467f69401ca3d689b56e7306e3cebd01df68"
+    },
+    {
+      "number": 104,
+      "title": "Write ODT section layouts and page breaks",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:18Z",
+      "merged_at": "2026-11-17T14:18:03Z",
+      "head": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "branch": "feat/odt-sections2",
+      "merge_commit_sha": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b"
+    },
+    {
+      "number": 112,
+      "title": "Write ODT paragraph shading and borders",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:16Z",
+      "merged_at": "2026-11-17T15:52:04Z",
+      "head": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "branch": "feat/odt-paragraph-shading",
+      "merge_commit_sha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad"
+    },
+    {
+      "number": 122,
+      "title": "Write ODT column breaks and keep-together",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:15Z",
+      "merged_at": "2026-11-17T18:00:25Z",
+      "head": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "branch": "feat/odt-paragraph-breaks",
+      "merge_commit_sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62"
+    },
+    {
+      "number": 110,
+      "title": "Write ODT page-number fields",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:13Z",
+      "merged_at": "2026-11-17T15:45:06Z",
+      "head": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "branch": "feat/odt-page-fields",
+      "merge_commit_sha": "9941c80d09145310efd752b1558356c7bfb97f02"
+    },
+    {
+      "number": 97,
+      "title": "Write ordered ODT list groups",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:11Z",
+      "merged_at": "2026-11-17T08:36:14Z",
+      "head": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "branch": "feat/odt-ordered-lists",
+      "merge_commit_sha": "69a1396eacae0ec5c79f5d0feba6431e641d9448"
+    },
+    {
+      "number": 106,
+      "title": "Write nested ODT list levels",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:10Z",
+      "merged_at": "2026-11-17T14:40:22Z",
+      "head": "7686ec52876288e6799023fd686af79228236826",
+      "branch": "feat/odt-nested-lists",
+      "merge_commit_sha": "2277634a33b77405f045321ee3ea9ae432066f9a"
+    },
+    {
+      "number": 95,
+      "title": "Write ODT list groups",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:08Z",
+      "merged_at": "2026-11-17T08:24:48Z",
+      "head": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "branch": "feat/odt-lists",
+      "merge_commit_sha": "f4e6edc8d639e887d09fde07ac9886df03139169"
+    },
+    {
+      "number": 107,
+      "title": "Write ODT bookmarks and linked ranges",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:07Z",
+      "merged_at": "2026-11-17T14:52:11Z",
+      "head": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "branch": "feat/odt-links-bookmarks",
+      "merge_commit_sha": "67482c25a90631d54dd6dff6cda489687efb380f"
+    },
+    {
+      "number": 100,
+      "title": "Write ODT footnotes and endnotes",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:04Z",
+      "merged_at": "2026-11-17T09:02:35Z",
+      "head": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "branch": "feat/odt-footnotes",
+      "merge_commit_sha": "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13"
+    },
+    {
+      "number": 133,
+      "title": "Write ODT first and even header/footer variants",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:03Z",
+      "merged_at": "2026-11-17T19:23:07Z",
+      "head": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "branch": "feat/odt-first-even-headers",
+      "merge_commit_sha": "fdec8c24fde94fbffee212a7541b0cb236f682e4"
+    },
+    {
+      "number": 124,
+      "title": "Write ODT field results",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:01Z",
+      "merged_at": "2026-11-17T18:17:58Z",
+      "head": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "branch": "feat/odt-fields",
+      "merge_commit_sha": "93cb0773f82b3d41a75bc50705074efcb9d4df78"
+    },
+    {
+      "number": 92,
+      "title": "Add a bounded ODT document writer",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:31:00Z",
+      "merged_at": "2026-11-16T23:41:09Z",
+      "head": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "branch": "feat/odt-document-writer",
+      "merge_commit_sha": "8a3f5a9de14c556fd01ffacb3897629c51f4fa7e"
+    },
+    {
+      "number": 103,
+      "title": "Write ODT comments",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:58Z",
+      "merged_at": "2026-11-17T13:47:00Z",
+      "head": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "branch": "feat/odt-comments",
+      "merge_commit_sha": "3458c8977cef969a86a07b39734c761ba62e4b40"
+    },
+    {
+      "number": 119,
+      "title": "Write multi-column ODT sections",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:57Z",
+      "merged_at": "2026-11-17T17:42:54Z",
+      "head": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "branch": "feat/odt-columns",
+      "merge_commit_sha": "924f09bab2caf7b5985ffa6c16702a837a58d7bc"
+    },
+    {
+      "number": 68,
+      "title": "Extend the ODS writer to metadata and number formats",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:55Z",
+      "merged_at": "2026-11-16T15:16:47Z",
+      "head": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "branch": "feat/ods-writer-metadata",
+      "merge_commit_sha": "a042466eaf8cc83db2b7b6a5123d67a1b58f9304"
+    },
+    {
+      "number": 70,
+      "title": "Write worksheet pictures into ODS packages",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:53Z",
+      "merged_at": "2026-11-16T15:55:20Z",
+      "head": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "branch": "feat/ods-writer-images",
+      "merge_commit_sha": "8ddbb76580fc914f1bb60b8cda76ee7f71caacdf"
+    },
+    {
+      "number": 69,
+      "title": "Write ODS conditional formats and validations",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:52Z",
+      "merged_at": "2026-11-16T15:49:13Z",
+      "head": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "branch": "feat/ods-writer-conditional",
+      "merge_commit_sha": "b6d13f6546e1f240b2d4c5940fbf66bcf9ca53f2"
+    },
+    {
+      "number": 67,
+      "title": "Add a bounded ODS workbook writer",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:51Z",
+      "merged_at": "2026-11-16T15:11:41Z",
+      "head": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "branch": "feat/ods-writer",
+      "merge_commit_sha": "3398d53198263d3b76189fabb25b9d53ddf934db"
+    },
+    {
+      "number": 39,
+      "title": "Import ODS list validations",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:49Z",
+      "merged_at": "2026-11-15T19:18:34Z",
+      "head": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "branch": "feat/ods-validations",
+      "merge_commit_sha": "c210315bee537776b556ae9885e907483b6df7bd"
+    },
+    {
+      "number": 51,
+      "title": "Import ODS numeric, date and length validations",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:47Z",
+      "merged_at": "2026-11-16T08:32:57Z",
+      "head": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "branch": "feat/ods-validation-operators",
+      "merge_commit_sha": "d9508c94cccc8e638ca6ae5badfcb2ef50e71259"
+    },
+    {
+      "number": 54,
+      "title": "Import ODS validation prompts and error styles",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:46Z",
+      "merged_at": "2026-11-16T09:10:51Z",
+      "head": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "branch": "feat/ods-validation-messages",
+      "merge_commit_sha": "73eee5d925998e94643be4f3988cc46e1f559e63"
+    },
+    {
+      "number": 57,
+      "title": "Preserve ODS worksheet tab colours",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:44Z",
+      "merged_at": "2026-11-16T10:30:10Z",
+      "head": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "branch": "feat/ods-tab-color",
+      "merge_commit_sha": "91d574acefb45f326a82b9e416719213050068cc"
+    },
+    {
+      "number": 78,
+      "title": "Write ODS row outline groups and off-extent geometry",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:42Z",
+      "merged_at": "2026-11-16T19:23:12Z",
+      "head": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "branch": "feat/ods-row-groups",
+      "merge_commit_sha": "a3417522a54a1d46beef535e10f609c1295d8cfd"
+    },
+    {
+      "number": 60,
+      "title": "Preserve ODS outline groups",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:41Z",
+      "merged_at": "2026-11-16T13:32:40Z",
+      "head": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "branch": "feat/ods-outline",
+      "merge_commit_sha": "0969b2203a6758116bf42b53d7348898cc79d7ea"
+    },
+    {
+      "number": 58,
+      "title": "Import ODS named expressions",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:39Z",
+      "merged_at": "2026-11-16T10:37:36Z",
+      "head": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "branch": "feat/ods-named-expressions",
+      "merge_commit_sha": "bad2d9d30fd94db8de92a4f4bf83a55b0692b884"
+    },
+    {
+      "number": 48,
+      "title": "Import ODS workbook metadata",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:37Z",
+      "merged_at": "2026-11-15T23:02:25Z",
+      "head": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "branch": "feat/ods-metadata",
+      "merge_commit_sha": "d0975da6eadd10e706b5bcf158bd663e4072a226"
+    },
+    {
+      "number": 29,
+      "title": "Carry ODS pictures into worksheet drawings",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:36Z",
+      "merged_at": "2026-11-15T14:12:12Z",
+      "head": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "branch": "feat/ods-images",
+      "merge_commit_sha": "04f7a8aa696e9e1cc622e325fba1353910d09243"
+    },
+    {
+      "number": 59,
+      "title": "Preserve ODS cell hyperlinks",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:34Z",
+      "merged_at": "2026-11-16T13:26:38Z",
+      "head": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "branch": "feat/ods-hyperlinks",
+      "merge_commit_sha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2"
+    },
+    {
+      "number": 83,
+      "title": "Round-trip ODS header and footer sections",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:33Z",
+      "merged_at": "2026-11-16T19:57:58Z",
+      "head": "331be9688e2de1feb52635490b534042dea10c27",
+      "branch": "feat/ods-header-footer",
+      "merge_commit_sha": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195"
+    },
+    {
+      "number": 62,
+      "title": "Preserve ODS filter predicates",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:31Z",
+      "merged_at": "2026-11-16T13:37:17Z",
+      "head": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "branch": "feat/ods-filter-predicates",
+      "merge_commit_sha": "7edb096d3328263c75dc0229ff43bb77183e1ad3"
+    },
+    {
+      "number": 65,
+      "title": "Support ODS filter comparison operators",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:30Z",
+      "merged_at": "2026-11-16T14:13:30Z",
+      "head": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "branch": "feat/ods-filter-operators",
+      "merge_commit_sha": "5d89092e779d2cbf776f21f2f7682f7416c0d25f"
+    },
+    {
+      "number": 76,
+      "title": "Write ODS autofilter predicates",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:28Z",
+      "merged_at": "2026-11-16T19:17:09Z",
+      "head": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "branch": "feat/ods-filter-conditions",
+      "merge_commit_sha": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1"
+    },
+    {
+      "number": 30,
+      "title": "Apply ODS document default cell styles",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:26Z",
+      "merged_at": "2026-11-15T16:25:32Z",
+      "head": "49b447324159595c59e64d8425b54a09f79ec736",
+      "branch": "feat/ods-default-style",
+      "merge_commit_sha": "39761edb40a140fc488b3bdb0ddc36dbee557a93"
+    },
+    {
+      "number": 31,
+      "title": "Honor nameless ODS default styles and geometry",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:24Z",
+      "merged_at": "2026-11-15T16:45:53Z",
+      "head": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "branch": "feat/ods-default-geometry",
+      "merge_commit_sha": "2f47132206a88c6dd0f724a665fb6b7158cf3a57"
+    },
+    {
+      "number": 53,
+      "title": "Import ODS custom formula validations",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:22Z",
+      "merged_at": "2026-11-16T09:04:41Z",
+      "head": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "branch": "feat/ods-custom-validation",
+      "merge_commit_sha": "adffad55e28479bcae20a87a95fb4e96e25cd96c"
+    },
+    {
+      "number": 35,
+      "title": "Import ODS conditional formats and paint matches",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:20Z",
+      "merged_at": "2026-11-15T18:57:27Z",
+      "head": "e59751246a200e7477657d0e4835bf77b153422c",
+      "branch": "feat/ods-conditional",
+      "merge_commit_sha": "1d7fee380def59d5a766cab106e519952d5c3292"
+    },
+    {
+      "number": 98,
+      "title": "Write ODP slide transitions",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:19Z",
+      "merged_at": "2026-11-17T08:48:42Z",
+      "head": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "branch": "feat/odp-transitions",
+      "merge_commit_sha": "dedac9cf14e2fca66363e282d7fe787ac9b71690"
+    },
+    {
+      "number": 108,
+      "title": "Write ODP text-shape hyperlinks",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:17Z",
+      "merged_at": "2026-11-17T15:21:10Z",
+      "head": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "branch": "feat/odp-shape-links",
+      "merge_commit_sha": "4af75017a9b7df726c1f80741809f5bccdb70f4c"
+    },
+    {
+      "number": 126,
+      "title": "Export ODP ellipse and rounded-rectangle shapes",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:15Z",
+      "merged_at": "2026-11-17T18:38:00Z",
+      "head": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "branch": "feat/odp-preset-shapes",
+      "merge_commit_sha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff"
+    },
+    {
+      "number": 93,
+      "title": "Add a bounded ODP presentation writer",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:14Z",
+      "merged_at": "2026-11-17T06:11:15Z",
+      "head": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "branch": "feat/odp-presentation-writer",
+      "merge_commit_sha": "5c38679bab0819c8726444a98d4fbf6ab8437b40"
+    },
+    {
+      "number": 121,
+      "title": "Preserve ODP chart data as tables",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:12Z",
+      "merged_at": "2026-11-17T17:54:19Z",
+      "head": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "branch": "feat/odp-chart-data",
+      "merge_commit_sha": "edd023c3505942cd2433bfa6c815a7d009432a3c"
+    },
+    {
+      "number": 132,
+      "title": "Preserve ODF stories, header media and bookmark ranges",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:11Z",
+      "merged_at": "2026-11-17T19:17:06Z",
+      "head": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "branch": "feat/odf-story-fidelity",
+      "merge_commit_sha": "081af8a55338c713ba8b350f2519f2021d9caee3"
+    },
+    {
+      "number": 109,
+      "title": "Export document metadata in ODT and ODP",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:09Z",
+      "merged_at": "2026-11-17T15:37:09Z",
+      "head": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "branch": "feat/odf-metadata",
+      "merge_commit_sha": "379d3c8e5e46afb806f9ac181bc814288c9c8893"
+    },
+    {
+      "number": 153,
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:07Z",
+      "merged_at": null,
+      "head": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "branch": "feat/native-spacy-w7-20261118",
+      "merge_commit_sha": "7d22b0e1fb77ba9dfc145d354513ca3860288226"
+    },
+    {
+      "number": 139,
+      "title": "Add optional native German analysis and qualified manual agreement corrections",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:05Z",
+      "merged_at": "2026-11-18T10:30:57Z",
+      "head": "6df76a0dff0051312faa04317af41d479dd94162",
+      "branch": "feat/native-spacy-reference-20261117",
+      "merge_commit_sha": "98a2a15056e55699b8ba5651fc79b26f94e5efd3"
+    },
+    {
+      "number": 181,
+      "title": "Optional Hunspell spelling with a user-downloaded Arabic dictionary (AyaSpell) [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:30:04Z",
+      "merged_at": "2026-11-19T07:58:37Z",
+      "head": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "branch": "feat/hunspell-engine-20261119",
+      "merge_commit_sha": "8216dfbd9d4dd2b82cb476e439b1a4e8e16429cb"
+    },
+    {
+      "number": 86,
+      "title": "Import and export top, bottom and average conditional rules",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:56Z",
+      "merged_at": "2026-11-16T20:11:30Z",
+      "head": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "branch": "feat/conditional-top-bottom",
+      "merge_commit_sha": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80"
+    },
+    {
+      "number": 38,
+      "title": "Import ODS contains-text and duplicate rules",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:54Z",
+      "merged_at": "2026-11-15T19:13:56Z",
+      "head": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "branch": "feat/conditional-text",
+      "merge_commit_sha": "9f1efe0758f5e67f10cec05883cc587a3b08b14c"
+    },
+    {
+      "number": 36,
+      "title": "Support the full numeric conditional comparators",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:52Z",
+      "merged_at": "2026-11-15T19:01:57Z",
+      "head": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "branch": "feat/conditional-operators",
+      "merge_commit_sha": "8815cec9705f8a0b099f83f38d5eca75c5564171"
+    },
+    {
+      "number": 89,
+      "title": "Retain conditional-format dxf styles",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:50Z",
+      "merged_at": "2026-11-16T23:17:46Z",
+      "head": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "branch": "feat/conditional-dxf-styles",
+      "merge_commit_sha": "281b5d4cd705c1f32d98a741233ebb836d1ef20a"
+    },
+    {
+      "number": 37,
+      "title": "Emit conditional dxf styles for generated rules",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:48Z",
+      "merged_at": "2026-11-15T19:10:36Z",
+      "head": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "branch": "feat/conditional-dxf",
+      "merge_commit_sha": "85f5109c8067133bc30942d71b0be6ea9d9bf68c"
+    },
+    {
+      "number": 41,
+      "title": "Support between conditional rules",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:47Z",
+      "merged_at": "2026-11-15T20:23:40Z",
+      "head": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "branch": "feat/conditional-between",
+      "merge_commit_sha": "42b7f1e767454a962ef3a21342eac335bbf925db"
+    },
+    {
+      "number": 43,
+      "title": "Support begins-with and ends-with conditions",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:45Z",
+      "merged_at": "2026-11-15T22:05:48Z",
+      "head": "20681b8658392212c128f51b4c91f0b638942448",
+      "branch": "feat/conditional-affix",
+      "merge_commit_sha": "b01455fa415f9411411d06c7c2ab66947630af1a"
+    },
+    {
+      "number": 190,
+      "title": "Arabic proofing: clean-room morphology-based (T2) grammar rules",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:43Z",
+      "merged_at": "2026-11-19T10:27:18Z",
+      "head": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "branch": "feat/arabic-rules-t2-20261119",
+      "merge_commit_sha": "7bfdf91bf606195e0036345cbb4ef57a5cd2e82c"
+    },
+    {
+      "number": 184,
+      "title": "Arabic proofing: clean-room T1 rules from the abstract spec (32 rule ids)",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:41Z",
+      "merged_at": "2026-11-19T08:31:27Z",
+      "head": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "branch": "feat/arabic-rules-t1-20261119",
+      "merge_commit_sha": "b559f6c764fbfac143f593e89ddc1096ad8b5c4e"
+    },
+    {
+      "number": 180,
+      "title": "Arabic proofing: roadmap, AyaSpell bundle, authored Arabic writing rules [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:39Z",
+      "merged_at": "2026-11-19T07:55:05Z",
+      "head": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "branch": "feat/arabic-rules-20261119",
+      "merge_commit_sha": "f7117a493055008a72e6e16713dd67a4f7c2ad39"
+    },
+    {
+      "number": 176,
+      "title": "Arabic proofing roadmap and published AyaSpell bundle [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:37Z",
+      "merged_at": "2026-11-19T07:45:15Z",
+      "head": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "branch": "feat/arabic-proofing-20261119",
+      "merge_commit_sha": "f059065fa622da8cee7824d66d29a2aff414d529"
+    },
+    {
+      "number": 188,
+      "title": "Arabic morphology analyzer interface [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:36Z",
+      "merged_at": "2026-11-19T09:43:17Z",
+      "head": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "branch": "feat/arabic-morph-interface-20261119",
+      "merge_commit_sha": "7d54b9907105b12881e5f19e858a1b18f4e44a44"
+    },
+    {
+      "number": 189,
+      "title": "Arabic morphology: native Camel Morph MSA analyzer behind ArabicMorphology (noprob, user download)",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:34Z",
+      "merged_at": "2026-11-19T10:49:30Z",
+      "head": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "branch": "feat/arabic-morph-integration-20261119",
+      "merge_commit_sha": "b070e228a749e22cc8ce2098029a76ab5fb8eccb"
+    },
+    {
+      "number": 187,
+      "title": "Arabic proofing: expand the T1 word and phrase lists (clean-room)",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:32Z",
+      "merged_at": "2026-11-19T09:38:59Z",
+      "head": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "branch": "feat/arabic-lists-20261119",
+      "merge_commit_sha": "4f80ba522ea9a1d029d24aaed99fe8ecfaee8330"
+    },
+    {
+      "number": 185,
+      "title": "Arabic proofing in Studio: w:bidi routing, dictionary download UI, merged findings, packaging [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-19T13:29:31Z",
+      "merged_at": "2026-11-19T08:41:58Z",
+      "head": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "branch": "feat/arabic-host-wiring-20261119",
+      "merge_commit_sha": "be641457c8c7d1acc25091b31c87c73eaa3c9c2a"
+    }
+  ],
+  "source": "GitHub REST initial inventory; 100 PRs sorted by updated descending"
+}

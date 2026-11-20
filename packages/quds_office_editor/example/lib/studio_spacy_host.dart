@@ -200,6 +200,11 @@ abstract class StudioSpacyHost extends ChangeNotifier {
   /// Opens a new owned worker for the current verified configuration.
   Future<SpacyTransport> openTransport();
 
+  /// Opens a worker for the manual grammar provider. Grammar is qualified on
+  /// the parser's annotations without named entities (capability mask 15),
+  /// so hosts that can attach NER open this worker without it.
+  Future<SpacyTransport> openGrammarTransport() => openTransport();
+
   /// Downloads (explicit user action) and verifies an additional analysis
   /// language and, when needed, the native package that opens it.
   Future<void> installLanguage(

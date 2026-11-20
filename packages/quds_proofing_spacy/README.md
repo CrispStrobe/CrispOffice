@@ -50,19 +50,29 @@ native library inside the app (App Store, iOS, Android, and the sandboxed
 Studio macOS build); downloading executable code is never offered there.
 `tool/build.py --native` builds that library for macOS arm64 from the pinned
 CrispEmbed v2 runtime source (static PCRE2, system libc++ only) with a
-receipt; `SpacyNativeBackendFactory(hostBundled: true)` opens it from the
-app's `Contents/Frameworks` (the digest is still verified before loading).
-Such a host build is a new binary: it has no recorded qualification of its own
-and the grammar planner refuses it. A `mirror` can redirect transport but cannot change
-what is accepted.
+receipt. The build is reproducible: source paths are mapped, so the same
+toolchain gives the same bytes in any directory.
+`SpacyNativeBackendFactory(hostBundled: true)` opens it from the app's
+`Contents/Frameworks` (the digest is still verified before loading).
+The Studio macOS build installs the exact ad hoc signed library
+`spacyGrammarMacosBundledSha256` (`ccc96620…`). Its bytes are pinned at an
+immutable Hub revision, and analysis and manual German grammar are qualified
+for it ([evidence](../../docs/validation/native-spacy-macos-bundled-20261119/README.md)).
+Any other host build, including a `--rebuild-spacy` with another toolchain, is
+a new binary. It has no recorded qualification, and the grammar planner
+refuses it. A `mirror` can redirect transport but cannot change what is
+accepted.
 
 Claims are recorded per exact library digest (`spacyQualificationFor`). The
-grammar planner independently refuses any build other than
-`spacyGrammarNativeSha256`, and a test keeps the catalog consistent with it.
+grammar planner independently refuses any build outside
+`spacyGrammarNativeSha256s`, and a test keeps the catalog consistent with that
+set. Grammar is qualified without named entities (capability mask 15), so hosts
+open the grammar worker without NER.
 Platform status: Linux x86-64/AVX2 published and qualified (analysis and manual
-grammar); macOS arm64 and Linux arm64 await packages built from the updated
-CrispEmbed runtime; Windows, Intel macOS, iOS, Android and web are unavailable
-with stated reasons. `tool/install_from_hub.dart` performs a fresh-cache Hub
+grammar). The macOS arm64 library bundled in the Studio app is qualified
+(analysis and manual grammar). The downloadable macOS arm64 and Linux arm64/x86-64
+v2 capsules are analysis only. Windows, Intel macOS, iOS, Android and web are
+unavailable with stated reasons. `tool/install_from_hub.dart` performs a fresh-cache Hub
 readback through the same installer.
 
 ## Explicit local installation

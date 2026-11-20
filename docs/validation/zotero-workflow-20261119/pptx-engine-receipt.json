@@ -1,0 +1,33 @@
+{
+  "name": "pptx-engine",
+  "source_head": "780422316b4e37989e01ac871dd2956fbd2c8908",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "2",
+    "--timeout",
+    "90s",
+    "test/pdf_image_interlace_test.dart",
+    "test/slide_import_fidelity_test.dart",
+    "test/slide_text_fidelity_test.dart",
+    "test/slide_render_fidelity_test.dart",
+    "test/slide_rich_text_explicit_style_test.dart"
+  ],
+  "package": "packages/quds_office_engine",
+  "files": [
+    "test/pdf_image_interlace_test.dart",
+    "test/slide_import_fidelity_test.dart",
+    "test/slide_text_fidelity_test.dart",
+    "test/slide_render_fidelity_test.dart",
+    "test/slide_rich_text_explicit_style_test.dart"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 23.646,
+  "inputs_unchanged": true,
+  "input_count": 2048,
+  "inputs_manifest": "source-inputs.json.gz"
+}

@@ -19,12 +19,16 @@ document execution path. Conditional `Do`/`While` loops and `Select Case`
 selection use the same source values and aggregate compilation budgets. Fixed
 one-dimensional local arrays and `For Each` loops support bounded source-data
 processing and explicit cell-range iteration within those same budgets.
+Dynamic local arrays add `ReDim`, `ReDim Preserve`, and `Erase`; module
+`Option Base` controls omitted lower bounds for both fixed and dynamic arrays.
 
 This increment targets the spreadsheet family (`xlsx`, including macro-enabled
 and template workbook packages admitted by the existing runtime). Embedded VBA
 projects are preserved as opaque bytes. Opening a workbook never loads or runs
 those projects. Word VBA, PowerPoint VBA, forms, events, COM, and general VBA
-compatibility are outside this dialect.
+compatibility are outside this dialect. The
+[VBA parity roadmap](VBA_PARITY_ROADMAP.md) separates the delivered subset from
+the language, document-aware runtime, and Word/PowerPoint adapter milestones.
 
 ## Run a source file
 
@@ -304,7 +308,8 @@ are inclusive, must be signed 32-bit integers, and may use literals, supported
 constant expressions, and previously declared module or local constants.
 An upper bound below the lower bound is invalid. Bounds are checked even in
 unused procedures; source functions and variable-dependent bounds are not
-allowed. `Option Base` remains unsupported; an omitted lower bound is zero.
+allowed. An omitted lower bound is zero unless the module specifies
+`Option Base 1`; an explicit `lower To upper` always takes precedence.
 
 Every typed element starts with its scalar default: zero, an empty string, or
 `False`. Each `Variant` element must be assigned before it is read or visited
@@ -318,8 +323,9 @@ an optional second argument specifying dimension **1**. Other dimensions are
 rejected. These intrinsics require a local array variable; array elements are
 ordinary scalar expressions and can be passed to existing scalar helpers.
 Arrays cannot be assigned, passed, returned, or placed inside another
-`Variant` as whole values. Dynamic or multidimensional arrays, arrays of
-objects, `Array`, `Split`, `ReDim`, and `Erase` remain outside this dialect.
+`Variant` as whole values. Multidimensional arrays, arrays of objects, `Array`,
+and `Split` remain outside this dialect. Dynamic array allocation and erasure
+are described below.
 
 For an array, `For Each item In values` requires a `Variant` control variable.
 Without `Option Explicit`, an undeclared control variable may be introduced as
@@ -359,6 +365,98 @@ consume the shared compilation work budget. Large range collections are checked
 against the remaining work budget before iteration, including loops with empty
 bodies. Arrays do not increase the existing operation or encoded-plan limits.
 
+## Dynamic arrays, ReDim, Erase, and Option Base
+
+Declare a local dynamic array with empty parentheses, then allocate its bounds
+using source expressions. All five supported scalar element types work;
+omitting `As` declares an array of scalar Variant elements:
+
+```vb
+Option Explicit
+Option Base 1
+
+Sub Main()
+    Dim amounts() As Long, amount As Variant, total As Long
+    ReDim amounts(2)
+    amounts(1) = 125
+    amounts(2) = 250
+    ReDim Preserve amounts(3)
+    amounts(3) = 475
+
+    For Each amount In amounts
+        total = total + amount
+    Next amount
+    Worksheets("Summary").Range("A1").Value2 = total
+
+    Erase amounts
+    ReDim amounts(-2 To 0)
+    Worksheets("Summary").Range("A2").Value2 = amounts(-2)
+End Sub
+```
+
+This writes **850** and **0**. The array starts without allocated storage;
+indexing, `LBound`, `UBound`, and `For Each` before allocation or after dynamic
+`Erase` fail with `vba_subscript_out_of_range`. Declaring an unused dynamic
+array and erasing it repeatedly are valid.
+
+`ReDim data(lower To upper)` allocates or replaces a declared dynamic array,
+resetting every element to its typed default. It can change both bounds.
+`ReDim Preserve` retains elements at their original indices, initializes new
+slots to their defaults, and discards values outside a smaller upper bound.
+Regrowing the array does not restore discarded values. Once allocated, the
+lower bound must stay the same with `Preserve`; changing it produces
+`vba_subscript_out_of_range`. `Preserve` on an unallocated array allocates it.
+Variant slots that have not been assigned remain unsupported `Empty` values,
+including after growth, reset, or fixed-array erasure.
+
+Bounds are evaluated once, from left to right, and may use variables, bound
+intrinsics, or supported scalar functions. A comma-separated `ReDim` list
+processes its targets in source order: a later target can read the bounds
+established by an earlier one. Each bound must be an integer in the signed
+32-bit range; the upper bound must be at least the lower bound. There is one
+dimension and at most 4,096 elements. These value-dependent checks run only
+when the selected entry executes that statement. Unsupported target shapes,
+known type mismatches, and bound function calls are checked throughout the
+module, including unused procedures and dead branches.
+
+An optional `As` clause on each `ReDim` target must repeat its declared element
+type exactly. A fixed array cannot be resized. Unlike full VBA's declarative
+form of `ReDim`, this dialect requires a preceding local `Dim name()`;
+implicit arrays and scalar Variants holding whole arrays are unsupported.
+
+`Erase first, second` processes each named array in order. A fixed array keeps
+its original bounds and allocated slots while resetting every element. A
+dynamic array releases its slots and becomes unallocated. Both release their
+stored string occupancy. Array-element targets such as `Erase data(0)` are
+unsupported.
+
+An array being visited by `For Each` is locked against `ReDim` and `Erase`,
+with a structured `vba_array_locked` diagnostic. Element writes keep the
+existing behavior: a later iteration sees its slot's latest value. Each nested
+enumeration holds its own lock. Completion, matching loop exits, and procedure
+returns release the locks they leave; exiting an inner enumeration does not
+unlock an outer enumeration over the same array. A helper's same-named local
+array is independent.
+
+`Option Base 0` or `Option Base 1` may occur once before any procedure, in either
+order with `Option Explicit`. It applies throughout that one module to omitted
+lower bounds in both `Dim` and `ReDim`, including `ReDim Preserve`. It does not
+change explicit lower bounds or worksheet/cell indexing. The default is zero.
+
+Allocation, retirement, preserved copying, fixed-array resetting, and each
+`Erase` target consume the shared 100,000-visit budget. All simultaneously
+active fixed and dynamic arrays share the 16,384-slot and 1,048,576-string-unit
+limits. A resize accounts for the resulting active slots; shrinking, erasing,
+overwriting, and returning from a procedure release the appropriate quota.
+Resizing repeatedly cannot reset the work budget. Native operation and plan
+byte limits are unchanged.
+
+The committed [dynamic array report](../packages/quds_office_engine/example/macros/dynamic_array_report.bas)
+grows source data, discards an extra item, writes a styled four-row report,
+calculates matching source and worksheet totals of **850**, and demonstrates
+the zero default after erasure and reallocation. It emits **24 native
+operations** through the same compile/validate/run CLI and MCP paths.
+
 ## Object model and operation mappings
 
 | Source construct | Behavior |
@@ -390,20 +488,22 @@ explicit worksheet qualifier or a supported `With`/`Set` binding. This avoids
 guessing which sheet a user had selected in another application.
 
 Only supported member names are admitted. `Merge`, `ColumnWidth`, `NumberFormat`,
-`FormulaR1C1`, dynamic arrays, named ranges, whole rows/columns, discontiguous
+`FormulaR1C1`, worksheet dynamic spill formulas, named ranges, whole rows/columns, discontiguous
 ranges, and default members are not translated into approximate operations.
 
 ## Supported language constructs
 
 | Construct | Supported behavior and restrictions |
 | --- | --- |
-| Module structure | Optional `Attribute VB_Name = "..."`, optional `Option Explicit`, module constants, `Sub` helpers, and scalar `Function` procedures with optional `Public`/`Private` |
+| Module structure | Optional `Attribute VB_Name = "..."`, `Option Explicit`, `Option Base 0/1`, module constants, `Sub` helpers, and scalar `Function` procedures with optional `Public`/`Private` |
 | Entry selection | Case-insensitive selection of a parameterless `Sub` by `entryPoint`; every procedure is checked, and the selected entry plus its invoked helpers are evaluated |
 | Procedure arguments | Up to 16 required positional parameters, each explicitly `ByVal`, using supported scalar or `Worksheet`/`Range` types |
 | Calls and returns | In-module procedure calls, scalar functions in expressions, return assignment through the function name, and discarded function results in statement calls |
 | Early exits | `Exit Sub`, `Exit Function`, innermost `Exit For`, and innermost `Exit Do`, checked against the containing procedure or matching loop kind |
 | Declarations | `Dim` and `Const`, including comma-separated declarations; declarations must precede executable statements and remain outside control-flow blocks |
 | Fixed local arrays | One dimension of supported scalar elements, constant inclusive bounds, integer indexed reads/writes, `LBound`/`UBound` |
+| Dynamic local arrays | `Dim name()`, `ReDim` with source-expression bounds, upper-bound-only `ReDim Preserve`, and the same element/index/bound intrinsics |
+| Array lifecycle | `Erase` resets fixed arrays and deallocates dynamic arrays; active `For Each` collections cannot be resized or erased |
 | Collection loops | `For Each` over a local array with a `Variant` control variable, or an explicit rectangular range with a `Range` control variable |
 | Scalar types | `Long`, `Double`, `String`, `Boolean`, and scalar `Variant`; omitted `As` means `Variant` |
 | Object types | `Worksheet` and `Range` variables, assigned with `Set`; object default members are unsupported |
@@ -424,7 +524,7 @@ Typed variables start at `0`, `0.0`, `""`, or `False`. An uninitialized
 `Variant`, `Worksheet`, or `Range` cannot be read; assign it first. With
 `Option Explicit`, undeclared variables are errors. Without it, assignment
 targets and loop counters can introduce scalar Variant variables, but an
-undeclared read still fails. Dynamic and multidimensional arrays, `Empty`, `Null`, and `Nothing` are not
+undeclared read still fails. Multidimensional arrays, `Empty`, `Null`, and `Nothing` are not
 implemented.
 
 Assignments and operations use strict types. Arithmetic uses finite binary64
@@ -472,7 +572,7 @@ The compiler has its own limits before the native runtime receives a plan:
 | Block nesting | 32 |
 | Expression nesting / AST depth | 64 |
 | Visible variables per procedure, including constants, parameters, and function return slot | 256 |
-| Array elements per fixed local array | 4,096 |
+| Array elements per fixed or dynamic local array | 4,096 |
 | Array slots across active procedure frames | 16,384 |
 | String code units stored across active array slots | 1,048,576 |
 | Parameters / arguments per procedure call | 16 |
@@ -576,6 +676,11 @@ The supported mappings are based on Microsoft's documented VBA behavior:
 - [Formula assignment to ranges](https://learn.microsoft.com/en-us/office/vba/api/excel.range.formula)
 - [ClearContents](https://learn.microsoft.com/en-us/office/vba/api/excel.range.clearcontents)
 - [Fixed array declarations and default bounds](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/dim-statement)
+- [ReDim allocation and Preserve](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/redim-statement)
+- [MS-VBAL ReDim semantics](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/22b5d372-0a54-4617-9462-4934b5edc88c)
+- [Erase for fixed and dynamic arrays](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/erase-statement)
+- [Option Base](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/option-base-statement)
+- [Temporarily locked arrays](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/this-array-is-fixed-or-temporarily-locked-error-10)
 - [For Each…Next and control-variable types](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/for-eachnext-statement)
 - [LBound](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/lbound-function) and [UBound](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/ubound-function)
 - [Range.Row](https://learn.microsoft.com/en-us/office/vba/api/excel.range.row) and [Range.Column](https://learn.microsoft.com/en-us/office/vba/api/excel.range.column)

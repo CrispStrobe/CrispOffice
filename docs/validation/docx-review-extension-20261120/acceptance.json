@@ -1,0 +1,32 @@
+{
+  "baseCommit": "5715d560",
+  "engineTests": 69,
+  "editorTests": 70,
+  "finalEditorReplayTests": 6,
+  "uniqueTests": 140,
+  "skipped": 0,
+  "wordApplication": "Microsoft Word 16.111.1",
+  "wordNativeRevisionTypes": [
+    "property",
+    "paragraph property",
+    "move from",
+    "move to"
+  ],
+  "wordReopenedPendingCount": 4,
+  "wordReopenedAcceptedCount": 0,
+  "wordReopenedRejectedCount": 0,
+  "ciQueriedOrAwaited": false,
+  "syntheticFixtureOnly": true,
+  "realUserDocumentsEdited": false,
+  "sourceFixtureSha256": "4e3b1ef33a0575e052bbad39e9f11bcabafe9c41e8c466eb659b9acd68464043",
+  "evidenceSha256": {
+    "word-quds-reopen.json": "3ab671b8b3b39ae24a74d6e59b755767081cc256f312789012a237b965053451",
+    "quds-word-roundtrip.json": "45825e7db68369139976c3d6a22919a3b2679f55c1849f2881c16372b35d7214",
+    "editor-tests.txt": "046b5b0c0131b419bd9c870e804998dc72b237a656c5f657d657eb32193ec8fb",
+    "word-native-types.txt": "fb347154464f0ab04fc848166f2fa13141919e556884aa88ad431fa8d6a971ae",
+    "engine-tests.txt": "184ef4129ab88a9635e6d39b2e713f55f88b9a4f0a6e87346131be21e57a2705",
+    "editor-final-replay.txt": "50964d95ab1e03c71608d6471d8bc357d2deb58de2285c331bbc4710c0867d00"
+  },
+  "additionalEmptyRunGuardTests": 1,
+  "emptyRunGuardRegressionReplay": 23
+}

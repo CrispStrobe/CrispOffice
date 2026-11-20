@@ -1,0 +1,80 @@
+00:00 +0: loading /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_extended_review_test.dart
+00:00 +0: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_extended_review_test.dart: reject formatting and Undo/Redo restore both properties and attribution
+00:00 +1: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_extended_review_test.dart: paragraph formatting decision Undo restores paragraph properties
+00:00 +2: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_extended_review_test.dart: one accept move decision and Undo restore both paragraphs
+00:00 +3: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_extended_review_test.dart: one reject move decision and Undo restore both paragraphs
+00:00 +4: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_extended_review_test.dart: live pane labels formatting separately and does not strike it out
+00:03 +5: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_extended_review_test.dart: live pane shows named move destination and paired accept works
+00:04 +6: loading /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart
+00:09 +6: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: CrispOffice defaults preserve imported revision and comment authors
+00:10 +7: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: author configuration trims names and rejects empty attribution
+00:10 +8: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: typing and deletion keep their original authors through history
+00:10 +9: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: hyperlink changes and fromBytes use the configured future author
+00:10 +10: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: proofing replacements attribute both tracked halves and redo
+00:10 +11: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: accept filtered changes is one undo step and rebases the remainder
+00:10 +12: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: reject batch deduplicates targets and preserves a different author
+00:10 +13: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: accept batch prevalidates every span
+00:10 +14: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: reject batch prevalidates every span
+00:10 +15: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: resolving a middle change keeps the successor through undo and redo (accept)
+00:10 +16: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: resolving a middle change keeps the successor through undo and redo (reject)
+00:10 +17: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: resolving another batch preserves an unaffected explicit selection
+00:10 +18: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: navigation starts at first or last pending and wraps exact spans
+00:10 +19: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: header revision selects the actual source and synchronizes IME
+00:10 +20: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: footer revision selects the actual source and synchronizes IME
+00:10 +21: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: comment revision selects the actual source and synchronizes IME
+00:10 +22: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: disabled alternate headers never fall back to a matching body span
+00:10 +23: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: stale and detached targets do not move the body caret
+00:10 +24: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: body revision navigation leaves object editing and another story
+00:10 +25: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: OfficeInteractionMode.viewing prevents review mutations and honors selection capability
+00:10 +26: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: OfficeInteractionMode.selecting prevents review mutations and honors selection capability
+00:10 +27: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_controller_test.dart: comparison in viewing mode changes neither document nor controller state
+00:11 +28: loading /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart
+00:17 +28: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: (setUpAll)
+00:17 +28: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: author type and text filters combine without editing the document
+00:25 +29: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: filtered navigation and resolution continue with the next shown change
+00:27 +30: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: accept shown affects exactly the filtered batch with one undo
+00:29 +31: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: reject shown affects exactly the filtered batch with one undo
+00:31 +32: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: one stale filtered change blocks the entire shown batch
+00:32 +33: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: paragraph previews project all changes without resolving them
+00:33 +34: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: text previews remain available when native boundaries forbid resolving a valid span
+00:34 +35: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: stale preview shows stored text with an explicit warning
+00:35 +36: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: detached captured changes cannot become actionable through a cached target map
+00:35 +37: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: viewing mode keeps filters and previews but disables decisions
+00:36 +38: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: F7 checks writing from a focused Changes pane search field
+00:37 +39: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: document language changes in the pane are undoable and keep manual checks explicit
+00:38 +40: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: read-only writing inspection disables document language changes
+00:38 +41: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: restoring ignored findings preserves personal words and avoids manual providers
+00:40 +42: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: current findings can be corrected while a different paragraph checks
+00:40 +43: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: narrow scaled English Changes pane supports filtering and review
+00:42 +44: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: narrow scaled Arabic Changes pane supports filtering and review
+00:43 +45: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_live_review_changes_test.dart: (tearDownAll)
+00:45 +45: loading /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart
+00:51 +45: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: (setUpAll)
+00:52 +45: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: editing stays available while live findings update in the pane
+00:59 +46: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: opening and correcting do not implicitly run manual providers
+01:01 +47: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: unavailable provider status is not presented as a clean document
+01:01 +48: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: a suggestion captured before an edit cannot change newer text
+01:02 +49: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: category filtering navigates only matching findings
+01:04 +50: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: tracked changes resolve in place and undo restores them
+01:06 +51: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: reviewer field affects future attribution and leaves document alone
+01:08 +52: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: viewing mode allows inspection while disabling document mutations
+01:09 +53: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: stale checks stay pending until a current provider result arrives
+01:11 +54: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: narrow English pane remains scrollable
+01:13 +55: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: narrow Arabic pane remains scrollable
+01:14 +56: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_pane_test.dart: (tearDownAll)
+01:16 +56: loading /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart
+01:21 +56: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: Review opens with the CrispOffice default reviewer
+01:25 +57: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: tracking and reviewer controls affect future edits with undo
+01:28 +58: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: author, kind and text filters intersect without changing sources
+01:32 +59: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: accept shown is a filtered undoable batch
+01:35 +60: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: reject shown is a filtered undoable batch
+01:37 +61: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: final and original previews leave tracked changes untouched
+01:40 +62: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: viewing mode exposes review but disables document mutations
+01:41 +63: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: two picked documents compare, display redlines and export without edits
+01:43 +64: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: export cancellation and errors preserve the report for retry
+01:45 +65: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: current-document edits mark comparison stale and disable export
+01:46 +66: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: picker cancellation and errors preserve selections and recover
+01:47 +67: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: closing during a pending picker ignores its later completion
+01:47 +68: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: narrow LTR dialog keeps both workflows usable
+01:48 +69: /private/tmp/quds-proofing-language-20261119/packages/quds_office_editor/test/word_review_dialog_test.dart: narrow RTL dialog keeps both workflows usable
+01:50 +70: All tests passed!

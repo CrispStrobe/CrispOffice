@@ -135,7 +135,9 @@ final class _Harness {
       );
       expect(
         transport.identity,
-        const SpacyBackendIdentity(librarySha256: spacyGrammarNativeSha256),
+        SpacyBackendIdentity(
+          librarySha256: Platform.environment['QUDS_SPACY_LIBRARY_SHA256']!,
+        ),
       );
       final provider = SpacyGrammarProvider.withTransport(
         transport: transport,
@@ -266,9 +268,11 @@ void main() {
       );
       expect(Platform.environment[name], isNotEmpty);
     }
+    // Any exact build with recorded grammar qualification (Linux x86-64 or
+    // the app-bundled macOS arm64 library).
     expect(
-      Platform.environment['QUDS_SPACY_LIBRARY_SHA256'],
-      spacyGrammarNativeSha256,
+      spacyGrammarNativeSha256s,
+      contains(Platform.environment['QUDS_SPACY_LIBRARY_SHA256']),
     );
   });
 

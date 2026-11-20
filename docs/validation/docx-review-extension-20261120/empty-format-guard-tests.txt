@@ -1,0 +1,25 @@
+00:00 +0: loading test/word_extended_revision_test.dart
+00:00 +0: run history does not override current properties; reject restores the previous set
+00:00 +1: accept keeps current formatting and removes native history
+00:00 +2: paragraph formatting imports current alignment and rejects previous spacing
+00:00 +3: empty previous properties restore inheritance instead of editor defaults
+00:00 +4: formatting history survives three direct saves
+00:00 +5: formatting history survives three isolate saves
+00:00 +6: accept either side resolves an entire multi-run move
+00:00 +7: reject either side resolves an entire multi-run move
+00:01 +8: move endpoints and linkage survive repeated native saves across paragraphs
+00:01 +9: move preflight is atomic when the other side is stale
+00:01 +10: formatting can overlap tracked text; accepting deletion discards its formatting
+00:01 +11: rejecting formatting leaves the overlapping text insertion pending
+00:01 +12: empty paragraphs preserve and resolve paragraph formatting
+00:01 +13: old color, size and language attributes restore with namespace identity
+00:01 +14: formatting ranges rebase through a text replacement without text attribution conflicts
+00:01 +15: paragraph formatting remains reviewable when its text changes
+00:01 +16: a missing previous property set cannot be silently accepted or exported
+00:01 +17: an incomplete move cannot be partially resolved or silently exported
+00:01 +18: move preflight checks a protected destination before deleting source text
+00:01 +19: Word 16.111.1 saved native formatting and move revisions round-trip
+00:01 +20: an empty text run retains its formatting revision through a save
+00:01 +21: ambiguous or removed empty formatting targets fail without losing history
+00:01 +22: write a native tracked formatting and move interoperability fixture
+00:01 +23: All tests passed!

@@ -1,13 +1,15 @@
 import 'package:enough_mail/enough_mail.dart' as mail;
 
-import 'studio_mail_compose.dart';
+import 'studio_mail_draft.dart';
 
-/// Constructs ASCII-safe MIME plus one explicit recipient. The caller owns
-/// submission outcome and must not combine SMTP with concurrent Sent filing.
+/// Constructs ASCII-safe MIME with visible To/Cc and no Bcc header.
+/// The caller must use the envelope in [StudioMailDraft.recipients], including
+/// hidden recipients, and must not combine SMTP with concurrent Sent filing.
 mail.MimeMessage buildStudioMailMessage(StudioMailDraft draft, String sender) {
   if (draft.problem != null || !StudioMailDraft.isSupportedAddress(sender)) {
     throw const FormatException('Invalid Studio Mail submission.');
   }
+  final recipients = draft.recipients;
   final escaped = draft.body
       .replaceAll('&', '&amp;')
       .replaceAll('<', '&lt;')
@@ -23,7 +25,12 @@ mail.MimeMessage buildStudioMailMessage(StudioMailDraft draft, String sender) {
           transferEncoding: mail.TransferEncoding.quotedPrintable,
         )
         ..from = <mail.MailAddress>[mail.MailAddress('', sender)]
-        ..to = <mail.MailAddress>[mail.MailAddress('', draft.to)]
+        ..to = [
+          for (final address in recipients.to) mail.MailAddress('', address),
+        ]
+        ..cc = [
+          for (final address in recipients.cc) mail.MailAddress('', address),
+        ]
         ..subject = draft.subject;
   if (draft.thread.inReplyTo case final parent?) {
     builder
