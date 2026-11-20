@@ -1,0 +1,534 @@
+{
+  "schema": 1,
+  "qualified_source_commit": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+  "qualified_source_tree": "6a4a3402f2156490d8a7c0b1cb8d9d21fcb3ef32",
+  "captured_main": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+  "followup_pr": 251,
+  "accepted_total_cases": 232,
+  "accepted_unique_suites": 17,
+  "failed": 0,
+  "skipped": 0,
+  "groups": {
+    "account_draft_compose_and_settings": 78,
+    "new_outbox_studio_boundaries": 55,
+    "core_and_store": 79,
+    "word_frame_layout": 20
+  },
+  "cohorts": [
+    {
+      "name": "outbox-studio-c20b41d9",
+      "head_before": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "head_after": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "selected_tests": [
+        "test/studio_mail_outbox_host_test.dart",
+        "test/studio_mail_outbox_dialog_test.dart",
+        "test/studio_mail_outbox_submission_test.dart",
+        "test/studio_mail_outbox_cloud_test.dart",
+        "test/studio_mail_outbox_store_test.dart",
+        "test/studio_mail_draft_autosave_test.dart",
+        "test/studio_mail_draft_store_test.dart",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_compose_test.dart",
+        "test/studio_mail_credential_backend_switch_test.dart"
+      ],
+      "package": "packages/quds_office_editor/example",
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/mail-runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--no-track-widget-creation",
+        "--reporter=json",
+        "test/studio_mail_outbox_host_test.dart",
+        "test/studio_mail_outbox_dialog_test.dart",
+        "test/studio_mail_outbox_submission_test.dart",
+        "test/studio_mail_outbox_cloud_test.dart",
+        "test/studio_mail_outbox_store_test.dart",
+        "test/studio_mail_draft_autosave_test.dart",
+        "test/studio_mail_draft_store_test.dart",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_compose_test.dart",
+        "test/studio_mail_credential_backend_switch_test.dart"
+      ],
+      "process_exit_code": 0,
+      "wrapper_exit_code": 0,
+      "timed_out": false,
+      "gate_passed": true,
+      "substantive": {
+        "total": 133,
+        "passed": 133,
+        "failed": 0,
+        "skipped": 0
+      },
+      "suites": {
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart": {
+          "total": 5,
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart": {
+          "total": 10,
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart": {
+          "total": 18,
+          "passed": 18,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart": {
+          "total": 18,
+          "passed": 18,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_draft_autosave_test.dart": {
+          "total": 10,
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_draft_store_test.dart": {
+          "total": 16,
+          "passed": 16,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart": {
+          "total": 21,
+          "passed": 21,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_test.dart": {
+          "total": 24,
+          "passed": 24,
+          "failed": 0,
+          "skipped": 0
+        },
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart": {
+          "total": 7,
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "final_event": {
+        "success": true,
+        "type": "done",
+        "time": 108127
+      },
+      "inputs_unchanged": true,
+      "head_unchanged": true,
+      "runners_unchanged": true,
+      "stdout_sha256": "fefcee5c4ad06f0bf8bb34c607d845e53cb6668596f56ef014ea71555c1b4259",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_before_sha256": "99ee1375ac435ab64e927756279a509ea3af96aaefbc0af4cfba711a30b4427f",
+      "inputs_after_sha256": "99ee1375ac435ab64e927756279a509ea3af96aaefbc0af4cfba711a30b4427f",
+      "runner_sources_before": {
+        "run_mail_gate.py": "df9a8f99d071cba6879476a68584c586d896068c686c5d82f8cc3365902e4740",
+        "run_final_engine_gate.py": "a9e06613523703cd399118064cd59784b7d8e18204684f56b382da7aa8187dca"
+      },
+      "runner_sources_after": {
+        "run_mail_gate.py": "df9a8f99d071cba6879476a68584c586d896068c686c5d82f8cc3365902e4740",
+        "run_final_engine_gate.py": "a9e06613523703cd399118064cd59784b7d8e18204684f56b382da7aa8187dca"
+      },
+      "summary_sha256": "43182f90b050ed4c48283793579f73e941984afe1fc44a1588507ade240812be"
+    },
+    {
+      "name": "outbox-core-c20b41d9",
+      "head_before": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "head_after": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "selected_tests": [
+        "test/outbox_test.dart"
+      ],
+      "package": "packages/quds_mail_core",
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/mail-runtime/bin/dart",
+        "--packages=/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/.dart_tool/package_config.json",
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/mail-runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/outbox_test.dart"
+      ],
+      "process_exit_code": 0,
+      "wrapper_exit_code": 0,
+      "timed_out": false,
+      "gate_passed": true,
+      "substantive": {
+        "total": 16,
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "suites": {
+        "test/outbox_test.dart": {
+          "total": 16,
+          "passed": 16,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "final_event": {
+        "success": true,
+        "type": "done",
+        "time": 2137
+      },
+      "inputs_unchanged": true,
+      "head_unchanged": true,
+      "runners_unchanged": true,
+      "stdout_sha256": "72394330b19937618a1d73b2c23f9c1c977a458f60b794fe49a5b7d102079ee7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_before_sha256": "0ea11dd2cd01f136dc32b644afe1c79fa436200e459a5c42d3375e974bfab0f8",
+      "inputs_after_sha256": "0ea11dd2cd01f136dc32b644afe1c79fa436200e459a5c42d3375e974bfab0f8",
+      "runner_sources_before": {
+        "run_mail_gate.py": "df9a8f99d071cba6879476a68584c586d896068c686c5d82f8cc3365902e4740",
+        "run_final_engine_gate.py": "a9e06613523703cd399118064cd59784b7d8e18204684f56b382da7aa8187dca"
+      },
+      "runner_sources_after": {
+        "run_mail_gate.py": "df9a8f99d071cba6879476a68584c586d896068c686c5d82f8cc3365902e4740",
+        "run_final_engine_gate.py": "a9e06613523703cd399118064cd59784b7d8e18204684f56b382da7aa8187dca"
+      },
+      "summary_sha256": "154adaf8a6f4b4bf9ace8989232afcf4f4fe9a2b5b379ab42759ccdaa9927b95"
+    },
+    {
+      "name": "outbox-store-native-c20b41d9",
+      "head_before": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "head_after": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "selected_tests": [
+        "test/codec_test.dart",
+        "test/outbox_draft_transfer_test.dart",
+        "test/draft_editor_state_test.dart"
+      ],
+      "package": "packages/quds_mail_store",
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/mail-runtime/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/.dart_tool/package_config.json",
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/mail-runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--compiler=kernel",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/codec_test.dart",
+        "test/outbox_draft_transfer_test.dart",
+        "test/draft_editor_state_test.dart"
+      ],
+      "process_exit_code": 0,
+      "wrapper_exit_code": 0,
+      "timed_out": false,
+      "gate_passed": true,
+      "substantive": {
+        "total": 63,
+        "passed": 63,
+        "failed": 0,
+        "skipped": 0
+      },
+      "suites": {
+        "test/codec_test.dart": {
+          "total": 39,
+          "passed": 39,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test/outbox_draft_transfer_test.dart": {
+          "total": 19,
+          "passed": 19,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test/draft_editor_state_test.dart": {
+          "total": 5,
+          "passed": 5,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "final_event": {
+        "success": true,
+        "type": "done",
+        "time": 2771
+      },
+      "inputs_unchanged": true,
+      "head_unchanged": true,
+      "runners_unchanged": true,
+      "stdout_sha256": "9496676af0d672484ad4b90170ac78ee049a5f2bd5f6ab4c16a9228d2fc18dca",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_before_sha256": "7822b8c713ecf829eda273519484003add185620dace629af1e68a5379f83407",
+      "inputs_after_sha256": "4448f4998c67639e049d357e3acdd1977eabb2cfa811d000de439c4cce24002d",
+      "runner_sources_before": {
+        "run_final_engine_gate.py": "a9e06613523703cd399118064cd59784b7d8e18204684f56b382da7aa8187dca",
+        "run_mail_gate.py": "df9a8f99d071cba6879476a68584c586d896068c686c5d82f8cc3365902e4740",
+        "run_store_native_gate.py": "e51d9a06c7a2a1b5d889e137f0ed0e05de18c83b9f05b427781ffecdc14e47b1"
+      },
+      "runner_sources_after": {
+        "run_final_engine_gate.py": "a9e06613523703cd399118064cd59784b7d8e18204684f56b382da7aa8187dca",
+        "run_mail_gate.py": "df9a8f99d071cba6879476a68584c586d896068c686c5d82f8cc3365902e4740",
+        "run_store_native_gate.py": "e51d9a06c7a2a1b5d889e137f0ed0e05de18c83b9f05b427781ffecdc14e47b1"
+      },
+      "native_runtime": {
+        "source_commit": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+        "sqlite_version": "3.54.1",
+        "reason": "The original direct runner omitted the kernel compiler native-asset map. Copy the actual Flutter-generated JSON map, a YAML subset, to the supported workspace native_assets.yaml lookup location. No product, dependency, test or assertion is changed and no system SQLite substitution is used.",
+        "inputs": [
+          {
+            "repository_relative_path": "packages/quds_office_editor/example/build/native_assets/linux/native_assets.json",
+            "sha256": "0143eb87bb2fbfc448bcef0903e7238085b1e62f6e439d8da0572a04b75b9491",
+            "bytes": 275
+          },
+          {
+            "repository_relative_path": ".dart_tool/native_assets.yaml",
+            "sha256": "0143eb87bb2fbfc448bcef0903e7238085b1e62f6e439d8da0572a04b75b9491",
+            "bytes": 275
+          },
+          {
+            "repository_relative_path": "packages/quds_office_editor/example/build/native_assets/linux/libsqlite3.so",
+            "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "bytes": 1823736
+          }
+        ],
+        "rejected_predecessor": "outbox-store-c20b41d9",
+        "original_rejected_cases_contributed": 0
+      },
+      "summary_sha256": "f4a38f5e21ef98e09e6aec3195dad4ad965065eb145f27014dbd3072c51a1737"
+    },
+    {
+      "name": "word-frame-c20b41d9",
+      "head_before": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "head_after": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "selected_tests": [
+        "test/word_incremental_layout_test.dart",
+        "test/word_incremental_layout_prefix_test.dart",
+        "test/word_incremental_layout_differential_test.dart"
+      ],
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/mail-runtime/bin/dart",
+        "--packages=/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/quds_office_suite/.dart_tool/package_config.json",
+        "/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/mail-runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/word_incremental_layout_test.dart",
+        "test/word_incremental_layout_prefix_test.dart",
+        "test/word_incremental_layout_differential_test.dart"
+      ],
+      "process_exit_code": 0,
+      "wrapper_exit_code": 0,
+      "timed_out": false,
+      "gate_passed": true,
+      "substantive": {
+        "total": 20,
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0
+      },
+      "suites": {
+        "test/word_incremental_layout_test.dart": {
+          "total": 6,
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test/word_incremental_layout_prefix_test.dart": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0
+        },
+        "test/word_incremental_layout_differential_test.dart": {
+          "total": 12,
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "final_event": {
+        "success": true,
+        "type": "done",
+        "time": 44299
+      },
+      "inputs_unchanged": true,
+      "head_unchanged": true,
+      "runners_unchanged": true,
+      "stdout_sha256": "a4ccd4b3006f13639b628c8dac024fdfc8e2646ea008cb80af41c1d05c210066",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_before_sha256": "520c38907a817e7d3252206153a883fc957cd90c1a23a7e4fbd7b0213d6612e3",
+      "inputs_after_sha256": "520c38907a817e7d3252206153a883fc957cd90c1a23a7e4fbd7b0213d6612e3",
+      "runner_sources_before": {
+        "run_final_engine_gate.py": "a9e06613523703cd399118064cd59784b7d8e18204684f56b382da7aa8187dca"
+      },
+      "runner_sources_after": {
+        "run_final_engine_gate.py": "a9e06613523703cd399118064cd59784b7d8e18204684f56b382da7aa8187dca"
+      },
+      "summary_sha256": "8092f7ab10f87394f96e4c60a0af256bac5a6756fbd4e52d926b8bfaf4cc004d"
+    }
+  ],
+  "static_analysis": {
+    "head_before": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+    "head_after": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+    "files": 19,
+    "base_main": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+    "format_command": [
+      "dart",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+      "packages/quds_mail_ui/test/body_presentation_contract_test.dart",
+      "packages/quds_mail_ui/test/reader_theme_scroll_test.dart",
+      "packages/quds_office_editor/example/lib/credentials/credential_storage_diagnostics.dart",
+      "packages/quds_office_editor/example/lib/credentials/log_service.dart",
+      "packages/quds_office_editor/example/lib/credentials/secure_storage_file_io.dart",
+      "packages/quds_office_editor/example/lib/credentials/secure_storage_macos_keychain.dart",
+      "packages/quds_office_editor/example/lib/credentials/secure_storage_service.dart",
+      "packages/quds_office_editor/example/lib/credentials/secure_storage_web.dart",
+      "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+      "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "packages/quds_office_editor/example/test/support/mail_credential_store.dart"
+    ],
+    "format_exit_code": 0,
+    "groups": [
+      {
+        "name": "mail_ui",
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "--cache=/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/mail-runtime/analysis-cache/static-c20b41d9",
+          "--format=json",
+          "--memory",
+          "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+          "packages/quds_mail_ui/test/body_presentation_contract_test.dart",
+          "packages/quds_mail_ui/test/reader_theme_scroll_test.dart"
+        ],
+        "files": [
+          "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+          "packages/quds_mail_ui/test/body_presentation_contract_test.dart",
+          "packages/quds_mail_ui/test/reader_theme_scroll_test.dart"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "credential_core",
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "--cache=/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/mail-runtime/analysis-cache/static-c20b41d9",
+          "--format=json",
+          "--memory",
+          "packages/quds_office_editor/example/lib/credentials/credential_storage_diagnostics.dart",
+          "packages/quds_office_editor/example/lib/credentials/log_service.dart",
+          "packages/quds_office_editor/example/lib/credentials/secure_storage_file_io.dart",
+          "packages/quds_office_editor/example/lib/credentials/secure_storage_macos_keychain.dart",
+          "packages/quds_office_editor/example/lib/credentials/secure_storage_service.dart",
+          "packages/quds_office_editor/example/lib/credentials/secure_storage_web.dart"
+        ],
+        "files": [
+          "packages/quds_office_editor/example/lib/credentials/credential_storage_diagnostics.dart",
+          "packages/quds_office_editor/example/lib/credentials/log_service.dart",
+          "packages/quds_office_editor/example/lib/credentials/secure_storage_file_io.dart",
+          "packages/quds_office_editor/example/lib/credentials/secure_storage_macos_keychain.dart",
+          "packages/quds_office_editor/example/lib/credentials/secure_storage_service.dart",
+          "packages/quds_office_editor/example/lib/credentials/secure_storage_web.dart"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "studio_host",
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "--cache=/home/agent/.codex/skills/remote-skills/.quds-mail-9cfead7d593b/mail-runtime/analysis-cache/static-c20b41d9",
+          "--format=json",
+          "--memory",
+          "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+          "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+          "packages/quds_office_editor/example/test/support/mail_credential_store.dart"
+        ],
+        "files": [
+          "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+          "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+          "packages/quds_office_editor/example/test/support/mail_credential_store.dart"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "changed_inputs": [],
+    "passed": true
+  },
+  "excluded_attempts": [
+    {
+      "name": "outbox-store-c20b41d9",
+      "status": "rejected",
+      "passed": 44,
+      "failed": 19,
+      "skipped": 0,
+      "accepted_contribution": 0,
+      "reason": "Missing native asset mapping before setup; same63cases passed with genuine generated SQLite map and supported kernel compiler."
+    }
+  ],
+  "historical_source_results": {
+    "625f4d76": {
+      "cases": 699,
+      "added_to_final_total": 0
+    },
+    "incoming_outbox_ce9ff1c8": {
+      "claimed_cases": 874,
+      "added_to_final_total": 0
+    }
+  },
+  "scope": "Selected affected boundaries after the latest main Outbox and Word cache integration; not a complete repository or live-provider acceptance gate.",
+  "ci": "No GitHub Actions/check/status polling or waiting.",
+  "independent_review": {
+    "archive_member": "validation-final/final-integration-evidence-review.json",
+    "sha256": "89b2107464090451d635ed0c3ffe24aeefba80273bae8421d3d5114a18296cb8",
+    "summary": {
+      "accepted_cohorts": 4,
+      "accepted_substantive_cases": 232,
+      "accepted_unique_suite_case_identities": 232,
+      "accepted_suites": 17,
+      "accepted_mail_studio_cases": 212,
+      "accepted_engine_cases": 20,
+      "rejected_runs": [
+        "outbox-store-c20b41d9"
+      ],
+      "historical_625_cases_contributed": 0,
+      "incoming_pr250_cases_contributed": 0,
+      "rejected_partial_successes_contributed": 0,
+      "hidden_or_loading_completions_contributed": 0,
+      "static_analyzed_dart_files": 19,
+      "failures": []
+    },
+    "evidence_verified": true
+  }
+}

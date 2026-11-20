@@ -34,6 +34,12 @@ Open PRs #249, #251 and #252 pointed to those included heads. The last Zotero
 commit added only engine qualification evidence. All four upstream branch heads
 were already ancestors. See the audit files for full hashes and snapshot times.
 
+Immediately before publication, main advanced to `ae32c690` through PR #251,
+including account evidence commit `86e44e87`. This was also merged into the work
+branch. The ten additional paths are validation documentation and evidence only;
+product, test, dependency and runtime files match the accepted source checkpoint.
+See [final-main-reconciliation.json](final-main-reconciliation.json).
+
 ## Local qualification
 
 | Scope | Result |

@@ -1,0 +1,26 @@
+{
+  "snapshot_utc": "2026-11-20T14:04:44.189498+00:00",
+  "previous_feature_checkpoint": "3629d3156a737630d57e07c3bb10e6005287032b",
+  "previous_audited_main": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+  "new_main": "ae32c69000a33c37770f522ea1d54627bcf09a6b",
+  "new_account_head": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+  "included_commit_subjects": [
+    "ae32c69000a33c37770f522ea1d54627bcf09a6b Merge PR #251: Mail account ownership and Outbox integration [skip ci]",
+    "86e44e87f829b0309ea7b84fd5d390f596fe7f26 Mail: record final Outbox integration qualification [skip ci]"
+  ],
+  "merged_tree_before_record": "599228320d8a21efdb7e14246ce93d759cb64293",
+  "new_paths": [
+    "docs/validation/mail-accounts-20261120/README.md",
+    "docs/validation/mail-accounts-20261120/final-integration-archive-verification.json",
+    "docs/validation/mail-accounts-20261120/final-integration-evidence-manifest.json",
+    "docs/validation/mail-accounts-20261120/final-integration-evidence.tar.xz",
+    "docs/validation/mail-accounts-20261120/final-integration-qualification.json",
+    "docs/validation/mail-accounts-20261120/final-integration-replay-verification.json",
+    "docs/validation/mail-accounts-20261120/final-integration.json",
+    "docs/validation/mail-accounts-20261120/historical-625f4d76.md",
+    "docs/validation/mail-accounts-20261120/source-continuity-625f4d76.json",
+    "docs/validation/mail-accounts-20261120/source-continuity.json"
+  ],
+  "classification": "Only account validation documentation and archived evidence relative to the qualified feature tree. Product, test, dependency and runtime files byte-identical to the accepted source checkpoint.",
+  "github_actions_used_or_awaited": false
+}

@@ -110,5 +110,6 @@
     "Draft selection is session state; admission cap is 100 active drafts per account.",
     "Existing unencrypted native-store policy remains; unsaved edits are not guaranteed durable.",
     "Advances recoverable composition; does not claim full desktop-client parity."
-  ]
+  ],
+  "publication_reconciliation": "final-main-reconciliation.json"
 }
