@@ -126,6 +126,8 @@ final class _Browser
   final changes = <(String, int?, bool)>[];
   int reads = 0;
   int disposals = 0;
+  int cancellations = 0;
+  Future<void> Function(int)? mutationHandler;
   Completer<void>? mutationGate;
   bool failMutation = false;
   Future<StudioMailHeaderPage> Function(mail.Mailbox, MailCursor?, int)? pages;
@@ -180,6 +182,7 @@ final class _Browser
     required bool read,
   }) async {
     changes.add(('read', header.uid, read));
+    await mutationHandler?.call(changes.length);
     await mutationGate?.future;
     if (failMutation) {
       throw const StudioMailMessageLoadException(
@@ -195,6 +198,7 @@ final class _Browser
     required bool flagged,
   }) async {
     changes.add(('flagged', header.uid, flagged));
+    await mutationHandler?.call(changes.length);
     await mutationGate?.future;
     if (failMutation) {
       throw const StudioMailMessageLoadException(
@@ -204,12 +208,86 @@ final class _Browser
   }
 
   @override
-  void cancel() {}
+  void cancel() {
+    cancellations++;
+  }
+
   @override
   void dispose() {
     disposals++;
   }
 }
+
+final class _BulkBrowser extends _Browser implements StudioMailMailboxRecords {
+  final _observed = Map<mail.MimeMessage, MailHeaderRecord>.identity();
+  mail.Mailbox? lastObservedMailbox;
+
+  @override
+  Future<StudioMailHeaderPage> fetchHeaders(
+    mail.Mailbox mailbox, {
+    MailCursor? cursor,
+    int limit = 50,
+  }) async {
+    final page = await super.fetchHeaders(
+      mailbox,
+      cursor: cursor,
+      limit: limit,
+    );
+    lastObservedMailbox = mailbox;
+    for (final message in page.messages) {
+      _observed[message] = MailHeaderRecord(
+        id: MailMessageId(
+          '${mailbox.path}:${mailbox.uidValidity}:${message.uid}',
+        ),
+        remote: MailImapIdentity(
+          mailbox: MailMailboxId(mailbox.path, account: account),
+          uidValidity: mailbox.uidValidity!,
+          uid: message.uid!,
+        ),
+        envelope: MailEnvelope(subject: message.decodeSubject() ?? ''),
+        flags: message.flags == null
+            ? null
+            : MailMessageFlags(
+                isRead: message.isSeen,
+                isFlagged: message.isFlagged,
+                isAnswered: message.isAnswered,
+                isDraft: message.hasFlag(mail.MessageFlags.draft),
+                isDeleted: message.isDeleted,
+              ),
+      );
+    }
+    return page;
+  }
+
+  @override
+  MailHeaderRecord observedHeader(
+    mail.Mailbox mailbox,
+    mail.MimeMessage header,
+  ) => _observed[header]!;
+
+  @override
+  Future<MailMessage> fetchMessage(
+    mail.Mailbox mailbox,
+    mail.MimeMessage header,
+  ) async {
+    final record = observedHeader(mailbox, header);
+    return MailMessage(
+      raw: MailBytes(await fetch(mailbox, header)),
+      envelope: record.envelope,
+      localId: record.id,
+      remoteIdentity: record.remote,
+    );
+  }
+}
+
+MailMessageList _bulkList(WidgetTester tester) =>
+    tester.widget<MailMessageList>(find.byType(MailMessageList));
+
+List<mail.MimeMessage> _bulkHeaders() => [
+  _header(300, 'First bulk message'),
+  _header(200, 'Second bulk message'),
+  _header(100, 'Third bulk message'),
+];
 
 final class _SessionCredentials extends Fake
     implements StudioMailCredentialStore {
@@ -272,6 +350,249 @@ Future<_Client> _show(
 }
 
 void main() {
+  testWidgets('IMAP bulk commands require immutable record capability', (
+    tester,
+  ) async {
+    final browser = _Browser();
+    await _show(tester, browser);
+    expect(_bulkList(tester).onBulkAction, isNull);
+    expect(browser.changes, isEmpty);
+    expect(browser.reads, 0);
+  });
+
+  testWidgets(
+    'IMAP bulk commands target checked identities and preserve the open message',
+    (tester) async {
+      final headers = _bulkHeaders();
+      final browser = _BulkBrowser()
+        ..pages = (mailbox, cursor, limit) async =>
+            StudioMailHeaderPage(messages: headers);
+      await _show(tester, browser);
+      _bulkList(tester).onOpen('imap-message-91:300');
+      await _pump(tester);
+      expect(browser.reads, 1);
+      final selection = ['imap-message-91:200', 'imap-message-91:100'];
+      _bulkList(tester).onBulkAction!(MailBulkFlagAction.flag, selection);
+      selection.clear();
+      await _pump(tester);
+      expect(browser.changes, [('flagged', 200, true), ('flagged', 100, true)]);
+      expect(_bulkList(tester).selectedId, 'imap-message-91:300');
+      expect(_bulkList(tester).items.map((item) => item.isFlagged), [
+        false,
+        true,
+        true,
+      ]);
+      expect(browser.reads, 1);
+      expect(browser.requests, hasLength(1));
+      expect(
+        find.textContaining(
+          '2 confirmed · 0 failed · 0 uncertain · 0 not attempted',
+        ),
+        findsOneWidget,
+      );
+    },
+  );
+
+  testWidgets('IMAP bulk confirmations preserve unknown and unrelated flags', (
+    tester,
+  ) async {
+    final unknown = _header(300, 'Unknown')..flags = null;
+    final known = _header(200, 'Known', read: true)
+      ..setFlag(mail.MessageFlags.answered, true)
+      ..setFlag(mail.MessageFlags.draft, true)
+      ..setFlag(mail.MessageFlags.deleted, true);
+    final browser = _BulkBrowser()
+      ..pages = (mailbox, cursor, limit) async =>
+          StudioMailHeaderPage(messages: [unknown, known]);
+    await _show(tester, browser);
+    _bulkList(tester).onBulkAction!(MailBulkFlagAction.flag, [
+      'imap-message-91:300',
+      'imap-message-91:200',
+    ]);
+    await _pump(tester);
+    expect(_bulkList(tester).items.map((item) => item.isRead), [null, true]);
+    expect(_bulkList(tester).items.map((item) => item.isFlagged), [true, true]);
+    expect(known.isAnswered, isTrue);
+    expect(known.hasFlag(mail.MessageFlags.draft), isTrue);
+    expect(known.isDeleted, isTrue);
+    _bulkList(tester).onBulkAction!(MailBulkFlagAction.markUnread, [
+      'imap-message-91:200',
+    ]);
+    await _pump(tester);
+    _bulkList(tester).onBulkAction!(MailBulkFlagAction.unflag, [
+      'imap-message-91:300',
+    ]);
+    await _pump(tester);
+    expect(_bulkList(tester).items.map((item) => item.isRead), [null, false]);
+    expect(_bulkList(tester).items.map((item) => item.isFlagged), [
+      false,
+      true,
+    ]);
+    expect(browser.reads, 0);
+  });
+
+  testWidgets(
+    'IMAP bulk stops on uncertain confirmation and requires explicit refresh',
+    (tester) async {
+      final headers = _bulkHeaders();
+      final browser = _BulkBrowser()
+        ..pages = (mailbox, cursor, limit) async =>
+            StudioMailHeaderPage(messages: headers)
+              ..mutationHandler = (index) async {
+                if (index == 2) throw StateError('private-server-text');
+              };
+      await _show(tester, browser);
+      _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
+        'imap-message-91:300',
+        'imap-message-91:200',
+        'imap-message-91:100',
+      ]);
+      await _pump(tester);
+      expect(browser.changes, [('read', 300, true), ('read', 200, true)]);
+      expect(_bulkList(tester).items.map((item) => item.isRead), [
+        true,
+        false,
+        false,
+      ]);
+      expect(_bulkList(tester).bulkActionsEnabled, isFalse);
+      expect(
+        find.textContaining(
+          '1 confirmed · 0 failed · 1 uncertain · 1 not attempted',
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.textContaining(_strings.mailWorkspaceRefreshRequired),
+        findsOneWidget,
+      );
+      expect(find.textContaining('private-server-text'), findsNothing);
+      _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
+        'imap-message-91:100',
+      ]);
+      await _pump(tester);
+      expect(browser.changes, hasLength(2));
+      expect(browser.requests, hasLength(1));
+      expect(browser.reads, 0);
+      await tester.tap(_button(_strings.refresh));
+      await _pump(tester);
+      expect(_bulkList(tester).bulkActionsEnabled, isTrue);
+      expect(browser.requests, hasLength(2));
+    },
+  );
+
+  testWidgets(
+    'IMAP bulk cancellation waits for the in-flight confirmation without cancelling transport',
+    (tester) async {
+      final gate = Completer<void>();
+      final browser = _BulkBrowser()
+        ..pages = (mailbox, cursor, limit) async =>
+            StudioMailHeaderPage(messages: _bulkHeaders())..mutationGate = gate;
+      await _show(tester, browser);
+      _bulkList(tester).onBulkAction!(MailBulkFlagAction.flag, [
+        'imap-message-91:300',
+        'imap-message-91:200',
+        'imap-message-91:100',
+      ]);
+      await _pump(tester);
+      expect(browser.changes, hasLength(1));
+      _bulkList(tester).onCancelBulk!();
+      await _pump(tester);
+      expect(_bulkList(tester).busy, isTrue);
+      expect(browser.cancellations, 0);
+      gate.complete();
+      await _pump(tester);
+      expect(browser.changes, hasLength(1));
+      expect(_bulkList(tester).items.map((item) => item.isFlagged), [
+        true,
+        false,
+        false,
+      ]);
+      expect(_bulkList(tester).bulkActionsEnabled, isTrue);
+      expect(_bulkList(tester).onCancelBulk, isNull);
+      expect(
+        find.textContaining(
+          '1 confirmed · 0 failed · 0 uncertain · 2 not attempted',
+        ),
+        findsOneWidget,
+      );
+    },
+  );
+
+  for (final changed in ['uid', 'uidValidity']) {
+    testWidgets(
+      'IMAP bulk rejects a mutated $changed before the next dispatch and publication',
+      (tester) async {
+        final headers = _bulkHeaders();
+        final gate = Completer<void>();
+        final browser = _BulkBrowser()
+          ..pages = (mailbox, cursor, limit) async =>
+              StudioMailHeaderPage(messages: headers)..mutationGate = gate;
+        await _show(tester, browser);
+        _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
+          'imap-message-91:300',
+          'imap-message-91:200',
+        ]);
+        await _pump(tester);
+        if (changed == 'uid') {
+          headers[1].uid = 999;
+        } else {
+          browser.lastObservedMailbox!.uidValidity = 999;
+        }
+        gate.complete();
+        await _pump(tester);
+        expect(browser.changes, [('read', 300, true)]);
+        expect(
+          _bulkList(tester).items.every((item) => item.isRead == false),
+          isTrue,
+        );
+        expect(_bulkList(tester).bulkActionsEnabled, isFalse);
+        expect(_bulkList(tester).busy, isFalse);
+        expect(
+          find.textContaining(_strings.mailWorkspaceRefreshRequired),
+          findsOneWidget,
+        );
+        expect(browser.reads, 0);
+      },
+    );
+  }
+
+  testWidgets(
+    'IMAP stale bulk callback cannot mutate a later visit to the same folder',
+    (tester) async {
+      final browser = _BulkBrowser();
+      await _show(tester, browser);
+      final stale = _bulkList(tester).onBulkAction!;
+      await tester.tap(find.widgetWithText(ListTile, 'Archive'));
+      await _pump(tester);
+      await tester.tap(find.widgetWithText(ListTile, 'Inbox'));
+      await _pump(tester);
+      stale(MailBulkFlagAction.flag, ['imap-message-91:300']);
+      await _pump(tester);
+      expect(browser.changes, isEmpty);
+      expect(_bulkList(tester).items.first.isFlagged, isFalse);
+      expect(browser.reads, 0);
+    },
+  );
+
+  testWidgets(
+    'IMAP late bulk confirmation after disposal has no view side effects',
+    (tester) async {
+      final gate = Completer<void>();
+      final browser = _BulkBrowser()..mutationGate = gate;
+      await _show(tester, browser);
+      _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
+        'imap-message-91:300',
+        'imap-message-91:200',
+      ]);
+      await _pump(tester);
+      await tester.pumpWidget(const SizedBox.shrink());
+      gate.complete();
+      await _pump(tester);
+      expect(browser.changes, hasLength(1));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets('IMAP searches visible header fields without provider work', (
     tester,
   ) async {

@@ -79,6 +79,17 @@ final class MailMessageListStrings {
     this.senderAscending = 'Sender (A–Z)',
     this.subjectAscending = 'Subject (A–Z)',
     this.searchError = _defaultSearchError,
+    this.selectMessage = 'Select message',
+    this.selectShown = 'Select shown',
+    this.clearSelection = 'Clear selection',
+    this.selectedCount = _defaultSelectedCount,
+    this.bulkActions = 'Actions for selected messages',
+    this.markRead = 'Mark read',
+    this.markUnread = 'Mark unread',
+    this.flag = 'Flag',
+    this.unflag = 'Remove flag',
+    this.stopBulk = 'Stop after current message',
+    this.bulkWorking = 'Applying changes…',
   });
 
   final String searchLoaded;
@@ -102,7 +113,20 @@ final class MailMessageListStrings {
   final String senderAscending;
   final String subjectAscending;
   final String Function(MailHeaderSearchError error) searchError;
+  final String selectMessage;
+  final String selectShown;
+  final String clearSelection;
+  final String Function(int selected) selectedCount;
+  final String bulkActions;
+  final String markRead;
+  final String markUnread;
+  final String flag;
+  final String unflag;
+  final String stopBulk;
+  final String bulkWorking;
 }
+
+String _defaultSelectedCount(int selected) => '$selected selected';
 
 String _defaultSearchError(MailHeaderSearchError error) => switch (error) {
   MailHeaderSearchError.queryTooLong => 'The search is too long.',
@@ -132,9 +156,10 @@ final _searchExampleLine = RegExp(
 /// Structured header search, sorting and the conjunctive unread/flagged filters
 /// only inspect [items]. They never trigger a provider request. The host owns
 /// pagination, selection, message reads, mutations and durable storage; this
-/// view cannot mark a message read. Arrow/Home/End keys move a separate keyboard
-/// cursor, while Enter or an explicit row activation invokes [onOpen]. Search
-/// editing owns its own keys.
+/// view never mutates a provider itself. Optional bulk commands delegate an
+/// explicit frozen selection to the host. Arrow/Home/End move a separate cursor;
+/// Enter opens it, while Space toggles its checkbox when bulk actions exist.
+/// Search editing owns its own keys.
 ///
 /// Change [scopeId] (or the widget key) for a different account or mailbox.
 /// That resets query, filters, sort, keyboard focus and scroll position. Within
@@ -147,11 +172,15 @@ class MailMessageList extends StatefulWidget {
     required this.onOpen,
     this.selectedId,
     this.scopeId,
+    this.selectionScopeId,
     this.busy = false,
     this.hasMore = false,
     this.onLoadMore,
     this.limitNotice,
     this.loadMoreKey,
+    this.onBulkAction,
+    this.bulkActionsEnabled = true,
+    this.onCancelBulk,
   }) : items = List.unmodifiable(items) {
     final identities = <String>{};
     for (final item in this.items) {
@@ -166,11 +195,25 @@ class MailMessageList extends StatefulWidget {
   final void Function(String id) onOpen;
   final String? selectedId;
   final String? scopeId;
+
+  /// Changes when a host replaces a folder snapshot within the same scope.
+  /// Checked rows and old callbacks are invalidated; query and sorting remain.
+  final String? selectionScopeId;
   final bool busy;
   final bool hasMore;
   final VoidCallback? onLoadMore;
   final String? limitNotice;
   final Key? loadMoreKey;
+
+  /// Optional explicit foreground commands. The IDs are an immutable snapshot
+  /// of checked, currently visible rows. Checking a row never opens its body.
+  /// Hosts must resolve identities and recheck their own account/folder lease.
+  final void Function(MailBulkFlagAction action, List<String> ids)?
+  onBulkAction;
+  final bool bulkActionsEnabled;
+
+  /// Present only during a batch; remains usable while [busy] blocks new work.
+  final VoidCallback? onCancelBulk;
 
   @override
   State<MailMessageList> createState() => _MailMessageListState();
@@ -189,6 +232,8 @@ class _MailMessageListState extends State<MailMessageList> {
   int _scopeGeneration = 0;
   String? _activeId;
   double _itemExtent = 84;
+  final _checkedIds = <String>{};
+  int _selectionGeneration = 0;
 
   List<MailMessageListItem> get _visible {
     final query = _compiledQuery;
@@ -264,10 +309,18 @@ class _MailMessageListState extends State<MailMessageList> {
       _flagged = false;
       _sort = MailMessageListSort.providerOrder;
       _activeId = null;
+      _checkedIds.clear();
+      _selectionGeneration++;
       _listFocus.unfocus();
       _resetScroll(header: true);
     } else {
+      if (oldWidget.selectionScopeId != widget.selectionScopeId) {
+        _scopeGeneration++;
+        _checkedIds.clear();
+        _selectionGeneration++;
+      }
       _reconcileCursor(_visible);
+      _reconcileChecked(_visible);
       if (_listFocus.hasFocus) _revealCursor();
     }
   }
@@ -301,8 +354,165 @@ class _MailMessageListState extends State<MailMessageList> {
     setState(() {
       update();
       _reconcileCursor(_visible);
+      _reconcileChecked(_visible);
     });
     _resetScroll();
+  }
+
+  void _reconcileChecked(List<MailMessageListItem> visible) {
+    final retained = widget.onBulkAction == null
+        ? <String>{}
+        : visible.map((item) => item.id).toSet();
+    final oldLength = _checkedIds.length;
+    _checkedIds.removeWhere((id) => !retained.contains(id));
+    if (oldLength != _checkedIds.length) _selectionGeneration++;
+  }
+
+  void _toggleChecked(String id, int generation) {
+    if (!mounted ||
+        widget.busy ||
+        !widget.bulkActionsEnabled ||
+        widget.onBulkAction == null ||
+        generation != _scopeGeneration ||
+        !_visible.any((item) => item.id == id)) {
+      return;
+    }
+    setState(() {
+      if (!_checkedIds.remove(id)) _checkedIds.add(id);
+      _selectionGeneration++;
+      _activeId = id;
+    });
+    _listFocus.requestFocus();
+  }
+
+  void _selectShown({int? scopeGeneration}) {
+    if (!mounted ||
+        widget.busy ||
+        scopeGeneration != null && scopeGeneration != _scopeGeneration ||
+        !widget.bulkActionsEnabled ||
+        widget.onBulkAction == null) {
+      return;
+    }
+    setState(() {
+      _checkedIds.addAll(_visible.map((item) => item.id));
+      _selectionGeneration++;
+    });
+  }
+
+  void _clearChecked({int? scopeGeneration}) {
+    if (!mounted ||
+        widget.busy ||
+        scopeGeneration != null && scopeGeneration != _scopeGeneration) {
+      return;
+    }
+    setState(() {
+      _checkedIds.clear();
+      _selectionGeneration++;
+    });
+  }
+
+  void _applyChecked(
+    MailBulkFlagAction action,
+    int scopeGeneration,
+    int selectionGeneration,
+    List<String> ids,
+  ) {
+    if (!mounted ||
+        widget.busy ||
+        !widget.bulkActionsEnabled ||
+        scopeGeneration != _scopeGeneration ||
+        selectionGeneration != _selectionGeneration ||
+        ids.isEmpty) {
+      return;
+    }
+    final visible = _visible.map((item) => item.id).toSet();
+    if (ids.any((id) => !visible.contains(id) || !_checkedIds.contains(id))) {
+      return;
+    }
+    final apply = widget.onBulkAction;
+    if (apply == null) return;
+    // Consume this menu snapshot even when the host completes synchronously.
+    // Another explicit action receives a new callback from the rebuilt menu.
+    setState(() => _selectionGeneration++);
+    apply(action, ids);
+  }
+
+  String _bulkLabel(MailBulkFlagAction action) => switch (action) {
+    MailBulkFlagAction.markRead => widget.strings.markRead,
+    MailBulkFlagAction.markUnread => widget.strings.markUnread,
+    MailBulkFlagAction.flag => widget.strings.flag,
+    MailBulkFlagAction.unflag => widget.strings.unflag,
+  };
+
+  Widget _bulkControls(List<MailMessageListItem> visible) {
+    final strings = widget.strings;
+    final scopeGeneration = _scopeGeneration;
+    final selectionGeneration = _selectionGeneration;
+    final ids = List<String>.unmodifiable([
+      for (final item in visible)
+        if (_checkedIds.contains(item.id)) item.id,
+    ]);
+    final enabled = !widget.busy && widget.bulkActionsEnabled;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 8,
+        runSpacing: 4,
+        children: [
+          Text(
+            strings.selectedCount(ids.length),
+            key: const ValueKey('mail-list-selected-count'),
+          ),
+          TextButton(
+            key: const ValueKey('mail-list-select-shown'),
+            onPressed: enabled && visible.isNotEmpty
+                ? () => _selectShown(scopeGeneration: scopeGeneration)
+                : null,
+            child: Text(strings.selectShown),
+          ),
+          TextButton(
+            key: const ValueKey('mail-list-clear-selection'),
+            onPressed: !widget.busy && ids.isNotEmpty
+                ? () => _clearChecked(scopeGeneration: scopeGeneration)
+                : null,
+            child: Text(strings.clearSelection),
+          ),
+          PopupMenuButton<MailBulkFlagAction>(
+            key: const ValueKey('mail-list-bulk-actions'),
+            tooltip: strings.bulkActions,
+            enabled: enabled && ids.isNotEmpty,
+            onSelected: (action) => _applyChecked(
+              action,
+              scopeGeneration,
+              selectionGeneration,
+              ids,
+            ),
+            itemBuilder: (context) => [
+              for (final action in MailBulkFlagAction.values)
+                PopupMenuItem(
+                  key: ValueKey('mail-list-bulk-${action.name}'),
+                  value: action,
+                  child: Text(_bulkLabel(action)),
+                ),
+            ],
+            child: Chip(
+              avatar: const Icon(Icons.checklist, size: 18),
+              label: Text(strings.bulkActions),
+            ),
+          ),
+          if (widget.onCancelBulk case final cancel?) ...[
+            Text(strings.bulkWorking),
+            TextButton.icon(
+              key: const ValueKey('mail-list-stop-bulk'),
+              onPressed: cancel,
+              icon: const Icon(Icons.stop_circle_outlined, size: 18),
+              label: Text(strings.stopBulk),
+            ),
+          ],
+        ],
+      ),
+    );
   }
 
   void _compileQuery() {
@@ -411,13 +621,32 @@ class _MailMessageListState extends State<MailMessageList> {
     if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
       return KeyEventResult.ignored;
     }
+    final key = event.logicalKey;
+    if (widget.onBulkAction != null &&
+        (HardwareKeyboard.instance.isControlPressed ||
+            HardwareKeyboard.instance.isMetaPressed) &&
+        !HardwareKeyboard.instance.isAltPressed &&
+        !HardwareKeyboard.instance.isShiftPressed &&
+        key == LogicalKeyboardKey.keyA) {
+      if (event is KeyDownEvent) _selectShown();
+      return KeyEventResult.handled;
+    }
     if (HardwareKeyboard.instance.isControlPressed ||
         HardwareKeyboard.instance.isMetaPressed ||
         HardwareKeyboard.instance.isAltPressed ||
         HardwareKeyboard.instance.isShiftPressed) {
       return KeyEventResult.ignored;
     }
-    final key = event.logicalKey;
+    if (widget.onBulkAction != null && key == LogicalKeyboardKey.escape) {
+      if (event is KeyDownEvent) _clearChecked();
+      return KeyEventResult.handled;
+    }
+    if (widget.onBulkAction != null && key == LogicalKeyboardKey.space) {
+      if (event is KeyDownEvent && _activeId != null) {
+        _toggleChecked(_activeId!, _scopeGeneration);
+      }
+      return KeyEventResult.handled;
+    }
     if (key == LogicalKeyboardKey.enter ||
         key == LogicalKeyboardKey.numpadEnter ||
         key == LogicalKeyboardKey.space) {
@@ -555,6 +784,7 @@ class _MailMessageListState extends State<MailMessageList> {
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ),
+        if (widget.onBulkAction != null) _bulkControls(visible),
       ],
     );
     return Column(
@@ -677,6 +907,20 @@ class _MailMessageListState extends State<MailMessageList> {
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Row(
                 children: [
+                  if (widget.onBulkAction != null)
+                    Tooltip(
+                      message: widget.strings.selectMessage,
+                      child: Checkbox(
+                        key: ValueKey('mail-list-check-${item.id}'),
+                        value: _checkedIds.contains(item.id),
+                        semanticLabel:
+                            '${widget.strings.selectMessage}: '
+                            '${item.subject} — ${item.sender}',
+                        onChanged: widget.busy || !widget.bulkActionsEnabled
+                            ? null
+                            : (_) => _toggleChecked(item.id, scopeGeneration),
+                      ),
+                    ),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

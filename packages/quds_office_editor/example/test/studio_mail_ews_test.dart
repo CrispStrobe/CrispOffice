@@ -44,6 +44,8 @@ final class _Provider extends Fake implements MailEwsProvider {
     MailCapability.move,
   ]);
   MailProblem? mutationProblem;
+  Future<MailResult<MailUnit>> Function(MailOperation, MailOperationLease)?
+  mutationHandler;
   bool failConnection = false;
   int connects = 0;
   int lists = 0;
@@ -189,6 +191,7 @@ final class _Provider extends Fake implements MailEwsProvider {
   ) async {
     commands.add(operation);
     lastLease = lease;
+    if (mutationHandler case final handler?) return handler(operation, lease);
     return mutationProblem == null
         ? const MailSuccess(MailUnit.value)
         : MailFailure(mutationProblem!);
@@ -342,7 +345,331 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
   droppedFailures: 0,
 );
 
+MailMessageList _bulkList(WidgetTester tester) =>
+    tester.widget<MailMessageList>(find.byType(MailMessageList));
+
+List<MailHeaderRecord> _bulkHeaders(_Provider provider) => [
+  provider.header('one', 'First Exchange message'),
+  provider.header('two', 'Second Exchange message'),
+  provider.header('three', 'Third Exchange message'),
+];
+
 void main() {
+  testWidgets(
+    'EWS bulk assigns each explicit value to checked targets without opening mail',
+    (tester) async {
+      late _Provider provider;
+      await _show(tester, (configuration, credentials) {
+        provider = _Provider(configuration, credentials);
+        provider.headerPage = (mailbox, cursor) =>
+            MailHeaderPage(messages: _bulkHeaders(provider));
+        return provider;
+      });
+      await _connect(tester);
+      for (final action in MailBulkFlagAction.values) {
+        _bulkList(tester).onBulkAction!(action, [
+          'ews-message-three',
+          'ews-message-two',
+        ]);
+        await _pump(tester);
+      }
+      expect(
+        provider.commands.map(
+          (command) => (command.message as MailOpaqueIdentity).value,
+        ),
+        ['three', 'two', 'three', 'two', 'three', 'two', 'three', 'two'],
+      );
+      expect(
+        provider.commands.whereType<MailSetRead>().map(
+          (command) => command.read,
+        ),
+        [true, true, false, false],
+      );
+      expect(
+        provider.commands.whereType<MailSetFlagged>().map(
+          (command) => command.flagged,
+        ),
+        [true, true, false, false],
+      );
+      expect(
+        provider.commands.map((command) => command.id).toSet(),
+        hasLength(8),
+      );
+      expect(provider.reads, 0);
+      expect(provider.cursors, hasLength(1));
+      expect(_bulkList(tester).selectedId, isNull);
+      expect(
+        find.textContaining(
+          '2 confirmed · 0 failed · 0 uncertain · 0 not attempted',
+        ),
+        findsOneWidget,
+      );
+    },
+  );
+
+  testWidgets(
+    'EWS bulk leaves the independently open message and reader unchanged',
+    (tester) async {
+      late _Provider provider;
+      await _show(tester, (configuration, credentials) {
+        provider = _Provider(configuration, credentials);
+        provider.headerPage = (mailbox, cursor) =>
+            MailHeaderPage(messages: _bulkHeaders(provider));
+        return provider;
+      });
+      await _connect(tester);
+      _bulkList(tester).onOpen('ews-message-one');
+      await _pump(tester);
+      final reader = tester
+          .widget<MailMessageView>(find.byType(MailMessageView))
+          .controller;
+      final ids = ['ews-message-two', 'ews-message-three'];
+      _bulkList(tester).onBulkAction!(MailBulkFlagAction.flag, ids);
+      ids.clear();
+      await _pump(tester);
+      expect(_bulkList(tester).selectedId, 'ews-message-one');
+      expect(
+        tester.widget<MailMessageView>(find.byType(MailMessageView)).controller,
+        same(reader),
+      );
+      expect(_bulkList(tester).items.map((item) => item.isFlagged), [
+        false,
+        true,
+        true,
+      ]);
+      expect(provider.reads, 1);
+      expect(provider.cursors, hasLength(1));
+    },
+  );
+
+  testWidgets('EWS bulk observes only the confirmed target flag', (
+    tester,
+  ) async {
+    late _Provider provider;
+    await _show(tester, (configuration, credentials) {
+      provider = _Provider(configuration, credentials);
+      provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+        messages: [
+          provider.header('one', 'Unknown', flags: null),
+          provider.header(
+            'two',
+            'Known',
+            flags: const MailMessageFlags(
+              isRead: true,
+              isFlagged: true,
+              isAnswered: true,
+              isDraft: true,
+              isDeleted: true,
+            ),
+          ),
+        ],
+      );
+      return provider;
+    });
+    await _connect(tester);
+    _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
+      'ews-message-one',
+      'ews-message-two',
+    ]);
+    await _pump(tester);
+    expect(_bulkList(tester).items.map((item) => item.isRead), [true, true]);
+    expect(_bulkList(tester).items.map((item) => item.isFlagged), [null, true]);
+    _bulkList(tester).onBulkAction!(MailBulkFlagAction.unflag, [
+      'ews-message-two',
+    ]);
+    await _pump(tester);
+    expect(_bulkList(tester).items.map((item) => item.isRead), [true, true]);
+    expect(_bulkList(tester).items.map((item) => item.isFlagged), [
+      null,
+      false,
+    ]);
+    expect(provider.reads, 0);
+    expect(provider.cursors, hasLength(1));
+  });
+
+  for (final problem in [
+    MailProblemCode.cancelled,
+    MailProblemCode.staleOperation,
+    MailProblemCode.permissionDenied,
+  ]) {
+    testWidgets(
+      'EWS bulk keeps generic $problem uncertain and does not retry',
+      (tester) async {
+        late _Provider provider;
+        await _show(tester, (configuration, credentials) {
+          provider = _Provider(configuration, credentials);
+          provider.headerPage = (mailbox, cursor) =>
+              MailHeaderPage(messages: _bulkHeaders(provider));
+          provider.mutationHandler = (operation, lease) async =>
+              provider.commands.length == 2
+              ? MailFailure(MailProblem(problem))
+              : const MailSuccess(MailUnit.value);
+          return provider;
+        });
+        await _connect(tester);
+        _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
+          'ews-message-one',
+          'ews-message-two',
+          'ews-message-three',
+        ]);
+        await _pump(tester);
+        expect(provider.commands, hasLength(2));
+        expect(_bulkList(tester).items.map((item) => item.isRead), [
+          true,
+          false,
+          false,
+        ]);
+        expect(_bulkList(tester).bulkActionsEnabled, isFalse);
+        expect(
+          find.textContaining(
+            '1 confirmed · 0 failed · 1 uncertain · 1 not attempted',
+          ),
+          findsOneWidget,
+        );
+        expect(
+          find.textContaining(_strings.mailWorkspaceRefreshRequired),
+          findsOneWidget,
+        );
+        _bulkList(tester).onBulkAction!(MailBulkFlagAction.flag, [
+          'ews-message-three',
+        ]);
+        await _pump(tester);
+        expect(provider.commands, hasLength(2));
+        expect(provider.cursors, hasLength(1));
+        expect(provider.reads, 0);
+        await tester.tap(find.byTooltip(_strings.refresh));
+        await _pump(tester);
+        expect(_bulkList(tester).bulkActionsEnabled, isTrue);
+        expect(provider.cursors, hasLength(2));
+      },
+    );
+  }
+
+  testWidgets(
+    'EWS bulk cancellation retains current reply without cancelling its lease',
+    (tester) async {
+      late _Provider provider;
+      final gate = Completer<MailResult<MailUnit>>();
+      await _show(tester, (configuration, credentials) {
+        provider = _Provider(configuration, credentials);
+        provider.headerPage = (mailbox, cursor) =>
+            MailHeaderPage(messages: _bulkHeaders(provider));
+        provider.mutationHandler = (operation, lease) => gate.future;
+        return provider;
+      });
+      await _connect(tester);
+      _bulkList(tester).onBulkAction!(MailBulkFlagAction.flag, [
+        'ews-message-one',
+        'ews-message-two',
+        'ews-message-three',
+      ]);
+      await _pump(tester);
+      expect(provider.commands, hasLength(1));
+      _bulkList(tester).onCancelBulk!();
+      await _pump(tester);
+      expect(_bulkList(tester).busy, isTrue);
+      expect(provider.lastLease!.isCurrent, isTrue);
+      gate.complete(const MailSuccess(MailUnit.value));
+      await _pump(tester);
+      expect(provider.commands, hasLength(1));
+      expect(_bulkList(tester).items.map((item) => item.isFlagged), [
+        true,
+        false,
+        false,
+      ]);
+      expect(_bulkList(tester).bulkActionsEnabled, isTrue);
+      expect(_bulkList(tester).onCancelBulk, isNull);
+      expect(
+        find.textContaining(
+          '1 confirmed · 0 failed · 0 uncertain · 2 not attempted',
+        ),
+        findsOneWidget,
+      );
+    },
+  );
+
+  testWidgets(
+    'EWS bulk stale callback cannot reach the same folder after ABA navigation',
+    (tester) async {
+      late _Provider provider;
+      await _show(tester, (configuration, credentials) {
+        provider = _Provider(configuration, credentials);
+        provider.headerPage = (mailbox, cursor) =>
+            MailHeaderPage(messages: _bulkHeaders(provider));
+        return provider;
+      });
+      await _connect(tester);
+      final stale = _bulkList(tester).onBulkAction!;
+      await tester.tap(find.text('Archive'));
+      await _pump(tester);
+      await tester.tap(find.text('Inbox'));
+      await _pump(tester);
+      stale(MailBulkFlagAction.flag, ['ews-message-one']);
+      await _pump(tester);
+      expect(provider.commands, isEmpty);
+      expect(provider.reads, 0);
+    },
+  );
+
+  testWidgets(
+    'EWS bulk ignores duplicate or missing row identities before dispatch',
+    (tester) async {
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials),
+      );
+      await _connect(tester);
+      final callback = _bulkList(tester).onBulkAction!;
+      callback(MailBulkFlagAction.flag, ['ews-message-one', 'ews-message-one']);
+      callback(MailBulkFlagAction.flag, ['ews-message-missing']);
+      callback(MailBulkFlagAction.flag, const []);
+      await _pump(tester);
+      expect(provider.commands, isEmpty);
+      expect(_bulkList(tester).busy, isFalse);
+    },
+  );
+
+  testWidgets(
+    'EWS bulk confirmation cannot enter a reconnected account or dispatch its tail',
+    (tester) async {
+      late _Provider provider;
+      await _show(tester, (configuration, credentials) {
+        provider = _Provider(configuration, credentials);
+        provider.headerPage = (mailbox, cursor) =>
+            MailHeaderPage(messages: _bulkHeaders(provider));
+        return provider;
+      });
+      await _connect(tester);
+      final previous = provider;
+      final oldCallback = _bulkList(tester).onBulkAction!;
+      final gate = Completer<MailResult<MailUnit>>();
+      previous.mutationHandler = (operation, lease) => gate.future;
+      oldCallback(MailBulkFlagAction.markRead, [
+        'ews-message-one',
+        'ews-message-two',
+      ]);
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.disconnect));
+      await _pump(tester);
+      await _connect(tester);
+      gate.complete(const MailSuccess(MailUnit.value));
+      await _pump(tester);
+      oldCallback(MailBulkFlagAction.flag, ['ews-message-one']);
+      await _pump(tester);
+      expect(previous.commands, hasLength(1));
+      expect(provider.commands, isEmpty);
+      expect(
+        _bulkList(tester).items.every((item) => item.isRead == false),
+        isTrue,
+      );
+      expect(find.textContaining('1 confirmed'), findsNothing);
+      expect(_bulkList(tester).busy, isFalse);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets(
     'EWS searches recipients and dates without fetching or mutating',
     (tester) async {
