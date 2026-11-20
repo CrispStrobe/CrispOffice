@@ -1,0 +1,71 @@
+{
+  "cohorts": {
+    "engine-zotero": {
+      "test_files": 29,
+      "imported_files": 1307,
+      "target_reachable": false
+    },
+    "editor-zotero": {
+      "test_files": 43,
+      "imported_files": 2159,
+      "target_reachable": false
+    },
+    "engine-proofing": {
+      "test_files": 37,
+      "imported_files": 1316,
+      "target_reachable": false
+    },
+    "spacy": {
+      "test_files": 11,
+      "imported_files": 1315,
+      "target_reachable": false
+    },
+    "studio-integration": {
+      "test_files": 9,
+      "imported_files": 3882,
+      "target_reachable": false
+    }
+  },
+  "target": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart",
+  "target_sha256": "ccd67cee89f72718259504e5f7fdccee786d8b290b02e19453eda3ce1b241735",
+  "package_config_sha256": "0011318979bdc29c9637b857a5122ffea96d185f3d2dc50c5503904a9059d6a7",
+  "package_config_unchanged": true,
+  "dart_sdk_boundaries": [
+    "dart:async",
+    "dart:collection",
+    "dart:convert",
+    "dart:core",
+    "dart:developer",
+    "dart:ffi",
+    "dart:io",
+    "dart:isolate",
+    "dart:js_interop",
+    "dart:js_interop_unsafe",
+    "dart:math",
+    "dart:typed_data",
+    "dart:ui",
+    "dart:ui_web"
+  ],
+  "errors": [],
+  "source_changes_during_graph": [],
+  "target_directive_importers": [],
+  "reachable_files_mentioning_target": [],
+  "target_reachable": false,
+  "status": "passed",
+  "source_head": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "source_head_after": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "graph_files": 4115,
+  "workspace_graph_files": 974,
+  "graph_sha256": "07d9d4ac3203ee35f36ea6275b98bfabcf3ef660c4aecf244773eab94bd359a7",
+  "compressed_graph_sha256": "b51652db58df1243a0581fe3894e8a26b11b7af6917d1d7b4b48b3c66b50f303",
+  "checker_sha256": "f5308ec086cf24a3ab51eebc4758c68d4098f1c2d9e985ca5f2d7a54b65b132b",
+  "dart_ast_source_sha256": "acae28f4c8215e50bff0d166a433d9d3dc1537629d6e903e5ea3667b60c4a84c",
+  "command": [
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/2c6eaad19389/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/unused-tool-imports-7zsb7cbv/directives.dart",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/unused-tool-import-graph/selection.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/unused-tool-imports-7zsb7cbv/graph.json"
+  ],
+  "semantics": "All import/export/part directives and conditional alternatives are traversed. dart: runtime libraries are recorded boundaries. No reachable source references the tool filename; arbitrary dynamic path construction is outside static import proof."
+}

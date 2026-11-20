@@ -1,0 +1,135 @@
+{
+  "audited_at_utc": "2026-11-20T05:45:17.863229+00:00",
+  "distinct_successful_case_identities": 1705,
+  "every_other_primary_guard_passed": true,
+  "fixture_sources_modified": false,
+  "policy": "Only these eight exact identical source/expected fixture pairs are counted once. The original name-uniqueness rejection remains in the primary receipt. Every execution passed and no other guard exception is allowed.",
+  "primary_failed_guards": [
+    "unique_application_test_names"
+  ],
+  "primary_receipt_modified": false,
+  "primary_receipt_sha256": "aa0050bd3fa9d31ca0245c8d84a00f9cbe98de6f5919a5f27ccee3196ab1fdb7",
+  "primary_runner_status": "failed",
+  "qualified_source": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "repeated_pairs": [
+    {
+      "count": 2,
+      "expected": "Sie antwortet dem Lehrer.",
+      "fixture_row_numbers": [
+        12,
+        51
+      ],
+      "name": "context: Sie antwortet dem Lehrer.",
+      "source": "Sie antwortet dem Lehrer.",
+      "suite": "packages/quds_office_engine/test/proofing/german_context_test.dart"
+    },
+    {
+      "count": 2,
+      "expected": "Sie ist nach Hause gegangen.",
+      "fixture_row_numbers": [
+        40,
+        73
+      ],
+      "name": "context: Sie ist nach Hause gegangen.",
+      "source": "Sie ist nach Hause gegangen.",
+      "suite": "packages/quds_office_engine/test/proofing/german_context_test.dart"
+    },
+    {
+      "count": 2,
+      "expected": "Wenn ich Zeit habe, lese ich ein Buch.",
+      "fixture_row_numbers": [
+        34,
+        66
+      ],
+      "name": "context: Wenn ich Zeit habe, lese ich ein Buch.",
+      "source": "Wenn ich Zeit habe, lese ich ein Buch.",
+      "suite": "packages/quds_office_engine/test/proofing/german_context_test.dart"
+    },
+    {
+      "count": 2,
+      "expected": "Wir helfen den Freundinnen.",
+      "fixture_row_numbers": [
+        4,
+        20
+      ],
+      "name": "context: Wir helfen den Freundinnen.",
+      "source": "Wir helfen den Freundinnen.",
+      "suite": "packages/quds_office_engine/test/proofing/german_release_context_test.dart"
+    },
+    {
+      "count": 2,
+      "expected": "Wir helfen der Freundin.",
+      "fixture_row_numbers": [
+        2,
+        19
+      ],
+      "name": "context: Wir helfen der Freundin.",
+      "source": "Wir helfen der Freundin.",
+      "suite": "packages/quds_office_engine/test/proofing/german_release_context_test.dart"
+    },
+    {
+      "count": 2,
+      "expected": "Wir sehen den Stra\u00dfenpolizisten.",
+      "fixture_row_numbers": [
+        14,
+        32
+      ],
+      "name": "context: Wir sehen den Stra\u00dfenpolizisten.",
+      "source": "Wir sehen den Stra\u00dfenpolizisten.",
+      "suite": "packages/quds_office_engine/test/proofing/german_release_context_test.dart"
+    },
+    {
+      "count": 2,
+      "expected": "Wir sprechen mit dem Stra\u00dfenpolizisten.",
+      "fixture_row_numbers": [
+        12,
+        31
+      ],
+      "name": "context: Wir sprechen mit dem Stra\u00dfenpolizisten.",
+      "source": "Wir sprechen mit dem Stra\u00dfenpolizisten.",
+      "suite": "packages/quds_office_engine/test/proofing/german_release_context_test.dart"
+    },
+    {
+      "count": 2,
+      "expected": "Wir stehen bei diesem Geb\u00e4ude.",
+      "fixture_row_numbers": [
+        8,
+        25
+      ],
+      "name": "context: Wir stehen bei diesem Geb\u00e4ude.",
+      "source": "Wir stehen bei diesem Geb\u00e4ude.",
+      "suite": "packages/quds_office_engine/test/proofing/german_release_context_test.dart"
+    }
+  ],
+  "repeated_successful_executions_excluded_from_distinct_count": 8,
+  "restored_source": "e79c32e77f1990e303527e477e4909df993c1b9b",
+  "source_files": {
+    "packages/quds_office_engine/test/proofing/german_context_test.dart": {
+      "distinct_fixture_rows": 80,
+      "fixture_rows": 83,
+      "identical_complete_file": true,
+      "qualified_source": "f3f98987824e021ed22a4d909e38d6307495267b",
+      "record": {
+        "bytes": 8961,
+        "git_blob_sha1": "e2a7047925943d5ebe372f7898974629d01ba6c0",
+        "sha256": "40087ce650a44ab2c006d1a0e2438de6d47d7fac95e9cded61578596212f90af"
+      },
+      "restored_source": "e79c32e77f1990e303527e477e4909df993c1b9b"
+    },
+    "packages/quds_office_engine/test/proofing/german_release_context_test.dart": {
+      "distinct_fixture_rows": 33,
+      "fixture_rows": 38,
+      "identical_complete_file": true,
+      "qualified_source": "f3f98987824e021ed22a4d909e38d6307495267b",
+      "record": {
+        "bytes": 4897,
+        "git_blob_sha1": "9c49a3a240100634b5365b44aaed19c2ad6a5c90",
+        "sha256": "8413fcbe3b9fe995bff06107ad70d27b222369ccc27fc95a89690ef398ede26b"
+      },
+      "restored_source": "e79c32e77f1990e303527e477e4909df993c1b9b"
+    }
+  },
+  "status": "verified_preexisting_identical_fixture_repetitions",
+  "successful_application_executions": 1713,
+  "verifier_sha256": "6538c552dbe65b745f4fe24d4a8ae155065e1a509020379185f155f063e1c9b9"
+}

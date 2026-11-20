@@ -1,0 +1,61 @@
+{
+  "code_after": {
+    "adapter": {
+      "bytes": 5049,
+      "git_blob_sha1": "449672957eeea9fa4397221088910e9317ca6eef",
+      "sha256": "b6d42704ec385fd04ad33c691e8507f04e1f93dd130a04772aebc67a3a4494a4"
+    },
+    "wrapper": {
+      "bytes": 3745,
+      "git_blob_sha1": "a0bc4affcad0e1be772ce72dd4b9fb6e84d5ef03",
+      "sha256": "2841b93a6c6b674d74841f04b56a3448fde663f9b3715c04c0e594a98032b55b"
+    }
+  },
+  "code_before": {
+    "adapter": {
+      "bytes": 5049,
+      "git_blob_sha1": "449672957eeea9fa4397221088910e9317ca6eef",
+      "sha256": "b6d42704ec385fd04ad33c691e8507f04e1f93dd130a04772aebc67a3a4494a4"
+    },
+    "wrapper": {
+      "bytes": 3745,
+      "git_blob_sha1": "a0bc4affcad0e1be772ce72dd4b9fb6e84d5ef03",
+      "sha256": "2841b93a6c6b674d74841f04b56a3448fde663f9b3715c04c0e594a98032b55b"
+    }
+  },
+  "code_unchanged": true,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/run_continuation.py",
+    "spacy",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--expected-head",
+    "f3f98987824e021ed22a4d909e38d6307495267b",
+    "--output",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/accepted-spacy"
+  ],
+  "environment_addition": {
+    "QUDS_SPACY_MACOS_LIBRARY": "/workspace/scratch/2c6eaad19389/zotero-toolchain/qualified-macos-bytes/ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f/libcrispembed-spacy.dylib"
+  },
+  "finished_at_utc": "2026-11-20T05:42:59.350799+00:00",
+  "fixture_after": {
+    "bytes": 2322928,
+    "git_blob_sha1": "187acea592f071cb4eba9e6f55bf3d9bab2c48ca",
+    "sha256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f"
+  },
+  "fixture_before": {
+    "bytes": 2322928,
+    "git_blob_sha1": "187acea592f071cb4eba9e6f55bf3d9bab2c48ca",
+    "sha256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f"
+  },
+  "fixture_path": "/workspace/scratch/2c6eaad19389/zotero-toolchain/qualified-macos-bytes/ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f/libcrispembed-spacy.dylib",
+  "fixture_unchanged": true,
+  "host_platform": "linux",
+  "native_library_loaded_or_executed": false,
+  "primary_and_adapter_exit_code": 0,
+  "scope": "The existing test reads the pinned dylib as a byte array to verify whole-file and Mach-O code digests. No dlopen, signing or macOS execution is performed.",
+  "source_commit": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "started_at_utc": "2026-11-20T05:42:36.006053+00:00",
+  "status": "passed"
+}
