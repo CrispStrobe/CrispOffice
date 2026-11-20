@@ -8,6 +8,9 @@ All notable changes to `quds_office_editor` are documented here.
   Microsoft 365 folders plus explicitly opened message bodies/attachments.
   Verified accounts offer a separate Cached mail entry without credentials or
   provider construction, with confirmed local cleanup for quota recovery.
+  A failed draft save can clear cache and retry in place without losing the
+  current editor or automatically sending/queuing it; cleanup remains available
+  under lowered storage budgets. Preserve Arabic direction in confirmation.
   Preserve draft/Outbox ownership and exact identities across reconnects;
   report missing bodies and storage errors.
 

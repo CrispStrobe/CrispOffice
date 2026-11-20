@@ -43,6 +43,30 @@ extension StudioMailCachedStrings on StudioStrings {
     'تعذر مسح البريد المحفوظ. يبقى العرض المحفوظ السابق محفوظًا. حاول مجددًا أو أغلق مساحة العمل هذه.',
   );
 
+  String get mailCacheClearing => _text(
+    'Clearing cached mail…',
+    'Mail-Cache wird geleert…',
+    'جارٍ مسح البريد المحفوظ…',
+  );
+
+  String get mailCacheDraftClearHelp => _text(
+    'Your current draft stays open. After clearing cached mail, saving this draft is retried.',
+    'Ihr aktueller Entwurf bleibt geöffnet. Nach dem Leeren des Mail-Caches wird das Speichern dieses Entwurfs erneut versucht.',
+    'تبقى مسودتك الحالية مفتوحة. بعد مسح البريد المحفوظ، تُعاد محاولة حفظ هذه المسودة.',
+  );
+
+  String get mailCacheDraftClearFailed => _text(
+    'Could not clear cached mail. Your draft is still open. Try again or retry saving.',
+    'Der Mail-Cache konnte nicht geleert werden. Ihr Entwurf bleibt geöffnet. Versuchen Sie es erneut oder speichern Sie erneut.',
+    'تعذر مسح البريد المحفوظ. تبقى مسودتك مفتوحة. حاول مجددًا أو أعد محاولة الحفظ.',
+  );
+
+  String get mailCacheDraftClearMore => _text(
+    'More cached mail remains. If saving still fails, you can clear another batch.',
+    'Weitere gespeicherte E-Mails verbleiben. Falls das Speichern weiterhin fehlschlägt, können Sie eine weitere Gruppe entfernen.',
+    'يبقى بريد محفوظ آخر. إذا استمر تعذر الحفظ، يمكنك مسح مجموعة أخرى.',
+  );
+
   String get mailCachedAccountsHelp => _text(
     'Tap an account to edit drafts, or choose Cached mail to read its saved folder views offline.',
     'Tippen Sie zum Bearbeiten von Entwürfen auf ein Konto. Unter „Gespeicherte E-Mails“ lesen Sie dessen gespeicherte Ordneransichten offline.',

@@ -25,6 +25,10 @@ and attachment bytes for later local reading.
    workspace and confirm. Each bounded step removes saved views and eligible
    downloaded copies; repeat when the result says more remain. Drafts, Outbox,
    credentials, authoritative sync state and server mail are preserved.
+7. If a draft cannot be saved, its composer also offers **Clear cached mail**.
+   Confirmation keeps the current editor open and retries saving its latest
+   contents after cleanup. It never sends or queues the draft automatically.
+   Canceling or failing cleanup leaves the unsaved editor available.
 
 Cached access uses the verified non-secret account directory and the existing
 account-specific local database. It does not require passwords, OAuth tokens,
@@ -86,6 +90,9 @@ local operations remain protected; the cleanup report distinguishes remaining
 work from bodies retained for open editors. Pending command records remain
 intact; their replaceable cached bodies follow the existing eviction policy.
 A failed cleanup rolls back its entire step.
+When clearing from a connected composer, refresh the folder or reconnect before
+retaining its headers again. Cleanup does not refill the cache automatically
+and consume the space just recovered for the draft.
 
 ## Transaction and synchronization boundary
 
@@ -102,6 +109,11 @@ Stored cached-body metadata is size/type checked in SQLite before it is
 transferred and decoded. Encoded JSON bounds include legitimate escaping
 overhead; semantic decoded limits remain authoritative. This bounds corrupt or
 previously larger cached rows when a profile is reopened under tighter limits.
+Cleanup can discard an oversized or corrupt cached envelope without decoding
+it, even after metadata/account limits are lowered. It invalidates each evicted
+body's search entry so discarded body text cannot remain searchable. Headers
+retained for synchronization or pending commands remain stored and can regain
+their search entries through bounded reindexing or a subsequent sync update.
 
 Browse views are independent of synchronization membership and cursors.
 Replacing a limited view does not declare absent server messages deleted,

@@ -12,6 +12,7 @@ import 'package:quds_office_studio/studio_mail_draft_store_native.dart';
 import 'package:quds_office_studio/studio_mail_drafts_dialog.dart';
 import 'package:quds_office_studio/studio_mail_drafts_strings.dart';
 import 'package:quds_office_studio/studio_mail_local_drafts.dart';
+import 'package:quds_office_studio/studio_mail_mailbox_store.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
@@ -206,7 +207,46 @@ final class _ObservedStore
   }
 }
 
+final class _ForeignMailbox extends Fake implements StudioMailMailboxStore {
+  _ForeignMailbox(this.account);
+  @override
+  final MailAccountId account;
+  int clears = 0;
+  @override
+  Future<MailCacheCleanupReport> clearCache() async {
+    clears++;
+    throw StateError('A foreign mailbox must never be cleared.');
+  }
+}
+
+final class _ObservedMailboxOwner extends _ObservedStore
+    implements StudioMailMailboxStoreOwner {
+  _ObservedMailboxOwner(super.delegate, this.mailboxStore);
+  @override
+  final StudioMailMailboxStore mailboxStore;
+}
+
 void main() {
+  testWidgets(
+    'foreign optional cache owner is closed before any local draft load or clear',
+    (tester) async {
+      final fixture = await _fixture(tester);
+      final adapter = await awaitOutboxOperation(tester, fixture.openLoaded());
+      final foreign = _ForeignMailbox(
+        MailAccountId('foreign-cache', profile: adapter.account.profile),
+      );
+      final observed = _ObservedMailboxOwner(adapter, foreign);
+      await _show(tester, open: (_) async => observed, waitForCatalog: false);
+      await _until(tester, () => observed.closes == 1);
+      expect(observed.loads, 0);
+      expect(foreign.clears, 0);
+      expect(find.byType(StudioMailDraftsDialog), findsNothing);
+      expect(find.byType(StudioMailComposeDialog), findsNothing);
+      expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets(
     'offline editing retains separate drafts, attachments and uncertainty on reopen',
     (tester) async {

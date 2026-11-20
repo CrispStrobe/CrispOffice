@@ -1464,6 +1464,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     if (!mounted || !_currentSession(client, generation)) return;
     final selectedId = catalog?.selectedDraftId;
     final selectionEpoch = catalog?.selectionEpoch;
+    final mailbox = switch (store) {
+      StudioMailMailboxStoreOwner value => value.mailboxStore,
+      _ => null,
+    };
     bool currentDraft() =>
         _currentSession(client, generation) &&
         identical(store, _draftStore) &&
@@ -1484,6 +1488,16 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           from: account.email,
           initialDraft: initial ?? _draft,
           previousSubmissionUncertain: _submissionUncertain,
+          onClearMailCache: mailbox == null
+              ? null
+              : () async {
+                  if (!currentDraft()) {
+                    throw const StudioMailDraftStoreException(
+                      MailProblemCode.unavailable,
+                    );
+                  }
+                  return mailbox.clearCache();
+                },
           onQueueDraft: outbox != null
               ? (snapshot) async {
                   if (!currentDraft()) {

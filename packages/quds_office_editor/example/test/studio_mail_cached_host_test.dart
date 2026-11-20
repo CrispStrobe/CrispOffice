@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
@@ -10,14 +11,17 @@ import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_cached_mail.dart';
 import 'package:quds_office_studio/studio_mail_cached_strings.dart';
 import 'package:quds_office_studio/studio_mail_cloud.dart';
+import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
-import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_draft_store_native.dart';
+import 'package:quds_office_studio/studio_mail_drafts_dialog.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
+import 'package:quds_office_studio/studio_mail_local_drafts.dart';
 import 'package:quds_office_studio/studio_mail_mailbox_store.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
@@ -46,6 +50,7 @@ final class _Provider extends Fake
   int bodyReads = 0;
   int disposals = 0;
   int bodyVersion = 1;
+  String bodyFiller = '';
   _MessageMismatch? messageMismatch;
   Completer<MailResult<MailMessage>>? bodyGate;
 
@@ -89,6 +94,7 @@ final class _Provider extends Fake
             'Content-Type: multipart/mixed; boundary=cached-fixture\r\n\r\n'
             '--cached-fixture\r\nContent-Type: text/plain; charset=utf-8\r\n\r\n'
             'Body version $bodyVersion from ${kind.name}.\r\n'
+            '$bodyFiller\r\n'
             '--cached-fixture\r\nContent-Type: application/octet-stream\r\n'
             'Content-Disposition: attachment; filename=original.bin\r\n'
             'Content-Transfer-Encoding: base64\r\n\r\nAAEC/w0K\r\n'
@@ -221,6 +227,7 @@ final class _Owner
   final _ForeignCache? foreign;
   bool closed = false;
   int loads = 0;
+  final saveFailures = <MailProblemCode>[];
   @override
   MailAccountId get account => delegate.account;
   @override
@@ -239,7 +246,15 @@ final class _Owner
   Future<void> save(
     StudioMailDraft draft, {
     required bool submissionUncertain,
-  }) => delegate.save(draft, submissionUncertain: submissionUncertain);
+  }) async {
+    try {
+      await delegate.save(draft, submissionUncertain: submissionUncertain);
+    } on StudioMailDraftStoreException catch (error) {
+      saveFailures.add(error.code);
+      rethrow;
+    }
+  }
+
   @override
   Future<void> saveRejectedDraft(
     StudioMailDraft draft, {
@@ -302,6 +317,8 @@ final class _Stores {
   final owners = <_Owner>[];
   StudioMailDraftAccount? identity;
   bool seedUncertain = false;
+  bool seedAttachment = false;
+  MailStoreLimits limits = const MailStoreLimits();
   bool failFirstView = false;
   bool failNextCommit = false;
   bool foreignCache = false;
@@ -316,6 +333,7 @@ final class _Stores {
         await openStudioMailDraftStore(
               account,
               appDirectory: directory,
+              limits: limits,
               faultInjector: (checkpoint) async {
                 if (checkpoint != MailStoreCheckpoint.beforeCommit) return;
                 final gate = holdCommit;
@@ -350,6 +368,14 @@ final class _Stores {
           to: 'recipient@example.test',
           subject: 'Uncertain draft',
           body: 'Keep this draft.',
+          attachments: seedAttachment
+              ? StudioMailAttachments.from([
+                  StudioMailAttachment(
+                    name: 'draft-original.bin',
+                    bytes: Uint8List.fromList([0, 1, 2, 255, 13, 10]),
+                  ),
+                ])
+              : const StudioMailAttachments.empty(),
         ),
         submissionUncertain: true,
       );
@@ -585,6 +611,195 @@ Future<void> _showOffline(WidgetTester tester, _Harness harness) async {
   await _until(tester, () => _listReady(tester));
 }
 
+Future<void> _prepareQuotaRecovery(
+  WidgetTester tester,
+  _Harness harness,
+) async {
+  harness.stores
+    ..limits = const MailStoreLimits(maxAccountBytes: 32768)
+    ..seedUncertain = true
+    ..seedAttachment = true;
+  await _showHost(tester, harness);
+  harness.provider!.bodyFiller = 'cache bytes ' * 700;
+  await _tapMessage(tester, 'Message two');
+  await _until(tester, () => _listReady(tester));
+  expect(find.text(_strings.mailCacheSaveFailed), findsNothing);
+  final cache = harness.stores.owners.last.mailboxStore;
+  final views = await awaitOutboxOperation(tester, cache.listViews());
+  final view = await awaitOutboxOperation(
+    tester,
+    cache.loadView(views.single.mailbox.id),
+  );
+  expect(
+    await awaitOutboxOperation(tester, cache.loadMessage(view!.headers.first)),
+    isNotNull,
+    reason: 'The real automatic cache must occupy quota before editing.',
+  );
+}
+
+Future<void> _openComposer(WidgetTester tester) async {
+  final tooltip = find.byTooltip(_strings.compose);
+  final trigger = tooltip.evaluate().isNotEmpty
+      ? tooltip.first
+      : find.text(_strings.compose).first;
+  await tester.ensureVisible(trigger);
+  await tester.tap(trigger);
+  await tester.pump();
+  await _until(
+    tester,
+    () => find.byType(StudioMailComposeDialog).evaluate().isNotEmpty,
+  );
+}
+
+Future<void> _showLocalComposer(WidgetTester tester, _Harness harness) async {
+  await tester.pumpWidget(const SizedBox.shrink());
+  await tester.pump();
+  final identity = harness.stores.identity!;
+  await tester.pumpWidget(
+    MaterialApp(
+      home: Builder(
+        builder: (context) => Scaffold(
+          body: TextButton(
+            onPressed: () => showDialog<void>(
+              context: context,
+              builder: (_) => StudioMailLocalDraftsDialog(
+                strings: _strings,
+                identity: identity,
+                sender: identity.sender,
+                isCurrent: () => true,
+                draftStoreFactory: harness.stores.open,
+              ),
+            ),
+            child: const Text('Open local drafts fixture'),
+          ),
+        ),
+      ),
+    ),
+  );
+  await tester.tap(find.text('Open local drafts fixture'));
+  await _until(
+    tester,
+    () => find
+        .descendant(
+          of: find.byType(StudioMailDraftsDialog),
+          matching: find.text('Uncertain draft'),
+        )
+        .evaluate()
+        .isNotEmpty,
+  );
+  final row = find.descendant(
+    of: find.byType(StudioMailDraftsDialog),
+    matching: find.text('Uncertain draft'),
+  );
+  await tester.ensureVisible(row);
+  await tester.tap(row);
+  await tester.pump();
+  await _until(
+    tester,
+    () => find.byType(StudioMailComposeDialog).evaluate().isNotEmpty,
+  );
+}
+
+Future<void> _recoverUnsavedEditor(
+  WidgetTester tester,
+  _Harness harness,
+) async {
+  final owner = harness.stores.owners.last;
+  final composer = tester.widget<StudioMailComposeDialog>(
+    find.byType(StudioMailComposeDialog),
+  );
+  expect(composer.onClearMailCache, isNotNull);
+  expect(composer.previousSubmissionUncertain, isTrue);
+  final originalAttachment = composer.initialDraft!.attachments.items.single;
+  final editor = tester
+      .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+      .controller;
+  await tester.enterText(_field(_strings.to), 'unfinished@');
+  await tester.tap(find.text(_strings.mailCopyRecipients));
+  await tester.pump();
+  await tester.enterText(_field(_strings.mailCc), 'copy@example.test');
+  await tester.enterText(_field(_strings.mailBcc), 'hidden@example.test');
+  await tester.enterText(
+    _field(_strings.subject),
+    'Live unsaved quota recovery',
+  );
+  editor.insertText('Recovered unsaved text ' * 650);
+  final body = editor.document.paragraphs
+      .map((paragraph) => paragraph.text)
+      .join('\n');
+  await tester.pump(const Duration(milliseconds: 600));
+  await _until(
+    tester,
+    () => find.text(_strings.mailDraftSaveFailed).evaluate().isNotEmpty,
+  );
+  expect(owner.saveFailures.last, MailProblemCode.quotaExceeded);
+  final retained = await awaitOutboxOperation(tester, owner.load());
+  expect(retained!.draft.subject, 'Uncertain draft');
+  expect(retained.submissionUncertain, isTrue);
+  final beforeNetwork = (
+    harness.provider!.bodyReads,
+    harness.provider!.headerReads,
+    harness.providerCreations,
+    harness.authorizations,
+  );
+  final clear = _key('studio-mail-compose-clear-cache');
+  await tester.ensureVisible(clear);
+  await tester.tap(clear);
+  await tester.pump();
+  await tester.pump(const Duration(milliseconds: 350));
+  await tester.tap(_key('studio-mail-compose-clear-cache-confirm'));
+  await tester.pump();
+  await _until(
+    tester,
+    () =>
+        find.byType(StudioMailComposeDialog).evaluate().isNotEmpty &&
+        tester.widget<Text>(_key('studio-mail-draft-status')).data ==
+            _strings.mailDraftSaved,
+  );
+  expect(_key('studio-mail-compose-cache-cleared'), findsOneWidget);
+  expect(_key('studio-mail-compose-cache-error'), findsNothing);
+  expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+  expect(
+    tester.widget<QudsWordEditor>(find.byType(QudsWordEditor)).controller,
+    same(editor),
+  );
+  expect(editor.isDisposed, isFalse);
+  expect(
+    editor.document.paragraphs.map((paragraph) => paragraph.text).join('\n'),
+    body,
+  );
+  for (final (label, expected) in [
+    (_strings.to, 'unfinished@'),
+    (_strings.mailCc, 'copy@example.test'),
+    (_strings.mailBcc, 'hidden@example.test'),
+    (_strings.subject, 'Live unsaved quota recovery'),
+  ]) {
+    expect(tester.widget<TextField>(_field(label)).controller!.text, expected);
+  }
+  final saved = await awaitOutboxOperation(tester, owner.load());
+  expect(saved!.draft.to, 'unfinished@');
+  expect(saved.draft.cc, 'copy@example.test');
+  expect(saved.draft.bcc, 'hidden@example.test');
+  expect(saved.draft.subject, 'Live unsaved quota recovery');
+  expect(saved.draft.body, body);
+  expect(saved.submissionUncertain, isTrue);
+  expect(
+    saved.draft.attachments.items.single.content.copyBytes(),
+    originalAttachment.content.copyBytes(),
+  );
+  expect(
+    await awaitOutboxOperation(tester, owner.mailboxStore.listViews()),
+    isEmpty,
+  );
+  expect((
+    harness.provider!.bodyReads,
+    harness.provider!.headerReads,
+    harness.providerCreations,
+    harness.authorizations,
+  ), beforeNetwork);
+  expect(tester.takeException(), isNull);
+}
+
 void main() {
   for (final kind in _providers) {
     testWidgets(
@@ -798,6 +1013,16 @@ void main() {
     );
 
     testWidgets(
+      '${kind.name} connected composer recovers actual quota without losing live edits',
+      (tester) async {
+        final harness = await _fixture(tester, kind);
+        await _prepareQuotaRecovery(tester, harness);
+        await _openComposer(tester);
+        await _recoverUnsavedEditor(tester, harness);
+      },
+    );
+
+    testWidgets(
       '${kind.name} rejects a foreign cache owner before loading any draft',
       (tester) async {
         final harness = await _fixture(tester, kind);
@@ -816,4 +1041,35 @@ void main() {
       },
     );
   }
+
+  testWidgets(
+    'offline local composer recovers actual quota without reconnecting or losing edits',
+    (tester) async {
+      final harness = await _fixture(tester, MailProviderKind.imap);
+      await _prepareQuotaRecovery(tester, harness);
+      await _disconnect(tester, harness);
+      final beforeNetwork = (
+        harness.provider!.bodyReads,
+        harness.provider!.headerReads,
+        harness.providerCreations,
+        harness.authorizations,
+      );
+      await _showLocalComposer(tester, harness);
+      expect(
+        tester
+            .widget<StudioMailComposeDialog>(
+              find.byType(StudioMailComposeDialog),
+            )
+            .canSend,
+        isFalse,
+      );
+      await _recoverUnsavedEditor(tester, harness);
+      expect((
+        harness.provider!.bodyReads,
+        harness.provider!.headerReads,
+        harness.providerCreations,
+        harness.authorizations,
+      ), beforeNetwork);
+    },
+  );
 }

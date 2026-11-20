@@ -36,9 +36,10 @@ def main() -> None:
         'mailbox-store-host-dev*', 'mailbox-store-host-cleanup*',
         'host-cache-analysis*', 'store-mailbox-focused*', 'store-cache-review-*',
         'store-cache-recovery-*',
-        'cache_review_probe*', 'cache-independent-review.json',
+        'cache_review_probe*', 'cache-independent-review*.json',
         'mail-cached-*-review.*', 'intake-api.json',
         'runtime/*receipt.json', 'runtime/cached-mail-*.png',
+        'runtime/cached_mail_layout_probe_test.dart',
         'runtime/runtime.json', 'runtime/env.sh',
         'runtime/sdk-release.json', 'runtime/prefetch_locked.py',
     ):

@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:quds_mail_store/quds_mail_store.dart'
+    show MailCacheCleanupReport;
 import 'package:quds_office_editor/quds_office_editor.dart';
 
 import 'studio_mail_attachment_loader.dart';
+import 'studio_mail_cached_strings.dart';
 import 'studio_mail_draft.dart';
 import 'studio_mail_drafts_strings.dart';
 import 'studio_mail_outbox_strings.dart';
@@ -25,6 +28,7 @@ class StudioMailComposeDialog extends StatefulWidget {
     this.previousSubmissionUncertain = false,
     this.onSaveDraft,
     this.onQueueDraft,
+    this.onClearMailCache,
     this.canSend = true,
   });
 
@@ -44,6 +48,11 @@ class StudioMailComposeDialog extends StatefulWidget {
 
   /// Atomically transfers the saved draft to the account's local Outbox.
   final Future<void> Function(StudioMailDraft draft)? onQueueDraft;
+
+  /// Releases one bounded batch of expendable account cache after confirmation.
+  /// Offered only after a failed save; the live draft stays open and is retried
+  /// after cleanup. This callback must never submit or queue outgoing mail.
+  final Future<MailCacheCleanupReport> Function()? onClearMailCache;
 
   @override
   State<StudioMailComposeDialog> createState() =>
@@ -71,6 +80,9 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   int _savedRevision = 0;
   bool _saveFailed = false;
   bool _queueFailed = false;
+  bool _recoveringCache = false;
+  bool _cacheClearFailed = false;
+  MailCacheCleanupReport? _cacheCleanupReport;
   bool _finishing = false;
   bool _allowPop = false;
 
@@ -162,14 +174,20 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     _editRevision++;
     if (widget.onSaveDraft == null) return;
     _autosave?.cancel();
+    // A late IME/editor notification remains part of the next immutable save,
+    // but cannot start a write while cleanup owns the recovery flow.
+    if (_recoveringCache) return;
     _autosave = Timer(const Duration(milliseconds: 500), _saveInBackground);
     setState(() => _saveFailed = false);
   }
 
   void _saveInBackground() => unawaited(_save());
 
-  Future<bool> _save() {
+  Future<bool> _save({bool fromCacheRecovery = false}) {
     _autosave?.cancel();
+    if (_recoveringCache && !fromCacheRecovery) {
+      return _pendingSave ?? Future<bool>.value(false);
+    }
     final save = widget.onSaveDraft;
     if (save == null) return Future.value(true);
     final pending = _pendingSave;
@@ -186,12 +204,13 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       // Install _pendingSave before an injected saver can throw synchronously.
       await Future<void>.value();
       // An edit arriving during a write gets its own later immutable revision.
-      while (_savedRevision != _editRevision) {
+      while (mounted && _savedRevision != _editRevision) {
         final revision = _editRevision;
         final snapshot = _snapshot();
         await save(snapshot);
         _savedRevision = revision;
       }
+      if (!mounted) return false;
       _saveFailed = false;
       return true;
     } on Object {
@@ -205,7 +224,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
 
   Future<void> _finish({required bool send, bool queue = false}) async {
     if ((send || queue) && !widget.canSend) return;
-    if (_finishing || (send && _pickingAttachments)) return;
+    if (_finishing || _recoveringCache || (send && _pickingAttachments)) return;
     if (send && widget.previousSubmissionUncertain && !_retryAcknowledged) {
       return;
     }
@@ -267,7 +286,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   }
 
   Future<void> _closeWithoutSaving() async {
-    if (_finishing || _pendingSave != null) return;
+    if (_finishing || _recoveringCache || _pendingSave != null) return;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -292,8 +311,85 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     Navigator.pop(context);
   }
 
+  Future<void> _clearMailCache() async {
+    if (!mounted ||
+        !_saveFailed ||
+        _finishing ||
+        _recoveringCache ||
+        widget.onSaveDraft == null ||
+        widget.onClearMailCache == null) {
+      return;
+    }
+    setState(() => _recoveringCache = true);
+    _autosave?.cancel();
+    _body.commitPendingEdits();
+    _edited();
+    FocusScope.of(context).unfocus();
+    final direction = Directionality.of(context);
+    try {
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (context) => Directionality(
+          textDirection: direction,
+          child: AlertDialog(
+            title: Text(widget.strings.mailCacheClear),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(widget.strings.mailCacheClearHelp),
+                  const SizedBox(height: 12),
+                  Text(widget.strings.mailCacheDraftClearHelp),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: Text(widget.strings.cancel),
+              ),
+              FilledButton(
+                key: const ValueKey('studio-mail-compose-clear-cache-confirm'),
+                onPressed: () => Navigator.pop(context, true),
+                child: Text(widget.strings.mailCacheClear),
+              ),
+            ],
+          ),
+        ),
+      );
+      if (!mounted || confirmed != true) return;
+      // A retry that began before confirmation owns its existing write. Never
+      // run cleanup concurrently with it, or clear after it already saved all
+      // current edits successfully.
+      await _pendingSave;
+      if (!mounted || (!_saveFailed && _savedRevision == _editRevision)) return;
+      final clear = widget.onClearMailCache;
+      if (clear == null) return;
+      setState(() => _cacheClearFailed = false);
+      final report = await clear();
+      if (!mounted) return;
+      setState(() => _cacheCleanupReport = report);
+      // Exactly one cleanup step, then a local save of the latest live edits.
+      // A previous Send/Queue/Close failure does not retain its finish intent.
+      await _save(fromCacheRecovery: true);
+    } on Object {
+      if (mounted) setState(() => _cacheClearFailed = true);
+    } finally {
+      if (mounted) {
+        setState(() => _recoveringCache = false);
+        if (!_saveFailed && _savedRevision != _editRevision) {
+          _autosave = Timer(
+            const Duration(milliseconds: 500),
+            _saveInBackground,
+          );
+        }
+      }
+    }
+  }
+
   Future<void> _pickAttachments() async {
-    if (_pickingAttachments) return;
+    if (_pickingAttachments || _recoveringCache) return;
     final loader = StudioMailAttachmentLoader();
     setState(() {
       _attachmentLoader = loader;
@@ -329,7 +425,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   }
 
   void _removeAttachment(int index) {
-    if (_pickingAttachments) return;
+    if (_pickingAttachments || _recoveringCache) return;
     setState(() {
       _attachments = StudioMailAttachments.from([
         for (var i = 0; i < _attachments.items.length; i++)
@@ -372,14 +468,14 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       null => null,
     };
     return PopScope<StudioMailDraft>(
-      canPop: widget.onSaveDraft == null || _allowPop,
+      canPop: !_recoveringCache && (widget.onSaveDraft == null || _allowPop),
       onPopInvokedWithResult: (didPop, _) {
         if (!didPop) unawaited(_finish(send: false));
       },
       child: Dialog(
         insetPadding: const EdgeInsets.all(12),
         child: AbsorbPointer(
-          absorbing: _finishing,
+          absorbing: _finishing || _recoveringCache,
           child: SizedBox(
             width: 720,
             height: 680,
@@ -598,7 +694,9 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                               child: Semantics(
                                 liveRegion: true,
                                 child: Text(
-                                  _saveFailed
+                                  _recoveringCache
+                                      ? strings.mailCacheClearing
+                                      : _saveFailed
                                       ? strings.mailDraftSaveFailed
                                       : _pendingSave != null ||
                                             _savedRevision != _editRevision
@@ -622,10 +720,59 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                             ),
                             if (_saveFailed)
                               TextButton(
-                                onPressed: _finishing
+                                onPressed: _finishing || _recoveringCache
                                     ? null
                                     : _saveInBackground,
                                 child: Text(strings.mailDraftRetrySave),
+                              ),
+                          ],
+                        ),
+                      if (_recoveringCache) const LinearProgressIndicator(),
+                      if (_saveFailed && widget.onClearMailCache != null)
+                        Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: TextButton.icon(
+                            key: const ValueKey(
+                              'studio-mail-compose-clear-cache',
+                            ),
+                            onPressed: _finishing || _recoveringCache
+                                ? null
+                                : _clearMailCache,
+                            icon: const Icon(Icons.delete_sweep_outlined),
+                            label: Text(strings.mailCacheClear),
+                          ),
+                        ),
+                      if (_cacheClearFailed)
+                        Text(
+                          strings.mailCacheDraftClearFailed,
+                          key: const ValueKey(
+                            'studio-mail-compose-cache-error',
+                          ),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ),
+                      if (_cacheCleanupReport case final report?)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              strings.mailCacheCleared(
+                                report.removedViews,
+                                report.evictedBodies,
+                                report.removedHeaders,
+                              ),
+                              key: const ValueKey(
+                                'studio-mail-compose-cache-cleared',
+                              ),
+                            ),
+                            if (report.hasMore)
+                              Text(strings.mailCacheDraftClearMore),
+                            if (report.retainedBodies > 0)
+                              Text(
+                                strings.mailCacheProtected(
+                                  report.retainedBodies,
+                                ),
                               ),
                           ],
                         ),
@@ -647,13 +794,16 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                         children: <Widget>[
                           if (_saveFailed)
                             TextButton(
-                              onPressed: _finishing || _pendingSave != null
+                              onPressed:
+                                  _finishing ||
+                                      _recoveringCache ||
+                                      _pendingSave != null
                                   ? null
                                   : _closeWithoutSaving,
                               child: Text(strings.mailDraftCloseUnsaved),
                             ),
                           TextButton(
-                            onPressed: _finishing
+                            onPressed: _finishing || _recoveringCache
                                 ? null
                                 : () => _finish(send: false),
                             child: Text(
@@ -668,6 +818,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                               onPressed:
                                   !widget.canSend ||
                                       _finishing ||
+                                      _recoveringCache ||
                                       _pickingAttachments ||
                                       (widget.previousSubmissionUncertain &&
                                           !_retryAcknowledged)
@@ -680,6 +831,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                             onPressed:
                                 !widget.canSend ||
                                     _finishing ||
+                                    _recoveringCache ||
                                     _pickingAttachments ||
                                     (widget.previousSubmissionUncertain &&
                                         !_retryAcknowledged)

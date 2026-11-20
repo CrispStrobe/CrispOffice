@@ -10,6 +10,11 @@ credentials or a provider. Capture times, partial scope, missing bodies and
 storage failures are explicit. Draft/Outbox namespaces and sole ownership are
 preserved; stale leases cannot commit after disconnect.
 
+Confirmed local cleanup frees replaceable cache while preserving outgoing and
+protected content. A quota-blocked composer can invoke it without leaving its
+current editor, then retry the local save. It never resumes an earlier Send or
+Queue intent automatically.
+
 The additive schema-v5 view records remain separate from synchronization
 cursors and authoritative memberships. This is limited cached reading;
 repository-driven foreground streams, durable synchronization/remote commands
@@ -56,7 +61,7 @@ connection revisions. Its local files are not encrypted. EN/DE/AR controls and
 provider workflow fixtures are covered by the
 [local qualification](../../validation/mail-offline-accounts-20261120/README.md).
 Older accounts need one successful reconnect to establish missing metadata.
-Provider Drafts synchronization, cached/offline mailbox sessions, installed
+Provider Drafts synchronization, repository-driven offline inbox sessions, installed
 platforms and live-provider qualification remain open; this does not close
 M04W, M06 or M07.
 

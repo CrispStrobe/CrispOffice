@@ -8,6 +8,7 @@ import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_drafts_dialog.dart';
 import 'studio_mail_drafts_strings.dart';
+import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_strings.dart';
 import 'studio_strings.dart';
 
@@ -103,6 +104,13 @@ class _StudioMailLocalDraftsDialogState
           MailProblemCode.permissionDenied,
         );
       }
+      if (candidate case StudioMailMailboxStoreOwner(:final mailboxStore)) {
+        if (mailboxStore.account != widget.identity.account) {
+          throw const StudioMailDraftStoreException(
+            MailProblemCode.permissionDenied,
+          );
+        }
+      }
       _catalog = catalog;
       if (!_current) {
         await _releaseStore();
@@ -168,6 +176,15 @@ class _StudioMailLocalDraftsDialogState
         }
         final draftId = catalog.selectedDraftId;
         final epoch = catalog.selectionEpoch;
+        final mailbox = switch (store) {
+          StudioMailMailboxStoreOwner value => value.mailboxStore,
+          _ => null,
+        };
+        bool currentDraft() =>
+            _current &&
+            identical(store, _store) &&
+            catalog.selectedDraftId == draftId &&
+            catalog.selectionEpoch == epoch;
         await showDialog<StudioMailDraft>(
           context: context,
           barrierDismissible: false,
@@ -177,11 +194,18 @@ class _StudioMailLocalDraftsDialogState
             initialDraft: selected.draft,
             previousSubmissionUncertain: selected.submissionUncertain,
             canSend: false,
+            onClearMailCache: mailbox == null
+                ? null
+                : () async {
+                    if (!currentDraft()) {
+                      throw const StudioMailDraftStoreException(
+                        MailProblemCode.unavailable,
+                      );
+                    }
+                    return mailbox.clearCache();
+                  },
             onSaveDraft: (snapshot) async {
-              if (!_current ||
-                  !identical(store, _store) ||
-                  catalog.selectedDraftId != draftId ||
-                  catalog.selectionEpoch != epoch) {
+              if (!currentDraft()) {
                 throw const StudioMailDraftStoreException(
                   MailProblemCode.unavailable,
                 );
