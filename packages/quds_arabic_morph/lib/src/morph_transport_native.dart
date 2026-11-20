@@ -17,9 +17,12 @@ ArabicMorphTransport createArabicMorphTransport({
 }) => _NativeTransport(nativeLibraryPath);
 
 /// Default library file name for this platform.
+/// iOS apps embed it as a signed framework; Android loads it from jniLibs.
 String get arabicMorphLibraryName => Platform.isWindows
     ? 'quds_arabic_morph.dll'
-    : Platform.isMacOS || Platform.isIOS
+    : Platform.isIOS
+    ? 'quds_arabic_morph.framework/quds_arabic_morph'
+    : Platform.isMacOS
     ? 'libquds_arabic_morph.dylib'
     : 'libquds_arabic_morph.so';
 

@@ -1,0 +1,22 @@
+{
+  "adapter_sha256": "bf9e472ce609973d22aa43d4f092fc8d310a66359f9125de7705532fa7cb84a2",
+  "files": {
+    "android/arm64-v8a/libquds_proofing_hunspell.so": "5dfcb2499c4fc67fe584aac1e947dabe9c4008264012f31be5966f5a9dda562d",
+    "android/x86_64/libquds_proofing_hunspell.so": "025bfd6657d0b7ad61a0f9837bf96ba67f414453d83f82a78040510691378f6b",
+    "ios/quds_proofing_hunspell.xcframework/Info.plist": "d8eec3b497b9974d364465b8362a86224339b745dbb791c79c17b236d5f0fc0c",
+    "ios/quds_proofing_hunspell.xcframework/ios-arm64/quds_proofing_hunspell.framework/Info.plist": "5bc1c3c1476cabd175ae5d7930cc78173611bac6a523dc194914ca9c21f3af57",
+    "ios/quds_proofing_hunspell.xcframework/ios-arm64/quds_proofing_hunspell.framework/_CodeSignature/CodeResources": "c6473a3a06ef1ceac832f46304d06c7d17d4597b4b3354ca0eb1a65d0030e4b7",
+    "ios/quds_proofing_hunspell.xcframework/ios-arm64/quds_proofing_hunspell.framework/quds_proofing_hunspell": "355a30a8b19a058ec09d172ca3030f98db3f6b491a6574422b0568699582f408",
+    "ios/quds_proofing_hunspell.xcframework/ios-arm64_x86_64-simulator/quds_proofing_hunspell.framework/Info.plist": "67748e1f1cad252053e4787f0f96addad598c4128ff0c5ed1ab4239ec5f3ac6e",
+    "ios/quds_proofing_hunspell.xcframework/ios-arm64_x86_64-simulator/quds_proofing_hunspell.framework/_CodeSignature/CodeResources": "3b3e9b2111f04e3b759417d7064fe74dc6c8d155e49db70e10faea386cc2d7b9",
+    "ios/quds_proofing_hunspell.xcframework/ios-arm64_x86_64-simulator/quds_proofing_hunspell.framework/quds_proofing_hunspell": "0ba923349c75bab9c040004c3375d63c875ff9657a17028e9c97772cf571b851"
+  },
+  "hunspell": {
+    "bytes": 1536202,
+    "sha256": "11ddfa39afe28c28539fe65fc4f1592d410c1e9b6dd7d8a91ca25d85e9ec65b8",
+    "url": "https://github.com/hunspell/hunspell/releases/download/v1.7.2/hunspell-1.7.2.tar.gz",
+    "version": "1.7.2"
+  },
+  "license_manifest_sha256": "fff74108f96b8d1358f2ed0ba8261d5a91d219f865bfab6e4550f2c58701f629",
+  "platform": "Darwin-25.2.0-arm64-arm-64bit-Mach-O"
+}

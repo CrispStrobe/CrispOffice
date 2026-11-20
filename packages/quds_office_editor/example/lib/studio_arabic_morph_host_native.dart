@@ -5,6 +5,7 @@ import 'package:quds_arabic_morph/installer_io.dart';
 import 'package:quds_arabic_morph/quds_arabic_morph.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 
+import 'studio_native_paths.dart';
 import 'studio_arabic_morph_host.dart';
 import 'studio_hunspell_host.dart' show StudioHunspellCancellation;
 import 'studio_hunspell_host_native.dart' show studioHunspellDataDirectory;
@@ -23,18 +24,7 @@ String? studioArabicMorphLibraryPath() {
   if (defined.isNotEmpty) return defined;
   final env = Platform.environment['QUDS_ARABIC_MORPH_LIBRARY'];
   if (env != null && env.isNotEmpty) return env;
-  final executable = File(Platform.resolvedExecutable).parent.path;
-  final candidates = Platform.isMacOS
-      ? ['$executable/../Frameworks/libquds_arabic_morph.dylib']
-      : Platform.isWindows
-      ? ['$executable\\quds_arabic_morph.dll']
-      : Platform.isLinux
-      ? ['$executable/lib/libquds_arabic_morph.so']
-      : const <String>[];
-  for (final path in candidates) {
-    if (File(path).existsSync()) return path;
-  }
-  return null;
+  return studioPackagedLibrary('quds_arabic_morph');
 }
 
 class NativeStudioArabicMorphHost extends StudioArabicMorphHost {

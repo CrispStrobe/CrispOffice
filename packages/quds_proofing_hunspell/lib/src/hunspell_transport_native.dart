@@ -200,7 +200,10 @@ void _workerMain(List<Object?> arguments) {
             ? defined
             : (Platform.isWindows
                   ? 'quds_proofing_hunspell.dll'
-                  : Platform.isMacOS || Platform.isIOS
+                  // iOS apps embed the library as a signed framework.
+                  : Platform.isIOS
+                  ? 'quds_proofing_hunspell.framework/quds_proofing_hunspell'
+                  : Platform.isMacOS
                   ? 'libquds_proofing_hunspell.dylib'
                   : 'libquds_proofing_hunspell.so'));
     bindings = _Bindings(DynamicLibrary.open(path));

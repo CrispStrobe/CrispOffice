@@ -1,0 +1,21 @@
+{
+  "adapter_sha256": "dbbd39b7506d6d0485e0fe04220de054651b1c56c41e9cc803608a92f39ec93b",
+  "crispembed": {
+    "commit": "0ed76631843cadd9b5c8296f25ed8a414d8f51db",
+    "pull_request": 255,
+    "repository": "https://github.com/CrispStrobe/CrispEmbed"
+  },
+  "files": {
+    "android/arm64-v8a/libquds_arabic_morph.so": "3012d1b0b034268268986ad00a07ffbb441026f935b6a9f2e23ccc9023f1816a",
+    "android/x86_64/libquds_arabic_morph.so": "c1eab7bbeab65f3f087b277059292cb95160a72c8ebcdff73eafc4ba7683ff8b",
+    "ios/quds_arabic_morph.xcframework/Info.plist": "3208e7a33e03db5567d743f1384c48a5972135c6171f88b1f49bd78232f6a9c3",
+    "ios/quds_arabic_morph.xcframework/ios-arm64/quds_arabic_morph.framework/Info.plist": "a747b28cdcce311d377f69c4a0e64b990912c954f019944fc97df09723c421aa",
+    "ios/quds_arabic_morph.xcframework/ios-arm64/quds_arabic_morph.framework/_CodeSignature/CodeResources": "778099b6cd50e91d48e1d45ac7b0ec3ab7e6940c72b7936292674dfcbabcba9d",
+    "ios/quds_arabic_morph.xcframework/ios-arm64/quds_arabic_morph.framework/quds_arabic_morph": "868b7a28e75f59bb92936198f017ea0d4a4244803b8f7e960bd8abe33cda7027",
+    "ios/quds_arabic_morph.xcframework/ios-arm64_x86_64-simulator/quds_arabic_morph.framework/Info.plist": "f674997860162899f9adea3cc4732ad1bb1642894262215555c533728a9933de",
+    "ios/quds_arabic_morph.xcframework/ios-arm64_x86_64-simulator/quds_arabic_morph.framework/_CodeSignature/CodeResources": "76faad38a0605f88c08cb2e661aedac94f10635d002fe9e1141402ef71cc7673",
+    "ios/quds_arabic_morph.xcframework/ios-arm64_x86_64-simulator/quds_arabic_morph.framework/quds_arabic_morph": "ca5f3e228ae09f88267a656c45fe6783e50516416ef400515b49b146f372411a"
+  },
+  "license_manifest_sha256": "c28c0fa6a7b5083ee4fc7ba7908819d5cea3e18221143725868391f82ef0d137",
+  "platform": "Darwin-25.2.0-arm64-arm-64bit-Mach-O"
+}

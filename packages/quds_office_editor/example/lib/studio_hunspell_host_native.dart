@@ -4,6 +4,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_proofing_hunspell/installer_io.dart';
 import 'package:quds_proofing_hunspell/quds_proofing_hunspell.dart';
 
+import 'studio_native_paths.dart';
 import 'studio_hunspell_host.dart';
 
 StudioHunspellHost createHost() => NativeStudioHunspellHost(
@@ -12,17 +13,7 @@ StudioHunspellHost createHost() => NativeStudioHunspellHost(
 );
 
 /// Per-user private data directory for downloaded dictionaries.
-String studioHunspellDataDirectory() {
-  final env = Platform.environment;
-  final home = env['HOME'] ?? '';
-  const app = 'quds_office_studio';
-  if (Platform.isMacOS) return '$home/Library/Application Support/$app';
-  if (Platform.isWindows) {
-    return '${env['APPDATA'] ?? env['LOCALAPPDATA'] ?? '.'}\\$app';
-  }
-  final data = env['XDG_DATA_HOME'];
-  return '${data == null || data.isEmpty ? '$home/.local/share' : data}/$app';
-}
+String studioHunspellDataDirectory() => studioPrivateDataDirectory();
 
 /// The engine library packaged with the app: `QUDS_HUNSPELL_LIBRARY` (Dart
 /// define or environment), then the platform's packaged location next to the
@@ -32,18 +23,7 @@ String? studioHunspellLibraryPath() {
   if (defined.isNotEmpty) return defined;
   final env = Platform.environment['QUDS_HUNSPELL_LIBRARY'];
   if (env != null && env.isNotEmpty) return env;
-  final executable = File(Platform.resolvedExecutable).parent.path;
-  final candidates = Platform.isMacOS
-      ? ['$executable/../Frameworks/libquds_proofing_hunspell.dylib']
-      : Platform.isWindows
-      ? ['$executable\\quds_proofing_hunspell.dll']
-      : Platform.isLinux
-      ? ['$executable/lib/libquds_proofing_hunspell.so']
-      : const <String>[];
-  for (final path in candidates) {
-    if (File(path).existsSync()) return path;
-  }
-  return null;
+  return studioPackagedLibrary('quds_proofing_hunspell');
 }
 
 class NativeStudioHunspellHost extends StudioHunspellHost {
