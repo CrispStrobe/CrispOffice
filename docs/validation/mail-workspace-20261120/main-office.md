@@ -17,6 +17,11 @@ skips**. These selections replace the overlapping historical 137-case and
 116-case Office gates. They are not added to those totals or to Mail totals.
 No GitHub Actions, check or status endpoint was queried or awaited.
 
+This report is now a historical stage receipt. A later incoming main with
+native Word/PowerPoint VBA and typing/proofing changes is covered by the
+[188-execution focused compatibility gate](main-office-latest.md). The two
+selections have different scopes and are not added together.
+
 ## Merge decisions and scope
 
 Five files required manual conflict reconciliation: the Flutter slide renderer,

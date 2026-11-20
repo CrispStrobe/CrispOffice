@@ -536,11 +536,13 @@ final class WordZoteroCitingSession {
         WordZoteroDocumentData.read(document) != _originalData) {
       throw StateError('The Zotero document changed while formatting.');
     }
-    final body = _flowParagraphs(document.sections.expand((s) => s.blocks))
-        .toList();
+    final body = _flowParagraphs(
+      document.sections.expand((s) => s.blocks),
+    ).toList();
     if (body.length != _body.length ||
-        Iterable<int>.generate(body.length)
-            .any((i) => !identical(body[i], _body[i])) ||
+        Iterable<int>.generate(
+          body.length,
+        ).any((i) => !identical(body[i], _body[i])) ||
         _sourceTexts.entries.any((e) => e.key.text != e.value)) {
       throw StateError('The document changed while Zotero was open.');
     }
@@ -934,7 +936,8 @@ final class WordZoteroCitingSession {
       for (final inline in paragraph.inlines) {
         if (inline is WmlRun) {
           final end = offset + inline.text.length;
-          final selected = offset < insertionEndOffset && end > insertionOffset ||
+          final selected =
+              offset < insertionEndOffset && end > insertionOffset ||
               inline.text.isEmpty &&
                   offset >= insertionOffset &&
                   offset <= insertionEndOffset;
@@ -945,7 +948,8 @@ final class WordZoteroCitingSession {
           }
           offset = end;
         } else if ((inline is WmlBookmarkBoundary &&
-                offset >= insertionOffset && offset <= insertionEndOffset) ||
+                offset >= insertionOffset &&
+                offset <= insertionEndOffset) ||
             (offset > insertionOffset && offset < insertionEndOffset)) {
           throw UnsupportedError(
             'A Zotero research-content selection must not cross structural markers.',
