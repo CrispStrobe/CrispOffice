@@ -892,26 +892,49 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     child: SingleChildScrollView(
       padding: const EdgeInsets.all(24),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 460),
+        constraints: const BoxConstraints(maxWidth: 560),
         child: Card(
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(28),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Icon(
-                  Icons.mail_outline,
-                  size: 48,
-                  color: Theme.of(context).colorScheme.primary,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Icon(
+                        Icons.mail_outline,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            widget.strings.mailTitle,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            widget.strings.mailSetupHelp,
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 12),
-                Text(
-                  widget.strings.mailTitle,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 20),
                 for (final service in MailCloudService.values)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
@@ -946,7 +969,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   icon: const Icon(Icons.dns_outlined),
                   label: Text(widget.strings.ewsTitle),
                 ),
-                const SizedBox(height: 12),
+                const Divider(height: 24),
                 KeyedSubtree(
                   key: const ValueKey('studio-mail-provider-preset'),
                   child: DropdownButtonFormField<String>(
@@ -983,14 +1006,12 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                           }),
                   ),
                 ),
-                const SizedBox(height: 12),
-                Text(
-                  _preset == null
-                      ? widget.strings.mailSetupHelp
-                      : widget.strings.mailPresetPasswordHelp,
-                  textAlign: TextAlign.center,
-                ),
                 if (_preset case final preset?) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    widget.strings.mailPresetPasswordHelp,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
                   const SizedBox(height: 8),
                   Text(
                     '${preset.imapHost}:993 TLS\n${preset.smtpHost}:${preset.smtpPort} ${preset == StudioMailImapPreset.icloud ? 'STARTTLS' : 'TLS'}',
@@ -1138,7 +1159,6 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                 const SizedBox(height: 10),
                 Text(
                   widget.strings.mailSessionNotice,
-                  textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
