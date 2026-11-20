@@ -217,13 +217,15 @@ class SlideDeserializer {
   PmlPresentation readBytes(Uint8List bytes, {String? password}) =>
       read(OpcPackage.openBytes(bytes, password: password));
 
+  /// `showMasterSp` hides master decorations without hiding layout shapes or
+  /// the editable slide content. XML Schema booleans default to true here.
   static bool _showsMasterShapes(String xml) {
     final XmlPullReader reader = XmlPullReader(xml);
     while (reader.next()) {
       if (reader.eventType == XmlEventType.startElement &&
           reader.namespaceUri == OfficeNamespaces.p &&
           (reader.localName == 'sld' || reader.localName == 'sldLayout')) {
-        final String? value = reader.getAttribute('showMasterSp');
+        final String? value = reader.getAttribute('showMasterSp')?.trim();
         return value != '0' && value != 'false';
       }
     }
@@ -241,19 +243,6 @@ class SlideDeserializer {
     }
     final String attrs = xml.substring(start, end);
     return RegExp(r'''\bshow\s*=\s*["'](?:0|false)["']''').hasMatch(attrs);
-  }
-
-  /// `showMasterSp` hides master decorations without hiding layout shapes or
-  /// the editable slide content. XML Schema booleans default to true here.
-  static bool _showsMasterShapes(String xml) {
-    final XmlPullReader reader = XmlPullReader(xml);
-    while (reader.next()) {
-      if (reader.eventType == XmlEventType.startElement) {
-        final String? value = reader.getAttribute('showMasterSp')?.trim();
-        return value != '0' && value != 'false';
-      }
-    }
-    return true;
   }
 
   /// Resolves a solid `p:bg` fill to `RRGGBB`, honoring theme variants.
