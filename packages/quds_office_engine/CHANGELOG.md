@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend Word VBA with inches, centimeters, millimeters and picas conversions
+  to/from points, plus official named arguments for all ten measurement
+  functions. Preserve bounded Double arithmetic, exact native-unit checks,
+  document-independent compilation and atomic publication. Add a repeatable
+  Word layout example and source, saved-document, CLI/MCP and portable
+  JavaScript checks; document the Single-precision and native ownership limits.
+
 - Fall back to full Word layout for changed footnote/endnote paragraphs,
   including nested note tables, so formatting edits cannot reuse stale note
   geometry. Keep incremental body edits when note content is unchanged and
