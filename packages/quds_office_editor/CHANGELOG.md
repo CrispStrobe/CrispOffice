@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Autosave one local Studio Mail draft per account across SMTP, EWS, Gmail and
+  Microsoft 365. Restore incomplete recipients, reply headers and attachment
+  snapshots after reconnect; flush close/send, expose storage failure and an
+  explicit unsaved exit, and preserve interrupted-send warnings across restart.
+  Persist the send boundary before transport and clear accepted/discarded drafts
+  transactionally, retaining guarded content when acceptance cleanup fails.
+
 - Render imported linear slide gradients across the full shape, including
   narrow vertical fills. Apply picture transparency once and draw one soft
   picture shadow while preserving existing inherited-background behavior.

@@ -99,6 +99,84 @@ void main() {
     expect(snapshot.submissionUncertain, isTrue);
   });
 
+  test(
+    'verified rejection of a new attempt persists safe ordinary retry',
+    () async {
+      final store = await open();
+      await store.load();
+      await store.save(_draft('not submitted'), submissionUncertain: true);
+      await store.saveRejectedDraft(
+        _draft('not submitted'),
+        wasPreviouslyUncertain: false,
+      );
+      expect((await store.load())!.submissionUncertain, isFalse);
+      await store.close();
+      final restored = (await (await open()).load())!;
+      expect(restored.draft.body, 'not submitted');
+      expect(restored.submissionUncertain, isFalse);
+    },
+  );
+
+  test('rejected retry cannot erase an earlier uncertain submission', () async {
+    final store = await open();
+    await store.load();
+    await store.save(_draft('first attempt'), submissionUncertain: true);
+    await store.save(_draft('retry'), submissionUncertain: true);
+    await store.saveRejectedDraft(
+      _draft('retry'),
+      wasPreviouslyUncertain: true,
+    );
+    await store.close();
+    final restored = (await (await open()).load())!;
+    expect(restored.draft.body, 'retry');
+    expect(restored.submissionUncertain, isTrue);
+  });
+
+  test(
+    'failed rejection persistence retains the durable uncertainty marker',
+    () async {
+      var fail = false;
+      final store = await open(
+        fault: (checkpoint) {
+          if (fail && checkpoint == MailStoreCheckpoint.afterDraftBlobs) {
+            throw StateError('result persistence failed');
+          }
+        },
+      );
+      await store.load();
+      await store.save(_draft('attempt'), submissionUncertain: true);
+      fail = true;
+      await expectLater(
+        store.saveRejectedDraft(
+          _draft('attempt'),
+          wasPreviouslyUncertain: false,
+        ),
+        throwsA(isA<StudioMailDraftStoreException>()),
+      );
+      fail = false;
+      expect((await store.load())!.submissionUncertain, isTrue);
+      await store.close();
+      expect((await (await open()).load())!.submissionUncertain, isTrue);
+    },
+  );
+
+  test(
+    'a rejected outcome requires a preceding durable attempt marker',
+    () async {
+      final store = await open();
+      await store.load();
+      await store.save(_draft('editing'), submissionUncertain: false);
+      await expectLater(
+        store.saveRejectedDraft(
+          _draft('editing'),
+          wasPreviouslyUncertain: false,
+        ),
+        throwsA(_problem(MailProblemCode.conflict)),
+      );
+      expect((await store.load())!.submissionUncertain, isFalse);
+    },
+  );
+
   test('confirmed clear survives restart and permits a fresh draft', () async {
     final store = await open();
     await store.load();

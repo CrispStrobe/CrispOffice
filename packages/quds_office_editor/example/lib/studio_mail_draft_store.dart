@@ -100,11 +100,24 @@ typedef StudioMailDraftStoreFactory =
 ///
 /// Await [load] before editing, and await a save with submissionUncertain=true
 /// before invoking a transport. Once set, uncertainty remains sticky across
-/// ordinary autosaves; only an explicit clear removes it. Await [clear] after
-/// confirmed acceptance or a confirmed discard. Closing never clears content.
+/// ordinary autosaves. A verified rejected attempt may restore its prior
+/// uncertainty through [saveRejectedDraft]; exceptions and ambiguous responses
+/// never use that path. Await [clear] after confirmed acceptance or a confirmed
+/// discard. Closing never clears content.
 abstract interface class StudioMailDraftStore {
   Future<StudioMailStoredDraft?> load();
   Future<void> save(StudioMailDraft draft, {required bool submissionUncertain});
+
+  /// Atomically retains a definitely unsubmitted draft and the uncertainty
+  /// observed before that attempt's marker. The host must verify a matching
+  /// attempt ID and rejected/retryableFailure outcome before calling this.
+  /// An earlier uncertain attempt remains guarded even if this retry failed.
+  /// This is never an autosave or a general-purpose uncertainty reset.
+  Future<void> saveRejectedDraft(
+    StudioMailDraft draft, {
+    required bool wasPreviouslyUncertain,
+  });
+
   Future<void> clear();
   Future<void> close();
 }
@@ -181,6 +194,27 @@ final class SqliteStudioMailDraftStore implements StudioMailDraftStore {
   }) => _serialize(() async {
     _requireLoaded();
     final uncertain = submissionUncertain || _submissionUncertain;
+    await _persistDraft(draft, uncertain: uncertain);
+  });
+
+  @override
+  Future<void> saveRejectedDraft(
+    StudioMailDraft draft, {
+    required bool wasPreviouslyUncertain,
+  }) => _serialize(() async {
+    _requireLoaded();
+    // A verified outcome must follow this owner's durable attempt marker. It
+    // cannot manufacture a result for a draft that was never marked in flight.
+    if (!_submissionUncertain) {
+      throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+    }
+    await _persistDraft(draft, uncertain: wasPreviouslyUncertain);
+  });
+
+  Future<void> _persistDraft(
+    StudioMailDraft draft, {
+    required bool uncertain,
+  }) async {
     final revision = (_revision ?? -1) + 1;
     final prepared = MailDraft(
       id: draftId,
@@ -211,7 +245,7 @@ final class SqliteStudioMailDraftStore implements StudioMailDraftStore {
     _value(await _repository.saveDraft(prepared, expectedRevision: _revision));
     _revision = revision;
     _submissionUncertain = uncertain;
-  });
+  }
 
   @override
   Future<void> clear() => _serialize(() async {
