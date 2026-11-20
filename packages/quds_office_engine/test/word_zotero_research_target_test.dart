@@ -164,8 +164,8 @@ void main() {
           final restored =
               (endnote ? reopened.endnotes : reopened.footnotes).single;
           expect(
-            restored.paragraphs.map((p) => p.text),
-            note.paragraphs.map((p) => p.text),
+            WordNotes.editableText(restored),
+            WordNotes.editableText(note),
           );
           expect(
             WordZotero.fields(reopened)
@@ -227,7 +227,7 @@ void main() {
           expect(markers.single.properties.bold, isTrue);
           expect(current.paragraphs.last.text, 'Trailing prose');
           expect(current.paragraphs[1].properties.numId, isNotNull);
-          expect(current.paragraphs[1].properties.listRestart, 3);
+          expect(current.paragraphs[1].properties.listLabel, '3. ');
           expect(current.paragraphs[2].properties.numberingSuppressed, isTrue);
           final pictures = current.allParagraphs
               .expand((p) => p.inlines.whereType<WmlRun>())
@@ -243,6 +243,45 @@ void main() {
         }
         expect(session.caretAfter!.paragraph.text, 'Nested (Two)');
         expect(session.caretAfter!.offset, 'Nested (Two)'.length);
+      },
+    );
+
+    test(
+      '$label visible start keeps reference separator on the inserted heading',
+      () {
+        final document = WmlDocument.empty(text: 'Body');
+        final note = WordNotes.insert(
+          document,
+          document.paragraphs.single,
+          endnote: endnote,
+          text: ' Trailing prose',
+        );
+        final paragraph = note.paragraphs.single;
+        paragraph.inlines.insert(
+          0,
+          WmlNoteMarker(
+            endnote: endnote,
+            properties: WmlRunProps(bold: true),
+          ),
+        );
+        expect(WordNotes.editableText(note), 'Trailing prose');
+        final session = _session(document, paragraph, start: 1);
+        _start(session, '<h2>Research</h2><p>Details</p>', type: type);
+        _finish(session);
+        for (final result in [document, _reopen(document)]) {
+          final current = (endnote ? result.endnotes : result.footnotes).single;
+          expect(current.paragraphs.map((p) => p.text), [
+            ' Research',
+            'Details',
+            'Trailing prose',
+          ]);
+          expect(
+            WordNotes.editableText(current),
+            'Research\nDetails\nTrailing prose',
+          );
+          expect(current.paragraphs.first.inlines.first, isA<WmlNoteMarker>());
+          expect(current.paragraphs.first.properties.headingLevel, 2);
+        }
       },
     );
 
@@ -450,6 +489,27 @@ void main() {
         isTrue,
       );
       expect(paragraph.text, 'A😀B');
+    },
+  );
+
+  test(
+    'research text cannot extend a paragraph-owned field at its end boundary',
+    () {
+      final document = WmlDocument.empty(text: 'Result');
+      final paragraph = document.paragraphs.single;
+      paragraph.properties.fieldInstruction =
+          _citation('old', 'Result').fieldInstruction;
+      final session = _session(
+        document,
+        paragraph,
+        start: paragraph.text.length,
+      );
+      expect(session.canInsertNoteText, isFalse);
+      expect(
+        () => _call(session, 'Document.insertText', ['<p>New</p>']),
+        throwsUnsupportedError,
+      );
+      expect(paragraph.text, 'Result');
     },
   );
 

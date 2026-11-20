@@ -1,0 +1,996 @@
+{
+  "captured_main": "d040c15a07f652d01e75363031d0efdee6357bda",
+  "branches": [
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/vba-variant-conversions-20261120",
+      "sha": "1ceae221d37e733f0195d35622a05f896a2d13a1"
+    },
+    {
+      "name": "codex/word-powerpoint-vba-20261120",
+      "sha": "06f119566235aa3765445526f5ffab48832b1a31"
+    },
+    {
+      "name": "codex/zotero-parity-20261120",
+      "sha": "3100725d07a715f230c263f640dbd588c7c75660"
+    },
+    {
+      "name": "codex/zotero-parity-continuation-20261120",
+      "sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b"
+    },
+    {
+      "name": "codex/zotero-research-materials-20261120",
+      "sha": "a31616d3567a43307251e13a9728cf92fd8690c6"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/crispoffice-rename-20261120",
+      "sha": "228d13d949859c66c58cf51addfbb03b09c7365d"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "1eddb91495bd405a1dfb3b1e8734e93e85b04b1d"
+    },
+    {
+      "name": "integrate/window-focus-office-20261120",
+      "sha": "860c807bfd1385899eed130abfb8940f95bda113"
+    },
+    {
+      "name": "main",
+      "sha": "d040c15a07f652d01e75363031d0efdee6357bda"
+    },
+    {
+      "name": "perf/typing-proofing-20261120",
+      "sha": "afa9272a6e31e2cbd6b9896c450a7bccfd62c579"
+    },
+    {
+      "name": "work/mail-attachments-20261120",
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c"
+    },
+    {
+      "name": "work/mail-draft-recovery-20261120",
+      "sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d"
+    },
+    {
+      "name": "work/mail-workspace-20261120",
+      "sha": "1d26181b0161d88abe5977f9848ffd4cd99e6259"
+    }
+  ],
+  "recent_pull_requests": [
+    {
+      "number": 237,
+      "state": "open",
+      "draft": true,
+      "head": "perf/typing-proofing-20261120",
+      "head_sha": "afa9272a6e31e2cbd6b9896c450a7bccfd62c579",
+      "updated_at": "2026-11-20T09:56:25Z",
+      "merged_at": null
+    },
+    {
+      "number": 239,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/word-powerpoint-vba-20261120",
+      "head_sha": "06f119566235aa3765445526f5ffab48832b1a31",
+      "updated_at": "2026-11-20T09:48:35Z",
+      "merged_at": "2026-11-20T09:46:52Z"
+    },
+    {
+      "number": 234,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/crispoffice-rename-20261120",
+      "head_sha": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "updated_at": "2026-11-20T09:46:54Z",
+      "merged_at": "2026-11-20T09:46:53Z"
+    },
+    {
+      "number": 238,
+      "state": "open",
+      "draft": false,
+      "head": "codex/zotero-parity-continuation-20261120",
+      "head_sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "updated_at": "2026-11-20T09:42:22Z",
+      "merged_at": null
+    },
+    {
+      "number": 227,
+      "state": "closed",
+      "draft": true,
+      "head": "codex/vba-variant-conversions-20261120",
+      "head_sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "updated_at": "2026-11-20T09:32:04Z",
+      "merged_at": "2026-11-20T09:32:04Z"
+    },
+    {
+      "number": 236,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/android-spacy-grammar-20261120",
+      "head_sha": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "updated_at": "2026-11-20T09:31:52Z",
+      "merged_at": "2026-11-20T09:31:28Z"
+    },
+    {
+      "number": 235,
+      "state": "closed",
+      "draft": false,
+      "head": "ci/android-spacy-grammar-workflow",
+      "head_sha": "596fb68f64c447177ed202a40f890c20205a0270",
+      "updated_at": "2026-11-20T09:31:52Z",
+      "merged_at": "2026-11-20T08:37:17Z"
+    },
+    {
+      "number": 233,
+      "state": "closed",
+      "draft": false,
+      "head": "work/mail-draft-recovery-20261120",
+      "head_sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "updated_at": "2026-11-20T08:01:59Z",
+      "merged_at": "2026-11-20T08:01:59Z"
+    },
+    {
+      "number": 223,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/zotero-research-materials-20261120",
+      "head_sha": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "updated_at": "2026-11-20T07:24:55Z",
+      "merged_at": "2026-11-20T07:24:03Z"
+    },
+    {
+      "number": 221,
+      "state": "closed",
+      "draft": true,
+      "head": "work/mail-attachments-20261120",
+      "head_sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "updated_at": "2026-11-20T07:24:05Z",
+      "merged_at": "2026-11-20T07:24:05Z"
+    },
+    {
+      "number": 232,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/mobile-proofing-native-20261120",
+      "head_sha": "8b09e0ca6667c00db81b613c40b6d275bc20471a",
+      "updated_at": "2026-11-20T06:59:54Z",
+      "merged_at": "2026-11-20T06:59:22Z"
+    },
+    {
+      "number": 230,
+      "state": "closed",
+      "draft": false,
+      "head": "docs/glotlid-feasibility-20261120",
+      "head_sha": "3c137a66e8a434f5a90e80f5094bfaa25354067a",
+      "updated_at": "2026-11-20T06:59:52Z",
+      "merged_at": "2026-11-20T06:14:49Z"
+    },
+    {
+      "number": 231,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/arabic-morph-disambig-20261120",
+      "head_sha": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+      "updated_at": "2026-11-20T06:43:26Z",
+      "merged_at": "2026-11-20T06:43:03Z"
+    },
+    {
+      "number": 226,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/comment-draft-language-test-20261120",
+      "head_sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "updated_at": "2026-11-20T06:03:06Z",
+      "merged_at": "2026-11-20T05:29:16Z"
+    },
+    {
+      "number": 229,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/web-proofing-persistence-20261120",
+      "head_sha": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+      "updated_at": "2026-11-20T06:03:05Z",
+      "merged_at": "2026-11-20T06:01:58Z"
+    },
+    {
+      "number": 228,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/macos-ci-portable-20261120",
+      "head_sha": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+      "updated_at": "2026-11-20T06:02:57Z",
+      "merged_at": "2026-11-20T05:45:09Z"
+    },
+    {
+      "number": 224,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/macos-signing-ci-20261120",
+      "head_sha": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "updated_at": "2026-11-20T05:14:11Z",
+      "merged_at": "2026-11-20T05:02:10Z"
+    },
+    {
+      "number": 225,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/spacy-grammar-v2-20261120",
+      "head_sha": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "updated_at": "2026-11-20T05:13:51Z",
+      "merged_at": "2026-11-20T05:13:37Z"
+    },
+    {
+      "number": 222,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/vba-string-conformance-20261120",
+      "head_sha": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "updated_at": "2026-11-20T04:41:44Z",
+      "merged_at": "2026-11-20T04:41:16Z"
+    },
+    {
+      "number": 220,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/spacy-macos-bundled-qualification-20261119",
+      "head_sha": "1441665236401e94ccf03ffa694c7434bb227ef3",
+      "updated_at": "2026-11-19T23:08:21Z",
+      "merged_at": "2026-11-19T22:30:15Z"
+    },
+    {
+      "number": 218,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/zotero-workflow-20261119",
+      "head_sha": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "updated_at": "2026-11-19T22:45:46Z",
+      "merged_at": "2026-11-19T21:31:47Z"
+    },
+    {
+      "number": 217,
+      "state": "closed",
+      "draft": false,
+      "head": "work/mail-continuation-20261119",
+      "head_sha": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+      "updated_at": "2026-11-19T22:45:46Z",
+      "merged_at": "2026-11-19T21:41:20Z"
+    },
+    {
+      "number": 216,
+      "state": "closed",
+      "draft": false,
+      "head": "work/mail-next-20261119",
+      "head_sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "updated_at": "2026-11-19T22:45:46Z",
+      "merged_at": "2026-11-19T20:50:37Z"
+    },
+    {
+      "number": 219,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/vba-dynamic-arrays-20261119",
+      "head_sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "merged_at": "2026-11-19T22:01:27Z"
+    },
+    {
+      "number": 212,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/mail-archive-resume-20261119",
+      "head_sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "merged_at": "2026-11-19T20:16:03Z"
+    },
+    {
+      "number": 211,
+      "state": "closed",
+      "draft": true,
+      "head": "codex/crispoffice-layout-theme-20261119",
+      "head_sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "merged_at": "2026-11-19T20:50:38Z"
+    },
+    {
+      "number": 210,
+      "state": "closed",
+      "draft": true,
+      "head": "codex/vba-arrays-foreach-20261119",
+      "head_sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "merged_at": "2026-11-19T20:50:38Z"
+    },
+    {
+      "number": 215,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/spacy-open-refresh-20261119",
+      "head_sha": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "updated_at": "2026-11-19T19:53:18Z",
+      "merged_at": "2026-11-19T19:53:14Z"
+    },
+    {
+      "number": 214,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/spacy-bundled-ner-20261119",
+      "head_sha": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "updated_at": "2026-11-19T19:43:15Z",
+      "merged_at": "2026-11-19T19:42:42Z"
+    },
+    {
+      "number": 213,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/app-gaps-20261119",
+      "head_sha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "updated_at": "2026-11-19T19:43:15Z",
+      "merged_at": "2026-11-19T19:15:39Z"
+    },
+    {
+      "number": 209,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/mail-archive-restore-20261119",
+      "head_sha": "6275d21246040e03f6264b27171992c88d1474a2",
+      "updated_at": "2026-11-19T19:43:14Z",
+      "merged_at": "2026-11-19T18:16:42Z"
+    },
+    {
+      "number": 207,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/vba-control-flow-20261119",
+      "head_sha": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "updated_at": "2026-11-19T19:43:14Z",
+      "merged_at": "2026-11-19T17:49:23Z"
+    },
+    {
+      "number": 206,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/crispoffice-gui-20261119",
+      "head_sha": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "updated_at": "2026-11-19T19:43:14Z",
+      "merged_at": "2026-11-19T17:40:16Z"
+    },
+    {
+      "number": 208,
+      "state": "closed",
+      "draft": false,
+      "head": "integrate/macbook-build-20261119",
+      "head_sha": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "updated_at": "2026-11-19T17:40:45Z",
+      "merged_at": "2026-11-19T17:39:56Z"
+    },
+    {
+      "number": 204,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/vba-procedures-20261119",
+      "head_sha": "3db248be978b24d0693d1133505d9be200fd1256",
+      "updated_at": "2026-11-19T17:40:22Z",
+      "merged_at": "2026-11-19T16:48:52Z"
+    },
+    {
+      "number": 202,
+      "state": "closed",
+      "draft": true,
+      "head": "codex/vba-excel-macros",
+      "head_sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "updated_at": "2026-11-19T17:40:22Z",
+      "merged_at": null
+    },
+    {
+      "number": 197,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ews-on-premises",
+      "head_sha": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "updated_at": "2026-11-19T17:40:22Z",
+      "merged_at": "2026-11-19T14:56:01Z"
+    },
+    {
+      "number": 196,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/arabic-morph-binary-20261119",
+      "head_sha": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "updated_at": "2026-11-19T17:40:22Z",
+      "merged_at": "2026-11-19T14:04:12Z"
+    },
+    {
+      "number": 205,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/mail-archive-portability-20261119",
+      "head_sha": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "updated_at": "2026-11-19T17:40:21Z",
+      "merged_at": "2026-11-19T17:27:22Z"
+    },
+    {
+      "number": 203,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/mail-archive-search-20261119",
+      "head_sha": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "updated_at": "2026-11-19T17:40:21Z",
+      "merged_at": "2026-11-19T16:26:50Z"
+    },
+    {
+      "number": 201,
+      "state": "closed",
+      "draft": true,
+      "head": "codex/mcp-aligned-macros",
+      "head_sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "updated_at": "2026-11-19T17:40:21Z",
+      "merged_at": "2026-11-19T16:26:52Z"
+    },
+    {
+      "number": 198,
+      "state": "closed",
+      "draft": true,
+      "head": "codex/office-validation-recovery-20261119",
+      "head_sha": "623057111a9179552eb02b21a753a1728de9905d",
+      "updated_at": "2026-11-19T17:40:21Z",
+      "merged_at": "2026-11-19T16:26:53Z"
+    },
+    {
+      "number": 199,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/paragraph-language-id-20261119",
+      "head_sha": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "updated_at": "2026-11-19T14:56:01Z",
+      "merged_at": "2026-11-19T14:56:01Z"
+    },
+    {
+      "number": 200,
+      "state": "closed",
+      "draft": false,
+      "head": "codex/mail-providers-20261119",
+      "head_sha": "4b2ad7995c1ddff052232c21749d847701d77f96",
+      "updated_at": "2026-11-19T14:55:59Z",
+      "merged_at": "2026-11-19T14:55:59Z"
+    },
+    {
+      "number": 163,
+      "state": "closed",
+      "draft": false,
+      "head": "integrate/spacy-ner-macos-followup-20261118",
+      "head_sha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "updated_at": "2026-11-19T13:31:59Z",
+      "merged_at": "2026-11-18T12:36:33Z"
+    },
+    {
+      "number": 171,
+      "state": "closed",
+      "draft": false,
+      "head": "integrate/spacy-en-fr-20261118",
+      "head_sha": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "updated_at": "2026-11-19T13:31:57Z",
+      "merged_at": "2026-11-18T20:17:10Z"
+    },
+    {
+      "number": 152,
+      "state": "closed",
+      "draft": false,
+      "head": "integrate/office-union-150",
+      "head_sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "updated_at": "2026-11-19T13:31:55Z",
+      "merged_at": "2026-11-17T22:10:10Z"
+    },
+    {
+      "number": 147,
+      "state": "closed",
+      "draft": false,
+      "head": "integrate/odt-column-boundary-144",
+      "head_sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "updated_at": "2026-11-19T13:31:53Z",
+      "merged_at": "2026-11-17T21:29:45Z"
+    },
+    {
+      "number": 125,
+      "state": "closed",
+      "draft": false,
+      "head": "integrate/codex-office-continuation-20261117",
+      "head_sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "updated_at": "2026-11-19T13:31:50Z",
+      "merged_at": "2026-11-17T18:25:42Z"
+    },
+    {
+      "number": 129,
+      "state": "closed",
+      "draft": false,
+      "head": "integrate/aot-then-remove-20261117",
+      "head_sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "updated_at": "2026-11-19T13:31:47Z",
+      "merged_at": "2026-11-17T19:09:23Z"
+    },
+    {
+      "number": 34,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/utf16-custom-xml",
+      "head_sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "updated_at": "2026-11-19T13:31:42Z",
+      "merged_at": "2026-11-15T18:49:26Z"
+    },
+    {
+      "number": 186,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/studio-example-tests-20261119",
+      "head_sha": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "updated_at": "2026-11-19T13:31:41Z",
+      "merged_at": "2026-11-19T09:26:24Z"
+    },
+    {
+      "number": 42,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/sdt-trailing-section-break",
+      "head_sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "updated_at": "2026-11-19T13:31:39Z",
+      "merged_at": "2026-11-15T20:24:56Z"
+    },
+    {
+      "number": 44,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/sdt-multi-section-control",
+      "head_sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "updated_at": "2026-11-19T13:31:37Z",
+      "merged_at": "2026-11-15T22:18:54Z"
+    },
+    {
+      "number": 130,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/odt-inline-fields",
+      "head_sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "updated_at": "2026-11-19T13:31:35Z",
+      "merged_at": "2026-11-17T19:11:34Z"
+    },
+    {
+      "number": 73,
+      "state": "closed",
+      "draft": false,
+      "head": "fix/ods-writer-page-layout",
+      "head_sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "updated_at": "2026-11-19T13:31:34Z",
+      "merged_at": "2026-11-16T18:30:45Z"
+    },
+    {
+      "number": 80,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/sheet-page-setup",
+      "head_sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "updated_at": "2026-11-19T13:31:29Z",
+      "merged_at": "2026-11-16T19:47:41Z"
+    },
+    {
+      "number": 32,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/sheet-hidden-state",
+      "head_sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "updated_at": "2026-11-19T13:31:27Z",
+      "merged_at": "2026-11-15T16:51:32Z"
+    },
+    {
+      "number": 33,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/sheet-hidden-sheets",
+      "head_sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "updated_at": "2026-11-19T13:31:26Z",
+      "merged_at": "2026-11-15T18:39:22Z"
+    },
+    {
+      "number": 127,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-toc",
+      "head_sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "updated_at": "2026-11-19T13:31:22Z",
+      "merged_at": "2026-11-17T18:59:52Z"
+    },
+    {
+      "number": 115,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-table-borders",
+      "head_sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "updated_at": "2026-11-19T13:31:21Z",
+      "merged_at": "2026-11-17T16:11:54Z"
+    },
+    {
+      "number": 118,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-tab-stops",
+      "head_sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "updated_at": "2026-11-19T13:31:19Z",
+      "merged_at": "2026-11-17T17:26:19Z"
+    },
+    {
+      "number": 104,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-sections2",
+      "head_sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "updated_at": "2026-11-19T13:31:18Z",
+      "merged_at": "2026-11-17T14:18:03Z"
+    },
+    {
+      "number": 112,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-paragraph-shading",
+      "head_sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "updated_at": "2026-11-19T13:31:16Z",
+      "merged_at": "2026-11-17T15:52:04Z"
+    },
+    {
+      "number": 122,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-paragraph-breaks",
+      "head_sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "updated_at": "2026-11-19T13:31:15Z",
+      "merged_at": "2026-11-17T18:00:25Z"
+    },
+    {
+      "number": 110,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-page-fields",
+      "head_sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "updated_at": "2026-11-19T13:31:13Z",
+      "merged_at": "2026-11-17T15:45:06Z"
+    },
+    {
+      "number": 97,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-ordered-lists",
+      "head_sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "updated_at": "2026-11-19T13:31:11Z",
+      "merged_at": "2026-11-17T08:36:14Z"
+    },
+    {
+      "number": 106,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-nested-lists",
+      "head_sha": "7686ec52876288e6799023fd686af79228236826",
+      "updated_at": "2026-11-19T13:31:10Z",
+      "merged_at": "2026-11-17T14:40:22Z"
+    },
+    {
+      "number": 95,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-lists",
+      "head_sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "updated_at": "2026-11-19T13:31:08Z",
+      "merged_at": "2026-11-17T08:24:48Z"
+    },
+    {
+      "number": 107,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-links-bookmarks",
+      "head_sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "updated_at": "2026-11-19T13:31:07Z",
+      "merged_at": "2026-11-17T14:52:11Z"
+    },
+    {
+      "number": 100,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-footnotes",
+      "head_sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "updated_at": "2026-11-19T13:31:04Z",
+      "merged_at": "2026-11-17T09:02:35Z"
+    },
+    {
+      "number": 133,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-first-even-headers",
+      "head_sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "updated_at": "2026-11-19T13:31:03Z",
+      "merged_at": "2026-11-17T19:23:07Z"
+    },
+    {
+      "number": 124,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-fields",
+      "head_sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "updated_at": "2026-11-19T13:31:01Z",
+      "merged_at": "2026-11-17T18:17:58Z"
+    },
+    {
+      "number": 92,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-document-writer",
+      "head_sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "updated_at": "2026-11-19T13:31:00Z",
+      "merged_at": "2026-11-16T23:41:09Z"
+    },
+    {
+      "number": 103,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-comments",
+      "head_sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "updated_at": "2026-11-19T13:30:58Z",
+      "merged_at": "2026-11-17T13:47:00Z"
+    },
+    {
+      "number": 119,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odt-columns",
+      "head_sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "updated_at": "2026-11-19T13:30:57Z",
+      "merged_at": "2026-11-17T17:42:54Z"
+    },
+    {
+      "number": 68,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-writer-metadata",
+      "head_sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "updated_at": "2026-11-19T13:30:55Z",
+      "merged_at": "2026-11-16T15:16:47Z"
+    },
+    {
+      "number": 70,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-writer-images",
+      "head_sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "updated_at": "2026-11-19T13:30:53Z",
+      "merged_at": "2026-11-16T15:55:20Z"
+    },
+    {
+      "number": 69,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-writer-conditional",
+      "head_sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "updated_at": "2026-11-19T13:30:52Z",
+      "merged_at": "2026-11-16T15:49:13Z"
+    },
+    {
+      "number": 67,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-writer",
+      "head_sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "updated_at": "2026-11-19T13:30:51Z",
+      "merged_at": "2026-11-16T15:11:41Z"
+    },
+    {
+      "number": 39,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-validations",
+      "head_sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "updated_at": "2026-11-19T13:30:49Z",
+      "merged_at": "2026-11-15T19:18:34Z"
+    },
+    {
+      "number": 51,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-validation-operators",
+      "head_sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "updated_at": "2026-11-19T13:30:47Z",
+      "merged_at": "2026-11-16T08:32:57Z"
+    },
+    {
+      "number": 54,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-validation-messages",
+      "head_sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "updated_at": "2026-11-19T13:30:46Z",
+      "merged_at": "2026-11-16T09:10:51Z"
+    },
+    {
+      "number": 57,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-tab-color",
+      "head_sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "updated_at": "2026-11-19T13:30:44Z",
+      "merged_at": "2026-11-16T10:30:10Z"
+    },
+    {
+      "number": 78,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-row-groups",
+      "head_sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "updated_at": "2026-11-19T13:30:42Z",
+      "merged_at": "2026-11-16T19:23:12Z"
+    },
+    {
+      "number": 60,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-outline",
+      "head_sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "updated_at": "2026-11-19T13:30:41Z",
+      "merged_at": "2026-11-16T13:32:40Z"
+    },
+    {
+      "number": 58,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-named-expressions",
+      "head_sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "updated_at": "2026-11-19T13:30:39Z",
+      "merged_at": "2026-11-16T10:37:36Z"
+    },
+    {
+      "number": 48,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-metadata",
+      "head_sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "updated_at": "2026-11-19T13:30:37Z",
+      "merged_at": "2026-11-15T23:02:25Z"
+    },
+    {
+      "number": 29,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-images",
+      "head_sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "updated_at": "2026-11-19T13:30:36Z",
+      "merged_at": "2026-11-15T14:12:12Z"
+    },
+    {
+      "number": 59,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-hyperlinks",
+      "head_sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "updated_at": "2026-11-19T13:30:34Z",
+      "merged_at": "2026-11-16T13:26:38Z"
+    },
+    {
+      "number": 83,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-header-footer",
+      "head_sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "updated_at": "2026-11-19T13:30:33Z",
+      "merged_at": "2026-11-16T19:57:58Z"
+    },
+    {
+      "number": 62,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-filter-predicates",
+      "head_sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "updated_at": "2026-11-19T13:30:31Z",
+      "merged_at": "2026-11-16T13:37:17Z"
+    },
+    {
+      "number": 65,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-filter-operators",
+      "head_sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "updated_at": "2026-11-19T13:30:30Z",
+      "merged_at": "2026-11-16T14:13:30Z"
+    },
+    {
+      "number": 76,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-filter-conditions",
+      "head_sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "updated_at": "2026-11-19T13:30:28Z",
+      "merged_at": "2026-11-16T19:17:09Z"
+    },
+    {
+      "number": 30,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-default-style",
+      "head_sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "updated_at": "2026-11-19T13:30:26Z",
+      "merged_at": "2026-11-15T16:25:32Z"
+    },
+    {
+      "number": 31,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-default-geometry",
+      "head_sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "updated_at": "2026-11-19T13:30:24Z",
+      "merged_at": "2026-11-15T16:45:53Z"
+    },
+    {
+      "number": 53,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-custom-validation",
+      "head_sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "updated_at": "2026-11-19T13:30:22Z",
+      "merged_at": "2026-11-16T09:04:41Z"
+    },
+    {
+      "number": 35,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ods-conditional",
+      "head_sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "updated_at": "2026-11-19T13:30:20Z",
+      "merged_at": "2026-11-15T18:57:27Z"
+    },
+    {
+      "number": 98,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odp-transitions",
+      "head_sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "updated_at": "2026-11-19T13:30:19Z",
+      "merged_at": "2026-11-17T08:48:42Z"
+    },
+    {
+      "number": 108,
+      "state": "closed",
+      "draft": false,
+      "head": "feat/odp-shape-links",
+      "head_sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "updated_at": "2026-11-19T13:30:17Z",
+      "merged_at": "2026-11-17T15:21:10Z"
+    }
+  ],
+  "scope": "Initial inventory of 22 fork heads and the 100 most recently updated PRs; both open heads reconciled. Four upstream heads and exact historical equivalences recorded separately. No GitHub Actions query or wait."
+}

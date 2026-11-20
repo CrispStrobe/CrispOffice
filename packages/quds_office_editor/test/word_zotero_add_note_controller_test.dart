@@ -737,54 +737,69 @@ void main() {
     );
   }
 
-  test('research-list history preserves imported numbering and unrelated package data after save', () {
-    final document = _document();
-    final authored = document.paragraphs.last;
-    WordLists.applyLevel(authored, numbered: true, document: document);
-    final controller = _controller(document: document);
-    final beforeNumbering = _numberingXml(document);
-    final authoredList = _listProperties(authored);
-    final transaction = _begin(controller);
-    _insertText(transaction, '<ol start="3"><li>New</li><li>Next</li></ol>');
-    _complete(transaction);
-    transaction.apply();
-    final insertedId = document.paragraphs.elementAt(1).properties.numId;
-    expect(insertedId, isNot(authored.properties.numId));
-    final afterNumbering = _numberingXml(document);
-    WordSerializer().writeBytes(document);
-    final package = document.package!;
-    final payload = Uint8List.fromList([7, 11, 13]);
-    package.createPart(
-      '/word/media/preserved.bin',
-      'application/octet-stream',
-      payload,
-    );
-    final related = package
-        .relationshipsFor('/word/document.xml')
-        .add(type: RelationshipTypes.image, target: 'media/preserved.bin');
-    controller.undo();
-    expect(_numberingXml(document), beforeNumbering);
-    expect(_listProperties(authored), authoredList);
-    expect(package.getPart('/word/media/preserved.bin')!.readBytes(), payload);
-    expect(
-      package.relationshipsFor('/word/document.xml').byId(related.id),
-      same(related),
-    );
-    controller.redo();
-    expect(_numberingXml(document), afterNumbering);
-    expect(_listProperties(authored), authoredList);
-    expect(package.getPart('/word/media/preserved.bin')!.readBytes(), payload);
-    expect(
-      package.relationshipsFor('/word/document.xml').byId(related.id),
-      same(related),
-    );
-    final reopened = WordDeserializer().readBytes(
-      WordSerializer().writeBytes(document),
-    );
-    expect(reopened.paragraphs.elementAt(1).properties.listLabel?.trim(), '3.');
-    expect(reopened.paragraphs.elementAt(2).properties.listLabel?.trim(), '4.');
-    expect(reopened.paragraphs.last.properties.listLabel?.trim(), '1.');
-  });
+  test(
+    'research-list history preserves imported numbering and unrelated package data after save',
+    () {
+      final document = _document();
+      final authored = document.paragraphs.last;
+      WordLists.applyLevel(authored, numbered: true, document: document);
+      final controller = _controller(document: document);
+      final beforeNumbering = _numberingXml(document);
+      final authoredList = _listProperties(authored);
+      final transaction = _begin(controller);
+      _insertText(transaction, '<ol start="3"><li>New</li><li>Next</li></ol>');
+      _complete(transaction);
+      transaction.apply();
+      final insertedId = document.paragraphs.elementAt(1).properties.numId;
+      expect(insertedId, isNot(authored.properties.numId));
+      final afterNumbering = _numberingXml(document);
+      WordSerializer().writeBytes(document);
+      final package = document.package!;
+      final payload = Uint8List.fromList([7, 11, 13]);
+      package.createPart(
+        '/word/media/preserved.bin',
+        'application/octet-stream',
+        payload,
+      );
+      final related = package
+          .relationshipsFor('/word/document.xml')
+          .add(type: RelationshipTypes.image, target: 'media/preserved.bin');
+      controller.undo();
+      expect(_numberingXml(document), beforeNumbering);
+      expect(_listProperties(authored), authoredList);
+      expect(
+        package.getPart('/word/media/preserved.bin')!.readBytes(),
+        payload,
+      );
+      expect(
+        package.relationshipsFor('/word/document.xml').byId(related.id),
+        same(related),
+      );
+      controller.redo();
+      expect(_numberingXml(document), afterNumbering);
+      expect(_listProperties(authored), authoredList);
+      expect(
+        package.getPart('/word/media/preserved.bin')!.readBytes(),
+        payload,
+      );
+      expect(
+        package.relationshipsFor('/word/document.xml').byId(related.id),
+        same(related),
+      );
+      final reopened = WordDeserializer().readBytes(
+        WordSerializer().writeBytes(document),
+      );
+      expect(
+        reopened.paragraphs.elementAt(1).properties.listLabel?.trim(),
+        '3.',
+      );
+      expect(
+        reopened.paragraphs.elementAt(2).properties.listLabel?.trim(),
+        '4.',
+      );
+      expect(reopened.paragraphs.last.properties.listLabel?.trim(), '1.');
+    },
+  );
 
   for (final command in [
     ZoteroCitingCommand.addNote,

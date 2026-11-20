@@ -22,7 +22,7 @@ Historical results retain their original source and platform attribution.
 | Refresh | Complete supported document sequence sent to Zotero's processor, including note order, numeric renumbering, disambiguation and style-dependent ibid. | Live acceptance must be repeated on the exact release/host |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
 | Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
-| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, ordinary links, active citations and supported embedded pictures | Body caret only; tables and custom/reversed list markers remain unsupported |
+| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, ordinary links, active citations and supported embedded pictures; insertion in body or authored notes and replacement within one paragraph | Cross-paragraph and structural selections, imported tables and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation | Local and online catalog APIs have different connection/version requirements |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
@@ -61,6 +61,26 @@ citations and embedded pictures remain in reading order, including picture-only
 list paragraphs. The same detached transaction applies the entire result as one
 undoable edit and refuses malformed or over-depth content before publication.
 
+## Delivered increment: authored-note and selection insertion
+
+Add Note and Add Annotation now accept the active authored footnote/endnote
+and a deliberate selection within one paragraph. Embedded citations keep that
+note's physical ownership and document order; incompatible note-style requests
+are refused, so the operation never creates a nested note. The automatic note
+number and its separator remain before content inserted at the visible start,
+including a leading heading or list.
+
+The selected range is replaced only when the detached operation completes and
+the original document, selection and composition state are still current.
+Surrounding prose, supported formatting, lists and images remain intact. One
+undo restores the entire document and the original selection direction.
+Selections across paragraphs or through existing fields, atomic content,
+commented text or structural/protected ranges remain guarded.
+
+The [target-insertion work record](../../validation/zotero-note-targets-20261120/README.md)
+records the reconciled baseline, implementation checkpoints and local checks.
+This increment does not establish live application or active ODT transfer parity.
+
 ## Next implementation and acceptance steps
 
 1. **Preserve richer note structure.** Extend tables using native Word
@@ -68,10 +88,11 @@ undoable edit and refuses malformed or over-depth content before publication.
    citations in every supported block, surrounding-text preservation, independent
    list numbering, save/reopen and single-step undo. Keep unsupported formatting
    atomic until it has a real model mapping.
-2. **Broaden insertion targets.** Add research-note insertion into an authored
-   footnote/endnote and replacement of a deliberate selection. Specify how
-   Zotero-generated citations inherit the target story and how note-style
-   citations avoid nested notes. Exercise stale selections and active composition.
+2. **Broaden replacement ranges deliberately.** Extend beyond single-paragraph
+   text selections only after modeling ownership of paragraph boundaries,
+   comments, content controls, existing fields and note references. Keep the
+   authored-note ownership, stale-selection, composition and undo guarantees
+   established by the current increment.
 3. **Extend image fidelity deliberately.** Handle JPEG orientation and
    grayscale/CMYK output consistently in editor, DOCX and PDF before removing
    current refusals. Additional raster formats need matching rendering and
