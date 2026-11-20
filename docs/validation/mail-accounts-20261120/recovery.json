@@ -1,0 +1,14 @@
+{
+  "time_utc": "2026-11-20T11:42:39.073378+00:00",
+  "published_mail_checkpoint": "a059c0249a25bef602640c8b8d504bd8da41c619",
+  "workspace_reset": "The original task filesystem exhausted available capacity and was replaced. Source checkpoints remained on GitHub. A persistent execution session restored the same published source and the exact four uncommitted Downloads resolutions by previously recorded Git blob hashes.",
+  "downloads_sources": {
+    "catalog": "33c2b04afc99c08bc8db9fab26fe02f5dc1d0c45",
+    "manager": "0169f7b146eac6563eae61f27f87d75c43838b92",
+    "layout_test": "f619e0d1c301297ffba7e47d16429cb7ab93ff5b",
+    "fakes": "4a9c19b9bf1e7d9c34c27b895005a1561888a9d2",
+    "strings_unchanged_main": "dac9e1409040181606e5846230b8b2e2ddc5805e"
+  },
+  "previous_results": "Observed before reset: catalog51 passed, credentials28 passed, account UI17 passed and1 semantics-lifetime fixture failure. The fixture fix is in a059. Original raw logs were not recovered; these counts are historical tool-output summaries, not final acceptance. Fresh qualification is required.",
+  "ci_policy": "No GitHub Actions/check/status polling or waiting."
+}

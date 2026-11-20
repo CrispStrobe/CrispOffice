@@ -1,7 +1,7 @@
 import 'studio_download_catalog.dart';
 import 'studio_strings.dart';
 
-/// English, German and Arabic text for the Language downloads overview,
+/// English, German and Arabic text for the Downloads overview,
 /// following the [StudioStrings] pattern.
 final class StudioDownloadStrings {
   const StudioDownloadStrings(this.language);
@@ -14,12 +14,11 @@ final class StudioDownloadStrings {
     StudioLanguage.ar => ar,
   };
 
-  String get title =>
-      _t('Language downloads', 'Sprachdownloads', 'تنزيلات اللغة');
+  String get title => _t('Downloads', 'Downloads', 'التنزيلات');
   String get intro => _t(
-    'Review support, size, source and licence before installing. Downloads start only when you choose Install in the package review. Removing downloaded data leaves your documents unchanged.',
-    'Unterstützung, Größe, Quelle und Lizenz vor der Installation prüfen. Downloads beginnen erst, wenn Sie in der Paketprüfung „Installieren“ wählen. Das Entfernen heruntergeladener Daten lässt Ihre Dokumente unverändert.',
-    'راجع الدعم والحجم والمصدر والترخيص قبل التثبيت. لا يبدأ التنزيل إلا عند اختيار «تثبيت» في مراجعة الحزمة. إزالة البيانات المنزّلة لا تغيّر مستنداتك.',
+    'Review language and font support, size, source and licence before installing. Downloads start only when you choose Install in the package review. Removing downloaded data leaves your documents unchanged.',
+    'Sprach- und Schriftunterstützung, Größe, Quelle und Lizenz vor der Installation prüfen. Downloads beginnen erst, wenn Sie in der Paketprüfung „Installieren“ wählen. Das Entfernen heruntergeladener Daten lässt Ihre Dokumente unverändert.',
+    'راجع دعم اللغات والخطوط والحجم والمصدر والترخيص قبل التثبيت. لا يبدأ التنزيل إلا عند اختيار «تثبيت» في مراجعة الحزمة. إزالة البيانات المنزّلة لا تغيّر مستنداتك.',
   );
   String summary(int installed, int total, String size) => _t(
     '$installed of $total packages installed · $size on this device',
@@ -68,6 +67,11 @@ final class StudioDownloadStrings {
   String get details => _t('Details…', 'Details…', 'التفاصيل…');
   String get remove => _t('Remove', 'Entfernen', 'إزالة');
   String get cancel => _t('Cancel', 'Abbrechen', 'إلغاء');
+  String get fontsUnavailable => _t(
+    'Font pack status is not available on this platform.',
+    'Der Status der Schriftpakete ist auf dieser Plattform nicht verfügbar.',
+    'حالة حزم الخطوط غير متاحة على هذه المنصة.',
+  );
   String get empty => _t(
     'No downloadable packages are offered on this device.',
     'Auf diesem Gerät werden keine Pakete zum Download angeboten.',
@@ -93,6 +97,7 @@ final class StudioDownloadStrings {
     'de' => _t('German', 'Deutsch', 'الألمانية'),
     'en' => _t('English', 'Englisch', 'الإنجليزية'),
     'fr' => _t('French', 'Französisch', 'الفرنسية'),
+    studioFontGroup => _t('Fonts', 'Schriften', 'الخطوط'),
     _ => code,
   };
 
@@ -122,6 +127,7 @@ final class StudioDownloadStrings {
       'Modell für Eigennamen',
       'نموذج أسماء الأعلام',
     ),
+    StudioDownloadKind.fonts => _t('Font pack', 'Schriftpaket', 'حزمة خطوط'),
   };
 
   String note(StudioDownloadNote note) => switch (note) {
@@ -189,8 +195,8 @@ final class StudioDownloadStrings {
     ),
   };
 
-  String requires(String title) =>
-      _t('Requires $title', 'Benötigt $title', 'يتطلب $title');
+  /// Precedes the required package's (Latin) title.
+  String get requires => _t('Requires', 'Benötigt', 'يتطلب');
 
   /// What is already covered for a document language and what is optional.
   String coverage(String language) {

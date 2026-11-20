@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:quds_office_editor/quds_office_editor.dart'
-    show OfficeFontPackStatus;
 import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_arabic_morph_host.dart';
@@ -17,13 +15,14 @@ import 'studio_spacy_host.dart';
 import 'studio_spacy_setup.dart';
 import 'studio_strings.dart';
 
-/// Reviews local language coverage, font packs and app-owned downloads. Opening or changing
+/// Reviews local language coverage and app-owned downloads. Opening or changing
 /// a language never downloads data; Install opens the package review, where
 /// the download remains an explicit action.
 Future<void> showStudioDownloadsManager(
   BuildContext context, {
   Set<String> languages = const <String>{},
   StudioLanguage language = StudioLanguage.en,
+  StudioFontPackHost? fontPacks,
 }) {
   // Dialogs are pushed on the root navigator, above the workspace's own
   // Directionality; carry the caller's direction into the route.
@@ -40,14 +39,15 @@ Future<void> showStudioDownloadsManager(
         hunspell: studioHunspellHost,
         morphology: studioArabicMorphHost,
         spacy: studioSpacyHost,
-        fontPacks: studioFontPackHost,
+        fontPacks: fontPacks ?? studioFontPackHost,
       ),
     ),
   );
 }
 
-/// The Downloads overview: full-width package rows grouped by language,
-/// plus optional font packs, with a sticky header and footer.
+/// The Language downloads overview: one uniform, full-width row per
+/// downloadable package ([studioDownloadCatalog]), grouped by language, with
+/// a sticky header and footer.
 class StudioDownloadsManager extends StatefulWidget {
   const StudioDownloadsManager({
     super.key,
@@ -55,8 +55,8 @@ class StudioDownloadsManager extends StatefulWidget {
     required this.morphology,
     required this.spacy,
     this.languages = const <String>{},
-    this.fontPacks,
     this.language = StudioLanguage.en,
+    this.fontPacks,
     this.activity,
     this.openLicence,
   });
@@ -65,7 +65,7 @@ class StudioDownloadsManager extends StatefulWidget {
   final StudioSpacyHost spacy;
   final Set<String> languages;
 
-  /// Optional open font packs; null keeps the overview language-only.
+  /// Optional open font packs; null keeps the manager language-only (tests).
   final StudioFontPackHost? fontPacks;
 
   /// The UI language of the dialog's own text.
@@ -143,6 +143,17 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
   }
 
   Future<void> _review(StudioDownloadItem item) {
+    final fontHost = widget.fontPacks;
+    final fontStatus = item.review == StudioDownloadReview.fontPack
+        ? fontHost?.statuses
+              .where((candidate) => candidate.pack.id == item.id)
+              .firstOrNull
+        : null;
+    // The host can refresh its inventory after a row was rendered.
+    if (item.review == StudioDownloadReview.fontPack &&
+        (fontHost == null || fontStatus == null)) {
+      return Future<void>.value();
+    }
     final direction = Directionality.of(context);
     return showDialog<void>(
       context: context,
@@ -156,251 +167,11 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
           StudioDownloadReview.analysis => StudioSpacySetupDialog(
             host: widget.spacy,
           ),
+          StudioDownloadReview.fontPack => StudioFontPackSetupDialog(
+            status: fontStatus!,
+            host: fontHost!,
+          ),
         },
-      ),
-    );
-  }
-
-  String _t(String en, String de, String ar) => switch (widget.language) {
-    StudioLanguage.en => en,
-    StudioLanguage.de => de,
-    StudioLanguage.ar => ar,
-  };
-
-  Future<void> _reviewFontPack(OfficeFontPackStatus status) {
-    final direction = Directionality.of(context);
-    return showDialog<void>(
-      context: context,
-      builder: (_) => Directionality(
-        textDirection: direction,
-        child: StudioFontPackSetupDialog(
-          status: status,
-          host: widget.fontPacks!,
-        ),
-      ),
-    );
-  }
-
-  // Font packs have their own host and review dialog. Keep their rows aligned
-  // with the language catalog without classifying fonts as a language model.
-  Widget _fontPackTile(
-    OfficeFontPackStatus status,
-    StudioDownloadStrings strings,
-  ) {
-    final theme = Theme.of(context);
-    final scheme = theme.colorScheme;
-    final pack = status.pack;
-    final host = widget.fontPacks!;
-    final needsRepair = status.problem != null;
-    final installed = status.installed && !needsRepair;
-    final enabled = !_busy && !host.busy;
-    final size = _isolate(
-      context,
-      _megabytes(installed ? status.bytesOnDisk : pack.bytes),
-    );
-    final state = needsRepair
-        ? _t('Needs repair', 'Reparatur nötig', 'يحتاج إلى إصلاح')
-        : installed
-        ? _t('Installed · $size', 'Installiert · $size', 'مثبّت · $size')
-        : _t('Not installed', 'Nicht installiert', 'غير مثبّت');
-    final background = needsRepair
-        ? scheme.errorContainer
-        : installed
-        ? scheme.primaryContainer
-        : scheme.surfaceContainerHighest;
-    final foreground = needsRepair
-        ? scheme.onErrorContainer
-        : installed
-        ? scheme.onPrimaryContainer
-        : scheme.onSurfaceVariant;
-    final muted = theme.textTheme.bodySmall?.copyWith(
-      color: scheme.onSurfaceVariant,
-    );
-    final details = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Text(
-          _isolate(context, pack.title),
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-          style: theme.textTheme.titleSmall?.copyWith(
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 2),
-        Text(pack.description, style: muted),
-        const SizedBox(height: 2),
-        Wrap(
-          spacing: 6,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: <Widget>[
-            Text(size, style: muted),
-            Tooltip(
-              message: pack.licenceUrl,
-              child: Semantics(
-                link: true,
-                label: strings.licenceLabel(pack.licence),
-                child: InkWell(
-                  key: ValueKey('download-font-${pack.id}-licence'),
-                  onTap: () => _openLicence(Uri.parse(pack.licenceUrl)),
-                  borderRadius: BorderRadius.circular(4),
-                  child: Text(
-                    pack.licence,
-                    style: muted?.copyWith(
-                      color: scheme.primary,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        if (status.problem case final problem?)
-          Padding(
-            padding: const EdgeInsets.only(top: 2),
-            child: Text(
-              problem,
-              style: theme.textTheme.bodySmall?.copyWith(color: scheme.error),
-            ),
-          ),
-      ],
-    );
-    final badge = Container(
-      key: ValueKey('download-font-${pack.id}-status'),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(
-        color: background,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Icon(
-            needsRepair
-                ? Icons.error_outline
-                : installed
-                ? Icons.check_circle
-                : Icons.cloud_download_outlined,
-            size: 14,
-            color: foreground,
-          ),
-          const SizedBox(width: 6),
-          Flexible(
-            child: Text(
-              state,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelMedium?.copyWith(color: foreground),
-            ),
-          ),
-        ],
-      ),
-    );
-    final actions = Wrap(
-      alignment: WrapAlignment.end,
-      spacing: 8,
-      runSpacing: 4,
-      children: <Widget>[
-        Tooltip(
-          message: installed
-              ? strings.details
-              : strings.installLabel(pack.title),
-          child: FilledButton.tonal(
-            key: ValueKey('download-font-${pack.id}-review'),
-            style: FilledButton.styleFrom(minimumSize: const Size(88, 40)),
-            onPressed: enabled ? () => _reviewFontPack(status) : null,
-            child: Text(
-              installed
-                  ? strings.details
-                  : needsRepair
-                  ? strings.repair
-                  : strings.install,
-            ),
-          ),
-        ),
-        if (status.installed || needsRepair)
-          Tooltip(
-            message: strings.removeLabel(pack.title),
-            child: OutlinedButton(
-              key: ValueKey('download-font-${pack.id}-remove'),
-              style: OutlinedButton.styleFrom(
-                minimumSize: const Size(88, 40),
-                alignment: Alignment.center,
-              ),
-              onPressed: enabled ? () => _run(() => host.remove(pack)) : null,
-              child: Text(strings.remove),
-            ),
-          ),
-      ],
-    );
-    final leading = ExcludeSemantics(
-      child: CircleAvatar(
-        radius: 20,
-        backgroundColor: background,
-        foregroundColor: foreground,
-        child: const Icon(Icons.font_download_outlined, size: 20),
-      ),
-    );
-    return Semantics(
-      container: true,
-      label: '${pack.title}, $state',
-      child: Card.outlined(
-        key: ValueKey('download-font-${pack.id}'),
-        margin: EdgeInsets.zero,
-        clipBehavior: Clip.antiAlias,
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              if (constraints.maxWidth >= studioDownloadWideRow) {
-                return Row(
-                  children: <Widget>[
-                    leading,
-                    const SizedBox(width: 12),
-                    Expanded(child: details),
-                    const SizedBox(width: 12),
-                    SizedBox(
-                      width: StudioDownloadTile.statusWidth,
-                      child: Align(
-                        alignment: AlignmentDirectional.centerStart,
-                        child: badge,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    SizedBox(
-                      width: StudioDownloadTile.actionsWidth,
-                      child: actions,
-                    ),
-                  ],
-                );
-              }
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      leading,
-                      const SizedBox(width: 12),
-                      Expanded(child: details),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: <Widget>[badge, actions],
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
       ),
     );
   }
@@ -493,6 +264,7 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
       hunspell: widget.hunspell,
       morphology: widget.morphology,
       spacy: widget.spacy,
+      fontPacks: widget.fontPacks,
       activity: _activity,
     );
     final titles = <String, String>{
@@ -507,20 +279,14 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
     final installedBytes = installed
         .where((item) => item.exactSizeOnDisk)
         .fold<int>(0, (sum, item) => sum + item.bytes);
-    final fontStatuses =
-        widget.fontPacks?.statuses ?? const <OfficeFontPackStatus>[];
-    final installedFonts = fontStatuses
-        .where((status) => status.installed && status.problem == null)
-        .toList();
-    final installedFontBytes = installedFonts.fold<int>(
-      0,
-      (sum, status) => sum + status.bytesOnDisk,
-    );
     final groups = <String, List<StudioDownloadItem>>{};
     for (final item in items) {
       (groups[item.language] ??= <StudioDownloadItem>[]).add(item);
     }
     int rank(String code) {
+      if (code == studioFontGroup) {
+        return studioDownloadLanguageOrder.length + 1;
+      }
       final index = studioDownloadLanguageOrder.indexOf(code);
       return index < 0 ? studioDownloadLanguageOrder.length : index;
     }
@@ -594,7 +360,7 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
         const SizedBox(height: 6),
         Text(strings.includedNote, style: muted),
       ],
-      if (items.isEmpty && fontStatuses.isEmpty) ...<Widget>[
+      if (items.isEmpty) ...<Widget>[
         _section(strings.available),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 24),
@@ -611,32 +377,6 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
           ),
         ),
       ],
-      if (widget.fontPacks case final packs?) ...<Widget>[
-        _section(
-          _t(
-            'Office font downloads',
-            'Office-Schriftarten',
-            'تنزيلات خطوط Office',
-          ),
-          key: const ValueKey('downloads-section-fonts'),
-        ),
-        for (final status in fontStatuses)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: _fontPackTile(status, strings),
-          ),
-        if (fontStatuses.isEmpty)
-          Text(
-            _t(
-              'Font pack status is not available on this platform.',
-              'Schriftpakete sind auf dieser Plattform nicht verfügbar.',
-              'حالة حزم الخطوط غير متاحة على هذه المنصة.',
-            ),
-            style: muted,
-          ),
-        if (packs.error case final error?)
-          Text(error, style: muted?.copyWith(color: theme.colorScheme.error)),
-      ],
       for (final language in languages) ...<Widget>[
         _section(
           strings.languageName(language),
@@ -649,13 +389,27 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
               item: item,
               strings: strings,
               requiredTitle: titles[item.requires],
-              enabled: !_busy,
+              enabled:
+                  !_busy &&
+                  (item.kind != StudioDownloadKind.fonts ||
+                      !(widget.fontPacks?.busy ?? false)),
               onReview: () => _review(item),
               onRemove: item.remove == null ? null : () => _run(item.remove!),
               onLicence: () => _openLicence(item.licenceUrl),
             ),
           ),
       ],
+      if (widget.fontPacks case final packs?
+          when packs.statuses.isEmpty) ...<Widget>[
+        _section(strings.languageName(studioFontGroup)),
+        Text(packs.error ?? strings.fontsUnavailable, style: muted),
+      ],
+      if (widget.fontPacks case final packs?
+          when packs.statuses.isNotEmpty && packs.error != null)
+        Text(
+          packs.error!,
+          style: muted?.copyWith(color: theme.colorScheme.error),
+        ),
     ];
 
     return AlertDialog(
@@ -674,24 +428,15 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
                 color: theme.colorScheme.primary,
               ),
               const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  widget.fontPacks == null
-                      ? strings.title
-                      : _t('Downloads', 'Downloads', 'التنزيلات'),
-                ),
-              ),
+              Expanded(child: Text(strings.title)),
             ],
           ),
           const SizedBox(height: 4),
           Text(
             strings.summary(
-              installed.length + installedFonts.length,
-              offered.length + fontStatuses.length,
-              _isolate(
-                context,
-                _megabytes(installedBytes + installedFontBytes),
-              ),
+              installed.length,
+              offered.length,
+              _isolate(context, _megabytes(installedBytes)),
             ),
             key: const ValueKey('downloads-summary'),
             style: muted,
@@ -804,6 +549,7 @@ class StudioDownloadTile extends StatelessWidget {
     StudioDownloadKind.contextModel => Icons.hub_outlined,
     StudioDownloadKind.analysis => Icons.manage_search,
     StudioDownloadKind.entities => Icons.label_outline,
+    StudioDownloadKind.fonts => Icons.font_download_outlined,
   };
 
   Widget _leading(ColorScheme scheme) {
@@ -900,6 +646,16 @@ class StudioDownloadTile extends StatelessWidget {
         ),
       ],
       StudioDownloadState.installed => <Widget>[
+        if (item.kind == StudioDownloadKind.fonts)
+          Tooltip(
+            message: strings.details,
+            child: FilledButton.tonal(
+              style: _filled,
+              key: ValueKey('download-${item.id}-review'),
+              onPressed: review,
+              child: Text(strings.details),
+            ),
+          ),
         Tooltip(
           message: strings.removeLabel(item.title),
           child: OutlinedButton(
@@ -1000,6 +756,11 @@ class StudioDownloadTile extends StatelessWidget {
             ],
           ),
         ),
+        if (item.description case final description?)
+          Padding(
+            padding: const EdgeInsets.only(top: 2),
+            child: Text(description, style: muted),
+          ),
         if (item.note case final note?)
           Padding(
             padding: const EdgeInsets.only(top: 2),
@@ -1009,9 +770,25 @@ class StudioDownloadTile extends StatelessWidget {
             requires != null)
           Padding(
             padding: const EdgeInsets.only(top: 2),
-            child: Text(
-              strings.requires(_isolate(context, requires)),
-              style: muted,
+            // The Latin title is its own left-to-right run, so its
+            // brackets stay in order inside Arabic text.
+            child: Text.rich(
+              TextSpan(
+                style: muted,
+                children: <InlineSpan>[
+                  TextSpan(text: '${strings.requires} '),
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.baseline,
+                    baseline: TextBaseline.alphabetic,
+                    child: Text(
+                      requires,
+                      key: ValueKey('download-${item.id}-requires'),
+                      textDirection: TextDirection.ltr,
+                      style: muted,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         if (item.state == StudioDownloadState.unavailable &&

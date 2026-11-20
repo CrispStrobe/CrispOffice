@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
 
+import 'studio_font_pack_host.dart';
+
 import 'studio_arabic_morph_host.dart';
 import 'studio_hunspell_host.dart';
 import 'studio_spacy_host.dart';
@@ -12,6 +14,7 @@ enum StudioDownloadKind {
   contextModel,
   analysis,
   entities,
+  fonts,
 }
 
 /// The state a package row shows in its status chip.
@@ -32,7 +35,7 @@ enum StudioDownloadState {
 
 /// Which existing review dialog shows source, files, SHA-256 and licence and
 /// performs the explicit install.
-enum StudioDownloadReview { dictionaries, analysis }
+enum StudioDownloadReview { dictionaries, analysis, fontPack }
 
 /// One downloadable package, read from the hosts. The Language downloads
 /// overview lists exactly these; the review dialogs install them.
@@ -50,6 +53,7 @@ class StudioDownloadItem {
     required this.review,
     this.exactSizeOnDisk = true,
     this.note,
+    this.description,
     this.problem,
     this.unavailableReason,
     this.requires,
@@ -62,7 +66,7 @@ class StudioDownloadItem {
   final String id;
   final StudioDownloadKind kind;
 
-  /// Primary language subtag (`ar`, `de`, `en`, `fr`).
+  /// Primary language subtag (`ar`, `de`, `en`, `fr`), or [studioFontGroup].
   final String language;
   final String title;
 
@@ -78,6 +82,9 @@ class StudioDownloadItem {
 
   /// One short qualifier shown under the metadata, translated by the dialog.
   final StudioDownloadNote? note;
+
+  /// The package's own one-line description (font packs), untranslated.
+  final String? description;
   final String? problem;
   final String? unavailableReason;
 
@@ -156,6 +163,7 @@ String studioShortLicence(String licence) {
   return switch (short) {
     'CC-BY-4.0' => 'CC BY 4.0',
     'CC-BY-SA-4.0' => 'CC BY-SA 4.0',
+    'SIL Open Font License 1.1' => 'OFL 1.1',
     _ => short,
   };
 }
@@ -176,6 +184,7 @@ List<StudioDownloadItem> studioDownloadCatalog({
   required StudioHunspellHost hunspell,
   required StudioArabicMorphHost morphology,
   required StudioSpacyHost spacy,
+  StudioFontPackHost? fontPacks,
   StudioDownloadActivity? activity,
 }) {
   final items = <StudioDownloadItem>[];
@@ -209,6 +218,7 @@ List<StudioDownloadItem> studioDownloadCatalog({
     bool prerequisiteMissing = false,
     bool exactSizeOnDisk = true,
     StudioDownloadNote? note,
+    String? description,
     Future<void> Function()? remove,
     Uri? licenceUrl,
   }) {
@@ -232,6 +242,7 @@ List<StudioDownloadItem> studioDownloadCatalog({
       ),
       exactSizeOnDisk: exactSizeOnDisk,
       note: note,
+      description: description,
       problem: problem,
       unavailableReason: unavailable,
       requires: requires,
@@ -374,8 +385,32 @@ List<StudioDownloadItem> studioDownloadCatalog({
       ),
     );
   }
+  for (final status in fontPacks?.statuses ?? const []) {
+    final pack = status.pack;
+    items.add(
+      item(
+        id: pack.id,
+        kind: StudioDownloadKind.fonts,
+        language: studioFontGroup,
+        title: pack.title,
+        bytes: status.installed && status.bytesOnDisk > 0
+            ? status.bytesOnDisk
+            : pack.bytes,
+        licence: pack.licence,
+        licenceUrl: Uri.parse(pack.licenceUrl),
+        review: StudioDownloadReview.fontPack,
+        description: pack.description,
+        installed: status.installed,
+        problem: status.problem,
+        remove: () => fontPacks!.remove(pack),
+      ),
+    );
+  }
   return items;
 }
+
+/// The group key of open font packs; listed after every language.
+const studioFontGroup = 'fonts';
 
 /// Display order of language groups; others follow alphabetically.
 const studioDownloadLanguageOrder = <String>['ar', 'de', 'en', 'fr'];

@@ -1,3 +1,6 @@
+> Historical snapshot, superseded by the [completed local qualification](../README.md).
+> The blocked status and completion checklist below describe that earlier checkpoint.
+
 # Word and PowerPoint VBA continuation — recovery checkpoint
 
 ## Status
