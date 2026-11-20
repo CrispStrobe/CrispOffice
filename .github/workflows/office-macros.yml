@@ -45,6 +45,7 @@ jobs:
           dart test
           test/office_operations_test.dart
           test/office_macro_runtime_test.dart
+          test/office_macro_word_revision_guard_test.dart
           test/office_macro_language_test.dart
           test/office_vba_language_test.dart
           test/office_vba_integration_test.dart
