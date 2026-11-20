@@ -4,6 +4,16 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve vertical and combined row/column merges in Zotero research tables.
+  Normalize a bounded logical grid into native restart/continuation cells and
+  remap citation/list indexes by paragraph identity. Count generated cells and
+  paragraphs against whole-note budgets and reject malformed or cross-group spans.
+- Keep native merged-table shading and borders on every occupied page, with
+  source paragraph ownership distinct from physical row geometry. Retain the
+  current conservative row-height allocation and reject invalid merge chains.
+- Preserve explicit per-cell border enable/disable overrides in DOCX export and
+  keep tall merged-cell page cuts open independently of inherited border style.
+
 - Preserve distinct inline header/footer pictures and legitimate body frames
   while reconciling the incoming Word renderer. Deduplicate repeated references
   to one authored visual occurrence; retain distinct pictures even when content

@@ -95,6 +95,41 @@ Future<void> _loadFonts() async {
   )..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'))).load();
 }
 
+// Obtain the runner's initial immutable progress snapshot without dispatching.
+Future<MailBulkFlagReport> _pendingReport() async {
+  final account = MailAccountId(
+    'visual',
+    profile: MailProfileId('visual', hostId: 'test'),
+  );
+  final session = MailAccountSession(account);
+  MailBulkFlagReport? initial;
+  try {
+    await const MailBulkFlagRunner().run(
+      plan: MailBulkFlagPlan(
+        id: 'visual-pending',
+        mailbox: MailMailboxId('inbox', account: account),
+        action: MailBulkFlagAction.markRead,
+        messages: [
+          MailOpaqueIdentity(
+            account: account,
+            provider: MailProviderKind.ews,
+            value: 'planning',
+          ),
+        ],
+      ),
+      lease: session.begin(),
+      isScopeCurrent: () => true,
+      shouldStop: () => true,
+      apply: (_, _) async =>
+          throw StateError('A visual fixture cannot dispatch mail.'),
+      onProgress: (report) => initial ??= report,
+    );
+    return initial!;
+  } finally {
+    session.dispose();
+  }
+}
+
 Finder _key(String value) => find.byKey(ValueKey(value));
 
 Future<void> _showControl(WidgetTester tester, Finder control) async {
@@ -137,15 +172,48 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(_loadFonts);
 
+  // Keep the original toolbar stop controls and the incoming host-owned
+  // status-slot controls under the same real-font and compact-layout checks.
   for (final variant in [
-    (language: StudioLanguage.en, size: const Size(440, 850), compact: false),
-    (language: StudioLanguage.de, size: const Size(440, 850), compact: false),
-    (language: StudioLanguage.ar, size: const Size(440, 850), compact: false),
-    (language: StudioLanguage.de, size: const Size(320, 260), compact: true),
-    (language: StudioLanguage.ar, size: const Size(320, 260), compact: true),
+    for (final statusSlot in [false, true])
+      for (final original in [
+        (
+          language: StudioLanguage.en,
+          size: const Size(440, 850),
+          compact: false,
+        ),
+        (
+          language: StudioLanguage.de,
+          size: const Size(440, 850),
+          compact: false,
+        ),
+        (
+          language: StudioLanguage.ar,
+          size: const Size(440, 850),
+          compact: false,
+        ),
+        (
+          language: StudioLanguage.de,
+          size: const Size(320, 260),
+          compact: true,
+        ),
+        (
+          language: StudioLanguage.ar,
+          size: const Size(320, 260),
+          compact: true,
+        ),
+      ])
+        (
+          language: original.language,
+          size: original.size,
+          compact: original.compact,
+          statusSlot: statusSlot,
+        ),
   ]) {
     final language = variant.language;
-    final name = '${language.name}-${variant.compact ? 'compact' : 'portrait'}';
+    final name =
+        '${language.name}-${variant.compact ? 'compact' : 'portrait'}'
+        '${variant.statusSlot ? '-status-slot' : ''}';
     testWidgets('$name bulk controls remain usable at 1.4 text scale', (
       tester,
     ) async {
@@ -158,6 +226,7 @@ void main() {
       var busy = false;
       var commands = 0;
       var stops = 0;
+      final pending = variant.statusSlot ? await _pendingReport() : null;
       await tester.pumpWidget(
         RepaintBoundary(
           key: _captureKey,
@@ -196,7 +265,8 @@ void main() {
                 body: MailMessageList(
                   key: const ValueKey('localized-bulk-list'),
                   scopeId: 'visual/${language.name}',
-                  selectionScopeId: '1',
+                  selectionScopeId: variant.statusSlot ? null : '1',
+                  selectionRevision: variant.statusSlot ? '1' : null,
                   strings: strings,
                   items: _rows(language),
                   busy: busy,
@@ -211,7 +281,22 @@ void main() {
                       busy = true;
                     });
                   },
-                  onCancelBulk: busy ? () => stops++ : null,
+                  onCancelBulk: busy && !variant.statusSlot
+                      ? () => stops++
+                      : null,
+                  bulkStatus: busy && variant.statusSlot
+                      ? StudioMailBulkStatus(
+                          strings: StudioStrings(language),
+                          report: pending!,
+                          running: true,
+                          subjects: {
+                            pending.plan.messages.single: _rows(
+                              language,
+                            ).first.subject,
+                          },
+                          onStop: () => stops++,
+                        )
+                      : null,
                 ),
               ),
             ),
@@ -266,10 +351,13 @@ void main() {
             .enabled,
         isFalse,
       );
-      await _showControl(tester, _key('mail-list-stop-bulk'));
+      final stopKey = variant.statusSlot
+          ? 'studio-mail-bulk-stop'
+          : 'mail-list-stop-bulk';
+      await _showControl(tester, _key(stopKey));
       _expectRowsUsable(tester);
       await _capture(tester, '$name-working');
-      await tester.tap(_key('mail-list-stop-bulk'));
+      await tester.tap(_key(stopKey));
       await tester.pumpAndSettle();
       expect(stops, 1);
       expect(commands, 1);

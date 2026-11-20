@@ -1,5 +1,32 @@
 # Zotero validation
 
+## 20 November 2026 — vertical research-table merges
+
+The [vertical-table continuation](validation/zotero-vertical-tables-20261120/README.md)
+adds bounded row spans and combined row/column spans to Add Note and Add
+Annotation. Native continuation paragraphs preserve valid DOCX structure;
+identity-based paragraph remapping keeps citation/list ownership correct.
+Local acceptance includes body, footnote and endnote insertion, rich content,
+stale/cancelled operations, undo/redo and repeated DOCX reopening. Paginated
+merged-cell decoration, pointer/keyboard ownership and physical row geometry
+are qualified separately from compact Word-style row-height distribution.
+
+The initial 322-reference source intake is complete, with 298 ancestors and
+24 independently verified equivalents. Both Mail continuations, the newer Word
+checkpoint, bookmark performance documentation and retired-workflow history
+are preserved. Source-specific earlier evidence keeps its original attribution.
+The publication snapshot accounts for 324 references through 300 ancestors and
+the same 24 verified equivalents. Later main updates through `329d0391` are
+also incorporated. The final [qualification receipt](validation/zotero-vertical-tables-20261120/qualification.json)
+records **3,644 passes, eight existing editor skips and zero failures** at
+qualified product source `6045998d`. All **317 Zotero editor cases passed**;
+all **75 changed Dart files** pass formatting and strict analysis. Counts use
+fresh execution and exact-input retention proofs: the 16 Studio and final 95
+Mail followup cases replace prior results and are not counted twice. See the
+continuation report for source hashes, raw evidence and diagnostics.
+No installed Zotero/Word/LibreOffice qualification, active ODT transfer or
+complete parity is inferred. GitHub Actions are neither queried nor awaited.
+
 ## 20 November 2026 — horizontal merged cells and adjacent-citation Refresh
 
 Add Note and Add Annotation preserve bounded horizontal table merges as native
@@ -24,7 +51,7 @@ image-only `word_incremental_layout_equivalence_test.dart` fixtures with
 `6a00886f` editor tally, which had counted skipped success events as passes;
 that run also had 378 actual passes and eight skips. The older 724-case incoming
 receipt remains source-attributed, and repeated runs are not added to the final
-total. **Publication targets remote `main` through the continuation pull request.**
+total. **PR #276 merged into remote `main` as `698209aaa6e7f1350b6541df5eb192b7b233443d`.**
 
 The fixed initial intake accounts for all 316 refs through 293 ancestors and
 23 refs at 14 independently verified historical equivalents. Four maximal
@@ -34,8 +61,9 @@ this bounded milestone. Remote checkpoints preserve progress; no GitHub
 Actions/check/status endpoints were called or awaited.
 
 This adds no installed Zotero, Word or LibreOffice acceptance, active ODT
-citation transfer or complete parity claim. Vertical merges, nested tables,
-broader structural selections and release-host acceptance remain next work.
+citation transfer or complete parity claim. Vertical merges were delivered by
+the later increment above; nested tables, broader structural selections and
+release-host acceptance remain further work.
 
 ## 20 November 2026 — browse reference notes and attachment metadata
 

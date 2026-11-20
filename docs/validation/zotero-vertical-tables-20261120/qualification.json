@@ -1,0 +1,189 @@
+{
+  "frozen_head": "6045998d885cbb045454a993aedfdfc0977714d6",
+  "tree": "64360d621e85c5298e0ae132a9c42d1e119df70a",
+  "incoming_main": "329d03914808589d3e7650fa870df15a2408afe2",
+  "new_acceptance": {
+    "passed": 95,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0,
+    "done_success": true,
+    "terminal_elapsed_ms": 29049,
+    "suites": {
+      "studio_mail_accounts_test.dart": {
+        "success": 22
+      },
+      "studio_mail_workspace_test.dart": {
+        "success": 60
+      },
+      "studio_mail_bulk_visual_test.dart": {
+        "success": 13
+      }
+    },
+    "skipped_cases": [],
+    "non_json_lines": 0
+  },
+  "replacement_policy": "Replace accounts22, native workspace60 and visual13 inside the existing436 host population; add no cases.",
+  "host_population": {
+    "retained_from_fe2": 341,
+    "replaced_at_final": 95,
+    "total": 436
+  },
+  "mail": {
+    "core": 219,
+    "transport": 415,
+    "shared_ui": 179,
+    "hosts": 436,
+    "total_passed": 1249
+  },
+  "word": {
+    "engine": 823,
+    "editor": 598,
+    "incoming_word": 974,
+    "total_passed": 2395,
+    "skipped": 8
+  },
+  "combined": {
+    "passed": 3644,
+    "skipped": 8,
+    "failed": 0,
+    "errors": 0
+  },
+  "static_files": 75,
+  "source_stability": {
+    "source_count": 2659,
+    "source_unchanged": true,
+    "runtime_unchanged": true,
+    "frozen_tree_matches_before_after": true
+  },
+  "prior_archive": {
+    "name": "post-main-evidence.tar.gz",
+    "bytes": 1331836,
+    "sha256": "7d4d37823cb5c41da09371ad130a73b74fb793998dd09b0fb0cb7ab858f126b3"
+  },
+  "prior_qualification_sha256": "9c59404a825c12b93afa8da398ba094ffb29a089f79c97cc3f161eac11ca13e1",
+  "final_publication_source_manifest": {
+    "path": "final-publication-sources.json",
+    "input_count": 5257,
+    "bytes": 775547,
+    "sha256": "ea2a110bb9220705d1d7c399448d66ca1ca0d1ba9e53de2c98f1b47a33e54ff8"
+  },
+  "scope": "Local Dart/Flutter protocol, model, controller, layout, DOCX and reconciled Mail acceptance with locked dependencies. The final freshness step changes two native Mail widget-building methods and their account test fixture. Outside the two listed Mail paths, all executable inputs, including stronger session/image/bulk guards and Word source/tests, are unchanged. The final 95 outcomes replace prior results; incomplete and isolated diagnostics are excluded. Installed application interoperability and live-account operations are not claimed.",
+  "qualification_basis": "Source-attributed local acceptance plus exact-input retention proofs. This is not a claim that all cases were rerun on the final Git commit.",
+  "cohorts": [
+    {
+      "name": "engine",
+      "passed": 823,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "name": "editor",
+      "passed": 598,
+      "skipped": 8,
+      "failed": 0
+    },
+    {
+      "name": "incoming_word",
+      "passed": 974,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "name": "mail_core",
+      "passed": 219,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "name": "mail_transport",
+      "passed": 415,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "name": "mail_shared_ui",
+      "passed": 179,
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "name": "mail_hosts",
+      "passed": 436,
+      "skipped": 0,
+      "failed": 0
+    }
+  ],
+  "editor_replacement": {
+    "retained_from_520": 582,
+    "replaced_at_fe2": 16,
+    "total": 598,
+    "skipped": 8,
+    "record": "post-main-qualification.json"
+  },
+  "all_zotero_editor_cases": {
+    "passed": 317,
+    "skipped": 0,
+    "included_within_editor_total": true
+  },
+  "source_bridges": [
+    "source-applicability-summary.json",
+    "word-zotero-retention.json",
+    "mail-reader-source-binding.json",
+    "freshness-tail-source-binding.json"
+  ],
+  "evidence_records": [
+    "post-main-qualification.json",
+    "post-main-independent-recount.json",
+    "freshness-tail-qualification.json",
+    "freshness-tail-independent-recount.json",
+    "dart-validation.json",
+    "publication-source-seal.json"
+  ],
+  "archives": {
+    "local-validation.tar.gz": {
+      "bytes": 2206062,
+      "sha256": "0758993b29e7c554766e9de3b273bee5f6525b30bcdd6ffd84c0275e233be561"
+    },
+    "mail-final-evidence.tar.gz": {
+      "bytes": 1209821,
+      "sha256": "caebb31d305f6b719d4fed26446a6747ad1a556a4a1964bddfb0716712ad8407"
+    },
+    "post-main-evidence.tar.gz": {
+      "bytes": 1331836,
+      "sha256": "7d4d37823cb5c41da09371ad130a73b74fb793998dd09b0fb0cb7ab858f126b3"
+    },
+    "freshness-tail-evidence.tar.gz": {
+      "bytes": 1234042,
+      "sha256": "15187283e3420fc49561560da254c7f46b2a52aaccaa1962afe5b3ada5b39aed"
+    }
+  },
+  "intake": {
+    "initial": {
+      "head": "6045998d885cbb045454a993aedfdfc0977714d6",
+      "counts": {
+        "verified_equivalent": 24,
+        "ancestor": 298
+      },
+      "record": "intake-reconciled.json",
+      "proof_count": 15
+    },
+    "publication": {
+      "head": "6045998d885cbb045454a993aedfdfc0977714d6",
+      "counts": {
+        "verified_equivalent": 24,
+        "ancestor": 300
+      },
+      "record": "publication-reconciled.json",
+      "proof_count": 15
+    }
+  },
+  "static_receipt": "dart-validation.json",
+  "github_actions": "Neither queried nor awaited; no workflow-run, check-run or status endpoints were requested.",
+  "limits": [
+    "No installed Zotero/Word/LibreOffice/OpenOffice interoperability execution.",
+    "No live Mail account, actual send or release-platform acceptance.",
+    "Merged-row height uses the existing conservative origin-row allocation.",
+    "Nested research tables, additional groups/styles, Notes-pane cell editing, multi-paragraph replacement and active ODT citation transfer remain follow-up work."
+  ]
+}

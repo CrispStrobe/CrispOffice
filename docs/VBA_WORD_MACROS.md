@@ -916,7 +916,7 @@ receiving property's existing range and precision rules. For example,
 `CentimetersToPoints(1)` is a valid scalar value (about 28.34645669 points),
 but assigning it directly to `LeftIndent` is refused because it is not an exact
 twentieth-point. The adapter does not silently round that value to 28.35.
-A macro author can explicitly choose twip rounding with the existing
+Macro authors can explicitly request native twip rounding using the existing
 ties-to-even `CLng` conversion:
 
 ```vb
@@ -939,6 +939,18 @@ Font sizes still require their existing half-point grid; tab stops, spacing
 and indentation retain their existing constraints. Pixel conversions,
 `Selection`, page-setup objects, arbitrary ranges and document property reads
 remain outside this slice.
+
+The independent
+[word_measurements.bas](../packages/quds_office_engine/example/macros/word_measurements.bas)
+(eight operations),
+[word_unit_conversions.bas](../packages/quds_office_engine/example/macros/word_unit_conversions.bas)
+(nine operations), and
+[word_named_measurements.bas](../packages/quds_office_engine/example/macros/word_named_measurements.bas)
+(thirteen operations) retain their existing regression suites.
+[word_measurements_positional.bas](../packages/quds_office_engine/example/macros/word_measurements_positional.bas)
+is an additional positional-argument example with separate compiler,
+native-integration and portable-driver cases. Each example requires the existing
+paragraphs documented in its source.
 
 Conversions emit no native operation themselves. Resulting writes use the
 same detached transaction, permissions, allowlists, operation limits,

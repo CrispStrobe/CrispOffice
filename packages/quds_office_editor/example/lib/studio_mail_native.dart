@@ -57,6 +57,7 @@ class StudioMailDialog extends StatefulWidget {
     this.chromeBuilder,
     this.clientFactory,
     this.messageLoaderFactory,
+    this.autoConnectSavedAccount,
     this.accountDiscovery,
     this.credentialStore,
     this.credentialSettingsOpener,
@@ -87,6 +88,10 @@ class StudioMailDialog extends StatefulWidget {
   /// Creates a fresh client for each connection attempt. Tests use this seam
   /// to control network completions without contacting an external account.
   final mail.MailClient Function(mail.MailAccount account)? clientFactory;
+
+  /// Connect after adopting remembered credentials. Built-in clients enable
+  /// this by default; hosts supplying their own factories can opt in explicitly.
+  final bool? autoConnectSavedAccount;
 
   /// Resolves endpoint settings only; credentials are supplied after the
   /// discovery origin and IMAP/SMTP server types have been checked.
@@ -142,7 +147,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool _startTls = false;
   bool _hasSavedCredentials = false;
   bool _credentialPending = false;
-  bool _autoConnectScheduled = false;
+  Object? _autoConnectTicket;
   bool _remoteImagesLoading = false;
   bool _remoteImagesLoaded = false;
   http.Client? _remoteImageClient;
@@ -208,6 +213,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   void _settingsEdited() {
     _settingsRevision++;
+    _autoConnectTicket = null;
     // Keep the offline action in sync with the effective saved-account route.
     // Password edits retain the route; endpoint/sender/login edits may not.
     if (mounted && _selectedSavedAccountId != null) setState(() {});
@@ -232,6 +238,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         credentialGeneration != _credentialGeneration) {
       return;
     }
+    var adopted = false;
     setState(() {
       _hasSavedCredentials = saved != null;
       if (saved == null ||
@@ -241,30 +248,59 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         return;
       }
       _applyCredentials(saved);
+      adopted = true;
     });
-    _scheduleAutoConnect();
+    if (adopted) _scheduleAutoConnect();
   }
 
+  bool get _autoConnectEnabled =>
+      widget.autoConnectSavedAccount ??
+      (widget.clientFactory == null && widget.messageLoaderFactory == null);
+
   void _scheduleAutoConnect() {
-    if (widget.clientFactory != null ||
-        widget.messageLoaderFactory != null ||
-        _autoConnectScheduled ||
+    if (!_autoConnectEnabled ||
+        _autoConnectTicket != null ||
+        !_hasSavedCredentials ||
+        _credentialPending ||
+        _credentialSettingsOpen ||
+        _credentialStoreChangePending ||
+        _showSavedMessages ||
         _client != null ||
         _connecting ||
         _busy ||
+        _dialogOpen ||
         _email.text.trim().isEmpty ||
         _password.text.isEmpty) {
       return;
     }
-    _autoConnectScheduled = true;
+    final ticket = Object();
+    _autoConnectTicket = ticket;
+    final settings = _settingsRevision;
+    final credentials = _credentialGeneration;
+    final store = _credentialStoreRevision;
+    final session = _sessionGeneration;
+    final account = _selectedSavedAccountId;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!identical(_autoConnectTicket, ticket)) return;
+      _autoConnectTicket = null;
       if (!mounted ||
+          !_autoConnectEnabled ||
+          settings != _settingsRevision ||
+          credentials != _credentialGeneration ||
+          store != _credentialStoreRevision ||
+          session != _sessionGeneration ||
+          account != _selectedSavedAccountId ||
+          !_hasSavedCredentials ||
+          _credentialPending ||
+          _credentialSettingsOpen ||
+          _credentialStoreChangePending ||
+          _showSavedMessages ||
           _client != null ||
           _connecting ||
           _busy ||
+          _dialogOpen ||
           _email.text.trim().isEmpty ||
           _password.text.isEmpty) {
-        _autoConnectScheduled = false;
         return;
       }
       unawaited(_connect());
@@ -324,6 +360,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       );
     }
     if (!mounted || generation != _credentialGeneration) return;
+    var adopted = false;
     setState(() {
       _credentialPending = false;
       final current =
@@ -339,10 +376,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       if (current) {
         _credentialError = null;
         final saved = result.catalog!.selectedAccount;
-        if (saved != null) _applySavedAccount(saved);
+        if (saved != null) {
+          _applySavedAccount(saved);
+          adopted = true;
+        }
       }
     });
-    _scheduleAutoConnect();
+    if (adopted) _scheduleAutoConnect();
   }
 
   Future<void> _selectSavedAccount(String id) async {
@@ -1696,14 +1736,19 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       return;
     }
     final generation = _sessionGeneration;
+    final readerRevision = reader.revision;
     final client = widget.remoteImageClientFactory?.call() ?? http.Client();
     _remoteImageClient = client;
     _remoteImageReader = reader;
-    bool current() =>
+    bool currentHost() =>
         mounted &&
         generation == _sessionGeneration &&
         identical(reader, _reader) &&
         identical(client, _remoteImageClient);
+    bool current() =>
+        currentHost() &&
+        !reader.isDisposed &&
+        reader.revision == readerRevision;
     setState(() {
       _remoteImagesLoading = true;
       _error = null;
@@ -1725,7 +1770,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       setState(() => _remoteImagesLoaded = true);
     } finally {
       client.close();
-      if (current()) {
+      if (currentHost()) {
         setState(() => _remoteImagesLoading = false);
         _remoteImageClient = null;
         _remoteImageReader = null;

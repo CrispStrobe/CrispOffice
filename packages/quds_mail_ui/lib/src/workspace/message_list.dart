@@ -91,7 +91,12 @@ final class MailMessageListStrings {
     this.unflag = 'Remove flag',
     this.stopBulk = 'Stop after current message',
     this.bulkWorking = 'Applying changes…',
-  }) : selectShown = selectShown ?? selectVisible ?? 'Select shown';
+  }) : assert(
+         selectShown == null ||
+             selectVisible == null ||
+             selectShown == selectVisible,
+       ),
+       selectShown = selectShown ?? selectVisible ?? 'Select shown';
 
   final String searchLoaded;
   final String unread;
@@ -193,6 +198,18 @@ class MailMessageList extends StatefulWidget {
   }) : selectionScopeId = selectionScopeId ?? selectionRevision,
        bulkActionsEnabled = bulkActionsEnabled ?? bulkEnabled ?? true,
        items = List.unmodifiable(items) {
+    if (selectionScopeId != null &&
+        selectionRevision != null &&
+        selectionScopeId != selectionRevision) {
+      throw ArgumentError(
+        'Selection revision aliases must identify one scope.',
+      );
+    }
+    if (bulkActionsEnabled != null &&
+        bulkEnabled != null &&
+        bulkActionsEnabled != bulkEnabled) {
+      throw ArgumentError('Bulk enabled aliases must agree.');
+    }
     final identities = <String>{};
     for (final item in this.items) {
       if (item.id.isEmpty || !identities.add(item.id)) {

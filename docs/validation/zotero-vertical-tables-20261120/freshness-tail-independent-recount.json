@@ -1,0 +1,21 @@
+{
+  "passed": 95,
+  "skipped": 0,
+  "failed": 0,
+  "errors": 0,
+  "done_success": true,
+  "terminal_elapsed_ms": 29049,
+  "suites": {
+    "studio_mail_accounts_test.dart": {
+      "success": 22
+    },
+    "studio_mail_workspace_test.dart": {
+      "success": 60
+    },
+    "studio_mail_bulk_visual_test.dart": {
+      "success": 13
+    }
+  },
+  "skipped_cases": [],
+  "non_json_lines": 0
+}

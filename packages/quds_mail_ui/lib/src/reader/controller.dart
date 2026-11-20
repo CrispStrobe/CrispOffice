@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:characters/characters.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -106,12 +108,14 @@ final class MailReaderController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Appends host-loaded, already validated remote images. Nothing is fetched
-  /// here; the host performs the explicit user-approved request.
-  void addImages(Iterable<MailInlineImage> extra) {
-    if (_disposed) return;
+  /// Appends admitted host-loaded images and returns the number added.
+  ///
+  /// Admission is incremental: an invalid or over-budget item does not discard
+  /// earlier valid items. Nothing is fetched here; the host owns authorization.
+  int addImages(Iterable<MailInlineImage> extra) {
+    if (_disposed) return 0;
     final additions = extra.toList(growable: false);
-    if (additions.isEmpty || _presentation.rejected) return;
+    if (additions.isEmpty || _presentation.rejected) return 0;
     var pixels = _presentation.images.fold<int>(
       0,
       (total, image) => total + image.width * image.height,
@@ -122,28 +126,49 @@ final class MailReaderController extends ChangeNotifier {
       for (final image in [..._presentation.images, ..._externalImages])
         image.attachment.partPath,
     };
-    var added = false;
+    final body = _result.message?.body;
+    var decodedBytes =
+        utf8.encode(body?.plainText ?? '').length +
+        utf8.encode(body?.html ?? '').length;
+    for (final attachment
+        in _result.message?.attachments ?? <MailAttachment>[]) {
+      decodedBytes += attachment.content.length;
+    }
+    for (final image in _externalImages) {
+      decodedBytes += image.attachment.content.length;
+    }
+    var added = 0;
     for (final image in additions) {
       final dimensions = mailRasterDimensions(image.attachment);
-      final count = image.width * image.height;
-      if (dimensions != (image.width, image.height) ||
-          count > budget.maxImagePixels - pixels ||
+      if (dimensions == null) continue;
+      final count = dimensions.$1 * dimensions.$2;
+      if (count > budget.maxImagePixels - pixels ||
           image.attachment.content.length > budget.maxAttachmentBytes ||
+          image.attachment.content.length >
+              budget.maxDecodedBytes - decodedBytes ||
           imageCount >= budget.maxAttachments ||
           !known.add(image.attachment.partPath)) {
         continue;
       }
       pixels += count;
+      decodedBytes += image.attachment.content.length;
       imageCount++;
-      _externalImages.add(image);
-      added = true;
+      _externalImages.add(
+        MailInlineImage(
+          attachment: image.attachment,
+          width: dimensions.$1,
+          height: dimensions.$2,
+        ),
+      );
+      added++;
     }
-    if (!added) return;
+    if (added == 0) return 0;
     _presentation = _withExternalImages();
     _revision++;
     _selection = const TextSelection.collapsed(offset: 0);
     _runSearch();
     notifyListeners();
+    return added;
   }
 
   MailReaderPresentation _withExternalImages() {

@@ -100,6 +100,43 @@ String _mergedTable(String first, String second) =>
     '<td colspan="2" data-colwidth="160,80"><p>Second $second</p></td>'
     '</tr></tbody></table>';
 
+String _verticalTable(String first, String second) =>
+    '<table><tbody><tr>'
+    '<td rowspan="3" colspan="2" data-colwidth="120,160" '
+    'style="background-color:#ffeedd"><p>First $first</p>'
+    '<ol start="3"><li>Origin list</li></ol></td>'
+    '<td data-colwidth="80"><p>Top</p></td></tr>'
+    '<tr><td data-colwidth="80"><ol start="7"><li>Second $second</li>'
+    '<li>Next</li></ol></td></tr>'
+    '<tr><td data-colwidth="80"><p>Bottom</p></td></tr>'
+    '</tbody></table>';
+
+void _expectVerticalTable(WmlTable table) {
+  expect(table.grid, [90, 120, 60]);
+  expect(table.rows, hasLength(3));
+  expect(WordTable.supportsGridAddressing(table), isTrue);
+  for (var row = 0; row < 3; row++) {
+    final cells = table.rows[row].cells;
+    expect(cells.map((cell) => cell.gridSpan), [2, 1]);
+    expect(cells.map((cell) => cell.width), [210, 60]);
+    expect(cells.first.vMerge, row == 0 ? WmlVMerge.restart : WmlVMerge.cont);
+    expect(cells.last.vMerge, WmlVMerge.none);
+    expect(cells.first.fillColor, 'FFEEDD');
+    if (row != 0) {
+      expect(cells.first.blocks, hasLength(1));
+      final continuation = cells.first.blocks.single as WmlParagraph;
+      expect(continuation.text, isEmpty);
+      expect(continuation.properties.numId, isNull);
+    }
+  }
+  expect(
+    WordTree.paragraphs([table])
+        .where((paragraph) => paragraph.properties.listLabel != null)
+        .map((paragraph) => paragraph.properties.listLabel),
+    ['3. ', '7. ', '8. '],
+  );
+}
+
 WmlTable _onlyTable(Iterable<WmlBlock> blocks) =>
     blocks.whereType<WmlTable>().single;
 
@@ -374,6 +411,181 @@ void main() {
       },
     );
   }
+
+  for (final type in [0, 1, 2]) {
+    final story = switch (type) {
+      1 => 'footnote',
+      2 => 'endnote',
+      _ => 'body',
+    };
+    test(
+      '$story vertical merges preserve field owners and lists through DOCX refresh',
+      () {
+        final document = WmlDocument.empty(text: 'Before TARGET after');
+        WmlNote? note;
+        var paragraph = document.paragraphs.single;
+        if (type != 0) {
+          note = WordNotes.insert(
+            document,
+            paragraph,
+            endnote: type == 2,
+            text: ' Before TARGET after',
+          );
+          paragraph = note.paragraphs.single;
+          paragraph.inlines.insert(
+            0,
+            WmlNoteMarker(endnote: type == 2, properties: WmlRunProps()),
+          );
+        }
+        final start = paragraph.text.indexOf('TARGET');
+        final originalText = paragraph.text;
+        final session = _session(
+          document,
+          paragraph,
+          start: start,
+          end: start + 6,
+        );
+        _start(session, _verticalTable(_one, _two), type: type);
+        final inserted = _convert(session, ['SECOND2', 'FIRST1'], type: type);
+        _set(session, inserted[0], 'two', '(Two)');
+        _set(session, inserted[1], 'one', '<i>(One)</i>');
+        expect(paragraph.text, originalText);
+        expect(WordZotero.fields(document), isEmpty);
+        _finish(session);
+        final insertedBlocks = note?.blocks ?? document.sections.single.blocks;
+        _expectVerticalTable(_onlyTable(insertedBlocks));
+        expect(session.caretAfter!.paragraph, same(insertedBlocks.last));
+        expect(session.caretAfter!.offset, 0);
+        expect((insertedBlocks.last as WmlParagraph).text, ' after');
+
+        var current = document;
+        for (var round = 0; round < 3; round++) {
+          final currentNote = type == 0
+              ? null
+              : (type == 2 ? current.endnotes : current.footnotes).single;
+          final blocks = currentNote?.blocks ?? current.sections.single.blocks;
+          final table = _onlyTable(blocks);
+          _expectVerticalTable(table);
+          final origin =
+              table.rows.first.cells.first.blocks.first as WmlParagraph;
+          final middle = table.rows[1].cells.last.blocks.first as WmlParagraph;
+          final fields = WordZotero.fields(current);
+          expect(fields.map((field) => field.citation!.citationId), [
+            'one',
+            'two',
+          ]);
+          expect(fields.map((field) => field.paragraph), [
+            same(origin),
+            same(middle),
+          ]);
+          expect(fields.every((field) => field.canEdit), isTrue);
+          expect(WordTable.locationOfParagraph(current, fields[0].paragraph), (
+            table: table,
+            row: 0,
+            col: 0,
+          ));
+          expect(WordTable.locationOfParagraph(current, fields[1].paragraph), (
+            table: table,
+            row: 1,
+            col: 1,
+          ));
+          if (currentNote != null) {
+            expect(
+              currentNote.paragraphs.first.inlines.first,
+              isA<WmlNoteMarker>(),
+            );
+            expect(
+              WordTree.paragraphs([
+                table,
+              ]).expand((p) => p.inlines.whereType<WmlNoteMarker>()),
+              isEmpty,
+            );
+          }
+          final refresh = _session(current, blocks.first as WmlParagraph);
+          final exchanged = _fields(refresh);
+          expect(exchanged.map((field) => field['noteIndex']), [
+            type == 0 ? 0 : 1,
+            type == 0 ? 0 : 1,
+          ]);
+          _set(refresh, exchanged[0], 'one', '<i>(One refreshed $round)</i>');
+          _set(refresh, exchanged[1], 'two', '(Two refreshed $round)');
+          _finish(refresh);
+          expect(origin.text, 'First (One refreshed $round)');
+          expect(middle.text, 'Second (Two refreshed $round)');
+          _expectVerticalTable(table);
+          current = _reopen(current);
+        }
+      },
+    );
+  }
+
+  test('citations around a vertical table keep complete document order', () {
+    const before = '<a href="https://www.zotero.org/?BEFORE3">(Before)</a>';
+    const after = '<a href="https://www.zotero.org/?AFTER4">(After)</a>';
+    final document = WmlDocument.empty(text: 'TARGET');
+    final session = _session(document, document.paragraphs.single, end: 6);
+    _start(session, '<p>$before</p>${_verticalTable(_one, _two)}<p>$after</p>');
+    final converted = _convert(session, [
+      'AFTER4',
+      'SECOND2',
+      'FIRST1',
+      'BEFORE3',
+    ]);
+    for (var index = 0; index < converted.length; index++) {
+      final id = ['after', 'two', 'one', 'before'][index];
+      _set(session, converted[index], id, '($id)');
+    }
+    _finish(session);
+    for (final current in [document, _reopen(document)]) {
+      final fields = WordZotero.fields(current);
+      expect(fields.map((field) => field.citation!.citationId), [
+        'before',
+        'one',
+        'two',
+        'after',
+      ]);
+      expect(fields.map((field) => field.cachedText), [
+        '(before)',
+        '(one)',
+        '(two)',
+        '(after)',
+      ]);
+      final blocks = current.sections.single.blocks;
+      final table = _onlyTable(blocks);
+      expect(fields.first.paragraph, same(blocks.first));
+      expect(fields.last.paragraph, same(blocks.last));
+      expect(fields[1].paragraph, same(table.rows[0].cells.first.blocks.first));
+      expect(fields[2].paragraph, same(table.rows[1].cells.last.blocks.first));
+      _expectVerticalTable(table);
+    }
+  });
+
+  test('fully covered empty rows retain their merge chain through DOCX', () {
+    final document = WmlDocument.empty(text: 'BeforeAfter');
+    final session = _session(document, document.paragraphs.single, start: 6);
+    _start(
+      session,
+      '<table><tbody><tr><td rowspan="3" colspan="2">$_one</td></tr>'
+      '<tr/><tr/></tbody></table>',
+    );
+    _set(session, _convert(session, ['FIRST1']).single, 'one', '(One)');
+    _finish(session);
+    for (final current in [document, _reopen(document)]) {
+      final table = _onlyTable(current.sections.single.blocks);
+      expect(table.rows.map((row) => row.cells.length), [1, 1, 1]);
+      expect(table.rows.map((row) => row.cells.single.vMerge), [
+        WmlVMerge.restart,
+        WmlVMerge.cont,
+        WmlVMerge.cont,
+      ]);
+      expect(table.rows.every((row) => row.cells.single.gridSpan == 2), isTrue);
+      expect(WordZotero.fields(current).single.cachedText, '(One)');
+      expect(
+        WordZotero.fields(current).single.paragraph,
+        same(table.rows.first.cells.single.blocks.single),
+      );
+    }
+  });
 
   test(
     'merged table layout and hit boxes cover the correct logical columns after DOCX reopen',

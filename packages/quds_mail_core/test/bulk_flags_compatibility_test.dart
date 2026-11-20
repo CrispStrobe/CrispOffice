@@ -212,6 +212,7 @@ void main() {
       for (final code in [
         MailProblemCode.cancelled,
         MailProblemCode.staleOperation,
+        MailProblemCode.quotaExceeded,
       ]) {
         test('certified $code failure still stops further dispatch', () async {
           var calls = 0;
@@ -226,16 +227,16 @@ void main() {
           expect(report.failedCount, 1);
           expect(report.unattemptedCount, 2);
           expect(report.items.first.problem, same(problem));
+          expect(report.stopProblem, same(problem));
           expect(
             report.requiresRefresh,
             code == MailProblemCode.staleOperation,
           );
-          expect(
-            report.stopReason,
-            code == MailProblemCode.cancelled
-                ? MailBulkFlagStopReason.cancelled
-                : MailBulkFlagStopReason.staleScope,
-          );
+          expect(report.stopReason, switch (code) {
+            MailProblemCode.cancelled => MailBulkFlagStopReason.cancelled,
+            MailProblemCode.staleOperation => MailBulkFlagStopReason.staleScope,
+            _ => MailBulkFlagStopReason.rateLimited,
+          });
         });
       }
 

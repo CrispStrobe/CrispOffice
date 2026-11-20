@@ -37,15 +37,29 @@ final class MailReaderPresentation {
     required List<MailTextRun> runs,
     required List<MailInlineImage> images,
     required List<MailDiagnostic> diagnostics,
-    List<Uri> remoteImageUris = const [],
+    List<Uri>? remoteImageUris,
+    List<Uri>? remoteImageUrls,
     this.bodyText = '',
     this.rejected = false,
     this.usedHtml = false,
     this.blockedResourceCount = 0,
   }) : runs = List.unmodifiable(runs),
        images = List.unmodifiable(images),
-       remoteImageUris = List.unmodifiable(remoteImageUris),
-       diagnostics = List.unmodifiable(diagnostics);
+       remoteImageUris = List.unmodifiable(
+         remoteImageUris ?? remoteImageUrls ?? const [],
+       ),
+       diagnostics = List.unmodifiable(diagnostics) {
+    if (remoteImageUris != null && remoteImageUrls != null) {
+      if (remoteImageUris.length != remoteImageUrls.length) {
+        throw ArgumentError('Remote image candidate aliases must agree.');
+      }
+      for (var index = 0; index < remoteImageUris.length; index++) {
+        if (remoteImageUris[index] != remoteImageUrls[index]) {
+          throw ArgumentError('Remote image candidate aliases must agree.');
+        }
+      }
+    }
+  }
   final String text;
 
   /// The bounded body projection, without envelope or attachment summaries.
@@ -58,6 +72,9 @@ final class MailReaderPresentation {
 
   /// Inert image candidates for an explicit host action; never fetched here.
   final List<Uri> remoteImageUris;
+
+  /// Compatibility spelling for the same bounded, immutable candidates.
+  List<Uri> get remoteImageUrls => remoteImageUris;
   final List<MailDiagnostic> diagnostics;
   final bool rejected;
   final bool usedHtml;
@@ -80,6 +97,7 @@ MailReaderPresentation buildMailPresentation(
   bool preferHtml = true,
   bool externalImagePlaceholders = true,
   Set<Uri> loadedRemoteImageUris = const {},
+  List<MailInlineImage> additionalImages = const [],
 }) {
   budget.validate();
   final diagnostics = <MailDiagnostic>[...result.diagnostics];
@@ -125,11 +143,12 @@ MailReaderPresentation buildMailPresentation(
       rejected: true,
     );
   }
-  if (message.attachments.length > budget.maxAttachments) {
+  final attachmentCount = message.attachments.length + additionalImages.length;
+  if (attachmentCount > budget.maxAttachments) {
     return reject(
       MailDiagnosticCode.attachmentCountLimit,
       'The attachment count exceeds the reader limit.',
-      message.attachments.length,
+      attachmentCount,
       budget.maxAttachments,
     );
   }
@@ -175,7 +194,9 @@ MailReaderPresentation buildMailPresentation(
     }
   }
   var decodedBytes = 0;
-  for (final attachment in message.attachments) {
+  for (final attachment in message.attachments.followedBy(
+    additionalImages.map((image) => image.attachment),
+  )) {
     final nameRejected =
         admitHeader(attachment.displayName) ??
         admitHeader(attachment.mediaType);
@@ -227,7 +248,12 @@ MailReaderPresentation buildMailPresentation(
     budget,
     message.attachments,
     externalImagePlaceholders: externalImagePlaceholders,
-    loadedRemoteImageUris: loadedRemoteImageUris,
+    loadedRemoteImageUris: {
+      ...loadedRemoteImageUris,
+      for (final image in additionalImages)
+        if (image.attachment.partPath.startsWith('remote:'))
+          ?Uri.tryParse(image.attachment.partPath.substring(7)),
+    },
   );
   try {
     builder.add(
@@ -264,6 +290,43 @@ MailReaderPresentation buildMailPresentation(
       builder.html(body.html!);
     } else {
       builder.add(body.plainText ?? '(No supported decoded body)');
+    }
+    final allowedRemotePaths = {
+      for (final uri in builder.remoteImageUris) 'remote:$uri',
+    };
+    final imagePaths = {
+      for (final attachment in message.attachments) attachment.partPath,
+    };
+    for (final image in additionalImages) {
+      final attachment = image.attachment;
+      final dimensions = _rasterDimensions(attachment);
+      if (!allowedRemotePaths.contains(attachment.partPath) ||
+          !imagePaths.add(attachment.partPath) ||
+          dimensions == null) {
+        return reject(
+          MailDiagnosticCode.imageLimit,
+          'A remote image is unsupported or does not belong to this projection.',
+          additionalImages.length,
+          budget.maxAttachments,
+        );
+      }
+      final pixels = dimensions.$1 * dimensions.$2;
+      if (pixels > budget.maxImagePixels - builder.pixels) {
+        return reject(
+          MailDiagnosticCode.imageLimit,
+          'Inline and remote image pixels exceed the rendering limit.',
+          builder.pixels + pixels,
+          budget.maxImagePixels,
+        );
+      }
+      builder.pixels += pixels;
+      builder.images.add(
+        MailInlineImage(
+          attachment: attachment,
+          width: dimensions.$1,
+          height: dimensions.$2,
+        ),
+      );
     }
     final bodyEnd = builder.text.length;
     if (message.attachments.isNotEmpty) {

@@ -300,6 +300,7 @@ void main() {
       final list = tester.widget<MailMessageList>(find.byType(MailMessageList));
       final rows = list.items;
       expect(list.onBulkAction, isNull);
+      expect(list.onCancelBulk, isNull);
       expect(list.bulkStatus, isNull);
       expect(
         find.byKey(const ValueKey('mail-list-bulk-actions')),

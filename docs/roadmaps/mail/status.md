@@ -8,6 +8,11 @@ Returning to the app preserves the current mailbox and reader instead of
 refreshing implicitly. The reader collapses transactional HTML indentation while
 preserving inline spaces and preformatted content.
 
+The automatic attempt starts only after saved credentials are adopted and is
+bound to the settings, credential store, account and session revisions. Editing
+the form, a manual connection or disposal invalidates a queued attempt. Hosts
+with injected clients remain manual unless they explicitly opt in.
+
 Remote images remain blocked during parsing and normal reading. The explicit
 host action requests at most eight inert image candidates; it refuses redirects,
 caps each streamed body at 4 MiB and applies the reader's image budgets. Retiring
@@ -16,6 +21,14 @@ unrequested image alternatives remain visible, and original message bytes remain
 unchanged. This is separate from automatic resource loading or browser HTML
 layout. Focused source tests cover these boundaries; execution is recorded in
 the source-bound validation receipts rather than inferred from this status page.
+
+Both remote-image loader entry points share one request loop and deadline.
+The reader enforces cumulative decoded bytes across both body alternatives,
+original attachments and previous host-loaded images. `addImages` returns the
+number actually admitted and retains valid incremental appends; a rejected
+item does not discard earlier safe items. The complete-projection
+`additionalImages` API rejects an invalid batch as a whole. Both APIs preserve
+source ownership, and failed or unrequested URI placeholders remain visible.
 
 ## Foreground bulk read and flag triage
 

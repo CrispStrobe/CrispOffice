@@ -1,5 +1,9 @@
 ## 0.1.0
 
+- Return the actual admitted count from host image appends, including both
+  decoded bodies and all retained attachments in cumulative byte admission.
+  Preserve incremental appends and URI-specific blocked alternatives. Keep
+  both remote-image candidate spellings and reject contradictory API aliases.
 - Collapse HTML indentation while preserving inline word boundaries, nonbreaking
   spaces and preformatted text. Expose bounded inert image candidates to hosts;
   admitted host-loaded rasters retain source bytes, refresh selection/search

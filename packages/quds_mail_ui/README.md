@@ -159,3 +159,20 @@ The example's custom Flutter bootstrap uses same-origin CanvasKit and font-fallb
 Run status and exact toolchain evidence belong to the Mail validation report in `docs/validation/mail-reader-20261118/`; test source alone does not establish a passing run. This package does not claim CrispCloud route parity, installed-app acceptance, low-memory-device performance, remote-image fetching, sending, mailbox sync, or App Store qualification.
 
 Independent Quds code is MIT. This UI package depends on Flutter, `characters`, and `quds_mail_core`; the separate MIME codec retains its own reviewed MPL dependency boundary.
+
+### Remote-image compatibility and admission
+
+`remoteImageUris` and `remoteImageUrls` expose the same immutable projected
+candidate list. If both constructor spellings are supplied, their ordered URI
+values must agree. The selection, bulk-enabled and label compatibility spellings
+also reject conflicting values.
+
+`MailReaderController.addImages` returns the number of newly admitted images.
+It preserves the established incremental append contract: invalid or over-budget
+items are skipped while prior valid items remain. Admission uses actual static
+raster dimensions, cumulative pixels and decoded bytes from both bodies, all
+original attachments and earlier appends. Preference changes re-admit images
+against CID budgets, and only loaded URI placeholders disappear. This operation
+does not authorize network requests; the host supplies explicitly requested
+images. `buildMailPresentation(additionalImages: ...)` additionally requires each
+image to belong to that projection and rejects an invalid complete batch.

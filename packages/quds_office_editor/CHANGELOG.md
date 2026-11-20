@@ -4,6 +4,17 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Reject queued Mail autoconnect after its account or session is retired. Keep
+  the shared remote-image loader APIs, enforce cumulative decoded-byte limits,
+  and reject contradictory values supplied through UI compatibility aliases.
+
+- Accept vertical and combined row/column spans through Zotero Add Note and
+  Add Annotation in body, footnote and endnote targets. Preserve rich content,
+  active citations, one undo/redo transaction and repeated DOCX reopening.
+- Resolve continued merged-cell pointer/keyboard navigation to the originating
+  cell while retaining physical row handles; keep authored native continuation
+  content reachable and skip only validated structural empty placeholders.
+
 - Explain foreground bulk rate-limit stops and provider retry delays in English,
   German and Arabic, including per-message details. Preserve refresh requirements
   when a receipt is dismissed after the account or folder scope becomes stale.
