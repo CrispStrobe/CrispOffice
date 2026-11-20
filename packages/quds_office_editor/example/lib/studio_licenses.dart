@@ -132,5 +132,12 @@ void registerStudioLicenses() {
       '${await load('camel-morph-msa-NOTICE')}\n\n'
       '${await load('camel-morph-msa-LICENSE')}',
     );
+    yield LicenseEntryWithLineBreaks(
+      const [
+        'Arabic context model for Camel Morph (CC BY-SA 4.0, downloaded data)',
+      ],
+      '${await load('camel-morph-msa-disambig-NOTICE')}\n\n'
+      '${await load('camel-morph-msa-disambig-LICENSE')}',
+    );
   });
 }

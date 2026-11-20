@@ -6,11 +6,13 @@ import createArabicMorphModule from './quds_arabic_morph.mjs';
 
 let module;
 let handle = 0;
+let model = 0;
 const BUNDLE = '/camel-morph';
+const MODEL = '/camel-morph-disambig';
 
 async function load() {
   const api = await createArabicMorphModule();
-  if (api._quds_arabic_morph_adapter_version() !== 1 || api._crispembed_ar_morph_abi_version() !== 2) {
+  if (api._quds_arabic_morph_adapter_version() !== 2 || api._crispembed_ar_morph_abi_version() !== 3) {
     throw new Error('Unsupported Arabic morphology ABI');
   }
   return api;
@@ -35,6 +37,7 @@ function withString(api, value, body) {
 
 // files: [{name, bytes}] of one verified bundle, manifest.json among them.
 function open(api, files, manifestSha256) {
+  if (model) { api._crispembed_ar_morph_disambig_free(model); model = 0; }
   if (handle) { api._crispembed_ar_morph_free(handle); handle = 0; }
   try { api.FS.mkdir(BUNDLE); } catch (_) { /* exists */ }
   const written = [];
@@ -56,6 +59,68 @@ function open(api, files, manifestSha256) {
     for (const path of written) { try { api.FS.unlink(path); } catch (_) { /* gone */ } }
   }
   return text(api, api._crispembed_ar_morph_info(handle));
+}
+
+// files: [{name, bytes}] of one verified disambiguation model bundle. The
+// disambiguator is default-off in CrispEmbed; the adapter enables it for
+// this module (the Wasm module has its own environment).
+function openModel(api, files, manifestSha256) {
+  if (!handle) throw new Error('No Arabic morphology database is open');
+  if (model) { api._crispembed_ar_morph_disambig_free(model); model = 0; }
+  try { api.FS.mkdir(MODEL); } catch (_) { /* exists */ }
+  const written = [];
+  const error = api._malloc(512);
+  try {
+    for (const {name, bytes} of files) {
+      if (!/^[A-Za-z0-9._-]+$/.test(name)) throw new Error('Invalid bundle file name');
+      api.FS.writeFile(`${MODEL}/${name}`, bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes),
+        {canOwn: true});
+      written.push(`${MODEL}/${name}`);
+    }
+    api._quds_arabic_morph_enable_disambiguation();
+    model = withString(api, `${MODEL}/manifest.json`, m => withString(api, manifestSha256,
+      s => api._crispembed_ar_morph_disambig_open(m, s, error, 512)));
+    if (!model) throw new Error(`The disambiguation model could not be opened: ${text(api, error)}`);
+  } finally {
+    api._free(error);
+    for (const path of written) { try { api.FS.unlink(path); } catch (_) { /* gone */ } }
+  }
+  return text(api, api._crispembed_ar_morph_disambig_info(model));
+}
+
+// One disambiguation buffer: the compact records of every word, then the
+// score section (crispembed_ar_morph_disambiguate, duplicate analyses dropped).
+function disambiguate(api, words, lengths) {
+  const parts = words.map(word => encoder.encode(word));
+  const total = parts.reduce((sum, part) => sum + part.length, 0);
+  const input = api._malloc(Math.max(total, 1));
+  const wordLengths = api._malloc(4 * Math.max(parts.length, 1));
+  const sentenceLengths = api._malloc(4 * Math.max(lengths.length, 1));
+  const out = api._malloc(8);
+  const error = api._malloc(256);
+  try {
+    let at = 0;
+    parts.forEach((part, i) => {
+      api.HEAPU8.set(part, input + at);
+      api.HEAPU32[(wordLengths >> 2) + i] = part.length;
+      at += part.length;
+    });
+    lengths.forEach((length, i) => { api.HEAPU32[(sentenceLengths >> 2) + i] = length; });
+    const status = api._crispembed_ar_morph_disambiguate(handle, model, input, wordLengths, parts.length,
+      sentenceLengths, lengths.length, 1, out, out + 4, error, 256);
+    if (status !== 0) throw new Error(`disambiguation failed (${status}): ${text(api, error)}`);
+    const pointer = api.HEAPU32[out >> 2];
+    const length = api.HEAPU32[(out + 4) >> 2];
+    const result = api.HEAPU8.slice(pointer, pointer + length);
+    api._crispembed_ar_morph_buffer_free(pointer);
+    return result.buffer;
+  } finally {
+    api._free(input);
+    api._free(wordLengths);
+    api._free(sentenceLengths);
+    api._free(out);
+    api._free(error);
+  }
 }
 
 // One compact batch buffer (crispembed_ar_morph_analyze_compact, duplicate
@@ -115,6 +180,15 @@ self.onmessage = event => {
       } else if (request.op === 'analyze' && handle) {
         const buffer = analyze(api, request.words);
         self.postMessage({id, buffer}, [buffer]);
+      } else if (request.op === 'open_model') {
+        const info = openModel(api, request.files, request.manifestSha256);
+        self.postMessage({id, response: JSON.stringify({status: 'success', info: JSON.parse(info)})});
+      } else if (request.op === 'disambiguate' && handle && model) {
+        const buffer = disambiguate(api, request.words, request.lengths);
+        self.postMessage({id, buffer}, [buffer]);
+      } else if (request.op === 'disambiguate') {
+        self.postMessage({id, response: JSON.stringify({status: 'failed',
+          message: 'No Arabic morphology database or disambiguation model is open'})});
       } else if (request.op === 'stats') {
         self.postMessage({id, response: JSON.stringify({status: 'success', open: handle !== 0,
           heapBytes: api.HEAPU32.buffer.byteLength})});
@@ -122,7 +196,7 @@ self.onmessage = event => {
         self.postMessage({id, unavailable: 'No Arabic morphology database is open'});
       }
     } catch (error) {
-      self.postMessage({id, fatal: request.op !== 'open', response: JSON.stringify({status: 'failed',
+      self.postMessage({id, fatal: request.op !== 'open' && request.op !== 'open_model', response: JSON.stringify({status: 'failed',
         message: `Arabic morphology failed: ${error.message}`})});
     }
   });
