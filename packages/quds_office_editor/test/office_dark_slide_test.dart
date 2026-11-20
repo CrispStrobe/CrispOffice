@@ -561,12 +561,9 @@ void main() {
       const darkCell = ui.Rect.fromLTWH(384, 93, 290, 25);
       expect(dark.contrastPixels(whiteCell, 0xFFFFFF), greaterThan(25));
       expect(dark.contrastPixels(darkCell, 0x303030), greaterThan(25));
-      // Contrast above measures readable glyph coverage. Opaque pixel counts
-      // vary with the installed fallback font and antialiasing; separately
-      // confirm that the expected adapted ink is present.
       expect(
         dark.count(const ui.Rect.fromLTWH(384, 93, 290, 25), 0xF2F2F2),
-        isPositive,
+        greaterThan(15),
       );
       expect(
         dark.count(const ui.Rect.fromLTWH(408, 218, 240, 28), 0x000000),

@@ -1,0 +1,419 @@
+{
+  "schema": 1,
+  "reviewedAt": "2026-11-20T04:18:03.638554+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "scope": "Read-only remote refresh classification; no branch/worktree changes, no tests or CI queried for this classification. Application completeness statements are source inspection, not qualification.",
+  "inputs": {
+    "refreshAudit": {
+      "path": "refresh-audit.json",
+      "observedAt": "2026-11-20T04:14:02.942Z",
+      "sha256": "974e2d04ed9117a6d5a39dfa500bb53e74c32423956a344ce44526cb1f255242"
+    },
+    "initialAudit": {
+      "path": "remote-audit.json",
+      "sha256": "f3d529c864bbbcf8bdabfb7d7265522a690cef6f3262e6284465a45eeb2bcc28"
+    },
+    "initialMain": "a452efdadc9000c51a8e5e9ba2f16405d4979e2e",
+    "remoteMain": "33370cbfc290389cc663913a9efcfa5f71e112b0",
+    "integrationSnapshot": "1c60f05f0d99e131eb3c0a42bcb7866c50b573b6",
+    "additionalFetchedHead": {
+      "branch": "codex/zotero-research-materials-20261120",
+      "auditSha": "8b28e79c1b581cb29ba5f20838b98ad24853da96",
+      "fetchedSha": "1ad510ae48c85c966f6e3651678a1ea7d78f36ef"
+    }
+  },
+  "main": {
+    "classification": "mandatory_main_advance_already_merged_by_parent_during_review",
+    "sha": "33370cbfc290389cc663913a9efcfa5f71e112b0",
+    "parent": "a452efdadc9000c51a8e5e9ba2f16405d4979e2e",
+    "commits": [
+      {
+        "sha": "33370cbfc290389cc663913a9efcfa5f71e112b0",
+        "committedAt": "2026-11-20T05:04:35+01:00",
+        "subject": "Record integrated review preview and native runtime acceptance [skip ci]"
+      }
+    ],
+    "changedPaths": [
+      "docs/validation/docx-review-extension-20261120/README.md",
+      "docs/validation/docx-review-extension-20261120/analysis.txt",
+      "docs/validation/docx-review-extension-20261120/preview-acceptance.json",
+      "docs/validation/docx-review-extension-20261120/preview-native-gate.txt"
+    ],
+    "productionChanges": false,
+    "ancestorOfIntegrationSnapshot": true
+  },
+  "pullRequests": {
+    "refreshedCount": 100,
+    "headsUnchangedFromInitialAudit": true,
+    "currentOpenCount": 0,
+    "openQuery": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=open&per_page=100",
+    "openResponse": [],
+    "note": "Current open-list GET returned []; no ready PR exists for the concurrent feature branches at observation. This is not a claim that future branch heads remain unchanged."
+  },
+  "branches": [
+    {
+      "name": "codex/zotero-research-materials-20261120",
+      "sha": "1ad510ae48c85c966f6e3651678a1ea7d78f36ef",
+      "classification": "active_incomplete_feature_checkpoint",
+      "description": "Engine child-note/attachment metadata API and models exist; planned Reference details -> Notes and attachments UI is absent, and branch README explicitly says feature implementation and final acceptance are in progress.",
+      "mergeBaseWithMain": "a452efdadc9000c51a8e5e9ba2f16405d4979e2e",
+      "ancestorOfMain": false,
+      "mainAncestorOfHead": false,
+      "ancestorOfIntegrationSnapshot": false,
+      "countsMainOnlyBranchOnly": [
+        1,
+        7
+      ],
+      "uniqueCommitsSinceInitialMain": [
+        {
+          "sha": "0a9d403a43746dbedb3536d84808699c031cda66",
+          "committedAt": "2026-11-19T22:42:47+01:00",
+          "subject": "Render inherited master and layout decorations behind slides"
+        },
+        {
+          "sha": "5c791d8cead2eaca6f3bc5e311471995f95b177b",
+          "committedAt": "2026-11-19T23:30:26+01:00",
+          "subject": "Add DejaVu symbol fallback to slide text painting"
+        },
+        {
+          "sha": "3af48b2d4c05ed14aa28092dd68351d211534d4b",
+          "committedAt": "2026-11-20T02:10:47+01:00",
+          "subject": "Render block arrows and fit single-line slide headings"
+        },
+        {
+          "sha": "f007b24503eece6ea0316a3049a10243fcf2dd2c",
+          "committedAt": "2026-11-20T04:55:43+01:00",
+          "subject": "Keep numeric-only slide text in authored LTR order"
+        },
+        {
+          "sha": "ea737a677980dcfd7e29e82d6838396e42a82156",
+          "committedAt": "2026-11-20T05:04:48+01:00",
+          "subject": "Merge recent PPTX rendering work before Zotero extension [skip ci]"
+        },
+        {
+          "sha": "8b28e79c1b581cb29ba5f20838b98ad24853da96",
+          "committedAt": "2026-11-20T05:09:40+01:00",
+          "subject": "Preserve hidden slide decorations through save and verify merge [skip ci]"
+        },
+        {
+          "sha": "1ad510ae48c85c966f6e3651678a1ea7d78f36ef",
+          "committedAt": "2026-11-20T05:13:38+01:00",
+          "subject": "Add bounded Zotero child note and attachment metadata reads [skip ci]"
+        }
+      ],
+      "changedPathsSinceMainMergeBase": [
+        "docs/validation/zotero-research-materials-20261120/README.md",
+        "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+        "docs/validation/zotero-research-materials-20261120/runtime-setup.tar.gz",
+        "docs/validation/zotero-research-materials-20261120/runtime.json",
+        "docs/validation/zotero-research-materials-20261120/upstream-reconciliation.json",
+        "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+        "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+        "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+        "packages/quds_office_engine/test/office_pdf_export_test.dart",
+        "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+        "packages/quds_office_engine/test/zotero_item_children_test.dart"
+      ],
+      "featureChangedPaths": [
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+        "packages/quds_office_engine/test/zotero_item_children_test.dart"
+      ],
+      "dependencyManifestChangesSinceMergeBase": [],
+      "notEquivalentEvidence": "Feature additions and changed implementation blobs are absent/different on current main; branch commits are not ancestors. Do not classify the branches as already applied.",
+      "readinessEvidence": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/README.md",
+          "observation": "Opening lines explicitly call this an initial checkpoint with feature implementation and final acceptance in progress; planned UI action described later."
+        },
+        {
+          "command": "git grep itemChildren/ZoteroItemChild on production paths at fixed head",
+          "observation": "Only engine API and model definitions; no editor/Studio caller."
+        }
+      ],
+      "overlapRisks": [
+        "Branch merges original f007b245 PPTX ancestry with its own resolutions; do not overwrite qualified rendering code wholesale.",
+        "Adds backgroundShapesResolved to distinguish resolved empty decoration snapshots from native master fallback; independently assess this useful invariant.",
+        "Branch slide.showMasterShapes guard suppresses layout decorations as well as master shapes; current integration intentionally retains layout decorations when only master shapes are suppressed."
+      ],
+      "testTargets": [
+        "packages/quds_office_engine/test/zotero_item_children_test.dart",
+        "packages/quds_office_engine/test/zotero_client_test.dart",
+        "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+        "packages/quds_office_engine/test/zotero_item_details_test.dart",
+        "packages/quds_office_engine/test/zotero_metadata_batch_test.dart"
+      ],
+      "recommendation": "Preserve this remote active checkpoint; re-audit its final PR/main state before final publication. Do not present or publish it as a completed user workflow solely because its head exists."
+    },
+    {
+      "name": "work/mail-attachments-20261120",
+      "sha": "82a98c9c701252dad258b9b4ac2255fd560d5e67",
+      "classification": "active_partial_feature_checkpoint",
+      "description": "Immutable attachment snapshots, draft field and multipart MIME exist; no production attachments: constructor caller or attachment-selection compose UI is present, and added validation consists only of initial reconciliation.",
+      "mergeBaseWithMain": "a452efdadc9000c51a8e5e9ba2f16405d4979e2e",
+      "ancestorOfMain": false,
+      "mainAncestorOfHead": false,
+      "ancestorOfIntegrationSnapshot": false,
+      "countsMainOnlyBranchOnly": [
+        1,
+        7
+      ],
+      "uniqueCommitsSinceInitialMain": [
+        {
+          "sha": "0a9d403a43746dbedb3536d84808699c031cda66",
+          "committedAt": "2026-11-19T22:42:47+01:00",
+          "subject": "Render inherited master and layout decorations behind slides"
+        },
+        {
+          "sha": "5c791d8cead2eaca6f3bc5e311471995f95b177b",
+          "committedAt": "2026-11-19T23:30:26+01:00",
+          "subject": "Add DejaVu symbol fallback to slide text painting"
+        },
+        {
+          "sha": "3af48b2d4c05ed14aa28092dd68351d211534d4b",
+          "committedAt": "2026-11-20T02:10:47+01:00",
+          "subject": "Render block arrows and fit single-line slide headings"
+        },
+        {
+          "sha": "f007b24503eece6ea0316a3049a10243fcf2dd2c",
+          "committedAt": "2026-11-20T04:55:43+01:00",
+          "subject": "Keep numeric-only slide text in authored LTR order"
+        },
+        {
+          "sha": "8d437090a234fef4d1cd90528cd6915bc08202a1",
+          "committedAt": "2026-11-20T05:02:27+01:00",
+          "subject": "Reconcile current Office and incoming PPTX work before mail attachments [skip ci]"
+        },
+        {
+          "sha": "3670f16ab80581cdcea9c1d08debf10b5c2c2566",
+          "committedAt": "2026-11-20T05:06:35+01:00",
+          "subject": "Add immutable mail attachments and ASCII-safe multipart MIME [skip ci]"
+        },
+        {
+          "sha": "82a98c9c701252dad258b9b4ac2255fd560d5e67",
+          "committedAt": "2026-11-20T05:12:51+01:00",
+          "subject": "Preserve inherited slide decoration and numeric PDF layout semantics [skip ci]"
+        }
+      ],
+      "changedPathsSinceMainMergeBase": [
+        "docs/validation/mail-attachments-20261120/initial-reconciliation.json",
+        "packages/quds_office_editor/example/lib/studio_mail_attachment.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_draft.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+        "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+        "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+        "packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+        "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+        "packages/quds_office_engine/test/slide_render_fidelity_test.dart"
+      ],
+      "featureChangedPaths": [
+        "packages/quds_office_editor/example/lib/studio_mail_attachment.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_draft.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+        "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart"
+      ],
+      "dependencyManifestChangesSinceMergeBase": [],
+      "notEquivalentEvidence": "Feature additions and changed implementation blobs are absent/different on current main; branch commits are not ancestors. Do not classify the branches as already applied.",
+      "readinessEvidence": [
+        {
+          "path": "docs/validation/mail-attachments-20261120/initial-reconciliation.json",
+          "observation": "Only newly added validation file; no final acceptance record at head."
+        },
+        {
+          "command": "git grep attachments: at fixed head -- packages/quds_office_editor/example/lib",
+          "observation": "No production caller supplies attachments to StudioMailDraft; selection/sending UI integration has not landed."
+        }
+      ],
+      "overlapRisks": [
+        "Branch merges original f007b245 PPTX ancestry with separate resolutions.",
+        "82a98c9c mirrors rotation, inherited-ID isolation and backing contrast fixes already qualified locally.",
+        "Its numeric PDF path preserves explicit newline-separated groups but does not wrap overlong numeric lines; current local fix is broader and should remain."
+      ],
+      "testTargets": [
+        "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_threading_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_engine/test/slide_render_fidelity_test.dart",
+        "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "packages/quds_office_editor/test/office_dark_slide_test.dart"
+      ],
+      "dependencies": "Uses existing quds_mail_core MailBytes, enough_mail and quds_mail_mime; no dependency manifest/lock change.",
+      "recommendation": "Preserve this remote active checkpoint; re-audit for completion/PR/main advancement. Its current code is plumbing, not a completed attachment workflow."
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "9e647ae5cfbd494b51fe0928b57ed10c9a7a986a",
+      "classification": "unique_rendering_changes_requiring_reconciliation_and_fixes",
+      "description": "Two new commits add Noto Emoji fallback and diagonal connector import/rendering. Connector save/edit preservation is incomplete; qualify corrected integration before publishing.",
+      "mergeBaseWithMain": "a5ae56c8e3e7f950c37ef491b17b5c32fcd0e13d",
+      "ancestorOfMain": false,
+      "mainAncestorOfHead": false,
+      "ancestorOfIntegrationSnapshot": false,
+      "countsMainOnlyBranchOnly": [
+        42,
+        6
+      ],
+      "newCommitsSinceInitialPptx": [
+        {
+          "sha": "ea75285d4be701903fc3a2941ef92ae5c43af5bd",
+          "committedAt": "2026-11-20T05:02:09+01:00",
+          "subject": "Add Noto Emoji to slide font fallbacks"
+        },
+        {
+          "sha": "9e647ae5cfbd494b51fe0928b57ed10c9a7a986a",
+          "committedAt": "2026-11-20T05:07:42+01:00",
+          "subject": "Render flipped slide connectors as diagonal lines"
+        }
+      ],
+      "changedPathsSinceMainMergeBase": [
+        "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+        "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+        "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "packages/quds_office_engine/test/slide_import_fidelity_test.dart"
+      ],
+      "changedPathsSinceReviewedPptx": [
+        "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+        "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+        "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "packages/quds_office_engine/test/slide_import_fidelity_test.dart"
+      ],
+      "dependencyManifestChangesSinceMergeBase": [],
+      "notEquivalentEvidence": "Feature additions and changed implementation blobs are absent/different on current main; branch commits are not ancestors. Do not classify the branches as already applied.",
+      "blockingReviewFindings": [
+        {
+          "finding": "Flip state lost on save",
+          "evidence": "At 9e647ae5 drawingml.writeShapeXml starts a:xfrm and writes only rot; no flipH/flipV output exists. Import test checks flags only, without roundtrip."
+        },
+        {
+          "finding": "Transform replacements can drop flips",
+          "evidence": "New PmlTransform flags default false, while existing arrangement, dragging/resizing, clipboard, controller and morph constructors reconstruct transforms without passing flags."
+        }
+      ],
+      "additionalReviewConcerns": [
+        "XML boolean parser accepts only string 1, not true.",
+        "Only test sets both flips true, which leaves an undirected diagonal geometrically unchanged; add each single-axis flip case.",
+        "Editor connector with no stroke but a legacy fill-only color reaches a break with no line painting.",
+        "PDF can draw connector fill color and explicit stroke separately; reconcile intended effective line color to avoid a double stroke."
+      ],
+      "testTargets": [
+        "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+        "packages/quds_office_engine/test/slide_incoming_pptx_regression_test.dart",
+        "packages/quds_office_engine/test/slide_arrange_fidelity_test.dart",
+        "packages/quds_office_engine/test/slide_render_fidelity_test.dart",
+        "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "packages/quds_office_editor/test/slide_arrange_history_test.dart",
+        "packages/quds_office_editor/test/slide_render_fidelity_test.dart"
+      ],
+      "dependencies": "No dependency manifest changes since f007b245. Noto Emoji addition is a family fallback name only, with no font asset change.",
+      "recommendation": "Reconcile the two unique commits while preserving existing local PPTX fixes; repair flip serialization/edit preservation and cover line-only/single-axis/render/roundtrip behavior before acceptance."
+    }
+  ],
+  "unchangedForkHeads": [
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "initialDisposition": "historical_equivalent",
+      "proofCarriedForward": "Same immutable head; initial main is an ancestor of refreshed main."
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "initialDisposition": "historical_equivalent",
+      "proofCarriedForward": "Same immutable head; initial main is an ancestor of refreshed main."
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "initialDisposition": "historical_equivalent",
+      "proofCarriedForward": "Same immutable head; initial main is an ancestor of refreshed main."
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "initialDisposition": "historical_equivalent",
+      "proofCarriedForward": "Same immutable head; initial main is an ancestor of refreshed main."
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "initialDisposition": "historical_equivalent",
+      "proofCarriedForward": "Same immutable head; initial main is an ancestor of refreshed main."
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "initialDisposition": "historical_equivalent",
+      "proofCarriedForward": "Same immutable head; initial main is an ancestor of refreshed main."
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "initialDisposition": "historical_equivalent",
+      "proofCarriedForward": "Same immutable head; initial main is an ancestor of refreshed main."
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "initialDisposition": "historical_equivalent",
+      "proofCarriedForward": "Same immutable head; initial main is an ancestor of refreshed main."
+    },
+    {
+      "name": "integrate/macbook-current-20261118",
+      "sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "initialDisposition": "already_ancestor",
+      "proofCarriedForward": "Same immutable head; initial main is an ancestor of refreshed main."
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "initialDisposition": "historical_equivalent",
+      "proofCarriedForward": "Same immutable head; initial main is an ancestor of refreshed main."
+    }
+  ],
+  "upstream": {
+    "headsIdenticalToInitialAudit": true,
+    "heads": [
+      {
+        "name": "ci/flutter-workspace",
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+      },
+      {
+        "name": "cursor/class-certificates-2db8",
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+      },
+      {
+        "name": "cursor/cloud-agent-1790580069020-0rk1h",
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+      },
+      {
+        "name": "main",
+        "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+      }
+    ],
+    "disposition": "Retain original ancestor proofs because object IDs are unchanged and initial main is an ancestor of refreshed main."
+  },
+  "githubActionsQueriedOrAwaited": false,
+  "recommendation": "Current main is mandatory and now preserved by parent. Integrate and repair the new PPTX rendering commits using exact immutable heads. Keep currently incomplete concurrent Zotero/mail feature checkpoints intact and explicitly classified; refresh again for completed main/PR advancement before final publication. Do not reset or force-push other branches."
+}

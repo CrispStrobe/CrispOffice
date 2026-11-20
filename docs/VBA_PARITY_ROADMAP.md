@@ -7,12 +7,13 @@ Passing one layer does not establish parity in the others.
 
 ## Current baseline
 
-As of 19 November 2026, native JSON macros and the shared operation catalog
+As of 20 November 2026, native JSON macros and the shared operation catalog
 cover all three document families. The `vba-excel` source compiler supports a
 bounded, document-independent subset: scalar expressions, typed locals,
 explicit worksheet/range bindings, reusable `ByVal` procedures and scalar
 functions, conditions, loops, fixed and dynamic one-dimensional arrays, `ReDim`/`Preserve`,
-`Erase`, module `Option Base`, and `For Each`.
+`Erase`, module `Option Base`, `For Each`, and the bounded String intrinsics
+`Len`, `Left$`, `Right$`, and `Mid$`.
 It generates an immutable native plan; runtime policy, detached validation,
 and atomic publication apply after compilation. Embedded VBA projects are
 preserved as opaque package parts and are never executed on document open.
@@ -34,24 +35,26 @@ and [the native macro contract](MACROS.md).
 | 6. Project interchange and authoring | Read/write project streams, explicit import/export, source editor, diagnostics, debugging and macro recording | Round-trip preservation, module/source provenance, source maps, breakpoints, consistent undo/history integration; successful Office open/edit/save checks |
 | 7. Host integration and qualification | Common Office workflows and explicit platform integrations | Real Word/Excel/PowerPoint differential runs, version/platform matrix, supported workflow corpus and documented residual gaps; external automation stays subject to host capability grants |
 
-Stage 1 is delivered in this increment. Its source, CLI/MCP transaction and
+Stage 1 was delivered in the prior array-lifecycle increment. Its source, CLI/MCP transaction and
 VM/JavaScript checks are recorded in the
 [local validation record](validation/office-vba-dynamic-arrays-20261119/README.md).
 This establishes the documented bounded dialect, not differential qualification
-against an installed Microsoft Office host. Stages 2–7 remain planned work.
+against an installed Microsoft Office host. Stage 2 now has its first bounded
+slice: a [versioned conformance format](VBA_CONFORMANCE.md) and these four
+String intrinsics, with explicit type restrictions, UTF-16 units, copy-work
+accounting, transactional integration, and VM/JavaScript agreement. Remaining
+Stage 2 semantics and Stages 3–7 remain planned work.
 Small tested adapter slices may run alongside shared language work when their
 prerequisites exist.
 
 ### Next increment
 
-Start Stage 2 with a versioned conformance-case format and a small string-intrinsic
-slice (`Len`, `Left$`, `Right$`, and `Mid$`). Each supported signature needs
-positive cases, type/error cases, explicit UTF-16 indexing behavior, work/string
-budget coverage, and VM/JavaScript agreement. Record Office host/version
-provenance separately when differential fixtures become available.
-
-Then add explicit Variant `Empty`/`Null` states and conversion rules before
+Add explicit Variant `Empty`/`Null` states and conversion rules before
 claiming default Variant behavior or accepting broader array/value coercion.
+Use the delivered versioned conformance format to distinguish specification
+expectations from intentional dialect restrictions. Record actual Office
+host/version/platform provenance separately when differential fixtures become
+available; the delivered corpus does not claim Office host qualification.
 Keep multidimensional arrays and array parameter passing as separate increments
 with their own shape, ownership, aliasing and resource tests. Stage 3 is the
 architectural prerequisite for macros that branch on existing workbook data;

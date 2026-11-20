@@ -562,6 +562,7 @@ class PmlSlide {
     String background = '',
     bool? inheritsMasterBackground,
     List<PmlShape>? backgroundShapes,
+    this.showMasterShapes = true,
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
@@ -585,6 +586,9 @@ class PmlSlide {
 
   /// Non-editable master/layout decorations painted behind [shapes].
   final List<PmlShape> backgroundShapes;
+
+  /// The slide's authored `showMasterSp` flag, retained when saving/copying.
+  bool showMasterShapes;
 
   /// layoutName API.
   String layoutName;
@@ -670,6 +674,7 @@ class PmlSlide {
       backgroundShapes: <PmlShape>[
         for (final PmlShape shape in backgroundShapes) shape.copy(),
       ],
+      showMasterShapes: showMasterShapes,
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
       transition: transition,
       hidden: hidden,
