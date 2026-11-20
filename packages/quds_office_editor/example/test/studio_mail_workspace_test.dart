@@ -495,8 +495,23 @@ void main() {
       final current = tester
           .widget<MailMessageView>(find.byType(MailMessageView))
           .controller;
-      images.pending!.complete(images.response());
+      var bodyCancelled = false;
+      // An explicit test-zone cancellation future lets fake async observe the
+      // stale response's cleanup, unlike Stream.value's root-zone future.
+      final lateBody = StreamController<List<int>>(
+        onCancel: () async {
+          bodyCancelled = true;
+        },
+      );
+      images.pending!.complete(
+        http.StreamedResponse(
+          lateBody.stream,
+          200,
+          headers: {'content-type': 'image/png'},
+        ),
+      );
       await _pump(tester);
+      expect(bodyCancelled, isTrue);
       expect(current.presentation.images, isEmpty);
       expect(current.decodedText, contains('Message 50'));
       expect(current.decodedText, contains('[External image blocked: Remote]'));

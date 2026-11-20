@@ -323,7 +323,7 @@ void main() {
     expect(client.connections, 0);
   });
 
-  testWidgets('pending account save also disables storage in the File menu', (
+  testWidgets('pending account save disables storage in the ribbon', (
     tester,
   ) async {
     final accounts = _Accounts();
@@ -344,17 +344,8 @@ void main() {
       isNull,
     );
 
-    await _tap(tester, find.widgetWithText(SubmenuButton, 'File'));
-    expect(
-      tester
-          .widget<MenuItemButton>(
-            find.widgetWithText(MenuItemButton, 'Credential storage…'),
-          )
-          .onPressed,
-      isNull,
-    );
+    await _tap(tester, _key('studio-mail-credential-storage'));
     expect(opened, 0);
-    await _tap(tester, find.widgetWithText(SubmenuButton, 'File'));
     gate.complete();
     await _pump(tester);
     expect(
@@ -405,16 +396,8 @@ void main() {
               .onPressed,
           isNull,
         );
-        await _tap(tester, find.widgetWithText(SubmenuButton, 'File'));
-        expect(
-          tester
-              .widget<MenuItemButton>(
-                find.widgetWithText(MenuItemButton, 'Credential storage…'),
-              )
-              .onPressed,
-          isNull,
-        );
-        await _tap(tester, find.widgetWithText(SubmenuButton, 'File'));
+        await _tap(tester, _key('studio-mail-credential-storage'));
+        expect(openedSettings, 0);
 
         // A callback captured before connection must obey the same guard as
         // the newly disabled controls.
