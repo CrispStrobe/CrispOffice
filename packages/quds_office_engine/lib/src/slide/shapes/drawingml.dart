@@ -244,8 +244,14 @@ List<PmlShape> parseSlideShapes(
         cx: current.transform.cx,
         cy: current.transform.cy,
         rot: rot,
-        flipH: reader.getAttribute('flipH') == '1',
-        flipV: reader.getAttribute('flipV') == '1',
+        flipH: switch (reader.getAttribute('flipH')?.trim()) {
+          '1' || 'true' => true,
+          _ => false,
+        },
+        flipV: switch (reader.getAttribute('flipV')?.trim()) {
+          '1' || 'true' => true,
+          _ => false,
+        },
       );
       final OfficeVisual? visual = current.visual;
       if (visual != null) {
@@ -784,6 +790,12 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
   w.writeStartElement('xfrm', prefix: 'a');
   if (shape.transform.rot != 0) {
     w.writeAttribute('rot', '${shape.transform.rot}');
+  }
+  if (shape.transform.flipH) {
+    w.writeAttribute('flipH', '1');
+  }
+  if (shape.transform.flipV) {
+    w.writeAttribute('flipV', '1');
   }
 
   /// writeEmptyElement API.

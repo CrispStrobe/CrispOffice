@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "preview": "CrispOffice Word Review Preview 930074b8.app",
+  "bundleId": "com.CrispStrobe.crispoffice.wordreviewpreview20261120",
+  "sourceCommit": "930074b87b2b26d2430eaad13a015ba52ae8f726",
+  "startupSeconds": 20,
+  "signatureVerified": true,
+  "architecture": "arm64",
+  "executableSha256": "ea17f48fd28f92833ace8ab6378a22b6056a5da931ac3c34a26bdb045d5cbd58",
+  "nativeLibrariesMatchQualifiedPreviewExactly": true,
+  "nativeGateReference": "preview-native-gate.txt",
+  "uniqueRegressionCases": 140,
+  "emptyRunGuardFocusedTests": 23
+}
