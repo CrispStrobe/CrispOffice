@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "preview": "CrispOffice Review Preview a452efda.app",
+  "bundleId": "com.CrispStrobe.crispoffice.reviewpreview20261120",
+  "sourceCommit": "a452efdadc9000c51a8e5e9ba2f16405d4979e2e",
+  "startupSeconds": 20,
+  "signatureVerified": true,
+  "architecture": "arm64",
+  "executableSha256": "b20e8470bfde9594a4a163dccda8bf958cce902a2c1048679436e2038228eea6",
+  "nativeRuntimeGatePassed": true,
+  "nativeRuntimeGateTests": 1,
+  "nativeGermanGrammarSmoke": "schl\u00e4ft => schlafen",
+  "modelTestsUseScratchData": true,
+  "incomingUpstreamCommit": "096ddbef",
+  "appSourceCommit": "a452efdadc9000c51a8e5e9ba2f16405d4979e2e",
+  "signedSpacyDescriptor": {
+    "library": "libcrispembed-spacy.dylib",
+    "sha256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f"
+  },
+  "nativeLibraries": [
+    {
+      "name": "libcrispembed-spacy.dylib",
+      "sha256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f"
+    },
+    {
+      "name": "libquds_proofing_hunspell.dylib",
+      "sha256": "6bcfb1471193b92c3f8c8ab3136087bb7fda51983a708b04e8fb6b7a35e3cbcc"
+    },
+    {
+      "name": "libquds_arabic_morph.dylib",
+      "sha256": "3cba72b2f6d4e0e7caed4f5be544b7281af08a9731e940b2e15e3a94b3a24ab2"
+    },
+    {
+      "name": "libquds_language_id.dylib",
+      "sha256": "6220789ca141109d0ff34538b20538746b8bad1ff5fc8881691f5198e567f409"
+    },
+    {
+      "name": "libquds_proofing_harper.dylib",
+      "sha256": "4e39fa49f83b7969d9a1d060c1d4382aef5a65e179ee7c63052d209dc0581e76"
+    }
+  ]
+}
