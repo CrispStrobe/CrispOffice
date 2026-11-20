@@ -12,9 +12,11 @@ String _sld(
   String root = 'sld',
   String name = '',
   String background = '',
+  bool showMasterShapes = true,
 }) =>
     '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-    '<p:$root $_ns><p:cSld${name.isEmpty ? '' : ' name="$name"'}>$background'
+    '<p:$root $_ns${showMasterShapes ? '' : ' showMasterSp="0"'}>'
+    '<p:cSld${name.isEmpty ? '' : ' name="$name"'}>$background'
     '<p:spTree>'
     '<p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/>'
     '</p:nvGrpSpPr><p:grpSpPr/>$shapes</p:spTree></p:cSld>'
@@ -70,6 +72,9 @@ PmlPresentation _deck(
   String masterBackground = '',
   String layoutBackground = '',
   String? secondaryMasterBackground,
+  String layoutShapes = '',
+  String masterShapes = '',
+  bool layoutShowsMasterShapes = true,
 }) {
   final OpcPackage package = OpcPackage.create(OpcPackageKind.slide);
   final RelationshipCollection presRels = package.relationshipsFor(
@@ -102,7 +107,8 @@ PmlPresentation _deck(
               idx: 1,
               xfrm: _xfrm(1371600, 3886200, 6400800, 1752600),
               text: 'Click to edit Master text styles',
-            ),
+            ) +
+            masterShapes,
         root: 'sldMaster',
         background: masterBackground,
       ),
@@ -125,10 +131,12 @@ PmlPresentation _deck(
               xfrm: _xfrm(685800, 2130425, 7772400, 1470025),
               text: 'Click to edit Master title style',
             ) +
-            _placeholder(3, 'subTitle', idx: 1, text: 'Click to add subtitle'),
+            _placeholder(3, 'subTitle', idx: 1, text: 'Click to add subtitle') +
+            layoutShapes,
         root: 'sldLayout',
         name: 'Title Slide',
         background: layoutBackground,
+        showMasterShapes: layoutShowsMasterShapes,
       ),
     ),
   );
@@ -304,6 +312,88 @@ void main() {
       expect(shape.richText[0].runs.single.color, 'A6A6A6');
       expect(shape.richText[1].runs.single.fontSizePt, 0);
       expect(shape.richText[1].defaultFontSizePt, 11);
+    });
+
+    test('layout decorations paint behind slide content', () {
+      final PmlPresentation deck = _deck(
+        <String>[_sld(_textBox(2, 'Slide'))],
+        layoutShapes:
+            '<p:sp><p:nvSpPr><p:cNvPr id="9" name="Band"/><p:cNvSpPr/>'
+            '<p:nvPr/></p:nvSpPr><p:spPr>${_xfrm(0, 0, 9144000, 6858000)}'
+            '<a:solidFill><a:srgbClr val="FFB300"/></a:solidFill>'
+            '</p:spPr></p:sp>',
+      );
+      final PmlSlide slide = deck.slides.single;
+      expect(slide.backgroundShapes, hasLength(1));
+      expect(slide.backgroundShapes.single.name, 'Band');
+      expect(slide.backgroundShapes.single.fillColor, 'FFB300');
+      expect(slide.shapes.single.name, 'TextBox 2');
+    });
+
+    test('decorations retain ownership, ordering and independent copies', () {
+      final PmlPresentation deck = _deck(
+        <String>[_sld(_textBox(9, 'Slide A')), _sld(_textBox(9, 'Slide B'))],
+        masterShapes: _textBox(9, 'Master decoration'),
+        layoutShapes: _textBox(9, 'Layout decoration'),
+        layoutBackground:
+            '<p:bg><p:bgPr><a:solidFill><a:srgbClr val="FFFFFF"/>'
+            '</a:solidFill></p:bgPr></p:bg>',
+      );
+      final PmlSlide first = deck.slides.first;
+      expect(first.backgroundShapes.map((shape) => shape.text), <String>[
+        'Master decoration',
+        'Layout decoration',
+      ]);
+      expect(first.backgroundShapesResolved, isTrue);
+      expect(first.inheritsMasterBackground, isFalse);
+      expect(first.resolveBackground('112233'), 'FFFFFF');
+      final PmlSlide copy = first.copy(id: 999);
+      expect(copy.backgroundShapesResolved, isTrue);
+      expect(copy.inheritsMasterBackground, isFalse);
+      expect(copy.resolveBackground('112233'), 'FFFFFF');
+      copy.backgroundShapes.first.text = 'Changed copy';
+      expect(first.backgroundShapes.first.text, 'Master decoration');
+      first.backgroundShapes.last.text = 'Changed first';
+      expect(deck.slides.last.backgroundShapes.last.text, 'Layout decoration');
+      expect(first.shapes.single.text, 'Slide A');
+    });
+
+    test('showMasterSp honors both levels of decoration inheritance', () {
+      final PmlPresentation hiddenSlide = _deck(
+        <String>[_sld(_textBox(2, 'Slide'), showMasterShapes: false)],
+        masterShapes: _textBox(9, 'Master decoration'),
+        layoutShapes: _textBox(9, 'Layout decoration'),
+      );
+      expect(hiddenSlide.slides.single.backgroundShapes, isEmpty);
+      expect(hiddenSlide.slides.single.backgroundShapesResolved, isTrue);
+      final PmlPresentation hiddenMaster = _deck(
+        <String>[_sld(_textBox(2, 'Slide'))],
+        masterShapes: _textBox(9, 'Master decoration'),
+        layoutShapes: _textBox(9, 'Layout decoration'),
+        layoutShowsMasterShapes: false,
+      );
+      expect(
+        hiddenMaster.slides.single.backgroundShapes.map((shape) => shape.text),
+        <String>['Layout decoration'],
+      );
+      final PmlPresentation reopened = SlideDeserializer().readBytes(
+        SlideSerializer().writeBytes(hiddenSlide),
+      );
+      expect(reopened.slides.single.backgroundShapes, isEmpty);
+      expect(reopened.slides.single.backgroundShapesResolved, isTrue);
+    });
+
+    test('block arrow presets survive import', () {
+      final PmlPresentation deck = _deck(<String>[
+        _sld(
+          '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Arrow"/><p:cNvSpPr/>'
+          '<p:nvPr/></p:nvSpPr><p:spPr>${_xfrm(0, 0, 914400, 914400)}'
+          '<a:prstGeom prst="downArrow"><a:avLst/></a:prstGeom>'
+          '<a:solidFill><a:srgbClr val="FFB300"/></a:solidFill>'
+          '</p:spPr></p:sp>',
+        ),
+      ]);
+      expect(deck.slides.single.shapes.single.preset, PmlShapePreset.downArrow);
     });
 
     test('master background resolves theme lumMod', () {

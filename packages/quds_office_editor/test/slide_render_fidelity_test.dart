@@ -28,6 +28,10 @@ Future<void> _mount(
   WidgetTester tester,
   PmlShape shape, {
   void Function(int index, {bool extend})? onPlaceCaret,
+  List<PmlShape> backgroundShapes = const <PmlShape>[],
+  Map<int, PmlAnimSample>? animSamples,
+  bool presenting = false,
+  OfficeTheme theme = OfficeTheme.light,
 }) async {
   await tester.pumpWidget(
     Directionality(
@@ -40,11 +44,20 @@ Future<void> _mount(
             width: 768,
             height: 453,
             child: SlideStage(
-              slide: PmlSlide(id: 256, shapes: <PmlShape>[shape]),
+              slide: PmlSlide(
+                id: 256,
+                shapes: <PmlShape>[shape],
+                backgroundShapes: backgroundShapes,
+              ),
               selected: shape,
-              editing: true,
+              editing: !presenting,
+              presenting: presenting,
+              animSamples: animSamples,
               onPlaceCaret: onPlaceCaret,
-              config: const OfficeSurfaceConfig(showSlideHandles: false),
+              config: OfficeSurfaceConfig(
+                theme: theme,
+                showSlideHandles: false,
+              ),
             ),
           ),
         ),
@@ -177,5 +190,47 @@ void main() {
     final Rect plain = (await _inkBounds(tester, 0x0000FF))!;
     expect(rich.width, closeTo(plain.width, 1));
     expect(rich.height, closeTo(plain.height, 1));
+  });
+  testWidgets('master decoration IDs do not inherit slide animation samples', (
+    WidgetTester tester,
+  ) async {
+    final PmlShape content = _shape()..text = 'Hidden slide content';
+    final PmlShape decoration = PmlShape(
+      id: content.id,
+      name: 'Master decoration',
+      fillColor: '00FF00',
+      transform: const PmlTransform(cx: 100 * 12700, cy: 100 * 12700),
+    );
+    await _mount(
+      tester,
+      content,
+      backgroundShapes: <PmlShape>[decoration],
+      presenting: true,
+      animSamples: <int, PmlAnimSample>{content.id: PmlAnimSample.hidden},
+    );
+    expect(await _inkBounds(tester, 0x00FF00), isNotNull);
+    expect(await _inkBounds(tester, 0xFF0000), isNull);
+  });
+
+  testWidgets('dark slide text uses the decoration painted behind it', (
+    WidgetTester tester,
+  ) async {
+    final PmlShape content = _shape()
+      ..text = 'Readable ink'
+      ..textColor = '000000';
+    final PmlShape decoration = PmlShape(
+      id: content.id,
+      name: 'White layout background',
+      fillColor: 'FFFFFF',
+      transform: const PmlTransform(cx: 720 * 12700, cy: 405 * 12700),
+    );
+    await _mount(
+      tester,
+      content,
+      backgroundShapes: <PmlShape>[decoration],
+      theme: OfficeTheme.dark,
+    );
+    expect(await _inkBounds(tester, 0x000000), isNotNull);
+    expect(content.textColor, '000000');
   });
 }
