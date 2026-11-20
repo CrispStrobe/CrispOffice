@@ -138,13 +138,60 @@ void main() {
     _sameParagraphs(note);
   });
 
-  test('header bold inherits base properties and permits an inline reset', () {
+  for (final (content, expected) in [
+    ('A<br/>', 'A\n'),
+    ('A<br/><br/>', 'A\n\n'),
+    ('<br/>', '\n'),
+    ('<br/>A<br/>', '\nA\n'),
+  ]) {
+    for (final wrapped in [false, true]) {
+      test('cell soft breaks survive structural markers: $content wrapped $wrapped',
+          () {
+        final html = wrapped ? '<div><span>$content</span></div>' : content;
+        final note = WordZoteroNoteText.fromHtml(
+          _table('<tr><td>$html</td><td><p>Next $_one</p></td></tr>'),
+        );
+        expect(note.paragraphs.map((paragraph) => paragraph.text),
+            [expected, 'Next (First)']);
+        expect(note.placeholders['ABC123']!.paragraphIndex, 1);
+        expect((note.blocks.single as WmlTable).rows.single.cells.first.blocks,
+            hasLength(1));
+        _sameParagraphs(note);
+      });
+    }
+  }
+
+  test('mixed cell and div blocks have no phantom continuation paragraphs', () {
+    final note = WordZoteroNoteText.fromHtml(
+      _table(
+        '<tr><td>Before<br/><p>Paragraph<br/></p>After<br/></td>'
+        '<td><div>Head<br/><div><p>Middle</p></div>Tail<br/></div></td></tr>',
+      ),
+    );
+    expect(note.paragraphs.map((paragraph) => paragraph.text), [
+      'Before\n',
+      'Paragraph\n',
+      'After\n',
+      'Head\n',
+      'Middle',
+      'Tail\n',
+    ]);
+    final table = note.blocks.single as WmlTable;
+    expect(table.rows.single.cells.map((cell) => cell.blocks.length), [3, 3]);
+    _sameParagraphs(note);
+  });
+
+  test('header bold keeps host fonts and explicit emphasis resets', () {
     final note = WordZoteroNoteText.fromHtml(
       _table(
         '<tr><th><p>Header <span style="font-weight:normal">normal</span>'
         '</p></th><td>Body</td></tr>',
       ),
-      baseProperties: WmlRunProps(italic: true),
+      baseProperties: WmlRunProps(
+        asciiFont: 'Georgia',
+        color: '336699',
+        italic: true,
+      ),
     );
     final header = note.paragraphs.first.inlines.whereType<WmlRun>().toList();
     expect(header.first.properties.bold, isTrue);
@@ -153,7 +200,12 @@ void main() {
       note.paragraphs
           .expand((paragraph) => paragraph.inlines)
           .whereType<WmlRun>()
-          .every((run) => run.properties.italic),
+          .every(
+            (run) =>
+                run.properties.asciiFont == 'Georgia' &&
+                run.properties.color == '336699' &&
+                !run.properties.italic,
+          ),
       isTrue,
     );
     expect(

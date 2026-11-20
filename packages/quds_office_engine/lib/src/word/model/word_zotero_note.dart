@@ -82,6 +82,20 @@ final class WordZoteroNoteText {
       item.implicitParagraphOpen = false;
     }
 
+    void openCellParagraph(_NoteElement element) {
+      if (element.implicitCellParagraphOpen) return;
+      canonical.write('<p>\uE002');
+      element
+        ..implicitCellParagraphOpen = true
+        ..hasText = true;
+    }
+
+    void closeCellParagraph(_NoteElement element) {
+      if (!element.implicitCellParagraphOpen) return;
+      canonical.write('\uE002</p>');
+      element.implicitCellParagraphOpen = false;
+    }
+
     try {
       while (reader.next()) {
         switch (reader.eventType) {
@@ -284,6 +298,13 @@ final class WordZoteroNoteText {
                 openItemParagraph(activeItem);
               }
             }
+            if (parent != null && parent.cellFlow) {
+              if (_cellBlockTags.contains(tag)) {
+                closeCellParagraph(parent);
+              } else {
+                openCellParagraph(parent);
+              }
+            }
             final outputTag = tag == 'a' || tag == 'img'
                 ? 'span'
                 : isList || tag == 'li' || _tableTags.contains(tag)
@@ -352,6 +373,9 @@ final class WordZoteroNoteText {
                 table: table,
                 row: row,
                 cell: cell,
+                cellFlow: cell != null ||
+                    (tag == 'div' &&
+                        stack.any((element) => element.cell != null)),
               ),
             );
           case XmlEventType.endElement:
@@ -367,6 +391,7 @@ final class WordZoteroNoteText {
               canonical.write('\uE000${element.linkIndex! * 2 + 1}\uE001');
               activeLink = false;
             }
+            if (element.cellFlow) closeCellParagraph(element);
             if (element.cell != null) {
               if (!element.hasText) canonical.write('<p>\uE002</p>');
               canonical.write('<p>\uE000/c\uE001</p>');
@@ -404,6 +429,13 @@ final class WordZoteroNoteText {
             if (_tableContainers.contains(parent?.tag)) {
               if (reader.text.trim().isNotEmpty) throw _unsupportedTable();
               break;
+            }
+            if (parent != null && parent.cellFlow) {
+              if (!parent.implicitCellParagraphOpen &&
+                  reader.text.trim().isEmpty) {
+                break;
+              }
+              openCellParagraph(parent);
             }
             final item = parent?.item;
             if (item != null) {
@@ -702,6 +734,13 @@ final class WordZoteroNoteText {
   static const _tableContainers = <String>{'table', 'tbody', 'tr'};
   static const _cellTags = <String>{'td', 'th'};
   static const _tableTags = <String>{..._tableContainers, ..._cellTags};
+  static const _cellBlockTags = <String>{
+    ..._headings,
+    'p',
+    'div',
+    'ul',
+    'ol',
+  };
 
   static void _checkMarkers(String value) {
     if (value.contains(RegExp('[\uE000-\uE002]'))) throw _malformed();
@@ -874,6 +913,7 @@ final class _NoteElement {
     this.table,
     this.row,
     this.cell,
+    this.cellFlow = false,
   });
   final String outputTag;
   final String tag;
@@ -883,6 +923,8 @@ final class _NoteElement {
   final WmlTable? table;
   final WmlTableRow? row;
   final WmlTableCell? cell;
+  final bool cellFlow;
+  bool implicitCellParagraphOpen = false;
   bool hasText = false;
 }
 
