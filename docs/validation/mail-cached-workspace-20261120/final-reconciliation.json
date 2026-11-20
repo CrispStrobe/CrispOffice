@@ -1,7 +1,7 @@
 {
-  "captured_at_utc": "2026-11-20T17:11:41.359918+00:00",
-  "target": "1f6a0130d88d16b687f46a39132cef4ca619829d",
-  "target_tree": "d0605cbb36760cd32618cd3c505ea09ade2c9c5f",
+  "captured_at_utc": "2026-11-20T17:26:05.095826+00:00",
+  "target": "2c0c9bed091eb6bfa5a2aed153f48fc79569a433",
+  "target_tree": "f7eada34fdbc35e4c6083c9d8d50fc1943cee6b6",
   "github_actions": "NOT QUERIED OR AWAITED",
   "fork_branch_count": 23,
   "recent_pr_count": 40,
@@ -69,7 +69,7 @@
     },
     {
       "kind": "fork_branch",
-      "sha": "273d78f54d2d4448c25791060eb41ae65e3d3674",
+      "sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
       "ref": "refs/heads/codex/word-vba-list-levels-20261120",
       "disposition": "ancestor"
     },
@@ -171,7 +171,7 @@
     },
     {
       "kind": "fork_branch",
-      "sha": "bb5320a50f288d95844a6d60cfd72eab13a9befc",
+      "sha": "3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
       "ref": "refs/heads/main",
       "disposition": "ancestor"
     },
@@ -183,7 +183,7 @@
     },
     {
       "kind": "fork_branch",
-      "sha": "9c2620e2c033d96a28a67b58741e9ec10cc42a5f",
+      "sha": "2c0c9bed091eb6bfa5a2aed153f48fc79569a433",
       "ref": "refs/heads/work/mail-cached-workspace-20261120",
       "disposition": "ancestor"
     },
@@ -214,7 +214,7 @@
     {
       "kind": "recent_pr",
       "number": 262,
-      "sha": "1f6a0130d88d16b687f46a39132cef4ca619829d",
+      "sha": "2c0c9bed091eb6bfa5a2aed153f48fc79569a433",
       "branch": "work/mail-cached-workspace-20261120",
       "state": "open",
       "draft": true,
@@ -224,11 +224,11 @@
     {
       "kind": "recent_pr",
       "number": 261,
-      "sha": "273d78f54d2d4448c25791060eb41ae65e3d3674",
+      "sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
       "branch": "codex/word-vba-list-levels-20261120",
-      "state": "open",
-      "draft": true,
-      "merged": false,
+      "state": "closed",
+      "draft": false,
+      "merged": true,
       "disposition": "ancestor"
     },
     {
