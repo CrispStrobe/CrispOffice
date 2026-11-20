@@ -340,14 +340,20 @@ file snapshots, atomic/cancellable selection, ten-file/10 MiB limits, exact
 base64 parts and ASCII-safe RFC 2231 filenames to that shared foreground path.
 The pure draft model is independent of the widget surface. Current locked-graph
 qualification is recorded with the attachment increment, separately from the
-earlier recipient subset. Durable composition/outbox, local autosave, richer
-bodies, automatic source-attachment forwarding and live-provider gates remain
-open; this does not complete M07 or the document-snapshot work in M08.
+earlier recipient subset. The [draft recovery continuation](draft-recovery.md)
+adds one durable local draft per connected account, debounced autosave and
+interrupted-send recovery to SMTP, EWS, Gmail and Graph. Multiple drafts,
+repository-backed queued submission, richer bodies, automatic source-attachment
+forwarding and live-provider gates remain open; this does not complete M07 or
+the document-snapshot work in M08.
 
 - [x] Add bounded outgoing file attachments to the shared Studio foreground
   composer and retain their immutable bytes across rejected/uncertain attempts.
-- [ ] Typed draft model, identity/To/Cc/Bcc, subject, attachments, reply/reply-all/forward and local autosave.
-- [ ] Implement a mail-body custom RenderBox editor with IME, selection, undo, bidi and accessibility, reusing approved Quds input/command primitives where appropriate.
+- [x] Typed draft model, identity/To/Cc/Bcc, subject, attachments and reply/reply-all/forward, with one local autosaved draft per native account. Preserve incomplete recipient text separately from validated transport addresses.
+- [x] Debounce saves, flush close/send, expose pending/saved/failure states, compare revisions, retain immutable attachment blobs and restore after reconnect. Explicit confirmed unsaved exit remains available during storage failure.
+- [x] Persist a possible-submission marker before provider invocation. Recover interrupted sends with explicit delivery-check acknowledgement; clear accepted/discarded drafts durably. Only a matching definite rejection can retire the current attempt's marker, preserving any earlier uncertainty.
+- [x] Reuse the Word custom RenderBox surface for the plain-text body, including IME, selection, undo, bidi and accessibility. Rich mail formatting remains below.
+- [ ] Add a local draft list with multiple simultaneous drafts, offline entry without reconnecting, explicit retention management and provider-side draft synchronization.
 - [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.
 - [ ] Generate multipart plain/HTML with deterministic boundaries and transfer encodings; preserve quoted original content as data.
 - [ ] Generate ASCII-safe wire MIME for the current text-oriented enough_mail SMTP API. Encode display names/subjects/filenames and payloads correctly. Handle non-ASCII mailbox local parts through negotiated SMTPUTF8 or explicit unsupported feedback.
