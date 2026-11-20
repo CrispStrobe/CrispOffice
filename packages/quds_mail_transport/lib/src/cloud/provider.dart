@@ -364,12 +364,21 @@ final class ApiMailCloudProvider implements MailCloudProvider {
       }
       rethrow;
     }
-    // Foreground message mutations use a narrow no-write evidence set: rate
-    // limits, timeouts and unfamiliar 4xx responses remain uncertain. Submission
-    // keeps its existing explicit client-rejection and Retry-After contract;
-    // the bulk mutation policy must not change send outcomes.
+    // Foreground message mutations use a narrow no-write evidence set,
+    // including documented Gmail/Graph 429 rejection. Timeouts and unfamiliar
+    // 4xx responses remain uncertain. Submission keeps its existing explicit
+    // client-rejection and Retry-After contract; bulk policy must not change
+    // send outcomes.
     final rejectedWithoutMutation = operation.kind == MailCloudOperation.apply
-        ? const {400, 401, 403, 404, 409, 412}.contains(response.statusCode)
+        ? const {
+            400,
+            401,
+            403,
+            404,
+            409,
+            412,
+            429,
+          }.contains(response.statusCode)
         : response.statusCode >= 400 &&
               response.statusCode < 500 &&
               response.statusCode != 408;

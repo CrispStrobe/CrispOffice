@@ -15,13 +15,11 @@ OfficeVisual _picture(int byte, {double x = 80, double y = 20}) => OfficeVisual(
   offsetY: y,
 );
 
-WmlParagraph _inline(OfficeVisual visual) => WmlParagraph(
-  inlines: [
-    WmlRun(
-      text: '\uFFFC',
-      inlineVisual: WmlVisual(visual: visual),
-    ),
-  ],
+WmlParagraph _inline(OfficeVisual visual) =>
+    _inlineNode(WmlVisual(visual: visual));
+
+WmlParagraph _inlineNode(WmlVisual visual) => WmlParagraph(
+  inlines: [WmlRun(text: '\uFFFC', inlineVisual: visual)],
 );
 
 List<LaidOutBox> _pictures(LaidOutPage page) =>
@@ -44,6 +42,7 @@ WmlSection _sectionWithPictures({
 LaidOutPage _page({
   List<WmlParagraph> header = const [],
   List<OfficeVisual> visuals = const [],
+  List<WmlVisual>? visualNodes,
   List<OfficeVisual> footerVisuals = const [],
 }) => WordLayoutEngine(font: null)
     .layout(
@@ -52,9 +51,9 @@ LaidOutPage _page({
           WmlSection(
             blocks: [_paragraph('Body')],
             header: header,
-            headerVisuals: [
-              for (final visual in visuals) WmlVisual(visual: visual),
-            ],
+            headerVisuals:
+                visualNodes ??
+                [for (final visual in visuals) WmlVisual(visual: visual)],
             footerVisuals: [
               for (final visual in footerVisuals) WmlVisual(visual: visual),
             ],
@@ -67,10 +66,13 @@ LaidOutPage _page({
     .single;
 
 void main() {
-  test('one visual represented inline and separately paints once', () {
+  test('one visual node represented inline and separately paints once', () {
     final visual = _picture(1, x: 92, y: 22);
+    // One occurrence uses the same node in both representations. Merely
+    // sharing OfficeVisual content does not make two nodes one occurrence.
+    final node = WmlVisual(visual: visual);
     final frames = _pictures(
-      _page(header: [_inline(visual)], visuals: [visual]),
+      _page(header: [_inlineNode(node)], visualNodes: [node]),
     );
     expect(frames, hasLength(1));
     expect(frames.single.visual, same(visual));
@@ -107,13 +109,40 @@ void main() {
     },
   );
 
-  test('an exact chrome picture duplicate at one placement paints once', () {
+  test('distinct chrome nodes at one placement retain both occurrences', () {
     final first = _picture(1);
     final second = first.copy();
     final frames = _pictures(_page(visuals: [first, second]));
-    expect(frames, hasLength(1));
-    expect(frames.single.visual, same(first));
+    // The serializer writes both authored nodes. Identical content and
+    // placement are not provenance for deleting either occurrence.
+    expect(frames, hasLength(2));
+    expect(frames.map((frame) => frame.visual), [first, second]);
+    expect(frames.map((frame) => (frame.x, frame.y)), [(80, 20), (80, 20)]);
   });
+
+  test('repeated references to one listed node paint one occurrence', () {
+    final visual = _picture(1);
+    final node = WmlVisual(visual: visual);
+    final frames = _pictures(_page(visualNodes: [node, node]));
+    expect(frames, hasLength(1));
+    expect(frames.single.visual, same(visual));
+    expect((frames.single.x, frames.single.y), (80, 20));
+  });
+
+  for (final sharedAsset in [false, true]) {
+    test('transparent authored nodes stay separate, shared=$sharedAsset', () {
+      final first = _picture(1)..picture.transparency = 0.5;
+      final second = sharedAsset ? first : first.copy();
+      final frames = _pictures(_page(visuals: [first, second]));
+      expect(frames, hasLength(2));
+      expect(frames.map((frame) => frame.visual), [first, second]);
+      expect(frames.map((frame) => (frame.x, frame.y)), [(80, 20), (80, 20)]);
+      expect(frames.map((frame) => frame.visual!.picture.transparency), [
+        0.5,
+        0.5,
+      ]);
+    });
+  }
 
   test('same content and placement preserve different picture adjustments', () {
     final first = _picture(1);

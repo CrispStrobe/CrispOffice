@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Certify documented Gmail/Graph HTTP 429 flag-update rejections as no effect,
+  preserving retry delay evidence and the separate submission outcome rules.
+  Unfamiliar post-dispatch failures remain uncertain.
+
 - Treat dispatched cloud message-mutation rate limits and unfamiliar client
   errors as uncertain; only explicit request, authorization, resource or
   precondition rejections certify no mutation. Preserve the separate submission

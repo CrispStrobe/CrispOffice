@@ -758,6 +758,69 @@ StudioMailBulkStatus _bulkStatus(WidgetTester tester) =>
 // adapter/status API. Reconnect is an additional positive/negative control for
 // the session-capture difference found during the concurrent source review.
 void _peerBulkWorkspaceTests() {
+  testWidgets(
+    'certified native quota stops the tail and keeps retry guidance without refresh',
+    (tester) async {
+      final browser = _BulkBrowser()
+        ..pages = (_, _, _) async =>
+            StudioMailHeaderPage(
+                messages: [
+                  for (final uid in [300, 200, 100])
+                    _header(uid, 'Message $uid'),
+                ],
+              )
+              ..bulkAnswer = (_) async => const MailFailure(
+                MailProblem(
+                  MailProblemCode.quotaExceeded,
+                  retryAfter: Duration(milliseconds: 1250),
+                  mutationMayHaveOccurred: false,
+                ),
+              );
+      await _show(tester, browser);
+      _mailList(tester).onBulkAction!(MailBulkFlagAction.flag, [
+        'imap-message-91:300',
+        'imap-message-91:200',
+        'imap-message-91:100',
+      ]);
+      await _pump(tester);
+      expect(browser.bulkCommands, hasLength(1));
+      expect(browser.changes, isEmpty);
+      final report = _bulkStatus(tester).report;
+      expect(report.stopReason, MailBulkFlagStopReason.rateLimited);
+      expect(report.confirmedCount, 0);
+      expect(report.failedCount, 1);
+      expect(report.uncertainCount, 0);
+      expect(report.unattemptedCount, 2);
+      expect(report.requiresRefresh, isFalse);
+      expect(_mailList(tester).bulkEnabled, isTrue);
+      expect(_mailList(tester).busy, isFalse);
+      expect(_mailList(tester).items.map((row) => row.isFlagged), [
+        false,
+        false,
+        false,
+      ]);
+      expect(find.text(_strings.mailWorkspaceRefreshRequired), findsNothing);
+      expect(find.textContaining('Request limit reached.'), findsOneWidget);
+      expect(
+        find.text('Wait at least 2 seconds before trying again.'),
+        findsOneWidget,
+      );
+      await tester.ensureVisible(_key('studio-mail-bulk-details'));
+      await tester.tap(_key('studio-mail-bulk-details'));
+      await _pump(tester);
+      expect(
+        find.descendant(
+          of: _key('studio-mail-bulk-result-0'),
+          matching: find.text('Wait at least 2 seconds before trying again.'),
+        ),
+        findsOneWidget,
+      );
+      expect(browser.bulkCommands, hasLength(1));
+      expect(browser.reads, 0);
+      expect(browser.requests, hasLength(1));
+      expect(tester.takeException(), isNull);
+    },
+  );
   group('IMAP reconciled bulk scenarios', () {
     testWidgets('legacy action capability does not imply safe bulk identity', (
       tester,

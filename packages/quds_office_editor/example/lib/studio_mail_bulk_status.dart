@@ -92,6 +92,31 @@ class StudioMailBulkStatus extends StatelessWidget {
     ),
   };
 
+  bool get _requiresRefresh =>
+      report.requiresRefresh ||
+      report.stopReason == MailBulkFlagStopReason.staleScope;
+
+  String _retryDelay(Duration delay) {
+    final rounded = (delay.inMilliseconds / 1000).ceil();
+    final seconds = rounded < 1 ? 1 : rounded;
+    return _text(
+      'Wait at least $seconds ${seconds == 1 ? 'second' : 'seconds'} before trying again.',
+      'Warten Sie vor einem erneuten Versuch mindestens $seconds ${seconds == 1 ? 'Sekunde' : 'Sekunden'}.',
+      'انتظر $seconds ثانية على الأقل قبل إعادة المحاولة.',
+    );
+  }
+
+  Duration? get _retryAfter {
+    if (report.stopProblem?.retryAfter case final delay?) return delay;
+    for (final result in report.results) {
+      if (result.problem?.code == MailProblemCode.quotaExceeded &&
+          result.problem?.retryAfter != null) {
+        return result.problem!.retryAfter;
+      }
+    }
+    return null;
+  }
+
   Future<void> _details(BuildContext context) async {
     final direction = Directionality.of(context);
     final media = MediaQuery.of(context);
@@ -151,6 +176,8 @@ class StudioMailBulkStatus extends StatelessWidget {
                               const SizedBox(height: 4),
                               Text(_outcome(result.outcome)),
                               Text(_explanation(result.outcome)),
+                              if (result.problem?.retryAfter case final delay?)
+                                Text(_retryDelay(delay)),
                             ],
                           ),
                         );
@@ -182,7 +209,7 @@ class StudioMailBulkStatus extends StatelessWidget {
     final attempted = report.results.length - report.unattemptedCount;
     return Material(
       key: const ValueKey('studio-mail-bulk-status'),
-      color: report.requiresRefresh
+      color: _requiresRefresh
           ? Theme.of(context).colorScheme.errorContainer
           : Theme.of(context).colorScheme.secondaryContainer,
       child: Padding(
@@ -219,15 +246,26 @@ class StudioMailBulkStatus extends StatelessWidget {
                 ),
               ),
             ],
-            if (report.requiresRefresh) ...[
+            if (_requiresRefresh) ...[
               const SizedBox(height: 8),
               Text(
                 _text(
-                  'Stopped after an uncertain result. Refresh the folder before another change.',
-                  'Nach einem ungewissen Ergebnis angehalten. Aktualisieren Sie den Ordner vor einer weiteren Änderung.',
-                  'توقفت العملية بعد نتيجة غير مؤكدة. حدّث المجلد قبل إجراء تغيير آخر.',
+                  'Refresh the folder to verify the current message state before another change.',
+                  'Aktualisieren Sie den Ordner, um den aktuellen Nachrichtenstatus vor einer weiteren Änderung zu prüfen.',
+                  'حدّث المجلد للتحقق من الحالة الحالية للرسائل قبل إجراء تغيير آخر.',
                 ),
               ),
+            ] else if (!running &&
+                report.stopReason == MailBulkFlagStopReason.rateLimited) ...[
+              const SizedBox(height: 8),
+              Text(
+                _text(
+                  'Request limit reached. Remaining messages were not attempted.',
+                  'Anfragelimit erreicht. Verbleibende Nachrichten wurden nicht versucht.',
+                  'تم بلوغ حد الطلبات. لم تُحاول الرسائل المتبقية.',
+                ),
+              ),
+              if (_retryAfter case final delay?) Text(_retryDelay(delay)),
             ] else if (!running && report.stopProblem != null) ...[
               const SizedBox(height: 8),
               Text(
@@ -264,7 +302,7 @@ class StudioMailBulkStatus extends StatelessWidget {
                   onPressed: running ? null : () => _details(context),
                   child: Text(_text('Details', 'Einzelheiten', 'التفاصيل')),
                 ),
-                if (!running && !report.requiresRefresh && onDismiss != null)
+                if (!running && !_requiresRefresh && onDismiss != null)
                   TextButton(
                     key: const ValueKey('studio-mail-bulk-dismiss'),
                     onPressed: onDismiss,

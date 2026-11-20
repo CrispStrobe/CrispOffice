@@ -277,10 +277,10 @@ void main() {
   for (final service in MailCloudService.values) {
     for (final status in [429, 499]) {
       test(
-        '${service.name} dispatched HTTP $status stops bulk work as uncertain',
+        '${service.name} dispatched HTTP $status stops later bulk writes',
         () async {
           final h = _Harness(service);
-          h.transport.handler = (_) => _error(status);
+          h.transport.handler = (_) => _error(status, retry: '90');
           final report = await MailBulkFlagCoordinator().run(
             plan: MailBulkFlagPlan(
               id: 'ambiguous-cloud-response',
@@ -295,11 +295,28 @@ void main() {
             ),
             isScopeCurrent: () => true,
           );
-          expect(report.uncertainCount, 1);
-          expect(report.failedCount, 0);
+          final limited = status == 429;
+          expect(report.uncertainCount, limited ? 0 : 1);
+          expect(report.failedCount, limited ? 1 : 0);
           expect(report.unattemptedCount, 1);
-          expect(report.items.first.problem?.mutationMayHaveOccurred, isTrue);
-          expect(report.requiresRefresh, isTrue);
+          expect(report.items.first.problem?.mutationMayHaveOccurred, !limited);
+          expect(
+            report.stopReason,
+            limited
+                ? MailBulkFlagStopReason.rateLimited
+                : MailBulkFlagStopReason.uncertain,
+          );
+          expect(report.requiresRefresh, !limited);
+          if (limited) {
+            expect(
+              report.items.first.problem?.code,
+              MailProblemCode.quotaExceeded,
+            );
+            expect(
+              report.items.first.problem?.retryAfter,
+              const Duration(seconds: 90),
+            );
+          }
           expect(h.transport.mailRequests, hasLength(1));
         },
       );
@@ -781,10 +798,13 @@ void main() {
           final h = _Harness(service);
           h.transport.handler = (_) => _error(403);
           expect((await h.send()).outcome, MailSubmissionOutcome.rejected);
+          h.transport.requests.clear();
           h.transport.handler = (_) => _error(429, retry: '90');
           final throttled = await h.send();
           expect(throttled.outcome, MailSubmissionOutcome.retryableFailure);
+          expect(throttled.problem?.code, MailProblemCode.quotaExceeded);
           expect(throttled.problem?.retryAfter, const Duration(seconds: 90));
+          expect(h.transport.mailRequests, hasLength(1));
           h.transport.handler = (_) => throw const MailCloudException(
             MailProblem(MailProblemCode.unavailable),
           );

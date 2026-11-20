@@ -578,8 +578,9 @@ void main() {
         await _run(
           (request) async {
             requests++;
-            if (requests == 1)
+            if (requests == 1) {
               return _command('Application.getActiveDocument', []);
+            }
             final result = jsonDecode(request.body!) as Map<String, Object?>;
             expect(result['supportsCitationMerging'], supported);
             return _complete();

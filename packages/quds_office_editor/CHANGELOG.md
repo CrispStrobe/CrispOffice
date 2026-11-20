@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Explain foreground bulk rate-limit stops and provider retry delays in English,
+  German and Arabic, including per-message details. Keep stale-scope refresh
+  guidance distinct from outcome certainty and prevent dismissal from clearing
+  its refresh requirement.
+
 - Add foreground bulk read/unread/flag/unflag actions for connected IMAP, EWS,
   Gmail and Microsoft 365 mail. Freeze visible checked identities, preserve
   nullable flag observations, report confirmed/failed/uncertain/unattempted

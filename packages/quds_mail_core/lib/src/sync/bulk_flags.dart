@@ -16,6 +16,7 @@ enum MailBulkFlagStopReason {
   invalidScope,
   scopeCheckFailed,
   uncertain,
+  rateLimited,
 }
 
 /// Frozen identities selected from one observed foreground mailbox.
@@ -170,8 +171,8 @@ final class MailBulkFlagReport {
   final MailProblem? stopProblem;
 
   /// Uncertainty wins over any concurrent cancellation or scope change.
-  /// Otherwise a certified cancelled/stale provider result wins, followed by
-  /// foreign-account lease, cancellation, stale lease, scope and stop checks.
+  /// Otherwise a certified cancelled/stale/quota provider result wins, followed
+  /// by foreign-account lease, cancellation, stale lease, scope and stop checks.
   /// Per-message acknowledgements are retained regardless of this reason.
   final MailBulkFlagStopReason? stopReason;
 
@@ -407,6 +408,11 @@ Future<MailBulkFlagReport> _runBulkFlags({
     } else if (problem?.code == MailProblemCode.staleOperation) {
       stopProblem = problem;
       stopReason = MailBulkFlagStopReason.staleScope;
+    } else if (problem?.code == MailProblemCode.quotaExceeded) {
+      // A definite quota rejection still requires stopping this foreground
+      // batch. Keep Retry-After evidence; do not retry or dispatch its tail.
+      stopProblem = problem;
+      stopReason = MailBulkFlagStopReason.rateLimited;
     }
     observeInterruption();
     publish();

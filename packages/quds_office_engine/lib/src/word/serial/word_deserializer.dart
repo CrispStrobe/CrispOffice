@@ -107,6 +107,7 @@ class WordDeserializer {
   WmlNote? _readingNote;
   bool _noteMarkCaptured = false;
   final Set<WmlTable> _tablesWithOwnBorders = Set<WmlTable>.identity();
+  final Set<WmlTable> _tablesWithOwnBorderWidths = Set<WmlTable>.identity();
   final Set<WmlRunProps> _notBold = Set<WmlRunProps>.identity();
   final Set<WmlRunProps> _notItalic = Set<WmlRunProps>.identity();
   final Map<WmlTable, _TableLook> _tableLooks =
@@ -123,6 +124,7 @@ class WordDeserializer {
     _paragraphFormatChanges.clear();
     _moveRanges.clear();
     _tablesWithOwnBorders.clear();
+    _tablesWithOwnBorderWidths.clear();
     _tableLooks.clear();
     _notBold.clear();
     _notItalic.clear();
@@ -2621,7 +2623,9 @@ class WordDeserializer {
         );
       } else if (reader.localName == 'tblBorders') {
         _tablesWithOwnBorders.add(table);
-        _readTblBorders(reader, table.properties);
+        if (_readTblBorders(reader, table.properties)) {
+          _tablesWithOwnBorderWidths.add(table);
+        }
       } else if (reader.localName == 'tblLook') {
         _tableLooks[table] = _TableLook.read(reader);
       } else if (reader.localName == 'bidiVisual') {
@@ -2636,10 +2640,12 @@ class WordDeserializer {
     }
   }
 
-  void _readTblBorders(XmlPullReader reader, WmlTableProps props) {
+  /// Returns whether a drawn direct border declares its own width.
+  bool _readTblBorders(XmlPullReader reader, WmlTableProps props) {
     if (reader.isEmptyElement) {
-      return;
+      return false;
     }
+    var hasDirectWidth = false;
     final int depth = reader.depth;
     while (reader.next() && reader.depth >= depth) {
       if (reader.eventType != XmlEventType.startElement) {
@@ -2662,12 +2668,14 @@ class WordDeserializer {
       );
       if (sz != null) {
         props.borderWidth = (int.tryParse(sz) ?? 4) / 8.0;
+        hasDirectWidth = true;
       }
       if (color != null && color.isNotEmpty && color.toLowerCase() != 'auto') {
         props.borderColor = color;
       }
       props.borders = true;
     }
+    return hasDirectWidth;
   }
 
   /// Applies `styles.xml` table styles (borders, header row and banded row
@@ -2714,9 +2722,11 @@ class WordDeserializer {
         // Word resolves an omitted/automatic direct border from the table
         // style. In particular Medium Grid 3's white grid must stay white
         // instead of becoming a black rectangle around every cell.
-        // The direct border still owns its width, even when its color is
-        // automatic. Resolving the color must not replace an authored size.
         table.properties.borderColor = style.borderColor;
+        // Preserve an authored direct size; an omitted size still inherits.
+        if (!_tablesWithOwnBorderWidths.contains(table)) {
+          table.properties.borderWidth = style.borderWidth;
+        }
       }
       if (style != null) {
         final _TableLook look = _tableLooks[table] ?? const _TableLook();
@@ -2789,6 +2799,7 @@ class WordDeserializer {
       _walkTables(note.blocks, applyTo);
     }
     _tablesWithOwnBorders.clear();
+    _tablesWithOwnBorderWidths.clear();
     _tableLooks.clear();
   }
 

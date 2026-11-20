@@ -420,6 +420,42 @@ void main() {
       },
     );
 
+    // Peer PR #273 adds certified quota handling; keep the stale-scope
+    // scenario below as an independent refresh guard.
+    testWidgets(
+      '${kind.name}: request limit stops the tail and preserves retry guidance without refresh',
+      (tester) async {
+        final harness = _Harness(kind)
+          ..configure = (provider) {
+            provider.respond = (_, _) => const MailFailure(
+              MailProblem(
+                MailProblemCode.quotaExceeded,
+                retryAfter: Duration(seconds: 12),
+                mutationMayHaveOccurred: false,
+              ),
+            );
+          };
+        await _show(tester, harness);
+        await _start(tester, MailBulkFlagAction.flag);
+        _counts(tester, 0, 1, 0, 2);
+        expect(harness.provider.commands, hasLength(1));
+        expect(
+          _status(tester).report.stopReason,
+          MailBulkFlagStopReason.rateLimited,
+        );
+        expect(_status(tester).report.requiresRefresh, isFalse);
+        expect(_list(tester).bulkEnabled, isTrue);
+        expect(find.textContaining('Request limit reached.'), findsOneWidget);
+        expect(
+          find.text('Wait at least 12 seconds before trying again.'),
+          findsOneWidget,
+        );
+        expect(harness.provider.bodyReads, 0);
+        expect(harness.provider.headerReads, 1);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
     testWidgets(
       '${kind.name}: certified stale scope requires refresh before a new batch',
       (tester) async {
@@ -435,6 +471,11 @@ void main() {
         _counts(tester, 0, 1, 0, 2);
         expect(harness.provider.commands, hasLength(1));
         expect(_list(tester).bulkEnabled, isFalse);
+        expect(
+          find.textContaining('verify the current message state'),
+          findsOneWidget,
+        );
+        expect(_key('studio-mail-bulk-dismiss'), findsNothing);
         expect(
           find.text(_strings.mailWorkspaceRefreshRequired),
           findsOneWidget,

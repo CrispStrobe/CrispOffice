@@ -306,6 +306,39 @@ void main() {
     expect(report.requiresRefresh, isFalse);
   });
 
+  for (final evidence in <bool?>[false, true, null]) {
+    test(
+      'quota evidence $evidence stops without retry or later dispatch',
+      () async {
+        var calls = 0;
+        final lease = MailAccountSession(_account).begin();
+        final limited = MailProblem(
+          MailProblemCode.quotaExceeded,
+          retryAfter: const Duration(seconds: 90),
+          mutationMayHaveOccurred: evidence,
+        );
+        final report = await _run((command, lease) async {
+          calls++;
+          return calls == 1 ? _success : MailFailure(limited);
+        }, lease: lease);
+        expect(calls, 2);
+        expect(lease.isCurrent, isTrue);
+        expect(report.confirmedCount, 1);
+        expect(report.failedCount, evidence == false ? 1 : 0);
+        expect(report.uncertainCount, evidence == false ? 0 : 1);
+        expect(report.unattemptedCount, 1);
+        expect(report.items[1].problem, same(limited));
+        expect(
+          report.stopReason,
+          evidence == false
+              ? MailBulkFlagStopReason.rateLimited
+              : MailBulkFlagStopReason.uncertain,
+        );
+        expect(report.requiresRefresh, evidence != false);
+      },
+    );
+  }
+
   for (final code in [
     MailProblemCode.cancelled,
     MailProblemCode.staleOperation,

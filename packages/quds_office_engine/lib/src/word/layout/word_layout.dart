@@ -1064,7 +1064,7 @@ class WordLayoutEngine {
   /// Tallest header logo height for [section] (0 if none).
   static double _headerLogoHeight(WmlSection section) {
     var maxH = 0.0;
-    void consider(List<WmlVisual> visuals) {
+    void consider(Iterable<WmlVisual> visuals) {
       for (final WmlVisual item in visuals) {
         maxH = math.max(maxH, item.visual.height);
       }
@@ -1073,6 +1073,17 @@ class WordLayoutEngine {
     consider(section.headerVisuals);
     consider(section.firstHeaderVisuals);
     consider(section.evenHeaderVisuals);
+    for (final story in [
+      section.header,
+      section.firstHeader,
+      section.evenHeader,
+    ]) {
+      consider([
+        for (final paragraph in story)
+          for (final run in paragraph.inlines.whereType<WmlRun>())
+            if (run.inlineVisual != null) run.inlineVisual!,
+      ]);
+    }
     return maxH;
   }
 
@@ -3368,23 +3379,8 @@ class WordLayoutEngine {
               math.max(section.margins.footer, section.margins.bottom * 0.55)
         : section.margins.header;
     final List<LaidOutBox> frames = <LaidOutBox>[];
-    void addChromeFrame(LaidOutBox frame) {
-      // Only suppress an exact duplicate inside this header/footer story.
-      // Equal dimensions or byte counts do not identify an image, and body
-      // frames must retain their original order/count for incremental reuse.
-      if (frames.any(
-        (existing) =>
-            existing.x == frame.x &&
-            existing.y == frame.y &&
-            existing.width == frame.width &&
-            existing.height == frame.height &&
-            _sameChromePicture(existing.visual!, frame.visual!),
-      )) {
-        return;
-      }
-      frames.add(frame);
-    }
-
+    final listed = Set<WmlVisual>.identity()..addAll(visuals);
+    final placed = Set<WmlVisual>.identity();
     var x = section.margins.left;
     // Header/footer tables are flattened to their paragraphs by the source
     // model. Keep their inline pictures (typically the organisation logo)
@@ -3392,14 +3388,14 @@ class WordLayoutEngine {
     var inlineX = section.margins.left;
     for (final WmlVisual item in inlineVisuals) {
       final OfficeVisual visual = item.visual;
-      if (visuals.any((candidate) => identical(candidate.visual, visual))) {
-        // The separate representation owns its explicit placement. It will be
-        // emitted below; do not also exclude it from that loop.
+      if (listed.contains(item) || !placed.add(item)) {
+        // One node may be exposed through both representations; its list
+        // placement owns that occurrence. Distinct nodes can share an asset.
         continue;
       }
       final double width = visual.width.clamp(16, section.contentWidth);
       final double height = visual.height.clamp(12, 120);
-      addChromeFrame(
+      frames.add(
         LaidOutBox(
           x: inlineX,
           y: bandTop,
@@ -3418,6 +3414,9 @@ class WordLayoutEngine {
       inlineX += width + 8;
     }
     for (final WmlVisual item in visuals) {
+      // Repeated references to one node are one occurrence. Equal content or
+      // coordinates do not identify distinct authored nodes, even with alpha.
+      if (!placed.add(item)) continue;
       final OfficeVisual visual = item.visual;
       final double width = visual.width.clamp(16, section.pageSize.width);
       final double height = visual.height.clamp(12, 120);
@@ -3431,7 +3430,7 @@ class WordLayoutEngine {
                       visual.offsetY
                 : visual.offsetY)
           : bandTop;
-      addChromeFrame(
+      frames.add(
         LaidOutBox(
           x: vx,
           y: vy,
@@ -3450,76 +3449,6 @@ class WordLayoutEngine {
       x = vx + width + 8;
     }
     return frames;
-  }
-
-  static bool _sameChromePicture(OfficeVisual first, OfficeVisual second) {
-    if (identical(first, second)) return true;
-    if (!first.isPicture || !second.isPicture || first.title != second.title) {
-      return false;
-    }
-    final firstBytes = first.imageBytes;
-    final secondBytes = second.imageBytes;
-    if (firstBytes == null ||
-        secondBytes == null ||
-        firstBytes.length != secondBytes.length) {
-      return false;
-    }
-    final a = first.picture;
-    final b = second.picture;
-    if ((
-          a.cropLeft,
-          a.cropTop,
-          a.cropRight,
-          a.cropBottom,
-          a.rotationDeg,
-          a.brightness,
-          a.contrast,
-          a.transparency,
-          a.borderColor,
-          a.borderWidth,
-          a.flipH,
-          a.flipV,
-          a.lockAspect,
-          a.wrap,
-          a.wrapDistT,
-          a.wrapDistB,
-          a.wrapDistL,
-          a.wrapDistR,
-          a.altTitle,
-          a.altDescription,
-          a.shadow,
-        ) !=
-        (
-          b.cropLeft,
-          b.cropTop,
-          b.cropRight,
-          b.cropBottom,
-          b.rotationDeg,
-          b.brightness,
-          b.contrast,
-          b.transparency,
-          b.borderColor,
-          b.borderWidth,
-          b.flipH,
-          b.flipV,
-          b.lockAspect,
-          b.wrap,
-          b.wrapDistT,
-          b.wrapDistB,
-          b.wrapDistL,
-          b.wrapDistR,
-          b.altTitle,
-          b.altDescription,
-          b.shadow,
-        )) {
-      return false;
-    }
-    if (!identical(firstBytes, secondBytes)) {
-      for (var index = 0; index < firstBytes.length; index++) {
-        if (firstBytes[index] != secondBytes[index]) return false;
-      }
-    }
-    return true;
   }
 
   void _applyVerticalMerges(WmlTable table, List<LaidOutBox> frames) {
