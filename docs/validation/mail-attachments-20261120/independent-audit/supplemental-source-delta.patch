@@ -1,0 +1,18 @@
+diff --git a/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart b/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart
+index 6c49ada8c..055410c2c 100644
+--- a/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart
++++ b/packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart
+@@ -349,6 +349,13 @@ void main() {
+     await _pump(tester);
+     expect(_text(tester).text, 'Draft Commet language.');
+     expect(_suggestion(), findsNothing);
++    // Since the language-download review (9f41e042), a language change opens
++    // that modal dialog; the draft is not current under it. Decline it as a
++    // user would, so the draft re-checks in the new language.
++    expect(find.text('Not now'), findsOneWidget);
++    await tester.tap(find.text('Not now'));
++    await _pump(tester);
++    expect(find.text('Not now'), findsNothing);
+     await _finishCheck(tester);
+     expect(
+       provider.requests.where((r) => r.text.startsWith('Draft')).last.language,

@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart"
+  ],
+  "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+  "elapsed_seconds": 0.06455246899713529,
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-20T05:42:27.331748+00:00",
+  "name": "format",
+  "started_at_utc": "2026-11-20T05:42:27.267031+00:00",
+  "stderr": {
+    "bytes": 0,
+    "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 46,
+    "git_blob_sha1": "0ff065a128412c6a383c3def0e9e3a326c6b390c",
+    "sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec"
+  }
+}

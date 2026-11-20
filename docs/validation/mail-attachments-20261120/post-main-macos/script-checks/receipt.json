@@ -1,0 +1,127 @@
+{
+  "compared_candidate": "6184051c75d882cac53be3c1a9384e4556588ad1",
+  "dart_non_doc_source_sha256": "9d2502e90e82604daba7fc8dab589cf13300e85035e3af0867d16b3e4516b41e",
+  "finished_at_utc": "2026-11-20T05:51:07.257570+00:00",
+  "guards": {
+    "all_controlled_scenarios_passed": true,
+    "bash_syntax_passed": true,
+    "dart_delta_doc_comments_only": true,
+    "head_unchanged": true,
+    "scoped_inputs_unchanged": true,
+    "workflow_unchanged_from_captured_candidate": true
+  },
+  "help_not_invoked": "The full build script does not implement a side-effect-free --help action; unknown args are forwarded to Flutter only after native build steps.",
+  "qualification_limit": "Syntax and Linux Bash control-flow only. Verbatim changed script blocks execute against synthetic non-executable files, with codesign/code-digest/unsigned-digest calls stubbed. No macOS build, real Mach-O signing, signature verification, native library loading, notarization or shipping acceptance is established. Application test totals exclude these auxiliary scenarios.",
+  "scenario_count": 8,
+  "scenarios": [
+    {
+      "accepted": true,
+      "checks": {
+        "expected_exit": true,
+        "expected_note": true,
+        "other_library_still_signed": true,
+        "spacy_bytes_preserved": true,
+        "spacy_verify_only": true
+      },
+      "exit_code": 0,
+      "name": "adhoc-pinned-bytes-preserved"
+    },
+    {
+      "accepted": true,
+      "checks": {
+        "expected_exit": true,
+        "expected_note": true
+      },
+      "exit_code": 0,
+      "name": "release-normalized-crosscheck"
+    },
+    {
+      "accepted": true,
+      "checks": {
+        "expected_exit": true,
+        "expected_note": true
+      },
+      "exit_code": 0,
+      "name": "release-older-strip-code-gate"
+    },
+    {
+      "accepted": true,
+      "checks": {
+        "expected_exit": true,
+        "expected_refusal": true
+      },
+      "exit_code": 1,
+      "name": "release-code-drift-rejected"
+    },
+    {
+      "accepted": true,
+      "checks": {
+        "expected_exit": true,
+        "expected_refusal": true
+      },
+      "exit_code": 1,
+      "name": "normalized-strip-drift-rejected"
+    },
+    {
+      "accepted": true,
+      "checks": {
+        "expected_exit": true,
+        "expected_note": true,
+        "rebuild_really_signed": true
+      },
+      "exit_code": 0,
+      "name": "adhoc-rebuild-signed-unqualified"
+    },
+    {
+      "accepted": true,
+      "checks": {
+        "expected_exit": true,
+        "spacy_bytes_preserved": true
+      },
+      "exit_code": 7,
+      "name": "adhoc-invalid-signature-rejected"
+    },
+    {
+      "accepted": true,
+      "checks": {
+        "expected_exit": true,
+        "expected_refusal": true,
+        "spacy_bytes_preserved": true
+      },
+      "exit_code": 1,
+      "name": "pinned-input-code-drift-rejected"
+    }
+  ],
+  "source_head": "f8f36eb87b051a0b26ee68747dfd24c4717eaec1",
+  "source_inputs": {
+    ".github/workflows/macos-app-weekly.yml": {
+      "bytes": 10626,
+      "git_blob_sha1": "7fc5cd5cd5f2ffce66ed7b3e6b3533ed1880e28b",
+      "sha256": "66fa9feefff78e8594fa96b45a273bb986c003e2e9ca0767d679c67bb360cd1d"
+    },
+    "docs/release/macos-signing.md": {
+      "bytes": 11944,
+      "git_blob_sha1": "28e5ec1d202a973e5669d52e93c4dd5e229287a5",
+      "sha256": "a5f2219a2816e533dd05d9a0e9e59f1966075ae9eeaccbc8a387fbcf6f79c066"
+    },
+    "packages/quds_office_editor/example/tool/build_macos_app.sh": {
+      "bytes": 21478,
+      "git_blob_sha1": "7a519fbb41f8e28842b1df7dedfd9f049d4b3805",
+      "sha256": "da352b38e812b1cf873fb6bb39c66b6fab3bca84ad8bff3c8855cec79122c4f0"
+    },
+    "packages/quds_proofing_spacy/lib/src/distribution.dart": {
+      "bytes": 27627,
+      "git_blob_sha1": "b675269307d66c4d94fa1ef55247a491e0e185b1",
+      "sha256": "a0a439cf7b4744370821e5e95dcf664c0553ec499357994b40ce65cbbf9c581d"
+    }
+  },
+  "source_tree": "26f0d546e9d6ef29a3ab90ea0081425cba13c1d4",
+  "started_scope": "Source hashes cover build script, distribution Dart, release guidance and already-captured workflow.",
+  "status": "passed",
+  "syntax_command": [
+    "bash",
+    "-n",
+    "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/tool/build_macos_app.sh"
+  ],
+  "syntax_exit_code": 0
+}

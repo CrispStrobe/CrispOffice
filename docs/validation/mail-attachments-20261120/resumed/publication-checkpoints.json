@@ -1,0 +1,48 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "work/mail-attachments-20261120",
+  "prior_checkpoint": "f80b46e2115d32b11b633cc47acec820aecf2db4",
+  "updates": [
+    {
+      "ordinal": 1,
+      "remote_sha": "2c3479838721632167933eb99b78beaac285e862",
+      "local_candidate": "75083ea738d08be3eb9a3d983ac80a7f05a6201b",
+      "tree": "6aff53dc9b5e2c29854ad05703038c7362fdcc1f",
+      "parents": [
+        "f80b46e2115d32b11b633cc47acec820aecf2db4",
+        "85c019cd8fda1a735a727bff98c2a56fb25a368e",
+        "e79c32e77f1990e303527e477e4909df993c1b9b",
+        "4973e712045bdcf45fd36dcfe37d380c52265d3c"
+      ],
+      "purpose": "Recover remote work and initial inventory",
+      "expected_previous_sha": "f80b46e2115d32b11b633cc47acec820aecf2db4"
+    },
+    {
+      "ordinal": 2,
+      "remote_sha": "e12910204ef77644c12bf06ef7030c11268ada86",
+      "local_candidate": "84eb237806a3110b36322382aa98a1897ebac204",
+      "tree": "481b949fce26d2cb3cde08635a8a3c3759c6bf51",
+      "parents": [
+        "2c3479838721632167933eb99b78beaac285e862",
+        "9d8a13733bde66f4a5cdb80e006a1637fc09bb77",
+        "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+        "0745709be7f5a4873642721fcbd4d12a370f21ff",
+        "bf606aa08f8905ceef35342772df91630840a9b2"
+      ],
+      "purpose": "Preserve incoming PPTX/grammar/macOS/VBA reconciliation and MIME probe; save/reopen repair still pending",
+      "expected_previous_sha": "2c3479838721632167933eb99b78beaac285e862"
+    },
+    {
+      "ordinal": 3,
+      "remote_sha": "906843fbf2bfc20f8040543a122d88c93f20de83",
+      "local_candidate": "b8686c05e055ca0395726fe528d585379597d628",
+      "tree": "b6671cdc8383261711e00a77cf9f07a1dc5da18e",
+      "parents": [
+        "e12910204ef77644c12bf06ef7030c11268ada86"
+      ],
+      "purpose": "Preserve completed background round trips and accepted mail package evidence; combined qualification in progress",
+      "expected_previous_sha": "e12910204ef77644c12bf06ef7030c11268ada86"
+    }
+  ],
+  "policy": "Every published tree is compared with the local candidate tree before creating the commit. Branch updates use expected_sha and force=false. Original incoming commits remain ordered parents or ancestors. The final PR body records the publication that contains this ledger, avoiding a self-referential commit ID."
+}

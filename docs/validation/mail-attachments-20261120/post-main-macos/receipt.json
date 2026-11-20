@@ -1,0 +1,24 @@
+{
+  "application_test_total_unchanged": 2049,
+  "dart_delta": "Only documentation-comment lines changed in distribution.dart; remaining source bytes identical to6184051c after removing full-line /// documentation comments.",
+  "optional_native_case_not_run_unchanged": 1,
+  "pin_receipt_sha256": "a3d8105c313b9a17fdf9357595458008506920d77405daa0f06df6e90f60a835",
+  "pin_test": {
+    "counting": "Replacement of the already counted studio_spacy_pin_test.dart application case; adds zero to the2049 disjoint application passes.",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "suite_count": 1
+  },
+  "qualification_limit": "Syntax and Linux Bash control-flow only. Verbatim changed script blocks execute against synthetic non-executable files, with codesign/code-digest/unsigned-digest calls stubbed. No macOS build, real Mach-O signing, signature verification, native library loading, notarization or shipping acceptance is established. Application test totals exclude these auxiliary scenarios.",
+  "script_checks": {
+    "all_passed": true,
+    "controlled_scenarios": 8,
+    "syntax": "passed"
+  },
+  "script_receipt_sha256": "018c727a12cde272bab61f5ee912d782643740f27002c94d35063e643e513e0d",
+  "source_head": "f8f36eb87b051a0b26ee68747dfd24c4717eaec1",
+  "source_tree": "26f0d546e9d6ef29a3ab90ea0081425cba13c1d4",
+  "status": "passed",
+  "workflow_delta": "No difference from already-captured candidate6184051c; weekly portability changes were already included via bf606aa."
+}

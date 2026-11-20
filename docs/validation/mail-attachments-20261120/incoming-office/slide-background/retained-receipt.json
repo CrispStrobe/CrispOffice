@@ -1,0 +1,37 @@
+{
+  "phase": "retained",
+  "startedAtUtc": "2026-11-20T05:27:24.593536+00:00",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+    "--reporter=json",
+    "--concurrency=2"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 12.40187069500098,
+  "inputCount": 416,
+  "inputsUnchanged": true,
+  "changedInputs": [],
+  "passed": 0,
+  "failed": 1,
+  "skipped": 0,
+  "failures": [
+    {
+      "testID": 1,
+      "error": "Failed to load \"packages/quds_office_engine/test/slide_import_fidelity_test.dart\":\npackages/quds_office_engine/test/slide_import_fidelity_test.dart:686:65: Error: The getter 'bytes' isn't defined for the type 'PackagePart'.\n - 'PackagePart' is from 'package:quds_office_engine/src/opc/package_part.dart' ('packages/quds_office_engine/lib/src/opc/package_part.dart').\nTry correcting the name to the name of an existing getter, or defining a getter or field named 'bytes'.\n          expect(reopened.package!.getPart(rels.resolve(rel!))?.bytes, png);\n                                                                ^^^^^",
+      "stackTrace": "package:test_core/src/runner/vm/platform.dart 334:7   VMPlatform._compileToKernel\n===== asynchronous gap ===========================\npackage:test_core/src/runner/vm/platform.dart 305:11  VMPlatform._spawnIsolate\n===== asynchronous gap ===========================\npackage:test_core/src/runner/vm/platform.dart 84:19   VMPlatform.load\n===== asynchronous gap ===========================\npackage:test_core/src/runner/loader.dart 249:27       Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21    new LoadSuite.<fn>.<fn>\n",
+      "isFailure": false,
+      "type": "error",
+      "time": 2384
+    }
+  ],
+  "done": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 2390
+    }
+  ]
+}

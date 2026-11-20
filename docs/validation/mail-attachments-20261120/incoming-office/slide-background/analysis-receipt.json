@@ -1,0 +1,24 @@
+{
+  "command": [
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 5.605992275999597,
+  "startedAtUtc": "2026-11-20T05:22:35.831442+00:00",
+  "inputSha256": {
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "68b1e303b6861248b3ac81107849ea1d6e54087e4a545e6e62e6f5ad85113606",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "ee669aea1445f898a7357dd5d24619cf51b0be6c90a0ef8f44dc0de6d2e34e71",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "ba42cc7478344527a765281bb7785a648f268deb8be6eb0a396857562299f095"
+  },
+  "inputsUnchanged": true,
+  "afterSha256": {
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "68b1e303b6861248b3ac81107849ea1d6e54087e4a545e6e62e6f5ad85113606",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "ee669aea1445f898a7357dd5d24619cf51b0be6c90a0ef8f44dc0de6d2e34e71",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "ba42cc7478344527a765281bb7785a648f268deb8be6eb0a396857562299f095"
+  }
+}

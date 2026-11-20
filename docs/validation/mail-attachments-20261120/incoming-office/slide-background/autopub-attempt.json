@@ -1,0 +1,12 @@
+{
+  "command": [
+    "dart",
+    "test",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+    "--reporter=json",
+    "--concurrency=2"
+  ],
+  "status": "interrupted_after_no_test_events",
+  "exit_code": 130,
+  "reason": "Switched to explicit package:test runner to avoid automatic pub/build."
+}

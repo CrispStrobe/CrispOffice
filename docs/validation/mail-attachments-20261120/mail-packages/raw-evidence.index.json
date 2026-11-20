@@ -1,0 +1,235 @@
+{
+  "source_directory": "/workspace/scratch/75dc9d25dfaf/final-validation/mail-packages",
+  "archive": "raw-evidence.tar.xz",
+  "archive_bytes": 591148,
+  "archive_sha256": "5d2627f37bcee861638332d3e5403889e0ba09b81fcce0e05b865caf9eef1b1f",
+  "file_count": 45,
+  "uncompressed_bytes": 1704988,
+  "files": [
+    {
+      "path": "dependencies-after.json.gz",
+      "bytes": 474940,
+      "sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676"
+    },
+    {
+      "path": "dependencies-before.json.gz",
+      "bytes": 474940,
+      "sha256": "3f5a536ba8c53e4bb7d0bffc5e238aa369d8c640e92bb6d7d50d99d255e23676"
+    },
+    {
+      "path": "event_parser_helpers.py",
+      "bytes": 47946,
+      "sha256": "299ce6d8fffae555e9a0381903815156fd7d416046e1dbd66c1a2e4bb344a6a5"
+    },
+    {
+      "path": "quds_mail_core-vm/command.json",
+      "bytes": 1222,
+      "sha256": "8313a91cc201e667eee4f202d9bc0bdc06c9da9633a3e7531356abace8b5ec31"
+    },
+    {
+      "path": "quds_mail_core-vm/events.jsonl",
+      "bytes": 26211,
+      "sha256": "bfcd29d8acfe35ca78abfde7f252c80af19e633d63ea287d821c1c9568440360"
+    },
+    {
+      "path": "quds_mail_core-vm/result.json",
+      "bytes": 1842,
+      "sha256": "044f5f4a1a0221c21c56b584f0ea03ad52dfe946d85548511d567727b444cc32"
+    },
+    {
+      "path": "quds_mail_core-vm/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "quds_mail_core-vm/test-cases.json.gz",
+      "bytes": 1736,
+      "sha256": "4887d353c1ef793a888b57eaa85f2a6d2fff7e268c41d098de8ffc158c06e265"
+    },
+    {
+      "path": "quds_mail_mime-vm/command.json",
+      "bytes": 1330,
+      "sha256": "9fe31454b8635f45c6c13f14fde47fbaf4dab354a217e0d19245e613a27aa5ce"
+    },
+    {
+      "path": "quds_mail_mime-vm/events.jsonl",
+      "bytes": 42332,
+      "sha256": "d870814fc73af19e6a682e56efb0b0a07ead52fe52304e0faea1b00f96cd8bee"
+    },
+    {
+      "path": "quds_mail_mime-vm/result.json",
+      "bytes": 1950,
+      "sha256": "fc0d2145f4d06f67a5c9e0ab1c4f272721c81e24a599876c20107c6c3c6bd8f1"
+    },
+    {
+      "path": "quds_mail_mime-vm/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "quds_mail_mime-vm/test-cases.json.gz",
+      "bytes": 2452,
+      "sha256": "1e44458b3222579e7393477d6e45a6308253f0f5c96cf55929625e916b2cd3e0"
+    },
+    {
+      "path": "quds_mail_store-node/command.json",
+      "bytes": 778,
+      "sha256": "d1c1c2be6b2fc0c071d33e87e87b49f944b1405aa1f7c75e3166682bee53d6e1"
+    },
+    {
+      "path": "quds_mail_store-node/events.jsonl",
+      "bytes": 2353,
+      "sha256": "9971ddf153342adb9affc0cd06f0812a19ebf6843eb4ab14f338e6077a7e42b6"
+    },
+    {
+      "path": "quds_mail_store-node/result.json",
+      "bytes": 1396,
+      "sha256": "707f09573bbc99fc91d514a20854553e574992d15eb2fe0ae8363a887f9b6fd6"
+    },
+    {
+      "path": "quds_mail_store-node/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "quds_mail_store-node/test-cases.json.gz",
+      "bytes": 384,
+      "sha256": "777994a6f1c5b9dfeb2cb75fcbabb3b58388eaeb033314d92de29cfefefdcc09"
+    },
+    {
+      "path": "quds_mail_store-vm/command.json",
+      "bytes": 2990,
+      "sha256": "cda29b45ffed8c1fef75c79569ed3c8b0d698ea70969aac738c10d0dd8ddb694"
+    },
+    {
+      "path": "quds_mail_store-vm/events.jsonl",
+      "bytes": 273963,
+      "sha256": "1879f19e8eb6a7f83c305680695e6a56b981e65dac1c497266175e51631cc6b7"
+    },
+    {
+      "path": "quds_mail_store-vm/result.json",
+      "bytes": 3612,
+      "sha256": "1e7cd3c326459f23ed3e5575fc040c2cf05043f466f3a5e38639ee9ee25c302f"
+    },
+    {
+      "path": "quds_mail_store-vm/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "quds_mail_store-vm/test-cases.json.gz",
+      "bytes": 12479,
+      "sha256": "207177bd246f2c1260272092c47fb665237b0fc3c10a5e0d42bd8837de7f8011"
+    },
+    {
+      "path": "quds_mail_transport-node/command.json",
+      "bytes": 996,
+      "sha256": "8ec454cb978f275176ed3b57a304467d75140caa9f89a1d097ebfeb57f4778bf"
+    },
+    {
+      "path": "quds_mail_transport-node/events.jsonl",
+      "bytes": 5523,
+      "sha256": "8ce73f658b13f7d0f3ae44c41d1f234b509cf233d69c58084f0e0abbb3d2d5fa"
+    },
+    {
+      "path": "quds_mail_transport-node/result.json",
+      "bytes": 1614,
+      "sha256": "f162e267ada07823157f24769ca7f6a06490ff9fc367c87ca67a485f32d5d961"
+    },
+    {
+      "path": "quds_mail_transport-node/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "quds_mail_transport-node/test-cases.json.gz",
+      "bytes": 480,
+      "sha256": "284c638f855288c3ebb80bf029fecae687d58dffeea5e54b940028e550906698"
+    },
+    {
+      "path": "quds_mail_transport-vm/command.json",
+      "bytes": 2512,
+      "sha256": "54ef9c0e39d96abdd49fbf747f27e5970b503fa04833a187253124a3035377c7"
+    },
+    {
+      "path": "quds_mail_transport-vm/events.jsonl",
+      "bytes": 182954,
+      "sha256": "891e0f6db5490cdfa0afcb9f80bd57887932ee99d3e0384aa5df28e0e0309334"
+    },
+    {
+      "path": "quds_mail_transport-vm/result.json",
+      "bytes": 3134,
+      "sha256": "25e107ad7193ae33c1503a4e67f50b23dfcd5f1ca5d4f318b98bb2bd2527f487"
+    },
+    {
+      "path": "quds_mail_transport-vm/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "quds_mail_transport-vm/test-cases.json.gz",
+      "bytes": 9234,
+      "sha256": "53d6ba12d3ec1e07d3587399b20d9c8fec109e1b7ab5c3db3ca2f949aa2cf851"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 18106,
+      "sha256": "d23dfdcd8d7025171018cacaaab8f1e8338aab1ff3baa42ef28194424874f946"
+    },
+    {
+      "path": "run_mail_packages.py",
+      "bytes": 8039,
+      "sha256": "b0dbcad9aaf42a6dd47a0d3c341184b9b7df6e6765dbc892d919319d43772ba4"
+    },
+    {
+      "path": "runtime-after.json.gz",
+      "bytes": 637,
+      "sha256": "4537a7312efafe9db1a99191af6682f613a20222c17bd762d16f22e1fa701b06"
+    },
+    {
+      "path": "runtime-before.json.gz",
+      "bytes": 637,
+      "sha256": "4537a7312efafe9db1a99191af6682f613a20222c17bd762d16f22e1fa701b06"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 3893,
+      "sha256": "32d5068263debc3c2cdabff11a307d22a2a73a4289c94c4374ad31b7e818b517"
+    },
+    {
+      "path": "source-after.json.gz",
+      "bytes": 22031,
+      "sha256": "b8eee4138b6835ed4b557afc83fee8d8e7df5eaec2c50e6d28f02bec835f1301"
+    },
+    {
+      "path": "source-before.json.gz",
+      "bytes": 22031,
+      "sha256": "b8eee4138b6835ed4b557afc83fee8d8e7df5eaec2c50e6d28f02bec835f1301"
+    },
+    {
+      "path": "vendor-mime/command.json",
+      "bytes": 1006,
+      "sha256": "c599768b532ee9c48fce03229fd448d841dceb6eeb740a0bb520a0a8b22a6392"
+    },
+    {
+      "path": "vendor-mime/events.jsonl",
+      "bytes": 43784,
+      "sha256": "291100080517713451ab3ed48db9aaa79d8bf9f20263a3e5ffeca49157e79dee"
+    },
+    {
+      "path": "vendor-mime/result.json",
+      "bytes": 1626,
+      "sha256": "c8e81e750514feb8a80a9be45e6eb5b71e1e29d2adfed85880b67deafa148fbe"
+    },
+    {
+      "path": "vendor-mime/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "vendor-mime/test-cases.json.gz",
+      "bytes": 1895,
+      "sha256": "8a5e8ccbc0bf94706be6e1cc53065f39101e815be80f0cd1788ad209fb1025d2"
+    }
+  ]
+}

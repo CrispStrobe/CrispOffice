@@ -1,0 +1,33 @@
+{
+  "after_sha256": {
+    "dependencies": "b579a0a8650bfab4b7567da5122fd44e067b03fed6e0648a4d1ce841002e6762",
+    "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+    "source": "9aaf92d2fb0b0383a0bce9ec7c05fe35432bd7057ad0a15ab955b5bc34b37cb6",
+    "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+  },
+  "before_sha256": {
+    "dependencies": "b579a0a8650bfab4b7567da5122fd44e067b03fed6e0648a4d1ce841002e6762",
+    "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+    "source": "9aaf92d2fb0b0383a0bce9ec7c05fe35432bd7057ad0a15ab955b5bc34b37cb6",
+    "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+  },
+  "changed_paths": {
+    "dependencies": [],
+    "host_fonts": [],
+    "runtime": [],
+    "source": [],
+    "workspace": []
+  },
+  "source_matches_finish": {
+    "different_paths": [],
+    "matches": true,
+    "uncommitted_paths": []
+  },
+  "source_matches_start": {
+    "different_paths": [],
+    "matches": true,
+    "uncommitted_paths": []
+  }
+}
