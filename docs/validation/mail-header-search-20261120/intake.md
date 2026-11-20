@@ -1,12 +1,12 @@
 # Mail header search: incoming source audit
 
-Status: **PASS** at `bea51077b93ac7e7cab94b96778d8639892166f2`.
+Status: **PASS** at `f4f0da7379822d030e3549292696e76a6fd05526`.
 
-Captured 30 fork branches, 267 fork PR heads, 4 upstream branches and 4 upstream PR heads. Uncovered references: **0**. The complete compact ref inventory is in `intake.json`.
+Captured 33 fork branches, 270 fork PR heads, 4 upstream branches and 4 upstream PR heads. Uncovered references: **0**. The complete compact ref inventory is in `intake.json`.
 
 All 14 historical replacements were independently recomputed from Git objects: 13 complete-tree identities and the exact 37 changed ODT paths. File modes, types and object IDs agree, and every replacement is a target ancestor. These older branches therefore need no replay.
 
-The captured recent fork work includes Word paragraph spacing/controls, macro CLI process cleanup, macOS deployment requirements, Arabic web-worker packaging/parity checks and the App Store submission draft. Capturing draft documentation does not submit an app or resolve owner decisions.
+The captured recent fork work includes Word paragraph spacing/controls and style identities, macro CLI process cleanup, bookmark deletion clamping, incremental layout with fitting and notes, Studio settings persistence, macOS deployment requirements, Arabic web-worker packaging/parity checks and their recorded fixture, App Store screenshot hooks and workflows, and submission notes. Preserving authored submission notes does not submit an app or independently verify App Store account state. The explicitly temporary golden-regeneration workflow was removed before main.
 
 ## Replay and refresh
 

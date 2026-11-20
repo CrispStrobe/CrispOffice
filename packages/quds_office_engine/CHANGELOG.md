@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Resolve paragraph-control style selectors from the active document's styles
+  part and load lazy Word XML before guard validation. Three regression cases
+  cover unreferenced paragraph/table styles and a related styles part at a
+  custom path, preserving source styles through save/reopen.
+
 - Extend Word VBA `Paragraph` and `ParagraphFormat` with `OpenUp`, `CloseUp`
   and `OpenOrCloseUp`. Native `docx.paragraphSpaceBefore` resolves toggles after
   earlier operations in the detached document, keeps same-value writes direct,

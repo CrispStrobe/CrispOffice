@@ -1,18 +1,18 @@
 {
   "schema": "quds-mail-source-intake/v1",
   "status": "PASS",
-  "captured_at_utc": "2026-11-20T18:16:00.359782+00:00",
+  "captured_at_utc": "2026-11-20T18:51:51.227575+00:00",
   "repository": "CrispStrobe/quds_office_suite",
-  "target_commit": "bea51077b93ac7e7cab94b96778d8639892166f2",
-  "target_tree": "ab72b86c8489d2fd316b640910735ac41f8cafeb",
+  "target_commit": "f4f0da7379822d030e3549292696e76a6fd05526",
+  "target_tree": "9f85bea2bd6c56dc09067eac3d40b6bebfe031bd",
   "scope": "Source inclusion from fetched remote-tracking refs; no runtime qualification claim.",
   "counts": {
     "fork_branches": {
-      "ancestor": 21,
+      "ancestor": 24,
       "equivalent": 9
     },
     "fork_pull_requests": {
-      "ancestor": 253,
+      "ancestor": 256,
       "equivalent": 14
     },
     "upstream_branches": {
@@ -30,21 +30,24 @@
       "codex/word-powerpoint-vba-expansion-20261120": "0f6239396ff3328473a5f57c280b982d57e33a08",
       "codex/word-vba-compat-20261120-next": "650afb7d117337bab943af05d63a250a7e90c058",
       "codex/word-vba-list-levels-20261120": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
-      "codex/word-vba-paragraph-controls-20261120": "489d2808c30fb42ea02c7cd7616a1a99e1ef0b58",
-      "codex/word-vba-paragraph-spacing-20261120": "0201b549d0dc3f601c50e36255d557034cb01699",
+      "codex/word-vba-paragraph-controls-20261120": "aacc5e7e2edd0cb6345e6e0140796f0f1382f574",
+      "codex/word-vba-paragraph-spacing-20261120": "07860e6b5dbad983523d857bd9de4e13eadced7b",
       "codex/word-vba-ranges-20261120": "22e5960e99915e81a1b5997058cac44dac27ba1a",
       "codex/zotero-research-tables-20261120": "34491bca22a2989dd89d9da3c853f5e57de5464f",
-      "docs/app-store-submission-20261120": "f4c3d582711b923b41a8ab37f917bc1564ab1a55",
+      "docs/app-store-submission-20261120": "b08e0a55b629ac22b33c54146b56438862965022",
       "docs/ods-color-scale": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
       "docs/ods-data-bar": "69d14f84cabd3931b7640c1654b401c89faba766",
-      "feat/arabic-web-context-20261120": "368751862a2cb405249c8f91c0fa4e3e97ff3029",
+      "feat/app-store-screenshots-20261120": "3c6637b6e5585de5fb4b8d27a0ceda6f96edb95f",
+      "feat/arabic-web-context-20261120": "be47bed22a88382f016d823e526bae49590bd0eb",
       "feat/ods-color-scale": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
       "feat/ods-data-bar": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
       "feat/ods-dynamic-validation-links": "68a0db23408e4c95d6d283219504c79aea33a6fe",
       "feat/ods-icon-sets": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
       "feat/ods-time-period-conditions": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "feat/settings-arweb-20261120": "864292e8896f925bae461731993f343b1b929d7d",
+      "fix/bookmark-typing-20261120": "81691cde9606302cd8dee7ebe28d7532c858393d",
       "fix/mail-credential-stores-chrome-20261120": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
-      "fix/main-green-20261120": "01224376ee0e86703b6b4723e40c72de7629e50b",
+      "fix/main-green-20261120": "15cd2ff4188ec811cb8f41d7480a0480d888136e",
       "integrate/office-union-148": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
       "integrate/recent-pptx": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
       "main": "5ad4461a93c835479bf67acab63623944b3900a3",
@@ -54,7 +57,7 @@
       "work/mail-offline-accounts-20261120": "44855ab24c2c7fd34953e879fba571381cce0bc3",
       "work/mail-outbox-20261120": "9443612b024114c424ba2f8146e04050d6e049b0",
       "work/mail-outbox-management-20261120": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
-      "work/mail-parity-20261120": "bea51077b93ac7e7cab94b96778d8639892166f2"
+      "work/mail-parity-20261120": "f4f0da7379822d030e3549292696e76a6fd05526"
     },
     "fork_pull_requests": {
       "1": "54f0f8de01416640560519aa9d732f668f603709",
@@ -239,12 +242,15 @@
       "260": "44855ab24c2c7fd34953e879fba571381cce0bc3",
       "261": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
       "262": "c7e721b7703766491fd4459b69de30bf68d9010d",
-      "263": "0201b549d0dc3f601c50e36255d557034cb01699",
-      "264": "01224376ee0e86703b6b4723e40c72de7629e50b",
+      "263": "07860e6b5dbad983523d857bd9de4e13eadced7b",
+      "264": "15cd2ff4188ec811cb8f41d7480a0480d888136e",
       "265": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
-      "266": "f4c3d582711b923b41a8ab37f917bc1564ab1a55",
-      "267": "368751862a2cb405249c8f91c0fa4e3e97ff3029",
+      "266": "b08e0a55b629ac22b33c54146b56438862965022",
+      "267": "be47bed22a88382f016d823e526bae49590bd0eb",
+      "268": "aacc5e7e2edd0cb6345e6e0140796f0f1382f574",
+      "269": "864292e8896f925bae461731993f343b1b929d7d",
       "27": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "270": "3305239318981483d1b175db7b100f4ec69a1b1a",
       "28": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
       "29": "7fe296e29e2e1b173580f6854507fc060cb4f080",
       "3": "e550723b0f2a7cd849970f58820d260c36857502",
@@ -338,7 +344,7 @@
       "7": "f45099688e7a3f67a1302efdb442830d052f2240"
     }
   },
-  "inventory_sha256": "d303322ba9088f1f21b1e13d56bc245a9cbc8344717820f1e8fff6c86bb353d1",
+  "inventory_sha256": "9683a3008ba1e2869db20a9c2c4776bc5246cbfa1856a8698c81aeace35cba9d",
   "historical_proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json",
   "historical_proof_sha256": "08fd117ac9f4b94ba73889691be0fe8599a28a7c600e07268f59c6a67c781523",
   "recomputed_equivalence": {

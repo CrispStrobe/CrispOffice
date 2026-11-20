@@ -291,8 +291,9 @@ class _MailMessageListState extends State<MailMessageList> {
   void _resetScroll({bool header = false}) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted && _scroll.hasClients) _scroll.jumpTo(0);
-      if (mounted && header && _headerScroll.hasClients)
+      if (mounted && header && _headerScroll.hasClients) {
         _headerScroll.jumpTo(0);
+      }
     });
   }
 
@@ -568,7 +569,13 @@ class _MailMessageListState extends State<MailMessageList> {
                 // Keep every control reachable without consuming the row area.
                 ConstrainedBox(
                   constraints: BoxConstraints(
-                    maxHeight: constraints.maxHeight * 0.65,
+                    maxHeight: math.min(
+                      constraints.maxHeight * 0.65,
+                      math.max(
+                        constraints.maxHeight * 0.5,
+                        constraints.maxHeight - _itemExtent,
+                      ),
+                    ),
                   ),
                   child: Scrollbar(
                     controller: _headerScroll,

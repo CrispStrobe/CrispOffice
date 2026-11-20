@@ -476,6 +476,93 @@ void main() {
     });
   }
 
+  for (final type in ['paragraph', 'table']) {
+    test('unreferenced $type style cannot resolve an active selector', () {
+      final package = OpcPackage.openBytes(
+        _fixture(
+          properties: type == 'paragraph' ? '<w:pStyle w:val="Target"/>' : '',
+          body: type == 'table'
+              ? '<w:p/><w:tbl><w:tblPr><w:tblStyle w:val="Target"/></w:tblPr>'
+                    '<w:tr><w:tc><w:p/></w:tc></w:tr></w:tbl>'
+              : null,
+          styles: '',
+        ),
+      );
+      package
+          .createPart(
+            '/word/unused-styles.xml',
+            package.getPart('/word/styles.xml')!.contentType,
+          )
+          .writeText(
+            '<w:styles xmlns:w="$_w"><w:style w:type="$type" '
+            'w:styleId="Target"><w:pPr><w:spacing w:before="120"/>'
+            '</w:pPr></w:style></w:styles>',
+          );
+      final document = _read(package.save());
+      expect(document.package!.getPart('/word/unused-styles.xml'), isNotNull);
+      for (final action in ['open', 'close', 'toggle']) {
+        _refuses(
+          document,
+          _step(action),
+          matcher: throwsA(
+            isA<UnsupportedError>().having(
+              (error) => error.message,
+              'reason',
+              contains(
+                type == 'paragraph'
+                    ? 'resolved paragraph style'
+                    : 'correct type',
+              ),
+            ),
+          ),
+        );
+      }
+    });
+  }
+
+  test(
+    'paragraph selector resolves the related styles part at a custom path',
+    () {
+      final package = OpcPackage.openBytes(
+        _fixture(
+          properties: '<w:pStyle w:val="Target"/>',
+          styles:
+              '<w:style w:type="paragraph" w:styleId="Target"><w:pPr>'
+              '<w:spacing w:before="120"/></w:pPr></w:style>',
+        ),
+      );
+      final conventional = package.getPart('/word/styles.xml')!;
+      final source =
+          '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+          '${conventional.readText()}';
+      package
+          .createPart('/word/custom-styles.xml', conventional.contentType)
+          .writeText(source);
+      conventional.writeText('<w:styles xmlns:w="$_w"/>');
+      final relationships = package.relationshipsFor('/word/document.xml');
+      final previous = relationships.firstByType(RelationshipTypes.styles)!;
+      relationships
+        ..removeById(previous.id)
+        ..add(
+          type: RelationshipTypes.styles,
+          target: 'custom-styles.xml',
+          id: previous.id,
+        );
+      final document = _read(package.save());
+      expect(document.paragraphs.single.properties.spacingBefore, 6);
+      native.applyStep(document, _step('toggle'));
+      final saved = WordSerializer().writeBytes(document);
+      expect(_value(_spacing(saved), 'before'), '0');
+      expect(_read(saved).paragraphs.single.properties.spacingBefore, 0);
+      expect(
+        OpcPackage.openBytes(
+          saved,
+        ).getPart('/word/custom-styles.xml')!.readText(),
+        source,
+      );
+    },
+  );
+
   for (final (name, properties) in [
     ('foreign element', '<x:pStyle w:val="Target"/>'),
     ('foreign value', '<w:pStyle x:val="Target"/>'),

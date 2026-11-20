@@ -81,6 +81,22 @@ const _w = OfficeNamespaces.w;
 bool _word(XmlElement node, String name) =>
     node.localName == name && node.namespaceUri == _w;
 
+PackagePart? _activeWordStylesPart(WmlDocument document) {
+  final package = document.package;
+  if (package == null) return null;
+  final office = package.packageRelationships.firstByType(
+    RelationshipTypes.officeDocument,
+  );
+  final uri = office == null
+      ? '/word/document.xml'
+      : package.packageRelationships.resolve(office);
+  final relationships = package.relationshipsFor(uri);
+  final styles = relationships.firstByType(RelationshipTypes.styles);
+  return package.getPart(
+    styles == null ? '/word/styles.xml' : relationships.resolve(styles),
+  );
+}
+
 /// Validate source ownership and serialization boundaries before any native
 /// line-spacing edit, including presets in the general paragraph operation.
 void validateWordLineSpacingSource(
@@ -99,6 +115,8 @@ void _validateWordSpacingSource(
     );
   }
   final styleTypes = <String, String>{};
+  final activeStyleTypes = <String, String>{};
+  final activeStyles = beforeControl ? _activeWordStylesPart(document) : null;
   final roots = <XmlElement>[];
   final source = paragraph.properties.sourcePropertiesXml;
   if (source != null && source.isNotEmpty) {
@@ -120,7 +138,9 @@ void _validateWordSpacingSource(
             !part.contentType.contains('vnd.ms-word'))) {
       continue;
     }
-    final source = part.readText();
+    // Enumeration includes lazy parts. Materialize their stored XML before
+    // validating so an unread payload is not mistaken for an empty root.
+    final source = document.package!.getPart(part.uri)!.readText();
     if (!beforeControl &&
         !source.contains('spacing') &&
         !source.contains('pPr')) {
@@ -131,17 +151,25 @@ void _validateWordSpacingSource(
       throw UnsupportedError('Missing native Word XML root.');
     }
     _checkElement(root, beforeControl: beforeControl, styleTypes: styleTypes);
-    if (beforeControl) roots.add(root);
+    if (beforeControl) {
+      roots.add(root);
+      if (part.uri == activeStyles?.uri) {
+        // The cascade resolves this relationship only. Unrelated styles
+        // remain subject to conflict checks but cannot satisfy selectors.
+        activeStyleTypes.addAll(_checkBeforeStyleIdentities(root));
+      }
+    }
   }
   if (beforeControl) {
     final selectedStyle = paragraph.properties.styleId;
-    if (selectedStyle != null && styleTypes[selectedStyle] != 'paragraph') {
+    if (selectedStyle != null &&
+        activeStyleTypes[selectedStyle] != 'paragraph') {
       throw UnsupportedError(
         'Paragraph spacing controls require a resolved paragraph style.',
       );
     }
     for (final root in roots) {
-      _checkBeforeStyleReferences(root, styleTypes);
+      _checkBeforeStyleReferences(root, activeStyleTypes);
     }
   }
 }
