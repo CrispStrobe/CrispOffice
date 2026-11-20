@@ -379,11 +379,12 @@ const spacyGrammarMacosBundledSha256 =
 const spacyGrammarMacosBundledCodeSha256 =
     'f2022b1cf75d831cddbd047eec5f5ac759728fee169ed2b5b785ecda1a07efeb';
 
-/// SHA-256 of `codesign --remove-signature` applied to
-/// [spacyGrammarMacosBundledSha256] (2,300,136 bytes). build_macos_app.sh
-/// requires the shipped library, stripped the same way, to equal it byte for
-/// byte before it records the library as qualified; this is Apple's own
-/// tooling agreeing with [spacyGrammarMacosBundledCodeSha256].
+/// SHA-256 of `codesign --remove-signature` (Xcode 26) applied to
+/// [spacyGrammarMacosBundledSha256] (2,300,136 bytes); identical for its Apple
+/// Distribution and Developer ID re-signed copies. The stripped form depends
+/// on the codesign version (Xcode 16 produces other bytes), so
+/// build_macos_app.sh compares the signed library's stripped form with the
+/// pinned input's under the same tool; this value is the reference record.
 const spacyGrammarMacosBundledUnsignedSha256 =
     'f62d2a0cf457a0ac577f45eceba93d8d5f2f450d4fd5a191f0cec61d88886ed2';
 
