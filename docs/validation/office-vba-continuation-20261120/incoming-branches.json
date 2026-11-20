@@ -1,0 +1,1088 @@
+{
+  "schema": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "captured_at_utc": "2026-11-20 10:02:48 UTC",
+  "base": "d040c15a07f652d01e75363031d0efdee6357bda",
+  "method": "Read-only GitHub branch collection, compare APIs, immutable commit/tree objects. No Actions, statuses or checks read or awaited.",
+  "branches": [
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "relation": "diverged",
+      "ahead_by": 2,
+      "behind_by": 1289,
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "changed_paths": [
+        "docs/odf-export-fidelity.md",
+        "docs/validation/german-proofing-recovery-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+        "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+        "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/package-config.json",
+        "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+        "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+        "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+        "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+        "docs/validation/odt-field-continuation-20261117/run_logged.py",
+        "docs/validation/odt-field-continuation-20261117/runtime.json",
+        "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+        "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+        "docs/validation/odt-field-continuation-20261117/verification.json",
+        "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+      ],
+      "historical_equivalence": {
+        "branch": "codex/odt-field-continuation-20261117",
+        "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+        "accepted": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+        "branchTree": "ab5ed01d0693ddbb3121ea9ca45721eb2a09f1a6",
+        "acceptedTree": "01df63630b58d6a4c578b2f12f5e68204d37eb9b",
+        "wholeTreeEqual": false,
+        "acceptedIsAncestor": true,
+        "changedPathCount": 37,
+        "sameCapturedHead": true
+      }
+    },
+    {
+      "branch": "codex/vba-variant-conversions-20261120",
+      "sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "relation": "behind",
+      "ahead_by": 0,
+      "behind_by": 77,
+      "merge_base": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "changed_paths": [],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "codex/word-powerpoint-vba-20261120",
+      "sha": "06f119566235aa3765445526f5ffab48832b1a31",
+      "relation": "behind",
+      "ahead_by": 0,
+      "behind_by": 1,
+      "merge_base": "06f119566235aa3765445526f5ffab48832b1a31",
+      "changed_paths": [],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "codex/zotero-parity-20261120",
+      "sha": "3100725d07a715f230c263f640dbd588c7c75660",
+      "relation": "behind",
+      "ahead_by": 0,
+      "behind_by": 72,
+      "merge_base": "3100725d07a715f230c263f640dbd588c7c75660",
+      "changed_paths": [],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "codex/zotero-parity-continuation-20261120",
+      "sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "relation": "diverged",
+      "ahead_by": 1,
+      "behind_by": 46,
+      "merge_base": "708f2821f5563912642d8062ea4db126462a67a1",
+      "changed_paths": [
+        "docs/validation/office-vba-variant-conversions-20261120/README.md",
+        "docs/validation/zotero-note-images-20261120/README.md",
+        "docs/validation/zotero-parity-continuation-20261120/README.md",
+        "docs/validation/zotero-parity-continuation-20261120/intake.json",
+        "docs/validation/zotero-parity-continuation-20261120/local-validation-index.json",
+        "docs/validation/zotero-parity-continuation-20261120/local-validation.tar.gz",
+        "docs/validation/zotero-parity-continuation-20261120/qualification.json",
+        "docs/zotero-support.md"
+      ],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "codex/zotero-research-materials-20261120",
+      "sha": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "relation": "behind",
+      "ahead_by": 0,
+      "behind_by": 134,
+      "merge_base": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "changed_paths": [],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "relation": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1288,
+      "merge_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "changed_paths": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "historical_equivalence": {
+        "branch": "docs/ods-color-scale",
+        "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+        "accepted": "4eaca83b192897edad82658107dfeb5bcbed0920",
+        "branchTree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+        "acceptedTree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+        "wholeTreeEqual": true,
+        "acceptedIsAncestor": true,
+        "changedPathCount": 1,
+        "sameCapturedHead": true
+      }
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "relation": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1284,
+      "merge_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "changed_paths": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "historical_equivalence": {
+        "branch": "docs/ods-data-bar",
+        "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+        "accepted": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+        "branchTree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+        "acceptedTree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+        "wholeTreeEqual": true,
+        "acceptedIsAncestor": true,
+        "changedPathCount": 1,
+        "sameCapturedHead": true
+      }
+    },
+    {
+      "branch": "feat/crispoffice-rename-20261120",
+      "sha": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "relation": "behind",
+      "ahead_by": 0,
+      "behind_by": 102,
+      "merge_base": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "changed_paths": [],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "relation": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1289,
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "changed_paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ],
+      "historical_equivalence": {
+        "branch": "feat/ods-color-scale",
+        "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+        "accepted": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+        "branchTree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+        "acceptedTree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+        "wholeTreeEqual": true,
+        "acceptedIsAncestor": true,
+        "changedPathCount": 7,
+        "sameCapturedHead": true
+      }
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "relation": "diverged",
+      "ahead_by": 2,
+      "behind_by": 1286,
+      "merge_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "changed_paths": [
+        "docs/office-remaining-gaps.md",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ],
+      "historical_equivalence": {
+        "branch": "feat/ods-data-bar",
+        "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+        "accepted": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+        "branchTree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+        "acceptedTree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+        "wholeTreeEqual": true,
+        "acceptedIsAncestor": true,
+        "changedPathCount": 8,
+        "sameCapturedHead": true
+      }
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "relation": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1287,
+      "merge_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "changed_paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "historical_equivalence": {
+        "branch": "feat/ods-dynamic-validation-links",
+        "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+        "accepted": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+        "branchTree": "aea95c000855820c5ecf205d3833298539f01753",
+        "acceptedTree": "aea95c000855820c5ecf205d3833298539f01753",
+        "wholeTreeEqual": true,
+        "acceptedIsAncestor": true,
+        "changedPathCount": 4,
+        "sameCapturedHead": true
+      }
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "relation": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1273,
+      "merge_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "changed_paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ],
+      "historical_equivalence": {
+        "branch": "feat/ods-icon-sets",
+        "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+        "accepted": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+        "branchTree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+        "acceptedTree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+        "wholeTreeEqual": true,
+        "acceptedIsAncestor": true,
+        "changedPathCount": 7,
+        "sameCapturedHead": true
+      }
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "relation": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1269,
+      "merge_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "changed_paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ],
+      "historical_equivalence": {
+        "branch": "feat/ods-time-period-conditions",
+        "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+        "accepted": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+        "branchTree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+        "acceptedTree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+        "wholeTreeEqual": true,
+        "acceptedIsAncestor": true,
+        "changedPathCount": 7,
+        "sameCapturedHead": true
+      }
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "relation": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1085,
+      "merge_base": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "changed_paths": [
+        "docs/office-remaining-gaps.md",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-portable-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-portable-9e21.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-preflight-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-preflight-9e21.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-zotero-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-zotero-9e21.tar.xz"
+      ],
+      "historical_equivalence": {
+        "branch": "integrate/office-union-148",
+        "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+        "accepted": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+        "branchTree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+        "acceptedTree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+        "wholeTreeEqual": true,
+        "acceptedIsAncestor": true,
+        "changedPathCount": 221,
+        "sameCapturedHead": true
+      }
+    },
+    {
+      "branch": "integrate/recent-pptx",
+      "sha": "1eddb91495bd405a1dfb3b1e8734e93e85b04b1d",
+      "relation": "behind",
+      "ahead_by": 0,
+      "behind_by": 101,
+      "merge_base": "1eddb91495bd405a1dfb3b1e8734e93e85b04b1d",
+      "changed_paths": [],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "integrate/window-focus-office-20261120",
+      "sha": "860c807bfd1385899eed130abfb8940f95bda113",
+      "relation": "behind",
+      "ahead_by": 0,
+      "behind_by": 28,
+      "merge_base": "860c807bfd1385899eed130abfb8940f95bda113",
+      "changed_paths": [],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "main",
+      "sha": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "relation": "identical",
+      "ahead_by": 0,
+      "behind_by": 0,
+      "merge_base": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "changed_paths": [],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "perf/typing-proofing-20261120",
+      "sha": "afa9272a6e31e2cbd6b9896c450a7bccfd62c579",
+      "relation": "ahead",
+      "ahead_by": 5,
+      "behind_by": 0,
+      "merge_base": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "changed_paths": [
+        "docs/performance/typing-proofing-20261120.md",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart"
+      ],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "work/mail-attachments-20261120",
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "relation": "behind",
+      "ahead_by": 0,
+      "behind_by": 171,
+      "merge_base": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "changed_paths": [],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "work/mail-draft-recovery-20261120",
+      "sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "relation": "behind",
+      "ahead_by": 0,
+      "behind_by": 114,
+      "merge_base": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "changed_paths": [],
+      "historical_equivalence": null
+    },
+    {
+      "branch": "work/mail-workspace-20261120",
+      "sha": "1d26181b0161d88abe5977f9848ffd4cd99e6259",
+      "relation": "ahead",
+      "ahead_by": 4,
+      "behind_by": 0,
+      "merge_base": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "changed_paths": [
+        "docs/validation/mail-workspace-20261120/README.md",
+        "docs/validation/mail-workspace-20261120/cache-preparation.json",
+        "docs/validation/mail-workspace-20261120/checkpoints.json",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/compressed-evidence.json",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/core-analyze.stderr",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/core-analyze.stdout",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/core-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/core.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/core.stderr",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/format.stderr",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/format.stdout",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/inputs-after.json.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/inputs-before.json.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/receipt.json",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/selection.json",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/studio-analyze.stderr",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/studio-analyze.stdout",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/studio-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/studio.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/studio.stderr",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/transport-analyze.stderr",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/transport-analyze.stdout",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/transport-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/transport-node-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/transport-node.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/transport-node.stderr",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/transport.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/transport.stderr",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/ui-analyze.stderr",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/ui-analyze.stdout",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/ui-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/ui.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/final-740f3e24/ui.stderr",
+        "docs/validation/mail-workspace-20261120/incoming-office-followup.md",
+        "docs/validation/mail-workspace-20261120/initial-acceptance.md",
+        "docs/validation/mail-workspace-20261120/main-advance.md",
+        "docs/validation/mail-workspace-20261120/main-advance/documentation-followup.json",
+        "docs/validation/mail-workspace-20261120/main-advance/pr-metadata.json",
+        "docs/validation/mail-workspace-20261120/main-advance/product-paths.tsv",
+        "docs/validation/mail-workspace-20261120/main-advance/scope-and-provenance.json",
+        "docs/validation/mail-workspace-20261120/main-advance/source-delta.json",
+        "docs/validation/mail-workspace-20261120/main-mail-continuity.json",
+        "docs/validation/mail-workspace-20261120/main-office-latest/analysis-command.json",
+        "docs/validation/mail-workspace-20261120/main-office-latest/analysis.txt",
+        "docs/validation/mail-workspace-20261120/main-office-latest/selection.json",
+        "docs/validation/mail-workspace-20261120/main-office.md",
+        "docs/validation/mail-workspace-20261120/main-office/analysis-automerge-duplicate.txt",
+        "docs/validation/mail-workspace-20261120/main-office/analysis.txt",
+        "docs/validation/mail-workspace-20261120/main-office/checkpoint-comparison.json",
+        "docs/validation/mail-workspace-20261120/main-office/editor.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/main-office/editor.stderr",
+        "docs/validation/mail-workspace-20261120/main-office/engine.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/main-office/engine.stderr",
+        "docs/validation/mail-workspace-20261120/main-office/inputs-after.json",
+        "docs/validation/mail-workspace-20261120/main-office/inputs-before.json",
+        "docs/validation/mail-workspace-20261120/main-office/run.py",
+        "docs/validation/mail-workspace-20261120/main-office/selection.json",
+        "docs/validation/mail-workspace-20261120/main-office/summary.json",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/compressed-evidence.json",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/format.stderr",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/format.stdout",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/incoming-spacy-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/incoming-spacy.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/incoming-spacy.stderr",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/inputs-after.json.gz",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/inputs-before.json.gz",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/main-acceptance-review.json",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/receipt.json",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/selection.json",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/studio-analyze.stderr",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/studio-analyze.stdout",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/studio-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/studio-theme-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/studio-theme.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/studio-theme.stderr",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/studio.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/merged-01290cee/studio.stderr",
+        "docs/validation/mail-workspace-20261120/office-publication-comparison.json",
+        "docs/validation/mail-workspace-20261120/prepublication-pr-check.json",
+        "docs/validation/mail-workspace-20261120/reconciled-acceptance-01290cee.md",
+        "docs/validation/mail-workspace-20261120/remote-refresh.md",
+        "docs/validation/mail-workspace-20261120/remote-refresh/android-tail.json",
+        "docs/validation/mail-workspace-20261120/remote-refresh/fetch-origin.stderr",
+        "docs/validation/mail-workspace-20261120/remote-refresh/fetch-origin.stdout",
+        "docs/validation/mail-workspace-20261120/remote-refresh/fetch-upstream.stderr",
+        "docs/validation/mail-workspace-20261120/remote-refresh/fetch-upstream.stdout",
+        "docs/validation/mail-workspace-20261120/remote-refresh/git-refs.json",
+        "docs/validation/mail-workspace-20261120/remote-refresh/github-metadata.json",
+        "docs/validation/mail-workspace-20261120/remote-refresh/historical-equivalence.json",
+        "docs/validation/mail-workspace-20261120/remote-refresh/integration-relationships.json",
+        "docs/validation/mail-workspace-20261120/remote-refresh/progress-markers.json",
+        "docs/validation/mail-workspace-20261120/run_acceptance.py",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/acceptance-review.json",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/compressed-evidence.json",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/format.stderr",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/format.stdout",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/incoming-spacy-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/incoming-spacy.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/incoming-spacy.stderr",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/inputs-after.json.gz",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/inputs-before.json.gz",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/receipt.json",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/selection.json",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-analyze.stderr",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-analyze.stdout",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-paths-cases.json.gz",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-paths.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-paths.stderr",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio.jsonl.gz",
+        "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio.stderr",
+        "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "packages/quds_office_engine/test/slide_radial_opacity_test.dart"
+      ],
+      "historical_equivalence": null
+    }
+  ],
+  "open_prs": [
+    {
+      "number": 238,
+      "title": "Complete Zotero image notes and structured lists; integrate incoming Office work",
+      "head": "codex/zotero-parity-continuation-20261120",
+      "head_sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "draft": false,
+      "base": "main"
+    },
+    {
+      "number": 237,
+      "title": "Typing: coalesce as-you-type proofing and status chrome",
+      "head": "perf/typing-proofing-20261120",
+      "head_sha": "afa9272a6e31e2cbd6b9896c450a7bccfd62c579",
+      "draft": true,
+      "base": "main"
+    }
+  ],
+  "odt_changed_path_equality": [
+    {
+      "path": "docs/odf-export-fidelity.md",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e0ec6e28f094f9be3101a165bb2f8aba52f10ce7"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e0ec6e28f094f9be3101a165bb2f8aba52f10ce7"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/german-proofing-recovery-20261117/README.md",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c645d21a4fecd134bf6a24cd13fa703579846e1c"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c645d21a4fecd134bf6a24cd13fa703579846e1c"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/README.md",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8146c83246daf3599e662b1dd683cb97300803d6"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8146c83246daf3599e662b1dd683cb97300803d6"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ef170d72cf34c4b3687b5c1e419edb6fc38224c8"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ef170d72cf34c4b3687b5c1e419edb6fc38224c8"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a94f21fd4168af21c1fa98032f8de3e22a69fcc6"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a94f21fd4168af21c1fa98032f8de3e22a69fcc6"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "acb5422a76561ecf87b900c2b6b5e544d2eb75ca"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "acb5422a76561ecf87b900c2b6b5e544d2eb75ca"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "33fbc0410ec5a7337be6caa033f949b1cd9267aa"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "33fbc0410ec5a7337be6caa033f949b1cd9267aa"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "689f4d104e14eaf48b8e2db6b8168a5966e8e3a5"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "689f4d104e14eaf48b8e2db6b8168a5966e8e3a5"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d3ebc28122aea1ac61bf9583af637de490436639"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d3ebc28122aea1ac61bf9583af637de490436639"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7e230ee642d2775c8fedc35ebfacee2007174b8e"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7e230ee642d2775c8fedc35ebfacee2007174b8e"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "532fe3f24fec0cdee150019cd8f9797ecc623b95"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "532fe3f24fec0cdee150019cd8f9797ecc623b95"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8cc251232eada488fff92cd62468bb351f459a7a"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8cc251232eada488fff92cd62468bb351f459a7a"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f121265eeb266c2305a6be1262071259a3091049"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f121265eeb266c2305a6be1262071259a3091049"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f4280f38fe5539ca4d1696b199be3e000a000bea"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f4280f38fe5539ca4d1696b199be3e000a000bea"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bbf6b28978a480d2503ce1b9262a1df67a7f6366"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bbf6b28978a480d2503ce1b9262a1df67a7f6366"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e9d41011c0f51400af3bb805c770bddb81593627"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e9d41011c0f51400af3bb805c770bddb81593627"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "86e43ea3218b5890302b754bbf8927f94e79f7ee"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9094d230bd90d63ae770fff1879b6a6396691a19"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9094d230bd90d63ae770fff1879b6a6396691a19"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/package-config.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "01acc165985da7b712c2698679483a74c1f1fd73"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "01acc165985da7b712c2698679483a74c1f1fd73"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "416b76ae102bf364ac37e7dca4361e09f5ff008c"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "416b76ae102bf364ac37e7dca4361e09f5ff008c"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e3b618b38616277085a71ba3ff11c787f2d1028c"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e3b618b38616277085a71ba3ff11c787f2d1028c"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/run_logged.py",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b762a1f0cd19c2dac856ec1a8736354492b7d12e"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b762a1f0cd19c2dac856ec1a8736354492b7d12e"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/runtime.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "745160d6bad6db04ee2dc13a8808e5109d0cde18"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "745160d6bad6db04ee2dc13a8808e5109d0cde18"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b3237978f2f20b516ea19d47d418c2d9b8c39322"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b3237978f2f20b516ea19d47d418c2d9b8c39322"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/verification.json",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b2bed5a868f78d74bfb2ed171afc94da88e880ea"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b2bed5a868f78d74bfb2ed171afc94da88e880ea"
+      },
+      "match": true
+    },
+    {
+      "path": "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "041838e2cf114134d270d427ae3bc2f7f34bcb5e"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "041838e2cf114134d270d427ae3bc2f7f34bcb5e"
+      },
+      "match": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "06e7d40ce0758a7df17700b94a31e0d184534f18"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "06e7d40ce0758a7df17700b94a31e0d184534f18"
+      },
+      "match": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8"
+      },
+      "match": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c1082c3340f375425d11a6b5944a46b8f1751484"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c1082c3340f375425d11a6b5944a46b8f1751484"
+      },
+      "match": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+      "branch": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0a4331683f037aa8a23e70b043bc6a7b8af2de62"
+      },
+      "accepted": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0a4331683f037aa8a23e70b043bc6a7b8af2de62"
+      },
+      "match": true
+    }
+  ],
+  "integration_candidates": [
+    "afa9272a6e31e2cbd6b9896c450a7bccfd62c579",
+    "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+    "1d26181b0161d88abe5977f9848ffd4cd99e6259"
+  ],
+  "summary": {
+    "total_branches": 22,
+    "already_ancestor_or_main": 10,
+    "historical_equivalent": 9,
+    "new_heads": 3,
+    "historical_equal_whole_trees": 8,
+    "historical_odt_equal_changed_paths": 37
+  }
+}
+

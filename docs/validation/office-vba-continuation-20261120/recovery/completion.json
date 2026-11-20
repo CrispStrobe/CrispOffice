@@ -1,0 +1,13 @@
+{
+  "supersedes": "status.json",
+  "current_record": "../qualification.json",
+  "accepted_source": "08020076b1552fef214d7625ace7ae087b70be88",
+  "integration_commit": "153c818cd6dba07559fead6e86214a8482cf08b7",
+  "completed": [
+    "Runtime restored; supported source test mode adopted",
+    "Namespace/explicit-formatting/Morph/note-numbering corrections applied",
+    "Final combined regression, analysis, formatting and VM/JavaScript gates passed",
+    "Final captured remote snapshot reconciled without changing accepted engine inputs"
+  ],
+  "historical_failure_counts_excluded": true
+}

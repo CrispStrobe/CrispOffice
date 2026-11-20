@@ -49,9 +49,11 @@ End Sub
 `ActivePresentation` means the presentation explicitly supplied to this macro
 session. `Application.ActivePresentation` is the same binding; it does not
 discover a running application or switch documents. `Presentation`, `Slide`,
-`Shape`, and `TextRange` variables support `Set` and explicit `ByVal` helper
+`Shape`, `TextFrame`, `TextRange`, `Font`, `ParagraphFormat`, and
+`SlideShowTransition` variables support `Set` and explicit `ByVal` helper
 parameters. Nested `With` blocks also accept their supported intermediate
-objects. Source arrays, loops, reusable functions, String intrinsics, and
+objects. These are selector bindings; assigning an alias does not read a live
+property value. Source arrays, loops, reusable functions, String intrinsics, and
 Variant conversions follow [the shared language contract](VBA_MACROS.md).
 
 ## Selectors and collection boundaries
@@ -64,9 +66,9 @@ Name lookup is case-sensitive, preserves whitespace, and refuses duplicate
 matching names. This exact-name restriction is part of this dialect's contract.
 
 The compiler lowers indices to native zero-based selectors and adds
-`topLevel: true` to every PowerPoint operation. This guard verifies that the
-target slide's native shape tree and modeled objects agree in identity and
-order. Slides containing groups, including empty groups, or unrepresented
+`topLevel: true` to every operation that targets a shape. This guard verifies
+that the target slide's native shape tree and modeled objects agree in identity
+and order. Slide visibility and transition properties use only a slide selector. Slides containing groups, including empty groups, or unrepresented
 native objects are refused. The engine's general native shape list may contain
 flattened group children; VBA must never silently interpret those as Office's
 top-level `Shapes` collection. `GroupItems`, nested selection, live collection
@@ -80,12 +82,15 @@ VBA selector flag is absent.
 
 ## Supported writes
 
-Each assignment emits one ordered native call. The common selector arguments
-are `slide`, exactly one of `shape` or `shapeName`, and `topLevel: true`.
+Each assignment emits one ordered native call. The following shape operations
+share selector arguments `slide`, exactly one of `shape` or `shapeName`, and
+`topLevel: true`. Slide visibility and transition writes are listed separately
+below.
 
 | PowerPoint property | Native call | Additional field |
 | --- | --- | --- |
 | `shape.TextFrame.TextRange.Text` | `pptx.shapeText` | `text` |
+| `shape.TextFrame.VerticalAnchor` | `pptx.shapeTextFrame` | `anchor`: `top`, `center`, or `bottom` |
 | `text.Font.Name` | `pptx.shapeFormat` | `font` |
 | `text.Font.Size` | `pptx.shapeFormat` | `size`, in points |
 | `text.Font.Bold`, `.Italic`, `.Underline` | `pptx.shapeFormat` | `bold`, `italic`, `underline` |
@@ -111,6 +116,115 @@ or 60,000 units per degree. The scaled value must fit a signed 32-bit integer;
 width and height must be at least `0.01` points. These are explicit dialect
 serialization bounds, not a claim about every value accepted by PowerPoint.
 
+## Text-frame vertical alignment
+
+`TextFrame.VerticalAnchor` accepts the exact Office values below. It changes
+vertical placement inside the text frame, independently of paragraph alignment,
+shape position, text direction, insets, and autofit.
+
+| Office constant | Numeric value | Native anchor | DrawingML `bodyPr@anchor` |
+| --- | ---: | --- | --- |
+| `msoAnchorTop` | 1 | `top` | `t` |
+| `msoAnchorMiddle` | 3 | `center` | `ctr` |
+| `msoAnchorBottom` | 4 | `bottom` | `b` |
+
+`msoAnchorTopBaseline = 2`, `msoAnchorBottomBaseline = 5`, and
+`msoVerticalAnchorMixed = -2` are recognized constants but unsupported writes.
+Their values are not approximated as top or bottom. An explicit assignment of
+Top still takes effect when the imported model's fallback was already top but
+the native XML used an unsupported anchor. Anchoring an empty supported shape
+creates an empty text body; it does not add visible text.
+
+## Slide visibility and transitions
+
+Select a slide explicitly and use its `SlideShowTransition` binding:
+
+```vb
+Dim movement As SlideShowTransition
+Set movement = ActivePresentation.Slides(1).SlideShowTransition
+With movement
+    .Hidden = msoFalse
+    .AdvanceOnClick = msoTrue
+    .Duration = 1.25
+    .EntryEffect = ppEffectFadeSmoothly
+End With
+```
+
+These operations take `slide` and the one requested property. They do not select
+a shape and do not require an ungrouped shape collection.
+
+| PowerPoint property | Native call | Additional fields |
+| --- | --- | --- |
+| `SlideShowTransition.Hidden` | `pptx.slideHidden` | `hidden` |
+| `SlideShowTransition.AdvanceOnClick` | `pptx.slideTransition` | `advanceOnClick` |
+| `SlideShowTransition.Duration` | `pptx.slideTransition` | `durationMs` |
+| `SlideShowTransition.EntryEffect` | `pptx.slideTransition` | `kind`, and `direction` for directional effects |
+
+`Hidden` changes whether the slide participates in the slideshow; it preserves
+slide identity and order. `Hidden` and `AdvanceOnClick` accept actual Booleans or
+exact `msoTrue = -1` / `msoFalse = 0`, including explicit false and same-value
+writes. Other tri-state values are unsupported.
+
+`Duration` is the transition animation's duration in seconds. It accepts an
+actual finite number with an exact positive millisecond representation in
+`1..2147483647` milliseconds (`0.001..2147483.647` seconds). Values such as
+`0`, `0.0005`, numeric Strings, and values outside that range are refused.
+This precision and range are bounded dialect serialization rules, not a claim
+about PowerPoint's full numeric range. Duration does not set how long a slide
+remains on screen. Existing automatic-advance timing is retained; the
+`AdvanceOnTime` and `AdvanceTime` properties are outside this slice.
+
+The supported entry effects have these exact Office numeric identities:
+
+| Office constant | Numeric value | Native kind | Native direction |
+| --- | ---: | --- | --- |
+| `ppEffectNone` | 0 | `none` | unchanged |
+| `ppEffectCut` | 257 | `cut` | unchanged |
+| `ppEffectFadeSmoothly` | 3849 | `fade` | unchanged |
+| `ppEffectPushDown` | 3852 | `push` | `down` |
+| `ppEffectPushLeft` | 3853 | `push` | `left` |
+| `ppEffectPushRight` | 3854 | `push` | `right` |
+| `ppEffectPushUp` | 3855 | `push` | `up` |
+| `ppEffectWipeLeft` | 2817 | `wipe` | `left` |
+| `ppEffectWipeUp` | 2818 | `wipe` | `up` |
+| `ppEffectWipeRight` | 2819 | `wipe` | `right` |
+| `ppEffectWipeDown` | 2820 | `wipe` | `down` |
+
+Other effect values are refused. In particular, the legacy fade value is not
+treated as an alias for `ppEffectFadeSmoothly`.
+
+### Native transition preservation
+
+Partial writes preserve omitted transition fields, existing automatic-advance
+timing, sounds, and extension metadata on a direct native `p:transition`.
+Duration and click writes retain an unknown direct effect's original XML.
+An explicit `EntryEffect` assignment owns the effect and replaces its native
+effect node while retaining sound and extension-list children. A slide with
+no effect can still retain explicit duration, click, and automatic-advance
+metadata; it is not rewritten with a fabricated fade effect.
+
+XML attribute ownership uses namespace URI and local name. An unrelated
+extension's `x:dur`, `x:advClick`, `x:spd`, or `x:anchor` is retained when the
+corresponding native property is changed. Native duration uses the PowerPoint
+2010 namespace, choosing an unoccupied prefix when the imported file already
+uses `p14` for another namespace. Imported transition element prefixes,
+including a default namespace, remain valid when replacing an effect.
+
+Some Office files put transitions in a root `mc:AlternateContent` wrapper.
+That wrapper, its choice/fallback content, and namespace bindings are preserved
+on unrelated saves, shape edits, and `Hidden` changes. This dialect does not
+choose or project a fallback effect and refuses explicit `Duration`,
+`AdvanceOnClick`, and `EntryEffect` writes to such containers. Refusal occurs
+before publication, including same-value assignments. Direct native transition
+mutation has the same guard.
+
+Inherited `mc:Ignorable` context is retained by namespace meaning and merged
+without duplicate expanded-name attributes. More complex inherited markup
+compatibility directives, such as `mc:ProcessContent`, are outside this bounded
+transition serializer; a save that would rewrite such a transition refuses
+instead of discarding or reinterpreting that context. Validation and execution
+leave the original bytes and revision unchanged on these failures.
+
 ## Text, formatting and preservation
 
 `TextRange.Text` replaces the selected shape's complete text. This increment
@@ -128,9 +242,13 @@ fields, hyperlinks and unrelated properties. Explicit `False` removes an
 existing bold, italic or underline effect. Assigning an existing representative
 size, color or alignment still applies it across all mixed runs/paragraphs.
 The model's resolved rich text and saved DrawingML use the same overrides.
-Explicit text formatting of an empty supported shape creates an empty text
-body without adding visible text. Requested fonts remain subject to the host's
-font availability and fallback behavior.
+Explicit text formatting or anchoring of an empty supported shape creates an
+empty text body without adding visible text. Vertical-anchor writes own only
+the unqualified DrawingML anchor attribute and preserve text-body insets,
+vertical writing mode, autofit, rich runs, fields, and hyperlinks. Model copies,
+live anchor state, serialization, and reopening use the same requested anchor.
+Requested fonts remain subject to the host's font availability and fallback
+behavior.
 
 Formatting after a text replacement applies to the replacement text. Earlier
 source content is not read into VBA variables. `Fill.ForeColor` is excluded:
@@ -152,8 +270,17 @@ dart run tool/macros/office_macro.dart run-powerpoint-vba \
 ```
 
 The optional final argument selects a parameterless `Sub`, defaulting to
-`Main`. The example requires first-slide shapes named `Title` and `Body` and
-uses synthetic source values. Input and output must have the same extension;
+`Main`. The report example requires first-slide shapes named `Title` and `Body`
+and uses synthetic source values.
+
+The additional [slideshow example](../packages/quds_office_engine/example/macros/powerpoint_slideshow.bas)
+exercises typed text-frame, font, paragraph, and transition helpers. It requires
+two existing slides, an ungrouped text shape named `Title` on slide 1, and an
+editable direct transition (or none) on slide 1. It centers and styles the title,
+configures a 1.25-second fade with click advance, and hides slide 2 as an appendix
+without reordering it. Use its path in the same CLI commands above.
+
+Input and output must have the same extension;
 `.pptm`, `.potx`, `.potm`, `.ppsx`, and `.ppsm` route to the presentation family
 and retain their package types. A compile or execution failure leaves an
 existing output untouched.
@@ -180,12 +307,23 @@ execution still requires host permission for each generated operation.
 
 ## Qualification and remaining scope
 
-The local checks cover compiler refusals and complete plans, VM/JavaScript
-conformance, native save/reopen, XML attributes, policy enforcement, atomic
-rollback, real CLI subprocesses, MCP, and opaque PPTM project preservation.
-See [the exact source and execution record](validation/office-vba-word-powerpoint-20261120/README.md).
+The earlier adapter's executed checks cover compiler refusals and complete
+plans, VM/JavaScript conformance, native save/reopen, XML attributes, policy
+enforcement, atomic rollback, real CLI subprocesses, MCP, and opaque PPTM project
+preservation. See [that source and execution record](validation/office-vba-word-powerpoint-20261120/README.md).
+
+The text-frame/slideshow continuation adds
+[compiler contracts](../packages/quds_office_engine/test/office_vba_powerpoint_layout_test.dart)
+and [native integration regressions](../packages/quds_office_engine/test/office_vba_powerpoint_layout_integration_test.dart)
+for exact mappings, partial writes, source namespaces, empty/same-value intent,
+opaque containers, rollback, policy, and recording. These checks pass in the
+final combined local gate. The actual slideshow example also passes native
+transactions and repeated save/reopen on VM and compiled JavaScript with identical
+semantic results. See the
+[continuation execution record](validation/office-vba-continuation-20261120/README.md)
+for source hashes, raw results and qualification boundaries.
 Specification-derived expectations are separate from observed Office-host
-fixtures; this increment contains no installed Microsoft PowerPoint results.
+fixtures; no installed Microsoft PowerPoint results are claimed.
 
 Live document reads, named/optional arguments, `ByRef`, events, shape creation,
 slides/masters manipulation, notes, COM, filesystem/network calls, project
@@ -202,3 +340,10 @@ counts. Existing embedded projects remain opaque and inert.
 - [MsoTriState](https://learn.microsoft.com/en-us/office/vba/api/office.msotristate): numeric Boolean-state constants.
 - [PpParagraphAlignment](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.ppparagraphalignment): alignment constants.
 - [Shape.Left](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.shape.left) and [Shape.Rotation](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.shape.rotation): geometry units.
+
+- [TextFrame.VerticalAnchor](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.textframe.verticalanchor) and [MsoVerticalAnchor](https://learn.microsoft.com/en-us/office/vba/api/office.msoverticalanchor): anchor property and exact enum values.
+- [SlideShowTransition](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.slideshowtransition), [Hidden](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.slideshowtransition.hidden), and [AdvanceOnClick](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.slideshowtransition.advanceonclick): slide visibility and click-advance properties.
+- [SlideShowTransition.Duration](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.slideshowtransition.duration): duration measured in seconds.
+- [PpEntryEffect](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.ppentryeffect): exact effect constants.
+- [MS-PPTX slide transition extensions](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-pptx/22ebe6b5-2ade-43d9-977a-98fa194725c2) and [Microsoft's transition example](https://learn.microsoft.com/en-us/office/open-xml/presentation/how-to-add-transitions-between-slides-in-a-presentation): native transition and markup-compatibility container structure.
+- [ECMA-376 Part 3](https://ecma-international.org/publications-and-standards/standards/ecma-376/): markup compatibility and extensibility rules.

@@ -1,0 +1,92 @@
+{
+  "kind": "Word typography hardening follow-up",
+  "base_commit": "8ad374c0b8a164e3077b446c4177b658db8744be",
+  "status": "Source and regressions completed remotely; not executed, analyzed, or formatted",
+  "reason": "Local filesystem tooling cannot launch because the execution host reports ENOSPC. GitHub blob creation remains available.",
+  "files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "mode": "100644",
+      "type": "blob",
+      "base_sha": "a0ba5a206684bc81e783e7132bd5e5bb7870ed54",
+      "sha": "f773b32defa5e16ec4e19a43ef5d65cc65c08818",
+      "sha256": "4ba2aded299e80db5d667ec98e78db936a1a174d66dd267c91179490c2498372"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "mode": "100644",
+      "type": "blob",
+      "base_sha": "e8d643e05b50d40dd33bc7205c65932644f329b3",
+      "sha": "0a024189f46cce3984ee7f7da8649ed1525d9d66",
+      "sha256": "15d24f39fab222831f66d0bb0d0a1bb9d6428c93dc586b73253fa6daf2cee753"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_typography_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "base_sha": "8ddbce7c9d4797dd771efefc1cb5c6f53ffd8fba",
+      "sha": "8c35668ffee245f062c99037b5e614d420c94256",
+      "sha256": "6c1ed358b65af0942b76bf5f2d2ffbfa27240517926e6754af569ada8712c211"
+    }
+  ],
+  "changes": [
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "reason": "XmlElement.setAttribute without a namespace uses local-name wildcard matching. An imported extension attribute x:w before xmlns:w can be overwritten. The parser can also synthesize namespace declarations with an empty namespace URI, so merely specifying XMLNS could duplicate the declaration. Replace only qualified xmlns:w and add one explicitly namespaced declaration.",
+      "evidence": "Read actual xml_node.dart at the pinned base, including setAttribute and XmlDocument.readElement's qualified-name namespace preservation logic."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "reason": "Full serialization previously omitted baseline and null highlighting. A native explicit clear on a source-null authored run with a character-style reference could therefore re-inherit superscript/subscript or highlight after reopening. Emit the explicit baseline/none values when explicitProperties records their ownership.",
+      "evidence": "Read actual _writeFullRPr at the pinned base; the prior imported-session tests exercise the separate sparse-preservation path."
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_typography_integration_test.dart",
+      "reason": "Three targeted regressions cover extension attribute preservation with declaration uniqueness, and authored superscript/subscript plus highlight clears against inherited styles through repeated save/reopen.",
+      "new_test_cases": 3
+    }
+  ],
+  "exact_unique_replacements": [
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "replacements": [
+        {
+          "before": "          final source = WordPropertyIo.parse(\n            WordSerializer().runPropertiesXml(r),\n            'rPr',\n          )..setAttribute('w', OfficeNamespaces.w, prefix: 'xmlns');",
+          "after": "          final source = WordPropertyIo.parse(\n            WordSerializer().runPropertiesXml(r),\n            'rPr',\n          );\n          // Namespace declarations can be stored without a namespace URI.\n          // Replace the declaration by qualified name, then use an explicit\n          // namespace so an unrelated source attribute such as x:w survives.\n          source.attributes.removeWhere(\n            (attribute) => attribute.qualifiedName == 'xmlns:w',\n          );\n          source.setAttribute(\n            'w',\n            OfficeNamespaces.w,\n            prefix: 'xmlns',\n            namespaceUri: 'http://www.w3.org/2000/xmlns/',\n          );"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "replacements": [
+        {
+          "before": "    final String? highlight = WmlHighlight.toName(r.highlight);\n    if (highlight != null) {\n      w.writeEmptyElement(\n        'highlight',\n        prefix: 'w',\n        attributes: <String, String>{'w:val': highlight},\n      );\n    }",
+          "after": "    final String? highlight = WmlHighlight.toName(r.highlight);\n    // An explicit clear on an authored run must override inherited styles even\n    // without a sparse import snapshot. Omission would revive the old color.\n    if (highlight != null || r.explicitProperties.contains('highlight')) {\n      w.writeEmptyElement(\n        'highlight',\n        prefix: 'w',\n        attributes: <String, String>{'w:val': highlight ?? 'none'},\n      );\n    }"
+        },
+        {
+          "before": "    if (r.vertAlign != WmlVertAlign.baseline) {\n      w.writeEmptyElement(\n        'vertAlign',\n        prefix: 'w',\n        attributes: <String, String>{\n          'w:val': r.vertAlign == WmlVertAlign.superscript\n              ? 'superscript'\n              : 'subscript',\n        },\n      );\n    }",
+          "after": "    // Baseline is also an owned value after an explicit script-mode clear.\n    if (r.vertAlign != WmlVertAlign.baseline ||\n        r.explicitProperties.contains('vertAlign')) {\n      w.writeEmptyElement(\n        'vertAlign',\n        prefix: 'w',\n        attributes: <String, String>{'w:val': r.vertAlign.name},\n      );\n    }"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_typography_integration_test.dart",
+      "replacements": [
+        {
+          "before": "  test('typography changes roll back when a later explicit paragraph is absent', () async {",
+          "after": "  test('SmallCaps retains extension attributes named w without duplicate xmlns:w', () {\n    const extensionNamespace = 'urn:word-typography-test';\n    final props = WmlRunProps(bold: true)\n      // Keep x:w before xmlns:w so a local-name-only setter would overwrite\n      // the extension attribute rather than the actual namespace declaration.\n      ..sourcePropertiesXml =\n          '<w:rPr xmlns:x=\"$extensionNamespace\" x:w=\"keep\" '\n          'xmlns:w=\"${OfficeNamespaces.w}\"><w:b/></w:rPr>'\n      ..importedValues = <String, String>{};\n    final paragraph = WmlParagraph(\n      inlines: [WmlRun(text: 'Namespace', properties: props)],\n    );\n    final doc = WmlDocument(sections: [WmlSection(blocks: [paragraph])]);\n    OfficeOperationCatalog.apply(\n      doc,\n      'docx.runFormat',\n      {'paragraph': 0, 'smallCaps': true},\n    );\n    final saved = WordSerializer().writeBytes(doc);\n    final properties = _elements(_xml(saved), 'rPr').single;\n    expect(\n      properties.getAttribute('w', namespaceUri: extensionNamespace),\n      'keep',\n    );\n    expect(\n      properties.attributes.where(\n        (attribute) => attribute.qualifiedName == 'xmlns:w',\n      ),\n      hasLength(1),\n    );\n    expect(_elements(properties, 'caps').map(_val), ['0']);\n    final reopened = _runs(saved).single.properties;\n    expect(reopened.smallCaps, isTrue);\n    expect(reopened.bold, isTrue);\n  });\n\n  for (final (field, mode) in <(String, WmlVertAlign)>[\n    ('superscript', WmlVertAlign.superscript),\n    ('subscript', WmlVertAlign.subscript),\n  ]) {\n    test('authored $field and highlight clears override inherited styles', () {\n      final bytes = _fixture(\n        '<w:r><w:rPr><w:rStyle w:val=\"Script\"/></w:rPr>'\n        '<w:t>Authored style</w:t></w:r>',\n        styles: '<w:style w:type=\"character\" w:styleId=\"Script\"><w:rPr>'\n            '<w:vertAlign w:val=\"${mode.name}\"/><w:highlight w:val=\"yellow\"/>'\n            '</w:rPr></w:style>',\n      );\n      final doc = WordDeserializer().readBytes(bytes);\n      final original = doc.paragraphs.single.inlines.whereType<WmlRun>().single;\n      expect(original.properties.vertAlign, mode);\n      expect(original.properties.highlight, 'FFFF00');\n      // Keep the authored values and style reference, with no sparse import\n      // provenance. The full serializer must retain the following clears.\n      original.properties\n        ..sourcePropertiesXml = null\n        ..importedValues = null\n        ..explicitProperties.clear();\n      OfficeOperationCatalog.apply(\n        doc,\n        'docx.runFormat',\n        {'paragraph': 0, field: false, 'highlight': null},\n      );\n      final updated = doc.paragraphs.single.inlines.whereType<WmlRun>().single;\n      expect(updated.properties.vertAlign, WmlVertAlign.baseline);\n      expect(updated.properties.highlight, isNull);\n      var saved = WordSerializer().writeBytes(doc);\n      for (var reopen = 0; reopen < 2; reopen++) {\n        expect(_elements(_xml(saved), 'vertAlign').map(_val), ['baseline']);\n        expect(_elements(_xml(saved), 'highlight').map(_val), ['none']);\n        final restored = WordDeserializer().readBytes(saved);\n        final run = restored.paragraphs.single.inlines.whereType<WmlRun>().single;\n        expect(run.text, 'Authored style');\n        expect(run.properties.styleId, 'Script');\n        expect(run.properties.vertAlign, WmlVertAlign.baseline);\n        expect(run.properties.highlight, isNull);\n        saved = WordSerializer().writeBytes(restored);\n      }\n    });\n  }\n\n  test('typography changes roll back when a later explicit paragraph is absent', () async {"
+        }
+      ]
+    }
+  ],
+  "prior_executed_inputs": {
+    "native_word_steps_blob": "a0ba5a206684bc81e783e7132bd5e5bb7870ed54",
+    "integration_test_blob": "8ddbce7c9d4797dd771efefc1cb5c6f53ffd8fba",
+    "compiler_test_blob": "7d9858de4e88f73bffc34ba470f7e92ae5903f1e",
+    "combined_compiler_sha256": "02c0cb275fd9358ee8f999eb3d02c735b6414792721478b2b9cf4e8c48e9f12e",
+    "observed_development_results": "48 compiler and25 integration cases passed in isolated processes with exit0 before these hardening edits. No such result is claimed for the new blobs.",
+    "prior_recovery_record_blob": "92ee03f045af2b126c6886484f1db099cad52cfa"
+  },
+  "required_followup": "Format changed Dart, run static analysis and targeted Word suites on the final frozen source, retain raw exit0 receipts, then perform broader macro/native regression and portability gates as root's final acceptance plan requires.",
+  "remote_mutation_boundary": "Created blobs only. Parent owns commit and ref updates."
+}

@@ -1,11 +1,17 @@
 name: Typing proofing benchmark
 
 # Studio typing/proofing benchmark and the Studio example suite, each on the
-# branch ("after") and on its merge base with main ("before"), so before and
+# branch ("after") and on a baseline ("before", default c16e1213: main before
+# the typing/proofing change), so before and
 # after numbers come from the same hosted runner type instead of a loaded
 # development machine. See docs/performance/typing-proofing-20261120.md.
 on:
   workflow_dispatch:
+    inputs:
+      base:
+        description: Baseline commit ("before")
+        required: false
+        default: c16e1213
   push:
     branches: ['perf/typing-proofing-*']
 
@@ -25,12 +31,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Check out the merge base with the branch's benchmark
+      - name: Check out the baseline with the branch's benchmark
         if: matrix.variant == 'before'
         working-directory: .
+        env:
+          BASE: ${{ inputs.base || 'c16e1213' }}
         run: |
           cp packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart "$RUNNER_TEMP/"
-          git checkout --quiet "$(git merge-base HEAD origin/main)"
+          git checkout --quiet "${BASE}"
           cp "$RUNNER_TEMP/studio_typing_proofing_benchmark_test.dart" packages/quds_office_editor/example/test/
           git log -1 --oneline
       - uses: subosito/flutter-action@v2
@@ -67,10 +75,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Check out the merge base
+      - name: Check out the baseline
         if: matrix.variant == 'before'
         working-directory: .
-        run: git checkout --quiet "$(git merge-base HEAD origin/main)" && git log -1 --oneline
+        env:
+          BASE: ${{ inputs.base || 'c16e1213' }}
+        run: git checkout --quiet "${BASE}" && git log -1 --oneline
       - uses: subosito/flutter-action@v2
         with:
           channel: stable

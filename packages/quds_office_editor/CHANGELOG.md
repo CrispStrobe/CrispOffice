@@ -4,6 +4,19 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Remember up to 20 native IMAP/SMTP accounts in a bounded platform-keychain
+  catalog. Restore the selected account, choose another account explicitly,
+  and forget only that account. Migrate the previous single-account record
+  without losing credentials or resurrecting a forgotten account. Switch
+  connected accounts only after saving their retained local draft, preserving
+  existing per-account draft ownership and delayed-operation guards.
+
+- Insert Zotero research notes and annotations at the active authored footnote
+  or endnote caret, and replace deliberate text selections within one paragraph.
+  Keep native citations in their owning note, preserve the note number and
+  surrounding content, and restore the original selection with one undo.
+  Refuse stale, composing, structural and protected targets before application.
+
 - Render presentation normal-autofit line-spacing reduction consistently,
   including fully collapsed line advances, while retaining glyph extents and
   excluding authored fixed-point spacing from percentage reduction.

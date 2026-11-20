@@ -1,0 +1,2155 @@
+{
+  "schema": "quds-office-intake-coverage-v1",
+  "started_utc": "2026-11-20T09:20:29.057542+00:00",
+  "finished_utc": "2026-11-20T09:20:33.439995+00:00",
+  "scope": "Fixed captured local remote refs only; no remote refresh, Actions, tests, source edits, ref changes, or dependency changes.",
+  "source": {
+    "commit": "708f2821f5563912642d8062ea4db126462a67a1",
+    "tree": "447c9f79b2e0cf400ec2c58d7dba18bafab18206",
+    "expected_tree": "447c9f79b2e0cf400ec2c58d7dba18bafab18206",
+    "head_before": "708f2821f5563912642d8062ea4db126462a67a1",
+    "head_after": "708f2821f5563912642d8062ea4db126462a67a1",
+    "working_tree_status_before": "?? packages/quds_office_engine/vba-cli-test-NGNPSA/",
+    "working_tree_status_after": "?? packages/quds_office_engine/vba-cli-test-NGNPSA/",
+    "clean_and_unchanged": false,
+    "captured_main": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+    "continuation_tracking_ref": {
+      "ref": "refs/remotes/origin/codex/zotero-parity-continuation-20261120",
+      "head": "708f2821f5563912642d8062ea4db126462a67a1",
+      "matches_target": true
+    },
+    "tracked_status_before": "",
+    "tracked_status_after": "",
+    "tracked_source_clean_and_unchanged": true,
+    "transient_untracked_observation_note": "The observed vba-cli-test-NGNPSA directory belongs to concurrent CLI-test activity. It was not altered by this audit and is not a tracked product-source change."
+  },
+  "counts": {
+    "fork_branches": {
+      "total": 20,
+      "ancestor": 11,
+      "historical_equivalent": 9
+    },
+    "pull_request_heads": {
+      "total": 235,
+      "ancestor": 221,
+      "historical_equivalent": 14
+    },
+    "upstream_branches": {
+      "total": 4,
+      "ancestor": 4
+    }
+  },
+  "all_captured_references_covered": true,
+  "all_historical_proofs_passed": true,
+  "all_original_and_refreshed_checkpoints_preserve_source_parents": true,
+  "captured_integration_checkpoints": [
+    {
+      "name": "saved Zotero image source",
+      "source": "3100725d07a715f230c263f640dbd588c7c75660",
+      "integration_checkpoint": "d6ec077bc665c980736f8ffc148e6ea335a09686",
+      "source_is_direct_checkpoint_parent": true,
+      "source_is_ancestor_of_target": true,
+      "checkpoint_is_ancestor_of_target": true
+    },
+    {
+      "name": "captured main",
+      "source": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "integration_checkpoint": "d6ec077bc665c980736f8ffc148e6ea335a09686",
+      "source_is_direct_checkpoint_parent": true,
+      "source_is_ancestor_of_target": true,
+      "checkpoint_is_ancestor_of_target": true
+    },
+    {
+      "name": "VBA / Word / font / background source",
+      "source": "1fe093a217741d228c86bad4e6a5a13f777ed851",
+      "integration_checkpoint": "ef09cc417e7de64534a1834dfa2568beb0db8c91",
+      "source_is_direct_checkpoint_parent": true,
+      "source_is_ancestor_of_target": true,
+      "checkpoint_is_ancestor_of_target": true
+    },
+    {
+      "name": "CrispOffice rename",
+      "source": "afc3524eb896c496475d6763ab4b37dddfe68932",
+      "integration_checkpoint": "6c6413b38dab40e068b05d9df9ab174738b98313",
+      "source_is_direct_checkpoint_parent": true,
+      "source_is_ancestor_of_target": true,
+      "checkpoint_is_ancestor_of_target": true
+    },
+    {
+      "name": "original Android grammar",
+      "source": "fa8b71b03dcecd583a2056df2358772505bd793e",
+      "integration_checkpoint": "6adf829a95b34448edf0d399692b6e483d05a322",
+      "source_is_direct_checkpoint_parent": true,
+      "source_is_ancestor_of_target": true,
+      "checkpoint_is_ancestor_of_target": true
+    },
+    {
+      "name": "original PPTX autofit",
+      "source": "0e1d6d8c19087c8861f46565aa8a42b8fc9b9ee7",
+      "integration_checkpoint": "a27df5d1dedf2ee2da0cce05af37cfcf29d0eb6f",
+      "source_is_direct_checkpoint_parent": true,
+      "source_is_ancestor_of_target": true,
+      "checkpoint_is_ancestor_of_target": true
+    },
+    {
+      "name": "refreshed Android grammar workflow",
+      "source": "7ac3d3be4a62bf9d2e0ab8a67f0e122568691b22",
+      "integration_checkpoint": "3eb59a8b40a1ee629f138a60c364f3d2795ac16b",
+      "source_is_direct_checkpoint_parent": true,
+      "source_is_ancestor_of_target": true,
+      "checkpoint_is_ancestor_of_target": true
+    },
+    {
+      "name": "refreshed radial PDF source",
+      "source": "20573cabfd4dcae091e4c705fd58277cc6372075",
+      "integration_checkpoint": "a4ed68f2c78e0f41013c2af160fe84e27d9d84ad",
+      "source_is_direct_checkpoint_parent": true,
+      "source_is_ancestor_of_target": true,
+      "checkpoint_is_ancestor_of_target": true
+    },
+    {
+      "name": "new Mail workspace source",
+      "source": "6fea99ed24d7cfeeefca67f139505091de36c1f6",
+      "integration_checkpoint": "708f2821f5563912642d8062ea4db126462a67a1",
+      "source_is_direct_checkpoint_parent": true,
+      "source_is_ancestor_of_target": true,
+      "checkpoint_is_ancestor_of_target": true
+    }
+  ],
+  "already_in_captured_main": [
+    {
+      "ref": "origin/codex/zotero-research-materials-20261120",
+      "head": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "ancestor_of_captured_main": true
+    },
+    {
+      "ref": "origin/work/mail-attachments-20261120",
+      "head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "ancestor_of_captured_main": true
+    },
+    {
+      "ref": "origin/work/mail-draft-recovery-20261120",
+      "head": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "ancestor_of_captured_main": true
+    },
+    {
+      "ref": "origin/ci/android-spacy-grammar-workflow",
+      "head": "596fb68f64c447177ed202a40f890c20205a0270",
+      "ancestor_of_captured_main": true
+    }
+  ],
+  "readme_historical_claims": [
+    {
+      "original": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "accepted_ancestor": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "paths": 37,
+      "passed": true
+    },
+    {
+      "original": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "accepted_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "paths": 221,
+      "passed": true
+    },
+    {
+      "original": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "accepted_ancestor": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "paths": 1,
+      "passed": true
+    },
+    {
+      "original": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "accepted_ancestor": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "paths": 1,
+      "passed": true
+    },
+    {
+      "original": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "accepted_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "paths": 7,
+      "passed": true
+    },
+    {
+      "original": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "accepted_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "paths": 8,
+      "passed": true
+    },
+    {
+      "original": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "accepted_ancestor": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "paths": 4,
+      "passed": true
+    },
+    {
+      "original": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "accepted_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "paths": 7,
+      "passed": true
+    },
+    {
+      "original": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "accepted_ancestor": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "paths": 7,
+      "passed": true
+    }
+  ],
+  "historical_proofs": [
+    {
+      "original": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "accepted_ancestor": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "complete_original_delta_paths": 37,
+      "expected_path_count": 37,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "ab5ed01d0693ddbb3121ea9ca45721eb2a09f1a6",
+      "accepted_tree": "01df63630b58d6a4c578b2f12f5e68204d37eb9b",
+      "complete_tree_identity": false,
+      "original_path_entries_sha256": "0935d07133e08b0a7d56b3ec9eff03662b0ea58933e30f78d7e57d1d7667e5f5",
+      "accepted_path_entries_sha256": "0935d07133e08b0a7d56b3ec9eff03662b0ea58933e30f78d7e57d1d7667e5f5",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "accepted_ancestor": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "complete_original_delta_paths": 1,
+      "expected_path_count": 1,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "accepted_tree": "e937737edc2a479b516972d7ff46bf97d8dec70f",
+      "complete_tree_identity": false,
+      "original_path_entries_sha256": "04b0d1be8cab5c8b49e1d26b2e2d87920d4a44788c36919ad25978a09d94de46",
+      "accepted_path_entries_sha256": "04b0d1be8cab5c8b49e1d26b2e2d87920d4a44788c36919ad25978a09d94de46",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "accepted_ancestor": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "complete_original_delta_paths": 1,
+      "expected_path_count": 1,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "accepted_tree": "bbc41aaac61c3f608392a77f03f2a6667d24808e",
+      "complete_tree_identity": false,
+      "original_path_entries_sha256": "cd3aa84ad91f7bf6bbfe0809c604cc1bb03d97e798db4d4db4c63fa7b589c659",
+      "accepted_path_entries_sha256": "cd3aa84ad91f7bf6bbfe0809c604cc1bb03d97e798db4d4db4c63fa7b589c659",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "accepted_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "complete_original_delta_paths": 7,
+      "expected_path_count": 7,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "accepted_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "732cdf8d0af9d976889aaf7cb1b2664f75831fb5b028fdfff8e348252254c311",
+      "accepted_path_entries_sha256": "732cdf8d0af9d976889aaf7cb1b2664f75831fb5b028fdfff8e348252254c311",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "accepted_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "complete_original_delta_paths": 8,
+      "expected_path_count": 8,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "accepted_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "a96c7796b65a83db8340fa2382f24c3139eb788a5234a7c914b4ccb04eb41d2c",
+      "accepted_path_entries_sha256": "a96c7796b65a83db8340fa2382f24c3139eb788a5234a7c914b4ccb04eb41d2c",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "accepted_ancestor": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "complete_original_delta_paths": 4,
+      "expected_path_count": 4,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "accepted_tree": "ab32707a7142d59682fa6ff2b0de7c659c9c8c06",
+      "complete_tree_identity": false,
+      "original_path_entries_sha256": "3c9e0ba3e34e7fd012985f2565abeb9bab8101aacd9ad4017c45e9ad24f2aef4",
+      "accepted_path_entries_sha256": "3c9e0ba3e34e7fd012985f2565abeb9bab8101aacd9ad4017c45e9ad24f2aef4",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "accepted_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "complete_original_delta_paths": 7,
+      "expected_path_count": 7,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "accepted_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "c1abf874b412eb4f528ed742b84e83f9b8718c710b1702c2b9991c5549151d69",
+      "accepted_path_entries_sha256": "c1abf874b412eb4f528ed742b84e83f9b8718c710b1702c2b9991c5549151d69",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "accepted_ancestor": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "complete_original_delta_paths": 7,
+      "expected_path_count": 7,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "accepted_tree": "70b5d2c9ffaa053c688fd5f4a8c0b6c66695bb7e",
+      "complete_tree_identity": false,
+      "original_path_entries_sha256": "0a3099dc16f401ea2e44b37cf072ad2f684964d738226448ab76c2c6a86b2343",
+      "accepted_path_entries_sha256": "0a3099dc16f401ea2e44b37cf072ad2f684964d738226448ab76c2c6a86b2343",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "accepted_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "complete_original_delta_paths": 221,
+      "expected_path_count": 221,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "accepted_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "2a9ee759d1e9a8023d8a5a6858fa02f16eaf10acdac3d824e86576890a6e1427",
+      "accepted_path_entries_sha256": "2a9ee759d1e9a8023d8a5a6858fa02f16eaf10acdac3d824e86576890a6e1427",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "128a187d69555db80890c2a1945a442b951f9c74",
+      "accepted_ancestor": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "fdec8c24fde94fbffee212a7541b0cb236f682e4",
+      "complete_original_delta_paths": 1,
+      "expected_path_count": 1,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "accepted_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "589e3597f0c7d50018e240d3702f9081a4e5a340d7fa75cc8cb1c2b653120350",
+      "accepted_path_entries_sha256": "589e3597f0c7d50018e240d3702f9081a4e5a340d7fa75cc8cb1c2b653120350",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "b8ddaaeb581e010467de304c828764d353149102",
+      "accepted_ancestor": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "complete_original_delta_paths": 1,
+      "expected_path_count": 1,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "accepted_tree": "ab32707a7142d59682fa6ff2b0de7c659c9c8c06",
+      "complete_tree_identity": false,
+      "original_path_entries_sha256": "effa2415773f601f9d5fe475c45342b0ba3fa6a4cc4cecbd7b238cf0b2104a49",
+      "accepted_path_entries_sha256": "effa2415773f601f9d5fe475c45342b0ba3fa6a4cc4cecbd7b238cf0b2104a49",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "accepted_ancestor": "c08fdc703acd986850ce6d1c079a0576fd438046",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "complete_original_delta_paths": 1,
+      "expected_path_count": 1,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "accepted_tree": "3458b14160759a44dc53f6cd18d40c2c27b2469c",
+      "complete_tree_identity": false,
+      "original_path_entries_sha256": "bb12c459a67a98f9c8236405ce71a41245a84bbe3383c596750f7de089b6aba2",
+      "accepted_path_entries_sha256": "bb12c459a67a98f9c8236405ce71a41245a84bbe3383c596750f7de089b6aba2",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "accepted_ancestor": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "complete_original_delta_paths": 105,
+      "expected_path_count": 105,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "accepted_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "9b1017a044bc5272c1a1fd886361a13791f9c77b2da1fdd55a925c093d95eaf5",
+      "accepted_path_entries_sha256": "9b1017a044bc5272c1a1fd886361a13791f9c77b2da1fdd55a925c093d95eaf5",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "accepted_ancestor": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "claim_source": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+      "common_base": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "complete_original_delta_paths": 79,
+      "expected_path_count": 79,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "accepted_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "6dfc6efc86a0f6ffbbb95eab80a3269ac9e6f9e1bb6d89f9465a6e7e8913f6d0",
+      "accepted_path_entries_sha256": "6dfc6efc86a0f6ffbbb95eab80a3269ac9e6f9e1bb6d89f9465a6e7e8913f6d0",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "accepted_ancestor": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "claim_source": "docs/validation/zotero-parity-continuation-20261120/README.md",
+      "common_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "complete_original_delta_paths": 1,
+      "expected_path_count": 1,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "accepted_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "04b0d1be8cab5c8b49e1d26b2e2d87920d4a44788c36919ad25978a09d94de46",
+      "accepted_path_entries_sha256": "04b0d1be8cab5c8b49e1d26b2e2d87920d4a44788c36919ad25978a09d94de46",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "accepted_ancestor": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "claim_source": "docs/validation/zotero-parity-continuation-20261120/README.md",
+      "common_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "complete_original_delta_paths": 1,
+      "expected_path_count": 1,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "accepted_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "cd3aa84ad91f7bf6bbfe0809c604cc1bb03d97e798db4d4db4c63fa7b589c659",
+      "accepted_path_entries_sha256": "cd3aa84ad91f7bf6bbfe0809c604cc1bb03d97e798db4d4db4c63fa7b589c659",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "accepted_ancestor": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "claim_source": "docs/validation/zotero-parity-continuation-20261120/README.md",
+      "common_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "complete_original_delta_paths": 4,
+      "expected_path_count": 4,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "accepted_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "3c9e0ba3e34e7fd012985f2565abeb9bab8101aacd9ad4017c45e9ad24f2aef4",
+      "accepted_path_entries_sha256": "3c9e0ba3e34e7fd012985f2565abeb9bab8101aacd9ad4017c45e9ad24f2aef4",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "original": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "accepted_ancestor": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "claim_source": "docs/validation/zotero-parity-continuation-20261120/README.md",
+      "common_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "complete_original_delta_paths": 7,
+      "expected_path_count": 7,
+      "path_count_matches": true,
+      "method": "exact_complete_delta_path_mode_type_blob_identity",
+      "original_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "accepted_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "complete_tree_identity": true,
+      "original_path_entries_sha256": "0a3099dc16f401ea2e44b37cf072ad2f684964d738226448ab76c2c6a86b2343",
+      "accepted_path_entries_sha256": "0a3099dc16f401ea2e44b37cf072ad2f684964d738226448ab76c2c6a86b2343",
+      "accepted_is_ancestor_of_target": true,
+      "mismatches": [],
+      "passed": true
+    }
+  ],
+  "prior_proof_input": {
+    "path": "docs/validation/crispoffice-gui-20261119/reconciliation-final.json",
+    "at_commit": "708f2821f5563912642d8062ea4db126462a67a1",
+    "sha256": "794c9422f755a941bcc9d5353f8cd4af25d237dcf1604592a1562aa90e19584b"
+  },
+  "active_diff_review": {
+    "base": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+    "target": "708f2821f5563912642d8062ea4db126462a67a1",
+    "changed_paths": 228,
+    "text_files_scanned_for_conflict_markers": 209,
+    "conflict_marker_matches": [],
+    "git_diff_check_exit": 2,
+    "git_diff_check_output": "docs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:809: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:823: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:871: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:878: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:880: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:924: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:927: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:944: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1110: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1136: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1144: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1151: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1177: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1182: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1202: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1219: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1233: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1388: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:1404: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2337: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2347: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2353: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2365: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2387: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2393: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2456: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2528: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2533: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2754: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2783: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2805: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2812: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:2835: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3055: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3069: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3078: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3164: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3167: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3169: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3175: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3206: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3443: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3451: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3472: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:3476: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4377: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4380: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4382: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4419: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4732: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4759: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4762: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4764: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4811: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4833: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:4867: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5248: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5252: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5280: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5442: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5444: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5451: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5571: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5612: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5723: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5728: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5737: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5753: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5764: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5817: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5897: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:5907: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:6189: trailing whitespace.\n+ \ndocs/validation/zotero-note-images-20261120/intake/mail-resolution.diff:6278: trailing whitespace.\n+ \n",
+    "raw_patch_evidence_whitespace": [
+      {
+        "path": "docs/validation/zotero-note-images-20261120/intake/mail-resolution.diff",
+        "diagnostic_count": 74,
+        "all_flagged_lines_are_required_blank_patch_context_prefix": true,
+        "unchanged_from_saved_image_head_3100725d": true,
+        "blob": "3042a75a6156e969f00ce0dafb56ecd4363893a5"
+      }
+    ],
+    "product_diff_check_excludes": [
+      "docs/validation/**"
+    ],
+    "product_diff_check_exit": 0,
+    "product_diff_check_output": "",
+    "changed_blobs_with_unavailable_size": [],
+    "large_changed_files_at_least_1MiB": [
+      {
+        "path": "docs/validation/zotero-note-images-20261120/portable-and-preflight/evidence-9d7472a0.tar.gz",
+        "bytes": 1748557,
+        "blob": "abea0556fb4b08125e44bed6a753aef59d6689e6",
+        "saved_image_source_blob": "abea0556fb4b08125e44bed6a753aef59d6689e6",
+        "unchanged_from_saved_image_head_3100725d": true,
+        "purpose": "Preserved incoming qualification/intake evidence archive"
+      },
+      {
+        "path": "docs/validation/zotero-note-images-20261120/intake/incoming-review-final.tar.gz",
+        "bytes": 1176029,
+        "blob": "46dcf785d06edbbec7f5348d20e7f70118ee9a89",
+        "saved_image_source_blob": "46dcf785d06edbbec7f5348d20e7f70118ee9a89",
+        "unchanged_from_saved_image_head_3100725d": true,
+        "purpose": "Preserved incoming qualification/intake evidence archive"
+      }
+    ],
+    "runtime_or_cache_artifact_paths": []
+  },
+  "references": [
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/ci/android-spacy-grammar-workflow",
+      "head": "596fb68f64c447177ed202a40f890c20205a0270",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "2c47165d01d01cc883135a434ac9f6591ce6e770"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/codex/vba-variant-conversions-20261120",
+      "head": "1fe093a217741d228c86bad4e6a5a13f777ed851",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/codex/zotero-parity-20261120",
+      "head": "3100725d07a715f230c263f640dbd588c7c75660",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/codex/zotero-research-materials-20261120",
+      "head": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "1ec0a81bc43dc444872fbffffa36a8affce307a5"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "38abbbb744d1d5dab1eb9162d584370d661fef24"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/feat/android-spacy-grammar-20261120",
+      "head": "7ac3d3be4a62bf9d2e0ab8a67f0e122568691b22",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/feat/crispoffice-rename-20261120",
+      "head": "afc3524eb896c496475d6763ab4b37dddfe68932",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "e87494ada0729878981dc0cc60fdb07bcd5116d4"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "6f40365ae7708172c58e9aee38bc363d99327355"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/integrate/recent-pptx",
+      "head": "20573cabfd4dcae091e4c705fd58277cc6372075",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/main",
+      "head": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/work/mail-attachments-20261120",
+      "head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/work/mail-draft-recovery-20261120",
+      "head": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "fork_branches",
+      "ref": "refs/remotes/origin/work/mail-workspace-20261120",
+      "head": "6fea99ed24d7cfeeefca67f139505091de36c1f6",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/1",
+      "head": "54f0f8de01416640560519aa9d732f668f603709",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/10",
+      "head": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/100",
+      "head": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/101",
+      "head": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/102",
+      "head": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/103",
+      "head": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/104",
+      "head": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/105",
+      "head": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/106",
+      "head": "7686ec52876288e6799023fd686af79228236826",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/107",
+      "head": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/108",
+      "head": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/109",
+      "head": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/11",
+      "head": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/110",
+      "head": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/111",
+      "head": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/112",
+      "head": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/113",
+      "head": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/114",
+      "head": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/115",
+      "head": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/116",
+      "head": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/117",
+      "head": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/118",
+      "head": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/119",
+      "head": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/12",
+      "head": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/120",
+      "head": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/121",
+      "head": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/122",
+      "head": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/123",
+      "head": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/124",
+      "head": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/125",
+      "head": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/126",
+      "head": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/127",
+      "head": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/128",
+      "head": "814f165cb24a5b719dde65495f64d85f86563328",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/129",
+      "head": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/13",
+      "head": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/130",
+      "head": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/131",
+      "head": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/132",
+      "head": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/133",
+      "head": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/134",
+      "head": "128a187d69555db80890c2a1945a442b951f9c74",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "d790bca444eef0e160a75ce3d8cb555af541004f"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/135",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/136",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "1ec0a81bc43dc444872fbffffa36a8affce307a5"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/137",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "e87494ada0729878981dc0cc60fdb07bcd5116d4"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/138",
+      "head": "b8ddaaeb581e010467de304c828764d353149102",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "e87494ada0729878981dc0cc60fdb07bcd5116d4"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/139",
+      "head": "6df76a0dff0051312faa04317af41d479dd94162",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/14",
+      "head": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/140",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "2c47165d01d01cc883135a434ac9f6591ce6e770"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/141",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/142",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "38abbbb744d1d5dab1eb9162d584370d661fef24"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/143",
+      "head": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/144",
+      "head": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/145",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/146",
+      "head": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "c08fdc703acd986850ce6d1c079a0576fd438046"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/147",
+      "head": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/148",
+      "head": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/149",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/15",
+      "head": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/150",
+      "head": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/151",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "6f40365ae7708172c58e9aee38bc363d99327355"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/152",
+      "head": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "disposition": "historical_equivalent",
+      "accepted_ancestor": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/153",
+      "head": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/154",
+      "head": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/155",
+      "head": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/156",
+      "head": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/157",
+      "head": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/158",
+      "head": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/159",
+      "head": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/16",
+      "head": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/160",
+      "head": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/161",
+      "head": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/162",
+      "head": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/163",
+      "head": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/164",
+      "head": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/165",
+      "head": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/166",
+      "head": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/167",
+      "head": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/168",
+      "head": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/169",
+      "head": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/17",
+      "head": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/170",
+      "head": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/171",
+      "head": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/172",
+      "head": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/173",
+      "head": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/174",
+      "head": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/175",
+      "head": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/176",
+      "head": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/177",
+      "head": "3f0277c8c4d317c3607e3bd6a2bf0e9aaf73bd3d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/178",
+      "head": "2122066f0eccf06a6f2c3c523c5715a7233bb95d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/179",
+      "head": "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/18",
+      "head": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/180",
+      "head": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/181",
+      "head": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/182",
+      "head": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/183",
+      "head": "f2b0769cf5533fd4e7ee335adab532c98c677857",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/184",
+      "head": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/185",
+      "head": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/186",
+      "head": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/187",
+      "head": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/188",
+      "head": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/189",
+      "head": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/19",
+      "head": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/190",
+      "head": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/191",
+      "head": "1d762d4c369795175b55a4ecb9c44efd29f041b1",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/192",
+      "head": "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/193",
+      "head": "4cf5831d01ace0ae804a176ec82ff2d27ce7fac3",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/194",
+      "head": "e77d0dab229bc0ea4c195a164771d3c44809f0f0",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/195",
+      "head": "d42626a4c0742a955ab27b700c7138fd69d99298",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/196",
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/197",
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/198",
+      "head": "623057111a9179552eb02b21a753a1728de9905d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/199",
+      "head": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/2",
+      "head": "08b09485588d2b6270f594a07c983689c087587d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/20",
+      "head": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/200",
+      "head": "4b2ad7995c1ddff052232c21749d847701d77f96",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/201",
+      "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/202",
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/203",
+      "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/204",
+      "head": "3db248be978b24d0693d1133505d9be200fd1256",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/205",
+      "head": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/206",
+      "head": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/207",
+      "head": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/208",
+      "head": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/209",
+      "head": "6275d21246040e03f6264b27171992c88d1474a2",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/21",
+      "head": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/210",
+      "head": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/211",
+      "head": "cacae8569814e4cb81f58d358734d31431f102be",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/212",
+      "head": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/213",
+      "head": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/214",
+      "head": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/215",
+      "head": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/216",
+      "head": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/217",
+      "head": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/218",
+      "head": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/219",
+      "head": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/22",
+      "head": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/220",
+      "head": "1441665236401e94ccf03ffa694c7434bb227ef3",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/221",
+      "head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/222",
+      "head": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/223",
+      "head": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/224",
+      "head": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/225",
+      "head": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/226",
+      "head": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/227",
+      "head": "1fe093a217741d228c86bad4e6a5a13f777ed851",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/228",
+      "head": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/229",
+      "head": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/23",
+      "head": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/230",
+      "head": "3c137a66e8a434f5a90e80f5094bfaa25354067a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/231",
+      "head": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/232",
+      "head": "8b09e0ca6667c00db81b613c40b6d275bc20471a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/233",
+      "head": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/234",
+      "head": "afc3524eb896c496475d6763ab4b37dddfe68932",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/235",
+      "head": "596fb68f64c447177ed202a40f890c20205a0270",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/24",
+      "head": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/25",
+      "head": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/26",
+      "head": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/27",
+      "head": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/28",
+      "head": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/29",
+      "head": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/3",
+      "head": "e550723b0f2a7cd849970f58820d260c36857502",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/30",
+      "head": "49b447324159595c59e64d8425b54a09f79ec736",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/31",
+      "head": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/32",
+      "head": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/33",
+      "head": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/34",
+      "head": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/35",
+      "head": "e59751246a200e7477657d0e4835bf77b153422c",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/36",
+      "head": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/37",
+      "head": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/38",
+      "head": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/39",
+      "head": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/4",
+      "head": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/40",
+      "head": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/41",
+      "head": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/42",
+      "head": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/43",
+      "head": "20681b8658392212c128f51b4c91f0b638942448",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/44",
+      "head": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/45",
+      "head": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/46",
+      "head": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/47",
+      "head": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/48",
+      "head": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/49",
+      "head": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/5",
+      "head": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/50",
+      "head": "428679a33381f943a8ae63117d4207f01dd15462",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/51",
+      "head": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/52",
+      "head": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/53",
+      "head": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/54",
+      "head": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/55",
+      "head": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/56",
+      "head": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/57",
+      "head": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/58",
+      "head": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/59",
+      "head": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/6",
+      "head": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/60",
+      "head": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/61",
+      "head": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/62",
+      "head": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/63",
+      "head": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/64",
+      "head": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/65",
+      "head": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/66",
+      "head": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/67",
+      "head": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/68",
+      "head": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/69",
+      "head": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/7",
+      "head": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/70",
+      "head": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/71",
+      "head": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/72",
+      "head": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/73",
+      "head": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/74",
+      "head": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/75",
+      "head": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/76",
+      "head": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/77",
+      "head": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/78",
+      "head": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/79",
+      "head": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/8",
+      "head": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/80",
+      "head": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/81",
+      "head": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/82",
+      "head": "4497c737623c1339d2422487d53941c20472bac9",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/83",
+      "head": "331be9688e2de1feb52635490b534042dea10c27",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/84",
+      "head": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/85",
+      "head": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/86",
+      "head": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/87",
+      "head": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/88",
+      "head": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/89",
+      "head": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/9",
+      "head": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/90",
+      "head": "6da74faa9160275df9c10a864c758033c92f114d",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/91",
+      "head": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/92",
+      "head": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/93",
+      "head": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/94",
+      "head": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/95",
+      "head": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/96",
+      "head": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/97",
+      "head": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/98",
+      "head": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "pull_request_heads",
+      "ref": "refs/remotes/pull/99",
+      "head": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "upstream_branches",
+      "ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "head": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "upstream_branches",
+      "ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "head": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "upstream_branches",
+      "ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "head": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "disposition": "ancestor"
+    },
+    {
+      "group": "upstream_branches",
+      "ref": "refs/remotes/upstream/main",
+      "head": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "disposition": "ancestor"
+    }
+  ],
+  "limitations": [
+    "This receipt proves the fixed captured source graph and exact historical tree/delta identities; it does not establish behavior or platform acceptance.",
+    "Local tracking refs are the bounded intake snapshot, not a fresh read of GitHub. Root independently checks remote main before publication.",
+    "Historical equivalents are not claimed as commit ancestors. Their complete original delta paths match the mode/type/blob entries of accepted ancestors."
+  ]
+}
