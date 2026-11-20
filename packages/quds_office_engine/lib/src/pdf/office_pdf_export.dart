@@ -2110,7 +2110,7 @@ abstract final class OfficePdfExport {
           cy,
           maxWidth,
           align,
-          unscaledSize,
+          size,
           fallbackColor,
           fitScale,
         );
