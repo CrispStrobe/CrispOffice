@@ -1,0 +1,622 @@
+{
+  "reason": "Hardlink only byte-identical immutable SDK/dependency files with identical modes. All paths and bytes preserved.",
+  "changes": [
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/benchmarks/platform_views_layout_hybrid_composition/android/project-app.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/benchmarks/test_apps/stocks/android/project-app.lockfile",
+      "bytes_reclaimed": 76448,
+      "sha256": "17867f529bd87fb634ba5c95840cdee72924fffdcfdb88f200f1a7c94b52f5a6",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/benchmarks/platform_views_layout_hybrid_composition/android/project-app.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/android_verified_input/android/project-app.lockfile",
+      "bytes_reclaimed": 76448,
+      "sha256": "17867f529bd87fb634ba5c95840cdee72924fffdcfdb88f200f1a7c94b52f5a6",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/benchmarks/macrobenchmarks/android/project-integration_test.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/android_semantics_testing/android/project-integration_test.lockfile",
+      "bytes_reclaimed": 97660,
+      "sha256": "86e46a5701633003f14c9e6a0e7a40c0535f33c76d907341ead3db665c170c33",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/benchmarks/macrobenchmarks/android/project-integration_test.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/release_smoke_test/android/project-integration_test.lockfile",
+      "bytes_reclaimed": 97660,
+      "sha256": "86e46a5701633003f14c9e6a0e7a40c0535f33c76d907341ead3db665c170c33",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/channels/android/project-integration_test.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/spell_check/android/project-integration_test.lockfile",
+      "bytes_reclaimed": 94034,
+      "sha256": "7fa45558619eb28800850eff4a87478e5fcec67aee68deb8cb4d84acd52bca32",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/channels/android/project-integration_test.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/display_cutout_rotation/android/project-integration_test.lockfile",
+      "bytes_reclaimed": 94034,
+      "sha256": "7fa45558619eb28800850eff4a87478e5fcec67aee68deb8cb4d84acd52bca32",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/channels/android/project-integration_test.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/flutter_gallery/android/project-integration_test.lockfile",
+      "bytes_reclaimed": 94034,
+      "sha256": "7fa45558619eb28800850eff4a87478e5fcec67aee68deb8cb4d84acd52bca32",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/channels/android/project-integration_test.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/ui/android/project-integration_test.lockfile",
+      "bytes_reclaimed": 94034,
+      "sha256": "7fa45558619eb28800850eff4a87478e5fcec67aee68deb8cb4d84acd52bca32",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/channels/android/project-integration_test.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/flavors/android/project-integration_test.lockfile",
+      "bytes_reclaimed": 94034,
+      "sha256": "7fa45558619eb28800850eff4a87478e5fcec67aee68deb8cb4d84acd52bca32",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/platform_interaction/android/project-app.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/examples/layers/android/project-app.lockfile",
+      "bytes_reclaimed": 84698,
+      "sha256": "b462b2e2b7c831d64cb2adea8e05c946443d60a925d5b2a32e9ffa0669a850a0",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/dev/integration_tests/platform_interaction/android/project-app.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/examples/image_list/android/project-app.lockfile",
+      "bytes_reclaimed": 84698,
+      "sha256": "b462b2e2b7c831d64cb2adea8e05c946443d60a925d5b2a32e9ffa0669a850a0",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/examples/platform_view/android/project-app.lockfile",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/examples/flutter_view/android/project-app.lockfile",
+      "bytes_reclaimed": 95413,
+      "sha256": "85b6faf34990d3e1d237d9165c91cf72c5153fc7665ea57d48ed7b5621088003",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/typed_data/typed_data.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/typed_data/typed_data.dart",
+      "bytes_reclaimed": 162321,
+      "sha256": "57cb57a349407389427b0602382b188f1bd1b92ca9995561f31d54f35c39df08",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/ffi/ffi.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/ffi/ffi.dart",
+      "bytes_reclaimed": 107605,
+      "sha256": "611d4e6f24c46aa65a3c3d8b1762f7d7c9fbf974cca1afb584827c36a888d204",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/js_interop/js_interop.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/js_interop/js_interop.dart",
+      "bytes_reclaimed": 93095,
+      "sha256": "2396e8da3a3485b911a5c8c8744a519d5bde7938fac5a503c3e4bb6b232045e8",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/core/uri.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/core/uri.dart",
+      "bytes_reclaimed": 192196,
+      "sha256": "43d812c9572e4b7b5d43a1a31d4252e7f628e259df509bb429094a9166f71814",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/_http/http_impl.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/_http/http_impl.dart",
+      "bytes_reclaimed": 123236,
+      "sha256": "133d8c2fd4e7bb608710c45b18c5be9c42c3f1e2c1c0fbf5678b32ad65375df5",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/_http/http.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/_http/http.dart",
+      "bytes_reclaimed": 80662,
+      "sha256": "c9d9fb7f6f27db9950c50c81a18ff081c337bfcad8271a9c681dfd652b40004b",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/async/stream.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/async/stream.dart",
+      "bytes_reclaimed": 105926,
+      "sha256": "ff3fecee3e63f09f0507d9eb89c8bb75baa082a1fce4cbf7eefeaf2f5cd21196",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/_internal/vm/lib/typed_data_patch.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/_internal/vm/lib/typed_data_patch.dart",
+      "bytes_reclaimed": 176954,
+      "sha256": "044e322a02a44a25c5091c29b4dde13ba1f4c3778255acf2b40970f3506fdf26",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/_internal/vm/lib/convert_patch.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/_internal/vm/lib/convert_patch.dart",
+      "bytes_reclaimed": 66248,
+      "sha256": "c7b380dcbfd6792892b966e08c3e020504e139d1e5f6f049790f6a9561f7fdbf",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/_internal/vm/bin/socket_patch.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/_internal/vm/bin/socket_patch.dart",
+      "bytes_reclaimed": 97254,
+      "sha256": "d7b9a4bdcca4b4c50d4a253713c42b4fb15dc1ac15d89f3db54377192599370e",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/_internal/vm_shared/lib/bigint_patch.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/_internal/vm_shared/lib/bigint_patch.dart",
+      "bytes_reclaimed": 102842,
+      "sha256": "f6fb8bb36d2d0fb00ec6eae197959ec19e9e04913c9ba179a62e38ea13eb8919",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/canvaskit/canvaskit.js",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/canvaskit/canvaskit.js",
+      "bytes_reclaimed": 86987,
+      "sha256": "bb559f6080c7d312ac2a912b4abec9f68ff3d3022d4a603c7796b9b31460642b",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/canvaskit/chromium/canvaskit.js",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_web_sdk/canvaskit/chromium/canvaskit.js",
+      "bytes_reclaimed": 86226,
+      "sha256": "6018b12bd8ed37e6952eee72d59c1cf7ad707ccdb74a0a45190010f77edd9068",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/canvaskit/chromium/canvaskit.js",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/canvaskit/chromium/canvaskit.js",
+      "bytes_reclaimed": 86226,
+      "sha256": "6018b12bd8ed37e6952eee72d59c1cf7ad707ccdb74a0a45190010f77edd9068",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/canvaskit/webparagraph/canvaskit.js",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_web_sdk/canvaskit/webparagraph/canvaskit.js",
+      "bytes_reclaimed": 76114,
+      "sha256": "3110e3e4d9b7b5657d336f253aaca8acca5777cde9319fb69ac302d6ff5a8b23",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/canvaskit/webparagraph/canvaskit.js",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/canvaskit/webparagraph/canvaskit.js",
+      "bytes_reclaimed": 76114,
+      "sha256": "3110e3e4d9b7b5657d336f253aaca8acca5777cde9319fb69ac302d6ff5a8b23",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/MaterialIcons-Regular.otf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/fonts/MaterialIcons-Regular.otf",
+      "bytes_reclaimed": 1645184,
+      "sha256": "d9865b671a09d683d13a863089d8825e0f61a37696ce5d7d448bc8023aa62453",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Bold.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto/Roboto-Bold.ttf",
+      "bytes_reclaimed": 170760,
+      "sha256": "7d0b991ee3e0be7af01ad7ea8cd2beea6c00a25e679a0226b6737f079aafff86",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Bold.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Bold.ttf",
+      "bytes_reclaimed": 170760,
+      "sha256": "7d0b991ee3e0be7af01ad7ea8cd2beea6c00a25e679a0226b6737f079aafff86",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Light.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto/Roboto-Light.ttf",
+      "bytes_reclaimed": 170420,
+      "sha256": "a6d343d425bc38db90152fa06058b1c7391eca9264f334ef65c1ce175085c6f6",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Light.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Light.ttf",
+      "bytes_reclaimed": 170420,
+      "sha256": "a6d343d425bc38db90152fa06058b1c7391eca9264f334ef65c1ce175085c6f6",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Thin.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto/Roboto-Thin.ttf",
+      "bytes_reclaimed": 171904,
+      "sha256": "3d91f7aa69cb7f7064035895c566ac5cb9b2084582d351af7267bb4e0fba60f5",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Thin.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Thin.ttf",
+      "bytes_reclaimed": 171904,
+      "sha256": "3d91f7aa69cb7f7064035895c566ac5cb9b2084582d351af7267bb4e0fba60f5",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Black.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto/Roboto-Black.ttf",
+      "bytes_reclaimed": 171480,
+      "sha256": "3872e9b39760a1b59ac1e192633dbb3b58e595b4d423930ac7ded525e9ae25e0",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Black.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Black.ttf",
+      "bytes_reclaimed": 171480,
+      "sha256": "3872e9b39760a1b59ac1e192633dbb3b58e595b4d423930ac7ded525e9ae25e0",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Regular.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto/Roboto-Regular.ttf",
+      "bytes_reclaimed": 171676,
+      "sha256": "79e851404657dac2106b3d22ad256d47824a9a5765458edb72c9102a45816d95",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Regular.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Regular.ttf",
+      "bytes_reclaimed": 171676,
+      "sha256": "79e851404657dac2106b3d22ad256d47824a9a5765458edb72c9102a45816d95",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Medium.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto/Roboto-Medium.ttf",
+      "bytes_reclaimed": 172064,
+      "sha256": "f205cc511821ea56078a105557fcea6253129404d411c997e1866fbd006abb68",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Medium.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto/Roboto-Medium.ttf",
+      "bytes_reclaimed": 172064,
+      "sha256": "f205cc511821ea56078a105557fcea6253129404d411c997e1866fbd006abb68",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Regular.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto_Mono/RobotoMono-Regular.ttf",
+      "bytes_reclaimed": 109212,
+      "sha256": "c59ecb6c18e38d4194249b6e1c555eb55c8e809258cf6d9b624d19d9268253bf",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Regular.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Regular.ttf",
+      "bytes_reclaimed": 109212,
+      "sha256": "c59ecb6c18e38d4194249b6e1c555eb55c8e809258cf6d9b624d19d9268253bf",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Light.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto_Mono/RobotoMono-Light.ttf",
+      "bytes_reclaimed": 113488,
+      "sha256": "fcd6fe9fb554079661b04d652e8ee5a48b9158970c57c86e76ab915fe3efbcc0",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Light.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Light.ttf",
+      "bytes_reclaimed": 113488,
+      "sha256": "fcd6fe9fb554079661b04d652e8ee5a48b9158970c57c86e76ab915fe3efbcc0",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Thin.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto_Mono/RobotoMono-Thin.ttf",
+      "bytes_reclaimed": 112480,
+      "sha256": "3d41efb1035b717af6fa01eca387db278bff418c1d8d44f472b00ed7a0130645",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Thin.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Thin.ttf",
+      "bytes_reclaimed": 112480,
+      "sha256": "3d41efb1035b717af6fa01eca387db278bff418c1d8d44f472b00ed7a0130645",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Bold.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto_Mono/RobotoMono-Bold.ttf",
+      "bytes_reclaimed": 109500,
+      "sha256": "d580ebfd08b9b1bb637021ac9a34d30abdf3a1a731865886ec01e0c5859f29c8",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Bold.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Bold.ttf",
+      "bytes_reclaimed": 109500,
+      "sha256": "d580ebfd08b9b1bb637021ac9a34d30abdf3a1a731865886ec01e0c5859f29c8",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Medium.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/Roboto_Mono/RobotoMono-Medium.ttf",
+      "bytes_reclaimed": 109292,
+      "sha256": "8e3fc643b30cff29c10e5f57534d2ffcf791f1319dff30c3e37c2b6b5e3d679f",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Medium.ttf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/assets/packages/devtools_app_shared/fonts/Roboto_Mono/RobotoMono-Medium.ttf",
+      "bytes_reclaimed": 109292,
+      "sha256": "8e3fc643b30cff29c10e5f57534d2ffcf791f1319dff30c3e37c2b6b5e3d679f",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/dartdoc/resources/docs.dart.js",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/vm_service-15.2.0/doc/api/static-assets/docs.dart.js",
+      "bytes_reclaimed": 134455,
+      "sha256": "4375645ffae095cfd99fde1b0525dd8faf69f874bc6ee99317b3897a9dac2d7d",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/dartdoc/resources/docs.dart.js.map",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/vm_service-15.2.0/doc/api/static-assets/docs.dart.js.map",
+      "bytes_reclaimed": 120719,
+      "sha256": "952d33bd3078e80e0bde8744337fa354d5e60567dc5173b6985a86a6b752268d",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/dartdoc/resources/highlight.pack.js",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/vm_service-15.2.0/doc/api/static-assets/highlight.pack.js",
+      "bytes_reclaimed": 75370,
+      "sha256": "6b458501f2ea7a6d876c3157dc5d9628af9356b914610ae9f4417398b97a5b89",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/dartdoc/resources/highlight.pack.js",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/uuid-4.5.3/doc/static-assets/highlight.pack.js",
+      "bytes_reclaimed": 75370,
+      "sha256": "6b458501f2ea7a6d876c3157dc5d9628af9356b914610ae9f4417398b97a5b89",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_web_sdk/canvaskit/wimp.js.symbols",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/canvaskit/wimp.js.symbols",
+      "bytes_reclaimed": 1813030,
+      "sha256": "b4907ebd33131302a8cd99f7c55f52357bdfde04f421b605a616ba8764ae1de4",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_web_sdk/canvaskit/skwasm.js.symbols",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/canvaskit/skwasm.js.symbols",
+      "bytes_reclaimed": 1540006,
+      "sha256": "9137f1a3ae744dea575043abfc6e063a047e910e6dab1ee53e496c975d1c033e",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_web_sdk/canvaskit/canvaskit.wasm",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/canvaskit/canvaskit.wasm",
+      "bytes_reclaimed": 7284602,
+      "sha256": "fbed517a43e82452404446683f00f2e876d835aed84410695759e67b6bb01cd3",
+      "mode": 493,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_web_sdk/canvaskit/canvaskit.js.symbols",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/canvaskit/canvaskit.js.symbols",
+      "bytes_reclaimed": 1356926,
+      "sha256": "384f80b392972c83fd4f262527e3d06215a297d33ed59732c726721e9d9311bd",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_web_sdk/canvaskit/skwasm_heavy.js.symbols",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/canvaskit/skwasm_heavy.js.symbols",
+      "bytes_reclaimed": 1672152,
+      "sha256": "b6b79ed497e11d4cd13cc46724f9e289eacc744d2d185e31c72d595cdf62772b",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_web_sdk/canvaskit/chromium/canvaskit.js.symbols",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/canvaskit/chromium/canvaskit.js.symbols",
+      "bytes_reclaimed": 1235870,
+      "sha256": "31c86fac6042dd8b756150832c1d15495d0d07742e2718f75dbdde5a5a91455e",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_web_sdk/canvaskit/webparagraph/canvaskit.js.symbols",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/drift-2.35.4/extension/devtools/build/canvaskit/webparagraph/canvaskit.js.symbols",
+      "bytes_reclaimed": 963641,
+      "sha256": "44d6c47919106235cf32252252490cdf798d907ee874ba343ab53dc94bc2a9dc",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/_fe_analyzer_shared-95.0.0/lib/src/scanner/token.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/_fe_analyzer_shared-103.0.0/lib/src/scanner/token.dart",
+      "bytes_reclaimed": 66442,
+      "sha256": "1f6934712d3769d221cac11cc15e9605cefd691da179f76197e589ae9e5f5940",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/_fe_analyzer_shared-95.0.0/test/metadata/data/unresolved/main.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/_fe_analyzer_shared-103.0.0/test/metadata/data/unresolved/main.dart",
+      "bytes_reclaimed": 86236,
+      "sha256": "b59a0b397963d943f3882e77ad3bb4b228ec00f833ae20a6f2faa1c74738a1de",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/crypto-3.0.7/test/hmac_sha256_test.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/crypto-3.0.8/test/hmac_sha256_test.dart",
+      "bytes_reclaimed": 99674,
+      "sha256": "63be6883d2780bb4e5e3af40a9f2aa952abd6f5d9b656d42d675f49084c5ec95",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/crypto-3.0.7/test/hmac_sha1_test.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/crypto-3.0.8/test/hmac_sha1_test.dart",
+      "bytes_reclaimed": 122485,
+      "sha256": "6ee94775396067d30ac9f1746501e04c137ae31a7b7598c49bba9c2155502ac0",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/coverage-1.15.1/test/test_files/chrome_precise_report.txt",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/coverage-1.16.1/test/test_files/chrome_precise_report.txt",
+      "bytes_reclaimed": 707258,
+      "sha256": "e3b83ed88aa306c53e3b1c8d6839688edff5a1c9d187b424b750975f0852df9c",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/coverage-1.15.1/test/test_files/main_test.js",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/coverage-1.16.1/test/test_files/main_test.js",
+      "bytes_reclaimed": 1081547,
+      "sha256": "8dbfdeb3a6d8770480ced09b0814770f70a71372f4113a92023781fccdcf1666",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/coverage-1.15.1/test/test_files/main_test.js.map",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/coverage-1.16.1/test/test_files/main_test.js.map",
+      "bytes_reclaimed": 462111,
+      "sha256": "ea16122f511b75bc896c504e74f39e23b80edb97837d1d2be69f8946dbf3b739",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/file_picker-10.3.10/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/window_manager-0.5.2/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "bytes_reclaimed": 102994,
+      "sha256": "6232e5815af17e25e0268b2fec7aea9e068cc92ec709e9605c2b31df4ff2a313",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/file_picker-10.3.10/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/objective_c-9.6.4/example/flutter_app/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "bytes_reclaimed": 102994,
+      "sha256": "6232e5815af17e25e0268b2fec7aea9e068cc92ec709e9605c2b31df4ff2a313",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/file_picker-10.3.10/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/screen_retriever-0.2.2/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "bytes_reclaimed": 102994,
+      "sha256": "6232e5815af17e25e0268b2fec7aea9e068cc92ec709e9605c2b31df4ff2a313",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/file_picker-10.3.10/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/flutter_template_images-5.0.0/templates/app/macos.tmpl/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "bytes_reclaimed": 102994,
+      "sha256": "6232e5815af17e25e0268b2fec7aea9e068cc92ec709e9605c2b31df4ff2a313",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/file_picker-10.3.10/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/flutter_secure_storage-9.2.4/example/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png",
+      "bytes_reclaimed": 102994,
+      "sha256": "6232e5815af17e25e0268b2fec7aea9e068cc92ec709e9605c2b31df4ff2a313",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/objective_c-9.6.4/src/include/dart_api.h",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/jni-1.1.2/src/include/dart_api.h",
+      "bytes_reclaimed": 151830,
+      "sha256": "d4ad740c9c1ee738e01c89b316dba2a8b8c18d5b4e398b6ea4ffc3686b7feb50",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/analyzer-13.3.0/lib/src/fine/requirements.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/analyzer-10.1.0/lib/src/fine/requirements.dart",
+      "bytes_reclaimed": 94626,
+      "sha256": "65b6a8747f3f34ff079d43d5f1dc3d398f1635cf0b36c4ce71f07d9bae490722",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/analyzer-13.3.0/lib/src/summary/format.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/analyzer-10.1.0/lib/src/summary/format.dart",
+      "bytes_reclaimed": 71881,
+      "sha256": "bdc7a7302ec3f07431a84d040d538464d04780e195bf517a03c54aeb1caecd09",
+      "mode": 420,
+      "same_hash_after": true
+    }
+  ],
+  "reclaimed_bytes": 27344138
+}

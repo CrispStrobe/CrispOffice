@@ -200,6 +200,156 @@ void _captureRichRuns(PmlShape shape) {
 
 void main() {
   testWidgets(
+    'radial fills shade the center and equal radii in shapes and backgrounds',
+    (tester) async {
+      for (final bool background in [false, true]) {
+        final shape = PmlShape(
+          id: 2,
+          name: 'Radial',
+          fillColor: 'FF0000',
+          gradient: PmlGradientFill(
+            radial: true,
+            stops: [
+              PmlGradientStop(position: 0, color: 'FF0000'),
+              PmlGradientStop(position: 0.5, color: '00FF00'),
+              PmlGradientStop(position: 1, color: '0000FF'),
+            ],
+          ),
+          transform: const PmlTransform(
+            x: 40 * 12700,
+            y: 40 * 12700,
+            cx: 100 * 12700,
+            cy: 100 * 12700,
+          ),
+        );
+        await _present(
+          tester,
+          PmlSlide(
+            id: 256,
+            shapes: background ? [] : [shape],
+            backgroundShapes: background ? [shape] : [],
+          ),
+        );
+        final RenderRepaintBoundary boundary = tester.renderObject(
+          find.byKey(_boundaryKey),
+        );
+        await tester.runAsync(() async {
+          final image = await boundary.toImage(pixelRatio: 1);
+          try {
+            final pixels = (await image.toByteData(
+              format: ui.ImageByteFormat.rawRgba,
+            ))!.buffer.asUint8List();
+            List<int> pixel(int x, int y) => pixels.sublist(
+              (y * image.width + x) * 4,
+              (y * image.width + x) * 4 + 3,
+            );
+            expect(pixel(90, 90)[0], greaterThan(245));
+            for (final offset in [
+              const Offset(55, 90),
+              const Offset(125, 90),
+              const Offset(90, 55),
+              const Offset(90, 125),
+            ]) {
+              final rgb = pixel(offset.dx.toInt(), offset.dy.toInt());
+              expect(rgb[1], greaterThan(240));
+              expect(rgb[0], lessThan(15));
+              expect(rgb[2], lessThan(15));
+            }
+            expect(pixel(44, 44)[2], greaterThan(200));
+            expect(pixel(30, 30), [255, 255, 255]);
+          } finally {
+            image.dispose();
+          }
+        });
+      }
+    },
+  );
+
+  testWidgets('autofit scales all rich lines and their paragraph terminators', (
+    tester,
+  ) async {
+    final PmlShape shape = _shape()
+      ..text = 'Alpha\nBeta\nGamma'
+      ..richText = [
+        for (final word in ['Alpha', 'Beta', 'Gamma'])
+          PmlTextParagraph(runs: [PmlTextRun(text: word, fontSizePt: 20)]),
+      ];
+    await _mount(tester, shape);
+    final Rect before = (await _inkBounds(tester, 0xFF0000))!;
+    final PmlShape fitted = shape.copy()..textScale = 0.5;
+    await _mount(tester, fitted);
+    final Rect after = (await _inkBounds(tester, 0xFF0000))!;
+    expect(after.width, lessThan(before.width * 0.7));
+    expect(after.height, lessThan(before.height * 0.7));
+  });
+
+  testWidgets('autofit spacing reduction reaches plain and rich rendering', (
+    tester,
+  ) async {
+    for (final bool rich in [false, true]) {
+      final PmlShape shape = _shape();
+      if (rich) {
+        shape.richText = [
+          for (final word in ['Alpha', 'Beta', 'Gamma'])
+            PmlTextParagraph(runs: [PmlTextRun(text: word, fontSizePt: 20)]),
+        ];
+      }
+      await _mount(tester, shape);
+      final Rect before = (await _inkBounds(tester, 0xFF0000))!;
+      await _mount(tester, shape.copy()..lineSpacingReduction = 0.3);
+      final Rect after = (await _inkBounds(tester, 0xFF0000))!;
+      expect(after.height, lessThan(before.height - 5), reason: 'rich=$rich');
+      expect(after.width, before.width);
+    }
+  });
+
+  testWidgets('autofit keeps every fitted line in a small frame', (
+    tester,
+  ) async {
+    final PmlShape shape = _shape()
+      ..text = 'Alpha\nBeta\nGamma\nDelta'
+      ..fontSizePt = 40
+      ..textScale = 0.25
+      ..transform = const PmlTransform(
+        x: 30 * 12700,
+        y: 40 * 12700,
+        cx: 300 * 12700,
+        cy: 80 * 12700,
+      )
+      ..richText = [
+        for (final word in ['Alpha', 'Beta', 'Gamma', 'Delta'])
+          PmlTextParagraph(
+            runs: [
+              PmlTextRun(
+                text: word,
+                fontSizePt: 40,
+                color: word == 'Delta' ? '0000FF' : 'FF0000',
+              ),
+            ],
+          ),
+      ];
+    await _mount(tester, shape);
+    expect(await _inkBounds(tester, 0x0000FF), isNotNull);
+  });
+
+  testWidgets('fixed rich leading is unchanged by autofit spacing reduction', (
+    tester,
+  ) async {
+    final PmlShape shape = _shape()
+      ..richText = [
+        for (final word in ['Alpha', 'Beta', 'Gamma'])
+          PmlTextParagraph(
+            lineSpacingPt: 30,
+            runs: [PmlTextRun(text: word, fontSizePt: 20)],
+          ),
+      ];
+    await _mount(tester, shape);
+    final Rect before = (await _inkBounds(tester, 0xFF0000))!;
+    await _mount(tester, shape.copy()..lineSpacingReduction = 0.5);
+    expect(await _inkBounds(tester, 0xFF0000), before);
+  });
+
+  testWidgets(
     'slide animation cannot hide an inherited decoration with the same id',
     (WidgetTester tester) async {
       final PmlSlide slide = _decoratedSlide();

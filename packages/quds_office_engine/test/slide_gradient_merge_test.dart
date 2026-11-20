@@ -69,17 +69,24 @@ void main() {
     expect(shapes.last.fillColor, 'FFFFFF');
   });
 
-  test('path gradient retains the existing solid fallback', () {
+  test('centered path gradient retains radial stops and solid fallback', () {
     final String pathFill = _gradientXml.replaceFirst(
       '<a:lin ang="0"/>',
-      '<a:path path="circle"/>',
+      '<a:path path="circle"><a:fillToRect '
+          'l="50000" t="50000" r="50000" b="50000"/></a:path>',
     );
     final PmlShape shape = parseSlideShapes(
       '<p:sld xmlns:p="${OfficeNamespaces.p}" xmlns:a="${OfficeNamespaces.a}">'
       '<p:cSld><p:spTree><p:sp><p:spPr>$pathFill</p:spPr>'
       '</p:sp></p:spTree></p:cSld></p:sld>',
     ).single;
-    expect(shape.gradient, isNull);
+    expect(shape.gradient!.radial, isTrue);
+    expect(shape.gradient!.stops.map((stop) => stop.color), [
+      'FF0000',
+      '00FF00',
+      '0000FF',
+    ]);
+    expect(shape.gradient!.stops.map((stop) => stop.position), [0, 0.5, 1]);
     expect(shape.fillColor, 'FF0000');
   });
 

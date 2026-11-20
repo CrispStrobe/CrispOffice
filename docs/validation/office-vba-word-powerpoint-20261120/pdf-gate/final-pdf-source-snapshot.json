@@ -1,0 +1,13 @@
+{
+  "head": "fb30f020034db943885603d993115640badd0b85",
+  "files": {
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": "b0bbb190544cfd6cc6f221148bf914ce8d2f2ca3f04852a707e0c53a2aed6fc2",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart": "3769ea04506fdfafd3e1a38bbd8f53298c2030bb7adfc6072befa096f3f1dc04",
+    "packages/quds_office_engine/lib/src/pdf/pdf_canvas.dart": "fa283d0f24f34b2208134e9a56c3a79df521ce39679815658511fe1c7c1e9373",
+    "packages/quds_office_engine/lib/src/pdf/pdf_document.dart": "7491d146422ef9661d4ed9e024a48468f4f226e604a8a72598947fa8bc9b2224",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "f1f52de35baf5065940d3beaead70b9a0cd5f91f530f63f49d16de960625e594",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "6ec6296bf11a91a58e8270943a7af6b53d4ce39cef6c83b1da8dcc974eab45d4",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "14b8b6ee5e192382c8b61ae7b81af5bcf8692373db5515ace377e7d0efd1db11",
+    "packages/quds_office_engine/lib/src/slide/shapes/slide_rich_text.dart": "1061ef83efb6d870d14944af76cfc131565650106faedf2f258865ea5598df82"
+  }
+}

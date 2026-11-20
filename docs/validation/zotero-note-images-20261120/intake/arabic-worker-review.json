@@ -1,0 +1,21 @@
+{
+  "recorded_at_utc": "2026-11-20T07:54:09.296237+00:00",
+  "head": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26",
+  "source_boundary": "working source during VBA merge; exact source hashes below, not execution at current HEAD",
+  "command": [
+    "node",
+    "packages/quds_arabic_morph/tool/worker_lifecycle_test.mjs"
+  ],
+  "node_version": "v24.22.3",
+  "exit_code": 0,
+  "before": {
+    "packages/quds_arabic_morph/tool/worker_lifecycle_test.mjs": "2e791b40f6b877926c5de759d75370170b247b7b053cbf2274378c42affb78c8",
+    "packages/quds_arabic_morph/web/arabic_morph_worker.mjs": "e1e5ca9cd08862adb746d0894f50ad09c20f73b8788a51c849d09c69a91ff064"
+  },
+  "after": {
+    "packages/quds_arabic_morph/tool/worker_lifecycle_test.mjs": "2e791b40f6b877926c5de759d75370170b247b7b053cbf2274378c42affb78c8",
+    "packages/quds_arabic_morph/web/arabic_morph_worker.mjs": "e1e5ca9cd08862adb746d0894f50ad09c20f73b8788a51c849d09c69a91ff064"
+  },
+  "stdout_sha256": "8a2ea78e6e7d5ddfdda4d61d7ad4eea8c08eb32fae51c35032bcf6669850195a",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

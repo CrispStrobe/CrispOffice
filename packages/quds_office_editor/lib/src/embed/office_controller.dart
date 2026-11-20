@@ -726,6 +726,14 @@ class WordEditorController extends OfficeController {
       document: () => document,
       revision: () => contentRevision,
       priorityParagraph: () => _proofingPriorityParagraph,
+      // Canvas typing only; never materializes a story paragraph.
+      caretPosition: () {
+        if (noteEditingTarget != null || !caret.isCollapsed) return null;
+        final paragraph = _proofingPriorityParagraph;
+        return paragraph == null
+            ? null
+            : (paragraph: paragraph, offset: caret.logicalIndex);
+      },
       vocabulary: _initialProofingVocabulary,
       service: _initialProofingService,
     )..addListener(_onProofingChanged);
@@ -11613,6 +11621,30 @@ class SheetEditorController extends OfficeController {
 
   /// fontRgb of the active cell.
   String get selectionFontRgb => sheet.cell(activeCell).fontRgb;
+
+  /// Bold state of the active cell.
+  bool get selectionFontBold => sheet.cell(activeCell).fontBold;
+
+  /// Font size of the active cell.
+  double get selectionFontSize => sheet.cell(activeCell).fontSize;
+
+  /// Font family of the active cell.
+  String get selectionFontFamily {
+    final String family = sheet.cell(activeCell).fontFamily.trim();
+    return family.isEmpty ? 'Calibri' : family;
+  }
+
+  /// Sets a finite font family on the selected cells.
+  void setSelectionFontFamily(String family) {
+    final String next = family.trim();
+    if (next.isEmpty || next.length > 256) return;
+    _applySelectionStyle(
+      (SmlCell cell) => cell.fontFamily = next,
+      needsChange: (SmlCell? cell) =>
+          (cell?.fontFamily.trim().isEmpty ?? true) ||
+          cell!.fontFamily.trim() != next,
+    );
+  }
 
   /// Sets bold on the selected cells as one reversible formatting command.
   void setSelectionFontBold(bool bold) {

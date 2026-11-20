@@ -1,5 +1,8 @@
 ## 0.1.0
 
+- Add a reusable foreground mailbox list with explicit loaded-message search,
+  combined unread/flagged filters, bounded host-owned pagination, stable message
+  focus, keyboard opening and provider/account scope resets.
 - Expose the bounded, inert body text separately from envelope and attachment summaries for safe reply and forward quotes.
 - Add the reusable account-free saved-message reader and a real multipart EML example.
 - Add a bounded static HTML projection, explicit diagnostics, local CID PNG/JPEG admission, and immutable source/attachment callbacks.

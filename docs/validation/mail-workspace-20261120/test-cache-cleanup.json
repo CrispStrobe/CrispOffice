@@ -1,0 +1,44 @@
+[
+  {
+    "path": "packages/quds_office_editor/build/test_cache",
+    "approximate_bytes": 93499648,
+    "tracked": false,
+    "ignored": true
+  },
+  {
+    "path": "packages/quds_office_editor/build/unit_test_assets",
+    "approximate_bytes": 30472999,
+    "tracked": false,
+    "ignored": true
+  },
+  {
+    "path": "packages/quds_office_editor/example/build/test_cache",
+    "approximate_bytes": 120905992,
+    "tracked": false,
+    "ignored": true
+  },
+  {
+    "path": "packages/quds_mail_ui/build/test_cache",
+    "approximate_bytes": 48413920,
+    "tracked": false,
+    "ignored": true
+  },
+  {
+    "path": "packages/quds_office_engine/.dart_tool/test",
+    "approximate_bytes": 42946112,
+    "tracked": false,
+    "ignored": true
+  },
+  {
+    "path": "packages/quds_mail_transport/.dart_tool/test",
+    "approximate_bytes": 16119096,
+    "tracked": false,
+    "ignored": true
+  },
+  {
+    "path": ".dart_tool/test",
+    "approximate_bytes": 16170488,
+    "tracked": false,
+    "ignored": true
+  }
+]

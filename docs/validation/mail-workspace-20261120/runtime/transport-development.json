@@ -1,0 +1,977 @@
+{
+  "schema_version": 1,
+  "evidence_prepared_at": "2026-11-20T09:04:37.216435+00:00",
+  "qualification": "Completed working-source development cohort; final combined-source acceptance is recorded separately.",
+  "source_identity_limit": "No before/after product manifest was captured by this development command. Git HEAD at evidence preparation is not asserted to identify the exact executed source tree.",
+  "cwd": "/workspace/scratch/8e9460dcd580/quds_office_suite",
+  "environment_script": "/workspace/scratch/8e9460dcd580/runtime/env.sh",
+  "command": [
+    "/workspace/scratch/8e9460dcd580/runtime/bin/dart",
+    "--packages=/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter=json",
+    "packages/quds_mail_transport/test/native_browse_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "packages/quds_mail_transport/test/cursor_test.dart"
+  ],
+  "actual_shell_command": "dart --packages=/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/package_config.json \"$PUB_CACHE/hosted/pub.dev/test-1.31.1/bin/test.dart\" --reporter=json packages/quds_mail_transport/test/native_browse_test.dart packages/quds_mail_transport/test/native_provider_test.dart packages/quds_mail_transport/test/uid_discovery_test.dart packages/quds_mail_transport/test/cursor_test.dart",
+  "exit_code": 0,
+  "exit_code_provenance": "Observed tool execution result for completed session 73099; raw runner done event independently confirms success.",
+  "github_actions_used": false,
+  "selected_suites": [
+    "packages/quds_mail_transport/test/native_browse_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/uid_discovery_test.dart",
+    "packages/quds_mail_transport/test/cursor_test.dart"
+  ],
+  "loaded_suites": [
+    "packages/quds_mail_transport/test/cursor_test.dart",
+    "packages/quds_mail_transport/test/native_browse_test.dart",
+    "packages/quds_mail_transport/test/native_provider_test.dart",
+    "packages/quds_mail_transport/test/uid_discovery_test.dart"
+  ],
+  "missing_suites": [],
+  "unexpected_suites": [],
+  "passed": 130,
+  "failed": 0,
+  "skipped": 0,
+  "errors": [],
+  "done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 2068
+    }
+  ],
+  "by_suite": {
+    "packages/quds_mail_transport/test/native_browse_test.dart": 29,
+    "packages/quds_mail_transport/test/native_provider_test.dart": 69,
+    "packages/quds_mail_transport/test/uid_discovery_test.dart": 27,
+    "packages/quds_mail_transport/test/cursor_test.dart": 5
+  },
+  "raw_log": {
+    "path": "logs/native-browse-window-qualified.jsonl.gz",
+    "uncompressed_bytes": 59480,
+    "uncompressed_sha256": "b4361f68f56e84031a490126238a51da05a589ed44fb37ab3779092fa5b06ef6",
+    "compressed_bytes": 6091,
+    "compressed_sha256": "37738ce4d2a35b1bad0b94e4630ab2126d5e4ff27dbf7149c97875f5a088f0d1"
+  },
+  "stderr": {
+    "path": "logs/native-browse-window-qualified.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "cases": [
+    {
+      "id": 9,
+      "name": "newest pages descend by UID across sparse high ranges",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 10,
+      "name": "later arrivals remain outside continuation until refresh",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 11,
+      "name": "a never-populated mailbox has no zero UID search",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 14,
+      "name": "empty first page still requires the selected UIDVALIDITY",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 15,
+      "name": "generation rollover never mixes continuation with a fresh mailbox",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 16,
+      "name": "backwards UIDNEXT rejects the fixed initial ceiling",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 17,
+      "name": "a completely expunged fetched range still advances to older UIDs",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 18,
+      "name": "empty bounded windows retain older ranges without another FETCH",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 19,
+      "name": "ascending archive and durable sync remain separate from browsing",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 20,
+      "name": "invalid bounds fail before credentials or network",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 21,
+      "name": "foreign and malformed cursor positions fail before networking",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 22,
+      "name": "dense mailboxes page through a small discovery budget without truncation",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 13,
+      "name": "actual command parser discovers selectable folders over required TLS",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 25,
+      "name": "quds-imap-window-v1 keeps its position and migrates from revision zero",
+      "suite": "packages/quds_mail_transport/test/cursor_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 23,
+      "name": "the default first fifty remain available with 10001 actual messages",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 29,
+      "name": "quds-imap-discovery-v2 keeps its position and migrates from revision zero",
+      "suite": "packages/quds_mail_transport/test/cursor_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 31,
+      "name": "v3 revisions round-trip exactly at the JavaScript integer boundary",
+      "suite": "packages/quds_mail_transport/test/cursor_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 28,
+      "name": "late socket completion after cancellation is destroyed before greeting/auth",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 32,
+      "name": "v3 rejects invalid revisions instead of rounding or resetting them",
+      "suite": "packages/quds_mail_transport/test/cursor_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 33,
+      "name": "required STARTTLS completes before authentication and refreshes capabilities",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 34,
+      "name": "cursor versions require their exact shape and mailbox scope",
+      "suite": "packages/quds_mail_transport/test/cursor_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 30,
+      "name": "8000 high UIDs use a tail window below the 64KiB line budget",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 36,
+      "name": "line byte budget also bounds the small-count whole-range optimization",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 37,
+      "name": "response byte budget also bounds the small-count whole-range optimization",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 38,
+      "name": "an inadequate aggregate budget fails during control traffic without an empty success",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 39,
+      "name": "unknown or invalid SELECT count 0 uses a bounded tail",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 40,
+      "name": "unknown or invalid SELECT count -1 uses a bounded tail",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 41,
+      "name": "unknown or invalid SELECT count 4294967296 uses a bounded tail",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 42,
+      "name": "unknown or invalid SELECT count null uses a bounded tail",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 43,
+      "name": "an inaccurate small count cannot bypass the strict discovery quota",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 35,
+      "name": "late TLS upgrade cannot revive an aborted account generation",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 44,
+      "name": "large sparse folders expose one empty window per explicit request",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 45,
+      "name": "capabilities do not promise SMTP, calendar or missing MOVE extension",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 46,
+      "name": "the explicit legacy numeric ceiling remains enforced",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 47,
+      "name": "missing STARTTLS refuses credentials instead of downgrading",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 48,
+      "name": "duplicate FETCH rejects the entire page without replay",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 49,
+      "name": "missing and rejected credentials are typed and never reused from cache",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 50,
+      "name": "wrong-uid FETCH rejects the entire page without replay",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 51,
+      "name": "fragmented greeting is framed before any command executes",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 52,
+      "name": "undiscovered FETCH rejects the entire page without replay",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 54,
+      "name": "oversize FETCH rejects the entire page without replay",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 27,
+      "name": "sparse unordered discovery pages near the 32-bit UID ceiling",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 56,
+      "name": "page size counts existing messages rather than numeric holes",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 57,
+      "name": "an empty remaining search confirms its whole range without FETCH",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 58,
+      "name": "a never-populated mailbox has no invalid zero-UID search range",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 59,
+      "name": "new arrivals beyond the frozen ceiling enter the next sweep",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 60,
+      "name": "saved quds-imap-window-v1 cursors resume with a new revision",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 61,
+      "name": "saved quds-imap-discovery-v2 cursors resume with a new revision",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 55,
+      "name": "cancelling discovery closes the connection and ignores late completion",
+      "suite": "packages/quds_mail_transport/test/native_browse_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 62,
+      "name": "page revisions advance through completed, empty and reset sweeps",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 63,
+      "name": "revision exhaustion fails before protocol work without wrapping",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 53,
+      "name": "discovered UID pages retain flags and reconcile gaps with scoped ranges",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 64,
+      "name": "UIDVALIDITY rollover discards an old high-UID continuation",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 65,
+      "name": "omitted FLAGS remains unknown instead of clearing durable observations",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 67,
+      "name": "ordinary multipart source synchronizes only requested envelope headers",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 66,
+      "name": "a backwards UIDNEXT cannot authorize deletion of a saved range",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 68,
+      "name": "mixed-case IMAP FETCH atoms preserve messages instead of inventing tombstones",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 69,
+      "name": "a discovered message expunged before FETCH is absent in its range",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 71,
+      "name": "an in-range FETCH UID absent from discovery rejects the whole page",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 70,
+      "name": "UIDVALIDITY rollover restarts the cursor and explicitly requests reset",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 72,
+      "name": "missing discovery cannot authorize a page or FETCH",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 74,
+      "name": "repeated discovery cannot authorize a page or FETCH",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 73,
+      "name": "same UID flag notification before literal does not consume the page limit",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 75,
+      "name": "duplicate UID discovery cannot authorize a page or FETCH",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 76,
+      "name": "unrelated UID flag notification before literal does not consume the page limit",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 77,
+      "name": "zero UID discovery cannot authorize a page or FETCH",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 78,
+      "name": "rev1 without UID flag notification before literal does not consume the page limit",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 79,
+      "name": "overflow UID discovery cannot authorize a page or FETCH",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 80,
+      "name": "same UID flag notification after literal does not consume the page limit",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 81,
+      "name": "out-of-range UID discovery cannot authorize a page or FETCH",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 83,
+      "name": "malformed suffix discovery cannot authorize a page or FETCH",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 82,
+      "name": "unrelated UID flag notification after literal does not consume the page limit",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 84,
+      "name": "unrequested ESEARCH discovery cannot authorize a page or FETCH",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 85,
+      "name": "rev1 without UID flag notification after literal does not consume the page limit",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 87,
+      "name": "sequence-correlated rev1 notifications allow a sparse completed response",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 86,
+      "name": "SEARCH status prose and mixed-case data preserve valid discovery",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 89,
+      "name": "a tagged SEARCH failure cannot commit a valid result prefix",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 88,
+      "name": "unrelated rev1 updates stay bounded when a full UID interval is returned",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 90,
+      "name": "discovery count limits fail atomically and release the provider",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 91,
+      "name": "in-range UID with no complete literal cannot fabricate a successful tombstone page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 92,
+      "name": "discovery obeys the protocol line budget before parsing a prefix",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 94,
+      "name": "an explicit legacy numeric ceiling retains its old meaning",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 93,
+      "name": "unknown rev1 sequence in a sparse response cannot fabricate a successful tombstone page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 96,
+      "name": "rev1 sequence identity changed by EXPUNGE cannot fabricate a successful tombstone page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 97,
+      "name": "malformed notification with invalid UID fails atomically",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 98,
+      "name": "malformed notification with duplicate UID fails atomically",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 99,
+      "name": "malformed notification with duplicate flags fails atomically",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 100,
+      "name": "malformed notification with nested flag fails atomically",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 101,
+      "name": "malformed notification with missing BODY literal fails atomically",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 102,
+      "name": "flags alone never turn an omitted requested literal into an empty success",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 103,
+      "name": "late sequence flag update prevents false STORE confirmation",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 104,
+      "name": "late UID flag update prevents false STORE confirmation",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 105,
+      "name": "EXPUNGE followed by an uncorrelated rev1 update cannot confirm STORE",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 106,
+      "name": "status text containing FETCH: OK before literal",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 107,
+      "name": "status text containing FETCH: mixed-case OK after literal",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 108,
+      "name": "status text containing FETCH: NO after literal",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 95,
+      "name": "cancelling stalled SEARCH prevents FETCH and allows a fresh operation",
+      "suite": "packages/quds_mail_transport/test/uid_discovery_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 109,
+      "name": "status text containing FETCH: BAD before literal",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 110,
+      "name": "forged cross-mailbox cursor is rejected before vault or connection work",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 111,
+      "name": "sparse high UIDNEXT synchronizes without enumerating numeric holes",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 112,
+      "name": "on-demand literal retains bare LF and non-UTF8 octets without reserialization",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 113,
+      "name": "stale full-message UIDVALIDITY fails before body fetch",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 114,
+      "name": "out-of-range UID cannot turn a tagged OK into a partial success",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 115,
+      "name": "duplicate FETCH cannot turn a tagged OK into a partial success",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 116,
+      "name": "unbalanced response cannot turn a tagged OK into a partial success",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 117,
+      "name": "partial BODY literal cannot turn a tagged OK into a partial success",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 118,
+      "name": "malformed FETCH prefix cannot create an empty successful sync/tombstone page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 119,
+      "name": "FETCH with missing list separator cannot fabricate a successful tombstone page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 120,
+      "name": "FETCH with tab list separator cannot fabricate a successful tombstone page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 121,
+      "name": "FETCH with tab sequence separator cannot fabricate a successful tombstone page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 122,
+      "name": "FETCH with attached quoted prefix cannot fabricate a successful tombstone page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 123,
+      "name": "FETCH with attached closing list cannot fabricate a successful tombstone page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 124,
+      "name": "FETCH with attached literal cannot fabricate a tombstone page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 125,
+      "name": "rejected duplicate sync record never advances a successful partial page",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 126,
+      "name": "malformed raw response never logs private literal text",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 127,
+      "name": "announced oversized literal is quota failure before payload reception",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 128,
+      "name": "oversized greeting is a non-retryable quota failure before authentication",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 129,
+      "name": "protocol line budget remains quota failure even before login",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 130,
+      "name": "aggregate response bytes are bounded across authentication commands",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 131,
+      "name": "header literal limit fails the entire sync page without tombstones",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 132,
+      "name": "dropped connection fails and the next operation uses a fresh authenticated client",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 133,
+      "name": "timeout destroys the connection and rejects a delayed completion",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 134,
+      "name": "vault completion after cancellation cannot open a connection",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 135,
+      "name": "STORE proves requested UID flags with a fresh observation; delete never expunges",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 136,
+      "name": "acknowledged STORE without changed flags requires reconciliation",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 137,
+      "name": "connection drop after remote mutation is conflict, never retryable success",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 138,
+      "name": "MOVE requires capability and verifies source absence without global EXPUNGE",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 139,
+      "name": "OAuthBearer GS2 identity uses a= and secrets stay inside auth command",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 140,
+      "name": "OAuthBearer error challenge is drained once and returns authenticationRequired",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "id": 141,
+      "name": "token auth without SASL-IR is explicitly unsupported before sending a token",
+      "suite": "packages/quds_mail_transport/test/native_provider_test.dart",
+      "result": "success",
+      "skipped": false
+    }
+  ]
+}

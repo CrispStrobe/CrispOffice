@@ -1,0 +1,20 @@
+{
+  "base_commit": "fb30f020034db943885603d993115640badd0b85",
+  "source_sha256": {
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "f1f52de35baf5065940d3beaead70b9a0cd5f91f530f63f49d16de960625e594",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "14b8b6ee5e192382c8b61ae7b81af5bcf8692373db5515ace377e7d0efd1db11",
+    "packages/quds_office_engine/test/office_macro_slide_format_test.dart": "6098e72114f2bd082d084f9f16d776bf7ce43a77adf124b81aa0e0ffc9971aad"
+  },
+  "patch_sha256": "a3539b9dca3287eefa224f0d32814d0677c169ad2ce0bf71d0b0b63a8ad7d5cc",
+  "tests": {
+    "command": "dart test test/office_macro_slide_format_test.dart test/slide_render_fidelity_test.dart --timeout 4x --reporter expanded --concurrency 1",
+    "passed": 27,
+    "log": "vba-same-text-native-regression.log"
+  },
+  "analysis": {
+    "command": "dart analyze --fatal-infos lib/src/slide/model/pml_presentation.dart lib/src/slide/shapes/drawingml.dart test/office_macro_slide_format_test.dart",
+    "result": "No issues found",
+    "log": "vba-same-text-analysis.log"
+  },
+  "pre_fix_refusals_log": "vba-same-text-before-fix.log"
+}

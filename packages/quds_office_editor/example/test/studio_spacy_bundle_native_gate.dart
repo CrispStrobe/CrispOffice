@@ -7,9 +7,9 @@
 // entities) and English text in the real isolate worker:
 //
 //   packages/quds_office_editor/example/tool/build_macos_app.sh
-//   APP=.../build/macos/Build/Products/Release/quds_office_studio.app
+//   APP=.../build/macos/Build/Products/Release/CrispOffice.app
 //   QUDS_STUDIO_APP=$APP \
-//   QUDS_STUDIO_DATA="$HOME/Library/Containers/com.quds.qudsOfficeStudio/Data/Library/Application Support/quds_office_studio" \
+//   QUDS_STUDIO_DATA="$HOME/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/quds_office_studio" \
 //   flutter test test/studio_spacy_bundle_native_gate.dart
 //
 // QUDS_STUDIO_DATA may point at the app container (the launched app then
@@ -40,7 +40,7 @@ void main() {
     final data = _required('QUDS_STUDIO_DATA');
     final bundled = detectBundledSpacyLibrary(const {
       'QUDS_SPACY_BUNDLED': '1',
-    }, executable: '$app/Contents/MacOS/quds_office_studio');
+    }, executable: '$app/Contents/MacOS/CrispOffice');
     expect(bundled, isNotNull, reason: 'no spacy-native.json in $app');
     expect(bundled!.path, startsWith('$app/Contents/Frameworks/'));
     final host = NativeStudioSpacyHost(

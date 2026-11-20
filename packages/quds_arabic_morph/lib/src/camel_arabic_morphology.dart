@@ -67,6 +67,7 @@ final class CamelArabicMorphology implements ArabicContextMorphology {
   final LinkedHashMap<String, List<ArabicContextReading>> _readings =
       LinkedHashMap();
   Future<void>? _loading;
+  Future<void>? _openingDatabase;
   bool _available = false;
   bool _disposed = false;
   Object? _failure;
@@ -76,6 +77,8 @@ final class CamelArabicMorphology implements ArabicContextMorphology {
   bool _canDisambiguate = false;
   Object? _disambiguatorFailure;
   Map<String, Object?>? _disambiguatorInfo;
+  Future<void> _modelOperations = Future<void>.value();
+  int _modelGeneration = 0;
 
   @override
   bool get isAvailable => _available && !_disposed;
@@ -104,22 +107,64 @@ final class CamelArabicMorphology implements ArabicContextMorphology {
   /// Opens the context disambiguation model [model] once the database is
   /// open; later calls return the same future until a failure
   /// ([disambiguatorFailure]), after which a call retries.
-  Future<void> loadDisambiguator(MorphDatabase model) =>
-      _loadingDisambiguator ??= () async {
-        await load();
-        await _openModel(model);
-      }();
+  Future<void> loadDisambiguator(MorphDatabase model) {
+    _pendingModel = null;
+    final generation = _modelGeneration;
+    return _loadingDisambiguator ??= _queueModel(() async {
+      // Initial load can itself await the constructor's model. Waiting for
+      // database readiness directly keeps these two futures acyclic.
+      await (_openingDatabase ??= _openDatabase());
+      await _openModel(model, generation);
+    });
+  }
 
-  Future<void> _openModel(MorphDatabase model) async {
-    if (!isAvailable) {
-      _loadingDisambiguator = null;
+  Future<void> _queueModel(Future<void> Function() operation) {
+    final next = _modelOperations.then((_) => operation());
+    _modelOperations = next.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace _) {},
+    );
+    return next;
+  }
+
+  /// Releases only the context model. The database and word cache stay open;
+  /// sentence readings are discarded. A later [loadDisambiguator] can load a
+  /// model again without transferring or reopening the database.
+  Future<void> unloadDisambiguator() {
+    _modelGeneration++;
+    _pendingModel = null;
+    _loadingDisambiguator = null;
+    _canDisambiguate = false;
+    _disambiguatorInfo = null;
+    _disambiguatorFailure = null;
+    _readings.clear();
+    return _queueModel(() async {
+      if (!isAvailable) return;
+      try {
+        await _transport.unloadDisambiguator();
+      } on Object catch (error) {
+        // An unavailable worker cannot still serve ordinary analysis. Keep
+        // the failure visible to the host instead of reporting a live model.
+        _disambiguatorFailure = error;
+        _failure = error;
+        _available = false;
+      }
+    });
+  }
+
+  Future<void> _openModel(MorphDatabase model, int generation) async {
+    if (!isAvailable || generation != _modelGeneration) {
+      if (generation == _modelGeneration) _loadingDisambiguator = null;
       return;
     }
     try {
-      _disambiguatorInfo = await _transport.openDisambiguator(model);
-      _canDisambiguate = !_disposed;
+      final info = await _transport.openDisambiguator(model);
+      if (_disposed || generation != _modelGeneration) return;
+      _disambiguatorInfo = info;
+      _canDisambiguate = true;
       _disambiguatorFailure = null;
     } on Object catch (error) {
+      if (_disposed || generation != _modelGeneration) return;
       _disambiguatorFailure = error;
       _canDisambiguate = false;
       _loadingDisambiguator = null;
@@ -136,6 +181,7 @@ final class CamelArabicMorphology implements ArabicContextMorphology {
     if (!canDisambiguate || sentences.isEmpty) {
       return const <List<ArabicContextReading>>[];
     }
+    final generation = _modelGeneration;
     final out = List<List<ArabicContextReading>?>.filled(
       sentences.length,
       null,
@@ -177,6 +223,9 @@ final class CamelArabicMorphology implements ArabicContextMorphology {
         _canDisambiguate = false;
         return const <List<ArabicContextReading>>[];
       }
+      if (!canDisambiguate || generation != _modelGeneration) {
+        return const <List<ArabicContextReading>>[];
+      }
       if (readings.length != batch.length) {
         throw const FormatException(
           'Malformed Arabic disambiguation response.',
@@ -203,6 +252,15 @@ final class CamelArabicMorphology implements ArabicContextMorphology {
   }
 
   Future<void> _open() async {
+    await (_openingDatabase ??= _openDatabase());
+    final model = _pendingModel;
+    _pendingModel = null;
+    if (model != null && _available) {
+      await loadDisambiguator(model);
+    }
+  }
+
+  Future<void> _openDatabase() async {
     final database = _database;
     _database = null;
     if (database == null) {
@@ -217,11 +275,6 @@ final class CamelArabicMorphology implements ArabicContextMorphology {
     } on Object catch (error) {
       _failure = error;
       _available = false;
-    }
-    final model = _pendingModel;
-    _pendingModel = null;
-    if (model != null && _available) {
-      await (_loadingDisambiguator ??= _openModel(model));
     }
   }
 
@@ -301,6 +354,9 @@ final class CamelArabicMorphology implements ArabicContextMorphology {
   Future<void> dispose() async {
     if (_disposed) return;
     _disposed = true;
+    _modelGeneration++;
+    _pendingModel = null;
+    _database = null;
     _available = false;
     _canDisambiguate = false;
     _cache.clear();

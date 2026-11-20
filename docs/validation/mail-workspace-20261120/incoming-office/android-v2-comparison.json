@@ -1,0 +1,13 @@
+{
+  "schema": "quds.spacy.grammar.replay-row-comparison.v1",
+  "candidate_report_sha256": "68e1152754847c214e48668f0dea67201df2e8e747c3d9cfc93fa45d748f5932",
+  "candidate_library_sha256": "ed730f629ce4eafe139885e9b1029a41fe05f3d5032fb992fb61eb834950f7ad",
+  "candidate_host": "android android_arm64",
+  "reference_report_sha256": "cfbd106e6a76eec9c85a0c0e01fe26c32a17cbe9181b29fecff136d4d8548628",
+  "reference_library_sha256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f",
+  "reference_host": "macos macos_arm64",
+  "rows": 1221,
+  "fields_compared": 14958,
+  "differences": [],
+  "identical": true
+}

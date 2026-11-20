@@ -203,6 +203,24 @@ abstract interface class MailProvider {
   );
 }
 
+/// Optional foreground IMAP browsing, independent of durable sync cursors.
+///
+/// Pages descend by UID within the selected [uidValidity] generation. The first
+/// page fixes an upper UID boundary; later arrivals appear only after a fresh
+/// browse without a cursor. A changed generation is a conflict, including for
+/// an empty mailbox, rather than permission to mix two mailbox generations.
+/// A bounded sparse UID window may return no messages while [MailHeaderPage.next]
+/// still identifies an older unexamined range; callers must preserve that cursor.
+abstract interface class MailImapHeaderBrowser {
+  Future<MailResult<MailHeaderPage>> fetchNewestHeaders(
+    MailMailboxId mailbox, {
+    required int uidValidity,
+    MailCursor? cursor,
+    required int limit,
+    required MailOperationLease lease,
+  });
+}
+
 abstract interface class MailSubmissionProvider {
   MailAccountId get account;
 

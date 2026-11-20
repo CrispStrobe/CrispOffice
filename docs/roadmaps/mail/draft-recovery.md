@@ -85,6 +85,7 @@ and installed-platform acceptance require their own evidence.
 
 ## Validation record
 
-Implementation and current local results are recorded in
-[the continuation report](../../validation/mail-draft-recovery-20261120/README.md).
-Historical test totals in other reports retain their original source scope.
+The [continuation report](../../validation/mail-draft-recovery-20261120/README.md)
+records the implemented recovery workflow, its local qualification and the
+remaining provider and installed-platform limits. Historical test totals in
+other reports retain their original source scope.

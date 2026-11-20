@@ -1,0 +1,30 @@
+{
+  "package": "sqlite3",
+  "package_version": "3.9.1",
+  "hosted_archive": {
+    "name": "sqlite3",
+    "version": "3.9.1",
+    "sha256": "8765980411f9b6733534efe9d014fad0750fa649590598772c04692deb34886b",
+    "url": "https://pub.dev/api/archives/sqlite3-3.9.1.tar.gz",
+    "bytes": 183021,
+    "verified": true
+  },
+  "native_asset": "libsqlite3.x64.linux.so",
+  "release_tag": "sqlite3-3.9.1",
+  "configured_download_url": "https://github.com/simolus3/sqlite3.dart/releases/download/sqlite3-3.9.1/libsqlite3.x64.linux.so",
+  "download_url_provenance": "Derived from the unmodified pinned package default hook, not a separately captured HTTP request log.",
+  "expected_sha256_from_pinned_hook": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+  "observed_library_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+  "native_bytes": 1823736,
+  "hook_source_sha256": {
+    "hook/build.dart": "f407a92232674d9fe5aa8db0470167aac65752b7ad4fe412d240c66e8b33a279",
+    "lib/src/hook/assets.dart": "2934c9e63b5cd9205d460ce2a08347c06352e92b91ccc1527eff87326b0cad69",
+    "lib/src/hook/asset_hashes.dart": "b00cbf8cef091921d0769cd3f3b612922d3f4cba22b9181728df309f425dd875",
+    "lib/src/hook/compile/description.dart": "9a46aa5f138c414f95f9721bac7174a352444bd15b59531820029f8556cebdf5"
+  },
+  "sqlite_version": "3.54.1",
+  "sqlite_source_id": "2026-10-16 14:45:20 555e07ef33f69a0957d24d8e555b702464a131d6f1607f4c3c1e4551e8e6ca76",
+  "fts5_probe": "Passed: create virtual table, insert ready, query returns exactly one expected row.",
+  "probe_source": "sqlite_probe.dart",
+  "probe_log": "logs/sqlite-readiness.txt"
+}
