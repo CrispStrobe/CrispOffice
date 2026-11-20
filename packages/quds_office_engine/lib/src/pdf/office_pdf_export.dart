@@ -1647,18 +1647,23 @@ abstract final class OfficePdfExport {
         nextImageName: sink.nextImageName,
       );
     } else {
-      _fillPreset(
-        sink.canvas,
-        shape.preset,
-        x,
-        y,
-        w,
-        h,
-        shape.fillColor,
-        shape.path,
-        shape.transform.flipH,
-        shape.transform.flipV,
-      );
+      // A connector is a single stroke. Its legacy fill color is a fallback
+      // only when no authored stroke exists, never a second wider underlay.
+      if (shape.preset != PmlShapePreset.connector ||
+          shape.strokeColor.isEmpty) {
+        _fillPreset(
+          sink.canvas,
+          shape.preset,
+          x,
+          y,
+          w,
+          h,
+          shape.fillColor,
+          shape.path,
+          shape.transform.flipH,
+          shape.transform.flipV,
+        );
+      }
       if (shape.strokeColor.isNotEmpty) {
         _strokePreset(
           sink.canvas,

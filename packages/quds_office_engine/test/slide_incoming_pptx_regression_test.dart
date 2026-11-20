@@ -1,4 +1,5 @@
 import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:quds_office_engine/src/automation/operations/slide_steps.dart';
 import 'package:test/test.dart';
 
 import 'support/pdf_alias_fixture.dart';
@@ -39,6 +40,39 @@ List<List<PdfDrawText>> _paintedLines(PdfFile file) {
   return lines.values.toList();
 }
 
+PmlShape _connector({
+  int id = 2,
+  bool flipH = false,
+  bool flipV = false,
+  String fill = '',
+  String stroke = 'FF0000',
+}) => PmlShape(
+  id: id,
+  name: 'Connector $id',
+  preset: PmlShapePreset.connector,
+  fillColor: fill,
+  strokeColor: stroke,
+  strokeWidth: 2,
+  transform: PmlTransform(
+    x: 10 * 12700,
+    y: 20 * 12700,
+    cx: 100 * 12700,
+    cy: 80 * 12700,
+    flipH: flipH,
+    flipV: flipV,
+  ),
+);
+
+String _connectorXml(String flipH, String flipV) =>
+    '<p:sld xmlns:p="${OfficeNamespaces.p}" xmlns:a="${OfficeNamespaces.a}">'
+    '<p:cSld><p:spTree><p:cxnSp><p:nvCxnSpPr><p:cNvPr id="2" name="Line"/>'
+    '<p:cNvCxnSpPr/><p:nvPr/></p:nvCxnSpPr><p:spPr>'
+    '<a:xfrm flipH="$flipH" flipV="$flipV">'
+    '<a:off x="127000" y="254000"/><a:ext cx="1270000" cy="1016000"/>'
+    '</a:xfrm><a:prstGeom prst="line"><a:avLst/></a:prstGeom><a:noFill/>'
+    '<a:ln w="25400"><a:solidFill><a:srgbClr val="FF0000"/></a:solidFill>'
+    '</a:ln></p:spPr></p:cxnSp></p:spTree></p:cSld></p:sld>';
+
 void main() {
   final SfntFont font = aliasTestFont();
   PdfFile export(PmlShape shape) => PdfFile.open(
@@ -50,6 +84,224 @@ void main() {
       ),
       font: font,
     ),
+  );
+
+  for (final (bool flipH, bool flipV) in [
+    (false, false),
+    (true, false),
+    (false, true),
+    (true, true),
+  ]) {
+    test('connector flips H=$flipH V=$flipV survive copy and PPTX/PDF', () {
+      final PmlShape shape = _connector(flipH: flipH, flipV: flipV);
+      final PmlShape copied = shape.copy(id: 3);
+      expect((copied.transform.flipH, copied.transform.flipV), (flipH, flipV));
+      final PmlShape saved = SlideDeserializer()
+          .readBytes(
+            SlideSerializer().writeBytes(
+              PmlPresentation(
+                slides: [
+                  PmlSlide(id: 256, shapes: [copied]),
+                ],
+              ),
+            ),
+          )
+          .slides
+          .single
+          .shapes
+          .single;
+      expect((saved.transform.flipH, saved.transform.flipV), (flipH, flipV));
+      final PdfStrokePath path = export(
+        saved,
+      ).displayList(0).ops.whereType<PdfStrokePath>().single;
+      expect(path.points, hasLength(2));
+      expect(path.points.first.kind, PdfPathKind.move);
+      expect(path.points.last.kind, PdfPathKind.line);
+      expect(path.points.first.x, closeTo(flipH ? 110 : 10, 0.001));
+      expect(path.points.first.y, closeTo(flipV ? 100 : 20, 0.001));
+      expect(path.points.last.x, closeTo(flipH ? 10 : 110, 0.001));
+      expect(path.points.last.y, closeTo(flipV ? 20 : 100, 0.001));
+    });
+  }
+
+  for (final (String value, bool expected) in [
+    ('1', true),
+    ('true', true),
+    ('0', false),
+    ('false', false),
+  ]) {
+    test('connector XML boolean $value is parsed on either axis', () {
+      final PmlShape horizontal = parseSlideShapes(
+        _connectorXml(value, '0'),
+      ).single;
+      final PmlShape vertical = parseSlideShapes(
+        _connectorXml('0', value),
+      ).single;
+      expect(
+        (horizontal.transform.flipH, horizontal.transform.flipV),
+        (expected, false),
+      );
+      expect(
+        (vertical.transform.flipH, vertical.transform.flipV),
+        (false, expected),
+      );
+    });
+  }
+
+  test('rotated single-axis connector keeps its diagonal in PDF', () {
+    final PmlShape shape = _connector(flipH: true)
+      ..transform = const PmlTransform(
+        x: 10 * 12700,
+        y: 20 * 12700,
+        cx: 100 * 12700,
+        cy: 80 * 12700,
+        rot: 90 * 60000,
+        flipH: true,
+      );
+    final PdfStrokePath path = export(
+      shape,
+    ).displayList(0).ops.whereType<PdfStrokePath>().single;
+    expect(path.points.first.x, closeTo(100, 0.001));
+    expect(path.points.first.y, closeTo(110, 0.001));
+    expect(path.points.last.x, closeTo(20, 0.001));
+    expect(path.points.last.y, closeTo(10, 0.001));
+  });
+
+  test('slide duplication retains decorations, strokes and authored flags', () {
+    final PmlSlide source = PmlSlide(
+      id: 256,
+      sourcePartUri: '/ppt/slides/slide1.xml',
+      background: '123456',
+      showMasterShapes: false,
+      backgroundShapes: [_connector(id: 8, flipV: true)],
+      shapes: [_connector(flipH: true)],
+    );
+    final PmlSlide duplicate = source.copy(id: 257);
+    expect(duplicate.id, 257);
+    expect(duplicate.sourcePartUri, isNull);
+    expect(duplicate.showMasterShapes, isFalse);
+    expect(duplicate.background, source.background);
+    expect(duplicate.backgroundShapes, hasLength(1));
+    expect(duplicate.backgroundShapes.single.transform.flipV, isTrue);
+    expect(duplicate.shapes.single.transform.flipH, isTrue);
+    expect(duplicate.shapes.single.strokeColor, 'FF0000');
+    expect(duplicate.shapes.single.strokeWidth, 2);
+    duplicate.shapes.single.strokeColor = '0000FF';
+    duplicate.backgroundShapes.clear();
+    expect(source.shapes.single.strokeColor, 'FF0000');
+    expect(source.backgroundShapes, hasLength(1));
+  });
+
+  test(
+    'PDF connector uses authored stroke once instead of a fill underlay',
+    () {
+      final PdfStrokePath path = export(
+        _connector(fill: '0000FF'),
+      ).displayList(0).ops.whereType<PdfStrokePath>().single;
+      expect(path.color, 0xFFFF0000);
+      expect(path.width, closeTo(2, 0.001));
+    },
+  );
+
+  test('PDF legacy fill-only connector keeps its diagonal fallback', () {
+    final PdfStrokePath path = export(
+      _connector(flipH: true, fill: '0000FF', stroke: ''),
+    ).displayList(0).ops.whereType<PdfStrokePath>().single;
+    expect(path.color, 0xFF0000FF);
+    expect(path.width, closeTo(1.6, 0.001));
+    expect(path.points.first.x, closeTo(110, 0.001));
+    expect(path.points.last.x, closeTo(10, 0.001));
+  });
+
+  test('alignment and distribution preserve each connector flip', () {
+    List<PmlShape> shapes() => [
+      _connector(flipH: true),
+      _connector(id: 3, flipV: true)
+        ..transform = const PmlTransform(x: 1000, y: 2000, flipV: true),
+      _connector(id: 4, flipH: true, flipV: true)
+        ..transform = const PmlTransform(
+          x: 3000,
+          y: 4000,
+          flipH: true,
+          flipV: true,
+        ),
+    ];
+    void expectFlips(List<PmlShape> items) => expect(
+      items.map((shape) => (shape.transform.flipH, shape.transform.flipV)),
+      [(true, false), (false, true), (true, true)],
+    );
+    for (final PmlAlignAxis axis in PmlAlignAxis.values) {
+      final List<PmlShape> items = shapes();
+      PmlArrange.align(items, axis);
+      expectFlips(items);
+    }
+    for (final bool horizontal in [false, true]) {
+      final List<PmlShape> items = shapes();
+      PmlArrange.distribute(items, horizontal: horizontal);
+      expectFlips(items);
+    }
+  });
+
+  test('native shapeGeometry retains flips through serialization', () {
+    final PmlShape shape = _connector(flipH: true);
+    final PmlPresentation deck = PmlPresentation(
+      slides: [
+        PmlSlide(id: 256, shapes: [shape]),
+      ],
+    );
+    applySlideStep(deck, {
+      'op': 'shapeGeometry',
+      'shape': 0,
+      'x': 22,
+      'y': 33,
+      'width': 44,
+      'height': 55,
+      'rotation': 30,
+    });
+    expect(shape.transform.xPoints, 22);
+    expect(shape.transform.rotationDegrees, 30);
+    expect((shape.transform.flipH, shape.transform.flipV), (true, false));
+    final PmlTransform saved = SlideDeserializer()
+        .readBytes(SlideSerializer().writeBytes(deck))
+        .slides
+        .single
+        .shapes
+        .single
+        .transform;
+    expect((saved.flipH, saved.flipV), (true, false));
+    expect(saved.widthPoints, 44);
+  });
+
+  test(
+    'morph preserves equal flips and switches differing flags with the shape',
+    () {
+      final PmlSlide from = PmlSlide(
+        id: 256,
+        shapes: [_connector(flipH: true)],
+      );
+      final PmlSlide equal = from.copy(id: 257);
+      final PmlSlide changed = PmlSlide(
+        id: 258,
+        shapes: [_connector(flipV: true)],
+      );
+      for (final double time in [0.0, 0.25, 0.75, 1.0]) {
+        final PmlTransform same = PmlMorph.frames(
+          from,
+          equal,
+          time,
+        ).single.transform;
+        expect((same.flipH, same.flipV), (true, false));
+        final PmlTransform next = PmlMorph.frames(
+          from,
+          changed,
+          time,
+        ).single.transform;
+        expect((
+          next.flipH,
+          next.flipV,
+        ), time < 0.5 ? (true, false) : (false, true));
+      }
+    },
   );
 
   for (final PmlShapePreset preset in [
