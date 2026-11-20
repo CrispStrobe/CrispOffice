@@ -10,7 +10,7 @@ default.
   `native/src/quds_arabic_morph.cpp` compiled with CrispEmbed's
   `src/arabic_morph.cpp`. That file is MIT and keeps camel_tools' MIT notice.
   Its header-only helpers and Ryu (Apache-2.0 option) are compiled in too.
-  The sources come from CrispEmbed commit `0ed76631` (PR #255). Native
+  The sources come from CrispEmbed commit `3bab3248` (PR #261, ABI 3). Native
   platforms load it as a shared library in a persistent Dart isolate. The web
   build runs the same code as a bundled Emscripten WebAssembly module in a
   module Web Worker. No analyzer code is ever downloaded (App Store guideline
@@ -200,7 +200,7 @@ python3 tool/build.py --install-licenses ../quds_office_editor/example/assets/li
 ```
 
 `build.py` downloads exactly the 26 CrispEmbed files it needs from
-`raw.githubusercontent.com` at commit `0ed76631843cadd9b5c8296f25ed8a414d8f51db`.
+`raw.githubusercontent.com` at commit `3bab324832ea911c2b1260a0d50f0ed898f47950`.
 It admits each one only when its length and SHA-256 equal the pins in the
 script, and refuses to build if any compiled file or notice differs from
 `licenses/manifest.json`. It writes `build-receipt.json` with the hash of

@@ -701,7 +701,7 @@ Top-1 in context on UD Arabic-PUD (15,482 tokens that are one UD word):
 Held-out sentences 500–999: 78.1 / 90.8 / 73.4 against `full` 77.5 / 87.8 /
 73.5. (Word-type, out-of-context comparison with the earlier receipt: 79.4%
 vs 57.0% UPOS for `full` vs `noprob`.) The model closes the whole UPOS gap.
-CrispEmbed PR #261; receipt `docs/validation/camel-morph-disambig-20261120`.
+CrispEmbed PR #261 (merge `3bab3248`), pinned by `tool/build.py`; receipt `docs/validation/camel-morph-disambig-20261120`.
 Model: [`cstr/camel-morph-msa-disambig@07fd9e65`](https://huggingface.co/cstr/camel-morph-msa-disambig/tree/07fd9e65200a3ea92a081efa9b0714817178df5f/bigram-v1)
 (`bigram-v1/`, 4.5 MB, CC BY-SA 4.0).
 

@@ -30,16 +30,16 @@ NATIVE = PACKAGE / "native"
 LICENSES = PACKAGE / "licenses"
 CRISPEMBED = {
     "repository": "https://github.com/CrispStrobe/CrispEmbed",
-    "commit": "0ed76631843cadd9b5c8296f25ed8a414d8f51db",
-    "pull_request": 255,
+    "commit": "3bab324832ea911c2b1260a0d50f0ed898f47950",
+    "pull_request": 261,
 }
 RAW = "https://raw.githubusercontent.com/CrispStrobe/CrispEmbed/{commit}/{path}"
 # Every file fetched from CrispEmbed: path -> (SHA-256, bytes). Compiled
 # sources and their notices; nothing else of CrispEmbed (no ggml) is used.
 SOURCES = {
     "LICENSE": ("a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e", 4739),
-    "src/arabic_morph.cpp": ("fff60440de9faaff4f5a5a0ec2c2b593a17eea8f94b6e55231d4059f361e910f", 111218),
-    "src/arabic_morph.h": ("98a2d0e6ec9ffed02c7d63e8e19c0ce7a46ed995859c2085fecad5b10620bc4c", 7377),
+    "src/arabic_morph.cpp": ("c1547caf39aab9f74834cba9c782498e876357ba07ec6487d55b928c03f35400", 139469),
+    "src/arabic_morph.h": ("cb7239fd6c727fd71d6f52240c380dd0914e6fb52418a7142bb7f8f81bcb0ed7", 11823),
     "src/arabic_morph_tables.h": ("72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174", 8028),
     "src/core/env_gate.h": ("2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e", 3245),
     "src/core/json.h": ("7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589", 23378),
