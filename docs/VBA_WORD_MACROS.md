@@ -115,6 +115,10 @@ header, footer, note, or comment story selector.
 | `range.ListFormat.ApplyBulletDefault` | `docx.listDefault` | `numbered: false` |
 | `range.ListFormat.ApplyNumberDefault` | `docx.listDefault` | `numbered: true` |
 | `range.ListFormat.RemoveNumbers` | `docx.removeNumbers` | `numberType: all` or `paragraph` |
+| `range.ListFormat.ApplyOutlineNumberDefault` | `docx.listOutlineDefault` | No additional arguments |
+| `range.ListFormat.ListLevelNumber = n` | `docx.listLevel` | `level: n - 1`, for source levels `1..9` |
+| `range.ListFormat.ListIndent` | `docx.listLevel` | `delta: 1` |
+| `range.ListFormat.ListOutdent` | `docx.listLevel` | `delta: -1` |
 
 For example, `ThisDocument.Paragraphs(2).Range.InsertBefore "Ready: "` emits:
 
@@ -307,7 +311,7 @@ follows the existing Quds paragraph/default and
 supported table-style layers; this does not add other conditional table regions.
 
 `RemoveNumbers NumberType:=wdNumberParagraph` removes paragraph numbering while
-preserving supported field instructions/results. All three list methods refuse
+preserving supported field instructions/results. All list operations refuse
 before mutation if the live document contains field boundaries that the serializer
 would discard as unbalanced, including in another story or where an opaque block
 hides a field's opening or closing boundary. This guard prevents a list edit from
@@ -324,8 +328,8 @@ boundary that overlaps the target paragraph. Paragraph-only removal can preserve
 fully opaque field packets when no modeled boundaries would be discarded; it
 does not infer or modify their instructions.
 `wdNumberListNum = 2` is recognized but refused at compilation. The source adapter
-does not expose live list reads, `ListLevelNumber`, list templates/galleries,
-outline application, indent/outdent methods, or a document-wide list collection.
+does not expose live list reads, list templates/galleries or a document-wide list
+collection. Outline application and list-level writes are described below.
 
 The executable [word_lists.bas](../packages/quds_office_engine/example/macros/word_lists.bas)
 uses aliases, helpers, `With`, named arguments and `Call`. The
@@ -340,6 +344,145 @@ Primary contracts: Microsoft's [ListFormat](https://learn.microsoft.com/en-us/of
 [RemoveNumbers](https://learn.microsoft.com/en-us/office/vba/api/word.listformat.removenumbers),
 [WdDefaultListBehavior](https://learn.microsoft.com/en-us/office/vba/api/word.wddefaultlistbehavior),
 and [WdNumberType](https://learn.microsoft.com/en-us/office/vba/api/word.wdnumbertype).
+
+### Outline numbering and list levels
+
+The same paragraph `ListFormat` selector supports `ApplyOutlineNumberDefault`,
+write-only `ListLevelNumber`, and the zero-argument `ListIndent` and `ListOutdent`
+methods. Typed aliases, required `ByVal` helpers and nested `With` retain their
+existing selector semantics. This allows macros to build a hierarchy without
+reading the live document:
+
+```vb
+Sub Main()
+    Dim target As ListFormat
+    Set target = ActiveDocument.Paragraphs(1).Range.ListFormat
+    With target
+        .RemoveNumbers NumberType:=wdNumberParagraph
+        .ApplyOutlineNumberDefault DefaultListBehavior:=wdWord8ListBehavior
+        .ListLevelNumber = 2
+        .ListIndent
+        Call .ListOutdent()
+    End With
+End Sub
+```
+
+This example finishes at source level 2. `ListLevelNumber` accepts an actual
+numeric exact integer from 1 through 9; it does not round or coerce strings,
+Booleans, Empty, Null, or omitted Variants. It maps to native DOCX levels 0
+through 8. A numeric Variant is accepted when its value meets the same bounds.
+The property is write-only in this source adapter; expressions such as
+`depth = target.ListLevelNumber` remain unsupported. Parenthesized property
+invocation, `Set` assignment and default-object coercions are also refused.
+
+`ListIndent`, `ListIndent()`, `Call target.ListIndent` and
+`Call target.ListIndent()` all increase the selected paragraph's list level by
+one; the equivalent `ListOutdent` forms decrease it by one. No positional,
+named or omitted arguments are accepted. Invalid call shapes are checked even
+in unused helpers and dead branches. The native operation resolves the current
+level at execution time, so earlier list operations in the plan are visible.
+It refuses a paragraph without numbering, a missing target level, indent above
+level 9, or outdent below level 1. It does not clamp or invent another list.
+An unresolved pending native list restart is also refused.
+
+`ApplyOutlineNumberDefault` accepts the same statement/`Call` forms and optional
+`DefaultListBehavior` argument as the other default-list methods: omitted or
+`wdWord8ListBehavior = 0` only. It toggles a supported existing outline off;
+otherwise it applies a separately named, nine-level Quds decimal outline at
+source level 1. As with the single-level methods, explicit paragraph-number
+removal before applying makes the outcome independent of the previous list
+kind. Toggling off writes persistent numbering suppression and retains the
+paragraph's indentation and style, including heading styles.
+
+For the outline toggle, imported templates must explicitly declare native
+`multilevel` or `hybridMultilevel` and contain at least two complete supported
+numeric levels. All defined levels and overrides must pass validation. Mixed
+bullet/numeric templates, ambiguous metadata and multilevel templates without
+the type declaration are refused. A `singleLevel` declaration is classified as
+non-outline for this bounded toggle. This metadata does not restrict explicit
+level changes: `ListLevelNumber` can still select any actually defined,
+supported level even when the template's UI metadata says `singleLevel`.
+
+The Quds outline uses a left indent of `18 * level` points and a 9-point hanging
+indent. Its first label template is `%1.`; deeper levels combine their ancestor
+counters, such as `%1.%2.` and `%1.%2.%3.`. Definitions are allocated without
+colliding with imported numbering or references in stored Word parts. Reuse
+requires the entire expected native scheme, not just a matching marker name.
+Existing single-level bullet and number defaults retain their own definitions
+and behavior; attempting to indent one into an undefined level is refused.
+
+Level changes preserve the current numbering instance, imported definitions
+and unrelated numbering metadata. They do not rewrite the numbering part.
+The ordinary serializer can still normalize XML or add its existing fallback
+definitions; complete input-part byte identity is not a general guarantee.
+They resolve the actual target definition and complete level overrides, then
+apply its supported indentation while retaining the paragraph's right indent,
+style, other formatting and foreign metadata. They do not infer list kind from
+visible labels or special numbering IDs. The new level operations support
+native bullets and the six numeric formats rendered by the current label
+resolver: `decimal`, `decimalZero`, `upperRoman`, `lowerRoman`, `upperLetter`, and
+`lowerLetter`. This does not expand the separate legacy simple-default
+classification contract above.
+
+The new geometry writes retain right-indent inheritance when that value was
+not directly edited; a later style update can still change it. A deliberate
+earlier native right-indent write keeps its direct ownership, including a
+same-value write. Effective indentation now resolves native attributes using
+their namespace rather than their prefix spelling. This also corrects plain
+import and save/reopen of alternate-prefix indentation. Original paragraph and
+style XML retains extension metadata, and foreign `ind` lookalikes stay opaque.
+
+Each selected numeric level requires its own counter placeholder and may
+reference each existing ancestor counter once. Forward, repeated or unresolved
+references are refused. Levels must provide `start`, `numFmt` and `lvlText`,
+use left label alignment, and omit linked paragraph styles, legal-numbering,
+explicit level restart rules (`lvlRestart`), legacy or picture-bullet
+instructions. A complete level override and a valid positive `startOverride`
+can be preserved; partial level
+replacement is not inferred. Level changes invalidate the native model's
+derived label cache; normal save/reopen recomputes labels from the unchanged
+numbering definitions and story counters.
+
+Imported level geometry must be unambiguous native twip-based indentation with
+an explicit `left` value and optional `hanging` or `firstLine`. Logical or
+character-based indentation, unsupported native level paragraph formatting,
+linked or picture numbering, and incomplete or ambiguous definitions are
+refused before mutation. The existing list guards for source namespaces,
+tracked numbering, alternatives and serializer-sensitive field boundaries
+also apply. Unsupported sources can be preserved as input without implying
+that every possible edit to them is supported.
+
+Because Word can give inherited character-based or logical indentation
+precedence over a new point value, new outline application and level geometry
+writes conservatively refuse those attributes anywhere in stored native
+styles, document defaults or table-style regions. Positive target first-line
+indentation also refuses a native hanging attribute on that level, even when
+zero, or hanging indentation in stored styles. These guards avoid publishing
+geometry that only the Quds model would interpret as requested. A supported
+positive first-line target is written without a hanging attribute.
+
+Method receivers are captured before their optional argument expressions.
+`ListLevelNumber` retains the adapter's existing scalar-property assignment
+order: evaluate the right-hand value, then the target selector, each exactly
+once, before emitting the write. A previously bound alias or `With` selector
+remains stable. This is an explicit source-adapter contract, not a claim that
+every host or COM evaluation detail is reproduced.
+
+The executable [word_list_levels.bas](../packages/quds_office_engine/example/macros/word_list_levels.bas)
+demonstrates outline creation, explicit levels, relative level changes,
+aliases, helpers and `Call`. Native `docx.listOutlineDefault` and `docx.listLevel`
+use ordinary mutation permissions, tool allowlists, step limits and detached
+publication. Validation does not publish; a later failure rolls back the whole
+plan and its recording. Opaque VBA projects remain inert. The
+[qualification record](validation/word-vba-list-levels-20261120/README.md)
+records the exact executed source and local checks.
+
+Primary contracts: Microsoft's
+[ApplyOutlineNumberDefault](https://learn.microsoft.com/en-us/office/vba/api/word.listformat.applyoutlinenumberdefault),
+[ListLevelNumber](https://learn.microsoft.com/en-us/office/vba/api/word.listformat.listlevelnumber),
+[ListIndent](https://learn.microsoft.com/en-us/office/vba/api/word.listformat.listindent),
+[ListOutdent](https://learn.microsoft.com/en-us/office/vba/api/word.listformat.listoutdent),
+and [ListLevel](https://learn.microsoft.com/en-us/office/vba/api/word.listlevel).
 
 ### Paragraph selectors
 

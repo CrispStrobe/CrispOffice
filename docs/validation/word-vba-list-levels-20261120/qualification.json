@@ -1,0 +1,209 @@
+{
+  "accepted_checkpoint_source_consistency": {
+    "bytes": 91625,
+    "canonical_published_inputs_sha256": "3c9b3d911b3ae098e341511b0af506d7728fb54a6f3d11396ee9dd192bc5b49f",
+    "checkpoint": "273d78f54d2d4448c25791060eb41ae65e3d3674",
+    "complete_input_count": 1123,
+    "complete_paths_modes_objects_and_sha256_equal": true,
+    "file": "source-consistency.json.gz",
+    "sha256": "137239b36ccfd601fd9cb3bd9ef9d063c468812ac6c4cf90d20d2d6335255162"
+  },
+  "additional_existing_risk_coverage": {
+    "cases": 38,
+    "modules": 5
+  },
+  "analysis": {
+    "clean": true,
+    "command": [
+      "dart",
+      "analyze",
+      "--fatal-infos",
+      "packages/quds_office_engine"
+    ],
+    "strict": true
+  },
+  "complete_input_binding": {
+    "checks": {
+      "before_after_match_frozen_commit_and_tree": true,
+      "complete_path_mode_blob_sha256_sets_equal": true,
+      "runtime_input_count": 20,
+      "runtime_sets_equal": true,
+      "source_input_count": 1123
+    },
+    "portable": {
+      "before_after_match_frozen_commit_and_tree": true,
+      "complete_path_mode_blob_sha256_sets_equal": true,
+      "runtime_input_count": 20,
+      "runtime_sets_equal": true,
+      "source_input_count": 1123
+    },
+    "regression": {
+      "before_after_match_frozen_commit_and_tree": true,
+      "complete_path_mode_blob_sha256_sets_equal": true,
+      "runtime_input_count": 11,
+      "runtime_sets_equal": true,
+      "source_input_count": 1123
+    }
+  },
+  "evidence_summaries": {
+    "analysis-format.json": {
+      "bytes": 6017,
+      "sha256": "659781a304b0604df24b36d5a3c8421c3b5f7d815caff6dc7aecdb581eeb42fa"
+    },
+    "evidence-review.json": {
+      "bytes": 37959,
+      "sha256": "a1e3c783ad9bd4eb50090e0fce4370b52083a51e86ae91bc162075911dce294b"
+    },
+    "final-intake.json": {
+      "bytes": 292929,
+      "sha256": "08fd117ac9f4b94ba73889691be0fe8599a28a7c600e07268f59c6a67c781523"
+    },
+    "portable.json": {
+      "bytes": 6316,
+      "sha256": "c901a02a29cc3ad2a024029995cd89c71b8ff9fc82a312b77b43aeca67aceff1"
+    },
+    "regression.json": {
+      "bytes": 16035,
+      "sha256": "1eedba2558e02b43ac1185ebd580ed25b3a2fe63603e76acf0520018a0c66dc4"
+    },
+    "source-review.json": {
+      "bytes": 8434,
+      "sha256": "1d80d38110051092362126e022c797fef4e0c5c9672df1a2ada141c1ad72c4b2"
+    }
+  },
+  "formatting": {
+    "changed_files": 0,
+    "clean": true,
+    "file_count": 9,
+    "files": [
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_list_levels_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_list_levels_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_lists_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart"
+    ]
+  },
+  "github_actions_queried_or_awaited": false,
+  "independent_final_evidence_review": {
+    "accepted": true,
+    "bytes": 37959,
+    "sha256": "a1e3c783ad9bd4eb50090e0fce4370b52083a51e86ae91bc162075911dce294b"
+  },
+  "independent_source_review": {
+    "all_11_file_hashes_match_frozen_source": true,
+    "supplemental_probes": 18,
+    "supplemental_probes_included_in_main_total": false
+  },
+  "limits": [
+    "One serial VM suite imports original modules as separate Dart libraries; separate-file isolate boundaries are not claimed.",
+    "Runtime binding covers the explicitly recorded 11/20/20 inputs, not every installed SDK or dependency file.",
+    "Supplemental probes, setup smoke checks and development attempts add no cases to the final regression total.",
+    "The engine source adapter is bounded; no Word COM host or embedded VBA execution was performed.",
+    "Mail, provider and Flutter runtimes retain separate qualification. The new post-intake Mail draft is not integrated by this Word publication."
+  ],
+  "new_increment_case_total": 233,
+  "new_increment_cases": {
+    "office_macro_word_list_levels_test.dart": 101,
+    "office_vba_word_list_levels_integration_test.dart": 44,
+    "office_vba_word_list_levels_test.dart": 88
+  },
+  "portable": {
+    "bas_sha256": "c9f4cb3e07d65a103cc75a4bb308be51ac5aaebf1f9cf5b468c09d74301398a6",
+    "canonical_results_equal": true,
+    "canonical_sha256": "7a9ec647658d5ee448107d9f358e15a75b16aa6bdd46f9465407043149d8a27c",
+    "commands_succeeded": true,
+    "driver_sha256": "bd7abf65cbd9891fed5a0ed870f0b25ef9cb6920c10e04d87226a0fe1605561d",
+    "qualified": true,
+    "raw_output_bytes": 1553,
+    "raw_output_sha256": "afb450d1cfd4dba6ee2b0fc8b1ca0dc639b410dd70a16c3eff1bb17fbe08bea8",
+    "raw_outputs_equal": true
+  },
+  "publication": {
+    "branch": "codex/word-vba-list-levels-20261120",
+    "merge_verification_record": "PR261 Publication verification section; complete tree, qualified input identities, ancestry and fresh remote refs are checked after merge.",
+    "pr": "https://github.com/CrispStrobe/quds_office_suite/pull/261"
+  },
+  "qualified_word_engine_source": true,
+  "reconciliation": {
+    "all_final_heads_included": false,
+    "all_initial_heads_included": true,
+    "current_main_included": {
+      "inclusion_method": "ancestor",
+      "ref": "refs/remotes/origin/main",
+      "sha": "bb5320a50f288d95844a6d60cfd72eab13a9befc"
+    },
+    "deferred_ref_entries": [
+      {
+        "ref": "refs/remotes/origin/work/mail-cached-workspace-20261120",
+        "sha": "0730e7f61293b8e2dbe1f25150bc8754a563b101",
+        "status": "uncovered"
+      },
+      {
+        "ref": "refs/remotes/pull/262",
+        "sha": "0730e7f61293b8e2dbe1f25150bc8754a563b101",
+        "status": "uncovered"
+      }
+    ],
+    "deferred_source_note": "The 0730 source delta contains corrections for the earlier quota-recovery and metadata-preflight findings. The captured Mail validation remains an earlier checkpoint, so these corrections are not described as freshly qualified here.",
+    "final_counts": {
+      "branches": 23,
+      "pull_requests": 262,
+      "upstream": 4
+    },
+    "final_incorporated_counts": {
+      "branches": 22,
+      "pull_requests": 261,
+      "upstream": 4
+    },
+    "initial_counts": {
+      "branches": 21,
+      "pull_requests": 260,
+      "upstream": 4
+    },
+    "publication_scope_review": {
+      "accepted": true,
+      "bytes": 90609,
+      "file": "publication-scope-review.json",
+      "sha256": "20e70be547eb28fa9366d0177bfe0f05e6985c94bffdb7bd5af6b5c4fe666551"
+    },
+    "raw_audit_exit_code": 1,
+    "raw_uncovered_ref_entries": [
+      {
+        "ref": "refs/remotes/origin/work/mail-cached-workspace-20261120",
+        "sha": "0730e7f61293b8e2dbe1f25150bc8754a563b101",
+        "status": "uncovered"
+      },
+      {
+        "ref": "refs/remotes/pull/262",
+        "sha": "0730e7f61293b8e2dbe1f25150bc8754a563b101",
+        "status": "uncovered"
+      }
+    ],
+    "scope": "All initial captured heads and completed main updates, with the later unfinished Mail draft explicitly deferred.",
+    "unclassified_uncovered_ref_entries": []
+  },
+  "recorded_utc": "2026-11-20T17:05:36.000908+00:00",
+  "regression": {
+    "exit_code": 0,
+    "failed_cases": 0,
+    "file_count": 70,
+    "hidden_completions": 1,
+    "input_entries": 1123,
+    "inputs_unchanged": true,
+    "passing_cases": 2569,
+    "seconds": 1249.597,
+    "skipped_cases": 0
+  },
+  "schema": "quds-word-list-level-final-qualification/v1",
+  "source_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "source_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+  "unchanged_previous_coverage": {
+    "cases": 2136,
+    "exact_case_identities_retained": true,
+    "modules": 60
+  }
+}

@@ -68,6 +68,8 @@ const wordOperations = <String, List<String>>{
   'listClear': ['paragraph'],
   'listRestart': ['paragraph', 'at'],
   'listDefault': ['paragraph', 'numbered'],
+  'listOutlineDefault': ['paragraph'],
+  'listLevel': ['paragraph', 'level', 'delta'],
   'removeNumbers': ['paragraph', 'numberType'],
   'hyperlink': ['paragraph', 'run', 'target', ..._storyFields],
   'tableCellText': ['table', 'row', 'column', 'gridColumn', 'text'],
@@ -554,6 +556,15 @@ void applyStep(
       );
     case 'listDefault':
       applyDefaultWordList(doc, paragraph(), numbered: s.boolean('numbered'));
+    case 'listOutlineDefault':
+      applyDefaultWordOutline(doc, paragraph());
+    case 'listLevel':
+      changeWordListLevel(
+        doc,
+        paragraph(),
+        level: s.has('level') ? s.integer('level', max: 8) : null,
+        delta: s.has('delta') ? s.integer('delta', min: -1, max: 1) : null,
+      );
     case 'removeNumbers':
       removeWordNumbers(
         doc,

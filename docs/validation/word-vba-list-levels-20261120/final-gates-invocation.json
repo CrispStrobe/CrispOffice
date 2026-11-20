@@ -1,0 +1,70 @@
+{
+  "source_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "source_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+  "started_utc": "2026-11-20T16:27:54.544082+00:00",
+  "cwd": "/workspace/scratch/33048a5794d3",
+  "sequential": true,
+  "phases": [
+    {
+      "name": "regression",
+      "argv": [
+        "python",
+        "runtime/word_office_gate.py",
+        "run",
+        "--out",
+        "runtime/word-office-final"
+      ],
+      "started_utc": "2026-11-20T16:27:54.546694+00:00",
+      "stdout": "final-regression.stdout",
+      "stderr": "final-regression.stderr",
+      "exit_code": 0,
+      "seconds": 1250.206,
+      "finished_utc": "2026-11-20T16:48:44.752969+00:00",
+      "head_unchanged": true,
+      "summary": "runtime/word-office-final/summary.json",
+      "summary_accepted": true,
+      "accepted": true
+    },
+    {
+      "name": "analysis-format",
+      "argv": [
+        "python",
+        "runtime/run_word_list_levels_checks.py",
+        "run",
+        "--out",
+        "runtime/list-level-final-checks"
+      ],
+      "started_utc": "2026-11-20T16:48:44.764678+00:00",
+      "stdout": "final-analysis-format.stdout",
+      "stderr": "final-analysis-format.stderr",
+      "exit_code": 0,
+      "seconds": 22.453,
+      "finished_utc": "2026-11-20T16:49:07.217813+00:00",
+      "head_unchanged": true,
+      "summary": "runtime/list-level-final-checks/summary.json",
+      "summary_accepted": true,
+      "accepted": true
+    },
+    {
+      "name": "portable",
+      "argv": [
+        "python",
+        "runtime/run_word_list_levels_portable.py",
+        "--out",
+        "runtime/list-level-portable-final"
+      ],
+      "started_utc": "2026-11-20T16:49:07.224970+00:00",
+      "stdout": "final-portable.stdout",
+      "stderr": "final-portable.stderr",
+      "exit_code": 0,
+      "seconds": 35.225,
+      "finished_utc": "2026-11-20T16:49:42.450048+00:00",
+      "head_unchanged": true,
+      "summary": "runtime/list-level-portable-final/summary.json",
+      "summary_accepted": true,
+      "accepted": true
+    }
+  ],
+  "complete": true,
+  "finished_utc": "2026-11-20T16:49:42.453531+00:00"
+}

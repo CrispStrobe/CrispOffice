@@ -26,6 +26,59 @@ void applyDefaultWordList(
   paragraph.properties = properties;
 }
 
+/// Toggle a validated numeric outline, or apply the separate nine-level Quds
+/// outline default. Existing single-level defaults retain their own identity.
+void applyDefaultWordOutline(WmlDocument document, WmlParagraph paragraph) {
+  final edit = _ListEdit(document, paragraph);
+  final numbering = _NumberingSource(document);
+  if (numbering.isOutline(paragraph.properties)) {
+    edit.clear();
+    return;
+  }
+  _checkInheritedLevelGeometry(document);
+  final prepared = numbering.outlineDefinition();
+  final properties = edit.prepareDefault(
+    prepared.id,
+    true,
+    preserveRightInheritance: true,
+  );
+  prepared.publish();
+  paragraph.properties = properties;
+}
+
+/// Select one existing native list level, without replacing the list instance.
+/// Absolute levels are zero-based. Relative moves must be exactly one level.
+void changeWordListLevel(
+  WmlDocument document,
+  WmlParagraph paragraph, {
+  int? level,
+  int? delta,
+}) {
+  if ((level == null) == (delta == null) ||
+      (level != null && (level < 0 || level > 8)) ||
+      (delta != null && delta != -1 && delta != 1)) {
+    throw ArgumentError('Specify level in 0..8 or delta -1/1, exclusively.');
+  }
+  final props = paragraph.properties;
+  if (props.numId == null || props.numId == 0 || props.numberingSuppressed) {
+    throw UnsupportedError('List-level changes require an existing list.');
+  }
+  if (props.listRestart != null) {
+    throw UnsupportedError('Save pending list restarts before changing level.');
+  }
+  final edit = _ListEdit(document, paragraph);
+  final target = level ?? props.ilvl + delta!;
+  if (target < 0 || target > 8) {
+    throw UnsupportedError('List-level change would exceed levels 1..9.');
+  }
+  final numbering = _NumberingSource(document).definitionFor(props);
+  numbering.checkedLevel(props.ilvl);
+  final selected = numbering.checkedLevel(target);
+  final geometry = _levelIndent(selected);
+  _checkInheritedLevelGeometry(document, firstLine: geometry.firstLine > 0);
+  paragraph.properties = edit.prepareLevel(props.numId!, target, geometry);
+}
+
 /// Remove paragraph numbering, with an explicit guard for unsupported LISTNUM
 /// field removal. Ordinary field content is never rewritten by a list edit.
 void removeWordNumbers(
@@ -290,7 +343,11 @@ class _ListEdit {
     _publish(props);
   }
 
-  WmlParagraphProps prepareDefault(int id, bool numbered) {
+  WmlParagraphProps prepareDefault(
+    int id,
+    bool numbered, {
+    bool preserveRightInheritance = false,
+  }) {
     final props = paragraph.properties.copy()
       ..numId = id
       ..numberingSuppressed = false
@@ -298,9 +355,31 @@ class _ListEdit {
       ..listLabel = numbered ? '1. ' : '• '
       ..listRestart = null;
     _writeNumber(id);
+    if (preserveRightInheritance) _preserveUneditedRightInheritance();
+    _writeIndent(props, const WmlIndent(left: 18, hanging: 9));
+    _finish(props);
+    return props;
+  }
+
+  WmlParagraphProps prepareLevel(int id, int level, WmlIndent geometry) {
+    final props = paragraph.properties.copy()
+      ..numId = id
+      ..numberingSuppressed = false
+      ..ilvl = level
+      // A display label is derived from the entire story's counter sequence.
+      // Invalidate it; ordinary save/reopen resolves the authored definition.
+      ..listLabel = null;
+    _writeNumber(id, level: level);
+    _preserveUneditedRightInheritance();
+    _writeIndent(props, geometry);
+    _finish(props);
+    return props;
+  }
+
+  void _writeIndent(WmlParagraphProps props, WmlIndent geometry) {
     final indent = _ensure(direct, 'ind');
-    // The deterministic single-level default owns left/first-line/hanging.
-    // Preserve the right indent and all foreign attributes/children.
+    // A list write owns left/first-line/hanging. Preserve the paragraph's
+    // right indent and all foreign attributes/children.
     for (final name in {
       'left',
       'start',
@@ -315,27 +394,71 @@ class _ListEdit {
         (a) => a.namespaceUri == _w && a.localName == name,
       );
     }
-    _set(indent, 'left', '360');
-    _set(indent, 'hanging', '180');
-    _set(indent, 'firstLine', '0');
+    _set(indent, 'left', '${(geometry.left * 20).round()}');
+    // Presence of hanging takes precedence over firstLine in Word, even when
+    // hanging is zero. Never serialize it alongside a positive firstLine.
+    if (geometry.firstLine == 0) {
+      _set(indent, 'hanging', '${(geometry.hanging * 20).round()}');
+    }
+    _set(indent, 'firstLine', '${(geometry.firstLine * 20).round()}');
     props
-      ..indent = WmlIndent(left: 18, right: props.indent.right, hanging: 9)
+      ..indent = WmlIndent(
+        left: geometry.left,
+        right: props.indent.right,
+        firstLine: geometry.firstLine,
+        hanging: geometry.hanging,
+      )
       ..explicitIndent = true;
-    _finish(props);
-    return props;
   }
 
-  void _writeNumber(int id) {
+  void _preserveUneditedRightInheritance() {
+    final props = paragraph.properties;
+    final snapshot = props.importedValues?['ind']?.split('|');
+    final original = props.sourcePropertiesXml;
+    if (snapshot == null ||
+        snapshot.length != 4 ||
+        original == null ||
+        snapshot[1] != '${props.indent.right}') {
+      return;
+    }
+    // Numbering projection can change left/hanging after the import snapshot,
+    // making the ordinary serializer materialize the whole effective indent.
+    // Retain only right-side attributes actually present in direct source.
+    // A prior explicit indent operation removes the snapshot and keeps its
+    // own ownership, so this never undoes an earlier right-indent write.
+    final source = original.isEmpty
+        ? null
+        : _one(_parseProperties(original), 'ind');
+    final generated = _one(direct, 'ind');
+    generated?.attributes.removeWhere(
+      (attribute) =>
+          attribute.namespaceUri == _w &&
+          const {
+            'right',
+            'end',
+            'rightChars',
+            'endChars',
+          }.contains(attribute.localName) &&
+          !(source?.attributes.any(
+                (old) =>
+                    old.namespaceUri == _w &&
+                    old.localName == attribute.localName,
+              ) ??
+              false),
+    );
+  }
+
+  void _writeNumber(int id, {int level = 0}) {
     final num = _ensure(direct, 'numPr');
-    _set(_ensure(num, 'ilvl'), 'val', '0');
+    _set(_ensure(num, 'ilvl'), 'val', '$level');
     _set(_ensure(num, 'numId'), 'val', '$id');
     // Native children stay in schema order; opaque siblings retain order.
-    final level = _one(num, 'ilvl')!;
+    final levelNode = _one(num, 'ilvl')!;
     final number = _one(num, 'numId')!;
     final numberIndex = num.children.indexOf(number);
-    if (num.children.indexOf(level) > numberIndex) {
-      num.children.remove(level);
-      num.children.insert(numberIndex, level);
+    if (num.children.indexOf(levelNode) > numberIndex) {
+      num.children.remove(levelNode);
+      num.children.insert(numberIndex, levelNode);
     }
   }
 
@@ -350,6 +473,229 @@ class _ListEdit {
       root: direct,
     ).toXmlString(declaration: false);
     props.importedValues = WordPropertyIo.paragraphValues(props);
+  }
+}
+
+const _renderedNumberFormats = {
+  'decimal',
+  'decimalZero',
+  'upperRoman',
+  'lowerRoman',
+  'upperLetter',
+  'lowerLetter',
+};
+
+String _outlineLabel(int level) =>
+    '${[for (var i = 0; i <= level; i++) '%${i + 1}'].join('.')}.';
+
+String _outlineLevelXml(int level) =>
+    '<w:lvl w:ilvl="$level"><w:start w:val="1"/>'
+    '<w:numFmt w:val="decimal"/><w:lvlText w:val="${_outlineLabel(level)}"/>'
+    '<w:lvlJc w:val="left"/><w:pPr>'
+    '<w:ind w:left="${(level + 1) * 360}" w:hanging="180"/>'
+    '</w:pPr></w:lvl>';
+
+class _ResolvedList {
+  _ResolvedList(this.definition, this.levels, this.overrides);
+  final XmlElement definition;
+  final Map<int, XmlElement> levels;
+  final Map<int, XmlElement> overrides;
+
+  XmlElement level(int index) {
+    var result = levels[index];
+    final override = overrides[index];
+    final replacement = override == null ? null : _one(override, 'lvl');
+    if (replacement != null) {
+      if (_integer(
+            _value(replacement, 'ilvl'),
+            'override level ilvl',
+            max: 8,
+          ) !=
+          index) {
+        throw UnsupportedError('Mismatched native numbering level override.');
+      }
+      result = replacement;
+    }
+    if (result == null) {
+      throw UnsupportedError('Unresolved native numbering level.');
+    }
+    return result;
+  }
+
+  /// Level changes select an existing definition, not an inferred fallback.
+  /// Check ancestors referenced by a numeric label as well as the level itself.
+  XmlElement checkedLevel(int index) {
+    final node = level(index);
+    final slots = _checkLevel(node, index);
+    for (final ancestor in slots) {
+      if (ancestor == index) continue;
+      final ancestorNode = level(ancestor);
+      checkedLevel(ancestor);
+      if (_value(_one(ancestorNode, 'numFmt')!, 'val') == 'bullet') {
+        throw UnsupportedError(
+          'A numeric label cannot reference a bullet level.',
+        );
+      }
+    }
+    final override = overrides[index];
+    final start = override == null ? null : _one(override, 'startOverride');
+    if (start != null) _integer(_value(start, 'val'), 'startOverride', min: 1);
+    return node;
+  }
+
+  Set<int> _checkLevel(XmlElement node, int index) {
+    for (final name in {
+      'lvlPicBulletId',
+      'pStyle',
+      'isLgl',
+      'lvlRestart',
+      'legacy',
+    }) {
+      if (_one(node, name) != null) {
+        throw UnsupportedError('Native $name is outside list-level editing.');
+      }
+    }
+    final formatNode = _one(node, 'numFmt');
+    final textNode = _one(node, 'lvlText');
+    final startNode = _one(node, 'start');
+    final format = formatNode == null ? null : _value(formatNode, 'val');
+    final text = textNode == null ? null : _value(textNode, 'val');
+    if (format == null ||
+        (format != 'bullet' && !_renderedNumberFormats.contains(format)) ||
+        text == null ||
+        text.isEmpty ||
+        startNode == null) {
+      throw UnsupportedError(
+        'List-level edits require complete supported levels.',
+      );
+    }
+    _integer(_value(startNode, 'val'), 'level start', min: 1);
+    final justification = _one(node, 'lvlJc');
+    if (justification != null && _value(justification, 'val') != 'left') {
+      throw UnsupportedError(
+        'List-level edits support left-aligned list labels.',
+      );
+    }
+    final suffix = _one(node, 'suff');
+    if (suffix != null &&
+        !const {'tab', 'space', 'nothing'}.contains(_value(suffix, 'val'))) {
+      throw UnsupportedError('Unsupported native list-label suffix.');
+    }
+    _one(node, 'pPr');
+    _one(node, 'rPr');
+    if (format == 'bullet') {
+      if (text.contains('%')) {
+        throw UnsupportedError(
+          'Bullet labels cannot contain counter placeholders.',
+        );
+      }
+      return const {};
+    }
+    final matches = RegExp(r'%[1-9]').allMatches(text).toList();
+    final slots = <int>{
+      for (final match in matches) int.parse(match[0]!.substring(1)) - 1,
+    };
+    if (matches.length != slots.length ||
+        !slots.contains(index) ||
+        slots.any((slot) => slot > index) ||
+        text.replaceAll(RegExp(r'%[1-9]'), '').contains('%')) {
+      throw UnsupportedError(
+        'Numeric level labels need their own counter and optional unique ancestor counters.',
+      );
+    }
+    return slots;
+  }
+}
+
+WmlIndent _levelIndent(XmlElement level) {
+  final properties = _one(level, 'pPr');
+  final indent = properties == null ? null : _one(properties, 'ind');
+  if (properties == null ||
+      indent == null ||
+      properties.childElements.any(
+        (node) => node.namespaceUri == _w && node.localName != 'ind',
+      ) ||
+      indent.attributes.any(
+        (attribute) =>
+            attribute.namespaceUri == _w &&
+            !const {
+              'left',
+              'hanging',
+              'firstLine',
+            }.contains(attribute.localName),
+      ) ||
+      indent.childElements.any((node) => node.namespaceUri == _w)) {
+    throw UnsupportedError(
+      'Target levels require explicit left/first-line/hanging twip indentation without other native paragraph formatting.',
+    );
+  }
+  int twips(String name, {bool signed = false, bool required = false}) {
+    final value = _value(indent, name);
+    if (value == null && !required) return 0;
+    final parsed = value != null && RegExp(r'^-?[0-9]+$').hasMatch(value)
+        ? int.tryParse(value)
+        : null;
+    if (parsed == null ||
+        parsed.abs() > 2147483647 ||
+        (!signed && parsed < 0)) {
+      throw UnsupportedError('Invalid native target $name indentation.');
+    }
+    return parsed;
+  }
+
+  final left = twips('left', signed: true, required: true);
+  final first = twips('firstLine');
+  final hanging = twips('hanging');
+  if (first != 0 && _value(indent, 'hanging') != null) {
+    throw UnsupportedError(
+      'A target hanging attribute overrides first-line indentation.',
+    );
+  }
+  return WmlIndent(
+    left: left / 20,
+    firstLine: first / 20,
+    hanging: hanging / 20,
+  );
+}
+
+void _checkInheritedLevelGeometry(
+  WmlDocument document, {
+  bool firstLine = false,
+}) {
+  // Word lets earlier character-unit indentation override later point-unit
+  // values. Quds does not model that precedence or logical start indentation.
+  // Conservatively reject such style/default sources before owning geometry,
+  // including table conditional regions not evaluated by the live resolver.
+  const unsupported = {
+    'leftChars',
+    'start',
+    'startChars',
+    'hangingChars',
+    'firstLineChars',
+  };
+  void check(XmlElement node) {
+    if (_word(node, 'ind') &&
+        node.attributes.any(
+          (attribute) =>
+              attribute.namespaceUri == _w &&
+              (unsupported.contains(attribute.localName) ||
+                  (firstLine && attribute.localName == 'hanging')),
+        )) {
+      throw UnsupportedError(
+        'List-level geometry cannot override character or logical indentation in native styles.',
+      );
+    }
+    for (final child in node.childElements) {
+      check(child);
+    }
+  }
+
+  for (final part in document.package?.parts ?? <PackagePart>[]) {
+    if (part.contentType == OfficeContentTypes.wordStyles) {
+      final root = XmlDocument.parse(part.readText()).root;
+      if (root == null) throw UnsupportedError('Missing native styles root.');
+      check(root);
+    }
   }
 }
 
@@ -458,10 +804,8 @@ class _NumberingSource {
   final abstracts = <int, XmlElement>{};
   final instances = <int, XmlElement>{};
 
-  bool? kind(WmlParagraphProps props) {
-    final id = props.numId;
-    if (id == null || id == 0 || props.numberingSuppressed) return null;
-    final instance = instances[id];
+  _ResolvedList definitionFor(WmlParagraphProps props) {
+    final instance = instances[props.numId];
     if (instance == null) {
       throw UnsupportedError('Unresolved native numbering identity.');
     }
@@ -496,23 +840,13 @@ class _NumberingSource {
       }
       overrides[index] = override;
     }
-    var level = levels[props.ilvl];
-    final override = overrides[props.ilvl];
-    final replacement = override == null ? null : _one(override, 'lvl');
-    if (replacement != null) {
-      if (_integer(
-            _value(replacement, 'ilvl'),
-            'override level ilvl',
-            max: 8,
-          ) !=
-          props.ilvl) {
-        throw UnsupportedError('Mismatched native numbering level override.');
-      }
-      level = replacement;
-    }
-    if (level == null) {
-      throw UnsupportedError('Unresolved native numbering level.');
-    }
+    return _ResolvedList(definition, levels, overrides);
+  }
+
+  bool? kind(WmlParagraphProps props) {
+    final id = props.numId;
+    if (id == null || id == 0 || props.numberingSuppressed) return null;
+    final level = definitionFor(props).level(props.ilvl);
     if (_one(level, 'lvlPicBulletId') != null) {
       throw UnsupportedError(
         'Picture bullets are outside this list-edit contract.',
@@ -542,6 +876,166 @@ class _NumberingSource {
       throw UnsupportedError(
         'Outline or unmodeled numbered labels are outside this list-edit contract.',
       );
+    }
+    return true;
+  }
+
+  bool isOutline(WmlParagraphProps props) {
+    final id = props.numId;
+    if (id == null || id == 0 || props.numberingSuppressed) return false;
+    final resolved = definitionFor(props);
+    resolved.checkedLevel(props.ilvl);
+    final typeNode = _one(resolved.definition, 'multiLevelType');
+    final type = typeNode == null ? null : _value(typeNode, 'val');
+    final levels = {...resolved.levels.keys, ...resolved.overrides.keys};
+    // Native type metadata classifies the toggle, never limits available
+    // target levels for listLevel. Absent metadata is safe only for one level.
+    if (type == 'singleLevel' || (type == null && levels.length == 1)) {
+      return false;
+    }
+    if ((type != 'multilevel' && type != 'hybridMultilevel') ||
+        levels.length < 2) {
+      throw UnsupportedError('Ambiguous native outline-list classification.');
+    }
+    for (final index in levels) {
+      final node = resolved.checkedLevel(index);
+      if (_value(_one(node, 'numFmt')!, 'val') == 'bullet') {
+        throw UnsupportedError(
+          'Mixed or bulleted multilevel templates are outside outline toggling.',
+        );
+      }
+    }
+    return true;
+  }
+
+  _PreparedNumbering outlineDefinition() {
+    const name = 'Quds-VBA-decimal-outline-v1';
+    final matching = <int>[];
+    for (final entry in abstracts.entries) {
+      final marker = _one(entry.value, 'name');
+      if (marker == null || _value(marker, 'val') != name) continue;
+      if (!_outlineShape(entry.value)) {
+        throw UnsupportedError(
+          'An imported list conflicts with the Quds outline definition.',
+        );
+      }
+      matching.add(entry.key);
+    }
+    for (final abstractId in matching) {
+      for (final instance in instances.entries) {
+        final ref = _one(instance.value, 'abstractNumId');
+        if (ref == null || _value(ref, 'val') != '$abstractId') continue;
+        if (_shape(instance.value, const {'numId'}, const {'abstractNumId'}) &&
+            _shape(ref, const {'val'}, const {})) {
+          return _PreparedNumbering(this, instance.key, changed: false);
+        }
+      }
+    }
+    final used = <int>{
+      ...abstracts.keys,
+      ...instances.keys,
+      for (final p in _allParagraphs(document))
+        if (p.properties.numId case final int id) id,
+      for (final style in document.styles)
+        if (style.numId case final int id) id,
+      ..._sourceNumberingReferences(package),
+    };
+    var id = 1;
+    while (used.contains(id)) {
+      id++;
+    }
+    if (id > 2147483647) {
+      throw UnsupportedError('No native numbering identity available.');
+    }
+    final definition = XmlDocument.parse(
+      '<w:abstractNum xmlns:w="$_w" w:abstractNumId="$id">'
+      '<w:multiLevelType w:val="multilevel"/><w:name w:val="$name"/>'
+      '${[for (var i = 0; i < 9; i++) _outlineLevelXml(i)].join()}'
+      '</w:abstractNum>',
+    ).root!;
+    final instance = XmlDocument.parse(
+      '<w:num xmlns:w="$_w" w:numId="$id"><w:abstractNumId w:val="$id"/></w:num>',
+    ).root!;
+    final beforeNum = root.children.indexWhere(
+      (node) =>
+          node is XmlElement &&
+          (_word(node, 'num') || _word(node, 'numIdMacAtCleanup')),
+    );
+    if (beforeNum < 0) {
+      root.addChild(definition);
+    } else {
+      root.children.insert(beforeNum, definition..parent = root);
+    }
+    final cleanup = root.children.indexWhere(
+      (node) => node is XmlElement && _word(node, 'numIdMacAtCleanup'),
+    );
+    if (cleanup < 0) {
+      root.addChild(instance);
+    } else {
+      root.children.insert(cleanup, instance..parent = root);
+    }
+    return _PreparedNumbering(this, id, changed: true);
+  }
+
+  bool _outlineShape(XmlElement definition) {
+    // Match native semantics, accepting foreign metadata without confusing it
+    // with native attributes. Nine lvl siblings need index-wise validation.
+    if (!_shape(
+      definition,
+      const {'abstractNumId'},
+      const {'multiLevelType', 'name', 'lvl'},
+      repeated: const {'lvl'},
+    )) {
+      return false;
+    }
+    final type = _one(definition, 'multiLevelType');
+    final name = _one(definition, 'name');
+    final levels = _children(definition, 'lvl').toList();
+    if (type == null ||
+        name == null ||
+        !_shape(type, const {'val'}, const {}) ||
+        !_shape(name, const {'val'}, const {}) ||
+        _value(type, 'val') != 'multilevel' ||
+        levels.length != 9) {
+      return false;
+    }
+    final seen = <int>{};
+    for (final level in levels) {
+      final index = int.tryParse(_value(level, 'ilvl') ?? '');
+      if (index == null ||
+          index < 0 ||
+          index > 8 ||
+          !seen.add(index) ||
+          !_shape(
+            level,
+            const {'ilvl'},
+            const {'start', 'numFmt', 'lvlText', 'lvlJc', 'pPr'},
+          )) {
+        return false;
+      }
+      for (final (key, value) in <(String, String)>[
+        ('start', '1'),
+        ('numFmt', 'decimal'),
+        ('lvlText', _outlineLabel(index)),
+        ('lvlJc', 'left'),
+      ]) {
+        final node = _one(level, key);
+        if (node == null ||
+            !_shape(node, const {'val'}, const {}) ||
+            _value(node, 'val') != value) {
+          return false;
+        }
+      }
+      final pp = _one(level, 'pPr');
+      final indent = pp == null ? null : _one(pp, 'ind');
+      if (pp == null ||
+          indent == null ||
+          !_shape(pp, const {}, const {'ind'}) ||
+          !_shape(indent, const {'left', 'hanging'}, const {}) ||
+          _value(indent, 'left') != '${(index + 1) * 360}' ||
+          _value(indent, 'hanging') != '180') {
+        return false;
+      }
     }
     return true;
   }
@@ -670,7 +1164,12 @@ class _NumberingSource {
 
   // A marker is an identity hint, never permission to reuse a different native
   // list. Compare the entire native semantic shape, retaining foreign metadata.
-  bool _shape(XmlElement node, Set<String> attributes, Set<String> children) {
+  bool _shape(
+    XmlElement node,
+    Set<String> attributes,
+    Set<String> children, {
+    Set<String> repeated = const {},
+  }) {
     final nativeAttributes = node.attributes
         .where((a) => a.namespaceUri == _w)
         .toList();
@@ -679,10 +1178,15 @@ class _NumberingSource {
         .toList();
     return nativeAttributes.length == attributes.length &&
         nativeAttributes.every((a) => attributes.contains(a.localName)) &&
-        nativeChildren.length == children.length &&
         nativeChildren.every((c) => children.contains(c.localName)) &&
         nativeChildren.map((c) => c.localName).toSet().length ==
-            children.length;
+            children.length &&
+        children.every(
+          (name) =>
+              repeated.contains(name) ||
+              nativeChildren.where((child) => child.localName == name).length ==
+                  1,
+        );
   }
 }
 
