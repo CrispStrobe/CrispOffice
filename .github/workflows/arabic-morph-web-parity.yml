@@ -1,0 +1,99 @@
+name: Arabic morphology web parity
+
+# Builds the Arabic morphology backend natively and as the shipped WebAssembly
+# worker from the same pinned CrispEmbed sources, downloads the pinned Camel
+# Morph database and context model (verified against their SHA-256 pins) and
+# checks that the web worker ranks a fixed panel exactly like the native
+# library (test/arabic_morph_web_parity_test.dart).
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'packages/quds_arabic_morph/**'
+      - 'packages/quds_office_editor/example/lib/studio_arabic_morph_host*.dart'
+      - '.github/workflows/arabic-morph-web-parity.yml'
+      - '.github/workflows/crispoffice-binaries.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'packages/quds_arabic_morph/**'
+      - '.github/workflows/arabic-morph-web-parity.yml'
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_VERSION: 3.47.8
+  EMSDK_VERSION: 6.0.2
+
+jobs:
+  parity:
+    name: Native/Wasm context-model parity
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Resolve workspace
+        run: flutter pub get
+      - name: Build native library and Wasm worker
+        working-directory: packages/quds_arabic_morph
+        run: |
+          git clone --depth 1 --branch "$EMSDK_VERSION" https://github.com/emscripten-core/emsdk.git "$RUNNER_TEMP/emsdk"
+          "$RUNNER_TEMP/emsdk/emsdk" install "$EMSDK_VERSION"
+          "$RUNNER_TEMP/emsdk/emsdk" activate "$EMSDK_VERSION"
+          source "$RUNNER_TEMP/emsdk/emsdk_env.sh"
+          # Install the web files exactly as the CrispOffice web build does
+          # (crispoffice-binaries.yml -> example/web/proofing); the parity run
+          # below uses that installed copy.
+          python3 tool/build.py --native --wasm --output "$RUNNER_TEMP/arabic-build" \
+            --install-web "$RUNNER_TEMP/web-host/proofing"
+          ls -l "$RUNNER_TEMP/web-host/proofing" "$RUNNER_TEMP/web-host/proofing/licenses/arabic_morph"
+      - name: Download pinned database and context model
+        id: bundles
+        working-directory: packages/quds_arabic_morph
+        run: |
+          dart run tool/fetch_bundles.dart "$RUNNER_TEMP/arabic-data" | tee "$RUNNER_TEMP/bundles.json"
+          echo "bundle=$(jq -r .bundle "$RUNNER_TEMP/bundles.json")" >> "$GITHUB_OUTPUT"
+          echo "model=$(jq -r .model "$RUNNER_TEMP/bundles.json")" >> "$GITHUB_OUTPUT"
+      - name: Web worker smoke with the context model
+        working-directory: packages/quds_arabic_morph
+        run: node tool/web_smoke.mjs "$RUNNER_TEMP/web-host/proofing" "${{ steps.bundles.outputs.bundle }}" "" "${{ steps.bundles.outputs.model }}"
+      - name: Disambiguate the panel in the Wasm worker
+        working-directory: packages/quds_arabic_morph
+        run: |
+          node tool/disambig_parity.mjs "$RUNNER_TEMP/web-host/proofing" \
+            "${{ steps.bundles.outputs.bundle }}" "${{ steps.bundles.outputs.model }}" \
+            test/fixtures/disambig_parity_panel.json "$RUNNER_TEMP/web-parity.json"
+      - name: Compare with the native library
+        working-directory: packages/quds_arabic_morph
+        env:
+          QUDS_ARABIC_MORPH_TEST_LIBRARY: ${{ runner.temp }}/arabic-build/native/libquds_arabic_morph.so
+          QUDS_ARABIC_MORPH_TEST_BUNDLE: ${{ steps.bundles.outputs.bundle }}
+          QUDS_ARABIC_MORPH_TEST_MODEL: ${{ steps.bundles.outputs.model }}
+          QUDS_ARABIC_MORPH_WEB_PARITY: ${{ runner.temp }}/web-parity.json
+          QUDS_ARABIC_MORPH_PARITY_REPORT: ${{ runner.temp }}/parity-report.json
+        run: |
+          dart test test/arabic_morph_web_parity_test.dart test/arabic_morph_native_test.dart
+          cat "$RUNNER_TEMP/parity-report.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: arabic-morph-web-parity
+          path: |
+            ${{ runner.temp }}/parity-report.json
+            ${{ runner.temp }}/web-parity.json
+            ${{ runner.temp }}/arabic-build/build-receipt.json
+          if-no-files-found: warn
+          retention-days: 14

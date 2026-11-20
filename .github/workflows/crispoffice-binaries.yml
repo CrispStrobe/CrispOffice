@@ -208,6 +208,19 @@ jobs:
           python3 packages/quds_proofing_hunspell/tool/build.py --wasm \
             --output build/hunspell-web \
             --install-web packages/quds_office_editor/example/web/proofing
+      - name: Build and package the bundled Arabic morphology WebAssembly worker
+        # The worker runs the same pinned CrispEmbed analyzer and context
+        # disambiguator as the native library (parity: arabic-morph-web-parity.yml).
+        # Database and context model stay user downloads (Downloads manager,
+        # verified against their pins, kept in Cache Storage).
+        run: |
+          git clone --depth 1 --branch 6.0.2 https://github.com/emscripten-core/emsdk.git "$RUNNER_TEMP/arabic-emsdk"
+          "$RUNNER_TEMP/arabic-emsdk/emsdk" install 6.0.2
+          "$RUNNER_TEMP/arabic-emsdk/emsdk" activate 6.0.2
+          source "$RUNNER_TEMP/arabic-emsdk/emsdk_env.sh"
+          python3 packages/quds_arabic_morph/tool/build.py --wasm \
+            --output build/arabic-morph-web \
+            --install-web packages/quds_office_editor/example/web/proofing
       - name: Build web
         working-directory: packages/quds_office_editor/example
         run: flutter build web --release --no-wasm-dry-run

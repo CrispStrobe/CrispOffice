@@ -250,6 +250,13 @@ dart run tool/pud_benchmark.dart <library> <bundle dir> pud.txt
 dart run tool/pud_rule_findings.dart <library> <bundle dir> pud.txt > findings.jsonl
 dart run tool/pud_rule_findings.dart <library> <bundle dir> pud.txt --model <model dir> > contextual.jsonl
 node tool/web_smoke.mjs build/web <bundle dir> pud.txt [<model dir>]
+# Native/web parity of the context model on a fixed panel:
+dart run tool/fetch_bundles.dart /tmp/arabic-data   # prints the bundle/model dirs
+node tool/disambig_parity.mjs build/web <bundle dir> <model dir> \
+  test/fixtures/disambig_parity_panel.json /tmp/web-parity.json
+QUDS_ARABIC_MORPH_WEB_PARITY=/tmp/web-parity.json \
+QUDS_ARABIC_MORPH_TEST_LIBRARY=... QUDS_ARABIC_MORPH_TEST_BUNDLE=<bundle dir> \
+QUDS_ARABIC_MORPH_TEST_MODEL=<model dir> dart test test/arabic_morph_web_parity_test.dart
 dart compile js -O2 tool/browser_smoke.dart -o out/smoke.js
 python3 tool/browser_smoke.py --script out/smoke.js --web build/web \
   --bundle <bundle dir> --corpus pud.txt
