@@ -1629,9 +1629,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Future<void> _openMail() {
+  Future<void> _openMail() async {
     final theme = _materialTheme;
-    return Navigator.of(_themedContext).push<void>(
+    await StudioWindow.setTitle('${_strings.mailTitle} — CrispOffice');
+    if (!mounted) return;
+    await Navigator.of(_themedContext).push<void>(
       MaterialPageRoute<void>(
         builder: (mailContext) => Theme(
           data: theme,
@@ -1642,6 +1644,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ),
       ),
     );
+    if (mounted) await StudioWindow.setTitle('$_chromeTitle — CrispOffice');
   }
 
   void _cycleLanguage() {
