@@ -23,9 +23,8 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
     this.modelBundle = camelMorphMsaDisambig,
     this.workerUrl,
     StudioWebDataStore? store,
-    ArabicMorphTransport Function()? transportFactory,
+    this._transportFactory,
   }) : _client = client ?? http.Client.new,
-       _transportFactory = transportFactory,
        store = store ?? createDefaultStudioWebDataStore(),
        _status = StudioArabicMorphStatus(bundle: bundle),
        _modelStatus = StudioArabicMorphStatus(bundle: modelBundle);
@@ -55,6 +54,8 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
   StudioArabicMorphStatus _status;
   StudioArabicMorphStatus _modelStatus;
   CamelArabicMorphology? _morphology;
+  int _modelGeneration = 0;
+  Future<void> _modelStorageOperations = Future<void>.value();
 
   @override
   StudioArabicMorphStatus get status => _status;
@@ -69,25 +70,42 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
 
   /// The verified model kept in browser storage, or null (a stored copy that
   /// fails verification is deleted).
-  Future<MorphDatabaseBytes?> _storedModel() async {
-    final stored = <String, Uint8List>{};
-    for (final file in modelBundle.files) {
-      final bytes = await store.read(_key(file, modelBundle));
-      if (bytes != null) stored[file.file] = bytes;
-    }
-    if (stored.isEmpty) return null;
-    try {
-      return MorphDatabaseBytes.verified(modelBundle, stored);
-    } on FormatException {
-      await _forget(modelBundle);
-      return null;
-    }
+  Future<MorphDatabaseBytes?> _storedModel(int generation) =>
+      _withModelStorage(() async {
+        if (generation != _modelGeneration) return null;
+        final stored = <String, Uint8List>{};
+        for (final file in modelBundle.files) {
+          final bytes = await store.read(_key(file, modelBundle));
+          if (bytes != null) stored[file.file] = bytes;
+        }
+        if (generation != _modelGeneration || stored.isEmpty) return null;
+        try {
+          return MorphDatabaseBytes.verified(modelBundle, stored);
+        } on FormatException {
+          await _forget(modelBundle);
+          return null;
+        }
+      });
+
+  // Downloads can overlap, but a removal must follow every earlier storage
+  // write/read. Otherwise a late write could recreate a removed model bundle.
+  Future<T> _withModelStorage<T>(Future<T> Function() operation) {
+    final next = _modelStorageOperations.then((_) => operation());
+    _modelStorageOperations = next.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace _) {},
+    );
+    return next;
   }
 
   /// Opens [model] in the current analyzer and reports the outcome.
-  Future<void> _loadModel(MorphDatabaseBytes model, String location) async {
+  Future<void> _loadModel(
+    MorphDatabaseBytes model,
+    String location,
+    int generation,
+  ) async {
     final morphology = _morphology;
-    if (morphology == null) return;
+    if (morphology == null || generation != _modelGeneration) return;
     _setModel(
       StudioArabicMorphStatus(
         bundle: modelBundle,
@@ -96,7 +114,9 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
       ),
     );
     await morphology.loadDisambiguator(model);
-    if (!identical(_morphology, morphology)) return;
+    if (!identical(_morphology, morphology) || generation != _modelGeneration) {
+      return;
+    }
     _setModel(
       StudioArabicMorphStatus(
         bundle: modelBundle,
@@ -119,6 +139,7 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
     if (_morphology == null || !_morphology!.isAvailable) {
       throw StateError('Download the Arabic morphology data first.');
     }
+    final generation = ++_modelGeneration;
     final client = _client();
     var received = 0;
     final MorphDatabaseBytes model;
@@ -128,11 +149,13 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
         final response = await client.send(
           http.Request('GET', modelBundle.url(artifact)),
         );
+        if (generation != _modelGeneration) return;
         if (response.statusCode != 200) {
           throw StateError('Download failed (${response.statusCode}).');
         }
         final builder = BytesBuilder(copy: false);
         await for (final chunk in response.stream) {
+          if (generation != _modelGeneration) return;
           if (cancellation?.isCancelled ?? false) {
             throw StateError('Download cancelled.');
           }
@@ -147,6 +170,7 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
       }
       model = MorphDatabaseBytes.verified(modelBundle, files);
     } on Object catch (error) {
+      if (generation != _modelGeneration) return;
       _setModel(
         StudioArabicMorphStatus(bundle: modelBundle, problem: '$error'),
       );
@@ -154,30 +178,41 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
     } finally {
       client.close();
     }
-    var kept = true;
-    for (final file in modelBundle.files) {
-      kept =
-          kept &&
-          await store.write(_key(file, modelBundle), model.files[file.file]!);
-    }
-    if (!kept) await _forget(modelBundle);
-    await _loadModel(
-      model,
-      kept
+    final location = await _withModelStorage(() async {
+      if (generation != _modelGeneration) return null;
+      var kept = true;
+      for (final file in modelBundle.files) {
+        kept =
+            kept &&
+            await store.write(_key(file, modelBundle), model.files[file.file]!);
+      }
+      if (!kept) await _forget(modelBundle);
+      return kept
           ? studioWebStoredLocation(_bytes(model.files))
-          : 'This session only (the browser refused storage)',
-    );
+          : 'This session only (the browser refused storage)';
+    });
+    if (location != null && generation == _modelGeneration) {
+      await _loadModel(model, location, generation);
+    }
   }
 
   @override
   Future<void> removeModel() async {
+    final generation = ++_modelGeneration;
     final morphology = _morphology;
     _setModel(StudioArabicMorphStatus(bundle: modelBundle));
-    await _forget(modelBundle);
+    await _withModelStorage(() async {
+      if (generation == _modelGeneration) await _forget(modelBundle);
+    });
+    if (generation != _modelGeneration) return;
     // The database bytes already belong to the worker. Release only its model;
     // reopening would attempt to transfer the detached host buffers again.
     await morphology?.unloadDisambiguator();
-    if (morphology == null || !identical(_morphology, morphology)) return;
+    if (morphology == null ||
+        !identical(_morphology, morphology) ||
+        generation != _modelGeneration) {
+      return;
+    }
     if (morphology.disambiguatorFailure != null) {
       _setModel(
         StudioArabicMorphStatus(
@@ -301,6 +336,7 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
   }
 
   Future<void> _activate(MorphDatabaseBytes database, String location) async {
+    final modelGeneration = _modelGeneration;
     await _morphology?.dispose();
     final morphology = _morphology = CamelArabicMorphology(
       database: database,
@@ -328,14 +364,21 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
                   '${morphology.failure}',
       ),
     );
-    final model = morphology.isAvailable ? await _storedModel() : null;
+    final model = morphology.isAvailable
+        ? await _storedModel(modelGeneration)
+        : null;
     if (model != null && identical(_morphology, morphology)) {
-      await _loadModel(model, studioWebStoredLocation(_bytes(model.files)));
+      await _loadModel(
+        model,
+        studioWebStoredLocation(_bytes(model.files)),
+        modelGeneration,
+      );
     }
   }
 
   @override
   Future<void> remove() async {
+    _modelGeneration++;
     final previous = _morphology;
     _morphology = null;
     _modelStatus = StudioArabicMorphStatus(bundle: modelBundle);

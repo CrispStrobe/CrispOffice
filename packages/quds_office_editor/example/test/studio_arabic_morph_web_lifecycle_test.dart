@@ -1,6 +1,7 @@
 // Controlled host/transport qualification on the VM. Real JS transfer behavior
 // is covered by quds_arabic_morph/tool/worker_lifecycle_test.mjs; this does not
 // claim a browser or native analyzer execution.
+import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -46,15 +47,32 @@ final class _MemoryStore implements StudioWebDataStore {
   _MemoryStore({required this.keep});
   final bool keep;
   final files = <String, Uint8List>{};
+  Completer<void>? modelWriteGate;
+  Completer<void>? modelReadGate;
+  final modelWriteStarted = Completer<void>();
+  final modelReadStarted = Completer<void>();
 
   @override
   Future<Uint8List?> read(String key) async {
     final bytes = files[key];
+    if (bytes != null &&
+        key.startsWith('morph/model/') &&
+        key.endsWith('/data.bin') &&
+        modelReadGate != null) {
+      if (!modelReadStarted.isCompleted) modelReadStarted.complete();
+      await modelReadGate!.future;
+    }
     return bytes == null ? null : Uint8List.fromList(bytes);
   }
 
   @override
   Future<bool> write(String key, Uint8List bytes) async {
+    if (key.startsWith('morph/model/') &&
+        key.endsWith('/data.bin') &&
+        modelWriteGate != null) {
+      if (!modelWriteStarted.isCompleted) modelWriteStarted.complete();
+      await modelWriteGate!.future;
+    }
     if (keep) files[key] = Uint8List.fromList(bytes);
     return keep;
   }
@@ -70,6 +88,8 @@ final class _OwnedBufferTransport implements ArabicMorphTransport {
   bool modelLoaded = false;
   bool disposed = false;
   bool failUnload = false;
+  Completer<void>? modelGate;
+  final modelStarted = Completer<void>();
 
   void _consume(MorphDatabase database) {
     final bytes = database as MorphDatabaseBytes;
@@ -94,6 +114,8 @@ final class _OwnedBufferTransport implements ArabicMorphTransport {
   Future<Map<String, Object?>> openDisambiguator(MorphDatabase model) async {
     modelOpens++;
     _consume(model);
+    if (!modelStarted.isCompleted) modelStarted.complete();
+    await modelGate?.future;
     modelLoaded = true;
     return {'model': 'controlled'};
   }
@@ -124,7 +146,115 @@ final class _OwnedBufferTransport implements ArabicMorphTransport {
   Future<void> dispose() async => disposed = true;
 }
 
+WebStudioArabicMorphHost _host(
+  _OwnedBufferTransport transport,
+  _MemoryStore store, {
+  Completer<void>? downloadStarted,
+  Future<void>? downloadGate,
+}) => WebStudioArabicMorphHost(
+  bundle: _bundle('db'),
+  modelBundle: _bundle('model'),
+  store: store,
+  transportFactory: () => transport,
+  client: () => MockClient((request) async {
+    final path = request.url.pathSegments;
+    final key = '${path[path.length - 2]}/${path.last}';
+    if (key == 'model/manifest.json' && downloadGate != null) {
+      if (!downloadStarted!.isCompleted) downloadStarted.complete();
+      await downloadGate;
+    }
+    return http.Response.bytes(Uint8List.fromList(_files[key]!), 200);
+  }),
+);
+
+void _expectRemoved(WebStudioArabicMorphHost host, _MemoryStore store) {
+  expect(host.status.loaded, isTrue);
+  expect(host.modelStatus.installed, isFalse);
+  expect(host.modelStatus.loaded, isFalse);
+  expect((host.morphology as ArabicContextMorphology).canDisambiguate, isFalse);
+  expect(
+    store.files.keys.any((key) => key.startsWith('morph/model/')),
+    isFalse,
+  );
+}
+
 void main() {
+  test('removal invalidates a model-open status continuation', () async {
+    final transport = _OwnedBufferTransport()..modelGate = Completer<void>();
+    final store = _MemoryStore(keep: true);
+    final host = _host(transport, store);
+    addTearDown(host.remove);
+    await host.install();
+    final installing = host.installModel();
+    await transport.modelStarted.future;
+    final removing = host.removeModel();
+    transport.modelGate!.complete();
+    await Future.wait([installing, removing]);
+    _expectRemoved(host, store);
+    expect(transport.modelOpens, 1);
+    expect(transport.modelUnloads, 1);
+    expect(transport.modelLoaded, isFalse);
+  });
+
+  test('removal cancels an earlier model download before storage', () async {
+    final transport = _OwnedBufferTransport();
+    final store = _MemoryStore(keep: true);
+    final started = Completer<void>();
+    final gate = Completer<void>();
+    final host = _host(
+      transport,
+      store,
+      downloadStarted: started,
+      downloadGate: gate.future,
+    );
+    addTearDown(host.remove);
+    await host.install();
+    final installing = host.installModel();
+    await started.future;
+    await host.removeModel();
+    gate.complete();
+    await installing;
+    _expectRemoved(host, store);
+    expect(transport.modelOpens, 0);
+  });
+
+  test('removal deletes model writes that were already in flight', () async {
+    final transport = _OwnedBufferTransport();
+    final store = _MemoryStore(keep: true)..modelWriteGate = Completer<void>();
+    final host = _host(transport, store);
+    addTearDown(host.remove);
+    await host.install();
+    final installing = host.installModel();
+    await store.modelWriteStarted.future;
+    final removing = host.removeModel();
+    store.modelWriteGate!.complete();
+    await Future.wait([installing, removing]);
+    _expectRemoved(host, store);
+    expect(transport.modelOpens, 0);
+  });
+
+  test('removal invalidates an earlier stored-model refresh', () async {
+    final transport = _OwnedBufferTransport();
+    final store = _MemoryStore(keep: true);
+    final bundle = _bundle('model');
+    for (final file in bundle.files) {
+      await store.write(
+        'morph/${bundle.id}/${bundle.revision}/${file.file}',
+        Uint8List.fromList(_files['model/${file.file}']!),
+      );
+    }
+    store.modelReadGate = Completer<void>();
+    final host = _host(transport, store);
+    addTearDown(host.remove);
+    final installing = host.install();
+    await store.modelReadStarted.future;
+    final removing = host.removeModel();
+    store.modelReadGate!.complete();
+    await Future.wait([installing, removing]);
+    _expectRemoved(host, store);
+    expect(transport.modelOpens, 0);
+  });
+
   for (final kept in [true, false]) {
     test(
       'removing model keeps transferred database, persistent=$kept',
