@@ -2588,35 +2588,19 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
-              height: 32,
+              height: 38,
+              padding: const EdgeInsetsDirectional.only(start: 8),
+              alignment: AlignmentDirectional.centerStart,
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(color: theme.colorScheme.outlineVariant),
                 ),
               ),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 9,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: theme.colorScheme.primary,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      'Home',
-                      style: theme.textTheme.labelLarge?.copyWith(
-                        color: theme.colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                ],
+              child: StudioTabChip(
+                label: 'Home',
+                selected: true,
+                accent: theme.colorScheme.primary,
+                onTap: () {},
               ),
             ),
             SizedBox(
@@ -3120,15 +3104,16 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   },
           ),
         ),
-        Align(
-          alignment: AlignmentDirectional.centerStart,
-          child: TextButton.icon(
-            key: const ValueKey('studio-mail-new-account'),
-            onPressed: _connecting || _credentialPending ? null : _newAccount,
-            icon: const Icon(Icons.person_add_alt_outlined),
-            label: Text(widget.strings.mailNewAccount),
+        if (_selectedSavedAccountId != null)
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton.icon(
+              key: const ValueKey('studio-mail-new-account'),
+              onPressed: _connecting || _credentialPending ? null : _newAccount,
+              icon: const Icon(Icons.person_add_alt_outlined),
+              label: Text(widget.strings.mailNewAccount),
+            ),
           ),
-        ),
         Text(
           widget.strings.mailSavedAccountsHelp,
           style: Theme.of(context).textTheme.bodySmall,
