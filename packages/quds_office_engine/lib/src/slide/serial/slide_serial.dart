@@ -405,8 +405,9 @@ class SlideDeserializer {
     double? position;
     double angle = 0;
     var radial = false;
-    var centered = true;
+    var centered = false;
     var defaultTile = true;
+    var linear = true;
     final List<PmlGradientStop> stops = <PmlGradientStop>[];
     while (reader.next()) {
       if (reader.eventType == XmlEventType.endElement) {
@@ -414,8 +415,10 @@ class SlideDeserializer {
         if (gradientDepth != null &&
             reader.depth == gradientDepth - 1 &&
             reader.localName == 'gradFill') {
-          if (stops.length < 2) return null;
-          if (radial && (!centered || !defaultTile)) return null;
+          if (stops.length < 2 ||
+              !linear && !(radial && centered && defaultTile)) {
+            return null;
+          }
           stops.sort((a, b) => a.position.compareTo(b.position));
           return PmlShape(
             id: 1,
@@ -474,9 +477,11 @@ class SlideDeserializer {
           angle = (int.tryParse(reader.getAttribute('ang') ?? '') ?? 0) / 60000;
         } else if (reader.localName == 'path' &&
             reader.depth == gradientDepth + 1) {
-          if (reader.getAttribute('path') != 'circle') return null;
-          radial = true;
           pathDepth = reader.depth;
+          linear = false;
+          radial = reader.getAttribute('path') == 'circle';
+          // An omitted circle focus retains the default center point.
+          centered = true;
         } else if (reader.localName == 'fillToRect' &&
             pathDepth != null &&
             reader.depth == pathDepth + 1) {

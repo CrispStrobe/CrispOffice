@@ -4,14 +4,6 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
-- Share foreground mailbox navigation across IMAP/SMTP, EWS, Gmail and
-  Microsoft 365: search loaded subjects/senders, combine Unread and Flagged
-  filters, use keyboard navigation and preserve selection through compact
-  reader/Back transitions. Load explicit pages up to a 1,000-message ceiling,
-  reject invalid or cyclic continuations, and add confirmed IMAP read/unread
-  and flag/unflag controls while preserving independent unknown observations.
-  Browse large and sparse IMAP folders newest UID first within existing quotas.
-
 - Render presentation normal-autofit line-spacing reduction consistently,
   including fully collapsed line advances, while retaining glyph extents and
   excluding authored fixed-point spacing from percentage reduction.
@@ -33,6 +25,14 @@ All notable changes to `quds_office_editor` are documented here.
 - Render distinct pentagon and home-plate silhouettes while retaining chevron
   geometry. Keep the Studio Mail theme's button height with a finite minimum
   width so PDF organization controls can lay out in both light and dark themes.
+
+- Share foreground mailbox navigation across IMAP/SMTP, EWS, Gmail and
+  Microsoft 365: search loaded subjects/senders, combine Unread and Flagged
+  filters, use keyboard navigation and preserve selection through compact
+  reader/Back transitions. Load explicit pages up to a 1,000-message ceiling,
+  reject invalid or cyclic continuations, and add confirmed IMAP read/unread
+  and flag/unflag controls while preserving independent unknown observations.
+  Browse large and sparse IMAP folders newest UID first within existing quotas.
 
 - Autosave one local Studio Mail draft per account across SMTP, EWS, Gmail and
   Microsoft 365. Restore incomplete recipients, reply headers and attachment

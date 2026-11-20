@@ -7,6 +7,9 @@ import 'package:quds_office_studio/studio_chrome.dart';
 
 import 'support/studio_document_mode.dart';
 
+/// The typing pause before a background pass, plus a frame of margin.
+final _debounce = WordProofingTiming.idle + const Duration(milliseconds: 50);
+
 final class _ReviewProbe extends OfficeProofingProvider {
   _ReviewProbe(this.id);
 
@@ -96,7 +99,7 @@ void main() {
         OfficeProofingService(providers: [manual]),
       );
       expect(controller.proofing.enabled, isTrue);
-      await tester.pump(const Duration(milliseconds: 450));
+      await tester.pump(_debounce);
       await _finishCheck(tester, controller);
       expect(ordinary.calls, greaterThan(0));
       expect(manual.calls, 0);
@@ -128,7 +131,7 @@ void main() {
 
       final before = controller.document.paragraphs.single.text;
       controller.insertText('Neu ');
-      await tester.pump(const Duration(milliseconds: 450));
+      await tester.pump(_debounce);
       await _finishCheck(tester, controller);
       expect(controller.document.paragraphs.single.text, isNot(before));
       expect(controller.reviewPaneVisible, isTrue);
