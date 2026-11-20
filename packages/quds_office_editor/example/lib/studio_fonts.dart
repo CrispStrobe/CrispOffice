@@ -26,15 +26,15 @@ abstract final class StudioFonts {
     }
     for (final entry in byFamily.entries) {
       try {
-        await OfficeHostFonts.registerFamily(
+        await OfficeHostFonts.registerInstalledFamily(
           family: entry.key,
           faces: <ByteData>[
             for (final face in entry.value) ByteData.sublistView(face.bytes),
           ],
-          hasItalic: entry.value.any((face) => face.italic),
         );
       } on Object {
-        // Bundled compatibility aliases keep their existing ownership.
+        // Invalid or unavailable installed bytes keep the bundled fallback;
+        // application-owned families retain their explicit ownership.
       }
     }
   }

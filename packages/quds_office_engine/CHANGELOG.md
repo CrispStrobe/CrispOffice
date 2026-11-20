@@ -4,12 +4,29 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add the bounded `vba-word` adapter on the shared VBA compiler. Target explicit
+  document paragraphs, insert text before their content, and apply supported
+  font and paragraph formatting through existing atomic Word operations.
+  Preserve paragraph boundaries, strict host-specific objects, exact half-point
+  font/twip spacing units, XML-safe text and shared resource limits. Add explicit
+  Word BAS CLI commands, default MCP registration, independent conformance and
+  native/CLI/MCP integration coverage.
+
+- Add explicit VBA Variant `Empty`/`Null` states, default Variant lifecycle,
+  `IsEmpty`/`IsNull` and bounded `CVar`/`CBool`/`CDbl`/`CLng`/`CStr` conversions.
+  Preserve eager Null logic, ties-to-even rounding, invariant numeric text,
+  shared work limits, and strict unsupported coercions. Empty cell writes clear
+  values/formulas while retaining formatting; Null publication fails before a
+  plan is returned. Add independent conformance cases and a runnable Variant
+  report with native runtime, MCP, CLI and rollback coverage.
+
 - Integrate captured PPTX linear-gradient and picture-shadow work. Preserve
   gradient stops and angles through shape copying and save/reopen, render the
   gradient in PDF, and keep selected slide/layout/master gradient backgrounds
   separate from decorations so overrides and master edits remain correct.
-  Path gradients retain the prior solid fallback; native PowerPoint rendering
-  is not newly qualified by this increment.
+  Preserve radial gradient snapshots and paint them through the same scoped
+  editor/PDF paths. Native PowerPoint rendering is not newly qualified by this
+  increment.
 
 - Resolve PPTX picture and gradient background ownership per slide, layout and
   master, preserving authored overrides independently of hidden master shapes.
@@ -22,6 +39,20 @@ All notable changes to `quds_office_engine` are documented here.
   explicit UTF-16 semantics, a versioned conformance corpus, and portable
   VM/JavaScript receipts. Refuse malformed UTF-16 at workbook-write boundaries
   while preserving valid internal substring operations and transactional runs.
+
+- Preserve nearest authored PPTX picture-background ownership and gradient
+  fallback independently of master-shape visibility through copies and repeated
+  native saves. Retain existing media bytes, deep and negative imported crops,
+  and native master inheritance after solid-background edits. Keep explicit
+  slide/layout fills authoritative and isolate PDF picture-border canvas state.
+  Retain authored background XML, gradient stops, no-fill and namespace bindings
+  with valid copied image relationships. Apply direct master edits during PDF
+  rendering and keep inherited picture snapshots in fresh-deck copies. Add
+  focused ownership, package, copy and save regressions.
+
+- Import and render geometric/flowchart presets with distinct convex pentagon
+  and home-plate silhouettes. Preserve home-plate identity through copy and
+  PPTX save/reopen, and match PDF fill and outline geometry.
 
 - Integrate inherited PPTX decorations, block arrows, short PDF heading fitting
   and authored LTR numeric text. Preserve hidden-master flags and resolved empty

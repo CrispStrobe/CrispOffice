@@ -14,6 +14,10 @@
   `open_model` and `disambiguate`. `MorphInstaller.removeOtherBundles` takes
   `alsoKeep`. `tool/pud_rule_findings.dart` gains `--model`, `--reading` and
   `--margin`; `tool/web_smoke.mjs` an optional model check.
+- `unloadDisambiguator` releases only the context model and its readings while
+  retaining the open morphology database. Overlapping initialization and model
+  changes are serialized, and browser model removal does not reuse transferred
+  database buffers.
 
 ## 0.2.0
 

@@ -91,6 +91,7 @@ enum PmlShapePreset {
   chevron,
   parallelogram,
   trapezoid,
+  homePlate,
 }
 
 /// One colour stop in a DrawingML gradient fill.
@@ -105,17 +106,22 @@ class PmlGradientStop {
 
 /// A linear DrawingML gradient fill.
 class PmlGradientFill {
-  PmlGradientFill({List<PmlGradientStop>? stops, this.angleDegrees = 0})
-    : stops = stops ?? <PmlGradientStop>[];
+  PmlGradientFill({
+    List<PmlGradientStop>? stops,
+    this.angleDegrees = 0,
+    this.radial = false,
+  }) : stops = stops ?? <PmlGradientStop>[];
 
   final List<PmlGradientStop> stops;
   double angleDegrees;
+  bool radial;
 
   String get fallbackColor => stops.isEmpty ? '' : stops.first.color;
 
   PmlGradientFill copy() => PmlGradientFill(
     stops: <PmlGradientStop>[for (final stop in stops) stop.copy()],
     angleDegrees: angleDegrees,
+    radial: radial,
   );
 }
 
@@ -224,6 +230,9 @@ class PmlTableCell {
 
   /// fillColor API.
   String fillColor;
+
+  /// Optional gradient fill; takes precedence over [fillColor] when present.
+  PmlGradientFill? gradient;
 
   /// textColor API.
   String textColor;
@@ -411,6 +420,8 @@ class PmlShape {
     this.embedRelId,
     List<PmlPathPoint>? path,
     this.visual,
+    this.isBackgroundPicture = false,
+    this.isBackgroundGradient = false,
     this.table,
     this.rightToLeft,
     this.textAlign = PmlTextAlign.left,
@@ -467,6 +478,18 @@ class PmlShape {
 
   /// visual API.
   OfficeVisual? visual;
+
+  /// A full-slide picture resolved from the native `p:bg` fill.
+  /// This role distinguishes the background from ordinary template pictures.
+  /// It is rendered in [PmlSlide.backgroundShapes] and saved as `p:bg`.
+  final bool isBackgroundPicture;
+
+  /// A full-slide gradient resolved from the selected native `p:bg` fill.
+  /// It shares fill ownership with a background picture, while ordinary
+  /// gradient decorations remain independent of solid-background edits.
+  final bool isBackgroundGradient;
+
+  bool get isBackgroundFill => isBackgroundPicture || isBackgroundGradient;
 
   /// table API.
   PmlTable? table;
@@ -575,6 +598,8 @@ class PmlShape {
       embedRelId: embedRelId,
       path: <PmlPathPoint>[...path],
       visual: visual?.copy(),
+      isBackgroundPicture: isBackgroundPicture,
+      isBackgroundGradient: isBackgroundGradient,
       table: table?.copy(),
       rightToLeft: rightToLeft,
       textAlign: textAlign,
@@ -622,6 +647,7 @@ class PmlSlide {
     this.showMasterShapes = true,
     this.notes = '',
     this.sourcePartUri,
+    this.sourceLayoutPartUri,
     this.transition = const PmlSlideTransition(),
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
@@ -664,8 +690,7 @@ class PmlSlide {
   String _background;
   String? _primaryMasterBackground;
   XmlElement? _sourceBackground;
-  PmlShape? _backgroundPicture;
-  PmlShape? _backgroundGradient;
+  PmlShape? _backgroundFill;
   bool _backgroundFromSource = false;
 
   /// Authored slide fill retained with its namespace bindings for serialization.
@@ -673,10 +698,12 @@ class PmlSlide {
   XmlElement? get sourceBackground => _sourceBackground;
 
   /// The selected imported picture, also present first in [backgroundShapes].
-  PmlShape? get backgroundPicture => _backgroundPicture;
+  PmlShape? get backgroundPicture =>
+      (_backgroundFill?.isBackgroundPicture ?? false) ? _backgroundFill : null;
 
-  /// Selected imported gradient, painted before ordinary decorations.
-  PmlShape? get backgroundGradient => _backgroundGradient;
+  /// The selected imported gradient, also present first in [backgroundShapes].
+  PmlShape? get backgroundGradient =>
+      (_backgroundFill?.isBackgroundGradient ?? false) ? _backgroundFill : null;
 
   /// A direct solid-color assignment must be serialized as an authored fill.
   bool get writesSolidBackground =>
@@ -690,23 +717,20 @@ class PmlSlide {
     PmlShape? picture,
     PmlShape? gradient,
   }) {
+    if (picture != null && gradient != null) {
+      throw ArgumentError('A background selects one picture or gradient fill.');
+    }
     _clearSourceBackground();
     _sourceBackground = source?.copy();
     _backgroundFromSource = true;
-    _backgroundPicture = picture;
-    _backgroundGradient = gradient;
-    if (picture != null) backgroundShapes.insert(0, picture);
-    if (gradient != null) backgroundShapes.insert(0, gradient);
+    _backgroundFill = picture ?? gradient;
+    if (_backgroundFill != null) backgroundShapes.insert(0, _backgroundFill!);
   }
 
   void _clearSourceBackground() {
-    if (_backgroundPicture != null) backgroundShapes.remove(_backgroundPicture);
-    if (_backgroundGradient != null) {
-      backgroundShapes.remove(_backgroundGradient);
-    }
+    if (_backgroundFill != null) backgroundShapes.remove(_backgroundFill);
     _sourceBackground = null;
-    _backgroundPicture = null;
-    _backgroundGradient = null;
+    _backgroundFill = null;
     _backgroundFromSource = false;
   }
 
@@ -719,6 +743,7 @@ class PmlSlide {
     _background = value;
     inheritsMasterBackground = value.isEmpty;
     _primaryMasterBackground = null;
+    backgroundShapes.removeWhere((shape) => shape.isBackgroundFill);
   }
 
   /// Whether a master-background edit should update this slide's paper.
@@ -757,11 +782,17 @@ class PmlSlide {
   void updateMasterBackground(String value) {
     if (inheritsMasterBackground) {
       setInheritedBackground(value, masterBackground: value);
+      backgroundShapes.removeWhere((shape) => shape.isBackgroundFill);
     }
   }
 
   /// Original owning part, retained when slides are reordered.
   String? sourcePartUri;
+
+  /// Imported layout provenance, retained by copies within the same package.
+  /// It preserves native master-background inheritance when a copy gets a new
+  /// slide part rather than flattening an inherited picture into a local fill.
+  String? sourceLayoutPartUri;
 
   /// notes API.
   String notes;
@@ -790,6 +821,7 @@ class PmlSlide {
       ],
       showMasterShapes: showMasterShapes,
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
+      sourceLayoutPartUri: sourceLayoutPartUri,
       transition: transition,
       hidden: hidden,
       animations: <PmlShapeAnimation>[
@@ -799,16 +831,10 @@ class PmlSlide {
     ).._primaryMasterBackground = _primaryMasterBackground;
     result._sourceBackground = _sourceBackground?.copy();
     result._backgroundFromSource = _backgroundFromSource;
-    if (_backgroundPicture != null) {
-      final int index = backgroundShapes.indexOf(_backgroundPicture!);
+    if (_backgroundFill != null) {
+      final int index = backgroundShapes.indexOf(_backgroundFill!);
       if (index >= 0) {
-        result._backgroundPicture = result.backgroundShapes[index];
-      }
-    }
-    if (_backgroundGradient != null) {
-      final int index = backgroundShapes.indexOf(_backgroundGradient!);
-      if (index >= 0) {
-        result._backgroundGradient = result.backgroundShapes[index];
+        result._backgroundFill = result.backgroundShapes[index];
       }
     }
     return result;
@@ -837,17 +863,43 @@ class PmlLayout {
 /// Class PmlMaster.
 class PmlMaster {
   /// PmlMaster API.
-  PmlMaster({
-    required this.name,
-    this.background = 'FFFFFF',
-    List<PmlShape>? shapes,
-  }) : shapes = shapes ?? <PmlShape>[];
+  PmlMaster({required this.name, String? background, List<PmlShape>? shapes})
+    : _background = background ?? 'FFFFFF',
+      _hasAuthoredBackground = background != null,
+      shapes = shapes ?? <PmlShape>[];
 
   /// name API.
   String name;
 
-  /// background API.
-  String background;
+  String _background;
+  bool _hasAuthoredBackground;
+  String? _nativeBackground;
+
+  /// Resolved paper color. Assigning it authors a solid master fill, including
+  /// when the color equals an imported picture's solid fallback.
+  String get background => _background;
+
+  set background(String value) {
+    _background = value;
+    _hasAuthoredBackground = true;
+  }
+
+  /// Whether native master fills should be replaced by the authored color.
+  bool get hasAuthoredBackground => _hasAuthoredBackground;
+
+  /// A changed primary color also changes inherited secondary-master colors.
+  /// An explicit assignment of the same color can still replace picture fills.
+  bool get changesNativeBackgroundColor =>
+      _nativeBackground == null ||
+      _nativeBackground !=
+          (_background.isEmpty ? 'FFFFFF' : _background.toUpperCase());
+
+  /// Records a resolved imported or published color without authoring a fill.
+  void setImportedBackground(String value) {
+    _background = value;
+    _hasAuthoredBackground = false;
+    _nativeBackground = value.isEmpty ? 'FFFFFF' : value.toUpperCase();
+  }
 
   /// Master shapes / placeholders.
   final List<PmlShape> shapes;

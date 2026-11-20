@@ -183,6 +183,9 @@ self.onmessage = event => {
       } else if (request.op === 'open_model') {
         const info = openModel(api, request.files, request.manifestSha256);
         self.postMessage({id, response: JSON.stringify({status: 'success', info: JSON.parse(info)})});
+      } else if (request.op === 'close_model') {
+        if (model) { api._crispembed_ar_morph_disambig_free(model); model = 0; }
+        self.postMessage({id, response: JSON.stringify({status: 'success'})});
       } else if (request.op === 'disambiguate' && handle && model) {
         const buffer = disambiguate(api, request.words, request.lengths);
         self.postMessage({id, buffer}, [buffer]);

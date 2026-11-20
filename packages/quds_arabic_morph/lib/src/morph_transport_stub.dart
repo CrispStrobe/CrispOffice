@@ -22,6 +22,8 @@ final class _UnavailableTransport implements ArabicMorphTransport {
   Future<Map<String, Object?>> openDisambiguator(MorphDatabase model) async =>
       throw _error;
   @override
+  Future<void> unloadDisambiguator() async {}
+  @override
   Future<List<List<ArabicContextReading>>> disambiguate(
     List<List<String>> sentences,
   ) async => throw _error;

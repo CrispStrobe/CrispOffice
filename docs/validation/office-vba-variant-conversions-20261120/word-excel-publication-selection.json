@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "capturedMain": "c16e121365b7c52c0b66371381c8c58f592e1d8e",
+  "previousQualifiedSource": "e656bc17a98db5a1b44f8ac643b4d982800775e3",
+  "purpose": "Fresh focused qualification of the final main c16e1213 reconciliation with CP32. Cover changed Mail recovery, Word layout/kerning/serialization, established VBA Word atomic publication, and preserved PPTX/font repairs. Keep the original CP32 3654-test qualification separately attributed; never add overlapping runs into a unique total.",
+  "cohorts": {
+    "mail-recovery-core": {
+      "package": "packages/quds_mail_core",
+      "runner": "dart",
+      "tests": [
+        "test/models_test.dart",
+        "test/outbox_test.dart"
+      ]
+    },
+    "mail-recovery-store": {
+      "package": "packages/quds_mail_store",
+      "runner": "dart",
+      "tests": [
+        "test/codec_test.dart",
+        "test/draft_editor_state_test.dart",
+        "test/repository_test.dart",
+        "test/adversarial_store_test.dart",
+        "test/crash_recovery_test.dart",
+        "test/migration_test.dart"
+      ]
+    },
+    "mail-recovery-host": {
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_mail_cloud_test.dart",
+        "test/studio_mail_credentials_test.dart",
+        "test/studio_mail_discovery_test.dart",
+        "test/studio_mail_draft_autosave_test.dart",
+        "test/studio_mail_draft_store_test.dart",
+        "test/studio_mail_ews_test.dart",
+        "test/studio_mail_presets_test.dart",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_test.dart",
+        "test/studio_mail_compose_test.dart",
+        "test/studio_mail_attachment_compose_test.dart",
+        "test/studio_mail_attachment_test.dart",
+        "test/studio_mail_recipients_test.dart",
+        "test/studio_mail_reply_test.dart",
+        "test/studio_mail_threading_test.dart",
+        "test/studio_mail_lifecycle_test.dart",
+        "test/studio_mail_operation_test.dart"
+      ]
+    },
+    "mail-recovery-send": {
+      "package": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/mail/mail_send_transaction_test.dart",
+        "test/mail/mail_submission_acceptance_test.dart",
+        "test/smtp/smtp_transparency_test.dart"
+      ]
+    },
+    "word-main-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/line_breaker_greedy_test.dart",
+        "test/word_line_box_fidelity_test.dart",
+        "test/word_kerning_properties_test.dart",
+        "test/word_layout_test.dart",
+        "test/word_font_line_metrics_test.dart",
+        "test/styleless_import_fidelity_test.dart",
+        "test/style_cascade_test.dart",
+        "test/word_paragraph_mark_layout_test.dart",
+        "test/word_run_measure_test.dart",
+        "test/word_run_measure_boundaries_test.dart",
+        "test/word_run_fragment_fallback_test.dart",
+        "test/word_inline_picture_test.dart",
+        "test/word_note_script_break_test.dart",
+        "test/line_breaker_controls_test.dart",
+        "test/line_breaker_measure_line_test.dart",
+        "test/variable_line_breaker_test.dart",
+        "test/word_contained_text_wrap_test.dart",
+        "test/word_frame_wrap_test.dart",
+        "test/word_styles_layout_test.dart",
+        "test/word_table_picture_pagination_test.dart",
+        "test/word_table_tall_frame_layout_test.dart",
+        "test/word_table_tall_toc_layout_test.dart"
+      ]
+    },
+    "word-main-native-macros": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/office_macro_runtime_test.dart",
+        "test/office_macro_word_revision_guard_test.dart",
+        "test/office_vba_word_integration_test.dart",
+        "test/office_vba_word_cli_test.dart",
+        "test/office_operations_test.dart",
+        "test/word_step_atomicity_test.dart",
+        "test/word_steps_vocabulary_test.dart",
+        "test/word_structure_steps_test.dart",
+        "test/table_grid_steps_test.dart",
+        "test/word_table_grid_addressing_test.dart"
+      ]
+    },
+    "word-main-editor": {
+      "package": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/word_run_metrics_test.dart",
+        "test/word_selection_paint_test.dart",
+        "test/installed_host_fonts_test.dart",
+        "test/word_shaped_wrap_test.dart",
+        "test/word_small_caps_test.dart",
+        "test/word_hyphenation_paint_test.dart"
+      ]
+    },
+    "pptx-main-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/slide_import_fidelity_test.dart",
+        "test/slide_gradient_merge_test.dart",
+        "test/slide_gradient_publication_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/office_pdf_export_test.dart",
+        "test/slide_picture_background_test.dart"
+      ]
+    },
+    "pptx-main-editor": {
+      "package": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/picture_adjustment_render_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/office_slide_effects_test.dart",
+        "test/office_dark_slide_test.dart"
+      ]
+    }
+  },
+  "setup": "Use pinned env. Verify normal sqlite3 native-asset hook registration before the frozen guard; the downloaded library already exists but that alone is not a fresh VM load/FTS5 proof. Do not alter package sources or substitute an unpinned native library. Serialize Flutter CLI globally.",
+  "scopeLimits": [
+    "No real messages or connected-account writes; injected transports and loopback fixtures only.",
+    "This 28-file follow-up is not a replay of all 59 incoming Mail suites. Retain their original 81b0d762/793dae7d receipts separately.",
+    "No fresh live provider, installed platform or browser persistence qualification is claimed."
+  ]
+}

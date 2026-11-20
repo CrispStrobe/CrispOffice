@@ -1706,28 +1706,37 @@ abstract final class OfficePdfExport {
       case PmlShapePreset.rect:
         canvas.rect(x, y, w, h);
       case PmlShapePreset.roundRect:
-        canvas.roundedRect(x, y, w, h, 8);
+        canvas.roundedRect(x, y, w, h, math.min(8, math.min(w, h) / 4));
       case PmlShapePreset.ellipse:
         canvas.ellipse(x, y, w, h);
       case PmlShapePreset.triangle:
+        canvas.moveTo(x + w / 2, y);
+        canvas.lineTo(x + w, y + h);
+        canvas.lineTo(x, y + h);
+        canvas.closePath();
       case PmlShapePreset.diamond:
       case PmlShapePreset.hexagon:
       case PmlShapePreset.pentagon:
+      case PmlShapePreset.homePlate:
       case PmlShapePreset.chevron:
       case PmlShapePreset.parallelogram:
       case PmlShapePreset.trapezoid:
-      case PmlShapePreset.downArrow:
-      case PmlShapePreset.upArrow:
-      case PmlShapePreset.leftArrow:
-      case PmlShapePreset.rightArrow:
         _shapePath(canvas, preset, x, y, w, h);
+      case PmlShapePreset.downArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.down);
+      case PmlShapePreset.upArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.up);
+      case PmlShapePreset.leftArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.left);
+      case PmlShapePreset.rightArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.right);
       case PmlShapePreset.connector:
         canvas.rect(x, y, w, h);
       case PmlShapePreset.freeform:
         if (path.length >= 2) {
           canvas.moveTo(x + path.first.x / 12700, y + path.first.y / 12700);
-          for (int i = 1; i < path.length; i++) {
-            canvas.lineTo(x + path[i].x / 12700, y + path[i].y / 12700);
+          for (final point in path.skip(1)) {
+            canvas.lineTo(x + point.x / 12700, y + point.y / 12700);
           }
           canvas.closePath();
         } else {
@@ -1738,24 +1747,37 @@ abstract final class OfficePdfExport {
     final double angle = gradient.angleDegrees;
     final double cx = x + w / 2;
     final double cy = y + h / 2;
-    final double radians = angle * math.pi / 180;
-    final double span =
-        w * math.cos(radians).abs() + h * math.sin(radians).abs();
-    final double crossSpan =
-        w * math.sin(radians).abs() + h * math.cos(radians).abs();
-    canvas.rotateAround(cx, cy, angle);
     const int steps = 72;
-    for (int i = 0; i < steps; i++) {
-      final double t0 = i / steps;
-      final double t1 = (i + 1) / steps;
-      canvas.setFillColor(_gradientColor(gradient, (t0 + t1) / 2));
-      canvas.rect(
-        cx - span / 2 + span * t0,
-        cy - crossSpan / 2,
-        span * (t1 - t0) + 0.35,
-        crossSpan,
-      );
-      canvas.fill();
+    if (gradient.radial) {
+      canvas.fillRect(x, y, w, h, gradient.stops.last.color);
+      final double radius = math.min(w, h) / 2;
+      for (var i = steps; i > 0; i--) {
+        final double r = radius * i / steps;
+        canvas.setFillColor(_gradientColor(gradient, (i - .5) / steps));
+        canvas.ellipse(cx - r, cy - r, r * 2, r * 2);
+        canvas.fill();
+      }
+    } else {
+      final double radians = angle * math.pi / 180;
+      final double cosine = math.cos(radians).abs();
+      final double sine = math.sin(radians).abs();
+      // Project the bounds onto the gradient direction, matching the editor.
+      // A horizontal gradient spans w, and a vertical one spans h.
+      final double span = w * cosine + h * sine;
+      final double cross = w * sine + h * cosine;
+      canvas.rotateAround(cx, cy, angle);
+      for (int i = 0; i < steps; i++) {
+        final double t0 = i / steps;
+        final double t1 = (i + 1) / steps;
+        canvas.setFillColor(_gradientColor(gradient, (t0 + t1) / 2));
+        canvas.rect(
+          cx - span / 2 + span * t0,
+          cy - cross / 2,
+          span * (t1 - t0) + 0.35,
+          cross,
+        );
+        canvas.fill();
+      }
     }
     canvas.restore();
   }
@@ -1809,12 +1831,20 @@ abstract final class OfficePdfExport {
         canvas.lineTo(x + w * 0.25, y + h);
         canvas.lineTo(x, y + h / 2);
       case PmlShapePreset.pentagon:
+        // A regular pentagon normalized to its bounding rectangle.
+        final double inset = (3 - math.sqrt(5)) / 4;
+        canvas.moveTo(x, y + h * inset * 2);
+        canvas.lineTo(x + w / 2, y);
+        canvas.lineTo(x + w, y + h * inset * 2);
+        canvas.lineTo(x + w * (1 - inset), y + h);
+        canvas.lineTo(x + w * inset, y + h);
+      case PmlShapePreset.homePlate:
+        final double head = math.min(w, h) / 2;
         canvas.moveTo(x, y);
-        canvas.lineTo(x + w * 0.75, y);
+        canvas.lineTo(x + w - head, y);
         canvas.lineTo(x + w, y + h / 2);
-        canvas.lineTo(x + w * 0.75, y + h);
+        canvas.lineTo(x + w - head, y + h);
         canvas.lineTo(x, y + h);
-        canvas.lineTo(x + w * 0.25, y + h / 2);
       case PmlShapePreset.chevron:
         canvas.moveTo(x, y);
         canvas.lineTo(x + w * 0.75, y);
@@ -1953,6 +1983,7 @@ abstract final class OfficePdfExport {
       case PmlShapePreset.diamond:
       case PmlShapePreset.hexagon:
       case PmlShapePreset.pentagon:
+      case PmlShapePreset.homePlate:
       case PmlShapePreset.chevron:
       case PmlShapePreset.parallelogram:
       case PmlShapePreset.trapezoid:
@@ -2078,6 +2109,7 @@ abstract final class OfficePdfExport {
       case PmlShapePreset.diamond:
       case PmlShapePreset.hexagon:
       case PmlShapePreset.pentagon:
+      case PmlShapePreset.homePlate:
       case PmlShapePreset.chevron:
       case PmlShapePreset.parallelogram:
       case PmlShapePreset.trapezoid:
@@ -2105,7 +2137,17 @@ abstract final class OfficePdfExport {
     PmlPresentation deck,
     PmlSlide slide,
   ) {
+    // Resolved decorations already exclude hidden master shapes. Layout
+    // decorations remain visible even when the slide hides its master.
     if (slide.backgroundShapesResolved || slide.backgroundShapes.isNotEmpty) {
+      if (slide.inheritsMasterBackground && deck.master.hasAuthoredBackground) {
+        // Direct master edits take effect before a native save, without
+        // deleting imported snapshots or overriding local slide/layout fills.
+        return [
+          for (final shape in slide.backgroundShapes)
+            if (!shape.isBackgroundFill) shape,
+        ];
+      }
       return slide.backgroundShapes;
     }
     return slide.showMasterShapes ? deck.master.shapes : const <PmlShape>[];
@@ -2177,7 +2219,6 @@ abstract final class OfficePdfExport {
                 ? paragraph.defaultFontSizePt
                 : fallbackSize);
       final double size = unscaledSize * fitScale;
-
       final bool bold =
           (run?.bold ?? false) &&
           !(run?.fontFamily.toLowerCase().contains('microsoft sans serif') ??
@@ -2213,7 +2254,6 @@ abstract final class OfficePdfExport {
                 ? paragraph.defaultFontSizePt
                 : fallbackSize);
       final double size = unscaledSize * fitScale;
-
       final String color = (run?.color ?? '').isNotEmpty
           ? run!.color
           : fallbackColor;
@@ -2240,28 +2280,6 @@ abstract final class OfficePdfExport {
         PmlTextAlign.right => _TextAlign.right,
         PmlTextAlign.left || PmlTextAlign.justify => _TextAlign.left,
       };
-      // Keep authored order for numeric lines that fit. Wider content uses
-      // normal wrapping; explicit breaks also work with Standard 14 fonts.
-      final List<String>? plainLtrLines =
-          !paragraph.rightToLeft &&
-              !text.contains('\r') &&
-              !RegExp(r'\p{L}', unicode: true).hasMatch(text)
-          ? text.split('\n')
-          : null;
-      final bool plainLtrFits =
-          plainLtrLines?.every(
-            (line) =>
-                sink.plainWidth(
-                  line,
-                  size,
-                  bold: bold,
-                  italic: italic,
-                  family: family,
-                ) <=
-                maxWidth,
-          ) ??
-          false;
-
       if (text.contains('\t')) {
         final List<String> parts = text.split('\t');
         final double tabBase = x + paragraph.marginLeftPt;
@@ -2303,34 +2321,6 @@ abstract final class OfficePdfExport {
           fallbackColor,
           fitScale,
         );
-      } else if (plainLtrLines != null && plainLtrFits) {
-        // Keep authored order within each numeric line without collapsing
-        // explicit breaks, including blank lines, into one horizontal run.
-        for (final String line in plainLtrLines) {
-          final double textWidth = sink.plainWidth(
-            line,
-            size,
-            bold: bold,
-            italic: italic,
-            family: family,
-          );
-          final double dx = switch (align) {
-            _TextAlign.center => (maxWidth - textWidth) / 2,
-            _TextAlign.right => maxWidth - textWidth,
-            _TextAlign.left || _TextAlign.auto => 0,
-          };
-          sink.drawPlainLtr(
-            line,
-            px + dx,
-            cy + size,
-            size,
-            color,
-            bold: bold,
-            italic: italic,
-            family: family,
-          );
-          cy += size * 1.25;
-        }
       } else {
         sink.drawText(
           text,
@@ -2396,7 +2386,6 @@ abstract final class OfficePdfExport {
       final double size = run.fontSizePt > 0
           ? run.fontSizePt * sizeScale
           : fallbackSize;
-
       final String color = run.color.isEmpty ? fallbackColor : run.color;
       final bool bold =
           run.bold &&
@@ -3357,63 +3346,6 @@ class _PageSink {
   }
 
   /// Number of laid-out lines for [text] at [size].
-  double plainWidth(
-    String text,
-    double size, {
-    bool bold = false,
-    bool italic = false,
-    String? family,
-  }) {
-    var width = 0.0;
-    for (final int cp in text.runes) {
-      if (cp < 32) continue;
-      width += pack.widthOf(
-        cp,
-        size,
-        family: family,
-        weight: bold ? 700 : 400,
-        italic: italic,
-      );
-    }
-    return width;
-  }
-
-  void drawPlainLtr(
-    String text,
-    double x,
-    double baseline,
-    double size,
-    String color, {
-    bool bold = false,
-    bool italic = false,
-    String? family,
-  }) {
-    var cx = x;
-    for (final int cp in text.runes) {
-      if (cp < 32) continue;
-      final double advance = pack.widthOf(
-        cp,
-        size,
-        family: family,
-        weight: bold ? 700 : 400,
-        italic: italic,
-      );
-      _emit(
-        oldGid: 0,
-        codePoint: cp,
-        x: cx,
-        y: baseline,
-        size: size,
-        color: color,
-        bold: bold,
-        italic: italic,
-        family: family,
-        advance: advance,
-      );
-      cx += advance;
-    }
-  }
-
   int lineCount(
     String text,
     double size, {
