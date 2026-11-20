@@ -49,5 +49,20 @@
   },
   "first_attempt_source": "740f3e247102734ab1e689dc9473efcb3543ed15",
   "studio_followup_source": "44abcfa10367c8cf586ad3cf826feb3cb1de6dab",
-  "correction_scope": "Only the existing Studio test assertion/import/formatting and the evidence runner changed; product implementations remain identical."
+  "correction_scope": "Only the existing Studio test assertion/import/formatting and the evidence runner changed; product implementations remain identical.",
+  "initial_evidence_checkpoint": {
+    "sha": "ba1800f6556484dd9d4e89e1b0b38a512c44a6a0",
+    "tree": "c42a81457aed0140aad53e445034a7ec50bcd453",
+    "parents": "44abcfa10367c8cf586ad3cf826feb3cb1de6dab",
+    "subject": "Record accepted Mail workspace gate and final integration audit [skip ci]"
+  },
+  "merged_source_checkpoint": {
+    "sha": "01290ceed6f9163023ce8f27bb74033f088b62e4",
+    "tree": "413a8ebc8f66c5b95584710aab7d8bb6fcc431fc",
+    "parents": "ba1800f6556484dd9d4e89e1b0b38a512c44a6a0 860c807bfd1385899eed130abfb8940f95bda113",
+    "subject": "Reconcile concurrent published Office main with qualified Mail source [skip ci]"
+  },
+  "final_qualified_product_source": "01290ceed6f9163023ce8f27bb74033f088b62e4",
+  "retained_documentation_main": "33190e50cae486be362eedb5fa687dd9c82b0c51",
+  "published_checkpoints_before_final_evidence": 9
 }

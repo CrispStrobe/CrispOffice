@@ -234,3 +234,58 @@ git log --first-parent --format='%H %P %s' \
 git log --no-merges --format='%H %s' \
   860c807bfd1385899eed130abfb8940f95bda113..b9e4f1d4bc691714f68e3685dbf729b09ccb0449
 ```
+
+
+## Later documentation-only main advance: `33190e50`
+
+A subsequent main advance to
+`33190e50cae486be362eedb5fa687dd9c82b0c51` was inspected at
+**2026-11-20T09:46:26.656323+00:00**. Relative to `860c807b`, it adds exactly two files:
+`docs/validation/macbook-office-integration-20261120/README.md` and
+`docs/validation/macbook-office-integration-20261120/summary.json`.
+There are **zero product or configuration changes**. Package/app trees,
+workflows, root Pub manifests/lock, SDK pin and analyzer configuration retain
+identical Git object identities. The parent task can incorporate this
+advance without invalidating the source identity of the current product gate.
+
+The added documents retain another contributor's native Ubuntu VPS and
+portable qualification. Their source IDs explicitly identify transferred
+source snapshots, rather than being presented as upstream Git commits:
+
+| Reported batch | Candidate described by the author | Transferred source snapshot | Recorded scope |
+| --- | --- | --- | --- |
+| `office-next-acceptance` | `55115f33c6de44b2f7dfe537c0db244a7fb8ef9f` | `88e1fdc487a517dee697ea4a026a7353d1a38715` | 15 cohorts; 2,800 passing cases and one optional artifact skip. The spaCy cohort is marked unaccepted because of that skip. |
+| `office-final-acceptance` | `b8f4a7be7cc5ac1a6d9c1d89d999c5e6f3e13fb6` | `24dde27282abad736983544f21ce987498106a3a` | 17 cohorts; 2,454 passing cases and two retained failed attempts. |
+| `office-spacy-retry` | Follow-up for the latter snapshot | `24dde27282abad736983544f21ce987498106a3a` | 115 passing cases, with no failure or skip, using the corrected published Mac artifact fixture. |
+
+The two failed attempts in the later batch are the obsolete Mail empty-search
+label assertion and an older native-library fixture. The documents report a
+separate successful correction of the Mail assertion with production Mail
+unchanged, and retain the spaCy retry above. The error-event fields describe
+the same failed attempts and are not counted as extra failures. The report
+explicitly limits the native-library tests to wrapper behavior; it makes no
+new inference-quality claim.
+
+The portable report is bound to transferred snapshot `24dde272` and input
+manifest
+`c85b3b46c1bdf8c466557c3f7f29826ed16faa6ad6818ac68232ba03449af094`.
+It records seven accepted JavaScript smoke programs and 271 canonical cases
+in each runtime: 69 string-intrinsic, 120 Variant-conversion, 38
+Variant-composition and 44 Word-paragraph cases. Each corpus reports
+byte-identical Dart VM and JavaScript receipts. Its before/after check records
+5,624 unchanged inputs. These results are the author's recorded gate, not a
+fresh execution or independently reconstructed snapshot in this Mail task.
+
+The README separately reports seven Mac installed-font tests using synthetic
+metadata fixtures, a real installed Franklin Gothic Book DOCX paint check,
+and an earlier bounded native Word reference capture. Their platform and
+source attribution stay with that report; no user document, proprietary font
+or font-bearing reference PDF is imported into this task.
+
+The native batches overlap. **None of these counts is added to this task's
+local Mail or Office acceptance totals**, and no full feature-parity claim is
+inferred. Exact document blob identities and SHA-256 hashes, scope summaries,
+source labels, corpus receipts and product/config identity checks are retained
+in [documentation-followup.json](main-advance/documentation-followup.json).
+Only the already available committed evidence was read; no fetch, merge,
+product edit, test execution or hosted-CI query was performed for this update.

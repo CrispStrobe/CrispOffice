@@ -1,0 +1,69 @@
+{
+  "format": "gzip; original bytes preserved exactly",
+  "files": [
+    {
+      "original": "incoming-spacy-cases.json",
+      "stored": "incoming-spacy-cases.json.gz",
+      "original_bytes": 5955,
+      "original_sha256": "2bced86b4135a6429378f7bc20ede109dadffa7c7727928f2370f84369ff829a",
+      "stored_bytes": 1364,
+      "stored_sha256": "627fcfbe2eca36003e0bc476adceacc46b110777aecd869680583fc3b7047518"
+    },
+    {
+      "original": "incoming-spacy.jsonl",
+      "stored": "incoming-spacy.jsonl.gz",
+      "original_bytes": 17219,
+      "original_sha256": "303f602d5558fa26c3d241d68e5c75a10151799c52a05048eb58cdf8518c3b0a",
+      "stored_bytes": 2393,
+      "stored_sha256": "b3a3f85547a67c1d3a1da464bbc6ec334d6c0dc010055fb96118a478d444fc36"
+    },
+    {
+      "original": "inputs-after.json",
+      "stored": "inputs-after.json.gz",
+      "original_bytes": 1032083,
+      "original_sha256": "a3987b6da399b75c56ac54cbb624fa20a017e0830aa4e9799da46d7112ebab86",
+      "stored_bytes": 228995,
+      "stored_sha256": "f60f040c0689dc32ba14877b6dc20b192181ab33651b0865b2966aa4af1c9062"
+    },
+    {
+      "original": "inputs-before.json",
+      "stored": "inputs-before.json.gz",
+      "original_bytes": 1032083,
+      "original_sha256": "4ef938eaf879a0239b816073fca753741d98320e62766d28bc2d9364dc02241a",
+      "stored_bytes": 228994,
+      "stored_sha256": "1aaf7491ba573601dd6fb83ee32cf1abeec82152cb531da9dc2d73504d6069cd"
+    },
+    {
+      "original": "studio-cases.json",
+      "stored": "studio-cases.json.gz",
+      "original_bytes": 124155,
+      "original_sha256": "f0066028df3876f33db6a0d279c19b0416936ccb4d6af01fca74ef79323d4391",
+      "stored_bytes": 16995,
+      "stored_sha256": "b6c19d762f42bc56ba35d64b21fabe483a8a41d953330f104467993511f79480"
+    },
+    {
+      "original": "studio-theme-cases.json",
+      "stored": "studio-theme-cases.json.gz",
+      "original_bytes": 316,
+      "original_sha256": "a01b27309c67cfd0f44da47fd6e83e9ea8eab757fc666c83a789cbb1253f4d6a",
+      "stored_bytes": 154,
+      "stored_sha256": "b06ea25275479a8b1fce0cb104ba767a25d15b654174509fb903bc88a6eb6b35"
+    },
+    {
+      "original": "studio-theme.jsonl",
+      "stored": "studio-theme.jsonl.gz",
+      "original_bytes": 1972,
+      "original_sha256": "94ba0c0b9bbba5836b0ddb24762c22cfd05f7e6765358d479465ef16986c68f4",
+      "stored_bytes": 557,
+      "stored_sha256": "924483a292880c1fc16ff88519dbf164062e2a31b86921ccd8b1175252373f90"
+    },
+    {
+      "original": "studio.jsonl",
+      "stored": "studio.jsonl.gz",
+      "original_bytes": 403366,
+      "original_sha256": "4a3e8e4d0fd33250dc05fba2969686017cdbd245a26839945d986c0aabb11e18",
+      "stored_bytes": 35051,
+      "stored_sha256": "4e795ed3c93ed19edc76bf4337f7c07f547666ca5dfe9ab44d4c231fbd1caaf1"
+    }
+  ]
+}
