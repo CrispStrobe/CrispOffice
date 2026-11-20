@@ -1,0 +1,155 @@
+{
+  "copied_reports": {
+    "analysis-format.json": "runtime/list-level-final-checks/summary.json",
+    "checkpoints.json": "runtime/checkpoint-receipts.json",
+    "environment.json": "runtime/environment.json",
+    "evidence-review.json": "runtime/list-level-review/evidence-review.json",
+    "final-gates-invocation.json": "runtime/final-gates-invocation.json",
+    "final-intake.json": "runtime/final-intake.json",
+    "initial-intake.json": "runtime/intake-audit/initial-reconciled.json",
+    "portable-result.json": "runtime/list-level-portable-final/result.json",
+    "portable.json": "runtime/list-level-portable-final/summary.json",
+    "pre-gate-intake.json": "runtime/pre-gate-intake.json",
+    "publication-scope-review.json": "runtime/list-level-review/publication-scope-review.json",
+    "regression.json": "runtime/word-office-final/summary.json",
+    "runtime-verification.json": "runtime/list-level-runtime-verification.json",
+    "source-review.json": "runtime/list-level-review/source-review.json"
+  },
+  "development_logs_separate": true,
+  "excluded": [
+    "Dart SDK installation and downloaded archive",
+    "Hosted dependency cache, generic caches, configuration directories and temporary fixtures",
+    "Compiled test-runner kernel binary (its identity and exact build argv are preserved)",
+    "Git metadata, authentication configuration, credentials and unrelated workspace files"
+  ],
+  "explicit_missing_output_exception": "Accidental quds_dummy stdout was redirected to /dev/null and is unavailable; see the archived correction receipt.",
+  "final_output_directories": {
+    "checks": "list-level-final-checks",
+    "portable": "list-level-portable-final",
+    "regression": "word-office-final"
+  },
+  "limits": [
+    "Qualified totals come only from word-office-final, list-level-final-checks and list-level-portable-final.",
+    "Development, setup-smoke and supplemental reviewer probes are separate and add no cases to the final regression total.",
+    "The regression gate executes the original modules as separate Dart libraries in one serial VM suite; separate test-file isolates are not claimed.",
+    "The accidental quds_dummy selector discarded stdout to /dev/null. Its correction receipt is retained; the missing stdout is not claimed as preserved and no product acceptance depends on it.",
+    "This packet does not qualify Microsoft Word COM, embedded VBA execution, Mail/provider/Flutter runtimes or GitHub Actions.",
+    "Runtime hashes cover the explicitly recorded input sets, not every installed SDK or dependency file."
+  ],
+  "preserved_existing_reports": "Existing README.md, qualification.json and publication/source-consistency reports are never replaced; evidence-files.json binds all delivered files when refreshed after publication.",
+  "qualification": {
+    "frozen_source_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+    "frozen_source_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+    "independent_probe_cases": 18,
+    "reconciliation": {
+      "accepted": true,
+      "all_final_heads_included": false,
+      "all_initial_heads_included": true,
+      "captured_final_counts": {
+        "branches": 23,
+        "pull_requests": 262,
+        "upstream": 4
+      },
+      "caveat": "The two exact new Mail refs remain outside the published Word history; their corrected source awaits separate Mail acceptance. Raw uncovered entries and audit exit 1 are preserved.",
+      "deferred_ref_entries": [
+        {
+          "ref": "refs/remotes/origin/work/mail-cached-workspace-20261120",
+          "sha": "0730e7f61293b8e2dbe1f25150bc8754a563b101",
+          "status": "uncovered"
+        },
+        {
+          "ref": "refs/remotes/pull/262",
+          "sha": "0730e7f61293b8e2dbe1f25150bc8754a563b101",
+          "status": "uncovered"
+        }
+      ],
+      "incorporated_final_counts": {
+        "branches": 22,
+        "pull_requests": 261,
+        "upstream": 4
+      },
+      "initial_counts": {
+        "branches": 21,
+        "pull_requests": 260,
+        "upstream": 4
+      },
+      "mode": "explicit_post_intake_mail_deferral",
+      "raw_final_audit_exit_code": 1,
+      "scope_review": {
+        "bytes": 90609,
+        "path": "runtime/list-level-review/publication-scope-review.json",
+        "sha256": "20e70be547eb28fa9366d0177bfe0f05e6985c94bffdb7bd5af6b5c4fe666551"
+      }
+    },
+    "stages": {
+      "checks": {
+        "formatted_files": 9,
+        "runtime_inputs": 20,
+        "selected_runtime_bindings": [
+          "quds_office_suite/.dart_tool/package_config.json",
+          "quds_office_suite/.dart_tool/package_graph.json",
+          "runtime/engine-validation/packages/legacy_doc_parser/pubspec.yaml",
+          "runtime/engine-validation/packages/quds_office_engine/pubspec.lock",
+          "runtime/engine-validation/packages/quds_office_engine/pubspec.yaml",
+          "runtime/env.sh",
+          "runtime/environment.json",
+          "runtime/run-engine-tests.sh",
+          "runtime/run_word_list_levels_checks.py",
+          "runtime/word_office_gate.py"
+        ],
+        "source_inputs": 1123
+      },
+      "portable": {
+        "canonical_sha256": "7a9ec647658d5ee448107d9f358e15a75b16aa6bdd46f9465407043149d8a27c",
+        "runtime_inputs": 20,
+        "selected_runtime_bindings": [
+          "quds_office_suite/.dart_tool/package_config.json",
+          "quds_office_suite/.dart_tool/package_graph.json",
+          "quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart",
+          "runtime/engine-validation/packages/legacy_doc_parser/pubspec.yaml",
+          "runtime/engine-validation/packages/quds_office_engine/pubspec.lock",
+          "runtime/engine-validation/packages/quds_office_engine/pubspec.yaml",
+          "runtime/env.sh",
+          "runtime/environment.json",
+          "runtime/run-engine-tests.sh",
+          "runtime/run_word_list_levels_portable.py",
+          "runtime/word_office_gate.py"
+        ],
+        "source_inputs": 1123
+      },
+      "regression": {
+        "modules": 70,
+        "passing_cases": 2569,
+        "runtime_inputs": 11,
+        "selected_runtime_bindings": [
+          "quds_office_suite/.dart_tool/package_config.json",
+          "quds_office_suite/.dart_tool/package_graph.json",
+          "runtime/engine-validation/packages/legacy_doc_parser/pubspec.yaml",
+          "runtime/engine-validation/packages/quds_office_engine/pubspec.lock",
+          "runtime/engine-validation/packages/quds_office_engine/pubspec.yaml",
+          "runtime/env.sh",
+          "runtime/environment.json",
+          "runtime/run-engine-tests.sh",
+          "runtime/word-office-final/word_office_gate_test.dart",
+          "runtime/word_office_gate.py"
+        ],
+        "source_inputs": 1123
+      }
+    }
+  },
+  "reproduction": [
+    "Retrieve the repository at the source commit recorded in the final manifests; the archives do not duplicate the full source checkout.",
+    "Use a fresh checkout and a fresh runtime directory with reproduce_runtime.py, --repo, --runtime and --record pointing to the archived environment.json.",
+    "Runtime setup downloads the recorded Dart SDK archive, verifies its SHA-256, resolves the recorded exact hosted pins and rebuilds the test-runner kernel. SDK/cache/kernel binaries are deliberately absent.",
+    "Use the recorded Node version for the portable JavaScript run. Node provisioning is not performed by reproduce_runtime.py.",
+    "Keep a sibling runtime and quds_office_suite layout for the archived gate helpers, or deliberately adapt their root constants. Historical commands and package-config snapshots retain the original absolute paths.",
+    "Regenerate package configuration and runner paths using the runtime reproduction helper in a relocated checkout; do not mistake the archived absolute-path snapshots for portable configuration.",
+    "Run word_office_gate.py run, run_word_list_levels_checks.py run and run_word_list_levels_portable.py --out with new output directories. Existing evidence directories are immutable inputs and should not be reused as run destinations.",
+    "The final independent audit script records this session's original absolute workspace, frozen commit and tree; adapting its workspace root is necessary for a relocated reproduction.",
+    "Normalized tar metadata (mtime/uid/gid zero, empty owner names, regular files sorted by path), explicit modes and fixed XZ settings make packaging the same selected bytes reproducible."
+  ],
+  "schema": "quds-word-list-level-evidence-packaging/v1",
+  "selected_input_bytes": 19398116,
+  "selected_input_count": 226,
+  "source_selection": "Exact allowlisted files only; no recursive runtime or repository collection."
+}

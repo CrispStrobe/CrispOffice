@@ -1,0 +1,56 @@
+{
+  "recorded_utc": "2026-11-20T16:24:36.057888+00:00",
+  "purpose": "Runtime/setup evidence for forthcoming qualification; no final checks executed by this preparation.",
+  "repo_head_observed": "2a474670d31ef9d0e72c3562d9e5179a7607f428",
+  "dart_version": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "node_version": "v24.22.3",
+  "dart_archive_sha256_verified_at_install": "759bed01e0aeb50e1a0b0a19474ba5c80c6087ce1d37b3214e475c81a44430e8",
+  "hosted_count": 56,
+  "hosted_versions_match_current_repository_lock": true,
+  "mismatches": {},
+  "original_source_package_roots": {
+    "legacy_doc_parser": "file:///workspace/scratch/33048a5794d3/quds_office_suite/packages/legacy_doc_parser",
+    "quds_office_engine": "file:///workspace/scratch/33048a5794d3/quds_office_suite/packages/quds_office_engine"
+  },
+  "runtime_identities": {
+    "/workspace/scratch/33048a5794d3/runtime/dart-sdk/bin/dart": {
+      "bytes": 4849392,
+      "sha256": "59c3c5f8426a98aaa13e3c3892909d381b0235be9b5cb13d8914e5fc5f0df203"
+    },
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": {
+      "bytes": 126951512,
+      "sha256": "acbe4b8d9153b841ed0697cbfc4f93e767386620edb745ab9358306c0a6f31aa"
+    },
+    "/workspace/scratch/33048a5794d3/runtime/test-runner/test-runner.dill": {
+      "bytes": 36509416,
+      "sha256": "213bdd6938a82da612c0547b83265708ac5573d9c3e11552051e006181b2329d"
+    },
+    "/workspace/scratch/33048a5794d3/quds_office_suite/.dart_tool/package_config.json": {
+      "bytes": 12280,
+      "sha256": "95cebd9285a40b73a44e399f6c1d802338942eb445e34d4668d4beb181ccf771"
+    },
+    "/workspace/scratch/33048a5794d3/quds_office_suite/.dart_tool/package_graph.json": {
+      "bytes": 9353,
+      "sha256": "9f8290c011c131f53fe4f6e12c40f4a5d7281c6fe94bccb6adcf93c9d8a803d4"
+    },
+    "/workspace/scratch/33048a5794d3/runtime/env.sh": {
+      "bytes": 488,
+      "sha256": "b4d7cb0669e75a5dbfb439ac2c72cc8b0a375e15629845a10fe270f67783b866"
+    },
+    "/workspace/scratch/33048a5794d3/runtime/run-engine-tests.sh": {
+      "bytes": 402,
+      "sha256": "15bdcde6cb893b228214ffe61c7b26e897f71d1ad782574664e1d69b70a52555"
+    }
+  },
+  "tracked_manifests_modified_for_setup": false,
+  "existing_setup_records": [
+    "environment.json",
+    "setup-receipt.json",
+    "reproduction-command.json",
+    "runtime-setup.stdout",
+    "runtime-setup.stderr",
+    "setup-smoke.jsonl",
+    "setup-smoke-summary.json"
+  ],
+  "setup_smoke_scope": "12 compiler cases only, excluded from product qualification"
+}
