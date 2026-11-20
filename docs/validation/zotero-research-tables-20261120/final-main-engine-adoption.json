@@ -1,0 +1,236 @@
+{
+  "schema": "quds.zotero.final-main-engine-adoption.v1",
+  "date": "2026-11-20",
+  "reviewer": "/root/parity_research",
+  "scope": "Independent read-only review of Word, Zotero, layout and PowerPoint source differences. Other incoming Mail/account/draft behavior has separate qualification.",
+  "sources": {
+    "previously_qualified_feature": {
+      "commit": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+      "tree": "b406e2b68ec082ae8b038e49b40ec5084a8c131d"
+    },
+    "prior_combined_source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+    "adopted_main": {
+      "commit": "243b99a5ee56e591991f381533b2363586bd5dd0",
+      "tree": "d4d86f3b5dd0ddeb94af281222f4269d62873fbe"
+    },
+    "incoming_engine_final": {
+      "commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+      "tree": "1b8e807cd76f2bbc599780170d2a2e993ea4da62"
+    },
+    "incoming_engine_retained_baseline": "c9cbeb1248d6b5f088d1084a8c113a743aa7a77f"
+  },
+  "exact_engine_continuity": {
+    "compare": "https://github.com/CrispStrobe/quds_office_suite/compare/192ea2aedbf0b1494627953c79a7042037a63301...243b99a5ee56e591991f381533b2363586bd5dd0",
+    "status": "ahead",
+    "merge_base": "192ea2aedbf0b1494627953c79a7042037a63301",
+    "ahead_by": 30,
+    "behind_by": 0,
+    "returned_changed_paths": 131,
+    "engine_package_changed_paths": [],
+    "pubspec_lock_override_analysis_options_package_config_or_melos_changes": [],
+    "conclusion": "The entire packages/quds_office_engine subtree is unchanged from the incoming final qualified source through adopted main. No tracked dependency or analysis-configuration delta was found in this exact comparison."
+  },
+  "delta_against_qualified_feature": {
+    "compare": "https://github.com/CrispStrobe/quds_office_suite/compare/70e69c8854ab30f83d8711d3f4bf270385ed27b4...243b99a5ee56e591991f381533b2363586bd5dd0",
+    "status": "ahead",
+    "merge_base": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+    "returned_changed_paths": 120,
+    "changed_engine_product_or_test_paths": [
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "adopted_blob": "77fcccefe69bd486d03f7a2bd600ed891f0cceb7"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "adopted_blob": "42fa88ca7cf68013f4bada4727640bf35a1daa38"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+        "adopted_blob": "19643ad7627a00022c4478d7501764a4f414658b"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "adopted_blob": "182df2c9b54badd917b81bf2ae2098d84b3fac6a"
+      },
+      {
+        "path": "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart",
+        "adopted_blob": "2b8fc5347cdfe9529ca86ea7cfc10adfea55bd1e"
+      }
+    ],
+    "unchanged_inputs": [
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/lib/src/word/serial/",
+      "packages/quds_office_editor/lib/",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart"
+    ],
+    "unchanged_input_basis": "No path changes in these files/subtrees in the exact ancestor comparison. Core editor includes the Word controller; the workspace retains the idle-frame scheduling fix."
+  },
+  "semantic_review": {
+    "word_layout": {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "feature_blob": "b50ee59383518783106875edc853b071685ea3f3",
+      "adopted_blob": "182df2c9b54badd917b81bf2ae2098d84b3fac6a",
+      "change": "Comments and braced versus single-line conditions only.",
+      "preserved": "Engine ownership, ordinary fallback reset, early dirty/full cache retirement, explicit empty-paragraph retirement and wrapping-frame retirement."
+    },
+    "incremental_layout": {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+      "feature_blob": "93c7e51944395cd0e23c0801fd47b0e7f54eebb2",
+      "adopted_blob": "19643ad7627a00022c4478d7501764a4f414658b",
+      "change": "Adds flow.current.length == checkpoint.lines and flow.currentFrames.length == checkpoint.frames as convergence requirements, plus cache-lifecycle comments.",
+      "qualification": "This is a real conservative change in reuse eligibility, not formatting-only. Engine ownership and corrected checkpoint count propagation remain. It can reduce convergence opportunities; no unchanged-performance claim is made. Exact-source differential, prefix and layout cases passed in the incoming qualification."
+    },
+    "powerpoint_insets": {
+      "model_blob": "77fcccefe69bd486d03f7a2bd600ed891f0cceb7",
+      "drawingml_blob": "42fa88ca7cf68013f4bada4727640bf35a1daa38",
+      "regression_blob": "2b8fc5347cdfe9529ca86ea7cfc10adfea55bd1e",
+      "change": "Capture imported textInsets in the immutable text-source baseline and compare current direct insets against that baseline. Untouched nondefault imported margins no longer masquerade as explicit edits; actual direct changes and same-value explicit native writes retain intent.",
+      "new_regression_cases": 3,
+      "coverage": "Untouched imported nondefault margins, direct edits relative to the imported baseline, and same-value explicit writes; repeated PPTX saves and PDF positioning."
+    }
+  },
+  "accepted_incoming_evidence": {
+    "qualification_kind": "C9 unaffected-file evidence plus repaired-source affected/guard/unrun cohort",
+    "single_source_full_rerun": false,
+    "actual_final_source": {
+      "commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+      "files": 38,
+      "groups": 13,
+      "passed": 714
+    },
+    "retained_baseline": {
+      "commit": "c9cbeb1248d6b5f088d1084a8c113a743aa7a77f",
+      "files": 42,
+      "passed": 1808
+    },
+    "composed_selection": {
+      "files": 80,
+      "passed": 2522,
+      "failed": 0,
+      "skipped": 0
+    },
+    "counting_boundary": "2,522 is composed acceptance: 714 actual final-source passes plus 1,808 retained baseline passes. It is not one 2,522-case execution on a single source. Do not add overlapping incoming and Zotero totals as distinct tests.",
+    "relevant_final_source_cases": [
+      {
+        "path": "packages/quds_office_engine/test/office_vba_powerpoint_margins_integration_test.dart",
+        "source_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0,
+        "test_source_sha256": "0dcdedffbe7ed9ab020b1ff94f4f90dd828328ecc4e9b8e24e7b001cc8ee9a8b",
+        "source_group": "scoped-shard01",
+        "receipt": "validation-results/scoped-shard01.receipt.json",
+        "jsonl": "validation-results/scoped-shard01.jsonl"
+      },
+      {
+        "path": "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart",
+        "source_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "test_source_sha256": "5dde26ce4d81d722fda547519fc75a0aa054d4046522cc64529195342f861990",
+        "source_group": "scoped-shard01",
+        "receipt": "validation-results/scoped-shard01.receipt.json",
+        "jsonl": "validation-results/scoped-shard01.jsonl"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+        "source_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "test_source_sha256": "b11b36d2a10105131a5912563418cd924f73ad5ddc6c7a354e3139cb662b32e2",
+        "source_group": "scoped-shard03",
+        "receipt": "validation-results/scoped-shard03.receipt.json",
+        "jsonl": "validation-results/scoped-shard03.jsonl"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+        "source_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0,
+        "test_source_sha256": "43d06887ece205abbde06fb890bd565c57d48e59086950bcf159a24b96a7b502",
+        "source_group": "scoped-shard03",
+        "receipt": "validation-results/scoped-shard03.receipt.json",
+        "jsonl": "validation-results/scoped-shard03.jsonl"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_incremental_layout_prefix_test.dart",
+        "source_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "test_source_sha256": "a4c97eebe3aa6be4abe002afc2041c42dc011bc6ac87316985f08dd6feb8daa1",
+        "source_group": "scoped-shard03",
+        "receipt": "validation-results/scoped-shard03.receipt.json",
+        "jsonl": "validation-results/scoped-shard03.jsonl"
+      },
+      {
+        "path": "packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+        "source_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "test_source_sha256": "be1b167a1cd9c929f058c724f8c80d6138fb0bf1918f30cba0835381dadfea66",
+        "source_group": "scoped-shard01",
+        "receipt": "validation-results/scoped-shard01.receipt.json",
+        "jsonl": "validation-results/scoped-shard01.jsonl"
+      },
+      {
+        "path": "packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart",
+        "source_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "test_source_sha256": "d68a16cd7fea8ca3ff9bceccd453a4549db76a441d46f55a03260bb3a5693fff",
+        "source_group": "scoped-shard01",
+        "receipt": "validation-results/scoped-shard01.receipt.json",
+        "jsonl": "validation-results/scoped-shard01.jsonl"
+      }
+    ],
+    "records": [
+      {
+        "path": "docs/validation/office-vba-expansion-20261120/runtime/acceptance.json",
+        "blob": "2e93cb586371bc52cccabb9aa2d54f37f76d2d5f"
+      },
+      {
+        "path": "docs/validation/office-vba-expansion-20261120/runtime/source-delta.json",
+        "blob": "0afafd25324a0532b2cd78de69de66f50bf3f0ac"
+      },
+      {
+        "path": "docs/validation/office-vba-expansion-20261120/runtime/main-proof.json",
+        "blob": "e9e8423fd1138ba1385798bdbadfdae0c702b929"
+      },
+      {
+        "path": "docs/validation/office-vba-expansion-20261120/README.md",
+        "blob": "b80bad25fab8c6f7ba8c40e1e65f3c5da82e49f8"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/late-zotero-audit.json",
+        "blob": "c425b5c760aaf122eae36d69d874ac951573b260"
+      },
+      {
+        "path": "docs/validation/mail-multiple-drafts-20261120/late-zotero-reconciliation.json",
+        "blob": "d2a8ff59c66245053ea9f047b193e80af971e9b4"
+      }
+    ],
+    "evidence_review_boundary": "Published source-specific receipts and source deltas inspected; this reviewer did not rerun SDK tools or independently re-extract the archived raw event streams."
+  },
+  "recommendation": {
+    "adopt_main_product_tree": true,
+    "additional_word_zotero_layout_or_powerpoint_execution_required": false,
+    "remaining_check": "Preserve exact adopted production/test inputs and verify final product-tree/source identity when publishing the documentation/evidence continuation.",
+    "reason": "All newly differing engine inputs already have incoming exact-source qualification, and the full engine package plus tracked dependency/analysis configurations remain unchanged through adopted main. No broad cohort, analyzer or chrome rerun is justified for this reviewed delta.",
+    "acceptance_boundary": "This is scoped source/evidence adoption, not whole-Office or live Zotero/Word/LibreOffice/PowerPoint interoperability acceptance. Incoming qualification does not establish new Flutter PowerPoint execution."
+  },
+  "actions": {
+    "source_or_test_mutations": false,
+    "refs_or_commits_mutated": false,
+    "additional_sdk_or_test_runs": false,
+    "github_actions_or_ci_queries": false,
+    "unrelated_ref_discovery": false,
+    "remote_write": "This review JSON blob only."
+  }
+}

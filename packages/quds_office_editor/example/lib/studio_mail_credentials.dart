@@ -266,13 +266,12 @@ final class _PlatformStudioMailCredentialStore
   _PlatformStudioMailCredentialStore({
     FlutterSecureStorage? storage,
     Future<SecureStorage> Function()? selectedStorage,
-    int Function()? storageRevision,
+    this._storageRevision,
   }) : _storage =
            selectedStorage ??
            (() async =>
                _FlutterMailStorage(storage ?? const FlutterSecureStorage())),
-       _verifyWrites = true,
-       _storageRevision = storageRevision;
+       _verifyWrites = true;
 
   static const _legacyKey = 'crispoffice.mail.account.v1';
   static const _catalogKey = 'crispoffice.mail.accounts.v2';

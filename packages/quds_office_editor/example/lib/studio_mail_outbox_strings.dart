@@ -124,9 +124,9 @@ extension StudioMailOutboxStrings on StudioStrings {
     'تصدير سجل المستلمين الخاص',
   );
   String get mailOutboxExportExplanation => _outboxText(
-    'EML preserves the original message bytes and attachments. Bcc recipients are absent from the EML headers; the separate private recipient record includes them.',
-    'EML bewahrt die ursprünglichen Nachrichtendaten und Anhänge. Bcc-Empfänger fehlen in den EML-Kopfzeilen; der separate private Empfängerdatensatz enthält sie.',
-    'يحفظ EML بيانات الرسالة الأصلية ومرفقاتها. لا تتضمن ترويساته مستلمي النسخة المخفية؛ يتضمنهم سجل المستلمين الخاص المنفصل.',
+    'EML preserves the original message bytes and attachments. The separate private recipient record preserves the complete transport recipient list, including Bcc.',
+    'EML bewahrt die ursprünglichen Nachrichtendaten und Anhänge. Der separate private Empfängerdatensatz bewahrt die vollständige Versandempfängerliste einschließlich Bcc.',
+    'يحفظ EML بيانات الرسالة الأصلية ومرفقاتها. يحفظ سجل المستلمين الخاص المنفصل قائمة مستلمي الإرسال الكاملة، بما في ذلك النسخة المخفية.',
   );
   String get mailOutboxExportPrivateExplanation => _outboxText(
     'Save the complete transport recipient list, including Bcc, to a separate JSON file? This private record can reveal hidden recipients to anyone you share it with.',
@@ -156,9 +156,9 @@ extension StudioMailOutboxStrings on StudioStrings {
     'إيقاف إعادة المحاولة',
   );
   String get mailOutboxStopRetryingExplanation => _outboxText(
-    'Close this local entry without sending again? Delivery remains unknown. This does not recall mail, mark it delivered or prove it failed. The original message and attempt history remain available until you separately remove the local record.',
-    'Diesen lokalen Eintrag ohne erneutes Senden abschließen? Die Zustellung bleibt unbekannt. Dies ruft keine Nachricht zurück und bestätigt weder Zustellung noch Fehlschlag. Die ursprüngliche Nachricht und der Versuchsverlauf bleiben bis zum separaten Entfernen des lokalen Eintrags verfügbar.',
-    'إغلاق هذا الإدخال المحلي دون الإرسال مجددًا؟ تبقى حالة التسليم مجهولة. لا يستدعي هذا البريد ولا يؤكد تسليمه أو فشله. تبقى الرسالة الأصلية وسجل المحاولة متاحين حتى تزيل السجل المحلي بشكل منفصل.',
+    'Close this local entry without sending again? Delivery remains unknown. This does not recall mail, mark it delivered or prove it failed. The original message and attempt information remain available until you separately remove the local record.',
+    'Diesen lokalen Eintrag ohne erneutes Senden abschließen? Die Zustellung bleibt unbekannt. Dies ruft keine Nachricht zurück und bestätigt weder Zustellung noch Fehlschlag. Die ursprüngliche Nachricht und die Versuchsinformationen bleiben bis zum separaten Entfernen des lokalen Eintrags verfügbar.',
+    'إغلاق هذا الإدخال المحلي دون الإرسال مجددًا؟ تبقى حالة التسليم مجهولة. لا يستدعي هذا البريد ولا يؤكد تسليمه أو فشله. تبقى الرسالة الأصلية ومعلومات المحاولة متاحين حتى تزيل السجل المحلي بشكل منفصل.',
   );
   String get mailOutboxClosedExplanation => _outboxText(
     'Further sending is disabled for this entry. Delivery of an earlier attempt is still unknown.',
@@ -166,9 +166,9 @@ extension StudioMailOutboxStrings on StudioStrings {
     'عُطّل الإرسال مجددًا لهذا الإدخال. لا تزال حالة تسليم محاولة سابقة مجهولة.',
   );
   String get mailOutboxRemoveUnknownExplanation => _outboxText(
-    'Remove this local record and its message bytes? Delivery remains unknown, and this removes your local copy of the attempt history. This does not recall mail or remove a server copy.',
-    'Diesen lokalen Eintrag und seine Nachrichtendaten entfernen? Die Zustellung bleibt unbekannt; die lokale Kopie des Versuchsverlaufs wird entfernt. Dies ruft keine Nachricht zurück und entfernt keine Serverkopie.',
-    'إزالة هذا السجل المحلي وبيانات الرسالة؟ تبقى حالة التسليم مجهولة وستُحذف نسختك المحلية من سجل المحاولة. لا يستدعي هذا البريد ولا يحذف نسخة الخادم.',
+    'Remove this local record and its message bytes? Delivery remains unknown, and this removes your local copy of the attempt information. This does not recall mail or remove a server copy.',
+    'Diesen lokalen Eintrag und seine Nachrichtendaten entfernen? Die Zustellung bleibt unbekannt; die lokale Kopie der Versuchsinformationen wird entfernt. Dies ruft keine Nachricht zurück und entfernt keine Serverkopie.',
+    'إزالة هذا السجل المحلي وبيانات الرسالة؟ تبقى حالة التسليم مجهولة وستُحذف نسختك المحلية من معلومات المحاولة. لا يستدعي هذا البريد ولا يحذف نسخة الخادم.',
   );
   String mailOutboxAttempt(int count) =>
       _outboxText('Attempts: $count', 'Versuche: $count', 'المحاولات: $count');

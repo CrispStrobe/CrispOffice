@@ -88,7 +88,7 @@ and broader regression results. No GitHub Actions queue is required.
 The next ordered boundaries are verified offline account metadata for the
 remaining providers, repository-driven mailbox/folder streams and durable
 commands, unified/offline inbox, provider-side draft synchronization, and the
-remaining Outbox review/undo/scheduling workflows. Rich HTML, signatures,
+remaining Outbox undo/scheduling workflows. [Outbox review and management](outbox-management.md) now adds atomic edit-copy, exact export and explicit uncertain closure. Rich HTML, signatures,
 templates, conversations, full-account search, rules, Calendar/People and
 installed/live-provider qualification remain open. This increment does not
 claim M04W, all of M07 or full desktop-client parity.

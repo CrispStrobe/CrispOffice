@@ -1,0 +1,168 @@
+{
+  "schema": 1,
+  "decision": "Adopt the exact current-main product/test/config tree and preserve the four newer feature evidence files. Use main's Git tree as the base; retain both current main and feature as parents. No manual116-file source replay or additional broad test run is needed.",
+  "main": {
+    "commit": "243b99a5ee56e591991f381533b2363586bd5dd0",
+    "tree": "d4d86f3b5dd0ddeb94af281222f4269d62873fbe",
+    "parents": [
+      "4df939eeed1bda9f9dbde8c8d2cbf0a4fe91b5b0",
+      "b3abdf3b4628a8a703857d69b8f11cd21bc502e1"
+    ]
+  },
+  "feature": {
+    "commit": "24312d991915418fd6891736a1b427fa8dcbcb71",
+    "commonAncestor": "a2b87ee3f471da500423055e86ba2614fc053cae",
+    "uniqueCommits": 1,
+    "uniquePaths": 4
+  },
+  "preserveFeatureEvidence": [
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/audit_completed_replays.py",
+      "sha": "1844f5ca9e475d3deffe277f07379b610963fea2",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-lf-audit.json",
+      "sha": "8aee6899b242c4f4d260ae70cf79175b097d264d",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-analysis-evidence.json",
+      "sha": "0d7bc757a9007f494ee437ce749ded8504a06626",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-analysis-evidence.tar.xz",
+      "sha": "4211f0d0dd100d871283db806f7795f857d487f2",
+      "status": "added"
+    }
+  ],
+  "newMainScope": {
+    "commits": 26,
+    "paths": 116,
+    "description": "Merged accounts PR251, multiple local drafts PR253, completed VBA qualification and final Zotero/Mail source reconciliation PR255. Main already preserves70e and a2b87 ancestry and the existing Zotero evidence."
+  },
+  "previouslyPendingAccounts": {
+    "head": "cb7f832590b77bd5be6e04814f1b64ae418b2b55",
+    "status": "Integrated ancestor; no longer pending at this snapshot.",
+    "proof": {
+      "comparisonStatus": "ahead",
+      "mergeBase": "cb7f832590b77bd5be6e04814f1b64ae418b2b55",
+      "mainAheadBy": 117,
+      "behind": 0
+    },
+    "incorporatedBehavior": "The reviewed storage source now combines the generation-aware putIfAbsent cache rule and systemStorageFactory seam with our serialized selections, captured backend identity and public revision fence. Native retains credentialSettingsOpener and the dedicated backend-switch suite."
+  },
+  "credentialGuardChecks": {
+    "storageBlob": "88a22c6bcc21477b2a3b4e1d417567a21643bf41",
+    "nativeBlob": "434114fe967cef7f6bbe2fd4b268c3e0c4bd24e1",
+    "catalogBlob": "0d7d3a34d91637dab126915a4c55e8c07876f0c8",
+    "exactComparisons": {
+      "saveChoiceAndPersist": true,
+      "selectionListenerAndReload": true,
+      "catalogOnlyTypedMapChange": true
+    },
+    "preserved": [
+      "AsyncLock serializes committed selection changes.",
+      "Backend mode/path/key captured before native initialization; public revision changes on committed selection.",
+      "Actual dart:io macOS admission remains, with an additional web refusal.",
+      "Catalog queued-operation revision checks, captured backend, canonical bounded catalog and write/readback verification remain.",
+      "Native opt-out selection and persistence guards are byte-identical to the reviewed70e source.",
+      "Default-dialog selection listener and stale-form clearing/reload are byte-identical to the reviewed70e source.",
+      "Earlier reply sourceStatus arguments, Outbox account/session checks and current multiple-draft controls are retained."
+    ],
+    "addedRule": "Late initialization cannot replace a newer cached instance after switching away and back; generation/path/mode must still match, then putIfAbsent retains the newer instance.",
+    "catalogDifference": "The full catalog source differs only by replacing an untyped Map test with Map<String,Object?>, retaining the JSON migration contract."
+  },
+  "exactMailQualificationContinuity": {
+    "testedCommit": "2a775500aa31b5e8426df54c3f68f4ceadec0790",
+    "testedTree": "2d49b52caa501c10d7d28746f3254c3dc0bb9dfd",
+    "currentMain": "243b99a5ee56e591991f381533b2363586bd5dd0",
+    "comparison": {
+      "status": "ahead",
+      "behind": 0,
+      "changedPaths": 30
+    },
+    "productChanges": 0,
+    "testChanges": 0,
+    "dependencyOrConfigChanges": 0,
+    "onlyNonEvidenceChange": {
+      "path": "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart",
+      "sha": "55dc70ad3bd15b3cfb910c6a07e49f5c3dbb6534"
+    },
+    "helperChecks": "Incoming late reconciliation records pinned format, fatal-info analysis and --help exit0. It only selects five existing Outbox files; no test bodies changed.",
+    "acceptance": {
+      "path": "docs/validation/mail-multiple-drafts-20261120/acceptance.json",
+      "blob": "3f01fca292607e7a08bdcae0e8ae6a7f0862c5c2"
+    },
+    "evidenceIndex": {
+      "path": "docs/validation/mail-multiple-drafts-20261120/evidence-index.json",
+      "blob": "18f68d6e150488aac37cd61910b63916519a4731"
+    },
+    "evidenceArchive": {
+      "path": "docs/validation/mail-multiple-drafts-20261120/evidence.tar.gz",
+      "blob": "5a08e635313d43fa8efca8fe05d7b1156aa5be57",
+      "reportedSha256": "a235dd8ab02781582dc1335795eec516457ae734283d8bc8fad27e242de87c4c"
+    },
+    "acceptedResultsFromThatRecord": [
+      {
+        "scope": "intake core/MIME/transport and three engine files",
+        "passed": 579
+      },
+      {
+        "scope": "full native store",
+        "passed": 596
+      },
+      {
+        "scope": "Node portability cohort",
+        "passed": 46
+      },
+      {
+        "scope": "shared Mail UI",
+        "passed": 96
+      },
+      {
+        "scope": "Studio Mail/saved-mail/credential composed acceptance",
+        "passed": 964,
+        "initialBroadRun": {
+          "passed": 962,
+          "failed": 2
+        },
+        "fullFileCorrections": {
+          "studio_mail_ews_test": 61,
+          "studio_saved_mail_test": 14
+        }
+      }
+    ],
+    "countingBoundary": "These are separately attributed scopes and platforms, not additive unique-test totals. The964 Studio result is composed from the disclosed broad run and two full-file reruns, not a rewritten claim of one clean broad run. This reviewer verified source continuity and record contents, not a fresh execution."
+  },
+  "independentWordAndPowerPointReview": {
+    "reviewer": "/root/parity_research",
+    "decision": "Adopt main sources.",
+    "engineQualifiedCheckpoint": "192ea2aedbf0b1494627953c79a7042037a63301",
+    "reportedContinuity": "Exact192ea2→243 comparison contains no path in packages/quds_office_engine and no pubspec/lock/options change; entire current engine package matches that qualified source.",
+    "retainedLayoutBlobs": {
+      "incremental": "19643ad7627a00022c4478d7501764a4f414658b",
+      "layout": "182df2c9b54badd917b81bf2ae2098d84b3fac6a"
+    },
+    "scope": "Owner/cache safeguards remain. Incremental layout additionally uses conservative prefix-count convergence checks. Imported PowerPoint margin-baseline preservation is a genuine separately qualified change. Zotero parser/citing, Word serialization/controller and editor core/workspace are unchanged.",
+    "reportedFinalSourcePasses": 714,
+    "reportedRetainedSourceCases": 1808,
+    "countingBoundary": "714 actual final-source reruns plus1808 source-attributed retained cases; do not claim2522 fresh single-source executions.",
+    "relevantFinalReruns": {
+      "layoutDifferential": 12,
+      "layout": 9,
+      "prefix": 2,
+      "pptInsets": 12,
+      "pptMarginIntegration": 16,
+      "pptTextFidelity": 6,
+      "pptExplicitStyle": 1
+    },
+    "acceptancePointer": "docs/validation/office-vba-expansion-20261120/runtime/acceptance.json"
+  },
+  "limits": [
+    "Final adoption preserves already-qualified source exactly; our newer evidence remains attributed to its own checkpoints.",
+    "Installed-platform, live-provider and live Zotero/Word/LibreOffice/Apache OpenOffice acceptance are not implied by these local records.",
+    "No further branch discovery, CI/Actions/check/status query, source edit, or remote ref/commit mutation was performed for this review."
+  ]
+}

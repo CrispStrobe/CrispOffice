@@ -185,6 +185,33 @@ void main() {
     }
   });
 
+  for (final kind in ['plain', 'ampersands', 'quotes', 'line breaks']) {
+    test('maximum admitted composer body remains editable: $kind', () {
+      final body = switch (kind) {
+        'plain' => 'a' * StudioMailDraft.maxBodyBytes,
+        'ampersands' => '&' * StudioMailDraft.maxBodyBytes,
+        'quotes' => '"' * StudioMailDraft.maxBodyBytes,
+        _ => '${'x' * 63}\n' * (StudioMailDraft.maxBodyBytes ~/ 64),
+      };
+      final original = StudioMailDraft(to: _recipient, subject: '', body: body);
+      expect(original.problem, isNull);
+      expect(utf8.encode(body), hasLength(StudioMailDraft.maxBodyBytes));
+      final entry = _entry(original);
+      final content = StudioMailOutboxContent.fromEntry(entry);
+      expect(content.draft.subject, isEmpty);
+      expect(content.draft.body, body);
+      expect(content.draft.problem, isNull);
+      expect(content.message.raw.bytes, entry.prepared.wire.bytes);
+      if (kind == 'line breaks') {
+        expect(content.message.body.plainText, body.replaceAll('\n', '\r\n'));
+        expect(
+          content.message.body.plainText!.length,
+          greaterThan(StudioMailDraft.maxBodyBytes),
+        );
+      }
+    }, timeout: const Timeout(Duration(seconds: 90)));
+  }
+
   test(
     'projected and original attachment bytes are independently immutable',
     () {
