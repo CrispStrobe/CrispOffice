@@ -94,3 +94,22 @@ the empty-run guard. Its arm64 release build, deep signature validation and
 previously qualified preview exactly. See [final preview receipt](final-preview-acceptance.json)
 and [guard analysis](empty-format-guard-analysis.txt). This final preview is
 opened separately; existing windows and documents are preserved.
+
+## Preserve simultaneous slide publication
+
+CrispCloud main independently advanced to Quds `integrate/recent-pptx` at
+`9e647ae5`. Its source conflicted with the newer main renderer/background
+changes. Reconciled in Quds before re-vendoring, preserving both parents rather
+than choosing one copied package tree. Master background inheritance and
+master/layout decorations coexist; PDF heading fitting keeps authored paragraph
+fonts and applies its scale once. Block arrows, flipped connectors, numeric LTR
+text and symbol/emoji fallbacks are retained.
+
+[Reconciliation receipt](slide-reconciliation.json): 88 engine and 21 editor
+tests passed, including the Word extended-review regression file; analysis was
+clean. A font-sensitive table assertion now uses the existing contrast check for
+readability and a separate positive expected-color check, instead of depending
+on a count of fully opaque antialiased glyph pixels. Stored-color and export
+assertions remain. The tested Word review implementation is unchanged by this
+slide reconciliation. The final Word preview remains its exact `930074b8`
+snapshot; the coherent CrispCloud host source incorporates both lines of work.
