@@ -1,0 +1,86 @@
+{
+  "captured_at_utc": "2026-11-20 07:53:04 UTC",
+  "source": "GitHub repository GET endpoints; no workflow/check/status requests",
+  "open_prs": [
+    {
+      "number": 227,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/227",
+      "state": "open",
+      "draft": true,
+      "merged_at": null,
+      "updated_at": "2026-11-20T07:49:58Z",
+      "title": "Extend Word and Excel VBA with explicit Variants and paragraph macros",
+      "body": "## Why\n\nThe next VBA roadmap slice needs explicit missing/unassigned values and predictable conversions while preserving the source-to-plan transaction boundary.\n\n## Changes\n\n- Add distinct Empty/Null states, Variant defaults, predicates and bounded CVar/CBool/CDbl/CLng/CStr conversions.\n- Add eager Null semantics, ties-to-even Long conversion, invariant numeric parsing/formatting, native Empty clears and Null publication refusal.\n- Add independently authored versioned conformance cases plus a runnable report and runtime/MCP/CLI tests.\n- Reconcile current Zotero, Mail, PPTX and grammar work with original ancestry; repair picture-background ownership and repeated saves.\n\n## Qualification in progress\n\nIncremental source and evidence checkpoints are saved on this retained branch. Focused development tests and initial VM/JavaScript parity passed. Independent review found nested nullable-expression composition and scalar-Variant/object-checking gaps; fixes and combined-source qualification are in progress. Further remote advances are being reconciled before the final local gate.\n\nNo GitHub Actions, workflow runs, checks or commit-status endpoints are queried or awaited. Final exact local selections, source identities, raw receipts and limitations will be recorded before merging.\n\nSee docs/validation/office-vba-variant-conversions-20261120/README.md for the evolving evidence record.",
+      "head_ref": "codex/vba-variant-conversions-20261120",
+      "head_sha": "656e7b96f15142942b00335e8b7eb894ce068565",
+      "base_ref": "main",
+      "base_sha": "7501b604db23e2df3d765f2ea44f572b2ea43d97"
+    }
+  ],
+  "branches": [
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/vba-variant-conversions-20261120",
+      "sha": "656e7b96f15142942b00335e8b7eb894ce068565"
+    },
+    {
+      "name": "codex/zotero-parity-20261120",
+      "sha": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26"
+    },
+    {
+      "name": "codex/zotero-research-materials-20261120",
+      "sha": "a31616d3567a43307251e13a9728cf92fd8690c6"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "9bd16ff4d97f2a63f450f161fe10eb3bb2808857"
+    },
+    {
+      "name": "main",
+      "sha": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26"
+    },
+    {
+      "name": "work/mail-attachments-20261120",
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c"
+    },
+    {
+      "name": "work/mail-draft-recovery-20261120",
+      "sha": "bbc114d4aee1d54564edb4c6f333830d5a8fdeea"
+    }
+  ]
+}

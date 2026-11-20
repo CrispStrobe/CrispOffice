@@ -1,11 +1,33 @@
 # Durable Studio drafts and interrupted-send recovery
 
 This continuation advances M07 in the existing [implementation plan](implementation-plan.md).
-The goal is one recoverable local composer per account across native IMAP/SMTP,
+It provides one recoverable local composer per account across native IMAP/SMTP,
 Exchange EWS, Gmail and Microsoft 365. It builds on the existing transactional
 Mail store and the shared Word editing surface.
 
-## Acceptance contract
+## Using local drafts
+
+Connect to the same account and choose **Compose** to resume its saved draft.
+Changes autosave after 500 ms without further edits. **Save and close** flushes the latest revision
+without sending; **Send** validates the draft and waits for persistence before
+contacting the provider. The status shows saving, saved or a fixed localized
+failure. A failed save leaves the editor open; **Retry saving** tries again,
+and a separately confirmed **Close without saving** is available if the user
+chooses to leave unsaved changes behind.
+
+The existing **Discard retained draft** command now clears the local stored
+draft and releases unreferenced attachment bytes. Closing Mail or disconnecting
+does not discard it. Recovery requires reconnecting with the same provider,
+endpoint, login and sender identity; there is not yet an offline draft browser.
+
+An interrupted or ambiguous send requires the existing delivery-check
+acknowledgement before another attempt. Confirmed acceptance clears the draft.
+If local cleanup then fails, the retained copy remains guarded and the user is
+told not to resend. A matching definite rejection restores the uncertainty
+state from before that attempt; it cannot erase uncertainty from an earlier
+submission. Unmatched responses and exceptions never clear the marker.
+
+## Implemented contract
 
 - Preserve unfinished To/Cc/Bcc fields, subject, plain text, reply headers and
   immutable attachment snapshots, including drafts whose recipients are not yet
@@ -49,6 +71,13 @@ conversation views, full mailbox search, filters/rules, Calendar/People and
 provider/installed-platform qualification remain separate increments. The
 ordered work stays in [implementation-plan.md](implementation-plan.md), with
 current completion boundaries in [status.md](status.md).
+
+One local draft is retained per scoped account. If the process terminates
+abruptly, changes since the last completed save can be lost. Continuous editing,
+a pending write or a storage failure can extend that period beyond the 500 ms
+debounce. The saved indicator reflects a completed write. File-backed
+reopen and existing store crash/recovery tests cover their recorded scenarios,
+not arbitrary device power loss or an installed-platform application lifecycle.
 
 Drafts reside in the native application data directory. This does not establish
 encrypted storage or server-side draft synchronization. Live-provider delivery

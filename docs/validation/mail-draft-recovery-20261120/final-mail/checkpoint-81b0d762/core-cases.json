@@ -1,0 +1,380 @@
+[
+  {
+    "id": 9,
+    "name": "invalidate rejects old callbacks but allows a new generation",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 11,
+    "name": "EWS item IDs retain exact case and opaque punctuation",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 12,
+    "name": "dispose invalidates all callbacks and cannot reopen a session",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 13,
+    "name": "equal server IDs remain isolated by host, account and provider",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 14,
+    "name": "explicit cancellation is typed and keeps the first reason",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 15,
+    "name": "an Exchange move can replace the server identity",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 18,
+    "name": "EWS identities reject empty values and control characters",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 19,
+    "name": "cross-account Exchange moves fail before provider work",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 23,
+    "name": "observed standard flags have value equality and an empty snapshot",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 25,
+    "name": "inclusive ranges support the full IMAP UID space and single UIDs",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 27,
+    "name": "range rejects zero UIDVALIDITY",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 28,
+    "name": "range rejects negative UIDVALIDITY",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 29,
+    "name": "range rejects overflow UIDVALIDITY",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 30,
+    "name": "range rejects zero first UID",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 26,
+    "name": "snapshots own bytes, including buffer views and export copies",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 31,
+    "name": "range rejects negative first UID",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 32,
+    "name": "message headers and attachments do not alias mutable input lists",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 33,
+    "name": "range rejects overflow first UID",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 34,
+    "name": "parse result cannot claim success without a message",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 35,
+    "name": "range rejects zero last UID",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 36,
+    "name": "full and preview budgets preserve planned resource bounds",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 37,
+    "name": "range rejects negative last UID",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 39,
+    "name": "range rejects overflow last UID",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 38,
+    "name": "profile and account identities cannot alias between products",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 40,
+    "name": "range rejects reversed UIDs",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 41,
+    "name": "UIDVALIDITY, mailbox and account form the IMAP persistent identity",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 42,
+    "name": "range scope must match the page even when the page is empty",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 44,
+    "name": "authoritative range rejects HTTPS identity in upserts and tombstones",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 43,
+    "name": "move and sync cursor enforce account and mailbox scopes",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 45,
+    "name": "authoritative range rejects different UIDVALIDITY in upserts and tombstones",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 47,
+    "name": "authoritative range rejects UID below range in upserts and tombstones",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 46,
+    "name": "mail capability does not imply Calendar, People or sending",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 48,
+    "name": "authoritative range rejects UID above range in upserts and tombstones",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 49,
+    "name": "authoritative range rejects different mailbox in upserts and tombstones",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 50,
+    "name": "range pages retain immutable survivor and tombstone snapshots",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 52,
+    "name": "queued revision, wire and envelope remain frozen through submission",
+    "suite_id": 16,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 55,
+    "name": "mixed 250/550 RCPT responses abort every recipient before DATA",
+    "suite_id": 16,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 56,
+    "name": "aggregate response does not fabricate recipient-level acceptance",
+    "suite_id": 16,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 57,
+    "name": "missing recipient responses stay unknown on aggregate failure",
+    "suite_id": 16,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 58,
+    "name": "connection loss after possible acceptance is uncertain and cannot retry",
+    "suite_id": 16,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 59,
+    "name": "interrupted submitting state recovers as uncertain, never queued",
+    "suite_id": 16,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 60,
+    "name": "definite non-acceptance retries with a fresh attempt identity only",
+    "suite_id": 16,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 61,
+    "name": "validated restoration preserves a pending attempt and recovers uncertain",
+    "suite_id": 16,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 62,
+    "name": "undo send only cancels work before submission",
+    "suite_id": 16,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 54,
+    "name": "fixture pages apply real upserts/tombstones and advance cursor atomically",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 63,
+    "name": "unrelated/duplicate recipient results and control injection are rejected",
+    "suite_id": 16,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 64,
+    "name": "transaction failure leaves both old content and cursor unchanged",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 65,
+    "name": "out-of-order concurrent pulls cannot regress the stored cursor",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 66,
+    "name": "sync commit compares the cursor it read before pulling",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 67,
+    "name": "account disposal while provider awaits prevents any commit",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 68,
+    "name": "transaction rechecks the lease when disposal happens during persistence",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 69,
+    "name": "cooperative user cancellation differs from stale account work",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 70,
+    "name": "wrong account and oversized provider page fail before persistence",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 71,
+    "name": "unsupported provider operations are failures rather than empty success",
+    "suite_id": 20,
+    "result": "success",
+    "skipped": false
+  }
+]
