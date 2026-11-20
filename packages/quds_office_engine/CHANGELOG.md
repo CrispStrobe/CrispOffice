@@ -8,7 +8,8 @@ All notable changes to `quds_office_engine` are documented here.
   `CentimetersToPoints`, `PointsToCentimeters`, `MillimetersToPoints`,
   `PointsToMillimeters`, `PicasToPoints` and `PointsToPicas`. Support global,
   `Application` and `With Application` calls through the existing checked
-  source compiler. Use explicit numeric inputs and exact physical ratios;
+  source compiler, with the official required argument names on all ten
+  physical/line conversion functions. Use explicit numeric inputs and exact physical ratios;
   preserve native write precision, resource limits and transaction guards.
   These bounded binary64 conversions do not emulate VBA `Single` coercion.
 

@@ -1,5 +1,10 @@
 # Word VBA physical-unit conversions: intake and qualification
 
+> Historical checkpoint from the concurrent continuation. Its source, tests and
+> example are preserved by the [measurement reconciliation](../word-vba-measurements-20261120/README.md).
+> That record supersedes the implementation choice and records the later merge
+> of the workflow-only history while keeping the temporary workflow deleted.
+
 ## Incoming work reconciled first
 
 The initial source is remote main `c954d00d2fc85604ae394674bca91ea8a1dede0e`
@@ -67,3 +72,33 @@ complete.
 No GitHub Actions runs, statuses, checks or queue endpoints were queried or
 waited on. Checkpoints use a non-forced branch update with the previously
 observed head as the expected SHA.
+
+## Implementation checkpoint
+
+Added `InchesToPoints`, `PointsToInches`, `CentimetersToPoints`,
+`PointsToCentimeters`, `MillimetersToPoints`, `PointsToMillimeters`,
+`PicasToPoints` and `PointsToPicas` through the existing Word conversion
+dispatcher. The native operation/runtime/serializer files are unchanged.
+The existing line functions retain their exact factors and multiply/divide
+fallback order.
+
+The [Word contract](../../VBA_WORD_MACROS.md#physical-measurement-conversions)
+documents the exact physical ratios, scalar types, finite limits, explicit
+rounding choice and host boundaries. The
+[example](../../../packages/quds_office_engine/example/macros/word_unit_conversions.bas)
+uses all eight functions and nine operations on two paragraphs.
+
+The new compiler suite covers call routes, case, sign/zero, Variants,
+single argument evaluation, invalid/dead-source calls, shadowing,
+dialect isolation, canonical decimal conversions, native precision,
+overflow, old line fallback behavior and custom-spacing transaction guards.
+The integration suite covers the actual BAS, save/reopen and repeatability,
+canonical native values, rollback, policies, explicit rounding and scalar-only
+plans.
+
+**These Dart suites have been written but have not been executed at this
+checkpoint.** The command environment fails before a process can start:
+first `No space left on device` while creating the sandbox; later the exec
+server reports `No such file or directory`. No Dart analysis, formatting,
+VM, JavaScript compilation, CLI or whole-engine regression pass is claimed.
+Source review and arithmetic checks are recorded separately when complete.

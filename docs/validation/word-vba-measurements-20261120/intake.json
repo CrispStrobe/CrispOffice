@@ -155,11 +155,26 @@
     "historical_inventory": "docs/validation/mail-header-search-20261120/intake.json",
     "replacement_checks": "13 identical whole Git trees; ODT continuation's 37 changed blobs and modes match its ancestral replacement.",
     "refreshed_pr_heads": [
-      263,
-      264,
-      268,
-      269,
-      270
+      {
+        "number": 270,
+        "sha": "540eb7a41554620e1405807ac1db9dc38bd62148"
+      },
+      {
+        "number": 269,
+        "sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b"
+      },
+      {
+        "number": 268,
+        "sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32"
+      },
+      {
+        "number": 264,
+        "sha": "1e723bd4bc96e07b1b790daf9b82897a846c6096"
+      },
+      {
+        "number": 263,
+        "sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa"
+      }
     ],
     "reconciliation": {
       "head": "332d7b26a320ca560f4f2214e1e63da9392269ab",
@@ -173,5 +188,70 @@
     "dart_analyze": "not run",
     "dart_format": "not run",
     "github_actions": "not queried or awaited"
+  },
+  "concurrent": {
+    "branch": "codex/word-vba-compatibility-20261120-continuation",
+    "head": "dd8e73a7d6252b336b2e7a437c4931addc42d491",
+    "resolution": {
+      "production": "Retain reviewed Set/contains dispatch and binary64 evaluator with numerator/divisor metric fallback.",
+      "preserved_paths": [
+        "docs/validation/word-vba-unit-conversions-20261120/README.md",
+        "docs/validation/word-vba-unit-conversions-20261120/intake.json",
+        "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+        "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart"
+      ],
+      "documentation": "Consolidate shared Word contract/changelog; retain incoming explicit CLng rounding guidance and both examples/suites."
+    }
+  },
+  "concurrent_named": {
+    "branch": "codex/word-vba-unit-conversions-20261120",
+    "head": "e08635b3f21c60ad21888821050dc97c2dbf7086",
+    "production_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+    "resolution": "Adopt complete coherent named-argument conversion implementation; preserve colliding fixtures under distinct named_measurements paths.",
+    "renamed_files": [
+      "packages/quds_office_engine/example/macros/word_named_measurements.bas",
+      "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_named_measurements_smoke.dart"
+    ]
+  },
+  "late_unmerged_active_work": [
+    {
+      "branch": "work/mail-bulk-flags-20261120",
+      "head": "0cc6316c61efd8b39a9cb0cfed6b2879f7865d48",
+      "reason": "Created after initial intake; active Mail integration/intake checkpoint."
+    },
+    {
+      "branch": "work/mail-bulk-actions-20261120",
+      "head": "69ab514b57a4d6d4db062d802eb853c2691d80fe",
+      "reason": "Created after initial intake; unfinished unrelated core Mail coordinator work without provider/UI integration or completed qualification."
+    }
+  ],
+  "final_refresh": {
+    "observed_main": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+    "branch_count": 38,
+    "word_heads": [
+      {
+        "branch": "codex/word-vba-compatibility-20261120-continuation",
+        "head": "dd8e73a7d6252b336b2e7a437c4931addc42d491"
+      },
+      {
+        "branch": "codex/word-vba-unit-conversions-20261120",
+        "head": "e08635b3f21c60ad21888821050dc97c2dbf7086"
+      }
+    ],
+    "late_mail_heads": [
+      {
+        "branch": "work/mail-bulk-actions-20261120",
+        "head": "b60c0ec26f2a80c984076fb1d480eb2e641b542e",
+        "disposition": "Active overlapping Mail development introduced after initial intake; preserved remotely, not integrated into this Word change."
+      },
+      {
+        "branch": "work/mail-bulk-flags-20261120",
+        "head": "034d73d2d09245c4a151de37bf522664ea5b4a80",
+        "disposition": "Active overlapping Mail development introduced after initial intake; preserved remotely, not integrated into this Word change."
+      }
+    ]
   }
 }
