@@ -94,6 +94,8 @@ final class ImapFixture {
   bool supportsSaslIr = true;
   bool readOnly = false;
   bool omitValidity = false;
+  bool omitExists = false;
+  int? selectedMessageCount;
   bool wrongFetchedUid = false;
   bool partialBody = false;
   bool duplicateFetch = false;
@@ -238,7 +240,7 @@ final class ImapFixture {
     } else if (command.startsWith('SELECT ')) {
       socket.text(
         '* FLAGS (\\Seen \\Flagged \\Answered \\Draft \\Deleted)\r\n'
-        '* ${messages.length} EXISTS\r\n'
+        '${omitExists ? '' : '* ${selectedMessageCount ?? messages.length} EXISTS\r\n'}'
         '${omitValidity ? '' : '* OK [UIDVALIDITY $uidValidity] validity\r\n'}'
         '* OK [UIDNEXT $uidNext] next\r\n'
         '* OK [PERMANENTFLAGS (\\Seen \\Flagged \\Answered \\Draft \\Deleted)] flags\r\n'

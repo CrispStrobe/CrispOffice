@@ -15,6 +15,7 @@ import 'package:quds_office_studio/studio_mail_cloud.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
+import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 import 'package:quds_office_studio/studio_mail_archive_action.dart';
 import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
@@ -40,6 +41,10 @@ final class _Provider extends Fake implements MailCloudProvider {
   MailOperationLease? lastLease;
   MailProblem? connectionProblem;
   Completer<MailResult<MailMessage>>? messageGate;
+  Completer<MailResult<MailHeaderPage>>? headerGate;
+  MailHeaderPage Function(MailMailboxId, MailCursor?)? headerPage;
+  final List<MailCursor?> cursors = [];
+  final List<int> headerLimits = [];
   MailSubmissionOutcome outcome = MailSubmissionOutcome.accepted;
   MailProblem? submissionProblem;
   final submissions = <MailPreparedMessage>[];
@@ -58,6 +63,20 @@ final class _Provider extends Fake implements MailCloudProvider {
         ? MailProviderKind.gmail
         : MailProviderKind.graph,
     value: value,
+  );
+
+  MailHeaderRecord header(
+    String id,
+    String subject, {
+    MailMessageFlags? flags = const MailMessageFlags(),
+  }) => MailHeaderRecord(
+    id: MailMessageId(id),
+    remote: identity(id == 'cloud-message' ? 'remote-message' : id),
+    envelope: MailEnvelope(
+      subject: subject,
+      from: [const MailAddress('writer@example.test')],
+    ),
+    flags: flags,
   );
 
   @override
@@ -99,7 +118,11 @@ final class _Provider extends Fake implements MailCloudProvider {
     required MailOperationLease lease,
   }) async {
     lastLease = lease;
-    expect(limit, 50);
+    cursors.add(cursor);
+    headerLimits.add(limit);
+    expect(limit, inInclusiveRange(1, 50));
+    if (headerGate case final gate?) return gate.future;
+    if (headerPage case final page?) return MailSuccess(page(mailbox, cursor));
     return MailSuccess(
       MailHeaderPage(
         messages: [
@@ -199,6 +222,7 @@ final class _Harness {
   MailProblem? connectionProblem;
   bool wrongAccount = false;
   bool factoryThrows = false;
+  void Function(_Provider)? configureProvider;
   _Provider? provider;
 
   Future<MailResult<MailCloudTokenSource>> authorize({
@@ -230,6 +254,7 @@ final class _Harness {
     providerLog = log;
     final result = _Provider(configuration)
       ..connectionProblem = connectionProblem;
+    configureProvider?.call(result);
     if (wrongAccount) {
       result.accountOverride = MailAccountId(
         'wrong-account',
@@ -366,6 +391,407 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
 );
 
 void main() {
+  for (final service in MailCloudService.values) {
+    testWidgets(
+      '${service.name} confirmed flag leaves unknown read state untouched',
+      (tester) async {
+        final harness = _Harness()
+          ..configureProvider = (provider) {
+            provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+              messages: [
+                provider.header('cloud-message', 'Cloud message', flags: null),
+              ],
+            );
+          };
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        await tester.tap(_field('ews-message-cloud-message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.ewsFlag));
+        await _pump(tester);
+        var row = tester
+            .widget<MailMessageList>(find.byType(MailMessageList))
+            .items
+            .single;
+        expect(row.isFlagged, isTrue);
+        expect(row.isRead, isNull);
+        expect(find.byTooltip(_strings.ewsUnflag), findsOneWidget);
+        await tester.tap(_field('mail-list-flagged'));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsOneWidget);
+        await tester.tap(_field('mail-list-unread'));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsNothing);
+        await tester.tap(find.byTooltip(_strings.ewsUnflag));
+        await _pump(tester);
+        row = tester
+            .widget<MailMessageList>(find.byType(MailMessageList))
+            .items
+            .single;
+        expect(row.isFlagged, isFalse);
+        expect(row.isRead, isNull);
+        expect(
+          harness.provider!.commands.map(
+            (command) => (command as MailSetFlagged).flagged,
+          ),
+          [true, false],
+        );
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${service.name} unknown read commands stay independent and refresh replaces them',
+      (tester) async {
+        final harness = _Harness()
+          ..configureProvider = (provider) {
+            provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+              messages: [
+                provider.header('cloud-message', 'Cloud message', flags: null),
+              ],
+            );
+          };
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        await tester.tap(_field('ews-message-cloud-message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.markRead));
+        await _pump(tester);
+        var row = tester
+            .widget<MailMessageList>(find.byType(MailMessageList))
+            .items
+            .single;
+        expect(row.isRead, isTrue);
+        expect(row.isFlagged, isNull);
+        await tester.tap(_field('mail-list-unread'));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsNothing);
+        await tester.tap(find.byTooltip(_strings.ewsMarkUnread));
+        await _pump(tester);
+        row = tester
+            .widget<MailMessageList>(find.byType(MailMessageList))
+            .items
+            .single;
+        expect(row.isRead, isFalse);
+        expect(row.isFlagged, isNull);
+        expect(_field('ews-message-cloud-message'), findsOneWidget);
+        await tester.tap(_field('mail-list-flagged'));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsNothing);
+        final provider = harness.provider!;
+        expect(
+          provider.commands.map((command) => (command as MailSetRead).read),
+          [true, false],
+        );
+        provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+          messages: [
+            provider.header(
+              'cloud-message',
+              'Cloud message',
+              flags: const MailMessageFlags(isRead: true),
+            ),
+          ],
+        );
+        await tester.tap(find.byTooltip(_strings.refresh));
+        await _pump(tester);
+        row = tester
+            .widget<MailMessageList>(find.byType(MailMessageList))
+            .items
+            .single;
+        expect(row.isRead, isTrue);
+        expect(row.isFlagged, isFalse);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${service.name} loaded filters permit explicit pagination with no matches',
+      (tester) async {
+        final harness = _Harness()
+          ..configureProvider = (provider) {
+            provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+              messages: [
+                cursor == null
+                    ? provider.header('cloud-message', 'Cloud message')
+                    : provider.header('older', 'Later cloud message'),
+              ],
+              next: cursor == null
+                  ? MailCursor(mailbox: mailbox, value: 'next-cloud-page')
+                  : null,
+            );
+          };
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        final provider = harness.provider!;
+        await tester.enterText(_field('mail-list-search'), 'later');
+        await tester.tap(_field('mail-list-unread'));
+        await _pump(tester);
+        expect(
+          find.text(_strings.mailMessageListStrings.noMatches),
+          findsOneWidget,
+        );
+        expect(provider.cursors, hasLength(1));
+        expect(provider.reads, 0);
+        await tester.tap(_field('ews-load-more'));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsNothing);
+        expect(_field('ews-message-older'), findsOneWidget);
+        expect(
+          find.text(
+            '1 shown · 2 loaded\n${_strings.mailMessageListStrings.loadedScope}',
+          ),
+          findsOneWidget,
+        );
+        expect(provider.cursors.map((cursor) => cursor?.value), [
+          null,
+          'next-cloud-page',
+        ]);
+        expect(provider.reads, 0);
+        expect(provider.commands, isEmpty);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${service.name} compact Back preserves query filters selection and body',
+      (tester) async {
+        final harness = _Harness()
+          ..configureProvider = (provider) {
+            provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+              messages: [
+                provider.header(
+                  'cloud-message',
+                  'Cloud message',
+                  flags: const MailMessageFlags(isFlagged: true),
+                ),
+              ],
+            );
+          };
+        await _show(
+          tester,
+          harness,
+          service: service,
+          size: const Size(400, 850),
+        );
+        await _connect(tester);
+        await tester.enterText(_field('mail-list-search'), 'cloud');
+        await tester.tap(_field('mail-list-unread'));
+        await tester.tap(_field('mail-list-flagged'));
+        await _pump(tester);
+        await tester.tap(_field('ews-message-cloud-message'));
+        await _pump(tester);
+        final reader = tester
+            .widget<MailMessageView>(find.byType(MailMessageView))
+            .controller;
+        expect(
+          reader.result.message!.body.plainText,
+          contains('Body from cloud provider.'),
+        );
+        await tester.tap(find.byTooltip(_strings.backToMessages));
+        await _pump(tester);
+        expect(
+          tester.widget<TextField>(_field('mail-list-search')).controller!.text,
+          'cloud',
+        );
+        expect(
+          tester.widget<FilterChip>(_field('mail-list-unread')).selected,
+          isTrue,
+        );
+        expect(
+          tester.widget<FilterChip>(_field('mail-list-flagged')).selected,
+          isTrue,
+        );
+        expect(
+          tester
+              .widget<Semantics>(_field('ews-message-cloud-message'))
+              .properties
+              .selected,
+          isTrue,
+        );
+        expect(
+          tester
+              .widget<MailMessageView>(
+                find.byType(MailMessageView, skipOffstage: false),
+              )
+              .controller,
+          same(reader),
+        );
+        expect(harness.provider!.reads, 1);
+        expect(harness.provider!.commands, isEmpty);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${service.name} confirmed read and flag changes update filtered rows',
+      (tester) async {
+        final harness = _Harness();
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        await tester.tap(_field('mail-list-unread'));
+        await tester.tap(_field('ews-message-cloud-message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.markRead));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsNothing);
+        expect(find.byType(MailMessageView), findsOneWidget);
+        await tester.tap(find.byTooltip(_strings.ewsMarkUnread));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsOneWidget);
+        await tester.tap(_field('mail-list-flagged'));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsNothing);
+        await tester.tap(find.byTooltip(_strings.ewsFlag));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsOneWidget);
+        final commands = harness.provider!.commands;
+        expect(commands, hasLength(3));
+        expect(
+          commands[0],
+          isA<MailSetRead>().having((command) => command.read, 'read', true),
+        );
+        expect(
+          commands[1],
+          isA<MailSetRead>().having((command) => command.read, 'read', false),
+        );
+        expect(
+          commands[2],
+          isA<MailSetFlagged>().having(
+            (command) => command.flagged,
+            'flagged',
+            true,
+          ),
+        );
+        expect(
+          commands.every(
+            (command) =>
+                command.message == harness.provider!.identity('remote-message'),
+          ),
+          isTrue,
+        );
+        expect(harness.provider!.reads, 1);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${service.name} rejects a wrong-mailbox pagination cursor without losing rows',
+      (tester) async {
+        final harness = _Harness()
+          ..configureProvider = (provider) {
+            provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+              messages: [provider.header('cloud-message', 'Cloud message')],
+              next: MailCursor(mailbox: mailbox, value: 'next-cloud-page'),
+            );
+          };
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        final provider = harness.provider!;
+        provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+          messages: [provider.header('rejected', 'Rejected private page')],
+          next: MailCursor(
+            mailbox: provider.box('archive'),
+            value: 'wrong-scope',
+          ),
+        );
+        await tester.tap(_field('ews-load-more'));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsOneWidget);
+        expect(find.text('Rejected private page'), findsNothing);
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          findsOneWidget,
+        );
+        expect(
+          tester.widget<TextButton>(_field('ews-load-more')).onPressed,
+          isNull,
+        );
+        expect(provider.cursors, hasLength(2));
+        expect(provider.reads, 0);
+        expect(provider.commands, isEmpty);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${service.name} rejects a local row id collision with an earlier page',
+      (tester) async {
+        final harness = _Harness()
+          ..configureProvider = (provider) {
+            provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+              messages: [provider.header('cloud-message', 'Cloud message')],
+              next: MailCursor(mailbox: mailbox, value: 'next-cloud-page'),
+            );
+          };
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        final provider = harness.provider!;
+        provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+          messages: [
+            MailHeaderRecord(
+              id: MailMessageId('cloud-message'),
+              remote: provider.identity('foreign-remote'),
+              envelope: MailEnvelope(subject: 'Colliding private page'),
+            ),
+          ],
+        );
+        await tester.tap(_field('ews-load-more'));
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsOneWidget);
+        expect(find.text('Cloud message'), findsOneWidget);
+        expect(find.text('Colliding private page'), findsNothing);
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          findsOneWidget,
+        );
+        expect(
+          tester.widget<TextButton>(_field('ews-load-more')).onPressed,
+          isNull,
+        );
+        expect(provider.cursors, hasLength(2));
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${service.name} disconnect retires pending header page and credentials',
+      (tester) async {
+        final harness = _Harness()
+          ..configureProvider = (provider) {
+            provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+              messages: [provider.header('cloud-message', 'Cloud message')],
+              next: MailCursor(mailbox: mailbox, value: 'next-cloud-page'),
+            );
+          };
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        final provider = harness.provider!;
+        final gate = Completer<MailResult<MailHeaderPage>>();
+        provider.headerGate = gate;
+        await tester.tap(_field('ews-load-more'));
+        await _pump(tester);
+        final lease = provider.lastLease!;
+        await tester.tap(find.byTooltip(_strings.disconnect));
+        await _pump(tester);
+        gate.complete(
+          MailSuccess(
+            MailHeaderPage(
+              messages: [provider.header('late', 'Late private page')],
+            ),
+          ),
+        );
+        await _pump(tester);
+        expect(lease.isCurrent, isFalse);
+        expect(provider.disposals, 1);
+        expect(harness.tokens.disposals, 1);
+        expect(find.text('Late private page'), findsNothing);
+        expect(_field('cloud-connect'), findsOneWidget);
+        expect(find.byType(MailMessageList), findsNothing);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   for (final service in MailCloudService.values) {
     testWidgets('${service.name} reopens its saved draft after reconnect', (
       tester,
