@@ -5,7 +5,7 @@ Option Explicit
 
 Sub Main()
     Dim doc As Document
-    Dim paragraph As Paragraph
+    Dim p As Paragraph
     Dim target As Range
     Dim names(1 To 3) As String
     Dim units(1 To 3) As Long
@@ -20,8 +20,8 @@ Sub Main()
     units(2) = 3
     units(3) = 6
 
-    Set paragraph = doc.Paragraphs(1)
-    Set target = paragraph.Range
+    Set p = doc.Paragraphs(1)
+    Set target = p.Range
     Call WriteLine(target, "Weekly supply report", True)
     With target
         .Font.Size = 18

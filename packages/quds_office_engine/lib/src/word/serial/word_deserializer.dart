@@ -2412,6 +2412,11 @@ class WordDeserializer {
     if (reader.isEmptyElement) {
       return;
     }
+    // The model exposes the regular font size. Keep the separate complex-
+    // script size as a fallback only when no regular size is present. In an
+    // effective style cascade an inherited szCs must not override a direct sz.
+    // Source XML still retains both properties for independent round trips.
+    var hasRegularSize = false;
     final int depth = reader.depth;
     while (reader.next() && reader.depth >= depth) {
       if (reader.eventType != XmlEventType.startElement) {
@@ -2479,12 +2484,14 @@ class WordDeserializer {
           );
         case 'sz':
         case 'szCs':
+          final regularSize = reader.localName == 'sz';
           final String? sz = reader.getAttribute(
             'val',
             namespaceUri: OfficeNamespaces.w,
           );
-          if (sz != null) {
+          if (sz != null && (regularSize || !hasRegularSize)) {
             props.fontSizeHalfPoints = _measureHalfPoints(sz);
+            hasRegularSize = hasRegularSize || regularSize;
           }
         case 'u':
           props.underline = WmlUnderline.fromXml(

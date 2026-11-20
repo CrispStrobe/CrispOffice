@@ -26,11 +26,11 @@ Option Explicit
 
 Sub Main()
     Dim doc As Document
-    Dim paragraph As Paragraph
+    Dim p As Paragraph
     Dim target As Range
     Set doc = ThisDocument
-    Set paragraph = doc.Paragraphs(1)
-    Set target = paragraph.Range
+    Set p = doc.Paragraphs(1)
+    Set target = p.Range
 
     target.InsertBefore "Report: "
     With target.Font
@@ -158,7 +158,13 @@ The named alignment constants are `wdAlignParagraphLeft = 0`,
 Size and spacing restrictions avoid silently rounding requested values when
 the native serializer writes half-points and twentieth-points. The spacing
 integer ceiling is a dialect serialization bound, not a claim about a maximum
-accepted by Microsoft Word. `Font.Name` sets the native ASCII font family;
+accepted by Microsoft Word. `Font.Size` edits the regular native `w:sz` value.
+The model projects that regular size whenever it is present in the effective
+style cascade, with `w:szCs` as a compatibility fallback only when no regular
+size exists. A separate complex-script `w:szCs` remains preserved as source
+XML; this dialect does not expose Word's
+[`Font.SizeBi`](https://learn.microsoft.com/en-us/office/vba/api/word.font.sizebi)
+property. `Font.Name` sets the native ASCII font family;
 independent East Asian and complex-script font selection is not implemented
 by this source operation. Requested font availability and rendering fallback
 remain the document host's responsibility.
@@ -246,16 +252,17 @@ A compiled Word plan uses the same transaction as handwritten native plans.
 If a later selector is missing, a text range is empty, a native structural
 guard rejects an edit, or serialization fails, earlier detached edits are not
 published. Session bytes, revision, and recording remain unchanged. Successful
-`validate` also leaves the session unchanged. A successful `run` publishes one
-new document revision regardless of the number of operations in the plan.
+`validate` also leaves the session unchanged. A successful nonempty `run`
+publishes one new document revision regardless of the number of operations.
+An empty plan leaves the revision unchanged.
 
 Source diagnostics and complete ordered plans are covered by the versioned
 [conformance format](VBA_CONFORMANCE.md). The independent Word integration
-suite compiles source and executes its plan against real native packages,
-checking save/reopen behavior, selector routing, formatting precision,
-transaction rollback, revision history, and opaque macro-part preservation.
-These are Quds VM and compiled-JavaScript checks, not observed Microsoft Word
-host results.
+suite runs on the Dart VM, compiles source, and executes its plan against real
+native packages. It checks save/reopen behavior, selector routing, formatting
+precision, transaction rollback, revision history, and opaque macro-part
+preservation. The conformance runner also supports compiled JavaScript. These
+checks do not claim observed Microsoft Word host results.
 
 Unsupported scope includes document-content reads, `ActiveDocument`,
 `Selection`, `Paragraphs.Count`, live collection iteration, editable character

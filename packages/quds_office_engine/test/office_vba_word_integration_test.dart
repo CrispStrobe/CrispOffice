@@ -222,12 +222,12 @@ void main() {
       final session = _session(_template(<String>['tail']));
       await session.run(
         _compile(r'''Sub Main()
-  Dim original As Range, alias As Range
+  Dim original As Range, copyRange As Range
   Set original = ThisDocument.Paragraphs(1).Range
-  Set alias = original
+  Set copyRange = original
   original.InsertBefore "A"
-  Call Prefix(alias, "B")
-  alias.Font.Bold = True
+  Call Prefix(copyRange, "B")
+  copyRange.Font.Bold = True
 End Sub
 Sub Prefix(ByVal target As Range, ByVal text As String)
   Call target.InsertBefore(text)
@@ -485,7 +485,8 @@ End Sub'''),
         );
         final session = _session(original);
         expect(_read(session).trackRevisions, isFalse);
-        expect(_read(session).revisions.single.start, 2);
+        final admittedRevision = _read(session).revisions.single;
+        expect(admittedRevision.start, 2);
         final plan = _compile(r'''Sub Main()
   ThisDocument.Paragraphs(1).Range.InsertBefore "Header: "
 End Sub''');
@@ -503,7 +504,10 @@ End Sub''');
           _documentXml(session.bytes),
           'ins',
         ).single;
-        expect(nativeRevision.getAttribute('id'), '17');
+        // Import canonicalizes native revision IDs; saving must retain the
+        // admitted model's identity together with its author and shifted span.
+        expect(revision.id, admittedRevision.id);
+        expect(nativeRevision.getAttribute('id'), '${admittedRevision.id}');
         expect(nativeRevision.getAttribute('author'), 'Original reviewer');
         expect(nativeRevision.text, 'XYZ');
       },

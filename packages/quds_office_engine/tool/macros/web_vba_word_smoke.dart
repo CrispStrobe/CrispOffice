@@ -102,8 +102,10 @@ End Sub
       throw StateError('Word VBA published a failed transaction');
     }
   }
-  if (session.stopRecording().steps.length != 10) {
-    throw StateError('Validation or failed Word runs changed the recording');
+  if (session.stopRecording().steps.isNotEmpty) {
+    throw StateError(
+      'Playback, validation or failed Word runs changed the recording',
+    );
   }
   final readOnly = OfficeMacroSession(
     original,

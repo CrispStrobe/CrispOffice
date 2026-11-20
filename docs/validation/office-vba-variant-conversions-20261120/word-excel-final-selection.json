@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "capturedMain": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+  "capturedMain": "7501b604db23e2df3d765f2ea44f572b2ea43d97",
   "purpose": "Fresh combined Word and Excel VBA qualification after all captured main advances, including the explicit Variant milestone, the Word paragraph frontend, native Word size projection, retained PPTX/Mail/Zotero/spaCy work, and Arabic lifecycle repairs. Each test file appears once in this selection.",
   "cohorts": {
     "incoming-mail-host": {
@@ -248,6 +248,14 @@
         "test/studio_hunspell_setup_test.dart",
         "test/studio_arabic_morph_web_lifecycle_test.dart"
       ]
+    },
+    "mobile-host-controls": {
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_native_paths_test.dart",
+        "test/spacy_development_cases_test.dart"
+      ]
     }
   },
   "runtime": "Use repository-pinned Flutter 3.47.8 / Dart 3.13.7 with the unchanged locked workspace. Run genuine Dart VM tests through dart, widget suites through flutter test --no-pub --concurrency=1. Record source head, selected files, raw machine events and exit status; do not count loader/setup events as tests. Serialize all Flutter CLI invocations globally to avoid concurrent SDK engine-stamp updates; pure-Dart package groups may run concurrently. Provide QUDS_SPACY_MACOS_LIBRARY pointing to the immutable, SHA-256-verified macOS library pinned by build_macos_app.sh for the hash-only identity test; it is not loaded or executed.",
@@ -262,7 +270,8 @@
     "The browser-only persistence file is outside the accepted VM/widget selection because local Chromium startup is blocked by socket permissions. Source analysis and web compilation do not establish browser runtime persistence.",
     "Incoming macOS Word native benchmark passed its target on 20 of 24 pages; four exact-spacing pages remain below target. Fresh Linux regression tests do not replace those native observations.",
     "Word and Excel source conformance expectations are specification-derived or intentional dialect limits; no fresh Microsoft Office host execution is claimed. Word source uses explicit body-paragraph indexes and does not read live document text.",
-    "Arabic unit and host lifecycle tests use controlled backends; worker protocol transfer controls and production JavaScript compilation are reported separately. No fresh native or Wasm grammar model execution is claimed."
+    "Arabic unit and host lifecycle tests use controlled backends; worker protocol transfer controls and production JavaScript compilation are reported separately. No fresh native or Wasm grammar model execution is claimed.",
+    "Incoming mobile native proofing is preserved with its original native/emulator evidence. Fresh mobile-host path and embedded-panel controls run locally; no new iOS/Android native build, emulator or device execution is claimed."
   ],
   "blocked_browser_cohort": {
     "package": "packages/quds_office_editor/example",
