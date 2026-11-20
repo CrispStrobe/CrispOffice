@@ -10,6 +10,7 @@ import 'package:quds_office_studio/studio_mail_submission.dart';
 MailMessage _message({
   String subject = 'Decoded source subject',
   String? plain = 'Decoded source body',
+  String? html = '<p>HTML fallback must stay out</p>',
   List<MailAddress> from = const [MailAddress('sender@example.invalid')],
   List<MailAddress> replyTo = const [MailAddress('reply@example.invalid')],
   List<MailAddress> to = const [
@@ -35,7 +36,7 @@ MailMessage _message({
     inReplyTo: inReplyTo,
     references: references,
   ),
-  body: MailBody(plainText: plain, html: '<p>HTML fallback must stay out</p>'),
+  body: MailBody(plainText: plain, html: html),
   attachments: [
     MailAttachment(
       partPath: '2',
@@ -158,17 +159,74 @@ void main() {
     expect(draft.body, isNot(contains('[Quoted text truncated.]')));
   });
 
-  test('HTML-only bodies produce a fixed typed unavailable outcome', () {
+  test('HTML-only reply and text forward quote only inert body text', () {
     for (final forward in [false, true]) {
-      expect(
-        () =>
-            buildStudioMailReplyDraft(_message(plain: null), forward: forward),
-        throwsA(isA<StudioMailReplyUnavailable>()),
+      final draft = buildStudioMailReplyDraft(
+        _message(
+          plain: null,
+          html: '<p>Decoded <b>HTML</b> &amp; café 😀</p>'
+              '<script>privateScript()</script>'
+              '<style>privateStyle</style>'
+              '<form>privateForm</form>'
+              '<img src="https://example.invalid/tracker" alt="Image">',
+        ),
+        forward: forward,
       );
+      expect(draft.body, contains('> Decoded HTML & café 😀'));
+      expect(draft.body, isNot(contains('privateScript')));
+      expect(draft.body, isNot(contains('privateStyle')));
+      expect(draft.body, isNot(contains('privateForm')));
+      expect(draft.body, isNot(contains('https://')));
+      expect(draft.body, isNot(contains('<p>')));
+      expect(draft.body, isNot(contains('private-bcc')));
+      expect(draft.body, isNot(contains('private-attachment')));
+      expect(draft.attachments.isEmpty, isTrue);
+    }
+  });
+
+  test('missing and malformed HTML bodies produce a typed refusal', () {
+    for (final html in <String?>[
+      null,
+      '<p>Visible prefix</p><a title="unfinished',
+      '<p>Visible prefix</p><!-- unfinished',
+      '<p>Visible prefix</p><script>unfinished',
+    ]) {
+      for (final forward in [false, true]) {
+        expect(
+          () => buildStudioMailReplyDraft(
+            _message(plain: null, html: html),
+            forward: forward,
+          ),
+          throwsA(isA<StudioMailReplyUnavailable>()),
+        );
+      }
     }
     expect(
       const StudioMailReplyUnavailable().toString(),
-      'No decoded plain-text body is available.',
+      'No safely quotable body is available.',
+    );
+  });
+
+  test('HTML quote cutoff preserves Unicode and reports truncation', () {
+    final retained = 'x' * 7999 + '😀';
+    final draft = buildStudioMailReplyDraft(
+      _message(plain: null, html: '<p>' + retained + 'Omitted</p>'),
+      forward: false,
+      truncationNotice: '[Quote ended.]',
+    );
+    expect(draft.body, endsWith(retained + '\n\n[Quote ended.]'));
+    expect(draft.body, isNot(contains('Omitted')));
+    expect(draft.body, isNot(contains('\uFFFD')));
+    expect(utf8.decode(utf8.encode(draft.body)), draft.body);
+  });
+
+  test('HTML projection over its input budget refuses the whole quote', () {
+    expect(
+      () => buildStudioMailReplyDraft(
+        _message(plain: null, html: 'x' * (8 * 1024 * 1024 + 1)),
+        forward: false,
+      ),
+      throwsA(isA<StudioMailReplyUnavailable>()),
     );
   });
 
@@ -414,13 +472,31 @@ void main() {
     );
   });
 
-  test('reply all refuses HTML-only quotation without a plain fallback', () {
-    expect(
-      () => buildStudioMailReplyAllDraft(
-        _message(plain: null),
-        sender: 'writer@example.invalid',
+  test('HTML-only reply all ignores private metadata and keeps threading', () {
+    final draft = buildStudioMailReplyAllDraft(
+      _message(
+        plain: null,
+        html: '<p>Visible body</p><img src="cid:private-part">',
+        messageId: '<parent@example.invalid>',
+        references: const ['<root@example.invalid>'],
+        bcc: List<MailAddress>.filled(
+          1025,
+          const MailAddress('private@example.invalid,other@example.invalid'),
+        ),
       ),
-      throwsA(isA<StudioMailReplyUnavailable>()),
+      sender: 'writer@example.invalid',
+    );
+    expect(draft.body, contains('> Visible body'));
+    expect(draft.body, isNot(contains('private@example.invalid')));
+    expect(draft.body, isNot(contains('private-attachment-name')));
+    expect(draft.body, isNot(contains('private-part')));
+    expect(draft.to, 'reply@example.invalid, original-recipient@example.invalid');
+    expect(draft.bcc, isEmpty);
+    expect(draft.attachments.isEmpty, isTrue);
+    expect(draft.thread.inReplyTo, '<parent@example.invalid>');
+    expect(
+      draft.thread.references,
+      '<root@example.invalid> <parent@example.invalid>',
     );
   });
 
