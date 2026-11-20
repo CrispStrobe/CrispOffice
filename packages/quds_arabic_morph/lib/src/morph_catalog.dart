@@ -18,8 +18,8 @@ final class MorphArtifact {
 
 String sha256Hex(List<int> data) => sha256.convert(data).toString();
 
-/// A Camel Morph database bundle published at an immutable Hugging Face
-/// revision. Every value is compiled into the app; downloaded files can never
+/// A Camel Morph database (or context model) bundle published at an
+/// immutable Hugging Face revision. Every value is compiled into the app; downloaded files can never
 /// widen or replace these pins. Bundles hold data only (no executable code).
 final class MorphBundleDownload {
   const MorphBundleDownload({
@@ -59,6 +59,8 @@ final class MorphBundleDownload {
 
   /// `manifest.json`: its SHA-256 is the analyzer's trust anchor.
   final MorphArtifact manifest;
+
+  /// The database (or, for a context model bundle, the model file).
   final MorphArtifact database;
 
   /// `NOTICE` and `LICENSE`, required next to the database by the manifest.
@@ -167,6 +169,53 @@ const camelMorphMsaNoprob = MorphBundleDownload(
       'LICENSE',
       '214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94',
       442,
+    ),
+  ],
+);
+
+/// The context disambiguation model for [camelMorphMsaProofingBin]
+/// (CrispEmbed `crispembed-camel-morph-disambig-v1`): a bigram hidden Markov
+/// model over the database's analyses, trained without annotations on Arabic
+/// Wikipedia. It ranks each word's analyses in its sentence, so grammar rules
+/// can rely on a clearly leading reading. CC BY-SA 4.0 (Wikipedia
+/// contributors; Camel Morph MSA v1.0 (c) 2024 NYU Abu Dhabi, CC BY 4.0).
+/// Its `database` artifact is the model file.
+const camelMorphMsaDisambig = MorphBundleDownload(
+  id: 'camel-morph-msa-disambig',
+  displayName: 'Arabic context model (Camel Morph disambiguation)',
+  repository: 'cstr/camel-morph-msa-disambig',
+  revision: '07fd9e65200a3ea92a081efa9b0714817178df5f',
+  directory: 'bigram-v1',
+  license: 'CC-BY-SA-4.0',
+  licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+  attribution:
+      'Camel Morph MSA context disambiguation model, CC BY-SA 4.0. Trained on '
+      'Arabic Wikipedia text by Wikipedia contributors (CC BY-SA 4.0) over '
+      'Camel Morph MSA v1.0 (c) 2024 by New York University Abu Dhabi '
+      '(CC BY 4.0). Changes: the text was reduced to smoothed tag-transition '
+      'and lexeme probabilities; it contains no sentence of the text.',
+  sourceUrl:
+      'https://github.com/CrispStrobe/CrispEmbed/blob/main/docs/arabic-morph-disambig-format.md',
+  manifest: MorphArtifact(
+    'manifest.json',
+    '02b8fc1cdfd8c925f6737029eafd79aea22148f2ce0af31b8b0e07a95053cbaa',
+    1753,
+  ),
+  database: MorphArtifact(
+    'camel_morph_msa_v1.0.disambig.cmdis',
+    '987250d64ec36e631b125f9f7ba52f4e5fe48da694ea3a6a21786b4ac4aabf61',
+    4487296,
+  ),
+  notices: [
+    MorphArtifact(
+      'NOTICE',
+      '12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b',
+      1484,
+    ),
+    MorphArtifact(
+      'LICENSE',
+      'ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695',
+      363,
     ),
   ],
 );

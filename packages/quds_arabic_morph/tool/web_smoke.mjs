@@ -1,6 +1,8 @@
 // Drives the shipped web worker (build/web/arabic_morph_worker.mjs + the
 // bundled Emscripten module) through its message protocol in Node:
-//   node tool/web_smoke.mjs <build/web dir> <bundle dir> [corpus.txt]
+//   node tool/web_smoke.mjs <build/web dir> <bundle dir> [corpus.txt] [model dir]
+// With a context model bundle dir, the worker also opens the model and
+// disambiguates a sentence (scores section after the compact records).
 // The bundle dir holds a verified bundle (proofing-bin); its manifest lists
 // the files. The corpus (one sentence per line, e.g. the UD Arabic-PUD
 // `# text` lines) is split into distinct Arabic words and analyzed in
@@ -10,7 +12,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 
-const [webDir, bundleDir, corpus] = process.argv.slice(2);
+const [webDir, bundleDir, corpus, modelDir] = process.argv.slice(2);
 const replies = new Map();
 globalThis.self = {postMessage: message => replies.get(message.id)?.(message)};
 await import(pathToFileURL(path.resolve(webDir, 'arabic_morph_worker.mjs')).href);
@@ -90,6 +92,40 @@ const report = {
   protocol_checks: 6, load_seconds: loadSeconds, wasm_heap_mb: mb(openBody.heapBytes),
   process_rss_growth_mb: mb(process.memoryUsage().rss - rssBefore), info: openBody.info,
 };
+if (modelDir) {
+  const readModel = name => fs.readFileSync(path.join(modelDir, name));
+  const modelManifest = readModel('manifest.json');
+  const modelNames = ['manifest.json', ...JSON.parse(modelManifest).files.map(f => f.path)];
+  const modelSha256 = crypto.createHash('sha256').update(modelManifest).digest('hex');
+  const openedModel = await send({op: 'open_model', manifestSha256: modelSha256,
+    files: modelNames.map(name => ({name, bytes: readModel(name)}))});
+  const modelBody = JSON.parse(openedModel.response);
+  assert(modelBody.status === 'success', `open_model: ${openedModel.response}`);
+  const words = ['قرأت', 'ثلاثة', 'كتب', 'في', 'المكتبة', '.'];
+  const reply = await send({op: 'disambiguate', words, lengths: [words.length]});
+  const buffer = reply.buffer;
+  const view = new DataView(buffer);
+  // Skip the compact records, then read the score section.
+  let at = 8;
+  for (let w = 0; w < words.length; w++) at += 8 + view.getUint32(at + 4, true);
+  const records = decode(buffer.slice(0, at), words.length);
+  assert(view.getUint32(at, true) === 0x31534D41 && view.getUint32(at + 4, true) === words.length, 'score header');
+  at += 8;
+  const best = [];
+  for (let w = 0; w < words.length; w++) {
+    const n = view.getUint32(at, true);
+    at += 8;
+    let top = null;
+    for (let a = 0; a < n; a++) {
+      if (view.getUint32(at, true) === 0) top ??= {analysis: records[w][a], score: view.getFloat32(at + 4, true)};
+      at += 8;
+    }
+    best.push(top);
+  }
+  assert(at === buffer.byteLength, 'score section length');
+  assert(best[2].analysis.lex === 'كِتَاب' && best[3].analysis.pos === 'prep', 'كتب is كِتَاب, في a preposition');
+  report.model = {info: modelBody.info.model_format, best: best.map(b => b && `${b.analysis.lex}/${b.analysis.pos}:${b.score.toFixed(3)}`)};
+}
 if (corpus) {
   const arabic = /[ؠ-يٮ-ۓ]/u;
   const words = [...new Set(fs.readFileSync(corpus, 'utf8').split('\n')

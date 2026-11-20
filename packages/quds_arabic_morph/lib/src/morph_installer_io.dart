@@ -111,21 +111,27 @@ final class MorphInstaller {
     }
   }
 
-  /// Removes every installed bundle other than [keep] (for example the
-  /// earlier `noprob` text bundle once the binary proofing bundle replaced
-  /// it) and leftovers of interrupted removals. Staging directories of a
-  /// running installation are left alone. Returns the removed entry names.
-  Future<List<String>> removeOtherBundles(MorphBundleDownload keep) async {
+  /// Removes every installed bundle other than [keep] and [alsoKeep] (for
+  /// example the earlier `noprob` text bundle once the binary proofing bundle
+  /// replaced it, or an earlier context model) and leftovers of interrupted
+  /// removals. Staging directories of a running installation are left alone.
+  /// Returns the removed entry names.
+  Future<List<String>> removeOtherBundles(
+    MorphBundleDownload keep, {
+    Iterable<MorphBundleDownload> alsoKeep = const [],
+  }) async {
     final parent = Directory('${root.path}/arabic_morph');
     if (FileSystemEntity.typeSync(parent.path, followLinks: false) !=
         FileSystemEntityType.directory) {
       return const [];
     }
-    final current = '${keep.revision}-${keep.id}';
+    final current = {
+      for (final b in [keep, ...alsoKeep]) '${b.revision}-${b.id}',
+    };
     final removed = <String>[];
     for (final entry in parent.listSync(followLinks: false)) {
       final name = entry.uri.pathSegments.lastWhere((s) => s.isNotEmpty);
-      if (name == current || name.startsWith('.staging-')) continue;
+      if (current.contains(name) || name.startsWith('.staging-')) continue;
       if (name.startsWith('.removing-') ||
           RegExp(r'^[0-9a-f]{40}-[A-Za-z0-9._-]+$').hasMatch(name)) {
         try {

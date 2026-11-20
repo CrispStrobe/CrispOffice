@@ -1,0 +1,25 @@
+Camel Morph MSA context disambiguation model (camel_morph_msa_v1.0.disambig.cmdis)
+
+A bigram hidden Markov model over the analyses of the Camel Morph MSA v1.0
+noprob database, trained without annotations by expectation maximization on
+raw Arabic Wikipedia text. It holds tag transition and lexeme probabilities
+only; it contains no sentence of the training text.
+
+Licence: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/).
+Produced with CrispEmbed (MIT): tools/arabic_morph/disambig_train.py.
+
+Attribution:
+- Training text: Arabic Wikipedia, "20231101.ar" dump, by Wikipedia contributors,
+  CC BY-SA 4.0 (https://ar.wikipedia.org/, licence
+  https://creativecommons.org/licenses/by-sa/4.0/). Retrieved through the
+  Hugging Face dataset wikimedia/wikipedia (20231101.ar); 12,000,927 tokens of
+  885,657 sentences were used. The 1600 articles drawn for evaluation were excluded.
+- Lexemes, parts of speech and the analyses the tags are built from: Camel
+  Morph MSA v1.0 (c) 2024 by New York University Abu Dhabi, CC BY 4.0
+  (https://github.com/CAMeL-Lab/camel_morph), in the noprob proofing-bin
+  variant (database SHA-256 fc9d9109ddb5430da94def715df05b563cb37ffaec508f3514668ded19438909); no Penn Arabic Treebank
+  probability was used.
+
+Changes (CC BY-SA 4.0 section 3(b), CC BY 4.0 section 3(a)(1)(B)): the text
+was tokenized, analyzed with the database and reduced to expected counts of
+tag bigrams and lexemes, which were smoothed and stored as log-probabilities.

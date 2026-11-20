@@ -207,6 +207,57 @@ final class _WebTransport implements ArabicMorphTransport {
   }
 
   @override
+  Future<Map<String, Object?>> openDisambiguator(MorphDatabase model) async {
+    if (model is! MorphDatabaseBytes) {
+      throw const ArabicMorphUnavailableException(
+        'The browser Arabic morphology worker opens verified bundle bytes.',
+      );
+    }
+    final buffers = <JSObject>[];
+    final files = <JSAny>[
+      for (final entry in model.files.entries)
+        JSObject()
+          ..setProperty('name'.toJS, entry.key.toJS)
+          ..setProperty('bytes'.toJS, _bytes(entry.value, buffers)),
+    ].toJS;
+    final request = JSObject()
+      ..setProperty('op'.toJS, 'open_model'.toJS)
+      ..setProperty('manifestSha256'.toJS, model.bundle.manifest.sha256.toJS)
+      ..setProperty('files'.toJS, files);
+    final body = _success(await _send(request, transfer: buffers.toJS));
+    return (body['info'] as Map).cast<String, Object?>();
+  }
+
+  @override
+  Future<List<List<ArabicContextReading>>> disambiguate(
+    List<List<String>> sentences,
+  ) async {
+    if (sentences.isEmpty) return const [];
+    final words = [for (final s in sentences) ...s];
+    final request = JSObject()
+      ..setProperty('op'.toJS, 'disambiguate'.toJS)
+      ..setProperty('words'.toJS, [for (final w in words) w.toJS].toJS)
+      ..setProperty(
+        'lengths'.toJS,
+        [for (final s in sentences) s.length.toJS].toJS,
+      );
+    final body = await _send(request);
+    final decoder = _decoder;
+    if (body is String) _success(body); // a failure report
+    if (body is! Uint8List || decoder == null) {
+      throw const FormatException('Malformed Arabic disambiguation response.');
+    }
+    final readings = decoder.decodeReadings(body, words.length);
+    final out = <List<ArabicContextReading>>[];
+    var at = 0;
+    for (final s in sentences) {
+      out.add(readings.sublist(at, at + s.length));
+      at += s.length;
+    }
+    return out;
+  }
+
+  @override
   Future<void> dispose() async {
     if (_disposed) return;
     _disposed = true;

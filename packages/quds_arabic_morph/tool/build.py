@@ -30,16 +30,16 @@ NATIVE = PACKAGE / "native"
 LICENSES = PACKAGE / "licenses"
 CRISPEMBED = {
     "repository": "https://github.com/CrispStrobe/CrispEmbed",
-    "commit": "0ed76631843cadd9b5c8296f25ed8a414d8f51db",
-    "pull_request": 255,
+    "commit": "3bab324832ea911c2b1260a0d50f0ed898f47950",
+    "pull_request": 261,
 }
 RAW = "https://raw.githubusercontent.com/CrispStrobe/CrispEmbed/{commit}/{path}"
 # Every file fetched from CrispEmbed: path -> (SHA-256, bytes). Compiled
 # sources and their notices; nothing else of CrispEmbed (no ggml) is used.
 SOURCES = {
     "LICENSE": ("a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e", 4739),
-    "src/arabic_morph.cpp": ("fff60440de9faaff4f5a5a0ec2c2b593a17eea8f94b6e55231d4059f361e910f", 111218),
-    "src/arabic_morph.h": ("98a2d0e6ec9ffed02c7d63e8e19c0ce7a46ed995859c2085fecad5b10620bc4c", 7377),
+    "src/arabic_morph.cpp": ("c1547caf39aab9f74834cba9c782498e876357ba07ec6487d55b928c03f35400", 139469),
+    "src/arabic_morph.h": ("cb7239fd6c727fd71d6f52240c380dd0914e6fb52418a7142bb7f8f81bcb0ed7", 11823),
     "src/arabic_morph_tables.h": ("72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174", 8028),
     "src/core/env_gate.h": ("2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e", 3245),
     "src/core/json.h": ("7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589", 23378),
@@ -74,10 +74,13 @@ NOTICES = {
     "CPython-LICENSE": "tools/arabic_morph/notices/CPython-LICENSE",
 }
 # Attribution of the user-downloaded data (never compiled in), copied from
-# the pinned proofing-bin bundle so hosts can show it on their licence page.
+# the pinned proofing-bin bundle and the pinned context model bundle so hosts
+# can show it on their licence page.
 DATA_NOTICES = {
     "camel-morph-msa-NOTICE": ("ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd", 1799),
     "camel-morph-msa-LICENSE": ("214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94", 442),
+    "camel-morph-msa-disambig-NOTICE": ("12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b", 1484),
+    "camel-morph-msa-disambig-LICENSE": ("ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695", 363),
 }
 LIBRARY = "quds_arabic_morph"
 
@@ -122,8 +125,8 @@ def license_bundle(root: Path) -> dict:
         "schema_version": 1,
         "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 "
                   "option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their "
-                  "notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) is user-downloaded data, never "
-                  "part of the binary.",
+                  "notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) and its context model (CC BY-SA "
+                  "4.0) are user-downloaded data, never part of the binary.",
         "component": {
             "name": "crispembed-ar-morph", "source": CRISPEMBED["repository"], "commit": CRISPEMBED["commit"],
             "pull_request": CRISPEMBED["pull_request"], "license": "MIT",
@@ -138,6 +141,9 @@ def license_bundle(root: Path) -> dict:
         "data_notices": {
             "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin",
             "license": "CC-BY-4.0",
+            "model_bundle": "huggingface.co/cstr/camel-morph-msa-disambig@07fd9e65200a3ea92a081efa9b0714817178df5f"
+                            "/bigram-v1",
+            "model_license": "CC-BY-SA-4.0",
             "files": {name: digest for name, (digest, _) in sorted(DATA_NOTICES.items())},
         },
     }

@@ -128,6 +128,113 @@ class _StudioHunspellSetupDialogState extends State<StudioHunspellSetupDialog> {
     );
   }
 
+  Future<void> _installModel(StudioArabicMorphHost host) async {
+    final cancellation = StudioHunspellCancellation();
+    setState(() {
+      _cancellation = cancellation;
+      _progress = 0;
+    });
+    await _run(
+      () => host.installModel(
+        cancellation: cancellation,
+        onProgress: (received, total) {
+          if (mounted) setState(() => _progress = received / total);
+        },
+      ),
+      working: host.modelStatus.bundle.id,
+    );
+  }
+
+  /// The optional context model: a second download that needs the database.
+  Widget _modelEntry(StudioArabicMorphHost host, ThemeData theme) {
+    final status = host.modelStatus;
+    final bundle = status.bundle;
+    final busy = _working == bundle.id;
+    final ready = host.status.installed && host.status.loaded;
+    return Column(
+      key: const ValueKey('arabic-morph-model'),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(bundle.displayName, style: theme.textTheme.titleSmall),
+        const SizedBox(height: 4),
+        SelectableText(
+          'Optional context model for the Arabic grammar rules: it ranks '
+          'the analyses of each word in its sentence, so a rule can rely on '
+          'the clearly most likely reading instead of staying silent '
+          'whenever any reading would fit. Needs the morphology data above.\n'
+          'Source: ${bundle.browseUrl}\n'
+          'Format: ${bundle.sourceUrl}\n'
+          'Licence: CC BY-SA 4.0 (${bundle.licenseUrl})\n'
+          'Attribution: ${bundle.attribution}\n'
+          'Download: ${_megabytes(bundle.totalBytes)}, every file checked '
+          'against its pinned SHA-256 (manifest.json '
+          '${_short(bundle.manifest.sha256)}, model '
+          '${_short(bundle.database.sha256)}).',
+          style: theme.textTheme.bodySmall,
+        ),
+        const SizedBox(height: 8),
+        if (!status.offered)
+          Text(status.unavailableReason!)
+        else if (status.installed && status.loaded)
+          const Text(
+            'Installed, verified and loaded. Grammar rules use readings in '
+            'context.',
+            key: ValueKey('arabic-morph-model-loaded'),
+          )
+        else if (status.installed && status.problem == null)
+          const Text(
+            'Installed and verified; it loads with the morphology data.',
+            key: ValueKey('arabic-morph-model-installed'),
+          )
+        else if (!status.installed)
+          Text(
+            ready
+                ? 'Not installed. Nothing is downloaded until you ask.'
+                : 'Install the morphology data first.',
+          ),
+        if (status.problem != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(
+              status.problem!,
+              style: TextStyle(color: theme.colorScheme.error),
+            ),
+          ),
+        if (busy) ...[
+          const SizedBox(height: 8),
+          LinearProgressIndicator(value: _progress),
+        ],
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          children: [
+            if (status.offered && !status.installed && !busy)
+              FilledButton(
+                key: const ValueKey('arabic-morph-model-install'),
+                onPressed: _working == null && ready
+                    ? () => _installModel(host)
+                    : null,
+                child: const Text('Download'),
+              ),
+            if (busy)
+              TextButton(
+                onPressed: () => _cancellation?.cancel(),
+                child: const Text('Cancel'),
+              ),
+            if (status.installed && !busy)
+              TextButton(
+                key: const ValueKey('arabic-morph-model-remove'),
+                onPressed: _working == null
+                    ? () => _run(host.removeModel, working: bundle.id)
+                    : null,
+                child: const Text('Remove'),
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+
   Widget _morphEntry(StudioArabicMorphHost host, ThemeData theme) {
     final status = host.status;
     final bundle = status.bundle;
@@ -307,6 +414,8 @@ class _StudioHunspellSetupDialogState extends State<StudioHunspellSetupDialog> {
           ..add(const Divider())
           ..add(const SizedBox(height: 8))
           ..add(_morphEntry(morphHost, theme))
+          ..add(const SizedBox(height: 16))
+          ..add(_modelEntry(morphHost, theme))
           ..add(const SizedBox(height: 16));
       }
     }

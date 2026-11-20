@@ -33,20 +33,82 @@ final class _FakeTransport implements ArabicMorphTransport {
     ];
   }
 
+  bool failModel = false;
+  final sentences = <List<List<String>>>[];
+
+  @override
+  Future<Map<String, Object?>> openDisambiguator(MorphDatabase model) async {
+    if (failModel) throw StateError('bad model');
+    return {'model_format': 'crispembed-camel-morph-disambig-v1'};
+  }
+
+  /// Every word reads as a noun (best, 0.9) or a verb (0.1).
+  @override
+  Future<List<List<ArabicContextReading>>> disambiguate(
+    List<List<String>> batch,
+  ) async {
+    sentences.add(batch);
+    return [
+      for (final s in batch)
+        [
+          for (final word in s)
+            ArabicContextReading(
+              [
+                {'lex': word, 'pos': 'noun'},
+                {'lex': word, 'pos': 'verb'},
+              ],
+              const [0.9, 0.1],
+              const [0, 1],
+            ),
+        ],
+    ];
+  }
+
   @override
   Future<void> dispose() async => disposed = true;
 }
 
-CamelArabicMorphology _morphology(_FakeTransport transport, {int cache = 10}) =>
-    CamelArabicMorphology(
-      database: const MorphDatabaseFiles(
-        camelMorphMsaProofingBin,
-        manifestPath: 'unused',
-      ),
-      transport: transport,
-      cacheWords: cache,
-      batchWords: 2,
-    );
+CamelArabicMorphology _morphology(
+  _FakeTransport transport, {
+  int cache = 10,
+  bool model = false,
+}) => CamelArabicMorphology(
+  database: const MorphDatabaseFiles(
+    camelMorphMsaProofingBin,
+    manifestPath: 'unused',
+  ),
+  disambiguator: model
+      ? const MorphDatabaseFiles(
+          camelMorphMsaDisambig,
+          manifestPath: 'unused-model',
+        )
+      : null,
+  transport: transport,
+  cacheWords: cache,
+  batchWords: 2,
+);
+
+/// The score section of a disambiguation buffer: per word (rank, score)
+/// for each analysis and the candidate count.
+List<int> _scores(List<(int, List<(int, double)>)> words) {
+  final out = BytesBuilder();
+  void u32(int v) => out.add(
+    (ByteData(4)..setUint32(0, v, Endian.little)).buffer.asUint8List(),
+  );
+  u32(CompactAnalysisDecoder.scoresMagic);
+  u32(words.length);
+  for (final (candidates, analyses) in words) {
+    u32(analyses.length);
+    u32(candidates);
+    for (final (rank, score) in analyses) {
+      u32(rank);
+      out.add(
+        (ByteData(4)..setFloat32(0, score, Endian.little)).buffer.asUint8List(),
+      );
+    }
+  }
+  return out.takeBytes();
+}
 
 /// One word record of the compact format: [analyses] as (key id, value)
 /// lists, null values allowed.
@@ -302,7 +364,136 @@ void main() {
     });
   });
 
+  group('disambiguation buffers', () {
+    const keys = ['lex', 'pos'];
+
+    test('readings carry ranks and scores per analysis', () {
+      final decoder = CompactAnalysisDecoder(keys);
+      final buffer = Uint8List.fromList([
+        ..._batch([
+          _record([
+            [(0, 'كِتَاب'), (1, 'noun')],
+            [(0, 'كَتَب'), (1, 'verb')],
+            [(0, 'كِتَاب'), (1, 'noun')],
+          ]),
+          null,
+          _record([]),
+        ]),
+        ..._scores([
+          (2, [(0, 0.96), (1, 0.04), (0, 0.96)]),
+          (1, []),
+          (1, []),
+        ]),
+      ]);
+      final readings = decoder.decodeReadings(buffer, 3);
+      expect(readings[0].best.map((a) => a['pos']), ['noun', 'noun']);
+      expect(readings[0].margin, closeTo(0.92, 1e-6));
+      expect(readings[0].confident(0.9), hasLength(2));
+      expect(readings[1].analyses, isEmpty);
+      expect(readings[2].confident(0), isNull);
+      // A plain compact decode refuses the trailing score section.
+      expect(() => decoder.decode(buffer, 3), throwsFormatException);
+    });
+
+    test('malformed score sections are rejected', () {
+      final decoder = CompactAnalysisDecoder(keys);
+      final record = _record([
+        [(0, 'a'), (1, 'noun')],
+      ]);
+      Uint8List buffer(List<(int, List<(int, double)>)> scores) =>
+          Uint8List.fromList([
+            ..._batch([record]),
+            ..._scores(scores),
+          ]);
+      expect(
+        decoder
+            .decodeReadings(
+              buffer([
+                (1, [(0, 1.0)]),
+              ]),
+              1,
+            )
+            .single
+            .bestScore,
+        1.0,
+      );
+      for (final bad in [
+        <(int, List<(int, double)>)>[(1, [])], // count mismatch
+        [
+          (1, [(1, 1.0)]),
+        ], // rank beyond the candidates
+        [
+          (0, [(0, 1.0)]),
+        ], // no candidate
+        [
+          (1, [(0, 2.0)]),
+        ], // score above 1
+      ]) {
+        expect(
+          () => decoder.decodeReadings(buffer(bad), 1),
+          throwsFormatException,
+        );
+      }
+      expect(
+        () => decoder.decodeReadings(_batch([record]), 1),
+        throwsFormatException,
+      );
+    });
+  });
+
   group('CamelArabicMorphology', () {
+    test('disambiguates with a loaded model, batches and caches', () async {
+      final transport = _FakeTransport();
+      final morphology = _morphology(transport, model: true);
+      expect(morphology.canDisambiguate, isFalse);
+      final readings = await morphology.disambiguate([
+        ['a', 'b'],
+        ['c'],
+        ['a', 'b'],
+      ]);
+      expect(morphology.canDisambiguate, isTrue);
+      expect(readings.map((s) => s.length), [2, 1, 2]);
+      expect(readings[1].single.best.single['pos'], 'noun');
+      // Distinct sentences in batches of about two words.
+      expect(transport.sentences, [
+        [
+          ['a', 'b'],
+        ],
+        [
+          ['c'],
+        ],
+      ]);
+      await morphology.disambiguate([
+        ['c'],
+      ]);
+      expect(transport.sentences, hasLength(2), reason: 'cached');
+      expect(morphology.disambiguatorInfo, isNotNull);
+    });
+
+    test('a model can be loaded later; a failing one is optional', () async {
+      final transport = _FakeTransport()..failModel = true;
+      final morphology = _morphology(transport);
+      await morphology.load();
+      expect(morphology.canDisambiguate, isFalse);
+      expect(
+        await morphology.disambiguate([
+          ['a'],
+        ]),
+        isEmpty,
+      );
+      const model = MorphDatabaseFiles(
+        camelMorphMsaDisambig,
+        manifestPath: 'unused-model',
+      );
+      await morphology.loadDisambiguator(model);
+      expect(morphology.canDisambiguate, isFalse);
+      expect(morphology.disambiguatorFailure, isNotNull);
+      expect(morphology.isAvailable, isTrue, reason: 'analysis is unaffected');
+      transport.failModel = false;
+      await morphology.loadDisambiguator(model);
+      expect(morphology.canDisambiguate, isTrue);
+    });
+
     test('is unavailable until loaded, then batches distinct words', () async {
       final transport = _FakeTransport();
       final morphology = _morphology(transport);
@@ -365,8 +556,9 @@ void main() {
       expect(second.isAvailable, isFalse);
     });
 
-    test('implements the engine interface', () {
+    test('implements the engine interfaces', () {
       expect(_morphology(_FakeTransport()), isA<ArabicMorphology>());
+      expect(_morphology(_FakeTransport()), isA<ArabicContextMorphology>());
     });
   });
 }
