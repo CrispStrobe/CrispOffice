@@ -251,6 +251,48 @@ void main() {
                   scenario ==
                   fixture.TransactionCrashScenario.committedMailboxView,
             );
+            if (scenario.name.contains('Flag')) {
+              final batch = _value(
+                await store.loadFlagBatch(fixture.crashAccount, 'crash-flags'),
+              );
+              if (scenario ==
+                  fixture.TransactionCrashScenario.beforeFlagIntentCommit) {
+                expect(batch, isNull);
+              } else {
+                expect(batch, isNotNull);
+                final acknowledged =
+                    scenario ==
+                        fixture.TransactionCrashScenario.committedFlagReceipt ||
+                    scenario ==
+                        fixture.TransactionCrashScenario.committedFlagFinish;
+                final dispatched =
+                    scenario ==
+                        fixture
+                            .TransactionCrashScenario
+                            .committedFlagDispatch ||
+                    scenario ==
+                        fixture
+                            .TransactionCrashScenario
+                            .beforeFlagReceiptCommit;
+                expect(batch!.report.confirmedCount, acknowledged ? 1 : 0);
+                expect(batch.report.uncertainCount, dispatched ? 1 : 0);
+                expect(
+                  batch.report.unattemptedCount,
+                  acknowledged || dispatched ? 2 : 3,
+                );
+                expect(batch.summary.complete, isTrue);
+                expect(
+                  batch.summary.interrupted,
+                  scenario !=
+                      fixture.TransactionCrashScenario.committedFlagFinish,
+                );
+                expect(batch.subjects, [
+                  'First frozen subject',
+                  'Second frozen subject',
+                  'Third frozen subject',
+                ]);
+              }
+            }
             final recovered = _value(
               await store.recoverOutbox(fixture.crashAccount),
             ).single;

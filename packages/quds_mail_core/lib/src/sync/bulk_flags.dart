@@ -197,6 +197,11 @@ final class MailBulkFlagReport {
       throw ArgumentError('A receipt requires every frozen result.');
     }
     for (var i = 0; i < results.length; i++) {
+      MailBulkFlagItemResult.restore(
+        operation: results[i].operation,
+        outcome: results[i].outcome,
+        problem: results[i].problem,
+      );
       final expected = plan.operationAt(i);
       final actual = results[i].operation;
       if (actual.id != expected.id ||
@@ -208,11 +213,6 @@ final class MailBulkFlagReport {
             _ => true,
           }) {
         throw ArgumentError('A receipt must retain its frozen commands.');
-      }
-      if ((results[i].outcome == MailBulkFlagOutcome.confirmed ||
-              results[i].outcome == MailBulkFlagOutcome.unattempted) &&
-          results[i].problem != null) {
-        throw ArgumentError('Only failed or uncertain results have problems.');
       }
     }
     return MailBulkFlagReport._(
@@ -250,6 +250,7 @@ final class MailBulkFlagReport {
   bool get requiresRefresh =>
       uncertainCount != 0 ||
       persistenceProblem != null ||
+      stopReason == MailBulkFlagStopReason.persistenceFailure ||
       stopReason == MailBulkFlagStopReason.staleScope ||
       stopReason == MailBulkFlagStopReason.invalidScope ||
       stopReason == MailBulkFlagStopReason.scopeCheckFailed;
@@ -267,7 +268,8 @@ abstract interface class MailBulkFlagJournal {
   Future<MailResult<MailUnit>> finish(MailBulkFlagReport report);
 }
 
-/// Foreground sequential execution without retries, storage or body fetching.
+/// Foreground sequential execution with an optional durable journal and no
+/// retries or body fetching.
 ///
 /// The host supplies a fresh lease and a predicate bound to the captured account,
 /// folder and generation. Both are checked before each dispatch. The predicate

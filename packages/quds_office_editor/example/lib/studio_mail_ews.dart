@@ -962,6 +962,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         },
         ['ews-message-${selected.id.value}'],
         mailboxGeneration: _mailboxGeneration,
+        singleMessage: true,
       );
       return;
     }
@@ -1049,6 +1050,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     MailBulkFlagAction action,
     List<String> ids, {
     required int mailboxGeneration,
+    bool singleMessage = false,
   }) async {
     final provider = _provider;
     final session = _session;
@@ -1170,10 +1172,20 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         if (_selected case final opened?) {
           _selected = updates[opened.remote] ?? opened;
         }
-        _notice = widget.strings.mailBulkSummary(report);
+        _notice = singleMessage && report.confirmedCount == 1
+            ? (_cloud
+                  ? widget.strings.mailCloudActionConfirmed
+                  : widget.strings.ewsActionConfirmed)
+            : widget.strings.mailBulkSummary(report);
         if (report.requiresRefresh) {
           _needsRefresh = true;
-          _error = widget.strings.mailWorkspaceRefreshRequired;
+          final problem =
+              report.items.singleOrNull?.problem ?? report.stopProblem;
+          _error = singleMessage
+              ? (problem == null
+                    ? widget.strings.ewsMutationFailed
+                    : _problem(problem, widget.strings.ewsMutationFailed))
+              : widget.strings.mailWorkspaceRefreshRequired;
         }
       });
       // These are per-flag confirmations. Persisting a synthetic full snapshot

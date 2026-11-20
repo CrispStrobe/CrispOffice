@@ -109,11 +109,29 @@ final class _Journal implements MailBulkFlagJournal {
       store.finishFlagBatch(handle!, report);
 }
 
+final class _ReadProbe extends QueryInterceptor {
+  bool oversizedTransferred = false;
+  @override
+  Future<List<Map<String, Object?>>> runSelect(
+    QueryExecutor executor,
+    String statement,
+    List<Object?> args,
+  ) async {
+    final rows = await super.runSelect(executor, statement, args);
+    oversizedTransferred |= rows.any(
+      (row) =>
+          row.values.any((value) => value is String && value.length > 32768),
+    );
+    return rows;
+  }
+}
+
 void main() {
   late Directory directory;
   late File file;
   late SqliteMailRepository store;
   late MailAccountSession session;
+  late _ReadProbe probe;
   var failAfter = 0;
   var failExactly = 0;
   var commits = 0;
@@ -124,7 +142,7 @@ void main() {
     MailStoreLimits limits = const MailStoreLimits(),
   }) async => _value(
     await SqliteMailRepository.open(
-      executor: NativeDatabase(file),
+      executor: NativeDatabase(file).interceptWith(probe),
       profile: _profile,
       limits: limits,
       clock: () => now,
@@ -165,6 +183,7 @@ void main() {
     directory = await Directory.systemTemp.createTemp('quds-flag-journal-');
     file = File('${directory.path}/mail.sqlite3');
     session = MailAccountSession(_account);
+    probe = _ReadProbe();
     failAfter = failExactly = commits = 0;
     invalidateCommit = false;
     now = _now;
@@ -852,4 +871,31 @@ void main() {
       expect(_value(await store.listFlagBatches(_account)).batches, isEmpty);
     },
   );
+
+  for (final field in ['subject', 'item problem', 'batch problem']) {
+    test('oversized corrupt $field fails before text is transferred', () async {
+      final plan = _plan(count: 1);
+      final handle = await create(plan);
+      _value(await store.finishFlagBatch(handle, _report(plan, [])));
+      await store.close();
+      final database = sqlite.sqlite3.open(file.path);
+      try {
+        final (table, column) = switch (field) {
+          'subject' => ('flag_batch_items', 'subject'),
+          'item problem' => ('flag_batch_items', 'problem_code'),
+          _ => ('flag_batches', 'problem_code'),
+        };
+        database.execute('UPDATE $table SET $column=?', ['x' * 40000]);
+      } finally {
+        database.close();
+      }
+      store = await open();
+      probe.oversizedTransferred = false;
+      _problem(
+        await store.loadFlagBatch(_account, plan.id),
+        MailProblemCode.storageFailure,
+      );
+      expect(probe.oversizedTransferred, isFalse);
+    });
+  }
 }

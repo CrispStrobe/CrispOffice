@@ -17,6 +17,8 @@ final class MailStoredFlagBatchSummary {
     required this.failedCount,
     required this.uncertainCount,
     required this.unattemptedCount,
+    this.stopReason,
+    this.persistenceProblem,
   });
 
   final String id;
@@ -34,9 +36,17 @@ final class MailStoredFlagBatchSummary {
   /// Includes an in-flight marker without a durable acknowledgement.
   final int uncertainCount;
   final int unattemptedCount;
+  final MailBulkFlagStopReason? stopReason;
+  final MailProblem? persistenceProblem;
   int get totalCount =>
       confirmedCount + failedCount + uncertainCount + unattemptedCount;
-  bool get requiresRefresh => uncertainCount != 0;
+  bool get requiresRefresh =>
+      uncertainCount != 0 ||
+      persistenceProblem != null ||
+      stopReason == MailBulkFlagStopReason.persistenceFailure ||
+      stopReason == MailBulkFlagStopReason.staleScope ||
+      stopReason == MailBulkFlagStopReason.invalidScope ||
+      stopReason == MailBulkFlagStopReason.scopeCheckFailed;
 }
 
 /// A bounded page with an explicit continuation. Its ordering is newest first.

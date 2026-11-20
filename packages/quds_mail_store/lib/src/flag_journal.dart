@@ -36,12 +36,21 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       'b.complete=1 AND NOT EXISTS (SELECT 1 FROM flag_batch_items i '
       "WHERE i.account=b.account AND i.batch=b.id AND i.state IN ('applying','uncertain'))";
 
-  Future<void> _pruneCleanFlagBatches(MailAccountId account) async {
+  Future<void> _pruneCleanFlagBatches(
+    MailAccountId account, {
+    String? preserving,
+  }) async {
     await _db.customStatement(
       'DELETE FROM flag_batches WHERE account=? AND id IN '
       '(SELECT b.id FROM flag_batches b WHERE b.account=? AND $_cleanFlagBatch '
+      '${preserving == null ? '' : 'AND b.id!=? '}'
       'ORDER BY b.rowid DESC LIMIT -1 OFFSET ?)',
-      [account.value, account.value, maxRetainedCleanFlagBatches],
+      [
+        account.value,
+        account.value,
+        ?preserving,
+        maxRetainedCleanFlagBatches - (preserving == null ? 0 : 1),
+      ],
     );
   }
 
@@ -64,10 +73,16 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       "typeof(b.updated_at)!='integer' OR b.updated_at<0 OR b.updated_at>8640000000000000 OR "
       "typeof(b.complete)!='integer' OR b.complete NOT IN (0,1) OR "
       "typeof(b.interrupted)!='integer' OR b.interrupted NOT IN (0,1) OR "
+      "(b.stop_reason IS NOT NULL AND (typeof(b.stop_reason)!='text' OR length(CAST(b.stop_reason AS BLOB))>64)) OR "
+      "(b.problem_code IS NOT NULL AND (typeof(b.problem_code)!='text' OR length(CAST(b.problem_code AS BLOB))>64)) OR "
+      "(b.persistence_problem IS NOT NULL AND (typeof(b.persistence_problem)!='text' OR length(CAST(b.persistence_problem AS BLOB))>64)) OR "
+      "(b.retry_after_us IS NOT NULL AND (typeof(b.retry_after_us)!='integer' OR b.retry_after_us<0 OR b.retry_after_us>9007199254740991)) OR "
+      "(b.mutation_possible IS NOT NULL AND (typeof(b.mutation_possible)!='integer' OR b.mutation_possible NOT IN (0,1))) OR "
       "typeof(b.item_count)!='integer' OR b.item_count<1 OR b.item_count>1000 OR "
       'b.item_count!=(SELECT count(*) FROM flag_batch_items i WHERE i.account=b.account AND i.batch=b.id) OR '
       '(SELECT min(position) FROM flag_batch_items i WHERE i.account=b.account AND i.batch=b.id)!=0 OR '
       '(SELECT max(position) FROM flag_batch_items i WHERE i.account=b.account AND i.batch=b.id)!=b.item_count-1 OR '
+      "EXISTS (SELECT 1 FROM flag_batch_items i WHERE i.account=b.account AND i.batch=b.id AND i.state NOT IN ('unattempted','applying','confirmed','failed','uncertain')) OR "
       "(SELECT count(*) FROM flag_batch_items i WHERE i.account=b.account AND i.batch=b.id AND i.state='applying')>1 OR "
       "(b.complete=1 AND EXISTS (SELECT 1 FROM flag_batch_items i WHERE i.account=b.account AND i.batch=b.id AND i.state='applying'))) ",
       [account.value],
@@ -94,6 +109,9 @@ extension MailFlagCommandJournal on SqliteMailRepository {
             frozenSubjects.length != plan.messages.length ||
             plan.messages.length > limits.maxPageSize) {
           SqliteMailRepository._fail(MailProblemCode.invalidInput);
+        }
+        if (plan.provider == MailProviderKind.jmap) {
+          SqliteMailRepository._fail(MailProblemCode.unsupported);
         }
         lease.checkCurrent();
         _id(plan.id);
@@ -448,12 +466,16 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         handle.id,
       ],
     );
-    await _pruneCleanFlagBatches(handle.account);
+    await _pruneCleanFlagBatches(handle.account, preserving: handle.id);
   }, complete: true);
 
   MailStoredFlagBatchSummary _flagSummary(QueryRow row, MailAccountId account) {
     _id(row.read<String>('id'));
     _id(row.read<String>('mailbox'));
+    if (row.read<String>('id').trim().isEmpty ||
+        row.read<String>('id').length > 256) {
+      SqliteMailRepository._fail(MailProblemCode.storageFailure);
+    }
     return MailStoredFlagBatchSummary(
       id: row.read<String>('id'),
       mailbox: MailMailboxId(row.read<String>('mailbox'), account: account),
@@ -474,6 +496,16 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       failedCount: row.read<int>('failed_count'),
       uncertainCount: row.read<int>('uncertain_count'),
       unattemptedCount: row.read<int>('unattempted_count'),
+      stopReason: switch (row.readNullable<String>('stop_reason')) {
+        final String reason => MailBulkFlagStopReason.values.byName(reason),
+        null => null,
+      },
+      persistenceProblem: switch (row.readNullable<String>(
+        'persistence_problem',
+      )) {
+        final String code => MailProblem(MailProblemCode.values.byName(code)),
+        null => null,
+      },
     );
   }
 
@@ -530,6 +562,9 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         'SELECT coalesce(sum(length(CAST(remote AS BLOB))+length(CAST(subject AS BLOB))),0) AS bytes, '
         "coalesce(sum(CASE WHEN typeof(remote)!='text' OR typeof(subject)!='text' OR "
         'length(CAST(remote AS BLOB))>32768 OR length(CAST(subject AS BLOB))>16384 '
+        "OR (problem_code IS NOT NULL AND (typeof(problem_code)!='text' OR length(CAST(problem_code AS BLOB))>64)) "
+        "OR (retry_after_us IS NOT NULL AND (typeof(retry_after_us)!='integer' OR retry_after_us<0 OR retry_after_us>9007199254740991)) "
+        "OR (mutation_possible IS NOT NULL AND (typeof(mutation_possible)!='integer' OR mutation_possible NOT IN (0,1))) "
         'THEN 1 ELSE 0 END),0) AS invalid FROM flag_batch_items WHERE account=? AND batch=?',
         [account.value, id],
       )).single;

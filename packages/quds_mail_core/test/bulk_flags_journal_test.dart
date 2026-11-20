@@ -310,4 +310,38 @@ void main() {
       );
     },
   );
+
+  test(
+    'restoration rejects contradictory failure evidence and keeps storage refresh requirement',
+    () {
+      final plan = _plan();
+      final contradictory = [
+        for (var i = 0; i < 3; i++)
+          MailBulkFlagItemResult(
+            operation: plan.operationAt(i),
+            outcome: MailBulkFlagOutcome.failed,
+            problem: const MailProblem(
+              MailProblemCode.permissionDenied,
+              mutationMayHaveOccurred: true,
+            ),
+          ),
+      ];
+      expect(
+        () => MailBulkFlagReport.restore(plan: plan, results: contradictory),
+        throwsArgumentError,
+      );
+      final restored = MailBulkFlagReport.restore(
+        plan: plan,
+        results: [
+          for (var i = 0; i < 3; i++)
+            MailBulkFlagItemResult(
+              operation: plan.operationAt(i),
+              outcome: MailBulkFlagOutcome.unattempted,
+            ),
+        ],
+        stopReason: MailBulkFlagStopReason.persistenceFailure,
+      );
+      expect(restored.requiresRefresh, isTrue);
+    },
+  );
 }
