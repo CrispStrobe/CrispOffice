@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "file": "checkpoint-native-evidence.tar.xz",
+  "bytes": 429452,
+  "sha256": "1f574d4a93b056b4d9b16d025ba094a9fff2c32e5b817cc89bfe166375bede71",
+  "git_blob": "de951c0520c5c0afe49fcc26cc8a55b74cbb8635",
+  "members": 95,
+  "source": "2d617a31bce48a7312f31586f70f7472e3420406",
+  "result": {
+    "visible_tests": 372,
+    "original_files": 16,
+    "groups": 7,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "all_process_exits": 0,
+    "all_terminal_json_success": true,
+    "tracked_source_hashes": 2214,
+    "unchanged_during_execution": true
+  },
+  "groups": {
+    "credential_selection": 10,
+    "mail_catalog": 97,
+    "selected_stores": 17,
+    "native_mail": 73,
+    "ews_and_reply": 99,
+    "downloads_and_theme": 43,
+    "mail_reader": 33
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "command": "Normal Flutter test CLI; sequential groups, concurrency 1 and original test-file isolation.",
+    "sdk": "Official Flutter and standalone Dart archives verified; all 1,047 embedded SDK files match; 135 locked hosted packages verified; normal offline pub get --enforce-lockfile retained the root lock."
+  },
+  "negative_control": {
+    "description": "The original guarded callback assertion fails at the expected empty-read check. The corrected expectSync callback passes the unchanged behavior assertions; product sources are unchanged and the original fixture is restored to the published correction.",
+    "red_expected_failure": true,
+    "green_pass": true,
+    "source_restored": true
+  },
+  "formatting": {
+    "files": 67,
+    "changed": 0,
+    "exit": 0,
+    "qualification": "Pre-final-main reconciliation; final targeted analysis and final formatting are recorded separately."
+  },
+  "tooling_controls": {
+    "count": 6,
+    "scope": "Sequential replay completion-policy controls only; not product tests."
+  },
+  "qualification": "This accepted source precedes final reconciliation of main b42eca1d. Its results are exact-source evidence. Any later affected replay is recorded separately; the counts are not attributed to an unexecuted final tree.",
+  "contents": "Seven raw JSON streams and stderr/exit receipts, source manifests and per-file results; fresh callback red/green; authenticated SDK/dependency/bootstrap receipts; format receipt; explicitly labelled replay-helper controls."
+}

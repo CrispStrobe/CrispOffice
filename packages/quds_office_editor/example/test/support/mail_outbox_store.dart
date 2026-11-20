@@ -1,66 +1,69 @@
-import 'dart:io';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
-import 'package:quds_mail_store/quds_mail_store_native.dart';
+import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 
-final _activeFixtures = <NativeOutboxFixture>[];
+import '../../../../quds_mail_store/test/support/outbox_widget_database.dart';
 
-/// The production native opener uses an isolate. Its database futures must be
-/// allowed to complete in real async while widgets keep a deterministic clock.
-Future<T> nativeOutboxIo<T>(
-  WidgetTester tester,
-  Future<T> Function() action,
-) async => (await tester.runAsync(action)) as T;
-
-Future<void> pumpNativeOutboxWidgets(WidgetTester tester) async {
-  await tester.pump();
-  for (var phase = 0; phase < 2; phase++) {
-    for (var turn = 0; turn < 4; turn++) {
-      await nativeOutboxIo(tester, () async {
-        for (final fixture in _activeFixtures) {
-          await fixture.repository.listAccounts();
-        }
-      });
-      await tester.pump();
+/// Completes repository work while advancing the widget test's fake clock.
+/// Drift can defer a transaction to a zero-duration timer even with its
+/// synchronous SQLite executor; blindly awaiting it would stop that clock.
+Future<T> awaitOutboxOperation<T>(WidgetTester tester, Future<T> future) async {
+  var complete = false;
+  T? result;
+  Object? failure;
+  StackTrace? stack;
+  future.then(
+    (value) {
+      result = value;
+      complete = true;
+    },
+    onError: (Object error, StackTrace trace) {
+      failure = error;
+      stack = trace;
+      complete = true;
+    },
+  );
+  for (var turn = 0; !complete && turn < 1000; turn++) {
+    await tester.pump(const Duration(milliseconds: 1));
+    if (!complete) {
+      await tester.runAsync(() => Future<void>.delayed(Duration.zero));
     }
-    await tester.pump(const Duration(milliseconds: 350));
   }
+  if (!complete) throw StateError('Outbox fixture operation did not complete.');
+  if (failure != null) Error.throwWithStackTrace(failure!, stack!);
+  return result as T;
 }
 
-/// Real native SQLite, with a separate adapter lifetime for each Mail host.
-/// Provider/network seams remain controlled by the widget tests.
-final class NativeOutboxFixture {
-  NativeOutboxFixture._(this.identity, this.directory);
+Future<void> pumpOutboxWidgets(WidgetTester tester) async {
+  await tester.pump();
+  await tester.pump(const Duration(milliseconds: 350));
+  await tester.pump();
+}
+
+/// Real synchronous SQLite, with a separate adapter lifetime for each Mail host.
+/// File reopen and ownership leases are covered by the native storage suite.
+final class SqliteOutboxFixture {
+  SqliteOutboxFixture._(this.identity);
 
   final StudioMailDraftAccount identity;
-  final Directory directory;
   late final SqliteMailRepository repository;
   final adapters = <SqliteStudioMailDraftStore>[];
   MailStoreCheckpoint? failNextCheckpoint;
 
-  static Future<NativeOutboxFixture> create(
+  static Future<SqliteOutboxFixture> create(
     StudioMailDraftAccount identity,
   ) async {
-    final fixture = NativeOutboxFixture._(
-      identity,
-      await Directory.systemTemp.createTemp('outbox-widget-'),
-    );
-    fixture.repository = _value(
-      await openNativeMailStore(
-        appDirectory: fixture.directory,
-        profile: identity.profile,
-        faultInjector: (checkpoint) {
-          if (fixture.failNextCheckpoint == checkpoint) {
-            fixture.failNextCheckpoint = null;
-            throw const MailStoreStorageException(
-              MailProblemCode.storageFailure,
-            );
-          }
-        },
-      ),
+    final fixture = SqliteOutboxFixture._(identity);
+    fixture.repository = await openOutboxWidgetDatabase(
+      profile: identity.profile,
+      faultInjector: (checkpoint) {
+        if (fixture.failNextCheckpoint == checkpoint) {
+          fixture.failNextCheckpoint = null;
+          throw const MailStoreStorageException(MailProblemCode.storageFailure);
+        }
+      },
     );
     _value(
       await fixture.repository.createAccount(
@@ -71,13 +74,12 @@ final class NativeOutboxFixture {
         ),
       ),
     );
-    _activeFixtures.add(fixture);
     return fixture;
   }
 
   Future<StudioMailDraftStore> open(StudioMailDraftAccount account) async {
-    expect(account.account, identity.account);
-    expect(account.provider, identity.provider);
+    expectSync(account.account, identity.account);
+    expectSync(account.provider, identity.provider);
     final adapter = SqliteStudioMailDraftStore(
       repository: repository,
       account: identity.account,
@@ -93,16 +95,14 @@ final class NativeOutboxFixture {
   }
 
   Future<void> close() async {
-    _activeFixtures.remove(this);
     for (final adapter in adapters.reversed) {
       await adapter.close();
     }
     await repository.close();
-    await directory.delete(recursive: true);
   }
 
   static T _value<T>(MailResult<T> result) {
-    expect(result, isA<MailSuccess<T>>());
+    expectSync(result, isA<MailSuccess<T>>());
     return (result as MailSuccess<T>).value;
   }
 }

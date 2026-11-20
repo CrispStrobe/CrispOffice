@@ -1033,7 +1033,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             ? (_cloud
                   ? widget.strings.mailCloudSubmissionAccepted
                   : widget.strings.ewsSubmissionAccepted)
-            : widget.strings.mailOutboxState(completed.state);
+            : '${widget.strings.mailOutboxState(completed.state)}. ${widget.strings.mailOutboxInspect}';
         if (completed.state == MailOutboxState.uncertain ||
             (completed.priorSubmissionUncertain &&
                 completed.state != MailOutboxState.submitted)) {

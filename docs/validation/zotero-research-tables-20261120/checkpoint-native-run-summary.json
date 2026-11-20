@@ -1,0 +1,207 @@
+{
+  "source": "2d617a31bce48a7312f31586f70f7472e3420406",
+  "groups": {
+    "selection": {
+      "counts": {
+        "success": 10
+      },
+      "hiddenLoadingOrSetupEntriesExcluded": 2,
+      "terminalEvents": 1,
+      "exit": 0,
+      "jsonSuccess": true,
+      "files": {
+        "packages/quds_office_editor/example/test/studio_credential_selection_test.dart": {
+          "success": 4
+        },
+        "packages/quds_office_editor/example/test/studio_credential_selection_race_test.dart": {
+          "success": 6
+        }
+      },
+      "seconds": 25.45516014099121,
+      "peakRssSumKB": 1402408
+    },
+    "catalog": {
+      "counts": {
+        "success": 97
+      },
+      "hiddenLoadingOrSetupEntriesExcluded": 3,
+      "terminalEvents": 1,
+      "exit": 0,
+      "jsonSuccess": true,
+      "files": {
+        "packages/quds_office_editor/example/test/studio_mail_credentials_test.dart": {
+          "success": 28
+        },
+        "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart": {
+          "success": 18
+        },
+        "packages/quds_office_editor/example/test/studio_mail_account_catalog_test.dart": {
+          "success": 51
+        }
+      },
+      "seconds": 75.79044580459595,
+      "peakRssSumKB": 1770624
+    },
+    "selected-stores": {
+      "counts": {
+        "success": 17
+      },
+      "hiddenLoadingOrSetupEntriesExcluded": 2,
+      "terminalEvents": 1,
+      "exit": 0,
+      "jsonSuccess": true,
+      "files": {
+        "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart": {
+          "success": 3
+        },
+        "packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart": {
+          "success": 14
+        }
+      },
+      "seconds": 37.76543211936951,
+      "peakRssSumKB": 1497308
+    },
+    "native-mail": {
+      "counts": {
+        "success": 73
+      },
+      "hiddenLoadingOrSetupEntriesExcluded": 1,
+      "terminalEvents": 1,
+      "exit": 0,
+      "jsonSuccess": true,
+      "files": {
+        "packages/quds_office_editor/example/test/studio_mail_test.dart": {
+          "success": 73
+        }
+      },
+      "seconds": 91.78441405296326,
+      "peakRssSumKB": 2310204
+    },
+    "ews-reply": {
+      "counts": {
+        "success": 99
+      },
+      "hiddenLoadingOrSetupEntriesExcluded": 2,
+      "terminalEvents": 1,
+      "exit": 0,
+      "jsonSuccess": true,
+      "files": {
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": {
+          "success": 57
+        },
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart": {
+          "success": 42
+        }
+      },
+      "seconds": 47.301310777664185,
+      "peakRssSumKB": 1720140
+    },
+    "downloads-theme": {
+      "counts": {
+        "success": 43
+      },
+      "hiddenLoadingOrSetupEntriesExcluded": 6,
+      "terminalEvents": 1,
+      "exit": 0,
+      "jsonSuccess": true,
+      "files": {
+        "packages/quds_office_editor/example/test/studio_layout_theme_test.dart": {
+          "success": 9
+        },
+        "packages/quds_office_editor/example/test/studio_downloads_capture_test.dart": {
+          "success": 7
+        },
+        "packages/quds_office_editor/example/test/studio_downloads_layout_test.dart": {
+          "success": 16
+        },
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart": {
+          "success": 11
+        }
+      },
+      "seconds": 96.64964056015015,
+      "peakRssSumKB": 1704092
+    },
+    "reader": {
+      "counts": {
+        "success": 33
+      },
+      "hiddenLoadingOrSetupEntriesExcluded": 2,
+      "terminalEvents": 1,
+      "exit": 0,
+      "jsonSuccess": true,
+      "files": {
+        "packages/quds_mail_ui/test/body_presentation_test.dart": {
+          "success": 31
+        },
+        "packages/quds_mail_ui/test/reader_theme_scroll_test.dart": {
+          "success": 2
+        }
+      },
+      "seconds": 26.19312882423401,
+      "peakRssSumKB": 876712
+    }
+  },
+  "visibleTotals": {
+    "success": 372
+  },
+  "originalFileCount": 16,
+  "perFile": {
+    "packages/quds_office_editor/example/test/studio_credential_selection_test.dart": {
+      "success": 4
+    },
+    "packages/quds_office_editor/example/test/studio_credential_selection_race_test.dart": {
+      "success": 6
+    },
+    "packages/quds_office_editor/example/test/studio_mail_credentials_test.dart": {
+      "success": 28
+    },
+    "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart": {
+      "success": 18
+    },
+    "packages/quds_office_editor/example/test/studio_mail_account_catalog_test.dart": {
+      "success": 51
+    },
+    "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart": {
+      "success": 3
+    },
+    "packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart": {
+      "success": 14
+    },
+    "packages/quds_office_editor/example/test/studio_mail_test.dart": {
+      "success": 73
+    },
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": {
+      "success": 57
+    },
+    "packages/quds_office_editor/example/test/studio_mail_reply_test.dart": {
+      "success": 42
+    },
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart": {
+      "success": 9
+    },
+    "packages/quds_office_editor/example/test/studio_downloads_capture_test.dart": {
+      "success": 7
+    },
+    "packages/quds_office_editor/example/test/studio_downloads_layout_test.dart": {
+      "success": 16
+    },
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart": {
+      "success": 11
+    },
+    "packages/quds_mail_ui/test/body_presentation_test.dart": {
+      "success": 31
+    },
+    "packages/quds_mail_ui/test/reader_theme_scroll_test.dart": {
+      "success": 2
+    }
+  },
+  "sourceFileCount": 2214,
+  "sourceManifestSha256": "c8bd2dbee3d10e9193d6f90be56bb71c64018e0a7353232b2548de8f8116c9ac",
+  "allProcessesExitZero": true,
+  "allTerminalEventsSuccess": true,
+  "allSourcesUnchanged": true,
+  "sdk": "Flutter3.47.8 / Dart3.13.7",
+  "runner": "Standard Flutter test CLI, original files, concurrency1, seven sequential groups",
+  "excludedFromProductCounts": "Hidden loading/setup entries, all negative controls and the synthetic helper completion-policy checks",
+  "analysis": "Final analysis has not started; current-main reconciliation is pending."
+}

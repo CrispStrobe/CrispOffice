@@ -1079,7 +1079,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       setState(() {
         _notice = completed.state == MailOutboxState.submitted
             ? widget.strings.mailSubmissionAccepted
-            : widget.strings.mailOutboxState(completed.state);
+            : '${widget.strings.mailOutboxState(completed.state)}. ${widget.strings.mailOutboxInspect}';
         if (completed.state == MailOutboxState.uncertain ||
             (completed.priorSubmissionUncertain &&
                 completed.state != MailOutboxState.submitted)) {
