@@ -9143,34 +9143,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   void _duplicateSlide() {
     final PmlSlide src = _slides.slide;
-    _slides.presentation.slides.add(
-      PmlSlide(
-        id: _nextSlideId(),
-        layoutName: src.layoutName,
-        notes: src.notes,
-        transition: src.transition,
-        animations: <PmlShapeAnimation>[
-          for (final PmlShapeAnimation anim in src.animations) anim.copyWith(),
-        ],
-        shapes: <PmlShape>[
-          for (final PmlShape shape in src.shapes)
-            PmlShape(
-              id: shape.id,
-              name: shape.name,
-              text: shape.text,
-              fillColor: shape.fillColor,
-              textColor: shape.textColor,
-              fontSizePt: shape.fontSizePt,
-              preset: shape.preset,
-              transform: shape.transform,
-              visual: shape.visual?.copy(),
-              table: shape.table?.copy(),
-              rightToLeft: shape.rightToLeft,
-              textAlign: shape.textAlign,
-            ),
-        ],
-      ),
-    );
+    _slides.presentation.slides.add(src.copy(id: _nextSlideId()));
     _slides.setActiveSlide(_slides.presentation.slides.length - 1);
   }
 
@@ -9276,7 +9249,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         : ((_slides.presentation.slideHeight - t.cy) * y).round();
     _slides.applyTransform(
       shape,
-      PmlTransform(x: nextX, y: nextY, cx: t.cx, cy: t.cy, rot: t.rot),
+      PmlTransform(
+        x: nextX,
+        y: nextY,
+        cx: t.cx,
+        cy: t.cy,
+        rot: t.rot,
+        flipH: t.flipH,
+        flipV: t.flipV,
+      ),
     );
     _slides.refresh();
   }

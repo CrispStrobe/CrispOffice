@@ -244,6 +244,14 @@ List<PmlShape> parseSlideShapes(
         cx: current.transform.cx,
         cy: current.transform.cy,
         rot: rot,
+        flipH: const {
+          '1',
+          'true',
+        }.contains(reader.getAttribute('flipH')?.trim()),
+        flipV: const {
+          '1',
+          'true',
+        }.contains(reader.getAttribute('flipV')?.trim()),
       );
       final OfficeVisual? visual = current.visual;
       if (visual != null) {
@@ -256,6 +264,8 @@ List<PmlShape> parseSlideShapes(
         cx: current.transform.cx,
         cy: current.transform.cy,
         rot: current.transform.rot,
+        flipH: current.transform.flipH,
+        flipV: current.transform.flipV,
       );
       positioned?.add(current);
     } else if (reader.localName == 'ext' && inXfrm && current != null) {
@@ -265,6 +275,8 @@ List<PmlShape> parseSlideShapes(
         cx: int.tryParse(reader.getAttribute('cx') ?? '') ?? 0,
         cy: int.tryParse(reader.getAttribute('cy') ?? '') ?? 0,
         rot: current.transform.rot,
+        flipH: current.transform.flipH,
+        flipV: current.transform.flipV,
       );
       positioned?.add(current);
     } else if (reader.localName == 'prstGeom' && current != null) {
@@ -272,7 +284,11 @@ List<PmlShape> parseSlideShapes(
         'ellipse' => PmlShapePreset.ellipse,
         'roundRect' => PmlShapePreset.roundRect,
         'triangle' => PmlShapePreset.triangle,
-        'straightConnector1' => PmlShapePreset.connector,
+        'straightConnector1' || 'line' => PmlShapePreset.connector,
+        'downArrow' => PmlShapePreset.downArrow,
+        'upArrow' => PmlShapePreset.upArrow,
+        'leftArrow' => PmlShapePreset.leftArrow,
+        'rightArrow' => PmlShapePreset.rightArrow,
         _ => PmlShapePreset.rect,
       };
     } else if (reader.localName == 'bodyPr' && current != null) {
@@ -620,6 +636,9 @@ String slideToXml(PmlSlide slide, {Map<PmlShape, String>? embedIds}) {
   if (slide.hidden) {
     w.writeAttribute('show', '0');
   }
+  if (!slide.showMasterShapes) {
+    w.writeAttribute('showMasterSp', '0');
+  }
 
   /// writeNamespace API.
   w.writeNamespace('p', OfficeNamespaces.p);
@@ -772,6 +791,8 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
   if (shape.transform.rot != 0) {
     w.writeAttribute('rot', '${shape.transform.rot}');
   }
+  if (shape.transform.flipH) w.writeAttribute('flipH', '1');
+  if (shape.transform.flipV) w.writeAttribute('flipV', '1');
 
   /// writeEmptyElement API.
   w.writeEmptyElement(
@@ -807,6 +828,10 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
         PmlShapePreset.triangle => 'triangle',
         PmlShapePreset.connector => 'straightConnector1',
         PmlShapePreset.freeform => 'rect',
+        PmlShapePreset.downArrow => 'downArrow',
+        PmlShapePreset.upArrow => 'upArrow',
+        PmlShapePreset.leftArrow => 'leftArrow',
+        PmlShapePreset.rightArrow => 'rightArrow',
         PmlShapePreset.rect => 'rect',
       },
     },

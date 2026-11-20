@@ -18,13 +18,24 @@ StudioSpacyHost createHost() => NativeStudioSpacyHost(
 /// The CrispEmbed spaCy library shipped inside this app's signed bundle.
 @immutable
 class StudioSpacyBundledLibrary {
-  const StudioSpacyBundledLibrary({required this.path, required this.sha256});
+  const StudioSpacyBundledLibrary({
+    required this.path,
+    required this.sha256,
+    this.codeSha256,
+  });
 
   final String path;
 
   /// Digest recorded at build time (after signing) in
   /// `Contents/Resources/spacy-native.json`; re-verified before every load.
   final String sha256;
+
+  /// Signature-independent code digest the build recorded next to [sha256]
+  /// (`machOCodeSha256`). A release-signed copy of qualified code differs in
+  /// [sha256] but not here. Used only to report the qualification; the
+  /// worker measures the digest itself from the bytes it loads, and the
+  /// grammar planner trusts only that measurement.
+  final String? codeSha256;
 }
 
 const _offValues = ['0', 'false', 'off', 'no'];
@@ -50,15 +61,22 @@ StudioSpacyBundledLibrary? detectBundledSpacyLibrary(
     if (decoded is! Map<String, Object?>) return null;
     final name = decoded['library'];
     final digest = decoded['sha256'];
+    final code = decoded['code_sha256'];
+    final hex = RegExp(r'^[0-9a-f]{64}$');
     if (name is! String ||
         name.contains('/') ||
         digest is! String ||
-        !RegExp(r'^[0-9a-f]{64}$').hasMatch(digest)) {
+        !hex.hasMatch(digest) ||
+        (code != null && (code is! String || !hex.hasMatch(code)))) {
       return null;
     }
     final library = File('$contents/Frameworks/$name');
     if (!library.existsSync()) return null;
-    return StudioSpacyBundledLibrary(path: library.path, sha256: digest);
+    return StudioSpacyBundledLibrary(
+      path: library.path,
+      sha256: digest,
+      codeSha256: code as String?,
+    );
   } on Object {
     return null;
   }
@@ -181,7 +199,10 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
           '(${error.message}). Remove and install them again.';
     }
     final configured = installation != null || problem != null;
-    final qualification = spacyQualificationFor(bundled.sha256);
+    final qualification = spacyQualificationForHostBundled(
+      librarySha256: bundled.sha256,
+      codeSha256: bundled.codeSha256,
+    );
     final ner = await _nerStatus();
     _status = StudioSpacyStatus(
       platformLabel: base.platformLabel,

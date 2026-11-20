@@ -624,6 +624,8 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       cx: start.cx,
       cy: start.cy,
       rot: (deg * 60000).round(),
+      flipH: start.flipH,
+      flipV: start.flipV,
     );
   }
 
@@ -632,7 +634,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         a.y == b.y &&
         a.cx == b.cx &&
         a.cy == b.cy &&
-        a.rot == b.rot;
+        a.rot == b.rot &&
+        a.flipH == b.flipH &&
+        a.flipV == b.flipV;
   }
 
   MouseCursor _cursorFor(Offset? local) {
@@ -1069,7 +1073,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     final sample = samples?[shape.id] ?? PmlAnimSample.identity;
     if (!_staticSample(sample)) return null;
     final int? own = int.tryParse(shape.fillColor, radix: 16);
-    if (own != null && !_growsWithText(rect)) {
+    if (own != null &&
+        !_growsWithText(rect) &&
+        shape.preset == PmlShapePreset.rect) {
       return Color(0xFF000000 | own);
     }
     if (own != null) return null;
@@ -1080,10 +1086,18 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         ? Rect.fromLTWH(rect.left, rect.top, rect.width, 208)
         : rect;
     Color? background = _slidePaper(target);
-    for (final previous in target.shapes) {
-      if (identical(previous, shape)) break;
-      if (skipIds?.contains(previous.id) ?? false) continue;
-      final previousSample = samples?[previous.id] ?? PmlAnimSample.identity;
+    final List<PmlShape> backing = <PmlShape>[
+      ...target.backgroundShapes,
+      ...target.shapes,
+    ];
+    for (var index = 0; index < backing.length; index++) {
+      final PmlShape previous = backing[index];
+      final bool decoration = index < target.backgroundShapes.length;
+      if (!decoration && identical(previous, shape)) break;
+      if (!decoration && (skipIds?.contains(previous.id) ?? false)) continue;
+      final previousSample = decoration
+          ? PmlAnimSample.identity
+          : samples?[previous.id] ?? PmlAnimSample.identity;
       if (!previousSample.visible || previousSample.opacity <= 0.01) continue;
       // Animated transforms/clips can expose arbitrary mixed backing. The
       // authored colour is safer than treating it as untouched dark paper.
@@ -1102,6 +1116,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
           previous.table != null ||
           previous.hasMedia ||
           previous.text.isNotEmpty ||
+          previous.preset != PmlShapePreset.rect ||
           previous.transform.rotationDegrees.abs() >= 0.01) {
         background = null;
         continue;
@@ -1131,10 +1146,81 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   static bool _growsWithText(Rect r) => r.height < 24;
 
   /// Fill of a shape, or nothing when [PmlShape.fillColor] is empty (no fill).
-  void _paintShapeFill(Canvas canvas, PmlShape shape, Rect r, String hex) {
+  void _paintShapeFill(
+    Canvas canvas,
+    PmlShape shape,
+    Rect r,
+    String hex, {
+    PmlTransform? transform,
+  }) {
+    if (shape.preset == PmlShapePreset.connector) {
+      final bool hasStroke = shape.strokeColor.isNotEmpty;
+      final int? stroke = int.tryParse(
+        hasStroke ? shape.strokeColor : hex,
+        radix: 16,
+      );
+      if (stroke != null) {
+        final PmlTransform geometry = transform ?? shape.transform;
+        final bool flipH = geometry.flipH;
+        final bool flipV = geometry.flipV;
+        canvas.drawLine(
+          Offset(flipH ? r.right : r.left, flipV ? r.bottom : r.top),
+          Offset(flipH ? r.left : r.right, flipV ? r.top : r.bottom),
+          Paint()
+            ..color = Color(0xFF000000 | stroke)
+            ..strokeWidth = hasStroke
+                ? (shape.strokeWidth <= 0 ? 1 : shape.strokeWidth)
+                : 1.6,
+        );
+      }
+      return;
+    }
     final int? fill = int.tryParse(hex, radix: 16);
     if (fill != null) {
-      canvas.drawRect(r, Paint()..color = Color(0xFF000000 | fill));
+      final Paint paint = Paint()..color = Color(0xFF000000 | fill);
+      switch (shape.preset) {
+        case PmlShapePreset.rect:
+          canvas.drawRect(r, paint);
+        case PmlShapePreset.roundRect:
+          final double radius = math.min(8, r.shortestSide / 4);
+          canvas.drawRRect(
+            RRect.fromRectAndRadius(r, Radius.circular(radius)),
+            paint,
+          );
+        case PmlShapePreset.ellipse:
+          canvas.drawOval(r, paint);
+        case PmlShapePreset.triangle:
+          canvas.drawPath(
+            Path()
+              ..moveTo(r.center.dx, r.top)
+              ..lineTo(r.right, r.bottom)
+              ..lineTo(r.left, r.bottom)
+              ..close(),
+            paint,
+          );
+        case PmlShapePreset.connector:
+          break;
+        case PmlShapePreset.freeform:
+          final Path path = Path();
+          if (shape.path.isNotEmpty) {
+            path.moveTo(
+              r.left + shape.path.first.x / 12700,
+              r.top + shape.path.first.y / 12700,
+            );
+            for (final PmlPathPoint point in shape.path.skip(1)) {
+              path.lineTo(r.left + point.x / 12700, r.top + point.y / 12700);
+            }
+            path.close();
+          } else {
+            path.addRect(r);
+          }
+          canvas.drawPath(path, paint);
+        case PmlShapePreset.downArrow:
+        case PmlShapePreset.upArrow:
+        case PmlShapePreset.leftArrow:
+        case PmlShapePreset.rightArrow:
+          canvas.drawPath(_arrowPath(r, shape.preset), paint);
+      }
     } else if (shape.placeholder &&
         shape.text.isEmpty &&
         !presenting &&
@@ -1147,6 +1233,72 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
           ..color = const Color(0x66808080),
       );
     }
+  }
+
+  Path _arrowPath(Rect r, PmlShapePreset preset) {
+    final bool vertical =
+        preset == PmlShapePreset.downArrow || preset == PmlShapePreset.upArrow;
+    final double shaft = (vertical ? r.width : r.height) * 0.48;
+    final double head = (vertical ? r.height : r.width) * 0.48;
+    final Path path = Path();
+    switch (preset) {
+      case PmlShapePreset.downArrow:
+        final double left = r.left + (r.width - shaft) / 2;
+        final double bottom = r.bottom - head;
+        path
+          ..moveTo(left, r.top)
+          ..lineTo(left + shaft, r.top)
+          ..lineTo(left + shaft, bottom)
+          ..lineTo(r.right, bottom)
+          ..lineTo(r.center.dx, r.bottom)
+          ..lineTo(r.left, bottom)
+          ..lineTo(left, bottom)
+          ..close();
+      case PmlShapePreset.upArrow:
+        final double left = r.left + (r.width - shaft) / 2;
+        final double top = r.top + head;
+        path
+          ..moveTo(left, r.bottom)
+          ..lineTo(left + shaft, r.bottom)
+          ..lineTo(left + shaft, top)
+          ..lineTo(r.right, top)
+          ..lineTo(r.center.dx, r.top)
+          ..lineTo(r.left, top)
+          ..lineTo(left, top)
+          ..close();
+      case PmlShapePreset.leftArrow:
+        final double top = r.top + (r.height - shaft) / 2;
+        final double right = r.right - head;
+        path
+          ..moveTo(r.right, top)
+          ..lineTo(r.right, top + shaft)
+          ..lineTo(right, top + shaft)
+          ..lineTo(right, r.bottom)
+          ..lineTo(r.left, r.center.dy)
+          ..lineTo(right, r.top)
+          ..lineTo(right, top)
+          ..close();
+      case PmlShapePreset.rightArrow:
+        final double top = r.top + (r.height - shaft) / 2;
+        final double left = r.left + head;
+        path
+          ..moveTo(r.left, top)
+          ..lineTo(r.left, top + shaft)
+          ..lineTo(left, top + shaft)
+          ..lineTo(left, r.bottom)
+          ..lineTo(r.right, r.center.dy)
+          ..lineTo(left, r.top)
+          ..lineTo(left, top)
+          ..close();
+      case PmlShapePreset.rect:
+      case PmlShapePreset.roundRect:
+      case PmlShapePreset.ellipse:
+      case PmlShapePreset.triangle:
+      case PmlShapePreset.connector:
+      case PmlShapePreset.freeform:
+        path.addRect(r);
+    }
+    return path;
   }
 
   TextPainter _shapePainter(
@@ -1522,6 +1674,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       r,
       text: frame.text,
       fillColor: frame.fillColor,
+      transform: frame.transform,
     );
     canvas.restore();
   }
@@ -1532,6 +1685,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     Rect r, {
     String? text,
     String? fillColor,
+    PmlTransform? transform,
   }) {
     canvas.save();
     if (shape.table != null) {
@@ -1548,7 +1702,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     } else {
       final String paintedFill = fillColor ?? shape.fillColor;
       final int? fill = int.tryParse(paintedFill, radix: 16);
-      _paintShapeFill(canvas, shape, r, paintedFill);
+      _paintShapeFill(canvas, shape, r, paintedFill, transform: transform);
       // Morph can change the fill independently of the model shape. Resolve
       // against that painted fill; unfilled morph backing remains unknown.
       _paintShapeText(
@@ -1603,6 +1757,15 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       Offset.zero & _slideSize,
       Paint()..color = _slidePaper(target),
     );
+    for (final PmlShape shape in target.backgroundShapes) {
+      // Master/layout shape IDs are scoped to their source parts. Foreground
+      // animation and morph IDs must never hide or transform decorations.
+      final Rect r = _shapeRect(shape);
+      canvas.save();
+      _rotateCanvas(canvas, shape, r);
+      _paintShapeInRect(canvas, shape, r);
+      canvas.restore();
+    }
     for (final PmlShape shape in target.shapes) {
       if (skipIds != null && skipIds.contains(shape.id)) {
         continue;
@@ -1699,6 +1862,8 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       cx: (rect.width * 12700).round().clamp(12700, 100000000),
       cy: (rect.height * 12700).round().clamp(12700, 100000000),
       rot: shape.transform.rot,
+      flipH: shape.transform.flipH,
+      flipV: shape.transform.flipV,
     );
   }
 
@@ -1817,6 +1982,8 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         cx: start.cx,
         cy: start.cy,
         rot: start.rot + (delta * 60000).round(),
+        flipH: start.flipH,
+        flipV: start.flipV,
       );
     }
   }

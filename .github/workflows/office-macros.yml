@@ -45,6 +45,7 @@ jobs:
           dart test
           test/office_operations_test.dart
           test/office_macro_runtime_test.dart
+          test/office_macro_word_revision_guard_test.dart
           test/office_macro_language_test.dart
           test/office_vba_language_test.dart
           test/office_vba_integration_test.dart
@@ -59,6 +60,9 @@ jobs:
           test/office_vba_arrays_integration_test.dart
           test/office_vba_dynamic_arrays_test.dart
           test/office_vba_dynamic_arrays_integration_test.dart
+          test/office_vba_string_intrinsics_test.dart
+          test/office_vba_string_intrinsics_integration_test.dart
+          test/office_vba_conformance_test.dart
           test/office_macro_expansion_test.dart
           test/office_macro_mcp_test.dart
           test/office_macro_cli_test.dart
@@ -85,3 +89,12 @@ jobs:
           node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_arrays_smoke.js")'
           dart compile js -O1 tool/macros/web_vba_dynamic_arrays_smoke.dart -o build/macros/web_vba_dynamic_arrays_smoke.js
           node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_dynamic_arrays_smoke.js")'
+      - name: Shared string conformance on VM and JavaScript
+        working-directory: packages/quds_office_engine
+        run: |
+          mkdir -p build/macros
+          VBA_CASES_BASE64=$(python3 -c 'import base64; from pathlib import Path; print(base64.b64encode(Path("test/fixtures/vba_conformance/string_intrinsics_v1.json").read_bytes()).decode())')
+          dart --packages=../../.dart_tool/package_config.json -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" tool/macros/web_vba_string_conformance.dart > build/macros/strings-vm.json
+          dart compile js -O1 --packages=../../.dart_tool/package_config.json -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" tool/macros/web_vba_string_conformance.dart -o build/macros/strings.js
+          node -e 'globalThis.self = globalThis; require("./build/macros/strings.js")' > build/macros/strings-js.json
+          cmp build/macros/strings-vm.json build/macros/strings-js.json

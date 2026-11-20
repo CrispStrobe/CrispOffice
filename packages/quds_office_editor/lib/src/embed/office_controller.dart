@@ -14930,6 +14930,8 @@ class SlideEditorController extends OfficeController {
           cx: shape.transform.cx,
           cy: shape.transform.cy,
           rot: shape.transform.rot,
+          flipH: shape.transform.flipH,
+          flipV: shape.transform.flipV,
         ),
     };
     applyTransforms(next);
@@ -15077,6 +15079,8 @@ class SlideEditorController extends OfficeController {
                 cx: mate.transform.cx,
                 cy: mate.transform.cy,
                 rot: mate.transform.rot,
+                flipH: mate.transform.flipH,
+                flipV: mate.transform.flipV,
               ),
     };
     applyTransforms(nextByShape);
@@ -15522,7 +15526,9 @@ class SlideEditorController extends OfficeController {
           before.y != after.y ||
           before.cx != after.cx ||
           before.cy != after.cy ||
-          before.rot != after.rot) {
+          before.rot != after.rot ||
+          before.flipH != after.flipH ||
+          before.flipV != after.flipV) {
         changes[items[index]] = after;
       }
     }
