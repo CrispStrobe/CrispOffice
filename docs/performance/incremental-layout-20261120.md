@@ -160,6 +160,28 @@ agree) for every document before editing.
 The remaining maximum is the first keystroke after the document was loaded
 (paint-fitted): one full layout that records state.
 
+### Studio chrome A/B, local (both with incremental layout)
+
+"off" is `suite_workspace.dart` from main (workspace rebuilds on every Word
+notification), "on" is the branch; alternated in two rounds, load average
+6–7 (1 min). Values are round 1 / round 2.
+
+| Metric | Chrome rebuild per keystroke (off) | Selector (on) |
+|---|---|---|
+| Keystroke handler p50 / p95 (ms) | 5.6 / 14.2 · 5.4 / 18.7 | 5.3 / 10.7 · 5.3 / 11.2 |
+| Frame after keystroke p50 / p95 (ms) | 8.8 / 22.5 · 9.6 / 25.9 | 8.3 / 18.8 · 8.8 / 19.8 |
+| UI-isolate work between keystrokes p50 / p95 (ms) | 31.6 / 80.2 · 34.9 / 80.1 | **0.5 / 6.5 · 0.5 / 5.5** |
+| Keystrokes over 16.7 ms (handler + frame) | 108 · 119 | 64 · 77 |
+| Rebuilds: workspace / ribbon | 310 / 310 | **13 / 13** |
+| Rebuilds: Word editor / status line | 601 / 310 | 313 / 313 |
+| Rebuilds: review strip status button | 311 | 19 |
+
+The workspace rebuild ran in a post-frame callback, so it showed up as work
+between keystrokes (~32 ms each), competing with the next keystroke and
+proofing; it is now gone except when the chrome's shown state changes.
+Proofing counters (passes, provider calls, detections, findings) are
+unchanged.
+
 ### Hosted runners
 
 Workflow `Incremental layout benchmark`
