@@ -1,0 +1,90 @@
+{
+  "mode": "smoke",
+  "source_head": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+  "runtime": "Dart SDK 3.13.7 (archive SHA256 eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229)",
+  "node": "v24.22.3",
+  "commands": [
+    {
+      "stage": "vm",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/f8bca915f70d/validation-workspace/.dart_tool/package_config.json",
+        "tool/macros/web_vba_powerpoint_smoke.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 11.518,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b-powerpoint-smoke-vm.log"
+    },
+    {
+      "stage": "compile-js",
+      "argv": [
+        "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O1",
+        "--packages=/workspace/scratch/f8bca915f70d/validation-workspace/.dart_tool/package_config.json",
+        "tool/macros/web_vba_powerpoint_smoke.dart",
+        "-o",
+        "/workspace/scratch/f8bca915f70d/toolchains/build/final-macro-gate-fb09a29b-powerpoint-smoke.js"
+      ],
+      "exit_code": 0,
+      "seconds": 13.961,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b-powerpoint-smoke-compile-js.log"
+    },
+    {
+      "stage": "js",
+      "argv": [
+        "node",
+        "-e",
+        "globalThis.self = globalThis; require(process.argv[1])",
+        "/workspace/scratch/f8bca915f70d/toolchains/build/final-macro-gate-fb09a29b-powerpoint-smoke.js"
+      ],
+      "exit_code": 0,
+      "seconds": 0.501,
+      "log": "/workspace/scratch/f8bca915f70d/toolchains/logs/final-macro-gate-fb09a29b-powerpoint-smoke-js.log"
+    }
+  ],
+  "all_commands_passed": true,
+  "vm_js_byte_equal": true,
+  "inputs_before": {
+    "lib/src/automation/office_vba_language.dart": "68b0ad7f890605e64717e2417fadc83c77211f7b9856645dfc55f266ebb88217",
+    "lib/src/automation/office_macro_model.dart": "412acbb6f2b163eb5b9d040946e1ab060a3cc2c27901bc31e17347eceb61791f",
+    "lib/src/automation/office_macro_language.dart": "62dc76fbc627fdb9e26e6cad9b4c6509cd1d737c71cd0b0ff3304542174084e3",
+    "lib/src/automation/operations/slide_steps.dart": "f722f6b8105685ee85dc2cf14896db3b1a3a67a315de08a9ceb412cafdb2ce38",
+    "lib/src/slide/shapes/drawingml.dart": "14b8b6ee5e192382c8b61ae7b81af5bcf8692373db5515ace377e7d0efd1db11",
+    "lib/src/slide/model/pml_presentation.dart": "f1f52de35baf5065940d3beaead70b9a0cd5f91f530f63f49d16de960625e594",
+    "tool/macros/web_vba_powerpoint_smoke.dart": "aed7a9f8b99bcda7d53130b662e13587a788bb13dab1d55df8b4a27a83484b5e",
+    "test/support/vba_conformance.dart": "f70c51531c2d2ac8024fa5ba14469094bbabc9275462f9bf4962c4e769ee9000",
+    "test/fixtures/vba_conformance/powerpoint_shapes_v1.json": "c33ad7a4ebd6018b4a87b00361dce4747f59011217334100b0c42acdc6b4bcdb"
+  },
+  "inputs_after": {
+    "lib/src/automation/office_vba_language.dart": "68b0ad7f890605e64717e2417fadc83c77211f7b9856645dfc55f266ebb88217",
+    "lib/src/automation/office_macro_model.dart": "412acbb6f2b163eb5b9d040946e1ab060a3cc2c27901bc31e17347eceb61791f",
+    "lib/src/automation/office_macro_language.dart": "62dc76fbc627fdb9e26e6cad9b4c6509cd1d737c71cd0b0ff3304542174084e3",
+    "lib/src/automation/operations/slide_steps.dart": "f722f6b8105685ee85dc2cf14896db3b1a3a67a315de08a9ceb412cafdb2ce38",
+    "lib/src/slide/shapes/drawingml.dart": "14b8b6ee5e192382c8b61ae7b81af5bcf8692373db5515ace377e7d0efd1db11",
+    "lib/src/slide/model/pml_presentation.dart": "f1f52de35baf5065940d3beaead70b9a0cd5f91f530f63f49d16de960625e594",
+    "tool/macros/web_vba_powerpoint_smoke.dart": "aed7a9f8b99bcda7d53130b662e13587a788bb13dab1d55df8b4a27a83484b5e",
+    "test/support/vba_conformance.dart": "f70c51531c2d2ac8024fa5ba14469094bbabc9275462f9bf4962c4e769ee9000",
+    "test/fixtures/vba_conformance/powerpoint_shapes_v1.json": "c33ad7a4ebd6018b4a87b00361dce4747f59011217334100b0c42acdc6b4bcdb"
+  },
+  "inputs_changed": {},
+  "canonical_output": {
+    "language": "vba-powerpoint",
+    "steps": 15,
+    "slides": 2,
+    "title": "Total 2 😀",
+    "fontSize": 24.25,
+    "rgb": "112233",
+    "left": 24.5,
+    "rotationNativeUnits": -900000,
+    "mcpText": "MCP complete",
+    "revision": 2,
+    "immutableValidation": true,
+    "explicitFalsePreserved": true,
+    "lateFailurePreservedBytesAndRecording": true,
+    "groupSelectorRollback": true,
+    "readOnlyPolicy": true,
+    "mcpCompileAndRun": true
+  }
+}

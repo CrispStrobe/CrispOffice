@@ -87,7 +87,7 @@ jobs:
         working-directory: packages/quds_office_editor/example
         run: |
           set -o pipefail
-          export QUDS_STUDIO_APP="$PWD/build/macos/Build/Products/Release/quds_office_studio.app"
+          export QUDS_STUDIO_APP="$PWD/build/macos/Build/Products/Release/CrispOffice.app"
           export QUDS_STUDIO_DATA="$RUNNER_TEMP/studio-data"
           mkdir -p "$QUDS_STUDIO_DATA"
           flutter test test/studio_spacy_bundle_native_gate.dart 2>&1 \
@@ -96,7 +96,7 @@ jobs:
         working-directory: packages/quds_office_editor/example
         run: |
           set -o pipefail
-          export QUDS_STUDIO_APP="$PWD/build/macos/Build/Products/Release/quds_office_studio.app"
+          export QUDS_STUDIO_APP="$PWD/build/macos/Build/Products/Release/CrispOffice.app"
           export QUDS_STUDIO_DATA="$RUNNER_TEMP/studio-data"
           mkdir -p "$QUDS_STUDIO_DATA"
           flutter test \
@@ -107,7 +107,7 @@ jobs:
         if: always()
         working-directory: packages/quds_office_editor/example
         run: |
-          app=build/macos/Build/Products/Release/quds_office_studio.app
+          app=build/macos/Build/Products/Release/CrispOffice.app
           [ -d "$app" ] || exit 0
           {
             codesign -dvv "$app" 2>&1

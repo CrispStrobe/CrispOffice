@@ -302,6 +302,16 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   /// controller API.
   WordEditorController get _c => widget.controller;
 
+  WordReviewStatusBar? _statusBar;
+
+  /// One instance per controller: editor rebuilds (every keystroke) skip the
+  /// status bar, which rebuilds only for its own state transitions.
+  WordReviewStatusBar _reviewStatusBar() {
+    final cached = _statusBar;
+    if (cached != null && identical(cached.controller, _c)) return cached;
+    return _statusBar = WordReviewStatusBar(controller: _c);
+  }
+
   @override
   /// initState API.
   void initState() {
@@ -1480,7 +1490,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
               },
             ),
           ),
-          if (widget.showReviewStatus) WordReviewStatusBar(controller: _c),
+          if (widget.showReviewStatus) _reviewStatusBar(),
           if (widget.statusBarBuilder != null)
             widget.statusBarBuilder!(context, _c),
         ],
@@ -2426,6 +2436,7 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
           color: const Color(0xFF000000),
           child: SlideStage(
             slide: _c.slideShow?.currentSlide ?? _c.slide,
+            master: _c.presentation.master,
             selected: null,
             viewport: _c.viewport,
             config: config,
@@ -2830,6 +2841,7 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
                             slide: _c.isPlayingMotion
                                 ? (_c.slideShow?.currentSlide ?? _c.slide)
                                 : _c.canvasSlide,
+                            master: _c.presentation.master,
                             selected: _c.isPresenting ? null : _c.selected,
                             selectedShapes: _c.isPresenting
                                 ? const <PmlShape>[]

@@ -1,4 +1,4 @@
-package com.quds.quds_office_studio
+package com.crispstrobe.crispoffice
 
 import io.flutter.embedding.android.FlutterActivity
 

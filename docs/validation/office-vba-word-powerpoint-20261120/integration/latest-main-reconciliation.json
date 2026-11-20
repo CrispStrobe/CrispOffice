@@ -1,0 +1,118 @@
+{
+  "previous_head": "71cdffc9fe54b59b2b367ad491cfff2f9b54764b",
+  "incoming_main": "33190e50cae486be362eedb5fa687dd9c82b0c51",
+  "local_merge_commit": "beaf8f4e88054d26a3b31577c25de4f242acd3f8",
+  "merge_tree": "1ca6853a3413084e291061f53e0ac58ccfdf845d",
+  "merge_parents": [
+    "71cdffc9fe54b59b2b367ad491cfff2f9b54764b",
+    "33190e50cae486be362eedb5fa687dd9c82b0c51"
+  ],
+  "unique_incoming_commits": [
+    {
+      "commit": "33190e50cae486be362eedb5fa687dd9c82b0c51",
+      "parents": [
+        "860c807bfd1385899eed130abfb8940f95bda113"
+      ],
+      "subject": "Record native VPS and portable qualification for integrated Office work [skip ci]",
+      "changed_paths": [
+        "docs/validation/macbook-office-integration-20261120/README.md",
+        "docs/validation/macbook-office-integration-20261120/summary.json"
+      ]
+    },
+    {
+      "commit": "860c807bfd1385899eed130abfb8940f95bda113",
+      "parents": [
+        "7c82a286e22a4e37e58b79edafa4c5a8c089fc41",
+        "7c562b635f932372a310b78a78eb20bdb9df626d"
+      ],
+      "subject": "Merge remote-tracking branch 'origin/main' into fix/word-line-boxes-20261120",
+      "remerge_diff_empty": true,
+      "remerge_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "commit": "7c562b635f932372a310b78a78eb20bdb9df626d",
+      "parents": [
+        "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+        "7319b220ab2e64b440e6f63d299eb747366a24d3"
+      ],
+      "subject": "Merge pull request #236 from CrispStrobe/feat/android-spacy-grammar-20261120",
+      "remerge_diff_empty": true,
+      "remerge_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "commit": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "parents": [
+        "67a4917b33dcd578333adabac1c50db0fc2a62b6"
+      ],
+      "subject": "Android grammar evidence: x86_64 CI gate (no claim) and build-host dependence [skip ci]",
+      "changed_paths": [
+        "docs/validation/native-spacy-android-grammar-20261120/README.md",
+        "docs/validation/native-spacy-android-grammar-20261120/ci-x86_64-gate.json"
+      ]
+    },
+    {
+      "commit": "7c82a286e22a4e37e58b79edafa4c5a8c089fc41",
+      "parents": [
+        "f6db35129e5ecd37197a2b9c0ead7de3cf5f7618"
+      ],
+      "subject": "Support long synthetic font family names in installed-font controls [skip ci]",
+      "changed_paths": [
+        "packages/quds_office_editor/test/support/installed_font_fixture.dart"
+      ]
+    },
+    {
+      "commit": "f6db35129e5ecd37197a2b9c0ead7de3cf5f7618",
+      "parents": [
+        "238ad2ed69890d0bde9fc1a5c77ab747cbbc5cfd"
+      ],
+      "subject": "Discover installed Franklin Gothic and align shared mailbox empty-filter regression [skip ci]",
+      "changed_paths": [
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+        "packages/quds_office_editor/test/office_system_fonts_test.dart"
+      ]
+    },
+    {
+      "commit": "238ad2ed69890d0bde9fc1a5c77ab747cbbc5cfd",
+      "parents": [
+        "b8f4a7be7cc5ac1a6d9c1d89d999c5e6f3e13fb6",
+        "1eddb91495bd405a1dfb3b1e8734e93e85b04b1d"
+      ],
+      "subject": "Merge remote-tracking branch 'origin/integrate/recent-pptx' into fix/word-line-boxes-20261120",
+      "remerge_diff_empty": true,
+      "remerge_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "final_changed_paths": [
+    "docs/validation/macbook-office-integration-20261120/README.md",
+    "docs/validation/macbook-office-integration-20261120/summary.json",
+    "docs/validation/native-spacy-android-grammar-20261120/README.md",
+    "docs/validation/native-spacy-android-grammar-20261120/ci-x86_64-gate.json",
+    "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+    "packages/quds_office_editor/test/office_system_fonts_test.dart",
+    "packages/quds_office_editor/test/support/installed_font_fixture.dart"
+  ],
+  "engine_tree_before": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+  "engine_tree_after": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+  "engine_tree_unchanged": true,
+  "conflict_resolution": {
+    "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "decision": "Retain both the shared noMatches positive assertion and the existing noMessages negative assertion; incoming positive assertion was already present."
+  },
+  "no_new_engine_qualification_required": true,
+  "flutter_runtime_tests_run": false,
+  "github_actions_used": false,
+  "fetch_performed_by_this_audit": false,
+  "published_commit": "a6068b4d46421e8a0c5921ba0b5cc24b4873ca12",
+  "published_tree": "1ca6853a3413084e291061f53e0ac58ccfdf845d",
+  "published_parents": [
+    "230b0abdaacda2e178e8740fed5cf0dcb6f7281f",
+    "33190e50cae486be362eedb5fa687dd9c82b0c51"
+  ],
+  "qualified_input_count_rechecked": 1041,
+  "all_qualified_inputs_identical": true,
+  "original_inclusion_audit_target_is_ancestor": true,
+  "latest_main_is_ancestor": true,
+  "qualified_engine_tree": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+  "published_engine_tree": "aabb48ef7ab6a79904a889c50dc3756eab116e7c"
+}

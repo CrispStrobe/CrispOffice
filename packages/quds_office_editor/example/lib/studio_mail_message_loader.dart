@@ -24,6 +24,41 @@ abstract interface class StudioMailMessageLoader {
   void dispose();
 }
 
+/// Immutable page membership; the message projections retain the existing
+/// Studio header type and carry no synthesized message body.
+final class StudioMailHeaderPage {
+  StudioMailHeaderPage({required List<mail.MimeMessage> messages, this.next})
+    : messages = List.unmodifiable(messages);
+
+  final List<mail.MimeMessage> messages;
+  final MailCursor? next;
+}
+
+/// Optional bounded, newest-first foreground browsing. Continue only with the
+/// last returned cursor; omit it to refresh the selected mailbox snapshot.
+abstract interface class StudioMailMailboxBrowser {
+  Future<StudioMailHeaderPage> fetchHeaders(
+    mail.Mailbox selectedMailbox, {
+    MailCursor? cursor,
+    int limit = 50,
+  });
+}
+
+/// Optional confirmed flag actions, separate from existing reader fakes.
+abstract interface class StudioMailMessageActions {
+  Future<void> setRead(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header, {
+    required bool read,
+  });
+
+  Future<void> setFlagged(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header, {
+    required bool flagged,
+  });
+}
+
 /// Optional folder archiving capability, separate from existing reader fakes.
 /// Hosts supply a stable mailbox profile and own the archive's lifetime.
 abstract interface class StudioMailMailboxArchiver {
@@ -78,14 +113,18 @@ final class StudioMailMessageLoadException implements Exception {
 
 /// Native, password-authenticated IMAP reads with a fresh bounded connection.
 ///
-/// Envelope fetching remains owned by Studio's high-level client. Callers must
-/// pair an envelope with the selected mailbox observed while fetching its list.
+/// Callers pair an envelope with the selected mailbox observed while fetching
+/// its list. Foreground pages use the bounded provider's separate browse port.
 /// Sequence numbers and the library's collision-prone GUID are never identities.
 /// The selected path, UIDVALIDITY and UID are frozen before any asynchronous
 /// operation, and the provider checks the server's current UIDVALIDITY before
 /// reading the exact UID. Original octets are never rendered back into a string.
 final class NativeStudioMailMessageLoader
-    implements StudioMailMessageLoader, StudioMailMailboxArchiver {
+    implements
+        StudioMailMessageLoader,
+        StudioMailMailboxBrowser,
+        StudioMailMessageActions,
+        StudioMailMailboxArchiver {
   factory NativeStudioMailMessageLoader(
     mail.MailAccount account, {
     StudioMailProviderFactory? providerFactory,
@@ -162,6 +201,7 @@ final class NativeStudioMailMessageLoader
   }) : _session = MailAccountSession(_configuration.account);
 
   static int _nextSession = 0;
+  static final _browsedIdentities = Expando<MailImapIdentity>();
 
   static MailProvider _createProvider({
     required MailImapConfiguration configuration,
@@ -182,6 +222,7 @@ final class NativeStudioMailMessageLoader
   final MailTransportLimits limits;
   _MessageOperation? _active;
   int _nextOperation = 0;
+  _MailboxBrowseContinuation? _browse;
 
   (MailMailboxId, int) _selectedMailbox(mail.Mailbox selectedMailbox) {
     if (_session.isDisposed) {
@@ -226,6 +267,10 @@ final class NativeStudioMailMessageLoader
         uidValidity: uidValidity,
         uid: uid,
       );
+      final bound = _browsedIdentities[header];
+      if (bound != null && bound != identity) {
+        throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+      }
       // This optional high-level-client hint can reject an obvious stale list;
       // its XOR collisions mean it is never used instead of the full identity.
       if (header.guid != null &&
@@ -242,6 +287,130 @@ final class NativeStudioMailMessageLoader
       throw const StudioMailMessageLoadException(MailProblemCode.invalidInput);
     }
     return identity;
+  }
+
+  @override
+  Future<StudioMailHeaderPage> fetchHeaders(
+    mail.Mailbox selectedMailbox, {
+    MailCursor? cursor,
+    int limit = 50,
+  }) async {
+    final (mailbox, validity) = _selectedMailbox(selectedMailbox);
+    final encodedName = selectedMailbox.encodedName;
+    final previous = _browse;
+    if (limit < 1 ||
+        limit > limits.maxPageSize ||
+        (cursor != null &&
+            (cursor.mailbox != mailbox ||
+                previous == null ||
+                previous.mailbox != mailbox ||
+                previous.uidValidity != validity ||
+                previous.nextValue != cursor.value))) {
+      throw const StudioMailMessageLoadException(MailProblemCode.invalidInput);
+    }
+    final page = await _run((provider, lease) {
+      if (provider is! MailImapHeaderBrowser) {
+        return Future<MailResult<MailHeaderPage>>.value(
+          const MailFailure(MailProblem(MailProblemCode.unsupported)),
+        );
+      }
+      return (provider as MailImapHeaderBrowser).fetchNewestHeaders(
+        mailbox,
+        uidValidity: validity,
+        cursor: cursor,
+        limit: limit,
+        lease: lease,
+      );
+    });
+    if (page.messages.length > limit) {
+      throw const StudioMailMessageLoadException(
+        MailProblemCode.providerFailure,
+      );
+    }
+    var lastUid = cursor == null ? 0x100000000 : previous!.lastUid;
+    final ids = <MailMessageId>{};
+    for (final record in page.messages) {
+      final identity = record.remote;
+      if (identity is! MailImapIdentity || identity.mailbox != mailbox) {
+        throw const StudioMailMessageLoadException(
+          MailProblemCode.providerFailure,
+        );
+      }
+      if (identity.uidValidity != validity) {
+        throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+      }
+      if (identity.uid >= lastUid || !ids.add(record.id)) {
+        throw const StudioMailMessageLoadException(
+          MailProblemCode.providerFailure,
+        );
+      }
+      lastUid = identity.uid;
+    }
+    final values = cursor == null ? <String>{} : {...previous!.cursorValues};
+    final next = page.next;
+    if (next != null &&
+        (next.mailbox != mailbox ||
+            next.value.isEmpty ||
+            next.value.length > 256 ||
+            !values.add(next.value))) {
+      throw const StudioMailMessageLoadException(
+        MailProblemCode.providerFailure,
+      );
+    }
+    // Retain at most the host's bounded foreground browse chain. A refresh
+    // starts a new chain, and a failed/cancelled page never consumes its cursor.
+    if (values.length > 10000) {
+      throw const StudioMailMessageLoadException(MailProblemCode.quotaExceeded);
+    }
+    final messages = <mail.MimeMessage>[];
+    for (final record in page.messages) {
+      final identity = record.remote as MailImapIdentity;
+      final envelope = record.envelope;
+      final flags = record.flags;
+      final header = mail.MimeMessage.fromEnvelope(
+        mail.Envelope(
+          date: envelope.sentAt,
+          subject: envelope.subject,
+          from: _displayAddresses(envelope.from),
+          to: _displayAddresses(envelope.to),
+          cc: _displayAddresses(envelope.cc),
+          bcc: _displayAddresses(envelope.bcc),
+          replyTo: _displayAddresses(envelope.replyTo),
+          inReplyTo: envelope.inReplyTo,
+          messageId: envelope.messageId,
+        ),
+        uid: identity.uid,
+        flags: flags == null
+            ? null
+            : [
+                if (flags.isRead) mail.MessageFlags.seen,
+                if (flags.isFlagged) mail.MessageFlags.flagged,
+                if (flags.isAnswered) mail.MessageFlags.answered,
+                if (flags.isDraft) mail.MessageFlags.draft,
+                if (flags.isDeleted) mail.MessageFlags.deleted,
+              ],
+      );
+      if (envelope.references.isNotEmpty) {
+        header.addHeader('References', envelope.references.join(' '));
+      }
+      header.setGuid(
+        email: _email,
+        encodedMailboxName: encodedName,
+        mailboxUidValidity: validity,
+      );
+      _browsedIdentities[header] = identity;
+      messages.add(header);
+    }
+    _browse = next == null
+        ? null
+        : _MailboxBrowseContinuation(
+            mailbox: mailbox,
+            uidValidity: validity,
+            nextValue: next.value,
+            lastUid: lastUid,
+            cursorValues: values,
+          );
+    return StudioMailHeaderPage(messages: messages, next: next);
   }
 
   @override
@@ -267,7 +436,14 @@ final class NativeStudioMailMessageLoader
   Future<void> markRead(
     mail.Mailbox selectedMailbox,
     mail.MimeMessage header,
-  ) async {
+  ) => setRead(selectedMailbox, header, read: true);
+
+  @override
+  Future<void> setRead(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header, {
+    required bool read,
+  }) async {
     final identity = _identity(selectedMailbox, header);
     // The provider opens a bounded connection, compares UIDVALIDITY, verifies
     // this UID exists, performs UID STORE, then reads back the flag. It never
@@ -275,9 +451,28 @@ final class NativeStudioMailMessageLoader
     await _run(
       (provider, lease) => provider.apply(
         MailSetRead(
-          id: 'mark-read-${++_nextOperation}',
+          id: 'set-read-${++_nextOperation}',
           message: identity,
-          read: true,
+          read: read,
+        ),
+        lease,
+      ),
+    );
+  }
+
+  @override
+  Future<void> setFlagged(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header, {
+    required bool flagged,
+  }) async {
+    final identity = _identity(selectedMailbox, header);
+    await _run(
+      (provider, lease) => provider.apply(
+        MailSetFlagged(
+          id: 'set-flagged-${++_nextOperation}',
+          message: identity,
+          flagged: flagged,
         ),
         lease,
       ),
@@ -426,7 +621,29 @@ final class NativeStudioMailMessageLoader
     _active?.cancel(MailProblemCode.staleOperation);
     _active = null;
     _credentials.dispose();
+    _browse = null;
   }
+}
+
+List<mail.MailAddress> _displayAddresses(List<MailAddress> addresses) => [
+  for (final address in addresses)
+    mail.MailAddress(address.displayName, address.address),
+];
+
+final class _MailboxBrowseContinuation {
+  _MailboxBrowseContinuation({
+    required this.mailbox,
+    required this.uidValidity,
+    required this.nextValue,
+    required this.lastUid,
+    required Set<String> cursorValues,
+  }) : cursorValues = Set.unmodifiable(cursorValues);
+
+  final MailMailboxId mailbox;
+  final int uidValidity;
+  final String nextValue;
+  final int lastUid;
+  final Set<String> cursorValues;
 }
 
 MailProblemCode _archiveCancellationCode(MailCancellationReason? reason) =>

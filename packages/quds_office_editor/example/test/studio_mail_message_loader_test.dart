@@ -12,6 +12,7 @@ import 'package:quds_office_studio/studio_mail_message_loader.dart';
 
 void main() {
   _archiveAdapterTests();
+  _browsingTests();
 
   test(
     'mark-read freezes the full identity and requires provider success',
@@ -712,6 +713,596 @@ void main() {
   );
 }
 
+void _browsingTests() {
+  group('native IMAP foreground browsing', () {
+    test(
+      'a reader-only provider cannot imply a successful empty mailbox',
+      () async {
+        final loader = NativeStudioMailMessageLoader(
+          _account(),
+          providerFactory:
+              ({
+                required configuration,
+                required credentialStore,
+                required limits,
+              }) => _ReaderOnlyProvider(configuration.account),
+        );
+        addTearDown(loader.dispose);
+        await expectLater(
+          loader.fetchHeaders(_mailbox()),
+          throwsA(_problem(MailProblemCode.unsupported)),
+        );
+      },
+    );
+
+    test(
+      'projects complete envelopes and preserves unobserved flags without bodies',
+      () async {
+        final harness = _Harness();
+        final sent = DateTime.utc(2026, 11, 20, 9);
+        harness.headersAnswer = (mailbox, _, _, _) async => MailSuccess(
+          MailHeaderPage(
+            messages: [
+              _record(
+                mailbox,
+                uid: 9,
+                envelope: MailEnvelope(
+                  subject: 'موضوع — Inbox',
+                  from: const [
+                    MailAddress('sender@example.test', displayName: 'Sender'),
+                  ],
+                  to: const [MailAddress('to@example.test')],
+                  cc: const [MailAddress('cc@example.test')],
+                  bcc: const [MailAddress('bcc@example.test')],
+                  replyTo: const [MailAddress('reply@example.test')],
+                  sentAt: sent,
+                  messageId: '<message@example.test>',
+                  inReplyTo: '<parent@example.test>',
+                  references: const [
+                    '<root@example.test>',
+                    '<parent@example.test>',
+                  ],
+                ),
+              ),
+              _record(mailbox, uid: 8, flags: const MailMessageFlags()),
+              _record(
+                mailbox,
+                uid: 7,
+                flags: const MailMessageFlags(
+                  isRead: true,
+                  isFlagged: true,
+                  isAnswered: true,
+                  isDraft: true,
+                  isDeleted: true,
+                ),
+              ),
+            ],
+          ),
+        );
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        final page = await loader.fetchHeaders(_mailbox(), limit: 3);
+        expect(page.messages.map((message) => message.uid), [9, 8, 7]);
+        final first = page.messages.first;
+        expect(first.decodeSubject(), 'موضوع — Inbox');
+        expect(first.decodeDate(), sent);
+        expect(first.from!.single.email, 'sender@example.test');
+        expect(first.from!.single.personalName, 'Sender');
+        expect(first.to!.single.email, 'to@example.test');
+        expect(first.cc!.single.email, 'cc@example.test');
+        expect(first.bcc!.single.email, 'bcc@example.test');
+        expect(first.replyTo!.single.email, 'reply@example.test');
+        expect(first.getHeaderValue('Message-ID'), '<message@example.test>');
+        expect(first.getHeaderValue('In-Reply-To'), '<parent@example.test>');
+        expect(
+          first.getHeaderValue('References'),
+          '<root@example.test> <parent@example.test>',
+        );
+        expect(first.flags, isNull);
+        expect(page.messages[1].flags, isEmpty);
+        expect(
+          page.messages[2].flags,
+          containsAll([
+            r'\Seen',
+            r'\Flagged',
+            r'\Answered',
+            r'\Draft',
+            r'\Deleted',
+          ]),
+        );
+        expect(first.decodeTextPlainPart(), isNull);
+        expect(first.decodeTextHtmlPart(), isNull);
+        expect(first.sequenceId, isNull);
+        expect(() => page.messages.add(_header()), throwsUnsupportedError);
+        expect(harness.requests, isEmpty);
+        expect(harness.mutations, isEmpty);
+        expect(harness.headerRequests.single.limit, 3);
+        expect(harness.requestedValidities, [41]);
+      },
+    );
+
+    test(
+      'freezes the selected path and generation before asynchronous browsing',
+      () async {
+        final delayed = Completer<MailResult<MailHeaderPage>>();
+        final harness = _Harness()
+          ..headersAnswer = (_, _, _, _) => delayed.future;
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        final selected = _mailbox(path: 'Projects/Original', uidValidity: 83);
+        final pending = loader.fetchHeaders(selected);
+        final request = harness.headerRequests.single;
+        selected.uidValidity = 84;
+        delayed.complete(
+          MailSuccess(
+            MailHeaderPage(
+              messages: [_record(request.mailbox, uid: 9, uidValidity: 83)],
+            ),
+          ),
+        );
+        final page = await pending;
+        expect(harness.requestedValidities, [83]);
+        expect(request.mailbox.value, 'Projects/Original');
+        expect(page.messages.single.uid, 9);
+        await expectLater(
+          loader.fetch(selected, page.messages.single),
+          throwsA(_problem(MailProblemCode.conflict)),
+        );
+        expect(harness.requests, isEmpty);
+      },
+    );
+
+    test(
+      'pages retain descending order and reject a consumed continuation before networking',
+      () async {
+        final harness = _Harness()
+          ..headersAnswer = (mailbox, cursor, _, _) async => MailSuccess(
+            MailHeaderPage(
+              messages: [
+                for (final uid in cursor == null ? [9, 8] : [7, 6])
+                  _record(mailbox, uid: uid),
+              ],
+              next: MailCursor(
+                mailbox: mailbox,
+                value: cursor == null ? 'next-1' : 'next-2',
+              ),
+            ),
+          );
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        final first = await loader.fetchHeaders(_mailbox());
+        final second = await loader.fetchHeaders(
+          _mailbox(),
+          cursor: first.next,
+        );
+        expect(first.messages.map((message) => message.uid), [9, 8]);
+        expect(second.messages.map((message) => message.uid), [7, 6]);
+        await expectLater(
+          loader.fetchHeaders(_mailbox(), cursor: first.next),
+          throwsA(_problem(MailProblemCode.invalidInput)),
+        );
+        expect(harness.headerRequests, hasLength(2));
+      },
+    );
+
+    test(
+      'refresh starts a new snapshot and permits newly arrived UIDs',
+      () async {
+        final harness = _Harness()
+          ..headersAnswer = (mailbox, _, _, _) async => MailSuccess(
+            MailHeaderPage(
+              messages: [_record(mailbox, uid: 9)],
+              next: MailCursor(
+                mailbox: mailbox,
+                value: 'same-position-on-refresh',
+              ),
+            ),
+          );
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        await loader.fetchHeaders(_mailbox());
+        expect((await loader.fetchHeaders(_mailbox())).messages.single.uid, 9);
+        expect(harness.headerRequests, hasLength(2));
+      },
+    );
+
+    for (final fault in [
+      'account',
+      'mailbox',
+      'provider',
+      'generation',
+      'duplicate-uid',
+      'duplicate-id',
+      'unordered',
+      'oversize',
+    ]) {
+      test('rejects $fault page before exposing any headers', () async {
+        final harness = _Harness();
+        harness.headersAnswer = (mailbox, _, _, _) async {
+          final otherMailbox = MailMailboxId('Other', account: mailbox.account);
+          final foreignAccount = MailAccountId(
+            'other',
+            profile: mailbox.account.profile,
+          );
+          final bad = switch (fault) {
+            'account' => _record(
+              MailMailboxId(mailbox.value, account: foreignAccount),
+              uid: 7,
+            ),
+            'mailbox' => _record(otherMailbox, uid: 7),
+            'provider' => _record(
+              mailbox,
+              uid: 7,
+              remote: MailOpaqueIdentity(
+                account: mailbox.account,
+                provider: MailProviderKind.ews,
+                value: 'foreign',
+              ),
+            ),
+            'generation' => _record(mailbox, uid: 7, uidValidity: 42),
+            'duplicate-uid' => _record(
+              mailbox,
+              uid: 8,
+              id: MailMessageId('different-id'),
+            ),
+            'duplicate-id' => _record(
+              mailbox,
+              uid: 7,
+              id: MailMessageId('message-8'),
+            ),
+            'unordered' => _record(mailbox, uid: 9),
+            _ => _record(mailbox, uid: 7),
+          };
+          return MailSuccess(
+            MailHeaderPage(messages: [_record(mailbox, uid: 8), bad]),
+          );
+        };
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        await expectLater(
+          loader.fetchHeaders(_mailbox(), limit: fault == 'oversize' ? 1 : 2),
+          throwsA(
+            _problem(
+              fault == 'generation'
+                  ? MailProblemCode.conflict
+                  : MailProblemCode.providerFailure,
+            ),
+          ),
+        );
+        expect(harness.headerRequests, hasLength(1));
+        expect(harness.requests, isEmpty);
+      });
+    }
+
+    test(
+      'cross-page repeated messages cannot hide behind a new cursor',
+      () async {
+        final harness = _Harness()
+          ..headersAnswer = (mailbox, cursor, _, _) async => MailSuccess(
+            MailHeaderPage(
+              messages: [_record(mailbox, uid: 9)],
+              next: MailCursor(
+                mailbox: mailbox,
+                value: cursor == null ? 'next-1' : 'next-2',
+              ),
+            ),
+          );
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        final first = await loader.fetchHeaders(_mailbox());
+        await expectLater(
+          loader.fetchHeaders(_mailbox(), cursor: first.next),
+          throwsA(_problem(MailProblemCode.providerFailure)),
+        );
+      },
+    );
+
+    for (final fault in ['mailbox', 'empty', 'oversize', 'repeat', 'cycle']) {
+      test('rejects $fault continuation tokens', () async {
+        final harness = _Harness();
+        var pages = 0;
+        harness.headersAnswer = (mailbox, cursor, _, _) async {
+          pages++;
+          final invalid = switch (fault) {
+            'empty' => '',
+            'oversize' => 'x' * 257,
+            'repeat' => 'next-1',
+            'cycle' => pages < 3 ? 'next-$pages' : 'next-1',
+            _ => 'next-$pages',
+          };
+          return MailSuccess(
+            MailHeaderPage(
+              messages: [_record(mailbox, uid: 10 - pages)],
+              next: MailCursor(
+                mailbox: fault == 'mailbox'
+                    ? MailMailboxId('Other', account: mailbox.account)
+                    : mailbox,
+                value: invalid,
+              ),
+            ),
+          );
+        };
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        MailCursor? cursor;
+        if (fault == 'repeat' || fault == 'cycle') {
+          cursor = (await loader.fetchHeaders(_mailbox())).next;
+        }
+        if (fault == 'cycle') {
+          cursor = (await loader.fetchHeaders(_mailbox(), cursor: cursor)).next;
+        }
+        await expectLater(
+          loader.fetchHeaders(_mailbox(), cursor: cursor),
+          throwsA(_problem(MailProblemCode.providerFailure)),
+        );
+      });
+    }
+
+    test(
+      'failed next pages retain their cursor for explicit retry without automatic replay',
+      () async {
+        final harness = _Harness();
+        var failNext = true;
+        harness.headersAnswer = (mailbox, cursor, _, _) async {
+          if (cursor != null && failNext) {
+            return const MailFailure(MailProblem(MailProblemCode.unavailable));
+          }
+          return MailSuccess(
+            MailHeaderPage(
+              messages: [_record(mailbox, uid: cursor == null ? 9 : 8)],
+              next: cursor == null
+                  ? MailCursor(mailbox: mailbox, value: 'next')
+                  : null,
+            ),
+          );
+        };
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        final first = await loader.fetchHeaders(_mailbox());
+        await expectLater(
+          loader.fetchHeaders(_mailbox(), cursor: first.next),
+          throwsA(_problem(MailProblemCode.unavailable)),
+        );
+        expect(harness.headerRequests, hasLength(2));
+        failNext = false;
+        expect(
+          (await loader.fetchHeaders(
+            _mailbox(),
+            cursor: first.next,
+          )).messages.single.uid,
+          8,
+        );
+        expect(harness.headerRequests, hasLength(3));
+      },
+    );
+
+    test(
+      'empty expunged pages may progress and do not erase preceding UID bounds',
+      () async {
+        final harness = _Harness();
+        var pages = 0;
+        harness.headersAnswer = (mailbox, _, _, _) async {
+          pages++;
+          return MailSuccess(
+            MailHeaderPage(
+              messages: pages == 2
+                  ? []
+                  : [_record(mailbox, uid: pages == 1 ? 9 : 8)],
+              next: pages == 3
+                  ? null
+                  : MailCursor(mailbox: mailbox, value: 'next-$pages'),
+            ),
+          );
+        };
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        final first = await loader.fetchHeaders(_mailbox());
+        final second = await loader.fetchHeaders(
+          _mailbox(),
+          cursor: first.next,
+        );
+        expect(second.messages, isEmpty);
+        expect(
+          (await loader.fetchHeaders(
+            _mailbox(),
+            cursor: second.next,
+          )).messages.single.uid,
+          8,
+        );
+      },
+    );
+
+    test(
+      'invalid page requests and foreign cursors fail before provider creation',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        for (final limit in [0, -1, 501]) {
+          await expectLater(
+            loader.fetchHeaders(_mailbox(), limit: limit),
+            throwsA(_problem(MailProblemCode.invalidInput)),
+          );
+        }
+        await expectLater(
+          loader.fetchHeaders(_mailbox(uidValidity: null)),
+          throwsA(_problem(MailProblemCode.invalidInput)),
+        );
+        final foreign = MailMailboxId(
+          'INBOX',
+          account: MailAccountId(
+            'foreign',
+            profile: MailProfileId('foreign', hostId: 'foreign'),
+          ),
+        );
+        await expectLater(
+          loader.fetchHeaders(
+            _mailbox(),
+            cursor: MailCursor(mailbox: foreign, value: 'other'),
+          ),
+          throwsA(_problem(MailProblemCode.invalidInput)),
+        );
+        expect(harness.factoryCalls, 0);
+      },
+    );
+
+    test(
+      'cancellation and disposal suppress late browsing completions',
+      () async {
+        for (final dispose in [false, true]) {
+          final delayed = Completer<MailResult<MailHeaderPage>>();
+          final harness = _Harness()
+            ..headersAnswer = (_, _, _, _) => delayed.future;
+          final loader = _loader(harness);
+          addTearDown(loader.dispose);
+          final pending = loader.fetchHeaders(_mailbox());
+          final expectation = expectLater(
+            pending,
+            throwsA(
+              _problem(
+                dispose
+                    ? MailProblemCode.staleOperation
+                    : MailProblemCode.cancelled,
+              ),
+            ),
+          );
+          if (dispose) {
+            loader.dispose();
+          } else {
+            loader.cancel();
+          }
+          await expectation;
+          expect(harness.headerRequests.single.lease.isCurrent, isFalse);
+          delayed.completeError(StateError('late private provider error'));
+          await Future<void>.delayed(Duration.zero);
+          expect(harness.headerRequests, hasLength(1));
+        }
+      },
+    );
+
+    test(
+      'projected header identity cannot be retargeted through mutable fields or another session',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        final otherHarness = _Harness();
+        final other = _loader(otherHarness);
+        addTearDown(loader.dispose);
+        addTearDown(other.dispose);
+        final header = (await loader.fetchHeaders(_mailbox())).messages.single;
+        await expectLater(
+          loader.setFlagged(_mailbox(path: 'Other'), header, flagged: true),
+          throwsA(_problem(MailProblemCode.conflict)),
+        );
+        await expectLater(
+          other.fetch(_mailbox(), header),
+          throwsA(_problem(MailProblemCode.conflict)),
+        );
+        header.uid = 8;
+        header.guid = null;
+        await expectLater(
+          loader.setRead(_mailbox(), header, read: false),
+          throwsA(_problem(MailProblemCode.conflict)),
+        );
+        expect(harness.mutations, isEmpty);
+        expect(otherHarness.requests, isEmpty);
+      },
+    );
+  });
+
+  group('native IMAP confirmed message actions', () {
+    test(
+      'read/unread and flag/unflag preserve exact typed identities and await confirmation',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        for (final flagged in [false, true]) {
+          for (final value in [false, true]) {
+            final delayed = Completer<MailResult<MailUnit>>();
+            harness.applyAnswer = (_, _) => delayed.future;
+            final mailbox = _mailbox(uidValidity: 83);
+            final header = _header(uid: 91);
+            var finished = false;
+            final pending =
+                (flagged
+                        ? loader.setFlagged(mailbox, header, flagged: value)
+                        : loader.setRead(mailbox, header, read: value))
+                    .then((_) {
+                      finished = true;
+                    });
+            final operation = harness.mutations.last.$1;
+            final identity = operation.message as MailImapIdentity;
+            mailbox.uidValidity = 84;
+            header.uid = 92;
+            expect(finished, isFalse);
+            if (flagged) {
+              expect((operation as MailSetFlagged).flagged, value);
+            } else {
+              expect((operation as MailSetRead).read, value);
+            }
+            expect(identity.uidValidity, 83);
+            expect(identity.uid, 91);
+            delayed.complete(const MailSuccess(MailUnit.value));
+            await pending;
+            expect(finished, isTrue);
+            expect(header.flags, isNull);
+          }
+        }
+        expect(
+          harness.mutations.map((entry) => entry.$1.id).toSet(),
+          hasLength(4),
+        );
+      },
+    );
+
+    test(
+      'unconfirmed flag and unread writes never replay or mutate the projection',
+      () async {
+        final harness = _Harness()
+          ..applyAnswer = (_, _) async =>
+              const MailFailure(MailProblem(MailProblemCode.conflict));
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        final header = _header()..flags = [mail.MessageFlags.seen];
+        await expectLater(
+          loader.setRead(_mailbox(), header, read: false),
+          throwsA(_problem(MailProblemCode.conflict)),
+        );
+        await expectLater(
+          loader.setFlagged(_mailbox(), header, flagged: true),
+          throwsA(_problem(MailProblemCode.conflict)),
+        );
+        expect(header.flags, [mail.MessageFlags.seen]);
+        expect(harness.mutations, hasLength(2));
+      },
+    );
+
+    test(
+      'cancelled flag write observes late failures and leaves session reusable',
+      () async {
+        final delayed = Completer<MailResult<MailUnit>>();
+        final harness = _Harness()..applyAnswer = (_, _) => delayed.future;
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        final pending = loader.setFlagged(_mailbox(), _header(), flagged: true);
+        final expectation = expectLater(
+          pending,
+          throwsA(_problem(MailProblemCode.cancelled)),
+        );
+        loader.cancel();
+        await expectation;
+        delayed.completeError(StateError('late private mutation reply'));
+        await Future<void>.delayed(Duration.zero);
+        harness.applyAnswer = (_, _) async => const MailSuccess(MailUnit.value);
+        await loader.setFlagged(_mailbox(), _header(), flagged: false);
+        expect(harness.mutations, hasLength(2));
+        expect(harness.mutations.first.$2.isCurrent, isFalse);
+      },
+    );
+  });
+}
+
 const _archiveProfile = MailArchiveProfile(
   id: 'imap-fixture',
   name: 'Fixture folder',
@@ -727,12 +1318,15 @@ MailHeaderRecord _record(
   int uidValidity = 41,
   MailRemoteIdentity? remote,
   MailMessageId? id,
+  MailEnvelope? envelope,
+  MailMessageFlags? flags,
 }) => MailHeaderRecord(
   id: id ?? MailMessageId('message-$uid'),
   remote:
       remote ??
       MailImapIdentity(mailbox: mailbox, uidValidity: uidValidity, uid: uid),
-  envelope: MailEnvelope(subject: 'Header projection'),
+  envelope: envelope ?? MailEnvelope(subject: 'Header projection'),
+  flags: flags,
 );
 
 T _success<T>(MailResult<T> result) {
@@ -1641,6 +2235,7 @@ final class _Harness {
   MailMessage? lastMessage;
   final requests = <_Request>[];
   final headerRequests = <_HeadersRequest>[];
+  final requestedValidities = <int>[];
   _Answer? answer;
   _ApplyAnswer? applyAnswer;
   _HeadersAnswer? headersAnswer;
@@ -1684,18 +2279,38 @@ final class _Harness {
               MailSuccess(MailHeaderPage(messages: [_record(mailbox)])),
             );
       },
+      requestedValidities.add,
     );
   }
 }
 
-final class _Provider implements MailProvider {
-  _Provider(this.account, this.answer, this.applyAnswer, this.headersAnswer);
+final class _Provider implements MailProvider, MailImapHeaderBrowser {
+  _Provider(
+    this.account,
+    this.answer,
+    this.applyAnswer,
+    this.headersAnswer,
+    this.observeValidity,
+  );
 
   @override
   final MailAccountId account;
   final _Answer answer;
   final _ApplyAnswer applyAnswer;
   final _HeadersAnswer headersAnswer;
+  final void Function(int) observeValidity;
+
+  @override
+  Future<MailResult<MailHeaderPage>> fetchNewestHeaders(
+    MailMailboxId mailbox, {
+    required int uidValidity,
+    MailCursor? cursor,
+    required int limit,
+    required MailOperationLease lease,
+  }) {
+    observeValidity(uidValidity);
+    return headersAnswer(mailbox, cursor, limit, lease);
+  }
 
   @override
   Future<MailResult<MailHeaderPage>> fetchHeaders(
@@ -1722,4 +2337,15 @@ final class _Provider implements MailProvider {
   dynamic noSuchMethod(Invocation invocation) => throw StateError(
     'Unexpected provider operation in bounded message adapter.',
   );
+}
+
+final class _ReaderOnlyProvider implements MailProvider {
+  _ReaderOnlyProvider(this.account);
+
+  @override
+  final MailAccountId account;
+
+  @override
+  Object? noSuchMethod(Invocation invocation) =>
+      throw StateError('Browsing must negotiate the optional provider port.');
 }

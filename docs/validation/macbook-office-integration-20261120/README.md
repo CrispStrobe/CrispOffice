@@ -1,0 +1,9 @@
+# Macbook Office integration qualification
+
+Native Ubuntu validation ran in the SMS-created screen `362339.quds-word-layout-20261120` on the existing VPS with Flutter 3.47.8. No Docker or hosted CI status/job queries were used. The exact transferred archive inputs were committed as explicitly labeled source snapshots; those snapshot commit IDs in receipts are not presented as the upstream Git commit.
+
+The original candidate 55115f33 passed 2,800 tests across 15 cohorts, with one explicitly optional Mac artifact test skipped. The newer b8f4a7be reconciliation passed 2,454 tests across 17 cohorts; its two initial failures were an incorrectly supplied older native-library fixture and an obsolete empty-mailbox label expected by a search regression. Both failed attempts are retained in the attached summary. The exact current published Mac artifact then passed 115 spaCy tests without skips, and the corrected empty-search case passed separately with the unchanged shared Mail production implementation. No native inference-quality claim follows from these wrapper tests.
+
+The separate portable qualification accepted seven JavaScript smoke programs and 271 canonical cases in each of the Dart VM and JavaScript runtimes. Each corpus produced byte-identical receipts between runtimes. Product inputs were unchanged before/after both full batches and portable qualification. Cohort counts overlap and must not be added into one unique-test count.
+
+The final optional-font addition was checked on the Mac with seven installed-font tests using licensed synthetic metadata fixtures. A real requested DOCX also resolved its installed Franklin Gothic Book face and painted via the direct Word canvas. No user document, proprietary font bytes or font-bearing reference PDF is published in this evidence. The unchanged Word canvas had previously passed the bounded 52-page native Word reference capture after the combined Office rendering intake.

@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- Add bounded newest-first IMAP header browsing with fixed initial UID ceilings,
+  separately scoped descending cursors and explicit UIDVALIDITY conflicts.
+  Ascending archive retrieval and durable synchronization remain independent.
+- Keep first pages available for mailboxes larger than the discovery budget by
+  searching bounded UID tail windows. Count and protocol byte limits remain
+  unchanged; each page performs one SEARCH and at most one header FETCH. A small
+  observed mailbox count permits a whole-range sparse search. Empty windows
+  retain an explicit continuation while older ranges remain unexamined.
+  SEARCH uses conservative protocol-line and aggregate-response headroom; the
+  original connection-wide quota still rejects unusually large control or
+  header replies without silently truncating a successful page.
+
 - Add native Gmail API and Microsoft Graph providers with desktop browser PKCE,
   refreshable session tokens, verified mailbox ownership, bounded HTTP reads,
   folder/label browsing and incremental synchronization.

@@ -19,6 +19,7 @@ import 'studio_material_theme.dart';
 import 'studio_page_layout_dialog.dart';
 import 'studio_paragraph_dialog.dart';
 import 'studio_ribbon_customization.dart';
+import 'studio_review_strip.dart';
 import 'studio_ribbon_preferences.dart';
 import 'studio_desktop_menu.dart';
 import 'studio_files.dart';
@@ -300,13 +301,32 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       ? Color.lerp(_appAccent, Colors.white, 0.48)!
       : _appAccent;
 
-  ThemeData get _materialTheme => studioMaterialTheme(
-    Theme.of(context),
-    office: _officeTheme,
-    accent: _appAccent,
-    dark: _look != SuiteLook.light,
-    highContrast: _look == SuiteLook.highContrast,
-  );
+  ThemeData? _materialThemeCache;
+  ThemeData? _materialThemeBase;
+  Object? _materialThemeKey;
+
+  /// Rebuilt only when its inputs change. A fresh ThemeData per workspace
+  /// build (every keystroke) made every Theme-dependent widget rebuild and
+  /// recomputed the seeded color scheme.
+  ThemeData get _materialTheme {
+    final base = Theme.of(context);
+    final key = (_look, _appAccent);
+    final cached = _materialThemeCache;
+    if (cached != null &&
+        identical(base, _materialThemeBase) &&
+        key == _materialThemeKey) {
+      return cached;
+    }
+    _materialThemeBase = base;
+    _materialThemeKey = key;
+    return _materialThemeCache = studioMaterialTheme(
+      base,
+      office: _officeTheme,
+      accent: _appAccent,
+      dark: _look != SuiteLook.light,
+      highContrast: _look == SuiteLook.highContrast,
+    );
+  }
 
   BuildContext get _themedContext => _themeScopeKey.currentContext ?? context;
 
@@ -368,6 +388,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   @override
   void dispose() {
+    _wordFooterTimer?.cancel();
     _ribbonPreferences.removeListener(_ribbonPreferencesChanged);
     if (widget.ribbonPreferences == null) _ribbonPreferences.dispose();
     _aboutChannel.setMethodCallHandler(null);
@@ -9364,7 +9385,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ? t.y
         : ((_slides.presentation.slideHeight - t.cy) * y).round();
     _slides.applyTransform(shape, t.copyWith(x: nextX, y: nextY));
-
     _slides.refresh();
   }
 
@@ -10740,6 +10760,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               child: IgnorePointer(
                 child: SlideStage(
                   slide: _slides.slide,
+                  master: _slides.presentation.master,
                   preview: true,
                   config: _config.copyWith(
                     mode: OfficeInteractionMode.viewing,
@@ -10773,6 +10794,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                         child: IgnorePointer(
                           child: SlideStage(
                             slide: _slides.presentation.slides[i],
+                            master: _slides.presentation.master,
                             preview: true,
                             config: _config.copyWith(
                               mode: OfficeInteractionMode.viewing,
@@ -11534,6 +11556,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                   child: IgnorePointer(
                                     child: SlideStage(
                                       slide: slide,
+                                      master: _slides.presentation.master,
                                       preview: true,
                                       config: _config.copyWith(
                                         mode: OfficeInteractionMode.viewing,
@@ -11598,150 +11621,59 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Widget _reviewStrip() => AnimatedBuilder(
-    animation: _word,
-    builder: (BuildContext context, Widget? _) {
-      final session = _word.proofing;
-      final summary = session.summary;
-      final pending = _word.document.revisions
-          .where((revision) => revision.accepted == null)
-          .length;
-      final language =
-          _word.textProofingTarget?.language ??
-          (summary.hasResults ? _t('Mixed', 'Gemischt', 'مختلط') : '');
-      final String issues;
-      final IconData issuesIcon;
-      if (summary.checking) {
-        issues = _t('Checking…', 'Prüfung läuft …', 'جارٍ التدقيق…');
-        issuesIcon = Icons.hourglass_top;
-      } else if (summary.scheduled) {
-        issues = _t(
-          'Waiting to check…',
-          'Warten auf Prüfung …',
-          'بانتظار توقف الكتابة…',
-        );
-        issuesIcon = Icons.more_horiz;
-      } else if (!session.enabled) {
-        issues = _t(
-          'Live checking paused',
-          'Automatische Prüfung pausiert',
-          'التدقيق التلقائي متوقف',
-        );
-        issuesIcon = Icons.pause_circle_outline;
-      } else if (!summary.hasResults) {
-        issues = _t('Not checked yet', 'Noch nicht geprüft', 'لم يُدقّق بعد');
-        issuesIcon = Icons.spellcheck;
-      } else if (!summary.complete) {
-        final count = summary.issues.length;
-        issues = _t(
-          '${count == 1 ? '1 issue' : '$count issues'} · partial check',
-          '${count == 1 ? '1 Hinweis' : '$count Hinweise'} · teilweise geprüft',
-          '$count ملاحظات · تدقيق جزئي',
-        );
-        issuesIcon = Icons.info_outline;
-      } else {
-        issues = summary.issues.isEmpty
-            ? _t(
-                'No writing issues',
-                'Keine Schreibhinweise',
-                'لا توجد ملاحظات',
-              )
-            : summary.issues.length == 1
-            ? _t('1 writing issue', '1 Schreibhinweis', 'ملاحظة واحدة')
-            : _t(
-                '${summary.issues.length} writing issues',
-                '${summary.issues.length} Schreibhinweise',
-                '${summary.issues.length} ملاحظات',
-              );
-        issuesIcon = summary.issues.isEmpty
-            ? Icons.check_circle_outline
-            : Icons.spellcheck;
-      }
-      final changes = pending == 1
-          ? _t('1 change', '1 Änderung', 'تغيير واحد')
-          : _t('$pending changes', '$pending Änderungen', '$pending تغييرات');
-      final compact = MediaQuery.sizeOf(context).width < 820;
-      Widget action(
-        IconData icon,
-        String label,
-        String tooltip,
-        VoidCallback? onTap,
-      ) {
-        final button = compact
-            ? IconButton(
-                onPressed: onTap,
-                tooltip: tooltip,
-                visualDensity: VisualDensity.compact,
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints.tightFor(
-                  width: 24,
-                  height: 24,
-                ),
-                icon: Icon(icon, size: 14, color: Colors.white),
-              )
-            : TextButton.icon(
-                onPressed: onTap,
-                icon: Icon(icon, size: 14, color: Colors.white),
-                label: Text(
-                  label,
-                  style: const TextStyle(color: Colors.white, fontSize: 10),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 6,
-                    vertical: 0,
-                  ),
-                  minimumSize: const Size(0, 24),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                ),
-              );
-        return compact ? button : Tooltip(message: tooltip, child: button);
-      }
+  StudioReviewStrip? _reviewStripWidget;
 
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Flexible(
-            child: action(
-              issuesIcon,
-              issues,
-              summary.statusMessage.isEmpty || summary.statusMessage == issues
-                  ? issues
-                  : '$issues\n${summary.statusMessage}',
-              _word.openReviewPane,
-            ),
-          ),
-          if (language.isNotEmpty)
-            Flexible(
-              child: action(
-                Icons.language,
-                language,
-                _t(
-                  'Language and checking',
-                  'Sprache und Prüfung',
-                  'اللغة والتدقيق',
-                ),
-                _word.showTextProofingOptions,
-              ),
-            ),
-          Flexible(
-            child: action(
-              Icons.track_changes,
-              changes,
-              _t(
-                'Review tracked changes',
-                'Nachverfolgte Änderungen prüfen',
-                'مراجعة التغييرات المتعقبة',
-              ),
-              () => _word.openReviewPane(tab: WordReviewPaneTab.changes),
-            ),
-          ),
-        ],
+  /// One strip instance per controller, language and layout: workspace
+  /// rebuilds (every keystroke) then skip it; it listens for its own changes.
+  Widget _reviewStrip() {
+    final compact = MediaQuery.sizeOf(context).width < 820;
+    final cached = _reviewStripWidget;
+    if (cached != null &&
+        identical(cached.controller, _word) &&
+        cached.language == _language &&
+        cached.compact == compact) {
+      return cached;
+    }
+    return _reviewStripWidget = StudioReviewStrip(
+      controller: _word,
+      language: _language,
+      compact: compact,
+    );
+  }
+
+  ({int words, int paragraphs, int comments})? _wordFooterCounts;
+  WmlDocument? _wordFooterDocument;
+  int _wordFooterRevision = -1;
+  Timer? _wordFooterTimer;
+
+  /// Footer word, paragraph and comment counts walk the whole document.
+  /// Typing reuses the last counts and refreshes them after a pause.
+  ({int words, int paragraphs, int comments}) get _wordCounts {
+    ({int words, int paragraphs, int comments}) count() {
+      _wordFooterDocument = _word.document;
+      _wordFooterRevision = _word.contentRevision;
+      return _wordFooterCounts = (
+        words: _word.documentStats.words,
+        paragraphs: _word.document.paragraphs.length,
+        comments: WordComment.roots(_word.document).length,
       );
-    },
-  );
+    }
+
+    final cached = _wordFooterCounts;
+    if (cached == null || !identical(_wordFooterDocument, _word.document)) {
+      return count();
+    }
+    if (_wordFooterRevision != _word.contentRevision) {
+      _wordFooterTimer?.cancel();
+      _wordFooterTimer = Timer(_wordFooterDelay, () {
+        _wordFooterTimer = null;
+        if (mounted) setState(count);
+      });
+    }
+    return cached;
+  }
+
+  static const Duration _wordFooterDelay = Duration(milliseconds: 700);
 
   Widget _statusBar() {
     final String detail = switch (_app) {
@@ -11749,11 +11681,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         '${_t('Page', StudioStrings.de('Page'), 'صفحة')} ${_word.visiblePageIndex + 1}'
             ' ${_t('of', StudioStrings.de('of'), 'من')} ${_word.pageCount}'
             ' · ${_t('Paragraph', StudioStrings.de('Paragraph'), 'فقرة')} ${_word.documentCaret.paragraphIndex + 1}'
-            ' · ${_word.document.paragraphs.length} '
+            ' · ${_wordCounts.paragraphs} '
             '${_t('paragraphs', StudioStrings.de('paragraphs'), 'فقرات')}'
-            ' · $_wordCount ${_t('words', StudioStrings.de('words'), 'كلمة')}'
+            ' · ${_wordCounts.words} ${_t('words', StudioStrings.de('words'), 'كلمة')}'
             '${_word.selectedVisual != null ? ' · ${_word.selectedVisual!.visual.title}' : ''}'
-            '${WordComment.roots(_word.document).isEmpty ? '' : ' · ${WordComment.roots(_word.document).length} ${_t('comments', StudioStrings.de('comments'), 'تعليقات')}'}'
+            '${_wordCounts.comments == 0 ? '' : ' · ${_wordCounts.comments} ${_t('comments', StudioStrings.de('comments'), 'تعليقات')}'}'
             '${_word.isDirty ? ' · •' : ''}',
       SuiteApp.excel =>
         '${_sheet.sheet.name}!${_sheet.selectionAddress}'
@@ -11877,8 +11809,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       ),
     );
   }
-
-  int get _wordCount => _word.documentStats.words;
 }
 
 /// Draft identity includes the thread object, because IDs can be reused after

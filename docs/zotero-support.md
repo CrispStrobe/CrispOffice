@@ -49,19 +49,21 @@ composition prevent direct commands from starting; composition beginning during
 native work invalidates its result. Returning to the document preserves an
 unchanged composing draft.
 
-### Insert text annotations directly from Zotero
+<a id="insert-text-annotations-directly-from-zotero"></a>
+
+### Insert text and image annotations directly from Zotero
 
 With **Zotero 9 or later** running, place a collapsed caret in the document body,
 outside existing fields, and choose **Insert → References → Add Zotero
 annotation**, or **Document → Add annotation from Zotero…** in the references
 workspace. Zotero opens its annotation picker, where you can browse or search
-and select one or more text annotations. An intermediate Zotero library note is
+and select one or more annotations. An intermediate Zotero library note is
 not required. This follows Zotero's native
 [Add Annotation workflow](https://www.zotero.org/blog/zotero-9/#add-annotation),
 introduced in [Zotero 9](https://www.zotero.org/support/9.0_changelog).
 
-Quds retains the selected annotation text, comments, supported formatting and
-links supplied by Zotero. Citation placeholders become active fields, with the
+Quds retains the selected annotation text, embedded PNG image/ink annotations,
+comments, supported formatting and links supplied by Zotero. Citation placeholders become active fields, with the
 source identity and locators supplied by Zotero. Their inline, footnote or
 endnote placement follows the document's Zotero preferences; subsequent
 **Refresh citations** and **Bibliography** commands include them in the complete
@@ -74,15 +76,14 @@ document after completion or cancellation. A changed insertion point, active
 text composition, unsupported content or incomplete citation conversion keeps
 the result from being applied.
 
-This command supports **text annotations** and uses the same content limits and
-body-caret requirements as Add Note below. Returned image content, including
-image and ink annotation images, is refused atomically. Zotero itself can replace
-an unavailable image with explanatory text or omit unavailable content before
-sending the result; Quds cannot restore content absent from that result. Choose
-text annotations for this workflow. Older Zotero versions do not provide the
-annotation command: use **Add Zotero note** to insert supported annotation notes,
-or update Zotero. The command dialog and workspace tooltip identify the version
-requirement.
+This command uses the same supported image formats, content bounds and body-caret
+requirements as Add Note below. Images arrive embedded in Zotero's response and
+become native inline pictures; they are not downloaded from a separate URL.
+Zotero itself can replace an unavailable image with explanatory text or omit
+unavailable content before sending the result; Quds cannot restore content
+absent from that result. Older Zotero versions do not provide the annotation
+command: use **Add Zotero note** to insert supported annotation notes, or update
+Zotero. The command dialog and workspace tooltip identify the version requirement.
 
 ### Insert a Zotero research note
 
@@ -94,10 +95,14 @@ commands continue to work inside authored footnotes and endnotes.
 
 Paragraphs, empty paragraphs, soft line breaks, heading levels 1–6, supported
 character formatting, and ordinary HTTP(S), mail and Zotero links are retained.
-Flat bullet and decimal numbered lists are retained as native Word lists,
-including positive starting numbers. Each item can contain rich inline text or
-one paragraph, with active citation placeholders. Separate imported lists start
-their own counters and do not continue or change surrounding document lists.
+Bullet and decimal numbered lists are retained as native Word lists, including
+mixed nested lists up to nine levels and positive starting numbers. An item can
+contain rich inline text, multiple paragraphs, supported pictures, and nested
+lists, with active citation placeholders throughout. Only its first paragraph
+receives a bullet or number; subsequent paragraphs and text after a nested list
+remain indented as continuations of that item. Each nested list has its own
+counter and starting number. Separate imported lists do not continue or change
+surrounding document lists.
 Default PDF annotation note wrappers and their title headings are recognized.
 Citation placeholders become active Zotero fields with the source data, rather
 than remaining ordinary hyperlinks. Zotero controls their formatting and
@@ -115,12 +120,56 @@ Cancelling the note picker before it supplies any text also discards temporary
 fields and staged preference changes.
 
 Add Note currently starts from a body caret, not a text selection or an existing
-footnote/endnote. Embedded images, tables, nested lists, multi-paragraph list
-items, custom or reversed list markers, and unsupported custom formatting are
+footnote/endnote. Tables, lists deeper than nine levels, custom or
+reversed list markers, and unsupported custom formatting are
 refused with an explanation before application. Ordered-list starting numbers
 must be integers from 1 to 999999. Malformed,
 missing, repeated or unconverted citation placeholders also refuse the whole
 result. Nothing is silently flattened to make these structures fit.
+
+### Embedded pictures in notes and annotations
+
+Add Note and Add Annotation accept **static PNG pictures** and **upright,
+three-component RGB/YCbCr JPEG pictures** embedded by Zotero as base64 data.
+Image/ink annotations normally use PNG. The original accepted image bytes are
+embedded in the DOCX, with Zotero's supplied dimensions, alternative description,
+title and ordinary image hyperlink. Pictures occupy one native inline position,
+so adjacent citation placeholders retain their positions and reading order.
+A note containing only a picture is supported too. Picture-only list items and
+continuation paragraphs retain their list position and ordinary image links
+through saving and reopening.
+
+Zotero's positive, finite HTML width/height values use CSS pixels: 96 pixels
+become 72 points. Fractional values produced by the note editor's resize and
+aspect-ratio calculations retain their precision. When one dimension is missing,
+Quds derives it from the intrinsic aspect ratio; when both are missing, it uses the intrinsic pixel dimensions.
+Both displayed dimensions must lie between 1 and 4000 points, matching the
+native image writer's supported extent. Resize an image in Zotero when its
+displayed dimensions fall outside that range.
+
+The note payload remains limited to 8 MiB. It can contain up to 32 images and
+4 MiB of decoded image-file bytes in total. Each raster is limited to 8192
+pixels on either edge and 16,777,216 pixels; the complete note is limited to
+33,554,432 pixels. PNG scanline expansion is limited to 32 MiB per image and
+the aggregate decoded raster-data budget is 64 MiB. These are data-size limits;
+decoder intermediate allocations can consume more memory. Compressed PNG metadata
+has a separate 1 MiB budget across the note. Encoded sizes, checksums, dimensions,
+pixel streams and expansion budgets are checked before applying the document
+transaction.
+
+Animated PNG, GIF, SVG and other formats, external image URLs or files,
+unresolved attachment keys, custom image CSS/classes, and images inside a
+citation placeholder are refused. JPEG images requiring EXIF rotation or
+flipping, and grayscale or CMYK JPEGs, are also refused because the current PDF
+path does not reproduce those variants consistently; export an upright PNG or
+RGB JPEG from the source instead. A malformed or unsupported image refuses the
+whole insertion, including its text, citations and staged preferences.
+Cancellation and stale-document guards retain the same atomic behavior.
+
+Saving and reopening preserves the native pictures alongside their active
+citations. Refreshing the citations leaves the image payloads and dimensions
+intact. Undo removes the inserted content and restores the previous caret;
+redo restores the pictures, citations and resulting caret together.
 
 ### Go to a citation or bibliography
 
@@ -172,7 +221,7 @@ results instead of applying them at another location.
 | **Refresh all with Zotero** | Lets Zotero process the document's complete supported citation sequence and bibliography together |
 | **Bibliography in Zotero…** | Adds or edits a bibliography through the same document processor |
 | **Add note from Zotero…** | Inserts a supported research note with its active citation fields at the body caret |
-| **Add annotation from Zotero…** | Opens Zotero 9+'s annotation picker and inserts selected text annotations and comments with active citations |
+| **Add annotation from Zotero…** | Opens Zotero 9+'s annotation picker and inserts selected text, image/ink annotations and comments with active citations |
 | Existing citation menu → **Edit in Zotero…** | Opens that citation in Zotero's native picker |
 | Library selection → **Insert with Zotero…** | Seeds the native picker with selected linked catalog sources, then applies Zotero's result |
 
@@ -1099,6 +1148,11 @@ Custom hosts that replace online clients can pass the same `ZoteroBackoffState`
 to each new client. Clients sharing that state must use the same clock.
 
 ## Previous continuation evidence and current qualification
+
+The embedded-image increment has a [separate local qualification report](validation/zotero-note-images-20261120/README.md).
+The [Word/LibreOffice parity roadmap](roadmaps/zotero/word-processor-parity.md)
+separates implemented workflows, current content boundaries and remaining live
+interoperability acceptance. Earlier results below retain their original sources.
 
 The research-note insertion, reference-navigation and direct-command continuation
 has a [separate status report](validation/zotero-word-parity-20261118/README.md).

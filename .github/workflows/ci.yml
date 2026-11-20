@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Manual runs add the full Studio example suite (studio_example below),
+  # which is too slow for every push.
+  workflow_dispatch:
 
 # The pub workspace contains Flutter packages, so every job resolves it with
 # the Flutter SDK (which bundles Dart). The engine itself stays pure Dart.
@@ -122,4 +125,25 @@ jobs:
         working-directory: .
         run: flutter pub get
       - run: flutter analyze
+      - run: flutter test
+
+  studio_example:
+    name: Studio example (full suite)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: macos-15
+    timeout-minutes: 180
+    defaults:
+      run:
+        working-directory: packages/quds_office_editor/example
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Install pdftoppm (gallery rendering test)
+        run: brew install poppler
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
       - run: flutter test

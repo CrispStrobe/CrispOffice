@@ -1,0 +1,27 @@
+{
+  "dart": "/workspace/scratch/f8bca915f70d/toolchains/dart-3.13.7/dart-sdk/bin/dart",
+  "dart_version": "3.13.7",
+  "sdk_source": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.13.7/sdk/dartsdk-linux-x64-release.zip",
+  "sdk_archive_sha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+  "omissions": "DevTools, DDC, Wasm, sanitizer runtimes, redundant non-AOT analyzer and gen_kernel snapshot omitted to save disk; VM, dart2js compiler, AOT analyzer, frontend and kernel service retained",
+  "validation_workspace": "/workspace/scratch/f8bca915f70d/validation-workspace",
+  "source_root": "/workspace/scratch/f8bca915f70d/quds_office_suite",
+  "workspace_packages": [
+    "legacy_doc_parser",
+    "quds_office_engine",
+    "quds_office_engine_example"
+  ],
+  "source_access": "live symlinks; copied unmodified manifests; no tracked repository mutations",
+  "environment": {
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "CI": "true",
+    "PUB_CACHE": "/workspace/scratch/f8bca915f70d/toolchains/pub-cache",
+    "TMPDIR": "/workspace/scratch/f8bca915f70d/toolchains/tmp"
+  },
+  "repository_flutter_pin": "3.47.8",
+  "qualification_scope": "standalone engine on Dart 3.13.7, matching previously qualified SDK hash; no Flutter UI qualification",
+  "analysis_package_config_link": "/workspace/scratch/f8bca915f70d/quds_office_suite/.dart_tool -> /workspace/scratch/f8bca915f70d/validation-workspace/.dart_tool",
+  "shared_dependency_version_differences": {},
+  "dependency_resolution": "success",
+  "package_count": 60
+}

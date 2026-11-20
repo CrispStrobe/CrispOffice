@@ -28,12 +28,20 @@ and scalar functions, fixed and dynamic scalar arrays, `For`/`For Each`/`Do`/`Wh
 Arrays support indexed access, `LBound`/`UBound`, `ReDim`/`Preserve`, `Erase`,
 and `Option Base`; explicit ranges support
 cell enumeration and read-only row/column coordinates. String intrinsics
-`Len`, `Left$`, `Right$`, and `Mid$` use strict types and UTF-16 units, with
+`Len`, `Left$`, `Right$`, and `Mid$` use strict types and UTF-16 units.
+Variants distinguish `Empty`/`Null`, with state predicates and explicit bounded
+`CVar`, `CBool`, `CDbl`, `CLng`, and `CStr` conversions. The
+[Word VBA subset](docs/VBA_WORD_MACROS.md) shares that language and adds explicit
+paragraph/range bindings, paragraph-prefix insertion, all 18 underline styles,
+strikethrough, and paragraph alignment, spacing, indentation and pagination.
+The [PowerPoint VBA subset](docs/VBA_POWERPOINT_MACROS.md) adds explicit slide
+and shape selectors, text/font/alignment edits and shape geometry, with guarded
+top-level collection identity and preserved rich text. All three adapters use
 [versioned conformance cases](docs/VBA_CONFORMANCE.md) shared across VM and JavaScript. Source logic uses values
 known during compilation; worksheet formulas run against the detached workbook.
 VBA projects remain inert and preserved; full VBA execution and macro ribbon
 UI are not included. The [VBA parity roadmap](docs/VBA_PARITY_ROADMAP.md) tracks
-the remaining language, runtime, and Word/PowerPoint object-model work.
+the remaining language/runtime work and broader Word/PowerPoint objects.
 
 Word now includes an [offline English/German thesaurus](docs/roadmaps/thesaurus/README.md)
 with full OEWN 2025 and OpenThesaurus packs, alternatives grouped by meaning,
@@ -220,6 +228,13 @@ Linux x86-64/AVX2 dependency limits. The
 pins, licensing decisions and earlier qualification boundaries. The manual
 provider stays disabled by default, with no automatic Studio registration;
 hosted distribution, other targets and production activation remain separate.
+Platform status for manual German grammar: it is qualified per exact native
+library, on Linux x86-64/AVX2, in the Studio macOS arm64 app and, since
+20 November 2026, in the Studio Android arm64 APK
+([Android evidence](docs/validation/native-spacy-android-grammar-20261120/README.md)).
+Studio offers the opt-in **Manual German grammar suggestions** only there. On
+iOS, analysis runs but grammar is refused, because the device library has no
+recorded run.
 
 Legacy `.doc`/`.dot` parsing and separate DOCX/DOCM conversion are maintained in [legacy-doc-parser](https://github.com/CrispStrobe/legacy-doc-parser). The engine exposes compatibility exports from the pinned workspace copy in `packages/legacy_doc_parser`; its `UPSTREAM.json` records the source and workspace-only patches. The suite's MIT license does not replace that dependency's MPL-2.0 license or its third-party notices.
 

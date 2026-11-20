@@ -70,18 +70,23 @@ set. Grammar is qualified without named entities (capability mask 15), so hosts
 open the grammar worker without NER.
 Platform status: Linux x86-64/AVX2 published and qualified (analysis and manual
 grammar). The macOS arm64 library bundled in the Studio app is qualified
-(analysis and manual grammar). The downloadable macOS arm64 and Linux arm64/x86-64
+(analysis and manual grammar), and so is the Android arm64-v8a library
+bundled in the Studio APK. The downloadable macOS arm64 and Linux arm64/x86-64
 v2 capsules are analysis only. Windows, Intel macOS and web are unavailable
 with stated reasons. Mobile apps ship the library inside the signed app and
 download only the model bundle: `tool/build.py --android --ios` builds
 `libcrispembed-spacy.so` (arm64-v8a, x86_64) and `crispembed_spacy.xcframework`
 (arm64 device; arm64/x86_64 simulator) from the same pinned source, with a
 separate `build-receipt-mobile.json`. The Android arm64-v8a library in the
-Studio APK (`ed730f62…`, stripped at build time and kept byte-exact in the APK) has recorded analysis parity on an
-Android 16 arm64 emulator (`spacyAndroidArm64BundledSha256`). It is analysis
-only, and the grammar planner refuses it. The iOS library ran the same parity
-check on the Simulator only; device bytes are unrecorded, so iOS is analysis
-without a recorded claim ([evidence](../../docs/validation/native-proofing-mobile-20261120/README.md)). `tool/install_from_hub.dart` performs a fresh-cache Hub
+Studio APK (`ed730f62…`, stripped at build time and kept byte-exact in the
+APK; an ELF file has no embedded signature, so its whole-file SHA-256 is the
+identity) is qualified for analysis and manual German grammar
+(`spacyAndroidArm64BundledSha256`). The W6, W7 and grammar v2 panels were
+replayed on an Android 16 arm64 emulator through the Studio grammar worker
+([grammar evidence](../../docs/validation/native-spacy-android-grammar-20261120/README.md)).
+The iOS library ran the analysis parity check on the Simulator only. The
+device bytes were never run, so iOS has no recorded claim and grammar stays
+refused there ([evidence](../../docs/validation/native-proofing-mobile-20261120/README.md)). `tool/install_from_hub.dart` performs a fresh-cache Hub
 readback through the same installer.
 
 ## Explicit local installation

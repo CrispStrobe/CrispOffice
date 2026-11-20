@@ -1,0 +1,809 @@
+{
+  "source_head": "9d7472a061126da0c7d0002c7b2398d81bfbd12e",
+  "included": [
+    {
+      "path": "arabic-worker/receipt.json",
+      "bytes": 2798,
+      "sha256": "2829a72f684891cd967b625e0ac25b121b8db02991b8505b084d9af76a839272"
+    },
+    {
+      "path": "arabic-worker/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "arabic-worker/stdout.log",
+      "bytes": 448,
+      "sha256": "8a2ea78e6e7d5ddfdda4d61d7ad4eea8c08eb32fae51c35032bcf6669850195a"
+    },
+    {
+      "path": "direct-main-extra-dart-scope.json",
+      "bytes": 3932,
+      "sha256": "d8c249fbc33010297a310d1c0d95e27066691f5c869b41743e0a569c81820a20"
+    },
+    {
+      "path": "orchestration.json",
+      "bytes": 620,
+      "sha256": "da3dd2a357b314095f93cc42bcc8af15f3cabc806a09994dd0c1a449bfc98a60"
+    },
+    {
+      "path": "portable-images/acceptance.json",
+      "bytes": 4405,
+      "sha256": "cb8f70ee9ba7e26166999941f9265dbc6824e78b7e5dcaa9eba2f42290c841af"
+    },
+    {
+      "path": "portable-images/after.json",
+      "bytes": 76058,
+      "sha256": "765aff8f2e1e718833a15c2765c7db6d71295cfa27a27d0a287a721acfa397ef"
+    },
+    {
+      "path": "portable-images/before.json",
+      "bytes": 76058,
+      "sha256": "765aff8f2e1e718833a15c2765c7db6d71295cfa27a27d0a287a721acfa397ef"
+    },
+    {
+      "path": "portable-images/compile-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-images/compile-js.stdout",
+      "bytes": 112,
+      "sha256": "b5f78a7b070dc0e6828c12601b5d6a3be81df75651f5e74df343f85bfdfdf45d"
+    },
+    {
+      "path": "portable-images/dart-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-images/dart-version.stdout",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "portable-images/javascript.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-images/javascript.stdout",
+      "bytes": 1969,
+      "sha256": "7ba209c1f03644a45f3117edcad31b1b144d7c97a78d237ed8aaff082953f0b6"
+    },
+    {
+      "path": "portable-images/node-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-images/node-version.stdout",
+      "bytes": 9,
+      "sha256": "4409d3bfa08b82f385bd424eeda65fc63b756129f0e89e82df77f1fecafccc14"
+    },
+    {
+      "path": "portable-images/vm.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-images/vm.stdout",
+      "bytes": 1969,
+      "sha256": "7ba209c1f03644a45f3117edcad31b1b144d7c97a78d237ed8aaff082953f0b6"
+    },
+    {
+      "path": "portable-vba/input-check.json",
+      "bytes": 307,
+      "sha256": "bdc5f0357455cd27d978796c292fe57f20d847fd22ebeb748feec0123245e391"
+    },
+    {
+      "path": "portable-vba/inputs-after.json.gz",
+      "bytes": 281198,
+      "sha256": "78d4138245093749c13a8b55dfc3c165fe9c95f521990fad3b67454cf2a5ad27"
+    },
+    {
+      "path": "portable-vba/inputs-before.json.gz",
+      "bytes": 281198,
+      "sha256": "78d4138245093749c13a8b55dfc3c165fe9c95f521990fad3b67454cf2a5ad27"
+    },
+    {
+      "path": "portable-vba/logs/dart-version.command.json",
+      "bytes": 814,
+      "sha256": "542615d5a550b7a541aad131beba7f3371c1aba1a44583fd5ac667056897f33a"
+    },
+    {
+      "path": "portable-vba/logs/dart-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/dart-version.stdout",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "portable-vba/logs/node-version.command.json",
+      "bytes": 799,
+      "sha256": "00b7f66537c2d45b5fba8829276b3ebbacf730f4570e6d6130c51b14daf9cebb"
+    },
+    {
+      "path": "portable-vba/logs/node-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/node-version.stdout",
+      "bytes": 9,
+      "sha256": "4409d3bfa08b82f385bd424eeda65fc63b756129f0e89e82df77f1fecafccc14"
+    },
+    {
+      "path": "portable-vba/logs/string_intrinsics_v1-compile.command.json",
+      "bytes": 81906,
+      "sha256": "f6e5e8b78179531414cbdadab3a82eac3a5771f2eb4bc64e7aa64e72a6aac7b0"
+    },
+    {
+      "path": "portable-vba/logs/string_intrinsics_v1-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/string_intrinsics_v1-compile.stdout",
+      "bytes": 112,
+      "sha256": "d21ec1081b909789a0379c24bf81b0f59de8f08e1718f95845913dc5e2917c70"
+    },
+    {
+      "path": "portable-vba/logs/string_intrinsics_v1-js.command.json",
+      "bytes": 990,
+      "sha256": "e6614d1d9a639bf4f030cfe3513c9bb7c4806386b744d6978decc5362e8a616d"
+    },
+    {
+      "path": "portable-vba/logs/string_intrinsics_v1-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/string_intrinsics_v1-js.stdout",
+      "bytes": 14757,
+      "sha256": "8703d19a7f50f9dceab688ba49bb657fbc29f34c6eea277807be157ac1f42dbd"
+    },
+    {
+      "path": "portable-vba/logs/string_intrinsics_v1-vm.command.json",
+      "bytes": 81740,
+      "sha256": "718776a4110b05e7e699264bfdae6b5064019c7beb0b483a52a9cb99d3a5efa9"
+    },
+    {
+      "path": "portable-vba/logs/string_intrinsics_v1-vm.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/string_intrinsics_v1-vm.stdout",
+      "bytes": 14757,
+      "sha256": "8703d19a7f50f9dceab688ba49bb657fbc29f34c6eea277807be157ac1f42dbd"
+    },
+    {
+      "path": "portable-vba/logs/variant_composition_v1-compile.command.json",
+      "bytes": 46062,
+      "sha256": "2a3d4f96322cf88ca827c59c1912269b5a9359635ba68bb5589b4b569b8056bd"
+    },
+    {
+      "path": "portable-vba/logs/variant_composition_v1-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/variant_composition_v1-compile.stdout",
+      "bytes": 112,
+      "sha256": "fe4c2abdc06265cca584441e2050de5fbced1693331bbb79c8ab93a91e1179a9"
+    },
+    {
+      "path": "portable-vba/logs/variant_composition_v1-js.command.json",
+      "bytes": 997,
+      "sha256": "2fd0e863e40892fe7201ce773c83c61a011033d5c05f17006b12e984f6b6d9df"
+    },
+    {
+      "path": "portable-vba/logs/variant_composition_v1-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/variant_composition_v1-js.stdout",
+      "bytes": 9361,
+      "sha256": "80c295dbff1477d79dd4e1706159ea502ca4c07b26476e00d14e7d0e8d3c4858"
+    },
+    {
+      "path": "portable-vba/logs/variant_composition_v1-vm.command.json",
+      "bytes": 45894,
+      "sha256": "ebd107d5bb58f3f513f85619f7d42178176843a0a96298f9d3dc990e9c35414c"
+    },
+    {
+      "path": "portable-vba/logs/variant_composition_v1-vm.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/variant_composition_v1-vm.stdout",
+      "bytes": 9361,
+      "sha256": "80c295dbff1477d79dd4e1706159ea502ca4c07b26476e00d14e7d0e8d3c4858"
+    },
+    {
+      "path": "portable-vba/logs/variant_conversions_v1-compile.command.json",
+      "bytes": 128074,
+      "sha256": "1dd858002733a90c294023a6a061998d3f1a146d2e7e97f8c8d4c27a81ea1a46"
+    },
+    {
+      "path": "portable-vba/logs/variant_conversions_v1-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/variant_conversions_v1-compile.stdout",
+      "bytes": 112,
+      "sha256": "86cedb89455e865218ba2da51fbc5215990f696515759204e646baadc7e883fe"
+    },
+    {
+      "path": "portable-vba/logs/variant_conversions_v1-js.command.json",
+      "bytes": 996,
+      "sha256": "48fb553d30e161c71c6b89b3617cf9976ce5665473905bb83a5217f78b2d1713"
+    },
+    {
+      "path": "portable-vba/logs/variant_conversions_v1-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/variant_conversions_v1-js.stdout",
+      "bytes": 41060,
+      "sha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc"
+    },
+    {
+      "path": "portable-vba/logs/variant_conversions_v1-vm.command.json",
+      "bytes": 127907,
+      "sha256": "93a277f41e7556f59ca08c3191e991c7eae4cb74d08b67c583dfe29215227b75"
+    },
+    {
+      "path": "portable-vba/logs/variant_conversions_v1-vm.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/variant_conversions_v1-vm.stdout",
+      "bytes": 41060,
+      "sha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc"
+    },
+    {
+      "path": "portable-vba/logs/web_smoke-compile.command.json",
+      "bytes": 1160,
+      "sha256": "761747d7b75edef2ab98538c11bd31d01daae5d08174357be5236d61f5ef446c"
+    },
+    {
+      "path": "portable-vba/logs/web_smoke-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_smoke-compile.stdout",
+      "bytes": 114,
+      "sha256": "2642fa9bcd3335dc4a358b190e7191447d34f14a92c78a7beaae44a139aeae83"
+    },
+    {
+      "path": "portable-vba/logs/web_smoke-js.command.json",
+      "bytes": 946,
+      "sha256": "55943aa268c8855af6c3b01bc0ccd56a2ab109a77e5a309eec36cf30deb1b995"
+    },
+    {
+      "path": "portable-vba/logs/web_smoke-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_smoke-js.stdout",
+      "bytes": 85,
+      "sha256": "733f79b8c8c236f674a733d3c205f6f46c6a52d4a6da005729755db94d853971"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_arrays_smoke-compile.command.json",
+      "bytes": 1215,
+      "sha256": "4b983c9862c486c4574ec322822ec988a21706f39d6b83b1a338834bb1476b85"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_arrays_smoke-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_arrays_smoke-compile.stdout",
+      "bytes": 114,
+      "sha256": "a4d45f771bf72e125b52e2262aca326fd06d1982db204afcb991a70466d8e2a7"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_arrays_smoke-js.command.json",
+      "bytes": 987,
+      "sha256": "aebf3c368333a792f4feb0c1cc21e9f6c18d6bbc9669226809125dc0dd5d0419"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_arrays_smoke-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_arrays_smoke-js.stdout",
+      "bytes": 457,
+      "sha256": "f4ec0fda78a40375c6ee3beb04fe4126a2b5c81726fe946bf59f6f9c8326d6aa"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_control_flow_smoke-compile.command.json",
+      "bytes": 1245,
+      "sha256": "ac841c166390d10d979f18b2f221be45613b0e657f2f0bb496939be40e4cb5ad"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_control_flow_smoke-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_control_flow_smoke-compile.stdout",
+      "bytes": 114,
+      "sha256": "8de415c57c1427025b1b83fa9ac02ae0919bcc05d57f5a483c789079e894dbfd"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_control_flow_smoke-js.command.json",
+      "bytes": 1014,
+      "sha256": "6fc08a657c467fdeed51527777f0b01e7b4941a743313441062a29d48a4961bd"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_control_flow_smoke-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_control_flow_smoke-js.stdout",
+      "bytes": 330,
+      "sha256": "4cbea514876f652fac9ad4cb832d003ebc99ecc02015a62686e495a6afc731fb"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_dynamic_arrays_smoke-compile.command.json",
+      "bytes": 1255,
+      "sha256": "29aeaf0c4e815d8a6344390d44adf5c9b3644d9f668729352cb223ffe197fea5"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_dynamic_arrays_smoke-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_dynamic_arrays_smoke-compile.stdout",
+      "bytes": 114,
+      "sha256": "6583b7d874d46b09ac681edc3a02d5777df57cc2f3012dda46a32861f5ff880c"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_dynamic_arrays_smoke-js.command.json",
+      "bytes": 1022,
+      "sha256": "99c4ed6b28d04485d888c17bc12539f6c79ee631df851090ddf7dc648f14617d"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_dynamic_arrays_smoke-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_dynamic_arrays_smoke-js.stdout",
+      "bytes": 897,
+      "sha256": "5529e665b8ed1f73582686f38ecb80bff05e6c50c2f5d845a5bfdc8706ff2b1c"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_procedures_smoke-compile.command.json",
+      "bytes": 1235,
+      "sha256": "a88a4aec019a3e080f8cd7e915e6950d99b470ca6e03a5b16e04b0ec40542ed7"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_procedures_smoke-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_procedures_smoke-compile.stdout",
+      "bytes": 114,
+      "sha256": "ff3e541d31c6e97a5c1a79c097bdb0914adeb61a8b6c649469a05985dda4f4ed"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_procedures_smoke-js.command.json",
+      "bytes": 1005,
+      "sha256": "095631a7d0841764254c1cd657e5ba949a4167ab2477b2c7db823ea888c00917"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_procedures_smoke-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_procedures_smoke-js.stdout",
+      "bytes": 299,
+      "sha256": "b97b85b585bbc40e339293fec350fa8cd8f916aa6861fabf8fb3326d7235a3d4"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_smoke-compile.command.json",
+      "bytes": 1180,
+      "sha256": "07208747dced06174879b010597c4a3c697720afb665012c05e05bc7bfe1143e"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_smoke-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_smoke-compile.stdout",
+      "bytes": 114,
+      "sha256": "92b680e6e721e1f5deb37cb58391e1747ca0f84317583dd858794c70576b1903"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_smoke-js.command.json",
+      "bytes": 961,
+      "sha256": "63280ac45c75d85202abd853f5682b2fbfcdbf57ba557c9a3443402edefe82cd"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_smoke-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_smoke-js.stdout",
+      "bytes": 193,
+      "sha256": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_word_smoke-compile.command.json",
+      "bytes": 1204,
+      "sha256": "130591a447b84e0b07a93731f63042fd83cb0d85e5bd13d6388054be593a6413"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_word_smoke-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_word_smoke-compile.stdout",
+      "bytes": 114,
+      "sha256": "cbb2bf6fb2bbe25bcf4ea55f2093ff761118225aedc026fbd95f7d5d49bbaa83"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_word_smoke-js.command.json",
+      "bytes": 982,
+      "sha256": "46cf362d37db68a3cd34898420a8577f6d9e2f3f9fb8ea00817eb4f94f7386cb"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_word_smoke-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/web_vba_word_smoke-js.stdout",
+      "bytes": 244,
+      "sha256": "1fb8306c1f06be714542c837c8fc9e81ca647864638d6bc5afef20ad95e395ee"
+    },
+    {
+      "path": "portable-vba/logs/word_paragraphs_v1-compile.command.json",
+      "bytes": 60331,
+      "sha256": "2127861b6116df04442c259cd1a9dd3b19eea60d5f366adae52aa53cbfd0d5cd"
+    },
+    {
+      "path": "portable-vba/logs/word_paragraphs_v1-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/word_paragraphs_v1-compile.stdout",
+      "bytes": 112,
+      "sha256": "b98ffdf29917eba7cad526a7fea2a1f2c328421227b6ab493cf54708dff26117"
+    },
+    {
+      "path": "portable-vba/logs/word_paragraphs_v1-js.command.json",
+      "bytes": 981,
+      "sha256": "544c83969670124db94c947d2559e1273e6932446fbb70a714f6f4f0b0038137"
+    },
+    {
+      "path": "portable-vba/logs/word_paragraphs_v1-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/word_paragraphs_v1-js.stdout",
+      "bytes": 11060,
+      "sha256": "ebe5980e850477a79c6d3749303eae4d97c35dde61cb8e1d7b31b29c800c5f6d"
+    },
+    {
+      "path": "portable-vba/logs/word_paragraphs_v1-vm.command.json",
+      "bytes": 60165,
+      "sha256": "f273fdac4d575b8396ab6d194d7f185cc7543c070a3264946f1e776e6b88851e"
+    },
+    {
+      "path": "portable-vba/logs/word_paragraphs_v1-vm.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-vba/logs/word_paragraphs_v1-vm.stdout",
+      "bytes": 11060,
+      "sha256": "ebe5980e850477a79c6d3749303eae4d97c35dde61cb8e1d7b31b29c800c5f6d"
+    },
+    {
+      "path": "portable-vba/runtime.json",
+      "bytes": 801,
+      "sha256": "5086c80f5ea8141c7f67f2c75cd26305b1d3f0528c69127238796f0f3a428c06"
+    },
+    {
+      "path": "portable-vba/summary.json",
+      "bytes": 659905,
+      "sha256": "05d4c2f4023e24d5647ac9570feb4d6a95250e31d1843936e879e476e7fd9c50"
+    },
+    {
+      "path": "portable-vba-boundary.json",
+      "bytes": 1196,
+      "sha256": "1cce5684cc0e4302ff85eb7f2592becec1eaff2d03beb6cb8de2d2f6d9a6ed02"
+    },
+    {
+      "path": "static/analyze.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "static/analyze.stdout",
+      "bytes": 3022,
+      "sha256": "1643ed5c3134117f2f6e7b379d55677caeaa598e7382f25eea454161b3d34b2d"
+    },
+    {
+      "path": "static/format.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "static/format.stdout",
+      "bytes": 124,
+      "sha256": "55ffcdf153aeaa0a246497e2992f11eacce4fa2607bd9f4b7f642c935ac7070f"
+    },
+    {
+      "path": "static/inputs-after.json.gz",
+      "bytes": 475634,
+      "sha256": "ca814eb617ad2f46a937e962b6dd5e9c07eb57439e4a7642f17a0c715fe195b2"
+    },
+    {
+      "path": "static/inputs-before.json.gz",
+      "bytes": 475634,
+      "sha256": "ca814eb617ad2f46a937e962b6dd5e9c07eb57439e4a7642f17a0c715fe195b2"
+    },
+    {
+      "path": "static/receipt.json",
+      "bytes": 18399,
+      "sha256": "161377177e76998f9aa44cab542b3db269e6c373e4ba48eda0b36523b32a7484"
+    },
+    {
+      "path": "static/targets.json",
+      "bytes": 7525,
+      "sha256": "d96b65843d4463af0d76dab54572fb3cf8d717fa40e4da0dca644a8e6f8bb234"
+    }
+  ],
+  "omitted": [
+    {
+      "path": "portable-images/image_note_smoke.js",
+      "bytes": 376877,
+      "sha256": "44634ed5e68f1805eff823296243d3af86bdf90eb662d2895f2911028a0cea61",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-images/image_note_smoke.js.deps",
+      "bytes": 127857,
+      "sha256": "226f7ef385913ca29344070f800812cbe31a430c0428fc7595636941f6efce10",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-images/image_note_smoke.js.map",
+      "bytes": 324547,
+      "sha256": "962a70c44227e591fe983ddbb50d326a0c025c9f006103a27974ce2070254f98",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/string_intrinsics_v1.js",
+      "bytes": 655096,
+      "sha256": "f8825a3d8e0eb5d8dad5b87323d444cc2b321a155bc764059d0ee4261559a71c",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/string_intrinsics_v1.js.deps",
+      "bytes": 129793,
+      "sha256": "1f22a5106e29c04c8f497e3724bce2358510cf5bf40a9da82b1d3934878575f3",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/string_intrinsics_v1.js.map",
+      "bytes": 221260,
+      "sha256": "f2e8db0900e867c062b9b459874c7b908071ca729f96ae961022da3ff1ca38a8",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/variant_composition_v1.js",
+      "bytes": 619246,
+      "sha256": "91b99d798f0c5947eda57a93ec2c1cb060f08c970254fecdc18b1a0ee6217774",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/variant_composition_v1.js.deps",
+      "bytes": 129793,
+      "sha256": "1f22a5106e29c04c8f497e3724bce2358510cf5bf40a9da82b1d3934878575f3",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/variant_composition_v1.js.map",
+      "bytes": 221262,
+      "sha256": "b92f26fd8c070724e1be462f2be7cc81d6acf95d1f67f0d6f6d1380fb2b0d136",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/variant_conversions_v1.js",
+      "bytes": 701258,
+      "sha256": "4fdde566cda09634989b0e16eac7770509adae29f8641e5e06fead5abbadbe2b",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/variant_conversions_v1.js.deps",
+      "bytes": 129793,
+      "sha256": "1f22a5106e29c04c8f497e3724bce2358510cf5bf40a9da82b1d3934878575f3",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/variant_conversions_v1.js.map",
+      "bytes": 221262,
+      "sha256": "aa111e4870e2619d671c1fd68ce4ca7b4f3ee6565fd09b38b41b9af65296f746",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_smoke.js",
+      "bytes": 2638078,
+      "sha256": "68465ce73fd9033390a07889a04f839fcc5c2a104d49b94b7d2db459dffd1887",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_smoke.js.deps",
+      "bytes": 129664,
+      "sha256": "0a6520cf2d4e5accd618e38b2833ed577d1cfd646af56b72e998cd2fa12c73ea",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_smoke.js.map",
+      "bytes": 926493,
+      "sha256": "aa43d007ea2fdba9581e64f4fc80b9e78271db13833c812385789d4e98653ff4",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_arrays_smoke.js",
+      "bytes": 2845984,
+      "sha256": "5054d683fa18ef0b39237c5a9aa87c0e096497c451193c3483c380f1d7f99183",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_arrays_smoke.js.deps",
+      "bytes": 129675,
+      "sha256": "4673f7888eebaab47c2fed344f164eebb03a8af7291522d05294e9dd9e32138f",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_arrays_smoke.js.map",
+      "bytes": 999176,
+      "sha256": "443aa6f56eefe64437c1a12bfbce21b1434eda2cc24d08926f2ae34940db932c",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_control_flow_smoke.js",
+      "bytes": 2843551,
+      "sha256": "c58c0f731dbde105d9a27a9fa11d767f3760e86d2a6291bdc4aeec7660476778",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_control_flow_smoke.js.deps",
+      "bytes": 129681,
+      "sha256": "9eba9b82b2e4a03ad29b04bcb6fdbd2751eca3baeef12771706759f532624d0d",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_control_flow_smoke.js.map",
+      "bytes": 998541,
+      "sha256": "580c874843b0e4891d4e6c6871f803f2139e639663bcd026cfd7c58ea88f5d62",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_dynamic_arrays_smoke.js",
+      "bytes": 2799108,
+      "sha256": "cc3d33e8ebf53e947cee9801ae453756a723881e41e363670bf18c3816f5893b",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_dynamic_arrays_smoke.js.deps",
+      "bytes": 129683,
+      "sha256": "e7e70c707db87b83bdd284c67a71aa8fe4c48e20a9c461425f6441e40439c4a7",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_dynamic_arrays_smoke.js.map",
+      "bytes": 987193,
+      "sha256": "510c4b5adfbd3870ff6fe1c503d0e1638fe7e2146615bc2e49f600b00c372949",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_procedures_smoke.js",
+      "bytes": 2842280,
+      "sha256": "f3fecc423a2ae236dd87e1b28f9df5468d49910c531d9ef8e14f76d43fbea98d",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_procedures_smoke.js.deps",
+      "bytes": 129679,
+      "sha256": "cf1ee6277d37a5347c7c910ef63dc1fffc24d00bfa2ecf90b547b50d70e649e5",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_procedures_smoke.js.map",
+      "bytes": 998433,
+      "sha256": "ebd59ab3156468288cbcd1f1cf8f62fd123c3cd94e9c302ae9d3f9b59e9bc34d",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_smoke.js",
+      "bytes": 2840714,
+      "sha256": "1d853dc5a1295fe82bbcfd730fa455d768e54e1ad989826e8b1a1778fe813b76",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_smoke.js.deps",
+      "bytes": 129668,
+      "sha256": "bba0a5bf5ff98b82aa3d0ef8eba559d6c5fe59631fd33a46da6561098b9409c1",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_smoke.js.map",
+      "bytes": 998076,
+      "sha256": "e628261f23f4301915a7c0d59a02de73660d173c1daf938a420ba67f8e53d012",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_word_smoke.js",
+      "bytes": 2831673,
+      "sha256": "ec97497d65347c8f5060186a92203245a9e24881effc6b946d59427f7ccdf4c0",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_word_smoke.js.deps",
+      "bytes": 129673,
+      "sha256": "1a492a45a264f751f6e40b8492dcfb3e6ed9c5702827437bd6f575812874f48d",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/web_vba_word_smoke.js.map",
+      "bytes": 996429,
+      "sha256": "ef7301c9bd826ce4c37c21c9a66764bfa74508cbfdd145d8ccc3388a1c9e28fb",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/word_paragraphs_v1.js",
+      "bytes": 633526,
+      "sha256": "39673582a3c23114b8a153718ddceb5003e455dd9fcf7f4aeba83a2e20fb2348",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/word_paragraphs_v1.js.deps",
+      "bytes": 129793,
+      "sha256": "1f22a5106e29c04c8f497e3724bce2358510cf5bf40a9da82b1d3934878575f3",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    },
+    {
+      "path": "portable-vba/build/word_paragraphs_v1.js.map",
+      "bytes": 221258,
+      "sha256": "c9a984ad2287218b2334fb373e60d7f9386523ecc2f6aa000020f65300d25bd8",
+      "reason": "Regenerable compiled output; source, exact command, receipts and hash retained."
+    }
+  ],
+  "archive": {
+    "path": "evidence-9d7472a0.tar.gz",
+    "bytes": 1748557,
+    "sha256": "c1386665ab3097d1c19a99fa9dde0787191a2bcf43e97812f2f1dadfd8a32c2c"
+  },
+  "boundary": "Portable controls passed at original source. Static gate failed formatting; no application cohorts executed."
+}

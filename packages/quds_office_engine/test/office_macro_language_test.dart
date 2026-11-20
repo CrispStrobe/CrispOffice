@@ -209,9 +209,14 @@ void main() {
   });
 
   group('language extensions', () {
-    test('native JSON and the Excel subset are installed without full VBA', () {
+    test('native JSON and Office subsets are installed without full VBA', () {
       final languages = OfficeMacroLanguages();
-      expect(languages.ids, <String>['quds-json', 'vba-excel']);
+      expect(languages.ids, <String>[
+        'quds-json',
+        'vba-excel',
+        'vba-word',
+        'vba-powerpoint',
+      ]);
       final plan = languages.compile(
         OfficeMacroSource(
           language: 'quds-json',
@@ -230,7 +235,12 @@ void main() {
         ),
         throwsA(_error('unsupported_language')),
       );
-      expect(languages.ids, <String>['quds-json', 'vba-excel']);
+      expect(languages.ids, <String>[
+        'quds-json',
+        'vba-excel',
+        'vba-word',
+        'vba-powerpoint',
+      ]);
     });
 
     test(

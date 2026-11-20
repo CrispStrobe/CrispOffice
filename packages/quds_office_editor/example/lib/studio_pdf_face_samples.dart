@@ -33,7 +33,7 @@ Uint8List studioCairoQuarterlyPdf() {
       textDirection: pw.TextDirection.rtl,
       build: (pw.Context context) => <pw.Widget>[
         _band(
-          kicker: 'QUDS OFFICE  ·  CAIRO',
+          kicker: 'CRISPOFFICE  ·  CAIRO',
           face: 'Cairo',
           color: '0F6E56',
           ink: 'D1FAE5',
@@ -106,7 +106,7 @@ Uint8List studioTajawalBriefingPdf() {
       textDirection: pw.TextDirection.ltr,
       build: (pw.Context context) => <pw.Widget>[
         _band(
-          kicker: 'QUDS OFFICE  ·  TAJAWAL',
+          kicker: 'CRISPOFFICE  ·  TAJAWAL',
           face: 'Tajawal',
           color: '9A3412',
           ink: 'FFEDD5',

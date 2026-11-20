@@ -34,7 +34,9 @@
 #                 Connect API key, stapler staple and a Gatekeeper check.
 #
 # Signed modes copy the app to $QUDS_SIGN_OUTPUT/CrispOffice.app (default
-# build/macos/signed) and sign that copy.
+# build/macos/signed) and sign that copy. The Flutter product is already
+# CrispOffice.app with bundle id com.crispstrobe.crispoffice; QUDS_APP_NAME
+# and QUDS_BUNDLE_ID override them for the signed copy only.
 #
 # Release signing changes the spaCy library's file bytes, so its grammar
 # qualification is carried by code identity rather than by file digest: the
@@ -77,7 +79,7 @@ esac
 EXAMPLE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PACKAGES="$(cd "$EXAMPLE/../.." && pwd)"
 JOBS="${QUDS_BUILD_JOBS:-4}"
-APP="$EXAMPLE/build/macos/Build/Products/Release/quds_office_studio.app"
+APP="$EXAMPLE/build/macos/Build/Products/Release/CrispOffice.app"
 
 log() { printf '\n== %s\n' "$*"; }
 

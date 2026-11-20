@@ -1,0 +1,559 @@
+{
+  "at_utc": "2026-11-20T08:20:01.476398+00:00",
+  "archive": "incoming-review-final.tar.gz",
+  "bytes": 1176029,
+  "sha256": "d433ce2594056ba3c4d37d52cc74731eac13f73a169f883413d9dc17be8c8a5e",
+  "members": [
+    {
+      "name": "incoming-review/README-initial.md",
+      "bytes": 6640,
+      "sha256": "6dbbed8096b2276839a869ff6797e0cf8f759a9d16055dda8a3b80c11f034275"
+    },
+    {
+      "name": "incoming-review/README.md",
+      "bytes": 7591,
+      "sha256": "0adffa6b6f48a26b91e897e4a878b751d395a6c4d39ea707f0b49c304dffc6ad"
+    },
+    {
+      "name": "incoming-review/arabic-worker-review.json",
+      "bytes": 1107,
+      "sha256": "8bb2b9b9b1266f1439d9c014dacce70b1dab4af20f931824e20fc228dec3d8a9"
+    },
+    {
+      "name": "incoming-review/arabic-worker.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/arabic-worker.stdout.log",
+      "bytes": 448,
+      "sha256": "8a2ea78e6e7d5ddfdda4d61d7ad4eea8c08eb32fae51c35032bcf6669850195a"
+    },
+    {
+      "name": "incoming-review/audit-final.py",
+      "bytes": 7064,
+      "sha256": "930f45482a8c7413885f1fbf51ce27c2fb83c840dc5b6e34f57b3ee49d72ed1b"
+    },
+    {
+      "name": "incoming-review/audit.py",
+      "bytes": 7056,
+      "sha256": "2c6569d8937d8eab984ff1f766284fe7ffde4ef1f00cf791874b9aa91e4d2ae7"
+    },
+    {
+      "name": "incoming-review/changed-dart-scope-final.json",
+      "bytes": 48482,
+      "sha256": "4719a45ae73360f33124b07cfd650a8fe0dc64582e1dd89f0e9c7f5cfa19fae2"
+    },
+    {
+      "name": "incoming-review/changed-dart-scope.json",
+      "bytes": 28700,
+      "sha256": "a17c23e18ce7b490966593c34c6e1f8e4f67329800a571815d372427caebca5f"
+    },
+    {
+      "name": "incoming-review/final-intake-audit.json",
+      "bytes": 137683,
+      "sha256": "d608ade5e06785f95c1fb96fb82f263bde4857ac3375a857cd19ec81f2dd1713"
+    },
+    {
+      "name": "incoming-review/final-required-ancestry.json",
+      "bytes": 1390,
+      "sha256": "d1e98e255ed1ea9218db7cac2c68a65c5dc8e9660b310a64f3a6ff1bd7fd8c0a"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/after-fix.json",
+      "bytes": 2249,
+      "sha256": "3616bba22f12db205c9c13a3402bc65864fef9f30198b34e0f28e0237a1ae8f7"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/after-fix.jsonl",
+      "bytes": 5091,
+      "sha256": "69a09e1952cb459ff6f88115c64d961683f2fe79af8385cb069da6213fa2a501"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/after-fix.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/analysis.json",
+      "bytes": 654,
+      "sha256": "a598e0e650258017b01972455f81acdc10e40369c43cc74a62b8e8668db546f0"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/analysis.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/analysis.stdout.log",
+      "bytes": 85,
+      "sha256": "41f0f52fbc94008ef9312aaffc717576a341000dcc67d44fd574f8acb0761d3c"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/before-fix.json",
+      "bytes": 2977,
+      "sha256": "e8751725a44ec2ae903f317104bd088bb849a746638a259cc3191e7cc0ebb63c"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/before-fix.jsonl",
+      "bytes": 2574,
+      "sha256": "e8fdf956d6eac9b02c68c837963b777f62a35c9dba86619550e9b54b61379ce8"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/before-fix.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/fix.diff",
+      "bytes": 2596,
+      "sha256": "eb89873a90fa2d9feff12acd56bfa5bb1eefe03aa38fa9ff5afc4d5d92fd2709"
+    },
+    {
+      "name": "incoming-review/font-reservation-review/run.py",
+      "bytes": 2104,
+      "sha256": "03efbe3fe745781ca32d0d6c860643ebdf722495160a90df8f6606d926baa450"
+    },
+    {
+      "name": "incoming-review/font-review/analysis.json",
+      "bytes": 1498,
+      "sha256": "6e2aff1013c6e2950447b962186105eb9789883400fdb9b05d1b08cdf258b458"
+    },
+    {
+      "name": "incoming-review/font-review/analysis.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/font-review/analysis.stdout.log",
+      "bytes": 457,
+      "sha256": "1b9b80eba2b66827b120d6d06d2ec1f446eabc4197a760e8dc476372e22aa293"
+    },
+    {
+      "name": "incoming-review/font-review/development-inputs.json",
+      "bytes": 1572,
+      "sha256": "2b20b06730504189a6e2c6f33ec4c39a447f51118326cdb481490191e9c7bf6b"
+    },
+    {
+      "name": "incoming-review/font-review/development.json",
+      "bytes": 3079,
+      "sha256": "b5855a573b9bee7d3e205c11517210b8ad6314d83ef379017fafdae39c628f6e"
+    },
+    {
+      "name": "incoming-review/font-review/development.jsonl",
+      "bytes": 6705,
+      "sha256": "36f7ec8eadb7233da0829d5b7fcab259292f3611915077ec92079f63fd2939bd"
+    },
+    {
+      "name": "incoming-review/font-review/development.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/font-review/pre-incoming/manifest.json",
+      "bytes": 1234,
+      "sha256": "e2191eff99a586ca0debcdc0710e4acef9fad8b929bb1f89bec05dc22299aa25"
+    },
+    {
+      "name": "incoming-review/font-review/pre-incoming/packages/quds_office_editor/example/lib/studio_fonts.dart",
+      "bytes": 824,
+      "sha256": "7ac6596e17434c6542136c670309ab12f0f1e4403cbe46a4e8e141b6d5084ea9"
+    },
+    {
+      "name": "incoming-review/font-review/pre-incoming/packages/quds_office_editor/lib/src/embed/office_host_fonts.dart",
+      "bytes": 11271,
+      "sha256": "38121d5b311465f1303a7eb0b7e680d082cb5865c804ebb4271de81bd8c3050b"
+    },
+    {
+      "name": "incoming-review/font-review/pre-incoming/packages/quds_office_editor/lib/src/embed/office_system_font_face.dart",
+      "bytes": 811,
+      "sha256": "c2eae6b49f3fba292d775b2f4ea8ec33974398750f21d2bbc9f1a4a349c4543c"
+    },
+    {
+      "name": "incoming-review/font-review/pre-incoming/packages/quds_office_editor/lib/src/embed/office_system_fonts.dart",
+      "bytes": 608,
+      "sha256": "f8be3164e6fda5904e0e0f830b938262875eb49dc85e2669fef8af423f67c2ab"
+    },
+    {
+      "name": "incoming-review/font-review/pre-incoming/packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+      "bytes": 4738,
+      "sha256": "a8dae90e7a1f41ed635ba4d5864060284ab012eed5909475edc8851b48384b1c"
+    },
+    {
+      "name": "incoming-review/font-review/pre-incoming/packages/quds_office_editor/test/system_fonts_test.dart",
+      "bytes": 5669,
+      "sha256": "f36488352b90e7a13f6838eb19e2f20a2e8f4cc78b966c15c004b58b743aa2b4"
+    },
+    {
+      "name": "incoming-review/font-review/pre-incoming/tracked-font-delta.patch",
+      "bytes": 11797,
+      "sha256": "c52165d1c7cb4865eccc10a3cc6cc2fd50e3f8614296bae990c82c7fffe0bcb7"
+    },
+    {
+      "name": "incoming-review/gradient-review/after-fix-editor.json",
+      "bytes": 2332,
+      "sha256": "db872ef28acb210f68838b2c9ffa23a5a770d132cd60303e540e74794f1f2578"
+    },
+    {
+      "name": "incoming-review/gradient-review/after-fix-editor.jsonl",
+      "bytes": 3051,
+      "sha256": "7af1e4ec839874687cd21e29bef152004b5680a4f0ed0bc973d9d268808a2b80"
+    },
+    {
+      "name": "incoming-review/gradient-review/after-fix-editor.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/gradient-review/after-fix-engine.json",
+      "bytes": 2425,
+      "sha256": "02c92ad7fcb8b08cd1a66b32d731099423e2fc2077df24766353b111e1f5ebb2"
+    },
+    {
+      "name": "incoming-review/gradient-review/after-fix-engine.jsonl",
+      "bytes": 2105,
+      "sha256": "eb70a7a5e5f0c16bdc4b032d9f9526fb48ec143033d09bcc19c1f41fe7c3ffe2"
+    },
+    {
+      "name": "incoming-review/gradient-review/after-fix-engine.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/gradient-review/analysis.json",
+      "bytes": 1182,
+      "sha256": "f5b46c573216a1e83cf8b2c0649d5e21041ae05df567924bace608ad7c69bf88"
+    },
+    {
+      "name": "incoming-review/gradient-review/analysis.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/gradient-review/analysis.stdout.log",
+      "bytes": 158,
+      "sha256": "69a585b44c4ba8f16509b022aeca61285963870f7ac0bbd91fc7b5a68512eee0"
+    },
+    {
+      "name": "incoming-review/gradient-review/before-fix-editor.json",
+      "bytes": 1730,
+      "sha256": "2f78359c0de8cfec3cacf5b0636ef4944e2a57680b2217edb47936a9c50565dd"
+    },
+    {
+      "name": "incoming-review/gradient-review/before-fix-editor.jsonl",
+      "bytes": 5559,
+      "sha256": "84c66f1b6a3ad3bc1a2bfbc3b1aa9210f08a6afbf5d36412c0b0ef011fb1c003"
+    },
+    {
+      "name": "incoming-review/gradient-review/before-fix-editor.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/gradient-review/before-fix-engine.json",
+      "bytes": 1831,
+      "sha256": "463f6a097a1560100d3810eea2258f93a0e7b0059535fec7306a9c7b2bb3cb4e"
+    },
+    {
+      "name": "incoming-review/gradient-review/before-fix-engine.jsonl",
+      "bytes": 2824,
+      "sha256": "52fa6087bddb770129543d8d6a918409be32edf19226fa87fc40672f068b43d7"
+    },
+    {
+      "name": "incoming-review/gradient-review/before-fix-engine.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/gradient-review/run_postfix.py",
+      "bytes": 2939,
+      "sha256": "84a170d7469f690c5dc8b130518534e7f44250bd076cc22433b24e2c1191b5cb"
+    },
+    {
+      "name": "incoming-review/intake-audit.json",
+      "bytes": 140777,
+      "sha256": "3564187f11d68247fdd41e46acfdc41bda62b94543b4e80ed27334ede3e35dc9"
+    },
+    {
+      "name": "incoming-review/mail-merge-proposal.json",
+      "bytes": 6974,
+      "sha256": "2f1bc181ec6e2b88f4f7498ed2bc7cb2b06e4c65843a0aed379a596a7c26a794"
+    },
+    {
+      "name": "incoming-review/mail-merge-tree-invocation.json",
+      "bytes": 486,
+      "sha256": "ae6f0904020fc4e526e8b7288b44b9f59a68002bd916593459fa41e79ed72fdd"
+    },
+    {
+      "name": "incoming-review/mail-merge-tree.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/mail-merge-tree.stdout.log",
+      "bytes": 2056,
+      "sha256": "b8bfd2836081d2e4288eee77cd1cbbf20455b115d4fc254cf07408886d3e8e1e"
+    },
+    {
+      "name": "incoming-review/mail-resolution/packages/quds_office_editor/CHANGELOG.md",
+      "bytes": 51206,
+      "sha256": "42d7db05412abd0fce048ce4137200a293a767d94813efe0d2ee4dedc085d070"
+    },
+    {
+      "name": "incoming-review/mail-resolution/packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "bytes": 67244,
+      "sha256": "20f9cedc604dbd73f7a6f8dc2f49cea060ee01073c9e90ef7d70d7f58bac12f3"
+    },
+    {
+      "name": "incoming-review/mail-resolution/packages/quds_office_editor/lib/src/visual/paint_office_visual.dart",
+      "bytes": 19428,
+      "sha256": "afc7d6d53e5c17ad376e9c6a7adb58c2244a4e1d4d4c79ec075080ce548c1dff"
+    },
+    {
+      "name": "incoming-review/mail-resolution/packages/quds_office_engine/CHANGELOG.md",
+      "bytes": 71187,
+      "sha256": "d0bc2775a552360a3b79e5a8811881bbf64d1b57f44980e911c712c1cb32a19a"
+    },
+    {
+      "name": "incoming-review/mail-resolution/packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "bytes": 105563,
+      "sha256": "ea41d951ef249975e03926f1e1c6dd429b06e6eb0a15ed001b821d1788af055e"
+    },
+    {
+      "name": "incoming-review/mail-resolution/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "bytes": 28679,
+      "sha256": "87796a3c1b18f6cd9ad396d2e5b43b29382cc1a3a684d327c6f1cb6ca25370a4"
+    },
+    {
+      "name": "incoming-review/mail-resolution/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "bytes": 52077,
+      "sha256": "4aa9ad3016b3bcaf4bf80f8e407fccd3a808024d688316d6b71e03eb01926b3e"
+    },
+    {
+      "name": "incoming-review/mail-resolution/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "bytes": 47389,
+      "sha256": "11fcb2312a0dd9aaae3d1335badf206df4cb23d79ab19ae5cd90e19241b0b723"
+    },
+    {
+      "name": "incoming-review/mail-resolution/packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "bytes": 53810,
+      "sha256": "02bed49131b8513202fec25ec62965a03436ba867eac5335733d4642a0130861"
+    },
+    {
+      "name": "incoming-review/mail-resolution-format.log",
+      "bytes": 754,
+      "sha256": "0bbf7462e263f7a2ed66c14929de11c12f0e110b88bd73d1a6c880d9cd449b35"
+    },
+    {
+      "name": "incoming-review/mail-resolution.diff",
+      "bytes": 314808,
+      "sha256": "090c3588d118b23dc2d335f2b8811c8fdb3e0b88af319858f73dbe97eb5372b3"
+    },
+    {
+      "name": "incoming-review/mail-resolved.index",
+      "bytes": 2735991,
+      "sha256": "d6a41189e5690f6d2e4c5a280a58b1fdda562280a2e0977aa5115b8100d05bb0"
+    },
+    {
+      "name": "incoming-review/portable-plan.json",
+      "bytes": 1186,
+      "sha256": "352853c596cdf00dacf1ff43b6d44f26db88be3a2320549f12595ace85921733"
+    },
+    {
+      "name": "incoming-review/proposed-incoming-selection-second.json",
+      "bytes": 7255,
+      "sha256": "b107ad873f09a0cb9edc36ed4823145f8eeeb2629514596760d9cff062757927"
+    },
+    {
+      "name": "incoming-review/proposed-incoming-selection.json",
+      "bytes": 6958,
+      "sha256": "c26933b402e3f05c92b6e3a26cc9f4570add0153d5da6a27ce53f21f03e028f6"
+    },
+    {
+      "name": "incoming-review/second-intake-review.json",
+      "bytes": 51018,
+      "sha256": "e1af43bc5b31bf996f652b7437d1bbece6d4885f17e084376a3e33e6a451f862"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/conflict-inputs/base/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "bytes": 45002,
+      "sha256": "08fb98ca093c30f01935eb16ff20b7665fdb3a694b1e29513192852b76ec0e57"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/conflict-inputs/base/packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "bytes": 53944,
+      "sha256": "ba08a079feecebb38b5cbe74740b606804704431093b33e719c820bae37abbac"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/conflict-inputs/ours/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "bytes": 52077,
+      "sha256": "4aa9ad3016b3bcaf4bf80f8e407fccd3a808024d688316d6b71e03eb01926b3e"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/conflict-inputs/ours/packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "bytes": 53810,
+      "sha256": "02bed49131b8513202fec25ec62965a03436ba867eac5335733d4642a0130861"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/conflict-inputs/theirs/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "bytes": 44784,
+      "sha256": "e6d35b0602bad3db38fb9ad46ebf9ebbed97dac4ce06175c595a1ab476742e38"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/conflict-inputs/theirs/packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "bytes": 52083,
+      "sha256": "a92d7e531ada882fd2e5482a417097aec33c54f8b65fa171eeb57a97850b8ec6"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/native-merge.json",
+      "bytes": 5926,
+      "sha256": "b0b13c3e6257b52c7f29bc3ae03f6dfe12b67682417a20c8c97cd8c9575e3697"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/native-merge.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/native-merge.stdout.log",
+      "bytes": 547,
+      "sha256": "24b3b66f8a79bb6b420d885320bc6d77799cfd9b4306914d6a928d707cbb562c"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/pre-merge.json",
+      "bytes": 2445,
+      "sha256": "a39186632785d90007f9d8b8ba296d4818b32fb123bb3818a515314ef2869697"
+    },
+    {
+      "name": "incoming-review/second-main-reconciliation/resolution.json",
+      "bytes": 7229,
+      "sha256": "5c5f49b240190dd057b73c761574121fec400fff673d775442812ad560133810"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/base/packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "bytes": 67167,
+      "sha256": "bb3bad1ff0ae4e337925f7ded78b7aa4c9482f9a67a234cbe19395de1fb713a3"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/base/packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "bytes": 104868,
+      "sha256": "6f427bd1219429aea6154aaf78714f9370cc9d079098e191d2801acdad329a30"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/base/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "bytes": 28030,
+      "sha256": "476031e42710f2b38bd94bb11e910067132dd5e8234aa9cdaa88741923b77184"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/base/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "bytes": 52230,
+      "sha256": "85eaeb76fed9ceb6fcbe32508fbc6e2402f0b16b13e102ce5ae5f14b00d3048a"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/base/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "bytes": 47090,
+      "sha256": "0e499fda5709b6180dc4c97d905cbdba0e13de0097b0dc54e10cf461a7a2e241"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/base/packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "bytes": 49671,
+      "sha256": "59cab58f67db05910e4813900d94954cea69c4b1dd23211d39257b06a585ec4c"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/ours/packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "bytes": 67303,
+      "sha256": "c23379b90a406339ab31766722798d539e5aff8d4aa570364ce5887f785c2b70"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/ours/packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "bytes": 105640,
+      "sha256": "ce87d63ad200efefdaaefd565f23203cc9496e093e626f930514388de80b7a2c"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/ours/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "bytes": 28679,
+      "sha256": "87796a3c1b18f6cd9ad396d2e5b43b29382cc1a3a684d327c6f1cb6ca25370a4"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/ours/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "bytes": 52077,
+      "sha256": "4aa9ad3016b3bcaf4bf80f8e407fccd3a808024d688316d6b71e03eb01926b3e"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/ours/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "bytes": 47389,
+      "sha256": "11fcb2312a0dd9aaae3d1335badf206df4cb23d79ab19ae5cd90e19241b0b723"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/ours/packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "bytes": 53810,
+      "sha256": "02bed49131b8513202fec25ec62965a03436ba867eac5335733d4642a0130861"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/theirs/packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "bytes": 67241,
+      "sha256": "e68783b225d95e5f72e925c5a30be2404182e92a1ea41efa7dda55ac0bad5a77"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/theirs/packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "bytes": 106545,
+      "sha256": "05e01d5e1e2b7ce1749fe182f52bc42bff4e3ae886000b82bda8c11cfc240366"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/theirs/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "bytes": 28884,
+      "sha256": "9e01be6f6a2d2fcbd60ca33e0df3798fb4cedfabbb0cb4df8a31d5d67cdc442b"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/theirs/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "bytes": 53235,
+      "sha256": "abeedf2402f95a0f52732644b4eabda631e423464ad74a0a07d9b685bbe07a23"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/theirs/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "bytes": 50076,
+      "sha256": "f2e334fc2a49226a3bfbe2275124eaed8278fa0ab92f8720e0068076f13eedfd"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/conflict-inputs/theirs/packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "bytes": 50571,
+      "sha256": "e057d454061fdccc78276777110c9f2884727958f139f1f53076f937e4a647e2"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/native-merge.json",
+      "bytes": 1934,
+      "sha256": "1373cb077f110b511cc542075404406a4590eb4b78c3d0ac5902967ef5170f70"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/native-merge.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/native-merge.stdout.log",
+      "bytes": 1338,
+      "sha256": "08f6ca9d5e189ebe3abf23a68606a5bd6c4e3248bc09e643e1be6277f9c2198c"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/pre-merge.json",
+      "bytes": 1211,
+      "sha256": "e51571d9f2b13cbd61de29eecce1387571bbc902365ce3f40a5d10eade09322b"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/resolution-test-names.json",
+      "bytes": 2620,
+      "sha256": "aab7d4877f91bcba20d76f7801205fbf4c826cd3ab030ebe4fd5148c4f8c5f75"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/resolution.json",
+      "bytes": 3234,
+      "sha256": "db80ef32b661d7cbfc71204a11e7d7d4791c2788b3166ab0bf3d48981312749c"
+    },
+    {
+      "name": "incoming-review/second-vba-reconciliation/staged-product.diff",
+      "bytes": 106561,
+      "sha256": "ff092d1c0ceb9bcf047ad84aef23cd71b6037e64b1dd0fdf7a01bee7b8621cf8"
+    }
+  ],
+  "boundary": "Completed incoming review and development proofs; complete final frozen-source qualification is separate."
+}
