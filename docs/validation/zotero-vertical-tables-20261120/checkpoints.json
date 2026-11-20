@@ -1,0 +1,63 @@
+{
+  "branch": "codex/zotero-vertical-tables-20261120",
+  "pull_request": 277,
+  "remote_checkpoints": [
+    {
+      "sha": "97d8d4a3090d6f932f3c977b94b5338117dde644",
+      "tree": "a1c9b56dd0313c5e498924980724c7e64fa49bf9",
+      "purpose": "Capture initial 322-reference intake"
+    },
+    {
+      "sha": "f96e02af723df0c122b5b9ec926b747a08a50aab",
+      "tree": "5a28483dc34fdd11f964bdeab5198e2b62299cbd",
+      "purpose": "Reconcile Mail and stronger Word behavior"
+    },
+    {
+      "sha": "013528e7b4489c8abe6ad3e00a5309dc955b4ace",
+      "tree": "a7c0c84d6735cccd5b3cfa50175cd2e95acefa8c",
+      "purpose": "Complete the initial captured source union"
+    },
+    {
+      "sha": "554e2d58e7a53c3532602875be3506889f9a9817",
+      "tree": "d27340ce28ac0c011afddd4aa26856baa917981c",
+      "purpose": "Implement rowspans and controller acceptance"
+    },
+    {
+      "sha": "4f2cb83fbdb9455a822979a6cafbad3e3edc03ce",
+      "tree": "15da79bc693cccfcfbafb8cc6d760473eea8b6b2",
+      "purpose": "Preserve page geometry, row handles and navigation"
+    },
+    {
+      "sha": "2e14dd13c72f4d04a31cc97c3f8e4b7bcf8e5b6f",
+      "tree": "bfb1849fdd454b4c04f4de8a60f4441d5ed0fa37",
+      "purpose": "Integrate published Mail main and later Word evidence"
+    },
+    {
+      "sha": "e8edb90a2948af60f41e50795c049a0a4d1ed3e6",
+      "tree": "371ed6defb1986e32fc2e0d516356ac934304e47",
+      "purpose": "Complete bounded publication intake and native border serialization"
+    },
+    {
+      "sha": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+      "tree": "464e3e7eb3b4186ebaa1f7a7ff530f41c506b445",
+      "purpose": "Qualify isolated editor acceptance and strict drivers"
+    },
+    {
+      "sha": "37148e37736a4134bba1d3c07b0ad847c2e1447d",
+      "tree": "6c29a093730b12cfaf9e98822183d35dd842956c",
+      "purpose": "Integrate the later Mail reader/session main"
+    },
+    {
+      "sha": "fe2c57604c33c1ee5ef1e9f25121e99d66c74d9a",
+      "tree": "0b615e2395aebc367e859fa2ee694ffce3529623",
+      "purpose": "Preserve latest-main reader and session behavior with bounded state and resource handling"
+    },
+    {
+      "sha": "6045998d885cbb045454a993aedfdfc0977714d6",
+      "tree": "64360d621e85c5298e0ae132a9c42d1e119df70a",
+      "purpose": "Preserve the concurrent main Mail tab and account-control update"
+    }
+  ],
+  "git_trees_verified_before_ref_updates": true,
+  "github_actions": "Neither queried nor awaited"
+}

@@ -15,7 +15,15 @@ The initial 322-reference source intake is complete, with 298 ancestors and
 24 independently verified equivalents. Both Mail continuations, the newer Word
 checkpoint, bookmark performance documentation and retired-workflow history
 are preserved. Source-specific earlier evidence keeps its original attribution.
-See the continuation receipt for final source hashes, counts and diagnostics.
+The publication snapshot accounts for 324 references through 300 ancestors and
+the same 24 verified equivalents. Later main updates through `329d0391` are
+also incorporated. The final [qualification receipt](validation/zotero-vertical-tables-20261120/qualification.json)
+records **3,644 passes, eight existing editor skips and zero failures** at
+qualified product source `6045998d`. All **317 Zotero editor cases passed**;
+all **75 changed Dart files** pass formatting and strict analysis. Counts use
+fresh execution and exact-input retention proofs: the 16 Studio and final 95
+Mail followup cases replace prior results and are not counted twice. See the
+continuation report for source hashes, raw evidence and diagnostics.
 No installed Zotero/Word/LibreOffice qualification, active ODT transfer or
 complete parity is inferred. GitHub Actions are neither queried nor awaited.
 
