@@ -1,0 +1,2302 @@
+{
+  "schema": "quds-mail-publication-source-applicability/v1",
+  "evidence_class": "Source-only immutable Git comparison; runtime results are separately owned receipts.",
+  "checked_at_utc": "2026-11-20T21:55:52.229441+00:00",
+  "source_commit": "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+  "source_tree": "d3a472f1e23bb98c1898087bdbd1ddf9d07f4c8d",
+  "ancestry": {
+    "frozen_intake_target": {
+      "commit": "4772d52492076241c39fdee0990c950c92367b1f",
+      "is_target_ancestor": true
+    },
+    "mail_accepted_baseline": {
+      "commit": "511990e9b81ff5d6ef2ed1488ff31e2565f21618",
+      "is_target_ancestor": true
+    },
+    "e975_word_accepted_source": {
+      "commit": "3f9d3647a20b06c73f5bfd0ade2846e7859e4502",
+      "is_target_ancestor": true
+    },
+    "first_main_advance": {
+      "commit": "e975cec13b289fe067ef406cd3044701ecc44744",
+      "is_target_ancestor": true
+    },
+    "second_main_advance": {
+      "commit": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+      "is_target_ancestor": true
+    },
+    "initial_publication_reconciliation": {
+      "commit": "5034494d68257d9dc89493dd11f408c1c1165fae",
+      "is_target_ancestor": true
+    }
+  },
+  "frozen_intake": {
+    "accepted_report": "intake-local-accepted.json",
+    "accepted_report_sha256": "880491bfa56a0f63d5941c7db46650c6de28cdb62ac88c8076f600af77449914",
+    "cutoff_manifest": "intake-local-cutoff-refs.json",
+    "cutoff_manifest_sha256": "1dcc95a5959fa8f0347fea77751e4e12aaa1b4cec712fd6e36528da4a6ecc94f",
+    "captured_refs": 320,
+    "fork_branches": 38,
+    "fork_pr_heads": 274,
+    "upstream_branches": 4,
+    "upstream_pr_heads": 4,
+    "uncovered_refs": 0,
+    "independent_historical_proofs": 14,
+    "valid_through_verified_target_ancestry": true,
+    "note": "No new branch/PR scan; the two later main advances are separately incorporated ancestors."
+  },
+  "mail_packages": {
+    "baseline_commit": "511990e9b81ff5d6ef2ed1488ff31e2565f21618",
+    "target_commit": "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+    "path_count": 222,
+    "exact_path_sets": true,
+    "exact_modes_types_blobs": true,
+    "changed_paths": [],
+    "baseline_manifest_sha256": "6d085f8f2d996f2027163bd02cc119f5d5aa005a214c774190683fa7b77361f0",
+    "target_manifest_sha256": "6d085f8f2d996f2027163bd02cc119f5d5aa005a214c774190683fa7b77361f0",
+    "entries": {
+      "packages/quds_mail_core/CHANGELOG.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "59623e01634a2c52591da0db9d20cfb80a2f654c"
+      },
+      "packages/quds_mail_core/LICENSE": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d2c25674e883f1006ac85cf45912f851a2b5ef0e"
+      },
+      "packages/quds_mail_core/README.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1a7138939d8b3aef22c3e5cfedd74532a0d9b2b9"
+      },
+      "packages/quds_mail_core/lib/quds_mail_core.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7a001164dbf973c78ff1145bc4bdd4ed63ddbcbc"
+      },
+      "packages/quds_mail_core/lib/src/model/bytes.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d3694b4e79a684ce66cee4eda6811801f012fcf7"
+      },
+      "packages/quds_mail_core/lib/src/model/capabilities.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "337c2204d09d5f7f158a01cf1ce21bc5f2abaa10"
+      },
+      "packages/quds_mail_core/lib/src/model/identity.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b472a3e3d98d5f7d2a9a7396bbabcb546053c932"
+      },
+      "packages/quds_mail_core/lib/src/model/message.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "31aa37df663c14ee068e124520f5c59477bd3532"
+      },
+      "packages/quds_mail_core/lib/src/model/parse.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f097ec41fc028a8c462d7c484c88e99753343402"
+      },
+      "packages/quds_mail_core/lib/src/model/result.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "282f50638516b828ec3986e7b8094c62de8df396"
+      },
+      "packages/quds_mail_core/lib/src/ports/codec.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "11f3e7deeeb947ab3d62c86b5f657c34bff14449"
+      },
+      "packages/quds_mail_core/lib/src/ports/hosts.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9731e0ad8b371fdeb5dd9c19d282aa3e0cc0d361"
+      },
+      "packages/quds_mail_core/lib/src/ports/provider.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c51ffe74e6aeb75f9da9f4d6f4b6a2988acf606f"
+      },
+      "packages/quds_mail_core/lib/src/ports/repository.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f89d199a16a19c68401c959230ddc2fb40ebd8cf"
+      },
+      "packages/quds_mail_core/lib/src/search/header_search.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "eae72758f80075b501c6f2d9c0badb4a5546347d"
+      },
+      "packages/quds_mail_core/lib/src/sync/bulk_flags.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4658c6dbce998c392ecf0934c694f4599404c736"
+      },
+      "packages/quds_mail_core/lib/src/sync/cancellation.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f8f57791f5c63e5ee566bb5e4c8a71a0784dcf97"
+      },
+      "packages/quds_mail_core/lib/src/sync/coordinator.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8fd17fee6fc05b0784ed9fd748c52e526972e94a"
+      },
+      "packages/quds_mail_core/lib/src/sync/outbox.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "700a23039c502795c3ff7da054131fedc0791ad4"
+      },
+      "packages/quds_mail_core/pubspec.yaml": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "055f9ff8de9a13fc10ccb12b034bac26e908984c"
+      },
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "56d6bffeadfe9f25338954221c9fd74979e69ed6"
+      },
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "df2d89e29e72d97f7747aaea36f3c4797eed997a"
+      },
+      "packages/quds_mail_core/test/bulk_flags_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fbbb20b4ee8d7cb6fe03dfe4606394154749132b"
+      },
+      "packages/quds_mail_core/test/cancellation_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "49546b3389595356366b2577945050852e7ad12e"
+      },
+      "packages/quds_mail_core/test/compile/portable_import.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3e1a204c69bf9122ae23c992585ac7ffba2dfef1"
+      },
+      "packages/quds_mail_core/test/ews_identity_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7af5c971c9eae4680dbf43d1ac8dc6dae515270b"
+      },
+      "packages/quds_mail_core/test/header_search_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e3bc591c5236ab2931d645a19bf986820ac18200"
+      },
+      "packages/quds_mail_core/test/imap_sync_range_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "23c704ecb57a03e991b543a7440183fcbd3cc572"
+      },
+      "packages/quds_mail_core/test/models_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02"
+      },
+      "packages/quds_mail_core/test/outbox_management_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6d3f5eb1afded96973616fcd3d8c45d5db6fe2ab"
+      },
+      "packages/quds_mail_core/test/outbox_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2bd60f3b4ff489c3fce50100c6d2347aa8a68286"
+      },
+      "packages/quds_mail_core/test/sync_coordinator_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "621492c6e8d086a873f1ea2aa50422a2d8d21db0"
+      },
+      "packages/quds_mail_mime/CHANGELOG.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9b4e94848ef0e10eb51a668c3471631aec8bb787"
+      },
+      "packages/quds_mail_mime/LICENSE": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d2c25674e883f1006ac85cf45912f851a2b5ef0e"
+      },
+      "packages/quds_mail_mime/README.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "13ec616b860c85e0f49c67084ab516681aa94a4f"
+      },
+      "packages/quds_mail_mime/lib/quds_mail_mime.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "92595ea691fa2e57aa35e6460244c31f096fdd13"
+      },
+      "packages/quds_mail_mime/lib/src/codec.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1cf156fb90276f42ecece825930ec6cf7152df88"
+      },
+      "packages/quds_mail_mime/lib/src/mbox.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c1712faa6e20c59a9cf86cb2c361cb1f7bd59f22"
+      },
+      "packages/quds_mail_mime/lib/src/scan.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "86c29767b63328295bde225f10a20dc115c01894"
+      },
+      "packages/quds_mail_mime/lib/src/transfer.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "68fc3196d84c26d655e9f8915fb933391f01f70d"
+      },
+      "packages/quds_mail_mime/pubspec.yaml": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "77463f51b8c60a9c7c9a644877d0458ee611309f"
+      },
+      "packages/quds_mail_mime/test/compile/memory_probe.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4c2a3b6dc21b28b15f47dee0afb0556923a5f29f"
+      },
+      "packages/quds_mail_mime/test/compile/portable_import.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5f04aef8f668b273e732de93a1365c74aa4514fd"
+      },
+      "packages/quds_mail_mime/test/eml_bytes_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "01a9ca9b90cfddeaa5193be7a64971f523f317eb"
+      },
+      "packages/quds_mail_mime/test/fixtures/messages.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "544d123817c508abd7955224551a2dfb7d9033b3"
+      },
+      "packages/quds_mail_mime/test/mbox_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b18bc7b3ea302f3e3da99e84ea3b1f25a359b1e8"
+      },
+      "packages/quds_mail_mime/test/mime_encodings_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "35565ecbfea874b512bd2a2dc751e822ccbfa1a6"
+      },
+      "packages/quds_mail_mime/test/mime_limits_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7fd6503702826e7a118629de3427066298b405ea"
+      },
+      "packages/quds_mail_mime/test/mime_parts_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fcfcb5683edc9f5723d41db5157b14eddab95118"
+      },
+      "packages/quds_mail_mime/test/mime_review_regressions_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "47c7c031e705ea455c46be810cc9c3eb6939f758"
+      },
+      "packages/quds_mail_mime/test/portable_import_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "967055c6c69e7352f485fc34542bdc1d9eecee39"
+      },
+      "packages/quds_mail_store/CHANGELOG.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a0c0445bba505b3dac2817505b37418f6e8dcf4b"
+      },
+      "packages/quds_mail_store/DEPENDENCIES.json": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5c135eea6cedff31623310fcb8ab32982f6879b4"
+      },
+      "packages/quds_mail_store/LICENSE": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d2c25674e883f1006ac85cf45912f851a2b5ef0e"
+      },
+      "packages/quds_mail_store/README.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "61696f12ab570bef5ba5f52ef38e7340b7dbb88f"
+      },
+      "packages/quds_mail_store/THIRD_PARTY_NOTICES.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "733fc3981cd3ef88fd197e899fa980538ec5853d"
+      },
+      "packages/quds_mail_store/lib/quds_mail_archive_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8ad62076ef618731ea33d3c19a734536d5953a86"
+      },
+      "packages/quds_mail_store/lib/quds_mail_store.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1de0ad31f16fdb76f1c24c45b0c81184dfa59d5d"
+      },
+      "packages/quds_mail_store/lib/quds_mail_store_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a7f9c24dcf4adfe6111b58096120f03ace9aa17b"
+      },
+      "packages/quds_mail_store/lib/quds_mail_store_web.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9c84f65ab52620ac9dca50112a6c21be62a9d795"
+      },
+      "packages/quds_mail_store/lib/src/archive_database.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "320abe6053370b50c5346caa7c44fb9ce0ffa646"
+      },
+      "packages/quds_mail_store/lib/src/archive_directory_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3f8455dc824c5a13a4bfa285a547e918a12af0e4"
+      },
+      "packages/quds_mail_store/lib/src/archive_export_models.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3564c4a2fd0a586e88e989d5f30f78609041d5cd"
+      },
+      "packages/quds_mail_store/lib/src/archive_export_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9082571c9c5f77561599f7a57f40915476e0cf9c"
+      },
+      "packages/quds_mail_store/lib/src/archive_export_plan.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d5ea2a807584fd212159dcb6174fcac65855b14c"
+      },
+      "packages/quds_mail_store/lib/src/archive_maintenance.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0cc27aeb8b3e0301d8ba0f86b975fe9fbf96247f"
+      },
+      "packages/quds_mail_store/lib/src/archive_models.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7d0d2cce436a9bd58e890a0dbd28143ab714bd3c"
+      },
+      "packages/quds_mail_store/lib/src/archive_query.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "677035a8764196e03673546475a3ee82c518b42f"
+      },
+      "packages/quds_mail_store/lib/src/archive_repository.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "10a8f51cefb081d1a3077d4c34f7bac52c05c36a"
+      },
+      "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "55a9513645d9be8b105a08a052c2fae053e33bf8"
+      },
+      "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "532692c6e822ab97848871b62731c7d865e16815"
+      },
+      "packages/quds_mail_store/lib/src/archive_restore_models.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "dbde7ecfb9971c591edd16a5c7c4324c7ab0c61d"
+      },
+      "packages/quds_mail_store/lib/src/archive_restore_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "317b9f5676346c3560733ad0036a8acac3ca8427"
+      },
+      "packages/quds_mail_store/lib/src/archive_runner.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a3a73cd792c44a341fd3b2717e364aa2eeac9dcf"
+      },
+      "packages/quds_mail_store/lib/src/archive_settings.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "194c879fd6da03328b4db4b5da3b03c90a286997"
+      },
+      "packages/quds_mail_store/lib/src/archive_text.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a1b278111c1a0f1bd94b867ffd4a9bd28670492c"
+      },
+      "packages/quds_mail_store/lib/src/browser_problem.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f192b41c685851592c86d0ac1d30fc66deaa8550"
+      },
+      "packages/quds_mail_store/lib/src/browser_setup.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2301833c4e0eea985562bb79e5425847d4a1e048"
+      },
+      "packages/quds_mail_store/lib/src/codec.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3168576fd53d9378738b8d1f977a7cad82c659e8"
+      },
+      "packages/quds_mail_store/lib/src/errors.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f5e2745bcbf6d8b085930ec179a19b4a0b23a347"
+      },
+      "packages/quds_mail_store/lib/src/local_accounts.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f39c525313f094a1a7750c93fc5e13018656885c"
+      },
+      "packages/quds_mail_store/lib/src/mailbox_views.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "475e8336d8a1a90ffaf92c106bd8616d3f8a6ca7"
+      },
+      "packages/quds_mail_store/lib/src/models.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3a8a719b96907f47c0a84c6fc3be740d32c2325a"
+      },
+      "packages/quds_mail_store/lib/src/owner_locked_executor.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4ea4ab0830adb3caa058958076c456acaf26f43e"
+      },
+      "packages/quds_mail_store/lib/src/platform_configuration.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "670f9890720312dac75bed48ded93a2da76c1bc0"
+      },
+      "packages/quds_mail_store/lib/src/repository.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "238837ed9ca373eded2e4977e45d0694c41f34f5"
+      },
+      "packages/quds_mail_store/lib/src/schema/database.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3cc8b400501d4ef4a43474da0850f10aa516bdcb"
+      },
+      "packages/quds_mail_store/lib/src/search_journal.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ed748589f0aac8d31ce3fce6277601bc4494094e"
+      },
+      "packages/quds_mail_store/pubspec.yaml": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4529099ff0aa052d780d77fd1b9f35b9ae80ea94"
+      },
+      "packages/quds_mail_store/test/adversarial_store_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "02acbe90f575dcd413303095df226e68ba266cdb"
+      },
+      "packages/quds_mail_store/test/archive_directory_native_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "955bfa243e8695ea387e4246d51d3c5169ded04a"
+      },
+      "packages/quds_mail_store/test/archive_export_manifest_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "91dfa2443293dfc31fc01ac2ccd2d4ff8f21bfe2"
+      },
+      "packages/quds_mail_store/test/archive_export_native_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "46afb44814c89d634c4ba9e316e02959fb995bb3"
+      },
+      "packages/quds_mail_store/test/archive_export_plan_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0e45641efce630fb86ee9020509c5d2a3da14e0d"
+      },
+      "packages/quds_mail_store/test/archive_multi_origin_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "84c7fdf22449df470b5f5c19f1b958060457a57b"
+      },
+      "packages/quds_mail_store/test/archive_native_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "17d26fe2f02c19a6b2d3f4c76223ad6a9dc5754c"
+      },
+      "packages/quds_mail_store/test/archive_query_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "638d85c471ad9dcbbf544a1abd24717411a43cc7"
+      },
+      "packages/quds_mail_store/test/archive_repository_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3b5493a75e3923c6006e58a043dfeb7e1a73ae16"
+      },
+      "packages/quds_mail_store/test/archive_restore_adversarial_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6d7ec429c91c7d47cef7262cde1e5008ea54bc1f"
+      },
+      "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a8482d9d81aab2cd3e7bcca326c9ce60fa814cf5"
+      },
+      "packages/quds_mail_store/test/archive_restore_native_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "356f9ca14c625767863e5457ae4ab6ca9bc2c711"
+      },
+      "packages/quds_mail_store/test/archive_restore_resume_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "eeae8f401f73abf70d406db59200f75ce28e8ea7"
+      },
+      "packages/quds_mail_store/test/archive_runner_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "03cd0a560f9f7b3f1a35e76aded5c5e37dc51388"
+      },
+      "packages/quds_mail_store/test/browser_problem_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0e3d9f8611482157b93b1636050808d7b59ae95d"
+      },
+      "packages/quds_mail_store/test/cache_cleanup_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e6b7f91815cd881a3510c72b9488cad64a938468"
+      },
+      "packages/quds_mail_store/test/cache_metadata_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "444bd989f5626c3d7ede04e339017b55de6f52cb"
+      },
+      "packages/quds_mail_store/test/codec_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e1244df927710dd971494c9b83b3e1908746d616"
+      },
+      "packages/quds_mail_store/test/crash_recovery_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "03b72c62ac951a6d886f9cfdfabf342dc0d7055e"
+      },
+      "packages/quds_mail_store/test/draft_catalog_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fd5bdc5a705a4ceb40e322345606063ae59eb30d"
+      },
+      "packages/quds_mail_store/test/draft_editor_state_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "134a424fb87756da73f58ece276cb78543f3bbbc"
+      },
+      "packages/quds_mail_store/test/ews_store_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e15ca31efd86490b1d786ff801d318b1daf097e1"
+      },
+      "packages/quds_mail_store/test/imap_sync_range_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f22e64b010fa4b43f98aa4097810df4d7c3ae38e"
+      },
+      "packages/quds_mail_store/test/local_accounts_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "cbc281fb04b0903124b24caf093bce0145216250"
+      },
+      "packages/quds_mail_store/test/mailbox_views_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "60ee1e4d02addd93eb3e5b779f667b6a9b0176c4"
+      },
+      "packages/quds_mail_store/test/migration_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6d1b470ac8daf88f49d2d219e7b9068cd675b6b9"
+      },
+      "packages/quds_mail_store/test/native_platform_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8d20c983ad2dbc62e8fd27af531343fb13e8e67e"
+      },
+      "packages/quds_mail_store/test/outbox_draft_transfer_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "142a6ce4679149b4dc4d7dd07620f255b77d1cb6"
+      },
+      "packages/quds_mail_store/test/outbox_management_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "55ddcd5b6ec5438dadd9eab00c90d6f85a2cbf8d"
+      },
+      "packages/quds_mail_store/test/platform_configuration_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "30fadd8f1569935d44efa9e539c3c34a10e1e5de"
+      },
+      "packages/quds_mail_store/test/repository_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b12ba07cfb29df826929b155f3488c459386bf7f"
+      },
+      "packages/quds_mail_store/test/support/outbox_widget_database.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2a81d6348313dc07cca5575fed12dca5ae959d63"
+      },
+      "packages/quds_mail_store/tool/archive_crash_fixture.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1f6e85ed2cbbfd7f05affae69e9ce9a927372883"
+      },
+      "packages/quds_mail_store/tool/archive_export_crash_fixture.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d7dca5ba4b07b18ccc02d2b58d854d34a4c136fc"
+      },
+      "packages/quds_mail_store/tool/archive_restore_crash_fixture.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3cf9ba84512fd92c97e5c6c46a089d2ae2930d1f"
+      },
+      "packages/quds_mail_store/tool/browser_compile_probe.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3b629f2b40ec7ba2c248b9a42e9a02f41fe7acfd"
+      },
+      "packages/quds_mail_store/tool/mail_store_worker.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4aa84891c0e5848c1438571f4605d89a0318380d"
+      },
+      "packages/quds_mail_store/tool/native_crash_fixture.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "51d48fa746a82603b20120a2c0ccaf39de77c247"
+      },
+      "packages/quds_mail_store/tool/transaction_crash_fixture.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "54959539c120f5425929929bb87a8cd573d39148"
+      },
+      "packages/quds_mail_transport/CHANGELOG.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4e560f29b500bd978987ad0c9a4d132b928c3b24"
+      },
+      "packages/quds_mail_transport/LICENSE": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+      },
+      "packages/quds_mail_transport/README.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c6117d7d1dfdd13efd64fc69a4c9a3b108a8b09f"
+      },
+      "packages/quds_mail_transport/analysis_options.yaml": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d04adaf90938aaa1a97dd6b05391823376154428"
+      },
+      "packages/quds_mail_transport/example/cloud_probe.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2707f342c3c1945ed52995cd3e0aa7fba3c81e07"
+      },
+      "packages/quds_mail_transport/example/ews_probe.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a0ba13ddcac15ee0700a9dd758ba92a26bedd69b"
+      },
+      "packages/quds_mail_transport/lib/quds_mail_transport.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3cb5950dee476bb05baf2c98ff48ad03b7a4d75e"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/configuration.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "27a22eb3aea1b3c9e0676828db584d7c72aa6c06"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/cursor.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fa36ac88c167a00b064875e983b99d4680df118e"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/http.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "33ae02b5c5f94faddb315045256bccd2c17b945b"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/native/authorization.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "20ef038eb3015913ef86ba2bafcd6872732f3840"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/native/factory.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f41d2218a4028a54ecc7333720e231d4f1bc3f32"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/native/http.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9150c2a8cac8db4d5d8d1caf54cb27f480325e19"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/oauth.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "bb1c0e35cddb7233ab9f49d30a4a5e7002a58199"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/provider.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e202f8bbfaaa4890599d90b2b7eb5c4079845753"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/unsupported.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "28bb9a2bb29927201fb12ddbca4437fe80114f1d"
+      },
+      "packages/quds_mail_transport/lib/src/configuration.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e2a4cc67ec3064d8fdf31bf7120ccea393a07f77"
+      },
+      "packages/quds_mail_transport/lib/src/cursor.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b6c9c60ba3689041ce0d4e6e3b2845f9d4b51dbf"
+      },
+      "packages/quds_mail_transport/lib/src/ews/configuration.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4777d68e0af07715ff75e3c54d0af4ebdccad68e"
+      },
+      "packages/quds_mail_transport/lib/src/ews/cursor.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "44cd6edb1102f8a12ce7a7ba19d74e8c26b84cac"
+      },
+      "packages/quds_mail_transport/lib/src/ews/errors.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3ca8ef8440e84a7022c03162dc8c09ecb9f488bb"
+      },
+      "packages/quds_mail_transport/lib/src/ews/native/factory.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "216ee00ea3258aaf6a3ab258ed0ad24945b3c431"
+      },
+      "packages/quds_mail_transport/lib/src/ews/native/http_client.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "066eed80c6542507c9f6732a529afdaadab9dfaf"
+      },
+      "packages/quds_mail_transport/lib/src/ews/native/ntlm.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "441c1e8a77ec1d0a3bb1664cc9298df07416d3ab"
+      },
+      "packages/quds_mail_transport/lib/src/ews/native/provider.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6463d3b4c8efcfbb4466ad792958388026697d1c"
+      },
+      "packages/quds_mail_transport/lib/src/ews/soap.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d7d84192c4a7cc9a34536cde7b02da2030e319a6"
+      },
+      "packages/quds_mail_transport/lib/src/ews/unsupported.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7377eebccf42fa4dcb093a3f75de639879682f8d"
+      },
+      "packages/quds_mail_transport/lib/src/native/factory.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b446ae6dff1fde7766527b3475e257c3f85e9cda"
+      },
+      "packages/quds_mail_transport/lib/src/native/provider.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "51088027bae1cd8054d1f98ed24b70d1853fa27f"
+      },
+      "packages/quds_mail_transport/lib/src/unsupported/provider.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4d1f429bff4bf74b18675d4d79c02ca845c7950e"
+      },
+      "packages/quds_mail_transport/pubspec.yaml": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "bc2cc7ecf7a8230b4f94d4f9a943a4ea923aebe0"
+      },
+      "packages/quds_mail_transport/test/cloud_http_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e17c808af82c424b52df4f50f26aaf6c40b22487"
+      },
+      "packages/quds_mail_transport/test/cloud_oauth_loopback_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b420728077650b2d6fd5abfe2d67a22a3208ef79"
+      },
+      "packages/quds_mail_transport/test/cloud_oauth_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6a63ac89cc99c5ebb7ec20b2d9b949d5cffa5ccc"
+      },
+      "packages/quds_mail_transport/test/cloud_provider_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "36645334b27af2f30b21baccf9620a498ceff2d4"
+      },
+      "packages/quds_mail_transport/test/cloud_store_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c7f1d4ce57f1f83a305069ce9a11cc6b5691d17b"
+      },
+      "packages/quds_mail_transport/test/cloud_unsupported_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "dc3c664f70523a005b80720d7d11fd4ae907d864"
+      },
+      "packages/quds_mail_transport/test/configuration_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "59b8bb17ec764dd66879cfef1b6192b0933f915f"
+      },
+      "packages/quds_mail_transport/test/cursor_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4664c0b60e09df3a66d3a50e828af2dc5d3541ac"
+      },
+      "packages/quds_mail_transport/test/ews_configuration_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2ffea44047829c5734564c952731ffedfdb21d70"
+      },
+      "packages/quds_mail_transport/test/ews_http_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c36a0f9ce12625d492f5887ac1b09ce977fbbfc9"
+      },
+      "packages/quds_mail_transport/test/ews_ntlm_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "90c3cad74f3c367cbf2f628f0d334def4ead635f"
+      },
+      "packages/quds_mail_transport/test/ews_provider_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2056df966ad32567a0424485eaf90f4e1fe86234"
+      },
+      "packages/quds_mail_transport/test/ews_soap_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f54baeacd1727ce97618634eff0d5a664a79f308"
+      },
+      "packages/quds_mail_transport/test/ews_unsupported_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "43817b79fa1383bd0d95c1761bdcca62d5a64716"
+      },
+      "packages/quds_mail_transport/test/fixtures/tls/README.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b7c4159fac0a05cba2b2eaa0df60df44e9d7d998"
+      },
+      "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "dd7912ff5a96056f4f1298ad091aa9da4b227b8d"
+      },
+      "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ff7250436bab8665f879e702fa60e6839115b4f8"
+      },
+      "packages/quds_mail_transport/test/host_store_integration_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "25539871c7c6e40c5dbb3514adfd93cbd56af923"
+      },
+      "packages/quds_mail_transport/test/native_browse_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a97d5ae7434b8909196cb31252ade26ddbeb3936"
+      },
+      "packages/quds_mail_transport/test/native_provider_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "658285895e077d55eb17b7f0a60ec6406063d67d"
+      },
+      "packages/quds_mail_transport/test/native_tls_cancellation_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4d1ce6f8df7383144937ba442ba624dc713295b8"
+      },
+      "packages/quds_mail_transport/test/native_tls_round_trip_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9bd37e825627d4b2b13d48ab2ab8dda8d7c7beff"
+      },
+      "packages/quds_mail_transport/test/native_tls_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ea7d9c8814c6e15dddc35b85ea08b61af96693d7"
+      },
+      "packages/quds_mail_transport/test/support/imap_fixture.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "06879e31f4a4635855add993994dc57d36c0f566"
+      },
+      "packages/quds_mail_transport/test/support/tls/README.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e854ababb4e842309d294eebbc108abcf7fe2b5b"
+      },
+      "packages/quds_mail_transport/test/support/tls/public-test-ca.pem": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "86a836246ff1a9f0688d13e21b01e5bff885f599"
+      },
+      "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "75d7e648b273e08f14c3ebc92cbde8eca24d691e"
+      },
+      "packages/quds_mail_transport/test/support/tls/public-test-server.pem": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5a584b3282af3ba18aa215a237d7fcf631cbe72f"
+      },
+      "packages/quds_mail_transport/test/support/tls_server.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "cc52a3fcaa58579ad10aa933b5f5d83a7eed4b70"
+      },
+      "packages/quds_mail_transport/test/uid_discovery_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d05e1136c08bbab556a32ba4fecb2fbbccecf428"
+      },
+      "packages/quds_mail_transport/test/unsupported_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8b4bb0d809e66f9b342f24ac5157bd36f4c56cb1"
+      },
+      "packages/quds_mail_ui/CHANGELOG.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9ed46c7eb568615a80ad99d9c29285bab804e8b3"
+      },
+      "packages/quds_mail_ui/LICENSE": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d2c25674e883f1006ac85cf45912f851a2b5ef0e"
+      },
+      "packages/quds_mail_ui/README.md": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ebed731bd3eefb50559cbfe9c37572c19fc3b629"
+      },
+      "packages/quds_mail_ui/analysis_options.yaml": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9aa1de6477f7db767dc57ba5152626516ba1625d"
+      },
+      "packages/quds_mail_ui/example/lib/main.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e93949500c66d7362b7a393f42f95ad98344f3ff"
+      },
+      "packages/quds_mail_ui/example/pubspec.yaml": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1afef10aeb337b84d2af357497002105d25f9756"
+      },
+      "packages/quds_mail_ui/example/web/flutter_bootstrap.js": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "add708b06fad7015ad5d8cf9d63b16be9086d252"
+      },
+      "packages/quds_mail_ui/example/web/index.html": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "66ace5a4ec2f20107fdd040bc9f6ca3b715eba5e"
+      },
+      "packages/quds_mail_ui/lib/quds_mail_ui.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5bb230717c189285534407f4c160c6821891aca6"
+      },
+      "packages/quds_mail_ui/lib/src/reader/controller.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d9c8314fe4da812f91e44418c2eb03e89868fb9c"
+      },
+      "packages/quds_mail_ui/lib/src/reader/message_view.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "bbfedc796817cdb4383020aabe974f042f657cbb"
+      },
+      "packages/quds_mail_ui/lib/src/reader/presentation.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3db312a5572c78e9115a666ed5363eea467c28d5"
+      },
+      "packages/quds_mail_ui/lib/src/reader/selection_surface.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6a5e0880d73e12cc176d1b6681efaabc6e96079d"
+      },
+      "packages/quds_mail_ui/lib/src/workspace/message_list.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3865dabc075f72a96ab3f327d7f01d4b357fc381"
+      },
+      "packages/quds_mail_ui/pubspec.yaml": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "74ed9197395cde312e8e47c5705d0d076b9cd262"
+      },
+      "packages/quds_mail_ui/test/body_presentation_contract_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d6c46c26975c1c8687d4317e7d258d9f01d1bf89"
+      },
+      "packages/quds_mail_ui/test/body_presentation_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d272c44557fa20b045824cbcd689377fdacb7100"
+      },
+      "packages/quds_mail_ui/test/bulk_message_list_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0bd1dfdfb15d6a133e6c93a433c06a25d746aaec"
+      },
+      "packages/quds_mail_ui/test/controller_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "15276fa1ca36613ec5c4badcaac926ae63fb28e6"
+      },
+      "packages/quds_mail_ui/test/example_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "70d24f653a5e4c447837117398182abd30030b9b"
+      },
+      "packages/quds_mail_ui/test/fixtures/mail_fixture.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7668fe1c3fa7d3f7da94f9019b5330afa6901d17"
+      },
+      "packages/quds_mail_ui/test/message_list_bulk_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8e4677419674545ec737b3e70bd71cb9ec957d8f"
+      },
+      "packages/quds_mail_ui/test/message_list_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "57f12b06188fa7bb9b724a8af86d8261752e0c8c"
+      },
+      "packages/quds_mail_ui/test/message_view_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2b93a097dad8ab471638859e93154055853189d0"
+      },
+      "packages/quds_mail_ui/test/presentation_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ad25d86372e45965869c4c1f75fecee21cd75135"
+      },
+      "packages/quds_mail_ui/test/reader_theme_scroll_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "73ef48341ef1a5b5a128ce4fed4ca3cf286c1a79"
+      },
+      "packages/quds_mail_ui/test/support/runtime_network_guard.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "89664dad0173c3e8ba0b661e6d657ad52ffd7806"
+      },
+      "packages/quds_mail_ui/test/support/runtime_network_guard_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "80f4458f73c526a5d2515dae7e91485a43fa5daa"
+      },
+      "packages/quds_mail_ui/test/support/runtime_network_guard_web.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "883c813ce185a65fd3785e9ff4c9810b5c9c1fe6"
+      },
+      "packages/quds_mail_ui/tool/bulk_flags_visual_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7f95dda2aeb4f6da9e3ceea1c5b472d7f1a427a3"
+      },
+      "packages/quds_mail_ui/tool/reader_visual_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "617830d2fd0d5647f754e66c4030ebd30b6adcf7"
+      },
+      "packages/quds_mail_ui/tool/web_guard_compile.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "551cb786065f4ac0afa4798b314e3b2ef4e5465f"
+      }
+    }
+  },
+  "mail_dart_scope": {
+    "baseline_commit": "511990e9b81ff5d6ef2ed1488ff31e2565f21618",
+    "target_commit": "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+    "path_count": 211,
+    "exact_path_sets": true,
+    "exact_modes_types_blobs": true,
+    "changed_paths": [],
+    "baseline_manifest_sha256": "a24a32484e54fd5c5678ac2c6de5c53e961b39f1fda8eaf01efc7ebb36dbfc1c",
+    "target_manifest_sha256": "a24a32484e54fd5c5678ac2c6de5c53e961b39f1fda8eaf01efc7ebb36dbfc1c",
+    "entries": {
+      "packages/quds_mail_core/lib/quds_mail_core.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7a001164dbf973c78ff1145bc4bdd4ed63ddbcbc"
+      },
+      "packages/quds_mail_core/lib/src/model/bytes.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d3694b4e79a684ce66cee4eda6811801f012fcf7"
+      },
+      "packages/quds_mail_core/lib/src/model/capabilities.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "337c2204d09d5f7f158a01cf1ce21bc5f2abaa10"
+      },
+      "packages/quds_mail_core/lib/src/model/identity.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b472a3e3d98d5f7d2a9a7396bbabcb546053c932"
+      },
+      "packages/quds_mail_core/lib/src/model/message.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "31aa37df663c14ee068e124520f5c59477bd3532"
+      },
+      "packages/quds_mail_core/lib/src/model/parse.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f097ec41fc028a8c462d7c484c88e99753343402"
+      },
+      "packages/quds_mail_core/lib/src/model/result.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "282f50638516b828ec3986e7b8094c62de8df396"
+      },
+      "packages/quds_mail_core/lib/src/ports/codec.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "11f3e7deeeb947ab3d62c86b5f657c34bff14449"
+      },
+      "packages/quds_mail_core/lib/src/ports/hosts.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9731e0ad8b371fdeb5dd9c19d282aa3e0cc0d361"
+      },
+      "packages/quds_mail_core/lib/src/ports/provider.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c51ffe74e6aeb75f9da9f4d6f4b6a2988acf606f"
+      },
+      "packages/quds_mail_core/lib/src/ports/repository.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f89d199a16a19c68401c959230ddc2fb40ebd8cf"
+      },
+      "packages/quds_mail_core/lib/src/search/header_search.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "eae72758f80075b501c6f2d9c0badb4a5546347d"
+      },
+      "packages/quds_mail_core/lib/src/sync/bulk_flags.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4658c6dbce998c392ecf0934c694f4599404c736"
+      },
+      "packages/quds_mail_core/lib/src/sync/cancellation.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f8f57791f5c63e5ee566bb5e4c8a71a0784dcf97"
+      },
+      "packages/quds_mail_core/lib/src/sync/coordinator.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8fd17fee6fc05b0784ed9fd748c52e526972e94a"
+      },
+      "packages/quds_mail_core/lib/src/sync/outbox.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "700a23039c502795c3ff7da054131fedc0791ad4"
+      },
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "56d6bffeadfe9f25338954221c9fd74979e69ed6"
+      },
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "df2d89e29e72d97f7747aaea36f3c4797eed997a"
+      },
+      "packages/quds_mail_core/test/bulk_flags_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fbbb20b4ee8d7cb6fe03dfe4606394154749132b"
+      },
+      "packages/quds_mail_core/test/cancellation_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "49546b3389595356366b2577945050852e7ad12e"
+      },
+      "packages/quds_mail_core/test/compile/portable_import.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3e1a204c69bf9122ae23c992585ac7ffba2dfef1"
+      },
+      "packages/quds_mail_core/test/ews_identity_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7af5c971c9eae4680dbf43d1ac8dc6dae515270b"
+      },
+      "packages/quds_mail_core/test/header_search_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e3bc591c5236ab2931d645a19bf986820ac18200"
+      },
+      "packages/quds_mail_core/test/imap_sync_range_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "23c704ecb57a03e991b543a7440183fcbd3cc572"
+      },
+      "packages/quds_mail_core/test/models_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02"
+      },
+      "packages/quds_mail_core/test/outbox_management_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6d3f5eb1afded96973616fcd3d8c45d5db6fe2ab"
+      },
+      "packages/quds_mail_core/test/outbox_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2bd60f3b4ff489c3fce50100c6d2347aa8a68286"
+      },
+      "packages/quds_mail_core/test/sync_coordinator_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "621492c6e8d086a873f1ea2aa50422a2d8d21db0"
+      },
+      "packages/quds_mail_transport/example/cloud_probe.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2707f342c3c1945ed52995cd3e0aa7fba3c81e07"
+      },
+      "packages/quds_mail_transport/example/ews_probe.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a0ba13ddcac15ee0700a9dd758ba92a26bedd69b"
+      },
+      "packages/quds_mail_transport/lib/quds_mail_transport.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3cb5950dee476bb05baf2c98ff48ad03b7a4d75e"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/configuration.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "27a22eb3aea1b3c9e0676828db584d7c72aa6c06"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/cursor.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fa36ac88c167a00b064875e983b99d4680df118e"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/http.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "33ae02b5c5f94faddb315045256bccd2c17b945b"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/native/authorization.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "20ef038eb3015913ef86ba2bafcd6872732f3840"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/native/factory.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f41d2218a4028a54ecc7333720e231d4f1bc3f32"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/native/http.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9150c2a8cac8db4d5d8d1caf54cb27f480325e19"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/oauth.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "bb1c0e35cddb7233ab9f49d30a4a5e7002a58199"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/provider.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e202f8bbfaaa4890599d90b2b7eb5c4079845753"
+      },
+      "packages/quds_mail_transport/lib/src/cloud/unsupported.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "28bb9a2bb29927201fb12ddbca4437fe80114f1d"
+      },
+      "packages/quds_mail_transport/lib/src/configuration.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e2a4cc67ec3064d8fdf31bf7120ccea393a07f77"
+      },
+      "packages/quds_mail_transport/lib/src/cursor.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b6c9c60ba3689041ce0d4e6e3b2845f9d4b51dbf"
+      },
+      "packages/quds_mail_transport/lib/src/ews/configuration.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4777d68e0af07715ff75e3c54d0af4ebdccad68e"
+      },
+      "packages/quds_mail_transport/lib/src/ews/cursor.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "44cd6edb1102f8a12ce7a7ba19d74e8c26b84cac"
+      },
+      "packages/quds_mail_transport/lib/src/ews/errors.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3ca8ef8440e84a7022c03162dc8c09ecb9f488bb"
+      },
+      "packages/quds_mail_transport/lib/src/ews/native/factory.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "216ee00ea3258aaf6a3ab258ed0ad24945b3c431"
+      },
+      "packages/quds_mail_transport/lib/src/ews/native/http_client.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "066eed80c6542507c9f6732a529afdaadab9dfaf"
+      },
+      "packages/quds_mail_transport/lib/src/ews/native/ntlm.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "441c1e8a77ec1d0a3bb1664cc9298df07416d3ab"
+      },
+      "packages/quds_mail_transport/lib/src/ews/native/provider.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6463d3b4c8efcfbb4466ad792958388026697d1c"
+      },
+      "packages/quds_mail_transport/lib/src/ews/soap.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d7d84192c4a7cc9a34536cde7b02da2030e319a6"
+      },
+      "packages/quds_mail_transport/lib/src/ews/unsupported.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7377eebccf42fa4dcb093a3f75de639879682f8d"
+      },
+      "packages/quds_mail_transport/lib/src/native/factory.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b446ae6dff1fde7766527b3475e257c3f85e9cda"
+      },
+      "packages/quds_mail_transport/lib/src/native/provider.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "51088027bae1cd8054d1f98ed24b70d1853fa27f"
+      },
+      "packages/quds_mail_transport/lib/src/unsupported/provider.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4d1f429bff4bf74b18675d4d79c02ca845c7950e"
+      },
+      "packages/quds_mail_transport/test/cloud_http_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e17c808af82c424b52df4f50f26aaf6c40b22487"
+      },
+      "packages/quds_mail_transport/test/cloud_oauth_loopback_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b420728077650b2d6fd5abfe2d67a22a3208ef79"
+      },
+      "packages/quds_mail_transport/test/cloud_oauth_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6a63ac89cc99c5ebb7ec20b2d9b949d5cffa5ccc"
+      },
+      "packages/quds_mail_transport/test/cloud_provider_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "36645334b27af2f30b21baccf9620a498ceff2d4"
+      },
+      "packages/quds_mail_transport/test/cloud_store_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c7f1d4ce57f1f83a305069ce9a11cc6b5691d17b"
+      },
+      "packages/quds_mail_transport/test/cloud_unsupported_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "dc3c664f70523a005b80720d7d11fd4ae907d864"
+      },
+      "packages/quds_mail_transport/test/configuration_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "59b8bb17ec764dd66879cfef1b6192b0933f915f"
+      },
+      "packages/quds_mail_transport/test/cursor_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4664c0b60e09df3a66d3a50e828af2dc5d3541ac"
+      },
+      "packages/quds_mail_transport/test/ews_configuration_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2ffea44047829c5734564c952731ffedfdb21d70"
+      },
+      "packages/quds_mail_transport/test/ews_http_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c36a0f9ce12625d492f5887ac1b09ce977fbbfc9"
+      },
+      "packages/quds_mail_transport/test/ews_ntlm_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "90c3cad74f3c367cbf2f628f0d334def4ead635f"
+      },
+      "packages/quds_mail_transport/test/ews_provider_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2056df966ad32567a0424485eaf90f4e1fe86234"
+      },
+      "packages/quds_mail_transport/test/ews_soap_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f54baeacd1727ce97618634eff0d5a664a79f308"
+      },
+      "packages/quds_mail_transport/test/ews_unsupported_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "43817b79fa1383bd0d95c1761bdcca62d5a64716"
+      },
+      "packages/quds_mail_transport/test/host_store_integration_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "25539871c7c6e40c5dbb3514adfd93cbd56af923"
+      },
+      "packages/quds_mail_transport/test/native_browse_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a97d5ae7434b8909196cb31252ade26ddbeb3936"
+      },
+      "packages/quds_mail_transport/test/native_provider_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "658285895e077d55eb17b7f0a60ec6406063d67d"
+      },
+      "packages/quds_mail_transport/test/native_tls_cancellation_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4d1ce6f8df7383144937ba442ba624dc713295b8"
+      },
+      "packages/quds_mail_transport/test/native_tls_round_trip_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9bd37e825627d4b2b13d48ab2ab8dda8d7c7beff"
+      },
+      "packages/quds_mail_transport/test/native_tls_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ea7d9c8814c6e15dddc35b85ea08b61af96693d7"
+      },
+      "packages/quds_mail_transport/test/support/imap_fixture.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "06879e31f4a4635855add993994dc57d36c0f566"
+      },
+      "packages/quds_mail_transport/test/support/tls_server.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "cc52a3fcaa58579ad10aa933b5f5d83a7eed4b70"
+      },
+      "packages/quds_mail_transport/test/uid_discovery_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d05e1136c08bbab556a32ba4fecb2fbbccecf428"
+      },
+      "packages/quds_mail_transport/test/unsupported_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8b4bb0d809e66f9b342f24ac5157bd36f4c56cb1"
+      },
+      "packages/quds_mail_ui/example/lib/main.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e93949500c66d7362b7a393f42f95ad98344f3ff"
+      },
+      "packages/quds_mail_ui/lib/quds_mail_ui.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5bb230717c189285534407f4c160c6821891aca6"
+      },
+      "packages/quds_mail_ui/lib/src/reader/controller.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d9c8314fe4da812f91e44418c2eb03e89868fb9c"
+      },
+      "packages/quds_mail_ui/lib/src/reader/message_view.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "bbfedc796817cdb4383020aabe974f042f657cbb"
+      },
+      "packages/quds_mail_ui/lib/src/reader/presentation.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3db312a5572c78e9115a666ed5363eea467c28d5"
+      },
+      "packages/quds_mail_ui/lib/src/reader/selection_surface.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6a5e0880d73e12cc176d1b6681efaabc6e96079d"
+      },
+      "packages/quds_mail_ui/lib/src/workspace/message_list.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3865dabc075f72a96ab3f327d7f01d4b357fc381"
+      },
+      "packages/quds_mail_ui/test/body_presentation_contract_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d6c46c26975c1c8687d4317e7d258d9f01d1bf89"
+      },
+      "packages/quds_mail_ui/test/body_presentation_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d272c44557fa20b045824cbcd689377fdacb7100"
+      },
+      "packages/quds_mail_ui/test/bulk_message_list_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0bd1dfdfb15d6a133e6c93a433c06a25d746aaec"
+      },
+      "packages/quds_mail_ui/test/controller_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "15276fa1ca36613ec5c4badcaac926ae63fb28e6"
+      },
+      "packages/quds_mail_ui/test/example_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "70d24f653a5e4c447837117398182abd30030b9b"
+      },
+      "packages/quds_mail_ui/test/fixtures/mail_fixture.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7668fe1c3fa7d3f7da94f9019b5330afa6901d17"
+      },
+      "packages/quds_mail_ui/test/message_list_bulk_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8e4677419674545ec737b3e70bd71cb9ec957d8f"
+      },
+      "packages/quds_mail_ui/test/message_list_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "57f12b06188fa7bb9b724a8af86d8261752e0c8c"
+      },
+      "packages/quds_mail_ui/test/message_view_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2b93a097dad8ab471638859e93154055853189d0"
+      },
+      "packages/quds_mail_ui/test/presentation_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ad25d86372e45965869c4c1f75fecee21cd75135"
+      },
+      "packages/quds_mail_ui/test/reader_theme_scroll_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "73ef48341ef1a5b5a128ce4fed4ca3cf286c1a79"
+      },
+      "packages/quds_mail_ui/test/support/runtime_network_guard.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "89664dad0173c3e8ba0b661e6d657ad52ffd7806"
+      },
+      "packages/quds_mail_ui/test/support/runtime_network_guard_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "80f4458f73c526a5d2515dae7e91485a43fa5daa"
+      },
+      "packages/quds_mail_ui/test/support/runtime_network_guard_web.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "883c813ce185a65fd3785e9ff4c9810b5c9c1fe6"
+      },
+      "packages/quds_mail_ui/tool/bulk_flags_visual_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7f95dda2aeb4f6da9e3ceea1c5b472d7f1a427a3"
+      },
+      "packages/quds_mail_ui/tool/reader_visual_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "617830d2fd0d5647f754e66c4030ebd30b6adcf7"
+      },
+      "packages/quds_mail_ui/tool/web_guard_compile.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "551cb786065f4ac0afa4798b314e3b2ef4e5465f"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "301caeb8051eff327efc0b54c3a383d637a409b6"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f44d1672c1fe6c5aaba67693cd336580abbefb17"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive_action.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c8e074ac7961f126a4cbb2e1d3bddfda4851254e"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive_directory_import.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "55253c01005b69e13e3034a61388c5fcc3669817"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive_folder_action.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9b4ef545da3b685b49d854df846519f2818fc581"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2b5fe80bbb7f85ac6e7ced9a4c3afdfe527971fd"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f700c2c32fffdaf93df3a9fca9ca27f2c07b8166"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "624dc9d93b6a28fcbda0b69addc57a6c71d92a3f"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c26ca7649ccecc809bc87138f5d0777438ad4d4a"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "69184a1cb70078308cdd297320f6e426ca9f32e2"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive_strings.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1c2204dfcd7a55806e0f27850d8dfda705a6609e"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_archive_stub.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "93c8cb3822a8a132a4d32d0d72db15a2f7cb338e"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_attachment.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5a82caf6ff61bd0b5ea968b52dc2ade52aaf2cbf"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_attachment_loader.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7f69fdf918e5e1350a846842ccaf9db4e27cfc15"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_bulk_status.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8bd71ee2bea734feb1caa5aa0d959dea2254f68e"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3f3b6cb899d550065b55d40aa0f1ad1ac78e922f"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ba5fcb4bf47898112bfaf4fa3a06e77b00c5a762"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_cloud.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "766326ccd0d42b9e3dd8f529a684624bf47263ef"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_compose.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4224a1d0757c565eab90e805592b500f5d78d0f8"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_credentials.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "688bacc077b63419bccab463c9cf6340439362bd"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_draft.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "09d2bb4c3b9afd959914dbae1dc5f6eecd0c4623"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7a0e237859177d5933fcb40936a8e4f95f4c19fd"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_draft_store_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "700470034852370af91d0c6d72f5776afe2aca41"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_drafts_dialog.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0e11d45f9aab367112e9b8001af0e26c7241843e"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_drafts_strings.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c86cb1897f76b97c4cd61b93987abb8f85417576"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_ews.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "11f326789f1d5c3c18192cb5ecc9fc2aaa46518d"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_file.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a80cf7c8806c62aebe6d8dfd9bb178ec5122c1d8"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_file_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ccc790b51f48c661b902c9c8e63b4a4a557f56ce"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_file_web.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "973bc3251e37a007eae35849547e9f9402b621e1"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_local_accounts.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "951ea16c271c31fd09f3ca88f029270679c505cc"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_local_accounts_dialog.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9579ea4c92a69e199256b94dcb878f31a7c4a160"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_local_accounts_strings.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "dacd86427f00f80dcaaf681dc3db6a8d9e0fb7b3"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_local_drafts.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e8f78e4ddcef3bb79f0aa631918ec735f5723174"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5a0462018c6e976d8dae6e7151bd421e80818a29"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d201c89fddc65e757acb2e9ec67f65a99932de5d"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "10f77470da03687665fcb6ef2733d33936326bf4"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_operation.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "152bdd30133c07acdc1da20b04745bc72363be59"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_outbox.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9a4f6dcebf17cc823515505130d31c30ad08fa5a"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_outbox_content.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "76649394361450c72f3485613e92bc35ef10bd4c"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_outbox_dialog.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5f874e1c01788d742aeb1b5341a6e5a87ba8bbc6"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_outbox_export.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "098876b48b6d1b701c8f037011cabbdceff12322"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_outbox_export_native.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "04642526925a2314638a5f177e80f0e51f1b6c5b"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_outbox_export_stub.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8bba86b581aa4e026b0c4fda90b32ce8295196ae"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_outbox_review.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c014dc9ed1bfb2330be706713e5ecc282515c736"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5928f217cddb0c8738777ea7c78915cd6ec9359d"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_presets.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "db89f27e7b75979d1fba00b1d5a6391e4aeaf05e"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_recipients.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a4cc123e881b133cfadb7b73ff04db91defb56a7"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_reply.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5f8f372238f8af891f88af9e91fa2bea71f98b85"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_strings.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7e8fce2d9bed879464f95a3299eddce3767d4ca5"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_submission.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9448ee331a244cd43b29390a19053a562fccfac5"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_threading.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7f9e9352143d55c6a3f090ee7df32fd8deeb6b9c"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_web.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7f766fbaa0f9e45e0ba3a08d52cba199de0be425"
+      },
+      "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6ccef06256bdc1505f320f7d9279d003f4bb80c3"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_account_catalog_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "df9687b6dd0432a4ba414c19ddd657717552a57f"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "daea0102ff55314ca02144de5524222499539541"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5b8fa8900d58bf8cd63233cbae21767df3e875f8"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_archive_action_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6edc9566b2bf43b9894128c56cb03e28f008974e"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ab21a13850e934a7dbfc1521857adaf522789066"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_archive_folder_action_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e0c16ca67d82959605b1141ab73bec2d38f1d682"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_archive_host_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6b97e90888f2914cf2782b06888baad461ae360b"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3fc621edf87972a273d01a7ba17a870841f793ae"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9544dd7ad208e136cd80923c614c808abf412358"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f303ab2ffef7ba0da1be64b9fbe4ed5dacf7a8c3"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_archive_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "1fb908e9f8dcd404e13d5f48098d1d93e168a265"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "17aa5ee00a3adc123149bcc8255c0e4cdce94ada"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "667245168f46cf5dd4e0a841a10edbc73df91a47"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7867227fac8a250e16b8aca3315864de170aeb48"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "09e47a8b18cf74843ab0b7407f5eb98923aac948"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5d97c3a6afd4799edf583644c8ba81f6d8ae9fa6"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "60d422935b6e67f92d9482d0e5f83202721caa9c"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "21511e18219e163cbc71f2090399316fb62af98e"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8c8c483646e4bde7f1080744835e9552efac6757"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_compose_cache_recovery_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fc2482e7da3ad04465e4c6ae67feffc420f1288d"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_compose_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e041c8a4527e66639f235c38250633f917c34860"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8741806b2ce2e7e9f6811a8bd33ae2f2f97f5855"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_credentials_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d40925027476951a258a234f49c5c393e6af541b"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b5682982e8b631f16f09b4f2d15d9b524569d6ef"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_draft_autosave_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "676095fe82c4b3f7651f1df449c3e74ebc5a8d64"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_draft_catalog_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6608073e7c67e016f60983cfe9ccf4805b289114"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_draft_host_recovery_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "64b64cb04d6adbe3f634da54fe1207430f647f6f"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_draft_store_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "453d6ce485ed73774d83f994c9c60d0b95eaa3f6"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_drafts_dialog_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d22ed11d98ddcbfff566dc4502f643ae81fe96fd"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "00cb0794722896d7252422779afeaeb097efb03b"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_forward_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9466f81c348f3faf0a09ac91b15bd4d1cba034f4"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f04c0af7f01eb4dd684a4cffa8a1a623ee51c48d"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b4c4d31cacfbc9858a40e1f4d9d5d04ceed4e914"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_local_accounts_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "81b5c1ddcdeeaf82662d64fa06d69fcbd2e8376e"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_local_drafts_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "92a7c98221d72b5e414f45a8db09155645403190"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_mailbox_store_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "7f4d11665c60b7ac98593330c5ec0447e146674d"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2439b7e854c1e659be9cedac1173e771467a5bdf"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_operation_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b2504b53be1a613d8c5be874349c4b16494099a6"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f0bc91efc5be5fd1a876bb97f8e883e12a07c2ab"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_outbox_content_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8b11e27314cdb1b0d05f0a0df0359f8db669176d"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c0a5f057b454ee63061690e39fe0f6a18dab7bf5"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_outbox_export_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0ac851b7fecf0d277e4ecf60a66d06f71d9e51af"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "75e47c737896df3a3aec32f8d33547b8b75e697b"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_outbox_management_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d6fae4f63adbff952de532cbaaf145401fa252b7"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_outbox_review_visual_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e6f0b11b38d833bf311b63dbc086afc7cdcdc289"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "aca841c9c5001e458106e98e72d49068afcfaf76"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2cd68bb53462203d344dfdff6ec45be97133e374"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_presets_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "33fb8919b69fd90ff32639f44b550c84e997751a"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5aa65040b3fff3242c155001e883cdcd7ce3e32a"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_reply_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8d9e857eb0d5062ccfb736702d18e44cba4b2c51"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "805f93c35c91e5648c5a7d19c81b7803e0f64c3a"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_session_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "cea9c545da173a4d50b36871eed56e102fe955f0"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "873390865d4e2b3404e51567d68d22d92ce31231"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_threading_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fda2e0248960a802d4ec43f589e37c876e8eec5c"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_web_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "bad863cdec61e8fa97b0d51899df84f2a17b0706"
+      },
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "acc1fe8eb5c464773d0764cbef266c8e0ab10af5"
+      }
+    },
+    "definition": "All Dart files under Mail core, transport and UI packages, plus studio_mail*.dart in Studio lib/test. The broader 222-file check also covers MIME/store and non-Dart Mail package files."
+  },
+  "word_scope": {
+    "accepted_receipt": "final-main-word-validation.json",
+    "accepted_receipt_sha256": "e9fa867cd90b72c71033cb1a1006e1162def28570a8391d9729ac66af2ba9b03",
+    "accepted_source": "3f9d3647a20b06c73f5bfd0ade2846e7859e4502",
+    "input_count": 492,
+    "unchanged_input_count": 488,
+    "changed_input_count": 4,
+    "changes": [
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+        "accepted_sha256": "e679eb2fbf1c752f159caaa0d7df0c2d217c54a556c8e5a3b73b7802cb470478",
+        "target_sha256": "2e7d30616ed82d94b3bf202f35e7465b66f1b1b979b2c5dff727b7797fd164a5",
+        "target_blob": "9982b851a441191eb15857f45861b34ae6a74e47",
+        "same_blob_as_incoming_main": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "accepted_sha256": "813cc190bd868b17c96377b75eb92e0fa8262184de0cb174a4e2e5d963a879bc",
+        "target_sha256": "18e594770044913cce273c89c2a7889a573ed35695a9d8dd2b4b67f6bb631120",
+        "target_blob": "70c3dc118c59ac15bc672bfd3ea6d4f68d878e6b",
+        "same_blob_as_incoming_main": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+        "accepted_sha256": "b8782d5f1a5caceede3e559556182919b78b041d25409bd573abc6f64fbcc6e6",
+        "target_sha256": "ce0ede4c087aabe574e50ff548e52c0306da06886a4af63250907f81cbb970e1",
+        "target_blob": "fb757361ac427208c41777fbd3d322305ebbdd7c",
+        "same_blob_as_incoming_main": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+        "accepted_sha256": "3595c58e8adb5417ce41aac7934e3144c5f2bb782ae44697f5be64bafa32be34",
+        "target_sha256": "9b35b90b5ed9f3266f0515bbf7432a07559376e274d30a10a10c333605369dd6",
+        "target_blob": "1e9d9910dba74f9429444ba54e1496ed32c0d07a",
+        "same_blob_as_incoming_main": true
+      }
+    ],
+    "target_input_manifest_sha256": "01cb40336b0e259f96f8dc98c98abf08c01d565b3db821b2af2b4c447dfe1fbe",
+    "applicability": "The fresh e975 Word result remains evidence for its bound source. Exactly four Zotero dependency files changed; their runtime qualification belongs to the new Zotero/editor owner receipts. No new test outcome is inferred by this source comparison."
+  },
+  "canonical_intake": {
+    "proof": "intake-local-main698-word-proof.json",
+    "proof_sha256": "c4f96bfa9c03c04edcc6e56fd058ee33f1ceaa80cc8c50daa5aba464f674407b",
+    "exact_canonical_matches_retained": 9,
+    "richer_named_suites_retained": 2,
+    "redundant_aliases_omitted_with_proved_replacements": 4,
+    "superseded_mail_snapshot_not_restored": true
+  },
+  "runtime_gate_results": "Not asserted here. See publication-zotero-engine-validation-receipt.json and publication-editor-receipt.json plus the host/visual owner receipts for observed terminal results and exact source bindings.",
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "status": "PASS",
+  "fixture_only_followup": {
+    "parent_commit": "5034494d68257d9dc89493dd11f408c1c1165fae",
+    "commit": "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+    "changed_paths": [
+      "packages/quds_office_engine/test/zotero_citing_test.dart"
+    ],
+    "parent_blob": "05df4bd091f5494149a52eac8fa67e5939b550f9",
+    "target_blob": "3fd868330c72acaf6ac2e2339cc82ce9f7c0b180",
+    "change": "Add braces around an existing single-statement conditional in the Zotero protocol test; production tree unchanged.",
+    "outside_492_word_input_scope": true,
+    "all_492_scoped_blobs_identical_to_parent": true,
+    "runtime_validation": "Owned separately by the actual publication protocol-test gate; no outcome asserted here."
+  }
+}

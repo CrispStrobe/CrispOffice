@@ -1,0 +1,19 @@
+{
+  "purpose": "Verify final qualified inputs directly from immutable published Git blobs",
+  "checked_at_utc": "2026-11-20T21:57:55.017243+00:00",
+  "published_commit": "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+  "published_tree": "d3a472f1e23bb98c1898087bdbd1ddf9d07f4c8d",
+  "publication_manifest": "evidence-publication-manifest.json",
+  "archive_sha256": "ac2606e994cb91ca4d37eb099fb374d6a0d76902542f47a37d8c910837f3e814",
+  "unique_qualified_inputs": 1244,
+  "tracked_inputs_verified_from_git_blobs": 1241,
+  "mismatches": [],
+  "runtime_only_inputs": {
+    ".dart_tool/native_assets.yaml": "bd154da8e32330827d143493ddc5266517b5496d8123df15730768d49a24b8e0",
+    ".dart_tool/package_config.json": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+    "packages/quds_office_editor/example/build/native_assets/linux/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+  },
+  "runtime_only_inputs_still_match": true,
+  "status": "PASS",
+  "note": "The following final checkpoint adds evidence/documentation only. Final branch/main tree equality is recorded on PR273."
+}
