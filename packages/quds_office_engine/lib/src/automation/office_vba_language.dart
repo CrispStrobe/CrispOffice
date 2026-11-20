@@ -3137,6 +3137,8 @@ class _Checker {
             expected == _Kind.range ||
             expected == _Kind.document ||
             expected == _Kind.paragraph ||
+            expected == _Kind.font ||
+            expected == _Kind.paragraphFormat ||
             _powerPointObjectKinds.contains(expected))) {
       // Scalar Variant values may defer scalar checks until evaluation, but
       // cannot ever carry object bindings, including in unexecuted code.

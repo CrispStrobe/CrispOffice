@@ -1,0 +1,11 @@
+00:00 +0: [VM, Source] loading /workspace/scratch/f0616b02624b/quds_office_suite/packages/quds_office_engine/test/slide_text_insets_preservation_test.dart
+00:00 +0: [VM, Source] margin-only edits keep unsaved independently styled rich runs
+00:00 +1: [VM, Source] negative and unprojectable native margins remain opaque on another-side write
+00:00 +2: [VM, Source] a placeholder override keeps unassigned sides absent and its layout source exact
+00:00 +3: [VM, Source] height 0 autofit text remains visible after margin edits and reopening
+00:00 +4: [VM, Source] height 3 autofit text remains visible after margin edits and reopening
+00:00 +5: [VM, Source] height 7 autofit text remains visible after margin edits and reopening
+00:00 +6: [VM, Source] direct native insets win over foreign and extension bodyPr lookalikes
+00:00 +7: [VM, Source] integer EMU 1 survives native write and repeated saves exactly
+00:00 +8: [VM, Source] integer EMU 2147483647 survives native write and repeated saves exactly
+00:00 +9: All tests passed!

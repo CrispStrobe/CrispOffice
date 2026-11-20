@@ -356,7 +356,11 @@ for source hashes, raw results and qualification boundaries.
 Specification-derived expectations are separate from observed Office-host
 fixtures; no installed Microsoft PowerPoint results are claimed.
 
-Live document reads, named/optional arguments, `ByRef`, events, shape creation,
+The shared [helper argument contract](VBA_ARGUMENTS.md) adds named and optional
+arguments to declared module procedures. Named/omitted arguments on built-in
+or object-model members remain unsupported.
+
+Live document reads, `ByRef`, events, shape creation,
 slides/masters manipulation, notes, COM, filesystem/network calls, project
 loading/editing, macro UI and debugger integration remain outside this adapter.
 The [parity roadmap](VBA_PARITY_ROADMAP.md) tracks these independently of test

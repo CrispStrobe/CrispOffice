@@ -55,6 +55,81 @@ const _style =
     '<w:bidi/><w:jc w:val="center"/></w:pPr></w:style>';
 
 void main() {
+  test('nested Word layout lookalikes inside an extension stay opaque', () async {
+    final session = OfficeMacroSession(
+      _fixture(
+        '<w:spacing w:line="480" w:lineRule="auto"/><w:bidi/>'
+        '<x:metadata x:token="keep"><w:spacing w:line="960" w:lineRule="auto"/>'
+        '<w:bidi w:val="1"/></x:metadata>',
+      ),
+      format: OfficeMacroFormat.docx,
+    );
+    await session.run(
+      _compile('''
+ActiveDocument.Paragraphs(1).Format.LineSpacingRule = wdLineSpaceSingle
+ActiveDocument.Paragraphs(1).Format.ReadingOrder = wdReadingOrderLtr
+'''),
+    );
+    final doc = WordDeserializer().readBytes(session.bytes);
+    expect(doc.paragraphs.single.properties.lineSpacing, 1);
+    expect(doc.paragraphs.single.properties.rightToLeft, isFalse);
+    final metadata = _properties(
+      session.bytes,
+    ).firstChild('metadata', namespaceUri: 'urn:layout-test')!;
+    expect(
+      _w(
+        metadata.firstChild('spacing', namespaceUri: OfficeNamespaces.w)!,
+        'line',
+      ),
+      '960',
+    );
+    expect(
+      _w(metadata.firstChild('bidi', namespaceUri: OfficeNamespaces.w)!, 'val'),
+      '1',
+    );
+  });
+
+  test(
+    'foreign paragraph lookalikes cannot override native layout on reopen',
+    () async {
+      final session = OfficeMacroSession(
+        _fixture(
+          '<w:spacing w:line="480" w:lineRule="auto"/>'
+          '<x:spacing w:line="960" w:lineRule="auto" x:token="spacing"/>'
+          '<w:bidi w:val="1"/><x:bidi w:val="1" x:token="direction"/>',
+        ),
+        format: OfficeMacroFormat.docx,
+      );
+      await session.run(
+        _compile('''
+With ActiveDocument.Paragraphs(1).Format
+  .LineSpacingRule = wdLineSpaceSingle
+  .ReadingOrder = wdReadingOrderLtr
+End With
+'''),
+      );
+      var saved = session.bytes;
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final source = _properties(saved);
+        expect(
+          source
+              .firstChild('spacing', namespaceUri: 'urn:layout-test')!
+              .getAttribute('token', namespaceUri: 'urn:layout-test'),
+          'spacing',
+        );
+        expect(
+          source
+              .firstChild('bidi', namespaceUri: 'urn:layout-test')!
+              .getAttribute('token', namespaceUri: 'urn:layout-test'),
+          'direction',
+        );
+        final doc = WordDeserializer().readBytes(saved);
+        expect(doc.paragraphs.single.properties.lineSpacing, 1);
+        expect(doc.paragraphs.single.properties.rightToLeft, isFalse);
+        saved = WordSerializer().writeBytes(doc);
+      }
+    },
+  );
   for (final (constant, multiple, nativeLine) in [
     ('wdLineSpaceSingle', 1.0, '240'),
     ('wdLineSpace1pt5', 1.5, '360'),

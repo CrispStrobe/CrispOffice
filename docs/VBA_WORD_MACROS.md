@@ -67,6 +67,11 @@ file. `Paragraphs.Item(i)` is equivalent to `Paragraphs(i)`. `With Application`
 and `With doc.Paragraphs` allow those same bindings; the collection has no
 readable `Count` and cannot be enumerated.
 
+The shared [argument contract](VBA_ARGUMENTS.md) supports named calls and
+optional scalar ByVal parameters on declared module helpers. Required Word
+object parameters may be passed by name; optional object parameters and
+named/omitted arguments on Word members remain unsupported.
+
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
 Variant states and conversions described in [the shared language
