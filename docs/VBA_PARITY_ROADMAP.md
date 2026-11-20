@@ -20,9 +20,15 @@ It generates an immutable native plan; runtime policy, detached validation,
 and atomic publication apply after compilation. Embedded VBA projects are
 preserved as opaque package parts and are never executed on document open.
 
-Word and PowerPoint native operations are **not** VBA object-model adapters.
+The `vba-word` adapter shares that language implementation and adds explicit
+`ThisDocument`/paragraph/range bindings, paragraph-prefix insertion, supported
+font properties and paragraph alignment/spacing. It emits existing native Word
+operations and keeps paragraph marks structural. This is an initial write-only
+Word object-model slice; stories, tables, arbitrary text ranges and live reads
+remain separate work. PowerPoint native operations do not yet have a VBA adapter.
 There is no live document-value evaluation, VBA project loader, editor-host
-macro UI, or general VBA runtime. See [the exact current dialect](VBA_MACROS.md)
+macro UI, or general VBA runtime. See the exact [Excel](VBA_MACROS.md) and
+[Word](VBA_WORD_MACROS.md) contracts
 and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
@@ -48,7 +54,9 @@ accounting, transactional integration, and VM/JavaScript agreement; followed
 by explicit Variant states and conversions with independently authored
 conformance expectations, shared budgets, and the same transaction boundary.
 Locale-sensitive coercions, numeric subtype identity, `Nothing`, and remaining
-Stage 2 semantics and Stages 3–7 remain planned work.
+Stage 2 semantics and Stage 3 remain planned work. Stage 4 now has the initial
+source-only Word paragraph adapter above; its remaining application models and
+Stages 5–7 remain planned work.
 Small tested adapter slices may run alongside shared language work when their
 prerequisites exist.
 

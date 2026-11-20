@@ -25,12 +25,21 @@ from run_validation import digest, inputs, stamp, write_json
 SMOKES = (
     'web_smoke', 'web_vba_smoke', 'web_vba_procedures_smoke',
     'web_vba_control_flow_smoke', 'web_vba_arrays_smoke',
-    'web_vba_dynamic_arrays_smoke',
+    'web_vba_dynamic_arrays_smoke', 'web_vba_word_smoke',
 )
 CORPORA = {
     'string_intrinsics_v1': 69,
     'variant_conversions_v1': 120,
     'variant_composition_v1': 38,
+    'word_paragraphs_v1': 44,
+}
+
+# Word is an additive dialect. These exact receipts came from the accepted
+# Excel milestone before the Word adapter, including the terminating newline.
+EXCEL_RECEIPTS = {
+    'string_intrinsics_v1': '8703d19a7f50f9dceab688ba49bb657fbc29f34c6eea277807be157ac1f42dbd',
+    'variant_conversions_v1': '0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc',
+    'variant_composition_v1': '80c295dbff1477d79dd4e1706159ea502ca4c07b26476e00d14e7d0e8d3c4858',
 }
 
 
@@ -155,6 +164,9 @@ def main() -> None:
             js = execute_js(name, target)
             if vm.read_bytes() != js.read_bytes():
                 raise RuntimeError(f'{name}: VM and JavaScript receipts differ')
+            baseline = EXCEL_RECEIPTS.get(name)
+            if baseline is not None and digest(vm) != baseline:
+                raise RuntimeError(f'{name}: the original Excel receipt changed')
             receipt = json.loads(vm.read_bytes())
             if (receipt.get('suite') != suite['suite'] or receipt.get('caseCount') != count
                     or [case['id'] for case in receipt['cases']]
@@ -165,6 +177,7 @@ def main() -> None:
                 'fixture_sha256': hashlib.sha256(raw).hexdigest(),
                 'javascript_sha256': digest(target), 'receipt_sha256': digest(vm),
                 'receipts_byte_identical': True,
+                **({'original_excel_receipt_sha256': baseline} if baseline else {}),
             })
     except Exception as error:
         failure = f'{type(error).__name__}: {error}'

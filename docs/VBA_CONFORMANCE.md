@@ -1,8 +1,9 @@
 # VBA conformance cases, version 1
 
-The `vba-excel` compiler has a versioned, document-independent corpus for
-supported language behavior and deliberate refusals. The suites cover String
-intrinsics and explicit Variant states/conversions. Each executes the public compiler, compares
+The `vba-excel` and `vba-word` compilers share a versioned, document-independent
+corpus for supported language behavior and deliberate refusals. The suites
+cover String intrinsics, explicit Variant states/conversions, and the bounded
+Word paragraph adapter. Each executes the public compiler, compares
 the complete native operation list or a positioned diagnostic, and checks
 native-plan JSON round trips for every successful case.
 
@@ -13,6 +14,7 @@ The canonical fixtures are:
 | [`string_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/string_intrinsics_v1.json) | 69 | Strict String intrinsics, UTF-16 and publication boundaries |
 | [`variant_conversions_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/variant_conversions_v1.json) | 120 | Empty/Null lifecycle, operators, explicit conversions and deliberate limits |
 | [`variant_composition_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/variant_composition_v1.json) | 38 | Nested nullable results, unchanged strict operands and static scalar/object boundaries |
+| [`word_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_paragraphs_v1.json) | 44 | Word object bindings, prefix insertion, font/paragraph formatting, shared language behavior and deliberate refusals |
 
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
@@ -24,8 +26,9 @@ produced the result. No case in any delivered corpus claims Office host executio
 ## Case format
 
 The root object contains exactly `schemaVersion`, `suite`, `dialect`, and
-`cases`. Version 1 uses `schemaVersion: 1`, `dialect: "vba-excel"`, a suite
-identifier, and a nonempty array of cases. Case identifiers must be unique.
+`cases`. Version 1 uses `schemaVersion: 1`, a dialect of `"vba-excel"` or
+`"vba-word"`, a suite identifier, and a nonempty array of cases. Case identifiers
+must be unique. A suite admits only native operations for its selected format.
 Every case contains `id`, `feature`, `source`, `expected`, and `provenance`.
 
 ```json
@@ -59,10 +62,19 @@ Every case contains `id`, `feature`, `source`, `expected`, and `provenance`.
 ```
 
 The runner compiles every case as module `Conformance`, entry point `Main`,
-format `xlsx`, language `vba-excel`. Worksheet selectors in VBA source are
-one-based; integer sheet selectors in native operation expectations are
-zero-based. The expectation includes the entire ordered list of native steps,
-including operations emitted while evaluating helper arguments.
+using the suite's dialect and the corresponding native format:
+
+| Dialect | Native format | Required operation prefix |
+| --- | --- | --- |
+| `vba-excel` | `xlsx` | `xlsx.` |
+| `vba-word` | `docx` | `docx.` |
+
+Worksheet selectors in VBA source and supported Word paragraph selectors are
+one-based; native integer sheet and paragraph selectors are zero-based. Word
+selectors follow the documented Quds recursive body traversal, with actual
+paragraph existence checked only at execution. The expectation includes the
+entire ordered list of native steps, including operations emitted while
+evaluating helper arguments.
 
 A refusal case instead uses exactly one diagnostic expectation:
 
@@ -116,6 +128,24 @@ results and static scalar/object boundaries. Expectations
 were authored from the cited specification or stated dialect policy before
 running the implementation. See [the Variant contract](VBA_MACROS.md#variant-states-and-explicit-conversions).
 
+The Word suite independently specifies `ThisDocument`, Document/Paragraph/Range
+aliases and `ByVal`, prefix insertion and evaluation order, nested `With`,
+font and paragraph formatting, named alignment constants, exact half-point and
+twentieth-point serialization bounds, Unicode/XML publication, and reuse of
+shared String, Variant, procedure, array and control-flow behavior. Refusals
+cover live reads, whole-range Text replacement, Excel roots, Word Range
+iteration, scalar/object mismatches, strict argument types, invalid XML,
+attribute-normalization hazards and shared resource limits. Native range
+formatting targets the current paragraph text and excludes a Word paragraph
+mark; a compile-only case does not claim successful execution on an empty or
+missing paragraph. See the [Word dialect contract](VBA_WORD_MACROS.md).
+
+The original three Excel fixture files and canonical receipt bytes remain
+unchanged by the Word extension. The portable harness checks their previously
+accepted receipt hashes as well as VM/JavaScript equality. The fourth suite
+adds 44 Word cases, for **271 canonical cases per runtime**. The receipt shape
+is unchanged: its existing `dialect` field identifies the selected adapter.
+
 Fixtures remain schema version 1. New capabilities add suites and cases;
 the versioned schema does not promise that an intentionally unsupported syntax
 will remain unsupported forever. A deliberate diagnostic change must identify
@@ -133,12 +163,13 @@ dart test test/office_vba_conformance_test.dart \
   test/office_vba_string_intrinsics_test.dart \
   test/office_vba_string_intrinsics_integration_test.dart \
   test/office_vba_variant_conformance_test.dart \
+  test/office_vba_word_conformance_test.dart \
   test/office_vba_variant_conversions_test.dart \
   test/office_vba_variant_conversions_integration_test.dart \
   --concurrency 1 --timeout 4x
 
 mkdir -p build/macros
-for suite in string_intrinsics_v1 variant_conversions_v1 variant_composition_v1; do
+for suite in string_intrinsics_v1 variant_conversions_v1 variant_composition_v1 word_paragraphs_v1; do
   VBA_CASES_BASE64=$(python3 -c 'import base64,sys; from pathlib import Path; print(base64.b64encode(Path(sys.argv[1]).read_bytes()).decode())' "test/fixtures/vba_conformance/${suite}.json")
   dart --packages=../../.dart_tool/package_config.json \
     -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" \

@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add the bounded `vba-word` adapter on the shared VBA compiler. Target explicit
+  document paragraphs, insert text before their content, and apply supported
+  font and paragraph formatting through existing atomic Word operations.
+  Preserve paragraph boundaries, strict host-specific objects, exact half-point
+  font/twip spacing units, XML-safe text and shared resource limits. Add explicit
+  Word BAS CLI commands, default MCP registration, independent conformance and
+  native/CLI/MCP integration coverage.
+
 - Add explicit VBA Variant `Empty`/`Null` states, default Variant lifecycle,
   `IsEmpty`/`IsNull` and bounded `CVar`/`CBool`/`CDbl`/`CLng`/`CStr` conversions.
   Preserve eager Null logic, ties-to-even rounding, invariant numeric text,

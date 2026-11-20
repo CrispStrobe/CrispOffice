@@ -4,7 +4,7 @@ import 'office_macro_language.dart';
 import 'office_macro_model.dart';
 import 'office_operations.dart';
 
-/// A source diagnostic from the explicitly invoked Excel VBA subset compiler.
+/// A source diagnostic from an explicitly invoked bounded VBA compiler.
 /// Line and column are one-based UTF-16 positions in the supplied source.
 class OfficeVbaCompileException extends OfficeMacroException {
   const OfficeVbaCompileException(
@@ -56,10 +56,39 @@ class OfficeVbaMacroLanguage implements OfficeMacroLanguage {
         'vba-excel only targets spreadsheet documents.',
       );
     }
-    final module = _Parser(context, _Lexer(context).scan()).parse();
-    final checked = _Checker(context, module)..check();
-    return _Evaluator(context, module, checked).compile();
+    return _compileVba(context);
   }
+}
+
+/// Compiles explicit paragraph writes from the bounded Word VBA dialect.
+///
+/// The language and resource limits are shared with [OfficeVbaMacroLanguage].
+/// Word bindings select main-story paragraphs without reading document content.
+/// Native plans retain the ordinary runtime policy and atomic save boundary.
+class OfficeVbaWordMacroLanguage implements OfficeMacroLanguage {
+  const OfficeVbaWordMacroLanguage();
+
+  @override
+  String get id => 'vba-word';
+
+  @override
+  OfficeMacro compile(OfficeMacroSource source) {
+    final context = _Context(source, isWord: true);
+    if (source.format != OfficeMacroFormat.docx) {
+      context.fail(
+        const _Token(_TokenKind.end, '', 1, 1),
+        'vba_unsupported',
+        'vba-word only targets word-processing documents.',
+      );
+    }
+    return _compileVba(context);
+  }
+}
+
+OfficeMacro _compileVba(_Context context) {
+  final module = _Parser(context, _Lexer(context).scan()).parse();
+  final checked = _Checker(context, module)..check();
+  return _Evaluator(context, module, checked).compile();
 }
 
 const _maxTokens = 50000;
@@ -87,10 +116,35 @@ const _variantIntrinsics = <String>{
   'cstr',
   'cvar',
 };
+const _wordConstants = <String, int>{
+  'wdalignparagraphleft': 0,
+  'wdalignparagraphcenter': 1,
+  'wdalignparagraphright': 2,
+  'wdalignparagraphjustify': 3,
+};
+const _wordReserved = <String>{
+  'thisdocument',
+  'activedocument',
+  'document',
+  'paragraph',
+  'paragraphs',
+  'wdalignparagraphleft',
+  'wdalignparagraphcenter',
+  'wdalignparagraphright',
+  'wdalignparagraphjustify',
+};
 
 class _Context {
-  const _Context(this.source);
+  const _Context(this.source, {this.isWord = false});
   final OfficeMacroSource source;
+  final bool isWord;
+
+  OfficeMacroFormat get format =>
+      isWord ? OfficeMacroFormat.docx : OfficeMacroFormat.xlsx;
+
+  bool reserved(String name) =>
+      _Checker._reserved.contains(name) ||
+      (isWord && _wordReserved.contains(name));
 
   Never fail(
     _Token token,
@@ -367,9 +421,28 @@ enum _Kind {
   workbook,
   font,
   interior,
+  document,
+  paragraph,
+  paragraphFormat,
 }
 
-enum _Declared { long, doubleType, string, boolean, variant, worksheet, range }
+enum _Declared {
+  long,
+  doubleType,
+  string,
+  boolean,
+  variant,
+  worksheet,
+  range,
+  document,
+  paragraph,
+}
+
+bool _objectType(_Declared type) =>
+    type == _Declared.worksheet ||
+    type == _Declared.range ||
+    type == _Declared.document ||
+    type == _Declared.paragraph;
 
 // These are source values, never native JSON null or unbound object bindings.
 enum _VariantState { empty, nullValue }
@@ -381,6 +454,8 @@ _Kind _kindOf(_Declared type) => switch (type) {
   _Declared.variant => _Kind.variant,
   _Declared.worksheet => _Kind.worksheet,
   _Declared.range => _Kind.range,
+  _Declared.document => _Kind.document,
+  _Declared.paragraph => _Kind.paragraph,
 };
 
 sealed class _Expr {
@@ -486,6 +561,11 @@ class _Assignment extends _Statement {
 
 class _Clear extends _Statement {
   const _Clear(super.token, this.target);
+  final _Member target;
+}
+
+class _InsertBefore extends _Statement {
+  const _InsertBefore(super.token, this.target);
   final _Member target;
 }
 
@@ -672,7 +752,7 @@ class _Parser {
           );
         }
         final name = _identifier();
-        if (_Checker._reserved.contains(name.lower)) {
+        if (context.reserved(name.lower)) {
           context.fail(
             name,
             'vba_name_error',
@@ -681,8 +761,7 @@ class _Parser {
         }
         final parameters = _parameters();
         final returnType = isFunction ? _declaredType() : null;
-        if (returnType == _Declared.worksheet ||
-            returnType == _Declared.range) {
+        if (returnType != null && _objectType(returnType)) {
           context.unsupported(name, 'Functions may return scalar values only.');
         }
         _endStatement();
@@ -798,10 +877,30 @@ class _Parser {
         result.add(_Exit(token, kind));
       } else if (_is('call')) {
         position++;
-        final name = _identifier();
-        final arguments = _arguments() ?? const <_Expr>[];
-        _endStatement();
-        result.add(_Invoke(name, arguments));
+        if (context.isWord) {
+          final target = _postfix();
+          if (target is _Member && target.token.lower == 'insertbefore') {
+            if (target.arguments == null) {
+              context.unsupported(
+                target.token,
+                'Call InsertBefore requires parenthesized arguments.',
+              );
+            }
+            result.add(_InsertBefore(target.token, target));
+          } else if (target is _Call) {
+            result.add(_Invoke(target.token, target.arguments));
+          } else if (target is _Name) {
+            result.add(_Invoke(target.token, const <_Expr>[]));
+          } else {
+            context.unsupported(target.token, 'Unsupported Call target.');
+          }
+          _endStatement();
+        } else {
+          final name = _identifier();
+          final arguments = _arguments() ?? const <_Expr>[];
+          _endStatement();
+          result.add(_Invoke(name, arguments));
+        }
       } else if (_is('for')) {
         final token = current;
         position++;
@@ -1021,6 +1120,32 @@ class _Parser {
             target.token.lower == 'clearcontents') {
           _endStatement();
           result.add(_Clear(token, target));
+        } else if (context.isWord &&
+            !isSet &&
+            !isLet &&
+            target is _Member &&
+            target.token.lower == 'insertbefore') {
+          final arguments = target.arguments ?? <_Expr>[];
+          if (target.arguments == null &&
+              current.kind != _TokenKind.separator &&
+              current.kind != _TokenKind.end) {
+            do {
+              if (arguments.length >= _maxArguments) {
+                context.limit(
+                  current,
+                  'Calls accept at most $_maxArguments arguments.',
+                );
+              }
+              arguments.add(_expression());
+            } while (_take(','));
+          }
+          _endStatement();
+          result.add(
+            _InsertBefore(
+              target.token,
+              _bounded(_Member(target.token, target.receiver, arguments)),
+            ),
+          );
         } else if (!isSet &&
             !isLet &&
             token.kind == _TokenKind.identifier &&
@@ -1156,11 +1281,15 @@ class _Parser {
       'string' => _Declared.string,
       'boolean' => _Declared.boolean,
       'variant' => _Declared.variant,
-      'worksheet' => _Declared.worksheet,
+      'worksheet' when !context.isWord => _Declared.worksheet,
       'range' => _Declared.range,
+      'document' when context.isWord => _Declared.document,
+      'paragraph' when context.isWord => _Declared.paragraph,
       _ => context.unsupported(
         token,
-        'Supported declarations are Long, Double, String, Boolean, Variant, Worksheet, and Range.',
+        context.isWord
+            ? 'Supported declarations are Long, Double, String, Boolean, Variant, Document, Paragraph, and Range.'
+            : 'Supported declarations are Long, Double, String, Boolean, Variant, Worksheet, and Range.',
       ),
     };
   }
@@ -1552,7 +1681,7 @@ class _Checker {
 
   void _declare(_Declaration declaration) {
     final name = declaration.token.lower;
-    if (_reserved.contains(name) ||
+    if (context.reserved(name) ||
         symbols.containsKey(name) ||
         module.procedures.containsKey(name)) {
       context.fail(
@@ -1568,8 +1697,7 @@ class _Checker {
       );
     }
     if (declaration.isConst) {
-      if (declaration.type == _Declared.range ||
-          declaration.type == _Declared.worksheet) {
+      if (_objectType(declaration.type)) {
         context.type(declaration.token, 'Constants must be scalar.');
       }
       final initializer = declaration.initializer!;
@@ -1581,8 +1709,7 @@ class _Checker {
       );
     }
     if (declaration.isArray) {
-      if (declaration.type == _Declared.range ||
-          declaration.type == _Declared.worksheet) {
+      if (_objectType(declaration.type)) {
         context.unsupported(
           declaration.token,
           'Array elements must be scalar.',
@@ -1629,6 +1756,10 @@ class _Checker {
       final current = pending.removeLast();
       switch (current) {
         case _Name():
+          if (context.isWord &&
+              _wordConstants.containsKey(current.token.lower)) {
+            break;
+          }
           final symbol = _symbol(current.token);
           if (!constantValues.containsKey(symbol) && needed.add(symbol)) {
             pending.add(symbol.initializer!);
@@ -1681,7 +1812,9 @@ class _Checker {
         }
         break;
       case _Name():
-        if (!(symbols[expression.token.lower]?.isConst ?? false)) {
+        if (!(symbols[expression.token.lower]?.isConst ?? false) &&
+            !(context.isWord &&
+                _wordConstants.containsKey(expression.token.lower))) {
           context.unsupported(
             expression.token,
             'Const expressions may only refer to previously declared constants.',
@@ -1731,7 +1864,7 @@ class _Checker {
       }
       if (variable != null && !symbols.containsKey(variable.lower)) {
         if (module.explicit ||
-            _reserved.contains(variable.lower) ||
+            context.reserved(variable.lower) ||
             module.procedures.containsKey(variable.lower)) {
           context.fail(
             variable,
@@ -1800,13 +1933,13 @@ class _Checker {
                 'Constants and active For counters cannot be assigned.',
               );
             }
-            final object =
-                symbol.type == _Declared.worksheet ||
-                symbol.type == _Declared.range;
+            final object = _objectType(symbol.type);
             if (statement.isSet != object) {
               context.type(
                 target.token,
-                'Set is required only for declared Worksheet and Range variables.',
+                context.isWord
+                    ? 'Set is required only for declared Document, Paragraph, and Range variables.'
+                    : 'Set is required only for declared Worksheet and Range variables.',
               );
             }
             _assignable(symbol.type, valueKind, statement.value.token);
@@ -1842,6 +1975,12 @@ class _Checker {
             );
           }
         case _Clear():
+          if (context.isWord) {
+            context.unsupported(
+              statement.target.token,
+              'ClearContents belongs to the Excel object model.',
+            );
+          }
           _arguments(statement.target, 0, allowProperty: true);
           if (_expression(statement.target.receiver) != _Kind.range) {
             context.type(
@@ -1849,6 +1988,19 @@ class _Checker {
               'ClearContents requires an explicit Range.',
             );
           }
+        case _InsertBefore():
+          final arguments = _arguments(statement.target, 1);
+          if (_expression(statement.target.receiver) != _Kind.range) {
+            context.type(
+              statement.target.token,
+              'InsertBefore requires an explicit Word Range.',
+            );
+          }
+          _compatible(
+            _Kind.string,
+            _expression(arguments.single),
+            arguments.single.token,
+          );
         case _For():
           final counter = _symbol(statement.counter);
           if (counter.isConst ||
@@ -1881,6 +2033,12 @@ class _Checker {
           final isArray =
               collection is _Name &&
               (symbols[collection.token.lower]?.isArray ?? false);
+          if (context.isWord && !isArray) {
+            context.unsupported(
+              collection.token,
+              'Word document collections cannot be enumerated without live reads.',
+            );
+          }
           if (!isArray && _expression(collection) != _Kind.range) {
             context.type(
               collection.token,
@@ -1935,10 +2093,18 @@ class _Checker {
           _statements(statement.otherwise, nested: true);
         case _With():
           final kind = _expression(statement.target);
-          if (kind != _Kind.worksheet && kind != _Kind.range) {
+          final wordObject =
+              context.isWord &&
+              (kind == _Kind.document ||
+                  kind == _Kind.paragraph ||
+                  kind == _Kind.font ||
+                  kind == _Kind.paragraphFormat);
+          if (kind != _Kind.worksheet && kind != _Kind.range && !wordObject) {
             context.type(
               statement.token,
-              'With requires a Worksheet or Range.',
+              context.isWord
+                  ? 'With requires a Document, Paragraph, Range, Font, or ParagraphFormat.'
+                  : 'With requires a Worksheet or Range.',
             );
           }
           withKinds.add(kind);
@@ -2008,6 +2174,22 @@ class _Checker {
     _arguments(target, 0, allowProperty: true);
     final receiver = _expression(target.receiver);
     final property = target.token.lower;
+    if (context.isWord) {
+      if (receiver == _Kind.font) {
+        if (property == 'bold' || property == 'italic') return _Kind.boolean;
+        if (property == 'size' || property == 'color') return _Kind.number;
+        if (property == 'name') return _Kind.string;
+      } else if (receiver == _Kind.paragraphFormat &&
+          (property == 'alignment' ||
+              property == 'spacebefore' ||
+              property == 'spaceafter')) {
+        return _Kind.number;
+      }
+      context.unsupported(
+        target.token,
+        'Unsupported writable Word property ${target.token.text}.',
+      );
+    }
     if (receiver == _Kind.range) {
       if (property == 'value' || property == 'value2') return _Kind.variant;
       if (property == 'formula') return _Kind.string;
@@ -2034,7 +2216,20 @@ class _Checker {
             ? _Kind.boolean
             : _Kind.string;
       case _Name():
-        if (expression.token.lower == 'thisworkbook') return _Kind.workbook;
+        if (context.isWord) {
+          if (expression.token.lower == 'thisdocument') return _Kind.document;
+          if (_wordConstants.containsKey(expression.token.lower)) {
+            return _Kind.number;
+          }
+          if (expression.token.lower == 'thisworkbook') {
+            context.unsupported(
+              expression.token,
+              'ThisWorkbook belongs to the Excel object model.',
+            );
+          }
+        } else if (expression.token.lower == 'thisworkbook') {
+          return _Kind.workbook;
+        }
         final symbol = _symbol(expression.token);
         if (symbol.isArray) {
           context.type(
@@ -2085,6 +2280,12 @@ class _Checker {
           return _Kind.number;
         }
         if (expression.token.lower == 'worksheets') {
+          if (context.isWord) {
+            context.unsupported(
+              expression.token,
+              'Worksheets belongs to the Excel object model.',
+            );
+          }
           _count(expression.token, expression.arguments, 1);
           final kind = _expression(expression.arguments.single);
           if (kind != _Kind.string &&
@@ -2114,6 +2315,26 @@ class _Checker {
       case _Member():
         final receiver = _expression(expression.receiver);
         final name = expression.token.lower;
+        if (context.isWord) {
+          if (receiver == _Kind.document && name == 'paragraphs') {
+            final argument = _arguments(expression, 1).single;
+            _compatible(_Kind.number, _expression(argument), argument.token);
+            return _Kind.paragraph;
+          }
+          if (receiver == _Kind.paragraph && name == 'range') {
+            _arguments(expression, 0, allowProperty: true);
+            return _Kind.range;
+          }
+          if (receiver == _Kind.range &&
+              (name == 'font' || name == 'paragraphformat')) {
+            _arguments(expression, 0, allowProperty: true);
+            return name == 'font' ? _Kind.font : _Kind.paragraphFormat;
+          }
+          context.unsupported(
+            expression.token,
+            'Unsupported Word object member or document read: ${expression.token.text}.',
+          );
+        }
         if (receiver == _Kind.workbook && name == 'worksheets') {
           final arguments = _arguments(expression, 1);
           final kind = _expression(arguments.single);
@@ -2272,7 +2493,9 @@ class _Checker {
     } else if (expected != value &&
         (value != _Kind.variant ||
             expected == _Kind.worksheet ||
-            expected == _Kind.range)) {
+            expected == _Kind.range ||
+            expected == _Kind.document ||
+            expected == _Kind.paragraph)) {
       // Scalar Variant values may defer scalar checks until evaluation, but
       // cannot ever carry object bindings, including in unexecuted code.
       context.type(
@@ -2357,6 +2580,30 @@ class _Interior {
   final _Range range;
 }
 
+class _WordDocument {
+  const _WordDocument();
+}
+
+class _WordParagraph {
+  const _WordParagraph(this.index);
+  final int index;
+}
+
+class _WordRange {
+  const _WordRange(this.paragraph);
+  final _WordParagraph paragraph;
+}
+
+class _WordFont {
+  const _WordFont(this.range);
+  final _WordRange range;
+}
+
+class _WordParagraphFormat {
+  const _WordParagraphFormat(this.range);
+  final _WordRange range;
+}
+
 sealed class _ExecutionFrame {}
 
 class _BodyFrame extends _ExecutionFrame {
@@ -2419,7 +2666,7 @@ class _Evaluator {
           jsonEncode(<String, Object?>{
             'version': 1,
             'name': name,
-            'format': 'xlsx',
+            'format': context.format.name,
             'steps': <Object?>[],
           }),
         )
@@ -2433,11 +2680,7 @@ class _Evaluator {
     globalValues = Map<String, Object>.of(values);
     _invoke(procedure, const <Object>[], procedure.name, needsResult: false);
     try {
-      return OfficeMacro(
-        name: name,
-        format: OfficeMacroFormat.xlsx,
-        steps: steps,
-      );
+      return OfficeMacro(name: name, format: context.format, steps: steps);
     } on OfficeMacroException catch (error) {
       if (error.code == 'limit_exceeded') {
         context.limit(procedure.name, error.message);
@@ -2665,6 +2908,15 @@ class _Evaluator {
             _emitRange(range, 'cellValue', <String, Object?>{
               'value': null,
             }, statement.token);
+          case _InsertBefore():
+            final range = _evaluate(statement.target.receiver) as _WordRange;
+            final value = _evaluate(statement.target.arguments!.single);
+            final text = _wordText(value, statement.target.token);
+            _emitWord(range, 'replaceText', <String, Object?>{
+              'start': 0,
+              'end': 0,
+              'text': text,
+            }, statement.target.token);
           case _With():
             withValues.add(_evaluate(statement.target));
             frames.add(_WithFrame());
@@ -2833,7 +3085,15 @@ class _Evaluator {
       case _Literal():
         return expression.value;
       case _Name():
-        if (expression.token.lower == 'thisworkbook') return const _Workbook();
+        if (context.isWord) {
+          if (expression.token.lower == 'thisdocument') {
+            return const _WordDocument();
+          }
+          final constant = _wordConstants[expression.token.lower];
+          if (constant != null) return constant;
+        } else if (expression.token.lower == 'thisworkbook') {
+          return const _Workbook();
+        }
         final value = values[expression.token.lower]!;
         return _initialized(value, expression.token);
       case _WithValue():
@@ -2890,6 +3150,23 @@ class _Evaluator {
           for (final argument in expression.arguments ?? const <_Expr>[])
             _evaluate(argument),
         ];
+        if (context.isWord) {
+          if (receiver is _WordDocument) {
+            final index = _integer(arguments.single, expression.token);
+            if (index < 1) {
+              context.type(
+                expression.token,
+                'Paragraphs requires a positive one-based index.',
+              );
+            }
+            return _WordParagraph(index - 1);
+          }
+          if (receiver is _WordParagraph) return _WordRange(receiver);
+          final range = receiver as _WordRange;
+          return expression.token.lower == 'font'
+              ? _WordFont(range)
+              : _WordParagraphFormat(range);
+        }
         if (receiver is _Workbook) {
           return _sheet(arguments.single, expression.token);
         }
@@ -3214,7 +3491,19 @@ class _Evaluator {
         }
         return value;
       case _Declared.range:
-        if (value is! _Range) context.type(token, 'Set requires a Range.');
+        if (context.isWord ? value is! _WordRange : value is! _Range) {
+          context.type(token, 'Set requires a Range.');
+        }
+        return value;
+      case _Declared.document:
+        if (value is! _WordDocument) {
+          context.type(token, 'Set requires a Document.');
+        }
+        return value;
+      case _Declared.paragraph:
+        if (value is! _WordParagraph) {
+          context.type(token, 'Set requires a Paragraph.');
+        }
         return value;
     }
   }
@@ -3565,6 +3854,10 @@ class _Evaluator {
   void _write(_Member target, Object value) {
     final receiver = _evaluate(target.receiver);
     final property = target.token.lower;
+    if (context.isWord) {
+      _writeWord(receiver, property, value, target.token);
+      return;
+    }
     if (receiver is _Range) {
       if (property == 'formula') {
         final formula = _string(value, target.token);
@@ -3627,6 +3920,120 @@ class _Evaluator {
     }
   }
 
+  void _writeWord(
+    Object receiver,
+    String property,
+    Object value,
+    _Token token,
+  ) {
+    if (receiver is _WordFont) {
+      final String field;
+      final Object normalized;
+      if (property == 'bold' || property == 'italic') {
+        field = property;
+        normalized = _boolean(value, token);
+      } else if (property == 'name') {
+        field = 'font';
+        normalized = _wordText(value, token, fontName: true);
+      } else if (property == 'size') {
+        field = 'size';
+        final size = _number(value, token);
+        final halfPoints = size * 2;
+        if (size < 0.5 ||
+            size > 1638 ||
+            halfPoints != halfPoints.truncateToDouble()) {
+          context.type(
+            token,
+            'Word Font.Size requires exact half-points in 0.5..1638.',
+          );
+        }
+        normalized = size;
+      } else {
+        field = 'color';
+        normalized = _color(value, token);
+      }
+      _emitWord(receiver.range, 'runFormat', <String, Object?>{
+        field: normalized,
+      }, token);
+      return;
+    }
+    final format = receiver as _WordParagraphFormat;
+    final String field;
+    final Object normalized;
+    if (property == 'alignment') {
+      final alignment = _integer(value, token);
+      if (alignment < 0 || alignment > 3) {
+        context.unsupported(
+          token,
+          'Only left, center, right, and justified paragraph alignment are supported.',
+        );
+      }
+      field = 'alignment';
+      normalized = const <String>[
+        'left',
+        'center',
+        'right',
+        'justify',
+      ][alignment];
+    } else {
+      final points = _number(value, token);
+      final twips = points * 20;
+      if (points < 0 ||
+          twips > 2147483647 ||
+          twips != twips.truncateToDouble()) {
+        context.type(
+          token,
+          'Paragraph spacing requires nonnegative exact twentieth-points with at most 2147483647 twips.',
+        );
+      }
+      field = property == 'spacebefore' ? 'before' : 'after';
+      normalized = points;
+    }
+    _emitWord(format.range, 'paragraphFormat', <String, Object?>{
+      field: normalized,
+    }, token);
+  }
+
+  String _wordText(Object value, _Token token, {bool fontName = false}) {
+    final text = _string(value, token);
+    // Bound publication scans/copies before validating or encoding a string.
+    _charge(text.length, token);
+    _nativeString(text, token);
+    if (fontName && text.isEmpty) {
+      context.type(token, 'Font.Name requires a nonempty String.');
+    }
+    for (var index = 0; index < text.length; index++) {
+      final unit = text.codeUnitAt(index);
+      if ((unit < 0x20 && unit != 9) ||
+          unit == 0xfffe ||
+          unit == 0xffff ||
+          (fontName && unit == 9)) {
+        context.type(
+          token,
+          fontName
+              ? 'Font.Name requires XML-safe text without tabs or line breaks.'
+              : 'InsertBefore requires XML-safe single-paragraph text; tabs are allowed but line breaks are unsupported.',
+        );
+      }
+    }
+    return text;
+  }
+
+  void _emitWord(
+    _WordRange range,
+    String operation,
+    Map<String, Object?> fields,
+    _Token token,
+  ) {
+    if (steps.length >= _maxSteps) {
+      context.limit(token, 'Word writes exceed $_maxSteps emitted operations.');
+    }
+    _emitNative('docx.$operation', <String, Object?>{
+      'paragraph': range.paragraph.index,
+      ...fields,
+    }, token);
+  }
+
   String _color(Object value, _Token token) {
     final color = _integer(value, token);
     if (color < 0 || color > 0xFFFFFF) {
@@ -3653,7 +4060,9 @@ class _Evaluator {
       if (!paired) {
         context.type(
           token,
-          'Native spreadsheet writes require well-formed UTF-16; isolated surrogates cannot be published losslessly.',
+          context.isWord
+              ? 'Native Word writes require well-formed UTF-16; isolated surrogates cannot be published losslessly.'
+              : 'Native spreadsheet writes require well-formed UTF-16; isolated surrogates cannot be published losslessly.',
         );
       }
       index++;
@@ -3684,27 +4093,26 @@ class _Evaluator {
     }
     for (var row = range.minRow; row <= range.maxRow; row++) {
       for (var column = range.minColumn; column <= range.maxColumn; column++) {
-        _tick(token);
         final arguments = <String, Object?>{
           'sheet': range.sheet.selector,
           'cell': '${_columnLetters(column)}$row',
           ...fields,
         };
-        final json = <String, Object?>{
-          'tool': 'xlsx.$operation',
-          'arguments': arguments,
-        };
-        final bytes =
-            utf8.encode(jsonEncode(json)).length + (steps.isEmpty ? 0 : 1);
-        if (bytes > macroJsonByteLimit - encodedBytes) {
-          context.limit(token, 'Compiled native JSON exceeds 1 MiB.');
-        }
-        encodedBytes += bytes;
-        steps.add(
-          OfficeMacroStep(tool: 'xlsx.$operation', arguments: arguments),
-        );
+        _emitNative('xlsx.$operation', arguments, token);
       }
     }
+  }
+
+  void _emitNative(String tool, Map<String, Object?> arguments, _Token token) {
+    _tick(token);
+    final json = <String, Object?>{'tool': tool, 'arguments': arguments};
+    final bytes =
+        utf8.encode(jsonEncode(json)).length + (steps.isEmpty ? 0 : 1);
+    if (bytes > macroJsonByteLimit - encodedBytes) {
+      context.limit(token, 'Compiled native JSON exceeds 1 MiB.');
+    }
+    encodedBytes += bytes;
+    steps.add(OfficeMacroStep(tool: tool, arguments: arguments));
   }
 
   String _columnLetters(int column) {

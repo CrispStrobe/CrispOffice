@@ -30,12 +30,15 @@ and `Option Base`; explicit ranges support
 cell enumeration and read-only row/column coordinates. String intrinsics
 `Len`, `Left$`, `Right$`, and `Mid$` use strict types and UTF-16 units.
 Variants distinguish `Empty`/`Null`, with state predicates and explicit bounded
-`CVar`, `CBool`, `CDbl`, `CLng`, and `CStr` conversions. Both slices use
+`CVar`, `CBool`, `CDbl`, `CLng`, and `CStr` conversions. The
+[Word VBA subset](docs/VBA_WORD_MACROS.md) shares that language and adds explicit
+paragraph/range bindings, paragraph-prefix insertion, font formatting and
+paragraph alignment/spacing. Both adapters use
 [versioned conformance cases](docs/VBA_CONFORMANCE.md) shared across VM and JavaScript. Source logic uses values
 known during compilation; worksheet formulas run against the detached workbook.
 VBA projects remain inert and preserved; full VBA execution and macro ribbon
 UI are not included. The [VBA parity roadmap](docs/VBA_PARITY_ROADMAP.md) tracks
-the remaining language, runtime, and Word/PowerPoint object-model work.
+the remaining language/runtime work, broader Word objects and PowerPoint.
 
 Word now includes an [offline English/German thesaurus](docs/roadmaps/thesaurus/README.md)
 with full OEWN 2025 and OpenThesaurus packs, alternatives grouped by meaning,

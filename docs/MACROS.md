@@ -7,18 +7,20 @@ The portable entry point is
 `package:quds_office_engine/quds_office_automation.dart`.
 
 This is a headless engine capability with a command-line runner and an MCP
-stdio bridge. The bundled [`vba-excel` dialect](VBA_MACROS.md) compiles a bounded
-Excel VBA subset from explicitly selected source into the same native plans.
-The subset includes reusable in-module procedures, scalar functions, explicit
+stdio bridge. The bundled [`vba-excel` dialect](VBA_MACROS.md) and
+[`vba-word` dialect](VBA_WORD_MACROS.md) compile explicitly selected source into
+the same native plans. Their shared language includes reusable in-module procedures, scalar functions, explicit
 `ByVal` arguments, fixed and dynamic one-dimensional scalar arrays, bounded
-`For`/`For Each`/`Do`/`While` loops, `Select Case`, and early exits. Its compiler evaluates those constructs before execution; workbook
+`For`/`For Each`/`Do`/`While` loops, `Select Case`, and early exits. Its compiler evaluates those constructs before execution; document
 values are not available to source logic.
 Dynamic arrays support `ReDim`/`Preserve` and `Erase`, and `Option Base` sets
 omitted lower bounds. String intrinsics, explicit Variant `Empty`/`Null`,
 state predicates and bounded conversions operate on source values. Empty cell
 writes clear values/formulas; Null publication fails before a plan is returned.
-The [parity roadmap](VBA_PARITY_ROADMAP.md) records the
-remaining language, runtime, and Word/PowerPoint object-model stages.
+The Word adapter targets explicit body paragraphs, inserts text before their
+content, and applies supported font and paragraph formatting. Its ranges retain
+the native paragraph boundaries. The [parity roadmap](VBA_PARITY_ROADMAP.md)
+records remaining language/runtime work, broader Word objects and PowerPoint.
 It does not add a ribbon editor, a full VBA interpreter, document-open events,
 or editor undo integration. Existing opaque VBA project bytes remain inert and
 are preserved by the Office serializers.
@@ -139,7 +141,7 @@ heading, adds a net formula, and freezes the first row. Other examples cover a
 Word heading and presentation notes. The runner prints a JSON receipt on success
 and a JSON diagnostic to stderr on failure. `compile SOURCE.json OUTPUT.json`
 compiles a source envelope without running it; the default registry accepts
-`quds-json` and `vba-excel`.
+`quds-json`, `vba-excel`, and `vba-word`.
 
 For an explicitly selected VBA source file:
 
@@ -155,6 +157,25 @@ dart run tool/macros/office_macro.dart run-vba \
 These commands default to the parameterless `Main` procedure and accept a final
 optional entry-point name. The [VBA dialect guide](VBA_MACROS.md) specifies the
 supported syntax, object members, compiler limits, and deliberate exclusions.
+
+For Word source, select the Word commands explicitly:
+
+```bash
+dart run tool/macros/office_macro.dart compile-word-vba \
+  example/macros/word_report.bas word-report.qudsmacro.json
+dart run tool/macros/office_macro.dart validate-word-vba \
+  input.docx example/macros/word_report.bas
+dart run tool/macros/office_macro.dart run-word-vba \
+  input.docx example/macros/word_report.bas output.docx
+```
+
+They have the same optional entry-point argument and output-preservation rules.
+The input must contain the explicitly selected paragraphs. Word macro-enabled
+and template extensions retain the same-extension requirement; embedded projects
+remain inert. The [Word dialect contract](VBA_WORD_MACROS.md) describes paragraph
+selection, text boundaries, point units and supported formatting. For MCP,
+use a source envelope with `language: "vba-word"` and `format: "docx"`, then
+validate or execute the returned native plan through the same management tools.
 The `example/macros/procedural_report.bas` example demonstrates shared heading
 and row helpers, `Worksheet`/`Range` arguments, and nested scalar functions.
 The `example/macros/control_flow_report.bas` example combines conditional loops
@@ -326,7 +347,7 @@ resolver should be a pure lookup, because its external side effects cannot be
 rolled back. Legacy fidelity CLI wrappers retain their existing trusted local
 file behavior for test scenarios.
 
-## Language compilers and the Excel VBA subset
+## Language compilers and the Word/Excel VBA subsets
 
 `OfficeMacroLanguage` is the implemented extension interface:
 
@@ -343,8 +364,9 @@ A host registers a concrete compiler with
 immutable native plan, and execution applies the same operation allowlist,
 document admission, parameter checks, and transaction rules. Tests register an
 independent small compiler and execute its result through the real dispatcher.
-The default registry includes native JSON and `OfficeVbaMacroLanguage`, exposed
-as the deliberately scoped `vba-excel` dialect. The generic language name `vba`
+The default registry includes native JSON, `OfficeVbaMacroLanguage` as
+`vba-excel`, and `OfficeVbaWordMacroLanguage` as `vba-word`. Both VBA adapters
+share the parser, checker, evaluator and resource accounting. The generic language name `vba`
 remains unregistered so clients cannot infer full VBA support.
 
 The Excel adapter compiles supported statements with values known from source.
@@ -355,6 +377,13 @@ Named worksheets are resolved by the shared
 handler during validation or execution. The compiler receives no workbook and
 cannot read document values; [the complete dialect contract](VBA_MACROS.md)
 documents supported types, syntax, members, and limits.
+
+The Word adapter lowers explicit `ThisDocument.Paragraphs(i).Range` operations
+to `docx.replaceText`, `docx.runFormat` and `docx.paragraphFormat`. `InsertBefore`
+uses the empty range at paragraph offset zero, preserving the paragraph mark.
+Word and Excel retain separate typed object members and native output formats;
+neither adapter receives a live document during compilation. Inactive branches
+and unused procedures are still checked for unsupported object access.
 
 An interactive or document-dependent VBA interpreter needs an additional
 constrained execution model. Parsing an embedded `vbaProject.bin`, project
@@ -378,6 +407,9 @@ Procedure, control-flow, and array suites add unit, boundary, and integration co
 `office_vba_control_flow_integration_test.dart`, `office_vba_arrays_test.dart`,
 `office_vba_arrays_boundaries_test.dart`, and
 `office_vba_arrays_integration_test.dart`.
+Word source adds compiler, conformance and end-to-end native/CLI/MCP regressions,
+including document-kind preservation, immutable validation, policy denial and
+rollback after a later invalid paragraph.
 
 These tests cover shared handler parity, package admission,
 immutable/parameterized plans, publish-on-success, recording, bounded source
